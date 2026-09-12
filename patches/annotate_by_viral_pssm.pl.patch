@@ -1,0 +1,112 @@
+diff --git a/annotate_by_viral_pssm.pl b/annotate_by_viral_pssm.pl
+index 99a8ece..027a4b5 100755
+--- a/annotate_by_viral_pssm.pl
++++ b/annotate_by_viral_pssm.pl
+@@ -277,13 +277,33 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
+ 		my  ($results, $hsp_best_bit) = matching_tblastn_hsps_json($pssm_blast, $bit_cutoff, $cov_cutoff);
+ 		print STDERR "\t$name\t$hsp_best_bit\n"; 
+ 
+-		unless ($hsp_best_bit < $best_bit)   #evaulate each pssm blast based on the bit score, and pick the best one
++		#  Strictly greater, and never accept a zero.
++		#
++		#  This was "unless ($hsp_best_bit < $best_bit)", which is TRUE when
++		#  both are zero -- so a profile that matched nothing still became
++		#  $best_pssm, and because every later zero also passed, the LAST
++		#  profile in the directory won. The feature then went downstream with
++		#  $best_bit 0 and an empty result set, and
++		#  print_alignment_as_fasta died with "Bad sequence entry".
++		#
++		#  Seen on 11292.18743 (Alpharhabdovirinae): UNC5 through UNC9 each
++		#  scored 0, each was "Chosen", and the run produced no output at all
++		#  -- one genome in 1356. UNC9 was blamed only for being last.
++		if ($hsp_best_bit > $best_bit)   #evaulate each pssm blast based on the bit score, and pick the best one
+ 		{
+ 			$best_bit = $hsp_best_bit;
+ 			$best_pssm = $name;
+ 			$best_results = $results;
+ 		}
+ 	}
++	#  No profile in this directory hit anything: there is no feature here.
++	#  Skip rather than carrying an undefined profile and an empty result set
++	#  into the extraction below.
++	unless (defined $best_pssm && $best_bit > 0 && ref $best_results eq 'ARRAY')
++	{
++		print STDERR "\n\tNo profile above threshold; skipping this feature\n\n";
++		next;
++	}
+ 	print STDERR "\n\tChoosing $best_pssm\t$best_bit\n\n"; 
+ 	my $nhsps = scalar @$best_results;
+ 	for my $i (0..($nhsps -1))
+@@ -474,6 +494,18 @@ foreach (@contig_order)
+ 		my $protein = $_->[7];
+ 		$protein =~ s/\*$//g;
+ 
++		#  Never emit a feature with no sequence. An empty gene or protein
++		#  string makes a malformed triple, and print_alignment_as_fasta
++		#  below dies with "Bad sequence entry" -- taking the whole genome
++		#  down, so a single bad feature produced no output at all rather
++		#  than one missing feature.
++		unless (defined $_->[6] && length $_->[6] && defined $protein && length $protein)
++		{
++			print STDERR "\tWARNING: $prot_id ($_->[9]) has an empty ",
++				(defined $_->[6] && length $_->[6] ? "protein" : "gene"),
++				" sequence; feature dropped\n";
++			next;
++		}
+ 		push @gene_seqs, ([$prot_id, $_->[3], $_->[6]]);
+ 		push @prot_seqs, ([$prot_id, $_->[3], $protein]);
+ 		
+@@ -525,18 +557,49 @@ foreach (@contig_order)
+ 
+ 
+ 
++#  A genome can route to a module and still match no profile. That is a
++#  legitimate result -- an empty annotation -- but write_fasta() requires its
++#  first argument to be an array ref and confesses "Bad sequence entry passed
++#  to print_alignment_as_fasta" when handed an empty list. The run then died
++#  and produced NOTHING, so "no features found" was indistinguishable from a
++#  crash. One genome in 1356 (11292.18743) hit this.
++#  Per JJD: a genome that matched a rep contig but called no features is still
++#  worth recording. The BLASTn hit says which taxon was selected and how
++#  strongly, and that belongs in the GTO even with an empty feature set.
++#
++#  It has to be emitted here, because annotate_by_viral_pssm-GTO.pl reads the
++#  close-genome fields (columns 12-16) off the FEATURE ROWS of this script's
++#  stdout. No rows meant $close_id, $close_name, $close_bit and $viral_family
++#  all stayed undef, and the GTO came back with an empty close_genomes entry
++#  and no viral_family -- the taxon assignment silently lost.
++#
++#  The row carries feature type "no_features_called", which the GTO parser
++#  picks up for close_genomes and viral_family but does NOT turn into a
++#  feature: it only builds one for /(mat_peptide)|(CDS)/.
++unless (@gene_seqs)
++{
++	my $blank = join("\t", "$tax.$version", $genome_name, "", "LV",
++		"no_features_called", "", "", "", "", "", 0,
++		$virus, $best_rep, $best_contig_bit, $best_rep_ids, $best_rep_name,
++		"", "Routed to $virus; no profile above threshold") . "\n";
++	print $blank if $tbl_only;
++	print TBL $blank unless $no_out;
++	print STDERR "\tNo features called; recorded the $virus match ",
++		"($best_rep, $best_contig_bit bits) so the taxon is not lost\n";
++}
++
+ unless($no_out)
+ {
+-	&gjoseqlib::print_alignment_as_fasta(\*DNA, @gene_seqs);
+-	&gjoseqlib::print_alignment_as_fasta(\*AA, @prot_seqs);
++	&gjoseqlib::print_alignment_as_fasta(\*DNA, @gene_seqs) if @gene_seqs;
++	&gjoseqlib::print_alignment_as_fasta(\*AA, @prot_seqs) if @prot_seqs;
+ }
+ if ($dna_only)
+ {
+-	&gjoseqlib::print_alignment_as_fasta(\@gene_seqs);
++	&gjoseqlib::print_alignment_as_fasta(\@gene_seqs) if @gene_seqs;
+ }
+ if ($aa_only)
+ {
+-	&gjoseqlib::print_alignment_as_fasta(\@prot_seqs);
++	&gjoseqlib::print_alignment_as_fasta(\@prot_seqs) if @prot_seqs;
+ }
+ 
+ 

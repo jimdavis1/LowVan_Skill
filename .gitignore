@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+*.swp
+
+# Build output. These are produced by the workflow, not checked in.
+collections/
+Alignments/
+Rep-Contigs/
+Extracted/
+Contigs/
+coverage_eval/
+*.blastdb

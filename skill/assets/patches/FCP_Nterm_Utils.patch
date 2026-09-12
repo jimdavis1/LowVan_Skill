@@ -1,0 +1,40 @@
+205a206,214
+>         #  Do NOT delete the working PSSM yet. N-terminal reclustering can
+>         #  split a perfectly good cluster into singletons -- MMseqs on 25
+>         #  residues at 0.7 identity will do that to any small, divergent
+>         #  collection -- and a singleton produces no alignment and no profile.
+>         #  Deleting up front then meant the feature ended with nothing at all,
+>         #  strictly worse than the un-reclustered PSSM it started with.
+>         #  Trirhavirus L: 4 homologous 2,043 aa polymerases, one good cluster,
+>         #  reclustered into 4 singletons, zero PSSMs emitted.
+>         #  Set it aside and restore it below if nothing replaces it.
+206a216
+>         my $stashed_pssm  = "";
+208,210c218,222
+<             print STDERR "  Removing old PSSM: $old_pssm_path\n";
+<             unlink($old_pssm_path) or 
+<                 print STDERR "  Warning: Could not remove old PSSM file $old_pssm_path: $!\n";
+---
+>             $stashed_pssm = "$old_pssm_path.superseded";
+>             rename($old_pssm_path, $stashed_pssm) or do {
+>                 print STDERR "  Warning: could not set aside $old_pssm_path: $!\n";
+>                 $stashed_pssm = "";
+>             };
+378a391
+>         my $made = 0;
+382a396,410
+>             my $made_path = $options->{pssm_prefix}
+>                           ? "pssms/$options->{pssm_prefix}.$new_ali->{base}.pssm"
+>                           : "pssms/$new_ali->{base}.pssm";
+>             $made++ if -s $made_path;
+>         }
+>         #  Reclustering only earns the right to replace the original if it
+>         #  actually produced something.
+>         if ($stashed_pssm) {
+>             if ($made) {
+>                 unlink($stashed_pssm);
+>             } else {
+>                 print STDERR "  Reclustering produced no usable PSSM; keeping the original ",
+>                              "$old_pssm_path\n";
+>                 rename($stashed_pssm, $old_pssm_path);
+>             }

@@ -1,0 +1,171 @@
+--- a/Other_Scripts/FCP_Main_Utils.pm
++++ b/Other_Scripts/FCP_Main_Utils.pm
+@@ -25,10 +25,22 @@
+ 			-d keep sequences beginning with a dash [d = throw away]
+ 			-e cutoff for the number of dashes at the end of a sequence to be seen 
+ 			   before throwing away sequence with a gap at the end [d = 3]
++			-max_start_frac the most of an alignment that may be discarded for starting
++			     after the alignment begins [d = 0.35]. Above that, the leading columns
++			     are trimmed and the sequences kept, because a start-site disagreement
++			     is not a reason to throw away the majority of a cluster.
++			-max_end_frac the most of an alignment that may be discarded as C-terminally
++			     truncated [d = 0.35]. Sequences ending inside the last -e columns are
++			     removed unless they exceed this fraction, in which case the short
++			     C-terminus is taken to be real and nothing is removed. Supersedes the
++			     old -efo occupancy veto, which did nothing precisely when truncation
++			     was common.
+ 			-efo end fraction occupancy, this goes with -e.  This dictates the fraction of dashes in the -e 
+ 			     end columns in order to allow cutting [d = 0.15] (if the fraction is too high, you might 
+ 			     be cutting something that is conserved)
+ 			-fd maximum fraction of dashes allowable for keeping a sequence (d = 0.20)
++			-min_keep keep the PSSM of a curated alignment down to this many
++			     seqs, even if -m is higher [d = 2]
+ 			-mi mmseqs identity [d = 0.8]
+ 			-mc mmseqs coverage [d = 0.8]
+ 			-k keep temp fasta (pre-aligned)
+@@ -39,13 +51,22 @@
+ 			-nterm_eval_length number of N-terminal columns to check for poor conservation (default = 10)
+ 			-nterm-mmseq-id identity threshold for N-terminal reclustering (default = 0.7)
+ 			-no_nterm_eval disable N-terminal evaluation and reclustering
++			-qc_pident percent identity for calling a cluster consensus a substring of another (default = 75)
++			-qc_qcov fraction of the shorter consensus that must align to call it a substring (default = 0.95)
++			-qc_lenratio shorter consensus must be below this fraction of the longer to count as truncated (default = 0.92)
++			-no_trunc_qc disable the truncation QC that runs before the correction step
++			-n_occ minimum column occupancy for the N-terminal trim to stop (default = 0.40)
+ ';
+ 
+-    my ($help, $keep_x, $keep_i, $keep_tmp, $start_dash, $annotation, $pssm_prefix, $no_nterm_eval);
++    my ($help, $keep_x, $keep_i, $keep_tmp, $start_dash, $annotation, $pssm_prefix, $no_nterm_eval, $no_trunc_qc);
+ 
+     my $end_frac_occ = 0.15;
++    my $max_end_frac = 0.35;
++    my $max_start_frac = 0.35;
+     my $end_dash = 3;
+     my $min_seqs = 5;
++    my $min_keep = 2;   # keep a curated alignment's profile down to this many
++                        # sequences, even when -m is higher. See FCP_Ali_Utils.
+     my $f_insert = 0.33;
+     my $frac_n_term = 0.75;
+     my $frac_c_term = 0;
+@@ -57,14 +78,29 @@
+     my $n_nterm = 3;  # Number of columns required
+     my $nterm_eval_length = 10; # Default length for N-terminal evaluation
+     my $n_term_cluster_id = 0.7; # Default for N-terminal reclustering
++    my $qc_pident   = 75;   # Truncation QC: min percent identity. Must sit between the
++                            # cross-family background (measured 37-48% for L) and the
++                            # within-family level, which is floored by the mmseqs -mi
++                            # clustering identity (0.8). A truncated cluster's consensus
++                            # matched its parent cluster's consensus at 88.8%, not ~98%,
++                            # because a consensus is not any single member sequence.
++    my $qc_qcov     = 0.95; # Truncation QC: min coverage of the shorter consensus
++    my $qc_lenratio = 0.92; # Truncation QC: shorter must be below this fraction of longer
++    my $n_occ       = 0.40; # N-terminal trim: a column must be present in at least this
++                            # fraction of sequences before the trim will stop on it.
++                            # Guards the identity-among-occupied test against halting on a
++                            # sparsely-populated leader that only a minority carries.
+ 
+     my $opts = GetOptions(
+         'h'     => \$help,
+         'a=s'   => \$annotation,
+         'm=s'   => \$min_seqs,
++        'min_keep=s' => \$min_keep,
+         'f=f'   => \$f_insert,
+         'e=i'   => \$end_dash,
+         'efo=f' => \$end_frac_occ,
++        'max_end_frac=f' => \$max_end_frac,
++        'max_start_frac=f' => \$max_start_frac,
+         'n=f'   => \$frac_n_term,
+         'c=f'   => \$frac_c_term,
+         'fd=f'  => \$frac_dash,
+@@ -80,7 +116,12 @@
+         'n_nterm=i' => \$n_nterm,
+         'nterm_eval_length=i' => \$nterm_eval_length,
+         'nterm-mmseq-id=f' => \$n_term_cluster_id, # New parameter for N-terminal reclustering identity
+-        'no_nterm_eval' => \$no_nterm_eval
++        'no_nterm_eval' => \$no_nterm_eval,
++        'qc_pident=f'   => \$qc_pident,
++        'qc_qcov=f'     => \$qc_qcov,
++        'qc_lenratio=f' => \$qc_lenratio,
++        'no_trunc_qc'   => \$no_trunc_qc,
++        'n_occ=f'       => \$n_occ
+     );
+ 
+     if ($help) 
+@@ -115,8 +156,11 @@
+         annotation    => $annotation,
+         pssm_prefix   => $pssm_prefix,
+         end_frac_occ  => $end_frac_occ,
++        max_end_frac  => $max_end_frac,
++        max_start_frac => $max_start_frac,
+         end_dash      => $end_dash,
+         min_seqs      => $min_seqs,
++        min_keep      => $min_keep,
+         f_insert      => $f_insert,
+         frac_n_term   => $frac_n_term,
+         frac_c_term   => $frac_c_term,
+@@ -128,7 +172,12 @@
+         n_nterm       => $n_nterm,
+         nterm_eval_length => $nterm_eval_length,
+         n_term_cluster_id => $n_term_cluster_id,
+-        evaluate_nterm => $evaluate_nterm
++        evaluate_nterm => $evaluate_nterm,
++        qc_pident     => $qc_pident,
++        qc_qcov       => $qc_qcov,
++        qc_lenratio   => $qc_lenratio,
++        no_trunc_qc   => ($no_trunc_qc ? 1 : 0),
++        n_occ         => $n_occ
+     };
+ }
+ 
+@@ -166,8 +215,12 @@
+         print STDERR "Sorting ", scalar(@seq_with_len), " sequences...\n";
+         
+         # Sort by the pre-calculated length
++        #  Tiebreak on ID. Sorting on length alone leaves every equal-length
++        #  sequence in Perl hash order, so the FASTA handed to mmseqs was in a
++        #  different order on every run. L is ~2127 aa across the board, so
++        #  almost everything is a tie and the whole ordering was arbitrary.
+         @prots2 = map { [$_->[0], $_->[1], $_->[2]] } 
+-                  sort { $b->[3] <=> $a->[3] } 
++                  sort { $b->[3] <=> $a->[3] or $a->[0] cmp $b->[0] } 
+                   @seq_with_len;
+         
+         print STDERR "Sorted ", scalar(@prots2), " sequences by length.\n";
+@@ -209,8 +262,12 @@
+         print STDERR "Sorting ", scalar(@seq_with_len), " unique sequences...\n";
+         
+         # Sort by the pre-calculated length
++        #  Tiebreak on ID. Sorting on length alone leaves every equal-length
++        #  sequence in Perl hash order, so the FASTA handed to mmseqs was in a
++        #  different order on every run. L is ~2127 aa across the board, so
++        #  almost everything is a tie and the whole ordering was arbitrary.
+         @prots2 = map { [$_->[0], $_->[1], $_->[2]] } 
+-                  sort { $b->[3] <=> $a->[3] } 
++                  sort { $b->[3] <=> $a->[3] or $a->[0] cmp $b->[0] } 
+                   @seq_with_len;
+         
+         print STDERR "Sorted ", scalar(@prots2), " unique sequences by length.\n";
+@@ -320,7 +377,10 @@
+     my $small_clusters = 0;
+     my $leftover_seqs = 0;
+     
+-    foreach my $cluster_id (sort { scalar(@{$clusters{$b}}) <=> scalar(@{$clusters{$a}}) } keys %clusters) 
++    #  Tiebreak on cluster id: equal-sized clusters were numbered in hash
++    #  order, so cluster N was a different cluster on every run.
++    foreach my $cluster_id (sort { scalar(@{$clusters{$b}}) <=> scalar(@{$clusters{$a}})
++                                   or $a cmp $b } keys %clusters) 
+     {
+         my @array = @{$clusters{$cluster_id}};
+         
+@@ -365,7 +425,10 @@
+     if ($leftover_seqs > 0 && -s "Leftover_Seqs.aa") 
+     {
+         print STDERR "Aligning leftover sequences with MAFFT...\n";
+-        my $ret = system "mafft --thread 24 --quiet --reorder Leftover_Seqs.aa > Leftover_Seqs.fa";
++        #  mafft --reorder exits 1 on a single-sequence input, and the die
++        #  below then aborted the whole run before any alignment was made.
++        my $reorder = ($leftover_seqs > 1) ? "--reorder" : "";
++        my $ret = system "mafft --thread 24 --quiet $reorder Leftover_Seqs.aa > Leftover_Seqs.fa";
+         
+         if ($ret != 0) 
+         {

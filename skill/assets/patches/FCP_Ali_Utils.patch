@@ -1,0 +1,278 @@
+--- a/Other_Scripts/FCP_Ali_Utils.pm	2026-09-02 07:12:54
++++ b/Other_Scripts/FCP_Ali_Utils.pm	2026-09-03 13:52:53
+@@ -7,6 +7,7 @@
+ use Exporter qw(import);
+ use gjoseqlib;
+ use FCP_PSSM_Utils qw(create_pssm);
++use FCP_Trunc_Utils qw(qc_truncated_clusters);
+ 
+ our @EXPORT_OK = qw(process_cluster_alignments process_alignment);
+ 
+@@ -18,14 +19,32 @@
+     
+     # Get cluster files
+     opendir(my $dir_h, "clusters") or die "Cannot open clusters directory: $!\n";
+-    my @clusterF = grep {$_ !~ /^\./} readdir($dir_h);
++    #  Sort numerically. readdir order is filesystem order, which made the
++    #  Curation_Report rows come out scrambled (10, 12, 8, 13, ...).
++    my @clusterF = sort { ($a =~ /(\d+)/)[0] <=> ($b =~ /(\d+)/)[0] }
++                   grep {$_ !~ /^\./} readdir($dir_h);
+     closedir($dir_h);
+ 
+     # Create report file
+     open(my $report_fh, ">Curation_Report") or die "Cannot open Curation_Report for writing: $!\n";
+-    print $report_fh "Alignment\tAli_Len\tFirst_AA\tOriginal Seqs\tFinal Seqs\tLow_Occ_Cols_Cut\tN_Term_Cut\tC_Term_Cut\tDash_Starts_Removed\tCut_Cols\tSeq_w_End_Dashes_Removed\n";
++    #  NB the last two labels used to be swapped relative to the values the
++    #  writer emits: it prints end_dash_removed first and the cut-column
++    #  list second. Labels corrected here rather than reordering the data,
++    #  so existing Curation_Report files stay readable.
++    print $report_fh "Alignment\tAli_Len\tFirst_AA\tOriginal Seqs\tFinal Seqs\tLow_Occ_Cols_Cut\tN_Term_Cut\tC_Term_Cut\tDash_Starts_Removed\tSeq_w_End_Dashes_Removed\tCut_Cols\tIdentical_Collapsed\tNterm_Stop_Col\tNterm_Stop_Res\tNterm_Flag\n";
+ 
+-    # Process each cluster file
++    #---------------------------------------------------------------------------
++    #  PASS 1 -- align every cluster with MAFFT and keep the alignment.
++    #
++    #  This used to be a single loop that aligned, corrected and made a PSSM
++    #  one cluster at a time. The truncation QC has to compare every cluster
++    #  consensus against every other one, so it cannot run until all of them
++    #  are aligned -- hence the split into two passes with the QC between.
++    #---------------------------------------------------------------------------
++    my %aligned;
++    my @order;
++    my @nterm_flagged;
++
+     foreach my $file (@clusterF) 
+     {
+         my $ali_file = $file;
+@@ -43,14 +62,54 @@
+         &gjoseqlib::print_alignment_as_fasta($out_fh, @ali);
+         close($out_fh);
+ 
++        $aligned{$ali_file} = \@ali;
++        push @order, $ali_file;
++    }
++
++    #---------------------------------------------------------------------------
++    #  TRUNCATION QC -- before any correction. Drops clusters whose consensus
++    #  is a substring of a longer cluster's consensus.
++    #---------------------------------------------------------------------------
++    my %skip;
++    unless ($options->{no_trunc_qc}) 
++    {
++        my $qc = qc_truncated_clusters(\%aligned, $options);
++        %skip = %{ $qc->{drop} };
++    }
++
++    #---------------------------------------------------------------------------
++    #  PASS 2 -- correct the survivors and build their PSSMs.
++    #---------------------------------------------------------------------------
++    foreach my $ali_file (@order) 
++    {
++        if (exists $skip{$ali_file}) 
++        {
++            print STDERR "Skipping $ali_file: consensus is a substring of $skip{$ali_file} (see Truncation_Report)\n";
++            next;
++        }
++
++        my @ali = @{ $aligned{$ali_file} };
++
+         # Process the alignment
+         my $ali_data = process_alignment(\@ali, $options);
+         
++        #  A translated protein starts at Met. If the trim stopped somewhere
++        #  else the alignment is FLAGGED for review, not trimmed further --
++        #  non-Met starts are rare but real, and hunting onward for a
++        #  conserved Met would delete good protein.
++        my $st = $ali_data->{nterm_stop};
++        if ($st && $st->{res} ne "M") 
++        {
++            push @nterm_flagged, [$ali_file, $st->{col}, $st->{res},
++                                  $st->{occ}, $st->{id}, $st->{kept},
++                                  $ali_data->{n_seqs_final}];
++        }
++        
+         # Write to report file
+         write_alignment_report($report_fh, $ali_file, $ali_data);
+         
+         # Write corrected alignment
+-        open($out_fh, ">corrected_alis/$ali_file.fa") or die "Cannot open corrected_alis/$ali_file.fa for writing: $!\n";
++        open(my $out_fh, ">corrected_alis/$ali_file.fa") or die "Cannot open corrected_alis/$ali_file.fa for writing: $!\n";
+         &gjoseqlib::print_alignment_as_fasta($out_fh, @{$ali_data->{final_ali}});
+         close($out_fh);
+         
+@@ -62,6 +121,20 @@
+     }
+     
+     close($report_fh);
++
++    if (@nterm_flagged) 
++    {
++        open(my $fh, ">FLAGGED_NTERM") or die "Cannot open FLAGGED_NTERM: $!\n";
++        print $fh "Alignment\tStop_Col\tStop_Res\tOccupancy\tIdentity_Among_Occupied"
++                . "\tSeqs_With_Residue\tFinal_Seqs\n";
++        for my $r (sort { $a->[0] <=> $b->[0] } @nterm_flagged) 
++        {
++            printf $fh "%s\t%d\t%s\t%.3f\t%.3f\t%d\t%d\n", @$r;
++        }
++        close($fh);
++        print STDERR "N-terminal review: ", scalar(@nterm_flagged),
++                     " alignment(s) stopped on a non-Met column (see FLAGGED_NTERM)\n";
++    }
+     return 1;
+ }
+ 
+@@ -136,6 +209,8 @@
+     my $ali_len = length($ali3[0][2]);
+     
+     # Trim from the N-terminus
++    my $n_occ = defined $options->{n_occ} ? $options->{n_occ} : 0.40;
++    my $nterm_stop;
+     my $n_term_trimmed = 0;
+     my $c_term_trimmed = 0;
+     
+@@ -148,16 +223,39 @@
+         next unless @sorted_res; # Skip if no residues
+         
+         my $mc_res = $sorted_res[0];
+-        my $cons = ($aa_sum->{$k}->{$mc_res}/$n_seqs_internal_dash);
+-        
+-        if ($cons < $frac_n_term) 
++
++        #  Conservation is scored among the sequences that HAVE a residue here,
++        #  not over every sequence in the alignment. $aa_sum counts letters
++        #  only, so dividing it by the total sequence count conflates two
++        #  different things: a column that is genuinely unconserved, and a
++        #  column that is perfectly conserved but gappy because other
++        #  sequences are truncated. When the truncated form is the majority it
++        #  outvotes the real N-terminus and the column is deleted -- which is
++        #  how Alpharhabdovirinae G cluster 2 lost 13 columns that were
++        #  91-100% conserved among the 78 sequences carrying them.
++        #
++        #  The occupancy floor ($n_occ) is what stops a sparsely-populated
++        #  leader halting the trim: a column has to be present in enough
++        #  sequences to be worth keeping, not merely agree with itself.
++        my $occ  = $col_sum{$k} || 0;
++        my $cons = $occ ? ($aa_sum->{$k}->{$mc_res} / $occ) : 0;
++        my $occf = $occ / $n_seqs_internal_dash;
++
++        if ($occf < $n_occ || $cons < $frac_n_term) 
+         {
+             $exclude{$k} = 1;
+             $n_term_trimmed++;
+-            print STDERR "Trimmed $k $mc_res, $aa_sum->{$k}->{$mc_res}, $cons, from N-terminal\n";
++            printf STDERR "Trimmed %d %s occ=%.2f id=%.2f from N-terminal\n",
++                          $k, $mc_res, $occf, $cons;
+         } 
+         else 
+         {
++            #  Stop here. A translated protein starts at Met, so if this column
++            #  is not one, the alignment is flagged for review rather than
++            #  trimmed further -- non-Met starts are rare but real, and hunting
++            #  onward for a conserved Met would delete good protein.
++            $nterm_stop = { col => $k, res => $mc_res,
++                            occ => $occf, id => $cons, kept => $occ };
+             last;
+         }
+     }
+@@ -172,7 +270,11 @@
+         next unless @sorted_res; # Skip if no residues
+         
+         my $mc_res = $sorted_res[0];
+-        my $cons = ($aa_sum->{$l}->{$mc_res}/$n_seqs_internal_dash);
++        #  Same denominator fix as the N-terminus: score among the sequences
++        #  that have a residue here. This trim never fires at the default
++        #  frac_c_term of 0, but it carried the identical flaw.
++        my $occ_c = $col_sum{$l} || 0;
++        my $cons  = $occ_c ? ($aa_sum->{$l}->{$mc_res} / $occ_c) : 0;
+         
+         if ($cons < $frac_c_term) 
+         {
+@@ -223,19 +325,50 @@
+     my @ali5 = &gjoseqlib::pack_alignment(@ali4);
+     
+     # Get rid of identical sequences
+-    my $unique = {};
++    #  De-duplicate in place, PRESERVING the order MAFFT --reorder produced.
++    #  The previous version built @ali6 by iterating `keys %$unique`, i.e. in
++    #  Perl's randomized hash order. That threw away the similarity ordering
++    #  that --reorder exists to create, and made the order differ on every
++    #  run -- so corrected_alis never diffed clean, and because final_ali is
++    #  what create_pssm consumes, the PSSMs were not reproducible either.
++    #  Note: on a duplicate sequence this now keeps the FIRST occurrence
++    #  (earliest in similarity order); the hash version kept the last.
++    #  This is the point at which identical sequences are collapsed to a
++    #  single member. It runs AFTER the column exclusions have been applied
++    #  (ali4), so it catches sequences made identical by the N-terminal,
++    #  C-terminal and low-occupancy trimming -- not just ones that arrived
++    #  identical. Nothing further downstream can reintroduce a duplicate:
++    #  ali7 only drops sequences, and the pack_alignment after it strips only
++    #  columns that are all-gap in every survivor, which cannot merge two
++    #  distinct sequences.
++    #
++    #  Order-preserving, first occurrence wins, so MAFFT's similarity order
++    #  survives and the result is deterministic.
++    my @ali6;
++    my %seen;
+     for my $i (0..$#ali5) 
+     {
+         my $seq = uc $ali5[$i][2];
+-        $unique->{$seq}->{ID} = $ali5[$i][0];
+-        $unique->{$seq}->{ANNO} = $ali5[$i][1];
++        next if $seen{$seq}++;
++        push @ali6, ([$ali5[$i][0], $ali5[$i][1], $seq]);
+     }
+-    
+-    my @ali6;
+-    foreach my $seq (keys %$unique) 
++    my $identical_collapsed = (scalar @ali5) - (scalar @ali6);
++
++    #  A PSSM cannot be built from a single sequence -- PSI-BLAST has nothing
++    #  to profile. If the collapse leaves exactly one member, put a second
++    #  back so a PSSM can still be produced. The two are identical by
++    #  definition, which is fine: the profile is then simply that sequence.
++    if (@ali6 == 1 && @ali5 >= 2) 
+     {
+-        push @ali6, ([$unique->{$seq}->{ID}, $unique->{$seq}->{ANNO}, $seq]);
++        push @ali6, ([$ali5[1][0], $ali5[1][1], uc $ali5[1][2]]);
++        $identical_collapsed--;
++        print STDERR "  Collapse left a single sequence; retained a second member so a PSSM can be built\n";
+     }
++
++    if ($identical_collapsed > 0) 
++    {
++        print STDERR "  Collapsed $identical_collapsed identical sequence(s) after trimming\n";
++    }
+     
+     # Handle sequences with spurious C-terminal gaps
+     my %occ_cnt;
+@@ -286,6 +419,7 @@
+     
+     my @ali8 = &gjoseqlib::pack_alignment(@ali7);
+     my $end_dash_removed = (scalar @ali6) - (scalar @ali7);
++
+     
+     # Final stats
+     my $n_seqs_final = scalar @ali8;
+@@ -300,6 +434,8 @@
+     return {
+         n_seqs_orig => $n_seqs_orig,
+         n_seqs_final => $n_seqs_final,
++        nterm_stop => $nterm_stop,
++        identical_collapsed => $identical_collapsed,
+         ali_len => $final_ali_len,
+         start_char => $start_char,
+         low_occ => $low_occ,
+@@ -328,7 +464,12 @@
+         $ali_data->{c_term_trimmed},
+         $ali_data->{dash_starts_removed},
+         $ali_data->{end_dash_removed},
+-        join(",", sort {$a <=> $b} keys %{$ali_data->{exclude}})
++        join(",", sort {$a <=> $b} keys %{$ali_data->{exclude}}),
++        $ali_data->{identical_collapsed},
++        ($ali_data->{nterm_stop} ? $ali_data->{nterm_stop}{col} : "-"),
++        ($ali_data->{nterm_stop} ? $ali_data->{nterm_stop}{res} : "-"),
++        ($ali_data->{nterm_stop} && $ali_data->{nterm_stop}{res} ne "M"
++             ? "REVIEW-nonMet" : "ok")
+     ), "\n";
+     
+     return 1;

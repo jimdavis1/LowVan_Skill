@@ -1,0 +1,90 @@
+--- a/Other_Scripts/FCP_Nterm_Utils.pm
++++ b/Other_Scripts/FCP_Nterm_Utils.pm
+@@ -203,11 +203,23 @@
+             $old_pssm_file = "$options->{pssm_prefix}.$ali_base";
+         }
+         
++        #  Do NOT delete the working PSSM yet. N-terminal reclustering can
++        #  split a perfectly good cluster into singletons -- MMseqs on 25
++        #  residues at 0.7 identity will do that to any small, divergent
++        #  collection -- and a singleton produces no alignment and no profile.
++        #  Deleting up front then meant the feature ended with nothing at all,
++        #  strictly worse than the un-reclustered PSSM it started with.
++        #  Trirhavirus L: 4 homologous 2,043 aa polymerases, one good cluster,
++        #  reclustered into 4 singletons, zero PSSMs emitted.
++        #  Set it aside and restore it below if nothing replaces it.
+         my $old_pssm_path = "pssms/$old_pssm_file.pssm";
++        my $stashed_pssm  = "";
+         if (-f $old_pssm_path) {
+-            print STDERR "  Removing old PSSM: $old_pssm_path\n";
+-            unlink($old_pssm_path) or 
+-                print STDERR "  Warning: Could not remove old PSSM file $old_pssm_path: $!\n";
++            $stashed_pssm = "$old_pssm_path.superseded";
++            rename($old_pssm_path, $stashed_pssm) or do {
++                print STDERR "  Warning: could not set aside $old_pssm_path: $!\n";
++                $stashed_pssm = "";
++            };
+         }
+         
+         # Create temp directory for this alignment inside reclustering
+@@ -376,10 +388,60 @@
+         print $log_fh "$ali_file\t", scalar(keys %clusters), "\t$new_alignments\t$leftover_seqs\n";
+         
+         # Generate PSSM for each new alignment
++        my $made = 0;
+         foreach my $new_ali (@new_alignment_files) 
+         {
+             print STDERR "  Creating PSSM for $new_ali->{file}...\n";
+             generate_pssm_for_alignment($new_ali->{file}, $new_ali->{base}, $options);
++            my $made_path = $options->{pssm_prefix}
++                          ? "pssms/$options->{pssm_prefix}.$new_ali->{base}.pssm"
++                          : "pssms/$new_ali->{base}.pssm";
++            $made++ if -s $made_path;
++        }
++        #  Reclustering only earns the right to replace the original if it
++        #  actually produced something.
++        if ($stashed_pssm) {
++            if ($made) {
++                unlink($stashed_pssm);
++            } else {
++                print STDERR "  Reclustering produced no usable PSSM; keeping the original ",
++                             "$old_pssm_path\n";
++                rename($stashed_pssm, $old_pssm_path);
++            }
++        }
++
++        #  Put the parent alignment back too. It was moved out to
++        #  alis-for-reclustering at evaluation time on the assumption that
++        #  children would replace it; when none appear, restoring the profile
++        #  without its alignment leaves a PSSM whose source is filed under a
++        #  directory named for an input. Anyone auditing profiles against
++        #  alignments then finds a profile with no visible provenance --
++        #  Betarhabdovirinae G 9 and 17, L 10, N 19 and 28 all ended up in
++        #  that state.
++        #
++        #  Two sequences is enough to keep. Lowering the N-terminal identity
++        #  instead was measured and is worse: at 0.6 only two of those five
++        #  yield any 2-member child, and each does so by orphaning the
++        #  remaining three. A whole parent alignment beats a fragment of it.
++        if (!$made) {
++            my $parked = "alis-for-reclustering/$ali_file";
++            if (-s $parked && !-e "corrected_alis/$ali_file") {
++                my $n = 0;
++                if (open(my $cfh, "<$parked")) {
++                    while (<$cfh>) { $n++ if /^>/; }
++                    close($cfh);
++                }
++                if ($n >= 2) {
++                    if (rename($parked, "corrected_alis/$ali_file")) {
++                        print STDERR "  Restored corrected_alis/$ali_file ",
++                                     "($n sequences) alongside its profile\n";
++                    } else {
++                        print STDERR "  Warning: could not restore $parked: $!\n";
++                    }
++                } else {
++                    print STDERR "  Not restoring $parked: only $n sequence(s)\n";
++                }
++            }
+         }
+     }
+     

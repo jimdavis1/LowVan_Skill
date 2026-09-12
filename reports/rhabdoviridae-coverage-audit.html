@@ -1,0 +1,448 @@
+<title>Rhabdoviridae Coverage Audit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@600;700&family=Libre+Franklin:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+ --ground:#eceef1; --surface:#fff; --surface2:#f5f6f8; --ink:#161a1f; --ink2:#39414b;
+ --muted:#5c6672; --rule:#d5dae0; --accent:#8c3a2b; --accent-soft:#f4e7e3;
+ --hi:#2b6b45; --mid:#8a6420; --lo:#9c3535;
+ --shadow:0 1px 2px rgba(22,26,31,.06),0 6px 18px rgba(22,26,31,.05);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --ground:#12151a; --surface:#1a1f26; --surface2:#212730; --ink:#e8ecf1; --ink2:#c3cad3;
+ --muted:#8b95a2; --rule:#2b323c; --accent:#d98570; --accent-soft:#33211c;
+ --hi:#4fa876; --mid:#c99a45; --lo:#d4675f;
+ --shadow:0 1px 2px rgba(0,0,0,.5),0 6px 18px rgba(0,0,0,.35);}}
+:root[data-theme="dark"]{
+ --ground:#12151a; --surface:#1a1f26; --surface2:#212730; --ink:#e8ecf1; --ink2:#c3cad3;
+ --muted:#8b95a2; --rule:#2b323c; --accent:#d98570; --accent-soft:#33211c;
+ --hi:#4fa876; --mid:#c99a45; --lo:#d4675f;
+ --shadow:0 1px 2px rgba(0,0,0,.5),0 6px 18px rgba(0,0,0,.35);}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);margin:0;padding:40px 22px 72px;
+ font:16px/1.6 "Libre Franklin",system-ui,sans-serif}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:30px}
+h1{font-family:Spectral,Georgia,serif;font-weight:700;font-size:36px;line-height:1.15;
+ letter-spacing:-.015em;margin:0;text-wrap:balance}
+h2{font-family:Spectral,Georgia,serif;font-weight:600;font-size:22px;margin:0 0 4px;
+ letter-spacing:-.01em}
+.eyebrow{font:600 11px/1 "Libre Franklin",sans-serif;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.lede{font-size:18px;color:var(--ink2);max-width:64ch;margin:14px 0 0}
+p{max-width:66ch;margin:12px 0}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;
+ padding:24px 26px;box-shadow:var(--shadow)}
+.qnum{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+ border-radius:50%;background:var(--accent);color:#fff;font:700 13px/1 "Libre Franklin",sans-serif;
+ margin-right:10px;flex:none}
+.qhead{display:flex;align-items:center;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;font-size:14px;margin-top:8px}
+th{text-align:left;font:600 10.5px/1.3 "Libre Franklin",sans-serif;letter-spacing:.08em;
+ text-transform:uppercase;color:var(--muted);padding:7px 10px;border-bottom:1px solid var(--rule);
+ white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:middle}
+th.num,td.num{text-align:right;font-family:"JetBrains Mono",monospace;
+ font-variant-numeric:tabular-nums;white-space:nowrap}
+.mod{font-family:"JetBrains Mono",monospace;font-size:13px;white-space:nowrap}
+tr.tot td{font-weight:600;border-top:2px solid var(--rule);border-bottom:none}
+td.b{width:150px}
+.bar{display:inline-block;width:88px;height:7px;border-radius:4px;background:var(--rule);
+ overflow:hidden;vertical-align:middle;margin-right:8px}
+.bar i{display:block;height:100%;border-radius:4px}
+.bar i.hi{background:var(--hi)} .bar i.mid{background:var(--mid)} .bar i.lo{background:var(--lo)}
+.pct{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-variant-numeric:tabular-nums;
+ color:var(--ink2)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;
+ box-shadow:var(--shadow)}
+.kpi .v{font-family:"JetBrains Mono",monospace;font-size:30px;font-weight:600;line-height:1;
+ letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi .l{color:var(--muted);font-size:13px;margin-top:6px}
+.kpi.a .v{color:var(--accent)}
+pre{background:var(--surface2);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;
+ overflow-x:auto;font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.55;margin:14px 0}
+.note{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:18px 0;color:var(--ink2)}
+.note strong{color:var(--ink)}
+code{font-family:"JetBrains Mono",monospace;font-size:.9em;background:var(--surface2);
+ padding:1px 5px;border-radius:4px}
+footer{color:var(--muted);font-size:13px;text-align:center;border-top:1px solid var(--rule);
+ padding-top:18px}
+@media (max-width:640px){body{padding:26px 14px 48px}h1{font-size:27px}td.b{width:auto}
+ .bar{width:56px}}
+</style>
+<style>
+.rules{display:flex;flex-direction:column;gap:0;margin:18px 0 0;border-top:1px solid var(--rule)}
+.rule{display:grid;grid-template-columns:246px 1fr;gap:0 26px;padding:15px 0;
+ border-bottom:1px solid var(--rule);align-items:start}
+.rule h4{margin:0;font:600 14.5px/1.4 "Libre Franklin",sans-serif;color:var(--ink);
+ text-wrap:balance}
+.rule p{margin:0;font-size:14px;color:var(--ink2);line-height:1.55;max-width:58ch}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px 30px;margin-top:16px}
+.gitem h4{margin:0 0 3px;font:600 14px/1.35 "Libre Franklin",sans-serif;color:var(--ink)}
+.gitem p{margin:0;font-size:13.5px;color:var(--ink2);line-height:1.5;max-width:none}
+@media (max-width:660px){.rule{grid-template-columns:1fr;gap:5px}}
+.steps{counter-reset:s;list-style:none;padding:0;margin:16px 0 0}
+.steps li{counter-increment:s;position:relative;padding-left:40px;margin-bottom:16px;max-width:64ch}
+.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;
+ border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;
+ justify-content:center;font:700 13px/1 "Libre Franklin",sans-serif}
+.steps b{display:block;font-size:15px;margin-bottom:2px}
+.plain{background:var(--surface2);border-radius:8px;padding:14px 18px;margin:16px 0;
+ font-size:14.5px;color:var(--ink2)}
+.plain b{color:var(--ink)}
+</style>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Whole-taxon validation &middot; 12 September 2026</div>
+  <h1>What the Rhabdoviridae annotation module actually covers</h1>
+  <p class="lede">We built software that names the proteins in rhabdovirus genomes. This is the
+  test of how well it works &mdash; run against every rhabdovirus genome in the public database,
+  not against the handful of examples it was built from.</p>
+</header>
+
+<section class="card">
+  <h2>What is being tested, in plain terms</h2>
+  <p><b>Rhabdoviruses</b> are a family of RNA viruses that includes rabies. A rhabdovirus genome
+  is small &mdash; usually five genes in a fixed order &mdash; and public sequence databases hold
+  tens of thousands of them. The problem is that the protein names attached to those sequences
+  were written by thousands of different submitters, so the same protein appears under dozens of
+  different spellings, and many carry no useful name at all.</p>
+  <p>The software being tested here, <b>LowVan</b>, replaces those inconsistent names with one
+  controlled set. Given a raw genome sequence it works out which proteins are present, where each
+  one starts and stops, and what each should be called. It works in three steps:</p>
+  <ol class="steps">
+    <li><b>Pick the right rulebook.</b> Rhabdoviruses are diverse enough that one set of rules
+    cannot cover them all, so they are split into four groups, each with its own rulebook &mdash;
+    we call one of these a <b>module</b>. The genome is compared against a small set of known
+    reference genomes to decide which module applies. A genome too unlike any reference gets no
+    module, and nothing further happens to it.</li>
+    <li><b>Search for each protein.</b> Each module knows which proteins it expects. For each one
+    it holds a set of statistical patterns &mdash; <b>profiles</b> &mdash; built from many real
+    examples of that protein. A profile captures which amino acids are conserved and which vary,
+    so it can recognize a protein that is only distantly related to any single example. The
+    genome is searched with every profile the module holds.</li>
+    <li><b>Fix the boundaries and name it.</b> Where a profile matches, the software extends the
+    match outwards to the real start and stop signals in the DNA, then attaches the standard
+    name for that protein.</li>
+  </ol>
+  <div class="plain"><b>The five core proteins.</b> Almost every rhabdovirus genome carries the
+  same five, in the same order, and this report refers to them by their conventional
+  single-letter names: <b>N</b> (nucleocapsid, wraps the genome), <b>P</b> (phosphoprotein, part
+  of the copying machinery), <b>M</b> (matrix, structural), <b>G</b> (glycoprotein, the spike on
+  the virus surface), and <b>L</b> (the large polymerase that copies the genome). A genome that
+  is complete and correctly annotated should show all five.</div>
+</section>
+
+<section class="card">
+  <h2>How this was built, and who decided what</h2>
+  <p>This module was built by the author of the annotation system working with an AI assistant.
+  The division of labor was deliberate and it is the reason the result is checkable: <b>the
+  curator set the rules and made every judgement call; the assistant did the mechanical work and
+  had to show its evidence.</b></p>
+  <p>The work ran as a loop, and the loop is the method:</p>
+  <ol class="steps">
+    <li><b>Sort the existing names.</b> Pull every protein the public database holds for the
+    family, count how the names are actually spelled, and decide which spellings mean the same
+    protein. This is where the real errors get made, because a wrong decision here is invisible
+    afterwards &mdash; the pipeline will happily build a confident profile out of two unrelated
+    proteins that happened to share a label.</li>
+    <li><b>Group, align, and build profiles.</b> Mechanical, and left to the software.</li>
+    <li><b>Curate the alignments by hand.</b> Also not automatable. The curator opens them and
+    fixes them.</li>
+    <li><b>Install it and run it against the entire family.</b> Not against the examples it was
+    built from &mdash; against every genome the database holds.</li>
+    <li><b>Find the largest remaining gap and test why it exists.</b> Not guess why. The
+    phosphoprotein section below is this step working exactly as intended: the expected
+    explanation was poor sequencing, the test said otherwise, and the real cause implied a
+    completely different fix.</li>
+    <li><b>Fix that one thing, and go back to step 2.</b></li>
+  </ol>
+
+  <h2 style="margin-top:26px;font-size:19px">The rules the curator set</h2>
+  <p>These were laid down as standing constraints, most of them after watching the assistant do
+  something subtly wrong. Each one is now enforced in code or written into the build
+  instructions, so the next virus family does not relearn it:</p>
+  <div class="rules"><div class="rule"><h4>Never group sequences below 60% identity</h4><p>Below that, one profile stops representing one protein. When data is thin, require fewer examples per group &mdash; never accept looser matches into a group.</p></div><div class="rule"><h4>Drop a virus group rather than guess at it</h4><p>If there are not enough sequences to build real profiles, the group is dropped and the reason recorded. Naming proteins by their position in the genome, because you cannot recognize them any other way, is not acceptable.</p></div><div class="rule"><h4>Vague names must never pool sequences</h4><p>&ldquo;Hypothetical&rdquo; and &ldquo;uncharacterized&rdquo; are not protein names. Proteins carrying them are split by actual similarity into separately numbered groups, so that when one is eventually identified it can be renamed on its own without disturbing the rest.</p></div><div class="rule"><h4>Machine-suggested citations are kept separate</h4><p>A literature reference proposed by the assistant is stored in its own field and never mixed with references a human has read. A plausible-looking citation that nobody checked is indistinguishable from a verified one unless the two are kept apart.</p></div><div class="rule"><h4>Report against what you claim to cover</h4><p>Scores are reported per module, over the virus groups that module was designed for. Averaging in groups nobody built a rulebook for measures ambition, not performance.</p></div><div class="rule"><h4>Never keep a reference you cannot follow through on</h4><p>A reference genome that lets a virus in, when no profile can then describe it, converts an honestly rejected genome into a badly annotated one. Five such references were removed.</p></div><div class="rule"><h4>Record the near misses</h4><p>A genome that resembles a reference but then matches no profile still gets a record of which group it resembled and how strongly. That is real information and it was being thrown away.</p></div><div class="rule"><h4>Reassemble split genomes before scoring</h4><p>Where a virus stores its genome in several pieces and the database files each piece separately, the pieces are rejoined first &mdash; and only when the count matches what that virus should have.</p></div></div>
+
+  <div class="plain"><b>Anything mechanical becomes a script; anything requiring judgement stays
+  written instructions.</b> Every analysis in this report is now a program that can be re-run on
+  another virus family &mdash; including the ones first done by hand, such as cutting out the
+  region between two genes to look for a missing one, and measuring whether protein ends are
+  landing where they should. What deliberately stayed as written guidance is the part that does
+  not transfer: which genes sit next to which, how many reference genomes are worth maintaining,
+  which protein ends are genuinely trimmed, and whether a virus group has enough data to model at
+  all. Those are read and decided by a person each time.</div>
+
+  <div class="note"><b>Two habits did most of the work.</b> First, <b>test the explanation, do not
+  assume it</b> &mdash; the largest gap in this module had an obvious-sounding cause that turned
+  out to be wrong, and acting on the obvious cause would have achieved nothing. Second, <b>a
+  measurement that cannot fail is not a measurement</b> &mdash; this module scored 95% on its
+  development set both before and after a change that found 120 missing proteins. Every number in
+  this report comes from genomes nobody curated by hand.</div>
+</section>
+
+<section class="card">
+  <h2>How the test was run</h2>
+  <p>The public database holds <b>25,237</b> rhabdovirus records, but that number overstates the
+  diversity badly: well-studied viruses like rabies are sequenced thousands of times over, and
+  most records are fragments rather than whole genomes.</p>
+  <p>So the records were first grouped by similarity, putting any two genomes that are 95% identical
+  into the same group. That gives <b>1,983</b> groups. One representative from each group was
+  annotated, so every genuinely distinct kind of genome gets one vote and rabies does not drown
+  out everything else. <b>1,356</b> representatives were long enough to be worth annotating.</p>
+  <div class="plain"><b>Why not just test on known examples?</b> Because the software was built
+  from known examples, and it recognizes those almost perfectly. On the eight-genome reference
+  set used during development it scores 95% &mdash; and that score did not move at all across a
+  change that added 471 new profiles and found 120 previously-missed proteins. Testing against
+  the whole database is the only way to see what the software misses in genomes nobody curated
+  by hand.</div>
+</section>
+
+<div class="kpis">
+  <div class="kpi"><div class="v">25,237</div><div class="l">database records</div></div>
+  <div class="kpi"><div class="v">1,356</div><div class="l">distinct genomes tested</div></div>
+  <div class="kpi"><div class="v">955</div><div class="l">profiles, up from 484</div></div>
+  <div class="kpi a"><div class="v">88%</div><div class="l">got an annotation</div></div>
+  <div class="kpi a"><div class="v">69%</div><div class="l">got all five core proteins</div></div>
+  <div class="kpi a"><div class="v">70%</div><div class="l">annotated acceptably</div></div>
+</div>
+
+<section class="card">
+  <h2>Coverage, group by group</h2>
+  <p>Each row is one module &mdash; one rulebook covering one group of related viruses. The
+  denominator counts only the viruses a module was <em>designed</em> to handle; including groups
+  we never built a rulebook for would measure ambition rather than performance.</p>
+  <p><b>Annotated</b> means the genome came back with at least one named protein. That is one step
+  past <b>routed</b>, which asks only whether the genome resembled a reference closely enough to
+  be assigned a module at all. Here the two differ by a single genome: 1,097 of 1,356 were
+  assigned a module, 1,096 of those went on to have something named, and exactly one was assigned
+  a module and then matched none of its profiles.</p>
+  <table><thead><tr><th>module</th><th class="num">genomes</th><th>annotated</th>
+  <th>all 5 core</th><th>&ge;3 core</th></tr></thead><tbody><tr><td class="mod">Dichorhavirus</td><td class="num">28</td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td></tr><tr><td class="mod">Novirhabdovirus</td><td class="num">15</td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:93.3%"></i></div><span class="pct">93%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td></tr><tr><td class="mod">Alpharhabdovirinae</td><td class="num">836</td><td class="b"><div class="bar"><i class="hi" style="width:89.5%"></i></div><span class="pct">89%</span></td><td class="b"><div class="bar"><i class="mid" style="width:71.8%"></i></div><span class="pct">72%</span></td><td class="b"><div class="bar"><i class="hi" style="width:88.3%"></i></div><span class="pct">88%</span></td></tr><tr><td class="mod">Betarhabdovirinae</td><td class="num">280</td><td class="b"><div class="bar"><i class="mid" style="width:81.4%"></i></div><span class="pct">81%</span></td><td class="b"><div class="bar"><i class="lo" style="width:57.1%"></i></div><span class="pct">57%</span></td><td class="b"><div class="bar"><i class="mid" style="width:78.9%"></i></div><span class="pct">79%</span></td></tr><tr class="tot"><td class="mod">in-scope total</td><td class="num">1159</td><td class="b"><div class="bar"><i class="hi" style="width:87.9%"></i></div><span class="pct">88%</span></td><td class="b"><div class="bar"><i class="mid" style="width:69.2%"></i></div><span class="pct">69%</span></td><td class="b"><div class="bar"><i class="hi" style="width:86.5%"></i></div><span class="pct">86%</span></td></tr></tbody></table>
+  <p>Against the previous run, genomes with all five core proteins rose from <b>62% to 69%</b>,
+  and those with at least three from 83% to 87%. The annotated share fell by 1.1 points, which was
+  deliberate: five reference genomes were removed after it emerged that they were pulling in
+  distantly related viruses that then came back with only the polymerase named and nothing else.
+  A reference that lets a genome in without being able to describe it makes the percentage look
+  better and the result worse.</p>
+  <div class="note"><b>Dichorhavirus scores 28 out of 28 on every protein</b>, but only because
+  its genomes were reassembled first. This group carries its genome in two separate pieces, and
+  the database stores each piece as its own record. Scored as stored, all 56 records would have
+  failed for missing half their genes &mdash; a module that works perfectly would have looked
+  comprehensively broken.</div>
+</section>
+
+<section class="card">
+  <div class="qhead"><span class="qnum">1</span><h2>Which genomes never get looked at?</h2></div>
+  <p><b>259 of 1,356 genomes (19%)</b> resemble no reference genome closely enough to be assigned
+  a module, down from 315. Every one records the same reason, and there are no crashes left in the
+  set. These genomes never reach the protein search at all, so no improvement to the profiles can
+  help them.</p>
+  <p>The improvement from 315 is not better matching &mdash; that step does not use the profiles.
+  It is that genomes which <em>were</em> assigned a module but then matched none of its profiles
+  now match something, plus four references added for virus groups that had contributed sequences
+  to the profiles yet could not get a genome through the door.</p>
+  <p>The obvious fix is to add more reference genomes, and the first thing to establish is how
+  many of these 259 are even eligible:</p>
+  <table><thead><tr><th>the 259 unmatched genomes</th><th class="num">count</th></tr></thead>
+  <tbody>
+  <tr><td>belong to a virus group we have a rulebook for</td><td class="num">140</td></tr>
+  <tr><td>belong to a group we have no rulebook for</td><td class="num">119</td></tr>
+  </tbody></table>
+  <p>The 119 are not candidates. A reference genome for a group we cannot describe would let the
+  genome in and then name nothing in it &mdash; turning an honestly rejected genome into a badly
+  annotated one. That leaves <b>140 genomes worth chasing</b>.</p>
+  <p>Each row below adds the one reference genome that rescues the most of those 140 that are
+  still unmatched:</p>
+  <table><thead><tr><th class="num">references added</th><th class="num">genomes rescued</th>
+  <th class="num">share of the 140</th></tr></thead><tbody><tr><td class="num">1</td><td class="num">19</td><td class="num">14%</td></tr><tr><td class="num">3</td><td class="num">37</td><td class="num">26%</td></tr><tr><td class="num">5</td><td class="num">50</td><td class="num">36%</td></tr><tr><td class="num">10</td><td class="num">76</td><td class="num">54%</td></tr><tr><td class="num">20</td><td class="num">109</td><td class="num">78%</td></tr><tr><td class="num">30</td><td class="num">127</td><td class="num">91%</td></tr></tbody></table>
+  <p>Unlike the previous run, this curve does have a usable shape: <b>10 references would recover
+  just over half the eligible gap</b>, and 43 would close it entirely. Only 36 of the 259 resemble
+  no other unmatched genome at all, so this is not the long tail of one-offs it first appeared to
+  be.</p>
+  <div class="note"><b>This corrects an earlier conclusion.</b> A previous version of this report
+  said the curve was flat, that 200 of the unmatched genomes were one-offs, and that adding
+  references was not worth it. That comparison had been run with settings that under-sampled the
+  matches, finding 7,283 where a complete run finds 32,076. Re-run properly, using the same
+  matching settings the software itself uses, the answer is the opposite. <b>How many references
+  are worth maintaining is still a judgement call</b> &mdash; every one is a permanent
+  obligation &mdash; but it is now a judgement made against the right numbers.</div>
+  <p style="margin-top:18px">Separately, four references were added on a different test: virus
+  groups that had contributed sequences to the profiles and still could not get a single genome
+  assigned. One went from zero to 11 out of 11 on all five core proteins. <b>Five more were added
+  and then removed again</b> &mdash; they let in 14 genomes that came back with the polymerase
+  named and nothing else, which is exactly the failure the 119 above would reproduce.</p>
+</section>
+
+<section class="card">
+  <div class="qhead"><span class="qnum">2</span><h2>How many results are trustworthy?</h2></div>
+  <p>Alongside the annotator there is a separate quality checker. It re-reads each finished
+  genome and raises a flag wherever something looks wrong &mdash; an expected protein absent, a
+  protein much shorter or longer than that protein should ever be, the same protein named more
+  times than it should occur, or a sequence containing so many unreadable bases that no software
+  could annotate it reliably.</p>
+  <p>It ran over the 1,118 genomes that had at least one protein named. The other 265 have nothing
+  to check, and the checker declines them rather than inventing a verdict. The raw result is a 49
+  / 51 split, clean against flagged &mdash; but that number is misleading, because two of the
+  three kinds of flag say nothing about the annotation software:</p>
+  <table><thead><tr><th>verdict</th><th class="num">genomes</th><th class="num">share</th></tr></thead><tbody>
+  <tr><td>clean, nothing flagged</td><td class="num">544</td><td class="num">48.7%</td></tr>
+  <tr><td>flagged only for unreadable bases in the sequence</td><td class="num">227</td><td class="num">20.3%</td></tr>
+  <tr><td>flagged only because one gene is split in two</td><td class="num">10</td><td class="num">0.9%</td></tr>
+  <tr class="tot"><td>flagged for a substantive reason</td><td class="num">337</td><td class="num">30.1%</td></tr>
+  </tbody></table>
+  <p>A sequence that is more than 1% unreadable is a verdict on the sequencing, not on the
+  annotation. Setting those aside, <b>70% of the genomes checked are annotated acceptably</b> and
+  30% have something genuinely wrong.</p>
+  <div class="note"><b>A correction worth recording.</b> The quality check was moved onto a richer
+  output format partly on the argument that the simpler format miscounts genes that are split into
+  fragments. That argument was wrong &mdash; the richer format does not fix it either. A
+  polymerase broken in two still appears as two separate proteins, which trips both the
+  &ldquo;too short&rdquo; flag and the &ldquo;named too many times&rdquo; flag on the same 203
+  genomes, counting one problem twice. The richer format is still the right choice, but for a
+  different reason: the simpler one cannot represent certain unusual gene types at all, and would
+  silently score them as non-existent in virus families that have them. Rhabdoviruses have none,
+  so the shortcut appeared to work here and would have failed quietly elsewhere.</div>
+</section>
+
+<section class="card">
+  <div class="qhead"><span class="qnum">3</span><h2>When it goes wrong, what goes wrong?</h2></div>
+  <p>Across all 1,356 genomes, every outright failure and its recorded reason:</p>
+  <pre>resembled no reference genome closely enough   259
+crashed                                          1</pre>
+  <p>And among the 337 genomes flagged for a substantive reason, what the flag was:</p>
+  <pre>an expected protein was missing      263
+a protein was too short               70
+a protein was too long                 3
+a sequence was too long                1</pre>
+  <p>Missing proteins break down like this, and the answer points at the same place twice:</p>
+  <pre>P  phosphoprotein             233
+M  matrix protein             111
+G  glycoprotein                36
+N  nucleocapsid                17
+L  polymerase                  14
+   movement protein            11</pre>
+  <p><b>P and M account for 80% of every missing-protein flag.</b> They are the same two proteins
+  that improved most in this round and the same two with furthest left to go. This is not a
+  problem with the expected-length settings: only 70 genomes are flagged short for any reason
+  other than a split gene.</p>
+</section>
+
+<section class="card">
+  <div class="qhead"><span class="qnum">4</span><h2>Are the five core proteins found evenly?</h2></div>
+  <p>Every complete genome carries one of each, so in a perfect run these five columns would be
+  identical. Where one lags, that is a gap in that protein's profiles, and the size of the gap is
+  how many genomes it costs.</p>
+  <table><thead><tr><th>module</th><th class="num">genomes</th><th>N</th><th>P</th>
+  <th>M</th><th>G</th><th>L</th></tr></thead><tbody><tr><td class="mod">Dichorhavirus</td><td class="num">28</td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td></tr><tr><td class="mod">Novirhabdovirus</td><td class="num">15</td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:100.0%"></i></div><span class="pct">100%</span></td><td class="b"><div class="bar"><i class="hi" style="width:93.3%"></i></div><span class="pct">93%</span></td></tr><tr><td class="mod">Alpharhabdovirinae</td><td class="num">836</td><td class="b"><div class="bar"><i class="hi" style="width:88.8%"></i></div><span class="pct">89%</span></td><td class="b"><div class="bar"><i class="mid" style="width:73.2%"></i></div><span class="pct">73%</span></td><td class="b"><div class="bar"><i class="mid" style="width:80.4%"></i></div><span class="pct">80%</span></td><td class="b"><div class="bar"><i class="hi" style="width:87.7%"></i></div><span class="pct">88%</span></td><td class="b"><div class="bar"><i class="hi" style="width:89.4%"></i></div><span class="pct">89%</span></td></tr><tr><td class="mod">Betarhabdovirinae</td><td class="num">280</td><td class="b"><div class="bar"><i class="mid" style="width:81.4%"></i></div><span class="pct">81%</span></td><td class="b"><div class="bar"><i class="mid" style="width:67.1%"></i></div><span class="pct">67%</span></td><td class="b"><div class="bar"><i class="mid" style="width:67.1%"></i></div><span class="pct">67%</span></td><td class="b"><div class="bar"><i class="mid" style="width:71.8%"></i></div><span class="pct">72%</span></td><td class="b"><div class="bar"><i class="mid" style="width:81.4%"></i></div><span class="pct">81%</span></td></tr></tbody></table>
+  <p><b>P was the weak point, and it is now mostly fixed.</b> Counted in genomes rather than
+  percentages, P gained <b>120</b> calls this round and M gained <b>89</b>. P is still the weakest
+  of the five in both large modules, but the gap between it and the best-performing protein
+  narrowed from 31 points to 16.</p>
+  <pre>protein    before   after   change
+L            1026    1082     +56
+N            1025    1079     +54
+G             978    1031     +53
+M             849     938     +89
+P             743     863    +120
+mature G      974     974      +0
+(genomes)    1040    1096     +56</pre>
+</section>
+
+<section class="card">
+  <h2>Where the missing phosphoproteins actually were</h2>
+  <p>The natural assumption was that P was missing because those genomes were poorly sequenced.
+  That assumption was testable, and it was wrong.</p>
+  <p>P sits between N and M in the genome. So we took the 115 genomes where N and M were both
+  found but P was not, cut out the stretch of DNA between them, and translated it in all six
+  possible reading frames to see whether a phosphoprotein gene was sitting there unrecognized:</p>
+  <pre>the stretch between N and M was present   115/115   typically ~1000 bases
+it contained a plausible gene             115/115   typically ~296 amino acids
+that gene resembled known phosphoproteins 109/115
+
+more similar to a sequence NO profile was built from   85
+more similar to a sequence a profile WAS built from     0</pre>
+  <p>Zero. Every missing gene was present, full length, and recognisably a phosphoprotein &mdash;
+  and <b>not one of them resembled any sequence the existing profiles had been built from</b>. The
+  genes were never missing. The profiles simply did not cover that part of the family.</p>
+  <div class="note"><b>The discarded sequences were the important ones.</b> When profiles are
+  built, sequences are grouped with their close relatives and each group becomes one profile.
+  Sequences too unusual to join any group were being set aside &mdash; and those are precisely the
+  sequences a profile set most needs to cover, because they represent the corners of the family
+  furthest from the well-studied examples. Re-grouping the set-aside sequences among themselves,
+  at the same strictness but allowing a group to form from as few as two members, produced
+  <b>331 new profiles</b> and took the total from 484 to 955. The strictness was never relaxed;
+  only the question of how many examples are needed before a profile can be built at all.</div>
+  <p>Translating those stretches also turned up 21 phosphoproteins that appear in <em>no</em>
+  public protein record at all. They were added back into the collection so the discovery survives
+  the next rebuild.</p>
+</section>
+
+<section class="card">
+  <h2>A cut site that was not a cut site</h2>
+  <p>The glycoprotein G is made as a longer precursor and then trimmed: a short leader sequence is
+  cut off, leaving the mature protein. The software is told which ends of a protein are cut ends,
+  because a cut end is not marked by the normal genetic start and stop signals and must not be
+  extended to look for one.</p>
+  <p>Mature G was declared to have <em>both</em> ends cut. Only the front end is. The back end of
+  the mature protein is the back end of the precursor &mdash; the trimming happens only at the
+  front. With the back end wrongly marked as cut, the software never looked for the stop signal
+  and simply ended the protein wherever the search happened to stop:</p>
+  <table><thead><tr><th>back end of mature G</th><th class="num">before</th>
+  <th class="num">after</th></tr></thead><tbody>
+  <tr><td>lands on the correct stop signal</td><td class="num">583 / 973</td><td class="num">952 / 971</td></tr>
+  <tr><td>lands somewhere else</td><td class="num">390 (40%)</td><td class="num">19 (2%)</td></tr>
+  <tr><td>worst error</td><td class="num">1,272 bases</td><td class="num">1,880 bases</td></tr>
+  </tbody></table>
+  <p>The correction cost nothing &mdash; mature G was found in exactly 974 genomes before and
+  after. It gave 369 of them a correct ending.</p>
+  <div class="note">This is worth checking in every virus family and checking hardest in families
+  whose proteins are made as one long chain and cut into many pieces. A precursor cut into three
+  products has six cut ends, and every one wrongly declared drifts on its own and compounds along
+  the chain.</div>
+</section>
+
+<section class="card">
+  <h2>Does the naming actually converge?</h2>
+  <p>This is the point of the whole exercise. Both the public database and this software attach a
+  name to every protein. The difference only becomes visible when you count how many
+  <em>different</em> names are in use as you look at more and more genomes.</p>
+  <p>The 1,062 genomes named by both were shuffled into random order 200 times, and the count of
+  distinct names was tracked as genomes accumulated:</p>
+  <svg viewBox="0 0 620 300" width="100%" role="img" aria-label="Distinct annotation strings as genomes accumulate"><line x1="52" y1="262.0" x2="606" y2="262.0" stroke="var(--rule)" stroke-width="1"/><text x="44" y="265.5" text-anchor="end" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">0</text><line x1="52" y1="214.3" x2="606" y2="214.3" stroke="var(--rule)" stroke-width="1"/><text x="44" y="217.8" text-anchor="end" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">50</text><line x1="52" y1="166.6" x2="606" y2="166.6" stroke="var(--rule)" stroke-width="1"/><text x="44" y="170.1" text-anchor="end" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">100</text><line x1="52" y1="118.9" x2="606" y2="118.9" stroke="var(--rule)" stroke-width="1"/><text x="44" y="122.4" text-anchor="end" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">150</text><line x1="52" y1="71.2" x2="606" y2="71.2" stroke="var(--rule)" stroke-width="1"/><text x="44" y="74.7" text-anchor="end" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">200</text><line x1="52" y1="23.5" x2="606" y2="23.5" stroke="var(--rule)" stroke-width="1"/><text x="44" y="27.0" text-anchor="end" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">250</text><text x="52.0" y="280" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">0</text><text x="182.4" y="280" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">250</text><text x="312.8" y="280" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">500</text><text x="443.2" y="280" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">750</text><text x="573.7" y="280" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="JetBrains Mono, monospace">1000</text><line x1="52" y1="262" x2="606" y2="262" stroke="var(--rule)" stroke-width="1"/><polyline fill="none" stroke="var(--lo)" stroke-width="2" points="52.0,256.9 53.6,249.5 55.1,244.6 56.7,239.9 58.3,236.0 59.8,232.6 61.4,229.8 63.0,226.8 64.5,224.3 66.1,222.1 67.7,219.8 69.2,217.4 70.8,215.2 72.4,213.4 73.9,211.6 75.5,209.7 77.1,207.8 78.6,206.0 80.2,204.4 81.8,202.7 83.3,200.9 84.9,199.3 86.5,197.5 88.0,195.9 89.6,194.5 91.2,193.0 92.7,191.2 94.3,189.7 95.9,188.3 97.4,187.0 99.0,185.8 100.6,184.4 102.1,183.1 103.7,181.8 105.3,180.5 106.8,179.1 108.4,178.0 110.0,176.9 111.5,175.7 113.1,174.7 114.7,173.5 116.2,172.2 117.8,171.1 119.4,170.1 120.9,169.0 122.5,167.6 124.1,166.6 125.6,165.5 127.2,164.4 128.8,163.5 130.3,162.5 131.9,161.4 133.5,160.5 135.0,159.4 136.6,158.4 138.2,157.5 139.7,156.3 141.3,155.4 142.9,154.6 144.4,153.6 146.0,152.6 147.6,151.8 149.1,151.0 150.7,150.1 152.3,149.0 153.8,148.1 155.4,147.1 157.0,146.3 158.5,145.6 160.1,144.9 161.7,144.0 163.2,143.2 164.8,142.5 166.4,141.7 167.9,140.9 169.5,140.2 171.0,139.3 172.6,138.3 174.2,137.7 175.7,136.8 177.3,136.1 178.9,135.3 180.4,134.5 182.0,133.7 183.6,132.8 185.1,132.1 186.7,131.4 188.3,130.6 189.8,129.9 191.4,129.2 193.0,128.6 194.5,128.1 196.1,127.4 197.7,126.7 199.2,126.0 200.8,125.3 202.4,124.7 203.9,124.2 205.5,123.4 207.1,122.8 208.6,122.3 210.2,121.6 211.8,121.0 213.3,120.4 214.9,119.7 216.5,119.1 218.0,118.4 219.6,117.7 221.2,117.1 222.7,116.4 224.3,115.6 225.9,115.1 227.4,114.4 229.0,113.9 230.6,113.3 232.1,112.8 233.7,112.1 235.3,111.5 236.8,110.8 238.4,110.3 240.0,109.7 241.5,109.1 243.1,108.5 244.7,107.8 246.2,107.3 247.8,106.7 249.4,106.1 250.9,105.5 252.5,105.0 254.1,104.3 255.6,103.8 257.2,103.2 258.8,102.7 260.3,102.1 261.9,101.6 263.5,101.0 265.0,100.6 266.6,100.0 268.2,99.4 269.7,98.9 271.3,98.3 272.9,97.8 274.4,97.3 276.0,96.8 277.6,96.3 279.1,95.8 280.7,95.3 282.3,94.8 283.8,94.4 285.4,93.9 287.0,93.5 288.5,93.1 290.1,92.4 291.7,91.9 293.2,91.5 294.8,91.0 296.4,90.4 297.9,89.8 299.5,89.2 301.1,88.7 302.6,88.1 304.2,87.7 305.8,87.2 307.3,86.6 308.9,86.2 310.5,85.6 312.0,85.2 313.6,84.6 315.2,84.1 316.7,83.5 318.3,83.2 319.9,82.6 321.4,82.2 323.0,81.7 324.6,81.3 326.1,80.8 327.7,80.3 329.3,79.8 330.8,79.4 332.4,78.9 334.0,78.5 335.5,78.1 337.1,77.7 338.7,77.2 340.2,76.8 341.8,76.3 343.4,76.0 344.9,75.7 346.5,75.3 348.1,74.8 349.6,74.3 351.2,73.8 352.8,73.2 354.3,72.7 355.9,72.3 357.5,72.0 359.0,71.6 360.6,71.1 362.2,70.7 363.7,70.3 365.3,69.9 366.9,69.4 368.4,69.1 370.0,68.6 371.6,68.2 373.1,67.8 374.7,67.4 376.3,66.9 377.8,66.5 379.4,66.0 381.0,65.6 382.5,65.2 384.1,64.8 385.7,64.5 387.2,64.1 388.8,63.7 390.4,63.3 391.9,62.9 393.5,62.6 395.1,62.3 396.6,62.0 398.2,61.6 399.8,61.3 401.3,61.0 402.9,60.7 404.5,60.3 406.0,59.9 407.6,59.5 409.1,59.1 410.7,58.8 412.3,58.5 413.8,58.1 415.4,57.7 417.0,57.4 418.5,57.1 420.1,56.7 421.7,56.5 423.2,56.2 424.8,55.9 426.4,55.5 427.9,55.1 429.5,54.7 431.1,54.4 432.6,54.0 434.2,53.7 435.8,53.3 437.3,53.0 438.9,52.6 440.5,52.2 442.0,51.8 443.6,51.5 445.2,51.2 446.7,50.8 448.3,50.4 449.9,49.9 451.4,49.4 453.0,49.0 454.6,48.7 456.1,48.3 457.7,48.0 459.3,47.6 460.8,47.1 462.4,46.8 464.0,46.5 465.5,46.2 467.1,45.9 468.7,45.5 470.2,45.2 471.8,44.9 473.4,44.5 474.9,44.2 476.5,44.0 478.1,43.7 479.6,43.2 481.2,42.9 482.8,42.6 484.3,42.2 485.9,41.9 487.5,41.6 489.0,41.3 490.6,41.0 492.2,40.7 493.7,40.4 495.3,40.1 496.9,39.7 498.4,39.4 500.0,39.0 501.6,38.7 503.1,38.3 504.7,38.0 506.3,37.7 507.8,37.4 509.4,37.0 511.0,36.7 512.5,36.4 514.1,36.2 515.7,35.9 517.2,35.6 518.8,35.3 520.4,35.1 521.9,34.7 523.5,34.3 525.1,34.0 526.6,33.7 528.2,33.4 529.8,33.1 531.3,32.8 532.9,32.5 534.5,32.1 536.0,31.8 537.6,31.5 539.2,31.2 540.7,30.9 542.3,30.6 543.9,30.3 545.4,30.0 547.0,29.6 548.6,29.3 550.1,29.1 551.7,28.7 553.3,28.5 554.8,28.2 556.4,27.9 558.0,27.6 559.5,27.3 561.1,27.0 562.7,26.7 564.2,26.5 565.8,26.2 567.4,25.9 568.9,25.7 570.5,25.4 572.1,25.1 573.6,24.7 575.2,24.5 576.8,24.1 578.3,23.9 579.9,23.5 581.5,23.2 583.0,23.0 584.6,22.6 586.2,22.3 587.7,21.9 589.3,21.7 590.9,21.4 592.4,21.1 594.0,20.7 595.6,20.5 597.1,20.3 598.7,20.1 600.3,19.8 601.8,19.6 603.4,19.2 605.0,19.0"/><polyline fill="none" stroke="var(--hi)" stroke-width="2" points="52.0,256.0 53.6,254.2 55.1,253.4 56.7,252.8 58.3,252.2 59.8,251.8 61.4,251.5 63.0,251.1 64.5,250.7 66.1,250.4 67.7,250.2 69.2,249.9 70.8,249.5 72.4,249.3 73.9,249.1 75.5,248.7 77.1,248.5 78.6,248.3 80.2,248.1 81.8,248.0 83.3,247.8 84.9,247.6 86.5,247.5 88.0,247.4 89.6,247.2 91.2,247.1 92.7,246.9 94.3,246.8 95.9,246.6 97.4,246.5 99.0,246.3 100.6,246.2 102.1,246.1 103.7,246.0 105.3,245.9 106.8,245.9 108.4,245.8 110.0,245.7 111.5,245.6 113.1,245.5 114.7,245.5 116.2,245.4 117.8,245.3 119.4,245.3 120.9,245.3 122.5,245.2 124.1,245.2 125.6,245.1 127.2,245.1 128.8,245.0 130.3,245.0 131.9,245.0 133.5,244.9 135.0,244.8 136.6,244.8 138.2,244.7 139.7,244.6 141.3,244.6 142.9,244.6 144.4,244.6 146.0,244.5 147.6,244.5 149.1,244.4 150.7,244.4 152.3,244.4 153.8,244.3 155.4,244.3 157.0,244.3 158.5,244.2 160.1,244.2 161.7,244.2 163.2,244.1 164.8,244.1 166.4,244.1 167.9,244.1 169.5,244.1 171.0,244.0 172.6,244.0 174.2,244.0 175.7,244.0 177.3,244.0 178.9,244.0 180.4,244.0 182.0,243.9 183.6,243.9 185.1,243.9 186.7,243.8 188.3,243.8 189.8,243.8 191.4,243.8 193.0,243.7 194.5,243.7 196.1,243.7 197.7,243.7 199.2,243.7 200.8,243.7 202.4,243.7 203.9,243.7 205.5,243.7 207.1,243.7 208.6,243.6 210.2,243.6 211.8,243.6 213.3,243.6 214.9,243.6 216.5,243.6 218.0,243.5 219.6,243.5 221.2,243.5 222.7,243.5 224.3,243.5 225.9,243.5 227.4,243.5 229.0,243.5 230.6,243.5 232.1,243.4 233.7,243.4 235.3,243.4 236.8,243.4 238.4,243.4 240.0,243.4 241.5,243.4 243.1,243.4 244.7,243.4 246.2,243.4 247.8,243.4 249.4,243.4 250.9,243.4 252.5,243.4 254.1,243.4 255.6,243.4 257.2,243.4 258.8,243.3 260.3,243.3 261.9,243.3 263.5,243.3 265.0,243.3 266.6,243.3 268.2,243.3 269.7,243.3 271.3,243.3 272.9,243.3 274.4,243.3 276.0,243.3 277.6,243.3 279.1,243.3 280.7,243.3 282.3,243.3 283.8,243.3 285.4,243.3 287.0,243.3 288.5,243.3 290.1,243.3 291.7,243.3 293.2,243.3 294.8,243.3 296.4,243.2 297.9,243.2 299.5,243.2 301.1,243.2 302.6,243.2 304.2,243.2 305.8,243.2 307.3,243.2 308.9,243.2 310.5,243.2 312.0,243.2 313.6,243.2 315.2,243.2 316.7,243.2 318.3,243.2 319.9,243.1 321.4,243.1 323.0,243.1 324.6,243.1 326.1,243.1 327.7,243.1 329.3,243.1 330.8,243.1 332.4,243.1 334.0,243.1 335.5,243.1 337.1,243.1 338.7,243.1 340.2,243.1 341.8,243.1 343.4,243.1 344.9,243.1 346.5,243.1 348.1,243.1 349.6,243.1 351.2,243.1 352.8,243.1 354.3,243.1 355.9,243.1 357.5,243.1 359.0,243.1 360.6,243.1 362.2,243.1 363.7,243.1 365.3,243.1 366.9,243.1 368.4,243.1 370.0,243.1 371.6,243.1 373.1,243.1 374.7,243.1 376.3,243.1 377.8,243.1 379.4,243.1 381.0,243.1 382.5,243.1 384.1,243.1 385.7,243.1 387.2,243.0 388.8,243.0 390.4,243.0 391.9,243.0 393.5,243.0 395.1,243.0 396.6,243.0 398.2,243.0 399.8,243.0 401.3,243.0 402.9,243.0 404.5,243.0 406.0,243.0 407.6,243.0 409.1,243.0 410.7,243.0 412.3,243.0 413.8,243.0 415.4,243.0 417.0,243.0 418.5,243.0 420.1,243.0 421.7,243.0 423.2,243.0 424.8,243.0 426.4,243.0 427.9,243.0 429.5,243.0 431.1,243.0 432.6,243.0 434.2,243.0 435.8,243.0 437.3,243.0 438.9,243.0 440.5,243.0 442.0,243.0 443.6,243.0 445.2,243.0 446.7,243.0 448.3,243.0 449.9,243.0 451.4,243.0 453.0,243.0 454.6,243.0 456.1,243.0 457.7,243.0 459.3,243.0 460.8,243.0 462.4,243.0 464.0,243.0 465.5,243.0 467.1,243.0 468.7,243.0 470.2,243.0 471.8,243.0 473.4,243.0 474.9,243.0 476.5,243.0 478.1,243.0 479.6,243.0 481.2,243.0 482.8,243.0 484.3,243.0 485.9,243.0 487.5,243.0 489.0,243.0 490.6,243.0 492.2,243.0 493.7,243.0 495.3,243.0 496.9,243.0 498.4,243.0 500.0,243.0 501.6,243.0 503.1,243.0 504.7,243.0 506.3,243.0 507.8,243.0 509.4,243.0 511.0,243.0 512.5,243.0 514.1,243.0 515.7,243.0 517.2,243.0 518.8,243.0 520.4,243.0 521.9,243.0 523.5,243.0 525.1,243.0 526.6,243.0 528.2,242.9 529.8,242.9 531.3,242.9 532.9,242.9 534.5,242.9 536.0,242.9 537.6,242.9 539.2,242.9 540.7,242.9 542.3,242.9 543.9,242.9 545.4,242.9 547.0,242.9 548.6,242.9 550.1,242.9 551.7,242.9 553.3,242.9 554.8,242.9 556.4,242.9 558.0,242.9 559.5,242.9 561.1,242.9 562.7,242.9 564.2,242.9 565.8,242.9 567.4,242.9 568.9,242.9 570.5,242.9 572.1,242.9 573.6,242.9 575.2,242.9 576.8,242.9 578.3,242.9 579.9,242.9 581.5,242.9 583.0,242.9 584.6,242.9 586.2,242.9 587.7,242.9 589.3,242.9 590.9,242.9 592.4,242.9 594.0,242.9 595.6,242.9 597.1,242.9 598.7,242.9 600.3,242.9 601.8,242.9 603.4,242.9 605.0,242.9"/><circle cx="606" cy="18.8" r="3.5" fill="var(--lo)"/><circle cx="606" cy="242.9" r="3.5" fill="var(--hi)"/><text x="596" y="9.8" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--lo)" font-family="Libre Franklin, sans-serif">BV-BRC free text &mdash; 255</text><text x="596" y="233.9" text-anchor="end" font-size="11.5" font-weight="600" fill="var(--hi)" font-family="Libre Franklin, sans-serif">LowVan &mdash; 20</text><text x="329.0" y="296" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="Libre Franklin, sans-serif">genomes sampled</text><text transform="translate(13,138.0) rotate(-90)" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="Libre Franklin, sans-serif">distinct annotation strings</text></svg>
+  <p>A controlled vocabulary levels off, because each new genome reuses names the earlier ones
+  already established. Free text keeps climbing, because every new submitter spells the same
+  protein a new way. This software reaches 95% of its final vocabulary after <b>254 genomes</b>;
+  the public database needs <b>938</b>, and is still climbing at the right-hand edge.</p>
+  <table><thead><tr><th></th><th class="num">public database</th><th class="num">this software</th></tr></thead>
+  <tbody>
+  <tr><td>distinct names across all 1,062 genomes</td><td class="num">255</td><td class="num">20</td></tr>
+  <tr><td>names per 100 genomes</td><td class="num">24.0</td><td class="num">1.9</td></tr>
+  <tr><td>genomes needed to reach 95% of the total</td><td class="num">938</td><td class="num">254</td></tr>
+  </tbody></table>
+  <p><b>A 12.8-fold reduction</b> &mdash; and the shape matters more than the ratio. The rising
+  curve has no plateau to reach, so the gap between the two widens with every genome added.</p>
+</section>
+
+<section class="card">
+  <h2>What the exercise was worth</h2>
+  <p>Running the software against an entire virus family, rather than against the examples it was
+  built from, found: four bugs in the annotation program, one rulebook not worth keeping, a
+  genome-reassembly step without which an entire virus group reads as broken, five reference
+  genomes worth removing, a set of discarded sequences that turned out to hold the answer to the
+  largest remaining gap, and a mis-declared cut site that had been quietly misplacing the end of a
+  protein in 40% of genomes.</p>
+  <p>None of it was visible from the eight-genome development set, which this software passed at
+  95% throughout &mdash; before and after a change that added 471 profiles and 120 phosphoprotein
+  calls. <b>Testing against your own examples tells you the software recognizes them. Only a
+  whole-family run tells you what it misses in genomes nobody curated.</b></p>
+</section>
+
+<section class="card">
+  <h2>Terms used here</h2>
+  <div class="gloss"><div class="gitem"><h4>Module</h4><p>One rulebook, covering one group of related viruses that share the same gene layout. There are four for the rhabdoviruses.</p></div><div class="gitem"><h4>Profile</h4><p>A statistical pattern for one protein, built from many real examples. It records which amino acids are conserved and which vary, so it can recognize distant relatives that no single example would match.</p></div><div class="gitem"><h4>Routed</h4><p>Matched a reference genome closely enough to be assigned a module. A genome that is not routed is never searched for proteins.</p></div><div class="gitem"><h4>Annotated</h4><p>Came back with at least one protein identified and named.</p></div><div class="gitem"><h4>N, P, M, G, L</h4><p>The five proteins almost every rhabdovirus carries, in genome order: nucleocapsid, phosphoprotein, matrix, glycoprotein, and the large polymerase.</p></div><div class="gitem"><h4>Mature protein</h4><p>What remains after a protein has been trimmed. G is made as a longer precursor with a leader that gets cut off.</p></div><div class="gitem"><h4>Cut end</h4><p>An end of a protein produced by trimming rather than by the genetic start and stop signals. The software must be told which ends these are.</p></div><div class="gitem"><h4>Exemplar</h4><p>One genome chosen to represent a group of near-identical genomes, so that heavily sequenced viruses do not dominate the result.</p></div></div>
+</section>
+
+<footer>Rhabdoviridae LowVan module &middot; 1,356 distinct genomes drawn from 25,237 public records
+&middot; 955 profiles &middot; 12 September 2026</footer>
+</div>

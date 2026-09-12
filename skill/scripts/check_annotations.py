@@ -1,0 +1,188 @@
+#!/usr/bin/env python3
+"""Check a module's annotation strings against the LowVan published vocabulary.
+
+Every string a module emits becomes a permanent annotation in BV-BRC, so it has
+to match S1 Table (the manuscript's supplemental vocabulary) where a string for
+that protein already exists, and follow its conventions where one does not.
+Reusing an existing string is always better than coining a near-duplicate: the
+whole point of LowVan is to shrink the vocabulary, and "Nucleoprotein" next to
+S1 Table's "Nucleocapsid protein" makes it grow.
+
+The governing rule, from the manuscript: *the functional description is recorded
+as the annotation string, while the commonly used symbolic name is recorded as
+the gene symbol*. The measles polymerase is "RNA-dependent RNA polymerase" with
+gene symbol "L" -- not "L protein". S1 Table carries the symbol in its own
+column, and the module JSON carries it in `gene_symbol`.
+
+Reports:
+
+  REUSED    string already in S1 Table -- nothing to do, this is the good case
+  VARIANT   same string but for case, punctuation or spacing. Always a defect.
+            Deliberately narrow: this vocabulary distinguishes proteins by a
+            single character (P5 / P6 / P7), so any edit-distance tolerance
+            produces only false positives.
+  NEW       not in S1 Table -- gets added, and is style-checked here
+
+Also cross-checks `gene_symbol` against S1 Table's Symbol column wherever the
+annotation string already exists there. S1 Table namespaces a symbol with a
+lineage prefix when one module collapses several subgenera that each own a
+same-numbered ORF (`Embeco_NS2a`, `Merbeco_ORF4a`, `G_COV_ORF4a` -- 41 of its
+442 symbols), so `Tupa_SH` against a bare `SH` is that convention, not an
+error, and is reported separately from a genuine disagreement.
+
+    python3 check_annotations.py --json Taxon_Viral_PSSM.json
+"""
+
+import argparse
+import csv
+import json
+import os
+import re
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+VOCAB = os.path.join(os.path.dirname(HERE), "assets", "annotation-vocabulary.tsv")
+
+GENERIC = {"protein", "hypothetical protein", "unknown", "orf", "putative protein",
+           "uncharacterized protein"}
+# qualifiers the manuscript explicitly refuses, to stop the vocabulary growing
+BANNED = re.compile(r"\b(incomplete|truncated|partial|fragment|putative|probable)\b", re.I)
+
+
+def squash(s):
+    """Case, punctuation and spacing removed -- what a formatting check compares."""
+    return re.sub(r"[^a-z0-9]", "", s.lower())
+
+
+def style_notes(anno, ftypes, symbols):
+    out = []
+    if not anno:
+        return ["empty"]
+    if anno[0].islower():
+        out.append("starts lower-case; S1 Table strings are sentence case")
+    if anno.lower() in GENERIC:
+        out.append('too generic; S1 Table uses "Uncharacterized lineage-specific '
+                   '<symbol> protein" for unnamed ORFs')
+    if anno.isupper() and len(anno) > 4:
+        out.append("all-caps; spell the name out")
+    m = BANNED.search(anno)
+    if m:
+        out.append('drop "%s" -- the manuscript excludes qualifying words from '
+                   'annotation strings to stop the vocabulary proliferating' % m.group(0))
+    if "mat_peptide" in ftypes and not re.match(r"^(Mature|Signal peptide)", anno):
+        out.append('mat_peptide strings begin "Mature ..." or "Signal peptide of <symbol>"')
+    if "CDS" in ftypes and anno.startswith("Mature "):
+        out.append('"Mature ..." is the mat_peptide convention, not CDS')
+    # the family/genus prefix was REMOVED from S1 Table in the current revision
+    if re.match(r"^[A-Z][a-z]+(viridae|virinae|virus)\b", anno):
+        out.append("drop the taxon prefix; S1 Table removed these "
+                   '("Paramyxoviridae C protein" is now just "C protein")')
+    # symbol belongs in gene_symbol, not embedded as the whole description
+    for sym in symbols:
+        if sym and anno.strip().lower() in (sym.lower(), sym.lower() + " protein"):
+            out.append('the annotation is just the symbol "%s"; give a functional '
+                       "description and keep the symbol in gene_symbol" % sym)
+            break
+    if len(anno) > 90:
+        out.append("very long (%d chars)" % len(anno))
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--json", required=True, help="module JSON")
+    ap.add_argument("--vocab", default=VOCAB, help="S1 Table TSV")
+    args = ap.parse_args()
+
+    known, taxa_of, symbol_of = set(), {}, {}
+    with open(args.vocab) as fh:
+        for row in csv.DictReader(fh, delimiter="\t"):
+            a = (row.get("Annotation") or "").strip()
+            if not a:
+                continue
+            known.add(a)
+            taxa_of.setdefault(a, set()).add((row.get("Taxon") or "").strip())
+            s = (row.get("Symbol") or "").strip()
+            if s:
+                symbol_of.setdefault(a, set()).add(s)
+    by_squash = {}
+    for a in known:
+        by_squash.setdefault(squash(a), a)
+
+    with open(args.json) as fh:
+        mod = json.load(fh)
+
+    seen = {}
+    for module, block in mod.items():
+        for key, ent in block.get("features", {}).items():
+            a = (ent.get("anno") or "").strip()
+            seen.setdefault(a, []).append(
+                (module, key, ent.get("feature_type", ""), ent.get("gene_symbol", "")))
+
+    reused, variant, new = [], [], []
+    for a, uses in sorted(seen.items()):
+        if a in known:
+            reused.append((a, uses))
+        elif squash(a) in by_squash:
+            variant.append((a, uses, by_squash[squash(a)]))
+        else:
+            new.append((a, uses))
+
+    print("%d distinct annotation strings in %s\n"
+          % (len(seen), os.path.basename(args.json)))
+
+    print("REUSED from S1 Table (%d) -- these keep the vocabulary small:" % len(reused))
+    for a, uses in reused:
+        print("  %-52s %s" % (a, ", ".join(sorted({u[0] for u in uses}))[:56]))
+
+    # gene_symbol agreement, only where S1 Table has a symbol for that string.
+    # A "<Lineage>_<SYM>" prefix is S1 Table's own way of disambiguating a
+    # symbol shared by several subgenera inside one module, so strip it before
+    # comparing and report those separately.
+    mism, nspaced = [], []
+    for a, uses in reused:
+        want = symbol_of.get(a)
+        if not want:
+            continue
+        wl = {w.lower() for w in want}
+        for module, key, _ft, sym in uses:
+            if not sym or sym.lower() in wl:
+                continue
+            base = sym.split("_", 1)[1] if "_" in sym else None
+            if base and base.lower() in wl:
+                nspaced.append((module, key, a, sym, base))
+            else:
+                mism.append((module, key, a, sym, sorted(want)))
+    if nspaced:
+        print("\nGENE SYMBOL namespaced (%d) -- matches S1 Table practice, no action:" % len(nspaced))
+        for module, key, a, sym, base in nspaced:
+            print("  %-20s %-14s %-38s %-14s (base %s)"
+                  % (module, key, a[:38], sym, base))
+    if mism:
+        print("\nGENE SYMBOL differs from S1 Table (%d) -- decide which is right:" % len(mism))
+        for module, key, a, sym, want in mism:
+            print("  %-20s %-14s %-38s ours %-8s S1 Table %s"
+                  % (module, key, a[:38], sym, "/".join(want)))
+
+    if variant:
+        print("\nVARIANT of an existing string (%d) -- use the S1 Table spelling:" % len(variant))
+        for a, uses, k in variant:
+            print("  %-52s\n      S1 Table has:  %-42s (%s)"
+                  % (a, k, ", ".join(sorted(taxa_of[k]))[:40]))
+
+    print("\nNEW to S1 Table (%d) -- add these rows to S1-Table.xlsx:" % len(new))
+    for a, uses in new:
+        ft = {u[2] for u in uses}
+        syms = {u[3] for u in uses if u[3]}
+        print("  %-52s %-12s %s" % (a, "/".join(sorted(ft)),
+                                    ", ".join(sorted({u[0] for u in uses}))[:34]))
+        for note in style_notes(a, ft, syms):
+            print("        style: %s" % note)
+
+    print("\n  S1-Table.xlsx columns: Taxon | Annotation | Symbol | Feature Type |")
+    print("                         Segment | Used for Genome Quality | PubMed IDs*")
+    return 1 if (variant or mism) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
