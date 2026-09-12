@@ -61,6 +61,8 @@ annotate/              the annotator and genome-quality scoring       (patched)
 evaluate/              reference-panel scoring, whole-taxon coverage, download
 example-rhabdoviridae/ the two taxon-specific programs, as a worked example
 patches/               4 diffs against upstream Viral_Annotation
+vendor/bv-brc/         the BV-BRC/SEED modules the GTO path needs, so a clone
+                       works with no BV-BRC install  (SEED licence, not MIT)
 reports/               the four artifacts this produced
 CHANGELOG.md           what differs from upstream and why, with the measurements
 ```
@@ -98,21 +100,26 @@ binaries    blastn tblastn psiblast makeblastdb mmseqs mafft
 python      3.9+
 ```
 
-For anything that talks to BV-BRC — the protein dump that feeds step 1
-(`query_PATRIC_bob.pl`, which uses `P3DataAPI`), the genome download in
-`New-annotate-viral-taxon.pl`, the GTO path, and `viral_genome_quality.pl` — you
-need the BV-BRC dev kit:
+For anything that talks to BV-BRC — the protein dump that feeds step 1, the
+genome download, the GTO path and `viral_genome_quality.pl` — **the BV-BRC
+modules are bundled**, in `vendor/bv-brc/`. You do not need a BV-BRC
+installation. Two CPAN modules are not vendorable:
 
 ```
-GenomeTypeObject.pm, IDclient.pm, P3DataAPI.pm, rast-create-genome
-  from BV-BRC-CLI-<ver>.tgz  github.com/BV-BRC/BV-BRC-CLI/releases
-  or, on macOS, the BV-BRC.app desktop bundle, which carries the same tree
-  under /Applications/BV-BRC.app/{deployment,runtime}
-  put dev_container/modules/*/lib on PERL5LIB
-  put the CLI scripts and this kit's annotate/ on PATH
+File::Slurp                 hard dependency of GenomeTypeObject
+Data::UUID  (or UUID)       GenomeTypeObject mints feature ids with it
 
-plus  Class::Accessor  Getopt::Long::Descriptive  Params::Validate  URI  LWP
+cpanm File::Slurp Data::UUID
 ```
+
+`make_gto.py` checks for both before doing any work and prints that command if
+either is missing, rather than dying partway through a long run with
+`No UUID generator found`.
+
+`vendor/README.md` documents what was vendored, why each file is in the closure,
+and the SEED Toolkit Public License it carries. `P3DataAPI` — needed only for
+re-running the BV-BRC protein dump in step 1, not for anything downstream — is
+the one piece still expected from a BV-BRC install.
 
 `Params::Validate` is XS. Without a compiler, install it from conda-forge
 (`perl-params-validate`) rather than CPAN.
@@ -220,10 +227,13 @@ column number does not. Where no such site exists, the signal-peptide and mature
 products are dropped and the module ships without them; the parent protein is
 still called correctly. Nothing else in the workflow depends on SignalP.
 
-**The BV-BRC dev kit is not included either.** `GenomeTypeObject.pm`,
-`IDclient.pm` and `rast-create-genome` come from
-[BV-BRC-CLI](https://github.com/BV-BRC/BV-BRC-CLI/releases). They are required
-for the GTO path only.
+**The BV-BRC dev kit is partly included, under its own licence.**
+`vendor/bv-brc/` carries the dependency closure of `GenomeTypeObject.pm`,
+`IDclient.pm` and `rast-create-genome` — 11 modules and one script — so the GTO
+path runs from a clone. These are SEED Toolkit files, Copyright (c) 2003-2013
+University of Chicago and the Fellowship for Interpretation of Genomes,
+redistributed under the **SEED Toolkit Public License**, not MIT. Their
+copyright headers are intact and must stay that way. See `vendor/README.md`.
 
 Everything else in this repository is either original to it or MIT from
 upstream. The controlled vocabulary ships as `skill/assets/annotation-vocabulary.tsv`

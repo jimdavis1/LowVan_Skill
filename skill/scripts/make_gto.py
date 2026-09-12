@@ -41,9 +41,22 @@ exec "$KB_RUNTIME/bin/perl" "$KB_TOP/plbin/rast-create-genome.pl" "$@"
 
 
 def resolve(tool):
-    """Find rast-create-genome, creating the bin wrapper if only plbin has it."""
+    """Find rast-create-genome.
+
+    Preference order: an explicit --tool, then the copy vendored in this
+    repository, then one already on PATH, then a BV-BRC desktop bundle. The
+    vendored copy is tried before PATH so a clone works with no BV-BRC install
+    at all -- which is the point of shipping it.
+    """
     if tool:
         return tool
+    #  vendor/bv-brc/bin/, relative to this script: skill/scripts/ -> repo root
+    here = os.path.dirname(os.path.abspath(__file__))
+    for up in (3, 2, 4):
+        root = os.path.abspath(os.path.join(here, *([".."] * up)))
+        b = os.path.join(root, "vendor", "bv-brc", "bin", "rast-create-genome")
+        if os.path.exists(b):
+            return b
     from shutil import which
     w = which("rast-create-genome")
     if w:
@@ -61,6 +74,39 @@ def resolve(tool):
             print("  created missing wrapper %s" % b)
             return b
     return None
+
+
+def preflight(tool):
+    """Check the perl this tool will use can actually load what it needs.
+
+    GenomeTypeObject loads its UUID module inside an eval, so a missing one is
+    silent until create_uuid() is called and the run dies with "No UUID
+    generator found" partway through. Fail here instead, with the fix.
+    """
+    import subprocess
+    perl = os.environ.get("LOWVAN_PERL", "perl")
+    root = os.path.abspath(os.path.join(os.path.dirname(tool), ".."))
+    env = dict(os.environ, PERL5LIB=os.path.join(root, "lib")
+               + (":" + os.environ["PERL5LIB"] if os.environ.get("PERL5LIB") else ""))
+    missing = []
+    for mod, why in (("File::Slurp", "required by GenomeTypeObject and CmdHelper"),
+                     ("JSON::XS", "required by GenomeTypeObject")):
+        if subprocess.run([perl, "-M" + mod, "-e", "1"],
+                          capture_output=True, env=env).returncode:
+            missing.append((mod, why))
+    if all(subprocess.run([perl, "-M" + m, "-e", "1"],
+                          capture_output=True, env=env).returncode
+           for m in ("Data::UUID", "UUID")):
+        missing.append(("Data::UUID", "GenomeTypeObject needs Data::UUID or UUID "
+                                      "to mint feature ids"))
+    if missing:
+        print("ERROR: %s cannot load:" % perl, file=sys.stderr)
+        for m, why in missing:
+            print("   %-22s %s" % (m, why), file=sys.stderr)
+        print("\n   cpanm %s" % " ".join(m for m, _ in missing), file=sys.stderr)
+        print("   (or set LOWVAN_PERL to a perl that has them)", file=sys.stderr)
+        return False
+    return True
 
 
 def main():
@@ -82,6 +128,8 @@ def main():
               "       genome id must be issued, not invented.", file=sys.stderr)
         return 1
     print("  tool: %s" % tool)
+    if not preflight(tool):
+        return 1
 
     meta = {}
     if args.metadata and os.path.exists(args.metadata):

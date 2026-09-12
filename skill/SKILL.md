@@ -532,13 +532,15 @@ feature ids that collide with a real genome's. `make_gto.py` fails loudly rather
 than falling back. Most of each call is the round trip to the ID server, so
 `--jobs 24` is reasonable.
 
-This needs the BV-BRC dev kit — `GenomeTypeObject.pm`, `IDclient.pm`,
-`rast-create-genome` — which is a dev-container build, not a CPAN install. Three
-things go wrong there every time, and all three are flags rather than edits:
+The BV-BRC side of this is **bundled** in `vendor/bv-brc/`, so no BV-BRC
+installation is required; `make_gto.py` finds the vendored `rast-create-genome`
+on its own and refuses to start if the perl it will use is missing `File::Slurp`
+or a UUID module. Three things still go wrong, and all three are flags rather
+than edits:
 
 | symptom | cause and flag |
 |---|---|
-| `Can't locate GenomeTypeObject.pm` / `IDclient.pm` | dev-kit lib not on the path — `--perl5lib <kit>/deployment/lib` |
+| `Can't locate GenomeTypeObject.pm` / `IDclient.pm` | the kit bundles these in `vendor/bv-brc/lib`; `make_gto.py` finds them itself. Only needed if you are calling the perl directly — `--perl5lib vendor/bv-brc/lib` |
 | `No UUID generator found` | `GenomeTypeObject` needs `Data::UUID` or `UUID`. The BV-BRC runtime perl has one; a conda perl usually has neither — `--perl <kit>/runtime/bin/perl` |
 | `rast-create-genome: command not found` | the macOS bundle ships `plbin/rast-create-genome.pl` without its `bin` wrapper; `make_gto.py` writes it from the bundle's own pattern |
 

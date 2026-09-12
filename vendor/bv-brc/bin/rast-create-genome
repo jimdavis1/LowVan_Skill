@@ -1,0 +1,11 @@
+#!/bin/bash
+# Wrapper for the vendored rast-create-genome.pl.
+#
+# The upstream BV-BRC bundle ships plbin/rast-create-genome.pl but, at least in
+# 1.046, no bin/ wrapper for it -- only rast-create-genome-from-RAST has one.
+# This is that missing wrapper, rewritten to resolve relative to wherever this
+# repository was cloned rather than to a fixed install prefix.
+here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+root=$(cd "$here/.." && pwd)
+export PERL5LIB="$root/lib${PERL5LIB:+:$PERL5LIB}"
+exec ${LOWVAN_PERL:-perl} "$root/plbin/rast-create-genome.pl" "$@"
