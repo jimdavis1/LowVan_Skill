@@ -203,16 +203,10 @@ still called correctly. Nothing else in the workflow depends on SignalP.
 [BV-BRC-CLI](https://github.com/BV-BRC/BV-BRC-CLI/releases). They are required
 for the GTO path only.
 
-**Two files may need your attention before this is public:**
-
-- `skill/assets/S1-Table.xlsx` is the controlled-vocabulary table from the LowVan
-  manuscript. If the journal holds copyright on the supplementary material rather
-  than you, either confirm it is CC-BY or replace it with a plain regenerated TSV.
-  `skill/assets/annotation-vocabulary.tsv` already carries the same content in an
-  open format, so the workflow does not break if you drop the spreadsheet.
-- `example-rhabdoviridae/query_PATRIC_bob.pl` carries no license header and uses
-  `P3DataAPI`. If it originated in BV-BRC rather than with you, it needs its own
-  notice or should be replaced with the equivalent `p3-` CLI calls.
+Everything else in this repository is either original to it or MIT from
+upstream. The controlled vocabulary ships as `skill/assets/annotation-vocabulary.tsv`
+rather than as the manuscript spreadsheet, so there is no publisher-copyright
+question; `query_PATRIC_bob.pl` and `P3DataAPI` are both fully open.
 
 ## Using the skill
 

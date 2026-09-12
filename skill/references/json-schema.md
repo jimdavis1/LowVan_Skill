@@ -49,8 +49,8 @@ PSSM directory (`Viral-PSSMs/<key>.pssms/`) and the rep-contig filenames
 
 | Field | Meaning |
 |---|---|
-| `anno` | the annotation string emitted; a functional description. Must follow the S1 Table vocabulary. |
-| `gene_symbol` | the community's short name (`L`, `N`, `SH`). Must match S1 Table's Symbol column where the annotation already exists there; do not namespace it per genus. |
+| `anno` | the annotation string emitted; a functional description. Must follow the controlled vocabulary. |
+| `gene_symbol` | the community's short name (`L`, `N`, `SH`). Must match the vocabulary's Symbol column where the annotation already exists there; do not namespace it per genus. |
 | `feature_type` | `CDS`, `mat_peptide`, or `RNA` |
 | `segment` | which segment; used by the quality tool |
 | `bit_cutoff` | tBLASTn bitscore floor for calling this feature |
@@ -157,7 +157,7 @@ model-proposed citation, that is the fabrication case), and disagreement between
 the two lists — then prints every citation with its title so relevance can be
 eyeballed.
 
-**Do not put a model-proposed citation into S1 Table.** The Excel has no
+**Do not put a model-proposed citation into the vocabulary.** The table has no
 provenance column, so a flagged citation entering it silently becomes a curated
 one. Verify it first, or leave the `PubMed IDs*` cell empty.
 
@@ -199,7 +199,7 @@ start codon or a stop codon. **A cleavage site is neither.**
 A precursor rarely yields just one product. Glycoproteins in particular are
 cleaved more than once — GPC into a stable signal peptide plus Gn and Gc,
 HA0 into HA1 and HA2, S into S1 and S2, filovirus GP into GP1 and GP2 — and
-S1 Table carries all of those as separate `mat_peptide` rows. Work out where
+The vocabulary carries all of those as separate `mat_peptide` rows. Work out where
 each product sits in the chain, then set the flags from its two termini:
 
 | Product | N-terminus | C-terminus | `upstream_ext` | `downstream_ext` |

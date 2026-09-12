@@ -335,13 +335,13 @@ generator so it cannot drift, and clear entries only when a human has actually
 read the paper. `check_dlits.py` also catches DOIs in the PMID field and ids
 that do not resolve in PubMed.
 
-Reuse an S1 Table string wherever one exists — shrinking the vocabulary is the
+Reuse a vocabulary string wherever one exists — shrinking the vocabulary is the
 point of LowVan, and the whole controlled set is only 153 strings. The
 annotation records **what the protein does**; the short community name goes in
 `gene_symbol`, never in the string ("RNA-dependent RNA polymerase" + symbol
-"L", not "L protein"). S1 Table carries **no taxon prefix** — that was removed
+"L", not "L protein"). The vocabulary carries **no taxon prefix** — that was removed
 in the current revision, so "Paramyxoviridae C protein" is now just "C protein".
-Add genuinely new strings to `S1-Table.xlsx` with Taxon / Annotation / Symbol /
+Add genuinely new strings to `assets/annotation-vocabulary.tsv` with Taxon / Annotation / Symbol /
 Feature Type / Segment / Used for Genome Quality / PubMed IDs.
 `references/annotation-vocabulary.md` covers the conventions.
 
@@ -717,7 +717,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `apply_signalp.py` | stage consensus N-termini for SignalP, then cut verified `_SP` / `_MAT` products from a parent CDS |
 | `norm_pssm.py` | normalise `psiblast -out_pssm` output to the pipeline's format |
 | `qc_cross_feature.py` | find clusters binned under the wrong feature |
-| `check_annotations.py` | check annotation strings and gene symbols against S1 Table |
+| `check_annotations.py` | check annotation strings and gene symbols against the vocabulary |
 | `check_dlits.py` | verify DLIT citations resolve, and that model-proposed ones are flagged |
 | `check_dump.py` | verify the BV-BRC dump is complete and line-aligned |
 | `json_canon.py` | one canonical JSON format so diffs show only real changes |

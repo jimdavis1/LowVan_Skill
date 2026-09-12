@@ -6,9 +6,13 @@ exists to *shrink* the annotation vocabulary — the manuscript reports 1.5- to
 strings — so coining a near-duplicate of an existing string works directly
 against the point of the project.
 
-The canonical list is **S1 Table** of the LowVan manuscript, shipped here as
-`assets/annotation-vocabulary.tsv` (478 rows, 35 taxa, 153 distinct strings) and
-`assets/S1-Table.xlsx`.
+The canonical list is **S1 Table** of the LowVan manuscript. It ships here as
+`assets/annotation-vocabulary.tsv` (478 rows, 35 taxa, 153 distinct strings) --
+same columns, same content, tab-separated so it diffs and greps.
+
+**That TSV is the file you read and the file you edit.** There is no spreadsheet
+in this repository. Where these documents say "S1 Table" they mean the published
+table; the TSV is its working copy, and new strings are appended there.
 
 ```bash
 python3 scripts/check_annotations.py --json <T>_Viral_PSSM.json
@@ -28,12 +32,12 @@ From the manuscript:
 
 So the annotation says **what the protein does**; the symbol is a separate
 field. `RNA-dependent RNA polymerase` + symbol `L` — never `L protein` as the
-annotation. In S1 Table the symbol lives in its own column; in the module JSON
+annotation. In the vocabulary the symbol lives in its own column; in the module JSON
 it lives in `gene_symbol`.
 
 ## Rule one: reuse before you coin
 
-If S1 Table already has a string for this protein, use it verbatim. The core
+If the vocabulary already has a string for this protein, use it verbatim. The core
 mononegavirus proteins are all there and shared across families:
 
 ```
@@ -48,7 +52,7 @@ Rhabdoviridae reuses nine of these unchanged.
 
 ## No taxon prefix
 
-**The current revision of S1 Table removed the family and genus prefixes.**
+**The current revision removed the family and genus prefixes.**
 Earlier versions carried them; they are gone, and adding one now creates a
 duplicate of an existing string:
 
@@ -203,18 +207,18 @@ count toward the genome quality score. Set 0 for accessories genuinely absent
 from many members of the module, or every genome lacking an optional protein is
 marked poor quality.
 
-## Adding to the Excel
+## Adding to the vocabulary
 
-New strings go into `S1-Table.xlsx` as new rows, one per taxon that uses the
+New strings go into `assets/annotation-vocabulary.tsv` as new rows, one per taxon that uses the
 string, with all seven columns filled. Put the DLITs — the papers defining the
 protein's function or sequence — in `PubMed IDs*`, and the same IDs in the JSON
 `PMID` field. A new string with no citation is a liability for whoever maintains
 the module next.
 
-**Only human-verified citations belong in the Excel.** S1 Table has no
+**Only human-verified citations belong in the vocabulary.** It has no
 provenance column, so a model-proposed PMID entering it silently becomes a
 curated one. The JSON can carry the distinction (`PMID_claude_generated`, see
-`references/json-schema.md`); the Excel cannot. Verify it or leave the cell
+`references/json-schema.md`); the TSV cannot. Verify it or leave the field
 empty.
 
 ## What `check_annotations.py` reports
@@ -229,4 +233,4 @@ empty.
   defect. The check is deliberately narrow and does not use edit distance: this
   vocabulary distinguishes proteins by a single character (`P5` / `P6` / `P7`,
   `NS7a` / `NS7b`), so any tolerance produces only false positives.
-- **NEW** — needs adding to the Excel, and gets a style check.
+- **NEW** — needs adding to the TSV, and gets a style check.

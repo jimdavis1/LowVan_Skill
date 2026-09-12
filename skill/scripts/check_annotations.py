@@ -170,7 +170,8 @@ def main():
             print("  %-52s\n      S1 Table has:  %-42s (%s)"
                   % (a, k, ", ".join(sorted(taxa_of[k]))[:40]))
 
-    print("\nNEW to S1 Table (%d) -- add these rows to S1-Table.xlsx:" % len(new))
+    print("\nNEW to the vocabulary (%d) -- add these rows to\n"
+          "  assets/annotation-vocabulary.tsv:" % len(new))
     for a, uses in new:
         ft = {u[2] for u in uses}
         syms = {u[3] for u in uses if u[3]}
@@ -179,7 +180,7 @@ def main():
         for note in style_notes(a, ft, syms):
             print("        style: %s" % note)
 
-    print("\n  S1-Table.xlsx columns: Taxon | Annotation | Symbol | Feature Type |")
+    print("\n  columns: Taxon | Annotation | Symbol | Feature Type |")
     print("                         Segment | Used for Genome Quality | PubMed IDs*")
     return 1 if (variant or mism) else 0
 
