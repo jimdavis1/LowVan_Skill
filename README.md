@@ -182,9 +182,17 @@ which is also MIT and the same copyright holder, so it travels cleanly.
 **SignalP is not included and cannot be.** SignalP 6.0 is academic-licensed and
 distributed only through a form you submit yourself. `skill/scripts/apply_signalp.py`
 is a wrapper that runs SignalP and consumes its output; it contains no SignalP
-code, binaries, or model weights. Get SignalP from
-<https://services.healthtech.dtu.dk/services/SignalP-6.0/> if you need step 6.
-The rest of the workflow does not depend on it.
+code, binaries, or model weights. Get it from
+<https://services.healthtech.dtu.dk/services/SignalP-6.0/> if you want it.
+
+**You do not need it.** Step 6 of the skill carries a decision table for building
+without SignalP. Where a mature N-terminus is documented in the literature or
+recorded as a `mat_peptide` in RefSeq, `apply_signalp.py --motif` cuts on that
+motif with no predictor involved — and that is the better answer even when
+SignalP is available, because a motif re-locates itself after a rebuild while a
+column number does not. Where no such site exists, the signal-peptide and mature
+products are dropped and the module ships without them; the parent protein is
+still called correctly. Nothing else in the workflow depends on SignalP.
 
 **The BV-BRC dev kit is not included either.** `GenomeTypeObject.pm`,
 `IDclient.pm` and `rast-create-genome` come from

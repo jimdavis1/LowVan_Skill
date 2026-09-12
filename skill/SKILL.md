@@ -46,8 +46,14 @@ Full check and install notes: `references/install-and-test.md`.
 
 Optional, and only if the taxon has a cleaved precursor: **SignalP 6.0**, for
 step 6. It is academic-licensed and cannot be installed unattended — the user
-downloads it themselves. Start that early if you will need it, because it gates
-a step near the end. Not needed where the cleavage site is already measured.
+downloads it themselves through a form. Raise it early if the taxon looks like it
+will need one, because the download is not instant.
+
+**Never block the build on it.** Step 6 has a decision table for the case where
+the user does not have SignalP and cannot easily get it: a documented cleavage
+site beats a prediction anyway, and where neither exists the cleaved products are
+dropped and the module ships without them. Everything else in the workflow runs
+unchanged.
 
 ### 1. Take delivery of the inputs
 
@@ -201,10 +207,32 @@ python3 scripts/apply_signalp.py --workdir . --parent G \
         --stage-queries Alignments/G_SIGNALP_QUERIES.faa
 ```
 
-**Getting SignalP.** It is academic-licensed: the tarball is behind a form the
-user submits themselves (name, institution, acceptance of the terms). Do not try
-to accept a licence on someone's behalf. `scripts/apply_signalp.py --help-install`
-prints the steps. Once they have it:
+#### First decide whether you need SignalP at all
+
+**SignalP is optional, and a module without cleaved products is still a valid
+module.** Work down this list and stop at the first one that applies:
+
+| situation | what to do |
+|---|---|
+| the mature N-terminus is documented for a reference protein | use `--motif`. No predictor needed, and this is the *better* answer even when SignalP is available — see below |
+| RefSeq carries a `mat_peptide` on a reference genome of this taxon | read the cut site off it, turn it into a motif, use `--motif` |
+| neither, and SignalP is unavailable | **drop the `_SP` / `_MAT` features** from the JSON and say so in the build notes. The parent CDS is still called correctly; you lose two derived features, not the module |
+| neither, and SignalP is available | run it, then apply it with the checks below |
+
+If the user does not have SignalP, do not stall the build waiting for it. Ask
+whether a documented cleavage site exists for any protein in the taxon; if one
+does, the motif path is strictly better. If none does, drop the features, finish
+every other step, and record the omission so it can be revisited.
+
+**Do not skip the decision silently.** A `_MAT` feature declared in the JSON with
+no profiles behind it is worse than no feature at all — the annotator will report
+it as missing on every genome.
+
+**Getting SignalP, if you go that way.** It is academic-licensed: the tarball is
+behind a form the user submits themselves (name, institution, acceptance of the
+terms). **Do not attempt to download it for them and do not accept a licence on
+anyone's behalf** — walk them through the form and wait.
+`scripts/apply_signalp.py --help-install` prints the steps. Once they have it:
 
 ```bash
 conda create -y -n signalp python=3.10 pip
@@ -241,9 +269,10 @@ clusters scored 27.5 and 28.4 bits against a cutoff of 30 and were withheld; the
 mature chains were still built. Measure with `-comp_based_stats 0` — see the CBS
 trap in `references/curation.md`.
 
-**Prefer a measured site to a prediction, and record which you used.** Where a
-mature N-terminus is known experimentally, `--motif` cuts by locating that motif
-instead, needing no predictor at all:
+**Prefer a measured site to a prediction, and record which you used.** This is
+also the whole no-SignalP path: where a mature N-terminus is known
+experimentally, or is recorded as a `mat_peptide` in RefSeq, `--motif` cuts by
+locating that motif and needs no predictor at all:
 
 ```bash
 python3 scripts/apply_signalp.py --workdir . --parent G --write \
