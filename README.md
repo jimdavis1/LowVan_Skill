@@ -1,49 +1,93 @@
 # LowVan module kit
 
-Everything needed to build a LowVan annotation module for a viral taxon, run it,
-and find out whether it actually works — plus the skill that walks an agent
-through doing so.
+**Name the proteins in a viral genome, consistently, across a whole taxonomic
+family.**
 
-Roughly 900 KB. The PSSM and alignment data that a finished module ships is not
-here; see **Getting the reference data** below.
+Public sequence databases hold tens of thousands of viral genomes whose protein
+names were written by thousands of different submitters, so the same protein
+appears under dozens of spellings and many carry no useful name at all. A LowVan
+*module* replaces that with one controlled set: a collection of PSSM profiles
+plus a JSON declaring which proteins a taxon has, how long they are, and how
+confident a match must be.
+
+This repository is everything needed to build such a module for a new viral
+taxon, run it, and find out whether it actually works — plus the agent skill that
+walks through doing so.
+
+Building one is mostly judgement: which annotation strings mean the same protein,
+which clusters are real, which features the data cannot support. **The skill
+exists because those judgements are easy to get wrong in ways nothing downstream
+detects.**
+
+## Does it work?
+
+The Rhabdoviridae module built with this kit, measured against **every**
+Rhabdoviridae genome BV-BRC holds between 1 and 50 kb — 25,237 records collapsed
+to 1,356 distinct genomes, one per 95%-identity cluster:
+
+| | |
+|---|---|
+| genomes assigned a module and annotated | **88%** |
+| genomes carrying all five core proteins | **69%** |
+| genomes annotated acceptably | **70%** |
+| distinct annotation strings produced | **20**, against 255 for the same genomes in BV-BRC |
+
+`reports/` holds four standalone HTML pages with the full evidence. GitHub will
+not render them in place — download the file, or use a raw-HTML viewer.
+
+| Report | What it answers |
+|---|---|
+| `rhabdoviridae-coverage-audit.html` | the whole-taxon validation: what the module covers, how it was built, and the rules that governed it. **Start here.** |
+| `bvbrc-string-collapse.html` | how many source annotation strings each controlled annotation absorbs |
+| `rhabdoviridae-pssm-registry.html` | every declared feature, its profiles, and what fraction of its own collection each recovers |
+| `lowvan-module-handbook.html` | the build method in long form |
+
+The audit is also worth reading for what a whole-taxon run *finds*: four bugs in
+the annotator, a module worth dropping, five reference genomes worth removing,
+and a mis-declared cleavage site that had been misplacing a protein's C-terminus
+in 40% of genomes. None of it was visible from the eight-genome reference panel,
+which the module passed at 95% throughout.
+
+## What is in here
+
+~1.3 MB. The PSSM and alignment data a *finished* module ships is not included;
+see **Getting the reference data**.
 
 ```
-skill/                 the lowvan-module skill: workflow, references, scripts
-build/                 clustering and profile construction  (patched)
-annotate/              the annotator and genome-quality scoring  (patched)
+skill/                 the lowvan-module skill: 14 steps, 9 reference documents,
+                       29 scripts
+build/                 clustering and profile construction            (patched)
+annotate/              the annotator and genome-quality scoring       (patched)
 evaluate/              reference-panel scoring, whole-taxon coverage, download
 example-rhabdoviridae/ the two taxon-specific programs, as a worked example
-patches/               diffs against upstream Viral_Annotation
-reports/               the four artifacts this produced, as standalone HTML
+patches/               4 diffs against upstream Viral_Annotation
+reports/               the four artifacts this produced
 CHANGELOG.md           what differs from upstream and why, with the measurements
 ```
 
-## What you write, and what you get
+## What you adapt, and what runs unchanged
 
-Two programs are taxon-specific and you will adapt them:
-`build_collections.py` (which annotation strings mean which protein) and the
-module JSON generator (what the taxon has, how long, how confident a match must
-be). Both are in `example-rhabdoviridae/` as working code with the parts to
-replace marked, and its README lists them table by table.
+Two programs are taxon-specific: `build_collections.py` (which annotation strings
+mean which protein) and the module JSON generator (what the taxon has, how long,
+how confident a match must be). Both are in `example-rhabdoviridae/` as working
+code with the parts to replace marked, and its README lists them table by table.
 
-Everything else runs unchanged: clustering, profile construction, curation QC,
-signal-peptide derivation, install, and both evaluation paths.
+Everything else runs unchanged — clustering, profile construction, curation QC,
+signal-peptide derivation, install, reference-panel scoring and whole-taxon
+evaluation.
 
 That division is real rather than a shortcoming. Deciding that `outer coat
-protein` is the glycoprotein, that `M1` is the phosphoprotein, or that `P6`
-must never be matched by regex at all is the work — and it is different for
-every taxon. The kit carries the machinery and the method; the judgement is
-yours to make, with roughly a thousand lines of comments in the example
-recording how those calls went here and what measurement settled each one.
+protein` is the glycoprotein, that `M1` is the phosphoprotein, or that `P6` must
+never be matched by regex at all is the work, and it is different for every
+taxon. The kit carries the machinery and the method; the judgement is yours, with
+roughly a thousand lines of comments in the example recording how each call went
+here and what measurement settled it.
 
-## What this is for
-
-A LowVan module is a set of PSSM profiles plus a JSON that tells the annotator
-which proteins a taxon has, how long they are, and how confident a match must
-be. Building one is mostly judgement: which annotation strings mean the same
-protein, which clusters are real, which features the data cannot support. The
-skill exists because those judgements are easy to get wrong in ways nothing
-downstream detects.
+**The organising rule: anything algorithmic is a script, anything requiring
+judgement is written instructions.** Every analysis in the coverage report is a
+program you can re-run on another taxon. What stayed prose is what does not
+transfer — which genes flank a gap, how many reference contigs are worth
+maintaining, whether a taxon has enough data to model at all.
 
 ## Requirements
 
@@ -154,28 +198,6 @@ that documents them:
 | `build_leftover_pssms.py` | second-pass profiles from the sequences no cluster took |
 | `check_dump.py` | verify the BV-BRC protein dump is complete and line-aligned |
 
-## What it produced
-
-`reports/` holds four self-contained HTML pages. Open them in a browser; they
-need no server and no network.
-
-| Report | What it answers |
-|---|---|
-| `rhabdoviridae-coverage-audit.html` | the whole-taxon validation: what the module covers across every Rhabdoviridae genome in BV-BRC, how it was built, and the rules that governed it. **Start here.** |
-| `bvbrc-string-collapse.html` | how many distinct BV-BRC annotation strings each controlled annotation absorbs |
-| `rhabdoviridae-pssm-registry.html` | every declared feature, its profiles, and what fraction of its own collection each recovers |
-| `lowvan-module-handbook.html` | the build method in long form |
-
-The headline numbers from the coverage audit, for a module of 955 profiles over
-1,356 distinct genomes drawn from 25,237 BV-BRC records:
-
-```
-annotated, in scope                  88%
-all five core proteins               69%     (was 62% before the last rebuild)
-annotated acceptably                 70%     (excluding sequence-quality flags)
-annotation vocabulary                20 strings vs 255 for the same genomes
-```
-
 ## Licensing, and what is deliberately not here
 
 This repository is MIT licensed. The annotator and clustering code in
@@ -211,19 +233,22 @@ question; `query_PATRIC_bob.pl` and `P3DataAPI` are both fully open.
 ## Using the skill
 
 Copy `skill/` to `~/.claude/skills/lowvan-module/` and invoke it, or read
-`skill/SKILL.md` directly — it is written to be followed by hand. The thirteen
-steps run from taking delivery of a BV-BRC export through to chasing any feature
-that loses 20% or more of its genomes.
+`skill/SKILL.md` directly — it is written to be followed by hand. Fourteen steps
+run from taking delivery of a BV-BRC export through to verifying that every
+cleaved protein end lands where it should.
 
-Two documents carry most of the reasoning:
+Three documents carry most of the reasoning:
 
-- `skill/references/curation.md` — what to fix in an alignment and what to leave
 - `skill/references/annotation-triage.md` — turning source annotation strings
   into feature collections, and what must never be grouped by regex
+- `skill/references/curation.md` — what to fix in an alignment and what to leave
+- `skill/references/module-partitioning.md` — deciding where one module ends and
+  the next begins, which is the decision everything downstream depends on
 
 ## Relationship to upstream
 
 This kit carries **patched** copies of several upstream programs. `patches/`
 holds the diffs and `CHANGELOG.md` explains each one with the measurement that
 prompted it. The patches are not upstreamed; if you are working from a fresh
-clone of `Viral_Annotation`, apply them or use the copies here.
+clone of [CEPI-dxkb/Viral_Annotation](https://github.com/CEPI-dxkb/Viral_Annotation),
+apply them or use the copies here.
