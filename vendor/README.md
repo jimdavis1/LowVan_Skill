@@ -1,7 +1,9 @@
 # Vendored third-party code
 
-**Nothing in this directory is covered by the MIT license at the root of this
-repository.** Each file keeps its own copyright header; do not strip them.
+Open-source code from other projects, redistributed here so a clone of this
+repository works without hunting down separate installs. All of it is licensed
+for redistribution. Each file keeps its own licence and copyright; the MIT
+licence at the repository root covers our code, not these.
 
 ## `bv-brc/`
 
@@ -14,22 +16,31 @@ entry points — `GenomeTypeObject.pm`, `IDclient.pm` and `rast-create-genome.pl
 ```
 lib/GenomeTypeObject.pm                          the GTO itself
 lib/IDclient.pm                                  mints feature ids
+lib/P3DataAPI.pm  lib/P3Utils.pm                 BV-BRC data API, for the dump
+lib/BlastInterface.pm  lib/gjoparseblast.pm      BLAST wrappers used by the
+lib/gjoalignment.pm  lib/AminoAcidMatrix.pm        clustering pipeline
 lib/SeedUtils.pm  lib/gjoseqlib.pm               sequence and genetic-code utilities
+lib/SeedAware.pm  lib/Sim.pm  lib/P3AuthToken.pm
 lib/BasicLocation.pm  lib/BBasicLocation.pm
 lib/FBasicLocation.pm                            feature coordinates
-lib/Sim.pm  lib/P3AuthToken.pm
 lib/Bio/KBase/GenomeAnnotation/Client.pm         service client
 lib/Bio/KBase/GenomeAnnotation/CmdHelper.pm
 plbin/rast-create-genome.pl                      creates a GTO, issuing its id
-bin/rast-create-genome                           wrapper (see below)
+bin/rast-create-genome                           wrapper (ours, see below)
 ```
 
-**Licence.** These files are part of the SEED Toolkit, Copyright (c) 2003-2013
-University of Chicago and the Fellowship for Interpretation of Genomes, and are
-distributed under the **SEED Toolkit Public License**, which permits
-redistribution. Each file carries the notice; the full text is at
-<http://www.theseed.org/LICENSE.TXT>. Upstream is
-<https://github.com/BV-BRC/BV-BRC-CLI> and <https://github.com/TheSEED>.
+Four closures, from `GenomeTypeObject.pm`, `IDclient.pm`, `P3DataAPI.pm` and
+`BlastInterface.pm`. **This covers the whole toolchain** — the annotator, the
+clustering pipeline, the BV-BRC dump and the GTO path all run against
+`vendor/bv-brc/lib` alone. No BV-BRC install and no `seed_gjo` checkout.
+
+**Licence.** The SEED Toolkit Public License, which **permits redistribution** —
+that is what makes bundling these possible. Copyright (c) 2003-2013 University
+of Chicago and the Fellowship for Interpretation of Genomes. Full text at
+<http://www.theseed.org/LICENSE.TXT>; upstream at
+<https://github.com/BV-BRC/BV-BRC-CLI> and <https://github.com/TheSEED>. Keep
+the per-file notices and this directory's attribution intact and you are within
+its terms.
 
 **The wrapper is ours, not upstream's.** The BV-BRC bundle ships
 `plbin/rast-create-genome.pl` but no `bin/` wrapper for it — only
@@ -64,6 +75,8 @@ this workflow never enters, and none of it needs installing.
 ## Verifying it works standalone
 
 ```bash
+./check-environment.sh          # checks binaries, CPAN modules, and compiles
+
 env -u PERL5LIB vendor/bv-brc/bin/rast-create-genome \
     --scientific-name "Test virus" --domain Viruses --genetic-code 1 \
     --ncbi-taxonomy-id 11292 --contigs some.fna -o test.gto
