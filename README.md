@@ -98,6 +98,58 @@ python3 evaluate/evaluate_coverage.py --contigs Contigs --repo $LOWVAN_DATA_DIR 
         --json $LOWVAN_DATA_DIR/Viral_PSSM.json
 ```
 
+### The GTO path, for quality scoring
+
+Coverage above tells you which proteins were called. It cannot tell you whether a
+genome is *well* annotated, because the flat feature table cannot represent
+special features. Quality scoring runs on GTOs:
+
+```bash
+# rejoin segmented genomes first, or every segment counts as a broken genome
+python3 skill/scripts/merge_segments.py --json module.json --fasta-dir Contigs \
+        --metadata <Taxon>.metadata --out Contigs-merged
+
+# fasta -> GTO. ids are ISSUED by the ID server; never hand-write this JSON
+python3 skill/scripts/make_gto.py --fasta-dir Contigs-merged \
+        --metadata <Taxon>.metadata --out gto --jobs 24
+
+# annotate and quality-score
+python3 skill/scripts/run_gto_eval.py --gto-dir gto --repo $LOWVAN_DATA_DIR \
+        --out gto_out --report quality.tsv \
+        --perl /Applications/BV-BRC.app/runtime/bin/perl \
+        --perl5lib /Applications/BV-BRC.app/deployment/lib
+```
+
+Three environment problems are near-universal, and all three are flags rather
+than edits:
+
+| symptom | fix |
+|---|---|
+| `Can't locate GenomeTypeObject.pm` / `IDclient.pm` | `--perl5lib <devkit>/deployment/lib` |
+| `No UUID generator found` | `GenomeTypeObject` needs `Data::UUID` or `UUID`. The BV-BRC runtime perl has one; a conda perl usually does not — `--perl <devkit>/runtime/bin/perl` |
+| `rast-create-genome: command not found` | the macOS bundle ships `plbin/rast-create-genome.pl` without its `bin` wrapper; `make_gto.py` writes it from the bundle's own pattern |
+
+Only the GTO wrapper and the quality script run under the dev-kit perl. The inner
+`annotate_by_viral_pssm.pl` resolves through `PATH`, so it keeps the interpreter
+its own dependencies are installed under.
+
+### Analysis scripts
+
+These live in `skill/scripts/` — one copy, so they cannot drift from the skill
+that documents them:
+
+| Script | Purpose |
+|---|---|
+| `merge_segments.py` | rejoin multi-segment genomes, gated on the declared count |
+| `make_gto.py` | contig FASTAs to GTOs via `rast-create-genome` |
+| `run_gto_eval.py` | annotate and quality-score GTOs; good-vs-poor breakdown |
+| `minimal_refs.py` | fewest reference contigs that close a routing gap |
+| `analyze_feature_gap.py` | why is one protein called less often than its neighbours? |
+| `check_cleaved_ends.py` | are `cleave=` termini crisp, or is the alignment drifting? |
+| `annotation_rarefaction.py` | vocabulary growth, controlled versus free text |
+| `build_leftover_pssms.py` | second-pass profiles from the sequences no cluster took |
+| `check_dump.py` | verify the BV-BRC protein dump is complete and line-aligned |
+
 ## What it produced
 
 `reports/` holds four self-contained HTML pages. Open them in a browser; they
@@ -119,6 +171,36 @@ all five core proteins               69%     (was 62% before the last rebuild)
 annotated acceptably                 70%     (excluding sequence-quality flags)
 annotation vocabulary                20 strings vs 255 for the same genomes
 ```
+
+## Licensing, and what is deliberately not here
+
+This repository is MIT licensed. The annotator and clustering code in
+`annotate/` and `build/` is redistributed from
+[CEPI-dxkb/Viral_Annotation](https://github.com/CEPI-dxkb/Viral_Annotation),
+which is also MIT and the same copyright holder, so it travels cleanly.
+
+**SignalP is not included and cannot be.** SignalP 6.0 is academic-licensed and
+distributed only through a form you submit yourself. `skill/scripts/apply_signalp.py`
+is a wrapper that runs SignalP and consumes its output; it contains no SignalP
+code, binaries, or model weights. Get SignalP from
+<https://services.healthtech.dtu.dk/services/SignalP-6.0/> if you need step 6.
+The rest of the workflow does not depend on it.
+
+**The BV-BRC dev kit is not included either.** `GenomeTypeObject.pm`,
+`IDclient.pm` and `rast-create-genome` come from
+[BV-BRC-CLI](https://github.com/BV-BRC/BV-BRC-CLI/releases). They are required
+for the GTO path only.
+
+**Two files may need your attention before this is public:**
+
+- `skill/assets/S1-Table.xlsx` is the controlled-vocabulary table from the LowVan
+  manuscript. If the journal holds copyright on the supplementary material rather
+  than you, either confirm it is CC-BY or replace it with a plain regenerated TSV.
+  `skill/assets/annotation-vocabulary.tsv` already carries the same content in an
+  open format, so the workflow does not break if you drop the spreadsheet.
+- `example-rhabdoviridae/query_PATRIC_bob.pl` carries no license header and uses
+  `P3DataAPI`. If it originated in BV-BRC rather than with you, it needs its own
+  notice or should be replaced with the equivalent `p3-` CLI calls.
 
 ## Using the skill
 
