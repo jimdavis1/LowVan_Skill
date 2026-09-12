@@ -54,12 +54,16 @@ binaries    blastn tblastn psiblast makeblastdb mmseqs mafft
 python      3.9+
 ```
 
-For the GTO path — `annotate_by_viral_pssm-GTO.pl`, `viral_genome_quality.pl`
-and the whole-taxon evaluation — you also need the BV-BRC dev kit:
+For anything that talks to BV-BRC — the protein dump that feeds step 1
+(`query_PATRIC_bob.pl`, which uses `P3DataAPI`), the genome download in
+`New-annotate-viral-taxon.pl`, the GTO path, and `viral_genome_quality.pl` — you
+need the BV-BRC dev kit:
 
 ```
-GenomeTypeObject.pm, IDclient.pm, rast-create-genome
+GenomeTypeObject.pm, IDclient.pm, P3DataAPI.pm, rast-create-genome
   from BV-BRC-CLI-<ver>.tgz  github.com/BV-BRC/BV-BRC-CLI/releases
+  or, on macOS, the BV-BRC.app desktop bundle, which carries the same tree
+  under /Applications/BV-BRC.app/{deployment,runtime}
   put dev_container/modules/*/lib on PERL5LIB
   put the CLI scripts and this kit's annotate/ on PATH
 
