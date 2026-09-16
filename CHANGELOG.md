@@ -1,4 +1,4 @@
-# Changes to Viral_Annotation — Rhabdoviridae module work
+# Changes to Viral_Annotation — Rhabdoviridae and Togaviridae module work
 
 Draft. Every entry names the file, what changed, and the measurement or
 observation that prompted it. Patches against the unmodified originals are in
@@ -8,6 +8,66 @@ this directory as `<file>.patch`.
 original: `Other_Scripts/FCP_Ali_Utils.pm`, `FCP_Main_Utils.pm` and
 `FCP_Nterm_Utils.pm` on disk match `git HEAD`, and the patched copies live only
 here. Three tracked files differ from HEAD, listed under "Already applied".
+
+---
+
+## Togaviridae module work
+
+Two annotator changes, both of which affect every taxon, not only this one.
+
+### `annotate_by_viral_pssm.pl` — per-feature `internal_stop`, and `-mis`
+
+Most alphaviruses carry an in-frame opal (UGA) **six codons before the end of
+nsP3**, read through by roughly 10% of ribosomes. tblastn breaks at a stop by
+design, so the match was cropped there and nsP3 came out seven residues short on
+eight genomes in nine.
+
+A feature may now declare `internal_stop: 1`, and one `$readthrough` decision
+gates both the scan-to-stop and the crop. `-mis N` (default 1) caps how many
+stops are tolerated: one readthrough codon is expected, a run of stops is a
+broken genome and is still cropped. `keep_stop` remains, unchanged, as the
+debug-time override.
+
+The flag is necessary but not sufficient. A profile trained on sequences that
+all stop at the opal has never seen what follows it, so that feature's
+alignments must also be rebuilt spanning the stop — from the end of the
+preceding protein to the start of the following one. After that, Sindbis nsP3
+is emitted at 556 aa ending `...SRRTEY*LTGVGG`, which is GenBank's own
+readthrough translation exactly.
+
+### `get_transcript_edited_features.pl` — screen the protein before emitting it
+
+The four inclusion gates (identity, coverage, gap count, gap runs) all describe
+the **nucleotide** match. Nothing looked at what the gap-fill translated to.
+Because the fill takes its bases from the *subject*, an N-masked target yields
+an X-bearing protein, and the annotator emitted it: **31 of 293** Togaviridae TF
+calls carried an `X` and one carried an internal stop. No amount of reference
+curation prevents this — the defect is in the genome being annotated, not in
+the reference.
+
+The translation is now screened, and a failure demotes to `partial_cds`, which
+is what that branch already existed for. Measured on the taxon: 293 calls, 263
+of them clean.
+
+### Skill and tooling
+
+- `install_module.py` now prunes stale profiles **inside** features that still
+  exist. `_retire()` only removed whole retired feature directories, so an
+  orphaned `.pssm` from an abandoned build stayed installed and callable —
+  `Togaviridae.P123.6.pssm` did exactly that.
+- `validate_calls.py` names the special features it does not evaluate. It runs
+  `annotate_by_viral_pssm.pl` only, so its count is lower than the pipeline's.
+- `evaluate_coverage.py` warns when the JSON declares a special feature: its
+  flat-table path cannot represent one, so that coverage is absent, not low.
+- `skill/references/special-features.md` is new and covers all of the above.
+
+### Known, not fixed
+
+On **NC_043402** the nsP1234 match contains both the opal and the ORF's genuine
+terminator, so `n_stops` exceeds `-mis`, readthrough is refused, and the call is
+cropped back onto P123's coordinates as a duplicate. `-mis 2` does not fix it —
+it reads through the real terminator instead. Distinguishing an opal from a
+terminator inside one match is a design decision, not a patch. One genome in 39.
 
 ---
 

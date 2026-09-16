@@ -11,3 +11,6 @@ Extracted/
 Contigs/
 coverage_eval/
 *.blastdb
+*.bak
+*.presync
+*.preinternalstop

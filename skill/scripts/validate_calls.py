@@ -11,7 +11,11 @@ Per called feature it checks the protein the annotator actually emitted:
   NO_MET        does not begin with M. Sometimes real, usually a start-site miss.
                 Skipped for a mature peptide whose N-terminus is a cleavage site
                 (upstream_ext 0) -- there is no start codon there to find.
-  INTERNAL_STOP a `*` inside the protein. Always wrong unless -ks was used.
+  INTERNAL_STOP a `*` inside the protein. A defect UNLESS the feature declares
+                "internal_stop" : 1, which says a single stop is expected there
+                and read through -- alphavirus nsP3 carries an opal six codons
+                before its C-terminus. More stops than declared is still a
+                defect, and is reported as INTERNAL_STOP_EXCESS.
   LENGTH        outside the min_len/max_len the JSON declares for that feature.
   BOUNDS        coordinates reversed, or running off the end of the contig.
 
@@ -40,7 +44,12 @@ import sys
 import tempfile
 from collections import defaultdict
 
-HARD = {"DUPLICATE", "INTERNAL_STOP", "BOUNDS", "UNROUTED"}
+HARD = {"DUPLICATE", "INTERNAL_STOP", "INTERNAL_STOP_EXCESS", "BOUNDS", "UNROUTED"}
+
+# How many internal stops a feature declaring internal_stop may carry. Must
+# match the annotator's -mis default, or this reports as broken exactly the
+# features the annotator deliberately kept.
+MAX_INTERNAL_STOPS = 1
 
 
 def read_fasta(path):
@@ -108,6 +117,16 @@ def main():
         # (a "special" feature called by an external program).
         pssm = f[16] if len(f) > 16 else ""
         m = re.match(r"^.+?\.(.+)\.[^.]+\.pssm$", os.path.basename(pssm)) if pssm else None
+        # A no_features_called row carries the routing decision (module, rep
+        # contig, bitscore) with EMPTY coordinates, so that a genome which
+        # routed but called nothing still leaves a record. It is not a feature.
+        # Without this guard the script dies with ValueError on int('') for
+        # exactly the genomes most worth validating -- the ones that called
+        # nothing. check_cleaved_ends.py already guards the same row shape.
+        try:
+            int(f[7]); int(f[8])
+        except (ValueError, IndexError):
+            continue
         rows.append({"contig": f[2], "type": f[4], "fid": f[5],
                      "key": m.group(1) if m else f[6], "symbol": f[6],
                      "start": int(f[7]), "end": int(f[8]), "strand": f[9],
@@ -159,9 +178,20 @@ def main():
         if not body.startswith("M") and not n_is_cut:
             findings.append(("NO_MET", r["key"], "starts %s..., %d aa" % (body[:4], len(body))))
         if "*" in body:
-            findings.append(("INTERNAL_STOP", r["key"],
-                             "%d internal stop(s) at %s" % (body.count("*"),
-                             ",".join(str(i + 1) for i in range(len(body)) if body[i] == "*")[:40])))
+            n = body.count("*")
+            at = ",".join(str(i + 1) for i in range(len(body)) if body[i] == "*")[:40]
+            allowed = spec.get("internal_stop")
+            if not allowed:
+                findings.append(("INTERNAL_STOP", r["key"],
+                                 "%d internal stop(s) at %s" % (n, at)))
+            elif n > MAX_INTERNAL_STOPS:
+                findings.append(("INTERNAL_STOP_EXCESS", r["key"],
+                                 "%d internal stop(s) at %s; internal_stop permits %d"
+                                 % (n, at, MAX_INTERNAL_STOPS)))
+            else:
+                findings.append(("READTHROUGH", r["key"],
+                                 "%d expected internal stop at %s (internal_stop declared)"
+                                 % (n, at)))
         lo, hi = spec.get("min_len"), spec.get("max_len")
         if lo and hi and not (lo <= len(body) <= hi):
             findings.append(("LENGTH", r["key"],
@@ -187,6 +217,20 @@ def main():
           % (module, len(rows),
              sum(1 for r in rows if r["type"] == "CDS"),
              sum(1 for r in rows if r["type"] == "mat_peptide")))
+    #  Say out loud that special features were not evaluated. This tool runs
+    #  annotate_by_viral_pssm.pl only; transcript_edit and splice features are
+    #  called downstream by get_transcript_edited_features.pl and
+    #  get_splice_variant_features.pl, which it does not invoke. Without this
+    #  line the count above reads as though the module declared features it
+    #  failed to call -- on Togaviridae the full pipeline calls 14 and this
+    #  tool shows 13, and the missing one is simply out of its scope.
+    specials = sorted(k for k, e in declared.items() if e.get("special"))
+    if specials:
+        print("  %d special feature(s) NOT evaluated here: %s"
+              % (len(specials), ", ".join(specials)))
+        print("  they are called by get_transcript_edited_features.pl / "
+              "get_splice_variant_features.pl,")
+        print("  which this tool does not run. Use the full pipeline to see them.")
     print()
     print("  %-12s %-9s %-11s %-8s %-13s %s"
           % ("type", "key", "symbol", "length", "coords", "protein starts"))

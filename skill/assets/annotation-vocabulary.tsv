@@ -477,3 +477,17 @@ Tospoviridae	Pre-glycoprotein polyprotein GP complex	GPC	CDS	Medium RNA Segment	
 Tospoviridae	RNA silencing suppressor protein	NSs	CDS	Small RNA Segment	1	
 Tospoviridae	RNA-dependent RNA polymerase	L	CDS	Large RNA Segment	1	
 * Papers that were useful in determining protein functions or coordinates						
+Togaviridae	Nonstructural polyprotein	nsP1234	CDS	Single RNA Segment	1	
+Togaviridae	mRNA-capping enzyme nsP1 protein	nsP1	mat_peptide	Single RNA Segment	1	
+Togaviridae	Protease nsP2 protein	nsP2	mat_peptide	Single RNA Segment	1	
+Togaviridae	Nonstructural protein nsP3	nsP3	mat_peptide	Single RNA Segment	1	
+Togaviridae	RNA-dependent RNA polymerase	nsP4	mat_peptide	Single RNA Segment	1	
+Togaviridae	Structural polyprotein	STP	CDS	Single RNA Segment	1	
+Togaviridae	Nucleocapsid protein	C	mat_peptide	Single RNA Segment	1	
+Togaviridae	Mature envelope glycoprotein E3	E3	mat_peptide	Single RNA Segment	1	
+Togaviridae	Mature envelope glycoprotein E2	E2	mat_peptide	Single RNA Segment	1	
+Togaviridae	Mature 6K membrane protein	6K	mat_peptide	Single RNA Segment	1	
+Togaviridae	Mature envelope glycoprotein E1	E1	mat_peptide	Single RNA Segment	1	
+Togaviridae	Envelope glycoprotein precursor pE2	pE2	mat_peptide	Single RNA Segment	1	
+Togaviridae	Nonstructural polyprotein P123	nsP123	CDS	Single RNA Segment	1	
+Togaviridae	TransFrame protein	TF	mat_peptide	Single RNA Segment	0	18822126;23720714

@@ -1,0 +1,384 @@
+<title>Anatomy of a Module Build</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink); font-family:var(--sans);
+         font-size:15px; line-height:1.62; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1060px; margin:0 auto; padding:54px 26px 80px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:15px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(28px,4.6vw,42px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:16.5px; color:var(--ink2); max-width:68ch; margin:0 0 34px; }
+  .stand b { color:var(--ink); font-weight:600; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; margin:44px 0 6px;
+        padding-top:20px; border-top:2px solid var(--ink); }
+  h2.plain { border-top:0; padding-top:0; margin-top:34px; font-size:20px; }
+  .sub { color:var(--ink2); max-width:72ch; margin:0 0 20px; }
+  .legend { display:flex; flex-wrap:wrap; gap:14px 24px; margin:0 0 20px; font-size:12.5px;
+             color:var(--ink2); align-items:center; }
+  .legend span { display:inline-flex; align-items:center; gap:8px; }
+  .sw { width:26px; height:15px; display:inline-block; flex:none;
+         border:1.2px solid rgba(128,128,128,.6); }
+  .sw.round { border-radius:8px; border-style:dashed; background:transparent; }
+  .sw.sq { border-radius:2px; }
+  .lg-title { font-family:var(--mono); font-size:10.5px; letter-spacing:.09em;
+               text-transform:uppercase; color:var(--muted); }
+  figure { margin:0 0 26px; }
+  figure svg { width:100%; height:auto; display:block; color:var(--ink); }
+  figcaption { font-size:13px; color:var(--muted); margin-top:16px; max-width:78ch;
+                line-height:1.55; }
+  p { max-width:72ch; }
+  ul { max-width:72ch; padding-left:20px; } li { margin:7px 0; }
+  code { font-family:var(--mono); font-size:.88em; background:var(--surface);
+          border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:22px 0 0; }
+  .tile { background:var(--surface); padding:13px 15px; }
+  .tile .v { font-family:var(--mono); font-size:24px; font-weight:500;
+              font-variant-numeric:tabular-nums; line-height:1.1; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  footer { margin-top:46px; padding-top:18px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+</style>
+<div class="wrap">
+<div class="eyebrow">LowVan &middot; how a module gets built</div>
+<h1>Where the judgement is, and whose code does the rest</h1>
+<p class="stand">The kit's organising rule is that <i>anything algorithmic is a script and
+anything requiring judgement is written instructions.</i> That rule says what belongs in
+code, but not where the judgement actually falls. This is the shape of a build: twenty-one
+steps in four phases, each marked for whether it runs the same every time or needs someone
+to decide, and for whose code carries it.</p>
+
+<h2>The flow</h2>
+<p class="sub">Two properties are encoded separately, because they are separate questions.
+The <b>shape</b> says whether a step is deterministic. The <b>colour</b> says whose code
+runs it.</p>
+<div class="legend">
+  <span class="lg-title">shape</span>
+  <span><i class="sw sq"></i> hardcoded &mdash; runs the same every time</span>
+  <span><i class="sw round"></i> reasoning &mdash; someone decides</span>
+</div>
+<div class="legend">
+  <span class="lg-title">colour</span>
+  <span><i class="sw sq" style="background:var(--base);opacity:.55"></i> the kit &mdash; code that already exists</span>
+  <span><i class="sw sq" style="background:var(--built);opacity:.4"></i> code written during the build</span>
+  <span><i class="sw sq" style="background:var(--base);opacity:.55;border-left:4px solid var(--missed)"></i> kit code that commonly needs adapting</span>
+</div>
+<figure><svg viewBox="0 0 980 471" role="img" aria-label="Four phases of building a LowVan module across twenty-one steps: define the target, build the profiles, declare the module, prove it works. Square-cornered steps are deterministic code, stadium-shaped steps require human judgement. An arc returns from the final phase to the build phase.">
+<defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--missed)"/></marker></defs>
+<text x="14" y="22" font-size="10.5" fill="var(--muted)" font-family="var(--mono)" letter-spacing=".1em">PHASE 1</text>
+<text x="14" y="42" font-size="14.5" fill="currentColor" font-weight="600">Define the target</text>
+<line x1="14" y1="50" x2="238" y2="50" stroke="currentColor" stroke-width="1.4" opacity=".7"/>
+<path d="M 245.0 31 l 7 6 l -7 6" fill="none" stroke="currentColor" stroke-width="1.7" opacity=".45" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="14" y="62" width="224" height="42" rx="21.0" fill="none" opacity="1" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4 3" stroke-opacity=".55"/>
+<text x="126.0" y="87.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">What is the module?</text>
+<rect x="14" y="117" width="224" height="42" rx="3" fill="var(--built)" opacity=".24" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="126.0" y="142.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Pull the source export</text>
+<line x1="126.0" y1="105" x2="126.0" y2="115" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="14" y="172" width="224" height="42" rx="3" fill="var(--base)" opacity=".38" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="126.0" y="197.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Verify the dump</text>
+<line x1="126.0" y1="160" x2="126.0" y2="170" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="14" y="227" width="224" height="42" rx="21.0" fill="none" opacity="1" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4 3" stroke-opacity=".55"/>
+<text x="126.0" y="252.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Exclude what is not the taxon</text>
+<line x1="126.0" y1="215" x2="126.0" y2="225" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="14" y="282" width="224" height="42" rx="21.0" fill="none" opacity="1" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4 3" stroke-opacity=".55"/>
+<text x="126.0" y="307.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Write the binning rules</text>
+<line x1="126.0" y1="270" x2="126.0" y2="280" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<text x="260" y="22" font-size="10.5" fill="var(--muted)" font-family="var(--mono)" letter-spacing=".1em">PHASE 2</text>
+<text x="260" y="42" font-size="14.5" fill="currentColor" font-weight="600">Build the profiles</text>
+<line x1="260" y1="50" x2="484" y2="50" stroke="currentColor" stroke-width="1.4" opacity=".7"/>
+<path d="M 491.0 31 l 7 6 l -7 6" fill="none" stroke="currentColor" stroke-width="1.7" opacity=".45" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="260" y="62" width="224" height="42" rx="3" fill="var(--built)" opacity=".24" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="372.0" y="87.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Bin into collections</text>
+<rect x="260" y="117" width="224" height="42" rx="3" fill="var(--base)" opacity=".38" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="372.0" y="142.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Cluster, align, profile</text>
+<line x1="372.0" y1="105" x2="372.0" y2="115" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="260" y="172" width="224" height="42" rx="21.0" fill="none" opacity="1" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4 3" stroke-opacity=".55"/>
+<text x="372.0" y="197.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Judge the alignments</text>
+<line x1="372.0" y1="160" x2="372.0" y2="170" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="260" y="227" width="224" height="42" rx="3" fill="var(--built)" opacity=".24" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="372.0" y="252.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Repair what curation finds</text>
+<line x1="372.0" y1="215" x2="372.0" y2="225" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="260" y="282" width="224" height="42" rx="21.0" fill="none" opacity="1" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4 3" stroke-opacity=".55"/>
+<text x="372.0" y="307.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Which absences are real?</text>
+<line x1="372.0" y1="270" x2="372.0" y2="280" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="260" y="337" width="224" height="42" rx="3" fill="var(--built)" opacity=".24" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="372.0" y="362.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Recover what is missing</text>
+<line x1="372.0" y1="325" x2="372.0" y2="335" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<text x="506" y="22" font-size="10.5" fill="var(--muted)" font-family="var(--mono)" letter-spacing=".1em">PHASE 3</text>
+<text x="506" y="42" font-size="14.5" fill="currentColor" font-weight="600">Declare the module</text>
+<line x1="506" y1="50" x2="730" y2="50" stroke="currentColor" stroke-width="1.4" opacity=".7"/>
+<path d="M 737.0 31 l 7 6 l -7 6" fill="none" stroke="currentColor" stroke-width="1.7" opacity=".45" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="506" y="62" width="224" height="42" rx="3" fill="var(--built)" opacity=".24" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="618.0" y="87.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Measure signal vs noise</text>
+<rect x="506" y="117" width="224" height="42" rx="21.0" fill="none" opacity="1" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4 3" stroke-opacity=".55"/>
+<text x="618.0" y="142.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Choose strings and flags</text>
+<line x1="618.0" y1="105" x2="618.0" y2="115" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="506" y="172" width="224" height="42" rx="3" fill="var(--built)" opacity=".24" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="618.0" y="197.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Generate the JSON</text>
+<line x1="618.0" y1="160" x2="618.0" y2="170" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="506" y="227" width="224" height="42" rx="3" fill="var(--base)" opacity=".38" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="618.0" y="252.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Check strings and citations</text>
+<line x1="618.0" y1="215" x2="618.0" y2="225" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="506" y="282" width="224" height="42" rx="3" fill="var(--base)" opacity=".38" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="618.0" y="307.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Install</text>
+<line x1="618.0" y1="270" x2="618.0" y2="280" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<text x="752" y="22" font-size="10.5" fill="var(--muted)" font-family="var(--mono)" letter-spacing=".1em">PHASE 4</text>
+<text x="752" y="42" font-size="14.5" fill="currentColor" font-weight="600">Prove it works</text>
+<line x1="752" y1="50" x2="976" y2="50" stroke="currentColor" stroke-width="1.4" opacity=".7"/>
+<rect x="752" y="62" width="224" height="42" rx="3" fill="var(--base)" opacity=".38" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<rect x="752" y="62" width="4" height="42" rx="2" fill="var(--missed)"/>
+<text x="864.0" y="87.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Annotate genomes</text>
+<rect x="752" y="117" width="224" height="42" rx="3" fill="var(--base)" opacity=".38" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="864.0" y="142.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Evaluate the whole taxon</text>
+<line x1="864.0" y1="105" x2="864.0" y2="115" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="752" y="172" width="224" height="42" rx="3" fill="var(--built)" opacity=".24" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="864.0" y="197.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">What do failures share?</text>
+<line x1="864.0" y1="160" x2="864.0" y2="170" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="752" y="227" width="224" height="42" rx="21.0" fill="none" opacity="1" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4 3" stroke-opacity=".55"/>
+<text x="864.0" y="252.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Decide what it means</text>
+<line x1="864.0" y1="215" x2="864.0" y2="225" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<rect x="752" y="282" width="224" height="42" rx="3" fill="var(--base)" opacity=".38" stroke="currentColor" stroke-width="1.1" stroke-opacity=".55"/>
+<text x="864.0" y="307.5" font-size="12" text-anchor="middle" fill="currentColor" font-weight="500">Publish the evidence</text>
+<line x1="864.0" y1="270" x2="864.0" y2="280" stroke="currentColor" stroke-width="1.2" opacity=".45" marker-end="url(#a2)"/>
+<path d="M 864.0 324 V 425 H 372.0 V 382" fill="none" stroke="var(--missed)" stroke-width="1.6" marker-end="url(#a3)"/>
+<text x="618.0" y="416" font-size="11" fill="var(--missed)" text-anchor="middle">what evaluation finds sends you back</text>
+</svg>
+<figcaption>Of the twenty-one steps, 7 are judgement, 7 are code
+written during the build, and 7 are the kit's. The alternation is
+the point: no run of more than three deterministic steps passes without a decision
+interrupting it. The orange arc is the loop that governs the work &mdash; whole-taxon
+evaluation surfaces defects that send you back to repair a feature and rebuild, and it
+fires more than once on a real taxon.</figcaption>
+</figure>
+
+<h2 class="plain">Three things the shape tells you</h2>
+<p><b>Judgement does not end when coding starts.</b> It is heaviest in phases 1 and 3
+&mdash; deciding what the module is, and what its features are called &mdash; but it
+reappears in the last phase, in deciding what the evaluation numbers mean. Budget for
+thinking at the end, not only at the beginning.</p>
+<p><b>The kit carries the machinery, and you should let it.</b> Clustering, profile
+construction, install, whole-taxon evaluation and the quality path all run unchanged.
+Code written during a build should be the parts the kit says are yours &mdash; the
+collection builder and the JSON generator &mdash; plus measurements.</p>
+<p><b>Expect to measure at every step rather than trust it.</b> The failures worth fearing
+in this pipeline do not raise errors; they return a plausible answer. A profile trained on
+truncated sequences, a check run with the wrong search parameters, a stale file left
+behind by an install &mdash; each produces output that looks right. Nearly every defect
+found in a real build was found by measuring, not by a crash.</p>
+
+<h2>One worked example</h2>
+<p class="sub">The same structure from a real build &mdash; Togaviridae, fourteen features
+&mdash; broken into every individual component rather than generalised. 63 of them,
+each one chip. This is what the proportions look like in practice.</p>
+<div class="tiles">
+  <div class="tile"><div class="v">19</div><div class="l">calls a person had to make &mdash; no code</div></div>
+  <div class="tile"><div class="v">15</div><div class="l">kit components used as shipped</div></div>
+  <div class="tile"><div class="v">7</div><div class="l">kit components that needed patching</div></div>
+  <div class="tile"><div class="v">22</div><div class="l">written for this taxon</div></div>
+</div>
+<div class="legend" style="margin-top:22px">
+  <span><i class="sw round"></i> judgement</span>
+  <span><i class="sw sq" style="background:var(--base);opacity:.55"></i> kit, as shipped</span>
+  <span><i class="sw sq" style="background:var(--missed);opacity:.45"></i> kit, patched or replaced</span>
+  <span><i class="sw sq" style="background:var(--built);opacity:.4"></i> written for this taxon</span>
+</div>
+<figure><svg viewBox="0 0 980 715" role="img" aria-label="Thirteen stages of building a LowVan module, each component marked as human judgement, a kit script used as shipped, a kit script that had to be patched or replaced, or a script written for this taxon">
+<text x="0" y="14" font-size="11.5" fill="currentColor" opacity=".6">each chip is one component &middot; colour says what kind</text>
+<text x="0" y="61" font-size="12.5" fill="currentColor" font-weight="500">Take delivery of the dump</text>
+<line x1="0" y1="38" x2="980" y2="38" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="46" width="147.4" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="305.7" y="60.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">one module or several?</text>
+<rect x="386.4" y="46" width="129.7" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="451.2" y="60.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">query_PATRIC_bob.pl</text>
+<rect x="523.1" y="46" width="94.4" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="570.3" y="60.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">check_dump.py</text>
+<rect x="624.5" y="46" width="100.3" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="674.7" y="60.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">batch_query.pl</text>
+<rect x="731.8" y="46" width="94.4" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="779.1" y="60.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">build_dump.py</text>
+<rect x="833.3" y="46" width="129.7" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="898.1" y="60.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">download_contigs.py</text>
+<text x="0" y="102" font-size="12.5" fill="currentColor" font-weight="500">Partition the module</text>
+<line x1="0" y1="79" x2="980" y2="79" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="87" width="235.6" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="349.8" y="101.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">which 227 genomes are not togaviruses</text>
+<rect x="474.6" y="87" width="170.9" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="560.0" y="101.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">one module, by gene layout</text>
+<rect x="652.4" y="87" width="123.8" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="714.4" y="101.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">species_profile.py</text>
+<text x="0" y="143" font-size="12.5" fill="currentColor" font-weight="500">Triage strings into collections</text>
+<line x1="0" y1="120" x2="980" y2="120" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="128" width="118.0" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="291.0" y="142.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">the binning rules</text>
+<rect x="357.0" y="128" width="170.9" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="442.4" y="142.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">what must never be regexed</text>
+<rect x="534.8" y="128" width="135.6" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="602.6" y="142.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">partials never train</text>
+<rect x="677.4" y="128" width="118.0" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="736.4" y="142.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">1% ambiguity line</text>
+<rect x="802.4" y="128" width="135.6" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="870.2" y="142.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">build_collections.py</text>
+<rect x="232.0" y="155" width="59.2" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="261.6" y="169.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">xtab.py</text>
+<text x="0" y="211" font-size="12.5" fill="currentColor" font-weight="500">Build profiles</text>
+<line x1="0" y1="188" x2="980" y2="188" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="196" width="153.2" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="308.6" y="210.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">fasta-cluster-pssm-2.pl</text>
+<rect x="392.2" y="196" width="153.2" height="21" rx="3" fill="var(--missed)" opacity=".30" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="468.9" y="210.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">build_leftover_pssms.py</text>
+<rect x="552.5" y="196" width="106.2" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="605.6" y="210.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">run_pipeline.sh</text>
+<rect x="665.7" y="196" width="100.3" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="715.8" y="210.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">run_bespoke.sh</text>
+<rect x="773.0" y="196" width="135.6" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="840.8" y="210.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">fix_leftover_alis.py</text>
+<text x="0" y="252" font-size="12.5" fill="currentColor" font-weight="500">Curate the alignments</text>
+<line x1="0" y1="229" x2="980" y2="229" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="237" width="182.6" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="323.3" y="251.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">Met rule: flag, never delete</text>
+<rect x="421.6" y="237" width="118.0" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="480.6" y="251.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">restore or split?</text>
+<rect x="546.6" y="237" width="112.1" height="21" rx="3" fill="var(--missed)" opacity=".30" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="602.6" y="251.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">rebuild_pssms.py</text>
+<rect x="665.7" y="237" width="106.2" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="718.8" y="251.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">pssm_refresh.pl</text>
+<rect x="778.9" y="237" width="106.2" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="832.0" y="251.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">curate_nterm.py</text>
+<text x="0" y="293" font-size="12.5" fill="currentColor" font-weight="500">Recover what the source lacks</text>
+<line x1="0" y1="270" x2="980" y2="270" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="278" width="194.4" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="329.2" y="292.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">which combos are real proteins</text>
+<rect x="433.4" y="278" width="135.6" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="501.2" y="292.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">E3-E2-6K-E1 rejected</text>
+<rect x="576.0" y="278" width="106.2" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="629.1" y="292.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">extract_nsp3.py</text>
+<rect x="689.2" y="278" width="118.0" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="748.2" y="292.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">extract_combos.py</text>
+<text x="0" y="334" font-size="12.5" fill="currentColor" font-weight="500">Measure the cutoffs</text>
+<line x1="0" y1="311" x2="980" y2="311" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="319" width="153.2" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="308.6" y="333.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">noise vs weakest signal</text>
+<rect x="392.2" y="319" width="123.8" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="454.2" y="333.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">measure_cutoffs.py</text>
+<text x="0" y="375" font-size="12.5" fill="currentColor" font-weight="500">Write the JSON</text>
+<line x1="0" y1="352" x2="980" y2="352" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="360" width="123.8" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="293.9" y="374.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">annotation strings</text>
+<rect x="362.8" y="360" width="106.2" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="415.9" y="374.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">extension flags</text>
+<rect x="476.0" y="360" width="153.2" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="552.7" y="374.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">internal_stop placement</text>
+<rect x="636.3" y="360" width="118.0" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="695.3" y="374.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">the DLIT standard</text>
+<rect x="761.2" y="360" width="165.0" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="843.7" y="374.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">build_togaviridae_json.py</text>
+<rect x="232.0" y="387" width="94.4" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="279.2" y="401.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">json_canon.py</text>
+<rect x="333.4" y="387" width="135.6" height="21" rx="3" fill="var(--missed)" opacity=".30" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="401.2" y="401.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">check_annotations.py</text>
+<rect x="476.0" y="387" width="100.3" height="21" rx="3" fill="var(--missed)" opacity=".30" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="526.2" y="401.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">check_dlits.py</text>
+<text x="0" y="443" font-size="12.5" fill="currentColor" font-weight="500">QC before installing</text>
+<line x1="0" y1="420" x2="980" y2="420" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="428" width="129.7" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="296.9" y="442.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">qc_cross_feature.py</text>
+<rect x="368.7" y="428" width="118.0" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="427.7" y="442.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">qc_polyprotein.py</text>
+<text x="0" y="484" font-size="12.5" fill="currentColor" font-weight="500">Install</text>
+<line x1="0" y1="461" x2="980" y2="461" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="469" width="118.0" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="291.0" y="483.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">install_module.py</text>
+<rect x="357.0" y="469" width="135.6" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="424.8" y="483.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">prune stale profiles</text>
+<text x="0" y="525" font-size="12.5" fill="currentColor" font-weight="500">Annotate and evaluate</text>
+<line x1="0" y1="502" x2="980" y2="502" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="510" width="165.0" height="21" rx="3" fill="var(--missed)" opacity=".30" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="314.5" y="524.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">annotate_by_viral_pssm.pl</text>
+<rect x="404.0" y="510" width="118.0" height="21" rx="3" fill="var(--missed)" opacity=".30" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="463.0" y="524.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">validate_calls.py</text>
+<rect x="529.0" y="510" width="123.8" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="590.9" y="524.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">evaluate_module.py</text>
+<rect x="659.8" y="510" width="135.6" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="727.6" y="524.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">evaluate_coverage.py</text>
+<rect x="802.4" y="510" width="141.5" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="873.1" y="524.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">check_cleaved_ends.py</text>
+<rect x="232.0" y="537" width="135.6" height="21" rx="3" fill="var(--missed)" opacity=".30" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="299.8" y="551.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">check_rep_contigs.py</text>
+<rect x="374.6" y="537" width="112.1" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="430.6" y="551.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">check_routing.py</text>
+<rect x="493.7" y="537" width="100.3" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="543.8" y="551.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">stop_census.py</text>
+<rect x="601.0" y="537" width="100.3" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="651.2" y="551.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">opal_survey.py</text>
+<rect x="708.3" y="537" width="129.7" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="773.2" y="551.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">chikv_accounting.py</text>
+<text x="0" y="593" font-size="12.5" fill="currentColor" font-weight="500">Genome quality (GTO)</text>
+<line x1="0" y1="570" x2="980" y2="570" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="578" width="82.7" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="273.3" y="592.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">make_gto.py</text>
+<rect x="321.7" y="578" width="106.2" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="374.8" y="592.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">run_gto_eval.py</text>
+<rect x="434.9" y="578" width="129.7" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="499.7" y="592.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">what counts as poor</text>
+<text x="0" y="634" font-size="12.5" fill="currentColor" font-weight="500">Publish the evidence</text>
+<line x1="0" y1="611" x2="980" y2="611" stroke="var(--grid)" stroke-width="1"/>
+<rect x="232.0" y="619" width="141.5" height="21" rx="3" fill="none" opacity="1" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" stroke-opacity=".45"/>
+<text x="302.7" y="633.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">what the numbers mean</text>
+<rect x="380.5" y="619" width="129.7" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="445.3" y="633.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">collect_registry.py</text>
+<rect x="517.2" y="619" width="106.2" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="570.3" y="633.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">gen_registry.py</text>
+<rect x="630.4" y="619" width="106.2" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="683.5" y="633.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">gen_collapse.py</text>
+<rect x="743.6" y="619" width="165.0" height="21" rx="3" fill="var(--base)" opacity=".40" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="826.1" y="633.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">annotation_rarefaction.py</text>
+<rect x="232.0" y="646" width="88.6" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="276.3" y="660.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">gen_audit.py</text>
+<rect x="327.6" y="646" width="118.0" height="21" rx="3" fill="var(--built)" opacity=".26" stroke="currentColor" stroke-width="1" stroke-opacity=".45"/>
+<text x="386.5" y="660.5" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">gen_genome_fig.py</text>
+</svg>
+<figcaption>Thirteen stages, every component named. A stage whose chips are mostly dashed
+is one where the work was deciding something rather than running something. Orange marks
+where shipped code had to change before it would do its job on this taxon &mdash; those
+cluster around the annotator and its checks, which is where taxon-specific biology meets
+general machinery.</figcaption>
+</figure>
+
+<h2 class="plain">What to expect on your taxon</h2>
+<p>Of the 22 components written during that build, roughly half were
+taxon-specific by design &mdash; the collection builder and the JSON generator, which the
+kit says to replace every time. The rest were measurements: surveys of the source
+vocabulary, of sequence termini, of where profiles stop matching, of routing under the
+annotator's own parameters. Those transfer, and a second taxon of similar shape reuses
+most of them.</p>
+<p>The ratio to plan around is therefore not 22 new scripts but about a dozen,
+plus however much judgement the taxon's biology demands &mdash; which is the part no kit
+can shorten.</p>
+
+<footer>Flow generated by <span style="font-family:var(--mono)">gen_flow.py</span>,
+inventory by <span style="font-family:var(--mono)">gen_structure.py</span>. The flow
+counts tasks and the inventory counts components, so the two totals differ by design.</footer>
+</div>

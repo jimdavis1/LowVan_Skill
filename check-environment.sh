@@ -43,7 +43,8 @@ done
 echo
 echo "== entry points compile =="
 for s in annotate/annotate_by_viral_pssm.pl annotate/annotate_by_viral_pssm-GTO.pl \
-         annotate/viral_genome_quality.pl build/fasta-cluster-pssm-2.pl \
+         annotate/viral_genome_quality.pl annotate/get_transcript_edited_features.pl \
+         annotate/get_splice_variant_features.pl build/fasta-cluster-pssm-2.pl \
          evaluate/New-annotate-viral-taxon.pl; do
   if $PERL -c "$here/$s" >/dev/null 2>&1; then printf "  ok      %s\n" "$s"
   else printf "  FAIL    %s\n" "$s"; fail=1; fi

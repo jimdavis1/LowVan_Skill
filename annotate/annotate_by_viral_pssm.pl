@@ -27,6 +27,8 @@ my $usage = 'annotate_by_viral_pssm.pl [options] -i subject_contig(s).fasta
 		-mcb Minimum contig bitscore to enable annotation (d = 150) #otherwise the genome is rejected.
 
         -j   Full path to the options file in JSON format which carries data for a match (D = $default_data_dir/Viral_PSSM.json)
+		-mis maximum internal stop codons a feature declaring "internal_stop" : 1
+		     may carry and still be read through (D = 1)
 		-c   Representative contigs directory (D = $default_data_dir/Viral-Rep-Contigs)
 		-pssm   Base directory of PSSMs   (D = $default_data_dir/Viral-PSSMs)
 	           Note that this is set up as a directory of pssms
@@ -64,7 +66,7 @@ my $usage = 'annotate_by_viral_pssm.pl [options] -i subject_contig(s).fasta
  			18	AA sequence (if -s append sequences)
 ';
 
-my ($help, $opt_file, $contig_file, $tmp, $tax, $keep_stop, $genome_name, $cdir, $pdir, $keep_temp, $min_len, $max_len, $aa_only, $dna_only, $tbl_only, $no_out, $ctbl, $prefix, $append_seqs, $threads, $min_contig_bit);
+my ($help, $opt_file, $contig_file, $tmp, $tax, $keep_stop, $genome_name, $cdir, $pdir, $keep_temp, $min_len, $max_len, $aa_only, $dna_only, $tbl_only, $no_out, $ctbl, $prefix, $append_seqs, $threads, $min_contig_bit, $max_internal_stops);
 
 my $opts = GetOptions( 'h'         => \$help,
                        'tmp'       => \$keep_temp,
@@ -85,6 +87,7 @@ my $opts = GetOptions( 'h'         => \$help,
                        'mcb=f'     => \$min_contig_bit,
                        'j=s'       => \$opt_file,
                        'ks'        => \$keep_stop,
+                       'mis=i'     => \$max_internal_stops,
                        'p=s'       => \$prefix,
                        's'         => \$append_seqs); 
 
@@ -97,6 +100,19 @@ unless ($tmp){$tmp .= sprintf("%x", rand 16) for 1..20;}
 unless ($min_len){$min_len = 300; }
 unless ($max_len){$max_len = 35000; }
 unless ($min_contig_bit){$min_contig_bit = 150;}
+
+#  How many internal stop codons a feature declaring "internal_stop" : 1 may
+#  carry and still be read through.  One is the biology: alphavirus nsP3
+#  carries an opal (UGA) six codons before its C-terminus, read through by a
+#  near-cognate tRNA in about 10% of translation events to yield full-length
+#  nsP3 and nsP4.  Two or more is not.  Readthrough is ~10% PER STOP, so two
+#  stops put the full-length product at ~1% and a hundred at 10^-100 -- the
+#  product stops existing long before the count gets interesting, which is why
+#  this cap rests on translation kinetics rather than on a judgement about data
+#  quality.  Measured on Togaviridae: across 386 near-complete exemplars the
+#  largest legitimate count is 1 and the smallest illegitimate one is 2, with
+#  the broken population running 2..107 stops.
+unless (defined $max_internal_stops){$max_internal_stops = 1;}
 unless ($tax){$tax = "10239"; }
 unless ($genome_name){$genome_name = "Viruses"; }
 unless ($prefix){$prefix = "Viral_Annotation";}
@@ -252,11 +268,15 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 	my $bit_cutoff     = $options->{$virus}->{features}->{$pssmdir}->{bit_cutoff};
 	my $cov_cutoff     = $options->{$virus}->{features}->{$pssmdir}->{coverage_cutoff};
 	my $start_to_met   = $options->{$virus}->{features}->{$pssmdir}->{start_to_met};
+	#  internal_stop : 1 keeps a single internal stop in the called feature
+	#  rather than cropping there.  Absent or 0 is the old behaviour.  The
+	#  global -ks remains as a debug override that forces it on everywhere.
+	my $internal_stop  = $options->{$virus}->{features}->{$pssmdir}->{internal_stop};
 	my $feature_type   = $options->{$virus}->{features}->{$pssmdir}->{feature_type};
 	my $anno           = $options->{$virus}->{features}->{$pssmdir}->{anno};
 	my $symbol         = $options->{$virus}->{features}->{$pssmdir}->{gene_symbol};
 		
-	print STDERR "\t$virus\t$pssmdir\t$anno\tbit\t$bit_cutoff\tcov\t$cov_cutoff\tkeep_stop\t$keep_stop\tupstream_ext\t$upstream_ext\tdownstream_ext\t$downstream_ext\n"; 		
+	print STDERR "\t$virus\t$pssmdir\t$anno\tbit\t$bit_cutoff\tcov\t$cov_cutoff\tinternal_stop\t${\($internal_stop // 0)}\tupstream_ext\t$upstream_ext\tdownstream_ext\t$downstream_ext\n"; 		
 
 	#   Select the best pssm per protein
 	#   If this begins to break down, new reference pssms can be added to the 
@@ -338,8 +358,26 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 		###  if $downstream_ext is declared,  it will get new gene coordinates with the stop
 		###  codon being included in the gene coordinates by convention. 		
 
+		#  Decide once whether this match's internal stop(s) are to be kept.
+		#  $readthrough gates BOTH the crop below and the scan-to-stop above it:
+		#  the scan is suppressed by a stop in the hit precisely because a stop
+		#  normally means a broken match, and when internal_stop says otherwise
+		#  that suppression must not fire or the feature ends at the HSP edge
+		#  instead of at its real stop codon.
+		my $n_stops = ($hseq =~ tr/\*//);
+		my $readthrough = 0;
+		if ($n_stops)
+		{
+			if ($keep_stop)                                     { $readthrough = 1; }
+			elsif ($internal_stop && $n_stops <= $max_internal_stops) { $readthrough = 1; }
+			elsif ($internal_stop)
+			{
+				print STDERR "\t$pssmdir declares internal_stop but the match carries $n_stops stops (max $max_internal_stops); treating as broken\n";
+			}
+		}
+
 		my ($gene_begin, $gene_end);
-		if ((! $downstream_ext) || ($hseq =~ /\*/))
+		if ((! $downstream_ext) || ($n_stops && ! $readthrough))
 		{
 			$gene_begin = $from;
 			$gene_end = $to;
@@ -355,9 +393,9 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 		
 		## If a match contains an internal stop, everything after the stop is cropped by default.		
 		my $new_end;
-		if (($hseq =~ /\*/) && (! $keep_stop))
+		if ($n_stops && (! $readthrough))
 		{
-			print STDERR "\tMatch contains a stop codon, cropping\n";
+			print STDERR "\tMatch contains $n_stops stop codon(s), cropping\n";
 			$new_end = crop_to_stop_codon($gene_begin, $gene_end, $hseq);
 		
 			#check the coverage.

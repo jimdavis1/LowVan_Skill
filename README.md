@@ -54,17 +54,20 @@ which the module passed at 95% throughout.
 see **Getting the reference data**.
 
 ```
-skill/                 the lowvan-module skill: 14 steps, 9 reference documents,
+skill/                 the lowvan-module skill: 15 steps, 10 reference documents,
                        29 scripts
 build/                 clustering and profile construction            (patched)
 annotate/              the annotator and genome-quality scoring       (patched)
 evaluate/              reference-panel scoring, whole-taxon coverage, download
 example-rhabdoviridae/ the two taxon-specific programs, as a worked example
-patches/               4 diffs against upstream Viral_Annotation
+example-togaviridae/   a second example: a -1 frameshift product no PSSM can
+                       call, a readthrough codon inside a protein, and two
+                       precursors recovered from genome intervals
+patches/               5 diffs against upstream Viral_Annotation
 vendor/bv-brc/         the BV-BRC/SEED modules the whole toolchain needs, so a
                        clone runs with nothing else installed  (SEED licence)
 check-environment.sh   verifies binaries, CPAN modules, and that it all compiles
-reports/               the four artifacts this produced
+reports/               the artifacts these produced
 CHANGELOG.md           what differs from upstream and why, with the measurements
 ```
 
@@ -74,6 +77,8 @@ Two programs are taxon-specific: `build_collections.py` (which annotation string
 mean which protein) and the module JSON generator (what the taxon has, how long,
 how confident a match must be). Both are in `example-rhabdoviridae/` as working
 code with the parts to replace marked, and its README lists them table by table.
+`example-togaviridae/` is the second case: read it when a protein is not
+collinear with the genome, or comes out short by a constant number of residues.
 
 Everything else runs unchanged — clustering, profile construction, curation QC,
 signal-peptide derivation, install, reference-panel scoring and whole-taxon

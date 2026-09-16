@@ -61,11 +61,30 @@ PSSM directory (`Viral-PSSMs/<key>.pssms/`) and the rep-contig filenames
 | `min_len` / `max_len` | expected feature length in **amino acids** |
 | `PMID` | DLITs — papers defining the function or sequence. Bare numeric PubMed ids only, never DOIs. |
 | `PMID_claude_generated` | the subset of `PMID` a language model proposed rather than a curator choosing. See below. |
+| `internal_stop` | `1` if the match may legitimately contain an in-frame stop (readthrough). Omit otherwise — see below |
 | `special` | `transcript_edit` or `splice`; called by an external program, no PSSM expected |
 | `non_pssm_partner` | places a location-based feature relative to another |
 
 `segments` entries carry `min_len`/`max_len` in **nucleotides** for the whole
 replicon, plus `replicon_geometry`.
+
+### `internal_stop`, and why there are no zeros
+
+Set it to `1` on a feature whose profile match may legitimately span an in-frame
+stop — a readthrough codon such as the alphavirus opal. Without it, tblastn's
+match is cropped at the stop and the protein comes out short by a constant number
+of residues across most of the taxon.
+
+**Omit the flag rather than writing `internal_stop: 0`.** Then
+`grep internal_stop` returns exactly the features that permit one, which is the
+question an auditor actually asks; writing the zeros makes that grep return
+everything and forces a read of values instead.
+
+The annotator caps the number of tolerated stops with `-mis N` (default 1): one
+readthrough codon is expected, a run of stops is a broken genome and is cropped.
+The flag is necessary but not sufficient — the feature's profiles must also be
+built from alignments that span the stop, or they have never seen what follows
+it. Full treatment in `references/special-features.md`.
 
 ## Setting the numbers
 

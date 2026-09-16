@@ -158,6 +158,24 @@ def install(workdir, repo, modules, mod_json, dry=False):
             fd = os.path.join(dest, feat)
             if not dry:
                 os.makedirs(fd, exist_ok=True)
+            #  Prune stale PROFILES inside a feature that is still built.
+            #  _retire above only removes whole retired features. A cluster that
+            #  was renumbered or dropped leaves its .pssm behind in a directory
+            #  that still exists, and the annotator globs that directory, so the
+            #  orphan goes on being used. A stale Togaviridae.P123.6.pssm from an
+            #  abandoned first build survived exactly this way -- its cluster 1
+            #  began 190 residues in and placed P123 122 residues late on
+            #  Chikungunya. Nothing reported it; the installed count simply did
+            #  not match the built count.
+            want = {os.path.basename(f) for f in files}
+            if os.path.isdir(fd):
+                for old_file in sorted(os.listdir(fd)):
+                    if old_file.endswith(".pssm") and old_file not in want:
+                        print("  %-24s retiring %s/%s (profile no longer built)"
+                              % (module, feat, old_file))
+                        if not dry:
+                            os.remove(os.path.join(fd, old_file))
+            if not dry:
                 for f in files:
                     shutil.copy2(f, os.path.join(fd, os.path.basename(f)))
         n = sum(len(v) for v in pssms.values())

@@ -89,31 +89,42 @@ def main():
                 used[str(p)].append("%s/%s" % (module, key))
             for p in fl:
                 flagged[str(p)].append("%s/%s" % (module, key))
-            extra = [p for p in fl if p not in pm]
-            if extra:
-                disagree.append((module, key, extra))
+            #  PMID and PMID_claude_generated are DISJOINT, not nested.
+            #  PMID holds citations a curator supplied and read -- real DLITs.
+            #  PMID_claude_generated holds model proposals, which are not DLITs
+            #  however real the paper turns out to be. Listing a proposal in
+            #  both duplicates it and blurs the one distinction the second field
+            #  exists to draw: a consumer reading PMID would take proposals as
+            #  curated. So the error is an id appearing in BOTH, not one
+            #  appearing only in the flag.
+            both = [p for p in fl if p in pm]
+            if both:
+                disagree.append((module, key, both))
 
-    numeric = {p for p in used if re.fullmatch(r"\d+", p)}
-    nonnum = sorted(p for p in used if p not in numeric)
+    allids = dict(used)
+    for p, w in flagged.items(): allids.setdefault(p, []).extend(w)
+    numeric = {p for p in allids if re.fullmatch(r"\d+", p)}
+    nonnum = sorted(p for p in allids if p not in numeric)
 
-    print("%d distinct citations across %d features\n"
-          % (len(used), sum(1 for m, b in mod.items()
-                            for k, e in b.get("features", {}).items() if e.get("PMID"))))
+    nfeat = sum(1 for m, b in mod.items() for k, e in b.get("features", {}).items()
+                if e.get("PMID") or e.get(FLAG))
+    print("%d curated DLIT(s) and %d model proposal(s) across %d features\n"
+          % (len(used), len(flagged), nfeat))
 
     problems = 0
     if nonnum:
         problems += len(nonnum)
         print("NOT A PMID (%d) -- the PMID field takes bare PubMed ids only:" % len(nonnum))
         for p in nonnum:
-            print("  %-34s used by %s" % (p, ", ".join(used[p])[:60]))
+            print("  %-34s used by %s" % (p, ", ".join(allids[p])[:60]))
         print("  Resolve a DOI at pubmed.ncbi.nlm.nih.gov and store the numeric id.\n")
 
     if disagree:
         problems += len(disagree)
-        print("FLAG DISAGREES WITH PMID (%d):" % len(disagree))
+        print("CITATION IN BOTH FIELDS (%d) -- they must be disjoint:" % len(disagree))
         for module, key, extra in disagree:
-            print("  %-20s %-14s flagged but not in PMID: %s"
-                  % (module, key, ", ".join(extra)))
+            print("  %-20s %-14s in PMID and in %s: %s"
+                  % (module, key, FLAG, ", ".join(extra)))
         print()
 
     resolved = {}
@@ -131,7 +142,7 @@ def main():
             print("UNRESOLVED (%d) -- no such PubMed record:" % len(missing))
             for p in missing:
                 tag = "MODEL-PROPOSED" if p in flagged else "human-curated"
-                print("  %-10s %-16s used by %s" % (p, tag, ", ".join(used[p])[:54]))
+                print("  %-10s %-16s used by %s" % (p, tag, ", ".join(allids[p])[:54]))
             print("  A model-proposed id that does not resolve is a fabricated citation.")
             print("  Remove it; do not keep it with the flag.\n")
 

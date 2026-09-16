@@ -1,0 +1,57 @@
+--- /tmp/upstream_get_transcript_edited_features.pl	2026-09-16 12:03:37
++++ LowVan_Skill/annotate/get_transcript_edited_features.pl	2026-09-16 10:48:39
+@@ -213,6 +213,15 @@
+ 				my $gaps    = $matches->{$sid}->{$from}->{GAPS};	
+ 						
+ 				
++				#  $corrected records whether a trustworthy protein was actually produced.
++				#  The four gates below describe the NUCLEOTIDE match; none of them looks
++				#  at what the gap-fill translated to. Since the fill takes its bases from
++				#  the SUBJECT, an N-masked target yields an X-bearing protein. Screening
++				#  only the alignment let 31 of 293 Togaviridae TF calls ship with an X in
++				#  them and one with an internal stop; no amount of reference curation can
++				#  prevent that, because the defect is in the genome being annotated.
++				my $corrected = 0;
++
+ 				#If all inclusion critreria are met (%id, %Qcov, num gaps, runs of gaps)
+ 				
+ 				if ( ($pid >= $opt->id) && ($qcov >= $opt->cov) && ($dashes <= $opt->gaps) && ($runs <= 1))
+@@ -257,14 +266,33 @@
+ 						pssm        => ([[$fam, $name, $anno, "LowVan Transcript Edited Feature"]]),
+ 					};
+ 					
+-					push(@{$features{$ft}}, $feature);
++					#  Screen the PROTEIN before emitting it. A failure here is not a
++					#  dropped call: it falls through to the partial_cds branch below,
++					#  which is exactly what that branch is for -- the region is located
++					#  but no translation can be trusted across the frame jump.
++					my $aa_body = $mod_aa;
++					$aa_body =~ s/\*$//;          # a terminal stop is the ORF's own
++					if ($aa_body =~ /X/i)
++					{
++						print STDERR "\t$name: gap-filled sequence translates with ambiguous residues; demoting to partial_cds\n";
++					}
++					elsif ($aa_body =~ /\*/)
++					{
++						print STDERR "\t$name: gap-filled sequence translates with an internal stop; demoting to partial_cds\n";
++					}
++					else
++					{
++						push(@{$features{$ft}}, $feature);
++						$corrected = 1;
++					}
+ 				}
+ 			
+ 			
+-				# if the inclusion criteria are NOT met, but there is still a decent HSP
+-				# from the blast, we add it as a partial CDS that goes uncorrected.  No
+-				# protein translation is given.
+-				else
++				# If the inclusion criteria were NOT met, or they were met but the
++				# resulting protein did not survive the screen above, and there is
++				# still a decent HSP from the blast, we add it as a partial CDS that
++				# goes uncorrected.  No protein translation is given.
++				if (! $corrected)
+ 				{
+ 					my $feature_type = "partial_cds";
+ 					my ($len, $strand);

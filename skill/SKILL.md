@@ -294,6 +294,36 @@ into HA1 + HA2 — needs each internal product bounded by *both* neighbours. Thi
 tool derives only the leading product. Align the rest by hand from published
 sites and set both extensions to 0; see `cleave=` in `references/json-schema.md`.
 
+### 6b. Handle anything that is not collinear with the genome
+
+Before writing the JSON, settle whether the taxon has a protein that a PSSM
+cannot call. Three symptoms, all cheap to check and all expensive to miss:
+
+- **A mature peptide is short by a constant number of residues across most of
+  the taxon.** A readthrough stop is cropping the match. Set `internal_stop: 1`
+  and rebuild that feature's alignments so they span the stop.
+- **tblastn of a protein against its own genome returns two HSPs in different
+  frames.** A ribosomal frameshift or an edited transcript. Declare
+  `special: transcript_edit`, build a nucleotide reference set, no PSSM.
+- **A reference genome annotates a `join(...)` CDS.** Same thing, already
+  documented by someone else.
+
+```bash
+# the frameshift test, on one genome
+tblastn -query protein.faa -db genome -outfmt "6 qstart qend sstart send pident sframe"
+# two HSPs, frames 1 and 3 -> -1 frameshift.  1 and 2 -> +1.  One HSP -> collinear.
+```
+
+**Do not skip this because the source annotation is silent.** BV-BRC held four
+records for alphavirus TF and two of them were mis-annotated 6K-E1 fusions in
+frame 0; the protein is nonetheless real, mass-spec confirmed in three species,
+and is the form predominantly incorporated into the virion. The source cannot
+be used to check this class of work, and its absence is not evidence.
+
+Everything about both cases — phase of the slip site, the trailing `*`
+convention, CDS vs mat_peptide, how many references, and which evaluation tools
+are blind to the result — is in `references/special-features.md`.
+
 ### 7. Write the JSON
 
 **Order matters here and it is not the obvious one.** Collections decide what
@@ -694,6 +724,7 @@ every other terminus a 1 and let the annotator find the codon.
 | `references/pipeline.md` | first pipeline run; parameter tuning; upstream bugs |
 | `references/curation.md` | curating alignments; splitting; mat_peptides |
 | `references/json-schema.md` | writing the JSON block |
+| `references/special-features.md` | a protein is short by a constant amount, or is not collinear with the genome |
 | `references/install-and-test.md` | installing, running, scoring |
 | `references/artifacts.md` | writing the two reports |
 

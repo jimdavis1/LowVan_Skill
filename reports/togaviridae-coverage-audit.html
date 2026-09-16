@@ -1,0 +1,891 @@
+<title>Togaviridae Coverage Audit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">LowVan module validation &middot; 13 September 2026</div>
+  <h1>Does the Togaviridae module work?</h1>
+  <p class="stand">Thirteen features &mdash; two alphavirus polyproteins, the nine mature
+  peptides that tile them, and two multi-product intermediates &mdash; measured against <b>every Togaviridae genome BV-BRC holds</b>
+  between 1 and 50&nbsp;kb. 13,032 records collapse to 679
+  clusters at 95% nucleotide identity, 387 of which have a near-complete member.
+  This page is what those 387 say.</p>
+  <div class="tiles">
+    <div class="tile"><div class="v">385<span class="dim">/387</span></div><div class="l">exemplars routed &mdash; both misses are species the module excludes</div></div>
+    <div class="tile"><div class="v">327&ndash;370%</div><div class="l">of 384 genomes carry each of the nine proteins</div></div>
+    <div class="tile"><div class="v">0</div><div class="l">duplicate calls on the 39-genome RefSeq panel</div></div>
+    <div class="tile"><div class="v">115&nbsp;&rarr;&nbsp;11</div><div class="l">BV-BRC annotation strings collapsed to controlled ones</div></div>
+    <div class="tile"><div class="v">228</div><div class="l">profiles across 13 features, 85 second-pass</div></div>
+  </div>
+</header>
+
+<figure style="margin:34px 0 0"><svg viewBox="0 0 950 372" role="img" aria-label="Sindbis virus genome to scale: a nonstructural open reading frame encoding nsP1 to nsP4 with an opal stop codon six codons before the nsP3/nsP4 cleavage site, a subgenomic promoter, and a structural open reading frame encoding C, E3, E2, 6K and E1; below, the precursor features the module calls, and TF, which steps down one reading frame at a slippery heptamer inside 6K">
+<g fill="none" stroke="currentColor" stroke-width="1.5"><line x1="62" y1="46" x2="910" y2="46"/></g>
+<text x="54" y="50" font-size="12" text-anchor="end" fill="currentColor" font-family="var(--mono)">5′</text>
+<text x="918" y="50" font-size="12" fill="currentColor" font-family="var(--mono)">3′</text>
+<rect x="66.3" y="34" width="546.4" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/>
+<text x="339.5" y="26" font-size="11" text-anchor="middle" fill="currentColor" opacity=".72">nonstructural ORF — translated from genomic RNA</text>
+<rect x="616.0" y="34" width="270.8" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/>
+<text x="751.4" y="26" font-size="11" text-anchor="middle" fill="currentColor" opacity=".72">structural ORF — translated from the subgenomic 26S RNA</text>
+<path d="M 614.4 70 L 614.4 62" stroke="currentColor" stroke-width="1.2" fill="none"/>
+<text x="614.4" y="84" font-size="10.5" text-anchor="middle" fill="currentColor" opacity=".72">26S promoter</text>
+<rect x="66.3" y="98" width="117.3" height="28" rx="2" fill="currentColor" opacity=".13" stroke="currentColor" stroke-width="1"/>
+<text x="124.9" y="117" font-size="12" text-anchor="middle" fill="currentColor" font-family="var(--mono)">nsP1</text>
+<rect x="183.7" y="98" width="175.4" height="28" rx="2" fill="currentColor" opacity=".13" stroke="currentColor" stroke-width="1"/>
+<text x="271.3" y="117" font-size="12" text-anchor="middle" fill="currentColor" font-family="var(--mono)">nsP2</text>
+<rect x="359.1" y="98" width="120.8" height="28" rx="2" fill="currentColor" opacity=".13" stroke="currentColor" stroke-width="1"/>
+<text x="419.5" y="117" font-size="12" text-anchor="middle" fill="currentColor" font-family="var(--mono)">nsP3</text>
+<rect x="479.9" y="98" width="132.7" height="28" rx="2" fill="currentColor" opacity=".13" stroke="currentColor" stroke-width="1"/>
+<text x="546.3" y="117" font-size="12" text-anchor="middle" fill="currentColor" font-family="var(--mono)">nsP4</text>
+<rect x="616.0" y="98" width="57.3" height="28" rx="2" fill="currentColor" opacity=".13" stroke="currentColor" stroke-width="1"/>
+<text x="644.7" y="117" font-size="12" text-anchor="middle" fill="currentColor" font-family="var(--mono)">C</text>
+<rect x="673.4" y="98" width="13.8" height="28" rx="2" fill="currentColor" opacity=".13" stroke="currentColor" stroke-width="1"/>
+<text x="680.3" y="141" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">E3</text>
+<line x1="680.3" y1="128" x2="680.3" y2="133" stroke="currentColor" stroke-width="1"/>
+<rect x="687.3" y="98" width="91.9" height="28" rx="2" fill="currentColor" opacity=".13" stroke="currentColor" stroke-width="1"/>
+<text x="733.3" y="117" font-size="12" text-anchor="middle" fill="currentColor" font-family="var(--mono)">E2</text>
+<rect x="779.3" y="98" width="11.9" height="28" rx="2" fill="currentColor" opacity=".13" stroke="currentColor" stroke-width="1"/>
+<text x="785.2" y="141" font-size="10.5" text-anchor="middle" fill="currentColor" font-family="var(--mono)">6K</text>
+<line x1="785.2" y1="128" x2="785.2" y2="133" stroke="currentColor" stroke-width="1"/>
+<rect x="791.2" y="98" width="95.6" height="28" rx="2" fill="currentColor" opacity=".13" stroke="currentColor" stroke-width="1"/>
+<text x="839.0" y="117" font-size="12" text-anchor="middle" fill="currentColor" font-family="var(--mono)">E1</text>
+<line x1="478.4" y1="92" x2="478.4" y2="132" stroke="var(--missed)" stroke-width="2.5"/>
+<text x="478.4" y="88" font-size="11" text-anchor="middle" fill="var(--missed)" font-family="var(--mono)">opal</text>
+<line x1="66.3" y1="162" x2="612.7" y2="162" stroke="currentColor" stroke-width="3.5"/>
+<line x1="66.3" y1="157" x2="66.3" y2="167" stroke="currentColor" stroke-width="1.5"/>
+<line x1="612.7" y1="157" x2="612.7" y2="167" stroke="currentColor" stroke-width="1.5"/>
+<text x="54" y="166" font-size="12" text-anchor="end" fill="currentColor" font-family="var(--mono)">nsP1234</text>
+<text x="66.3" y="177" font-size="10.5" fill="currentColor" opacity=".62">read through the opal — about 10% of ribosomes</text>
+<line x1="66.3" y1="195" x2="478.6" y2="195" stroke="var(--built)" stroke-width="3.5"/>
+<line x1="66.3" y1="190" x2="66.3" y2="200" stroke="var(--built)" stroke-width="1.5"/>
+<line x1="478.6" y1="190" x2="478.6" y2="200" stroke="var(--built)" stroke-width="1.5"/>
+<text x="54" y="199" font-size="12" text-anchor="end" fill="var(--built)" font-family="var(--mono)">nsP123</text>
+<text x="66.3" y="210" font-size="10.5" fill="currentColor" opacity=".62">terminated at the opal — the other 90%</text>
+<line x1="616.0" y1="228" x2="886.8" y2="228" stroke="currentColor" stroke-width="3.5"/>
+<line x1="616.0" y1="223" x2="616.0" y2="233" stroke="currentColor" stroke-width="1.5"/>
+<line x1="886.8" y1="223" x2="886.8" y2="233" stroke="currentColor" stroke-width="1.5"/>
+<text x="54" y="232" font-size="12" text-anchor="end" fill="currentColor" font-family="var(--mono)">STP</text>
+<text x="616.0" y="243" font-size="10.5" fill="currentColor" opacity=".62">capsid releases itself, then signalase cuts</text>
+<line x1="673.4" y1="261" x2="779.2" y2="261" stroke="var(--built)" stroke-width="3.5"/>
+<line x1="673.4" y1="256" x2="673.4" y2="266" stroke="var(--built)" stroke-width="1.5"/>
+<line x1="779.2" y1="256" x2="779.2" y2="266" stroke="var(--built)" stroke-width="1.5"/>
+<text x="54" y="265" font-size="12" text-anchor="end" fill="var(--built)" font-family="var(--mono)">pE2</text>
+<text x="673.4" y="276" font-size="10.5" fill="currentColor" opacity=".62">E3+E2, cleaved late by furin</text>
+<line x1="779.3" y1="294" x2="788.3" y2="294" stroke="var(--built)" stroke-width="3.5"/>
+<line x1="788.3" y1="294" x2="788.3" y2="301" stroke="var(--built)" stroke-width="1.5"/>
+<line x1="788.3" y1="301" x2="794.6" y2="301" stroke="var(--built)" stroke-width="3.5"/>
+<line x1="779.3" y1="289" x2="779.3" y2="299" stroke="var(--built)" stroke-width="1.5"/>
+<line x1="794.6" y1="296" x2="794.6" y2="306" stroke="var(--built)" stroke-width="1.5"/>
+<text x="54" y="298" font-size="12" text-anchor="end" fill="var(--built)" font-family="var(--mono)">TF</text>
+<text x="788.3" y="288" font-size="10" text-anchor="middle" fill="var(--built)" font-family="var(--mono)">UUUUUUA</text>
+<text x="652.5" y="318" font-size="10.5" fill="currentColor" opacity=".62">−1 ribosomal frameshift inside 6K — one base read twice, called by transcript_edit</text>
+<text x="54" y="344" font-size="11" text-anchor="end" fill="currentColor" opacity=".7">opal</text>
+<text x="68.0" y="344" font-size="12.5" fill="currentColor" font-family="var(--mono)">...SRRTEY</text>
+<text x="138.2" y="344" font-size="12.5" fill="var(--missed)" font-family="var(--mono)"> TGA </text>
+<text x="177.2" y="344" font-size="12.5" fill="currentColor" font-family="var(--mono)">LTGVGG</text>
+<text x="224.0" y="344" font-size="12.5" fill="currentColor" font-family="var(--mono)"> | </text>
+<text x="247.4" y="344" font-size="12.5" fill="currentColor" font-family="var(--mono)">YIFSTD...</text>
+<text x="331.6" y="344" font-size="11" fill="currentColor" opacity=".7">the opal sits <tspan font-weight="600">six codons inside nsP3</tspan>, not between the proteins</text>
+</svg>
+  <figcaption><b>Sindbis virus NC_001547, to scale.</b> Every coordinate is what this module
+  emits for that genome. Two open reading frames: the nonstructural one translated from the
+  genomic RNA, the structural one from a subgenomic 26S transcript. Each is cleaved into the
+  mature products that tile it exactly. Sindbis is drawn rather than the more familiar
+  Chikungunya S27 because it carries the opal codon &mdash; S27 is one of the minority that
+  does not, and the opal is what the whole module turns on. Blue marks what is not
+  binned from source annotation: the precursors recovered from genome intervals, and TF, drawn
+  as a step because it is the one product that changes reading frame &mdash; the chain runs in
+  the 6K frame to the slippery heptamer, then continues one frame lower to its own
+  stop.</figcaption></figure>
+
+<section>
+  <h2><span class="num">01</span>What the module covers</h2>
+  <p class="lede">Togaviridae is monogeneric &mdash; ICTV moved <i>Rubivirus</i> to
+  Matonaviridae &mdash; and every alphavirus has one genome organisation:</p>
+<pre>5'-[ nsP1 - nsP2 - nsP3 - nsP4 ]---(junction)---[ C - E3 - E2 - 6K - E1 ]-3'
+     nonstructural polyprotein                    structural polyprotein</pre>
+  <p>A module is a group of taxa that share a gene layout, so Togaviridae is exactly one
+  module. Salmonid alphavirus is the divergent end of the genus and was checked rather
+  than assumed &mdash; same nine proteins, same order &mdash; so it shares this module and
+  gets its own reference contig.</p>
+  <p>227 genomes that BV-BRC files under Togaviridae are not togaviruses, and
+  they are excluded by species with the evidence recorded: eighteen 10-segment orbiviruses
+  annotated <code>VP1</code>&ndash;<code>VP7</code>, eight 3-segment bunyaviruses annotated
+  <code>N</code>/<code>M</code>/<code>L</code>, and 29 fungal and invertebrate viruses
+  carrying only an alphavirus-<i>like</i> superfamily replicase and none of the structural
+  cassette.</p>
+  <div class="verdict">
+    <h4>The exclusion holds where it matters</h4>
+    <p>No reference contig routes any of the 227. They are rejected before
+    annotation rather than captured and dead-ended &mdash; which is the failure mode a
+    reference contig for an uncovered taxon creates, and the reason one was not added.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">02</span>How it was built</h2>
+  <p class="lede">Binned by annotation string and checked by length, homology and subject
+  coverage. Three of the thirteen &mdash; full-length nsP3, pE2 and P123 &mdash; are not
+  binned from the export at all: they are recovered from the genome interval between their
+  flanking features, because the source holds almost nothing for them (8 pE2 sequences,
+  2 P123) and, for nsP3, because the profiles could not reach past the opal.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>sym</th><th>annotation</th><th>train</th><th>partial</th><th>outlier</th>
+    <th>aa range</th><th>profiles</th><th>self-recall</th></tr></thead>
+    <tbody><tr><td class="k">nsP1234</td><td class="a">Nonstructural polyprotein</td>
+<td class="n">2,952</td><td class="n dim">1,781</td><td class="n dim">25</td>
+<td class="n">2302&ndash;2636</td><td class="n">16<span class="dim"> (4)</span></td>
+<td class="n">99.6%</td></tr>
+<tr><td class="k">nsP123</td><td class="a">Nonstructural polyprotein P123</td>
+<td class="n">110</td><td class="n dim">0</td><td class="n dim">0</td>
+<td class="n">1679&ndash;1992</td><td class="n">13<span class="dim"> (8)</span></td>
+<td class="n">100.0%</td></tr>
+<tr><td class="k">nsP1</td><td class="a">mRNA-capping enzyme nsP1 protein</td>
+<td class="n">1,217</td><td class="n dim">783</td><td class="n dim">15</td>
+<td class="n">452&ndash;563</td><td class="n">14<span class="dim"> (4)</span></td>
+<td class="n">99.4%</td></tr>
+<tr><td class="k">nsP2</td><td class="a">Protease nsP2 protein</td>
+<td class="n">1,349</td><td class="n dim">278</td><td class="n dim">8</td>
+<td class="n">745&ndash;858</td><td class="n">14<span class="dim"> (2)</span></td>
+<td class="n">99.9%</td></tr>
+<tr><td class="k">nsP3</td><td class="a">Nonstructural protein nsP3</td>
+<td class="n">1,862</td><td class="n dim">298</td><td class="n dim">7</td>
+<td class="n">421&ndash;622</td><td class="n">32<span class="dim"> (13)</span></td>
+<td class="n">100.0%</td></tr>
+<tr><td class="k">nsP4</td><td class="a">RNA-dependent RNA polymerase</td>
+<td class="n">1,021</td><td class="n dim">592</td><td class="n dim">15</td>
+<td class="n">580&ndash;643</td><td class="n">11<span class="dim"> (3)</span></td>
+<td class="n">99.7%</td></tr>
+<tr><td class="k">STP</td><td class="a">Structural polyprotein</td>
+<td class="n">2,275</td><td class="n dim">1,647</td><td class="n dim">16</td>
+<td class="n">1196&ndash;1346</td><td class="n">22<span class="dim"> (10)</span></td>
+<td class="n">99.8%</td></tr>
+<tr><td class="k">pE2</td><td class="a">Envelope glycoprotein precursor pE2</td>
+<td class="n">139</td><td class="n dim">0</td><td class="n dim">0</td>
+<td class="n">382&ndash;506</td><td class="n">14<span class="dim"> (7)</span></td>
+<td class="n">100.0%</td></tr>
+<tr><td class="k">C</td><td class="a">Nucleocapsid protein</td>
+<td class="n">749</td><td class="n dim">236</td><td class="n dim">24</td>
+<td class="n">231&ndash;307</td><td class="n">17<span class="dim"> (5)</span></td>
+<td class="n">99.5%</td></tr>
+<tr><td class="k">E3</td><td class="a">Mature envelope glycoprotein E3</td>
+<td class="n">296</td><td class="n dim">114</td><td class="n dim">7</td>
+<td class="n">53&ndash;71</td><td class="n">19<span class="dim"> (8)</span></td>
+<td class="n">98.7%</td></tr>
+<tr><td class="k">E2</td><td class="a">Mature envelope glycoprotein E2</td>
+<td class="n">1,509</td><td class="n dim">906</td><td class="n dim">79</td>
+<td class="n">392&ndash;440</td><td class="n">21<span class="dim"> (6)</span></td>
+<td class="n">99.9%</td></tr>
+<tr><td class="k">6K</td><td class="a">Mature 6K membrane protein</td>
+<td class="n">275</td><td class="n dim">46</td><td class="n dim">3</td>
+<td class="n">48&ndash;76</td><td class="n">17<span class="dim"> (8)</span></td>
+<td class="n">99.3%</td></tr>
+<tr><td class="k">E1</td><td class="a">Mature envelope glycoprotein E1</td>
+<td class="n">1,004</td><td class="n dim">1,588</td><td class="n dim">94</td>
+<td class="n">404&ndash;462</td><td class="n">18<span class="dim"> (7)</span></td>
+<td class="n">98.7%</td></tr></tbody>
+  </table></div>
+  <p><b>Declared partials never train.</b> BV-BRC marks incomplete products explicitly
+  (<code>&hellip;, fragment</code>, <code>&hellip;, C-terminal</code>,
+  <code>truncated&nbsp;&hellip;</code>), which is better evidence than any length window and
+  catches what a window cannot: 89 Ross River records annotated &ldquo;putative
+  non-structural polyprotein precursor P1234, C-terminal&rdquo; are 402&ndash;450&nbsp;aa,
+  comfortably inside any nsP3 range wide enough to hold Wenling fish alphavirus nsP3 at
+  421&nbsp;aa. They were being re-homed into the nsP3 collection at 98% identity, where they
+  would have taught it two wrong termini.</p>
+  <p><b>Self-recall is a floor, not a validation.</b> A profile that cannot recover the
+  sequences it was built from will certainly recover nothing new; recovering them proves
+  very little. It is in the table because a number below 99% would be a finding.</p>
+  <h3>The binning is corroborated by something no rule looked at</h3>
+  <p>The modal first residue of each collection:</p>
+<pre>nsP1  M 94%     nsP2  G 87% / A 12%     nsP3  A 99%     nsP4  Y 99%
+C     M 96%     E3    S 79%             E2    S 86%     6K  A/E/D     E1  Y 91%</pre>
+  <p>nsP4's invariant N-terminal tyrosine and nsP3's invariant alanine are the documented
+  nsP2-protease sites; E2's serine is the furin site in PE2; E1's tyrosine and 6K's small
+  residue are signal-peptidase sites; nsP1 and C start at their precursor's own initiating
+  Met. A mis-binned collection does not produce that.</p>
+</section>
+
+<section>
+  <h2><span class="num">03</span>Where the cutoffs sit</h2>
+  <p class="lede">A <code>bit_cutoff</code> has to sit above the best score a profile reaches
+  on sequence that is <i>not</i> the feature, and below the weakest score it reaches on
+  sequence that is. In a polyprotein taxon the first of those needs care: every mature
+  peptide is a substring of its precursor, so a hit to the precursor's coordinates is the
+  feature and must not count as noise.</p>
+  <figure><svg viewBox="0 0 760 386" role="img" aria-label="For each feature, the bit score range where false positives stop and true positives begin, with the chosen cutoff placed in the gap between them">
+<line x1="80.0" y1="36" x2="80.0" y2="360" stroke="var(--grid)" stroke-width="1"/>
+<text x="80.0" y="30" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">10</text>
+<line x1="164.8" y1="36" x2="164.8" y2="360" stroke="var(--grid)" stroke-width="1"/>
+<text x="164.8" y="30" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">30</text>
+<line x1="257.8" y1="36" x2="257.8" y2="360" stroke="var(--grid)" stroke-width="1"/>
+<text x="257.8" y="30" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">100</text>
+<line x1="342.7" y1="36" x2="342.7" y2="360" stroke="var(--grid)" stroke-width="1"/>
+<text x="342.7" y="30" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">300</text>
+<line x1="435.6" y1="36" x2="435.6" y2="360" stroke="var(--grid)" stroke-width="1"/>
+<text x="435.6" y="30" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">1000</text>
+<line x1="520.5" y1="36" x2="520.5" y2="360" stroke="var(--grid)" stroke-width="1"/>
+<text x="520.5" y="30" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">3000</text>
+<text x="586" y="30" fill="var(--muted)" font-size="9.5" letter-spacing=".05em">NOISE / CUT / SIGNAL</text>
+<rect x="80.0" y="46" width="356.5" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="494.0" y="46" width="80.0" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="436.5" y="46" width="57.5" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="465.3" y="42" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="59" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP1234</text>
+<text x="586" y="59" fill="var(--ink2)" font-size="11" font-family="var(--mono)">1011</text>
+<text x="636" y="59" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">1500</text>
+<text x="692" y="59" fill="var(--ink2)" font-size="11" font-family="var(--mono)">2130</text>
+<rect x="80.0" y="77" width="77.6" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="392.8" y="77" width="181.2" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="157.6" y="77" width="235.2" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="341.1" y="73" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="90" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP1</text>
+<text x="586" y="90" fill="var(--ink2)" font-size="11" font-family="var(--mono)">27</text>
+<text x="636" y="90" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">300</text>
+<text x="692" y="90" fill="var(--ink2)" font-size="11" font-family="var(--mono)">574</text>
+<rect x="80.0" y="108" width="77.8" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="426.2" y="108" width="147.8" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="157.8" y="108" width="268.4" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="363.3" y="104" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="121" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP2</text>
+<text x="586" y="121" fill="var(--ink2)" font-size="11" font-family="var(--mono)">27</text>
+<text x="636" y="121" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">400</text>
+<text x="692" y="121" fill="var(--ink2)" font-size="11" font-family="var(--mono)">885</text>
+<rect x="80.0" y="139" width="97.0" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="323.8" y="139" width="250.2" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="177.0" y="139" width="146.8" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="287.5" y="135" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="152" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP3</text>
+<text x="586" y="152" fill="var(--ink2)" font-size="11" font-family="var(--mono)">35</text>
+<text x="636" y="152" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">150</text>
+<text x="692" y="152" fill="var(--ink2)" font-size="11" font-family="var(--mono)">235</text>
+<rect x="80.0" y="170" width="78.7" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="324.1" y="170" width="249.9" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="158.7" y="170" width="165.4" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="287.5" y="166" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="183" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP4</text>
+<text x="586" y="183" fill="var(--ink2)" font-size="11" font-family="var(--mono)">28</text>
+<text x="636" y="183" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">150</text>
+<text x="692" y="183" fill="var(--ink2)" font-size="11" font-family="var(--mono)">236</text>
+<rect x="80.0" y="201" width="90.8" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="297.0" y="201" width="277.0" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="170.8" y="201" width="126.2" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="256.2" y="197" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="214" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">C</text>
+<text x="586" y="214" fill="var(--ink2)" font-size="11" font-family="var(--mono)">32</text>
+<text x="636" y="214" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">100</text>
+<text x="692" y="214" fill="var(--ink2)" font-size="11" font-family="var(--mono)">166</text>
+<rect x="80.0" y="232" width="71.1" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="222.7" y="232" width="351.3" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="151.1" y="232" width="71.7" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="194.6" y="228" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="245" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">E3</text>
+<text x="586" y="245" fill="var(--ink2)" font-size="11" font-family="var(--mono)">25</text>
+<text x="636" y="245" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">45</text>
+<text x="692" y="245" fill="var(--ink2)" font-size="11" font-family="var(--mono)">64</text>
+<rect x="80.0" y="263" width="84.1" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="331.9" y="263" width="242.1" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="164.1" y="263" width="167.8" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="287.5" y="259" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="276" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">E2</text>
+<text x="586" y="276" fill="var(--ink2)" font-size="11" font-family="var(--mono)">30</text>
+<text x="636" y="276" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">150</text>
+<text x="692" y="276" fill="var(--ink2)" font-size="11" font-family="var(--mono)">261</text>
+<rect x="80.0" y="294" width="69.2" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="201.1" y="294" width="372.9" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="149.2" y="294" width="51.9" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="181.5" y="290" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="307" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">6K</text>
+<text x="586" y="307" fill="var(--ink2)" font-size="11" font-family="var(--mono)">24</text>
+<text x="636" y="307" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">38</text>
+<text x="692" y="307" fill="var(--ink2)" font-size="11" font-family="var(--mono)">48</text>
+<rect x="80.0" y="325" width="86.9" height="18" fill="var(--missed)" opacity=".22"/>
+<rect x="376.2" y="325" width="197.8" height="18" fill="var(--built)" opacity=".22"/>
+<rect x="166.9" y="325" width="209.3" height="18" fill="none" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<rect x="327.0" y="321" width="3.2" height="26" fill="var(--ink)"/>
+<text x="70" y="338" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">E1</text>
+<text x="586" y="338" fill="var(--ink2)" font-size="11" font-family="var(--mono)">31</text>
+<text x="636" y="338" fill="var(--ink)" font-size="11" font-weight="600" font-family="var(--mono)">250</text>
+<text x="692" y="338" fill="var(--ink2)" font-size="11" font-family="var(--mono)">463</text>
+<text x="327" y="380" fill="var(--muted)" font-size="10.5" text-anchor="middle" letter-spacing=".06em">TBLASTN BIT SCORE (LOG SCALE)</text>
+</svg>
+    <div class="legend">
+      <span><i style="background:var(--missed);opacity:.5"></i>false positives live here</span>
+      <span><i style="background:var(--built);opacity:.5"></i>true positives live here</span>
+      <span><i style="border:1px solid currentColor;background:transparent"></i>the safe window</span>
+      <span><i style="background:var(--ink)"></i>chosen cutoff</span>
+    </div>
+    <figcaption><b>How to read a row:</b> the orange block ends at the best score that
+    feature's profiles reach on sequence that is <i>not</i> that feature; the blue block
+    begins at the weakest score they reach on a real one. Any cutoff in the white gap
+    between them separates the two perfectly &mdash; so the gap is the decision, and its
+    width is how much room for error the feature has. The three numbers at the right are
+    noise · <b>cutoff</b> · weakest signal. If the two blocks ever touched there would be
+    no safe value and the profiles would need splitting instead. Measured with tblastn
+    against 333 genomes spanning 31 species &mdash; the nine rep-contig genomes plus every
+    near-complete genome of a divergent species, so the weakest signal is measured where it
+    is actually weakest rather than on Chikungunya.</figcaption>
+  </figure>
+  <p>E3 (64&nbsp;aa) and 6K (60&nbsp;aa) are short enough that the window is narrow:
+  26&ndash;63 and 25&ndash;48 bits. The direct test of whether cutoffs of 45 and 38 produce
+  false positives is how often a feature declared <code>copy_num: 1</code> gets called
+  twice, and across 383 annotated genomes <b>E3, 6K, C and nsP1 are the four cleanest
+  features in the module at 0%</b>. The multi-copy tail sits on the long features &mdash;
+  nsP4 17%, SP 9% &mdash; where it is one gene fragmented in a broken assembly, not a
+  spurious second call.</p>
+</section>
+
+<section>
+  <h2><span class="num">04</span>Does it route?</h2>
+  <p class="lede">Routing is a nucleotide BLASTn against reference contigs, and a genome no
+  contig claims is never annotated at all, however good the profiles are.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>file</th><th>accession</th><th>virus</th></tr></thead>
+    <tbody><tr><td class="k">1</td>
+<td class="n">NC_004162.2</td><td class="a">Chikungunya virus S27-African prototype</td></tr>
+<tr><td class="k">2</td>
+<td class="n">NC_001547</td><td class="a">Sindbis virus</td></tr>
+<tr><td class="k">3</td>
+<td class="n">NC_003908.1</td><td class="a">Western equine encephalitis virus 71V-1658</td></tr>
+<tr><td class="k">4</td>
+<td class="n">NC_003899.1</td><td class="a">Eastern equine encephalitis virus</td></tr>
+<tr><td class="k">5</td>
+<td class="n">NC_001449.1</td><td class="a">Venezuelan equine encephalitis virus</td></tr>
+<tr><td class="k">6</td>
+<td class="n">NC_001544.1</td><td class="a">Ross River virus NB5092</td></tr>
+<tr><td class="k">7</td>
+<td class="n">NC_001786.1</td><td class="a">Barmah Forest virus BH2193</td></tr>
+<tr><td class="k">8</td>
+<td class="n">NC_003930.1</td><td class="a">Salmon pancreas disease virus F93125</td></tr>
+<tr><td class="k">9</td>
+<td class="n">NC_018615.1</td><td class="a">Eilat virus EO329</td></tr></tbody>
+  </table></div>
+  <p>Measured over all 13,032 downloaded genomes at the annotator's own
+  <code>-min_contig_bit 150</code>, with the annotator's own BLASTn parameters:
+  <b>12,796 of 12,805</b> modelled genomes route, the nine misses all 1,005&ndash;3,883&nbsp;bp
+  partials. Over the 387 near-complete exemplars, 385 route and the two that
+  do not are the two excluded species. All nine references are the closest match for some
+  genome, so none is redundant &mdash; without the Sindbis contig, Sindbis-like genomes
+  would be reported as matching Chikungunya.</p>
+  <div class="verdict warn">
+    <h4>The routing checker disagreed, and it was wrong</h4>
+    <p><code>check_rep_contigs.py</code> invokes <code>blastn</code> with no parameters, so
+    it runs megablast (reward&nbsp;1, penalty&nbsp;&minus;2, word_size&nbsp;28); the annotator
+    routes with <code>-reward 2 -penalty -3 -word_size 11 -soft_masking false</code>, which
+    is far more sensitive across a divergent genus. It reported four RefSeq alphaviruses as
+    unroutable &mdash; Middelburg and Southern elephant seal virus with <i>no hit at all</i>
+    &mdash; and advised adding a reference contig for each.</p>
+    <p>Running the annotator on those four routes them at 654&ndash;1697 bits and calls
+    <b>all eleven features in every one</b>. Four references would have been added to fix
+    nothing. Measure with the search you will actually use.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">05</span>Does it call the proteins?</h2>
+  <p class="lede">In complete genomes the core proteins should appear in near-equal numbers,
+  because every genome has one of each. A protein lagging its neighbours is either absent
+  or invisible to the profiles, and those demand opposite responses.</p>
+  <figure><svg viewBox="0 0 720 462" role="img" aria-label="Share of 384 exemplar genomes in which each feature is called">
+<line x1="221.0" y1="16" x2="221.0" y2="446" stroke="var(--grid)" stroke-width="1"/>
+<text x="221.0" y="10" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">25%</text>
+<line x1="368.0" y1="16" x2="368.0" y2="446" stroke="var(--grid)" stroke-width="1"/>
+<text x="368.0" y="10" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">50%</text>
+<line x1="515.0" y1="16" x2="515.0" y2="446" stroke="var(--grid)" stroke-width="1"/>
+<text x="515.0" y="10" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">75%</text>
+<line x1="662.0" y1="16" x2="662.0" y2="446" stroke="var(--grid)" stroke-width="1"/>
+<text x="662.0" y="10" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">100%</text>
+<text x="64" y="39" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">E2</text>
+<rect x="74" y="28" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="28" width="566.6" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="40" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">370</text>
+<text x="64" y="69" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">pE2</text>
+<rect x="74" y="58" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="58" width="565.0" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="70" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">369</text>
+<text x="64" y="99" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP1</text>
+<rect x="74" y="88" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="88" width="555.8" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="100" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">363</text>
+<text x="64" y="129" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP3</text>
+<rect x="74" y="118" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="118" width="555.8" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="130" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">363</text>
+<text x="64" y="159" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">STP</text>
+<rect x="74" y="148" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="148" width="555.8" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="160" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">363</text>
+<text x="64" y="189" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">C</text>
+<rect x="74" y="178" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="178" width="555.8" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="190" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">363</text>
+<text x="64" y="219" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">E3</text>
+<rect x="74" y="208" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="208" width="555.8" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="220" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">363</text>
+<text x="64" y="249" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP4</text>
+<rect x="74" y="238" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="238" width="554.3" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="250" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">362</text>
+<text x="64" y="279" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP2</text>
+<rect x="74" y="268" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="268" width="552.8" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="280" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">361</text>
+<text x="64" y="309" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">E1</text>
+<rect x="74" y="298" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="298" width="542.1" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="310" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">354</text>
+<text x="64" y="339" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP123</text>
+<rect x="74" y="328" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="328" width="531.3" height="15" fill="var(--built)" rx="1.5"/>
+<text x="670.0" y="340" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">347</text>
+<text x="64" y="369" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">6K</text>
+<rect x="74" y="358" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="358" width="500.7" height="15" fill="var(--missed)" rx="1.5"/>
+<text x="670.0" y="370" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">327</text>
+<text x="64" y="399" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">nsP1234</text>
+<rect x="74" y="388" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="388" width="490.0" height="15" fill="var(--missed)" rx="1.5"/>
+<text x="670.0" y="400" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">320</text>
+<text x="64" y="429" fill="var(--ink)" font-size="12.5" text-anchor="end" font-family="var(--mono)">TF</text>
+<rect x="74" y="418" width="588.0" height="15" fill="var(--grid)" rx="1.5"/>
+<rect x="74" y="418" width="448.7" height="15" fill="var(--missed)" rx="1.5"/>
+<text x="670.0" y="430" fill="var(--ink2)" font-size="11.5" font-family="var(--mono)">293</text>
+</svg>
+    <figcaption>Share of the 384 routed near-complete exemplars in which each feature is
+    called at least once. Orange marks the two that fall below 90%.</figcaption>
+  </figure>
+  <p>Nine features sit within five points of each other at 327&ndash;370%. Two trail:
+  6K by 12 points and the nonstructural polyprotein by 18. Neither reaches the 20-point
+  threshold that mandates an investigation, and both were investigated anyway.</p>
+  <div class="verdict">
+    <h4>Both gaps are genome quality, and that is measured, not assumed</h4>
+<pre>                      median N in the genome     with &gt;1% N
+genomes WITH 6K                    7.4%              69%
+genomes WITHOUT 6K                16.8%              85%
+genomes WITH nsP1234               6.5%              67%
+genomes WITHOUT nsP1234           26.2%              90%</pre>
+    <p>A 6K is 183 nucleotides; an N run over it removes the protein. A polyprotein needs
+    65% coverage of a 2,474-column profile, which a genome that is 26% ambiguous cannot
+    supply. Of the 42 genomes that called both of 6K's neighbours but not 6K,
+    <b>42 of 42</b> have ambiguous bases in the interval, and the twelve that yield an ORF
+    yield one of 132&ndash;138&nbsp;aa against a 6K of 55&ndash;68. Those are not 6K, and
+    they were deliberately not merged into the collection.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">06</span>Are the calls right?</h2>
+  <p class="lede">Coverage says a protein was called. Whether it was called
+  <i>correctly</i> is a different question, and three checks answer it.</p>
+  <h3>Held-out reference panel</h3>
+<pre>39 genomes | reference CDS 107 | called 117 | reference CDS MISSED 0 | duplicates 1</pre>
+  <p><b>Not one of the 107 reference CDS is missed.</b> That is the coverage statement, and
+  it is the one this panel exists to make &mdash; the tool's own docstring says it is there
+  to find "which genes the module misses and where it doubles up, not to match GenBank."</p>
+  <p>An earlier version of this page quoted <b>73%</b> from the same evaluation. That figure
+  is not a coverage rate and should not be read as one. <code>evaluate_module.py</code>
+  accumulates matches into a <i>set of call indices</i> and stops at the first call
+  overlapping each reference CDS, so when several reference CDS overlap one call they
+  collapse to a single entry. 78 is therefore the number of distinct calls claimed by some
+  reference, not the number of reference CDS matched &mdash; and the number missed, which is
+  the quantity 73% was being read as the complement of, is zero.</p>
+  <p>The 39 unclaimed calls resolve by arithmetic rather than investigation:
+  117&nbsp;=&nbsp;39&nbsp;&times;&nbsp;3 (nsP1234, nsP123, STP) and
+  78&nbsp;=&nbsp;39&nbsp;&times;&nbsp;2, so exactly one call per genome goes unclaimed. It is
+  the second member of the overlapping nsP1234/nsP123 pair: the reference annotates one
+  nonstructural CDS, this module emits two features across it, and a one-to-one match cannot
+  claim the same reference twice. Nothing is wrong with either call.</p>
+  <p>The panel compares <b>CDS features only</b>, so of the fourteen features declared it
+  sees three. TF is a <code>mat_peptide</code> and does not enter this evaluation at all,
+  nor do the nine mature products &mdash; so these numbers are silent about TF in either
+  direction. The reference's 18 <code>join(...)</code> CDS for the frameshift product are
+  covered by the TF call on the same interval, but as a mat_peptide against a CDS they
+  could not register here whatever the module did.</p>
+  <p><b>The one duplicate is recorded, not smoothed over.</b> <b>NC_043402</b> carries two
+  in-frame stops in its nonstructural ORF &mdash; the opal at codon 1916 and the genuine
+  terminator at 2530 &mdash; with the nsP1234 match overshooting the terminator so both fall
+  inside it. Readthrough is then refused and the call cropped back to the opal, landing on
+  P123's coordinates. Raising the internal-stop cap does not fix it: it reads through the
+  real terminator instead, to 7650 where the protein ends at 7644. One genome in 39, treated
+  as an outlier.</p>
+  <h3>Cleaved termini</h3>
+  <p>Restricted to genomes where every feature was called exactly once, so a fragmented
+  call cannot masquerade as boundary drift:</p>
+<pre>opal-free genomes (27)                       opal genomes (182)
+nsP1 start vs precursor start  +0  100%      +0   90%
+nsP3 start vs nsP2 end         +0  100%      +0   86%
+precursor end vs nsP4 end      +0  100%   -1854   32%
+
+structural, 263 clean genomes
+C  start vs SP start   +0  89%      6K start vs E2 end   +0  97%
+E1 start vs 6K end     +0  85%      SP end vs E1 end     +0  92%</pre>
+  <p>This settles the one place where the schema's rule and a later measurement disagree.
+  nsP4 and E1 are the last product of their precursor, and their C-termini are <i>not</i>
+  protease sites &mdash; nothing marks them but the stop codon. Given
+  <code>downstream_ext: 1</code>, nsP4's end equals the precursor's end in
+  <b>100%</b> of opal-free genomes and E1's equals the structural polyprotein's in 92%.</p>
+  <p>The residual is the same population as every other shortfall here. Splitting the 263
+  clean genomes at each boundary into crisp (within &plusmn;3&nbsp;nt) and creeping, the
+  creeping ones carry <b>two to two and a half times</b> the ambiguous-base content at
+  every one of the five boundaries &mdash; 10.6&ndash;14.9% against 5.1&ndash;6.1%. The
+  offsets are hundreds to thousands of nucleotides, a feature placed elsewhere in a broken
+  assembly, not a cleavage site mis-declared.</p>
+</section>
+
+<section>
+  <h2><span class="num">07</span>What it cannot do</h2>
+  <p class="lede">Most alphaviruses carry an in-frame opal (UGA) codon <b>six codons before
+  the nsP3/nsP4 cleavage site &mdash; inside nsP3</b>, not between the two proteins.</p>
+  <p>It is a genuine stop, not a codon the ribosome ignores. Termination there is the normal
+  outcome and yields P123; <b>readthrough occurs about 10% of the time</b>, inserting an
+  amino acid at the opal and continuing in the same frame to yield P1234
+  (<a href="https://pubmed.ncbi.nlm.nih.gov/37862073/">Li, Sun, Tuplin &amp; Harris 2023</a>,
+  the one human-read DLIT in this module). Because the opal sits <i>inside</i> nsP3, that
+  readthrough is required for <b>full-length nsP3 as well as for nsP4</b> &mdash; which is
+  what makes this a two-protein problem rather than a polymerase one. Neither that paper
+  nor GenBank commits to which residue is inserted; GenBank writes
+  <code>/transl_except=(pos:&hellip;,aa:OTHER)</code> and renders it <b>X</b>.</p>
+  <p>Who has it was measured rather than assumed. The annotator crops any match at an
+  internal stop, so on an opal genome the nsP3 call <i>ends on</i> the opal &mdash; the
+  three bases ending at nsP3's called end are TGA &mdash; and there is then a gap of
+  exactly 18&nbsp;nt before nsP4 begins. On an opal-free genome that codon is nsP3's real
+  last codon and nsP4 starts immediately. Requiring both signals to agree is what makes the
+  test safe; the codon alone gives false positives in broken assemblies, where the crop
+  happens at a sequencing error instead. The same locus in two Chikungunya strains:</p>
+<pre>opal       ...gagttatga | CTAGACAGGGCAGGTGGG | tatata...   nsP3 ends on TGA, gap 18
+no opal    ...gcaggtggg | TATATATTCTCGTCGGAC | accggt...   nsP3 runs through, gap 0</pre>
+  <p>Identical six codons, identical nsP4 start (<code>TAT ATA</code>, the invariant
+  Tyr-Ile). The only difference is the codon before them, and in the opal-free genomes it
+  across the cleanly-callable opal-free genomes is <code>CGA</code>&nbsp;&times;5,
+  <code>AGA</code>&nbsp;&times;2, <code>CAA</code>&nbsp;&times;5, <code>TGT</code>&nbsp;&times;1 &mdash;
+  <b>arginine in 7 of 13, by AGA or CGA, exactly the two codons Li et al. report</b> for
+  opal-free isolates, both one substitution from UGA. The five <code>CAA</code> are every
+  salmonid alphavirus cluster: a glutamine, and a lineage-wide state rather than a passage
+  artefact.</p>
+  <h3>How many genomes &mdash; and the two answers differ</h3>
+<pre>                          genome types        BV-BRC records
+                          (95% clusters)      in those clusters
+carries the opal            77 / 90   86%      4,511 / 11,422   39%</pre>
+  <p><b>86% of distinct genome types, but only 39% of records.</b> Both are real and they
+  answer different questions. The first is corroborated independently by the RefSeq panel,
+  where 34 of 39 genomes came back as P123 &mdash; 87%. The second is dominated by a single
+  cluster holding <b>6,671 records, 5,217 of them near-complete</b> &mdash; more than half
+  of everything BV-BRC has for the family &mdash; which is opal-free.</p>
+<pre>Alphavirus salmon         0 / 5 types   NO opal      Onyong-nyong     0 / 1   NO opal
+Alphavirus venezuelan    12 / 12        all opal     Getah            3 / 3   all opal
+Alphavirus eastern        3 / 3         all opal     Barmah Forest    1 / 1   all opal
+Alphavirus western        3 / 3         all opal     Fort Morgan      1 / 1   all opal
+Alphavirus sindbis        9 / 10        polymorphic  Ross River       3 / 4   polymorphic
+Alphavirus chikungunya    5 / 8         polymorphic  Semliki Forest   1 / 2   polymorphic</pre>
+  <p>Five species are polymorphic for it, which is the expected pattern: the opal is lost
+  on laboratory passage, so the prototype strains in RefSeq under-represent it relative to
+  field isolates. 85 of 275 exemplars could not be read at all (median <b>15.7% ambiguous
+  bases</b>) and are excluded from both figures rather than guessed at.</p>
+  <div class="verdict stop">
+    <h4>The annotator cannot emit the readthrough form, and that was checked in its source</h4>
+    <p>Two independent mechanisms prevent it. The PSSM path crops a hit at an internal stop;
+    the coordinate-anchored path refuses any derived protein containing one at all. So
+    declaring P1234 as a feature anchored from nsP1's start to nsP4's stop &mdash; the
+    obvious fix, and the mechanism Arenaviridae <code>GP1</code> uses &mdash; produces
+    nothing on exactly the genomes that need it. <code>-keep_stop</code> is a global flag,
+    not a per-feature one.</p>
+    <p>So the module declares <i>one</i> feature for the nonstructural ORF, bounded to span
+    both products and annotated <code>Nonstructural polyprotein</code>, which claims
+    neither. Naming it <code>&hellip; P1234</code> would be wrong for 86% of the genus.</p>
+    <p>One cost is recorded rather than hidden: on opal genomes the ORF is emitted as
+    P123. <b>nsP3 is no longer short.</b> It was, by seven residues &mdash; the profiles
+    could not read past the opal &mdash; and the fix was to rebuild every nsP3 profile from
+    the end of nsP2 to the start of nsP4 so the readthrough is inside the training data.
+    GenBank's own readthrough translation of Sindbis reads
+    <code>&hellip;SRRTEY [X] LTGVGG YIFSTD&hellip;</code>, giving a mature readthrough nsP3
+    of 549&nbsp;+&nbsp;1&nbsp;+&nbsp;6&nbsp;=&nbsp;556&nbsp;aa. This module now emits
+    <b>556</b>, ending <code>&hellip;SRRTEY*LTGVGG</code> with nsP4 starting
+    <code>YIFSTDTG&hellip;</code> &mdash; the opal at residue 550 and six residues after it,
+    on every opal genome checked. The opal-free salmonid alphaviruses carry no internal stop
+    at all and are unaffected, as is nsP4, called from its own profiles at the invariant Tyr
+    in both genome types.</p>
+    <p>The 18&nbsp;nt by which P123 falls short of nsP3's end is not a truncation: P123
+    <i>is</i> the opal-terminated product, so it ends at the opal, while nsP3 is the
+    readthrough mature peptide and runs six codons further. Two different proteins, two
+    different C-termini.</p>
+    <p>Separating P123 from P1234 needs a readthrough-aware caller, which is an annotator
+    change, not a module change.</p>
+  </div>
+  <h3>Two products the export could not supply</h3>
+  <p>Both are now built, neither from the source annotation, because the source does not
+  hold enough of either to train on:</p>
+  <ul>
+    <li><b>p62/PE2</b>, the E3+E2 precursor &mdash; exactly one full-length sequence in the
+    whole export; the seven records annotated &ldquo;E3-E2 envelope protein&rdquo; are
+    110&ndash;247&nbsp;aa partials. Recovered instead from the genome interval between the
+    E3 and E2 calls, and profiled from that.</li>
+    <li><b>TF</b>, the transframe protein &mdash; four sequences of 49&ndash;81&nbsp;aa in
+    the export, of which <b>two are demonstrably 6K read through into E1 in frame 0</b>, so
+    the source could not even check the work. No profile can call it in any case: a
+    &minus;1 frameshift product is not collinear with the genome, and tblastn splits a TF
+    query into two HSPs in different frames. It is declared
+    <code>special: transcript_edit</code> with no PSSM and reconstructed from 234 curated
+    nucleotide references that each carry one extra templated base. Called on <b>293 of 381
+    genomes</b> (77%) by the real pipeline, with 9 more falling to the
+    <code>Uncorrected transFrame protein encoding region</code> partial &mdash; the
+    graceful-degradation path for a genome 80&ndash;95% identical to its nearest reference,
+    close enough to locate the site but not to carry the correction.</li>
+  </ul>
+  <p>The rule that kept both unbuilt for as long as it did still holds: declaring a feature
+  with nothing behind it is worse than not declaring it, because the annotator reports a
+  declared-but-unbuilt feature as missing on every genome and never says why. The fix is to
+  build it, not to declare it hopefully.</p>
+  <h3>TF calls that should not have been made</h3>
+  <p>Of the 293 TF calls, <b>263 are clean</b>; 31 carry an <code>X</code> and one carries an
+  internal stop. That is not the reference set's doing &mdash; every one of the 234
+  references was screened, and 42 candidate genomes were dropped at build time precisely
+  because their slip site was N-masked. It is the calling side.
+  <code>get_transcript_edited_features.pl</code> applies four gates &mdash; identity,
+  coverage, gap count, gap runs &mdash; then translates whatever the gap-fill produces and
+  stores it without ever inspecting the protein. The filled sequence takes its bases from
+  the <i>subject</i> genome, so an N-masked target yields an X-bearing protein and the
+  annotator emits it anyway.</p>
+  <p>So two honest figures exist and this page gives both rather than picking one:
+  <b>293 (77%) called</b>, <b>263 (69%) called cleanly</b>. The second is the one to quote
+  where sequence quality matters. Screening the translation for <code>X</code> and internal
+  stops belongs in the annotator, where it would apply to every transcript-edited feature in
+  every module, not in this module alone.</p>
+  <p>Two genomes carry <i>two</i> TF calls apiece &mdash; 37124.9707 at 9735 and 13984,
+  59301.286 at 9648 and 21083, each pair identical in length. Both are assembly artefacts:
+  the contig holds the genome twice over, so the locus is genuinely present twice. Not a
+  module defect.</p>
+  <h3>Genome quality</h3>
+  <p>387 GTOs minted from the BV-BRC ID server, annotated and scored through the real
+  pipeline rather than reimplemented against the flat table:</p>
+<pre>383 genomes scored
+  GOOD, no flags                90   23.5%    median ambiguity 0.00%
+  poor, &gt;1% ambiguous bases    273   71.3%    input quality
+  poor, genome is CLEAN         20    5.2%</pre>
+  <p><b>23.5% is the wrong number to quote, in both directions.</b> The separation on
+  ambiguity is total: every one of the 90 unflagged genomes has a median N content of
+  <b>0.00%</b>, and 273 of the 293 flagged ones carry more than 1% ambiguous bases. A
+  genome that is 10&ndash;20% N cannot present a full protein set; flagging it is the
+  quality tool working, not the module failing. The flag itself under-reports this, being
+  a <i>contig</i>-level test &mdash; of the 94 poor genomes that never receive it,
+  <b>74 still exceed 1% N</b> genome-wide.</p>
+  <p>Classifying the 20 poor calls on genomes that are genuinely clean:</p>
+<pre>  7  corrupt record (a whole base class missing)
+  7  engineered / over-length construct
+  4  other
+  2  a feature called in two pieces</pre>
+  <p><b>Attributable to the module: 6 of 383 genomes &mdash; 1.6%.</b> The rest is the
+  export's own condition, which is the same ambiguity that explains the 6K and polyprotein
+  call rates, the boundary creep and the twenty cytosine-less records &mdash; arrived at
+  here by a fourth independent route.</p>
+</section>
+
+<section>
+  <h2><span class="num">08</span>What the run found</h2>
+  <p class="lede">A whole-taxon run is worth doing for what it turns up as much as for what
+  it scores. None of the following was visible from the reference panel.</p>
+  <h3>Twenty corrupt BV-BRC records</h3>
+<pre>11020.84-.87   Barmah Forest virus                  11,488 nt
+11021.572-.575 Eastern equine encephalitis virus    11,675 nt
+11029.354-.360 Ross River virus                     11,657 nt
+11036.340-.345 Venezuelan equine encephalitis virus 11,444 nt
+11039.146-.149 Western equine encephalitis virus    11,484 nt</pre>
+  <p>Four per virus, each <b>containing not one cytosine</b>. The structural ORF of
+  11020.84 translates to 57 stop codons where the RefSeq copy of the same virus at the same
+  length translates to one. The annotator rejects them correctly and records the routing
+  decision so the taxon is not lost.</p>
+  <p>One matters beyond the count. <b>11039.148 was the third pick in a greedy
+  reference-contig set cover</b> run over all near-complete exemplars &mdash; selecting
+  references by coverage alone would have installed a genome with no cytosine as a routing
+  reference. The nine that shipped are RefSeq genomes chosen for provenance, which is why
+  that did not happen.</p>
+  <h3>Four fabricated citations</h3>
+  <p>An early pass put five plausible-looking PMIDs into the module JSON. They resolved to
+  a bacterial cytoskeleton paper, an octopus haemocyanin cDNA and a peptide synthetase;
+  <code>check_dlits.py</code> caught all of them. Every id now present was checked to
+  resolve to the paper it is named for &mdash; and all twelve stay flagged
+  <code>PMID_claude_generated</code>, because resolving an id is not reading the paper.
+  That flag is why <b>no annotation string in this module makes a functional claim the
+  source data does not already make</b>: nsP2 is &ldquo;Protease nsP2 protein&rdquo; and
+  not &ldquo;Protease and RNA helicase&rdquo;, and nsP3 makes no claim at all.</p>
+  <h3>Three defects in the build kit</h3>
+  <ul>
+    <li><code>build_leftover_pssms.py</code> aligns its sequences to build the profile but
+    writes the <i>unaligned</i> ones to the file recorded beside it as its alignment. 22 of
+    66 leftover files were affected; those profiles could never have been rebuilt, and the
+    files would have shipped as provenance.</li>
+    <li><code>rebuild_pssms.py</code> reports every pipeline-built profile as stale &mdash;
+    130 of 174, none of them edited &mdash; because its rebuild omits a metadata block the
+    pipeline's own builder adds after psiblast.</li>
+    <li><code>check_rep_contigs.py</code> routes with megablast defaults rather than the
+    annotator's parameters, as described in section 04.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">09</span>What the vocabulary bought</h2>
+  <p class="lede">Shrinking the annotation vocabulary is the point of LowVan, so it is worth
+  measuring two ways.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>sym</th><th>strings</th><th>features</th><th>the four largest absorbed</th></tr></thead>
+    <tbody><tr><td class="k">nsP1234</td>
+<td class="n">21</td><td class="n">11,280</td><td class="a src">non-structural polyprotein precursor P1234 &middot; putative non-structural polyprotein precursor P1234, fragment &middot; putative non-structural polyprotein precursor P1234, C-terminal &middot; non-structural polyprotein</td></tr>
+<tr><td class="k">E1</td>
+<td class="n">15</td><td class="n">17,490</td><td class="a src">E1 envelope glycoprotein &middot; putative E1 envelope glycoprotein, fragment &middot; putative E1 envelope glycoprotein, N-terminal &middot; putative E1 envelope glycoprotein, C-terminal</td></tr>
+<tr><td class="k">STP</td>
+<td class="n">12</td><td class="n">10,803</td><td class="a src">structural polyprotein &middot; putative structural polyprotein, fragment &middot; putative structural polyprotein, N-terminal &middot; putative structural polyprotein, C-terminal</td></tr>
+<tr><td class="k">E2</td>
+<td class="n">11</td><td class="n">14,120</td><td class="a src">E2 envelope glycoprotein &middot; putative E2 envelope glycoprotein, fragment &middot; putative E2 envelope glycoprotein, C-terminal &middot; putative E2 envelope glycoprotein, N-terminal</td></tr>
+<tr><td class="k">nsP3</td>
+<td class="n">10</td><td class="n">9,185</td><td class="a src">non-structural protein nsp3 &middot; putative non-structural protein nsp3, C-terminal &middot; putative non-structural protein nsp3, N-terminal &middot; nsP3 protein</td></tr>
+<tr><td class="k">nsP1</td>
+<td class="n">9</td><td class="n">10,695</td><td class="a src">mRNA-capping enzyme nsp1 &middot; putative mRNA-capping enzyme nsp1, fragment &middot; putative mRNA-capping enzyme nsp1, C-terminal &middot; putative mRNA-capping enzyme nsp1, N-terminal</td></tr>
+<tr><td class="k">nsP4</td>
+<td class="n">9</td><td class="n">10,444</td><td class="a src">RNA-directed RNA polymerase nsp4 &middot; putative RNA-directed RNA polymerase nsp4, fragment &middot; putative RNA-directed RNA polymerase nsp4, C-terminal &middot; putative RNA-directed RNA polymerase nsp4, N-terminal</td></tr>
+<tr><td class="k">6K</td>
+<td class="n">8</td><td class="n">10,102</td><td class="a src">6K membrane protein &middot; putative 6K membrane protein, N-terminal &middot; putative 6K membrane protein, C-terminal &middot; putative 6K membrane protein, fragment</td></tr>
+<tr><td class="k">C</td>
+<td class="n">7</td><td class="n">10,339</td><td class="a src">capsid protein &middot; putative capsid protein, C-terminal &middot; putative capsid protein, N-terminal &middot; putative capsid protein, fragment</td></tr>
+<tr><td class="k">nsP2</td>
+<td class="n">7</td><td class="n">9,007</td><td class="a src">protease nsp2 &middot; putative protease nsp2, C-terminal &middot; putative protease nsp2, N-terminal &middot; nsP2</td></tr>
+<tr><td class="k">E3</td>
+<td class="n">6</td><td class="n">10,126</td><td class="a src">E3 protein &middot; putative E3 protein, C-terminal &middot; putative E3 protein, N-terminal &middot; putative E3 protein, fragment</td></tr></tbody>
+  </table></div>
+  <p>11 controlled annotations absorb <b>115 distinct BV-BRC product
+  strings</b> across 123,591 features. Eight source strings are left uncovered,
+  33 features in total, and every one is a positional label attached to a fragment
+  (fifteen Chikungunya records saying &ldquo;nonstructural protein 1&rdquo; are
+  136&ndash;137&nbsp;aa against a 535&nbsp;aa nsP1) or the transframe protein this module
+  does not build.</p>
+  <figure><svg viewBox="0 0 720 300" role="img" aria-label="Distinct annotation strings accumulated over 376 genomes: source vocabulary reaches 80, the module saturates at 18">
+<line x1="52" y1="260.0" x2="602" y2="260.0" stroke="var(--grid)" stroke-width="1"/>
+<text x="43" y="264.0" fill="var(--muted)" font-size="10.5" text-anchor="end" font-family="var(--mono)">0</text>
+<line x1="52" y1="205.0" x2="602" y2="205.0" stroke="var(--grid)" stroke-width="1"/>
+<text x="43" y="209.0" fill="var(--muted)" font-size="10.5" text-anchor="end" font-family="var(--mono)">20</text>
+<line x1="52" y1="150.0" x2="602" y2="150.0" stroke="var(--grid)" stroke-width="1"/>
+<text x="43" y="154.0" fill="var(--muted)" font-size="10.5" text-anchor="end" font-family="var(--mono)">40</text>
+<line x1="52" y1="95.0" x2="602" y2="95.0" stroke="var(--grid)" stroke-width="1"/>
+<text x="43" y="99.0" fill="var(--muted)" font-size="10.5" text-anchor="end" font-family="var(--mono)">60</text>
+<line x1="52" y1="40.0" x2="602" y2="40.0" stroke="var(--grid)" stroke-width="1"/>
+<text x="43" y="44.0" fill="var(--muted)" font-size="10.5" text-anchor="end" font-family="var(--mono)">80</text>
+<text x="52.0" y="278" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">1</text>
+<text x="327.7" y="278" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">189</text>
+<text x="602.0" y="278" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--mono)">376</text>
+<text x="327" y="294" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-family="var(--sans)" letter-spacing=".06em">GENOMES ACCUMULATED</text>
+<path d="M 52.0 220.7 L 53.5 197.5 L 54.9 180.4 L 56.4 170.3 L 57.9 163.7 L 59.3 157.3 L 60.8 153.0 L 62.3 149.2 L 63.7 146.4 L 65.2 144.2 L 66.7 141.6 L 68.1 140.2 L 69.6 138.6 L 71.1 137.4 L 72.5 135.5 L 74.0 133.9 L 75.5 132.8 L 76.9 131.1 L 78.4 129.7 L 79.9 128.8 L 81.3 127.8 L 82.8 126.5 L 84.3 125.7 L 85.7 124.8 L 87.2 123.7 L 88.7 123.3 L 90.1 122.7 L 91.6 120.9 L 93.1 120.3 L 94.5 119.3 L 96.0 118.5 L 97.5 117.6 L 98.9 117.1 L 100.4 116.6 L 101.9 116.4 L 103.3 115.7 L 104.8 115.1 L 106.3 114.2 L 107.7 113.5 L 109.2 113.4 L 110.7 113.1 L 112.1 112.8 L 113.6 112.4 L 115.1 111.7 L 116.5 111.1 L 118.0 110.8 L 119.5 110.5 L 120.9 109.3 L 122.4 108.2 L 123.9 107.8 L 125.3 107.1 L 126.8 106.6 L 128.3 105.9 L 129.7 105.6 L 131.2 105.3 L 132.7 105.1 L 134.1 104.6 L 135.6 104.3 L 137.1 104.0 L 138.5 103.9 L 140.0 103.4 L 141.5 103.0 L 142.9 102.8 L 144.4 101.8 L 145.9 101.5 L 147.3 100.8 L 148.8 100.4 L 150.3 100.3 L 151.7 99.8 L 153.2 99.7 L 154.7 99.3 L 156.1 98.7 L 157.6 98.1 L 159.1 97.6 L 160.5 97.2 L 162.0 96.6 L 163.5 96.4 L 164.9 96.4 L 166.4 96.0 L 167.9 95.6 L 169.3 95.4 L 170.8 94.7 L 172.3 94.1 L 173.7 93.8 L 175.2 93.8 L 176.7 93.4 L 178.1 92.7 L 179.6 92.4 L 181.1 92.1 L 182.5 92.0 L 184.0 91.6 L 185.5 91.5 L 186.9 90.6 L 188.4 90.1 L 189.9 89.8 L 191.3 89.5 L 192.8 89.0 L 194.3 88.8 L 195.7 87.8 L 197.2 87.6 L 198.7 87.4 L 200.1 87.3 L 201.6 86.9 L 203.1 86.4 L 204.5 86.2 L 206.0 86.1 L 207.5 85.9 L 208.9 85.6 L 210.4 85.2 L 211.9 85.2 L 213.3 84.7 L 214.8 84.3 L 216.3 84.1 L 217.7 83.8 L 219.2 83.6 L 220.7 83.3 L 222.1 82.9 L 223.6 82.7 L 225.1 82.5 L 226.5 82.3 L 228.0 82.3 L 229.5 81.9 L 230.9 81.6 L 232.4 81.1 L 233.9 80.9 L 235.3 80.4 L 236.8 80.2 L 238.3 80.0 L 239.7 79.6 L 241.2 79.5 L 242.7 79.3 L 244.1 79.1 L 245.6 78.6 L 247.1 78.3 L 248.5 78.1 L 250.0 77.8 L 251.5 77.6 L 252.9 77.1 L 254.4 76.6 L 255.9 76.2 L 257.3 76.0 L 258.8 75.8 L 260.3 75.5 L 261.7 75.4 L 263.2 75.2 L 264.7 74.8 L 266.1 74.6 L 267.6 74.3 L 269.1 74.1 L 270.5 74.0 L 272.0 73.8 L 273.5 73.7 L 274.9 73.7 L 276.4 73.5 L 277.9 73.4 L 279.3 73.1 L 280.8 73.0 L 282.3 72.8 L 283.7 72.7 L 285.2 72.3 L 286.7 72.1 L 288.1 72.0 L 289.6 71.6 L 291.1 71.5 L 292.5 71.3 L 294.0 71.2 L 295.5 71.0 L 296.9 70.8 L 298.4 70.5 L 299.9 70.2 L 301.3 69.9 L 302.8 69.6 L 304.3 69.3 L 305.7 69.1 L 307.2 68.6 L 308.7 68.3 L 310.1 68.0 L 311.6 67.8 L 313.1 67.3 L 314.5 67.2 L 316.0 67.1 L 317.5 66.9 L 318.9 66.8 L 320.4 66.5 L 321.9 66.3 L 323.3 66.0 L 324.8 65.8 L 326.3 65.7 L 327.7 65.6 L 329.2 65.4 L 330.7 65.2 L 332.1 64.8 L 333.6 64.8 L 335.1 64.3 L 336.5 64.0 L 338.0 63.9 L 339.5 63.5 L 340.9 63.5 L 342.4 63.1 L 343.9 63.0 L 345.3 62.9 L 346.8 62.7 L 348.3 62.2 L 349.7 62.2 L 351.2 62.1 L 352.7 61.9 L 354.1 61.7 L 355.6 61.3 L 357.1 61.0 L 358.5 60.7 L 360.0 60.5 L 361.5 60.4 L 362.9 60.3 L 364.4 60.3 L 365.9 60.2 L 367.3 60.1 L 368.8 60.0 L 370.3 60.0 L 371.7 59.7 L 373.2 59.5 L 374.7 59.4 L 376.1 59.2 L 377.6 58.8 L 379.1 58.7 L 380.5 58.5 L 382.0 58.4 L 383.5 58.4 L 384.9 58.1 L 386.4 57.9 L 387.9 57.7 L 389.3 57.6 L 390.8 57.5 L 392.3 57.4 L 393.7 57.3 L 395.2 57.1 L 396.7 56.9 L 398.1 56.7 L 399.6 56.7 L 401.1 56.5 L 402.5 56.3 L 404.0 56.1 L 405.5 55.9 L 406.9 55.8 L 408.4 55.6 L 409.9 55.6 L 411.3 55.5 L 412.8 55.5 L 414.3 55.4 L 415.7 55.3 L 417.2 55.1 L 418.7 54.9 L 420.1 54.8 L 421.6 54.8 L 423.1 54.5 L 424.5 54.4 L 426.0 54.4 L 427.5 54.2 L 428.9 54.0 L 430.4 54.0 L 431.9 53.9 L 433.3 53.8 L 434.8 53.6 L 436.3 53.5 L 437.7 53.4 L 439.2 53.3 L 440.7 53.3 L 442.1 53.1 L 443.6 52.8 L 445.1 52.6 L 446.5 52.5 L 448.0 52.4 L 449.5 52.4 L 450.9 52.3 L 452.4 52.2 L 453.9 52.1 L 455.3 52.0 L 456.8 52.0 L 458.3 51.9 L 459.7 51.7 L 461.2 51.6 L 462.7 51.3 L 464.1 51.2 L 465.6 51.1 L 467.1 51.0 L 468.5 50.9 L 470.0 50.9 L 471.5 50.7 L 472.9 50.5 L 474.4 50.4 L 475.9 50.3 L 477.3 50.1 L 478.8 50.0 L 480.3 49.8 L 481.7 49.5 L 483.2 49.1 L 484.7 49.0 L 486.1 48.8 L 487.6 48.6 L 489.1 48.6 L 490.5 48.4 L 492.0 48.3 L 493.5 48.1 L 494.9 47.7 L 496.4 47.7 L 497.9 47.6 L 499.3 47.6 L 500.8 47.4 L 502.3 47.2 L 503.7 47.1 L 505.2 47.0 L 506.7 46.8 L 508.1 46.6 L 509.6 46.4 L 511.1 46.3 L 512.5 46.3 L 514.0 46.2 L 515.5 46.1 L 516.9 46.1 L 518.4 45.9 L 519.9 45.9 L 521.3 45.8 L 522.8 45.7 L 524.3 45.7 L 525.7 45.5 L 527.2 45.4 L 528.7 45.4 L 530.1 45.1 L 531.6 44.9 L 533.1 44.9 L 534.5 44.9 L 536.0 44.7 L 537.5 44.6 L 538.9 44.6 L 540.4 44.5 L 541.9 44.2 L 543.3 44.2 L 544.8 44.2 L 546.3 44.0 L 547.7 43.9 L 549.2 43.7 L 550.7 43.6 L 552.1 43.5 L 553.6 43.4 L 555.1 43.3 L 556.5 43.2 L 558.0 43.1 L 559.5 43.1 L 560.9 42.9 L 562.4 42.8 L 563.9 42.6 L 565.3 42.5 L 566.8 42.4 L 568.3 42.4 L 569.7 42.4 L 571.2 42.3 L 572.7 42.2 L 574.1 42.0 L 575.6 41.8 L 577.1 41.7 L 578.5 41.6 L 580.0 41.5 L 581.5 41.4 L 582.9 41.3 L 584.4 41.3 L 585.9 41.1 L 587.3 41.0 L 588.8 41.0 L 590.3 41.0 L 591.7 40.8 L 593.2 40.8 L 594.7 40.7 L 596.1 40.5 L 597.6 40.5 L 599.1 40.2 L 600.5 40.1 L 602.0 40.0" fill="none" stroke="var(--missed)" stroke-width="2.25"/>
+<path d="M 52.0 226.0 L 53.5 224.4 L 54.9 224.3 L 56.4 224.2 L 57.9 224.1 L 59.3 224.1 L 60.8 224.1 L 62.3 224.1 L 63.7 224.1 L 65.2 224.1 L 66.7 224.0 L 68.1 223.8 L 69.6 223.8 L 71.1 223.6 L 72.5 223.4 L 74.0 223.4 L 75.5 223.4 L 76.9 223.4 L 78.4 223.4 L 79.9 223.4 L 81.3 223.4 L 82.8 223.4 L 84.3 223.4 L 85.7 223.4 L 87.2 223.4 L 88.7 223.4 L 90.1 223.4 L 91.6 223.4 L 93.1 223.3 L 94.5 223.3 L 96.0 223.3 L 97.5 223.3 L 98.9 223.2 L 100.4 223.0 L 101.9 223.0 L 103.3 223.0 L 104.8 223.0 L 106.3 223.0 L 107.7 222.9 L 109.2 222.9 L 110.7 222.9 L 112.1 222.9 L 113.6 222.9 L 115.1 222.9 L 116.5 222.9 L 118.0 222.9 L 119.5 222.9 L 120.9 222.9 L 122.4 222.9 L 123.9 222.9 L 125.3 222.9 L 126.8 222.9 L 128.3 222.6 L 129.7 222.6 L 131.2 222.6 L 132.7 222.6 L 134.1 222.6 L 135.6 222.5 L 137.1 222.5 L 138.5 222.5 L 140.0 222.5 L 141.5 222.5 L 142.9 222.5 L 144.4 222.5 L 145.9 222.5 L 147.3 222.3 L 148.8 222.2 L 150.3 222.2 L 151.7 222.2 L 153.2 222.2 L 154.7 222.2 L 156.1 222.2 L 157.6 222.1 L 159.1 222.1 L 160.5 222.1 L 162.0 222.1 L 163.5 221.9 L 164.9 221.9 L 166.4 221.9 L 167.9 221.9 L 169.3 221.9 L 170.8 221.9 L 172.3 221.8 L 173.7 221.8 L 175.2 221.8 L 176.7 221.8 L 178.1 221.8 L 179.6 221.8 L 181.1 221.8 L 182.5 221.8 L 184.0 221.8 L 185.5 221.8 L 186.9 221.8 L 188.4 221.8 L 189.9 221.8 L 191.3 221.8 L 192.8 221.6 L 194.3 221.6 L 195.7 221.5 L 197.2 221.5 L 198.7 221.5 L 200.1 221.5 L 201.6 221.5 L 203.1 221.5 L 204.5 221.4 L 206.0 221.2 L 207.5 221.2 L 208.9 221.2 L 210.4 221.1 L 211.9 221.1 L 213.3 221.1 L 214.8 221.1 L 216.3 220.9 L 217.7 220.9 L 219.2 220.9 L 220.7 220.7 L 222.1 220.7 L 223.6 220.7 L 225.1 220.7 L 226.5 220.7 L 228.0 220.7 L 229.5 220.7 L 230.9 220.7 L 232.4 220.7 L 233.9 220.7 L 235.3 220.7 L 236.8 220.5 L 238.3 220.5 L 239.7 220.5 L 241.2 220.5 L 242.7 220.4 L 244.1 220.4 L 245.6 220.3 L 247.1 220.3 L 248.5 220.3 L 250.0 220.3 L 251.5 220.3 L 252.9 220.3 L 254.4 220.3 L 255.9 220.3 L 257.3 220.0 L 258.8 220.0 L 260.3 220.0 L 261.7 219.7 L 263.2 219.7 L 264.7 219.7 L 266.1 219.7 L 267.6 219.7 L 269.1 219.7 L 270.5 219.6 L 272.0 219.6 L 273.5 219.4 L 274.9 219.3 L 276.4 219.3 L 277.9 219.3 L 279.3 219.2 L 280.8 219.2 L 282.3 219.0 L 283.7 218.9 L 285.2 218.8 L 286.7 218.8 L 288.1 218.8 L 289.6 218.6 L 291.1 218.2 L 292.5 218.2 L 294.0 218.1 L 295.5 218.1 L 296.9 218.1 L 298.4 217.9 L 299.9 217.9 L 301.3 217.9 L 302.8 217.9 L 304.3 217.7 L 305.7 217.7 L 307.2 217.7 L 308.7 217.7 L 310.1 217.7 L 311.6 217.7 L 313.1 217.7 L 314.5 217.7 L 316.0 217.5 L 317.5 217.5 L 318.9 217.4 L 320.4 217.2 L 321.9 217.2 L 323.3 217.1 L 324.8 217.0 L 326.3 217.0 L 327.7 217.0 L 329.2 217.0 L 330.7 217.0 L 332.1 217.0 L 333.6 217.0 L 335.1 217.0 L 336.5 216.8 L 338.0 216.8 L 339.5 216.8 L 340.9 216.7 L 342.4 216.7 L 343.9 216.7 L 345.3 216.7 L 346.8 216.6 L 348.3 216.6 L 349.7 216.3 L 351.2 216.3 L 352.7 216.3 L 354.1 216.3 L 355.6 216.3 L 357.1 216.0 L 358.5 216.0 L 360.0 216.0 L 361.5 216.0 L 362.9 215.9 L 364.4 215.9 L 365.9 215.9 L 367.3 215.9 L 368.8 215.9 L 370.3 215.9 L 371.7 215.9 L 373.2 215.9 L 374.7 215.7 L 376.1 215.6 L 377.6 215.6 L 379.1 215.4 L 380.5 215.4 L 382.0 215.4 L 383.5 215.4 L 384.9 215.4 L 386.4 215.3 L 387.9 215.2 L 389.3 215.2 L 390.8 215.2 L 392.3 215.2 L 393.7 215.2 L 395.2 215.2 L 396.7 215.2 L 398.1 215.2 L 399.6 215.2 L 401.1 215.2 L 402.5 215.2 L 404.0 215.2 L 405.5 215.2 L 406.9 215.2 L 408.4 215.2 L 409.9 215.2 L 411.3 215.2 L 412.8 215.2 L 414.3 215.2 L 415.7 215.0 L 417.2 214.9 L 418.7 214.9 L 420.1 214.9 L 421.6 214.8 L 423.1 214.8 L 424.5 214.8 L 426.0 214.8 L 427.5 214.8 L 428.9 214.8 L 430.4 214.6 L 431.9 214.6 L 433.3 214.5 L 434.8 214.5 L 436.3 214.3 L 437.7 214.3 L 439.2 214.3 L 440.7 214.2 L 442.1 214.1 L 443.6 214.1 L 445.1 213.9 L 446.5 213.9 L 448.0 213.9 L 449.5 213.9 L 450.9 213.9 L 452.4 213.9 L 453.9 213.9 L 455.3 213.8 L 456.8 213.8 L 458.3 213.8 L 459.7 213.8 L 461.2 213.8 L 462.7 213.7 L 464.1 213.7 L 465.6 213.5 L 467.1 213.5 L 468.5 213.5 L 470.0 213.5 L 471.5 213.5 L 472.9 213.5 L 474.4 213.5 L 475.9 213.4 L 477.3 213.2 L 478.8 213.0 L 480.3 212.8 L 481.7 212.8 L 483.2 212.7 L 484.7 212.7 L 486.1 212.7 L 487.6 212.7 L 489.1 212.6 L 490.5 212.4 L 492.0 212.4 L 493.5 212.3 L 494.9 212.3 L 496.4 212.3 L 497.9 212.2 L 499.3 212.2 L 500.8 212.2 L 502.3 212.2 L 503.7 212.2 L 505.2 212.2 L 506.7 212.2 L 508.1 212.2 L 509.6 212.2 L 511.1 212.0 L 512.5 211.9 L 514.0 211.9 L 515.5 211.9 L 516.9 211.9 L 518.4 211.9 L 519.9 211.7 L 521.3 211.6 L 522.8 211.6 L 524.3 211.6 L 525.7 211.6 L 527.2 211.5 L 528.7 211.5 L 530.1 211.5 L 531.6 211.5 L 533.1 211.2 L 534.5 211.2 L 536.0 211.2 L 537.5 211.2 L 538.9 211.2 L 540.4 211.2 L 541.9 211.2 L 543.3 211.2 L 544.8 211.2 L 546.3 211.1 L 547.7 211.1 L 549.2 210.9 L 550.7 210.9 L 552.1 210.9 L 553.6 210.9 L 555.1 210.9 L 556.5 210.9 L 558.0 210.9 L 559.5 210.9 L 560.9 210.9 L 562.4 210.9 L 563.9 210.9 L 565.3 210.9 L 566.8 210.9 L 568.3 210.8 L 569.7 210.8 L 571.2 210.8 L 572.7 210.8 L 574.1 210.8 L 575.6 210.8 L 577.1 210.8 L 578.5 210.8 L 580.0 210.8 L 581.5 210.8 L 582.9 210.6 L 584.4 210.6 L 585.9 210.6 L 587.3 210.6 L 588.8 210.6 L 590.3 210.6 L 591.7 210.6 L 593.2 210.5 L 594.7 210.5 L 596.1 210.5 L 597.6 210.5 L 599.1 210.5 L 600.5 210.5 L 602.0 210.5" fill="none" stroke="var(--built)" stroke-width="2.25"/>
+<circle cx="602.0" cy="40.0" r="3.5" fill="var(--missed)"/>
+<circle cx="602.0" cy="210.5" r="3.5" fill="var(--built)"/>
+<text x="612.0" y="44.0" fill="var(--missed)" font-size="11.5" font-family="var(--mono)">80 source</text>
+<text x="612.0" y="214.5" fill="var(--built)" font-size="11.5" font-family="var(--mono)">18 module</text>
+</svg>
+    <div class="legend">
+      <span><i style="background:var(--missed)"></i>BV-BRC source strings</span>
+      <span><i style="background:var(--built)"></i>module annotations</span>
+    </div>
+    <figcaption>Distinct annotation strings accumulated as genomes are added in random
+    order, averaged over 100 shuffles of 376 near-complete
+    genomes. The controlled vocabulary saturates because the <i>N</i>th genome reuses names
+    the first <i>N</i>&minus;1 established; free text keeps climbing because every submitter
+    spells the same protein a new way.</figcaption>
+  </figure>
+  <p>At the end of the curve the source vocabulary stands at
+  <b>80</b> strings against the module's <b>18</b>
+  &mdash; 21.3 strings per 100 genomes against 4.5, a 4.7-fold collapse, and it is still
+  climbing where the module's has flattened.</p>
+</section>
+
+<footer>
+  Built with the LowVan module kit. Every number here comes from the build's own outputs
+  via <span class="mono">audit_data.json</span>; the decisions behind them, with the
+  measurement that settled each one, are in <span class="mono">work/BUILD_NOTES.md</span>.
+</footer>
+</div>

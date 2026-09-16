@@ -88,6 +88,35 @@ def style_notes(anno, ftypes, symbols):
     return out
 
 
+def symbol_collisions(vocab_rows, ours):
+    """Same SYMBOL, different protein, in another taxon.
+
+    check_annotations already asks "our symbol vs S1 Table's symbol for the same
+    annotation string". It never asked the reverse, and the reverse is where the
+    damage is: a symbol that already means something else elsewhere in the
+    vocabulary. Togaviridae shipped `SP` for a 1,248 aa structural polyprotein
+    when SP means "signal peptide" -- a mat_peptide of a few dozen residues --
+    in ten other taxa, and nothing caught it.
+
+    Not every shared symbol is wrong. `C` is "C protein" in six paramyxoviruses
+    and the capsid here, and both are the community's own name, which the
+    manuscript explicitly allows. So this reports rather than fails, and says
+    what the other meaning is so the call can be made deliberately.
+    """
+    import collections as _c
+    by = _c.defaultdict(set)
+    for r in vocab_rows:
+        if len(r) >= 3 and r[2]:
+            by[r[2]].add((r[0], r[1]))
+    out = []
+    for taxon, key, sym, anno in ours:
+        others = sorted({(t, a) for t, a in by.get(sym, set())
+                         if t != taxon and a != anno})
+        if others:
+            out.append((taxon, key, sym, anno, others))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", required=True, help="module JSON")
@@ -108,6 +137,10 @@ def main():
     by_squash = {}
     for a in known:
         by_squash.setdefault(squash(a), a)
+
+    #  raw vocabulary rows, for the reverse symbol check below
+    with open(args.vocab) as fh:
+        vocab_rows = [r for r in csv.reader(fh, delimiter="\t")][1:]
 
     with open(args.json) as fh:
         mod = json.load(fh)
@@ -179,6 +212,22 @@ def main():
                                     ", ".join(sorted({u[0] for u in uses}))[:34]))
         for note in style_notes(a, ft, syms):
             print("        style: %s" % note)
+
+    #  The reverse of the symbol check above: not "is our symbol what S1 Table
+    #  uses for this string", but "does this symbol already mean something else".
+    ours = [(m, k, sym, a) for a, lst in seen.items()
+            for (m, k, _ft, sym) in lst if sym]
+    coll = symbol_collisions(vocab_rows, ours)
+    if coll:
+        print("\nSYMBOL COLLISION (%d) -- this symbol already names a different\n"
+              "  protein in another taxon. Sometimes correct (a community name the\n"
+              "  taxon genuinely owns), sometimes not. Decide it deliberately:" % len(coll))
+        for taxon, key, sym, anno, others in coll:
+            print("  %-10s %-10s ours: %s" % (sym, key, anno))
+            for t, a in others[:6]:
+                print("  %-10s %-10s ALSO %-22s = %s" % ("", "", t, a))
+            if len(others) > 6:
+                print("  %-10s %-10s ... and %d more" % ("", "", len(others) - 6))
 
     print("\n  columns: Taxon | Annotation | Symbol | Feature Type |")
     print("                         Segment | Used for Genome Quality | PubMed IDs*")

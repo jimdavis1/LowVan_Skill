@@ -238,12 +238,30 @@ def main():
     #
     #  So take the floor from each module's own declared segment min_len.
     floors = {}
+    specials = {}
     if args.json and os.path.exists(args.json):
         j = json.load(open(args.json))
         for m, b in j.items():
             segs = b.get("segments") or {}
             if segs:
                 floors[m] = min(v["min_len"] for v in segs.values())
+            sp = sorted(k for k, e in (b.get("features") or {}).items()
+                        if e.get("special"))
+            if sp:
+                specials[m] = sp
+    #  This function annotates with annotate(), the flat-feature-table path,
+    #  which cannot represent a special feature at all -- see the long comment
+    #  above annotate_gto(). If the JSON declares any, say so loudly rather
+    #  than silently reporting 0% for them. Togaviridae's TF is called on 293
+    #  of 381 genomes by the full pipeline and appears nowhere in this report.
+    if specials:
+        print()
+        print("  WARNING: the following features are called by an external program and")
+        print("           CANNOT appear in this evaluation. Their coverage here is not")
+        print("           low -- it is absent. Run New-annotate-viral-taxon.pl to see them.")
+        for m, sp in sorted(specials.items()):
+            print("             %-24s %s" % (m, ", ".join(sp)))
+        print()
     default_floor = args.min_complete or (min(floors.values()) if floors else 10000)
     if floors:
         print("  completeness floor per module: %s"
