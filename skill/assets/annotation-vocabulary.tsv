@@ -491,3 +491,10 @@ Togaviridae	Mature envelope glycoprotein E1	E1	mat_peptide	Single RNA Segment	1
 Togaviridae	Envelope glycoprotein precursor pE2	pE2	mat_peptide	Single RNA Segment	1	
 Togaviridae	Nonstructural polyprotein P123	nsP123	CDS	Single RNA Segment	1	
 Togaviridae	TransFrame protein	TF	mat_peptide	Single RNA Segment	0	18822126;23720714
+Matonaviridae	Nonstructural polyprotein	p200	CDS	Single RNA Segment	1	
+Matonaviridae	Protease p150 protein	p150	mat_peptide	Single RNA Segment	1	
+Matonaviridae	RNA-dependent RNA polymerase	p90	mat_peptide	Single RNA Segment	1	
+Matonaviridae	Structural polyprotein	p110	CDS	Single RNA Segment	1	
+Matonaviridae	Nucleocapsid protein	C	mat_peptide	Single RNA Segment	1	
+Matonaviridae	Mature envelope glycoprotein E2	E2	mat_peptide	Single RNA Segment	1	
+Matonaviridae	Mature envelope glycoprotein E1	E1	mat_peptide	Single RNA Segment	1	

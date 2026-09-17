@@ -63,7 +63,11 @@ example-rhabdoviridae/ the two taxon-specific programs, as a worked example
 example-togaviridae/   a second example: a -1 frameshift product no PSSM can
                        call, a readthrough codon inside a protein, and two
                        precursors recovered from genome intervals
-patches/               5 diffs against upstream Viral_Annotation
+example-matonaviridae/ a third example: what to do when the SOURCE ANNOTATION is
+                       the problem -- 126 wrong-frame records that built two
+                       convincing junk profiles, a quarter of the vocabulary
+                       naming no protein, and a binning proved from sequence
+patches/               7 diffs against upstream Viral_Annotation
 vendor/bv-brc/         the BV-BRC/SEED modules the whole toolchain needs, so a
                        clone runs with nothing else installed  (SEED licence)
 check-environment.sh   verifies binaries, CPAN modules, and that it all compiles
@@ -79,6 +83,9 @@ how confident a match must be). Both are in `example-rhabdoviridae/` as working
 code with the parts to replace marked, and its README lists them table by table.
 `example-togaviridae/` is the second case: read it when a protein is not
 collinear with the genome, or comes out short by a constant number of residues.
+`example-matonaviridae/` is the third: read it when the export you were handed is
+mislabelled, fragmentary or frame-shifted, and when you need to prove a
+mature-peptide binning without trusting the annotation you are replacing.
 
 Everything else runs unchanged — clustering, profile construction, curation QC,
 signal-peptide derivation, install, reference-panel scoring and whole-taxon

@@ -1,4 +1,4 @@
-# Changes to Viral_Annotation — Rhabdoviridae and Togaviridae module work
+# Changes to Viral_Annotation — Rhabdoviridae, Togaviridae and Matonaviridae module work
 
 Draft. Every entry names the file, what changed, and the measurement or
 observation that prompted it. Patches against the unmodified originals are in
@@ -253,3 +253,85 @@ curve; where to stop on it remains a human decision.
   `Other_Scripts/` or as a separate branch.
 - `FCP_Trunc_Utils.pm` is a new file; the repository has no equivalent.
 - 10 features carry model-proposed citations that no human has read.
+
+---
+
+## Matonaviridae module work
+
+Two skill-script fixes, both applied here, plus one documentation contradiction
+that needs a decision. Nothing in `build/` or `annotate/` changed — this taxon
+needed no annotator work at all.
+
+### `skill/scripts/collect_registry.py` — `nondefault` tested the wrong thing
+
+```python
+("nondefault", os.path.exists(bp)),          # before
+("nondefault", _has_departures(bp)),         # after
+```
+
+`SKILL.md` instructs writing a `BUILD_PARAMS` file next to **every** feature, and
+`run_pipeline.sh` does, containing `departures   none`. Testing for the file's
+existence therefore marked every feature in the module as built with non-default
+parameters. The published Matonaviridae registry claimed *"non-default build
+parameters (7)"* for a module built entirely at the documented defaults, with a
+marker beside all seven rows.
+
+`_has_departures()` parses the `departures` line and returns true only for a real
+departure. Diff: `patches/collect_registry.nondefault.patch`.
+
+### `skill/scripts/gen_registry.py` — emitted class names its own CSS does not define
+
+The generated HTML wrote `class="th"`, `class="tag"` and `class="tnote"`; the
+stylesheet in the same file defines `.taxhd`, `.taxmeta` and `.taxnote`. Every
+per-module header, metadata line and prose note rendered unstyled — no serif
+heading, no rule, no muted colour. This affected the Rhabdoviridae and
+Togaviridae registry pages already in `reports/` (6 module blocks and 1
+respectively); the class names in both were corrected in place, since the
+`registry.json` they were generated from is not in the repo.
+
+Diff: `patches/gen_registry.classnames.patch`.
+
+### `skill/assets/annotation-vocabulary.tsv` — 7 Matonaviridae rows
+
+`Nonstructural polyprotein` / p200, `Protease p150 protein` / p150,
+`RNA-dependent RNA polymerase` / p90, `Structural polyprotein` / p110,
+`Nucleocapsid protein` / C, `Mature envelope glycoprotein E2` / E2,
+`Mature envelope glycoprotein E1` / E1.
+
+Six of the seven annotation strings already existed; only `Protease p150
+protein` is new, patterned on Togaviridae's `Protease nsP2 protein`. Naming
+only the demonstrated activity is deliberate — p150's protease is proven while
+its methyltransferase is homology-assigned, and p90's polymerase is proven while
+its helicase is homology-assigned, so p90 reuses the existing string rather than
+spending new vocabulary on an inferred function.
+
+**The `PubMed IDs` column is deliberately empty on all seven rows.** Every
+citation in this module is model-proposed, and the vocabulary table has no
+provenance column, so a flagged citation entering it would silently become a
+curated one.
+
+### Still open: `references/json-schema.md` contradicts `check_dlits.py`
+
+The document says a model-proposed citation is listed in **both** `PMID` and
+`PMID_claude_generated`:
+
+> So any citation a model supplied is listed **both** in `PMID` and in
+> `PMID_claude_generated`
+
+`check_dlits.py` reports exactly that as a problem — *"CITATION IN BOTH FIELDS
+… they must be disjoint"* — and the shipped Togaviridae module **is** disjoint:
+`PMID` holds the one human-read DLIT and `PMID_claude_generated` the proposals,
+zero overlap. Code and shipped data agree, so the document is the outlier.
+Matonaviridae follows the code. The doc is unchanged pending a decision on which
+convention is intended.
+
+### Not applied, but measured and written up
+
+`example-matonaviridae/README.md` records six further kit issues this build hit,
+three of which fail silently while reporting success: `-download-only` shells
+out to `BVBRC_clean_contigs.pl`, which the kit does not ship, and downloads
+nothing with exit code 0; `make_gto.py` accepts only `.fna`/`.fasta`/`.fa` and
+so silently skipped all 217 genomes written as `.contigs` by the kit's own
+downloader; and `run_gto_eval.py` runs with `cwd=wd` while passing `--gto-dir`
+through unchanged, so a relative path fails for every genome. None is patched
+here — each is a small change with a design choice attached.

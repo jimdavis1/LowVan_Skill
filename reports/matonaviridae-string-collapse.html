@@ -1,0 +1,172 @@
+<title>BV-BRC String Collapse</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:1120px; margin:0 auto; padding:40px 22px 72px; display:flex; flex-direction:column; gap:30px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  .stand { max-width:70ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .stand b { color:var(--ink); font-weight:600; }
+
+  .figs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-top:1px solid var(--base); border-bottom:1px solid var(--grid); }
+  .fig { padding:13px 16px 13px 0; }
+  .fig+.fig { padding-left:16px; border-left:1px solid var(--grid); }
+  .fig .n { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:23px; font-weight:500; display:block; letter-spacing:-.02em; }
+  .fig .k { font-size:12px; color:var(--ink2); }
+
+  .bar { display:flex; height:10px; border-radius:2px; overflow:hidden; gap:2px; background:transparent; }
+  .bar i,.bar b { display:block; height:10px; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; font-size:12.5px; color:var(--ink2); align-items:center; }
+  .legend span { display:inline-flex; gap:6px; align-items:center; }
+  .sw { width:10px; height:10px; border-radius:2px; }
+
+  .ctrl { display:flex; gap:7px; flex-wrap:wrap; align-items:center; }
+  .ctrl button { font-family:var(--sans); font-size:12.5px; padding:5px 11px; border-radius:3px;
+    border:1px solid var(--hair); background:var(--surface); color:var(--ink2); cursor:pointer; }
+  .ctrl button[aria-pressed="true"] { background:var(--ink); color:var(--plane); border-color:var(--ink); }
+  .ctrl button:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+
+  .tax { display:flex; flex-direction:column; gap:9px; }
+  .taxhd { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; border-bottom:1px solid var(--base); padding-bottom:7px; }
+  .taxhd h2 { font-family:var(--serif); font-weight:600; font-size:20px; margin:0; }
+  .taxmeta { display:flex; gap:14px; font-family:var(--mono); font-size:11.5px; color:var(--muted); flex-wrap:wrap; }
+  .taxmeta b { color:var(--ink2); font-weight:500; }
+  .taxnote { margin:0; font-size:13.5px; color:var(--ink2); max-width:82ch; }
+
+  .tw { overflow-x:auto; border:1px solid var(--hair); border-radius:4px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { padding:7px 11px; text-align:left; border-bottom:1px solid var(--grid); vertical-align:top; }
+  thead th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted);
+    font-weight:500; white-space:nowrap; position:sticky; top:0; background:var(--surface); }
+  tbody tr:last-child td { border-bottom:0; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.anno { min-width:19ch; }
+  td.m { font-family:var(--mono); color:var(--ink2); white-space:nowrap; }
+  td.ty { font-size:11.5px; color:var(--muted); }
+  .num, td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  td.pss code { font-family:var(--mono); font-size:11px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .dash { color:var(--muted); }
+  .nd { color:var(--missed); font-size:13px; }
+
+  .covcell { white-space:nowrap; min-width:110px; }
+  .cov { display:inline-flex; width:74px; height:9px; border-radius:2px; overflow:hidden; gap:2px; vertical-align:middle; }
+  .cov i { background:var(--built); } .cov b { background:var(--missed); }
+  .covn { font-family:var(--mono); font-size:11px; color:var(--ink2); margin-left:7px; font-variant-numeric:tabular-nums; }
+
+  .chip { font-family:var(--mono); font-size:10.5px; padding:2px 7px; border-radius:9px; white-space:nowrap;
+    border:1px solid var(--hair); color:var(--ink2); }
+  .chip.s-built { border-color:var(--built); color:var(--built); }
+  .chip.s-derived { border-color:var(--base); color:var(--ink2); }
+  .chip.s-too-few { border-color:var(--missed); color:var(--missed); }
+  .chip.s-no-collection { color:var(--muted); }
+
+  .gap { border-left:2px solid var(--missed); padding:3px 0 3px 15px; max-width:84ch; }
+  .gap h2 { font-family:var(--serif); font-size:19px; margin:0 0 5px; }
+  .gap p { margin:0 0 10px; font-size:14px; color:var(--ink2); }
+  .gap p:last-of-type { margin-bottom:14px; }
+  .keys code { font-family:var(--mono); font-size:10.5px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .src { font-size:12px; color:var(--muted); border-top:1px solid var(--grid); padding-top:13px; }
+  .src code { font-family:var(--mono); }
+  @media (max-width:760px) { .figs { grid-template-columns:repeat(2,1fr); } h1 { font-size:25px; } }
+
+  .card { display:flex; flex-direction:column; gap:8px; }
+  .chd { display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; border-bottom:1px solid var(--base); padding-bottom:6px; }
+  .key { font-family:var(--mono); font-size:15px; font-weight:500; }
+  .arrow { color:var(--muted); margin:0 2px; }
+  .target { font-family:var(--serif); font-size:17px; font-weight:600; }
+  .cmeta { display:flex; gap:13px; font-family:var(--mono); font-size:11.5px; color:var(--muted); align-items:center; flex-wrap:wrap; }
+  .cmeta b { color:var(--ink2); font-weight:500; }
+  td.src { font-family:var(--mono); font-size:12px; }
+  td.gen { font-size:11.5px; color:var(--muted); }
+  .tp { font-family:var(--mono); font-size:9.5px; color:var(--missed); border:1px solid var(--missed);
+        border-radius:8px; padding:0 5px; margin-left:5px; }
+  .chip.ok { border-color:var(--built); color:var(--built); }
+  .chip.no { border-color:var(--missed); color:var(--missed); }
+  .grid2 { display:grid; grid-template-columns:1fr; gap:26px; }
+</style>
+<div class="wrap">
+ <header>
+  <div class="eyebrow">LowVan &middot; Matonaviridae module &middot; 16 September 2026</div>
+  <h1>What the annotation cleanup actually collapsed</h1>
+  <p class="stand">The Matonaviridae dump uses <b>59 distinct product strings</b> for its proteins. <b>58 of them bind</b> to a feature and collapse into <b>7 controlled annotation strings</b> &mdash; a 8.3-fold reduction across 6,547 protein occurrences. The remaining <b>1 bind to nothing</b>, and are listed at the end rather than hidden.</p>
+ </header>
+ <div class="figs">
+  <div class="fig"><span class="n">59</span><span class="k">distinct BV-BRC strings</span></div>
+  <div class="fig"><span class="n">58</span><span class="k">strings that bind to a feature</span></div>
+  <div class="fig"><span class="n">7</span><span class="k">controlled strings emitted</span></div>
+  <div class="fig"><span class="n">6,547</span><span class="k">protein occurrences bound</span></div>
+  <div class="fig"><span class="n">1</span><span class="k">strings that never bind</span></div>
+ </div>
+<section class="card">
+ <div class="chd"><span class="key">E1</span><span class="arrow">&rarr;</span><span class="target">Mature envelope glycoprotein E1</span><span class="cmeta">20 strings &middot; 4,674 occurrences</span></div>
+ <div class="tw"><table><thead><tr><th>BV-BRC product string</th><th class="num">Count</th><th>Genera</th></tr></thead><tbody><tr><td class="tp">E1 envelope glycoprotein</td><td class="m num">1,587</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural protein</td><td class="m num">1,387</td><td class="m">Rubivirus</td></tr><tr><td class="tp">E1 protein</td><td class="m num">587</td><td class="m">Rubivirus</td></tr><tr><td class="tp">envelope glycoprotein E1</td><td class="m num">343</td><td class="m">Rubivirus</td></tr><tr><td class="tp">envelope glycoprotein</td><td class="m num">229</td><td class="m">Rubivirus</td></tr><tr><td class="tp">E1 glycoprotein</td><td class="m num">189</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural protein E1</td><td class="m num">129</td><td class="m">Rubivirus</td></tr><tr><td class="tp">E1</td><td class="m num">59</td><td class="m">Rubivirus</td></tr><tr><td class="tp">glycoprotein E1</td><td class="m num">30</td><td class="m">Rubivirus</td></tr><tr><td class="tp">glycoprotein</td><td class="m num">30</td><td class="m">Rubivirus</td></tr><tr><td class="tp">polyprotein</td><td class="m num">28</td><td class="m">Rubivirus</td></tr><tr><td class="tp">envelope protein</td><td class="m num">18</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural glycoprotein E1</td><td class="m num">18</td><td class="m">Rubivirus</td></tr><tr><td class="tp">envelope protein E1</td><td class="m num">13</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural E1 protein</td><td class="m num">11</td><td class="m">Rubivirus</td></tr><tr><td class="tp">hemagglutinin</td><td class="m num">8</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural glycoprotein</td><td class="m num">3</td><td class="m">Rubivirus</td></tr><tr><td class="tp">spike glycoprotein</td><td class="m num">2</td><td class="m">Rubivirus</td></tr><tr><td class="tp">protein E1</td><td class="m num">2</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structual protein</td><td class="m num">1</td><td class="m">Rubivirus</td></tr></tbody></table></div>
+</section>
+<section class="card">
+ <div class="chd"><span class="key">P110</span><span class="arrow">&rarr;</span><span class="target">Structural polyprotein</span><span class="cmeta">12 strings &middot; 407 occurrences</span></div>
+ <div class="tw"><table><thead><tr><th>BV-BRC product string</th><th class="num">Count</th><th>Genera</th></tr></thead><tbody><tr><td class="tp">structural polyprotein</td><td class="m num">307</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural polyprotein precursor</td><td class="m num">27</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural protein</td><td class="m num">25</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural protein precursor</td><td class="m num">14</td><td class="m">Rubivirus</td></tr><tr><td class="tp">polyprotein</td><td class="m num">11</td><td class="m">Rubivirus</td></tr><tr><td class="tp">virion protein</td><td class="m num">8</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural polyprotein, E1 protein region</td><td class="m num">6</td><td class="m">Rubivirus</td></tr><tr><td class="tp">unnamed protein product</td><td class="m num">2</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural proteins C, E2 and E1</td><td class="m num">2</td><td class="m">Rubivirus</td></tr><tr><td class="tp">polyprotein precursor</td><td class="m num">2</td><td class="m">Rubivirus</td></tr><tr><td class="tp">ORF2</td><td class="m num">2</td><td class="m">Rubivirus</td></tr><tr><td class="tp">rubella virus polyprotein</td><td class="m num">1</td><td class="m">Rubivirus</td></tr></tbody></table></div>
+</section>
+<section class="card">
+ <div class="chd"><span class="key">C</span><span class="arrow">&rarr;</span><span class="target">Nucleocapsid protein</span><span class="cmeta">1 string &middot; 369 occurrences</span></div>
+ <div class="tw"><table><thead><tr><th>BV-BRC product string</th><th class="num">Count</th><th>Genera</th></tr></thead><tbody><tr><td class="tp">capsid protein</td><td class="m num">369</td><td class="m">Rubivirus</td></tr></tbody></table></div>
+</section>
+<section class="card">
+ <div class="chd"><span class="key">E2</span><span class="arrow">&rarr;</span><span class="target">Mature envelope glycoprotein E2</span><span class="cmeta">5 strings &middot; 300 occurrences</span></div>
+ <div class="tw"><table><thead><tr><th>BV-BRC product string</th><th class="num">Count</th><th>Genera</th></tr></thead><tbody><tr><td class="tp">E2 envelope glycoprotein</td><td class="m num">279</td><td class="m">Rubivirus</td></tr><tr><td class="tp">structural protein</td><td class="m num">18</td><td class="m">Rubivirus</td></tr><tr><td class="tp">E1 and E2 glycoproteins</td><td class="m num">1</td><td class="m">Rubivirus</td></tr><tr><td class="tp">E2</td><td class="m num">1</td><td class="m">Rubivirus</td></tr><tr><td class="tp">E2 and E1 polyprotein</td><td class="m num">1</td><td class="m">Rubivirus</td></tr></tbody></table></div>
+</section>
+<section class="card">
+ <div class="chd"><span class="key">P90</span><span class="arrow">&rarr;</span><span class="target">RNA-dependent RNA polymerase</span><span class="cmeta">5 strings &middot; 278 occurrences</span></div>
+ <div class="tw"><table><thead><tr><th>BV-BRC product string</th><th class="num">Count</th><th>Genera</th></tr></thead><tbody><tr><td class="tp">RNA-directed RNA polymerase/triphosphatase/helicase p90</td><td class="m num">257</td><td class="m">Rubivirus</td></tr><tr><td class="tp">NS4 protein</td><td class="m num">15</td><td class="m">Rubivirus</td></tr><tr><td class="tp">p90</td><td class="m num">3</td><td class="m">Rubivirus</td></tr><tr><td class="tp">P90</td><td class="m num">2</td><td class="m">Rubivirus</td></tr><tr><td class="tp">nonstructural proteins P150 and P90</td><td class="m num">1</td><td class="m">Rubivirus</td></tr></tbody></table></div>
+</section>
+<section class="card">
+ <div class="chd"><span class="key">P150</span><span class="arrow">&rarr;</span><span class="target">Protease p150 protein</span><span class="cmeta">4 strings &middot; 266 occurrences</span></div>
+ <div class="tw"><table><thead><tr><th>BV-BRC product string</th><th class="num">Count</th><th>Genera</th></tr></thead><tbody><tr><td class="tp">protease p150</td><td class="m num">233</td><td class="m">Rubivirus</td></tr><tr><td class="tp">nonstructural protease protein</td><td class="m num">26</td><td class="m">Rubivirus</td></tr><tr><td class="tp">p150</td><td class="m num">5</td><td class="m">Rubivirus</td></tr><tr><td class="tp">P150</td><td class="m num">2</td><td class="m">Rubivirus</td></tr></tbody></table></div>
+</section>
+<section class="card">
+ <div class="chd"><span class="key">P200</span><span class="arrow">&rarr;</span><span class="target">Nonstructural polyprotein</span><span class="cmeta">11 strings &middot; 253 occurrences</span></div>
+ <div class="tw"><table><thead><tr><th>BV-BRC product string</th><th class="num">Count</th><th>Genera</th></tr></thead><tbody><tr><td class="tp">non-structural polyprotein p200</td><td class="m num">120</td><td class="m">Rubivirus</td></tr><tr><td class="tp">non-structural polyprotein</td><td class="m num">78</td><td class="m">Rubivirus</td></tr><tr><td class="tp">nonstructural protein</td><td class="m num">17</td><td class="m">Rubivirus</td></tr><tr><td class="tp">P200/non-structural polyprotein</td><td class="m num">13</td><td class="m">Rubivirus</td></tr><tr><td class="tp">nonstructural polyprotein</td><td class="m num">10</td><td class="m">Rubivirus</td></tr><tr><td class="tp">non structural protein p200</td><td class="m num">5</td><td class="m">Rubivirus</td></tr><tr><td class="tp">non-structural protein p200</td><td class="m num">4</td><td class="m">Rubivirus</td></tr><tr><td class="tp">nonstructural proteins NSP1 and NSP2</td><td class="m num">2</td><td class="m">Rubivirus</td></tr><tr><td class="tp">non-structural protein</td><td class="m num">2</td><td class="m">Rubivirus</td></tr><tr><td class="tp">nonstructural polyprotein precursor</td><td class="m num">1</td><td class="m">Rubivirus</td></tr><tr><td class="tp">ORF1</td><td class="m num">1</td><td class="m">Rubivirus</td></tr></tbody></table></div>
+</section>
+ <section class="gap">
+  <h2>Spelling variants folded in</h2>
+  <p>Source strings within two edits of the most common string for the same feature.
+  These are submission typos, not different proteins &mdash; the clearest evidence of
+  what the underlying vocabulary looks like.</p>
+  <div class="tw"><table><thead><tr><th>Variant</th><th class="num">Count</th>
+  <th>Most common form</th><th class="num">Edits</th><th>Genera</th></tr></thead>
+  <tbody><tr><td colspan="5" class="dash">none found</td></tr></tbody></table></div>
+ </section>
+ <section class="gap">
+  <h2>Strings that never bind</h2>
+  <p>Every product string that matched no binning rule. This is the honest measure of
+  what the module does not cover: some are proteins deliberately not modelled, some are
+  accessories with too few sequences, and some are rules still to be written.</p>
+  <div class="tw"><table><thead><tr><th>Unbound product string</th>
+  <th class="num">Count</th><th>Genera</th></tr></thead><tbody><tr><td class="tp">structural protein</td><td class="m num">1</td><td class="m">Rubivirus</td></tr></tbody></table></div>
+ </section>
+ <div class="src">Generated from <code>synonyms.tsv</code> and the module JSON by
+ <code>collect_synmap.py</code> and <code>gen_collapse.py</code>. Counts are protein
+ occurrences (features), not unique sequences, so a protein shared by 40 genomes counts 40
+ times &mdash; that is the number a database user experiences.</div>
+</div>
