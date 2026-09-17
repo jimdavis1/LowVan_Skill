@@ -56,6 +56,23 @@ def collection_paths(workdir, module, feat):
     return out
 
 
+def _has_departures(bp):
+    """True only if BUILD_PARAMS records an actual departure from the defaults.
+
+    The skill tells you to write a BUILD_PARAMS next to EVERY feature, and
+    run_pipeline.sh does, with "departures   none".  Testing os.path.exists()
+    therefore marked every feature in the module as non-default, which is the
+    opposite of what the legend claims.
+    """
+    if not os.path.exists(bp):
+        return False
+    for line in open(bp, errors="replace"):
+        if line.startswith("departures"):
+            v = line.split(None, 1)[1].strip() if len(line.split(None, 1)) > 1 else ""
+            return bool(v) and v.lower() not in ("none", "-", "n/a")
+    return False
+
+
 def self_recall(pssms, colls, bit_cutoff, tmp, threads):
     """(n_sequences, n_called) for one feature."""
     seqs = OrderedDict()
@@ -149,7 +166,7 @@ def main():
                 ("n", nseq),
                 ("called", called),
                 ("pssms", [os.path.basename(p) for p in pssms]),
-                ("nondefault", os.path.exists(bp)),
+                ("nondefault", _has_departures(bp)),
                 ("status", status),
             ]))
             print("  %-22s %-14s %-14s n=%-5s called=%-5s %d pssm"

@@ -111,8 +111,8 @@ def main():
         k = sum(r["called"] for r in rows if r["called"] is not None and r["n"])
         note = notes.get("modules", {}).get(m, "")
         sections.append(
-            '<section class="tax">\n <div class="th">'
-            '<h2>%s</h2><span class="tag">%d of %d features built &middot; %d PSSMs%s</span></div>\n'
+            '<section class="tax">\n <div class="taxhd">'
+            '<h2>%s</h2><span class="taxmeta">%d of %d features built &middot; %d PSSMs%s</span></div>\n'
             '%s'
             ' <div class="tw"><table><thead><tr><th>Key</th><th>Annotation string</th><th>Gene</th>'
             '<th>Type</th><th class="num">Bit</th><th class="num">Length</th><th class="num">Seqs</th>'
@@ -121,7 +121,7 @@ def main():
             % (html.escape(m), len(b), len(rows),
                sum(len(r["pssms"]) for r in rows),
                (" &middot; %d%% callable" % round(100.0 * k / s)) if s else "",
-               ('<p class="tnote">%s</p>\n' % note) if note else "",
+               ('<p class="taxnote">%s</p>\n' % note) if note else "",
                "\n  ".join(row_html(r) for r in rows)))
 
     # gap tables
