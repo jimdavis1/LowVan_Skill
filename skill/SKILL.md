@@ -358,11 +358,22 @@ and gene symbol instead. Expect many features to share
 `Uncharacterized lineage-specific protein` — that is correct, not lazy. A
 functional claim likewise needs a citation a human has read; if the only DLIT
 is model-proposed, fall back to the uncharacterized form and keep the citation
-for checking. **Any DLIT a model proposed must be flagged.** A citation you did not read is
-not a DLIT, even when the paper is real and on-topic, so it goes in `PMID` and
-in `PMID_claude_generated` alongside it. Drive that from a registry in the
-generator so it cannot drift, and clear entries only when a human has actually
-read the paper. `check_dlits.py` also catches DOIs in the PMID field and ids
+for checking. **Every citation a model supplied goes in `PMID_claude_generated`, and nowhere
+else.** The two lists are **disjoint**: `PMID` holds only ids a human curator
+chose and confirmed, `PMID_claude_generated` holds the model's proposals, and no
+id appears in both. `check_dlits.py` reports an overlap as an error.
+
+The test is **who supplied the id**, not how much work went into it. A model
+that searched PubMed, matched the title, and read the abstract has still only
+proposed a citation — so it is still flagged. Reading the paper does not clear
+the flag; a human curator deleting the entry from the generator's registry is
+the act that clears it. Expect a new module to ship with `PMID` absent on every
+feature, as Matonaviridae did.
+
+Drive it from a registry in the generator so it cannot drift, and never put a
+flagged id into `assets/annotation-vocabulary.tsv` — that table has no
+provenance column, so a proposed citation entering it silently becomes a curated
+one. Leave the `PubMed IDs*` cell empty instead. `check_dlits.py` also catches DOIs in the PMID field and ids
 that do not resolve in PubMed.
 
 Reuse a vocabulary string wherever one exists — shrinking the vocabulary is the

@@ -1,4 +1,4 @@
-# Changes to Viral_Annotation — Rhabdoviridae, Togaviridae and Matonaviridae module work
+# Changes to Viral_Annotation — Rhabdoviridae, Togaviridae, Matonaviridae and Alsuviricetes module work
 
 Draft. Every entry names the file, what changed, and the measurement or
 observation that prompted it. Patches against the unmodified originals are in
@@ -335,3 +335,123 @@ so silently skipped all 217 genomes written as `.contigs` by the kit's own
 downloader; and `run_gto_eval.py` runs with `cwd=wd` while passing `--gto-dir`
 through unchanged, so a relative path fails for every genome. None is patched
 here — each is a small change with a design choice attached.
+
+
+---
+
+## Alsuviricetes class build — Hepeviridae
+
+First module of a class-wide build (26 modules planned, partitioned by genome
+organisation). Two annotator/pipeline changes here affect **every** taxon.
+
+### `Other_Scripts/FCP_Ali_Utils.pm` — `-fd` measured against the wrong denominator
+
+Patch: `patches/FCP_Ali_Utils.frac_dash_denominator.patch`
+
+`process_alignment` removed sequences whose dash fraction exceeded `-fd`
+(default 0.20) **before** excluding columns below the `-f` occupancy floor, and
+measured that fraction over every column MAFFT emitted. Since the `-f` filter
+exists precisely to discard columns only a few sequences occupy, an ordinary
+sequence was scored as mostly gaps because *somebody else* had an insertion.
+
+Hepeviridae ORF1 found it:
+
+```
+alignment                   967 sequences x 2363 columns
+ungapped length             min 1483  median 1704  max 1790
+dash fraction per sequence  min 0.242 median 0.279 max 0.372   (-fd cut is 0.20)
+sequences under the cut     0 of 967
+columns below 5% occupancy  615, longest runs 93, 77, 66, 57, 54, 51, 45, 41
+```
+
+All 967 were deleted, the alignment went to zero rows, and
+`print_alignment_as_fasta` died — **0 PSSMs from 1,428 sequences, and the run
+still exited 0**. The other three features had already been written, so it read
+as a partial success. Fix: score each sequence over the columns that will
+survive the `-f` exclusion. Only the denominator changes. After it:
+`1428 seqs -> 8 alignments, 8 PSSMs`, cluster 1 keeping 908 of 967 with 654
+low-occupancy columns cut.
+
+This will bite any taxon with a variable-length region inside a conserved
+protein — in Alsuviricetes, most of them.
+
+### `annotate_by_viral_pssm.pl` — a genome that routes but matches nothing
+
+Patch: `patches/annotate_by_viral_pssm.empty_result.patch`
+
+Three defects compounding, all documented in `references/pipeline.md` as bug 7
+but not previously shipped as a patch. `write_fasta` confesses on an empty
+list, so a genome that routes to a module and clears no profile's threshold
+produced **no output at all and exit 255** — indistinguishable from a crash, and
+in a batch run it silently becomes a coverage gap. Underneath,
+`unless ($hsp_best_bit < $best_bit)` is true at `0 == 0`, so a profile matching
+nothing became `$best_pssm` and the **last** profile in the directory won.
+
+Seen on Fish-associated hepevirus (OP933684), the only near-complete genome of
+its species in BV-BRC. Fix: guard both writers with `if @gene_seqs` /
+`if @prot_seqs`, use `>` for profile selection, and `next` past a feature with
+no result rather than dereferencing undef.
+
+### `skill/scripts/` fixes
+
+| script | defect |
+|---|---|
+| `build_leftover_pssms.py` | wrote **unaligned** sequences into `corrected_alis/` — the directory SKILL.md calls the curation contract. 12 of 38 were then unrebuildable (`psiblast: Repeated Seq-IDs`, which is misleading — the ids are unique, the rows are ragged); the other 26 had coincidentally equal-length rows and would have been silently rebuilt **wrong**. Also `--mi` defaulted to 0.6, silently lowering the identity floor below the feature's own. |
+| `run_gto_eval.py` | neither `--gto-dir` nor `--out`/`--report` was absolutised while the subprocesses run with `cwd=<out>/_wd`. **669 of 669 genomes failed**, the run exited 0, and `quality.tsv` was written containing only a header. |
+| `collect_synmap.py` | `Rhabdoviridae_Viral_PSSM.json` was hardcoded — it could only ever work for the family it was written for. |
+| `collect_registry.py` | counted `.outliers` in the self-recall denominator. On a partial-submission-heavy family that is fatal to the number: Hepeviridae ORF1 read 27.1% against 5,350 sequences instead of 97.5% against its 1,429 in-range ones, because 3,921 fragments — some 8 aa — cannot clear an 800-bit cutoff and were never meant to. Now reports both. |
+| `gen_registry.py` | headlined the psiblast proxy and pooled all features. Now prefers the annotator's own genome-level rate and headlines the **median** per-feature rate: pooling averaged three core proteins with a Rocahepevirus-only accessory and produced a meaningless "76%". |
+
+### `PMID_claude_generated` — the documentation was wrong
+
+`SKILL.md` step 7 said a proposed citation "goes in `PMID` and in
+`PMID_claude_generated` alongside it", and `references/json-schema.md` described
+the same nested form with a worked example. Both contradict `check_dlits.py`,
+which reports an id in both fields as an error, and contradict all 38 installed
+modules, which use the disjoint form.
+
+Worse, the phrase "a citation you did not read is not a DLIT" reads as implying
+that one you *did* read is — and that is how this build initially put four ids
+in `PMID`. Rewritten in both files: every model-supplied citation goes in
+`PMID_claude_generated` and nowhere else, the lists are disjoint, the test is
+**who supplied the id** rather than how much work went into it, and reading a
+paper does not clear the flag — only a curator deleting the registry entry does.
+Also added: never put a flagged id in `annotation-vocabulary.tsv`, which has no
+provenance column.
+
+### Not fixed — `coverage_cutoff` does not measure coverage
+
+Reported, deliberately **not** patched, because it changes calling behaviour for
+every installed module and is the project owner's decision.
+
+`matching_tblastn_hsps_json` computes
+`length(hseq) / (q_to - q_from + 1)` — the aligned hit length over the aligned
+**query span**, which is the alignment measured against itself and is 1.0 for
+any gapless local alignment however little of the profile took part. An HSP
+covering 20% of a profile passes `coverage_cutoff 0.65` trivially; the only
+thing the test can reject is a gappy alignment. `references/json-schema.md`
+describes it as a "subject coverage floor".
+
+Found on Endornaviridae: one profile produced three HSPs against a single
+19,406 nt genome (666, 496, 215 bits), each extended to a start and stop, so one
+polyprotein became three nested CDS at 521-19342, 7316-19342 and 15617-19342.
+`evaluate_module.py` reports **0 duplicates** for this, because it compares
+exact coordinates. A real test would be `(length(hseq) - gaps) / profile_length`.
+
+### New in `skill/scripts/`
+
+`gen_rarefaction.py` promoted from `example-matonaviridae/` and parameterised
+(`--taxon`, `--rarefaction`, `--out`); it previously resolved its input relative
+to its own location. Plus eight programs this build needed that are not
+taxon-specific: `fetch_features.py`, `fetch_seqs.py`, `fetch_contigs.py`
+(batched BV-BRC dumps — `query_PATRIC_bob.pl` issues one HTTP round trip per
+input line and rebuilt `P3DataAPI` each time, which projected to ~4 h for 87,179
+genomes against ~3 min batched), `subset_dump.py`, `build_features.py`,
+`rescue_unassigned.py`, `reroute_outliers.py`, `qc_truncation_symmetric.py`.
+
+The last of those exists because the pipeline's own truncation QC tests
+containment in one direction only: Hepeviridae ORF3 cluster 8 is 75 aa and
+**100% identical to residues 25-99** of a 122-aa ORF3, and it passed because the
+row with cluster 8 as BLAST query aligned 69 of 75 residues (qcov 0.92, under
+the 0.95 cut) while the reverse row aligned all 75. It also covers
+`reclustered_alis/`, which the pipeline's QC never sees.

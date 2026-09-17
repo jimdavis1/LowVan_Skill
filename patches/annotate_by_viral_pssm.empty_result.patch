@@ -1,0 +1,59 @@
+--- annotate_by_viral_pssm.pl.orig	2026-09-17 08:27:03
++++ annotate_by_viral_pssm.pl	2026-09-17 08:27:30
+@@ -277,7 +277,12 @@
+ 		my  ($results, $hsp_best_bit) = matching_tblastn_hsps_json($pssm_blast, $bit_cutoff, $cov_cutoff);
+ 		print STDERR "\t$name\t$hsp_best_bit\n"; 
+ 
+-		unless ($hsp_best_bit < $best_bit)   #evaulate each pssm blast based on the bit score, and pick the best one
++		#  Was "unless ($hsp_best_bit < $best_bit)", which is TRUE at 0 == 0:
++		#  a profile matching nothing became $best_pssm, and because every later
++		#  zero also passed, the LAST profile in the directory won. The
++		#  diagnostic trap is that the error then names whichever profile
++		#  happened to sort last, so it looks like that profile is broken.
++		if ($hsp_best_bit > $best_bit)   #evaulate each pssm blast based on the bit score, and pick the best one
+ 		{
+ 			$best_bit = $hsp_best_bit;
+ 			$best_pssm = $name;
+@@ -285,6 +290,13 @@
+ 		}
+ 	}
+ 	print STDERR "\n\tChoosing $best_pssm\t$best_bit\n\n"; 
++	#  Nothing cleared threshold for this feature on this genome: say so and move
++	#  on, rather than dereferencing an undef result set.
++	unless (defined $best_pssm && $best_results)
++	{
++		print STDERR "\n\tNo profile cleared threshold for $pssmdir on this genome\n\n";
++		next;
++	}
+ 	my $nhsps = scalar @$best_results;
+ 	for my $i (0..($nhsps -1))
+ 	{		
+@@ -525,18 +537,24 @@
+ 
+ 
+ 
++#  A genome that routes to a module and then clears no profile's threshold is a
++#  legitimate empty result. write_fasta confesses on an empty list, so without
++#  these guards such a genome produces NO OUTPUT AT ALL and exit 255 -- which in
++#  a batch run is indistinguishable from a crash and silently becomes a
++#  "coverage gap". Seen on Fish-associated hepevirus (OP933684), the only
++#  near-complete genome of its species in BV-BRC.
+ unless($no_out)
+ {
+-	&gjoseqlib::print_alignment_as_fasta(\*DNA, @gene_seqs);
+-	&gjoseqlib::print_alignment_as_fasta(\*AA, @prot_seqs);
++	&gjoseqlib::print_alignment_as_fasta(\*DNA, @gene_seqs) if @gene_seqs;
++	&gjoseqlib::print_alignment_as_fasta(\*AA, @prot_seqs)  if @prot_seqs;
+ }
+ if ($dna_only)
+ {
+-	&gjoseqlib::print_alignment_as_fasta(\@gene_seqs);
++	&gjoseqlib::print_alignment_as_fasta(\@gene_seqs) if @gene_seqs;
+ }
+ if ($aa_only)
+ {
+-	&gjoseqlib::print_alignment_as_fasta(\@prot_seqs);
++	&gjoseqlib::print_alignment_as_fasta(\@prot_seqs) if @prot_seqs;
+ }
+ 
+ 

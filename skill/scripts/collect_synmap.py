@@ -2,17 +2,34 @@
 """Collect the BV-BRC string -> annotation string aggregation.
 
 Reads synonyms.tsv (emitted by build_collections.py) and joins it to the
-annotation strings in Rhabdoviridae_Viral_PSSM.json. Writes agg.json,
+annotation strings in <Taxon>_Viral_PSSM.json. Writes agg.json,
 unbinned.json and typos.json for gen_collapse.py.
 
 Run from the working directory that holds synonyms.tsv and the JSON.
 """
-import csv, collections, json, sys, os
+import csv, collections, json, sys, os, glob
+
+
+def _pick_json(W):
+    """Find the module JSON in this workdir.
+
+    The family name used to be hardcoded as Rhabdoviridae_Viral_PSSM.json, so
+    this script only ever worked for the family it was written for. Take
+    whatever <Taxon>_Viral_PSSM.json is present, and say so if there are none
+    or several.
+    """
+    c = sorted(glob.glob(os.path.join(W, "*_Viral_PSSM.json")))
+    if not c:
+        sys.exit("no *_Viral_PSSM.json in %s" % os.path.abspath(W))
+    if len(c) > 1:
+        sys.exit("several module JSONs in %s: %s -- keep one"
+                 % (os.path.abspath(W), ", ".join(os.path.basename(x) for x in c)))
+    return c[0]
 if len(sys.argv) > 1 and sys.argv[1] in ("-h", "--help"):
     sys.exit("usage: collect_synmap.py [workdir]   # writes agg.json, unbinned.json, typos.json")
 W = sys.argv[1] if len(sys.argv) > 1 else "."
 rows = list(csv.DictReader(open(os.path.join(W, "synonyms.tsv")), delimiter="\t"))
-J = json.load(open(os.path.join(W, "Rhabdoviridae_Viral_PSSM.json")))
+J = json.load(open(_pick_json(W)))
 key2anno, key2gene = {}, {}
 for T, v in J.items():
     for k, e in v["features"].items():

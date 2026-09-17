@@ -46,14 +46,25 @@ def read_fasta(path):
 
 
 def collection_paths(workdir, module, feat):
-    """Main collection plus any .outliers split, which is the same feature."""
+    """Main collection plus any .outliers split, which is the same feature.
+
+    Returns (paths, n_inrange_path) so the caller can score the in-range
+    collection separately. Folding the outliers into one denominator is right
+    for a taxon whose outliers are a length-split of full-length proteins, and
+    badly misleading for one whose outliers are partial single-gene submissions:
+    on Hepeviridae, whose median BV-BRC record is 347 nt, ORF1 self-recall reads
+    97.5% against its 1429 in-range sequences and 27.1% once 3921 fragments --
+    some of them 8 aa -- are added to the denominator. An 8 aa fragment cannot
+    clear an 800-bit cutoff and was never meant to. Report both.
+    """
     base = os.path.join(workdir, "collections", module)
     out = []
     for name in (feat + ".fasta", feat + ".outliers.fasta"):
         p = os.path.join(base, name)
         if os.path.exists(p):
             out.append(p)
-    return out
+    inr = os.path.join(base, feat + ".fasta")
+    return out, (inr if os.path.exists(inr) else None)
 
 
 def _has_departures(bp):
@@ -132,7 +143,7 @@ def main():
         for key, ent in block.get("features", {}).items():
             pdir = os.path.join(workdir, "Alignments", module, key, "pssms")
             pssms = sorted(glob.glob(os.path.join(pdir, "*.pssm")))
-            colls = collection_paths(workdir, module, key)
+            colls, colls_inrange = collection_paths(workdir, module, key)
             nseq = sum(1 for c in colls for _ in read_fasta(c))
 
             if ent.get("special"):
@@ -147,10 +158,20 @@ def main():
                 status = "too-few"
 
             called = None
+            n_inr = called_inr = None
             if pssms and colls and not args.no_recall:
                 nseq, called = self_recall(pssms, colls,
                                            float(ent.get("bit_cutoff") or 0),
                                            tmp, args.threads)
+                #  Score the in-range collection on its own as well. This is the
+                #  number that answers "can the profiles recover the sequences
+                #  this feature claims to call"; the combined figure above also
+                #  counts length-outliers, which for a partial-submission-heavy
+                #  taxon are fragments no cutoff should pass.
+                if colls_inrange:
+                    n_inr, called_inr = self_recall(pssms, [colls_inrange],
+                                                    float(ent.get("bit_cutoff") or 0),
+                                                    tmp, args.threads)
 
             bp = os.path.join(workdir, "Alignments", module, key, "BUILD_PARAMS")
             feats.append(OrderedDict([
@@ -165,13 +186,17 @@ def main():
                 ("pmid", ent.get("PMID")),
                 ("n", nseq),
                 ("called", called),
+                ("n_inrange", n_inr),
+                ("called_inrange", called_inr),
                 ("pssms", [os.path.basename(p) for p in pssms]),
                 ("nondefault", _has_departures(bp)),
                 ("status", status),
             ]))
-            print("  %-22s %-14s %-14s n=%-5s called=%-5s %d pssm"
+            ir = ("  in-range %s/%s (%.1f%%)" % (called_inr, n_inr, 100.0*called_inr/n_inr)
+                  if n_inr else "")
+            print("  %-22s %-14s %-14s n=%-5s called=%-5s %d pssm%s"
                   % (module, key, status, nseq,
-                     "-" if called is None else called, len(pssms)))
+                     "-" if called is None else called, len(pssms), ir))
         out[module] = OrderedDict([("features", feats)])
 
     with open(args.out, "w") as fh:

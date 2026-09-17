@@ -49,6 +49,14 @@ def read_fasta(p):
         yield h, "".join(s)
 
 
+#  build_pssm aligns its group internally with MAFFT and builds the profile
+#  from THAT alignment. The caller used to write the caller's own unaligned
+#  input to corrected_alis/ instead, so the file on disk was not the alignment
+#  the PSSM came from -- and corrected_alis/ is the directory the workflow
+#  designates as the curation contract and the rebuild source.
+ALIGNED_OUT = []
+
+
 def build_pssm(rows, title, out, tmp):
     fa = os.path.join(tmp, "g.faa")
     with open(fa, "w") as fh:
@@ -61,6 +69,7 @@ def build_pssm(rows, title, out, tmp):
     al = list(read_fasta(ali))
     if len(al) < 2:
         return False
+    ALIGNED_OUT[:] = al          # the MSA this profile was really built from
     msa = os.path.join(tmp, "g.msa")
     with open(msa, "w") as fh:
         fh.write(">1 %s\n%s\n" % (title, al[0][1]))
@@ -144,17 +153,21 @@ def main():
             cid = "lo%d" % n
             sub = [rows[i] for i in g]
             os.makedirs(os.path.join(fd, "corrected_alis"), exist_ok=True)
-            with open(os.path.join(fd, "corrected_alis", cid + ".fa"), "w") as fh:
-                for h, s in sub:
-                    fh.write(">%s\n%s\n" % (h, s.replace("-", "")))
             title = "%s.%s.%s" % (args.module, args.key, cid)
             t2 = tempfile.mkdtemp(prefix="lo1.")
+            ALIGNED_OUT[:] = []
             try:
                 ok = build_pssm(sub, title,
                                 os.path.join(fd, "pssms", title + ".pssm"), t2)
             finally:
                 shutil.rmtree(t2, ignore_errors=True)
             if ok:
+                #  Write the MSA the profile was built from, with its original
+                #  headers restored, so rebuild_pssms.py can reproduce it and a
+                #  curator can open it.
+                with open(os.path.join(fd, "corrected_alis", cid + ".fa"), "w") as fh:
+                    for (h, _s), (_i, a) in zip(sub, ALIGNED_OUT):
+                        fh.write(">%s\n%s\n" % (h, a))
                 made += 1
                 print("    %-12s %3d sequences" % (cid, len(sub)))
         print("  built %d additional profile(s) for %s/%s" % (made, args.module, args.key))

@@ -1,0 +1,50 @@
+--- FCP_Ali_Utils.pm.prefd	2026-09-17 07:47:48
++++ FCP_Ali_Utils.pm	2026-09-17 07:47:48
+@@ -155,12 +155,44 @@
+     # Calculate original sequence count
+     my $n_seqs_orig = scalar @$ali;
+     
+-    # Remove sequences with too many dashes
++    #  Score each sequence's gappiness over the columns that will SURVIVE, not
++    #  over every column MAFFT emitted.
++    #
++    #  The low-occupancy column exclusion below ($f_insert) exists to throw away
++    #  columns that only a handful of sequences occupy -- an insertion carried
++    #  by 2% of the cluster gets its own column and the other 98% get a dash.
++    #  Judging sequences against those columns first, as this filter used to,
++    #  means a perfectly ordinary sequence is scored as mostly gaps purely
++    #  because somebody else has an insertion.
++    #
++    #  Hepeviridae ORF1 is the case that found this. 967 sequences, 1483-1790 aa
++    #  and tightly homogeneous, aligned to 2363 columns because 615 of those
++    #  columns sit below 5% occupancy (longest insertion runs 93, 77, 66, 57).
++    #  Every sequence therefore came out at 24-37% dashes against -fd 0.20, all
++    #  967 were deleted, the alignment went to zero rows, and
++    #  print_alignment_as_fasta died on the empty result -- taking the whole
++    #  feature down with it. The collection was fine; the denominator was wrong.
++    #
++    #  Only the denominator changes. A sequence that is genuinely fragmentary
++    #  relative to the conserved core is still removed, which is what -fd is for.
++    my $pre_len = length($ali->[0][2]);
++    my @pre_occ = (0) x $pre_len;
++    for my $i (0..$#$ali)
++    {
++        my @b = split("", uc $ali->[$i][2]);
++        for my $j (0..$#b) { $pre_occ[$j]++ if $b[$j] =~ /\w/; }
++    }
++    my $n_all = scalar @$ali;
++    my @core = grep { $n_all && ($pre_occ[$_] / $n_all) >= $f_insert } (0 .. $pre_len - 1);
++    @core = (0 .. $pre_len - 1) unless @core;   # degenerate alignment: fall back
++
++    # Remove sequences with too many dashes, measured over the core columns
+     my @ali2;
+     for my $i (0..$#$ali) 
+     {
+-        my $len = length($ali->[$i][2]);
+-        my $dashes = $ali->[$i][2] =~ tr/-//;
++        my @b = split("", $ali->[$i][2]);
++        my $len = scalar @core;
++        my $dashes = grep { ($b[$_] // "-") !~ /\w/ } @core;
+         if (($dashes/$len) <= $frac_dash) 
+         {
+             push @ali2, $ali->[$i];

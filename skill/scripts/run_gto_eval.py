@@ -40,6 +40,13 @@ def main():
     args = ap.parse_args()
 
     R = os.path.abspath(args.repo)
+    #  Everything below joins onto args.out and args.report, and the
+    #  subprocesses run with cwd=<out>/_wd, so relative values resolve
+    #  against the wrong directory. --repo was already absolutised; these
+    #  were not, giving 'Could not open output file gto_out/x.ann.gto' on
+    #  every genome while the run still exited 0.
+    args.out = os.path.abspath(args.out)
+    if args.report: args.report = os.path.abspath(args.report)
     os.makedirs(args.out, exist_ok=True)
     #  the GTO script needs GenomeTypeObject.pm, and it shells out to
     #  annotate_by_viral_pssm.pl by bare name, so the repo must be on PATH.
@@ -52,7 +59,11 @@ def main():
                PATH=R + ":" + os.environ["PATH"],
                PERL5LIB=":".join(p5))
 
-    gtos = sorted(glob.glob(os.path.join(args.gto_dir, "*.gto")))
+    #  The annotator runs with cwd=<out>/_wd, so a relative --gto-dir
+    #  resolves against the wrong directory and every genome fails with
+    #  "Could not open input file gto/x.gto". --repo is already
+    #  absolutised above; this was not. 669/669 failures on Hepeviridae.
+    gtos = sorted(glob.glob(os.path.join(os.path.abspath(args.gto_dir), "*.gto")))
     print("  %d GTO(s)" % len(gtos))
 
     def one(g):

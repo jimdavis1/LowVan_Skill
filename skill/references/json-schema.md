@@ -38,7 +38,7 @@ PSSM directory (`Viral-PSSMs/<key>.pssms/`) and the rep-contig filenames
     },
     "NV": {
       "anno": "Non-virion protein",
-      "PMID": ["4038520", "8683214", "9010293"],
+      "PMID": ["9010293"],
       "PMID_claude_generated": ["4038520", "8683214"]
     }
   }
@@ -60,7 +60,7 @@ PSSM directory (`Viral-PSSMs/<key>.pssms/`) and the rep-contig filenames
 | `copy_num` | expected copies; quality tool flags departures |
 | `min_len` / `max_len` | expected feature length in **amino acids** |
 | `PMID` | DLITs — papers defining the function or sequence. Bare numeric PubMed ids only, never DOIs. |
-| `PMID_claude_generated` | the subset of `PMID` a language model proposed rather than a curator choosing. See below. |
+| `PMID_claude_generated` | citations a language model proposed rather than a curator choosing. **Disjoint from `PMID`** — never list an id in both. See below. |
 | `internal_stop` | `1` if the match may legitimately contain an in-frame stop (readthrough). Omit otherwise — see below |
 | `special` | `transcript_edit` or `splice`; called by an external program, no PSSM expected |
 | `non_pssm_partner` | places a location-based feature relative to another |
@@ -130,18 +130,30 @@ coordinates the feature claims. A citation a language model proposed is not
 that, even when the paper is real and topically correct — nobody has confirmed
 it supports the claim.
 
-So any citation a model supplied is listed **both** in `PMID` and in
-`PMID_claude_generated`:
+So any citation a model supplied is listed in `PMID_claude_generated` **and not
+in `PMID`**. The two lists are disjoint:
 
 ```json
-"PMID":                  ["4038520", "8683214", "28276468", "9010293"],
+"PMID":                  ["9010293"],
 "PMID_claude_generated": ["4038520", "8683214", "28276468"]
 ```
 
-`PMID` keeps its shape — a flat list of numeric ids — because that is what the
-other 34 modules use and what any future consumer will expect. The flag is a
-sibling list naming the subset, so the granularity is per-citation: the feature
-above has three proposed citations and one a human chose.
+One curated citation, three proposed. A feature whose citations are all
+model-proposed carries **no `PMID` key at all** — which is the normal state for a
+newly built module, and is what Matonaviridae and Hepeviridae both ship.
+
+`check_dlits.py` treats an id appearing in both lists as an error
+(`CITATION IN BOTH FIELDS ... they must be disjoint`), and every one of the
+installed modules follows the disjoint form. An earlier revision of this file
+described the nested form, where the flag named a subset of `PMID`; that was
+wrong, disagreed with the checker and with the shipped data, and is the reason
+to state it plainly here.
+
+**The test is who supplied the id, not how much work went into it.** A model
+that searched PubMed, matched the title and read the abstract has proposed a
+citation, not curated one. Reading does not clear the flag. The only thing that
+clears it is a human curator deleting the entry from the generator's registry,
+which is why the registry is the single place the provenance lives.
 
 Drive it from a registry in the generator rather than hand-editing the JSON, so
 the flag cannot drift from reality:
@@ -153,9 +165,11 @@ CLAUDE_PMIDS = {
 }
 
 if pmid:
-    ids = [str(p) for p in pmid]
-    d["PMID"] = ids
+    ids      = [str(p) for p in pmid]
     proposed = [p for p in ids if p in CLAUDE_PMIDS]
+    curated  = [p for p in ids if p not in CLAUDE_PMIDS]
+    if curated:                                  # omit the key entirely when
+        d["PMID"] = curated                      # every id is model-proposed
     if proposed:
         d["PMID_claude_generated"] = proposed
 ```

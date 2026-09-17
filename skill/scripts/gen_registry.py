@@ -42,8 +42,37 @@ def row_html(r):
     st = r["status"]
     pss = " ".join("<code>%s</code>" % html.escape(p.rsplit(".", 2)[-2])
                    for p in r["pssms"]) or '<span class="dash">&mdash;</span>'
+    #  Prefer the in-range collection as the denominator. The combined figure,
+    #  which also counts length-outliers, stays in the tooltip: for a taxon whose
+    #  records are mostly partial single-gene submissions the outliers are
+    #  fragments no bit_cutoff should pass, and leading with that number
+    #  understates the module rather than measuring it.
+    #  Best available measurement, in order:
+    #    1. the annotator's own search -- tblastn against real genomes, from a
+    #       coverage run. references/curation.md: "measure with the search you
+    #       will actually use". psiblast against proteins applies
+    #       composition-based statistics that roughly halve the score, so the
+    #       same profiles read 57.9% or 99.4% on Hepeviridae ORF3 depending on
+    #       one flag, against a true genome-level rate of 94.9%.
+    #    2. psiblast self-recall on the in-range collection.
+    #    3. psiblast self-recall including length-outliers.
     n, called = r["n"], r["called"]
-    if st in ("built", "derived") and called is not None and n:
+    ni, ci = r.get("n_inrange"), r.get("called_inrange")
+    gr, gc = r.get("genomes_routed"), r.get("genomes_called")
+    if st in ("built", "derived") and gc is not None and gr:
+        pc = min(100.0, 100.0 * gc / gr)
+        cov = ('<div class="cov" title="called on %d of %d routed genomes by the '
+               'annotator (tblastn)"><i style="width:%.2f%%"></i>'
+               '<b style="width:%.2f%%"></b></div><span class="covn">%d%%</span>'
+               % (gc, gr, pc, 100 - pc, round(pc)))
+    elif st in ("built", "derived") and ci is not None and ni:
+        pc = 100.0 * ci / ni
+        extra = ("; %d of %d including length-outliers" % (called, n)) if n and n != ni else ""
+        cov = ('<div class="cov" title="%d of %d in-range sequences callable%s">'
+               '<i style="width:%.2f%%"></i>'
+               '<b style="width:%.2f%%"></b></div><span class="covn">%d%%</span>'
+               % (ci, ni, extra, pc, 100 - pc, round(pc)))
+    elif st in ("built", "derived") and called is not None and n:
         pc = 100.0 * called / n
         cov = ('<div class="cov" title="%d of %d callable"><i style="width:%.2f%%"></i>'
                '<b style="width:%.2f%%"></b></div><span class="covn">%d%%</span>'
@@ -92,9 +121,29 @@ def main():
     withp = [r for _m, r in allf if r["pssms"]]
     npssm = sum(len(r["pssms"]) for _m, r in allf)
     scored = [r for _m, r in allf if r["called"] is not None and r["n"]]
-    nseq = sum(r["n"] for r in scored)
-    ncall = sum(r["called"] for r in scored)
-    pct = round(100.0 * ncall / nseq) if nseq else 0
+    #  Headline on the in-range denominator where it is available, for the same
+    #  reason as the per-row bars above.
+    #  MEDIAN per-feature rate, not a pooled total. Pooling averages the core
+    #  proteins with lineage-specific accessories that are only expected in a
+    #  minority of genomes -- on Hepeviridae that dragged 100.8 / 99.4 / 94.9
+    #  down to a "76%" headline because ORF4 is Rocahepevirus-only and correctly
+    #  appears in 10.6%. The median is representative of what the module calls.
+    if any(r.get("genomes_called") for r in scored):
+        import statistics
+        rates = [min(100.0, 100.0 * (r["genomes_called"] / r["genomes_routed"]))
+                 for r in scored if r.get("genomes_called") and r.get("genomes_routed")]
+        nseq  = sum(r.get("genomes_routed") or 0 for r in scored[:1])
+        ncall = None
+        pct_override = round(statistics.median(rates)) if rates else 0
+    elif any(r.get("n_inrange") for r in scored):
+        nseq  = sum(r.get("n_inrange") or 0 for r in scored)
+        ncall = sum(r.get("called_inrange") or 0 for r in scored)
+    else:
+        nseq = sum(r["n"] for r in scored)
+        ncall = sum(r["called"] for r in scored)
+    pct = (pct_override if "pct_override" in dir() or ncall is None
+           else (round(100.0 * ncall / nseq) if nseq else 0))
+    if ncall is None and "pct_override" not in locals(): pct = 0
     ngap = sum(counts[g] for g in GAPS)
     nnd = sum(1 for _m, r in allf if r["nondefault"])
     annos = len({r["anno"] for _m, r in allf})
@@ -166,7 +215,7 @@ def main():
   <div class="fig"><span class="n">%(NPSSM)d</span><span class="k">PSSMs built</span></div>
   <div class="fig"><span class="n">%(NWITHP)d/%(NALL)d</span><span class="k">features with a profile</span></div>
   <div class="fig"><span class="n">%(REACH)d</span><span class="k">of %(ANNOS)d annotation strings reachable</span></div>
-  <div class="fig"><span class="n">%(PCT)d%%</span><span class="k">of sequences callable</span></div>
+  <div class="fig"><span class="n">%(PCT)d%%</span><span class="k">median per-feature call rate</span></div>
   <div class="fig"><span class="n">%(NGAP)d</span><span class="k">features unsatisfiable</span></div>
  </div>
  <div class="legend">

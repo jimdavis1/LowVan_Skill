@@ -498,3 +498,7 @@ Matonaviridae	Structural polyprotein	p110	CDS	Single RNA Segment	1
 Matonaviridae	Nucleocapsid protein	C	mat_peptide	Single RNA Segment	1	
 Matonaviridae	Mature envelope glycoprotein E2	E2	mat_peptide	Single RNA Segment	1	
 Matonaviridae	Mature envelope glycoprotein E1	E1	mat_peptide	Single RNA Segment	1	
+Hepeviridae	Nonstructural polyprotein	ORF1	CDS	Single RNA Segment	1	
+Hepeviridae	Nucleocapsid protein	ORF2	CDS	Single RNA Segment	1	
+Hepeviridae	Membrane-associated viroporin required for virion release ORF3 protein	ORF3	CDS	Single RNA Segment	1	
+Hepeviridae	Uncharacterized lineage-specific protein	Roca_ORF4	CDS	Single RNA Segment	0	

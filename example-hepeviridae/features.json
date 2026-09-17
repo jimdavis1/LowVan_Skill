@@ -1,0 +1,6 @@
+{
+  "ORF1":      {"anno": "Nonstructural polyprotein"},
+  "ORF2":      {"anno": "Nucleocapsid protein"},
+  "ORF3":      {"anno": "Membrane-associated viroporin required for virion release ORF3 protein"},
+  "ORF4_ROCA": {"anno": "Uncharacterized lineage-specific ORF4 protein"}
+}
