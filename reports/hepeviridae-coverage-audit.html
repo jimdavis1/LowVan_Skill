@@ -1,0 +1,125 @@
+<title>Hepeviridae Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan · Hepeviridae module · 17 September 2026</div><h1>Does the hepatitis E module actually work?</h1><p class="stand">Hepeviridae is the only family in class <em>Alsuviricetes</em> that infects humans: <b>Paslahepevirus balayani</b> is hepatitis E virus, around 20 million infections a year. This is the audit of the module built for it &mdash; what it covers, where its thresholds sit, whether genomes reach it, whether it calls the proteins, and what it cannot do. Every figure here is reproducible from <code>work/Hepeviridae/</code>.</p><div class="tiles"><div class="tile"><div class="v">4</div><div class="l">features declared, 4 with profiles</div></div><div class="tile"><div class="v">63</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">622/669</div><div class="l">near-complete exemplars routed</div></div><div class="tile"><div class="v">0</div><div class="l">duplicate calls on the held-out panel</div></div><div class="tile"><div class="v">89.2%</div><div class="l">genomes good quality</div></div><div class="tile"><div class="v">39×</div><div class="l">annotation string collapse</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One module for the whole family, and that was measured rather than assumed.</p><p class="note">Every near-complete genome in BV-BRC was bucketed by ORF architecture from its own CDS coordinates. Every genus came out the same shape &mdash; ORF1 nonstructural polyprotein, ORF2 capsid, ORF3 viroporin &mdash; with Rocahepevirus adding a fourth small ORF. So one module is right, with four features.</p><div class="scroll"><table><thead><tr><th>genus</th><th>records</th><th>≥6 kb</th><th>exactly 3 CDS</th></tr></thead><tbody><tr><td>Paslahepevirus</td><td>25,438</td><td>1,297</td><td>1,226 of 1,273</td></tr><tr><td>unclassified</td><td>2,510</td><td>176</td><td>107 of 165</td></tr><tr><td>Avihepevirus</td><td>600</td><td>23</td><td>23 of 23 (100%)</td></tr><tr><td>Rocahepevirus</td><td>554</td><td>47</td><td>32 of 47 carry &lt;em&gt;four&lt;/em&gt;</td></tr><tr><td>Piscihepevirus</td><td>100</td><td>11</td><td>9 of 11 have 2 (ORF3 often unannotated)</td></tr><tr><td>Chirohepevirus</td><td>55</td><td>14</td><td>12 of 13</td></tr><tr><td>Orthohepevirus</td><td>30</td><td>5</td><td>4 of 5</td></tr><tr><td>Hepevirus</td><td>7</td><td>1</td><td>1</td></tr></tbody></table></div><p class="note">The family is dominated by one species to a degree that shapes everything downstream: 25,438 of 29,294 records are hepatitis E virus, and <b>the median record in the family is 347 nucleotides</b>. Only 1,574 reach 6 kb.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">12,334 distinct protein sequences, triaged by text rule, then by homology, then by position.</p><div class="scroll"><table><thead><tr><th>step</th><th>effect</th></tr></thead><tbody><tr><td>text rules</td><td>3,331 in range, 8,406 length-outliers, 523 matched no rule</td></tr><tr><td>homology rescue</td><td>443 of 523 adopted at ≥80% identity over ≥60% of the query; 78 deliberately left out</td></tr><tr><td>outlier re-route</td><td>26 moved to a different feature (ORF2→ORF3 14, ORF3→ORF2 8, ORF1→ORF3 3, ORF2→ORF1 1)</td></tr><tr><td>final collections</td><td>ORF1 1,429 · ORF2 1,270 · ORF3 974 · ORF4 45</td></tr><tr><td>profiles</td><td>21 · 15 · 23 · 4 = 63 PSSMs</td></tr></tbody></table></div><p class="note">The re-route step exists because <code>qc_cross_feature.py</code> flagged four mislabels that were all real: 119&ndash;123 aa proteins annotated &ldquo;nonstructural protein&rdquo; or &ldquo;ORF2&rdquo; that are actually ORF3. The length gate had correctly parked them as outliers &mdash; but under the wrong feature. After re-routing, the QC reports no contamination.</p><p class="note">One alignment was retired: ORF3 cluster 8, 75 aa, <b>100% identical to residues 25&ndash;99</b> of a 122-aa ORF3. A pure internal fragment. The pipeline's own truncation QC missed it because it tests containment in one direction only.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Each bit_cutoff was set from two measurements: the noise ceiling and the weakest true signal.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit_cutoff</th><th>how it was set</th></tr></thead><tbody><tr><td>ORF1</td><td>800</td><td>1,393&amp;ndash;2,504 aa protein; no competitor at this length</td></tr><tr><td>ORF2</td><td>250</td><td>~660 aa capsid</td></tr><tr><td>ORF3</td><td>90</td><td><b>measured both sides</b> — see below</td></tr><tr><td>ORF4_ROCA</td><td>60</td><td>short accessory, homology-gated collection</td></tr></tbody></table></div><pre class="mono">ORF3, on the 42-genome held-out panel:
+
+  noise ceiling              78.6   a SECOND HSP of the chosen profile,
+                                    query residues 1-64, in ORF2&#x27;s frame
+  typical cross-frame noise  26-35  present in 29 of 42 genomes
+  weakest genuine call       99.0
+
+  -&gt; any cutoff in 79..99 works; 90 chosen, erring toward specificity</pre><p class="note">That single spurious HSP, extended outward by the annotator, grew to ORF2's exact span and was <b>the only duplicate call in the whole evaluation</b>. Raising the cutoff to 90 removed it.</p><div class="verdict warn"><b>The cost is recorded, not hidden.</b> ORF3 is no longer called on three Chirohepevirus genomes that scored 62.6, 77.2 and 84.9. That is a coverage hole, not a threshold problem — see §07.</div></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">A genome no rep contig claims is never annotated at all, whatever the profiles can do.</p><div class="tiles"><div class="tile"><div class="v">24</div><div class="l">rep contigs</div></div><div class="tile"><div class="v">622/669</div><div class="l">exemplars routed</div></div><div class="tile"><div class="v">47</div><div class="l">unrouted (7.0%)</div></div><div class="tile"><div class="v">42/42</div><div class="l">held-out panel</div></div></div><p class="note">Routing improved 31 → 36 → 42 on the held-out panel as references were added. Six of those 24 rep contigs are the only near-complete genome of their species in BV-BRC, so they reference themselves; they give production coverage but cannot count as validation, and are listed in <code>Rep-Contigs/SELF_REFERENCING.tsv</code>. The honest held-out figure is <b>36 of 42</b>.</p><p class="note"><b>The remaining gap was deliberately not closed.</b> <code>minimal_refs.py</code> returns a perfectly flat curve — every additional reference buys exactly <b>one</b> genome, because all 47 unrouted exemplars are singleton clusters. Closing it fully means going from 24 to 71 rep contigs to recover 7% of exemplars, and 46 of the 47 are one-off metagenomic hepe-like viruses: Barns Ness breadcrumb sponge hepe-like virus 1, 2 and 3, Wenling fish hepevirus, Dongbei arctic lamprey hepevirus. You cannot reference your way out of a long tail.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">In complete genomes the core proteins should appear in near-equal numbers. This is the question nothing else answers.</p><div class="bars"><div class="bar"><div class="bl">ORF1</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.8%</div><div class="bn">627 calls over 622 routed genomes — a few genomes yield two ORF1 calls</div></div><div class="bar"><div class="bl">ORF2</div><div class="bt"><i style="width:99.40%"></i></div><div class="bv">99.4%</div><div class="bn">618 calls</div></div><div class="bar"><div class="bl">ORF3</div><div class="bt"><i style="width:94.90%"></i></div><div class="bv">94.9%</div><div class="bn">590 calls</div></div><div class="bar"><div class="bl">ORF4_ROCA</div><div class="bt"><i style="width:10.60%"></i></div><div class="bv">10.6%</div><div class="bn">66 calls — Rocahepevirus-only, exactly as declared</div></div></div><div class="verdict"><b>The three core proteins come out within six points of each other.</b> None is invisible in genomes nobody curated. The threshold for investigating a feature is a 20-point lag, so the step 13 gap chase was not needed.</div></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">Held-out genomes, scored against GenBank's own annotation.</p><pre class="mono">42 genomes spanning every genus, none of which donated a rep contig
+
+  reference CDS   115
+  called          115
+  matched          93  (81%)
+  duplicates        0
+  unmatched calls  22</pre><p class="note">The 81% is not a coverage rate: <code>evaluate_module.py</code> matches one-to-one by call index and cannot match a mature peptide to a reference CDS. The numbers that matter are <b>0 duplicates</b> and the misses, which all fall in the two genera named in §07.</p><p class="note"><b>No feature in this module is non-collinear.</b> The step 6b test was run on one reference genome per genus: every ORF1, ORF2 and ORF3 returns exactly one tblastn HSP in a single reading frame. No readthrough, no frameshift, no cleaved products, so no mature peptides and no SignalP.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Named as prominently as what works.</p><div class="scroll"><table><thead><tr><th>gap</th><th>evidence</th><th>why it is not fixable by tuning</th></tr></thead><tbody><tr><td>ORF3 in Piscihepevirus</td><td>0 sequences in the collection; the single Piscihepevirus ORF3 is 225 aa, outside the 70–160 aa window the other 974 define</td><td>no threshold makes an absent profile fire</td></tr><tr><td>ORF3 in Chirohepevirus</td><td>2 sequences against 863 Paslahepevirus</td><td>two sequences cannot train a profile at any threshold</td></tr><tr><td>Paslahepevirus ORF4</td><td>2 unique sequences in BV-BRC</td><td>retired to NOT_MODELLED.tsv rather than shipped as a feature that never fires</td></tr><tr><td>47 unrouted exemplars</td><td>all singleton clusters; flat set-cover curve</td><td>see §04</td></tr></tbody></table></div><p class="note"><b>ORF4 is two different proteins, and only one is declared.</b> Paslahepevirus ORF4 and Rocahepevirus ORF4 share a positional label and nothing else: over every ORF4-annotated sequence in the dump, the best cross-genus BLASTp alignment is <b>5 residues at e-value 138</b>. The rule is therefore gated on homology to a verified seed rather than on genus — which matters, because an audit of every ORF1 against every other found <b>16 of 1,417 genomes whose BV-BRC genus label contradicts its own sequence</b>, rat and ferret HEV deposited twice under two taxon ids at 96–99% identity.</p><p class="note"><b>ORF1 is declared whole, and the seven RefSeq domains are not.</b> That annotation descends from Koonin 1992 (PMID 1518855), titled &ldquo;<em>Computer-assisted</em> assignment of functional domains&rdquo; and describing them as <em>putative</em>. Perttilä 2013 (PMID 23255617) found no processing across several expression systems with domain-specific antisera; LeDesma 2023 (PMID 36852909) found the &ldquo;protease&rdquo; cysteines coordinate metal ions structurally. Declaring seven mature peptides would assert seven cleavages the field has not agreed happen. <em>All three citations are model-proposed and carry the <code>PMID_claude_generated</code> flag.</em></p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Genome quality from the GTO pipeline, never from the flat feature table.</p><div class="tiles"><div class="tile"><div class="v">555</div><div class="l">good (89.2%)</div></div><div class="tile"><div class="v">67</div><div class="l">poor (10.8%)</div></div><div class="tile"><div class="v">0</div><div class="l">no features called</div></div><div class="tile"><div class="v">~2%</div><div class="l">attributable to the module</div></div></div><div class="scroll"><table><thead><tr><th>flag</th><th>n</th><th>reading</th></tr></thead><tbody><tr><td>contig has too many ambiguous bases</td><td>34</td><td>sequencing quality</td></tr><tr><td>missing essential feature</td><td>39</td><td>mostly downstream of the above</td></tr><tr><td>feature is too short</td><td>39</td><td><b>checked, not assumed</b> — see below</td></tr><tr><td>too many HSPs</td><td>8</td><td>the nested-call issue</td></tr><tr><td>contig too long</td><td>1</td><td>—</td></tr></tbody></table></div><p class="note">The skill warns that &ldquo;feature is too short&rdquo; dominating means the length bounds are wrong rather than the genomes. So the flagged calls were measured: ORF1 at 474&ndash;1,222 aa against a full length of ~1,700, ORF2 at 129&ndash;487 against ~660. They are genuinely fragments. And <b>20 of the 26 genomes carrying a short feature are already flagged for ambiguous bases</b> — N-runs cropping the call. Only 6 are short without that explanation.</p><div class="verdict">At most ~14 of 622 genomes (about 2%) are poor for reasons the module could fix.</div></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">The point of LowVan is a controlled vocabulary. This is what it cost the free text.</p><div class="tiles"><div class="tile"><div class="v">157</div><div class="l">BV-BRC product strings</div></div><div class="tile"><div class="v">4</div><div class="l">annotation strings</div></div><div class="tile"><div class="v">39×</div><div class="l">collapse</div></div><div class="tile"><div class="v">16</div><div class="l">sequences left out</div></div></div><p class="note">A controlled vocabulary saturates, because the <em>n</em>th genome reuses names the first <em>n</em>−1 established. Free text climbs, because every submitter spells the same protein a new way. Free text reaches 95% of its final vocabulary only at <b>533 genomes</b> and is still climbing; the controlled set gets there at <b>13</b>. At the end of each curve: 10.2 strings per 100 genomes against 0.6 — a <b>15.8-fold</b> difference.</p><p class="note">The typo cluster is the concrete evidence of what the source looks like: <code>caspid protein</code>, <code>capsid protein 2</code>, <code>hypothetical protein 1/2/3</code>.</p></section><p class="src">Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure is reproducible from <code>work/Hepeviridae/</code>; the decisions behind them, each with the measurement that settled it, are in <code>BUILD_NOTES.md</code>. Companion reports: PSSM registry, string collapse, vocabulary saturation.</p></div>

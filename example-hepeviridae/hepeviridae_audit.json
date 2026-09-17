@@ -1,0 +1,101 @@
+{
+"title": "Hepeviridae Coverage Audit",
+"eyebrow": "LowVan · Hepeviridae module · 17 September 2026",
+"h1": "Does the hepatitis E module actually work?",
+"standfirst": "Hepeviridae is the only family in class <em>Alsuviricetes</em> that infects humans: <b>Paslahepevirus balayani</b> is hepatitis E virus, around 20 million infections a year. This is the audit of the module built for it &mdash; what it covers, where its thresholds sit, whether genomes reach it, whether it calls the proteins, and what it cannot do. Every figure here is reproducible from <code>work/Hepeviridae/</code>.",
+"headline_tiles": [
+  ["4", "features declared, 4 with profiles"],
+  ["63", "PSSMs"],
+  ["622/669", "near-complete exemplars routed"],
+  ["0", "duplicate calls on the held-out panel"],
+  ["89.2%", "genomes good quality"],
+  ["39×", "annotation string collapse"]
+],
+"sections": [
+{"num":"01","title":"What the module covers","lede":"One module for the whole family, and that was measured rather than assumed.",
+ "blocks":[
+ {"type":"prose","html":"Every near-complete genome in BV-BRC was bucketed by ORF architecture from its own CDS coordinates. Every genus came out the same shape &mdash; ORF1 nonstructural polyprotein, ORF2 capsid, ORF3 viroporin &mdash; with Rocahepevirus adding a fourth small ORF. So one module is right, with four features."},
+ {"type":"table","headers":["genus","records","≥6 kb","exactly 3 CDS"],
+  "rows":[["Paslahepevirus","25,438","1,297","1,226 of 1,273"],
+          ["unclassified","2,510","176","107 of 165"],
+          ["Avihepevirus","600","23","23 of 23 (100%)"],
+          ["Rocahepevirus","554","47","32 of 47 carry <em>four</em>"],
+          ["Piscihepevirus","100","11","9 of 11 have 2 (ORF3 often unannotated)"],
+          ["Chirohepevirus","55","14","12 of 13"],
+          ["Orthohepevirus","30","5","4 of 5"],
+          ["Hepevirus","7","1","1"]]},
+ {"type":"prose","html":"The family is dominated by one species to a degree that shapes everything downstream: 25,438 of 29,294 records are hepatitis E virus, and <b>the median record in the family is 347 nucleotides</b>. Only 1,574 reach 6 kb."}]},
+
+{"num":"02","title":"How it was built","lede":"12,334 distinct protein sequences, triaged by text rule, then by homology, then by position.",
+ "blocks":[
+ {"type":"table","headers":["step","effect"],
+  "rows":[["text rules","3,331 in range, 8,406 length-outliers, 523 matched no rule"],
+          ["homology rescue","443 of 523 adopted at ≥80% identity over ≥60% of the query; 78 deliberately left out"],
+          ["outlier re-route","26 moved to a different feature (ORF2→ORF3 14, ORF3→ORF2 8, ORF1→ORF3 3, ORF2→ORF1 1)"],
+          ["final collections","ORF1 1,429 · ORF2 1,270 · ORF3 974 · ORF4 45"],
+          ["profiles","21 · 15 · 23 · 4 = 63 PSSMs"]]},
+ {"type":"prose","html":"The re-route step exists because <code>qc_cross_feature.py</code> flagged four mislabels that were all real: 119&ndash;123 aa proteins annotated &ldquo;nonstructural protein&rdquo; or &ldquo;ORF2&rdquo; that are actually ORF3. The length gate had correctly parked them as outliers &mdash; but under the wrong feature. After re-routing, the QC reports no contamination."},
+ {"type":"prose","html":"One alignment was retired: ORF3 cluster 8, 75 aa, <b>100% identical to residues 25&ndash;99</b> of a 122-aa ORF3. A pure internal fragment. The pipeline's own truncation QC missed it because it tests containment in one direction only."}]},
+
+{"num":"03","title":"Where the cutoffs sit","lede":"Each bit_cutoff was set from two measurements: the noise ceiling and the weakest true signal.",
+ "blocks":[
+ {"type":"table","headers":["feature","bit_cutoff","how it was set"],
+  "rows":[["ORF1","800","1,393&ndash;2,504 aa protein; no competitor at this length"],
+          ["ORF2","250","~660 aa capsid"],
+          ["ORF3","90","<b>measured both sides</b> — see below"],
+          ["ORF4_ROCA","60","short accessory, homology-gated collection"]]},
+ {"type":"pre","text":"ORF3, on the 42-genome held-out panel:\n\n  noise ceiling              78.6   a SECOND HSP of the chosen profile,\n                                    query residues 1-64, in ORF2's frame\n  typical cross-frame noise  26-35  present in 29 of 42 genomes\n  weakest genuine call       99.0\n\n  -> any cutoff in 79..99 works; 90 chosen, erring toward specificity"},
+ {"type":"prose","html":"That single spurious HSP, extended outward by the annotator, grew to ORF2's exact span and was <b>the only duplicate call in the whole evaluation</b>. Raising the cutoff to 90 removed it."},
+ {"type":"verdict","kind":"warn","html":"<b>The cost is recorded, not hidden.</b> ORF3 is no longer called on three Chirohepevirus genomes that scored 62.6, 77.2 and 84.9. That is a coverage hole, not a threshold problem — see §07."}]},
+
+{"num":"04","title":"Does it route?","lede":"A genome no rep contig claims is never annotated at all, whatever the profiles can do.",
+ "blocks":[
+ {"type":"tiles","items":[["24","rep contigs"],["622/669","exemplars routed"],["47","unrouted (7.0%)"],["42/42","held-out panel"]]},
+ {"type":"prose","html":"Routing improved 31 → 36 → 42 on the held-out panel as references were added. Six of those 24 rep contigs are the only near-complete genome of their species in BV-BRC, so they reference themselves; they give production coverage but cannot count as validation, and are listed in <code>Rep-Contigs/SELF_REFERENCING.tsv</code>. The honest held-out figure is <b>36 of 42</b>."},
+ {"type":"prose","html":"<b>The remaining gap was deliberately not closed.</b> <code>minimal_refs.py</code> returns a perfectly flat curve — every additional reference buys exactly <b>one</b> genome, because all 47 unrouted exemplars are singleton clusters. Closing it fully means going from 24 to 71 rep contigs to recover 7% of exemplars, and 46 of the 47 are one-off metagenomic hepe-like viruses: Barns Ness breadcrumb sponge hepe-like virus 1, 2 and 3, Wenling fish hepevirus, Dongbei arctic lamprey hepevirus. You cannot reference your way out of a long tail."}]},
+
+{"num":"05","title":"Does it call the proteins?","lede":"In complete genomes the core proteins should appear in near-equal numbers. This is the question nothing else answers.",
+ "blocks":[
+ {"type":"bars","unit":"%","rows":[
+   ["ORF1","100.8",100,"627 calls over 622 routed genomes — a few genomes yield two ORF1 calls"],
+   ["ORF2","99.4",99.4,"618 calls"],
+   ["ORF3","94.9",94.9,"590 calls"],
+   ["ORF4_ROCA","10.6",10.6,"66 calls — Rocahepevirus-only, exactly as declared"]]},
+ {"type":"verdict","kind":"ok","html":"<b>The three core proteins come out within six points of each other.</b> None is invisible in genomes nobody curated. The threshold for investigating a feature is a 20-point lag, so the step 13 gap chase was not needed."}]},
+
+{"num":"06","title":"Are the calls right?","lede":"Held-out genomes, scored against GenBank's own annotation.",
+ "blocks":[
+ {"type":"pre","text":"42 genomes spanning every genus, none of which donated a rep contig\n\n  reference CDS   115\n  called          115\n  matched          93  (81%)\n  duplicates        0\n  unmatched calls  22"},
+ {"type":"prose","html":"The 81% is not a coverage rate: <code>evaluate_module.py</code> matches one-to-one by call index and cannot match a mature peptide to a reference CDS. The numbers that matter are <b>0 duplicates</b> and the misses, which all fall in the two genera named in §07."},
+ {"type":"prose","html":"<b>No feature in this module is non-collinear.</b> The step 6b test was run on one reference genome per genus: every ORF1, ORF2 and ORF3 returns exactly one tblastn HSP in a single reading frame. No readthrough, no frameshift, no cleaved products, so no mature peptides and no SignalP."}]},
+
+{"num":"07","title":"What it cannot do","lede":"Named as prominently as what works.",
+ "blocks":[
+ {"type":"table","headers":["gap","evidence","why it is not fixable by tuning"],
+  "rows":[["ORF3 in Piscihepevirus","0 sequences in the collection; the single Piscihepevirus ORF3 is 225 aa, outside the 70–160 aa window the other 974 define","no threshold makes an absent profile fire"],
+          ["ORF3 in Chirohepevirus","2 sequences against 863 Paslahepevirus","two sequences cannot train a profile at any threshold"],
+          ["Paslahepevirus ORF4","2 unique sequences in BV-BRC","retired to NOT_MODELLED.tsv rather than shipped as a feature that never fires"],
+          ["47 unrouted exemplars","all singleton clusters; flat set-cover curve","see §04"]]},
+ {"type":"prose","html":"<b>ORF4 is two different proteins, and only one is declared.</b> Paslahepevirus ORF4 and Rocahepevirus ORF4 share a positional label and nothing else: over every ORF4-annotated sequence in the dump, the best cross-genus BLASTp alignment is <b>5 residues at e-value 138</b>. The rule is therefore gated on homology to a verified seed rather than on genus — which matters, because an audit of every ORF1 against every other found <b>16 of 1,417 genomes whose BV-BRC genus label contradicts its own sequence</b>, rat and ferret HEV deposited twice under two taxon ids at 96–99% identity."},
+ {"type":"prose","html":"<b>ORF1 is declared whole, and the seven RefSeq domains are not.</b> That annotation descends from Koonin 1992 (PMID 1518855), titled &ldquo;<em>Computer-assisted</em> assignment of functional domains&rdquo; and describing them as <em>putative</em>. Perttilä 2013 (PMID 23255617) found no processing across several expression systems with domain-specific antisera; LeDesma 2023 (PMID 36852909) found the &ldquo;protease&rdquo; cysteines coordinate metal ions structurally. Declaring seven mature peptides would assert seven cleavages the field has not agreed happen. <em>All three citations are model-proposed and carry the <code>PMID_claude_generated</code> flag.</em>"}]},
+
+{"num":"08","title":"What the run found","lede":"Genome quality from the GTO pipeline, never from the flat feature table.",
+ "blocks":[
+ {"type":"tiles","items":[["555","good (89.2%)"],["67","poor (10.8%)"],["0","no features called"],["~2%","attributable to the module"]]},
+ {"type":"table","headers":["flag","n","reading"],
+  "rows":[["contig has too many ambiguous bases","34","sequencing quality"],
+          ["missing essential feature","39","mostly downstream of the above"],
+          ["feature is too short","39","<b>checked, not assumed</b> — see below"],
+          ["too many HSPs","8","the nested-call issue"],
+          ["contig too long","1","—"]]},
+ {"type":"prose","html":"The skill warns that &ldquo;feature is too short&rdquo; dominating means the length bounds are wrong rather than the genomes. So the flagged calls were measured: ORF1 at 474&ndash;1,222 aa against a full length of ~1,700, ORF2 at 129&ndash;487 against ~660. They are genuinely fragments. And <b>20 of the 26 genomes carrying a short feature are already flagged for ambiguous bases</b> — N-runs cropping the call. Only 6 are short without that explanation."},
+ {"type":"verdict","kind":"ok","html":"At most ~14 of 622 genomes (about 2%) are poor for reasons the module could fix."}]},
+
+{"num":"09","title":"What the vocabulary bought","lede":"The point of LowVan is a controlled vocabulary. This is what it cost the free text.",
+ "blocks":[
+ {"type":"tiles","items":[["157","BV-BRC product strings"],["4","annotation strings"],["39×","collapse"],["16","sequences left out"]]},
+ {"type":"prose","html":"A controlled vocabulary saturates, because the <em>n</em>th genome reuses names the first <em>n</em>−1 established. Free text climbs, because every submitter spells the same protein a new way. Free text reaches 95% of its final vocabulary only at <b>533 genomes</b> and is still climbing; the controlled set gets there at <b>13</b>. At the end of each curve: 10.2 strings per 100 genomes against 0.6 — a <b>15.8-fold</b> difference."},
+ {"type":"prose","html":"The typo cluster is the concrete evidence of what the source looks like: <code>caspid protein</code>, <code>capsid protein 2</code>, <code>hypothetical protein 1/2/3</code>."}]}
+],
+"source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure is reproducible from <code>work/Hepeviridae/</code>; the decisions behind them, each with the measurement that settled it, are in <code>BUILD_NOTES.md</code>. Companion reports: PSSM registry, string collapse, vocabulary saturation."
+}

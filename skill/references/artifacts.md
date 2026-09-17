@@ -1,10 +1,14 @@
-# The two reports
+# The four reports
 
-Both are published as Artifacts. They answer the two questions anyone reviewing
-a module actually asks: *what did the annotation cleanup achieve*, and *does the
-module work*.
+All four are published as Artifacts. They answer the questions anyone reviewing
+a module actually asks: *what did the annotation cleanup achieve*, *does the
+module work*, *how fast does the vocabulary saturate*, and *what can it not do*.
 
-Load the `artifact-design` skill before writing either page.
+The **coverage audit is the one that gets skipped**, because unlike the others it
+has no single input file — it reads results from steps 10, 11 and 12 together.
+Build it last, and build it every time.
+
+Load the `artifact-design` skill before writing any of these pages.
 
 ## 1. String collapse — what the cleanup achieved
 
@@ -89,12 +93,75 @@ The `why` entries matter most. `n=1` on its own reads as laziness; *"1 sequence;
 positional label, not a homology group"* reads as a decision. Every `too-few`
 feature deserves one line saying whether it was checked and what was found.
 
-## Both pages
+## 3. Vocabulary saturation — the same claim as a curve
+
+```bash
+python3 scripts/annotation_rarefaction.py --new coverage_eval/ann \
+        --old bvbrc_products.tsv --out rarefaction.json --replicates 100
+python3 scripts/gen_rarefaction.py --rarefaction rarefaction.json \
+        --taxon <Family> --out rarefaction.html
+```
+
+Shuffle the genomes, accumulate distinct annotation strings, average over
+replicates. A controlled vocabulary **saturates**, because the *n*th genome
+reuses names the first *n*−1 established; free text climbs roughly linearly,
+because every submitter spells the same protein a new way.
+
+`--old` is a headerless `genome_id<TAB>product` TSV of the source strings; cut it
+from the dump. Report the **ratio**, not just the picture: strings per 100
+genomes at the end of each curve says how much collapse the vocabulary bought.
+
+Hepeviridae: free text reaches 95% of its final vocabulary at 533 genomes and is
+still climbing, the controlled set at **13**; 10.2 strings per 100 genomes
+against 0.6, a 15.8-fold difference. Matonaviridae, a conserved taxon whose
+submitters were more consistent, gives 13.9 against 3.2 — only 4.3-fold. Both
+numbers are honest; the shape of the curve is the claim, not the ratio alone.
+
+## 4. Coverage audit — the whole module in nine questions
+
+```bash
+python3 scripts/gen_coverage_audit.py --facts <taxon>_audit.json \
+        --out <taxon>-coverage-audit.html
+```
+
+Nine sections, in this order, because it is the order a reviewer asks them in:
+
+| § | question |
+|---|---|
+| 01 | what the module covers |
+| 02 | how it was built |
+| 03 | where the cutoffs sit |
+| 04 | does it route? |
+| 05 | does it call the proteins? |
+| 06 | are the calls right? |
+| 07 | **what it cannot do** |
+| 08 | what the run found |
+| 09 | what the vocabulary bought |
+
+The generator takes a **facts file you write by hand**. That is deliberate: the
+numbers come from `evaluate_module.py`, `check_rep_contigs.py`,
+`evaluate_coverage.py`, `run_gto_eval.py`, `collect_synmap.py` and
+`annotation_rarefaction.py`, and a page that scrapes a working directory for
+whichever of those happen to have run is worse than one whose inputs are
+explicit. Every figure in the output appears in the JSON, so the page can be
+checked against `BUILD_NOTES.md` line by line.
+
+Block types available: `tiles`, `bars`, `table`, `pre`, `prose`, `verdict`
+(`kind` is `ok`, `warn` or `stop`). Copy a shipped facts file and replace the
+numbers rather than starting from the schema.
+
+**Write §07 from the measurements.** "What it cannot do" is the section that
+makes the rest credible. Name the gap, give the number behind it, and say why
+tuning will not close it — a feature with two training sequences is not a
+threshold problem, and saying so is more useful than a percentage. If §07 is
+thin, the audit has not been done.
+
+## All four pages
 
 - put the counts in the page, not in the chat
 - name what is missing as prominently as what works
 - the colours in `assets/registry.css` are a validated categorical pair
   (`#2a78d6` / `#eb6834` light, `#3987e5` / `#d95926` dark) — reuse rather than
   re-pick, and re-run the `dataviz` validator if you change them
-- save the generator alongside the HTML in `Reports/generators/` so the page can
-  be regenerated after the next rebuild
+- save the generator, and the coverage audit's facts file, alongside the HTML in
+  `Reports/generators/` so every page can be regenerated after the next rebuild

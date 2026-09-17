@@ -1,0 +1,99 @@
+{
+"title": "Matonaviridae Coverage Audit",
+"eyebrow": "LowVan · Matonaviridae module · 16 September 2026",
+"h1": "Does the rubella module actually work?",
+"standfirst": "Matonaviridae holds one genus, <b>Rubivirus</b> &mdash; rubella virus, plus Rustrela and Ruhugu. ICTV split it out of Togaviridae, which makes routing a real question rather than a formality. This is the audit of the module built for it: what it covers, where its thresholds sit, whether genomes reach it, whether it calls the proteins, and what it cannot do. Every figure is reproducible from <code>work/</code>.",
+"headline_tiles": [
+  ["7", "features, all with profiles"],
+  ["16", "PSSMs"],
+  ["668/668", "rubivirus genomes routed"],
+  ["0", "duplicate calls"],
+  ["98.6%", "genomes good quality"],
+  ["7/7", "cleaved termini crisp"]
+],
+"sections": [
+{"num":"01","title":"What the module covers","lede":"Two polyproteins and the five mature peptides that tile them exactly.",
+ "blocks":[
+ {"type":"table","headers":["key","type","annotation","bit","length (aa)"],
+  "rows":[["P200","CDS","Nonstructural polyprotein","400","1810–2225"],
+          ["P150","mat_peptide","Protease p150 protein <em>(new string)</em>","250","1020–1370"],
+          ["P90","mat_peptide","RNA-dependent RNA polymerase","200","770–875"],
+          ["P110","CDS","Structural polyprotein","250","995–1205"],
+          ["C","mat_peptide","Nucleocapsid protein","100","280–350"],
+          ["E2","mat_peptide","Mature envelope glycoprotein E2","90","245–345"],
+          ["E1","mat_peptide","Mature envelope glycoprotein E1","150","445–515"]]},
+ {"type":"prose","html":"All three species carry the same seven proteins in the same order, so one module is right. The mature peptides <b>tile their precursors exactly</b>, with nothing removed:"},
+ {"type":"pre","text":"                p150 + p90  = p200     C  + E2  + E1  = p110\n  rubella       1301 + 815  = 2116     300 + 282 + 481 = 1063\n  Rustrela      1082 + 828  = 1910     333 + 324 + 490 = 1147\n  Ruhugu        1237 + 811  = 2048     317 + 295 + 486 = 1098"},
+ {"type":"prose","html":"That exact tiling is why the module needs no signal-peptide feature and no SignalP: p200 is cut <b>once</b>, and both structural signal sequences are retained on the upstream product."}]},
+
+{"num":"02","title":"How it was built","lede":"1,254 training sequences in 7 collections from 681 genomes.",
+ "blocks":[
+ {"type":"table","headers":["feature","sequences","leftover","profiles"],
+  "rows":[["P200","198","20","0 leftover profiles needed"],["P150","194","46","—"],["P90","124","10","1"],
+          ["P110","203","86","0"],["C","140","37","0"],["E2","158","9","2"],["E1","237","617","1"]]},
+ {"type":"prose","html":"The counts are low because the taxon is conserved: <b>681 genomes collapse to 32 distinct genome types</b> at 95% nucleotide identity. This is the opposite problem to a divergent family — there is little diversity to train on, and little needed."}]},
+
+{"num":"03","title":"Where the cutoffs sit","lede":"Seven features, several of them short mature peptides sharing coordinates with their precursor.",
+ "blocks":[
+ {"type":"prose","html":"E2 runs at 90 bits and C at 100 — low numbers that are safe only because the collections are clean and the length windows tight. The divergent species clear the floors comfortably: Rustrela E1 reaches 513 bits, Ruhugu 596."},
+ {"type":"prose","html":"The real hazard in a module like this is not a wrong threshold but a wrong <b>extension flag</b>. A mature peptide that keeps <code>upstream_ext: 1</code> scans back to its precursor's start codon and is emitted on the precursor's coordinates. Every terminus here was assigned from its own biology:"},
+ {"type":"table","headers":["terminus","up/down","what it is"],
+  "rows":[["p200 both ends","1 / 1","own Met, own terminator"],
+          ["p150 N","1","<em>is</em> p200's initiating Met"],
+          ["p150 C / p90 N","0 / 0","the SRGG↓GTCA protease site"],
+          ["p90 C","1","p200's own terminator"],
+          ["C N","1","<em>is</em> p110's initiating Met"],
+          ["C C / E2 N","0 / 0","signalase cut before E2"],
+          ["E2 C / E1 N","0 / 0","signalase cut before E1"],
+          ["E1 C","1","p110's own terminator"]]}]},
+
+{"num":"04","title":"Does it route?","lede":"The question that matters most here, because ICTV split this family out of Togaviridae.",
+ "blocks":[
+ {"type":"tiles","items":[["4","rep contigs"],["668/668","rubivirus genomes routed"],["100%","every length band"],["✓","rubella does not route to Togaviridae"]]},
+ {"type":"prose","html":"The Togaviridae and Matonaviridae modules were deliberately installed in <b>one shared checkout</b>, because that is the only way to test the split. Verified: Barmah Forest virus goes to <code>Togaviridae.7.dna</code>, rubella to <code>Matonaviridae.1.dna</code>."},
+ {"type":"prose","html":"Four divergent records route and are called but contribute no training data — Ruffle rubivirus A, Eaulepmac virus 1, Rumple rubivirus A and Tetronarce matonavirus, fish and reptile rubi-like genomes. They are not dead ends: on Ruffle the module resolves p90, C, p110, E2 and E1, and its p110 call of 1,055 aa against a source length of 1,054 is a one-residue disagreement, not a failure."}]},
+
+{"num":"05","title":"Does it call the proteins?","lede":"32 near-complete exemplars, 23 routed.",
+ "blocks":[
+ {"type":"bars","unit":"","rows":[
+   ["p200","23",100,"23 of 23 routed exemplars"],
+   ["p90","22",95.7,"22"],
+   ["p150","20",87.0,"20"],
+   ["p110","20",87.0,"20"],
+   ["C","20",87.0,"20"],
+   ["E2","20",87.0,"20"],
+   ["E1","20",87.0,"20"]]},
+ {"type":"verdict","kind":"ok","html":"The seven features come out within four calls of each other. No protein is invisible."}]},
+
+{"num":"06","title":"Are the calls right?","lede":"Held-out genomes, and the check that matters most for a polyprotein module.",
+ "blocks":[
+ {"type":"pre","text":"22 genomes across every rubella genotype\n\n  reference CDS   44\n  called          45\n  matched         44  (100%)\n  duplicates       0\n  unmatched calls  1"},
+ {"type":"prose","html":"The single unmatched call is PP059123, where p200 is called twice. <b>0 duplicates.</b>"},
+ {"type":"prose","html":"<b>Every cleaved terminus is a single spike at +0</b>, measured over 217 annotated near-complete genomes. That is the check that catches a <code>cleave=</code> boundary drifting with whatever the alignment happened to do:"},
+ {"type":"pre","text":"p150 start vs p200 start    +0 in 217/217   100%\np90  start vs p150 end      +0 in 212/217    98%\np90  end   vs p200 end      +0 in 215/217    99%\nC    start vs p110 start    +0 in 217/217   100%\nE2   start vs C end         +0 in 213/217    98%\nE1   start vs E2 end        +0 in 217/217   100%\nE1   end   vs p110 end      +0 in 217/217   100%"},
+ {"type":"prose","html":"Two cut sites were taken from the literature rather than predicted: the p150/p90 site <code>SRGG↓GTCA</code> (PMID 10799588), observed as <code>...PLSRGG</code> in 161 sequences and <code>GTCAAT</code> in 87; and the E2 C-terminus, where the <code>PPAY</code> late domain sits at position 278–281 of a 282-aa E2 (PMID 39207105), observed as <code>...PAYG</code> in 127."}]},
+
+{"num":"07","title":"What it cannot do","lede":"One limitation, and it is not fixable from existing data.",
+ "blocks":[
+ {"type":"verdict","kind":"warn","html":"<b>Ruhugu's C/E2 junction lands 54 codons early.</b> <em>Rubivirus ruteetense</em> has two genomes in BV-BRC and they are <b>sequence duplicates</b>, so after dedup there is exactly one unique sequence per feature and no profile of its own. Ruhugu is still called, by the rubella profiles, but that junction is wrong. No threshold fixes this; it needs a second Ruhugu genome to exist."},
+ {"type":"prose","html":"Nine genomes of the 32 near-complete exemplars do not route. The four divergent fish and reptile rubi-like records in §04 are recognised but contribute no training data; if more appear they may eventually justify a module of their own."}]},
+
+{"num":"08","title":"What the run found","lede":"Genome quality from the GTO pipeline.",
+ "blocks":[
+ {"type":"tiles","items":[["214","good (98.6%)"],["3","poor"],["217","scored"],["0","attributable to the module"]]},
+ {"type":"table","headers":["flag","n","reading"],
+  "rows":[["contig has too many ambiguous bases","3","sequencing quality"],
+          ["too many HSPs for Protease p150 protein","2","p150 called twice on one genome"],
+          ["too many HSPs for Nonstructural polyprotein","1","same shape"]]},
+ {"type":"verdict","kind":"ok","html":"All three poor genomes carry the ambiguous-bases flag. <b>None is poor for a reason the module could fix.</b>"}]},
+
+{"num":"09","title":"What the vocabulary bought","lede":"Seven annotation strings against what BV-BRC used for the same proteins.",
+ "blocks":[
+ {"type":"tiles","items":[["58","BV-BRC product strings"],["7","annotation strings"],["8×","collapse"],["1","genuinely new string"]]},
+ {"type":"table","headers":["feature","occurrences","source strings absorbed"],
+  "rows":[["E1","4,674","20"],["P110","407","12"],["P200","253","11"],["E2","300","5"],["P90","278","5"],["P150","266","4"],["C","369","1"]]},
+ {"type":"prose","html":"Six of the seven annotations were <b>reused</b> from the existing controlled vocabulary — the point of the exercise. Only <code>Protease p150 protein</code> is new. At the end of the rarefaction curves: 13.9 strings per 100 genomes for free text against 3.2 for the module, a 4.3-fold difference. Lower than a diverse family would give, because this taxon is conserved and its submitters were comparatively consistent."},
+ {"type":"prose","html":"<em>All seven citations in this module are model-proposed and carry the <code>PMID_claude_generated</code> flag; none has been confirmed by a curator. PMID 9557742 (p200 is cut once) and 2214022 (the E2 signal sequence stays on the capsid) carry the most weight.</em>"}]}
+],
+"source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure is reproducible from the Matonaviridae working directory; the decisions behind them are in <code>BUILD_NOTES.md</code>. Companion reports: PSSM registry, string collapse, vocabulary saturation."
+}

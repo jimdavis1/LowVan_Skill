@@ -605,11 +605,22 @@ protein in genomes nobody curated.
 
 ### 12. Publish the artifacts
 
+**Four pages, not three.** The coverage audit is the one that gets forgotten,
+because it has no single input file and reads numbers from steps 10, 11 and 12
+at once. Rhabdoviridae and Togaviridae each shipped one and Matonaviridae did
+not, purely because this list used to stop at three.
+
 ```bash
 python3 scripts/collect_synmap.py .                       # then gen the collapse page
 python3 scripts/collect_registry.py --workdir . --out registry.json
 python3 scripts/gen_registry.py --registry registry.json --taxon <Family> \
     --notes notes.json --out registry.html
+python3 scripts/annotation_rarefaction.py --new coverage_eval/ann \
+    --old bvbrc_products.tsv --out rarefaction.json --replicates 100
+python3 scripts/gen_rarefaction.py --rarefaction rarefaction.json \
+    --taxon <Family> --out rarefaction.html
+python3 scripts/gen_coverage_audit.py --facts <taxon>_audit.json \
+    --out coverage-audit.html          # <- write the facts file by hand
 ```
 
 - **String collapse** — how many BV-BRC strings each annotation absorbs. This is
@@ -629,6 +640,24 @@ python3 scripts/gen_registry.py --registry registry.json --taxon <Family> \
   each curve says how much collapse the vocabulary actually bought.
 - **PSSM registry** — every declared feature, its profiles, and what fraction of
   its own collection it recovers.
+- **Coverage audit** — the whole module in nine questions: what it covers, how it
+  was built, where the cutoffs sit, does it route, does it call the proteins, are
+  the calls right, what it cannot do, what the run found, what the vocabulary
+  bought. This is the page a reviewer reads first, and the only one that puts the
+  limitations beside the results.
+
+  `gen_coverage_audit.py` is driven by a **facts file you write**, not by
+  scraping the working directory — the numbers come from six different tools and
+  a page that silently picks up whatever files are lying around is worse than one
+  whose inputs are written down. Copy a shipped facts file from
+  `example-hepeviridae/` or `example-matonaviridae/` and replace the numbers.
+  Every figure in the rendered page appears in that JSON, so the page can be
+  audited against `BUILD_NOTES.md` line by line.
+
+  **Section 07 is the point of the exercise.** "What it cannot do" is written
+  from the measurements, names the gap, and says why tuning will not close it —
+  a coverage hole with two training sequences is not a threshold problem. A page
+  without a populated §07 has not been written honestly.
 
 Write the `--notes` prose. Auto-generated counts without commentary explain
 nothing. `references/artifacts.md` has the note schema and what to say.
@@ -795,7 +824,8 @@ All take `--workdir` pointing at the module working directory, which looks like:
   features you know you did not build
 - `check_cleaved_ends.py` shows a single spike at every `cleave=` terminus
 - no feature trails its neighbours by 20 points with the cause unexplained
-- the artifacts published, with prose
+- **all four** artifacts published, with prose: PSSM registry, string collapse,
+  vocabulary rarefaction and the coverage audit
 
 If you cannot call all of a taxon's proteins, you do not have a module for that
 taxon. Say so and record why, rather than shipping a module that silently

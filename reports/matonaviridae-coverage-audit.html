@@ -1,0 +1,127 @@
+<title>Matonaviridae Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan · Matonaviridae module · 16 September 2026</div><h1>Does the rubella module actually work?</h1><p class="stand">Matonaviridae holds one genus, <b>Rubivirus</b> &mdash; rubella virus, plus Rustrela and Ruhugu. ICTV split it out of Togaviridae, which makes routing a real question rather than a formality. This is the audit of the module built for it: what it covers, where its thresholds sit, whether genomes reach it, whether it calls the proteins, and what it cannot do. Every figure is reproducible from <code>work/</code>.</p><div class="tiles"><div class="tile"><div class="v">7</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">16</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">668/668</div><div class="l">rubivirus genomes routed</div></div><div class="tile"><div class="v">0</div><div class="l">duplicate calls</div></div><div class="tile"><div class="v">98.6%</div><div class="l">genomes good quality</div></div><div class="tile"><div class="v">7/7</div><div class="l">cleaved termini crisp</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">Two polyproteins and the five mature peptides that tile them exactly.</p><div class="scroll"><table><thead><tr><th>key</th><th>type</th><th>annotation</th><th>bit</th><th>length (aa)</th></tr></thead><tbody><tr><td>P200</td><td>CDS</td><td>Nonstructural polyprotein</td><td>400</td><td>1810–2225</td></tr><tr><td>P150</td><td>mat_peptide</td><td>Protease p150 protein &lt;em&gt;(new string)&lt;/em&gt;</td><td>250</td><td>1020–1370</td></tr><tr><td>P90</td><td>mat_peptide</td><td>RNA-dependent RNA polymerase</td><td>200</td><td>770–875</td></tr><tr><td>P110</td><td>CDS</td><td>Structural polyprotein</td><td>250</td><td>995–1205</td></tr><tr><td>C</td><td>mat_peptide</td><td>Nucleocapsid protein</td><td>100</td><td>280–350</td></tr><tr><td>E2</td><td>mat_peptide</td><td>Mature envelope glycoprotein E2</td><td>90</td><td>245–345</td></tr><tr><td>E1</td><td>mat_peptide</td><td>Mature envelope glycoprotein E1</td><td>150</td><td>445–515</td></tr></tbody></table></div><p class="note">All three species carry the same seven proteins in the same order, so one module is right. The mature peptides <b>tile their precursors exactly</b>, with nothing removed:</p><pre class="mono">                p150 + p90  = p200     C  + E2  + E1  = p110
+  rubella       1301 + 815  = 2116     300 + 282 + 481 = 1063
+  Rustrela      1082 + 828  = 1910     333 + 324 + 490 = 1147
+  Ruhugu        1237 + 811  = 2048     317 + 295 + 486 = 1098</pre><p class="note">That exact tiling is why the module needs no signal-peptide feature and no SignalP: p200 is cut <b>once</b>, and both structural signal sequences are retained on the upstream product.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">1,254 training sequences in 7 collections from 681 genomes.</p><div class="scroll"><table><thead><tr><th>feature</th><th>sequences</th><th>leftover</th><th>profiles</th></tr></thead><tbody><tr><td>P200</td><td>198</td><td>20</td><td>0 leftover profiles needed</td></tr><tr><td>P150</td><td>194</td><td>46</td><td>—</td></tr><tr><td>P90</td><td>124</td><td>10</td><td>1</td></tr><tr><td>P110</td><td>203</td><td>86</td><td>0</td></tr><tr><td>C</td><td>140</td><td>37</td><td>0</td></tr><tr><td>E2</td><td>158</td><td>9</td><td>2</td></tr><tr><td>E1</td><td>237</td><td>617</td><td>1</td></tr></tbody></table></div><p class="note">The counts are low because the taxon is conserved: <b>681 genomes collapse to 32 distinct genome types</b> at 95% nucleotide identity. This is the opposite problem to a divergent family — there is little diversity to train on, and little needed.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Seven features, several of them short mature peptides sharing coordinates with their precursor.</p><p class="note">E2 runs at 90 bits and C at 100 — low numbers that are safe only because the collections are clean and the length windows tight. The divergent species clear the floors comfortably: Rustrela E1 reaches 513 bits, Ruhugu 596.</p><p class="note">The real hazard in a module like this is not a wrong threshold but a wrong <b>extension flag</b>. A mature peptide that keeps <code>upstream_ext: 1</code> scans back to its precursor's start codon and is emitted on the precursor's coordinates. Every terminus here was assigned from its own biology:</p><div class="scroll"><table><thead><tr><th>terminus</th><th>up/down</th><th>what it is</th></tr></thead><tbody><tr><td>p200 both ends</td><td>1 / 1</td><td>own Met, own terminator</td></tr><tr><td>p150 N</td><td>1</td><td><em>is</em> p200's initiating Met</td></tr><tr><td>p150 C / p90 N</td><td>0 / 0</td><td>the SRGG↓GTCA protease site</td></tr><tr><td>p90 C</td><td>1</td><td>p200&#x27;s own terminator</td></tr><tr><td>C N</td><td>1</td><td><em>is</em> p110's initiating Met</td></tr><tr><td>C C / E2 N</td><td>0 / 0</td><td>signalase cut before E2</td></tr><tr><td>E2 C / E1 N</td><td>0 / 0</td><td>signalase cut before E1</td></tr><tr><td>E1 C</td><td>1</td><td>p110&#x27;s own terminator</td></tr></tbody></table></div></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">The question that matters most here, because ICTV split this family out of Togaviridae.</p><div class="tiles"><div class="tile"><div class="v">4</div><div class="l">rep contigs</div></div><div class="tile"><div class="v">668/668</div><div class="l">rubivirus genomes routed</div></div><div class="tile"><div class="v">100%</div><div class="l">every length band</div></div><div class="tile"><div class="v">✓</div><div class="l">rubella does not route to Togaviridae</div></div></div><p class="note">The Togaviridae and Matonaviridae modules were deliberately installed in <b>one shared checkout</b>, because that is the only way to test the split. Verified: Barmah Forest virus goes to <code>Togaviridae.7.dna</code>, rubella to <code>Matonaviridae.1.dna</code>.</p><p class="note">Four divergent records route and are called but contribute no training data — Ruffle rubivirus A, Eaulepmac virus 1, Rumple rubivirus A and Tetronarce matonavirus, fish and reptile rubi-like genomes. They are not dead ends: on Ruffle the module resolves p90, C, p110, E2 and E1, and its p110 call of 1,055 aa against a source length of 1,054 is a one-residue disagreement, not a failure.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">32 near-complete exemplars, 23 routed.</p><div class="bars"><div class="bar"><div class="bl">p200</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">23</div><div class="bn">23 of 23 routed exemplars</div></div><div class="bar"><div class="bl">p90</div><div class="bt"><i style="width:95.70%"></i></div><div class="bv">22</div><div class="bn">22</div></div><div class="bar"><div class="bl">p150</div><div class="bt"><i style="width:87.00%"></i></div><div class="bv">20</div><div class="bn">20</div></div><div class="bar"><div class="bl">p110</div><div class="bt"><i style="width:87.00%"></i></div><div class="bv">20</div><div class="bn">20</div></div><div class="bar"><div class="bl">C</div><div class="bt"><i style="width:87.00%"></i></div><div class="bv">20</div><div class="bn">20</div></div><div class="bar"><div class="bl">E2</div><div class="bt"><i style="width:87.00%"></i></div><div class="bv">20</div><div class="bn">20</div></div><div class="bar"><div class="bl">E1</div><div class="bt"><i style="width:87.00%"></i></div><div class="bv">20</div><div class="bn">20</div></div></div><div class="verdict">The seven features come out within four calls of each other. No protein is invisible.</div></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">Held-out genomes, and the check that matters most for a polyprotein module.</p><pre class="mono">22 genomes across every rubella genotype
+
+  reference CDS   44
+  called          45
+  matched         44  (100%)
+  duplicates       0
+  unmatched calls  1</pre><p class="note">The single unmatched call is PP059123, where p200 is called twice. <b>0 duplicates.</b></p><p class="note"><b>Every cleaved terminus is a single spike at +0</b>, measured over 217 annotated near-complete genomes. That is the check that catches a <code>cleave=</code> boundary drifting with whatever the alignment happened to do:</p><pre class="mono">p150 start vs p200 start    +0 in 217/217   100%
+p90  start vs p150 end      +0 in 212/217    98%
+p90  end   vs p200 end      +0 in 215/217    99%
+C    start vs p110 start    +0 in 217/217   100%
+E2   start vs C end         +0 in 213/217    98%
+E1   start vs E2 end        +0 in 217/217   100%
+E1   end   vs p110 end      +0 in 217/217   100%</pre><p class="note">Two cut sites were taken from the literature rather than predicted: the p150/p90 site <code>SRGG↓GTCA</code> (PMID 10799588), observed as <code>...PLSRGG</code> in 161 sequences and <code>GTCAAT</code> in 87; and the E2 C-terminus, where the <code>PPAY</code> late domain sits at position 278–281 of a 282-aa E2 (PMID 39207105), observed as <code>...PAYG</code> in 127.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">One limitation, and it is not fixable from existing data.</p><div class="verdict warn"><b>Ruhugu's C/E2 junction lands 54 codons early.</b> <em>Rubivirus ruteetense</em> has two genomes in BV-BRC and they are <b>sequence duplicates</b>, so after dedup there is exactly one unique sequence per feature and no profile of its own. Ruhugu is still called, by the rubella profiles, but that junction is wrong. No threshold fixes this; it needs a second Ruhugu genome to exist.</div><p class="note">Nine genomes of the 32 near-complete exemplars do not route. The four divergent fish and reptile rubi-like records in §04 are recognised but contribute no training data; if more appear they may eventually justify a module of their own.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Genome quality from the GTO pipeline.</p><div class="tiles"><div class="tile"><div class="v">214</div><div class="l">good (98.6%)</div></div><div class="tile"><div class="v">3</div><div class="l">poor</div></div><div class="tile"><div class="v">217</div><div class="l">scored</div></div><div class="tile"><div class="v">0</div><div class="l">attributable to the module</div></div></div><div class="scroll"><table><thead><tr><th>flag</th><th>n</th><th>reading</th></tr></thead><tbody><tr><td>contig has too many ambiguous bases</td><td>3</td><td>sequencing quality</td></tr><tr><td>too many HSPs for Protease p150 protein</td><td>2</td><td>p150 called twice on one genome</td></tr><tr><td>too many HSPs for Nonstructural polyprotein</td><td>1</td><td>same shape</td></tr></tbody></table></div><div class="verdict">All three poor genomes carry the ambiguous-bases flag. <b>None is poor for a reason the module could fix.</b></div></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">Seven annotation strings against what BV-BRC used for the same proteins.</p><div class="tiles"><div class="tile"><div class="v">58</div><div class="l">BV-BRC product strings</div></div><div class="tile"><div class="v">7</div><div class="l">annotation strings</div></div><div class="tile"><div class="v">8×</div><div class="l">collapse</div></div><div class="tile"><div class="v">1</div><div class="l">genuinely new string</div></div></div><div class="scroll"><table><thead><tr><th>feature</th><th>occurrences</th><th>source strings absorbed</th></tr></thead><tbody><tr><td>E1</td><td>4,674</td><td>20</td></tr><tr><td>P110</td><td>407</td><td>12</td></tr><tr><td>P200</td><td>253</td><td>11</td></tr><tr><td>E2</td><td>300</td><td>5</td></tr><tr><td>P90</td><td>278</td><td>5</td></tr><tr><td>P150</td><td>266</td><td>4</td></tr><tr><td>C</td><td>369</td><td>1</td></tr></tbody></table></div><p class="note">Six of the seven annotations were <b>reused</b> from the existing controlled vocabulary — the point of the exercise. Only <code>Protease p150 protein</code> is new. At the end of the rarefaction curves: 13.9 strings per 100 genomes for free text against 3.2 for the module, a 4.3-fold difference. Lower than a diverse family would give, because this taxon is conserved and its submitters were comparatively consistent.</p><p class="note"><em>All seven citations in this module are model-proposed and carry the <code>PMID_claude_generated</code> flag; none has been confirmed by a curator. PMID 9557742 (p200 is cut once) and 2214022 (the E2 signal sequence stays on the capsid) carry the most weight.</em></p></section><p class="src">Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure is reproducible from the Matonaviridae working directory; the decisions behind them are in <code>BUILD_NOTES.md</code>. Companion reports: PSSM registry, string collapse, vocabulary saturation.</p></div>
