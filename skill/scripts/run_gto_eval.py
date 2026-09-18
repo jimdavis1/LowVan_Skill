@@ -98,7 +98,7 @@ def main():
                 print("    %d/%d" % (done, len(gtos)), flush=True)
 
     #  tabulate
-    good = poor = unann = 0
+    good = poor = unann = featflagged = 0
     flags = collections.Counter()
     ffl = collections.Counter()
     rows = []
@@ -118,19 +118,32 @@ def main():
         allf = gf + cf
         for x in allf:
             flags[x.split(";")[0].split(":")[0].strip()] += 1
+        hasff = any(f.get("feature_quality_flags") for f in feat)
         if nf == 0:
             unann += 1
         elif allf:
             poor += 1
         else:
             good += 1
+            if hasff: featflagged += 1
         rows.append((b, nf, len(gf), len(cf), "; ".join(allf)[:200]))
 
     tot = good + poor + unann
     print("\n  scored %d genome(s)" % tot)
     if tot:
-        print("    good (no flags)       %5d  %5.1f%%" % (good, 100.0*good/tot))
-        print("    poor (flagged)        %5d  %5.1f%%" % (poor, 100.0*poor/tot))
+        #  The verdict is genome+contig flags only; feature-level flags are
+        #  reported but do not disqualify a genome. Say so in the label. A
+        #  Betaflexiviridae_MP genome with its replicase called 2,254 aa
+        #  against a max of 2,195 and its movement protein 563 against 498
+        #  counts as "good", and "good (no flags)" made that read as a genome
+        #  with nothing wrong with it.
+        print("    good (no genome/contig flags) %5d  %5.1f%%" % (good, 100.0*good/tot))
+        print("    poor (genome/contig flagged)  %5d  %5.1f%%" % (poor, 100.0*poor/tot))
+        if featflagged:
+            print("      of which %d carry feature-level flags -- counted below,"
+                  " but not against the verdict" % featflagged)
+            print("    genuinely clean               %5d  %5.1f%%"
+                  % (good - featflagged, 100.0 * (good - featflagged) / tot))
         print("    no features called    %5d  %5.1f%%" % (unann, 100.0*unann/tot))
     print("\n  genome/contig flags, most common first:")
     for k, v in flags.most_common(15):

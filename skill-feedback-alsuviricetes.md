@@ -570,3 +570,43 @@ missed once, and the difference was nothing but whether I remembered to look.
 **Check the outliers file per genus before accepting any window.** A genus
 whose protein is genuinely a different size does not announce itself; it just
 goes missing, and every downstream number looks fine.
+
+### 11. "good (no flags)" counted only some of the flags
+
+`run_gto_eval.py` decides the verdict on `allf = gf + cf` — genome and contig
+flags. Feature-level flags are tallied, printed four lines below, and ignored.
+So a genome whose replicase is called 2,254 aa against a `max_len` of 2,195
+and whose movement protein is 563 against 498 printed under **`good (no
+flags)`**, which is not a rounding issue but a false statement: there were
+flags.
+
+It matters most where it is least visible. Betaflexiviridae_MP Citrivirus had
+its coat protein flagged "too long" at 358 and 363 aa — against a `max_len`
+computed from a collection that had *excluded* Citrivirus — and those genomes
+were then reported good, because the flag did not count. Two layers of
+internal consistency and no contact with the biology.
+
+Scored as "no flags of any kind", the three modules converge and become
+comparable for the first time:
+
+| module | reported | genuinely clean |
+|---|---|---|
+| Tobamovirus | 90.4% | 89.4% |
+| Hepeviridae | 89.2% | 89.1% |
+| Betaflexiviridae_MP | 92.7% | 88.5% |
+
+Betaflexiviridae_MP moves most: it looked like the best of the three and is
+the middle one. The label now reads `good (no genome/contig flags)`, with the
+feature-flagged count and a `genuinely clean` line under it.
+
+**The pattern across today's eleven findings is one thing, not eleven.** Every
+single one produced a number that was internally consistent, reproducible, and
+describing something other than what its label said: a 0% score that read as
+bad length bounds, nine MISLABEL flags recommending the deletion of good
+clusters, "no features called: 0" beside "5 annotation failures", a coat
+protein profile scoring 451 bits while suppressing the feature it modelled, a
+403 that looked like expired auth, a build reporting "3 features built" having
+built seven, and a quality verdict that excluded the flags it printed. None of
+them threw an error. The defence is not more checks of the same kind — it is
+checks that compare a thing against its *peers* rather than against itself,
+and labels that say exactly what was counted.
