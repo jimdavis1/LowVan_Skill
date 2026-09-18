@@ -8,6 +8,13 @@ collections/
 Alignments/
 Rep-Contigs/
 Extracted/
+
+# ...except under modules/, where the rep contigs ARE the deliverable: they are
+# what routes a genome to the module and they cannot be regenerated from
+# anything else in the repo. (The parent directory has to be re-included before
+# the files can be; git cannot re-include a file under an excluded directory.)
+!modules/*/Rep-Contigs/
+!modules/*/Rep-Contigs/*
 Contigs/
 coverage_eval/
 *.blastdb

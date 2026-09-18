@@ -1,0 +1,98 @@
+{
+  "Hepeviridae.1.dna": {
+    "genome_ids": "M73218",
+    "genome_name": "Orthohepevirus A"
+  },
+  "Hepeviridae.10.dna": {
+    "genome_ids": "MW249011",
+    "genome_name": "Bat hepevirus DesRot/Peru/API17_F_DrHEV"
+  },
+  "Hepeviridae.11.dna": {
+    "genome_ids": "NC_015521",
+    "genome_name": "Cutthroat trout virus"
+  },
+  "Hepeviridae.12.dna": {
+    "genome_ids": "NC_040835",
+    "genome_name": "Rana hepevirus agile forg/RD6/2015/HUN"
+  },
+  "Hepeviridae.13.dna": {
+    "genome_ids": "NC_040710",
+    "genome_name": "Sogatella furcifera hepe-like virus"
+  },
+  "Hepeviridae.14.dna": {
+    "genome_ids": "OR713884",
+    "genome_name": "Greater white-toothed shrew hepatitis E virus KS12-1272"
+  },
+  "Hepeviridae.15.dna": {
+    "genome_ids": "KX513953",
+    "genome_name": "Orthohepevirus D"
+  },
+  "Hepeviridae.16.dna": {
+    "genome_ids": "ON009841",
+    "genome_name": "Rocahepevirus ratti Nmr99P"
+  },
+  "Hepeviridae.17.dna": {
+    "genome_ids": "OR248815",
+    "genome_name": "Tuatara cloaca-associated hepevirus-1 B1Seq24"
+  },
+  "Hepeviridae.18.dna": {
+    "genome_ids": "OR232336",
+    "genome_name": "Rodent hepevirus Cl-2018QH/WL48"
+  },
+  "Hepeviridae.19.dna": {
+    "genome_ids": "OP933684",
+    "genome_name": "Fish-associated hepevirus fi100hepe1"
+  },
+  "Hepeviridae.2.dna": {
+    "genome_ids": "AF082843",
+    "genome_name": "Swine hepatitis E virus Meng"
+  },
+  "Hepeviridae.20.dna": {
+    "genome_ids": "MG021328",
+    "genome_name": "Necromys lasiurus Hepatitis E virus"
+  },
+  "Hepeviridae.21.dna": {
+    "genome_ids": "MT210623",
+    "genome_name": "Wenzhou Pipistrellus abramus orthohepevirus 1"
+  },
+  "Hepeviridae.22.dna": {
+    "genome_ids": "OQ715544",
+    "genome_name": "Wufeng shrew hepe-like virus 1"
+  },
+  "Hepeviridae.23.dna": {
+    "genome_ids": "MG020023",
+    "genome_name": "Orthohepevirus C"
+  },
+  "Hepeviridae.24.dna": {
+    "genome_ids": "KJ562187",
+    "genome_name": "Bat hepevirus"
+  },
+  "Hepeviridae.3.dna": {
+    "genome_ids": "AB573435",
+    "genome_name": "Orthohepevirus A JBOAR135-Shiz09"
+  },
+  "Hepeviridae.4.dna": {
+    "genome_ids": "KJ496143",
+    "genome_name": "camel hepatitis E virus genotype 7a"
+  },
+  "Hepeviridae.5.dna": {
+    "genome_ids": "KX589065",
+    "genome_name": "Orthohepevirus A little egret/kocsag02/2014"
+  },
+  "Hepeviridae.6.dna": {
+    "genome_ids": "GU345042",
+    "genome_name": "Hepatitis E virus rat/R63/DEU/2009"
+  },
+  "Hepeviridae.7.dna": {
+    "genome_ids": "JN998606",
+    "genome_name": "Ferret hepatitis E virus FRHEV4"
+  },
+  "Hepeviridae.8.dna": {
+    "genome_ids": "AY535004",
+    "genome_name": "Orthohepevirus B"
+  },
+  "Hepeviridae.9.dna": {
+    "genome_ids": "JQ001749",
+    "genome_name": "Orthohepevirus D"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "REP126": {"anno": "Nonstructural polyprotein",
+             "flags": ["-x"]},
+  "REP183": {"anno": "Nonstructural polyprotein",
+             "flags": ["-x"]},
+  "MP":     {"anno": "Movement protein"},
+  "CP":     {"anno": "Nucleocapsid protein"}
+}

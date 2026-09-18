@@ -1,5 +1,5 @@
---- /tmp/upstream_annotate_by_viral_pssm.pl	2026-09-16 12:03:37
-+++ LowVan_Skill/annotate/annotate_by_viral_pssm.pl	2026-09-15 15:40:02
+--- ../Viral_Annotation/annotate_by_viral_pssm.pl.orig	2026-09-17 08:27:03
++++ annotate/annotate_by_viral_pssm.pl	2026-09-17 19:16:44
 @@ -27,6 +27,8 @@
  		-mcb Minimum contig bitscore to enable annotation (d = 150) #otherwise the genome is rejected.
  
@@ -63,7 +63,7 @@
  
  	#   Select the best pssm per protein
  	#   If this begins to break down, new reference pssms can be added to the 
-@@ -277,13 +297,33 @@
+@@ -277,14 +297,43 @@
  		my  ($results, $hsp_best_bit) = matching_tblastn_hsps_json($pssm_blast, $bit_cutoff, $cov_cutoff);
  		print STDERR "\t$name\t$hsp_best_bit\n"; 
  
@@ -96,12 +96,23 @@
 +		next;
 +	}
  	print STDERR "\n\tChoosing $best_pssm\t$best_bit\n\n"; 
++	#  Nothing cleared threshold for this feature on this genome. Say so and
++	#  move on rather than dereferencing an undef result set: with the empty-list
++	#  writer guards already in place a genome that routes and matches nothing is
++	#  a legitimate empty result, and this is the last place it could still die.
++	unless (defined $best_pssm && $best_results)
++	{
++		print STDERR "\n\tNo profile cleared threshold for $pssmdir on this genome\n\n";
++		next;
++	}
  	my $nhsps = scalar @$best_results;
  	for my $i (0..($nhsps -1))
-@@ -318,8 +358,26 @@
+ 	{		
+@@ -317,9 +366,27 @@
+ 		###  The end extension loop below, scans in the 3' direction for the next stop codon.
  		###  if $downstream_ext is declared,  it will get new gene coordinates with the stop
  		###  codon being included in the gene coordinates by convention. 		
- 
++
 +		#  Decide once whether this match's internal stop(s) are to be kept.
 +		#  $readthrough gates BOTH the crop below and the scan-to-stop above it:
 +		#  the scan is suppressed by a stop in the hit precisely because a stop
@@ -119,14 +130,14 @@
 +				print STDERR "\t$pssmdir declares internal_stop but the match carries $n_stops stops (max $max_internal_stops); treating as broken\n";
 +			}
 +		}
-+
+ 
  		my ($gene_begin, $gene_end);
 -		if ((! $downstream_ext) || ($hseq =~ /\*/))
 +		if ((! $downstream_ext) || ($n_stops && ! $readthrough))
  		{
  			$gene_begin = $from;
  			$gene_end = $to;
-@@ -335,9 +393,9 @@
+@@ -335,9 +402,9 @@
  		
  		## If a match contains an internal stop, everything after the stop is cropped by default.		
  		my $new_end;
@@ -138,7 +149,7 @@
  			$new_end = crop_to_stop_codon($gene_begin, $gene_end, $hseq);
  		
  			#check the coverage.
-@@ -474,6 +532,18 @@
+@@ -474,6 +541,18 @@
  		my $protein = $_->[7];
  		$protein =~ s/\*$//g;
  
@@ -157,7 +168,7 @@
  		push @gene_seqs, ([$prot_id, $_->[3], $_->[6]]);
  		push @prot_seqs, ([$prot_id, $_->[3], $protein]);
  		
-@@ -525,18 +595,49 @@
+@@ -525,18 +604,49 @@
  
  
  

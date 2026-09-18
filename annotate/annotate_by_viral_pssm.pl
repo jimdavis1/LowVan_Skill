@@ -325,6 +325,15 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 		next;
 	}
 	print STDERR "\n\tChoosing $best_pssm\t$best_bit\n\n"; 
+	#  Nothing cleared threshold for this feature on this genome. Say so and
+	#  move on rather than dereferencing an undef result set: with the empty-list
+	#  writer guards already in place a genome that routes and matches nothing is
+	#  a legitimate empty result, and this is the last place it could still die.
+	unless (defined $best_pssm && $best_results)
+	{
+		print STDERR "\n\tNo profile cleared threshold for $pssmdir on this genome\n\n";
+		next;
+	}
 	my $nhsps = scalar @$best_results;
 	for my $i (0..($nhsps -1))
 	{		

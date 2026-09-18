@@ -1,6 +1,6 @@
---- FCP_Ali_Utils.pm.prefd	2026-09-17 07:47:48
-+++ FCP_Ali_Utils.pm	2026-09-17 07:47:48
-@@ -155,12 +155,44 @@
+--- /dev/fd/63	2026-09-17 19:19:24
++++ build/FCP_Ali_Utils.pm	2026-09-17 19:19:24
+@@ -169,12 +169,44 @@
      # Calculate original sequence count
      my $n_seqs_orig = scalar @$ali;
      
@@ -21,7 +21,7 @@
 +    #  Every sequence therefore came out at 24-37% dashes against -fd 0.20, all
 +    #  967 were deleted, the alignment went to zero rows, and
 +    #  print_alignment_as_fasta died on the empty result -- taking the whole
-+    #  feature down with it. The collection was fine; the denominator was wrong.
++    #  feature down with it, 0 PSSMs from 1428 sequences, exit code 0.
 +    #
 +    #  Only the denominator changes. A sequence that is genuinely fragmentary
 +    #  relative to the conserved core is still removed, which is what -fd is for.

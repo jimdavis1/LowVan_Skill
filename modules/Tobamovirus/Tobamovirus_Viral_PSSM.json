@@ -1,0 +1,191 @@
+{
+   "Tobamovirus" : {
+      "close_genomes" : {
+         "Tobamovirus.1.dna" : {
+            "genome_ids" : "AX466963",
+            "genome_name" : "Tobacco mosaic virus"
+         },
+         "Tobamovirus.10.dna" : {
+            "genome_ids" : "MZ819720",
+            "genome_name" : "Hibiscus latent Fort Pierce virus HLFPV-LY"
+         },
+         "Tobamovirus.11.dna" : {
+            "genome_ids" : "MF960828",
+            "genome_name" : "Bottle gourd mottle virus WT2"
+         },
+         "Tobamovirus.12.dna" : {
+            "genome_ids" : "KJ395757",
+            "genome_name" : "Plumeria mosaic virus Plu-Ind-1"
+         },
+         "Tobamovirus.13.dna" : {
+            "genome_ids" : "OK428620",
+            "genome_name" : "Opuntia virus 2 CP.1"
+         },
+         "Tobamovirus.14.dna" : {
+            "genome_ids" : "MZ020960",
+            "genome_name" : "Hibiscus latent Singapore virus"
+         },
+         "Tobamovirus.15.dna" : {
+            "genome_ids" : "NC_016442",
+            "genome_name" : "Rattail cactus necrosis-associated virus"
+         },
+         "Tobamovirus.16.dna" : {
+            "genome_ids" : "OR350236",
+            "genome_name" : "Streptocarpus flower break virus 23-01801"
+         },
+         "Tobamovirus.17.dna" : {
+            "genome_ids" : "MW192790",
+            "genome_name" : "Cactus mild mottle virus CMMoV-Hp"
+         },
+         "Tobamovirus.18.dna" : {
+            "genome_ids" : "NC_008716",
+            "genome_name" : "Maracuja mosaic virus"
+         },
+         "Tobamovirus.19.dna" : {
+            "genome_ids" : "KF495564",
+            "genome_name" : "Yellow tailflower mild mottle virus Cervantes"
+         },
+         "Tobamovirus.2.dna" : {
+            "genome_ids" : "KX883801",
+            "genome_name" : "Cucumber green mottle mosaic virus spider132626"
+         },
+         "Tobamovirus.20.dna" : {
+            "genome_ids" : "OL472107",
+            "genome_name" : "Plant associated tobamo-like virus 1 KOR20ST1"
+         },
+         "Tobamovirus.21.dna" : {
+            "genome_ids" : "MN961200",
+            "genome_name" : "Hoya necrotic spot virus Hoy2"
+         },
+         "Tobamovirus.22.dna" : {
+            "genome_ids" : "D84000",
+            "genome_name" : "Sunn-hemp mosaic virus"
+         },
+         "Tobamovirus.23.dna" : {
+            "genome_ids" : "KX434725",
+            "genome_name" : "Hoya chlorotic spot virus 12-415"
+         },
+         "Tobamovirus.24.dna" : {
+            "genome_ids" : "MN627474",
+            "genome_name" : "Erysiphe necator associated tobamo-like virus 1 PMS4_DN7006"
+         },
+         "Tobamovirus.25.dna" : {
+            "genome_ids" : "OR500510",
+            "genome_name" : "Rubber tree latent virus 1 HN"
+         },
+         "Tobamovirus.3.dna" : {
+            "genome_ids" : "MT733325",
+            "genome_name" : "Pepper mild mottle virus PMMoV-XJ"
+         },
+         "Tobamovirus.4.dna" : {
+            "genome_ids" : "MN186255",
+            "genome_name" : "Tobacco mosaic virus Henan9-2-2017"
+         },
+         "Tobamovirus.5.dna" : {
+            "genome_ids" : "MH370485",
+            "genome_name" : "Turnip vein-clearing virus ApH"
+         },
+         "Tobamovirus.6.dna" : {
+            "genome_ids" : "MH730970",
+            "genome_name" : "Tobacco mild green mosaic virus Ng92/73"
+         },
+         "Tobamovirus.7.dna" : {
+            "genome_ids" : "MT989352",
+            "genome_name" : "Cucumber fruit mottle mosaic virus Su12-25"
+         },
+         "Tobamovirus.8.dna" : {
+            "genome_ids" : "NC_001728",
+            "genome_name" : "Odontoglossum ringspot virus 18KDa coat protein"
+         },
+         "Tobamovirus.9.dna" : {
+            "genome_ids" : "AB089381",
+            "genome_name" : "Paprika mild mottle virus Japanese"
+         }
+      },
+      "features" : {
+         "CP" : {
+            "PMID_claude_generated" : [
+               "2769760",
+               "28786782"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CP",
+            "kmers" : 1,
+            "max_len" : 203,
+            "min_len" : 119,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "MP" : {
+            "PMID_claude_generated" : [
+               "17794341",
+               "28786782"
+            ],
+            "anno" : "Movement protein",
+            "bit_cutoff" : 120,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "MP",
+            "kmers" : 1,
+            "max_len" : 376,
+            "min_len" : 185,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "REP126" : {
+            "PMID_claude_generated" : [
+               "6964389",
+               "16453503",
+               "28786782"
+            ],
+            "anno" : "Nonstructural polyprotein",
+            "bit_cutoff" : 600,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "126K",
+            "kmers" : 1,
+            "max_len" : 1259,
+            "min_len" : 955,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "REP183" : {
+            "PMID_claude_generated" : [
+               "6964389",
+               "16453503",
+               "16453524",
+               "28786782"
+            ],
+            "anno" : "Nonstructural polyprotein",
+            "bit_cutoff" : 800,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "183K",
+            "internal_stop" : 1,
+            "kmers" : 1,
+            "max_len" : 1805,
+            "min_len" : 1369,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 8000,
+            "min_len" : 5500,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

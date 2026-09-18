@@ -50,13 +50,32 @@ with open(O(".id_md5"), "w") as out:
             out.write(l); n += 1
             if md5: md5s.add(md5)
 
-# re-emit the three uniq.* files in one pass, so they stay line-index aligned
+#  Re-pick the representative feature id from INSIDE the subset.
+#
+#  The class-wide uniq.id_ann names one representative feature per md5, and for
+#  a genus-level subset that feature often belongs to a genome in a different
+#  genus that happens to encode an identical protein. Carrying it over leaves
+#  check_dump.py reporting "uniq.id_ann row resolves to None" -- 15 rows on
+#  Tobamovirus, whose proteins are shared with other Virgaviridae genera. The
+#  annotation string is still the class-wide one for that sequence, which is
+#  correct; only the id has to be local.
+local_rep = {}
+for l in open(O(".id_md5")):
+    fid, md5 = l.rstrip("\n").split("\t")
+    if md5: local_rep[md5] = fid          # last wins, matching the upstream perl
+
 um = open(O(".uniq.md5"), "w"); ua = open(O(".uniq.id_ann"), "w"); us = open(O(".uniq.seq"), "w")
 fa = open(os.path.join(S, P + ".uniq.id_ann")); fs = open(os.path.join(S, P + ".uniq.seq"))
-kept = 0
+kept = repointed = 0
 for lm in open(os.path.join(S, P + ".uniq.md5")):
     la, ls = fa.readline(), fs.readline()
-    if lm.strip() in md5s:
-        um.write(lm); ua.write(la); us.write(ls); kept += 1
+    m = lm.strip()
+    if m in md5s:
+        fid, _, ann = la.rstrip("\n").partition("\t")
+        if local_rep.get(m) and local_rep[m] != fid:
+            fid = local_rep[m]; repointed += 1
+        um.write(lm); ua.write("%s\t%s\n" % (fid, ann)); us.write(ls); kept += 1
 for f in (um, ua, us): f.close()
+if repointed:
+    print("  re-pointed %d representative id(s) to a feature inside the subset" % repointed)
 print("%s: %d genomes, %d features, %d unique sequences" % (a.name, len(keep), n, kept))
