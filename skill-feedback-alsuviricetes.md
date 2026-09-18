@@ -494,3 +494,45 @@ explaining the five failures as "the three that never routed plus two below
 the 5,500 nt floor", which was wrong on every count: different set, four of
 them 10.3-11.9 kb, one 6,553 nt and inside the window. I explained a number
 instead of checking it.
+
+### 9. Two failures that look like something they are not
+
+**`403 Forbidden` from the BV-BRC genome service is a rate limit, not auth.**
+`make_gto.py --jobs 4` lost 89 of 120 genomes to it in one Betaflexiviridae_MP
+run, while `~/.patric_token` had 4,200 hours left. The obvious response to a
+403 is to go and re-authenticate, and that does nothing. `--jobs 1` cleared it
+completely with zero errors. The script now retries 403s with exponential
+backoff and defaults to 4 rather than 24; the docstring says which knob to
+reach for. Checking the token expiry *before* assuming was the only reason
+this did not waste an hour.
+
+**A cluster can pass every N-terminal check and still have the wrong start.**
+`fasta-cluster-pssm-2.pl` asks whether a cluster's members agree with each
+other. Betaflexiviridae_MP CP cluster 18 — 11 sequences, all 249-250 aa
+against a modal 193, all annotated from the same upstream Met — agrees with
+itself perfectly and logged `18.fa 250 25 10 2 OK`.
+
+Its profile then anchored 57 codons early on every genome it matched, landing
+inside the movement protein ORF in another frame:
+
+```
+Nucleocapsid protein  6616-7362  451 bits
+Match contains 1 stop codon(s), cropping
+Coverage prior to stop codon (0.072) is lower than cutoff: 0.65
+```
+
+And because the annotator keeps only the best-scoring profile per feature, the
+bad one at 451 bits beat the clean ones at 263 and 247 that would have called
+the protein. The coat protein went uncalled on **26 genomes, 17% of the
+genus**, with every check green and a bit score that looked excellent.
+
+Trimming to the internal Met at residue 58 fixed all 26. New tool,
+`qc_nterm_cross_cluster.py`, compares each cluster's start against the
+feature's other clusters rather than against itself.
+
+**The restraint is part of the finding.** That tool flags 16 clusters in this
+module and 15 were left alone. An N-terminal extension is not automatically
+wrong — the Alphaflexiviridae coat protein has a real 90-residue one and it is
+Mandarivirus — and REP and MP are called on 407 of 407 routed genomes despite
+six flagged REP clusters. The bar for editing a profile is evidence it is
+losing calls, which means the coverage run, not the flag.

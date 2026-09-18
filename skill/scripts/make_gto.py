@@ -22,11 +22,15 @@ NOTE: each call registers a new genome id with the ID server. That is a real,
 outward-facing side effect, and it is the point -- but it means a run over a
 whole taxon registers one id per exemplar.
 
-Most of each call is the round trip to the ID server, not local work, so this
-parallelises well: ~24 concurrent is fine (per JJD). Raising it further is a
-question for whoever runs the server, not a throughput decision.
+Most of each call is the round trip to the ID server, not local work, so it
+parallelises in principle. In practice the service rate-limits on concurrency
+and answers **403 Forbidden**, not 429, so the failure reads like an expired
+token and is not one: one Betaflexiviridae_MP run lost 89 of 120 genomes at
+--jobs 4 with 4,200 hours left on the token. 403s are now retried with
+exponential backoff and the default is 4; --jobs 1 avoids them entirely when
+a run has to be reliable.
 """
-import argparse, os, subprocess, sys
+import argparse, os, random, subprocess, sys, time
 from concurrent.futures import ThreadPoolExecutor
 
 WRAPPER = """#!/bin/bash
@@ -118,7 +122,11 @@ def main():
     ap.add_argument("--taxon-default", default="11270")
     ap.add_argument("--genetic-code", type=int, default=1)
     ap.add_argument("--domain", default="Viruses")
-    ap.add_argument("--jobs", type=int, default=24)
+    ap.add_argument("--jobs", type=int, default=4,
+                    help="parallel rast-create-genome calls. The BV-BRC "
+                         "service rate-limits above a handful and returns 403; "
+                         "403s are retried with backoff, but --jobs 1 avoids "
+                         "them entirely when a run has to be reliable.")
     args = ap.parse_args()
 
     tool = resolve(args.tool)
@@ -158,16 +166,28 @@ def main():
 
     def one(j):
         fa, out, name, tax, gid = j
-        r = subprocess.run([tool, "--scientific-name", name,
-                            "--domain", args.domain,
-                            "--genetic-code", str(args.genetic_code),
-                            "--ncbi-taxonomy-id", str(tax),
-                            "--source", "BV-BRC", "--source-id", gid,
-                            "--contigs", fa, "-o", out],
-                           capture_output=True, text=True)
-        if r.returncode != 0 or not os.path.exists(out):
-            return (gid, (r.stderr or r.stdout or "")[-200:])
-        return None
+        #  rast-create-genome calls the BV-BRC service, which rate-limits on
+        #  concurrency and answers "403 Forbidden" rather than 429. At
+        #  --jobs 4 that cost 89 of 120 genomes in one Betaflexiviridae_MP
+        #  run while the token had 4,200 hours left on it, so the failure
+        #  reads like an auth problem and is not one. Serial retries with
+        #  backoff clear it.
+        last = ""
+        for attempt in range(5):
+            r = subprocess.run([tool, "--scientific-name", name,
+                                "--domain", args.domain,
+                                "--genetic-code", str(args.genetic_code),
+                                "--ncbi-taxonomy-id", str(tax),
+                                "--source", "BV-BRC", "--source-id", gid,
+                                "--contigs", fa, "-o", out],
+                               capture_output=True, text=True)
+            if r.returncode == 0 and os.path.exists(out):
+                return None
+            last = (r.stderr or r.stdout or "")[-200:]
+            if "403" not in last and "Forbidden" not in last:
+                break
+            time.sleep(2 ** attempt + random.random())
+        return (gid, last)
 
     bad = []
     done = 0
