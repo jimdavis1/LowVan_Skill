@@ -324,6 +324,48 @@ Everything about both cases — phase of the slip site, the trailing `*`
 convention, CDS vs mat_peptide, how many references, and which evaluation tools
 are blind to the result — is in `references/special-features.md`.
 
+### 6c. Choose and write the rep contigs
+
+The JSON's `close_genomes` block is built from these, so they come before it.
+
+**Measure first, and be willing to walk away.** The question is not "how many
+references cover every genome" — for a divergent taxon that is one per species
+and the answer is always "too many". It is: *with a budget of N references
+chosen greedily largest-cluster-first, what fraction of the taxon routes?*
+
+```bash
+python3 scripts/repcontig_budget.py --meta <class>.full.tsv \
+        --family <Family> --genera <g1,g2,...> --min-len 6000 --budget 25
+```
+
+The project budget is **25 references per module**. A taxon that cannot reach
+most of its genomes inside that budget is tabled, not forced: Endornaviridae
+has 141 species in 141 clusters and reaches ~30% at 25, so it does not ship
+however easy its single ORF would be to model. Closteroviridae and Tymoviridae
+were tabled at 74.6% pending a split.
+
+A long tail of singletons is not disqualifying on its own — it is a documented
+gap, and §07 of the coverage audit is where it gets named.
+
+**Splitting is the lever that usually works**, and it is the same lever as
+module partitioning. Betaflexiviridae lumped routes 75.3%; split on genome
+organisation into a triple-gene-block half and a single-movement-protein half,
+the MP half routes **91.6%** and the TGB half 81.0%. If a module misses the
+budget, try splitting it before spending more references.
+
+Then write them:
+
+```bash
+python3 scripts/build_rep_contigs.py --contigs Contigs --meta <taxon>.meta.tsv \
+        --module <Module> --budget 25 --min-len 6000 --out Rep-Contigs
+```
+
+Same selection rule as the budget script, so the shipped set is the set that
+was measured — it reproduces the budget figure exactly, and if it does not,
+one of the two is wrong. It writes `<Module>.<n>.dna` and the
+`close_genomes.json` the JSON block is built from, and reports how many
+clusters and genomes the budget left uncovered.
+
 ### 7. Write the JSON
 
 **Order matters here and it is not the obvious one.** Collections decide what
@@ -794,6 +836,8 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `check_dlits.py` | verify DLIT citations resolve, and that model-proposed ones are flagged |
 | `check_dump.py` | verify the BV-BRC dump is complete and line-aligned |
 | `json_canon.py` | one canonical JSON format so diffs show only real changes |
+| `repcontig_budget.py` | go/no-go: what fraction routes on a fixed reference budget |
+| `build_rep_contigs.py` | write the rep contigs that budget implies, largest cluster first |
 | `check_rep_contigs.py` | check that rep contigs route the taxon's genomes |
 | `install_module.py` | validate and install into a Viral_Annotation checkout |
 | `validate_calls.py` | is one genome's output internally sound? no reference needed |
