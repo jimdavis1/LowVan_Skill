@@ -13,13 +13,25 @@ polyprotein (residues 1909-2100 of 2105, measured by BLASTp against Trichovirus
 and Tepovirus CPs), so it has no separate CP CDS and cannot share this module's
 CP feature.
 
+The CP window runs to 400, not 280. Citrivirus coat protein is ~41 kDa --
+median 363 aa against 193-198 for Vitivirus and Trichovirus -- and a window
+set from the dominant genera put 90 real Citrivirus CPs in the outliers file
+and left the collection with 5 atypical short ones. The profiles were then
+built almost entirely without Citrivirus, and the quality run flagged its
+coat protein "too long" at 358 and 363 aa against a max_len derived from the
+same truncated collection.
+
+Check the outliers file per genus before accepting a length window. A genus
+whose protein is genuinely a different size does not announce itself; it just
+goes missing.
+
 Four features, separated by length as much as by string, because "replicase",
 "RNA-dependent RNA polymerase" and "polyprotein" all name the same ~1800 aa
 protein while "hypothetical protein" covers several different small ones:
 
     REP   ~1700-1990 aa   the replicase polyprotein
     MP     ~290-460 aa    movement protein
-    CP     ~190-250 aa    coat protein
+    CP     ~150-400 aa    coat protein; Citrivirus is much larger than the rest
     NABP    ~94-128 aa    nucleic-acid binding protein, largely Vitivirus
 """
 import re, os, sys, collections, argparse
@@ -49,7 +61,7 @@ FORBIDDEN = [rx(r"^hypothetical protein"), rx(r"^unknown"), rx(r"^orf ?\d+$"),
 EXPECTED = {
     "REP":  (1600, 2150),
     "MP":   ( 250,  480),
-    "CP":   ( 150,  280),
+    "CP":   ( 150,  400),
     "NABP": (  80,  145),
     "VITI_ORF2": (140, 230),
 }

@@ -14,11 +14,16 @@ runtime target only and has no git remote.
 | Dichorhavirus | 8 | 26 | 1 | — | — | — |
 | Togaviridae | 14 | 228 | 9 | — | — | — |
 | Matonaviridae | 7 | 16 | 4 | — | — | all four |
-| Hepeviridae | 4 | 63 | 24 | 622/669 | 89.2% | all four |
-| **Tobamovirus** | 4 | 98 | 25 | 99/102 | **90.4%** | **all four** |
-| **Betaflexiviridae_MP** | 5 | 153 | 25 | 91.6% at budget | pending | pending |
+| Hepeviridae | 4 | 63 | 24 | 622/669 | **89.1%** | all four |
+| **Tobamovirus** | 4 | 98 | 25 | 99/102 | **89.4%** | **all four** |
+| **Betaflexiviridae_MP** | 5 | 157 | 25 | 407/409 | **88.5%** | **all four** |
 
 Every module's installed profile count now equals its shipped alignment count.
+
+Quality is reported as **genuinely clean**: no genome, contig *or* feature
+flag. `run_gto_eval.py` decides good-versus-poor on genome and contig flags
+alone, so its headline is 1-4 points higher than these figures. Scored
+consistently the three modules converge at 88-89%.
 
 **Hepeviridae was checked against the denominator bug and is unaffected.**
 All 47 of its unscored genomes are *unrouted*, with no `viral_family` field,
@@ -35,7 +40,7 @@ impact. A module is only started once its rep contigs are known to fit the
 
 | module | measured routing | notes |
 |---|---|---|
-| Alphaflexiviridae | measuring | Potexvirus + Allexivirus + Lolavirus as one module, per PARTITIONING.md. Potexvirus alone measured 93.4%, Allexi+Lola 97.4%; the combined figure decides whether it stays one module |
+| Alphaflexiviridae | 84.9% at budget | Potexvirus + Allexivirus + Lolavirus as one module, per PARTITIONING.md. one module, 7 features and 123 profiles built; collections triaged and Mandarivirus recovered by homology three times under a Potexvirus label. Splitting would reach ~95% for 50 references |
 | Betaflexiviridae_TGB | 81.0% | pome and stone fruit; the TGB half of the family already split |
 | Capillovirus | 100% | apple stem grooving; needs a mature peptide (CP inside the polyprotein) |
 | Bromoviridae | unmeasured | **cucumber mosaic virus**; 3 segments, needs per-segment clustering |
