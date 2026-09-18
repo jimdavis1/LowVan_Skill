@@ -1,0 +1,23 @@
+{
+ "REP": {
+  "anno": "RNA-dependent RNA polymerase"
+ },
+ "TGB1": {
+  "anno": "Triple gene block protein 1"
+ },
+ "TGB2": {
+  "anno": "Triple gene block protein 2"
+ },
+ "TGB3": {
+  "anno": "Triple gene block protein 3"
+ },
+ "CP": {
+  "anno": "Nucleocapsid protein"
+ },
+ "ALLEXI_40K": {
+  "anno": "Uncharacterized lineage-specific protein"
+ },
+ "NABP": {
+  "anno": "Nucleic acid-binding protein"
+ }
+}

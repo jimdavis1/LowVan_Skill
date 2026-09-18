@@ -1,7 +1,17 @@
 {
-  "REP":       {"anno": "Nonstructural polyprotein"},
-  "MP":        {"anno": "Movement protein"},
-  "CP":        {"anno": "Nucleocapsid protein"},
-  "NABP":      {"anno": "Nucleic acid binding protein"},
-  "VITI_ORF2": {"anno": "Uncharacterized lineage-specific protein"}
+ "CP": {
+  "anno": "Nucleocapsid protein"
+ },
+ "MP": {
+  "anno": "Movement protein"
+ },
+ "NABP": {
+  "anno": "Nucleic acid-binding protein"
+ },
+ "REP": {
+  "anno": "RNA-dependent RNA polymerase"
+ },
+ "VITI_ORF2": {
+  "anno": "Uncharacterized lineage-specific protein"
+ }
 }
