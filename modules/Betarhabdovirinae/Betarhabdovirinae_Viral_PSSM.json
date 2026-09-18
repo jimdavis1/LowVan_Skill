@@ -1,0 +1,270 @@
+{
+   "Betarhabdovirinae" : {
+      "close_genomes" : {
+         "Betarhabdovirinae.1.dna" : {
+            "genome_ids" : "NC_007642.1",
+            "genome_name" : "Lettuce necrotic yellows virus"
+         },
+         "Betarhabdovirinae.2.dna" : {
+            "genome_ids" : "NC_001615.3",
+            "genome_name" : "Sonchus yellow net virus"
+         },
+         "Betarhabdovirinae.3.dna" : {
+            "genome_ids" : "NC_016136.1",
+            "genome_name" : "Potato yellow dwarf virus"
+         },
+         "Betarhabdovirinae.4.dna" : {
+            "genome_ids" : "NC_005974.1",
+            "genome_name" : "Maize fine streak virus"
+         },
+         "Betarhabdovirinae.5.dna" : {
+            "genome_ids" : "NC_002251.1",
+            "genome_name" : "Northern cereal mosaic virus"
+         },
+         "Betarhabdovirinae.6.dna" : {
+            "genome_ids" : "NC_003746.1",
+            "genome_name" : "Rice yellow stunt virus"
+         },
+         "Betarhabdovirinae.7.dna" : {
+            "genome_ids" : "BK064345",
+            "genome_name" : "Argyranthemum gammacytorhabdovirus 1"
+         },
+         "Betarhabdovirinae.8.dna" : {
+            "genome_ids" : "BK070508",
+            "genome_name" : "Artemisia deltanucleorhabdovirus 1"
+         }
+      },
+      "features" : {
+         "ACYTO_VIROPORIN" : {
+            "PMID_claude_generated" : [
+               "38819305"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ACyto_P9",
+            "kmers" : 0,
+            "max_len" : 76,
+            "min_len" : 45,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "ANUCLEO_X" : {
+            "PMID" : [
+               "20362316"
+            ],
+            "anno" : "Uncharacterized lineage-specific X protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ANucleo_X",
+            "kmers" : 0,
+            "max_len" : 132,
+            "min_len" : 73,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "BCYTO_P4" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "BCyto_P4",
+            "kmers" : 0,
+            "max_len" : 264,
+            "min_len" : 46,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "BCYTO_P5" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "BCyto_P5",
+            "kmers" : 0,
+            "max_len" : 98,
+            "min_len" : 40,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "BNUCLEO_U" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "BNucleo_U",
+            "kmers" : 0,
+            "max_len" : 275,
+            "min_len" : 45,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "G" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Envelope glycoprotein precursor",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "G",
+            "kmers" : 1,
+            "max_len" : 761,
+            "min_len" : 429,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "G_MAT" : {
+            "anno" : "Mature envelope glycoprotein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "G_mature",
+            "kmers" : 0,
+            "max_len" : 716,
+            "min_len" : 432,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "G_SP" : {
+            "anno" : "Signal peptide of G",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "SP",
+            "kmers" : 0,
+            "max_len" : 39,
+            "min_len" : 14,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "L" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "L",
+            "kmers" : 1,
+            "max_len" : 2492,
+            "min_len" : 1731,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "M" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Matrix protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "M",
+            "kmers" : 1,
+            "max_len" : 343,
+            "min_len" : 139,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "MOV" : {
+            "PMID" : [
+               "8091658",
+               "8178430",
+               "40999317"
+            ],
+            "PMID_claude_generated" : [
+               "26700068"
+            ],
+            "anno" : "Movement protein",
+            "bit_cutoff" : 80,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Mov",
+            "kmers" : 1,
+            "max_len" : 410,
+            "min_len" : 251,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "N" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 581,
+            "min_len" : 352,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "P" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Phosphoprotein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "P",
+            "kmers" : 1,
+            "max_len" : 395,
+            "min_len" : 179,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC1" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 80,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 245,
+            "min_len" : 199,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 18370,
+            "min_len" : 8910,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

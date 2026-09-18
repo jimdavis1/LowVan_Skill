@@ -1,0 +1,328 @@
+{
+   "Togaviridae" : {
+      "close_genomes" : {
+         "Togaviridae.1.dna" : {
+            "genome_ids" : "NC_004162.2",
+            "genome_name" : "Chikungunya virus S27-African prototype"
+         },
+         "Togaviridae.2.dna" : {
+            "genome_ids" : "NC_001547",
+            "genome_name" : "Sindbis virus"
+         },
+         "Togaviridae.3.dna" : {
+            "genome_ids" : "NC_003908.1",
+            "genome_name" : "Western equine encephalitis virus 71V-1658"
+         },
+         "Togaviridae.4.dna" : {
+            "genome_ids" : "NC_003899.1",
+            "genome_name" : "Eastern equine encephalitis virus"
+         },
+         "Togaviridae.5.dna" : {
+            "genome_ids" : "NC_001449.1",
+            "genome_name" : "Venezuelan equine encephalitis virus"
+         },
+         "Togaviridae.6.dna" : {
+            "genome_ids" : "NC_001544.1",
+            "genome_name" : "Ross River virus NB5092"
+         },
+         "Togaviridae.7.dna" : {
+            "genome_ids" : "NC_001786.1",
+            "genome_name" : "Barmah Forest virus BH2193"
+         },
+         "Togaviridae.8.dna" : {
+            "genome_ids" : "NC_003930.1",
+            "genome_name" : "Salmon pancreas disease virus F93125"
+         },
+         "Togaviridae.9.dna" : {
+            "genome_ids" : "NC_018615.1",
+            "genome_name" : "Eilat virus EO329"
+         }
+      },
+      "features" : {
+         "6K" : {
+            "PMID_claude_generated" : [
+               "7968923",
+               "18822126",
+               "7241658",
+               "1985194"
+            ],
+            "anno" : "Mature 6K membrane protein",
+            "bit_cutoff" : 38,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "6K",
+            "kmers" : 1,
+            "max_len" : 79,
+            "min_len" : 46,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "C" : {
+            "PMID_claude_generated" : [
+               "7968923",
+               "9094737",
+               "3553612"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "C",
+            "kmers" : 1,
+            "max_len" : 317,
+            "min_len" : 224,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "E1" : {
+            "PMID_claude_generated" : [
+               "7968923",
+               "11301009",
+               "7241658"
+            ],
+            "anno" : "Mature envelope glycoprotein E1",
+            "bit_cutoff" : 250,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "E1",
+            "kmers" : 1,
+            "max_len" : 476,
+            "min_len" : 391,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "E2" : {
+            "PMID_claude_generated" : [
+               "7968923",
+               "8627739",
+               "1985194"
+            ],
+            "anno" : "Mature envelope glycoprotein E2",
+            "bit_cutoff" : 150,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "E2",
+            "kmers" : 1,
+            "max_len" : 454,
+            "min_len" : 380,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "E3" : {
+            "PMID_claude_generated" : [
+               "7968923",
+               "8627739",
+               "2200886",
+               "23035234"
+            ],
+            "anno" : "Mature envelope glycoprotein E3",
+            "bit_cutoff" : 45,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "E3",
+            "kmers" : 1,
+            "max_len" : 74,
+            "min_len" : 51,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "NSP1" : {
+            "PMID_claude_generated" : [
+               "7968923",
+               "10357827"
+            ],
+            "anno" : "mRNA-capping enzyme nsP1 protein",
+            "bit_cutoff" : 300,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "nsP1",
+            "kmers" : 1,
+            "max_len" : 580,
+            "min_len" : 438,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "NSP1234" : {
+            "PMID" : [
+               "37862073"
+            ],
+            "PMID_claude_generated" : [
+               "7968923",
+               "6322438",
+               "12466484",
+               "12021349"
+            ],
+            "anno" : "Nonstructural polyprotein",
+            "bit_cutoff" : 1500,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "nsP1234",
+            "internal_stop" : 1,
+            "kmers" : 1,
+            "max_len" : 2716,
+            "min_len" : 1697,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "NSP2" : {
+            "PMID_claude_generated" : [
+               "7968923",
+               "36792007"
+            ],
+            "anno" : "Protease nsP2 protein",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "nsP2",
+            "kmers" : 1,
+            "max_len" : 884,
+            "min_len" : 722,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "NSP3" : {
+            "PMID" : [
+               "37862073"
+            ],
+            "PMID_claude_generated" : [
+               "7968923",
+               "30825649"
+            ],
+            "anno" : "Nonstructural protein nsP3",
+            "bit_cutoff" : 150,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "nsP3",
+            "internal_stop" : 1,
+            "kmers" : 1,
+            "max_len" : 641,
+            "min_len" : 408,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "NSP4" : {
+            "PMID" : [
+               "37862073"
+            ],
+            "PMID_claude_generated" : [
+               "7968923",
+               "19036396"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 150,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "nsP4",
+            "kmers" : 1,
+            "max_len" : 663,
+            "min_len" : 562,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "P123" : {
+            "PMID" : [
+               "37862073"
+            ],
+            "PMID_claude_generated" : [
+               "7968923",
+               "2141206",
+               "12917405"
+            ],
+            "anno" : "Nonstructural polyprotein P123",
+            "bit_cutoff" : 900,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "nsP123",
+            "kmers" : 1,
+            "max_len" : 2052,
+            "min_len" : 1628,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "PE2" : {
+            "PMID_claude_generated" : [
+               "7968923",
+               "8627739",
+               "21430054",
+               "23864626",
+               "21124458"
+            ],
+            "anno" : "Envelope glycoprotein precursor pE2",
+            "bit_cutoff" : 200,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "pE2",
+            "kmers" : 1,
+            "max_len" : 522,
+            "min_len" : 370,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "STP" : {
+            "PMID_claude_generated" : [
+               "7968923",
+               "6322438",
+               "12466484",
+               "12021349"
+            ],
+            "anno" : "Structural polyprotein",
+            "bit_cutoff" : 600,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "STP",
+            "kmers" : 1,
+            "max_len" : 1387,
+            "min_len" : 1160,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "TF" : {
+            "PMID_claude_generated" : [
+               "18822126",
+               "23720714",
+               "7968923"
+            ],
+            "anno" : "TransFrame protein",
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "TF",
+            "max_len" : 110,
+            "min_len" : 55,
+            "segment" : "Single RNA Segment",
+            "special" : "transcript_edit"
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 13000,
+            "min_len" : 10000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

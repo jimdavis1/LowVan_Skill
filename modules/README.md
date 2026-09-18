@@ -1,5 +1,27 @@
 # Built modules
 
+Every module built with this kit. Eight of them, 102 features, 1,319
+alignments, 83 rep contigs.
+
+| module | features | alignments | rep contigs | special |
+|---|---|---|---|---|
+| `Alpharhabdovirinae` | 43 | 529 | 10 | `MERHA_L_SPLICED` — reference set never built, see SPECIAL_FEATURES.md |
+| `Betarhabdovirinae` | 14 | 340 | 8 | |
+| `Novirhabdovirus` | 8 | 21 | 2 | |
+| `Dichorhavirus` | 8 | 26 | 1 | |
+| `Togaviridae` | 14 | 228 | 9 | `TF` transcript_edit, 234 references included |
+| `Matonaviridae` | 7 | 16 | 4 | |
+| `Hepeviridae` | 4 | 61 | 24 | |
+| `Tobamovirus` | 4 | 98 | 25 | `REP183` readthrough (`internal_stop`) |
+
+The four Rhabdoviridae modules, Togaviridae and Matonaviridae were built before
+the Alsuviricetes work and imported here afterwards: the kit had always carried
+the **lessons** from those builds — Rhabdoviridae is cited 65 times across
+SKILL.md and the references, Togaviridae 12 — but never the **products**. The
+reasoning was captured and the modules were not, which meant a reader could
+learn how to build one but could not obtain one already built.
+
+
 One directory per finished module, carrying everything needed to install it
 into a `Viral_Annotation` checkout and everything needed to audit how it was
 made.
@@ -47,10 +69,14 @@ nothing and reports success, which is how this README came to claim something
 untrue in its first draft.
 
 `pssms_from_alignments.py` walks the alignments instead and writes one profile
-per alignment in the same format, so the two tools agree. Verified: deleting
-all 27 Tobamovirus CP profiles and regenerating them from the alignments
-reproduces all 27 **byte-identically**, and `rebuild_pssms.py` then reports
-`0 stale` across the whole module.
+per alignment in the same format, so the two tools agree. Verified two ways. Deleting all 27 Tobamovirus CP profiles and regenerating
+them reproduces all 27 **byte-identically** — both were made by the same
+psiblast path — and `rebuild_pssms.py` then reports `0 stale` across the
+module. Against profiles the *pipeline* built, regeneration reproduces the
+**score matrix exactly** (Novirhabdovirus: 21 of 21, integer for integer) but
+not the bytes: `lambdaUngapped` differs in its last digit between
+`BlastInterface::alignment_to_pssm` and the psiblast CLI. That is floating
+point and has no effect on scoring. Compare score matrices, not checksums.
 
 ## Installing one
 

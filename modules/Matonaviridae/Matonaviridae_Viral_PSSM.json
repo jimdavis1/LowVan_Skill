@@ -1,0 +1,157 @@
+{
+   "Matonaviridae" : {
+      "close_genomes" : {
+         "Matonaviridae.1.dna" : {
+            "genome_ids" : "NC_001545.2",
+            "genome_name" : "Rubella virus RVi/1a reference (clade 1)"
+         },
+         "Matonaviridae.2.dna" : {
+            "genome_ids" : "NC_076948.1",
+            "genome_name" : "Rubella virus RVi/Bismarck.ND.USA/23.08/2B (clade 2)"
+         },
+         "Matonaviridae.3.dna" : {
+            "genome_ids" : "NC_076451.1",
+            "genome_name" : "Rustrela virus Donkey/19_041-1/2019/Germany"
+         },
+         "Matonaviridae.4.dna" : {
+            "genome_ids" : "NC_076450.1",
+            "genome_name" : "Ruhugu virus Cyclops leaf-nosed bat/2017/Uganda"
+         }
+      },
+      "features" : {
+         "C" : {
+            "PMID_claude_generated" : [
+               "2214022",
+               "11160697"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "C",
+            "kmers" : 1,
+            "max_len" : 350,
+            "min_len" : 280,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "E1" : {
+            "PMID_claude_generated" : [
+               "2273395"
+            ],
+            "anno" : "Mature envelope glycoprotein E1",
+            "bit_cutoff" : 150,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "E1",
+            "kmers" : 1,
+            "max_len" : 515,
+            "min_len" : 445,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "E2" : {
+            "PMID_claude_generated" : [
+               "2273395",
+               "39207105"
+            ],
+            "anno" : "Mature envelope glycoprotein E2",
+            "bit_cutoff" : 90,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "E2",
+            "kmers" : 1,
+            "max_len" : 345,
+            "min_len" : 245,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "P110" : {
+            "PMID_claude_generated" : [
+               "2273395"
+            ],
+            "anno" : "Structural polyprotein",
+            "bit_cutoff" : 250,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "p110",
+            "kmers" : 1,
+            "max_len" : 1205,
+            "min_len" : 995,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "P150" : {
+            "PMID_claude_generated" : [
+               "9557742",
+               "10799588",
+               "10823845"
+            ],
+            "anno" : "Protease p150 protein",
+            "bit_cutoff" : 250,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "p150",
+            "kmers" : 1,
+            "max_len" : 1370,
+            "min_len" : 1020,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "P200" : {
+            "PMID_claude_generated" : [
+               "9557742",
+               "10799588",
+               "10823845"
+            ],
+            "anno" : "Nonstructural polyprotein",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "p200",
+            "kmers" : 1,
+            "max_len" : 2225,
+            "min_len" : 1810,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "P90" : {
+            "PMID_claude_generated" : [
+               "10799588",
+               "10823845"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 200,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "p90",
+            "kmers" : 1,
+            "max_len" : 875,
+            "min_len" : 770,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 10500,
+            "min_len" : 9000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

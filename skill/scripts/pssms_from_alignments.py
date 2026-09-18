@@ -12,6 +12,14 @@ This is that step. It walks corrected_alis/ and reclustered_alis/ and writes one
 profile per alignment, in the same format rebuild_pssms.py produces, so the two
 agree and a freshly generated set reports 0 stale.
 
+HOW EXACT IS THE REGENERATION? The SCORE MATRIX is reproduced exactly -- on
+Novirhabdovirus, 21 of 21 profiles match the pipeline's integer by integer.
+The files are not byte-identical, because `lambdaUngapped` differs in its last
+digit (320768354997898 vs ...897) between BlastInterface::alignment_to_pssm and
+the psiblast CLI. That is floating point, not a defect, and it does not affect
+scoring. So: compare score matrices, not checksums, when asking whether a
+regenerated profile matches.
+
     python3 pssms_from_alignments.py --workdir . --module Tobamovirus
     python3 pssms_from_alignments.py --workdir . --module Tobamovirus --write
 """
@@ -32,6 +40,12 @@ def read_fasta(p):
 
 
 def build(ali_path, title, out_path, tmp):
+    """title is the feature's ANNOTATION STRING, not the profile id.
+
+    fasta-cluster-pssm-2.pl is invoked with -a "<Annotation string>" and writes
+    that into the profile's descr/title, so a regenerated profile must use the
+    same thing or it differs from the pipeline's for no reason.
+    """
     rows = list(read_fasta(ali_path))
     if len(rows) < 2:
         return None, "fewer than 2 rows"
@@ -59,8 +73,23 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workdir", default=".")
     ap.add_argument("--module", required=True)
+    ap.add_argument("--json", help="module JSON; titles are taken from each "
+                    "feature's anno, matching what the pipeline writes "
+                    "(default: <workdir>/<Module>_Viral_PSSM.json)")
     ap.add_argument("--write", action="store_true")
     a = ap.parse_args()
+
+    import json as _json
+    jp = a.json or os.path.join(a.workdir, "%s_Viral_PSSM.json" % a.module)
+    anno = {}
+    if os.path.exists(jp):
+        try:
+            blk = _json.load(open(jp)).get(a.module, {})
+            anno = {k: v.get("anno", "") for k, v in blk.get("features", {}).items()}
+        except Exception:
+            pass
+    else:
+        print("  note: %s not found; titling profiles by id instead of annotation" % jp)
 
     base = os.path.join(a.workdir, "Alignments", a.module)
     if not os.path.isdir(base):
@@ -78,8 +107,14 @@ def main():
         n_ok = n_bad = 0
         for p in alis:
             cid = os.path.basename(p)[:-3]
-            title = "%s.%s.%s" % (a.module, feat, cid)
-            out = os.path.join(pdir, title + ".pssm")
+            #  Two different things, and conflating them writes profiles named
+            #  "Nucleocapsid protein.pssm". The FILENAME is the profile id, which
+            #  is what the annotator globs and what install_module.py checks; the
+            #  TITLE inside the file is the annotation string, which is what
+            #  fasta-cluster-pssm-2.pl -a writes.
+            pid   = "%s.%s.%s" % (a.module, feat, cid)
+            title = anno.get(feat) or pid
+            out = os.path.join(pdir, pid + ".pssm")
             if os.path.exists(out) and not a.write:
                 skipped += 1; continue
             txt, err = build(p, title, out, tmp)

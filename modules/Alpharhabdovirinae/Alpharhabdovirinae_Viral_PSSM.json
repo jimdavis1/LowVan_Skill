@@ -1,0 +1,700 @@
+{
+   "Alpharhabdovirinae" : {
+      "close_genomes" : {
+         "Alpharhabdovirinae.1.dna" : {
+            "genome_ids" : "NC_001542.1",
+            "genome_name" : "Rabies lyssavirus Pasteur virus"
+         },
+         "Alpharhabdovirinae.11.dna" : {
+            "genome_ids" : "BK059423",
+            "genome_name" : "San Gabriel mononegavirus San Gabriel Valley"
+         },
+         "Alpharhabdovirinae.2.dna" : {
+            "genome_ids" : "NC_001560.1",
+            "genome_name" : "Vesicular stomatitis Indiana virus"
+         },
+         "Alpharhabdovirinae.3.dna" : {
+            "genome_ids" : "NC_002526.1",
+            "genome_name" : "Bovine ephemeral fever virus BB7721"
+         },
+         "Alpharhabdovirinae.4.dna" : {
+            "genome_ids" : "NC_038279.1",
+            "genome_name" : "Drosophila ananassae sigmavirus Kilifi Kenya"
+         },
+         "Alpharhabdovirinae.5.dna" : {
+            "genome_ids" : "NC_034447.1",
+            "genome_name" : "Hart Park virus"
+         },
+         "Alpharhabdovirinae.6.dna" : {
+            "genome_ids" : "NC_020804.1",
+            "genome_name" : "Tibrogargan virus"
+         },
+         "Alpharhabdovirinae.7.dna" : {
+            "genome_ids" : "NC_002803.1",
+            "genome_name" : "Spring viraemia of carp virus"
+         },
+         "Alpharhabdovirinae.8.dna" : {
+            "genome_ids" : "NC_025384.1",
+            "genome_name" : "Culex tritaeniorhynchus rhabdovirus"
+         },
+         "Alpharhabdovirinae.9.dna" : {
+            "genome_ids" : "LC270812",
+            "genome_name" : "Menghai rhabdovirus kunoichi"
+         }
+      },
+      "features" : {
+         "CURIO_PMIP" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Curio_U1",
+            "kmers" : 0,
+            "max_len" : 275,
+            "min_len" : 81,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "CURIO_VIROPORIN" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Class Ia viroporin protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Curio_viroporin",
+            "kmers" : 0,
+            "max_len" : 143,
+            "min_len" : 49,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "EPHEM_ALPHA1" : {
+            "PMID_claude_generated" : [
+               "24257609",
+               "9191923"
+            ],
+            "anno" : "Class Ia viroporin alpha1 protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Ephemero_alpha1",
+            "kmers" : 0,
+            "max_len" : 134,
+            "min_len" : 76,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "EPHEM_ALPHA2" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "PMID_claude_generated" : [
+               "9191923"
+            ],
+            "anno" : "Uncharacterized lineage-specific alpha2 protein",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Ephemero_alpha2",
+            "kmers" : 0,
+            "max_len" : 150,
+            "min_len" : 81,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "EPHEM_ALPHA3" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific alpha3 protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Ephemero_alpha3",
+            "kmers" : 0,
+            "max_len" : 63,
+            "min_len" : 31,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "EPHEM_BETA" : {
+            "PMID_claude_generated" : [
+               "9191923"
+            ],
+            "anno" : "Uncharacterized lineage-specific beta protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Ephemero_beta",
+            "kmers" : 0,
+            "max_len" : 173,
+            "min_len" : 96,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "EPHEM_GAMMA" : {
+            "PMID_claude_generated" : [
+               "9191923"
+            ],
+            "anno" : "Uncharacterized lineage-specific gamma protein",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Ephemero_gamma",
+            "kmers" : 0,
+            "max_len" : 131,
+            "min_len" : 88,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "EPHEM_GNS" : {
+            "PMID_claude_generated" : [
+               "1413521",
+               "8337841"
+            ],
+            "anno" : "Nonstructural envelope glycoprotein GNS",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "GNS",
+            "kmers" : 0,
+            "max_len" : 668,
+            "min_len" : 477,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "G" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Envelope glycoprotein precursor",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "G",
+            "kmers" : 1,
+            "max_len" : 706,
+            "min_len" : 398,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "G_MAT" : {
+            "PMID" : [
+               "6897030"
+            ],
+            "anno" : "Mature envelope glycoprotein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "G_mature",
+            "kmers" : 0,
+            "max_len" : 682,
+            "min_len" : 423,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "G_SP" : {
+            "PMID" : [
+               "6897030"
+            ],
+            "anno" : "Signal peptide of G",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "SP",
+            "kmers" : 0,
+            "max_len" : 33,
+            "min_len" : 14,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "HAPA_U1" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific U1 protein",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Hapa_U1",
+            "kmers" : 0,
+            "max_len" : 179,
+            "min_len" : 81,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "HAPA_U2" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific U2 protein",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Hapa_U2",
+            "kmers" : 0,
+            "max_len" : 201,
+            "min_len" : 71,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "HAPA_U3" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific U3 protein",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Hapa_U3",
+            "kmers" : 0,
+            "max_len" : 214,
+            "min_len" : 103,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "HAPA_VIROPORIN" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Class Ia viroporin protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Hapa_viroporin",
+            "kmers" : 0,
+            "max_len" : 143,
+            "min_len" : 49,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "L" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "L",
+            "kmers" : 1,
+            "max_len" : 2449,
+            "min_len" : 1829,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "M" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Matrix protein",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "M",
+            "kmers" : 1,
+            "max_len" : 307,
+            "min_len" : 146,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "MERHA_L_SPLICED" : {
+            "PMID" : [
+               "21507977"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "feature_type" : "CDS",
+            "gene_symbol" : "Merha_L",
+            "max_len" : 2336,
+            "min_len" : 1910,
+            "segment" : "Single RNA Segment",
+            "special" : "splice"
+         },
+         "N" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 550,
+            "min_len" : 312,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "P" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Phosphoprotein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "P",
+            "kmers" : 1,
+            "max_len" : 363,
+            "min_len" : 174,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "SAWGR_GY" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Sawgr_Gy",
+            "kmers" : 0,
+            "max_len" : 199,
+            "min_len" : 45,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "SIGMA_X" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Uncharacterized lineage-specific X protein",
+            "bit_cutoff" : 80,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Sigma_X",
+            "kmers" : 0,
+            "max_len" : 386,
+            "min_len" : 267,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "SUNRHA_SH" : {
+            "PMID" : [
+               "25679389"
+            ],
+            "anno" : "Small hydrophobic protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Sunrha_SH",
+            "kmers" : 0,
+            "max_len" : 111,
+            "min_len" : 54,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC1" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 400,
+            "min_len" : 326,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC10" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 686,
+            "min_len" : 560,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC11" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 197,
+            "min_len" : 161,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC12" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 593,
+            "min_len" : 485,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC13" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 80,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 316,
+            "min_len" : 258,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC14" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 80,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 264,
+            "min_len" : 216,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC15" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 197,
+            "min_len" : 161,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC16" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 167,
+            "min_len" : 133,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC17" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 80,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 296,
+            "min_len" : 242,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC18" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 691,
+            "min_len" : 565,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC2" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 80,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 235,
+            "min_len" : 182,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC3" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 537,
+            "min_len" : 325,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC4" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 178,
+            "min_len" : 144,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC5" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 510,
+            "min_len" : 416,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC6" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 516,
+            "min_len" : 422,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC7" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 587,
+            "min_len" : 379,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC8" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 295,
+            "min_len" : 147,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "UNC9" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 80,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "",
+            "kmers" : 0,
+            "max_len" : 226,
+            "min_len" : 184,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "VESI_C" : {
+            "PMID" : [
+               "8388490",
+               "8610460"
+            ],
+            "PMID_claude_generated" : [
+               "8607260"
+            ],
+            "anno" : "C protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Vesi_C",
+            "kmers" : 0,
+            "max_len" : 61,
+            "min_len" : 49,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "VESI_CPRIME" : {
+            "PMID" : [
+               "8388490",
+               "8610460"
+            ],
+            "anno" : "C-prime protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Vesi_C-Prime",
+            "kmers" : 0,
+            "max_len" : 74,
+            "min_len" : 58,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 17710,
+            "min_len" : 9090,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

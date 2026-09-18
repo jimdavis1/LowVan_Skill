@@ -1,0 +1,157 @@
+{
+   "Dichorhavirus" : {
+      "close_genomes" : {
+         "Dichorhavirus.1.dna" : {
+            "genome_ids" : "NC_009608.1,NC_009609.1",
+            "genome_name" : "Orchid fleck virus"
+         }
+      },
+      "features" : {
+         "G" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Envelope glycoprotein precursor",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "G",
+            "kmers" : 1,
+            "max_len" : 638,
+            "min_len" : 473,
+            "segment" : "Segment 1",
+            "upstream_ext" : 1
+         },
+         "G_MAT" : {
+            "anno" : "Mature envelope glycoprotein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "G_mature",
+            "kmers" : 0,
+            "max_len" : 583,
+            "min_len" : 454,
+            "segment" : "Segment 1",
+            "upstream_ext" : 0
+         },
+         "G_SP" : {
+            "anno" : "Signal peptide of G",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "SP",
+            "kmers" : 0,
+            "max_len" : 33,
+            "min_len" : 14,
+            "segment" : "Segment 1",
+            "upstream_ext" : 1
+         },
+         "L" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "L",
+            "kmers" : 1,
+            "max_len" : 2067,
+            "min_len" : 1662,
+            "segment" : "Segment 2",
+            "upstream_ext" : 1
+         },
+         "M" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Matrix protein",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "M",
+            "kmers" : 1,
+            "max_len" : 213,
+            "min_len" : 164,
+            "segment" : "Segment 1",
+            "upstream_ext" : 1
+         },
+         "MOV" : {
+            "PMID" : [
+               "8091658",
+               "8178430",
+               "40999317"
+            ],
+            "PMID_claude_generated" : [
+               "26700068"
+            ],
+            "anno" : "Movement protein",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Mov",
+            "kmers" : 1,
+            "max_len" : 408,
+            "min_len" : 295,
+            "segment" : "Segment 1",
+            "upstream_ext" : 1
+         },
+         "N" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 499,
+            "min_len" : 400,
+            "segment" : "Segment 1",
+            "upstream_ext" : 1
+         },
+         "P" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Phosphoprotein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "P",
+            "kmers" : 1,
+            "max_len" : 269,
+            "min_len" : 212,
+            "segment" : "Segment 1",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Segment 1" : {
+            "max_len" : 7371,
+            "min_len" : 5760,
+            "replicon_geometry" : "linear"
+         },
+         "Segment 2" : {
+            "max_len" : 6711,
+            "min_len" : 5310,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

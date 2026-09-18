@@ -1,0 +1,156 @@
+{
+   "Novirhabdovirus" : {
+      "close_genomes" : {
+         "Novirhabdovirus.1.dna" : {
+            "genome_ids" : "NC_001652.1",
+            "genome_name" : "Infectious hematopoietic necrosis virus"
+         },
+         "Novirhabdovirus.2.dna" : {
+            "genome_ids" : "NC_000855.1",
+            "genome_name" : "Viral hemorrhagic septicemia virus isolate Fil3"
+         }
+      },
+      "features" : {
+         "G" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Envelope glycoprotein precursor",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "G",
+            "kmers" : 1,
+            "max_len" : 573,
+            "min_len" : 444,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "G_MAT" : {
+            "anno" : "Mature envelope glycoprotein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "G_mature",
+            "kmers" : 0,
+            "max_len" : 545,
+            "min_len" : 432,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "G_SP" : {
+            "anno" : "Signal peptide of G",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "SP",
+            "kmers" : 0,
+            "max_len" : 33,
+            "min_len" : 14,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "L" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "L",
+            "kmers" : 1,
+            "max_len" : 2188,
+            "min_len" : 1738,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "M" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Matrix protein",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "M",
+            "kmers" : 1,
+            "max_len" : 222,
+            "min_len" : 169,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "N" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 445,
+            "min_len" : 351,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "NV" : {
+            "PMID" : [
+               "9010293"
+            ],
+            "PMID_claude_generated" : [
+               "4038520",
+               "8683214",
+               "28276468"
+            ],
+            "anno" : "Non-virion protein",
+            "bit_cutoff" : 40,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "NV",
+            "kmers" : 0,
+            "max_len" : 143,
+            "min_len" : 99,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "P" : {
+            "PMID" : [
+               "35723908"
+            ],
+            "anno" : "Phosphoprotein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "P",
+            "kmers" : 1,
+            "max_len" : 254,
+            "min_len" : 194,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 12651,
+            "min_len" : 9990,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}
