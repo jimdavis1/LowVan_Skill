@@ -354,6 +354,7 @@ if (scalar @to_analyze)
 		}
 	}
 
+	my @spliced_added;
 	if (%features)
 	{
 		foreach (keys %features)
@@ -382,10 +383,60 @@ if (scalar @to_analyze)
 						$p->{-alias_pairs} = [[gene => $data->{symbol}]];
 					}	
 					
+					#  Remember the exon boundaries of what we just added, so the
+					#  fragments it was assembled from can be retired below.
+					push @spliced_added, { function => $data->{product},
+					                       location => $data->{location} };
 					$genome_in->add_feature($p);
 				}
 			}
-		}				
+		}
+
+		#  Retire the pieces a spliced feature was assembled from.
+		#
+		#  Adding is the right default and is why this did not exist before:
+		#  in influenza every spliced product has a DIFFERENT annotation from
+		#  its unspliced parent -- M1 against M2, NS1 against NS2, PA against
+		#  PA-X -- because both are real, distinct proteins. Nothing is
+		#  superseded, and nothing should be removed.
+		#
+		#  Merhavirus is the other case. CTRV's L gene carries a 76-nt intron
+		#  (Kuwata 2011), so the ordinary L profile hits the two exons as two
+		#  fragments -- 1333 aa and 801 aa -- and neither is a protein. Only
+		#  the 2123 aa join is. Leaving all three gives one genome three
+		#  features with the same annotation, which viral_genome_quality.pl
+		#  counts against copy_num and reports as "too many HSPs".
+		#
+		#  A fragment is recognised by sharing an exon boundary with the join
+		#  AND carrying the same function: the truncated L starts exactly where
+		#  exon 1 starts, the downstream piece exactly where exon 2 starts.
+		#  Containment alone is not enough, because the truncated call runs
+		#  past its exon into the intron to reach its stop codon.
+		my @retire;
+		for my $f (@{$genome_in->{features}})
+		{
+			next unless $f->{location} && @{$f->{location}} == 1;   # joins are not fragments
+			my ($c, $st, $strand, $len) = @{$f->{location}[0]};
+			for my $sp (@spliced_added)
+			{
+				next unless ($f->{function} // '') eq ($sp->{function} // '');
+				for my $ex (@{$sp->{location}})
+				{
+					my ($ec, $est, $estr, $elen) = @$ex;
+					next unless $c eq $ec && $strand eq $estr;
+					my $end  = $strand eq '-' ? $st - $len + 1 : $st + $len - 1;
+					my $eend = $estr  eq '-' ? $est - $elen + 1 : $est + $elen - 1;
+					if ($st == $est || $end == $eend)
+					{
+						push @retire, $f->{id};
+						print STDERR "\tRetiring $f->{id} ($f->{function}): a fragment of the spliced feature\n";
+					}
+				}
+			}
+		}
+		my %seen_r;
+		for my $fid (grep { !$seen_r{$_}++ } @retire) { $genome_in->delete_feature($fid); }
+
 		chdir ($base);
 		$genome_in->destroy_to_file($opt->output);			
 	}

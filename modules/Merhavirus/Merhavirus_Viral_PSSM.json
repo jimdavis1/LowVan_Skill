@@ -1,0 +1,176 @@
+{
+   "Merhavirus" : {
+      "close_genomes" : {
+         "Merhavirus.1.dna" : {
+            "genome_ids" : "PV335215",
+            "genome_name" : "Merida virus C8_31/BR2021"
+         },
+         "Merhavirus.2.dna" : {
+            "genome_ids" : "LC514403",
+            "genome_name" : "Culex tritaeniorhynchus rhabdovirus 17CxIT"
+         },
+         "Merhavirus.3.dna" : {
+            "genome_ids" : "PP510874",
+            "genome_name" : "Formosus virus Awka"
+         },
+         "Merhavirus.4.dna" : {
+            "genome_ids" : "PZ763860",
+            "genome_name" : "Merida virus MAD2290"
+         },
+         "Merhavirus.5.dna" : {
+            "genome_ids" : "NC_139266",
+            "genome_name" : "Hattula rhabdovirus FIN/PK-2018/62"
+         },
+         "Merhavirus.6.dna" : {
+            "genome_ids" : "ON955143",
+            "genome_name" : "Inari rhabdovirus FIN/L-2018/84"
+         },
+         "Merhavirus.7.dna" : {
+            "genome_ids" : "ON955141",
+            "genome_name" : "Enontekio merhavirus FIN/L-2018/90"
+         },
+         "Merhavirus.8.dna" : {
+            "genome_ids" : "LC775065",
+            "genome_name" : "Armigeres subalbatus rhabdovirus Ar-3/AsRV"
+         }
+      },
+      "features" : {
+         "G" : {
+            "PMID_claude_generated" : [
+               "35723908"
+            ],
+            "anno" : "Envelope glycoprotein precursor",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "G",
+            "kmers" : 1,
+            "max_len" : 706,
+            "min_len" : 398,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "G_MAT" : {
+            "PMID_claude_generated" : [
+               "6897030"
+            ],
+            "anno" : "Mature envelope glycoprotein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "G_mature",
+            "kmers" : 0,
+            "max_len" : 682,
+            "min_len" : 423,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 0
+         },
+         "G_SP" : {
+            "PMID_claude_generated" : [
+               "6897030"
+            ],
+            "anno" : "Signal peptide of G",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "SP",
+            "kmers" : 0,
+            "max_len" : 33,
+            "min_len" : 14,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "L" : {
+            "PMID_claude_generated" : [
+               "35723908"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "L",
+            "kmers" : 1,
+            "max_len" : 2449,
+            "min_len" : 1829,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "L_SPLICED" : {
+            "PMID_claude_generated" : [
+               "21507977"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "feature_type" : "CDS",
+            "gene_symbol" : "L",
+            "max_len" : 2336,
+            "min_len" : 1910,
+            "segment" : "Single RNA Segment",
+            "special" : "splice"
+         },
+         "M" : {
+            "PMID_claude_generated" : [
+               "35723908"
+            ],
+            "anno" : "Matrix protein",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "M",
+            "kmers" : 1,
+            "max_len" : 307,
+            "min_len" : 146,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "N" : {
+            "PMID_claude_generated" : [
+               "35723908"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 550,
+            "min_len" : 312,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         },
+         "P" : {
+            "PMID_claude_generated" : [
+               "35723908"
+            ],
+            "anno" : "Phosphoprotein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "P",
+            "kmers" : 1,
+            "max_len" : 363,
+            "min_len" : 174,
+            "segment" : "Single RNA Segment",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 13000,
+            "min_len" : 9000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

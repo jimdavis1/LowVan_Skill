@@ -1,0 +1,34 @@
+{
+ "Merhavirus.1.dna": {
+  "genome_ids": "PV335215",
+  "genome_name": "Merida virus C8_31/BR2021"
+ },
+ "Merhavirus.2.dna": {
+  "genome_ids": "LC514403",
+  "genome_name": "Culex tritaeniorhynchus rhabdovirus 17CxIT"
+ },
+ "Merhavirus.3.dna": {
+  "genome_ids": "PP510874",
+  "genome_name": "Formosus virus Awka"
+ },
+ "Merhavirus.4.dna": {
+  "genome_ids": "PZ763860",
+  "genome_name": "Merida virus MAD2290"
+ },
+ "Merhavirus.5.dna": {
+  "genome_ids": "NC_139266",
+  "genome_name": "Hattula rhabdovirus FIN/PK-2018/62"
+ },
+ "Merhavirus.6.dna": {
+  "genome_ids": "ON955143",
+  "genome_name": "Inari rhabdovirus FIN/L-2018/84"
+ },
+ "Merhavirus.7.dna": {
+  "genome_ids": "ON955141",
+  "genome_name": "Enontekio merhavirus FIN/L-2018/90"
+ },
+ "Merhavirus.8.dna": {
+  "genome_ids": "LC775065",
+  "genome_name": "Armigeres subalbatus rhabdovirus Ar-3/AsRV"
+ }
+}

@@ -33,10 +33,6 @@
             "genome_ids" : "NC_002803.1",
             "genome_name" : "Spring viraemia of carp virus"
          },
-         "Alpharhabdovirinae.8.dna" : {
-            "genome_ids" : "NC_025384.1",
-            "genome_name" : "Culex tritaeniorhynchus rhabdovirus"
-         },
          "Alpharhabdovirinae.9.dna" : {
             "genome_ids" : "LC270812",
             "genome_name" : "Menghai rhabdovirus kunoichi"
