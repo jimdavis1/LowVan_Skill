@@ -14,18 +14,18 @@ runtime target only and has no git remote.
 | Dichorhavirus | 8 | 26 | 1 | — | — | — |
 | Togaviridae | 14 | 228 | 9 | — | — | — |
 | Matonaviridae | 7 | 16 | 4 | — | — | all four |
-| Hepeviridae | 4 | 63 | 24 | 622/669 | 89.2%* | all four |
+| Hepeviridae | 4 | 63 | 24 | 622/669 | 89.2% | all four |
 | **Tobamovirus** | 4 | 98 | 25 | 99/102 | **90.4%** | **all four** |
 | **Betaflexiviridae_MP** | 5 | 153 | 25 | 91.6% at budget | pending | pending |
 
 Every module's installed profile count now equals its shipped alignment count.
 
-\* **Hepeviridae's 89.2% needs re-measuring.** It was scored before the two
-denominator fixes, so any genome that routed and cleared no profile was
-dropped from the scored set rather than counted. Tobamovirus went from a
-reported 95.5% to a true 90.4% on exactly that correction, and the same
-inflation applies to every module scored earlier. Re-run before the two
-numbers are compared.
+**Hepeviridae was checked against the denominator bug and is unaffected.**
+All 47 of its unscored genomes are *unrouted*, with no `viral_family` field,
+so they fail a different and correct check and are already counted in the
+622/669 routing figure. Its denominator of 622 is exactly the routed set.
+Tobamovirus was inflated (95.5% reported, 90.4% true) because its five had
+routed and then cleared no profile, which is a different situation.
 
 ## Next, in order
 

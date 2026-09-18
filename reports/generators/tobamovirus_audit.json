@@ -302,8 +302,8 @@
     },
     {
      "type": "verdict",
-     "kind": "warn",
-     "html": "Any module scored before these fixes carries the same inflation, including the Hepeviridae 89.2% quoted in its own audit. Those numbers need re-measuring before they are compared with this one."
+     "kind": "ok",
+     "html": "The other modules were checked rather than assumed. <b>Hepeviridae is unaffected</b>: all 47 of its unscored genomes are <i>unrouted</i>, with no <code>viral_family</code> field at all, so they fail a different and correct check and are already counted in its 622/669 routing figure. Its denominator of 622 is exactly the set that routed, which is the right one, and its 89.2% stands. Tobamovirus was inflated because its five had routed."
     }
    ]
   },
