@@ -98,7 +98,21 @@ def main():
         qs, qe, ss, se, pid, ln = r.stdout.split("\n")[0].split("\t")
         off = int(ss) - int(qs)          # residues the query has before the reference starts
         if off < a.min_extension: continue
-        res = v["master"][off] if off < len(v["master"]) else "?"
+        #  The offset depends on which cluster happens to be the reference and
+        #  on exactly where BLAST starts the alignment, so it can be a residue
+        #  or two out. Look for a Met in a small window around it rather than
+        #  demanding one at the exact position: with a 193 aa reference this
+        #  cluster's start came out at 58, which is a Met, and with a 198 aa
+        #  one at 59, which is not -- the same cluster, the same right answer.
+        res, best = "?", None
+        for d in (0, -1, 1, -2, 2, -3, 3):
+            i = off + d
+            if 0 <= i < len(v["master"]) and v["master"][i] == "M":
+                best = i; break
+        if best is not None:
+            off, res = best, "M"
+        elif off < len(v["master"]):
+            res = v["master"][off]
         flagged.append((f, v, off, res, float(pid)))
 
     if not flagged:

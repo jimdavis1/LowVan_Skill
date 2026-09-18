@@ -503,11 +503,11 @@ Hepeviridae	Nucleocapsid protein	ORF2	CDS	Single RNA Segment	1
 Hepeviridae	Membrane-associated viroporin required for virion release ORF3 protein	ORF3	CDS	Single RNA Segment	1	
 Hepeviridae	Uncharacterized lineage-specific protein	Roca_ORF4	CDS	Single RNA Segment	0	
 Tobamovirus	Methyltransferase and helicase replication protein	126K	CDS	Single RNA Segment	1	
-Tobamovirus	RNA-dependent RNA polymerase	183K	CDS	Single RNA Segment	1	
-Tobamovirus	Movement protein	MP	CDS	Single RNA Segment	1	
-Tobamovirus	Nucleocapsid protein	CP	CDS	Single RNA Segment	1	
-Betaflexiviridae_MP	RNA-dependent RNA polymerase	REP	CDS	Single RNA Segment	1	
-Betaflexiviridae_MP	Movement protein	MP	CDS	Single RNA Segment	1	
-Betaflexiviridae_MP	Nucleocapsid protein	CP	CDS	Single RNA Segment	1	
+Tobamovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
+Tobamovirus	Movement protein	Mov	CDS	Single RNA Segment	1	
+Tobamovirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
+Betaflexiviridae_MP	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
+Betaflexiviridae_MP	Movement protein	Mov	CDS	Single RNA Segment	1	
+Betaflexiviridae_MP	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Betaflexiviridae_MP	Nucleic acid-binding protein	NABP	CDS	Single RNA Segment	0	
 Betaflexiviridae_MP	Uncharacterized lineage-specific protein	Viti_ORF2	CDS	Single RNA Segment	0	

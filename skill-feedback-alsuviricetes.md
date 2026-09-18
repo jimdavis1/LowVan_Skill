@@ -610,3 +610,53 @@ built seven, and a quality verdict that excluded the flags it printed. None of
 them threw an error. The defence is not more checks of the same kind — it is
 checks that compare a thing against its *peers* rather than against itself,
 and labels that say exactly what was counted.
+
+### 12. Gene symbol drift, and a check that could be silenced by fixing the data
+
+Jim: *"I am seeing REP being used instead of L and mp instead of mov. Try not
+to allow creep in the symbols unless there is a good reason ... lots of
+literature in a major taxon of human disease."*
+
+He is right, and the record is worse than inconsistency: **I had already done
+it correctly and then drifted from my own precedent.** Betarhabdovirinae and
+Dichorhavirus are plant modules from earlier in this same project and both use
+`Mov` alongside `L`, `N`, `M`, `P`. Tobamovirus and Betaflexiviridae_MP then
+shipped `MP`, `CP`, and `183K`/`REP`.
+
+`check_annotations.py` reported every one and exited non-zero. I overrode it,
+reasoning that MP/CP/183K are what the tobamovirus community calls those
+proteins. That argument is available for **every** taxon, which is exactly why
+it cannot be the test — the symbol set drifts one locally-reasonable module at
+a time. The reference doc encouraged it, too: *"a positional symbol that the
+community actually uses for that virus can stay. Decide it deliberately."*
+
+Corrected to `L` / `Mov` / `N` in the generators, the vocabulary and the
+installed JSON. `126K` stays: no house symbol exists for a
+methyltransferase-helicase replication protein, so it displaces nothing.
+
+**Two structural problems came out of it.**
+
+*The check could be silenced by the act of adding a vocabulary row.* It
+compared a module's symbol against every row for that annotation string,
+including the module's own. Writing `Tobamovirus / Movement protein / MP` into
+the table made the divergence stop being reported, because the module then
+agreed with itself. It now compares against every **other** taxon — which is
+why Hepeviridae's `ORF1`/`ORF2` had never once been flagged.
+
+*A failing check with no way to record a decision gets waved through.*
+Hepeviridae's ORF naming is a genuine exception under Jim's rule — ~20M
+infections a year and ORF1/ORF2/ORF3 universal in that literature — but with
+no exemption mechanism the only options were to change it or ignore the
+failure, and ignoring it is what happens. There is now an `EXEMPT` table
+carrying the reason, and those print as *"DELIBERATE SYMBOL EXCEPTIONS —
+recorded, not drift"*.
+
+Class-wide, every remaining divergence is now either a major human pathogen
+(`NSP12`, `nsP4`, `p90`, `NP`, `ORF1`/`ORF2`) or a lineage-prefixed
+uncharacterized symbol, which is per-feature by design.
+
+**The general lesson.** A check that fires and is overruled is worse than no
+check, because it produces a record of the problem having been considered. The
+fix was not a better detector — the detector was right both times — it was
+removing the reasoning that made overruling feel principled, and giving the
+legitimate exceptions somewhere to live.

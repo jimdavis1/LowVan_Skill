@@ -99,21 +99,21 @@
       [
        "REP183",
        "RNA-dependent RNA polymerase",
-       "183K",
+       "L",
        "613",
        "24"
       ],
       [
        "MP",
        "Movement protein",
-       "MP",
+       "Mov",
        "461",
        "25"
       ],
       [
        "CP",
        "Nucleocapsid protein",
-       "CP",
+       "N",
        "796",
        "27"
       ]

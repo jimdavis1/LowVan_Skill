@@ -186,12 +186,44 @@ collide. `check_annotations.py` recognises the `<Lineage>_<SYM>` form, strips
 the prefix before comparing, and reports those separately from a genuine
 disagreement.
 
-A genuine disagreement is when the base symbols differ — your `P7` against S1
-Table's `M` for `Matrix protein`. Either is defensible: the manuscript says
+### A genuine disagreement: conform, and treat departure as exceptional
+
+A genuine disagreement is when the base symbols differ — your `P7` against the
+controlled set's `M` for `Matrix protein`. **The default is to conform.**
+
+It is tempting to reason the other way, because the manuscript says
 "historically accepted gene symbols and names commonly used by the viral
-research community were retained", so a positional symbol that the community
-actually uses for that virus can stay. Decide it deliberately rather than by
-accident.
+research community were retained". The trouble is that *every* taxon's
+community has its own short names, so that argument is always available and
+the symbol set drifts one module at a time, each departure locally reasonable.
+
+That is not hypothetical. Tobamovirus and Betaflexiviridae_MP shipped `183K`
+and `REP` for `RNA-dependent RNA polymerase`, `MP` for `Movement protein` and
+`CP` for `Nucleocapsid protein`, against `L`, `Mov` and `N` used everywhere
+else — including in Betarhabdovirinae and Dichorhavirus, two **plant** modules
+built earlier in the same project, which had already got it right.
+`check_annotations.py` reported every one of them and the report was waved
+through on exactly the reasoning above.
+
+**The bar for departing.** A large literature in a major human pathogen, of
+the kind where the house symbol would make the annotation *harder* to
+recognise rather than merely less familiar. The shipped exceptions all clear
+it: `NSP12` for the coronaviruses, `nsP4` for the alphaviruses, `p90` for
+rubella, `ORF1`/`ORF2`/`ORF3` for hepatitis E. "It is what this community
+calls it" does not clear it, and neither does the size of the crop loss.
+
+Record a departure in `check_annotations.py`'s `EXEMPT` table with its reason,
+so it prints as a recorded exception rather than as an unresolved failure and
+the next person can see it was decided rather than missed.
+
+**Two things the check deliberately does not treat as disagreement.**
+`Uncharacterized lineage-specific protein` takes a different symbol per
+feature by design, so `Viti_ORF2` and `Roca_ORF4` differing is the convention
+working. And the comparison excludes the module's own vocabulary rows — a
+symbol is checked against every *other* taxon, because otherwise adding the
+row silences the check: write `Tobamovirus / Movement protein / MP` into the
+table and the MP-versus-`Mov` divergence stops being reported, since the
+module now agrees with itself.
 
 ## Feature Type, Segment, quality flag
 

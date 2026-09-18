@@ -92,21 +92,21 @@
       [
        "REP",
        "RNA-dependent RNA polymerase",
-       "REP",
+       "L",
        "1,204",
        "41"
       ],
       [
        "MP",
        "Movement protein",
-       "MP",
+       "Mov",
        "1,297",
        "46"
       ],
       [
        "CP",
        "Nucleocapsid protein",
-       "CP",
+       "N",
        "1,791",
        "40"
       ],

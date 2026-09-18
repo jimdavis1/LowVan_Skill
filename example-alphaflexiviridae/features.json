@@ -1,23 +1,30 @@
 {
  "REP": {
-  "anno": "RNA-dependent RNA polymerase"
+  "anno": "RNA-dependent RNA polymerase",
+  "symbol": "L"
  },
  "TGB1": {
-  "anno": "Triple gene block protein 1"
+  "anno": "Triple gene block protein 1",
+  "symbol": "TGB1"
  },
  "TGB2": {
-  "anno": "Triple gene block protein 2"
+  "anno": "Triple gene block protein 2",
+  "symbol": "TGB2"
  },
  "TGB3": {
-  "anno": "Triple gene block protein 3"
+  "anno": "Triple gene block protein 3",
+  "symbol": "TGB3"
  },
  "CP": {
-  "anno": "Nucleocapsid protein"
+  "anno": "Nucleocapsid protein",
+  "symbol": "N"
  },
  "ALLEXI_40K": {
-  "anno": "Uncharacterized lineage-specific protein"
+  "anno": "Uncharacterized lineage-specific protein",
+  "symbol": "Allexi_40K"
  },
  "NABP": {
-  "anno": "Nucleic acid-binding protein"
+  "anno": "Nucleic acid-binding protein",
+  "symbol": "NABP"
  }
 }

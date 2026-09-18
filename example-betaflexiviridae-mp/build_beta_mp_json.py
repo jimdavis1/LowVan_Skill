@@ -64,13 +64,13 @@ CLAUDE_PMIDS = {
 READ_PMIDS = set()
 
 FEATURES = {
-    "REP":       dict(anno="RNA-dependent RNA polymerase", symbol="REP", ftype="CDS",
+    "REP":       dict(anno="RNA-dependent RNA polymerase", symbol="L", ftype="CDS",
                       bit=400, cov=0.65, up=1, down=1, copy=1,
                       pmid=["36399124", "15098118"]),
-    "MP":        dict(anno="Movement protein", symbol="MP", ftype="CDS",
+    "MP":        dict(anno="Movement protein", symbol="Mov", ftype="CDS",
                       bit=50, cov=0.65, up=1, down=1, copy=1,
                       pmid=["36399124", "15098118"]),
-    "CP":        dict(anno="Nucleocapsid protein", symbol="CP", ftype="CDS",
+    "CP":        dict(anno="Nucleocapsid protein", symbol="N", ftype="CDS",
                       bit=45, cov=0.65, up=1, down=1, copy=1,
                       pmid=["36399124", "15098118"]),
     "NABP":      dict(anno="Nucleic acid-binding protein", symbol="NABP", ftype="CDS",

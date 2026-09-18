@@ -40,6 +40,13 @@ import json, os, collections, sys
 MODULE  = "Tobamovirus"
 SEGMENT = "Single RNA Segment"
 
+#  Gene symbols follow the house set, not the tobamovirus community's: L for
+#  the RdRp-containing product, Mov for the movement protein, N for the
+#  nucleocapsid. The rhabdovirus modules already use those, including Mov in
+#  the two plant-infecting ones, and a symbol that drifts per taxon is worth
+#  less than one that does not. 126K stays because no house symbol exists for
+#  a methyltransferase-helicase replication protein.
+#
 #  Every id model-proposed; PMID stays absent on every feature. Each was checked
 #  to resolve to the paper named. Resolving is not reading, and reading is not
 #  curating, so all stay flagged.
@@ -57,13 +64,13 @@ FEATURES = {
     "REP126": dict(anno="Methyltransferase and helicase replication protein", symbol="126K", ftype="CDS",
                    bit=600, cov=0.65, up=1, down=0, copy=1,
                    pmid=["6964389", "16453503", "28786782"]),
-    "REP183": dict(anno="RNA-dependent RNA polymerase", symbol="183K", ftype="CDS",
+    "REP183": dict(anno="RNA-dependent RNA polymerase", symbol="L", ftype="CDS",
                    bit=800, cov=0.65, up=1, down=1, copy=1, internal_stop=1,
                    pmid=["6964389", "16453503", "16453524", "28786782"]),
-    "MP":     dict(anno="Movement protein", symbol="MP", ftype="CDS",
+    "MP":     dict(anno="Movement protein", symbol="Mov", ftype="CDS",
                    bit=120, cov=0.65, up=1, down=1, copy=1,
                    pmid=["17794341", "28786782"]),
-    "CP":     dict(anno="Nucleocapsid protein", symbol="CP", ftype="CDS",
+    "CP":     dict(anno="Nucleocapsid protein", symbol="N", ftype="CDS",
                    bit=80, cov=0.65, up=1, down=1, copy=1,
                    pmid=["2769760", "28786782"]),
 }

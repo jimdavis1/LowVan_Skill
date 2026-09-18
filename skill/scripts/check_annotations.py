@@ -123,7 +123,7 @@ def main():
     ap.add_argument("--vocab", default=VOCAB, help="S1 Table TSV")
     args = ap.parse_args()
 
-    known, taxa_of, symbol_of = set(), {}, {}
+    known, taxa_of, symbol_of, symbol_by_taxon = set(), {}, {}, {}
     with open(args.vocab) as fh:
         for row in csv.DictReader(fh, delimiter="\t"):
             a = (row.get("Annotation") or "").strip()
@@ -134,6 +134,15 @@ def main():
             s = (row.get("Symbol") or "").strip()
             if s:
                 symbol_of.setdefault(a, set()).add(s)
+                #  Keyed by taxon as well, so a module can be compared against
+                #  everyone *else*. Without this the check is silenced by the
+                #  very act of adding the module's own row: write
+                #  "Tobamovirus / Movement protein / MP" into the vocabulary
+                #  and the MP-versus-Mov divergence stops being reported,
+                #  because the module now agrees with itself.
+                symbol_by_taxon.setdefault(
+                    a, {}).setdefault((row.get("Taxon") or "").strip(),
+                                      set()).add(s)
     by_squash = {}
     for a in known:
         by_squash.setdefault(squash(a), a)
@@ -204,13 +213,41 @@ def main():
     # symbol shared by several subgenera inside one module, so strip it before
     # comparing and report those separately.
     mism, nspaced = [], []
+    #  A symbol that is deliberately not the house one, with the reason. The
+    #  bar is a large literature in a major human pathogen -- enough that
+    #  using the house symbol would make the annotation harder to recognise,
+    #  not merely less familiar to one community.
+    EXEMPT = {
+        ("Hepeviridae", "ORF1"): "hepatitis E, ~20M infections a year; the "
+                                 "ORF1/ORF2/ORF3 naming is universal in that "
+                                 "literature",
+        ("Hepeviridae", "ORF2"): "as ORF1",
+        ("Hepeviridae", "ORF3"): "as ORF1",
+    }
+    #  Some strings take a different symbol per feature by design: the
+    #  lineage-prefixed uncharacterized proteins are named for the lineage and
+    #  position they occupy, so Viti_ORF2 and Roca_ORF4 differing is the
+    #  convention working, not drifting.
+    PER_FEATURE = {"Uncharacterized lineage-specific protein"}
+
+    exempt_used = []
     for a, uses in reused:
-        want = symbol_of.get(a)
-        if not want:
+        if a in PER_FEATURE:
             continue
-        wl = {w.lower() for w in want}
         for module, key, _ft, sym in uses:
+            #  Compare against every taxon but this one.
+            per = symbol_by_taxon.get(a, {})
+            want = set()
+            for tax, syms in per.items():
+                if tax != module:
+                    want |= syms
+            if not want:
+                continue
+            wl = {w.lower() for w in want}
             if not sym or sym.lower() in wl:
+                continue
+            if (module, key) in EXEMPT:
+                exempt_used.append((module, key, a, sym, EXEMPT[(module, key)]))
                 continue
             base = sym.split("_", 1)[1] if "_" in sym else None
             if base and base.lower() in wl:
@@ -223,10 +260,31 @@ def main():
             print("  %-20s %-14s %-38s %-14s (base %s)"
                   % (module, key, a[:38], sym, base))
     if mism:
-        print("\nGENE SYMBOL differs from S1 Table (%d) -- decide which is right:" % len(mism))
+        #  "decide which is right" was the old wording and it invited exactly
+        #  the wrong answer: every taxon has a community name for its own
+        #  proteins, so a per-taxon argument is always available and the
+        #  symbol set drifts one module at a time. Tobamovirus and
+        #  Betaflexiviridae_MP shipped 183K/REP for the RdRp, MP for the
+        #  movement protein and CP for the nucleocapsid, against L, Mov and N
+        #  everywhere else -- including in the two plant-infecting
+        #  rhabdovirus modules, which had already got it right.
+        print("\nGENE SYMBOL differs from the controlled set (%d) -- USE THE"
+              " EXISTING SYMBOL:" % len(mism))
         for module, key, a, sym, want in mism:
-            print("  %-20s %-14s %-38s ours %-8s S1 Table %s"
+            print("  %-20s %-14s %-38s ours %-8s -> use %s"
                   % (module, key, a[:38], sym, "/".join(want)))
+        print("  The default is to conform. A taxon-specific symbol needs a"
+              " reason that would\n  survive review -- a large literature in a"
+              " major human pathogen, of the kind that\n  justifies NSP12 for"
+              " the coronaviruses, nsP4 for the alphaviruses and ORF1/ORF2\n"
+              "  for hepatitis E. \"It is what this community calls it\" is true"
+              " of every taxon\n  and is not such a reason.")
+
+    if exempt_used:
+        print("\nDELIBERATE SYMBOL EXCEPTIONS (%d) -- recorded, not drift:"
+              % len(exempt_used))
+        for module, key, a, sym, why in exempt_used:
+            print("  %-20s %-14s %-8s %s" % (module, key, sym, why))
 
     if variant:
         print("\nVARIANT of an existing string (%d) -- use the S1 Table spelling:" % len(variant))
