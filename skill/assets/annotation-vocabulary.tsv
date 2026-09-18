@@ -511,3 +511,10 @@ Trivirinae	Movement protein	Mov	CDS	Single RNA Segment	1
 Trivirinae	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Trivirinae	Nucleic acid-binding protein	NABP	CDS	Single RNA Segment	0	
 Trivirinae	Uncharacterized lineage-specific protein	Viti_ORF2	CDS	Single RNA Segment	0	
+Alphaflexiviridae	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
+Alphaflexiviridae	Triple gene block protein 1	TGB1	CDS	Single RNA Segment	1	
+Alphaflexiviridae	Triple gene block protein 2	TGB2	CDS	Single RNA Segment	1	
+Alphaflexiviridae	Triple gene block protein 3	TGB3	CDS	Single RNA Segment	1	
+Alphaflexiviridae	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
+Alphaflexiviridae	Nucleic acid-binding protein	NABP	CDS	Single RNA Segment	0	
+Alphaflexiviridae	Uncharacterized lineage-specific protein	Allexi_40K	CDS	Single RNA Segment	0	

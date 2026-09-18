@@ -119,6 +119,11 @@ def run_one(workdir, module, key, anno, params, extra_flags):
     lo = os.path.join(dest, "Leftover_Seqs.aa")
     nleft = sum(1 for l in open(lo) if l.startswith(">")) if os.path.exists(lo) else 0
     nin = sum(1 for l in open(src) if l.startswith(">"))
+    #  recomputed here rather than carried from the writer, which now lives in
+    #  _write_params -- the refactor left this line reading a variable that no
+    #  longer existed in scope, and it only fires after a successful build so
+    #  nothing caught it until a seven-feature rebuild reached the end.
+    departures = {k: v for k, v in params.items() if DEFAULTS.get(k) != v}
     print("  %-14s %5d seqs -> %2d alignments, %2d PSSMs, %4d leftover   (%.0fs)%s"
           % (key, nin, nclu, npssm, nleft, time.time() - t,
              "  [" + ",".join("%s=%s" % kv for kv in sorted(departures.items())) + "]" if departures else ""))
