@@ -832,6 +832,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `apply_signalp.py` | stage consensus N-termini for SignalP, then cut verified `_SP` / `_MAT` products from a parent CDS |
 | `norm_pssm.py` | normalise `psiblast -out_pssm` output to the pipeline's format |
 | `qc_cross_feature.py` | find clusters binned under the wrong feature |
+| `qc_nterm_cross_cluster.py` | find clusters that start upstream of the rest of their feature |
 | `check_annotations.py` | check annotation strings and gene symbols against the vocabulary |
 | `check_dlits.py` | verify DLIT citations resolve, and that model-proposed ones are flagged |
 | `check_dump.py` | verify the BV-BRC dump is complete and line-aligned |

@@ -81,6 +81,51 @@ pipeline's `-nterm-mmseq-id` reclustering does. Curating by hand, the same idea:
 A split that produces two strong profiles and one weak catch-all beats six
 narrow ones.
 
+## The other N-terminal problem: a cluster that agrees with itself and is wrong
+
+The split above is for a cluster whose members **disagree**. The harder case
+is a cluster whose members all agree on the *same wrong start*, because every
+check built to look inside a cluster is satisfied by it.
+
+Betaflexiviridae_MP CP cluster 18: 11 sequences, all 249-250 aa, against a
+modal coat protein of 193. All annotated from the same upstream Met. The
+pipeline's N-terminal evaluation logged it `18.fa 250 25 10 2 OK`, because it
+asks whether the members agree, and they agree perfectly.
+
+The damage is not in the profile's own scores, which look excellent. It is
+that the profile **anchors upstream on every genome it matches**:
+
+```
+Nucleocapsid protein  6616-7362  451 bits
+Match contains 1 stop codon(s), cropping
+Coverage prior to stop codon (0.072) is lower than cutoff: 0.65
+```
+
+57 codons early puts the match inside the movement protein ORF in another
+frame, so it crosses a stop and the call is rejected on coverage. And because
+the annotator keeps only the best-scoring profile per feature, the bad one at
+451 bits beat the clean ones at 263 and 247 that would have called the protein
+correctly. The coat protein went uncalled on **26 genomes, 17% of the genus**,
+with every other check green.
+
+```bash
+python3 scripts/qc_nterm_cross_cluster.py --workdir . --module <M> --key CP
+python3 scripts/qc_nterm_cross_cluster.py ... --write
+```
+
+It aligns each cluster's master to the master of the largest cluster at the
+feature's modal length and flags any cluster the reference starts well inside.
+`--write` trims to that column **only when there is a Met there**; without one
+the correct start is a judgement and it refuses.
+
+**Do not trim everything it flags.** An N-terminal extension is not
+automatically an error — the Alphaflexiviridae coat protein has a real one, 90
+residues, and it is Mandarivirus. The same module reported 15 other extensions
+that cost nothing: REP and MP are called on 407 of 407 routed genomes despite
+six flagged REP clusters. Cluster 18 was the only one with demonstrated harm.
+The bar for editing a profile is evidence that it is losing calls, and the
+coverage run is where that evidence comes from.
+
 ## Identical sequences
 
 Collapse identical rows before building the profile — duplicates bias the
