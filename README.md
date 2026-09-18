@@ -19,6 +19,23 @@ which clusters are real, which features the data cannot support. **The skill
 exists because those judgements are easy to get wrong in ways nothing downstream
 detects.**
 
+
+## Where the work lives
+
+**This repository is the source of truth.** `build/` and `annotate/` are the
+pipeline and the annotator; `skill/` is the method; `modules/` holds the built
+modules; `reports/` holds the published pages.
+
+`CEPI-dxkb/Viral_Annotation` is a *downstream consumer*, not an input. It has
+not received the annotator work done here — at the time of writing it has no
+`internal_stop` support at all, so a module relying on a readthrough is
+silently cropped against it. Do not build against a fresh clone of it and do
+not treat `patches/` as the current state: patches are diffs against pristine
+upstream and drift behind `build/` and `annotate/` as work accumulates.
+
+To set up a runtime directory for the annotator, copy `annotate/*` and
+`build/*` over it first. See `modules/README.md`.
+
 ## Does it work?
 
 The Rhabdoviridae module built with this kit, measured against **every**
