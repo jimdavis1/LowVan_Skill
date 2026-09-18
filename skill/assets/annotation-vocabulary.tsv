@@ -1,4 +1,5 @@
 Taxon	Annotation	Symbol	Feature Type	Segment	Used for Genome Quality	PubMed IDs*
+* Papers that were useful in determining protein functions or coordinates						
 Alphacoronavirus	2'-O-methyltransferase and mRNA cap-1 formation factor NSP16 protein	NSP16	mat_peptide	Single RNA Segment	1	26948040;16911043
 Alphacoronavirus	3'-to-5' exoribonuclease and guanine-N7-methyltransferase NSP14 protein	NSP14	mat_peptide	Single RNA Segment	1	26948040;16911043
 Alphacoronavirus	Envelope protein	E	CDS	Single RNA Segment	1	
@@ -8,9 +9,9 @@ Alphacoronavirus	Main protease involved in polyprotein cleavage NSP5 protein	NSP
 Alphacoronavirus	Mature C-terminal spike protein membrane fusion domain S2	S2	mat_peptide	Single RNA Segment	0	29786498;35976165;27317167;18400867
 Alphacoronavirus	Mature N-terminal spike protein receptor binding domain S1	S1	mat_peptide	Single RNA Segment	0	29786498;35976165;27317167;18400867
 Alphacoronavirus	Membrane glycoprotein	M	CDS	Single RNA Segment	1	
-Alphacoronavirus	NSP11 protein	NSP11	mat_peptide	Single RNA Segment	0	26948040
 Alphacoronavirus	Nonstructural protein involved in interferon suppression NSP2	NSP2	mat_peptide	Single RNA Segment	1	16476987;38597182;16911043
 Alphacoronavirus	Nonstructural protein involved in suppressing host gene expression NSP1	NSP1	mat_peptide	Single RNA Segment	1	11431476;16306572;25432065;16911043
+Alphacoronavirus	NSP11 protein	NSP11	mat_peptide	Single RNA Segment	0	26948040
 Alphacoronavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Alphacoronavirus	ORF1a polyprotein	ORF1a	CDS	Single RNA Segment	1	
 Alphacoronavirus	ORF1ab polyprotein	ORF1ab	CDS	Single RNA Segment	0	1404364
@@ -39,9 +40,9 @@ Alphainfluenzavirus	Nucleocapsid protein	NP	CDS	NP Segment	1
 Alphainfluenzavirus	PA-N155 protein	PA-N155	CDS	PA Segment	0	
 Alphainfluenzavirus	PA-N182 protein	PA-N182	CDS	PA Segment	0	
 Alphainfluenzavirus	PB1-N40 protein	PB1-N40	CDS	PB1 Segment	0	19494001
+Alphainfluenzavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
 Alphainfluenzavirus	RNA-dependent RNA polymerase PA subunit	PA	CDS	PA Segment	1	
 Alphainfluenzavirus	RNA-dependent RNA polymerase PB2 subunit	PB2	CDS	PB2 Segment	1	
-Alphainfluenzavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
 Alphainfluenzavirus	Splice variant of PB2, RIG-I-dependent interferon signaling pathway inhibitor	PB2-S1	CDS	PB2 Segment	0	26491155
 Alphainfluenzavirus	Uncharacterized NS3 protein	NS3	CDS	NS1 Segment	0	24825008;24675275;26038410
 Alphainfluenzavirus	Virulence factor PB1-F2 protein	PB1-F2	CDS	PB1 Segment	0	
@@ -50,8 +51,8 @@ Aquaparamyxovirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1
 Aquaparamyxovirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Aquaparamyxovirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Aquaparamyxovirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Aquaparamyxovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Aquaparamyxovirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Aquaparamyxovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Aquaparamyxovirus	V protein	V	CDS	Single RNA Segment	0	34141448
 Aquaparamyxovirus	W protein	W	CDS	Single RNA Segment	0	34141448
 Arenaviridae	Mature C-terminal envelope glycoprotein Gc	Gc	mat_peptide	Small RNA Segment	0	
@@ -67,26 +68,26 @@ Betacoronavirus	Cytotoxic interferon antagonist ORF6 protein	Sarbeco_ORF6	CDS	Si
 Betacoronavirus	Envelope protein	E	CDS	Single RNA Segment	1	
 Betacoronavirus	Helicase NSP13 protein	NSP13	mat_peptide	Single RNA Segment	1	
 Betacoronavirus	Hemagglutinin-esterase glycoprotein	HE	CDS	Single RNA Segment	0	
+Betacoronavirus	Interferon antagonist and PKR inhibitor ORF4a protein	Merbeco_ORF4a	CDS	Single RNA Segment	0	27783669;24318862
 Betacoronavirus	Interferon antagonist NS2a protein	Embeco_NS2a	CDS	Single RNA Segment	0	30041172
 Betacoronavirus	Interferon antagonist NS5a protein	Embeco_NS5a	CDS	Single RNA Segment	0	30041172
 Betacoronavirus	Interferon antagonist ORF10 protein	Sarbeco_ORF10	CDS	Single RNA Segment	0	34845370
 Betacoronavirus	Interferon antagonist ORF3b protein	Sarbeco_ORF3b	CDS	Single RNA Segment	0	32941788
 Betacoronavirus	Interferon antagonist ORF4b protein	Merbeco_ORF4b	CDS	Single RNA Segment	0	24318862
 Betacoronavirus	Interferon antagonist ORF8b protein	Merbeco_ORF8b	CDS	Single RNA Segment	0	31452044
-Betacoronavirus	Interferon antagonist and PKR inhibitor ORF4a protein	Merbeco_ORF4a	CDS	Single RNA Segment	0	27783669;24318862
 Betacoronavirus	Internal membrane protein	I	CDS	Single RNA Segment	0	
-Betacoronavirus	MAVS-targeting interferon antagonist ORF3c protein	Sarbeco_ORF3c	CDS	Single RNA Segment	0	37870297
 Betacoronavirus	Main protease involved in polyprotein cleavage NSP5 protein	NSP5	mat_peptide	Single RNA Segment	1	
 Betacoronavirus	Mature C-terminal spike protein membrane fusion domain S2	S2	mat_peptide	Single RNA Segment	0	34534731;34690939
 Betacoronavirus	Mature N-terminal spike protein receptor binding domain S1	S1	mat_peptide	Single RNA Segment	0	34534731;34690939
+Betacoronavirus	MAVS-targeting interferon antagonist ORF3c protein	Sarbeco_ORF3c	CDS	Single RNA Segment	0	37870297
 Betacoronavirus	Membrane glycoprotein	M	CDS	Single RNA Segment	1	
 Betacoronavirus	Membrane-associated immunomodulating ORF9c protein	Sarbeco_ORF9c	CDS	Single RNA Segment	0	34305949;32839770
 Betacoronavirus	Membrane-associated viroporin and immunomodulating ORF3a protein	Sarbeco_ORF3a	CDS	Single RNA Segment	0	
 Betacoronavirus	Mitochondria-associated immunomodulating ORF9b protein	Sarbeco_ORF9b	CDS	Single RNA Segment	0	33990585
 Betacoronavirus	NF-kB-targeting interferon and inflammation antagonist ORF5 protein	Merbeco_ORF5	CDS	Single RNA Segment	0	24318862
-Betacoronavirus	NSP11 protein	NSP11	mat_peptide	Single RNA Segment	0	
 Betacoronavirus	Nonstructural protein involved in interferon suppression NSP2	NSP2	mat_peptide	Single RNA Segment	1	35878012
 Betacoronavirus	Nonstructural protein involved in suppressing host gene expression NSP1	NSP1	mat_peptide	Single RNA Segment	1	
+Betacoronavirus	NSP11 protein	NSP11	mat_peptide	Single RNA Segment	0	
 Betacoronavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Betacoronavirus	ORF1a polyprotein	ORF1a	CDS	Single RNA Segment	1	
 Betacoronavirus	ORF1ab polyprotein	ORF1ab	CDS	Single RNA Segment	0	
@@ -127,17 +128,17 @@ Betainfluenzavirus	Neuraminidase protein	NA	CDS	NA Segment	1
 Betainfluenzavirus	Nuclear export protein	NEP	CDS	NS1 Segment	0	24405943
 Betainfluenzavirus	Nucleocapsid protein	NP	CDS	NP Segment	1	
 Betainfluenzavirus	Proton channel BM2 protein	BM2	CDS	M Segment	1	
+Betainfluenzavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
 Betainfluenzavirus	RNA-dependent RNA polymerase PA subunit	PA	CDS	PA Segment	1	
 Betainfluenzavirus	RNA-dependent RNA polymerase PB2 subunit	PB2	CDS	PB2 Segment	1	
-Betainfluenzavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
 Betainfluenzavirus	Signal peptide of HA	HA-SP	mat_peptide	HA Segment	0	
 Deltacoronavirus	2'-O-methyltransferase and mRNA cap-1 formation factor NSP16 protein	NSP16	mat_peptide	Single RNA Segment	1	2227823
 Deltacoronavirus	3'-to-5' exoribonuclease and guanine-N7-methyltransferase NSP14 protein	NSP14	mat_peptide	Single RNA Segment	1	2227823
 Deltacoronavirus	Envelope protein	E	CDS	Single RNA Segment	1	
 Deltacoronavirus	Helicase NSP13 protein	NSP13	mat_peptide	Single RNA Segment	1	2227823
+Deltacoronavirus	Interferon antagonist and retrograde transport related protein NS6	NS6	CDS	Single RNA Segment	1	37815351
 Deltacoronavirus	Interferon antagonist NS7 protein	NS7	CDS	Single RNA Segment	0	32656094;27995863
 Deltacoronavirus	Interferon antagonist NSP1-2 protein	NSP1-2	mat_peptide	Single RNA Segment	1	38886840;32768229;2227823
-Deltacoronavirus	Interferon antagonist and retrograde transport related protein NS6	NS6	CDS	Single RNA Segment	1	37815351
 Deltacoronavirus	Main protease involved in polyprotein cleavage NSP5 protein	NSP5	mat_peptide	Single RNA Segment	1	2227823
 Deltacoronavirus	Membrane glycoprotein	M	CDS	Single RNA Segment	1	
 Deltacoronavirus	NSP11 protein	NSP11	mat_peptide	Single RNA Segment	0	2227823
@@ -166,17 +167,17 @@ Deltainfluenzavirus	Mature N-terminal receptor binding and esterase HEF subunit	
 Deltainfluenzavirus	NS1 protein	NS1	CDS	NS1 Segment	1	
 Deltainfluenzavirus	Nuclear export protein	NEP	CDS	NS1 Segment	0	24595369
 Deltainfluenzavirus	Nucleocapsid protein	NP	CDS	NP Segment	1	
+Deltainfluenzavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
 Deltainfluenzavirus	RNA-dependent RNA polymerase PA subunit	PA	CDS	PA Segment	1	
 Deltainfluenzavirus	RNA-dependent RNA polymerase PB2 subunit	PB2	CDS	PB2 Segment	1	
-Deltainfluenzavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
 Deltainfluenzavirus	Signal peptide of HEF	HEF-SP	mat_peptide	HEF Segment	0	
 Ferlavirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1	
 Ferlavirus	I protein	I	CDS	Single RNA Segment	0	
 Ferlavirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Ferlavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Ferlavirus	Phosphoprotein	P	CDS	Single RNA Segment	1	34141448
-Ferlavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Ferlavirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Ferlavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Ferlavirus	Uncharacterized lineage-specific protein		CDS	Single RNA Segment	0	
 Ferlavirus	V protein	V	CDS	Single RNA Segment	0	
 Ferlavirus	W protein	W	CDS	Single RNA Segment	0	34141448
@@ -208,9 +209,9 @@ Gammacoronavirus	Helicase NSP13 protein	NSP13	mat_peptide	Single RNA Segment	1
 Gammacoronavirus	Leader protein NSP1-2	NSP1-2	mat_peptide	Single RNA Segment	1	
 Gammacoronavirus	Main protease involved in polyprotein cleavage NSP5 protein	NSP5	mat_peptide	Single RNA Segment	1	
 Gammacoronavirus	Membrane glycoprotein	M	CDS	Single RNA Segment	1	
-Gammacoronavirus	NSP11 protein	NSP11	mat_peptide	Single RNA Segment	0	
 Gammacoronavirus	Nonstructural protein involved in interferon suppression ORF3a	ORF3a	CDS	Single RNA Segment	0	26401035
 Gammacoronavirus	Nonstructural protein involved in interferon suppression ORF3b	ORF3b	CDS	Single RNA Segment	0	26401035
+Gammacoronavirus	NSP11 protein	NSP11	mat_peptide	Single RNA Segment	0	
 Gammacoronavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Gammacoronavirus	ORF1a polyprotein	ORF1a	CDS	Single RNA Segment	1	
 Gammacoronavirus	ORF1ab polyprotein	ORF1ab	CDS	Single RNA Segment	0	
@@ -258,13 +259,13 @@ Gammainfluenzavirus	Mature N-terminal receptor binding and esterase HEF subunit	
 Gammainfluenzavirus	Nuclear export protein	NEP	CDS	NS1 Segment	0	24405943
 Gammainfluenzavirus	Nuclear-localized viral mRNA splicing enhancer NS1 protein	NS1	CDS	NS1 Segment	1	20007279
 Gammainfluenzavirus	Nucleocapsid protein	NP	CDS	NP Segment	1	
-Gammainfluenzavirus	RNA-dependent RNA polymerase PA subunit	PA	CDS	PA Segment	1	
-Gammainfluenzavirus	RNA-dependent RNA polymerase PB2 subunit	PB2	CDS	PB2 Segment	1	
-Gammainfluenzavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
-Gammainfluenzavirus	Signal peptide of CM2	CM2-SP	mat_peptide	M Segment	0	9789071;11044092
-Gammainfluenzavirus	Signal peptide of HEF	HEF-SP	mat_peptide	HEF Segment	0	26215728;1957719
 Gammainfluenzavirus	p31 cleavage product	P31	mat_peptide	M Segment	0	9789071;11044092
 Gammainfluenzavirus	p42 pre-protein	P42	CDS	M Segment	1	9789071;11044092
+Gammainfluenzavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
+Gammainfluenzavirus	RNA-dependent RNA polymerase PA subunit	PA	CDS	PA Segment	1	
+Gammainfluenzavirus	RNA-dependent RNA polymerase PB2 subunit	PB2	CDS	PB2 Segment	1	
+Gammainfluenzavirus	Signal peptide of CM2	CM2-SP	mat_peptide	M Segment	0	9789071;11044092
+Gammainfluenzavirus	Signal peptide of HEF	HEF-SP	mat_peptide	HEF Segment	0	26215728;1957719
 Hantaviridae	Mature C-terminal envelope glycoprotein Gc	Gc	mat_peptide	Medium RNA Segment	0	
 Hantaviridae	Mature N-terminal envelope glycoprotein Gn	Gn	mat_peptide	Medium RNA Segment	0	
 Hantaviridae	Nucleocapsid protein	N	CDS	Small RNA Segment	1	
@@ -276,10 +277,14 @@ Henipavirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1
 Henipavirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Henipavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Henipavirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Henipavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Henipavirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Henipavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Henipavirus	V protein	V	CDS	Single RNA Segment	0	23094089;35632848
 Henipavirus	W protein	W	CDS	Single RNA Segment	0	15857993
+Hepeviridae	Membrane-associated viroporin required for virion release ORF3 protein	ORF3	CDS	Single RNA Segment	1	
+Hepeviridae	Nonstructural polyprotein	ORF1	CDS	Single RNA Segment	1	
+Hepeviridae	Nucleocapsid protein	ORF2	CDS	Single RNA Segment	1	
+Hepeviridae	Uncharacterized lineage-specific protein	Roca_ORF4	CDS	Single RNA Segment	0	
 Isavirus	Fusion glycoprotein	F	CDS	F Segment	1	
 Isavirus	Hemagglutinin-esterase glycoprotein	HE	CDS	HE Segment	1	
 Isavirus	Matrix protein 1	M1	CDS	M Segment	1	
@@ -287,26 +292,33 @@ Isavirus	Matrix protein 2	M2	CDS	M Segment	1
 Isavirus	NS1 protein	NS1	CDS	NS1 Segment	1	
 Isavirus	Nuclear export protein	NEP	CDS	NS1 Segment	0	11900848;12078979
 Isavirus	Nucleocapsid protein	NP	CDS	NP Segment	1	
+Isavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
 Isavirus	RNA-dependent RNA polymerase PA subunit	PA	CDS	PA Segment	1	
 Isavirus	RNA-dependent RNA polymerase PB2 subunit	PB2	CDS	PB2 Segment	1	
-Isavirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
 Jeilongvirus	C protein	C	CDS	Single RNA Segment	0	
 Jeilongvirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1	
 Jeilongvirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Jeilongvirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Jeilongvirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Jeilongvirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Jeilongvirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Jeilongvirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Jeilongvirus	Small hydrophobic protein	SH	CDS	Single RNA Segment	0	
 Jeilongvirus	Transmembrane protein	TM	CDS	Single RNA Segment	0	
 Jeilongvirus	V protein	V	CDS	Single RNA Segment	0	34141448
 Jeilongvirus	W protein	W	CDS	Single RNA Segment	0	34141448
+Matonaviridae	Mature envelope glycoprotein E1	E1	mat_peptide	Single RNA Segment	1	
+Matonaviridae	Mature envelope glycoprotein E2	E2	mat_peptide	Single RNA Segment	1	
+Matonaviridae	Nonstructural polyprotein	p200	CDS	Single RNA Segment	1	
+Matonaviridae	Nucleocapsid protein	C	mat_peptide	Single RNA Segment	1	
+Matonaviridae	Protease p150 protein	p150	mat_peptide	Single RNA Segment	1	
+Matonaviridae	RNA-dependent RNA polymerase	p90	mat_peptide	Single RNA Segment	1	
+Matonaviridae	Structural polyprotein	p110	CDS	Single RNA Segment	1	
 Metaavulavirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1	
 Metaavulavirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Metaavulavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Metaavulavirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Metaavulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Metaavulavirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Metaavulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Metaavulavirus	Small hydrophobic protein	SH	CDS	Single RNA Segment	0	
 Metaavulavirus	V protein	V	CDS	Single RNA Segment	0	32533018
 Metaavulavirus	W protein	W	CDS	Single RNA Segment	0	32533018
@@ -316,8 +328,8 @@ Metapneumovirus	Mature C-terminal fusion protein subunit	F1	mat_peptide	Single R
 Metapneumovirus	Mature N-terminal fusion protein subunit	F2	mat_peptide	Single RNA Segment	1	29142300;16971452
 Metapneumovirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Metapneumovirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Metapneumovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Metapneumovirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	26658574
+Metapneumovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Metapneumovirus	Signal peptide of F0	SP	mat_peptide	Single RNA Segment	0	29142300
 Metapneumovirus	Small hydrophobic protein	SH	CDS	Single RNA Segment	1	
 Metapneumovirus	Transcription elongation factor M2-1	M2-1	CDS	Single RNA Segment	1	
@@ -327,8 +339,8 @@ Morbillivirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1
 Morbillivirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Morbillivirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Morbillivirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Morbillivirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Morbillivirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Morbillivirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Morbillivirus	V protein	V	CDS	Single RNA Segment	0	2924348
 Nairoviridae	Mature C-terminal envelope glycoprotein Gc	Gc	mat_peptide	Medium RNA Segment	0	
 Nairoviridae	Mature N-terminal envelope glycoprotein Gn	Gn	mat_peptide	Medium RNA Segment	0	
@@ -345,22 +357,22 @@ Narmovirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1
 Narmovirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Narmovirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Narmovirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Narmovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Narmovirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Narmovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Narmovirus	V protein	V	CDS	Single RNA Segment	0	32533018
 Narmovirus	W protein	W	CDS	Single RNA Segment	0	32533018
 Orthoavulavirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1	
 Orthoavulavirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Orthoavulavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Orthoavulavirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Orthoavulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Orthoavulavirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Orthoavulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Orthoavulavirus	V protein	V	CDS	Single RNA Segment	0	32533018
 Orthoavulavirus	W protein	W	CDS	Single RNA Segment	0	32533018
 Orthoebolavirus	Matrix protein VP40	VP40	CDS	Single RNA Segment	1	
 Orthoebolavirus	Mature C-terminal envelope glycoprotein Gc	Gc	mat_peptide	Single RNA Segment	1	10683320
-Orthoebolavirus	Mature N-terminal envelope glycoprotein Gn	Gn	mat_peptide	Single RNA Segment	1	21411529;26051281
 Orthoebolavirus	Mature delta peptide viroporin and enterotoxin	Delta	mat_peptide	Single RNA Segment	1	10603327;28539454;34986351
+Orthoebolavirus	Mature N-terminal envelope glycoprotein Gn	Gn	mat_peptide	Single RNA Segment	1	21411529;26051281
 Orthoebolavirus	Mature soluble secreted glycoprotein sGP	sGP	mat_peptide	Single RNA Segment	1	10603327;28539454
 Orthoebolavirus	Nucleocapsid maturation factor VP24 protein	VP24	CDS	Single RNA Segment	1	
 Orthoebolavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
@@ -390,8 +402,8 @@ Orthopneumovirus	Nonstructural NS1 protein	NS1	CDS	Single RNA Segment	0
 Orthopneumovirus	Nonstructural NS2 protein	NS2	CDS	Single RNA Segment	0	
 Orthopneumovirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Orthopneumovirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Orthopneumovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Orthopneumovirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	26658574
+Orthopneumovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Orthopneumovirus	Signal peptide of F0	SP	mat_peptide	Single RNA Segment	1	25078705;37415824
 Orthopneumovirus	Small hydrophobic protein	SH	CDS	Single RNA Segment	1	
 Orthopneumovirus	Transcription elongation factor M2-1	M2-1	CDS	Single RNA Segment	1	
@@ -404,8 +416,8 @@ Orthopneumovirus_muris	Nonstructural NS1 protein	NS1	CDS	Single RNA Segment	0
 Orthopneumovirus_muris	Nonstructural NS2 protein	NS2	CDS	Single RNA Segment	0	
 Orthopneumovirus_muris	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Orthopneumovirus_muris	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Orthopneumovirus_muris	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Orthopneumovirus_muris	Receptor binding protein	RBP	CDS	Single RNA Segment	1	26658574
+Orthopneumovirus_muris	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Orthopneumovirus_muris	Signal peptide of F0	SP	mat_peptide	Single RNA Segment	0	1629698
 Orthopneumovirus_muris	Small hydrophobic protein	SH	CDS	Single RNA Segment	1	
 Orthopneumovirus_muris	Transcription elongation factor M2-1	M2-1	CDS	Single RNA Segment	1	
@@ -416,24 +428,24 @@ Orthorubulavirus	I protein	I	CDS	Single RNA Segment	0	22090137;2165137
 Orthorubulavirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Orthorubulavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Orthorubulavirus	Phosphoprotein	P	CDS	Single RNA Segment	1	22090137;2165137
-Orthorubulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Orthorubulavirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Orthorubulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Orthorubulavirus	Small hydrophobic protein	SH	CDS	Single RNA Segment	0	
 Orthorubulavirus	V protein	V	CDS	Single RNA Segment	0	
 Paraavulavirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1	
 Paraavulavirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Paraavulavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Paraavulavirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Paraavulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Paraavulavirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Paraavulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Paraavulavirus	V protein	V	CDS	Single RNA Segment	0	32533018
 Paraavulavirus	W protein	W	CDS	Single RNA Segment	0	32533018
 Pararubulavirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1	
 Pararubulavirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Pararubulavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Pararubulavirus	Phosphoprotein	P	CDS	Single RNA Segment	1	34141448
-Pararubulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Pararubulavirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Pararubulavirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Pararubulavirus	V protein	V	CDS	Single RNA Segment	0	
 Pararubulavirus	W protein	W	CDS	Single RNA Segment	0	34141448
 Peribunyaviridae	Mature C-terminal envelope glycoprotein Gc	Gc	mat_peptide	Medium RNA Segment	0	
@@ -465,40 +477,32 @@ Respirovirus	Fusion glycoprotein	F	CDS	Single RNA Segment	1
 Respirovirus	Matrix protein	M	CDS	Single RNA Segment	1	
 Respirovirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Respirovirus	Phosphoprotein	P	CDS	Single RNA Segment	1	
-Respirovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Respirovirus	Receptor binding protein	RBP	CDS	Single RNA Segment	1	
+Respirovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
 Respirovirus	V protein	V	CDS	Single RNA Segment	0	2167560;2924348;27567257;9514977;37243262
 Respirovirus	W protein	W	CDS	Single RNA Segment	0	2167560;2924348;27567257;9514977;37243262
 Respirovirus	Y1 protein	Y1	CDS	Single RNA Segment	0	
 Respirovirus	Y2 protein	Y2	CDS	Single RNA Segment	0	
+Tobamovirus	Methyltransferase and helicase replication protein	126K	CDS	1	Yes	
+Tobamovirus	Movement protein	MP	CDS	1	Yes	
+Tobamovirus	Nucleocapsid protein	CP	CDS	1	Yes	
+Tobamovirus	RNA-dependent RNA polymerase	183K	CDS	1	Yes	
+Togaviridae	Envelope glycoprotein precursor pE2	pE2	mat_peptide	Single RNA Segment	1	
+Togaviridae	Mature 6K membrane protein	6K	mat_peptide	Single RNA Segment	1	
+Togaviridae	Mature envelope glycoprotein E1	E1	mat_peptide	Single RNA Segment	1	
+Togaviridae	Mature envelope glycoprotein E2	E2	mat_peptide	Single RNA Segment	1	
+Togaviridae	Mature envelope glycoprotein E3	E3	mat_peptide	Single RNA Segment	1	
+Togaviridae	mRNA-capping enzyme nsP1 protein	nsP1	mat_peptide	Single RNA Segment	1	
+Togaviridae	Nonstructural polyprotein	nsP1234	CDS	Single RNA Segment	1	
+Togaviridae	Nonstructural polyprotein P123	nsP123	CDS	Single RNA Segment	1	
+Togaviridae	Nonstructural protein nsP3	nsP3	mat_peptide	Single RNA Segment	1	
+Togaviridae	Nucleocapsid protein	C	mat_peptide	Single RNA Segment	1	
+Togaviridae	Protease nsP2 protein	nsP2	mat_peptide	Single RNA Segment	1	
+Togaviridae	RNA-dependent RNA polymerase	nsP4	mat_peptide	Single RNA Segment	1	
+Togaviridae	Structural polyprotein	STP	CDS	Single RNA Segment	1	
+Togaviridae	TransFrame protein	TF	mat_peptide	Single RNA Segment	0	18822126;23720714
 Tospoviridae	Movement protein	Mov	CDS	Medium RNA Segment	1	
 Tospoviridae	Nucleocapsid protein	N	CDS	Small RNA Segment	1	
 Tospoviridae	Pre-glycoprotein polyprotein GP complex	GPC	CDS	Medium RNA Segment	1	
 Tospoviridae	RNA silencing suppressor protein	NSs	CDS	Small RNA Segment	1	
 Tospoviridae	RNA-dependent RNA polymerase	L	CDS	Large RNA Segment	1	
-* Papers that were useful in determining protein functions or coordinates						
-Togaviridae	Nonstructural polyprotein	nsP1234	CDS	Single RNA Segment	1	
-Togaviridae	mRNA-capping enzyme nsP1 protein	nsP1	mat_peptide	Single RNA Segment	1	
-Togaviridae	Protease nsP2 protein	nsP2	mat_peptide	Single RNA Segment	1	
-Togaviridae	Nonstructural protein nsP3	nsP3	mat_peptide	Single RNA Segment	1	
-Togaviridae	RNA-dependent RNA polymerase	nsP4	mat_peptide	Single RNA Segment	1	
-Togaviridae	Structural polyprotein	STP	CDS	Single RNA Segment	1	
-Togaviridae	Nucleocapsid protein	C	mat_peptide	Single RNA Segment	1	
-Togaviridae	Mature envelope glycoprotein E3	E3	mat_peptide	Single RNA Segment	1	
-Togaviridae	Mature envelope glycoprotein E2	E2	mat_peptide	Single RNA Segment	1	
-Togaviridae	Mature 6K membrane protein	6K	mat_peptide	Single RNA Segment	1	
-Togaviridae	Mature envelope glycoprotein E1	E1	mat_peptide	Single RNA Segment	1	
-Togaviridae	Envelope glycoprotein precursor pE2	pE2	mat_peptide	Single RNA Segment	1	
-Togaviridae	Nonstructural polyprotein P123	nsP123	CDS	Single RNA Segment	1	
-Togaviridae	TransFrame protein	TF	mat_peptide	Single RNA Segment	0	18822126;23720714
-Matonaviridae	Nonstructural polyprotein	p200	CDS	Single RNA Segment	1	
-Matonaviridae	Protease p150 protein	p150	mat_peptide	Single RNA Segment	1	
-Matonaviridae	RNA-dependent RNA polymerase	p90	mat_peptide	Single RNA Segment	1	
-Matonaviridae	Structural polyprotein	p110	CDS	Single RNA Segment	1	
-Matonaviridae	Nucleocapsid protein	C	mat_peptide	Single RNA Segment	1	
-Matonaviridae	Mature envelope glycoprotein E2	E2	mat_peptide	Single RNA Segment	1	
-Matonaviridae	Mature envelope glycoprotein E1	E1	mat_peptide	Single RNA Segment	1	
-Hepeviridae	Nonstructural polyprotein	ORF1	CDS	Single RNA Segment	1	
-Hepeviridae	Nucleocapsid protein	ORF2	CDS	Single RNA Segment	1	
-Hepeviridae	Membrane-associated viroporin required for virion release ORF3 protein	ORF3	CDS	Single RNA Segment	1	
-Hepeviridae	Uncharacterized lineage-specific protein	Roca_ORF4	CDS	Single RNA Segment	0	

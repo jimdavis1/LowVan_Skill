@@ -288,6 +288,47 @@ Two consequences elsewhere, both worth copying into a new module:
   for. If mature and precursor start at the same coordinate, the extension flag
   is wrong.
 
+## The annotation string is a key, not a label
+
+**Within one module, no two features may share an `anno` string** if both
+declare `copy_num` and a `CDS` or `mat_peptide` `feature_type`.
+`viral_genome_quality.pl` builds its `%essential` hash keyed by the annotation
+string, not by the feature key:
+
+```perl
+$essential->{$anno}->{max_len}  = ...->{max_len};
+$essential->{$anno}->{min_len}  = ...->{min_len};
+$essential->{$anno}->{copy_num} = ...->{copy_num};
+```
+
+Two features sharing a string means the second one read **silently overwrites
+the first one's length window**, and `%anno_count` then sums both features'
+calls against the single surviving `copy_num`.
+
+The symptom is distinctive, and it looks like a biology problem when it is not:
+
+- every genome flagged `Genome has too many HSPs for: <string>; Count = 2`
+- length flags that **flip between "too short" and "too long"** across the run,
+  because Perl randomises hash order and the script runs once per genome, so a
+  different feature's window wins each time
+
+Tobamovirus shipped `REP126` and `REP183` both as `Nonstructural polyprotein`
+and scored **0% good on 89 genomes** for this reason alone — 52 genomes where
+the 183K window won and the 126K call read too short, 38 where the 126K window
+won and the 183K call read too long, one flag per genome. Nothing was wrong
+with the profiles, the cutoffs or the genomes.
+
+A readthrough or nested pair is still two proteins and needs two strings.
+Togaviridae is the worked precedent: `nsP1234` is `Nonstructural polyprotein`
+and `nsP123` is `Nonstructural polyprotein P123`. Where the two products have
+genuinely different functions, say so instead of appending a name — Tobamovirus
+now uses `Methyltransferase and helicase replication protein` (126K) and
+`RNA-dependent RNA polymerase` (183K), which also reuses an existing
+vocabulary string for the readthrough product.
+
+`scripts/check_annotations.py` fails with a non-zero exit on this. Run it
+before installing.
+
 ## Two failure modes the schema does not prevent
 
 **A feature declared with no PSSM is never called.** Nothing errors; the

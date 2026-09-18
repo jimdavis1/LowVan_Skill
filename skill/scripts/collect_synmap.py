@@ -28,7 +28,15 @@ def _pick_json(W):
 if len(sys.argv) > 1 and sys.argv[1] in ("-h", "--help"):
     sys.exit("usage: collect_synmap.py [workdir]   # writes agg.json, unbinned.json, typos.json")
 W = sys.argv[1] if len(sys.argv) > 1 else "."
-rows = list(csv.DictReader(open(os.path.join(W, "synonyms.tsv")), delimiter="\t"))
+#  build_collections.py writes synonyms.tsv next to the collections it made,
+#  so accept either location rather than making every module copy it up.
+_syn = os.path.join(W, "synonyms.tsv")
+if not os.path.exists(_syn):
+    _syn = os.path.join(W, "collections", "synonyms.tsv")
+if not os.path.exists(_syn):
+    sys.exit("no synonyms.tsv in %s or %s/collections"
+             % (os.path.abspath(W), os.path.abspath(W)))
+rows = list(csv.DictReader(open(_syn), delimiter="\t"))
 J = json.load(open(_pick_json(W)))
 key2anno, key2gene = {}, {}
 for T, v in J.items():

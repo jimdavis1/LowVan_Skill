@@ -146,11 +146,42 @@ def main():
         mod = json.load(fh)
 
     seen = {}
+    quality_keyed = {}
     for module, block in mod.items():
         for key, ent in block.get("features", {}).items():
             a = (ent.get("anno") or "").strip()
             seen.setdefault(a, []).append(
                 (module, key, ent.get("feature_type", ""), ent.get("gene_symbol", "")))
+            #  viral_genome_quality.pl keys its %essential hash by the
+            #  annotation string, for exactly these features.  Track them
+            #  separately so the collision check below matches its rule.
+            if ent.get("copy_num") and re.search(
+                    r"(CDS|mat_peptide)", str(ent.get("feature_type", ""))):
+                quality_keyed.setdefault((module, a), []).append((key, ent))
+
+    #  Two features in one module that share an annotation string collide in
+    #  viral_genome_quality.pl: %essential is keyed by the string, so the
+    #  second feature read silently overwrites the first one's min_len,
+    #  max_len and copy_num, and %anno_count sums both features' calls
+    #  against the single surviving copy_num.  The symptoms are a genome
+    #  flagged "too many HSPs for: <string>" plus length flags that flip
+    #  between "too short" and "too long" from genome to genome, because
+    #  Perl randomises hash order and the script runs once per genome.
+    #  Tobamovirus shipped REP126 and REP183 both as "Nonstructural
+    #  polyprotein" and scored 0% good on 89 genomes for this reason alone.
+    dup = {k: v for k, v in quality_keyed.items() if len(v) > 1}
+    if dup:
+        print("ANNOTATION STRING COLLISION (%d) -- MUST FIX BEFORE INSTALL:" % len(dup))
+        for (module, a), lst in sorted(dup.items()):
+            print("  %s: %d features share %r" % (module, len(lst), a))
+            for key, ent in sorted(lst):
+                print("      %-14s copy_num=%-3s %s-%s"
+                      % (key, ent.get("copy_num"),
+                         ent.get("min_len"), ent.get("max_len")))
+        print("  Give each feature its own string.  A readthrough or nested",
+              "pair is still two proteins:\n  Togaviridae names them",
+              "'Nonstructural polyprotein' (nsP1234) and",
+              "'Nonstructural polyprotein P123' (nsP123) for this reason.\n")
 
     reused, variant, new = [], [], []
     for a, uses in sorted(seen.items()):
@@ -231,7 +262,7 @@ def main():
 
     print("\n  columns: Taxon | Annotation | Symbol | Feature Type |")
     print("                         Segment | Used for Genome Quality | PubMed IDs*")
-    return 1 if (variant or mism) else 0
+    return 1 if (variant or mism or dup) else 0
 
 
 if __name__ == "__main__":
