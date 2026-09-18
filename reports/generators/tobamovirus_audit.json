@@ -17,7 +17,7 @@
    "exemplars routed"
   ],
   [
-   "95.5%",
+   "90.4%",
    "genomes good quality"
   ],
   [
@@ -25,8 +25,8 @@
    "string collapse"
   ],
   [
-   "1",
-   "annotator bug found"
+   "3",
+   "tooling bugs found"
   ]
  ],
  "sections": [
@@ -224,48 +224,48 @@
   {
    "num": "05",
    "title": "Does it call the proteins?",
-   "lede": "On the routed exemplars, all four features, most of the time.",
+   "lede": "On the genomes that reach it, all four features, 93 times in 99.",
    "blocks": [
     {
      "type": "bars",
      "rows": [
       [
        "126K",
-       "91.2",
-       91.2,
-       "93 of 102 routed exemplars"
+       "93.9",
+       93.9,
+       "93 of 99 routed exemplars"
       ],
       [
        "183K",
-       "92.2",
-       92.2,
-       "94 calls"
+       "93.9",
+       93.9,
+       "93 genomes, 94 calls — one genome is called twice"
       ],
       [
        "MP",
-       "92.2",
-       92.2,
-       "94 calls"
+       "94.9",
+       94.9,
+       "94 genomes"
       ],
       [
        "CP",
-       "92.2",
-       92.2,
-       "94 calls"
+       "94.9",
+       94.9,
+       "94 genomes"
       ]
      ],
      "unit": "%"
     },
     {
      "type": "prose",
-     "html": "Of 102 exemplars, 94 get the movement protein, coat protein and 183K, and 93 the 126K. The five genomes with no call at all are the three that never routed plus two whose contigs fall below the module's declared 5,500&nbsp;nt segment floor."
+     "html": "Of 102 near-complete exemplars, 99 route and <b>92 of those 99 get the complete set of four</b>. Five get exactly one feature, one gets two, and one gets five because the 183K is called twice on a frameshifted genome (&sect;07). No routed exemplar comes back empty.<br><br>The rates above are per routed genome, not per call: the 183K is called 94 times across 93 genomes, and counting calls rather than genomes would overstate it. The denominator is the 99 that routed, because a genome no rep contig claims is a routing failure and belongs in &sect;04, not here."
     }
    ]
   },
   {
    "num": "06",
    "title": "Are the calls right?",
-   "lede": "89 genomes through the full GTO quality pipeline.",
+   "lede": "94 genomes through the full GTO quality pipeline — and getting the denominator right took two fixes.",
    "blocks": [
     {
      "type": "tiles",
@@ -279,18 +279,31 @@
        "flagged"
       ],
       [
-       "0",
-       "no features called"
+       "5",
+       "called nothing"
       ],
       [
-       "95.5%",
+       "90.4%",
        "good"
       ]
      ]
     },
     {
      "type": "prose",
-     "html": "For comparison, Hepeviridae scores 89.2% on the same pipeline. The four flagged genomes are named individually in &sect;07 &mdash; every one is a defect in the deposited sequence rather than in the module, and saying so is only credible because each was checked."
+     "html": "<b>This figure was published as 95.5% and that was wrong.</b> Five genomes routed to the module, cleared no profile, and were dropped before scoring, so the run reported 89 scored, 0 with no features called, and 85/89 = 95.5% good. The true denominator is 94 and the true rate is <b>85/94 = 90.4%</b>."
+    },
+    {
+     "type": "pre",
+     "text": "as published          after the fixes\n  scored        89      scored        94\n  good     85  95.5%    good     85  90.4%\n  poor      4   4.5%    poor      4   4.3%\n  no feats  0   0.0%    no feats  5   5.3%\n  ann fail  5           ann fail  0"
+    },
+    {
+     "type": "prose",
+     "html": "Two bugs, in series. <code>annotate_by_viral_pssm.pl</code> emits a <code>no_features_called</code> sentinel row so a routed genome does not lose its taxon assignment; the GTO wrapper pushed that row as a feature, and <code>GenomeTypeObject</code> died on its missing location. Fixing that only moved the failure, because <code>viral_genome_quality.pl</code> opens with <code>$genome_in-&gt;{features}-&gt;[0] or die</code>. A genome that called nothing is not unscoreable — it is the worst case, and the bucket exists for it. Both are fixed in the kit."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Any module scored before these fixes carries the same inflation, including the Hepeviridae 89.2% quoted in its own audit. Those numbers need re-measuring before they are compared with this one."
     }
    ]
   },
@@ -332,6 +345,10 @@
     {
      "type": "prose",
      "html": "<b>88 of 7,843 features (1.1%) matched no binning rule.</b> Most are positional or mass labels the rules deliberately do not trust &mdash; &ldquo;hypothetical protein&rdquo; (8), &ldquo;charged protein&rdquo; (5), &ldquo;unnamed protein product&rdquo; (4). Thirteen of them, however, are canonical tobamovirus names that should have been caught: &ldquo;30K protein&rdquo; (5) and &ldquo;29K protein&rdquo; (5) are the movement protein, &ldquo;17 kDa protein&rdquo; (3) the coat protein. Adding mass-based rules for those would recover thirteen sequences out of 7,843. It has not been done, and this line is the record that it is outstanding."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Five genomes route and call nothing at all</b> — 5.3% of the panel, and the single largest gap in the module. They are not plant tobamoviruses:<br><br><code>2052571.3</code> Podosphaera prunicola tobamo-like virus, 11,449 nt<br><code>2743167.3</code> Erysiphe necator associated tobamo-like virus, 11,430 nt<br><code>2501286.3</code> Acidomyces richmondensis tobamo-like virus, 10,291 nt<br><code>2859595.4</code> Rubber tree latent virus 1, 11,923 nt<br><code>2950833.3</code> Plant associated tobamo-like virus 1, 6,553 nt<br><br>Three are viruses of powdery-mildew and acidophilic <i>fungi</i>, and four have genomes roughly twice the length of a tobamovirus. They reach the module because BLASTn against the rep contigs is more permissive than the protein profiles are — <code>2950833.3</code> routes at 10,241 bits and then clears no profile at any feature. Widening the profiles to cover them would not be fixing a threshold; it would be admitting a different group of viruses into a genus module. The honest options are to leave them uncalled, as here, or to tighten routing so the module stops claiming them."
     },
     {
      "type": "prose",
