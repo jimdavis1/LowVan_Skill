@@ -205,6 +205,35 @@ def install(workdir, repo, modules, mod_json, dry=False):
                     na += 1
         print("  %-24s %3d alignments -> PSSM-Alignments/%s/" % ("", na, module))
 
+        # 2b. special-feature references
+        #
+        #  A feature declaring `special: splice` or `special: transcript_edit`
+        #  is not called by a PSSM. It is called by
+        #  get_splice_variant_features.pl or get_transcript_edited_features.pl
+        #  from hand-curated nucleotide references under
+        #  <Splice-Variants|Transcript-Editing>/<Module>/<FEAT>.fasta.
+        #
+        #  Installing without them leaves the feature declared and unable to
+        #  fire, and nothing reports it: the programs warn on stderr and exit
+        #  0. Merhavirus L_SPLICED sat in exactly that state in
+        #  Alpharhabdovirinae for the life of that module.
+        for kind in ("Splice-Variants", "Transcript-Editing"):
+            src = os.path.join(workdir, kind)
+            #  accept both the module-scoped layout used under modules/ and
+            #  the runtime layout <kind>/<Module>/
+            for cand in (os.path.join(src, module), src):
+                if os.path.isdir(cand) and glob.glob(os.path.join(cand, "*.fasta")):
+                    dd = os.path.join(repo, kind, module)
+                    n = 0
+                    for f in sorted(glob.glob(os.path.join(cand, "*.fasta"))):
+                        if not dry:
+                            os.makedirs(dd, exist_ok=True)
+                            shutil.copy2(f, os.path.join(dd, os.path.basename(f)))
+                        n += 1
+                    print("  %-24s %3d %s reference file(s) -> %s/%s/"
+                          % ("", n, kind.split("-")[0].lower(), kind, module))
+                    break
+
         # 3. rep contigs
         nr = 0
         for f in sorted(glob.glob(os.path.join(workdir, "Rep-Contigs", module + ".*.dna"))):
