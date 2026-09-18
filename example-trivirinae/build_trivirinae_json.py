@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Betaflexiviridae_MP module JSON.
+"""Trivirinae module JSON.
 
 The module is the half of Betaflexiviridae whose genomes move by a SINGLE
 movement protein rather than a triple gene block: Trichovirus, Vitivirus,
@@ -48,7 +48,7 @@ below.
 """
 import json, os, collections, sys
 
-MODULE  = "Betaflexiviridae_MP"
+MODULE  = "Trivirinae"
 SEGMENT = "Single RNA Segment"
 
 #  Every id model-proposed; each was checked to resolve in PubMed to the paper

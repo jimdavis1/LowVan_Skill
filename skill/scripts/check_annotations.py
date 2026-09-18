@@ -264,7 +264,7 @@ def main():
         #  the wrong answer: every taxon has a community name for its own
         #  proteins, so a per-taxon argument is always available and the
         #  symbol set drifts one module at a time. Tobamovirus and
-        #  Betaflexiviridae_MP shipped 183K/REP for the RdRp, MP for the
+        #  Trivirinae shipped 183K/REP for the RdRp, MP for the
         #  movement protein and CP for the nucleocapsid, against L, Mov and N
         #  everywhere else -- including in the two plant-infecting
         #  rhabdovirus modules, which had already got it right.

@@ -16,7 +16,7 @@ runtime target only and has no git remote.
 | Matonaviridae | 7 | 16 | 4 | — | — | all four |
 | Hepeviridae | 4 | 63 | 24 | 622/669 | **89.1%** | all four |
 | **Tobamovirus** | 4 | 98 | 25 | 99/102 | **89.4%** | **all four** |
-| **Betaflexiviridae_MP** | 5 | 157 | 25 | 407/409 | **88.5%** | **all four** |
+| **Trivirinae** | 5 | 157 | 25 | 407/409 | **88.5%** | **all four** |
 
 Every module's installed profile count now equals its shipped alignment count.
 
@@ -41,13 +41,32 @@ impact. A module is only started once its rep contigs are known to fit the
 | module | measured routing | notes |
 |---|---|---|
 | Alphaflexiviridae | 84.9% at budget | Potexvirus + Allexivirus + Lolavirus as one module, per PARTITIONING.md. one module, 7 features and 123 profiles built; collections triaged and Mandarivirus recovered by homology three times under a Potexvirus label. Splitting would reach ~95% for 50 references |
-| Betaflexiviridae_TGB | 81.0% | pome and stone fruit; the TGB half of the family already split |
+| Quinvirinae | 81.0% | pome and stone fruit; the TGB half of the family already split |
 | Capillovirus | 100% | apple stem grooving; needs a mature peptide (CP inside the polyprotein) |
 | Bromoviridae | unmeasured | **cucumber mosaic virus**; 3 segments, needs per-segment clustering |
-| Alphaflexiviridae_noTGB | unmeasured | 42 genomes, fungal; may not ship |
+| Botrexvirus / Platypuvirus / Sclerodarnavirus | unmeasured | 42 genomes, fungal; may not ship |
 
 Unmeasured beyond that: Crinivirus, Virgaviridae minors, Kitaviridae,
 Mayoviridae, Benyviridae.
+
+## Module names must be real taxa
+
+A module name is not a label. It is the `Viral_PSSM.json` key, the
+`Viral-PSSMs/<M>.pssms/` and `PSSM-Alignments/<M>/` directories, the
+`Splice-Variants/<M>/` lookup, the `<M>.<n>.dna` rep-contig filenames — and it
+is written into every output GTO as `viral_family`, where anything downstream
+will read it as a taxon.
+
+`Betaflexiviridae_MP` was invented to mean "the movement-protein half" and was
+the only invalid name among 39 installed modules. It is now **Trivirinae**,
+which is the ICTV subfamily covering exactly those genera. Two consequences:
+
+- `Betaflexiviridae_TGB` is **Quinvirinae**, the sibling subfamily.
+- Botrexvirus, Platypuvirus and Sclerodarnavirus share no subfamily, so if
+  that group ships it ships as per-genus modules, not as one invented name.
+
+A genus split out of its parent keeps a real name too: `Merhavirus` out of
+`Alpharhabdovirinae`, `Orthopneumovirus_muris` out of `Orthopneumovirus`.
 
 ## Tabled on the rep-contig budget
 

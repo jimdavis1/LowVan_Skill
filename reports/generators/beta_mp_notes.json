@@ -1,9 +1,0 @@
-{
-  "standfirst": "<b>Betaflexiviridae_MP</b> is the half of the family that moves by a single movement protein rather than a triple gene block: <b>Trichovirus, Vitivirus, Citrivirus, Tepovirus, Prunevirus, Chordovirus, Divavirus, Wamavirus</b>. Between them they cause apple chlorotic leaf spot, grapevine Pinot gris disease, citrus leaf blotch and cherry mottle leaf. This registry says what profiles were built and how much of their own collections they recover. Every figure is reproducible from <code>work/Betaflexiviridae_MP/</code>.",
-  "modules": {
-    "Betaflexiviridae_MP": "Split from the triple-gene-block genera on genome organisation, and the split paid for itself in routing: the family lumped reaches 75.3% of its genomes on 25 references, this half reaches 91.6% and the TGB half 81.0%. Five features, two of which are accessories that whole genera lack."
-  },
-  "gaps": "Nothing declared went unbuilt. The two accessories are absent by biology rather than by failure: NABP is called on 92% of Vitivirus and 38% of Prunevirus and in none of Citrivirus, Chordovirus, Divavirus, Tepovirus or Wamavirus, and VITI_ORF2 is called on 84% of Vitivirus and nowhere else at all. Reporting those as 46% and 38% of the module would describe the taxonomy, not the module.",
-  "derived": "No mature peptides. The Betaflexiviridae replicase is one uncleaved ORF carrying methyltransferase, helicase and polymerase domains &mdash; the family encodes no protease &mdash; so there is no precursor to cut and no <code>_MAT</code> feature to declare.",
-  "why": {}
-}

@@ -1,8 +1,8 @@
 {
- "title": "Betaflexiviridae MP Coverage Audit",
- "eyebrow": "LowVan · Betaflexiviridae_MP module · 18 September 2026",
+ "title": "Trivirinae Coverage Audit",
+ "eyebrow": "LowVan · Trivirinae module · 18 September 2026",
  "h1": "Does the single-movement-protein module actually work?",
- "standfirst": "<b>Betaflexiviridae_MP</b> is the half of the family that moves by one movement protein rather than a triple gene block — <b>Trichovirus, Vitivirus, Citrivirus, Tepovirus, Prunevirus, Chordovirus, Divavirus, Wamavirus</b>. Between them: apple chlorotic leaf spot, grapevine Pinot gris disease, citrus leaf blotch, cherry mottle leaf. This is the audit of the module built for them. Every figure is reproducible from <code>work/Betaflexiviridae_MP/</code>.",
+ "standfirst": "<b>Trivirinae</b> is the half of the family that moves by one movement protein rather than a triple gene block — <b>Trichovirus, Vitivirus, Citrivirus, Tepovirus, Prunevirus, Chordovirus, Divavirus, Wamavirus</b>. Between them: apple chlorotic leaf spot, grapevine Pinot gris disease, citrus leaf blotch, cherry mottle leaf. This is the audit of the module built for them. Every figure is reproducible from <code>work/Trivirinae/</code>.",
  "headline_tiles": [
   [
    "5",
@@ -218,7 +218,7 @@
        "—"
       ],
       [
-       "routed to Betaflexiviridae_MP",
+       "routed to Trivirinae",
        "407",
        "99.5%"
       ],

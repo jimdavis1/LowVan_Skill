@@ -186,7 +186,7 @@ def install(workdir, repo, modules, mod_json, dry=False):
         for feat in pssms:
             #  reclustered_alis holds the N-terminal splits, which are live
             #  profiles exactly like corrected_alis. Copying only the latter
-            #  shipped Betaflexiviridae_MP with 6 of its 153 PSSMs having no
+            #  shipped Trivirinae with 6 of its 153 PSSMs having no
             #  alignment behind them -- unauditable, and unrebuildable, since
             #  rebuild_pssms.py refreshes an existing profile from its
             #  alignment and cannot recreate one that has none.

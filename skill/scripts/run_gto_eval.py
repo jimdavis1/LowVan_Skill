@@ -133,7 +133,7 @@ def main():
     if tot:
         #  The verdict is genome+contig flags only; feature-level flags are
         #  reported but do not disqualify a genome. Say so in the label. A
-        #  Betaflexiviridae_MP genome with its replicase called 2,254 aa
+        #  Trivirinae genome with its replicase called 2,254 aa
         #  against a max of 2,195 and its movement protein 563 against 498
         #  counts as "good", and "good (no flags)" made that read as a genome
         #  with nothing wrong with it.

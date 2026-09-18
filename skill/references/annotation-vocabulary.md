@@ -197,7 +197,7 @@ research community were retained". The trouble is that *every* taxon's
 community has its own short names, so that argument is always available and
 the symbol set drifts one module at a time, each departure locally reasonable.
 
-That is not hypothetical. Tobamovirus and Betaflexiviridae_MP shipped `183K`
+That is not hypothetical. Tobamovirus and Trivirinae shipped `183K`
 and `REP` for `RNA-dependent RNA polymerase`, `MP` for `Movement protein` and
 `CP` for `Nucleocapsid protein`, against `L`, `Mov` and `N` used everywhere
 else — including in Betarhabdovirinae and Dichorhavirus, two **plant** modules

@@ -96,14 +96,14 @@ clearing virus**: Mandarivirus, whose CP is ~34 kDa against a potexvirus
 query for it found nothing because **BV-BRC labels these genomes Potexvirus**.
 The module is recovering its own Mandarivirus members in spite of the genus
 column -- the same hazard that put a genuine NABP inside a "Trichovirus" in
-Betaflexiviridae_MP.
+Trivirinae.
 
 So the CP window is wide (180-400) and covers both real forms. They differ by
 90 residues at 87% identity, so mmseqs separates them at `-mi 0.8` and each
 gets a profile with its own clean N-terminus; `qc_truncation_symmetric.py` will
 report the containment, and at 87% it is a divergent form to keep rather than a
 truncation to retire -- the same call made for CP cluster 21 in
-Betaflexiviridae_MP.
+Trivirinae.
 
 ## Windows, after all of the above
 

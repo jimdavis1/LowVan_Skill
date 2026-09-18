@@ -122,7 +122,7 @@ def main():
         raise SystemExit("no Leftover_Seqs.aa in %s" % fd)
     #  The identity floor is never lowered for the leftover pass, so take it
     #  from the feature's own first pass rather than from a fixed default.
-    #  Betaflexiviridae_MP was built at -mi 0.8; a 0.6 default would have
+    #  Trivirinae was built at -mi 0.8; a 0.6 default would have
     #  relaxed it by a fifth without saying so.
     if args.mi is None:
         bp = os.path.join(fd, "BUILD_PARAMS")

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Triage Betaflexiviridae_MP into feature collections.
+"""Triage Trivirinae into feature collections.
 
 The movement-protein half of Betaflexiviridae: Trichovirus, Vitivirus,
 Citrivirus, Prunevirus, Tepovirus, Chordovirus, Divavirus, Wamavirus. These
@@ -36,8 +36,8 @@ protein while "hypothetical protein" covers several different small ones:
 """
 import re, os, sys, collections, argparse
 
-MODULE = "Betaflexiviridae_MP"
-DUMP   = "Betaflexiviridae_MP"
+MODULE = "Trivirinae"
+DUMP   = "Trivirinae"
 
 def rx(p): return re.compile(p, re.I)
 

@@ -7,7 +7,7 @@ members were all annotated from the same wrong upstream Met agrees with itself
 perfectly and passes. Nothing compares a cluster's start against the feature's
 other clusters, and that is the case that does real damage.
 
-Betaflexiviridae_MP CP cluster 18: 11 sequences, all 249-250 aa, against a
+Trivirinae CP cluster 18: 11 sequences, all 249-250 aa, against a
 modal CP of 193. The pipeline logged it `18.fa 250 25 10 2 OK`. Its profile
 anchored 57 codons upstream of every other CP profile, landed inside the
 movement protein ORF in a different frame, hit a stop, and was rejected for

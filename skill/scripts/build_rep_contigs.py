@@ -13,7 +13,7 @@ fraction of the taxon; picking one per species instead is how a 141-species
 family ends up needing 141 references.
 
     python3 build_rep_contigs.py --contigs Contigs --meta Beta_MP.meta.tsv \
-            --module Betaflexiviridae_MP --budget 25 --out Rep-Contigs
+            --module Trivirinae --budget 25 --out Rep-Contigs
 
 Writes <Module>.<n>.dna (one contig each, header ">ACCESSION Genome name")
 and close_genomes.json, which is what the module JSON's close_genomes block

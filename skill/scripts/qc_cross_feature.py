@@ -81,7 +81,7 @@ def run_module(workdir, module, pident, cov, tmp):
             #
             # Folding them back into <FEAT> -- which this did -- is worse than
             # leaving them out, because it makes a rejected sequence count as
-            # evidence of what <FEAT> contains. Betaflexiviridae_MP then
+            # evidence of what <FEAT> contains. Trivirinae then
             # reported nine MISLABELs, every one of them a correctly binned
             # cluster matching a short "replicase"-labelled fragment that is
             # really a coat or movement protein and had already been

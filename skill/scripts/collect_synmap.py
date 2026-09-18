@@ -41,7 +41,7 @@ rows = list(csv.DictReader(open(_syn), delimiter="\t"))
 #  Sequences the text rules could not reach come in through
 #  rescue_unassigned.py, which writes RESCUED.tsv and does not touch
 #  synonyms.tsv. Leaving them out understates the collapse exactly where it is
-#  most striking: Betaflexiviridae_MP VITI_ORF2 read 50 features over 12
+#  most striking: Trivirinae VITI_ORF2 read 50 features over 12
 #  strings from synonyms.tsv alone, when 246 of its sequences are records
 #  saying nothing but "hypothetical protein" that homology placed in a real
 #  feature. A generic string becoming a specific annotation is the strongest

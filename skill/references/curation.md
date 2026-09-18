@@ -87,7 +87,7 @@ The split above is for a cluster whose members **disagree**. The harder case
 is a cluster whose members all agree on the *same wrong start*, because every
 check built to look inside a cluster is satisfied by it.
 
-Betaflexiviridae_MP CP cluster 18: 11 sequences, all 249-250 aa, against a
+Trivirinae CP cluster 18: 11 sequences, all 249-250 aa, against a
 modal coat protein of 193. All annotated from the same upstream Met. The
 pipeline's N-terminal evaluation logged it `18.fa 250 25 10 2 OK`, because it
 asks whether the members agree, and they agree perfectly.

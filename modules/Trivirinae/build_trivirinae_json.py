@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Betaflexiviridae_MP module JSON.
+"""Trivirinae module JSON.
 
 The module is the half of Betaflexiviridae whose genomes move by a SINGLE
 movement protein rather than a triple gene block: Trichovirus, Vitivirus,
@@ -48,7 +48,7 @@ below.
 """
 import json, os, collections, sys
 
-MODULE  = "Betaflexiviridae_MP"
+MODULE  = "Trivirinae"
 SEGMENT = "Single RNA Segment"
 
 #  Every id model-proposed; each was checked to resolve in PubMed to the paper
@@ -64,13 +64,13 @@ CLAUDE_PMIDS = {
 READ_PMIDS = set()
 
 FEATURES = {
-    "REP":       dict(anno="RNA-dependent RNA polymerase", symbol="REP", ftype="CDS",
+    "REP":       dict(anno="RNA-dependent RNA polymerase", symbol="L", ftype="CDS",
                       bit=400, cov=0.65, up=1, down=1, copy=1,
                       pmid=["36399124", "15098118"]),
-    "MP":        dict(anno="Movement protein", symbol="MP", ftype="CDS",
+    "MP":        dict(anno="Movement protein", symbol="Mov", ftype="CDS",
                       bit=50, cov=0.65, up=1, down=1, copy=1,
                       pmid=["36399124", "15098118"]),
-    "CP":        dict(anno="Nucleocapsid protein", symbol="CP", ftype="CDS",
+    "CP":        dict(anno="Nucleocapsid protein", symbol="N", ftype="CDS",
                       bit=45, cov=0.65, up=1, down=1, copy=1,
                       pmid=["36399124", "15098118"]),
     "NABP":      dict(anno="Nucleic acid-binding protein", symbol="NABP", ftype="CDS",

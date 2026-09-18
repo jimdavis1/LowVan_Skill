@@ -25,7 +25,7 @@ whole taxon registers one id per exemplar.
 Most of each call is the round trip to the ID server, not local work, so it
 parallelises in principle. In practice the service rate-limits on concurrency
 and answers **403 Forbidden**, not 429, so the failure reads like an expired
-token and is not one: one Betaflexiviridae_MP run lost 89 of 120 genomes at
+token and is not one: one Trivirinae run lost 89 of 120 genomes at
 --jobs 4 with 4,200 hours left on the token. 403s are now retried with
 exponential backoff and the default is 4; --jobs 1 avoids them entirely when
 a run has to be reliable.
@@ -168,7 +168,7 @@ def main():
         fa, out, name, tax, gid = j
         #  rast-create-genome calls the BV-BRC service, which rate-limits on
         #  concurrency and answers "403 Forbidden" rather than 429. At
-        #  --jobs 4 that cost 89 of 120 genomes in one Betaflexiviridae_MP
+        #  --jobs 4 that cost 89 of 120 genomes in one Trivirinae
         #  run while the token had 4,200 hours left on it, so the failure
         #  reads like an auth problem and is not one. Serial retries with
         #  backoff clear it.

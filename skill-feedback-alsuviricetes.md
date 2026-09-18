@@ -391,7 +391,7 @@ small enough to verify exhaustively.
 - `build_leftover_pssms.py --mi` defaults to 0.6 regardless of what the main
   pass used. The skill says the identity floor is never lowered; for a feature
   built at `-mi 0.8` the default silently lowers it. I passed 0.6 by reflex on
-  Betaflexiviridae_MP before catching it. The default should be read from the
+  Trivirinae before catching it. The default should be read from the
   feature's own `BUILD_PARAMS`, or be required.
 
 ### 7. `qc_cross_feature.py` folded quarantined outliers back into the feature
@@ -406,7 +406,7 @@ That is the wrong direction. An outlier is in that file because
 trains no profile and belongs to no collection. Folding it back makes a
 rejected sequence count as evidence of what the feature contains.
 
-Betaflexiviridae_MP reported **nine MISLABELs** on that basis — CP 21, CP 18,
+Trivirinae reported **nine MISLABELs** on that basis — CP 21, CP 18,
 MP 1, MP 12, MP 16, MP lo8, NABP 1, NABP 2, NABP 4. Every one was a correctly
 binned cluster matching a short sequence that BV-BRC had labelled "replicase"
 and that had already been quarantined for being 193 aa. Blasting each master
@@ -498,7 +498,7 @@ instead of checking it.
 ### 9. Two failures that look like something they are not
 
 **`403 Forbidden` from the BV-BRC genome service is a rate limit, not auth.**
-`make_gto.py --jobs 4` lost 89 of 120 genomes to it in one Betaflexiviridae_MP
+`make_gto.py --jobs 4` lost 89 of 120 genomes to it in one Trivirinae
 run, while `~/.patric_token` had 4,200 hours left. The obvious response to a
 403 is to go and re-authenticate, and that does nothing. `--jobs 1` cleared it
 completely with zero errors. The script now retries 403s with exponential
@@ -508,7 +508,7 @@ this did not waste an hour.
 
 **A cluster can pass every N-terminal check and still have the wrong start.**
 `fasta-cluster-pssm-2.pl` asks whether a cluster's members agree with each
-other. Betaflexiviridae_MP CP cluster 18 — 11 sequences, all 249-250 aa
+other. Trivirinae CP cluster 18 — 11 sequences, all 249-250 aa
 against a modal 193, all annotated from the same upstream Met — agrees with
 itself perfectly and logged `18.fa 250 25 10 2 OK`.
 
@@ -552,7 +552,7 @@ compared against the previous build before going on. The workflow ordering in
 SKILL.md should say so.
 
 **A length window set from the dominant genera silently deletes a genus.**
-Betaflexiviridae_MP CP was built at 150-280 from a collection whose two big
+Trivirinae CP was built at 150-280 from a collection whose two big
 genera sit at 193-198 aa. Citrivirus coat protein is ~41 kDa — median 363 —
 so **90 real Citrivirus CPs went into `CP.outliers.fasta`** and the
 collection kept 5 atypical short ones. The profiles were then built with
@@ -580,7 +580,7 @@ and whose movement protein is 563 against 498 printed under **`good (no
 flags)`**, which is not a rounding issue but a false statement: there were
 flags.
 
-It matters most where it is least visible. Betaflexiviridae_MP Citrivirus had
+It matters most where it is least visible. Trivirinae Citrivirus had
 its coat protein flagged "too long" at 358 and 363 aa — against a `max_len`
 computed from a collection that had *excluded* Citrivirus — and those genomes
 were then reported good, because the flag did not count. Two layers of
@@ -593,9 +593,9 @@ comparable for the first time:
 |---|---|---|
 | Tobamovirus | 90.4% | 89.4% |
 | Hepeviridae | 89.2% | 89.1% |
-| Betaflexiviridae_MP | 92.7% | 88.5% |
+| Trivirinae | 92.7% | 88.5% |
 
-Betaflexiviridae_MP moves most: it looked like the best of the three and is
+Trivirinae moves most: it looked like the best of the three and is
 the middle one. The label now reads `good (no genome/contig flags)`, with the
 feature-flagged count and a `genuinely clean` line under it.
 
@@ -620,7 +620,7 @@ literature in a major taxon of human disease."*
 He is right, and the record is worse than inconsistency: **I had already done
 it correctly and then drifted from my own precedent.** Betarhabdovirinae and
 Dichorhavirus are plant modules from earlier in this same project and both use
-`Mov` alongside `L`, `N`, `M`, `P`. Tobamovirus and Betaflexiviridae_MP then
+`Mov` alongside `L`, `N`, `M`, `P`. Tobamovirus and Trivirinae then
 shipped `MP`, `CP`, and `183K`/`REP`.
 
 `check_annotations.py` reported every one and exited non-zero. I overrode it,
@@ -660,3 +660,43 @@ check, because it produces a record of the problem having been considered. The
 fix was not a better detector — the detector was right both times — it was
 removing the reasoning that made overruling feel principled, and giving the
 legitimate exceptions somewhere to live.
+
+### 13. A module name that was not a taxon
+
+Jim: *"what is Betaflexiviridae_MP? that is not a valid scientific name ...
+There are a lot of things that could break from not having a legit name."*
+
+`MP` meant "movement protein" — the half of Betaflexiviridae that moves by a
+single movement protein rather than a triple gene block. The **split** was
+right and load-bearing: it took rep-contig routing from 75.3% lumped to
+91.6%. The **name** was me describing the biology instead of naming the
+taxon, and it was the only invalid name among 39 installed modules.
+
+**The valid name existed the whole time.** The split lands exactly on the
+ICTV subfamilies: those eight genera are **Trivirinae**, and the triple-gene-
+block half is **Quinvirinae**. Capillovirus is Trivirinae too but needs its
+own module because its CP sits inside the ORF1 polyprotein — which is the
+`Orthopneumovirus` / `Orthopneumovirus_muris` pattern already in the kit. I
+used that module as my template for Merhavirus and still did not notice that
+its name is a real ICTV binomial while mine was not.
+
+**What could actually break, which is why this is not cosmetic.** The module
+name is the `Viral_PSSM.json` key, the `Viral-PSSMs/<M>.pssms/` and
+`PSSM-Alignments/<M>/` directories, the `Splice-Variants/<M>/` lookup, and
+the `<M>.<n>.dna` rep-contig filenames. Most importantly it is written into
+every output GTO as **`viral_family`** — so any downstream consumer reading
+that as taxonomy gets a name that does not exist.
+
+Renamed throughout: runtime (157/157 profiles, 25 rep contigs, no stale
+files, still annotates), kit module and example directories, vocabulary rows,
+every script comment, the four artifacts, and the plan. `Betaflexiviridae_TGB`
+becomes `Quinvirinae`; `Alphaflexiviridae_noTGB` has the same defect and, since
+Botrexvirus/Platypuvirus/Sclerodarnavirus share no subfamily, ships per-genus
+or not at all.
+
+**The rule, now in `references/module-partitioning.md`:** partition on genome
+organisation, then find the taxon that names the result — they are usually
+the same, because the taxonomy was built from gene layout. If no real taxon
+covers the group, that is a signal about the partition, not a naming problem.
+Every module name should resolve in NCBI taxonomy with underscores read as
+spaces; checking all 39 took one loop and found exactly one fault.

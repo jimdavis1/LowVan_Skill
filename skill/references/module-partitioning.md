@@ -115,3 +115,39 @@ Novirhabdovirus      Novirhabdovirus               N-P-M-G-NV-L      carries NV
 Then map each module to its rep contigs, one per genus where you can get an
 exemplar, and keep the accessions with provenance. Never guess an accession by
 pattern-matching `NC_` numbers — look each one up and record what confirmed it.
+
+## Name the module after a real taxon
+
+The module name is not a label. It is the key in `Viral_PSSM.json`, the
+`Viral-PSSMs/<Module>.pssms/` and `PSSM-Alignments/<Module>/` directory names,
+the `Splice-Variants/<Module>/` lookup that `get_splice_variant_features.pl`
+does, and the `<Module>.<n>.dna` rep-contig filenames. It is also written into
+every output GTO as **`viral_family`**, so anything downstream that reads that
+field as taxonomy gets whatever was invented here.
+
+**Partition on genome organisation, then find the taxon that names the
+result.** The two are usually the same, because gene layout is what the
+taxonomy was built from. Betaflexiviridae splits cleanly into a
+single-movement-protein half and a triple-gene-block half — worth 16 points of
+routing — and those halves are exactly the ICTV subfamilies **Trivirinae** and
+**Quinvirinae**. Shipping them as `Betaflexiviridae_MP` and
+`Betaflexiviridae_TGB` would have invented two names for groups that already
+had them.
+
+When a member has to be handled separately, the parent keeps the parent's
+name and the exception gets its own real name:
+
+| module | split out | both valid |
+|---|---|---|
+| `Orthopneumovirus` | `Orthopneumovirus_muris` | ICTV binomial |
+| `Alpharhabdovirinae` | `Merhavirus` | genus |
+| `Trivirinae` | `Capillovirus` | genus; its CP is inside the ORF1 polyprotein |
+
+**If no real taxon covers the group, that is a signal, not a naming problem.**
+Botrexvirus, Platypuvirus and Sclerodarnavirus share no subfamily; the honest
+options are one module per genus or not shipping, never a coined name like
+`Alphaflexiviridae_noTGB`.
+
+Check it: every module name should resolve in NCBI taxonomy, with underscores
+read as spaces.
+
