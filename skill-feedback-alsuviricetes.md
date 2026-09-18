@@ -536,3 +536,37 @@ wrong — the Alphaflexiviridae coat protein has a real 90-residue one and it is
 Mandarivirus — and REP and MP are called on 407 of 407 routed genomes despite
 six flagged REP clusters. The bar for editing a profile is evidence it is
 losing calls, which means the coverage run, not the flag.
+
+### 10. Two process traps, both mine to avoid
+
+**`build_collections.py` is not idempotent, and re-running it silently
+discards the homology rescue.** I widened one length window, re-ran it, and
+VITI_ORF2 went from 289 sequences to 48 while NABP went from 470 to 424 —
+without my having touched either rule. 395 of the VITI_ORF2 records say only
+"hypothetical protein" and reach the collection through
+`rescue_unassigned.py`, which appends to files that `build_collections.py`
+truncates. Re-running the rescue with the same windows restored all four
+collections to the sequence for sequence, so nothing was lost — but the
+*next* step after a re-run is the rescue, always, and the counts have to be
+compared against the previous build before going on. The workflow ordering in
+SKILL.md should say so.
+
+**A length window set from the dominant genera silently deletes a genus.**
+Betaflexiviridae_MP CP was built at 150-280 from a collection whose two big
+genera sit at 193-198 aa. Citrivirus coat protein is ~41 kDa — median 363 —
+so **90 real Citrivirus CPs went into `CP.outliers.fasta`** and the
+collection kept 5 atypical short ones. The profiles were then built with
+essentially no Citrivirus in them, and the quality run flagged Citrivirus CP
+"too long" at 358 and 363 aa against a `max_len` derived from the same
+truncated collection. Widening to 150-400 takes Citrivirus CP in the
+collection from 5 to 95.
+
+The tell was there the whole time: `CP.outliers.fasta` held 142 Citrivirus
+sequences. I only looked because the quality run flagged two of them. In
+Alphaflexiviridae I *did* check the outliers by genus and found the
+Mandarivirus coat protein that way — same failure mode, caught once and
+missed once, and the difference was nothing but whether I remembered to look.
+
+**Check the outliers file per genus before accepting any window.** A genus
+whose protein is genuinely a different size does not announce itself; it just
+goes missing, and every downstream number looks fine.

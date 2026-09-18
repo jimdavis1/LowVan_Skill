@@ -94,6 +94,27 @@ groups), genus-dependent synonyms, and why every rule needs a genus column.
 Output: `collections/<Module>/<FEAT>.fasta`, plus `synonyms.tsv`,
 `UNASSIGNED_TRACKING.tsv` and `NOT_MODELLED.tsv` so nothing vanishes silently.
 
+**Read `<FEAT>.outliers.fasta` broken down by genus before accepting a length
+window.** A window set from the two biggest genera deletes any genus whose
+protein is genuinely a different size, and it does so quietly. Betaflexiviridae_MP
+CP was built at 150-280 because Vitivirus and Trichovirus sit at 193-198;
+Citrivirus coat protein is ~41 kDa, median 363, so 90 real Citrivirus CPs went
+to the outliers file and the collection kept 5 atypical short ones. The
+profiles were built with almost no Citrivirus, and the quality run then
+flagged Citrivirus CP "too long" against a `max_len` computed from the same
+truncated collection — every number self-consistent and wrong. Widening to
+150-400 took it from 5 sequences to 95. The same check found the
+Mandarivirus coat protein in Alphaflexiviridae, 90 residues longer than the
+potexvirus form.
+
+**Re-running `build_collections.py` discards the homology rescue.** It
+truncates the collection files that `rescue_unassigned.py` appends to, so a
+re-run to adjust one window silently drops every rescued sequence:
+Betaflexiviridae_MP VITI_ORF2 fell from 289 to 48 and NABP from 470 to 424
+after a change that touched only CP. **Re-run the rescue immediately
+afterwards with the same windows, and compare every collection's count
+against the previous build before moving on.**
+
 ### 3. Build the alignments and PSSMs
 
 ```bash
