@@ -15,6 +15,28 @@ DEFAULTS = dict(m="5", f="0.33", n="0.75", c="0", fd="0.20", e="3", efo="0.15",
                 nterm_eval_length="10")
 MI_FLOOR = 0.6   # references/pipeline.md: never redefine "same protein" below this
 
+def _write_params(dest, key, anno, params, cmd, extra_flags, note=None):
+    """Record how a feature was built, next to the feature.
+
+    build_leftover_pssms.py reads -mi from this file so the leftover pass
+    cannot silently lower the identity floor, so it is load-bearing rather
+    than documentation. It is written even when the output directory could
+    not be identified, because the parameters are known before the run and a
+    directory recovered by hand afterwards would otherwise have no record.
+    """
+    os.makedirs(dest, exist_ok=True)
+    departures = {k: v for k, v in params.items() if DEFAULTS.get(k) != v}
+    with open(os.path.join(dest, "BUILD_PARAMS"), "w") as f:
+        f.write("feature: %s\nannotation: %s\ncommand: %s\n"
+                % (key, anno, " ".join(cmd)))
+        f.write("departures: %s\n"
+                % (json.dumps(departures) if departures else "none"))
+        if extra_flags:
+            f.write("extra_flags: %s\n" % " ".join(extra_flags))
+        if note:
+            f.write("note: %s\n" % note)
+
+
 def run_one(workdir, module, key, anno, params, extra_flags):
     cdir = os.path.join(workdir, "collections", module)
     adir = os.path.join(workdir, "Alignments", module)
@@ -63,6 +85,15 @@ def run_one(workdir, module, key, anno, params, extra_flags):
                   key=lambda x: -x[2])
     mine = [d for d, k, n in mine if k and key.startswith(k)]
     if not mine:
+        #  Write the parameters anyway. They are known before the run and do
+        #  not depend on finding the output, and a directory recovered by hand
+        #  afterwards otherwise has no record of how it was built. That is not
+        #  cosmetic: build_leftover_pssms.py reads -mi from here so the
+        #  leftover pass cannot silently lower the identity floor, and with
+        #  the file missing it refuses to run at all.
+        _write_params(os.path.join(adir, key), key, anno, params, cmd,
+                      extra_flags, note="output directory not identified; "
+                      "parameters recorded from the invocation")
         print("  %-14s FAILED -- no output directory carries %s profiles "
               "(%d new dirs)" % (key, key, len(new)))
         sys.stderr.write(p.stderr[-2000:]); return None
@@ -80,11 +111,7 @@ def run_one(workdir, module, key, anno, params, extra_flags):
     open(os.path.join(dest, "run.stdout"), "w").write(p.stdout)
     open(os.path.join(dest, "run.stderr"), "w").write(p.stderr)
 
-    departures = {k: v for k, v in params.items() if DEFAULTS.get(k) != v}
-    with open(os.path.join(dest, "BUILD_PARAMS"), "w") as f:
-        f.write("feature: %s\nannotation: %s\ncommand: %s\n" % (key, anno, " ".join(cmd)))
-        f.write("departures: %s\n" % (json.dumps(departures) if departures else "none"))
-        if extra_flags: f.write("extra_flags: %s\n" % " ".join(extra_flags))
+    _write_params(dest, key, anno, params, cmd, extra_flags)
 
     npssm = len(os.listdir(os.path.join(dest, "pssms"))) if os.path.isdir(os.path.join(dest, "pssms")) else 0
     nclu  = len([x for x in os.listdir(os.path.join(dest, "corrected_alis"))
