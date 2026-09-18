@@ -66,5 +66,6 @@ directories are the source of truth. `patches/` is a diff against pristine
 upstream and drifts behind them as work accumulates, and
 `CEPI-dxkb/Viral_Annotation` has not received the annotator work at all — it
 still has no `internal_stop` support, so any module relying on a readthrough
-will be silently cropped. This cost one rediscovered bug and one module built
+will be silently cropped. That repo gets updated from this one when the
+maintainer decides the work is ready, not incrementally. This cost one rediscovered bug and one module built
 against an older pipeline before it was noticed.

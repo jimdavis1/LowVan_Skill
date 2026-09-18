@@ -26,12 +26,17 @@ detects.**
 pipeline and the annotator; `skill/` is the method; `modules/` holds the built
 modules; `reports/` holds the published pages.
 
-`CEPI-dxkb/Viral_Annotation` is a *downstream consumer*, not an input. It has
-not received the annotator work done here — at the time of writing it has no
-`internal_stop` support at all, so a module relying on a readthrough is
-silently cropped against it. Do not build against a fresh clone of it and do
-not treat `patches/` as the current state: patches are diffs against pristine
-upstream and drift behind `build/` and `annotate/` as work accumulates.
+`CEPI-dxkb/Viral_Annotation` is **downstream**. It will be updated from this
+work eventually, but that is the maintainer's call and happens only once
+everything here is correct — it is not a target to push to as modules land.
+
+Until then it should not be treated as an input either. At the time of writing
+it has no `internal_stop` support at all, so a module relying on a readthrough
+is silently cropped against it. Do not build against a fresh clone of it, and
+do not treat `patches/` as the current state: patches are diffs against
+pristine upstream and drift behind `build/` and `annotate/` as work
+accumulates. `patches/` exists to make the eventual downstream update
+reviewable, not to describe what the kit does now.
 
 To set up a runtime directory for the annotator, copy `annotate/*` and
 `build/*` over it first. See `modules/README.md`.
