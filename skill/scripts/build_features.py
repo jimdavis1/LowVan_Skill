@@ -7,7 +7,8 @@ new one to the feature key. It also records run.stdout, run.stderr and a
 BUILD_PARAMS file next to every feature, which is what the registry artifact
 reads to mark a feature as non-default.
 """
-import os, sys, subprocess, shutil, argparse, time, json
+import os
+import glob, sys, subprocess, shutil, argparse, time, json
 
 DEFAULTS = dict(m="5", f="0.33", n="0.75", c="0", fd="0.20", e="3", efo="0.15",
                 mi="0.8", mc="0.8", p_nterm="65", n_nterm="3",
@@ -40,9 +41,37 @@ def run_one(workdir, module, key, anno, params, extra_flags):
         p = subprocess.run(cmd, stdin=fin, cwd=adir, capture_output=True, text=True)
     after = set(os.listdir(adir)) - before
     new = [d for d in after if os.path.isdir(os.path.join(adir, d))]
-    if len(new) != 1:
-        print("  %-14s FAILED -- %d new dirs %s" % (key, len(new), sorted(new)[:4]))
+
+    #  Identify the output by what is inside it, not by diffing the listing.
+    #  fasta-cluster-pssm-2.pl can leave more than one directory behind for a
+    #  single run, and the extra one sometimes appears late enough to be
+    #  counted against the NEXT feature -- Alphaflexiviridae reported
+    #  "TGB1 FAILED -- 3 new dirs ['93e9974de3', 'TGB2', 'fca9ad32d5']",
+    #  naming an already-renamed feature as new. Four of seven features were
+    #  declared failures while every one of them had built correctly.
+    #
+    #  The profiles carry the feature key in their filenames
+    #  (<Module>.<KEY>.<n>.pssm), so that is the reliable signal. Duplicates
+    #  are byte-identical; keep the most complete and drop the rest.
+    def owner(d):
+        ps = glob.glob(os.path.join(adir, d, "pssms", "*.pssm"))
+        if not ps: return None, 0
+        stem = os.path.basename(ps[0]).split(".")
+        return (stem[1] if len(stem) > 2 else None), len(ps)
+
+    mine = sorted(((d,) + owner(d) for d in new),
+                  key=lambda x: -x[2])
+    mine = [d for d, k, n in mine if k and key.startswith(k)]
+    if not mine:
+        print("  %-14s FAILED -- no output directory carries %s profiles "
+              "(%d new dirs)" % (key, key, len(new)))
         sys.stderr.write(p.stderr[-2000:]); return None
+    keep, dupes = mine[0], mine[1:]
+    for d in dupes:
+        shutil.rmtree(os.path.join(adir, d), ignore_errors=True)
+    if dupes:
+        print("  %-14s (dropped %d duplicate output dir(s))" % (key, len(dupes)))
+    new = [keep]
     os.rename(os.path.join(adir, new[0]), dest)
     # the pipeline names its scratch files after the tmp dir; drop them
     for fn in os.listdir(dest):
