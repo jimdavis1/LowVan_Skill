@@ -1,0 +1,102 @@
+{
+ "Betaflexiviridae_MP.1.dna": {
+  "genome_ids": "OQ199000",
+  "genome_name": "Grapevine Pinot gris virus 5.22"
+ },
+ "Betaflexiviridae_MP.10.dna": {
+  "genome_ids": "MW309656",
+  "genome_name": "Grapevine virus E RSA-17-07_Kadarka_GVE"
+ },
+ "Betaflexiviridae_MP.11.dna": {
+  "genome_ids": "DQ855082",
+  "genome_name": "Grapevine virus A P163-M5"
+ },
+ "Betaflexiviridae_MP.12.dna": {
+  "genome_ids": "LC617946",
+  "genome_name": "Grapevine virus F g12"
+ },
+ "Betaflexiviridae_MP.13.dna": {
+  "genome_ids": "NC_002500",
+  "genome_name": "Cherry mottle leaf virus SA1162-21"
+ },
+ "Betaflexiviridae_MP.14.dna": {
+  "genome_ids": "OQ999894",
+  "genome_name": "Grapevine virus I RSA-03-05_Agostenga"
+ },
+ "Betaflexiviridae_MP.15.dna": {
+  "genome_ids": "MW309685",
+  "genome_name": "Grapevine virus M RSA-28-13_Rotgipfler_GVH"
+ },
+ "Betaflexiviridae_MP.16.dna": {
+  "genome_ids": "NC_076653",
+  "genome_name": "Mexico trichovirus trichomex_2"
+ },
+ "Betaflexiviridae_MP.17.dna": {
+  "genome_ids": "KY132099",
+  "genome_name": "apricot vein clearing associated virus Tas3"
+ },
+ "Betaflexiviridae_MP.18.dna": {
+  "genome_ids": "AB697482",
+  "genome_name": "Potato virus T Japanese"
+ },
+ "Betaflexiviridae_MP.19.dna": {
+  "genome_ids": "NC_076710",
+  "genome_name": "Cherry symptomless virus Mskhvil Nakota"
+ },
+ "Betaflexiviridae_MP.2.dna": {
+  "genome_ids": "OQ420751",
+  "genome_name": "Trichovirus mali Pe2"
+ },
+ "Betaflexiviridae_MP.20.dna": {
+  "genome_ids": "NC_040616",
+  "genome_name": "Grapevine virus G VID561"
+ },
+ "Betaflexiviridae_MP.21.dna": {
+  "genome_ids": "OL546223",
+  "genome_name": "Actinidia seed borne latent virus GZ"
+ },
+ "Betaflexiviridae_MP.22.dna": {
+  "genome_ids": "KF700262",
+  "genome_name": "Prunus virus T C21"
+ },
+ "Betaflexiviridae_MP.23.dna": {
+  "genome_ids": "OK513351",
+  "genome_name": "actinidia virus A AcVA-XL8-13"
+ },
+ "Betaflexiviridae_MP.24.dna": {
+  "genome_ids": "MW309637",
+  "genome_name": "Grapevine virus E RSA-02-01_V_flexuisa_GVE"
+ },
+ "Betaflexiviridae_MP.25.dna": {
+  "genome_ids": "EU223295",
+  "genome_name": "Trichovirus mali Ta Tao 5"
+ },
+ "Betaflexiviridae_MP.3.dna": {
+  "genome_ids": "MN716773",
+  "genome_name": "Grapevine virus B Cultivated-TN1"
+ },
+ "Betaflexiviridae_MP.4.dna": {
+  "genome_ids": "MW309797",
+  "genome_name": "Grapevine virus L RSA-34-12_Tinta_Cao_GVL"
+ },
+ "Betaflexiviridae_MP.5.dna": {
+  "genome_ids": "ON868719",
+  "genome_name": "Grapevine berry inner necrosis virus Shihezi-1"
+ },
+ "Betaflexiviridae_MP.6.dna": {
+  "genome_ids": "OQ079124",
+  "genome_name": "Grapevine virus H AN"
+ },
+ "Betaflexiviridae_MP.7.dna": {
+  "genome_ids": "OK513322",
+  "genome_name": "Citrus leaf blotch virus A4A-4"
+ },
+ "Betaflexiviridae_MP.8.dna": {
+  "genome_ids": "OR031922",
+  "genome_name": "Grapevine virus A RSA-20-12_Mansenc_Blanc_GVA"
+ },
+ "Betaflexiviridae_MP.9.dna": {
+  "genome_ids": "OR031924",
+  "genome_name": "Grapevine virus A RSA-03-15_Alicante_bouchet_GVA"
+ }
+}

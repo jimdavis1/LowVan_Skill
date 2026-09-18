@@ -184,16 +184,25 @@ def install(workdir, repo, modules, mod_json, dry=False):
         # 2. alignments -> PSSM-Alignments/<Module>/<FEAT>/
         na = 0
         for feat in pssms:
-            src = os.path.join(workdir, "Alignments", module, feat, "corrected_alis")
-            if not os.path.isdir(src):
-                continue
+            #  reclustered_alis holds the N-terminal splits, which are live
+            #  profiles exactly like corrected_alis. Copying only the latter
+            #  shipped Betaflexiviridae_MP with 6 of its 153 PSSMs having no
+            #  alignment behind them -- unauditable, and unrebuildable, since
+            #  rebuild_pssms.py refreshes an existing profile from its
+            #  alignment and cannot recreate one that has none.
             fd = os.path.join(repo, "PSSM-Alignments", module, feat)
-            if not dry:
-                os.makedirs(fd, exist_ok=True)
-            for f in sorted(glob.glob(os.path.join(src, "*.fa"))):
-                if not dry:
-                    shutil.copy2(f, os.path.join(fd, os.path.basename(f)))
-                na += 1
+            made = False
+            for sub in ("corrected_alis", "reclustered_alis"):
+                src = os.path.join(workdir, "Alignments", module, feat, sub)
+                if not os.path.isdir(src):
+                    continue
+                if not dry and not made:
+                    os.makedirs(fd, exist_ok=True)
+                    made = True
+                for f in sorted(glob.glob(os.path.join(src, "*.fa"))):
+                    if not dry:
+                        shutil.copy2(f, os.path.join(fd, os.path.basename(f)))
+                    na += 1
         print("  %-24s %3d alignments -> PSSM-Alignments/%s/" % ("", na, module))
 
         # 3. rep contigs
