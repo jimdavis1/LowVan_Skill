@@ -88,7 +88,10 @@ def main():
 
     css = open(os.path.join(ASSETS, "collapse.css")).read()
 
-    page = """<title>BV-BRC String Collapse</title>
+    #  The taxon has to be in the <title>: it is the artifact's name in the
+    #  gallery, and five modules all called "BV-BRC String Collapse" cannot be
+    #  told apart there.
+    page = """<title>%(TAXON)s String Collapse</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>%(CSS)s</style>
 <div class="wrap">
