@@ -1,0 +1,9 @@
+{
+  "standfirst": "<b>Tobamovirus</b> is the genus of tobacco mosaic virus &mdash; the first virus ever described, and still the reference case for a rod-shaped plant RNA virus. Four proteins from one 6.4&nbsp;kb positive-sense RNA, two of them the same ORF read twice. This registry says what profiles were built and how well they recover the sequences they came from. Every figure is reproducible from <code>work/Tobamovirus/</code>.",
+  "modules": {
+    "Tobamovirus": "One genus, one genome organisation, one module. Every tobamovirus carries the same four ORFs in the same order: the 126K replication protein, the 183K read-through product that adds the polymerase domain, a movement protein and a coat protein. Nothing in the genus needed a second module."
+  },
+  "gaps": "Nothing was declared that could not be built. All four features have profiles and all four are called on 91&ndash;92% of routed exemplars. The gaps in this module are coverage gaps, not declaration gaps, and they are set out in the coverage audit.",
+  "derived": "No mature peptides. The tobamovirus replicase is not proteolytically processed &mdash; there is no protease anywhere in the genome, and the 126K and 183K proteins are separate translation products of one ORF rather than cleavage products of a precursor. Getting this wrong is what produced the module's first, broken annotation strings.",
+  "why": {}
+}

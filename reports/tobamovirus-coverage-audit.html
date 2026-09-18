@@ -1,0 +1,118 @@
+<title>Tobamovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan · Tobamovirus module · 17 September 2026</div><h1>Does the tobacco mosaic virus module actually work?</h1><p class="stand"><b>Tobamovirus</b> is the genus of tobacco mosaic virus &mdash; the first virus ever described, and the cause of tomato brown rugose fruit virus, which has closed greenhouses across four continents since 2014. This is the audit of the module built for it: what it covers, where its thresholds sit, whether genomes reach it, whether it calls the proteins, and what it cannot do. Every figure is reproducible from <code>work/Tobamovirus/</code>.</p><div class="tiles"><div class="tile"><div class="v">4</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">98</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">99/102</div><div class="l">exemplars routed</div></div><div class="tile"><div class="v">95.5%</div><div class="l">genomes good quality</div></div><div class="tile"><div class="v">55.8×</div><div class="l">string collapse</div></div><div class="tile"><div class="v">1</div><div class="l">annotator bug found</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One genus, one genome organisation, one module — and for once that was not a judgement call.</p><p class="note">Every tobamovirus carries the same four ORFs in the same order on one 6.4&nbsp;kb positive-sense RNA: a 126K replication protein, a 183K read-through product that adds the polymerase domain, a movement protein, and a coat protein. There is no accessory gene that some species have and others lack, and no segment. Nothing here needed a second module.</p><div class="scroll"><table><thead><tr><th></th><th>count</th></tr></thead><tbody><tr><td>genomes in the BV-BRC protein dump</td><td>3,939</td></tr><tr><td>protein features</td><td>7,843</td></tr><tr><td>unique sequences</td><td>3,070</td></tr><tr><td>genomes with a contig ≥ 6 kb</td><td>1,390</td></tr><tr><td>genera</td><td>1 (Tobamovirus)</td></tr></tbody></table></div><p class="note">The 126K and 183K proteins are <b>not</b> a cleaved precursor. Tobamoviruses encode no protease; the two are separate translation products of the same ORF, the longer one made when ribosomes read through an amber stop at roughly 69% of its length. The module's first annotation strings called both &ldquo;Nonstructural polyprotein&rdquo;, which was wrong twice over &mdash; wrong biologically, and a schema violation that cost the whole first quality run. See &sect;08.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">Standard pipeline, with one departure forced by the read-through.</p><div class="scroll"><table><thead><tr><th>feature</th><th>annotation</th><th>symbol</th><th>collection</th><th>profiles</th></tr></thead><tbody><tr><td>REP126</td><td>Methyltransferase and helicase replication protein</td><td>126K</td><td>607</td><td>22</td></tr><tr><td>REP183</td><td>RNA-dependent RNA polymerase</td><td>183K</td><td>613</td><td>24</td></tr><tr><td>MP</td><td>Movement protein</td><td>MP</td><td>461</td><td>25</td></tr><tr><td>CP</td><td>Nucleocapsid protein</td><td>CP</td><td>796</td><td>27</td></tr></tbody></table></div><p class="note">Both replicase features were built with <code>-x</code>, which retains X residues. BV-BRC already encodes the read-through position as <code>X</code> in <b>565 of 613</b> REP183 sequences; without <code>-x</code> the pipeline discards any sequence carrying an ambiguous residue, which would have left REP183 with 48 sequences instead of 613.</p><p class="note">The two replicase collections are separated by length, not by annotation string, because the source data uses the same words for both. REP126 takes 980&ndash;1199 aa and REP183 1400&ndash;1780. An earlier, looser window (1000&ndash;1399) spanned the valley between the two populations and let a 1,220-aa sequence seed a leftover profile that out-scored the genuine ones, mis-calling the 126K as 926 aa starting at nt 639 instead of 1,116 aa at nt 69.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Two measurements per feature: the noise ceiling and the weakest true signal.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit_cutoff</th><th>coverage_cutoff</th><th>min_len</th><th>max_len</th></tr></thead><tbody><tr><td>REP126</td><td>600</td><td>0.65</td><td>955</td><td>1,259</td></tr><tr><td>REP183</td><td>800</td><td>0.65</td><td>1,369</td><td>1,805</td></tr><tr><td>MP</td><td>120</td><td>0.65</td><td>185</td><td>376</td></tr><tr><td>CP</td><td>80</td><td>0.65</td><td>119</td><td>203</td></tr></tbody></table></div><p class="note">REP183 sits higher than REP126 deliberately. The 183K contains the 126K as its first ~1,116 residues, so a REP126 profile scores well at the 183K locus and the two would otherwise compete. Length windows and the higher cutoff keep them apart; the cross-feature QC still reports the pair as near-identical, which is correct and expected rather than actionable &mdash; a read-through pair shares its N-terminus by construction.</p><div class="verdict">Self-recall against each feature's own in-range collection: <b>REP126 604/607 (99.5%), REP183 609/613 (99.3%), MP 460/461 (99.8%), CP 794/796 (99.7%)</b>. This is a floor, not a validation &mdash; profiles finding their own training data proves little. The held-out figures are in &sect;05 and &sect;06.</div></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">25 rep contigs, chosen largest-cluster-first.</p><div class="scroll"><table><thead><tr><th></th><th>count</th><th>%</th></tr></thead><tbody><tr><td>near-complete exemplars tested</td><td>102</td><td>—</td></tr><tr><td>routed to Tobamovirus</td><td>99</td><td>97.1%</td></tr><tr><td>unrouted</td><td>3</td><td>2.9%</td></tr></tbody></table></div><p class="note">All 25 references earn their place &mdash; every one is the best BLASTn hit for at least one genome, and the busiest (<code>Tobamovirus.5.dna</code>) routes 96. The three that fail to route are <code>2592766.3</code>, <code>2778983.3</code> and <code>2908237.3</code>. The budget is capped at 25 by project rule; these three are the documented cost of that cap, not a fixable threshold.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">On the routed exemplars, all four features, most of the time.</p><div class="bars"><div class="bar"><div class="bl">126K</div><div class="bt"><i style="width:91.20%"></i></div><div class="bv">91.2%</div><div class="bn">93 of 102 routed exemplars</div></div><div class="bar"><div class="bl">183K</div><div class="bt"><i style="width:92.20%"></i></div><div class="bv">92.2%</div><div class="bn">94 calls</div></div><div class="bar"><div class="bl">MP</div><div class="bt"><i style="width:92.20%"></i></div><div class="bv">92.2%</div><div class="bn">94 calls</div></div><div class="bar"><div class="bl">CP</div><div class="bt"><i style="width:92.20%"></i></div><div class="bv">92.2%</div><div class="bn">94 calls</div></div></div><p class="note">Of 102 exemplars, 94 get the movement protein, coat protein and 183K, and 93 the 126K. The five genomes with no call at all are the three that never routed plus two whose contigs fall below the module's declared 5,500&nbsp;nt segment floor.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">89 genomes through the full GTO quality pipeline.</p><div class="tiles"><div class="tile"><div class="v">85</div><div class="l">good, no flags</div></div><div class="tile"><div class="v">4</div><div class="l">flagged</div></div><div class="tile"><div class="v">0</div><div class="l">no features called</div></div><div class="tile"><div class="v">95.5%</div><div class="l">good</div></div></div><p class="note">For comparison, Hepeviridae scores 89.2% on the same pipeline. The four flagged genomes are named individually in &sect;07 &mdash; every one is a defect in the deposited sequence rather than in the module, and saying so is only credible because each was checked.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Four flagged genomes, three unrouted, and 88 source strings the rules never matched.</p><div class="scroll"><table><thead><tr><th>genome</th><th>what happened</th><th>why</th></tr></thead><tbody><tr><td>12241.68&lt;br&gt;&lt;small&gt;Tobacco mild green mosaic virus&lt;/small&gt;</td><td>both replicases called at ~512 aa</td><td>6,072 nt against a normal ~6,350. tblastn HSPs scatter across frames 1, 2 and 3 at 60&amp;ndash;81% identity &amp;mdash; multiple frameshifting indels in the deposited sequence.</td></tr><tr><td>2034161.3&lt;br&gt;&lt;small&gt;Bottle gourd mottle virus WT2&lt;/small&gt;</td><td>no replicase called at all</td><td>The replicase is present but only &lt;b&gt;36%&lt;/b&gt; identical to the nearest profile, and split across frames 1 and 3. Genuinely divergent, and beyond what this profile set reaches. This is the honest coverage gap.</td></tr><tr><td>368736.4&lt;br&gt;&lt;small&gt;Maracuja mosaic virus&lt;/small&gt;</td><td>183K called twice, 1,171 aa and 480 aa</td><td>The 126K matches cleanly in frame 1; the read-through region matches in frame 2. An indel in the deposited sequence splits the 183K into two HSPs, and the annotator emits both.</td></tr><tr><td>12242.144 / 12242.146&lt;br&gt;&lt;small&gt;Tobacco mosaic virus&lt;/small&gt;</td><td>contig too long</td><td>11,641 nt and 8,234 nt against a ~6.4 kb genome. Assembly artifacts &amp;mdash; host-plus-virus contigs or concatemers deposited as genomes. All four features are still called correctly on both.</td></tr></tbody></table></div><p class="note"><b>88 of 7,843 features (1.1%) matched no binning rule.</b> Most are positional or mass labels the rules deliberately do not trust &mdash; &ldquo;hypothetical protein&rdquo; (8), &ldquo;charged protein&rdquo; (5), &ldquo;unnamed protein product&rdquo; (4). Thirteen of them, however, are canonical tobamovirus names that should have been caught: &ldquo;30K protein&rdquo; (5) and &ldquo;29K protein&rdquo; (5) are the movement protein, &ldquo;17 kDa protein&rdquo; (3) the coat protein. Adding mass-based rules for those would recover thirteen sequences out of 7,843. It has not been done, and this line is the record that it is outstanding.</p><p class="note"><b>No mature peptides, and that is correct.</b> There is no protease in the tobamovirus genome and nothing in this module is cleaved, so there is no <code>_MAT</code> or <code>_SP</code> feature to miss.</p><div class="verdict warn">The module cannot call a replicase below roughly 40% identity to its profiles, and does not attempt to stitch a frameshifted genome back together. Three of the four flagged genomes fail for the second reason. Neither is a threshold that can be tuned &mdash; lowering the cutoff on a 36%-identity target would admit far more noise than signal.</div></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">The module shipped twice with a defect the earlier steps could not see.</p><pre class="mono">first quality run
+  good (no flags)           0    0.0%
+  poor (flagged)           89  100.0%
+
+  87  Genome has too many HSPs for: Nonstructural polyprotein; Count = 2
+  52  Feature is too short
+  38  Feature is too long</pre><p class="note">REP126 and REP183 had both been declared with the annotation string <code>Nonstructural polyprotein</code>. <code>viral_genome_quality.pl</code> keys its <code>%essential</code> hash by that string rather than by the feature key, so the second feature read silently overwrote the first one's length window, and <code>%anno_count</code> summed both features' calls against one <code>copy_num</code>. The script runs once per genome and Perl randomises hash order, so a different window won each time &mdash; 52 genomes reading &ldquo;too short&rdquo;, 38 &ldquo;too long&rdquo;, one flag per genome. Nothing was wrong with the profiles, the cutoffs or the genomes.</p><p class="note"><code>install_module.py --check</code>, <code>check_annotations.py</code> and <code>qc_cross_feature.py</code> all passed. It surfaced only at the quality run, and it surfaced disguised: the skill's own rule of thumb says &ldquo;&lsquo;Feature is too short&rsquo; dominating means the length bounds are wrong&rdquo;, and here both flags fire and neither is about the bounds. <code>check_annotations.py</code> now fails on the collision.</p><p class="note">Fixing it exposed a second, genuine annotator bug. Odontoglossum ringspot virus has its amber at residue 1112 and its real terminator at 1596, against a 1,616-residue profile, so the alignment overran the terminator and the HSP held <i>two</i> stops. <code>internal_stop:&nbsp;1</code> is meant to mean &ldquo;read through one stop and end at the next&rdquo;; instead the code called the match broken and cropped the gene at the <i>first</i> stop, returning the 126K-length product under the 183K name. It now terminates at the stop after the read-through, gated on the feature's <code>min_len</code> so that a genome riddled with frameshift stops does not get a fragment instead. ORSV calls 1,596&nbsp;aa.</p><div class="verdict">0.0% &rarr; 95.5% good. The whole difference was two annotation strings and one gated line in the annotator; not a single profile changed.</div></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">279 ways of saying four things.</p><div class="scroll"><table><thead><tr><th>feature</th><th>annotation string</th><th>source strings absorbed</th></tr></thead><tbody><tr><td>REP126</td><td>Methyltransferase and helicase replication protein</td><td>101</td></tr><tr><td>REP183</td><td>RNA-dependent RNA polymerase</td><td>89</td></tr><tr><td>MP</td><td>Movement protein</td><td>22</td></tr><tr><td>CP</td><td>Nucleocapsid protein</td><td>18</td></tr><tr><td><i>unassigned</i></td><td>&amp;mdash;</td><td>49</td></tr></tbody></table></div><p class="note">Tobamovirus submitters spell the replicase 101 different ways &mdash; &ldquo;small replicase subunit&rdquo;, &ldquo;129K protein&rdquo;, &ldquo;replication-associated protein&rdquo;, &ldquo;126 kDa replicase&rdquo;. Eighty-eight records call the 126K protein &ldquo;RNA-dependent RNA polymerase&rdquo;, which it is not: the polymerase domain is only present in the read-through product. That single confusion is the clearest argument in this module for a controlled vocabulary.</p><p class="note">Rarefaction over 100 shuffles: the free-text vocabulary reaches 118 distinct strings and is still climbing at the end of the set, the controlled vocabulary saturates at <b>4</b> by the 25th genome. <b>121.6 strings per 100 genomes against 4.1 &mdash; a 29.5-fold collapse</b>, the strongest of the modules built so far (Hepeviridae 15.8&times;, Matonaviridae 4.3&times;).</p><div class="verdict">One new vocabulary string added (&ldquo;Methyltransferase and helicase replication protein&rdquo;); the other three reuse strings the controlled set already had.</div></section><p class="src">Generated from <code>tobamovirus_audit.json</code> by <code>gen_coverage_audit.py</code>. Counts from evaluate_module.py, check_rep_contigs.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py, collect_registry.py and annotation_rarefaction.py. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.</p></div>
