@@ -59,7 +59,22 @@ my $prefix = $opt->prefix // "Viral_Anno";
 
 my $genome_in = GenomeTypeObject->create_from_file($opt->input);
 $genome_in or die "Error reading and parsing input";
-$genome_in->{features}->[0] or die "No features in GTO\n"; 
+#  A genome with no features is not unscoreable -- it is the worst case, and
+#  the one the "no features called" bucket exists for. It happens when a
+#  genome routes to a module but no profile clears threshold: five of 97
+#  Tobamovirus panel genomes, all divergent tobamo-like viruses. Dying here
+#  removed them from the scored set, so the summary reported "no features
+#  called: 0" while five genomes had called none.
+#
+#  Everything below copes: the feature loop iterates an empty list, and the
+#  missing-essential check walks %anno_count, which is keyed from the JSON's
+#  declared features, so every essential is correctly flagged absent and the
+#  genome comes out Poor. $fam is a genome-level field and survives.
+unless ($genome_in->{features}->[0])
+{
+	print STDERR "No features in GTO; scoring it as a genome that called nothing\n";
+	$genome_in->{features} ||= [];
+}
 
 my $json      = decode_json(read_file($opt->json));
 $genome_in or die "Error reading json protein feature data";

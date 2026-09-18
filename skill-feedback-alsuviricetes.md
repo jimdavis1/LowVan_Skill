@@ -458,8 +458,33 @@ including Plant associated tobamo-like virus 1, that route at 10,241 bits and
 clear no profile. That is a real ~5% coverage gap and it was invisible in
 every run.
 
-Fixed with `next unless defined $feature`, so the genome comes through with
-zero features and lands in the "no features called" bucket where it belongs.
+Fixed with `next unless defined $feature` — and that only moved the failure
+one stage later. `viral_genome_quality.pl` opens with
+
+```perl
+$genome_in->{features}->[0] or die "No features in GTO\n";
+```
+
+so the same five genomes then died at scoring instead of at annotation:
+annotation failures went 5 to 0 and quality failures went 3 to 8, and the
+scored set stayed at 89. The false zero survived the first fix intact.
+
+A genome with no features is not unscoreable. It is the worst case, and the
+one the bucket exists for. Nothing below that line actually needs a feature:
+the feature loop iterates an empty list, `$fam` is a genome-level field, and
+the missing-essential check walks `%anno_count`, which is keyed from the
+JSON's *declared* features — so every essential is correctly flagged absent.
+Replacing the `die` with a warning gives the right answer:
+
+```
+  Genome is missing essential feature: RNA-dependent RNA polymerase
+  Genome is missing essential feature: Movement protein
+  Genome is missing essential feature: Nucleocapsid protein
+  Genome is missing essential feature: Methyltransferase and helicase replication protein
+  Contig is missing: Single RNA Segment
+```
+
+Poor, with the reason spelled out, instead of absent.
 
 **Two lessons, and the second is mine.** A summary line that reports zero
 should be suspected when another line on the same screen reports failures —
