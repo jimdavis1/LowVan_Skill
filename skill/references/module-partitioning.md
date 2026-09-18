@@ -167,8 +167,19 @@ Resolving in NCBI taxonomy is a useful check for a single-taxon name and
 nothing more — a concatenation will not resolve and does not need to. The
 requirement is that nothing in the name was invented.
 
-**Prefer the single taxon when one exists.** Reach for the concatenation only
-after looking for a subfamily or genus that already covers the group, because
-finding one usually means the partition landed where the taxonomy already
-is — which is a good sign about the partition.
+**Reach for a real taxon first. The concatenation is the fallback.**
+
+Before naming a module anything else, look for the subfamily, genus or
+species that already covers the group. Look properly: `Betaflexiviridae_MP`
+shipped because the split was made on gene layout and never checked against
+the taxonomy, and **Trivirinae** had covered those exact eight genera the
+whole time. One NCBI lookup would have found it.
+
+Finding a real taxon is also evidence the partition is right. Gene layout is
+what the taxonomy was built from, so a split that lands on an existing
+subfamily has landed where the biology already agrees. A split that lands on
+nothing is worth a second look before it is worth a compound name — the
+group may be wrong, not merely unnamed.
+
+Only once that search comes up empty does the concatenation apply.
 
