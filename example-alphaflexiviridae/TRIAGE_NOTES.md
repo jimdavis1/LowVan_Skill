@@ -65,3 +65,54 @@ length windows must be set wide enough not to lie about what the feature is.
 Bin on (string, genus, length window) together. A string-only rule is wrong
 for at least three of the six features, and a length-only rule is wrong for
 two of them.
+
+## The coat protein has two real forms, and one of them is Mandarivirus
+
+`coat protein` in Potexvirus is not one length distribution. 2,029 records sit
+at 200-239 aa and a separate mode of **118 sits at 320-359**, with a third
+group of 290 Allexivirus records at 120-159. All three say only "coat protein"
+or "capsid protein", so the string decides nothing and length alone would
+throw away real sequences. Homology settles all three.
+
+**Allexivirus 120-159 aa: partial CP records.** 40 of 40 sampled hit the
+confident Allexivirus CP core (240-279 aa) at a median **99% identity**, and
+none hits NABP or the 40K at all. The alignment geometry says fragment: the
+query aligns end to end (q1-135, q1-147) against the *back half* of the
+subject (s125-259, s113-259), covering 52-60% of it. These are truncated
+deposits of the real CP, so they stay out of the training set. A profile built
+from them would be a truncated copy of the CP profile at 99% identity, which
+is the one thing the curator's checklist forbids outright.
+
+**Potexvirus 320-359 aa: Mandarivirus.** 40 of 40 hit the CP core at 86-87%,
+but the geometry is the opposite of a fragment and not a mis-called start
+either: every one aligns **q91-323 against s1-233**, so the first 90 residues
+are an N-terminal extension the core form does not have. It is not an
+over-called upstream Met -- all 40 begin with Met and **none has a Met at
+residue 91**, so there is no shorter reading to prefer. The extension is real.
+
+The genomes are **Indian citrus ringspot virus** and **Citrus yellow vein
+clearing virus**: Mandarivirus, whose CP is ~34 kDa against a potexvirus
+22-27 kDa. `PARTITIONING.md` puts Mandarivirus in this module, and an earlier
+query for it found nothing because **BV-BRC labels these genomes Potexvirus**.
+The module is recovering its own Mandarivirus members in spite of the genus
+column -- the same hazard that put a genuine NABP inside a "Trichovirus" in
+Betaflexiviridae_MP.
+
+So the CP window is wide (180-400) and covers both real forms. They differ by
+90 residues at 87% identity, so mmseqs separates them at `-mi 0.8` and each
+gets a profile with its own clean N-terminus; `qc_truncation_symmetric.py` will
+report the containment, and at 87% it is a divergent form to keep rather than a
+truncation to retire -- the same call made for CP cluster 21 in
+Betaflexiviridae_MP.
+
+## Windows, after all of the above
+
+| key | window | note |
+|---|---|---|
+| REP | 1,300-1,800 | excludes the 160-aa "polymerase" records |
+| TGB1 | 200-280 | |
+| TGB2 | 85-135 | overlaps NABP; homology separates them |
+| TGB3 | 50-120 | Potexvirus; excludes the Allexivirus 40K |
+| CP | 180-400 | both full-length forms; excludes the 120-159 partials |
+| ALLEXI_40K | 320-400 | 289 records: 210 "tgb3", 29 "40 kda protein", 9 "serine-rich protein", 8 "p42" |
+| NABP | 90-145 | Allexivirus/Lolavirus |
