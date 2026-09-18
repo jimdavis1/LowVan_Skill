@@ -162,6 +162,19 @@ if (open(my $tbl, "<", "$here/$prefix.stdout.txt"))
 				symbol      => $symbol,
 			}
 		}		
+		#  annotate_by_viral_pssm.pl emits a "no_features_called" sentinel row
+		#  when a genome routes to a module but no profile clears threshold,
+		#  deliberately, so the taxon assignment is not lost. That row has no
+		#  coordinates and matches neither branch above, so $feature stays
+		#  undef -- and pushing it undef made GenomeTypeObject die with
+		#  "No feature location" further down, losing the whole genome.
+		#
+		#  Five of 97 Tobamovirus panel genomes hit this. They were counted as
+		#  "annotation failures" and dropped from the quality denominator
+		#  entirely, so the run reported "no features called: 0" while five
+		#  genomes had called no features. Skip the sentinel and let the
+		#  genome through with zero features, which is the honest result.
+		next unless defined $feature;
 		push(@{$features{$type}}, $feature);
 	}
 	

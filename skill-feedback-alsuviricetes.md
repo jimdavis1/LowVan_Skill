@@ -425,3 +425,47 @@ than actionable.
 has to be held to a higher standard than one that only reports. This one had
 a plausible-sounding comment explaining the exact behaviour that made it
 wrong.
+
+### 8. The GTO wrapper dropped every genome that called nothing
+
+`annotate_by_viral_pssm.pl` emits a `no_features_called` sentinel row when a
+genome routes to a module but no profile clears threshold. That is deliberate
+and right — it keeps the taxon assignment rather than returning silence.
+
+`annotate_by_viral_pssm-GTO.pl` parsed that row like any other. The row has no
+coordinates and matches neither the CDS/mat_peptide branch nor the RNA branch,
+so `$feature` stayed undef, and the code pushed it anyway:
+
+```perl
+push(@{$features{$type}}, $feature);   # $feature is undef here
+```
+
+`GenomeTypeObject` then died on `-location => $feature->{location}` and the
+whole genome was lost.
+
+**The damage is in the denominator, not the crash.** Those genomes were
+counted as "annotation failures", printed as a one-line footnote, and removed
+from the scored set. The quality summary then reported:
+
+```
+    no features called        0    0.0%
+    5 annotation failure(s)
+```
+
+Five Tobamovirus panel genomes of 97 had called no features, and the report
+said none had. They are all the same case — divergent tobamo-like viruses,
+including Plant associated tobamo-like virus 1, that route at 10,241 bits and
+clear no profile. That is a real ~5% coverage gap and it was invisible in
+every run.
+
+Fixed with `next unless defined $feature`, so the genome comes through with
+zero features and lands in the "no features called" bucket where it belongs.
+
+**Two lessons, and the second is mine.** A summary line that reports zero
+should be suspected when another line on the same screen reports failures —
+the two were printed four lines apart in every run I did today. And I wrote
+"0 no features called" into a published artifact, plus a §05 sentence
+explaining the five failures as "the three that never routed plus two below
+the 5,500 nt floor", which was wrong on every count: different set, four of
+them 10.3-11.9 kb, one 6,553 nt and inside the window. I explained a number
+instead of checking it.
