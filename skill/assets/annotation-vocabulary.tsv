@@ -506,3 +506,8 @@ Tobamovirus	Methyltransferase and helicase replication protein	126K	CDS	Single R
 Tobamovirus	RNA-dependent RNA polymerase	183K	CDS	Single RNA Segment	1	
 Tobamovirus	Movement protein	MP	CDS	Single RNA Segment	1	
 Tobamovirus	Nucleocapsid protein	CP	CDS	Single RNA Segment	1	
+Betaflexiviridae_MP	RNA-dependent RNA polymerase	REP	CDS	Single RNA Segment	1	
+Betaflexiviridae_MP	Movement protein	MP	CDS	Single RNA Segment	1	
+Betaflexiviridae_MP	Nucleocapsid protein	CP	CDS	Single RNA Segment	1	
+Betaflexiviridae_MP	Nucleic acid-binding protein	NABP	CDS	Single RNA Segment	0	
+Betaflexiviridae_MP	Uncharacterized lineage-specific protein	Viti_ORF2	CDS	Single RNA Segment	0	

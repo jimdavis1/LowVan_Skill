@@ -98,12 +98,47 @@ P123 ends 18 nt short of nsP3's end and that is correct, not a truncation: P123
 *is* the opal-terminated product, while nsP3 is the readthrough mature peptide
 that runs six codons further. Two proteins, two C-termini.
 
-Expect these two to collide on the occasional genome. Where the full-length
-match happens to include the ORF's own terminator as well as the internal stop,
-`n_stops` exceeds `-mis`, readthrough is refused, and the long feature is cropped
-back onto the short one's coordinates — a duplicate. Raising `-mis` does not fix
-it; it reads through the real terminator instead. Treat as an outlier unless it
-is common in your taxon.
+### When the match carries more stops than it may read through
+
+A readthrough match can pick up a second stop, and the usual cause is not a
+broken match. If the profile is **longer than this genome's protein**, the
+alignment overruns the real terminator, so the HSP ends up holding the
+readthrough stop *and* the terminator, and `n_stops` exceeds `-mis`.
+
+The annotator used to call that broken and crop the gene at the HSP edge, which
+put the C-terminus at the **first** stop — the readthrough site — and so
+returned the short product under the long product's name. Odontoglossum
+ringspot virus (BV-BRC 12238.214) has its amber at residue 1112 and its
+terminator at 1596, against a 1616-residue Tobamovirus REP183 profile: it was
+called at 1112 aa and flagged "Feature is too short". Raising `-mis` to 2 did
+not help either — it read straight through the real terminator and gave 1610 aa,
+stopping at the next stop in the 3' UTR.
+
+`internal_stop : 1` means *read through one stop and end at the next*, so
+`annotate_by_viral_pssm.pl` now does exactly that: it keeps `-mis` stops and
+terminates the gene at the one after them, including the stop codon by the same
+convention `scan_to_stop_codon` uses. ORSV now comes out at **1596 aa**, its
+real terminator. Genomes whose match carries at most `-mis` stops are
+unaffected — the path is not reached — and CHIKV S27 and a control tobamovirus
+both annotate byte-identically before and after.
+
+**It is gated on `min_len`, and it has to be.** A genome carrying frameshifting
+indels has stops scattered from early on, and terminating at the second of
+those returns a fragment rather than a protein. The first version of this fix
+had no gate and produced a 23-residue "RNA-dependent RNA polymerase" on
+Tobacco mild green mosaic virus (12241.68) and a 167-residue one on Bottle
+gourd mottle virus (2034161.3) — it turned two already-flagged genomes into
+worse-flagged genomes and cost more than it gained. The rule is now: take the
+read-through termination only if the result reaches the feature's declared
+`min_len`; below that the match really is broken and the old behaviour is the
+honest answer. Get this wrong in the permissive direction and the module
+invents short features on exactly the genomes least able to withstand it.
+
+Two things this does **not** do. It does not rescue a genuinely broken match —
+that is what the `min_len` gate refuses. And it does not stop the terminated
+precursor and the full-length product from both being called on the same
+genome — that is a separate `copy_num` question, and the two are different
+features with different C-termini anyway.
 
 ---
 

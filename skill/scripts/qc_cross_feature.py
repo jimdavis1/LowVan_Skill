@@ -74,10 +74,21 @@ def run_module(workdir, module, pident, cov, tmp):
     with open(dbf, "w") as out:
         for fa in sorted(glob.glob(os.path.join(workdir, "collections", module, "*.fasta"))):
             feat = os.path.basename(fa)[:-6]
-            # "<FEAT>.outliers.fasta" is a length-split subset of <FEAT>, not a
-            # separate feature -- fold it back or every feature flags itself.
+            # "<FEAT>.outliers.fasta" holds sequences reroute_outliers.py
+            # quarantined: annotated as <FEAT> in the source but the wrong
+            # length to be it. They train no profile and are not part of any
+            # feature's collection.
+            #
+            # Folding them back into <FEAT> -- which this did -- is worse than
+            # leaving them out, because it makes a rejected sequence count as
+            # evidence of what <FEAT> contains. Betaflexiviridae_MP then
+            # reported nine MISLABELs, every one of them a correctly binned
+            # cluster matching a short "replicase"-labelled fragment that is
+            # really a coat or movement protein and had already been
+            # quarantined for it. The report says "drop or move that cluster",
+            # so acting on it would have deleted six good clusters.
             if feat.endswith(".outliers"):
-                feat = feat[:-len(".outliers")]
+                continue
             collected.add(feat)
             for hdr, seq in read_fasta(fa):
                 out.write(">%s@%s\n%s\n" % (feat, hdr.split()[0], seq))

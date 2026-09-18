@@ -145,7 +145,7 @@
                "16453503",
                "28786782"
             ],
-            "anno" : "Nonstructural polyprotein",
+            "anno" : "Methyltransferase and helicase replication protein",
             "bit_cutoff" : 600,
             "copy_num" : 1,
             "coverage_cutoff" : 0.65,
@@ -165,7 +165,7 @@
                "16453524",
                "28786782"
             ],
-            "anno" : "Nonstructural polyprotein",
+            "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 800,
             "copy_num" : 1,
             "coverage_cutoff" : 0.65,

@@ -26,6 +26,7 @@ competing with the dense clusters that dominated the first pass.
 """
 
 import argparse
+import re
 import glob
 import os
 import shutil
@@ -90,12 +91,19 @@ def build_pssm(rows, title, out, tmp):
     return True
 
 
+MI_FLOOR = 0.6
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workdir", default=".")
     ap.add_argument("--module", required=True)
     ap.add_argument("--key", required=True)
-    ap.add_argument("--mi", type=float, default=0.6)
+    ap.add_argument("--mi", type=float, default=None,
+                    help="clustering identity for the leftover pass. Default "
+                         "is the -mi the feature's own first pass used, read "
+                         "from its BUILD_PARAMS: the identity floor is never "
+                         "lowered here, and a fixed default silently would.")
     ap.add_argument("--cov", type=float, default=0.8)
     ap.add_argument("--min-seqs", type=int, default=2,
                     help="minimum members for a leftover group to become a "
@@ -112,6 +120,22 @@ def main():
     lo = os.path.join(fd, "Leftover_Seqs.aa")
     if not os.path.exists(lo):
         raise SystemExit("no Leftover_Seqs.aa in %s" % fd)
+    #  The identity floor is never lowered for the leftover pass, so take it
+    #  from the feature's own first pass rather than from a fixed default.
+    #  Betaflexiviridae_MP was built at -mi 0.8; a 0.6 default would have
+    #  relaxed it by a fifth without saying so.
+    if args.mi is None:
+        bp = os.path.join(fd, "BUILD_PARAMS")
+        m = re.search(r"-mi\s+([0-9.]+)", open(bp).read()) if os.path.exists(bp) else None
+        if not m:
+            raise SystemExit(
+                "no -mi in %s; pass --mi explicitly with the value the first "
+                "pass used for %s/%s" % (bp, args.module, args.key))
+        args.mi = float(m.group(1))
+        print("  -mi %.2f, from the feature's own BUILD_PARAMS" % args.mi)
+    if args.mi < MI_FLOOR:
+        raise SystemExit("--mi %.2f is below the %.2f floor" % (args.mi, MI_FLOOR))
+
     rows = [(h, s) for h, s in read_fasta(lo) if len(s) >= 30]
     print("  %d leftover sequence(s) in %s/%s" % (len(rows), args.module, args.key))
     print("  member floor %d (the feature's own -m does not apply here: this "

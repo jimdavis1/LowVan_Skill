@@ -28,7 +28,10 @@ my $usage = 'annotate_by_viral_pssm.pl [options] -i subject_contig(s).fasta
 
         -j   Full path to the options file in JSON format which carries data for a match (D = $default_data_dir/Viral_PSSM.json)
 		-mis maximum internal stop codons a feature declaring "internal_stop" : 1
-		     may carry and still be read through (D = 1)
+		     may read through (D = 1).  A match carrying more than this reads
+		     through the first -mis of them and the gene ends at the next stop,
+		     which is what happens when the profile is longer than the target
+		     protein and the alignment overruns the real terminator.
 		-c   Representative contigs directory (D = $default_data_dir/Viral-Rep-Contigs)
 		-pssm   Base directory of PSSMs   (D = $default_data_dir/Viral-PSSMs)
 	           Note that this is set up as a directory of pssms
@@ -272,6 +275,8 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 	#  rather than cropping there.  Absent or 0 is the old behaviour.  The
 	#  global -ks remains as a debug override that forces it on everywhere.
 	my $internal_stop  = $options->{$virus}->{features}->{$pssmdir}->{internal_stop};
+	#  Used only as a plausibility test on read-through termination below.
+	my $feat_min_len   = $options->{$virus}->{features}->{$pssmdir}->{min_len};
 	my $feature_type   = $options->{$virus}->{features}->{$pssmdir}->{feature_type};
 	my $anno           = $options->{$virus}->{features}->{$pssmdir}->{anno};
 	my $symbol         = $options->{$virus}->{features}->{$pssmdir}->{gene_symbol};
@@ -375,18 +380,85 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 		#  instead of at its real stop codon.
 		my $n_stops = ($hseq =~ tr/\*//);
 		my $readthrough = 0;
+		my $terminate_at;     # 0-based residue index of the stop that ends the gene
 		if ($n_stops)
 		{
 			if ($keep_stop)                                     { $readthrough = 1; }
 			elsif ($internal_stop && $n_stops <= $max_internal_stops) { $readthrough = 1; }
 			elsif ($internal_stop)
 			{
-				print STDERR "\t$pssmdir declares internal_stop but the match carries $n_stops stops (max $max_internal_stops); treating as broken\n";
+				#  More stops than the feature may read through.  The old
+				#  behaviour called this a broken match and cropped the gene
+				#  at the HSP edge, which puts the C-terminus at the FIRST
+				#  stop -- the readthrough site -- and so returns the short
+				#  product under the long product's name.
+				#
+				#  The usual cause is not a broken match at all: the profile
+				#  is longer than this genome's protein, so the alignment
+				#  overruns the real terminator and the HSP ends up holding
+				#  the readthrough stop AND the terminator.  Odontoglossum
+				#  ringspot virus (12238.214) has its amber at residue 1112
+				#  and its terminator at 1596 against a 1616-residue profile;
+				#  it was called at 1112 aa and flagged "too short".
+				#
+				#  internal_stop : 1 means "read through one stop and end at
+				#  the next", so do exactly that: keep $max_internal_stops
+				#  stops and terminate at the one after them.
+				my $seen = 0;
+				for my $r (0 .. (length($hseq) - 1))
+				{
+					next unless substr($hseq, $r, 1) eq '*';
+					$seen++;
+					next if $seen <= $max_internal_stops;
+					$terminate_at = $r;
+					last;
+				}
+				#  Only the overrun case should take this path. A genome with
+				#  frameshifting indels carries stops scattered from early on,
+				#  and terminating at the second of those returns a fragment:
+				#  Tobacco mild green mosaic virus 12241.68 gave a 23 aa
+				#  "RNA-dependent RNA polymerase" and Bottle gourd mottle virus
+				#  2034161.3 gave 167 aa. Require the result to reach the
+				#  feature's declared min_len; below that the match really is
+				#  broken and the old behaviour is the honest answer.
+				if (defined $terminate_at && $feat_min_len
+				    && $terminate_at < $feat_min_len)
+				{
+					print STDERR "\t$pssmdir read-through would terminate at residue ${\($terminate_at + 1)}, below min_len $feat_min_len; treating as broken\n";
+					$terminate_at = undef;
+				}
+				if (defined $terminate_at)
+				{
+					$readthrough = 1;
+					print STDERR "\t$pssmdir declares internal_stop and the match carries $n_stops stops (max $max_internal_stops); reading through $max_internal_stops and terminating at residue ${\($terminate_at + 1)}\n";
+				}
+				else
+				{
+					print STDERR "\t$pssmdir declares internal_stop but the match carries $n_stops stops (max $max_internal_stops); treating as broken\n";
+				}
 			}
 		}
 
 		my ($gene_begin, $gene_end);
-		if ((! $downstream_ext) || ($n_stops && ! $readthrough))
+		if (defined $terminate_at)
+		{
+			#  $hseq has its alignment gaps stripped, so residue $r of the hit
+			#  occupies three contiguous contig bases counted from the match's
+			#  5' end.  Include the stop codon, by the same convention
+			#  scan_to_stop_codon uses.
+			if ($strand eq "-")
+			{
+				$gene_end   = $to;
+				$gene_begin = $to - (3 * $terminate_at) - 2;
+			}
+			else
+			{
+				$gene_begin = $from;
+				$gene_end   = $from + (3 * $terminate_at) + 2;
+			}
+			print STDERR "\tTerminated at read-through limit\twas: $from to $to\tnow: $gene_begin to $gene_end\n";
+		}
+		elsif ((! $downstream_ext) || ($n_stops && ! $readthrough))
 		{
 			$gene_begin = $from;
 			$gene_end = $to;
