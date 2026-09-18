@@ -37,16 +37,41 @@ if not os.path.exists(_syn):
     sys.exit("no synonyms.tsv in %s or %s/collections"
              % (os.path.abspath(W), os.path.abspath(W)))
 rows = list(csv.DictReader(open(_syn), delimiter="\t"))
+
+#  Sequences the text rules could not reach come in through
+#  rescue_unassigned.py, which writes RESCUED.tsv and does not touch
+#  synonyms.tsv. Leaving them out understates the collapse exactly where it is
+#  most striking: Betaflexiviridae_MP VITI_ORF2 read 50 features over 12
+#  strings from synonyms.tsv alone, when 246 of its sequences are records
+#  saying nothing but "hypothetical protein" that homology placed in a real
+#  feature. A generic string becoming a specific annotation is the strongest
+#  case the collapse report has, and it was the part being dropped.
+_resc = os.path.join(os.path.dirname(_syn), "RESCUED.tsv")
+if os.path.exists(_resc):
+    for r in csv.DictReader(open(_resc), delimiter="\t"):
+        rows.append({"count": r.get("count", "0"),
+                     "annotation": r.get("annotation", ""),
+                     "genus": r.get("genus", ""),
+                     "bins_to": r.get("adopted_as", "")})
 J = json.load(open(_pick_json(W)))
 key2anno, key2gene = {}, {}
 for T, v in J.items():
     for k, e in v["features"].items():
         key2anno.setdefault(k, e["anno"]); key2gene.setdefault(k, e.get("gene_symbol", ""))
 
+#  build_collections.py writes the literal "UNASSIGNED" in bins_to, not an
+#  empty field, so testing `if not k` let those rows through as if UNASSIGNED
+#  were a feature. agg.json then carried it as a target and unbinned.json came
+#  out empty, and the page said "316 of them bind ... 0 unbound" while 49 of
+#  the 316 bound to nothing. It also divided by one target too many, which
+#  understated the collapse: Tobamovirus read 279 strings into 5 for 55.8x
+#  when the truth is 267 into 4 for 66.8x.
+UNBOUND = ("", "UNASSIGNED")
+
 agg = collections.defaultdict(lambda: collections.defaultdict(lambda: [0, set()]))
 for r in rows:
     k = r["bins_to"]
-    if not k: continue
+    if k in UNBOUND: continue
     s = r["annotation"] or "(empty string)"
     agg[k][s][0] += int(r["count"]); agg[k][s][1].add(r["genus"] or "(no genus)")
 out = []
@@ -60,7 +85,7 @@ json.dump(out, open("agg.json", "w"), indent=1)
 
 un = collections.defaultdict(lambda: [0, set()])
 for r in rows:
-    if r["bins_to"]: continue
+    if r["bins_to"] not in UNBOUND: continue
     s = r["annotation"] or "(empty string)"
     un[s][0] += int(r["count"]); un[s][1].add(r["genus"] or "(no genus)")
 ul = sorted(([s, v[0], sorted(v[1])] for s, v in un.items()), key=lambda x: -x[1])

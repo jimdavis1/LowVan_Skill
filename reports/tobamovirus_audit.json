@@ -17,11 +17,11 @@
    "exemplars routed"
   ],
   [
-   "90.4%",
-   "genomes good quality"
+   "89.4%",
+   "genomes genuinely clean"
   ],
   [
-   "55.8×",
+   "66.8×",
    "string collapse"
   ],
   [
@@ -392,7 +392,7 @@
   {
    "num": "09",
    "title": "What the vocabulary bought",
-   "lede": "279 ways of saying four things.",
+   "lede": "267 ways of saying four things, and 49 that say nothing.",
    "blocks": [
     {
      "type": "table",
@@ -405,25 +405,25 @@
       [
        "REP126",
        "Methyltransferase and helicase replication protein",
-       "101"
+       "108"
       ],
       [
        "REP183",
        "RNA-dependent RNA polymerase",
-       "89"
+       "102"
       ],
       [
        "MP",
        "Movement protein",
-       "22"
+       "32"
       ],
       [
        "CP",
        "Nucleocapsid protein",
-       "18"
+       "25"
       ],
       [
-       "<i>unassigned</i>",
+       "<i>unbound</i>",
        "&mdash;",
        "49"
       ]
@@ -431,7 +431,7 @@
     },
     {
      "type": "prose",
-     "html": "Tobamovirus submitters spell the replicase 101 different ways &mdash; &ldquo;small replicase subunit&rdquo;, &ldquo;129K protein&rdquo;, &ldquo;replication-associated protein&rdquo;, &ldquo;126 kDa replicase&rdquo;. Eighty-eight records call the 126K protein &ldquo;RNA-dependent RNA polymerase&rdquo;, which it is not: the polymerase domain is only present in the read-through product. That single confusion is the clearest argument in this module for a controlled vocabulary."
+     "html": "Tobamovirus submitters spell the 126K replication protein <b>108</b> different ways and the 183K <b>102</b> &mdash; &ldquo;small replicase subunit&rdquo;, &ldquo;129K protein&rdquo;, &ldquo;replication-associated protein&rdquo;, &ldquo;126 kDa replicase&rdquo;. Eighty-eight records call the 126K protein &ldquo;RNA-dependent RNA polymerase&rdquo;, which it is not: the polymerase domain exists only in the read-through product. That single confusion is the clearest argument in this module for a controlled vocabulary."
     },
     {
      "type": "prose",
@@ -440,7 +440,7 @@
     {
      "type": "verdict",
      "kind": "ok",
-     "html": "One new vocabulary string added (&ldquo;Methyltransferase and helicase replication protein&rdquo;); the other three reuse strings the controlled set already had."
+     "html": "One new vocabulary string added (&ldquo;Methyltransferase and helicase replication protein&rdquo;); the other three reuse strings the controlled set already had. <b>The collapse figure here was first published as 55.8&times; and is 66.8&times;.</b> <code>collect_synmap.py</code> was counting the 49 unbound strings as if they bound to a fifth feature called UNASSIGNED, so the page simultaneously claimed &ldquo;0 unbound&rdquo; and divided by one target too many. It also omitted the homology-rescued records entirely. Both fixed; the unbound 49 are now listed on the collapse page instead of hidden inside it."
     }
    ]
   }
