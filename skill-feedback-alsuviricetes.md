@@ -696,7 +696,20 @@ or not at all.
 
 **The rule, now in `references/module-partitioning.md`:** partition on genome
 organisation, then find the taxon that names the result — they are usually
-the same, because the taxonomy was built from gene layout. If no real taxon
-covers the group, that is a signal about the partition, not a naming problem.
-Every module name should resolve in NCBI taxonomy with underscores read as
-spaces; checking all 39 took one loop and found exactly one fault.
+the same, because the taxonomy was built from gene layout.
+
+My first version of this rule was too strict. I wrote "every module name
+should resolve in NCBI taxonomy", and Jim corrected it: a name like
+`Botrexvirus_Platypuvirus_Sclerodarnavirus` is fine — *"It does not need to
+be an NCBI taxonomy key, but it does need to be very obvious what it is."*
+That is the better test. Every **component** must be a real taxon and a
+reader must be able to tell what is in the module; the whole string need not
+resolve. `Betaflexiviridae_MP` fails because `MP` is a description of the
+group rather than a name for it, and `Alphaflexiviridae_noTGB` fails the same
+way. A concatenation of three real genus names passes: it is long, it
+resolves nowhere, and it says exactly what it contains.
+
+Prefer the single taxon when one exists, because finding one usually means
+the partition landed where the taxonomy already is. Resolving in NCBI is a
+useful check for that single-taxon case and nothing more; checking all 39
+installed names took one loop and found exactly one fault.

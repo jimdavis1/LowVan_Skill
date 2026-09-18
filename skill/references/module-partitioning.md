@@ -143,11 +143,32 @@ name and the exception gets its own real name:
 | `Alpharhabdovirinae` | `Merhavirus` | genus |
 | `Trivirinae` | `Capillovirus` | genus; its CP is inside the ORF1 polyprotein |
 
-**If no real taxon covers the group, that is a signal, not a naming problem.**
-Botrexvirus, Platypuvirus and Sclerodarnavirus share no subfamily; the honest
-options are one module per genus or not shipping, never a coined name like
-`Alphaflexiviridae_noTGB`.
+**If no single taxon covers the group, name every member.** Botrexvirus,
+Platypuvirus and Sclerodarnavirus share no subfamily, so that module is
+`Botrexvirus_Platypuvirus_Sclerodarnavirus`. It is long and it does not
+resolve anywhere, and both are fine: every component is a real genus and the
+membership is on the label. What is not fine is `Alphaflexiviridae_noTGB`,
+where `noTGB` is a property of the group rather than a name for it and you
+cannot tell from the string what is inside.
 
-Check it: every module name should resolve in NCBI taxonomy, with underscores
-read as spaces.
+### The test
+
+Every component of the name is a real taxon, and a reader can tell what the
+module contains without opening it.
+
+| | |
+|---|---|
+| `Trivirinae` | best: one taxon covers the group exactly |
+| `Merhavirus`, `Orthopneumovirus_muris` | a real taxon split out of its parent |
+| `Botrexvirus_Platypuvirus_Sclerodarnavirus` | fine: no taxon covers them, so all three are named |
+| `Betaflexiviridae_MP`, `Alphaflexiviridae_noTGB` | wrong: `MP` and `noTGB` are descriptions, not names |
+
+Resolving in NCBI taxonomy is a useful check for a single-taxon name and
+nothing more — a concatenation will not resolve and does not need to. The
+requirement is that nothing in the name was invented.
+
+**Prefer the single taxon when one exists.** Reach for the concatenation only
+after looking for a subfamily or genus that already covers the group, because
+finding one usually means the partition landed where the taxonomy already
+is — which is a good sign about the partition.
 

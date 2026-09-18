@@ -44,7 +44,7 @@ impact. A module is only started once its rep contigs are known to fit the
 | Quinvirinae | 81.0% | pome and stone fruit; the TGB half of the family already split |
 | Capillovirus | 100% | apple stem grooving; needs a mature peptide (CP inside the polyprotein) |
 | Bromoviridae | unmeasured | **cucumber mosaic virus**; 3 segments, needs per-segment clustering |
-| Botrexvirus / Platypuvirus / Sclerodarnavirus | unmeasured | 42 genomes, fungal; may not ship |
+| Botrexvirus_Platypuvirus_Sclerodarnavirus | unmeasured | 42 genomes, fungal; may not ship |
 
 Unmeasured beyond that: Crinivirus, Virgaviridae minors, Kitaviridae,
 Mayoviridae, Benyviridae.
@@ -62,8 +62,10 @@ the only invalid name among 39 installed modules. It is now **Trivirinae**,
 which is the ICTV subfamily covering exactly those genera. Two consequences:
 
 - `Betaflexiviridae_TGB` is **Quinvirinae**, the sibling subfamily.
-- Botrexvirus, Platypuvirus and Sclerodarnavirus share no subfamily, so if
-  that group ships it ships as per-genus modules, not as one invented name.
+- Botrexvirus, Platypuvirus and Sclerodarnavirus share no subfamily, so that
+  module is `Botrexvirus_Platypuvirus_Sclerodarnavirus` — long, does not
+  resolve anywhere, and correct: every component is a real genus and the
+  membership is on the label.
 
 A genus split out of its parent keeps a real name too: `Merhavirus` out of
 `Alpharhabdovirinae`, `Orthopneumovirus_muris` out of `Orthopneumovirus`.
