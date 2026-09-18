@@ -1,0 +1,7 @@
+{
+  "REP":       {"anno": "Nonstructural polyprotein"},
+  "MP":        {"anno": "Movement protein"},
+  "CP":        {"anno": "Nucleocapsid protein"},
+  "NABP":      {"anno": "Nucleic acid binding protein"},
+  "VITI_ORF2": {"anno": "Uncharacterized lineage-specific protein"}
+}

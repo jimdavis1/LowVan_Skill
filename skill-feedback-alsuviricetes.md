@@ -311,3 +311,117 @@ patches and not the upstream repo.** A new build should copy `build/*` and
 applying `patches/` to a fresh clone — which is what I did, and it cost a
 rediscovered bug, a wrong feedback entry, and a Tobamovirus build run against
 an older pipeline than the kit ships.
+
+---
+
+## Tobamovirus, 17 Sep 2026 — two defects found by the quality run
+
+### 4. The annotation string is a key, and nothing checked it
+
+`viral_genome_quality.pl` builds `%essential` keyed by the **annotation
+string**, not by the feature key. Two features in one module sharing an `anno`
+therefore means the second one read silently overwrites the first one's
+`min_len`, `max_len` and `copy_num`, and `%anno_count` sums both features'
+calls against whichever `copy_num` survived.
+
+Nothing in the workflow caught this. `install_module.py --check` passed,
+`check_annotations.py` passed, `qc_cross_feature.py` passed. It surfaced only
+at step 10, as a **0% good** quality run on 89 genomes — and it surfaced
+disguised: 87 genomes flagged "too many HSPs", plus 52 "Feature is too short"
+and 38 "Feature is too long" **at the same time**. The skill's own rule of
+thumb — "'Feature is too short' dominating means the length bounds are wrong"
+— points the wrong way here, because both flags fire and neither is about the
+bounds. The tell is that the two counts sum to one flag per genome: the script
+runs once per genome and Perl randomises hash order, so a different feature's
+length window wins each time.
+
+Fixed: `check_annotations.py` now exits non-zero on the collision, and
+`references/json-schema.md` has the rule and the symptom. A sweep of all 38
+installed modules found no other instance, so this cost one module, not many.
+
+**Worth noting for its own sake:** the collision forced a second look at the
+strings and found they were also just wrong. Tobamovirus has no protease — the
+126K and 183K proteins are separate translation products of one ORF, not
+cleavage products — so "Nonstructural polyprotein" was incorrect for both
+features independently of the collision. A schema violation was the only reason
+anyone looked.
+
+### 5. A readthrough match that overruns the terminator was called broken
+
+`internal_stop : 1` is meant to mean *read through one stop and end at the
+next*. It did not. When the profile is longer than the target genome's protein
+the alignment overruns the real terminator, so the HSP holds the readthrough
+stop **and** the terminator, `n_stops` exceeds `-mis`, and the old code
+declared the match broken and cropped the gene at the HSP edge — putting the
+C-terminus at the *first* stop and returning the short product under the long
+product's name.
+
+Odontoglossum ringspot virus (12238.214): amber at residue 1112, terminator at
+1596, profile 1616 residues. Called at 1112 aa and flagged "too short".
+`-mis 2` was not the answer either — it read through the real terminator and
+gave 1610 aa.
+
+`annotate_by_viral_pssm.pl` now keeps `-mis` stops and terminates at the one
+after them. ORSV comes out at 1596 aa. Genomes at or below `-mis` never reach
+the new path, and CHIKV S27 (13 features) and a control tobamovirus annotate
+byte-identically before and after.
+
+**The first version of the fix was wrong, and the way it was wrong is the
+useful part.** With no gate, terminating at stop #(mis+1) is right for the
+overrun case and badly wrong for a genome carrying frameshifting indels, where
+stops start early: Tobacco mild green mosaic virus gained a 23-residue
+"RNA-dependent RNA polymerase" and Bottle gourd mottle virus a 167-residue
+one. Overall quality went *down*, 95.5% to 94.4%, while the case I was
+targeting got fixed. Requiring the result to reach the feature's declared
+`min_len` separates the two cleanly. The measurement that caught it was the
+full 89-genome re-run, not the four hand-checked genomes — the hand checks all
+looked fine.
+
+`references/special-features.md` previously described this case as an outlier
+to be tolerated — "Raising `-mis` does not fix it ... Treat as an outlier
+unless it is common in your taxon." That paragraph has been replaced with the
+fix. Only three features across two modules declare `internal_stop`
+(Tobamovirus REP183, Togaviridae NSP1234 and NSP3), so the blast radius was
+small enough to verify exhaustively.
+
+### 6. Two smaller things
+
+- `collect_synmap.py` looked for `synonyms.tsv` only in the workdir root, but
+  `build_collections.py` writes it next to the collections. Now accepts either.
+- `build_leftover_pssms.py --mi` defaults to 0.6 regardless of what the main
+  pass used. The skill says the identity floor is never lowered; for a feature
+  built at `-mi 0.8` the default silently lowers it. I passed 0.6 by reflex on
+  Betaflexiviridae_MP before catching it. The default should be read from the
+  feature's own `BUILD_PARAMS`, or be required.
+
+### 7. `qc_cross_feature.py` folded quarantined outliers back into the feature
+
+The script builds its database from `collections/<module>/*.fasta`, which
+includes `<FEAT>.outliers.fasta`, and it deliberately renamed those back to
+`<FEAT>` with the comment *"a length-split subset of <FEAT>, not a separate
+feature -- fold it back or every feature flags itself."*
+
+That is the wrong direction. An outlier is in that file because
+`reroute_outliers.py` decided its length says it is **not** that protein. It
+trains no profile and belongs to no collection. Folding it back makes a
+rejected sequence count as evidence of what the feature contains.
+
+Betaflexiviridae_MP reported **nine MISLABELs** on that basis — CP 21, CP 18,
+MP 1, MP 12, MP 16, MP lo8, NABP 1, NABP 2, NABP 4. Every one was a correctly
+binned cluster matching a short sequence that BV-BRC had labelled "replicase"
+and that had already been quarantined for being 193 aa. Blasting each master
+against the five live collections showed each hitting only its own, at 100%
+identity over 100% coverage, with no cross-hit at all.
+
+This one had teeth: the report ends *"drop or move that cluster"*, and doing
+what it said would have deleted six good clusters, including two of the five
+NABP profiles. Outliers are now excluded from the database. Hepeviridae stays
+clean, and Tobamovirus still reports its two REP126/REP183 collisions, which
+are real — a readthrough pair shares its N-terminal 1,116 residues by
+construction, so that pair always collides and the flag is expected rather
+than actionable.
+
+**The general point:** a QC script that tells the curator to delete something
+has to be held to a higher standard than one that only reports. This one had
+a plausible-sounding comment explaining the exact behaviour that made it
+wrong.
