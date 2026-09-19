@@ -932,6 +932,20 @@ sub scan_to_met_start
 	my $len = length $contig; 
 	my $start = $from;
 
+	#  Only an actual Met may move the start. The loops below walk $start
+	#  back one codon at a time, so without this flag a scan that never
+	#  finds a Met still returns wherever it stopped -- which is the codon
+	#  after the previous in-frame stop. That is not an extension to a
+	#  start, it is a silent extension to the whole upstream ORF, and it
+	#  emits a CDS whose first residue is not Met.
+	#
+	#  Alphaflexiviridae TGB3 showed it: 100 of 266 calls began at a
+	#  non-Met, and the 30 that also breached max_len were the only ones
+	#  anything flagged. Garlic virus A 12433.146 was called 132 aa from
+	#  5861 -- 49 nt inside TGB2 -- where profile lo7's own members are
+	#  98 aa and start MQAPEL.
+	my $found_met = 0;
+
 	if ($from < $to)
 	{		
 		for (my $i = ($start - 3); $i >= 0; $i -= 3) # This is zero indexed
@@ -942,6 +956,7 @@ sub scan_to_met_start
 			if ($aa =~ /m/i) 
 			{
 				$start = $i;  #move the end position to the end of the stop codon and quit.
+				$found_met = 1;
 				print STDERR "\tN-term Extension Met found: was: $from\tnow: $start\t$aa\t$codon\n";
 				last;	
 			}		
@@ -970,6 +985,7 @@ sub scan_to_met_start
 			if ($aa =~ /m/i) 
 			{
 				$start = ($i + 2);  #move the end position to the end of the stop codon and quit.
+				$found_met = 1;
 				print STDERR "\tN-term Extension Met found: was: $from\tnow: $start\t$aa\t$codon\n";
 				last;	
 			}		
@@ -985,6 +1001,11 @@ sub scan_to_met_start
 			}		
 		}
 	}	
+	unless ($found_met)
+	{
+		print STDERR "\tN-term Extension declined: no upstream Met before the in-frame stop; keeping $from\n";
+		return ($from, $to);
+	}
 	return ($start, $to);
 }
 ###########################################################
