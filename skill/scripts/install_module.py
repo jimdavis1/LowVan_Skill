@@ -191,18 +191,37 @@ def install(workdir, repo, modules, mod_json, dry=False):
             #  rebuild_pssms.py refreshes an existing profile from its
             #  alignment and cannot recreate one that has none.
             fd = os.path.join(repo, "PSSM-Alignments", module, feat)
-            made = False
+            srcs = []
             for sub in ("corrected_alis", "reclustered_alis"):
                 src = os.path.join(workdir, "Alignments", module, feat, sub)
-                if not os.path.isdir(src):
-                    continue
-                if not dry and not made:
-                    os.makedirs(fd, exist_ok=True)
-                    made = True
-                for f in sorted(glob.glob(os.path.join(src, "*.fa"))):
-                    if not dry:
-                        shutil.copy2(f, os.path.join(fd, os.path.basename(f)))
-                    na += 1
+                if os.path.isdir(src):
+                    srcs.extend(sorted(glob.glob(os.path.join(src, "*.fa"))))
+            if srcs and not dry:
+                os.makedirs(fd, exist_ok=True)
+            #  Prune stale ALIGNMENTS inside a feature that is still built --
+            #  the mirror of the profile prune above, which was missing. The
+            #  copy below never clears the destination, so every alignment a
+            #  previous build wrote survives a rebuild that renumbers or drops
+            #  its cluster. Alphaflexiviridae shipped 276 profiles against 289
+            #  alignments this way: 13 files from two earlier builds, including
+            #  an NABP cluster 14 whose members had since fallen to the leftover
+            #  pool. Alignments are provenance, not runtime, so nothing was
+            #  miscalled -- but the counts no longer described the module, and
+            #  the same gap is what made Hepeviridae read 15 profiles / 13
+            #  alignments. Provenance that outlives what it documents is worse
+            #  than absent: it is read as current.
+            want_ali = {os.path.basename(f) for f in srcs}
+            if os.path.isdir(fd):
+                for old_file in sorted(os.listdir(fd)):
+                    if old_file.endswith(".fa") and old_file not in want_ali:
+                        print("  %-24s retiring %s/%s (alignment no longer built)"
+                              % (module, feat, old_file))
+                        if not dry:
+                            os.remove(os.path.join(fd, old_file))
+            for f in srcs:
+                if not dry:
+                    shutil.copy2(f, os.path.join(fd, os.path.basename(f)))
+                na += 1
         print("  %-24s %3d alignments -> PSSM-Alignments/%s/" % ("", na, module))
 
         # 2b. special-feature references
