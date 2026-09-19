@@ -168,17 +168,30 @@ def main():
         #  ones never collide with a cluster id the main pass already used.
         used = {os.path.basename(p).rsplit(".", 2)[-2]
                 for p in glob.glob(os.path.join(fd, "pssms", "*.pssm"))}
-        n = 0
+        #  Plain integers, continuing the main pass. An earlier version named
+        #  these lo1, lo2 ... which made the leftover provenance visible at a
+        #  glance but put a build-pipeline detail into a permanent identifier:
+        #  the id is written into every output GTO as
+        #  family_assignments -> "<Module>.<FEAT>.<id>", so a second id shape
+        #  existed only in modules this kit built and anything parsing those
+        #  ids downstream had to handle it. Collision avoidance never required
+        #  a prefix -- it only required not restarting at 1, which is what the
+        #  scan below does.
+        def _lead(x):
+            m = re.match(r"(\d+)", x)
+            return int(m.group(1)) if m else 0
+        n = max([_lead(u) for u in used] or [0])
         made = 0
         for g in keep:
             n += 1
-            while "lo%d" % n in used:
+            while str(n) in used:
                 n += 1
-            cid = "lo%d" % n
+            cid = str(n)
+            used.add(cid)
             sub = [rows[i] for i in g]
             os.makedirs(os.path.join(fd, "corrected_alis"), exist_ok=True)
             title = "%s.%s.%s" % (args.module, args.key, cid)
-            t2 = tempfile.mkdtemp(prefix="lo1.")
+            t2 = tempfile.mkdtemp(prefix="leftover.")
             ALIGNED_OUT[:] = []
             try:
                 ok = build_pssm(sub, title,
