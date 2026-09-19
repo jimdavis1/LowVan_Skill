@@ -713,3 +713,29 @@ Prefer the single taxon when one exists, because finding one usually means
 the partition landed where the taxonomy already is. Resolving in NCBI is a
 useful check for that single-taxon case and nothing more; checking all 39
 installed names took one loop and found exactly one fault.
+
+### 14. The working tree is inside Box, and that is the wall-clock
+
+Load average reached **187 on a 10-core machine with zero live blast
+processes**. It is not compute. The project lives under
+`~/Library/CloudStorage/Box-Box/`, and `work/` holds **23,171 files** —
+alignments, PSSMs, GTOs, per-genome contigs, coverage output — every one of
+which Box's `streem` and macOS `fileproviderd` sync as the pipeline writes it.
+Those two plus JamfDaemon were consuming more CPU than the blast processes
+they were competing with.
+
+This probably explains a good deal of today's timing. The Trivirinae coverage
+run crawled at roughly one genome a minute and I attributed it to 153 profiles
+per genome; the same run later finished far quicker on an otherwise idle
+machine. A module build writes thousands of small files in bursts, which is
+close to the worst case for a sync client.
+
+**Nothing under `work/` needs to be in Box.** The kit carries `modules/`,
+`reports/`, the scripts and the special-feature references; `work/` is
+regenerable scratch — collections, alignments, GTOs, contigs. Two fixes, both
+one-off: put `work/` in local scratch and copy results into the kit, or
+exclude `work/` from Box sync and keep the layout as is.
+
+Worth measuring before assuming a pipeline is slow: `uptime` against
+`pgrep -c tblastn`. A high load with no workers is I/O, and no amount of
+`--threads` will help.
