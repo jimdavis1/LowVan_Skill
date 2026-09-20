@@ -77,6 +77,10 @@ def main():
                     help="a module working directory; repeatable")
     ap.add_argument("--module", action="append", default=[],
                     help="limit to these modules (default: every module with loN)")
+    ap.add_argument("--kit-modules", metavar="DIR",
+                    help="a kit modules/ directory (modules/<M>/PSSM-Alignments/<FEAT>/...). "
+                         "These ship alignments only, so ids come from the alignment "
+                         "filenames rather than from the profiles.")
     ap.add_argument("--check", action="store_true", help="print the plan, change nothing")
     a = ap.parse_args()
 
@@ -93,14 +97,49 @@ def main():
             if os.path.isdir(d):
                 wd[os.path.basename(d)] = d
 
-    mods = sorted(os.path.basename(d)[:-len(".pssms")]
-                  for d in glob.glob(os.path.join(pb, "*.pssms")))
+    mods = [] if a.kit_modules else sorted(
+        os.path.basename(d)[:-len(".pssms")]
+        for d in glob.glob(os.path.join(pb, "*.pssms")))
     if a.module:
         mods = [m for m in mods if m in set(a.module)]
 
     total = 0
     renames = []          # (kind, src, dst)
     report = {}
+
+    #  Kit modules carry alignments and no profiles, because profiles are
+    #  derived and an order of magnitude larger (see modules/README.md). The
+    #  ids therefore live only in the alignment filenames here, and
+    #  pssms_from_alignments.py names each rebuilt profile after the file it
+    #  came from -- so renaming the alignment renames the profile that will
+    #  later be built from it.
+    if a.kit_modules:
+        for mdir in sorted(glob.glob(os.path.join(a.kit_modules, "*"))):
+            if not os.path.isdir(mdir):
+                continue
+            m = os.path.basename(mdir)
+            if a.module and m not in set(a.module):
+                continue
+            for fdir in sorted(glob.glob(os.path.join(mdir, "PSSM-Alignments", "*"))):
+                if not os.path.isdir(fdir):
+                    continue
+                feat = os.path.basename(fdir)
+                files = {}
+                for sub in sorted(glob.glob(os.path.join(fdir, "*"))):
+                    if os.path.isdir(sub):
+                        for fa in glob.glob(os.path.join(sub, "*.fa")):
+                            files[os.path.basename(fa)[:-3]] = fa
+                    elif sub.endswith(".fa"):
+                        files[os.path.basename(sub)[:-3]] = sub
+                mapping = plan_feature(list(files))
+                if not mapping:
+                    continue
+                report.setdefault(m, {})[feat] = mapping
+                total += len(mapping)
+                for old_id, new_id in mapping.items():
+                    src = files[old_id]
+                    renames.append(("kit", src,
+                                    os.path.join(os.path.dirname(src), new_id + ".fa")))
     for m in mods:
         mp = os.path.join(pb, m + ".pssms")
         feats = sorted(f for f in os.listdir(mp) if os.path.isdir(os.path.join(mp, f)))
@@ -157,9 +196,10 @@ def main():
     for _k, src, dst in renames:
         os.rename(src + ".renumber_tmp", dst)
 
-    with open(os.path.join(a.repo, "LEFTOVER_RENUMBERING.json"), "w") as fh:
+    out_dir = a.kit_modules or a.repo
+    with open(os.path.join(out_dir, "LEFTOVER_RENUMBERING.json"), "w") as fh:
         json.dump(report, fh, indent=2, sort_keys=True)
-    print("  done; mapping written to %s/LEFTOVER_RENUMBERING.json" % a.repo)
+    print("  done; mapping written to %s/LEFTOVER_RENUMBERING.json" % out_dir)
 
 
 if __name__ == "__main__":
