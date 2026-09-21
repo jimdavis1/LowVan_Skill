@@ -11,6 +11,104 @@ here. Three tracked files differ from HEAD, listed under "Already applied".
 
 ---
 
+## Alsuviricetes module work — Alphaflexiviridae and the Allexivirus split
+
+### `install_module.py` — retire stale alignments, as we already do for profiles
+
+The installer pruned profiles a rebuild no longer produced but had no
+equivalent for alignments, and it copies into the destination without clearing
+it. Every alignment written by an earlier build therefore survived a rebuild
+that renumbered or dropped its cluster.
+
+Alphaflexiviridae shipped 276 profiles against 289 alignments: thirteen files
+from two earlier builds, including an NABP cluster whose six members had since
+fallen to the leftover pool. Alignments are provenance rather than runtime
+data, so nothing was miscalled — but the counts no longer described the
+module, and the same gap is what made Hepeviridae read 15 profiles against 13
+alignments. Backfilled: Alphaflexiviridae 276/276, Hepeviridae 63/63,
+Tobamovirus 98/98.
+
+### `build_leftover_pssms.py` — integers, not `loN`
+
+Second-pass clusters were named `lo1`, `lo2` … so they could not collide with
+the main pass. Collision avoidance never needed a prefix, only a refusal to
+restart at 1 — which is what the function's own comment already claimed it
+did. The cost was that the id is written into every annotated genome as
+`family_assignments -> ["LOWVAN", "<Module>.<FEAT>.<id>", …]`, so a second id
+shape existed only in modules this kit built. 684 profiles renumbered across
+twelve modules; `renumber_leftover_profiles.py` performs the migration.
+
+That script had a bug worth recording because it is silent: it renamed the
+repository's profiles and alignments and the working directory's alignments,
+but **not the working directory's `pssms/`**. `install_module.py` installs
+from there, so the next install copied the `loN` profiles back and retired the
+renumbered ones. Alphaflexiviridae returned with 124 `loN` profiles against
+integer-named alignments and six mismatched features.
+
+### Rhabdovirus alignments — 223 were never aligned
+
+The kit ships alignments and not profiles, because profiles are derived and an
+order of magnitude larger; `pssms_from_alignments.py` regenerates them. That
+contract only holds if every shipped alignment is actually aligned.
+
+223 were not — raw unaligned sequence sets with no gap characters at all, 152
+in Alpharhabdovirinae and 71 in Betarhabdovirinae. Those profiles could not be
+rebuilt from the kit, which made the two largest rhabdovirus modules unusable
+by anyone starting from this repository. Realigned with `mafft --auto
+--anysymbol`; verified end to end by staging Alpharhabdovirinae into an empty
+working directory and regenerating 529 of 529 profiles.
+
+### `upstream_ext` is a per-feature measurement, not a policy
+
+`scan_to_met_start` permits the annotator to scan upstream for a Met when a
+PSSM match does not start with one. Whether that helps is a property of the
+feature and the taxon, so it was measured rather than assumed: the annotator
+was instrumented across 273 annotated genomes and every firing recorded as
+finding a Met or running to the previous in-frame stop.
+
+```
+                Allexivirus      Potexvirus
+  feature     found / ran-to    found / ran-to    ext
+  CP             12 / 2            26 / 6          1 / 1
+  TGB2            0 / 0            13 / 4          1 / 1
+  ALLEXI_40K     19 / 4             - / -          1 / -
+  NABP            0 / 0             1 / 0          1 / 1
+  REP             1 / 4             3 / 6          0 / 0
+  TGB1            0 / 18            7 / 18         0 / 0
+  TGB3            2 / 190          38 / 10         0 / 1
+```
+
+TGB3 is the row that forced Allexivirus into its own module: the scan is right
+for Potexvirus and catastrophic for Allexivirus, because allexiviruses
+initiate TGB3 at a **CUG** rather than an AUG (Lezzhov et al. 2015, J Gen
+Virol 96:3159-64, PMID 26296665, by site-directed mutagenesis on shallot virus
+X). One feature cannot hold both settings.
+
+Two results here would have been missed by setting the field from policy:
+**TGB1 and REP fail in both genera**, and are now 0 in both modules.
+
+Measured effect, same genomes and tools before and after the split: genuinely
+clean 227/271 (83.8%) to 249/273 (91.2%); `Feature is too long` 30 to 4; TGB3
+calls not starting at a Met 100/266 (37.6%) to 5/164 in Alphaflexiviridae.
+
+### `scan_to_met_start` — reported, deliberately not patched
+
+When no upstream Met exists the function returns the codon after the previous
+in-frame stop rather than declining, so the emitted CDS runs to the edge of
+the upstream ORF and begins at a non-Met. Both strand loops have it; the call
+site's own comment says "this must be turned off if there is a non-AUG start".
+
+A patch making the scan decline was written and measured — all 30 over-long
+flags removed, genuinely clean 75.0% to 93.2% on a 148-genome subset, and a
+near no-op where profiles are adequate (Potexvirus TGB3 median length 76 to
+75). It was **reverted at the curator's direction**; the original behaviour
+stands, and the per-feature `upstream_ext` settings above are the containment.
+
+Recorded here because it shapes every coverage figure in the Alsuviricetes
+audits, not as a pending change.
+
+---
+
 ## Togaviridae module work
 
 Two annotator changes, both of which affect every taxon, not only this one.
