@@ -1,0 +1,230 @@
+{
+   "Allexivirus" : {
+      "close_genomes" : {
+         "Allexivirus.1.dna" : {
+            "genome_ids" : "MT279193",
+            "genome_name" : "Garlic virus D GarVD_BR"
+         },
+         "Allexivirus.10.dna" : {
+            "genome_ids" : "MN059326",
+            "genome_name" : "Garlic virus E G60"
+         },
+         "Allexivirus.11.dna" : {
+            "genome_ids" : "MZ131638",
+            "genome_name" : "Garlic virus X FL2"
+         },
+         "Allexivirus.12.dna" : {
+            "genome_ids" : "MN864567",
+            "genome_name" : "Allexivirus sigmamedicagonis AVS-C"
+         },
+         "Allexivirus.13.dna" : {
+            "genome_ids" : "MN059299",
+            "genome_name" : "Garlic virus A G74"
+         },
+         "Allexivirus.14.dna" : {
+            "genome_ids" : "KX058345",
+            "genome_name" : "Arachis pintoi virus Var A"
+         },
+         "Allexivirus.15.dna" : {
+            "genome_ids" : "OK104171",
+            "genome_name" : "Shallot virus X KER-1"
+         },
+         "Allexivirus.16.dna" : {
+            "genome_ids" : "JN053266",
+            "genome_name" : "Blackberry virus E BB_Ellis-1"
+         },
+         "Allexivirus.17.dna" : {
+            "genome_ids" : "MZ131640",
+            "genome_name" : "Garlic virus A BC"
+         },
+         "Allexivirus.18.dna" : {
+            "genome_ids" : "MF150239",
+            "genome_name" : "Vanilla latent virus CRV2148ALL"
+         },
+         "Allexivirus.19.dna" : {
+            "genome_ids" : "MN059394",
+            "genome_name" : "Garlic yellow virus G49"
+         },
+         "Allexivirus.2.dna" : {
+            "genome_ids" : "MT731489",
+            "genome_name" : "Garlic virus A Yamuna Safed-3/G282/clove"
+         },
+         "Allexivirus.20.dna" : {
+            "genome_ids" : "OQ877124",
+            "genome_name" : "Wineberry latent virus"
+         },
+         "Allexivirus.21.dna" : {
+            "genome_ids" : "MN031278",
+            "genome_name" : "Senna severe yellow mosaic virus BR"
+         },
+         "Allexivirus.22.dna" : {
+            "genome_ids" : "MN059343",
+            "genome_name" : "Garlic virus D G112"
+         },
+         "Allexivirus.23.dna" : {
+            "genome_ids" : "MN059320",
+            "genome_name" : "Garlic virus A G118"
+         },
+         "Allexivirus.24.dna" : {
+            "genome_ids" : "MN059396",
+            "genome_name" : "Garlic yellow virus G83"
+         },
+         "Allexivirus.25.dna" : {
+            "genome_ids" : "MN418120",
+            "genome_name" : "Papaya virus A Ke"
+         },
+         "Allexivirus.3.dna" : {
+            "genome_ids" : "MK503771",
+            "genome_name" : "Garlic virus X Yamuna Safed-3 (G-282)-Clove"
+         },
+         "Allexivirus.4.dna" : {
+            "genome_ids" : "MN059174",
+            "genome_name" : "Garlic virus B G118-3"
+         },
+         "Allexivirus.5.dna" : {
+            "genome_ids" : "PP097219",
+            "genome_name" : "Rehmannia allexivirus ReAV-Rg-2020-59"
+         },
+         "Allexivirus.6.dna" : {
+            "genome_ids" : "MN059141",
+            "genome_name" : "Garlic virus C G81"
+         },
+         "Allexivirus.7.dna" : {
+            "genome_ids" : "MH389251",
+            "genome_name" : "Shallot virus X 13-05"
+         },
+         "Allexivirus.8.dna" : {
+            "genome_ids" : "MN059261",
+            "genome_name" : "Garlic virus A G18-2"
+         },
+         "Allexivirus.9.dna" : {
+            "genome_ids" : "MN059300",
+            "genome_name" : "Garlic virus A G75-1"
+         }
+      },
+      "features" : {
+         "ALLEXI_40K" : {
+            "PMID_claude_generated" : [
+               "11752591"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Allexi_40K",
+            "kmers" : 1,
+            "max_len" : 436,
+            "min_len" : 272,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "CP" : {
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 327,
+            "min_len" : 196,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "NABP" : {
+            "anno" : "Nucleic acid-binding protein",
+            "bit_cutoff" : 80,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "NABP",
+            "kmers" : 1,
+            "max_len" : 196,
+            "min_len" : 86,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "REP" : {
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "L",
+            "kmers" : 1,
+            "max_len" : 1977,
+            "min_len" : 1102,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         },
+         "TGB1" : {
+            "PMID_claude_generated" : [
+               "1853569"
+            ],
+            "anno" : "Triple gene block protein 1",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "TGB1",
+            "kmers" : 1,
+            "max_len" : 297,
+            "min_len" : 198,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         },
+         "TGB2" : {
+            "PMID_claude_generated" : [
+               "1853569"
+            ],
+            "anno" : "Triple gene block protein 2",
+            "bit_cutoff" : 50,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "TGB2",
+            "kmers" : 1,
+            "max_len" : 121,
+            "min_len" : 85,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "TGB3" : {
+            "PMID_claude_generated" : [
+               "26296665"
+            ],
+            "anno" : "Triple gene block protein 3",
+            "bit_cutoff" : 30,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "TGB3",
+            "kmers" : 1,
+            "max_len" : 130,
+            "min_len" : 40,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 9500,
+            "min_len" : 5500,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

@@ -167,6 +167,20 @@ def main():
                         if os.path.exists(src):
                             renames.append(("workdir",
                                             src, os.path.join(base, feat, sub, new + ".fa")))
+                    #  The working directory's own pssms/ must move too.
+                    #  install_module.py installs FROM there, so renaming only
+                    #  the repository copy is undone by the next install: it
+                    #  copies the still-loN profiles back in and retires the
+                    #  renumbered ones, leaving profiles named loN against
+                    #  alignments named by integer. Alphaflexiviridae came back
+                    #  with 124 loN profiles and six mismatched features
+                    #  exactly this way.
+                    src = os.path.join(base, feat, "pssms",
+                                       "%s.%s.%s.pssm" % (m, feat, old))
+                    if os.path.exists(src):
+                        renames.append(("workdir-pssm", src,
+                                        os.path.join(base, feat, "pssms",
+                                                     "%s.%s.%s.pssm" % (m, feat, new))))
 
     for m in sorted(report):
         print("  %s" % m)
