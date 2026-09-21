@@ -50,6 +50,25 @@ def read_fasta(p):
         yield h, "".join(s)
 
 
+def length_floor(workdir, module, key, frac):
+    """Shortest sequence the leftover pass will consider, from the feature.
+
+    Derived from the median length of the feature's own collection rather
+    than from a constant, so a 23-residue signal peptide and a 3,400-residue
+    polyprotein are both judged against their own scale. Falls back to the
+    old absolute 30 only when the collection cannot be read, and never
+    returns less than 8 -- below that a profile is not a model of anything.
+    """
+    cf = os.path.join(workdir, "collections", module, key + ".fasta")
+    if not os.path.exists(cf):
+        return 30
+    lens = sorted(len(s) for _h, s in read_fasta(cf))
+    if not lens:
+        return 30
+    med = lens[len(lens) // 2]
+    return max(8, int(round(frac * med)))
+
+
 #  build_pssm aligns its group internally with MAFFT and builds the profile
 #  from THAT alignment. The caller used to write the caller's own unaligned
 #  input to corrected_alis/ instead, so the file on disk was not the alignment
@@ -112,6 +131,12 @@ def main():
                          "of sequences that failed that -m, so reapplying it "
                          "guarantees nothing comes back. -mi does the quality "
                          "work here, not the member count.")
+    ap.add_argument("--min-len-frac", type=float, default=0.5,
+                    help="leftover sequences shorter than this fraction of "
+                         "the feature's collection median are dropped. "
+                         "Relative, not absolute: a hardcoded floor discards "
+                         "every sequence of a short feature such as a signal "
+                         "peptide. Default 0.5.")
     ap.add_argument("--write", action="store_true")
     args = ap.parse_args()
 
@@ -136,8 +161,32 @@ def main():
     if args.mi < MI_FLOOR:
         raise SystemExit("--mi %.2f is below the %.2f floor" % (args.mi, MI_FLOOR))
 
-    rows = [(h, s) for h, s in read_fasta(lo) if len(s) >= 30]
+    #  The length floor is relative to the feature, never absolute. It used
+    #  to be a hardcoded `len(s) >= 30`, which is longer than some proteins
+    #  are: Orthoflavivirus 2K is the 23-residue signal peptide that separates
+    #  NS4A from NS4B, so every one of its 60 leftovers was silently discarded
+    #  and the script reported "0 leftover sequence(s)" for a file holding 60.
+    #  A whole feature lost its leftover pass without saying so.
+    #
+    #  The floor now follows the feature's own collection, whose median is
+    #  what "too short to be this protein" has to be measured against. The
+    #  collection is already runt-filtered at 70% of median upstream, so this
+    #  is a backstop for fragments that slipped through rather than the
+    #  primary filter, and it is reported rather than applied in silence.
+    all_rows = list(read_fasta(lo))
+    floor = length_floor(W, args.module, args.key, args.min_len_frac)
+    rows = [(h, s) for h, s in all_rows if len(s) >= floor]
+    dropped = len(all_rows) - len(rows)
     print("  %d leftover sequence(s) in %s/%s" % (len(rows), args.module, args.key))
+    if dropped:
+        print("  %d dropped below the %d-residue floor (%.0f%% of the "
+              "collection median)" % (dropped, floor, 100 * args.min_len_frac))
+    if not rows and all_rows:
+        raise SystemExit(
+            "  every one of the %d leftover sequences is below the %d-residue "
+            "floor.\n  That is what a floor set too high for the feature looks "
+            "like -- check\n  the collection's median length before lowering "
+            "--min-len-frac." % (len(all_rows), floor))
     print("  member floor %d (the feature's own -m does not apply here: this "
           "pool is\n  defined by having failed it)" % args.min_seqs)
 
