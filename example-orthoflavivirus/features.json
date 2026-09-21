@@ -1,0 +1,62 @@
+{
+ "2K": {
+  "anno": "Signal peptide of NS4B",
+  "symbol": "2K"
+ },
+ "PR": {
+  "anno": "Mature peptide pr",
+  "symbol": "pr"
+ },
+ "M": {
+  "anno": "Mature membrane glycoprotein M",
+  "symbol": "M"
+ },
+ "C": {
+  "anno": "Nucleocapsid protein",
+  "symbol": "C"
+ },
+ "NS4A": {
+  "anno": "Mature non-structural protein NS4A",
+  "symbol": "NS4A"
+ },
+ "NS2B": {
+  "anno": "Mature protease cofactor NS2B protein",
+  "symbol": "NS2B"
+ },
+ "PRM": {
+  "anno": "Membrane glycoprotein precursor prM",
+  "symbol": "prM"
+ },
+ "ANCHC": {
+  "anno": "Anchored capsid protein precursor ancC",
+  "symbol": "ancC"
+ },
+ "NS4B": {
+  "anno": "Mature non-structural protein NS4B",
+  "symbol": "NS4B"
+ },
+ "NS2A": {
+  "anno": "Mature non-structural protein NS2A",
+  "symbol": "NS2A"
+ },
+ "NS1": {
+  "anno": "Mature non-structural protein NS1",
+  "symbol": "NS1"
+ },
+ "NS3": {
+  "anno": "Mature protease and helicase NS3 protein",
+  "symbol": "NS3"
+ },
+ "E": {
+  "anno": "Mature envelope glycoprotein E",
+  "symbol": "E"
+ },
+ "NS5": {
+  "anno": "RNA-dependent RNA polymerase",
+  "symbol": "NS5"
+ },
+ "POLY": {
+  "anno": "Genome polyprotein",
+  "symbol": "POLY"
+ }
+}
