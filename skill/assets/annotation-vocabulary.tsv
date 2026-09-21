@@ -518,3 +518,16 @@ Alphaflexiviridae	Triple gene block protein 3	TGB3	CDS	Single RNA Segment	1
 Alphaflexiviridae	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Alphaflexiviridae	Nucleic acid-binding protein	NABP	CDS	Single RNA Segment	0	
 Alphaflexiviridae	Uncharacterized lineage-specific protein	Allexi_40K	CDS	Single RNA Segment	0	
+Orthoflavivirus	Genome polyprotein	POLY	CDS	Single RNA Segment	1	
+Orthoflavivirus	Anchored capsid protein precursor ancC	ancC	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Membrane glycoprotein precursor prM	prM	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Mature peptide pr	pr	mat_peptide	Single RNA Segment	0	
+Orthoflavivirus	Mature membrane glycoprotein M	M	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Mature non-structural protein NS1	NS1	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Mature non-structural protein NS2A	NS2A	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Mature protease cofactor NS2B protein	NS2B	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Mature protease and helicase NS3 protein	NS3	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Mature non-structural protein NS4A	NS4A	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Signal peptide of NS4B	2K	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Mature non-structural protein NS4B	NS4B	mat_peptide	Single RNA Segment	1	
+Orthoflavivirus	Mature envelope glycoprotein E	E	mat_peptide	Single RNA Segment	1	
