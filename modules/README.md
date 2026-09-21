@@ -1,18 +1,37 @@
 # Built modules
 
-Every module built with this kit. Eight of them, 102 features, 1,319
-alignments, 83 rep contigs.
+Every module built with this kit. Twelve of them, 128 features, 1,829
+alignments, 165 rep contigs.
 
 | module | features | alignments | rep contigs | special |
 |---|---|---|---|---|
-| `Alpharhabdovirinae` | 43 | 529 | 10 | `MERHA_L_SPLICED` — reference set never built, see SPECIAL_FEATURES.md |
+| `Alpharhabdovirinae` | 43 | 529 | 9 | `MERHA_L_SPLICED` — reference set never built, see SPECIAL_FEATURES.md |
 | `Betarhabdovirinae` | 14 | 340 | 8 | |
 | `Novirhabdovirus` | 8 | 21 | 2 | |
 | `Dichorhavirus` | 8 | 26 | 1 | |
+| `Merhavirus` | 8 | 16 | 8 | `L_SPLICED` splice, 12 references |
 | `Togaviridae` | 14 | 228 | 9 | `TF` transcript_edit, 234 references included |
 | `Matonaviridae` | 7 | 16 | 4 | |
-| `Hepeviridae` | 4 | 61 | 24 | |
+| `Hepeviridae` | 4 | 63 | 24 | |
 | `Tobamovirus` | 4 | 98 | 25 | `REP183` readthrough (`internal_stop`) |
+| `Trivirinae` | 5 | 157 | 25 | |
+| `Alphaflexiviridae` | 6 | 259 | 25 | Potexvirus + Lolavirus |
+| `Allexivirus` | 7 | 76 | 25 | TGB3 `upstream_ext: 0`, non-AUG start |
+
+`Alphaflexiviridae` and `Allexivirus` are one taxon split in two. They are
+listed separately because the split is the point: Allexivirus TGB3 initiates
+at a CUG rather than an AUG (Lezzhov 2015, PMID 26296665), so it needs
+`upstream_ext: 0` where the same feature in Potexvirus needs `1`. A single
+module cannot hold both settings. Every feature's `upstream_ext` in both
+modules is set from a measurement of how often the Met scan succeeds, not
+from policy — see either module's build script.
+
+Leftover profiles are numbered as plain integers continuing the main pass.
+Older builds named them `lo1`, `lo2` …; that prefix leaked a build-pipeline
+detail into `family_assignments` in every annotated genome and has been
+removed. `skill/scripts/renumber_leftover_profiles.py` performs the migration
+and must move the working directory's `pssms/` as well as the repository's,
+or the next install puts the old names back.
 
 The four Rhabdoviridae modules, Togaviridae and Matonaviridae were built before
 the Alsuviricetes work and imported here afterwards: the kit had always carried
