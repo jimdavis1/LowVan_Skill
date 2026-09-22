@@ -19,7 +19,9 @@ Reports the good/poor split and, for the poor ones, which flags fired and how
 often -- which is the useful output, because it separates "the module missed
 something" from "this record is a 900-base partial submission".
 """
-import argparse, collections, glob, json, os, subprocess, sys
+import argparse, collections, glob, json, os, shutil, subprocess, sys
+
+SPECIAL_DIR = {"te": "Transcript-Editing", "sv": "Splice-Variants"}
 from concurrent.futures import ThreadPoolExecutor
 
 
@@ -30,6 +32,11 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--jobs", type=int, default=8)
     ap.add_argument("--report", help="write the per-genome table here")
+    ap.add_argument("--skip-special", action="store_true",
+                    help="do not call transcript-edited or spliced features. "
+                         "The default is to call them: a coverage audit that "
+                         "omits a module's special features understates it "
+                         "without saying so.")
     ap.add_argument("--perl5lib", help="extra PERL5LIB entries, colon-separated")
     ap.add_argument("--perl", default="perl",
                     help="perl for the GTO wrapper. GenomeTypeObject needs a UUID "
@@ -82,6 +89,39 @@ def main():
                 with open(os.path.join(args.out, b + ".FAIL"), "w") as fh:
                     fh.write((r.stderr or r.stdout or "")[-3000:])
                 return b
+        #  Special features BEFORE quality scoring, so the quality score sees
+        #  them. This used not to happen at all, and the consequence was
+        #  quiet: every coverage audit in the report series measured only the
+        #  PSSM features of its module, with no indication that anything was
+        #  missing. Togaviridae TF, the coronavirus ORF1ab and NSP12, the
+        #  paramyxovirus V/W pairs and Orthoflavivirus NS1' were all absent
+        #  from their own numbers. A module is not measured until its
+        #  declared features are measured, whichever program calls them.
+        #
+        #  Each pass detects its module from the GTO and is a no-op when that
+        #  module declares nothing of its kind, so running both costs little
+        #  on modules without special features. --skip-special opts out.
+        src = ann
+        if not args.skip_special:
+            for prog, kind in (("get_transcript_edited_features.pl", "te"),
+                               ("get_splice_variant_features.pl", "sv")):
+                if not os.path.isdir(os.path.join(R, SPECIAL_DIR[kind])):
+                    continue
+                dst = os.path.join(wd, b + "." + kind + ".gto")
+                rs = subprocess.run([args.perl, os.path.join(R, prog),
+                                     "-i", src, "-o", dst,
+                                     "-j", os.path.join(R, "Viral_PSSM.json"),
+                                     "-d", os.path.join(R, SPECIAL_DIR[kind]),
+                                     "-a", str(max(1, args.jobs // 2))],
+                                    capture_output=True, text=True, env=env, cwd=wd)
+                if os.path.exists(dst) and os.path.getsize(dst) > 0:
+                    src = dst
+                else:
+                    with open(os.path.join(args.out, b + ".SFAIL." + kind), "w") as fh:
+                        fh.write((rs.stderr or rs.stdout or "")[-3000:])
+            #  the .ann.gto downstream tools read should carry everything
+            if src != ann:
+                shutil.copyfile(src, ann)
         r = subprocess.run([args.perl, os.path.join(R, "viral_genome_quality.pl"),
                             "-i", ann, "-o", qual, "-p", b],
                            capture_output=True, text=True, env=env, cwd=wd)
