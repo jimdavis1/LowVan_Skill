@@ -30,7 +30,29 @@ reps = d['replicates']
 VBW, VBH = 780, 400
 L, R, T, B = 58, 132, 26, 52          # generous right margin for direct labels
 PW, PH = VBW - L - R, VBH - T - B
-YMAX = 32
+#  Axes, tick values and every rate on this page are derived from the input.
+#  They used to be constants carried over from the taxon the template was
+#  first written against -- YMAX 32, ticks to 216 genomes, and a hardcoded
+#  "13.9 strings per 100 genomes ... 3.2 ... 4.3-fold collapse" in the prose.
+#  On a taxon with 3,624 genomes and 355 source strings that clipped both
+#  curves off the top and the right of the plot AND asserted another taxon's
+#  measurements as fact. A report generator must not contain a measurement.
+def _nice(hi):
+    """A round axis maximum at or above hi, with a sensible tick step."""
+    import math
+    if hi <= 0:
+        return 1, [0, 1]
+    mag = 10 ** math.floor(math.log10(hi))
+    for m in (1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10):
+        top = m * mag
+        if top >= hi * 1.06:
+            break
+    step = top / 4.0
+    ticks = [int(round(step * k)) if step >= 1 else round(step * k, 2)
+             for k in range(5)]
+    return top, ticks
+
+YMAX, yticks = _nice(max(max(src), max(mod)))
 xs = lambda i: L + PW * i / (N - 1)
 ys = lambda v: T + PH * (1 - v / YMAX)
 
@@ -38,8 +60,18 @@ def path(series):
     return ' '.join(('M' if i == 0 else 'L') + f'{xs(i):.1f} {ys(v):.2f}'
                     for i, v in enumerate(series))
 
-xticks = [1, 50, 100, 150, 216]
-yticks = [0, 10, 20, 30]
+def _xticks(n):
+    import math
+    if n <= 10:
+        return list(range(1, n + 1))
+    mag = 10 ** math.floor(math.log10(n))
+    step = mag if n / mag >= 4 else mag / 2
+    t = [1] + [int(step * k) for k in range(1, int(n // step) + 1)]
+    #  drop a last tick that would collide with the N label
+    t = [v for v in t if v <= n - (0.04 * n)] + [n]
+    return sorted(set(t))
+
+xticks = _xticks(N)
 grid = ''.join(
     f'<line x1="{L}" y1="{ys(v):.1f}" x2="{L+PW}" y2="{ys(v):.1f}" '
     f'stroke="var(--grid)" stroke-width="1"/>' for v in yticks)
@@ -53,7 +85,11 @@ xlab = ''.join(
 # saturation marker: where the source curve reaches 95% of its final size
 knee = d['source_knee']
 srcs, mods = d['source_total'], d['module_total']
-ratio = 13.9 / 3.2
+#  the same three quantities annotation_rarefaction.py prints, recomputed here
+#  from the curves rather than restated from memory
+src_per100 = 100.0 * src[-1] / N
+mod_per100 = 100.0 * mod[-1] / N
+ratio = src[-1] / mod[-1] if mod[-1] else float('nan')
 
 HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -139,12 +175,13 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
   <div class="eyebrow">LowVan &middot; {_a.taxon} module &middot; {_a.date}</div>
   <h1>{_a.taxon}</h1>
   <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">A controlled vocabulary stops growing. Free text does not.</h2>
-  <p class="stand">Every rubivirus encodes the same seven proteins, so a curated
-  vocabulary should need exactly seven names no matter how many genomes you read.
-  Free-text product strings have no such ceiling: each new submitter spells the
-  same proteins a new way. Sampling {N} annotated genomes {reps} times over shows
-  the two curves doing exactly that &mdash; the module is <b>saturated after one
-  genome</b>, while the source vocabulary is <b>still climbing at {N}</b>.</p>
+  <p class="stand">A {_a.taxon} genome encodes the same {mods} modelled proteins as
+  any other, so a curated vocabulary needs exactly {mods} names no matter how many
+  genomes you read. Free-text product strings have no such ceiling: each new
+  submitter spells the same proteins a new way. Sampling {N} annotated genomes
+  {reps} times over shows the two curves doing exactly that &mdash; the module is
+  <b>saturated after {"one genome" if d['module_knee'] <= 1 else f"{d['module_knee']} genomes"}</b>,
+  while the source vocabulary is <b>still climbing at {N}</b>.</p>
  </header>
 
  <div class="figs">
@@ -160,7 +197,7 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
    <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
   </div>
   <div class="chartbox" id="cb">
-   <svg viewBox="0 0 {VBW} {VBH}" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of genomes sampled. Free-text strings rise from about 7 to 30; the controlled vocabulary stays flat at 7.">
+   <svg viewBox="0 0 {VBW} {VBH}" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of genomes sampled. Free-text strings rise from about {src[0]:.0f} to {srcs}; the controlled vocabulary stays flat at about {mods}.">
     {grid}
     <line x1="{L}" y1="{T+PH}" x2="{L+PW}" y2="{T+PH}" stroke="var(--base)" stroke-width="1"/>
     {ylab}{xlab}
@@ -185,33 +222,33 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
    <div class="tip" id="tip"></div>
   </div>
   <figcaption>Mean distinct annotation strings over {reps} random orderings of the
-  {N} annotated genomes. The controlled curve is flat because the seven names are
+  {N} annotated genomes. The controlled curve is flat because the {mods} names are
   fixed in advance; the free-text curve rises because it is a record of how many
-  different ways people have written those same seven proteins down.</figcaption>
+  different ways people have written those same {mods} proteins down.</figcaption>
  </figure>
 
  <p class="note">The ratio is the number worth quoting: at the end of each curve,
- free text costs <b>13.9 strings per 100 genomes</b> and the controlled vocabulary
- <b>3.2</b> &mdash; a <b>{ratio:.1f}-fold collapse</b>. Reaching 95% of its final
- size takes the source vocabulary <b>{knee} genomes</b>; the module gets there on
- the <b>first</b>. Across the whole dump, 58 distinct BV-BRC strings collapse into
- these 7 over 6,547 protein occurrences.</p>
+ free text costs <b>{src_per100:.1f} strings per 100 genomes</b> and the controlled
+ vocabulary <b>{mod_per100:.1f}</b> &mdash; a <b>{ratio:.1f}-fold collapse</b>.
+ Reaching 95% of its final size takes the source vocabulary <b>{knee} genomes</b>
+ ({100.0*knee/N:.0f}% of the set); the module gets there on genome
+ <b>{d['module_knee']}</b>.</p>
 
  <details>
-  <summary>Table view &mdash; every 20th sample point</summary>
+  <summary>Table view &mdash; {max(1, N//40)} genome steps</summary>
   <div class="tw"><table>
    <thead><tr><th>genomes sampled</th><th>free text</th><th>controlled</th><th>ratio</th></tr></thead>
    <tbody>
-   {''.join(f"<tr><td>{i+1}</td><td>{src[i]:.2f}</td><td>{mod[i]:.2f}</td><td>{src[i]/mod[i]:.2f}&times;</td></tr>" for i in list(range(0, N, 20)) + [N-1])}
+   {''.join(f"<tr><td>{i+1}</td><td>{src[i]:.2f}</td><td>{mod[i]:.2f}</td><td>{src[i]/mod[i]:.2f}&times;</td></tr>" for i in sorted(set(list(range(0, N, max(1, N//40))) + [N-1])))}
    </tbody>
   </table></div>
  </details>
 
- <div class="src">Generated by <code>Reports/generators/gen_rarefaction.py</code> from
+ <div class="src">Generated by <code>skill/scripts/gen_rarefaction.py</code> from
  <code>rarefaction.json</code>, written by the kit&rsquo;s
  <code>annotation_rarefaction.py</code> at {reps} replicates. Categorical pair
  <code>#2a78d6</code>/<code>#eb6834</code> (light) and <code>#3987e5</code>/<code>#d95926</code>
- (dark), validated by <code>work/validate_palette.py</code>: worst CVD &Delta;E 24.7,
+ (dark), validated by <code>validate_palette.py</code>: worst CVD &Delta;E 24.7,
  normal-vision &Delta;E 31.8, contrast &ge;3.12:1.</div>
 </div>
 <script>
