@@ -208,7 +208,8 @@ def main():
 <div class="wrap">
  <header>
   <div class="eyebrow">LowVan &middot; %(TAXON)s module &middot; %(DATE)s</div>
-  <h1>Annotation strings and the PSSMs that call them</h1>
+  <h1>%(TAXON)s</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">Annotation strings and the PSSMs that call them</h2>
   <p class="stand">%(STAND)s</p>
  </header>
  <div class="figs">

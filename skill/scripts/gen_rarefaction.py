@@ -137,7 +137,8 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
 <div class="wrap">
  <header>
   <div class="eyebrow">LowVan &middot; {_a.taxon} module &middot; {_a.date}</div>
-  <h1>A controlled vocabulary stops growing. Free text does not.</h1>
+  <h1>{_a.taxon}</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">A controlled vocabulary stops growing. Free text does not.</h2>
   <p class="stand">Every rubivirus encodes the same seven proteins, so a curated
   vocabulary should need exactly seven names no matter how many genomes you read.
   Free-text product strings have no such ceiling: each new submitter spells the

@@ -198,10 +198,12 @@ def main():
 
     page = ("<title>%s</title>\n<style>%s</style>\n"
             '<div class="wrap"><header>'
-            '<div class="eyebrow">%s</div><h1>%s</h1><p class="stand">%s</p>%s</header>'
+            '<div class="eyebrow">%s</div><h1>%s</h1>%s<p class="stand">%s</p>%s</header>'
             "%s"
             '<p class="src">%s</p></div>'
             % (esc(F["title"]), CSS, esc(F["eyebrow"]), esc(F["h1"]),
+               ('<h2 style="margin:8px 0 0;font-weight:500;font-size:20px;'
+                'color:var(--ink2)">%s</h2>' % esc(F["subhead"])) if F.get("subhead") else "",
                F["standfirst"], tiles(F["headline_tiles"]), "".join(S), F["source_note"]))
     open(a.out, "w").write(page)
     print("wrote %s (%d bytes, %d sections)" % (a.out, len(page), len(S)))
