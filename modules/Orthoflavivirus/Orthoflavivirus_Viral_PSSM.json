@@ -333,7 +333,7 @@
             "gene_symbol" : "pr",
             "kmers" : 1,
             "max_len" : 97,
-            "min_len" : 69,
+            "min_len" : 55,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0

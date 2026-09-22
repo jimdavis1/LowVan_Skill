@@ -88,7 +88,18 @@ F = [
     ("ANCHC", "Anchored capsid protein precursor ancC",    "ancC",  "mat_peptide",   80, 143, 1, 0),
     ("C",     "Nucleocapsid protein",                      "C",     "mat_peptide",   82, 124, 1, 0),
     ("PRM",   "Membrane glycoprotein precursor prM",       "prM",   "mat_peptide",  128, 185, 0, 0),
-    ("PR",    "Mature peptide pr",                         "pr",    "mat_peptide",   69, 97, 0, 0),
+    #  pr is the one feature whose bounds must NOT come from the collection.
+    #  BV-BRC annotates no pr peptide for the tick-borne clade at all -- the
+    #  632 training sequences run 69-97 aa with 500 of them at exactly 91,
+    #  all mosquito-borne. The profiles nonetheless call pr correctly in
+    #  tick-borne genomes, at its true and shorter boundary: TBE 244 calls
+    #  median 59, Kyasanur 164 at 59, Omsk 51 at 59, louping ill 30 at 59,
+    #  all >=99% below the collection minimum. Tick-borne prM is shorter
+    #  than mosquito-borne prM, so their pr genuinely is ~59 aa. A min_len
+    #  of 69 flags a correct call on an entire clade, so the bound is set
+    #  from what the feature IS across the taxon, not from what the
+    #  collection happens to contain.
+    ("PR",    "Mature peptide pr",                         "pr",    "mat_peptide",   55, 97, 0, 0),
     ("M",     "Mature membrane glycoprotein M",            "M",     "mat_peptide",   54, 76, 0, 0),
     ("E",     "Mature envelope glycoprotein E",            "E",     "mat_peptide",  352, 505, 0, 0),
     ("NS1",   "Mature non-structural protein NS1",         "NS1",   "mat_peptide",  263, 415, 0, 0),
