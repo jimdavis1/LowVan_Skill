@@ -1,0 +1,368 @@
+{
+   "Orthoflavivirus" : {
+      "close_genomes" : {
+         "Orthoflavivirus.1.dna" : {
+            "genome_ids" : "11084.3816.con.0001",
+            "genome_name" : "Orthoflavivirus encephalitidis"
+         },
+         "Orthoflavivirus.10.dna" : {
+            "genome_ids" : "11060.13217.con.0001",
+            "genome_name" : "Orthoflavivirus denguei"
+         },
+         "Orthoflavivirus.11.dna" : {
+            "genome_ids" : "11053.20607.con.0001",
+            "genome_name" : "Orthoflavivirus denguei"
+         },
+         "Orthoflavivirus.12.dna" : {
+            "genome_ids" : "3045052.4.con.0001",
+            "genome_name" : "Orthoflavivirus sp."
+         },
+         "Orthoflavivirus.13.dna" : {
+            "genome_ids" : "11053.14148.con.0001",
+            "genome_name" : "Orthoflavivirus denguei"
+         },
+         "Orthoflavivirus.14.dna" : {
+            "genome_ids" : "164416.23.con.0001",
+            "genome_name" : "Orthoflavivirus wesselsbronense"
+         },
+         "Orthoflavivirus.15.dna" : {
+            "genome_ids" : "3052466.15.con.0001",
+            "genome_name" : "Orthoflavivirus ilheusense"
+         },
+         "Orthoflavivirus.16.dna" : {
+            "genome_ids" : "64290.28.con.0001",
+            "genome_name" : "Orthoflavivirus bagazaense"
+         },
+         "Orthoflavivirus.17.dna" : {
+            "genome_ids" : "643132.19.con.0001",
+            "genome_name" : "Quang Binh virus"
+         },
+         "Orthoflavivirus.18.dna" : {
+            "genome_ids" : "31658.210.con.0001",
+            "genome_name" : "Cell fusing agent virus"
+         },
+         "Orthoflavivirus.19.dna" : {
+            "genome_ids" : "64318.10.con.0001",
+            "genome_name" : "Spondweni virus"
+         },
+         "Orthoflavivirus.2.dna" : {
+            "genome_ids" : "11072.3159.con.0001",
+            "genome_name" : "Orthoflavivirus japonicum"
+         },
+         "Orthoflavivirus.20.dna" : {
+            "genome_ids" : "638787.3.con.0001",
+            "genome_name" : "Chimeric Tick-borne encephalitis virus/Dengue virus 4"
+         },
+         "Orthoflavivirus.21.dna" : {
+            "genome_ids" : "390845.111.con.0001",
+            "genome_name" : "Aedes flavivirus"
+         },
+         "Orthoflavivirus.22.dna" : {
+            "genome_ids" : "44027.57.con.0001",
+            "genome_name" : "Orthoflavivirus kokoberaorum"
+         },
+         "Orthoflavivirus.23.dna" : {
+            "genome_ids" : "11089.1891.con.0001",
+            "genome_name" : "Orthoflavivirus flavi"
+         },
+         "Orthoflavivirus.24.dna" : {
+            "genome_ids" : "673515.131.con.0001",
+            "genome_name" : "Quang Binh virus"
+         },
+         "Orthoflavivirus.25.dna" : {
+            "genome_ids" : "11089.367.con.0001",
+            "genome_name" : "Orthoflavivirus flavi"
+         },
+         "Orthoflavivirus.3.dna" : {
+            "genome_ids" : "11082.17253.con.0001",
+            "genome_name" : "Orthoflavivirus nilense"
+         },
+         "Orthoflavivirus.4.dna" : {
+            "genome_ids" : "11083.636.con.0001",
+            "genome_name" : "Orthoflavivirus powassanense"
+         },
+         "Orthoflavivirus.5.dna" : {
+            "genome_ids" : "64320.3528.con.0001",
+            "genome_name" : "Orthoflavivirus zikaense"
+         },
+         "Orthoflavivirus.6.dna" : {
+            "genome_ids" : "64286.1304.con.0001",
+            "genome_name" : "Orthoflavivirus usutuense"
+         },
+         "Orthoflavivirus.7.dna" : {
+            "genome_ids" : "11080.135.con.0001",
+            "genome_name" : "Orthoflavivirus louisense"
+         },
+         "Orthoflavivirus.8.dna" : {
+            "genome_ids" : "11093.58.con.0001",
+            "genome_name" : "Flavivirus sp."
+         },
+         "Orthoflavivirus.9.dna" : {
+            "genome_ids" : "1399582.157.con.0001",
+            "genome_name" : "Orthoflavivirus tembusu"
+         }
+      },
+      "features" : {
+         "2K" : {
+            "PMID_claude_generated" : [
+               "8445732"
+            ],
+            "anno" : "Signal peptide of NS4B",
+            "bit_cutoff" : 25,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2K",
+            "kmers" : 1,
+            "max_len" : 27,
+            "min_len" : 19,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "ANCHC" : {
+            "anno" : "Anchored capsid protein precursor ancC",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "ancC",
+            "kmers" : 1,
+            "max_len" : 143,
+            "min_len" : 80,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "C" : {
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "C",
+            "kmers" : 1,
+            "max_len" : 124,
+            "min_len" : 82,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "E" : {
+            "PMID_claude_generated" : [
+               "7753193"
+            ],
+            "anno" : "Mature envelope glycoprotein E",
+            "bit_cutoff" : 200,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "E",
+            "kmers" : 1,
+            "max_len" : 505,
+            "min_len" : 352,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "M" : {
+            "anno" : "Mature membrane glycoprotein M",
+            "bit_cutoff" : 40,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "M",
+            "kmers" : 1,
+            "max_len" : 76,
+            "min_len" : 54,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS1" : {
+            "anno" : "Mature non-structural protein NS1",
+            "bit_cutoff" : 150,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS1",
+            "kmers" : 1,
+            "max_len" : 415,
+            "min_len" : 263,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS2A" : {
+            "anno" : "Mature non-structural protein NS2A",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS2A",
+            "kmers" : 1,
+            "max_len" : 239,
+            "min_len" : 157,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS2B" : {
+            "PMID_claude_generated" : [
+               "33494395"
+            ],
+            "anno" : "Mature protease cofactor NS2B protein",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS2B",
+            "kmers" : 1,
+            "max_len" : 149,
+            "min_len" : 118,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS3" : {
+            "PMID_claude_generated" : [
+               "8107205",
+               "33494395"
+            ],
+            "anno" : "Mature protease and helicase NS3 protein",
+            "bit_cutoff" : 300,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS3",
+            "kmers" : 1,
+            "max_len" : 623,
+            "min_len" : 530,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS4A" : {
+            "PMID_claude_generated" : [
+               "8445732"
+            ],
+            "anno" : "Mature non-structural protein NS4A",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS4A",
+            "kmers" : 1,
+            "max_len" : 161,
+            "min_len" : 119,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS4B" : {
+            "PMID_claude_generated" : [
+               "8445732"
+            ],
+            "anno" : "Mature non-structural protein NS4B",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS4B",
+            "kmers" : 1,
+            "max_len" : 268,
+            "min_len" : 222,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS5" : {
+            "PMID_claude_generated" : [
+               "2170676"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS5",
+            "kmers" : 1,
+            "max_len" : 1099,
+            "min_len" : 642,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "POLY" : {
+            "PMID_claude_generated" : [
+               "2174669"
+            ],
+            "anno" : "Genome polyprotein",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 4237,
+            "min_len" : 2686,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PR" : {
+            "anno" : "Mature peptide pr",
+            "bit_cutoff" : 40,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "pr",
+            "kmers" : 1,
+            "max_len" : 97,
+            "min_len" : 69,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "PRM" : {
+            "PMID_claude_generated" : [
+               "18184701"
+            ],
+            "anno" : "Membrane glycoprotein precursor prM",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "prM",
+            "kmers" : 1,
+            "max_len" : 185,
+            "min_len" : 128,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 13000,
+            "min_len" : 9000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}
