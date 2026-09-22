@@ -59,6 +59,12 @@ CLAUDE_PMIDS = {
     #              P2-P1 and a small residue (G, S, A) at P1'.
     #    2174669   Chambers, Hahn, Galler & Rice, Annu Rev Microbiol
     #              1990;44:649-688. The polyprotein cleavage map.
+    #  NS1' -- the two papers that establish the feature exists and where its
+    #  slip site is. 19196463 predicted the pseudoknot and the slippery
+    #  heptanucleotide from sequence; 19906906 demonstrated the product and its
+    #  role in neuroinvasiveness. Both reproduced here from the dump alone:
+    #  533 features, median 404 aa against NS1's 352, JEV serogroup only.
+    "NS1P":  ["19196463", "19906906"],
     "2K":    ["8445732"],
     "NS4A":  ["8445732"],
     "NS4B":  ["8445732"],
@@ -73,6 +79,8 @@ CLAUDE_PMIDS = {
 #  protein that measures 119-161. Regenerate this table by re-running
 #  build_collections.py and reading observed_bounds.json.
 #
+SPECIAL = {"NS1P": "transcript_edit"}
+
 #  key: (annotation, symbol, type, min, max, upstream_ext, downstream_ext)
 F = [
     #  Strings follow the vocabulary's mat_peptide convention: a cleaved
@@ -110,6 +118,26 @@ F = [
     ("2K",    "Signal peptide of NS4B",                    "2K",    "mat_peptide",   19, 27, 0, 0),
     ("NS4B",  "Mature non-structural protein NS4B",        "NS4B",  "mat_peptide",  222, 268, 0, 0),
     ("NS5",   "RNA-dependent RNA polymerase",              "NS5",   "mat_peptide",  642, 1099, 0, 0),
+    #  NS1' is a -1 ribosomal frameshift product: NS1 plus 52 residues, made
+    #  when the ribosome slips at a conserved Y CCU UUU heptanucleotide ~8
+    #  codons into NS2A. It is non-collinear with the genome, so it has no
+    #  PSSM -- see SPECIAL below and Transcript-Editing/Orthoflavivirus/.
+    #
+    #  mat_peptide, not CDS: the classification goes by where the N-terminus
+    #  comes from, and NS1's N-terminus is made by signal peptidase at the
+    #  E/NS1 junction. NS1' shares it exactly. But it terminates at a real
+    #  stop codon in the shifted frame, so its references keep that codon and
+    #  the protein carries a trailing '*' -- the same hybrid shape as
+    #  Togaviridae TF, which also has a cleaved N-terminus and a real stop.
+    #
+    #  Bounds are the observed range of the 111 unique NS1' proteins in the
+    #  dump, 358-406. Following the pr lesson these are what the feature IS
+    #  across the taxon rather than what any one collection holds.
+    #
+    #  The annotation string and symbol follow the one existing precedent for
+    #  a prime product, Respirovirus "C-prime protein" / "C-Prime", rather
+    #  than inventing a third form.
+    ("NS1P",  "NS1-prime protein",                         "NS1-Prime", "mat_peptide", 358, 406, 0, 0),
 ]
 
 #  bit_cutoff scales with length: a 23-residue 2K cannot clear the bar a
@@ -136,6 +164,21 @@ def close_genomes():
 def main():
     feats = {}
     for key, anno, sym, ftype, mn, mx, up, down in F:
+        #  A transcript_edit feature has no profile, so it carries none of the
+        #  PSSM machinery: no bit_cutoff, coverage_cutoff, kmers, copy_num or
+        #  extension flags. get_transcript_edited_features.pl blastn's the
+        #  curated nucleotide references instead.
+        if key in SPECIAL:
+            feats[key] = {
+                "anno": anno, "gene_symbol": sym,
+                "feature_type": ftype, "type": ftype,
+                "min_len": mn, "max_len": mx,
+                "segment": "Single RNA Segment",
+                "special": SPECIAL[key],
+            }
+            if key in CLAUDE_PMIDS:
+                feats[key]["PMID_claude_generated"] = CLAUDE_PMIDS[key]
+            continue
         blk = {
             "anno": anno,
             "gene_symbol": sym,

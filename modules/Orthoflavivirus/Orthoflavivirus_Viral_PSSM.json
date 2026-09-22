@@ -199,6 +199,20 @@
             "type" : "mat_peptide",
             "upstream_ext" : 0
          },
+         "NS1P" : {
+            "PMID_claude_generated" : [
+               "19196463",
+               "19906906"
+            ],
+            "anno" : "NS1-prime protein",
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS1-Prime",
+            "max_len" : 406,
+            "min_len" : 358,
+            "segment" : "Single RNA Segment",
+            "special" : "transcript_edit",
+            "type" : "mat_peptide"
+         },
          "NS2A" : {
             "anno" : "Mature non-structural protein NS2A",
             "bit_cutoff" : 80,

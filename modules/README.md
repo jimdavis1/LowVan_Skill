@@ -1,7 +1,7 @@
 # Built modules
 
-Every module built with this kit. Thirteen of them, 143 features, 2,166
-alignments, 190 rep contigs.
+Every module built with this kit. Thirteen of them, 144 features, 2,166
+alignments, 190 rep contigs, one transcript-edited feature set.
 
 | module | features | alignments | rep contigs | special |
 |---|---|---|---|---|
@@ -17,7 +17,7 @@ alignments, 190 rep contigs.
 | `Trivirinae` | 5 | 157 | 25 | |
 | `Alphaflexiviridae` | 6 | 259 | 25 | Potexvirus + Lolavirus |
 | `Allexivirus` | 7 | 76 | 25 | TGB3 `upstream_ext: 0`, non-AUG start |
-| `Orthoflavivirus` | 15 | 337 | 25 | 15-product polyprotein; ends validated against cleavage chemistry. NS1&#8242; excluded, needs `transcript_edit` |
+| `Orthoflavivirus` | 16 | 337 | 25 | 15-product polyprotein; ends validated against cleavage chemistry. `NS1P` `transcript_edit`, 104 references — cannot distinguish the SA14-14-2 vaccine lineage, see the audit |
 
 `Alphaflexiviridae` and `Allexivirus` are one taxon split in two. They are
 listed separately because the split is the point: Allexivirus TGB3 initiates
