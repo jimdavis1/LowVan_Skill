@@ -73,6 +73,32 @@ them independently.
 python3 scripts/check_dump.py --workdir .
 ```
 
+**Fetch the dump with `fetch_bvbrc.py`, not a per-line loop.**
+`query_PATRIC_bob.pl` opens a new `P3DataAPI` object and issues one `eq` query
+for every input line: 268 keys/min, which put the Hepacivirus dump at 4h17m for
+the genome lookups and six hours more for the annotations. The API takes
+`in(field,(v1,...,v150))`, so batching cuts round trips ~150x and threads do the
+rest -- the same two steps then took **0.8 minutes each, ~110,000 keys/min**.
+
+```bash
+python3 scripts/fetch_bvbrc.py --core genome_feature   --key patric_id \
+        --fields patric_id,product  --in rep_ids.txt --out <T>.uniq.id_ann
+python3 scripts/fetch_bvbrc.py --core feature_sequence --key md5 \
+        --fields md5,sequence       --in <T>.uniq.md5 --out <T>.uniq.seq
+```
+
+Values are **percent-encoded**, which is not optional and is not obvious:
+measured against the API, a bare `patric_id` returns HTTP 400 because of the
+pipe, `"double-quoted"` returns 400 for every key type, and percent-encoded
+returns 200. It resumes from a partial output file, so it can take over from an
+interrupted serial run.
+
+**Realign the three `uniq.*` files after any resumed or mixed fetch.** They are
+joined by line index, and appending to a partial file destroys that: the
+Hepacivirus dump came back 100,855 / 103,166 / 100,290. Rebuild all three in
+one pass from `uniq.md5` order, dropping md5s with no sequence, and keep the
+originals in `pre_realign/`.
+
 **Run that before anything else.** It checks that every protein md5 named in
 `id_md5` actually has a sequence, and that the three `uniq.*` files are
 line-aligned. The step that builds `uniq.md5` selects protein-coding features
@@ -816,6 +842,33 @@ with three internal products has six cleaved termini, and every one left to
 drift compounds along the chain. Only genuine protease sites keep a 0; give
 every other terminus a 1 and let the annotator find the codon.
 
+### 15. Log what you analysed, then delete the bulk
+
+Annotating a taxon leaves hundreds of megabytes of GTOs behind. Orthoflavivirus
+left **788 MB** across `gto/`, `gto_out/`, the transcript-edit pass and three
+test panels. All of it regenerates from `Contigs/` plus the installed module,
+and every figure the audit quotes has already been extracted, so keeping it
+costs storage and buys nothing.
+
+What must not be lost is **which genomes were analysed**. Without that the
+measurements are unreproducible in principle, not merely expensive to redo.
+
+```bash
+python3 scripts/log_and_clean.py --workdir . --module <M> --box <boxdir> \
+        --note "what this run measured and where the results live"
+python3 scripts/log_and_clean.py ... --write
+```
+
+It writes `ANALYSED_GENOMES.<M>.json` and `.txt` before deleting anything, and
+refuses to delete if the manifest cannot be written. The manifest carries every
+genome id per panel, the regeneration commands, and a checksum of each kept
+file so a later reader can tell whether what it describes is what is still on
+disk.
+
+**Run this when a module's testing is finished**, not at the end of the
+project. The output of one module is dead weight while the next one is being
+built.
+
 ## Reference files
 
 | File | Read it when |
@@ -874,6 +927,8 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `merge_segments.py` | reassemble multi-segment genomes split one record per segment |
 | `minimal_refs.py` | greedy set cover for the fewest reference contigs that close a routing gap |
 | `annotation_rarefaction.py` | vocabulary growth curve, controlled versus free text |
+| `fetch_bvbrc.py` | batched, resumable BV-BRC fetch; ~400x faster than a per-line loop |
+| `log_and_clean.py` | log the genomes a module was tested on, then delete the regenerable bulk |
 | `make_gto.py` | contig FASTAs -> GTOs, with genome ids issued by the ID server |
 | `run_gto_eval.py` | annotate and quality-score GTOs; the good-vs-poor breakdown |
 
