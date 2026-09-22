@@ -23,7 +23,14 @@ if ($@ || !$tool_version) {
 
 my $program_description = <<'END_DESCRIPTION';
 This program performs feature calling for transcript edited proteins.  It reads and writes GTO files.
-It works by using a set of hand-curated transcripts in --dir as the queries.  --id, --gaps, and --cov refer 
+It works by using a set of hand-curated transcripts in --dir as the queries.
+
+Both directions of edit are handled, and neither needs a flag -- the direction is a property of the
+curated reference and is read off the alignment.  A reference carrying an EXTRA base relative to the
+genome (a -1 ribosomal slip, or a non-templated insertion as in the paramyxovirus V/W proteins) gaps
+the subject, and that base is inserted.  A reference that is one base SHORTER (a +1 slip, as in the
+hepatitis C F/ARFP protein) gaps the query, and the corresponding genome base is dropped.  --gaps
+counts both sides together.  --id, --gaps, and --cov refer 
 to the strict inclusion criteria for enabling the mapping the nucleotides from the closest hand-curated transcript
 onto the subject sequence.  When we enoucnter a blast match that is good, [defined by --lower_pid, --lower_pcov, and --eval], 
 but not good enough to carry over the transcript-edited seqeunce, we call a partial_cds feature and the annotation becomes:
@@ -206,8 +213,29 @@ if (scalar @to_analyze)
 				my $qseq    = $matches->{$sid}->{$from}->{QSEQ};
 				my $iden    = $matches->{$sid}->{$from}->{IDEN};
 				my $ali_len = $matches->{$sid}->{$from}->{ALI_LEN};				
-				my $dashes  = ($sseq =~ tr/-//); 
-				my $runs    = (() = $sseq =~ /-+/g) || 0;
+				#  Gaps are counted on BOTH sides, because the two directions of
+				#  frameshift put the gap on opposite sides of the alignment and
+				#  both are real biology:
+				#
+				#    -1 slip / non-templated insertion (NS1', V, W, ORF1ab)
+				#         the reference carries an EXTRA base, so the SUBJECT
+				#         gaps and the fill inserts the reference base.
+				#    +1 slip (HCV F / ARFP)
+				#         the ribosome skips a base, so the reference is one base
+				#         SHORTER, the QUERY gaps, and the fill must DROP the
+				#         corresponding subject base.
+				#
+				#  Only the first was implemented, which meant a +1 product
+				#  silently reproduced the genome's own reading frame instead of
+				#  the edited one -- the loop copied the subject through and
+				#  nothing signalled that anything was wrong. references/
+				#  special-features.md already claimed one mechanism served both.
+				my $sdash   = ($sseq =~ tr/-//);
+				my $qdash   = ($qseq =~ tr/-//);
+				my $dashes  = $sdash + $qdash;
+				my $sruns   = (() = $sseq =~ /-+/g) || 0;
+				my $qruns   = (() = $qseq =~ /-+/g) || 0;
+				my $runs    = $sruns + $qruns;
 				my $pid     =  (($iden/$ali_len) * 100);				
 				my $qcov    =  (($ali_len/(length $qseq)) * 100); 				
 				my $gaps    = $matches->{$sid}->{$from}->{GAPS};	
@@ -224,17 +252,50 @@ if (scalar @to_analyze)
 
 				#If all inclusion critreria are met (%id, %Qcov, num gaps, runs of gaps)
 				
-				if ( ($pid >= $opt->id) && ($qcov >= $opt->cov) && ($dashes <= $opt->gaps) && ($runs <= 1))
+				#  A reference may edit in ONE direction only. A single frameshift
+				#  is either +1 or -1; a reference asking for both an insertion
+				#  and a deletion is describing two events and is far more likely
+				#  to be a mis-curated reference or a spurious alignment than a
+				#  real double frameshift. $runs <= 1 already excludes it, since a
+				#  subject gap and a query gap are necessarily separate runs, but
+				#  that is emergent from summing the two and a later reader could
+				#  undo it without noticing. State it.
+				my $mixed = ($sdash > 0 && $qdash > 0);
+				if ($mixed)
+				{
+					print STDERR "\t$name: reference asks for an insertion AND a deletion "
+					           . "($sdash subject, $qdash query); refusing, an edit is one "
+					           . "direction only\n";
+				}
+
+				if ( !$mixed && ($pid >= $opt->id) && ($qcov >= $opt->cov) && ($dashes <= $opt->gaps) && ($runs <= 1))
 				{
 					my @snts = split ("", $sseq);
 					my @qnts = split ("", $qseq);
 					my @mod_seq;
-				
+
+					#  Build the edited transcript from the SUBJECT, so that every
+					#  base except the edit itself comes from the genome being
+					#  annotated and each genome yields its own protein.
+					#
+					#    subject gap  -> the reference has a base the genome lacks;
+					#                    insert it
+					#    query gap    -> the genome has a base the reference lacks;
+					#                    skip it
+					#    otherwise    -> take the genome's base
+					#
+					#  No flag selects between these. The direction is a property
+					#  of the reference that was curated, so the right behaviour is
+					#  whichever the alignment shows.
 					for my $i (0..$#snts)
 					{
 						if ($snts[$i] =~ /\-/)
 						{
-							push @mod_seq, $qnts[$i]; 
+							push @mod_seq, $qnts[$i];
+						}
+						elsif ($qnts[$i] =~ /\-/)
+						{
+							next;
 						}
 						else
 						{

@@ -1,0 +1,295 @@
+{
+ "Hepaciviridae": {
+  "close_genomes": {
+   "Hepaciviridae.1.dna": {
+    "genome_ids": "11103.49179.con.0001",
+    "genome_name": "Hepacivirus C"
+   },
+   "Hepaciviridae.10.dna": {
+    "genome_ids": "2340905.3.con.0001",
+    "genome_name": "Recombinant Hepacivirus C SA13_JF372-X_CIQV"
+   },
+   "Hepaciviridae.11.dna": {
+    "genome_ids": "11103.49102.con.0001",
+    "genome_name": "Hepacivirus C"
+   },
+   "Hepaciviridae.12.dna": {
+    "genome_ids": "11103.204321.con.0001",
+    "genome_name": "Hepacivirus C"
+   },
+   "Hepaciviridae.13.dna": {
+    "genome_ids": "11103.189683.con.0001",
+    "genome_name": "Hepacivirus C CP16"
+   },
+   "Hepaciviridae.14.dna": {
+    "genome_ids": "11103.101957.con.0001",
+    "genome_name": "Hepacivirus C SB"
+   },
+   "Hepaciviridae.15.dna": {
+    "genome_ids": "1281454.78.con.0001",
+    "genome_name": "Rodent hepacivirus CRT352-A/COD/2010"
+   },
+   "Hepaciviridae.16.dna": {
+    "genome_ids": "11103.204675.con.0001",
+    "genome_name": "Hepacivirus C 1008090"
+   },
+   "Hepaciviridae.17.dna": {
+    "genome_ids": "1281454.124.con.0001",
+    "genome_name": "Rodent hepacivirus rn-1"
+   },
+   "Hepaciviridae.18.dna": {
+    "genome_ids": "1281454.93.con.0001",
+    "genome_name": "Rodent hepacivirus MOZ329-A/MOZ/2011"
+   },
+   "Hepaciviridae.19.dna": {
+    "genome_ids": "11103.201097.con.0001",
+    "genome_name": ""
+   },
+   "Hepaciviridae.2.dna": {
+    "genome_ids": "11103.152162.con.0001",
+    "genome_name": "Hepacivirus C"
+   },
+   "Hepaciviridae.20.dna": {
+    "genome_ids": "11103.62714.con.0001",
+    "genome_name": "Hepacivirus C"
+   },
+   "Hepaciviridae.21.dna": {
+    "genome_ids": "39113.111.con.0001",
+    "genome_name": "Hepatitis GB virus B"
+   },
+   "Hepaciviridae.22.dna": {
+    "genome_ids": "3084692.4.con.0001",
+    "genome_name": "Wenzhou shrew hepacivirus 1 WZ_Su.murinus_flavi_2"
+   },
+   "Hepaciviridae.23.dna": {
+    "genome_ids": "2928978.5.con.0001",
+    "genome_name": "Wufeng Typhlomys cinereus hepacivirus 3 DLYL-YNSP87"
+   },
+   "Hepaciviridae.24.dna": {
+    "genome_ids": "11102.19.con.0001",
+    "genome_name": "Hepacivirus BJ_7_1"
+   },
+   "Hepaciviridae.25.dna": {
+    "genome_ids": "11103.56337.con.0001",
+    "genome_name": "Hepacivirus C"
+   },
+   "Hepaciviridae.3.dna": {
+    "genome_ids": "11103.124095.con.0001",
+    "genome_name": "Hepacivirus C"
+   },
+   "Hepaciviridae.4.dna": {
+    "genome_ids": "11103.49494.con.0001",
+    "genome_name": "Hepacivirus C"
+   },
+   "Hepaciviridae.5.dna": {
+    "genome_ids": "11103.65138.con.0001",
+    "genome_name": "Hepacivirus C"
+   },
+   "Hepaciviridae.6.dna": {
+    "genome_ids": "31653.134.con.0001",
+    "genome_name": "Hepatitis C virus subtype 4a"
+   },
+   "Hepaciviridae.7.dna": {
+    "genome_ids": "356424.3.con.0001",
+    "genome_name": "Hepatitis C virus (isolate VN004)"
+   },
+   "Hepaciviridae.8.dna": {
+    "genome_ids": "467339.4.con.0001",
+    "genome_name": "Hepatitis C virus subtype 6q QC99"
+   },
+   "Hepaciviridae.9.dna": {
+    "genome_ids": "1605403.4.con.0001",
+    "genome_name": "Non-primate hepacivirus NZP1"
+   }
+  },
+  "features": {
+   "C": {
+    "anno": "Nucleocapsid protein",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "C",
+    "kmers": 1,
+    "max_len": 208,
+    "min_len": 146,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 1
+   },
+   "E1": {
+    "anno": "Mature envelope glycoprotein E1",
+    "bit_cutoff": 100,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "E1",
+    "kmers": 1,
+    "max_len": 243,
+    "min_len": 136,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "E2": {
+    "anno": "Mature envelope glycoprotein E2",
+    "bit_cutoff": 150,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "E2",
+    "kmers": 1,
+    "max_len": 426,
+    "min_len": 260,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "F": {
+    "PMID_claude_generated": [
+     "11447125",
+     "11350035",
+     "15755749"
+    ],
+    "anno": "F protein",
+    "feature_type": "CDS",
+    "gene_symbol": "F",
+    "max_len": 178,
+    "min_len": 121,
+    "segment": "Single RNA Segment",
+    "special": "transcript_edit",
+    "type": "CDS"
+   },
+   "NS2": {
+    "anno": "Mature protease NS2 protein",
+    "bit_cutoff": 80,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS2",
+    "kmers": 1,
+    "max_len": 277,
+    "min_len": 152,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NS3": {
+    "anno": "Mature protease and helicase NS3 protein",
+    "bit_cutoff": 300,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS3",
+    "kmers": 1,
+    "max_len": 641,
+    "min_len": 448,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NS4A": {
+    "anno": "Mature protease cofactor NS4A protein",
+    "bit_cutoff": 25,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS4A",
+    "kmers": 1,
+    "max_len": 60,
+    "min_len": 51,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NS4B": {
+    "anno": "Mature non-structural protein NS4B",
+    "bit_cutoff": 100,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS4B",
+    "kmers": 1,
+    "max_len": 263,
+    "min_len": 236,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NS5A": {
+    "anno": "Mature non-structural protein NS5A",
+    "bit_cutoff": 150,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS5A",
+    "kmers": 1,
+    "max_len": 542,
+    "min_len": 330,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NS5B": {
+    "anno": "RNA-dependent RNA polymerase",
+    "bit_cutoff": 300,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS5B",
+    "kmers": 1,
+    "max_len": 719,
+    "min_len": 414,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "P7": {
+    "anno": "Viroporin p7",
+    "bit_cutoff": 25,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "p7",
+    "kmers": 1,
+    "max_len": 74,
+    "min_len": 46,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "POLY": {
+    "anno": "Genome polyprotein",
+    "bit_cutoff": 400,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "POLY",
+    "kmers": 1,
+    "max_len": 3775,
+    "min_len": 2649,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "Single RNA Segment": {
+    "max_len": 11000,
+    "min_len": 8000,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

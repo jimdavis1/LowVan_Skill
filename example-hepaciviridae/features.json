@@ -1,0 +1,46 @@
+{
+ "POLY": {
+  "anno": "Genome polyprotein",
+  "symbol": "POLY"
+ },
+ "C": {
+  "anno": "Nucleocapsid protein",
+  "symbol": "C"
+ },
+ "E1": {
+  "anno": "Mature envelope glycoprotein E1",
+  "symbol": "E1"
+ },
+ "E2": {
+  "anno": "Mature envelope glycoprotein E2",
+  "symbol": "E2"
+ },
+ "P7": {
+  "anno": "Viroporin p7",
+  "symbol": "p7"
+ },
+ "NS2": {
+  "anno": "Mature protease NS2 protein",
+  "symbol": "NS2"
+ },
+ "NS3": {
+  "anno": "Mature protease and helicase NS3 protein",
+  "symbol": "NS3"
+ },
+ "NS4A": {
+  "anno": "Mature protease cofactor NS4A protein",
+  "symbol": "NS4A"
+ },
+ "NS4B": {
+  "anno": "Mature non-structural protein NS4B",
+  "symbol": "NS4B"
+ },
+ "NS5A": {
+  "anno": "Mature non-structural protein NS5A",
+  "symbol": "NS5A"
+ },
+ "NS5B": {
+  "anno": "RNA-dependent RNA polymerase",
+  "symbol": "NS5B"
+ }
+}
