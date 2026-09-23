@@ -1,0 +1,102 @@
+<title>Allexivirus Vocabulary Saturation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{--ink:#1b2320;--ink-2:#3f4b46;--ink-3:#6b7873;--ground:#f7f6f1;--panel:#fff;
+    --rule:#ddded6;--leaf:#2f6b4f;--leaf-soft:#e6efe8;--amber:#8a6212;--amber-soft:#f6eeda;
+    --rust:#8d3a28;--rust-soft:#f6e6e1;--shadow:0 1px 2px rgba(27,35,32,.05);}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;--panel:#1a1f1c;
+    --rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;--amber-soft:#2c2415;
+    --rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}}
+  :root[data-theme="dark"]{--ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;
+    --panel:#1a1f1c;--rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;
+    --amber-soft:#2c2415;--rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}
+  body{background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:60rem;margin:0 auto;padding-inline:20px;padding-block:44px 72px;}
+  h1,h2,h3{text-wrap:balance;margin:0;}
+  h1{font-size:2.15rem;font-weight:600;letter-spacing:-.015em;line-height:1.16;}
+  h2{font-size:1.32rem;font-weight:600;margin-top:2.6rem;padding-top:1.1rem;border-top:1px solid var(--rule);}
+  h3{font-size:1.02rem;font-weight:600;margin-top:1.7rem;}
+  p{margin:.85rem 0;max-width:66ch;color:var(--ink-2);}
+  p.lede{font-size:1.1rem;color:var(--ink);max-width:62ch;}
+  strong{color:var(--ink);font-weight:600;}
+  code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.845em;font-variant-numeric:tabular-nums;}
+  code{background:var(--leaf-soft);color:var(--ink);padding:.1em .38em;border-radius:3px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--leaf);margin:0 0 .55rem;}
+  .sub{color:var(--ink-3);font-size:.95rem;margin-top:.5rem;}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;
+    margin:1.8rem 0;box-shadow:var(--shadow);}
+  .stat{background:var(--panel);padding:.95rem 1.05rem;}
+  .stat .n{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;color:var(--ink);
+    font-variant-numeric:tabular-nums;line-height:1.1;}
+  .stat .k{font-size:.76rem;color:var(--ink-3);margin-top:.25rem;line-height:1.35;}
+  .tw{overflow-x:auto;margin:1.15rem 0;}
+  table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:min(100%,30rem);}
+  th,td{text-align:left;padding:.48rem .7rem;border-bottom:1px solid var(--rule);}
+  th{font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-3);border-bottom:1.5px solid var(--ink-3);white-space:nowrap;}
+  td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.feat{font-family:"IBM Plex Mono",monospace;font-weight:500;}
+  .bar{display:block;height:5px;border-radius:2px;background:var(--leaf);min-width:2px;}
+  .bar.low{background:var(--amber);}
+  .barcell{width:30%;min-width:80px;vertical-align:middle;}
+  .note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--leaf);
+    border-radius:0 5px 5px 0;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow);}
+  .note.warn{border-left-color:var(--amber);} .note.bad{border-left-color:var(--rust);}
+  .note p{margin:.45rem 0;font-size:.94rem;} .note p:first-child{margin-top:0;}
+  .note p:last-child{margin-bottom:0;} .note h3{margin-top:0;font-size:.95rem;}
+  .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;padding:.16em .5em;border-radius:3px;vertical-align:.12em;}
+  .tag.ok{background:var(--leaf-soft);color:var(--leaf);}
+  .tag.warn{background:var(--amber-soft);color:var(--amber);}
+  .tag.bad{background:var(--rust-soft);color:var(--rust);}
+  pre{background:var(--panel);border:1px solid var(--rule);border-radius:5px;padding:.9rem 1.05rem;
+    overflow-x:auto;margin:1.1rem 0;box-shadow:var(--shadow);}
+  pre code{background:none;padding:0;font-size:.8rem;line-height:1.62;color:var(--ink-2);}
+  .hl{color:var(--rust);font-weight:600;} .hl2{color:var(--leaf);font-weight:600;}
+  ul{max-width:66ch;color:var(--ink-2);padding-left:1.15rem;} li{margin:.38rem 0;}
+  footer{margin-top:3rem;padding-top:1.1rem;border-top:1px solid var(--rule);color:var(--ink-3);font-size:.83rem;}
+</style>
+<div class="wrap">
+<p class="eyebrow">LowVan vocabulary saturation</p>
+<h1>Allexivirus Saturation</h1>
+<p class="sub mono">88 source strings across 1,177 genomes &middot; 7 controlled annotations</p>
+
+<p class="lede">The question this page answers is not how many names the source uses, but whether that number ever stops growing. It does not. Every additional genome sequenced adds new ways of writing the same 7 proteins, and the curve shows no sign of flattening at the largest sample available.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">88</div><div class="k">source strings<br>at full sample</div></div>
+  <div class="stat"><div class="n">7</div><div class="k">controlled<br>annotations</div></div>
+  <div class="stat"><div class="n">12.6&times;</div><div class="k">collapse</div></div>
+  <div class="stat"><div class="n">1,177</div><div class="k">genomes<br>sampled</div></div>
+</div>
+
+<h2>The curve</h2>
+<p>Each point is the mean of 20 random draws of that many genomes, counting the distinct annotation strings they carry between them.</p>
+<svg viewBox="0 0 640 300" width="100%" style="max-width:100%;height:auto" role="img" aria-label="Distinct annotation strings against genomes sampled"><line x1="54.0" y1="18.0" x2="54.0" y2="258.0" stroke="var(--rule)" stroke-width="1"/><text x="54.0" y="276" fill="var(--ink-3)" font-size="11" text-anchor="middle" font-family="IBM Plex Mono,monospace">1</text><line x1="239.0" y1="18.0" x2="239.0" y2="258.0" stroke="var(--rule)" stroke-width="1"/><text x="239.0" y="276" fill="var(--ink-3)" font-size="11" text-anchor="middle" font-family="IBM Plex Mono,monospace">10</text><line x1="423.9" y1="18.0" x2="423.9" y2="258.0" stroke="var(--rule)" stroke-width="1"/><text x="423.9" y="276" fill="var(--ink-3)" font-size="11" text-anchor="middle" font-family="IBM Plex Mono,monospace">100</text><line x1="608.9" y1="18.0" x2="608.9" y2="258.0" stroke="var(--rule)" stroke-width="1"/><text x="608.9" y="276" fill="var(--ink-3)" font-size="11" text-anchor="middle" font-family="IBM Plex Mono,monospace">1000</text><line x1="622.0" y1="18.0" x2="622.0" y2="258.0" stroke="var(--rule)" stroke-width="1"/><text x="622.0" y="276" fill="var(--ink-3)" font-size="11" text-anchor="middle" font-family="IBM Plex Mono,monospace">1177</text><line x1="54" y1="258.0" x2="622" y2="258.0" stroke="var(--rule)" stroke-width="1"/><text x="46" y="262.0" fill="var(--ink-3)" font-size="11" text-anchor="end" font-family="IBM Plex Mono,monospace">0</text><line x1="54" y1="207.5" x2="622" y2="207.5" stroke="var(--rule)" stroke-width="1"/><text x="46" y="211.5" fill="var(--ink-3)" font-size="11" text-anchor="end" font-family="IBM Plex Mono,monospace">20</text><line x1="54" y1="157.0" x2="622" y2="157.0" stroke="var(--rule)" stroke-width="1"/><text x="46" y="161.0" fill="var(--ink-3)" font-size="11" text-anchor="end" font-family="IBM Plex Mono,monospace">40</text><line x1="54" y1="106.5" x2="622" y2="106.5" stroke="var(--rule)" stroke-width="1"/><text x="46" y="110.5" fill="var(--ink-3)" font-size="11" text-anchor="end" font-family="IBM Plex Mono,monospace">60</text><line x1="54" y1="56.0" x2="622" y2="56.0" stroke="var(--rule)" stroke-width="1"/><text x="46" y="60.0" fill="var(--ink-3)" font-size="11" text-anchor="end" font-family="IBM Plex Mono,monospace">80</text><line x1="54" y1="240.3" x2="622" y2="240.3" stroke="var(--leaf)" stroke-width="2" stroke-dasharray="5 3"/><text x="60" y="233.3" fill="var(--leaf)" font-size="11.5" font-family="IBM Plex Mono,monospace">LowVan: 7, fixed</text><path d="M54.0 250.4 L183.3 237.5 L239.0 229.7 L312.6 217.8 L368.3 203.5 L423.9 181.2 L479.6 145.6 L535.3 108.0 L591.0 63.6 L622.0 35.8" fill="none" stroke="var(--rust)" stroke-width="2.2"/><circle cx="54.0" cy="250.4" r="3" fill="var(--rust)"/><circle cx="183.3" cy="237.5" r="3" fill="var(--rust)"/><circle cx="239.0" cy="229.7" r="3" fill="var(--rust)"/><circle cx="312.6" cy="217.8" r="3" fill="var(--rust)"/><circle cx="368.3" cy="203.5" r="3" fill="var(--rust)"/><circle cx="423.9" cy="181.2" r="3" fill="var(--rust)"/><circle cx="479.6" cy="145.6" r="3" fill="var(--rust)"/><circle cx="535.3" cy="108.0" r="3" fill="var(--rust)"/><circle cx="591.0" cy="63.6" r="3" fill="var(--rust)"/><circle cx="622.0" cy="35.8" r="3" fill="var(--rust)"/><text x="616.0" y="25.8" fill="var(--rust)" font-size="11.5" text-anchor="end" font-family="IBM Plex Mono,monospace">BV-BRC: 88 and rising</text><text x="338" y="296" fill="var(--ink-3)" font-size="11" text-anchor="middle">genomes sampled (log scale)</text></svg>
+
+<h2>Reading it</h2>
+<p>A saturating vocabulary would bend toward a ceiling: past some sample size, new genomes would mostly reuse names already seen. This one does not bend. On a log x-axis a saturating curve flattens and a non-saturating one stays straight or steepens, and the source curve is still climbing at the right-hand edge — the last doubling of the sample adds nearly as many new strings as the one before it.</p>
+
+<p>That is the argument for a controlled vocabulary stated as a measurement rather than an opinion. The green line is flat by construction: the module emits 7 annotations regardless of how many genomes it is given, because those are properties of the biology and not of who deposited the record.</p>
+
+<div class="note">
+<p><strong>The practical consequence.</strong> Anything downstream that groups proteins by their annotation string gets a different answer every time the database grows. A query for this module's proteins written against today's 88 strings will silently miss records deposited tomorrow. Against the controlled set it will not.</p>
+</div>
+
+<h2>Caveats worth stating</h2>
+<ul>
+<li>The curve counts <em>distinct strings</em>, not errors. Most of the growth is orthographic — spacing, case, "putative", the trailing word "protein" — and is harmless to a human reader while being fatal to an exact-match query.</li>
+<li>Sampling is by genome, so a heavily-sequenced species contributes many genomes and relatively few new strings; the curve therefore understates the diversity a broader taxon would show.</li>
+<li>The 7-annotation line is fixed for this module only. The controlled vocabulary across all modules is larger, and this module adds nothing new to it.</li>
+</ul>
+
+<footer>
+Generated 21 September 2026 from the BV-BRC dump backing this module: 1,226 Allexivirus genomes. 20 replicates per sample size.
+Built with the LowVan module kit &middot; <span class="mono">jimdavis1/LowVan_Skill</span>
+</footer>
+</div>

@@ -1,0 +1,121 @@
+<title>Allexivirus PSSM Registry</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{--ink:#1b2320;--ink-2:#3f4b46;--ink-3:#6b7873;--ground:#f7f6f1;--panel:#fff;
+    --rule:#ddded6;--leaf:#2f6b4f;--leaf-soft:#e6efe8;--amber:#8a6212;--amber-soft:#f6eeda;
+    --rust:#8d3a28;--rust-soft:#f6e6e1;--shadow:0 1px 2px rgba(27,35,32,.05);}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;--panel:#1a1f1c;
+    --rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;--amber-soft:#2c2415;
+    --rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}}
+  :root[data-theme="dark"]{--ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;
+    --panel:#1a1f1c;--rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;
+    --amber-soft:#2c2415;--rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}
+  body{background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:60rem;margin:0 auto;padding-inline:20px;padding-block:44px 72px;}
+  h1,h2,h3{text-wrap:balance;margin:0;}
+  h1{font-size:2.15rem;font-weight:600;letter-spacing:-.015em;line-height:1.16;}
+  h2{font-size:1.32rem;font-weight:600;margin-top:2.6rem;padding-top:1.1rem;border-top:1px solid var(--rule);}
+  h3{font-size:1.02rem;font-weight:600;margin-top:1.7rem;}
+  p{margin:.85rem 0;max-width:66ch;color:var(--ink-2);}
+  p.lede{font-size:1.1rem;color:var(--ink);max-width:62ch;}
+  strong{color:var(--ink);font-weight:600;}
+  code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.845em;font-variant-numeric:tabular-nums;}
+  code{background:var(--leaf-soft);color:var(--ink);padding:.1em .38em;border-radius:3px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--leaf);margin:0 0 .55rem;}
+  .sub{color:var(--ink-3);font-size:.95rem;margin-top:.5rem;}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;
+    margin:1.8rem 0;box-shadow:var(--shadow);}
+  .stat{background:var(--panel);padding:.95rem 1.05rem;}
+  .stat .n{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;color:var(--ink);
+    font-variant-numeric:tabular-nums;line-height:1.1;}
+  .stat .k{font-size:.76rem;color:var(--ink-3);margin-top:.25rem;line-height:1.35;}
+  .tw{overflow-x:auto;margin:1.15rem 0;}
+  table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:min(100%,30rem);}
+  th,td{text-align:left;padding:.48rem .7rem;border-bottom:1px solid var(--rule);}
+  th{font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-3);border-bottom:1.5px solid var(--ink-3);white-space:nowrap;}
+  td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.feat{font-family:"IBM Plex Mono",monospace;font-weight:500;}
+  .bar{display:block;height:5px;border-radius:2px;background:var(--leaf);min-width:2px;}
+  .bar.low{background:var(--amber);}
+  .barcell{width:30%;min-width:80px;vertical-align:middle;}
+  .note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--leaf);
+    border-radius:0 5px 5px 0;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow);}
+  .note.warn{border-left-color:var(--amber);} .note.bad{border-left-color:var(--rust);}
+  .note p{margin:.45rem 0;font-size:.94rem;} .note p:first-child{margin-top:0;}
+  .note p:last-child{margin-bottom:0;} .note h3{margin-top:0;font-size:.95rem;}
+  .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;padding:.16em .5em;border-radius:3px;vertical-align:.12em;}
+  .tag.ok{background:var(--leaf-soft);color:var(--leaf);}
+  .tag.warn{background:var(--amber-soft);color:var(--amber);}
+  .tag.bad{background:var(--rust-soft);color:var(--rust);}
+  pre{background:var(--panel);border:1px solid var(--rule);border-radius:5px;padding:.9rem 1.05rem;
+    overflow-x:auto;margin:1.1rem 0;box-shadow:var(--shadow);}
+  pre code{background:none;padding:0;font-size:.8rem;line-height:1.62;color:var(--ink-2);}
+  .hl{color:var(--rust);font-weight:600;} .hl2{color:var(--leaf);font-weight:600;}
+  ul{max-width:66ch;color:var(--ink-2);padding-left:1.15rem;} li{margin:.38rem 0;}
+  footer{margin-top:3rem;padding-top:1.1rem;border-top:1px solid var(--rule);color:var(--ink-3);font-size:.83rem;}
+</style>
+<div class="wrap">
+<p class="eyebrow">LowVan PSSM registry</p>
+<h1>Allexivirus Profiles</h1>
+<p class="sub mono">76 profiles &middot; 1,321 training sequences &middot; 7 features</p>
+
+<p class="lede">All 76 profiles were inherited from Alphaflexiviridae at the split, selected on one criterion: at least 80% of the training sequences are Allexivirus. Seventy-five are 100%.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">76</div><div class="k">profiles</div></div>
+  <div class="stat"><div class="n">76</div><div class="k">alignments<br>one per profile</div></div>
+  <div class="stat"><div class="n">1,321</div><div class="k">training<br>sequences</div></div>
+  <div class="stat"><div class="n">7</div><div class="k">features</div></div>
+  <div class="stat"><div class="n">1</div><div class="k">profile behind<br>TGB3</div></div>
+</div>
+
+<h2>By feature</h2>
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th>Symbol</th><th class="num">Profiles</th><th class="num">Training seqs</th><th class="num">Largest</th><th class="num">&le;2 seqs</th><th class="num">bit</th><th class="num">length gate</th><th class="num">up_ext</th></tr></thead>
+<tbody>
+<tr><td class="feat">ALLEXI_40K</td><td class="mono">Allexi_40K</td><td class="num">17</td><td class="num">165</td><td class="num">27</td><td class="num">5</td><td class="num">60</td><td class="num">272–436</td><td class="num">1</td></tr>
+<tr><td class="feat">TGB1</td><td class="mono">TGB1</td><td class="num">17</td><td class="num">164</td><td class="num">35</td><td class="num">4</td><td class="num">60</td><td class="num">198–297</td><td class="num">0</td></tr>
+<tr><td class="feat">TGB2</td><td class="mono">TGB2</td><td class="num">13</td><td class="num">115</td><td class="num">23</td><td class="num">3</td><td class="num">50</td><td class="num">85–121</td><td class="num">1</td></tr>
+<tr><td class="feat">NABP</td><td class="mono">NABP</td><td class="num">10</td><td class="num">338</td><td class="num">95</td><td class="num">0</td><td class="num">80</td><td class="num">86–196</td><td class="num">1</td></tr>
+<tr><td class="feat">CP</td><td class="mono">N</td><td class="num">9</td><td class="num">333</td><td class="num">127</td><td class="num">1</td><td class="num">80</td><td class="num">196–327</td><td class="num">1</td></tr>
+<tr><td class="feat">REP</td><td class="mono">L</td><td class="num">9</td><td class="num">203</td><td class="num">62</td><td class="num">1</td><td class="num">400</td><td class="num">1102–1977</td><td class="num">0</td></tr>
+<tr><td class="feat">TGB3</td><td class="mono">TGB3</td><td class="num">1</td><td class="num">3</td><td class="num">3</td><td class="num">0</td><td class="num">30</td><td class="num">40–130</td><td class="num">0</td></tr>
+</tbody></table></div>
+
+<div class="note bad">
+<h3>TGB3 has one profile built from three sequences.</h3>
+<p>All three are isolates of a single virus, <em>Allexivirus sigmamedicagonis</em>, and that one profile calls TGB3 on 101 of 103 genomes. The gene is real — allexiviruses initiate it at a CUG (Lezzhov 2015, PMID 26296665) — but the evidence base behind the profile is the thinnest in either module, and its 5&prime; coordinate is approximate because the CUG cannot be located mechanically.</p>
+<p>Two further Allexivirus TGB3 proteins exist in the source data, from Blackberry calico virus (89 aa) and Garlic virus C AS16 (94 aa). Neither clustered, so neither contributes. Recovering them is the cheapest available improvement to this module.</p>
+</div>
+
+<h2>Why these thresholds</h2>
+<p><code>upstream_ext</code> is set per feature from measurement, not policy. Each firing of <code>scan_to_met_start</code> was recorded as finding a Met or running to the previous in-frame stop: ALLEXI_40K 19:4, CP 12:2 and TGB2/NABP never firing keep the scan enabled; REP 1:4, TGB1 0:18 and TGB3 2:190 have it disabled.</p>
+<p><strong>TGB3's length gate is deliberately loose</strong> at 40–130 against a training distribution that is a single value of 98. Because <code>upstream_ext: 0</code> anchors the call at the homology boundary rather than the true CUG, a gate tightened to the training data would flag the coordinate rather than the genome.</p>
+
+<h2>Composition</h2>
+<p>Every profile is Allexivirus-only except <code>TGB1.9</code>, which is 20 of 21 (95%). Both the parent and this module retain these sequences: a split does not delete profiles from the parent, so Alphaflexiviridae still carries all 1,321 in its own profiles.</p>
+<p>NABP is worth noting for the opposite reason to the parent module: here its 338 sequences are all Allexivirus and it is called on 65% of genomes, whereas in Alphaflexiviridae the same 338 sequences dominate a feature called on 3% of genomes.</p>
+
+<h2>Profile identifiers</h2>
+<p><code>Allexivirus.&lt;FEATURE&gt;.&lt;n&gt;</code>, integers throughout. These profiles kept the numbers they were renumbered to in the parent before the split, so <code>TGB3.25</code> here is the profile that was <code>TGB3.lo7</code> and then <code>TGB3.25</code> in Alphaflexiviridae. The ids are written into every annotated genome's <code>family_assignments</code>, which is why the <code>loN</code> prefix was removed.</p>
+
+<h2>Rebuilding</h2>
+<pre><code>cp -R modules/Allexivirus/PSSM-Alignments  mywork/Alignments/Allexivirus
+cp    modules/Allexivirus/Allexivirus_Viral_PSSM.json  mywork/
+cp -R modules/Allexivirus/Rep-Contigs      mywork/
+python3 skill/scripts/pssms_from_alignments.py --workdir mywork \
+        --module Allexivirus --write
+python3 skill/scripts/install_module.py --workdir mywork --repo &lt;Viral_Annotation&gt; --check</code></pre>
+
+<footer>
+Generated 21 September 2026 from the installed module. 76 profiles verified against 76 alignments, no feature mismatched, no ragged alignments.
+Built with the LowVan module kit &middot; <span class="mono">jimdavis1/LowVan_Skill</span>
+</footer>
+</div>

@@ -1,0 +1,171 @@
+<title>Allexivirus Coverage Audit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{--ink:#1b2320;--ink-2:#3f4b46;--ink-3:#6b7873;--ground:#f7f6f1;--panel:#fff;
+    --rule:#ddded6;--leaf:#2f6b4f;--leaf-soft:#e6efe8;--amber:#8a6212;--amber-soft:#f6eeda;
+    --rust:#8d3a28;--rust-soft:#f6e6e1;--shadow:0 1px 2px rgba(27,35,32,.05);}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;--panel:#1a1f1c;
+    --rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;--amber-soft:#2c2415;
+    --rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}}
+  :root[data-theme="dark"]{--ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;
+    --panel:#1a1f1c;--rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;
+    --amber-soft:#2c2415;--rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}
+  body{background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:60rem;margin:0 auto;padding-inline:20px;padding-block:44px 72px;}
+  h1,h2,h3{text-wrap:balance;margin:0;}
+  h1{font-size:2.15rem;font-weight:600;letter-spacing:-.015em;line-height:1.16;}
+  h2{font-size:1.32rem;font-weight:600;margin-top:2.6rem;padding-top:1.1rem;border-top:1px solid var(--rule);}
+  h3{font-size:1.02rem;font-weight:600;margin-top:1.7rem;}
+  p{margin:.85rem 0;max-width:66ch;color:var(--ink-2);}
+  p.lede{font-size:1.1rem;color:var(--ink);max-width:62ch;}
+  strong{color:var(--ink);font-weight:600;}
+  code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.845em;font-variant-numeric:tabular-nums;}
+  code{background:var(--leaf-soft);color:var(--ink);padding:.1em .38em;border-radius:3px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--leaf);margin:0 0 .55rem;}
+  .sub{color:var(--ink-3);font-size:.95rem;margin-top:.5rem;}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;
+    margin:1.8rem 0;box-shadow:var(--shadow);}
+  .stat{background:var(--panel);padding:.95rem 1.05rem;}
+  .stat .n{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;color:var(--ink);
+    font-variant-numeric:tabular-nums;line-height:1.1;}
+  .stat .k{font-size:.76rem;color:var(--ink-3);margin-top:.25rem;line-height:1.35;}
+  .tw{overflow-x:auto;margin:1.15rem 0;}
+  table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:min(100%,30rem);}
+  th,td{text-align:left;padding:.48rem .7rem;border-bottom:1px solid var(--rule);}
+  th{font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-3);border-bottom:1.5px solid var(--ink-3);white-space:nowrap;}
+  td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.feat{font-family:"IBM Plex Mono",monospace;font-weight:500;}
+  .bar{display:block;height:5px;border-radius:2px;background:var(--leaf);min-width:2px;}
+  .bar.low{background:var(--amber);}
+  .barcell{width:30%;min-width:80px;vertical-align:middle;}
+  .note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--leaf);
+    border-radius:0 5px 5px 0;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow);}
+  .note.warn{border-left-color:var(--amber);} .note.bad{border-left-color:var(--rust);}
+  .note p{margin:.45rem 0;font-size:.94rem;} .note p:first-child{margin-top:0;}
+  .note p:last-child{margin-bottom:0;} .note h3{margin-top:0;font-size:.95rem;}
+  .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;padding:.16em .5em;border-radius:3px;vertical-align:.12em;}
+  .tag.ok{background:var(--leaf-soft);color:var(--leaf);}
+  .tag.warn{background:var(--amber-soft);color:var(--amber);}
+  .tag.bad{background:var(--rust-soft);color:var(--rust);}
+  pre{background:var(--panel);border:1px solid var(--rule);border-radius:5px;padding:.9rem 1.05rem;
+    overflow-x:auto;margin:1.1rem 0;box-shadow:var(--shadow);}
+  pre code{background:none;padding:0;font-size:.8rem;line-height:1.62;color:var(--ink-2);}
+  .hl{color:var(--rust);font-weight:600;} .hl2{color:var(--leaf);font-weight:600;}
+  ul{max-width:66ch;color:var(--ink-2);padding-left:1.15rem;} li{margin:.38rem 0;}
+  footer{margin-top:3rem;padding-top:1.1rem;border-top:1px solid var(--rule);color:var(--ink-3);font-size:.83rem;}
+</style>
+<div class="wrap">
+<p class="eyebrow">LowVan module audit &middot; new module</p>
+<h1>Allexivirus</h1>
+<p class="sub mono">7 features &middot; 76 profiles &middot; 25 rep contigs &middot; 1,226 genomes</p>
+
+<p class="lede">Split out of Alphaflexiviridae because its TGB3 has no start codon. That is not a defect in the data: allexiviruses initiate TGB3 at a CUG, and a module can hold only one setting per feature.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">99.0%</div><div class="k">genomes routed<br>303 of 306</div></div>
+  <div class="stat"><div class="n">91.3%</div><div class="k">no genome or<br>contig flag</div></div>
+  <div class="stat"><div class="n">89.3%</div><div class="k">genuinely clean<br>92 of 103</div></div>
+  <div class="stat"><div class="n">100%</div><div class="k">TGB1 and TGB2</div></div>
+  <div class="stat"><div class="n">96%</div><div class="k">TGB3 calls at a<br>non-Met — expected</div></div>
+</div>
+
+<h2>The reason this module exists</h2>
+
+<div class="note">
+<h3>Allexivirus TGB3 initiates at a CUG, not an AUG.</h3>
+<p>Lezzhov et al. 2015, <em>J Gen Virol</em> 96:3159–64 (PMID 26296665) showed by site-directed mutagenesis that shallot virus X — the type species — translates TGB3 from a CUG by leaky scanning, on a bicistronic template shared with TGB2. The coding sequence is conserved across the genus; only the initiator is non-canonical.</p>
+</div>
+
+<p>Three observations in the sequence data were originally read as evidence that allexivirus TGB3 does not exist. The paper explains all three, and the gene is real:</p>
+
+<div class="tw"><table>
+<thead><tr><th>Observation</th><th>Read as</th><th>Actually</th></tr></thead>
+<tbody>
+<tr><td>88 of 98 genomes have no Met anywhere in the TGB3 reading frame</td><td>no gene</td><td>no AUG, because the initiator is a CUG</td></tr>
+<tr><td>93 of 98 TGB3 calls overlap both TGB2 and the 40K protein</td><td>spurious call wedged between neighbours</td><td>expected — TGB2 and TGB3 share one bicistronic template</td></tr>
+<tr><td>BV-BRC annotates 5 Allexivirus TGB3 against 179 TGB1 and 125 TGB2</td><td>the protein is not there</td><td>ORF callers skip a gene with no AUG</td></tr>
+</tbody></table></div>
+
+<p>The correction matters for how the module is built. Suppressing the calls — by raising <code>bit_cutoff</code> or retiring the profile — would have removed a real gene. Both were measured and neither worked anyway: the score distributions overlap (Allexivirus 31.4–71.6, Potexvirus 44.9–202.3, so no cutoff separates them), and with the dominant profile retired 75 of 82 genomes still received a TGB3 from the next profiles down.</p>
+
+<h2>upstream_ext, set per feature from measurement</h2>
+<p><code>scan_to_met_start</code> was instrumented across every annotated genome and each firing recorded as finding a Met or running to the previous in-frame stop.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th class="num">found Met</th><th class="num">ran to stop</th><th class="num">upstream_ext</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td class="feat">ALLEXI_40K</td><td class="num">19</td><td class="num">4</td><td class="num">1</td><td><span class="tag ok">earns its keep</span></td></tr>
+<tr><td class="feat">CP</td><td class="num">12</td><td class="num">2</td><td class="num">1</td><td><span class="tag ok">earns its keep</span></td></tr>
+<tr><td class="feat">TGB2</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td>never fires</td></tr>
+<tr><td class="feat">NABP</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td>never fires</td></tr>
+<tr><td class="feat">REP</td><td class="num">1</td><td class="num">4</td><td class="num">0</td><td><span class="tag warn">fails</span></td></tr>
+<tr><td class="feat">TGB1</td><td class="num">0</td><td class="num">18</td><td class="num">0</td><td><span class="tag warn">never succeeds</span></td></tr>
+<tr><td class="feat">TGB3</td><td class="num">2</td><td class="num">190</td><td class="num">0</td><td><span class="tag bad">95&times; more misses</span></td></tr>
+</tbody></table></div>
+
+<p>TGB3 at 2 against 190 is the row that could not be reconciled with Potexvirus, where the same feature scores 38 against 10. Turning the scan off stops the annotator hunting an AUG that does not exist and emitting a CDS ~35 residues too long into TGB2.</p>
+
+<div class="note warn">
+<h3>The 5&prime; coordinate of TGB3 is approximate, and that is a known limitation.</h3>
+<p><code>upstream_ext: 0</code> stops the over-extension but does not place the N-terminus on the true CUG, because the CUG cannot be located mechanically: 65% of genomes have some in-frame CTG upstream of the match but at 1–47 codons with no consistent offset, and 35% have none before a stop. The call is therefore anchored at the homology boundary. <code>min_len</code> 40 and <code>max_len</code> 130 are deliberately wide — a gate tightened to the training distribution would flag the coordinate rather than the genome.</p>
+</div>
+
+<h2>Feature coverage</h2>
+<p>Of 103 genomes routed to this module.</p>
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th>Symbol</th><th class="num">Called</th><th class="num">Rate</th><th class="barcell"></th><th class="num">non-Met</th></tr></thead>
+<tbody>
+<tr><td class="feat">TGB1</td><td class="mono">TGB1</td><td class="num">103</td><td class="num">100.0%</td><td class="barcell"><span class="bar" style="width:100%"></span></td><td class="num">11</td></tr>
+<tr><td class="feat">TGB2</td><td class="mono">TGB2</td><td class="num">103</td><td class="num">100.0%</td><td class="barcell"><span class="bar" style="width:100%"></span></td><td class="num">0</td></tr>
+<tr><td class="feat">CP</td><td class="mono">N</td><td class="num">101</td><td class="num">98.1%</td><td class="barcell"><span class="bar" style="width:98.1%"></span></td><td class="num">1</td></tr>
+<tr><td class="feat">TGB3</td><td class="mono">TGB3</td><td class="num">101</td><td class="num">98.1%</td><td class="barcell"><span class="bar" style="width:98.1%"></span></td><td class="num">97</td></tr>
+<tr><td class="feat">REP</td><td class="mono">L</td><td class="num">101</td><td class="num">98.1%</td><td class="barcell"><span class="bar" style="width:98.1%"></span></td><td class="num">3</td></tr>
+<tr><td class="feat">ALLEXI_40K</td><td class="mono">Allexi_40K</td><td class="num">100</td><td class="num">97.1%</td><td class="barcell"><span class="bar" style="width:97.1%"></span></td><td class="num">2</td></tr>
+<tr><td class="feat">NABP</td><td class="mono">NABP</td><td class="num">67</td><td class="num">65.0%</td><td class="barcell"><span class="bar low" style="width:65%"></span></td><td class="num">0</td></tr>
+</tbody></table></div>
+
+<p>The 97 non-Met TGB3 calls are the expected consequence of the CUG initiator and are <strong>not</strong> counted as defects. The 40K protein — the allexivirus-specific gene that Potexvirus lacks and the second reason for the split — is called on 97% of genomes.</p>
+
+<h2>Routing</h2>
+<p>25 references cover 303 of 306 genomes with contigs: <strong>99.0%</strong>, the highest of any module built for this class. Three clusters holding three genomes remain uncovered. The genus has a few well-sequenced dominant species — the garlic viruses A, B, C, D, E and X plus shallot virus X — which is precisely the structure that makes routing cheap, in contrast to Endornaviridae where 141 species formed 141 nucleotide islands and the taxon was withdrawn.</p>
+
+<h2>Genome quality</h2>
+<div class="tw"><table>
+<thead><tr><th>Measure</th><th class="num">Count</th><th class="num">Rate</th><th class="num">95% CI</th></tr></thead>
+<tbody>
+<tr><td>No genome or contig flag</td><td class="num">94</td><td class="num">91.3%</td><td class="num">&mdash;</td></tr>
+<tr><td>Genuinely clean</td><td class="num">92</td><td class="num">89.3%</td><td class="num">81.9 – 93.9</td></tr>
+</tbody></table></div>
+<div class="tw"><table>
+<thead><tr><th>Flag</th><th class="num">n</th><th>Attribution</th></tr></thead>
+<tbody>
+<tr><td class="mono">Feature is too short</td><td class="num">7</td><td>fragmentary assemblies</td></tr>
+<tr><td class="mono">Genome is missing essential feature</td><td class="num">6</td><td>partial genomes</td></tr>
+<tr><td class="mono">Genome has too many HSPs for</td><td class="num">3</td><td>duplicate calls on split contigs</td></tr>
+<tr><td class="mono">Feature is too long</td><td class="num">1</td><td>residual over-extension</td></tr>
+<tr><td class="mono">Contig has too many ambiguous bases</td><td class="num">1</td><td>submission quality</td></tr>
+</tbody></table></div>
+
+<h2>Known weaknesses</h2>
+<ul>
+<li><strong>TGB3 rests on three training sequences</strong>, all isolates of one virus (<em>Allexivirus sigmamedicagonis</em>). Two further Allexivirus TGB3 proteins exist in the collection — from Blackberry calico virus and Garlic virus C AS16 — but never clustered. The profile generalises across the genus, but the evidence base is thin and the N-terminus is unresolved.</li>
+<li><strong>NABP is called on 65% of genomes.</strong> Whether the remaining third genuinely lack it or the profiles miss them is unmeasured.</li>
+<li><strong>copy_num cannot distinguish "expected once" from "required".</strong> <code>viral_genome_quality.pl</code> treats any CDS carrying <code>copy_num</code> as essential, so a genus-restricted accessory can have neither — which is why duplicate <code>ALLEXI_40K</code> calls cannot be flagged without falsely flagging every genome that lacks it.</li>
+</ul>
+
+<h2>Provenance</h2>
+<p>76 profiles against 76 alignments, no feature mismatched, no ragged alignments. Every profile was selected from the parent module on the criterion that ≥80% of its training sequences are Allexivirus; 75 of 76 are 100% Allexivirus and the remaining one (TGB1.9) is 95%. Profiles were not deleted from the parent, following the Merhavirus precedent.</p>
+<p>The Lezzhov citation sits in <code>PMID_claude_generated</code>, not <code>PMID</code>. It was found and read only as an abstract and secondary sources by a language model; a curator has not confirmed it, and reading a paper does not clear the flag.</p>
+
+<footer>
+Measured 21 September 2026. Routing from 306 Allexivirus genomes with contigs; quality and feature rates from the 103 genomes routed here in a 282-exemplar run.
+Built with the LowVan module kit &middot; <span class="mono">jimdavis1/LowVan_Skill</span>
+</footer>
+</div>

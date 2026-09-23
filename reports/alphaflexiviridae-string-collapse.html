@@ -1,0 +1,127 @@
+<title>Alphaflexiviridae String Collapse</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{--ink:#1b2320;--ink-2:#3f4b46;--ink-3:#6b7873;--ground:#f7f6f1;--panel:#fff;
+    --rule:#ddded6;--leaf:#2f6b4f;--leaf-soft:#e6efe8;--amber:#8a6212;--amber-soft:#f6eeda;
+    --rust:#8d3a28;--rust-soft:#f6e6e1;--shadow:0 1px 2px rgba(27,35,32,.05);}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;--panel:#1a1f1c;
+    --rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;--amber-soft:#2c2415;
+    --rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}}
+  :root[data-theme="dark"]{--ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;
+    --panel:#1a1f1c;--rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;
+    --amber-soft:#2c2415;--rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}
+  body{background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:60rem;margin:0 auto;padding-inline:20px;padding-block:44px 72px;}
+  h1,h2,h3{text-wrap:balance;margin:0;}
+  h1{font-size:2.15rem;font-weight:600;letter-spacing:-.015em;line-height:1.16;}
+  h2{font-size:1.32rem;font-weight:600;margin-top:2.6rem;padding-top:1.1rem;border-top:1px solid var(--rule);}
+  h3{font-size:1.02rem;font-weight:600;margin-top:1.7rem;}
+  p{margin:.85rem 0;max-width:66ch;color:var(--ink-2);}
+  p.lede{font-size:1.1rem;color:var(--ink);max-width:62ch;}
+  strong{color:var(--ink);font-weight:600;}
+  code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.845em;font-variant-numeric:tabular-nums;}
+  code{background:var(--leaf-soft);color:var(--ink);padding:.1em .38em;border-radius:3px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--leaf);margin:0 0 .55rem;}
+  .sub{color:var(--ink-3);font-size:.95rem;margin-top:.5rem;}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;
+    margin:1.8rem 0;box-shadow:var(--shadow);}
+  .stat{background:var(--panel);padding:.95rem 1.05rem;}
+  .stat .n{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;color:var(--ink);
+    font-variant-numeric:tabular-nums;line-height:1.1;}
+  .stat .k{font-size:.76rem;color:var(--ink-3);margin-top:.25rem;line-height:1.35;}
+  .tw{overflow-x:auto;margin:1.15rem 0;}
+  table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:min(100%,30rem);}
+  th,td{text-align:left;padding:.48rem .7rem;border-bottom:1px solid var(--rule);}
+  th{font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-3);border-bottom:1.5px solid var(--ink-3);white-space:nowrap;}
+  td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.feat{font-family:"IBM Plex Mono",monospace;font-weight:500;}
+  .bar{display:block;height:5px;border-radius:2px;background:var(--leaf);min-width:2px;}
+  .bar.low{background:var(--amber);}
+  .barcell{width:30%;min-width:80px;vertical-align:middle;}
+  .note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--leaf);
+    border-radius:0 5px 5px 0;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow);}
+  .note.warn{border-left-color:var(--amber);} .note.bad{border-left-color:var(--rust);}
+  .note p{margin:.45rem 0;font-size:.94rem;} .note p:first-child{margin-top:0;}
+  .note p:last-child{margin-bottom:0;} .note h3{margin-top:0;font-size:.95rem;}
+  .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;padding:.16em .5em;border-radius:3px;vertical-align:.12em;}
+  .tag.ok{background:var(--leaf-soft);color:var(--leaf);}
+  .tag.warn{background:var(--amber-soft);color:var(--amber);}
+  .tag.bad{background:var(--rust-soft);color:var(--rust);}
+  pre{background:var(--panel);border:1px solid var(--rule);border-radius:5px;padding:.9rem 1.05rem;
+    overflow-x:auto;margin:1.1rem 0;box-shadow:var(--shadow);}
+  pre code{background:none;padding:0;font-size:.8rem;line-height:1.62;color:var(--ink-2);}
+  .hl{color:var(--rust);font-weight:600;} .hl2{color:var(--leaf);font-weight:600;}
+  ul{max-width:66ch;color:var(--ink-2);padding-left:1.15rem;} li{margin:.38rem 0;}
+  footer{margin-top:3rem;padding-top:1.1rem;border-top:1px solid var(--rule);color:var(--ink-3);font-size:.83rem;}
+</style>
+<div class="wrap">
+<p class="eyebrow">LowVan annotation collapse</p>
+<h1>Alphaflexiviridae Vocabulary</h1>
+<p class="sub mono">275 source strings &rarr; 6 controlled annotations &middot; 45.8&times; collapse</p>
+
+<p class="lede">Potexvirus and Lolavirus between them use 275 distinct strings for six proteins. Shrinking that is the point of LowVan, and the shape of the excess is as informative as its size.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">275</div><div class="k">distinct source<br>strings</div></div>
+  <div class="stat"><div class="n">6</div><div class="k">controlled<br>annotations</div></div>
+  <div class="stat"><div class="n">45.8&times;</div><div class="k">collapse</div></div>
+  <div class="stat"><div class="n">9,914</div><div class="k">features<br>binned</div></div>
+</div>
+
+<h2>Collapse by feature</h2>
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th class="num">source strings</th><th class="num">features</th><th>the four commonest</th></tr></thead>
+<tbody>
+<tr><td class="feat">CP</td><td class="num">23</td><td class="num">2773</td><td class="mono">coat protein (2306) · CP (164) · CP protein (95) · capsid protein (94)</td></tr>
+<tr><td class="feat">TGB3</td><td class="num">44</td><td class="num">1605</td><td class="mono">triple gene block protein 3 (789) · TGBp3 (278) · TGB3 protein (148) · triple gene block 3 (108)</td></tr>
+<tr><td class="feat">TGB1</td><td class="num">54</td><td class="num">1527</td><td class="mono">triple gene block protein 1 (749) · TGBp1 (239) · TGB1 protein (139) · triple gene block 1 (83)</td></tr>
+<tr><td class="feat">TGB2</td><td class="num">47</td><td class="num">1524</td><td class="mono">triple gene block protein 2 (755) · TGBp2 (309) · triple gene block 2 (90) · TGB2 protein (89)</td></tr>
+<tr><td class="feat">REP</td><td class="num">44</td><td class="num">1018</td><td class="mono">RNA-dependent RNA polymerase (587) · replicase (118) · replication-associated protein (48) · putative RNA-dependent RNA polymerase (39)</td></tr>
+<tr><td class="feat">NABP</td><td class="num">12</td><td class="num">118</td><td class="mono">nucleic acid binding protein (46) · putative 23kDa nucleic acid binding protein (33) · putative 23 kDa nucleic acid binding protein (14) · 23KDa hypothetical protein (6)</td></tr>
+</tbody></table></div>
+
+<h2>Where the 275 come from</h2>
+<p>Almost none of it is disagreement about biology. The three triple gene block proteins alone account for <strong>145 of the 275 strings</strong> for three genes, and the variation is orthographic rather than semantic:</p>
+<ul>
+<li>the <code>TGBp1</code> / <code>TGB1</code> / <code>TGB1 protein</code> / <code>triple gene block protein 1</code> / <code>triple gene block 1</code> family, in every combination of spacing, case and the trailing word "protein"</li>
+<li><code>putative</code> as a free-floating prefix, doubling many strings without changing the claim</li>
+<li>kilodalton sizes embedded in names — <code>23kDa</code>, <code>23 kDa</code>, <code>23KDa</code> — which are three spellings of one number and pin the string to one virus's protein size</li>
+<li>plain typographic noise</li>
+</ul>
+<p>A consumer matching on strings sees 275 proteins where there are six. That is the cost LowVan removes.</p>
+
+<div class="note warn">
+<p><strong>NABP is the feature to read sceptically.</strong> Only 118 features carry it in this module, and four of its twelve strings embed "23 kDa", which is a Potexvirus-specific size. Its profiles are also still trained 338:54 on Allexivirus sequences inherited from before the split, for genomes that now route elsewhere. The feature is genuine but thin, and it is called on 5 of 170 genomes.</p>
+</div>
+
+<h2>What the module emits instead</h2>
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th>Annotation</th><th>Symbol</th></tr></thead>
+<tbody>
+<tr><td class="feat">REP</td><td>RNA-dependent RNA polymerase</td><td class="mono">L</td></tr>
+<tr><td class="feat">CP</td><td>Nucleocapsid protein</td><td class="mono">N</td></tr>
+<tr><td class="feat">TGB1</td><td>Triple gene block protein 1</td><td class="mono">TGB1</td></tr>
+<tr><td class="feat">TGB2</td><td>Triple gene block protein 2</td><td class="mono">TGB2</td></tr>
+<tr><td class="feat">TGB3</td><td>Triple gene block protein 3</td><td class="mono">TGB3</td></tr>
+<tr><td class="feat">NABP</td><td>Nucleic acid-binding protein</td><td class="mono">NABP</td></tr>
+</tbody></table></div>
+
+<p>The annotation records what the protein does; the short community name lives in <code>gene_symbol</code>. So the replicase is "RNA-dependent RNA polymerase" with symbol <code>L</code>, never "L protein". No taxon prefix appears in any string — that convention was removed from the vocabulary in the current revision.</p>
+
+<p>This module adds nothing new to the controlled vocabulary: all six strings already existed in it before this build.</p>
+
+<h2>A note on what is not here</h2>
+<p><code>ALLEXI_40K</code> was declared by this module until Allexivirus was split out. It is 100% Allexivirus and its genomes now route elsewhere, so the feature was removed rather than left declared and uncallable. Its source strings — and the discovery that BV-BRC labels that protein "TGB3" in 127 sequences of median 364 aa — are documented in the Allexivirus collapse instead.</p>
+
+<footer>
+Generated 21 September 2026 from the BV-BRC dump backing this module: 9,914 protein features across 4,148 Potexvirus and Lolavirus genomes.
+Built with the LowVan module kit &middot; <span class="mono">jimdavis1/LowVan_Skill</span>
+</footer>
+</div>

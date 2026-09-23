@@ -1,0 +1,180 @@
+<title>Alphaflexiviridae Coverage Audit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{--ink:#1b2320;--ink-2:#3f4b46;--ink-3:#6b7873;--ground:#f7f6f1;--panel:#fff;
+    --rule:#ddded6;--leaf:#2f6b4f;--leaf-soft:#e6efe8;--amber:#8a6212;--amber-soft:#f6eeda;
+    --rust:#8d3a28;--rust-soft:#f6e6e1;--shadow:0 1px 2px rgba(27,35,32,.05);}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;--panel:#1a1f1c;
+    --rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;--amber-soft:#2c2415;
+    --rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}}
+  :root[data-theme="dark"]{--ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;
+    --panel:#1a1f1c;--rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;
+    --amber-soft:#2c2415;--rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}
+  body{background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:60rem;margin:0 auto;padding-inline:20px;padding-block:44px 72px;}
+  h1,h2,h3{text-wrap:balance;margin:0;}
+  h1{font-size:2.15rem;font-weight:600;letter-spacing:-.015em;line-height:1.16;}
+  h2{font-size:1.32rem;font-weight:600;margin-top:2.6rem;padding-top:1.1rem;border-top:1px solid var(--rule);}
+  h3{font-size:1.02rem;font-weight:600;margin-top:1.7rem;}
+  p{margin:.85rem 0;max-width:66ch;color:var(--ink-2);}
+  p.lede{font-size:1.1rem;color:var(--ink);max-width:62ch;}
+  strong{color:var(--ink);font-weight:600;}
+  code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.845em;font-variant-numeric:tabular-nums;}
+  code{background:var(--leaf-soft);color:var(--ink);padding:.1em .38em;border-radius:3px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--leaf);margin:0 0 .55rem;}
+  .sub{color:var(--ink-3);font-size:.95rem;margin-top:.5rem;}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;
+    margin:1.8rem 0;box-shadow:var(--shadow);}
+  .stat{background:var(--panel);padding:.95rem 1.05rem;}
+  .stat .n{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;color:var(--ink);
+    font-variant-numeric:tabular-nums;line-height:1.1;}
+  .stat .k{font-size:.76rem;color:var(--ink-3);margin-top:.25rem;line-height:1.35;}
+  .tw{overflow-x:auto;margin:1.15rem 0;}
+  table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:min(100%,30rem);}
+  th,td{text-align:left;padding:.48rem .7rem;border-bottom:1px solid var(--rule);}
+  th{font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-3);border-bottom:1.5px solid var(--ink-3);white-space:nowrap;}
+  td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.feat{font-family:"IBM Plex Mono",monospace;font-weight:500;}
+  .bar{display:block;height:5px;border-radius:2px;background:var(--leaf);min-width:2px;}
+  .bar.low{background:var(--amber);}
+  .barcell{width:30%;min-width:80px;vertical-align:middle;}
+  .note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--leaf);
+    border-radius:0 5px 5px 0;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow);}
+  .note.warn{border-left-color:var(--amber);} .note.bad{border-left-color:var(--rust);}
+  .note p{margin:.45rem 0;font-size:.94rem;} .note p:first-child{margin-top:0;}
+  .note p:last-child{margin-bottom:0;} .note h3{margin-top:0;font-size:.95rem;}
+  .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;padding:.16em .5em;border-radius:3px;vertical-align:.12em;}
+  .tag.ok{background:var(--leaf-soft);color:var(--leaf);}
+  .tag.warn{background:var(--amber-soft);color:var(--amber);}
+  .tag.bad{background:var(--rust-soft);color:var(--rust);}
+  pre{background:var(--panel);border:1px solid var(--rule);border-radius:5px;padding:.9rem 1.05rem;
+    overflow-x:auto;margin:1.1rem 0;box-shadow:var(--shadow);}
+  pre code{background:none;padding:0;font-size:.8rem;line-height:1.62;color:var(--ink-2);}
+  .hl{color:var(--rust);font-weight:600;} .hl2{color:var(--leaf);font-weight:600;}
+  ul{max-width:66ch;color:var(--ink-2);padding-left:1.15rem;} li{margin:.38rem 0;}
+  footer{margin-top:3rem;padding-top:1.1rem;border-top:1px solid var(--rule);color:var(--ink-3);font-size:.83rem;}
+</style>
+<div class="wrap">
+<p class="eyebrow">LowVan module audit &middot; revised after the Allexivirus split</p>
+<h1>Alphaflexiviridae</h1>
+<p class="sub mono">Potexvirus + Lolavirus &middot; 6 features &middot; 259 profiles &middot; 25 rep contigs</p>
+
+<p class="lede">This module used to contain Allexivirus as well. It no longer does, and the separation is the most consequential thing in this audit: one feature needed opposite settings in the two genera, and holding both in one module degraded a module that is otherwise the strongest built for this class.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">96.8%</div><div class="k">exemplars routed<br>273 of 282, both modules</div></div>
+  <div class="stat"><div class="n">94.1%</div><div class="k">no genome or<br>contig flag</div></div>
+  <div class="stat"><div class="n">92.4%</div><div class="k">genuinely clean<br>157 of 170</div></div>
+  <div class="stat"><div class="n">100%</div><div class="k">replicase, TGB1<br>and TGB2</div></div>
+  <div class="stat"><div class="n">3.0%</div><div class="k">TGB3 calls not<br>at a Met (was 37.6%)</div></div>
+</div>
+
+<h2>What the split changed</h2>
+<p>Everything below was measured twice, before and after, on the same genomes with the same tools.</p>
+<div class="tw"><table>
+<thead><tr><th>Measure</th><th class="num">Combined module</th><th class="num">After the split</th></tr></thead>
+<tbody>
+<tr><td>Genuinely clean (both modules)</td><td class="num">227 / 271 &nbsp;83.8%</td><td class="num">249 / 273 &nbsp;<strong>91.2%</strong></td></tr>
+<tr><td><code>Feature is too long</code></td><td class="num">30</td><td class="num"><strong>4</strong></td></tr>
+<tr><td><code>Feature is too short</code></td><td class="num">10</td><td class="num">11</td></tr>
+<tr><td>TGB3 calls not starting at Met</td><td class="num">100 / 266 &nbsp;37.6%</td><td class="num">5 / 164 &nbsp;<strong>3.0%</strong></td></tr>
+</tbody></table></div>
+
+<p>At 92.4% genuinely clean this is now the best module built for Alsuviricetes, ahead of Tobamovirus (89.4%), Hepeviridae (89.1%) and Trivirinae (88.5%). It is also the only one besides Hepeviridae scored on a full routed set rather than a ~95-genome sample.</p>
+
+<h2>Why the split was forced</h2>
+<div class="note">
+<h3>One feature needed <code>upstream_ext: 1</code> in one genus and <code>0</code> in the other.</h3>
+<p>Not a tidiness exercise. A module carries one setting per feature, so this could not be expressed without separating the genera.</p>
+</div>
+
+<p><code>upstream_ext</code> permits the annotator to scan upstream for a Met when a PSSM match does not begin with one. To decide it per feature rather than by policy, <code>scan_to_met_start</code> was instrumented across all 273 annotated genomes and every firing recorded as either finding a Met or running to the previous in-frame stop.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th class="num">Potexvirus found</th><th class="num">ran to stop</th><th class="num">ext</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td class="feat">TGB3</td><td class="num">38</td><td class="num">10</td><td class="num">1</td><td><span class="tag ok">scan earns its keep</span></td></tr>
+<tr><td class="feat">CP</td><td class="num">26</td><td class="num">6</td><td class="num">1</td><td><span class="tag ok">earns its keep</span></td></tr>
+<tr><td class="feat">TGB2</td><td class="num">13</td><td class="num">4</td><td class="num">1</td><td><span class="tag ok">earns its keep</span></td></tr>
+<tr><td class="feat">NABP</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td><span class="tag ok">no misfires</span></td></tr>
+<tr><td class="feat">TGB1</td><td class="num">7</td><td class="num">18</td><td class="num">0</td><td><span class="tag warn">fails 2.6&times; more often</span></td></tr>
+<tr><td class="feat">REP</td><td class="num">3</td><td class="num">6</td><td class="num">0</td><td><span class="tag warn">fails twice as often</span></td></tr>
+</tbody></table></div>
+
+<p>TGB3 scores <strong>38 found against 10 missed</strong> here. The same feature in Allexivirus scores <strong>2 against 190</strong>, because allexivirus TGB3 initiates at a CUG rather than an AUG — there is no Met to find, so the scan runs to the previous stop and emits a CDS roughly 35 residues too long, overlapping TGB2. Setting the field either way was wrong for one genus.</p>
+
+<p>Two results here would have been missed by setting this from policy rather than measurement: <strong>TGB1 and REP fail in both genera</strong> and are now <code>0</code> in both modules. A blanket "leave it on" would have kept 24 misfires; a blanket "turn it off" would have cost 40 correct initiators on TGB3 alone.</p>
+
+<h2>Feature coverage</h2>
+<p>Of 170 genomes routed to this module in the measurement run. Gene symbols follow the rhabdovirus precedent already in the repository — replicase is <code>L</code>, coat protein is <code>N</code>.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th>Symbol</th><th class="num">Called</th><th class="num">Rate</th><th class="barcell"></th><th class="num">non-Met</th></tr></thead>
+<tbody>
+<tr><td class="feat">REP</td><td class="mono">L</td><td class="num">170</td><td class="num">100.0%</td><td class="barcell"><span class="bar" style="width:100%"></span></td><td class="num">7</td></tr>
+<tr><td class="feat">TGB1</td><td class="mono">TGB1</td><td class="num">170</td><td class="num">100.0%</td><td class="barcell"><span class="bar" style="width:100%"></span></td><td class="num">16</td></tr>
+<tr><td class="feat">TGB2</td><td class="mono">TGB2</td><td class="num">170</td><td class="num">100.0%</td><td class="barcell"><span class="bar" style="width:100%"></span></td><td class="num">2</td></tr>
+<tr><td class="feat">CP</td><td class="mono">N</td><td class="num">169</td><td class="num">99.4%</td><td class="barcell"><span class="bar" style="width:99.4%"></span></td><td class="num">3</td></tr>
+<tr><td class="feat">TGB3</td><td class="mono">TGB3</td><td class="num">164</td><td class="num">96.5%</td><td class="barcell"><span class="bar" style="width:96.5%"></span></td><td class="num">5</td></tr>
+<tr><td class="feat">NABP</td><td class="mono">NABP</td><td class="num">5</td><td class="num">2.9%</td><td class="barcell"><span class="bar low" style="width:2.9%"></span></td><td class="num">0</td></tr>
+</tbody></table></div>
+
+<div class="note warn">
+<p><strong>NABP is rare but correct, and the profiles are partitioned by genus.</strong> It is called on 4 of the 123 genomes in the post-split run, and every call is a <em>Mandarivirus</em> — Indian citrus ringspot, Citrus yellow vein clearing, Citrus yellow mottle and White kwao krua mandarivirus 1, at 220–223 aa. Each was called by a Mandarivirus-trained profile: <code>NABP.5</code> is 38 Citrus yellow vein clearing sequences at 222 aa, <code>NABP.14_1</code> is 9 Indian citrus ringspot and relatives at 178 aa. The Allexivirus-trained profiles are a separate 127-aa class and fire on nothing, because garlic and shallot genomes route to the Allexivirus module now. So the two genera do not mix within a profile and the retained Allexivirus training data cannot distort a call — it is dormant weight, not contamination. <b>An earlier version of this page called NABP a loose end and suggested rebuilding it from Potexvirus sequences alone. That was wrong twice over: there is no Potexvirus NABP in the collection at all, and the Mandarivirus profiles that do exist are already doing the right thing.</b> Curator's decision, 22 September 2026: the calls are correct, so the feature is kept as it is.</p>
+</div>
+
+<h2>Routing</h2>
+<p>Two figures, on two denominators, and they must not be confused.</p>
+<div class="tw"><table>
+<thead><tr><th>Measurement</th><th class="num">Before the split</th><th class="num">After</th></tr></thead>
+<tbody>
+<tr><td>Same 282 exemplars, whole taxon</td><td class="num">271 routed &nbsp;96.1%</td><td class="num">273 routed &nbsp;<strong>96.8%</strong></td></tr>
+<tr><td>Alphaflexiviridae, its own 1,042 genomes</td><td class="num">&mdash;</td><td class="num">939 &nbsp;90.1%</td></tr>
+<tr><td>Allexivirus, its own 306 genomes</td><td class="num">&mdash;</td><td class="num">303 &nbsp;99.0%</td></tr>
+</tbody></table></div>
+<p>On the comparison that holds the denominator fixed, <strong>routing improved</strong>: 271 of 282 exemplars before, 273 after. The 90.1% is a different question — how well 25 contigs cover this module's own 1,042 genomes now that six of the old references, all garlic viruses, have moved to Allexivirus. Reading 90.1% against 96.1% as a regression would be comparing a full genome set against an exemplar set.</p>
+
+<p>All nine unrouted exemplars are named: <strong>seven are Lolavirus</strong> — the entire genus in the sample — plus Agave potexvirus 1 and Camellia azalea potexvirus 1. Lolavirus holds 10 genomes, never earned a reference at this budget, and rides on Potexvirus homology for its calls. On the full genome set 103 genomes in 49 clusters remain uncovered.</p>
+
+<h2>Genome quality</h2>
+<div class="tw"><table>
+<thead><tr><th>Measure</th><th class="num">Count</th><th class="num">Rate</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>No genome or contig flag</td><td class="num">160</td><td class="num">94.1%</td><td>what <code>run_gto_eval</code> calls good</td></tr>
+<tr><td>Genuinely clean</td><td class="num">157</td><td class="num">92.4%</td><td>no genome, contig <em>or</em> feature flag</td></tr>
+</tbody></table></div>
+
+<div class="tw"><table>
+<thead><tr><th>Flag</th><th class="num">n</th><th>Attribution</th></tr></thead>
+<tbody>
+<tr><td class="mono">Genome is missing essential feature</td><td class="num">7</td><td>fragmentary assemblies</td></tr>
+<tr><td class="mono">Genome has too many HSPs for</td><td class="num">5</td><td>duplicate calls on split contigs</td></tr>
+<tr><td class="mono">Feature is too short</td><td class="num">4</td><td>genuine partials</td></tr>
+<tr><td class="mono">Feature is too long</td><td class="num">3</td><td>residual N-terminal over-extension</td></tr>
+<tr><td class="mono">Contig has too many ambiguous bases</td><td class="num">1</td><td>submission quality</td></tr>
+</tbody></table></div>
+
+<h2>Runaway upstream Met scanning</h2>
+<div class="note warn">
+<p>A property of the annotator, retained deliberately by the curator. Recorded because it shapes the numbers above, not as a proposal to change it.</p>
+</div>
+<p><code>scan_to_met_start</code> is documented as searching left "until it finds the first" Met. Its loop advances the candidate start one codon at a time and exits on either a Met or an in-frame stop, but the stop branch exits without restoring the original coordinate — so when there is no upstream Met it returns the codon after the previous stop and the CDS runs to the edge of the upstream ORF.</p>
+<p>The measurement above is the reason this is now a minor issue here rather than a major one: with <code>upstream_ext</code> set per feature from evidence, the scan fires where it succeeds and is disabled where it does not. Residual non-Met starts in this module total <strong>33 of 848 calls (3.9%)</strong>, concentrated in TGB1 (16) and REP (7), both of which are already <code>0</code> and are therefore anchored at the homology boundary rather than over-extended.</p>
+
+<h2>Provenance</h2>
+<p>259 profiles against 259 alignments, verified by direct comparison, no feature mismatched. Leftover profiles carry plain integers; the <code>loN</code> prefix that leaked a build-pipeline detail into <code>family_assignments</code> has been removed across the repository and the kit.</p>
+<p>The module declares six features. <code>ALLEXI_40K</code> was removed when Allexivirus left, because it is 100% Allexivirus and declaring a protein the module's taxa do not encode is worse than omitting it; its 17 profiles were retired on install and its alignments kept under <code>_superseded</code>.</p>
+<p>Annotation strings add nothing new to the controlled vocabulary. All citations are model-proposed and live in <code>PMID_claude_generated</code>; none has been read and confirmed by a curator.</p>
+
+<footer>
+Measured 19–21 September 2026. Coverage from 1,042 non-Allexivirus genomes; quality and feature rates from the 170 genomes routed here in a 282-exemplar run.
+Built with the LowVan module kit &middot; <span class="mono">jimdavis1/LowVan_Skill</span>
+</footer>
+</div>

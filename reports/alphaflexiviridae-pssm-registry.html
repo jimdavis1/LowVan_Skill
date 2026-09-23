@@ -1,0 +1,130 @@
+<title>Alphaflexiviridae PSSM Registry</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{--ink:#1b2320;--ink-2:#3f4b46;--ink-3:#6b7873;--ground:#f7f6f1;--panel:#fff;
+    --rule:#ddded6;--leaf:#2f6b4f;--leaf-soft:#e6efe8;--amber:#8a6212;--amber-soft:#f6eeda;
+    --rust:#8d3a28;--rust-soft:#f6e6e1;--shadow:0 1px 2px rgba(27,35,32,.05);}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;--panel:#1a1f1c;
+    --rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;--amber-soft:#2c2415;
+    --rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}}
+  :root[data-theme="dark"]{--ink:#e7eae5;--ink-2:#b3bdb7;--ink-3:#848f89;--ground:#12100d;
+    --panel:#1a1f1c;--rule:#2e3733;--leaf:#7fc09b;--leaf-soft:#1c2c23;--amber:#d9ab50;
+    --amber-soft:#2c2415;--rust:#e0907c;--rust-soft:#2e1c17;--shadow:0 1px 2px rgba(0,0,0,.4);}
+  body{background:var(--ground);color:var(--ink);font-family:"Newsreader",Georgia,serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:60rem;margin:0 auto;padding-inline:20px;padding-block:44px 72px;}
+  h1,h2,h3{text-wrap:balance;margin:0;}
+  h1{font-size:2.15rem;font-weight:600;letter-spacing:-.015em;line-height:1.16;}
+  h2{font-size:1.32rem;font-weight:600;margin-top:2.6rem;padding-top:1.1rem;border-top:1px solid var(--rule);}
+  h3{font-size:1.02rem;font-weight:600;margin-top:1.7rem;}
+  p{margin:.85rem 0;max-width:66ch;color:var(--ink-2);}
+  p.lede{font-size:1.1rem;color:var(--ink);max-width:62ch;}
+  strong{color:var(--ink);font-weight:600;}
+  code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.845em;font-variant-numeric:tabular-nums;}
+  code{background:var(--leaf-soft);color:var(--ink);padding:.1em .38em;border-radius:3px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--leaf);margin:0 0 .55rem;}
+  .sub{color:var(--ink-3);font-size:.95rem;margin-top:.5rem;}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;
+    margin:1.8rem 0;box-shadow:var(--shadow);}
+  .stat{background:var(--panel);padding:.95rem 1.05rem;}
+  .stat .n{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;color:var(--ink);
+    font-variant-numeric:tabular-nums;line-height:1.1;}
+  .stat .k{font-size:.76rem;color:var(--ink-3);margin-top:.25rem;line-height:1.35;}
+  .tw{overflow-x:auto;margin:1.15rem 0;}
+  table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:min(100%,30rem);}
+  th,td{text-align:left;padding:.48rem .7rem;border-bottom:1px solid var(--rule);}
+  th{font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-3);border-bottom:1.5px solid var(--ink-3);white-space:nowrap;}
+  td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.feat{font-family:"IBM Plex Mono",monospace;font-weight:500;}
+  .bar{display:block;height:5px;border-radius:2px;background:var(--leaf);min-width:2px;}
+  .bar.low{background:var(--amber);}
+  .barcell{width:30%;min-width:80px;vertical-align:middle;}
+  .note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--leaf);
+    border-radius:0 5px 5px 0;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow);}
+  .note.warn{border-left-color:var(--amber);} .note.bad{border-left-color:var(--rust);}
+  .note p{margin:.45rem 0;font-size:.94rem;} .note p:first-child{margin-top:0;}
+  .note p:last-child{margin-bottom:0;} .note h3{margin-top:0;font-size:.95rem;}
+  .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;padding:.16em .5em;border-radius:3px;vertical-align:.12em;}
+  .tag.ok{background:var(--leaf-soft);color:var(--leaf);}
+  .tag.warn{background:var(--amber-soft);color:var(--amber);}
+  .tag.bad{background:var(--rust-soft);color:var(--rust);}
+  pre{background:var(--panel);border:1px solid var(--rule);border-radius:5px;padding:.9rem 1.05rem;
+    overflow-x:auto;margin:1.1rem 0;box-shadow:var(--shadow);}
+  pre code{background:none;padding:0;font-size:.8rem;line-height:1.62;color:var(--ink-2);}
+  .hl{color:var(--rust);font-weight:600;} .hl2{color:var(--leaf);font-weight:600;}
+  ul{max-width:66ch;color:var(--ink-2);padding-left:1.15rem;} li{margin:.38rem 0;}
+  footer{margin-top:3rem;padding-top:1.1rem;border-top:1px solid var(--rule);color:var(--ink-3);font-size:.83rem;}
+</style>
+<div class="wrap">
+<p class="eyebrow">LowVan PSSM registry</p>
+<h1>Alphaflexiviridae Profiles</h1>
+<p class="sub mono">Potexvirus + Lolavirus &middot; 259 profiles &middot; 4,645 training sequences &middot; 6 features</p>
+
+<p class="lede">Every profile the annotator loads for this module, what it was trained on, and the thresholds that govern when it fires. Profiles are derived and are not shipped in the kit; they rebuild from the alignments listed here with <code>pssms_from_alignments.py</code>.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">259</div><div class="k">profiles</div></div>
+  <div class="stat"><div class="n">259</div><div class="k">alignments<br>one per profile</div></div>
+  <div class="stat"><div class="n">4,645</div><div class="k">training<br>sequences</div></div>
+  <div class="stat"><div class="n">6</div><div class="k">features</div></div>
+  <div class="stat"><div class="n">63</div><div class="k">profiles of<br>&le;2 sequences</div></div>
+</div>
+
+<h2>By feature</h2>
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th>Symbol</th><th class="num">Profiles</th><th class="num">Training seqs</th><th class="num">Largest</th><th class="num">&le;2 seqs</th><th class="num">bit</th><th class="num">length gate</th><th class="num">up_ext</th></tr></thead>
+<tbody>
+<tr><td class="feat">CP</td><td class="mono">N</td><td class="num">54</td><td class="num">1473</td><td class="num">250</td><td class="num">8</td><td class="num">80</td><td class="num">166–432</td><td class="num">1</td></tr>
+<tr><td class="feat">TGB1</td><td class="mono">TGB1</td><td class="num">51</td><td class="num">821</td><td class="num">259</td><td class="num">15</td><td class="num">60</td><td class="num">195–302</td><td class="num">0</td></tr>
+<tr><td class="feat">REP</td><td class="mono">L</td><td class="num">49</td><td class="num">991</td><td class="num">342</td><td class="num">13</td><td class="num">400</td><td class="num">1108–1896</td><td class="num">0</td></tr>
+<tr><td class="feat">TGB2</td><td class="mono">TGB2</td><td class="num">49</td><td class="num">552</td><td class="num">101</td><td class="num">11</td><td class="num">50</td><td class="num">91–145</td><td class="num">1</td></tr>
+<tr><td class="feat">TGB3</td><td class="mono">TGB3</td><td class="num">42</td><td class="num">416</td><td class="num">109</td><td class="num">15</td><td class="num">30</td><td class="num">46–129</td><td class="num">1</td></tr>
+<tr><td class="feat">NABP</td><td class="mono">NABP</td><td class="num">14</td><td class="num">392</td><td class="num">95</td><td class="num">1</td><td class="num">80</td><td class="num">82–276</td><td class="num">1</td></tr>
+</tbody></table></div>
+
+<h2>Composition of the training data</h2>
+<p>The module retains the Allexivirus sequences its profiles were built from, because a split does not delete profiles from the parent. For most features that is harmless redundancy. For <strong>NABP it inverts the balance</strong>: the feature is trained 338:54 on Allexivirus against Potexvirus, for genomes that now route to a different module, and it is called on only 5 of 170 genomes here.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Feature</th><th class="num">Potexvirus</th><th class="num">Allexivirus</th><th class="num">Lolavirus</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td class="feat">CP</td><td class="num">1129</td><td class="num">333</td><td class="num">4</td><td></td></tr>
+<tr><td class="feat">REP</td><td class="num">777</td><td class="num">203</td><td class="num">4</td><td></td></tr>
+<tr><td class="feat">TGB1</td><td class="num">653</td><td class="num">163</td><td class="num">4</td><td></td></tr>
+<tr><td class="feat">TGB2</td><td class="num">430</td><td class="num">115</td><td class="num">5</td><td></td></tr>
+<tr><td class="feat">TGB3</td><td class="num">409</td><td class="num">3</td><td class="num">4</td><td>the 3 Allexivirus sequences now also seed the Allexivirus module</td></tr>
+<tr><td class="feat">NABP</td><td class="num">54</td><td class="num">338</td><td class="num">0</td><td><span class="tag warn">inverted</span> rebuild from Potexvirus alone would be more honest</td></tr>
+</tbody></table></div>
+
+<div class="note warn">
+<p><strong>Lolavirus has four sequences per feature and no rep contig.</strong> The genus holds 10 genomes, never earned a reference at the 25-contig budget, and rides entirely on Potexvirus homology for its calls. It is named in the module and effectively unmodelled.</p>
+</div>
+
+<h2>Profile identifiers</h2>
+<p>Profiles are named <code>Alphaflexiviridae.&lt;FEATURE&gt;.&lt;n&gt;</code> with <code>n</code> a plain integer. Second-pass clusters — built from the leftover pool that reached no first-pass cluster — continue the same integer sequence rather than carrying a prefix.</p>
+<p>Earlier builds named them <code>lo1</code>, <code>lo2</code> … That prefix was visible provenance but it leaked a build-pipeline detail into a permanent identifier: the id is written into every annotated genome as <code>family_assignments → ["LOWVAN", "&lt;Module&gt;.&lt;FEAT&gt;.&lt;id&gt;", …]</code>, so a second id shape existed only in modules this kit built. 133 profiles in this module were renumbered.</p>
+<p>Split children keep their underscore form (<code>12_1</code>, <code>12_2</code>): those come from N-terminal re-clustering and the relationship is worth keeping visible.</p>
+
+<h2>Small profiles</h2>
+<p>63 of 259 profiles hold two sequences or fewer. That is deliberate, not neglect. The leftover pool is <em>defined</em> by having failed the feature's member floor, so reapplying that floor guarantees nothing returns; the floor drops to 2 for the second pass only, while clustering identity continues to do the quality work. The leftovers are the divergent members, which is the population a profile set most needs to cover.</p>
+
+<h2>Rebuilding</h2>
+<pre><code>cp -R modules/Alphaflexiviridae/PSSM-Alignments  mywork/Alignments/Alphaflexiviridae
+cp    modules/Alphaflexiviridae/Alphaflexiviridae_Viral_PSSM.json  mywork/
+cp -R modules/Alphaflexiviridae/Rep-Contigs      mywork/
+python3 skill/scripts/pssms_from_alignments.py --workdir mywork \
+        --module Alphaflexiviridae --write
+python3 skill/scripts/install_module.py --workdir mywork --repo &lt;Viral_Annotation&gt; --check</code></pre>
+<p><code>rebuild_pssms.py</code> is <em>not</em> the tool for this — it refreshes profiles that already exist and reports success against an alignments-only tree without creating anything.</p>
+
+<footer>
+Generated 21 September 2026 from the installed module. 259 profiles verified against 259 alignments with no feature mismatched.
+Built with the LowVan module kit &middot; <span class="mono">jimdavis1/LowVan_Skill</span>
+</footer>
+</div>
