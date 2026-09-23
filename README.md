@@ -14,6 +14,11 @@ This repository is everything needed to build such a module for a new viral
 taxon, run it, and find out whether it actually works — plus the agent skill that
 walks through doing so.
 
+**Every published page and its URL is indexed in [ARTIFACTS.md](ARTIFACTS.md).**
+Coverage audits, PSSM registries, string-collapse and vocabulary-saturation
+pages for ten taxa. They are hosted on claude.ai, not here; this repo holds the
+source HTML under `reports/` and the links.
+
 Building one is mostly judgement: which annotation strings mean the same protein,
 which clusters are real, which features the data cannot support. **The skill
 exists because those judgements are easy to get wrong in ways nothing downstream

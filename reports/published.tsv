@@ -1,0 +1,49 @@
+#  Every artifact this project has published, from `Artifact list` in a Claude
+#  Code session -- the only authority for what exists. Refresh it by running
+#  that and pasting the rows here, then `python3 reports/gen_artifacts_index.py`.
+#  title	url_id	updated
+Hepaciviridae String Collapse	SuSzzD4Lgid5Nqh4wsAUsw	2026-09-23
+Orthoflavivirus Vocabulary Saturation	9c5gUBxFf4jHNfYizWHw7m	2026-09-22
+Orthoflavivirus Coverage Audit	RokLyf9pujJnw37CAri2DR	2026-09-22
+Orthoflavivirus PSSM Registry	AkjDvmo28d4bVZCndjymXP	2026-09-22
+Orthoflavivirus String Collapse	MFXjT53roYWz1ymQkrh1ur	2026-09-22
+Allexivirus Vocabulary Saturation	S5H57Gg1N2DECvutD8JBTS	2026-09-21
+Alphaflexiviridae Vocabulary Saturation	DrNtpzKawMfnQvEFgdvJCP	2026-09-21
+Alphaflexiviridae String Collapse	1opeHxTHrAVEx7nsy8DMc1	2026-09-21
+Allexivirus String Collapse	Nod4NnVCU3arrmBqiTPh1J	2026-09-21
+Allexivirus PSSM Registry	PR148JCFeHCx5rsiqSPe8d	2026-09-21
+Alphaflexiviridae PSSM Registry	TseN29Pu2NS87fMCJRTP1a	2026-09-21
+Allexivirus Coverage Audit	KAyMy13QTKUsFASLRsoTwo	2026-09-21
+Alphaflexiviridae Coverage Audit	MzC77du44ZP2iBnPogQPx1	2026-09-22
+Alsuviricetes Module Coverage	NMZcwHNR7xQRB8TAfJck8T	2026-09-18
+Trivirinae PSSM Registry	QgcHG4Qph1dDCw1pf5my49	2026-09-18
+Trivirinae Vocabulary Saturation	9bYCnLShKySrUS9NecRe7e	2026-09-18
+Tobamovirus PSSM Registry	Jaxj3wb1cGkEng25cDoXDz	2026-09-18
+Trivirinae String Collapse	SSFaUYG921SiiHWL7Psjv3	2026-09-18
+Tobamovirus Coverage Audit	Lqb3QrZN9vuQT2tHNnxjjf	2026-09-18
+Trivirinae Coverage Audit	7h9mdYRw6QdqjqrHDwxcP4	2026-09-18
+Tobamovirus Vocabulary Saturation	GDgyPgzSQr3PoNyBXKF75F	2026-09-18
+Tobamovirus String Collapse	4r5eFifqQBs3msQyeTDRkd	2026-09-18
+Matonaviridae Coverage Audit	AxuNuwq21AAiGws5JvQoWo	2026-09-17
+Hepeviridae Coverage Audit	9rab6t9Wg2jyUjpd31FCmz	2026-09-17
+Hepeviridae Vocabulary Saturation	Lhe1p5zfzv6drE9XPXWB9n	2026-09-17
+BV-BRC String Collapse	M28Cagwm9zThGVqmCUYNhw	2026-09-17
+Hepeviridae PSSM Registry	Rv8Qtd6yogBhSxwxN83zUB	2026-09-17
+Rubella Vocabulary Saturation	Py71icixnS8G7aHoRekJ4B	2026-09-17
+Matonaviridae PSSM Registry	Pg9oPLPEMsSJwVX1cNaZkj	2026-09-16
+RdRp Read Nucleation	D4L5hjJdBZqaE5DSsHUaXq	2026-09-17
+BV-BRC String Collapse	N54oU5jenFw8M7yE2c5kFt	2026-09-16
+Togaviridae Coverage Audit	LpKQ7FfkD4x8zKEwyUJ2ng	2026-09-15
+Anatomy of a Module Build	T9s2wjJ5e3z93ePrBEX4f7	2026-09-15
+BV-BRC String Collapse	8CJBDk21x2ctt5GW35TkxT	2026-09-15
+Togaviridae PSSM Registry	9o7dqzntv9iHNotvaJJ5H6	2026-09-15
+Rhabdoviridae Coverage Audit	8VrGZtr14bqGFkqhJTPaY8	2026-09-12
+BV-BRC String Collapse	V1k2fpjLKk1sYeUndW4AXp	2026-09-11
+LowVan Module Handbook	19YxBdyb57P7Ukc71EcjXs	2026-09-11
+LowVan Build Status	2CHoELvZ74fRA2X83Maqxx	2026-09-11
+LowVan Module Handbook	CvQR6F2zqED4rGGHe2MBHe	2026-09-08
+Rhabdoviridae PSSM Registry	ERwqZ5eyxv7XUPLR5gyNch	2026-09-03
+BV-BRC String Collapse	7umePKgGcdUV7YjAWTEcDM	2026-09-07
+Rhabdoviridae PSSM Registry	8NDdLrfq9Bbx4NV5rYLqzH	2026-09-09
+BV-BRC String Collapse	L7t9R4Ti8LJTyzjaodE2gw	2026-09-03
+Varicosavirus Protein Census	4Gqf7KTGXU86FCFwDcyzJ2	2026-09-03
