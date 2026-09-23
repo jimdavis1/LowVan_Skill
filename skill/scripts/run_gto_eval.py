@@ -32,6 +32,15 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--jobs", type=int, default=8)
     ap.add_argument("--report", help="write the per-genome table here")
+    ap.add_argument("--tbl-dir",
+                    help="also save each genome's feature table here as "
+                         "<genome>.feature.tbl. The annotator already writes one "
+                         "-- annotate_by_viral_pssm-GTO.pl passes -p and -tbl, so "
+                         "the 20-column table lands in _wd/<genome>/<genome>.stdout.txt "
+                         "-- and it was simply being thrown away with _wd. "
+                         "annotation_rarefaction.py and analyze_feature_gap.py both "
+                         "need it, and hand-synthesising one is how a gap analysis "
+                         "came back '0 genomes' from an empty gene-symbol column.")
     ap.add_argument("--skip-special", action="store_true",
                     help="do not call transcript-edited or spliced features. "
                          "The default is to call them: a coverage audit that "
@@ -70,6 +79,8 @@ def main():
     #  resolves against the wrong directory and every genome fails with
     #  "Could not open input file gto/x.gto". --repo is already
     #  absolutised above; this was not. 669/669 failures on Hepeviridae.
+    if args.tbl_dir:
+        os.makedirs(args.tbl_dir, exist_ok=True)
     gtos = sorted(glob.glob(os.path.join(os.path.abspath(args.gto_dir), "*.gto")))
     print("  %d GTO(s)" % len(gtos))
 
@@ -122,6 +133,10 @@ def main():
             #  the .ann.gto downstream tools read should carry everything
             if src != ann:
                 shutil.copyfile(src, ann)
+        if args.tbl_dir:
+            src_tbl = os.path.join(wd, b + ".stdout.txt")
+            if os.path.exists(src_tbl) and os.path.getsize(src_tbl) > 0:
+                shutil.copyfile(src_tbl, os.path.join(args.tbl_dir, b + ".feature.tbl"))
         r = subprocess.run([args.perl, os.path.join(R, "viral_genome_quality.pl"),
                             "-i", ann, "-o", qual, "-p", b],
                            capture_output=True, text=True, env=env, cwd=wd)

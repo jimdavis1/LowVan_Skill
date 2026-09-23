@@ -207,69 +207,91 @@ if (scalar @to_analyze)
 			my $sid = $_;
 			foreach (keys %{$matches->{$sid}})
 			{
-				my $from    = $_; 
-				my $to      = $matches->{$sid}->{$from}->{TO};
-				my $sseq    = $matches->{$sid}->{$from}->{HSEQ};
-				my $qseq    = $matches->{$sid}->{$from}->{QSEQ};
-				my $iden    = $matches->{$sid}->{$from}->{IDEN};
-				my $ali_len = $matches->{$sid}->{$from}->{ALI_LEN};				
-				#  Gaps are counted on BOTH sides, because the two directions of
-				#  frameshift put the gap on opposite sides of the alignment and
-				#  both are real biology:
-				#
-				#    -1 slip / non-templated insertion (NS1', V, W, ORF1ab)
-				#         the reference carries an EXTRA base, so the SUBJECT
-				#         gaps and the fill inserts the reference base.
-				#    +1 slip (HCV F / ARFP)
-				#         the ribosome skips a base, so the reference is one base
-				#         SHORTER, the QUERY gaps, and the fill must DROP the
-				#         corresponding subject base.
-				#
-				#  Only the first was implemented, which meant a +1 product
-				#  silently reproduced the genome's own reading frame instead of
-				#  the edited one -- the loop copied the subject through and
-				#  nothing signalled that anything was wrong. references/
-				#  special-features.md already claimed one mechanism served both.
-				my $sdash   = ($sseq =~ tr/-//);
-				my $qdash   = ($qseq =~ tr/-//);
-				my $dashes  = $sdash + $qdash;
-				my $sruns   = (() = $sseq =~ /-+/g) || 0;
-				my $qruns   = (() = $qseq =~ /-+/g) || 0;
-				my $runs    = $sruns + $qruns;
-				my $pid     =  (($iden/$ali_len) * 100);				
-				my $qcov    =  (($ali_len/(length $qseq)) * 100); 				
-				my $gaps    = $matches->{$sid}->{$from}->{GAPS};	
-						
-				
+				my $from    = $_;
+				my $slot    = $matches->{$sid}->{$from};
+
+				#  Every reference that hit this location, best bit score first.
+				#  The top one is tried first and is very often right; the rest are
+				#  the fallback that used not to exist.
+				my @cands = sort { $b->{BIT} <=> $a->{BIT} } @{ $slot->{ALTS} || [] };
+
 				#  $corrected records whether a trustworthy protein was actually produced.
-				#  The four gates below describe the NUCLEOTIDE match; none of them looks
-				#  at what the gap-fill translated to. Since the fill takes its bases from
-				#  the SUBJECT, an N-masked target yields an X-bearing protein. Screening
-				#  only the alignment let 31 of 293 Togaviridae TF calls ship with an X in
-				#  them and one with an internal stop; no amount of reference curation can
-				#  prevent that, because the defect is in the genome being annotated.
+				#  The four gates in the loop describe the NUCLEOTIDE match; none of them
+				#  looks at what the gap-fill translated to. Since the fill takes its bases
+				#  from the SUBJECT, an N-masked target yields an X-bearing protein.
+				#  Screening only the alignment let 31 of 293 Togaviridae TF calls ship
+				#  with an X in them and one with an internal stop; no amount of reference
+				#  curation can prevent that, because the defect is in the genome being
+				#  annotated. What a screen failure means, though, depends on the cause:
+				#  an X comes from the genome and no other reference will fix it, while an
+				#  internal stop usually means the WRONG REFERENCE, and the next one down
+				#  may well be right.
 				my $corrected = 0;
+				my ($rank, $used_rank, $used_ref) = (0, 0, "");
+				my ($n_gate, $n_stop, $n_amb, $n_mixed) = (0, 0, 0, 0);
+				my $first_reason = "";
 
-				#If all inclusion critreria are met (%id, %Qcov, num gaps, runs of gaps)
-				
-				#  A reference may edit in ONE direction only. A single frameshift
-				#  is either +1 or -1; a reference asking for both an insertion
-				#  and a deletion is describing two events and is far more likely
-				#  to be a mis-curated reference or a spurious alignment than a
-				#  real double frameshift. $runs <= 1 already excludes it, since a
-				#  subject gap and a query gap are necessarily separate runs, but
-				#  that is emergent from summing the two and a later reader could
-				#  undo it without noticing. State it.
-				my $mixed = ($sdash > 0 && $qdash > 0);
-				if ($mixed)
+				CANDIDATE: for my $cand (@cands)
 				{
-					print STDERR "\t$name: reference asks for an insertion AND a deletion "
-					           . "($sdash subject, $qdash query); refusing, an edit is one "
-					           . "direction only\n";
-				}
+					$rank++;
+					my $to      = $cand->{TO};
+					my $sseq    = $cand->{HSEQ};
+					my $qseq    = $cand->{QSEQ};
+					my $iden    = $cand->{IDEN};
+					my $ali_len = $cand->{ALI_LEN};
+					my $cfrom   = $cand->{FROM};
+					my $qtitle  = $cand->{QTITLE} || "?";
+					#  Gaps are counted on BOTH sides, because the two directions of
+					#  frameshift put the gap on opposite sides of the alignment and
+					#  both are real biology:
+					#
+					#    -1 slip / non-templated insertion (NS1', V, W, ORF1ab)
+					#         the reference carries an EXTRA base, so the SUBJECT
+					#         gaps and the fill inserts the reference base.
+					#    +1 slip (HCV F / ARFP)
+					#         the ribosome skips a base, so the reference is one base
+					#         SHORTER, the QUERY gaps, and the fill must DROP the
+					#         corresponding subject base.
+					#
+					#  Only the first was implemented, which meant a +1 product
+					#  silently reproduced the genome's own reading frame instead of
+					#  the edited one -- the loop copied the subject through and
+					#  nothing signalled that anything was wrong. references/
+					#  special-features.md already claimed one mechanism served both.
+					my $sdash   = ($sseq =~ tr/-//);
+					my $qdash   = ($qseq =~ tr/-//);
+					my $dashes  = $sdash + $qdash;
+					my $sruns   = (() = $sseq =~ /-+/g) || 0;
+					my $qruns   = (() = $qseq =~ /-+/g) || 0;
+					my $runs    = $sruns + $qruns;
+					my $pid     =  (($iden/$ali_len) * 100);
+					my $qcov    =  (($ali_len/(length $qseq)) * 100);
+					my $gaps    = $cand->{GAPS};
 
-				if ( !$mixed && ($pid >= $opt->id) && ($qcov >= $opt->cov) && ($dashes <= $opt->gaps) && ($runs <= 1))
-				{
+					#  A reference may edit in ONE direction only. A single frameshift
+					#  is either +1 or -1; a reference asking for both an insertion
+					#  and a deletion is describing two events and is far more likely
+					#  to be a mis-curated reference or a spurious alignment than a
+					#  real double frameshift. $runs <= 1 already excludes it, since a
+					#  subject gap and a query gap are necessarily separate runs, but
+					#  that is emergent from summing the two and a later reader could
+					#  undo it without noticing. State it.
+					my $mixed = ($sdash > 0 && $qdash > 0);
+					if ($mixed)
+					{
+						$n_mixed++;
+						$first_reason ||= "reference asks for an insertion AND a deletion";
+						next CANDIDATE;
+					}
+
+					unless ( ($pid >= $opt->id) && ($qcov >= $opt->cov) && ($dashes <= $opt->gaps) && ($runs <= 1))
+					{
+						$n_gate++;
+						$first_reason ||= sprintf("below the match gates (%.1f%% id, %.1f%% cov, %d gap base(s), %d run(s))",
+						                          $pid, $qcov, $dashes, $runs);
+						next CANDIDATE;
+					}
+
 					my @snts = split ("", $sseq);
 					my @qnts = split ("", $qseq);
 					my @mod_seq;
@@ -299,62 +321,81 @@ if (scalar @to_analyze)
 						}
 						else
 						{
-							push @mod_seq, $snts[$i]; 
+							push @mod_seq, $snts[$i];
 						}
 					}
 
 					my $mod = join ("", @mod_seq);
 					my $mod_aa = &gjoseqlib::translate_seq( $mod );
-			
-					my ($len, $strand);
-					if ($from < $to)
-					{
-						$strand = "+";
-						$len = ($to - $from) + 1;
-					}
-					elsif ($from > $to){
-						$strand = "-";
-						$len = ($from - $to) + 1;	
-					}
-			
-					my $feature = {
-						type        => $ft,
-						contig      => $sid,
-						aa_sequence => $mod_aa,
-						location    => ([[$sid, $from, $strand, $len]]),
-						product     => $anno,
-						symbol      => $symbol,
-						pssm        => ([[$fam, $name, $anno, "LowVan Transcript Edited Feature"]]),
-					};
-					
-					#  Screen the PROTEIN before emitting it. A failure here is not a
-					#  dropped call: it falls through to the partial_cds branch below,
-					#  which is exactly what that branch is for -- the region is located
-					#  but no translation can be trusted across the frame jump.
+
+					#  Screen the PROTEIN before emitting it. A failure is not a dropped
+					#  call: we try the next reference, and if none survives we fall
+					#  through to the partial_cds branch below, which is exactly what
+					#  that branch is for -- the region is located but no translation can
+					#  be trusted across the frame jump.
 					my $aa_body = $mod_aa;
 					$aa_body =~ s/\*$//;          # a terminal stop is the ORF's own
 					if ($aa_body =~ /X/i)
 					{
-						print STDERR "\t$name: gap-filled sequence translates with ambiguous residues; demoting to partial_cds\n";
+						$n_amb++;
+						$first_reason ||= "gap-filled sequence translates with ambiguous residues";
+						next CANDIDATE;
 					}
-					elsif ($aa_body =~ /\*/)
+					if ($aa_body =~ /\*/)
 					{
-						print STDERR "\t$name: gap-filled sequence translates with an internal stop; demoting to partial_cds\n";
+						$n_stop++;
+						$first_reason ||= "gap-filled sequence translates with an internal stop";
+						next CANDIDATE;
 					}
-					else
+
+					my ($len, $strand);
+					if ($cfrom < $to)
 					{
-						push(@{$features{$ft}}, $feature);
-						$corrected = 1;
+						$strand = "+";
+						$len = ($to - $cfrom) + 1;
 					}
+					elsif ($cfrom > $to){
+						$strand = "-";
+						$len = ($cfrom - $to) + 1;
+					}
+
+					my $feature = {
+						type        => $ft,
+						contig      => $sid,
+						aa_sequence => $mod_aa,
+						location    => ([[$sid, $cfrom, $strand, $len]]),
+						product     => $anno,
+						symbol      => $symbol,
+						pssm        => ([[$fam, $name, $anno, "LowVan Transcript Edited Feature"]]),
+					};
+
+					push(@{$features{$ft}}, $feature);
+					$corrected  = 1;
+					$used_rank  = $rank;
+					$used_ref   = $qtitle;
+					last CANDIDATE;
 				}
-			
-			
-				# If the inclusion criteria were NOT met, or they were met but the
-				# resulting protein did not survive the screen above, and there is
-				# still a decent HSP from the blast, we add it as a partial CDS that
+
+				#  Say when the answer did not come from the top-scoring reference.
+				#  This is the provenance that was missing: a fallback that happens
+				#  silently is indistinguishable from the bug it replaced.
+				if ($corrected && $used_rank > 1)
+				{
+					printf STDERR "\t%s: corrected from reference ranked #%d of %d by bit score (%s); the higher-scoring ones failed -- %s\n",
+					       $name, $used_rank, scalar(@cands), $used_ref, $first_reason;
+				}
+
+				# If no reference produced a protein that survived the screen, and there
+				# is still a decent HSP from the blast, we add it as a partial CDS that
 				# goes uncorrected.  No protein translation is given.
 				if (! $corrected)
 				{
+					if (@cands)
+					{
+						printf STDERR "\t%s: none of %d matching reference(s) produced a clean product (%d below the gates, %d internal stop, %d ambiguous, %d mixed-direction); demoting to partial_cds\n",
+						       $name, scalar(@cands), $n_gate, $n_stop, $n_amb, $n_mixed;
+					}
+					my $to = $slot->{TO};
 					my $feature_type = "partial_cds";
 					my ($len, $strand);
 					if ($from < $to)
@@ -511,6 +552,11 @@ sub best_blastn_match_by_loc
 				my $hit_to    = $blast->{BlastOutput2}->[$i]->{report}->{results}->{search}->{hits}->[$j]->{hsps}->[$k]->{hit_to};
 				my $qseq      = $blast->{BlastOutput2}->[$i]->{report}->{results}->{search}->{hits}->[$j]->{hsps}->[$k]->{qseq};
 				my $hseq      = $blast->{BlastOutput2}->[$i]->{report}->{results}->{search}->{hits}->[$j]->{hsps}->[$k]->{hseq};
+				#  Which curated reference this HSP came from. Each BlastOutput2 element
+				#  is one query, and the queries ARE the references, so this names the
+				#  reference whose edit is about to be transferred. It was not captured
+				#  before, which is why a wrong choice among references was invisible.
+				my $qtitle    = $blast->{BlastOutput2}->[$i]->{report}->{results}->{search}->{query_title};
 								
 				my ($pid, $qcov);
 				if ($ident && $ali_len && $qlen) # this ensures that we got search results.
@@ -532,33 +578,44 @@ sub best_blastn_match_by_loc
 						}
 					}
 
+					#  One candidate, self-contained, so the caller can use any of them
+					#  and not just the one that happens to be keyed.
+					my $rec = { BIT     => $bit,     FROM    => $hit_from,
+					            TO      => $hit_to,  QSEQ    => $qseq,
+					            HSEQ    => $hseq,    IDEN    => $ident,
+					            ALI_LEN => $ali_len, GAPS    => $gaps,
+					            QTITLE  => $qtitle };
+
 					if (defined $near_loc)
 					{
-						# Overlapping location already recorded: keep the better bit score.
+						#  Overlapping location already recorded. The top-scoring HSP
+						#  still defines the slot, but the losers are KEPT in ALTS
+						#  rather than thrown away.
+						#
+						#  Discarding them is the reason HCV F failed at scale. Every
+						#  reference is a separate query against the same genome, so
+						#  all 3,644 compete for one slot and only the highest bit
+						#  score survived. When that reference came from another
+						#  genotype its one-base deletion sat at a position right for
+						#  it and wrong for the genome being annotated, the gap-filled
+						#  product picked up an internal stop, and the call was demoted
+						#  to "Uncorrected ..." with no way to try the next reference
+						#  -- including, in 44 of 53 cases, the genome's OWN reference,
+						#  which was sitting in the set the whole time and produces the
+						#  right protein when it is the only one present.
+						my $alts = $matches->{$sid}->{$near_loc}->{ALTS};
+						push @$alts, $rec;
 						if ($bit > $matches->{$sid}->{$near_loc}->{BIT})
 						{
 							delete $matches->{$sid}->{$near_loc};
-							$matches->{$sid}->{$hit_from}->{BIT}      = $bit;
-							$matches->{$sid}->{$hit_from}->{TO}       = $hit_to;
-							$matches->{$sid}->{$hit_from}->{QSEQ}     = $qseq;
-							$matches->{$sid}->{$hit_from}->{HSEQ}     = $hseq;
-							$matches->{$sid}->{$hit_from}->{IDEN}     = $ident;
-							$matches->{$sid}->{$hit_from}->{ALI_LEN}  = $ali_len;
-							$matches->{$sid}->{$hit_from}->{GAPS}     = $gaps;
+							$matches->{$sid}->{$hit_from} = { %$rec, ALTS => $alts };
 						}
-						# else: existing match is better or equal -> discard this HSP
 					}
 					else
 					{
 						# No nearby match on this contig (contig unseen, or seen but this
 						# HSP is at a distinct location): record it as a NEW entry.
-						$matches->{$sid}->{$hit_from}->{BIT}      = $bit;
-						$matches->{$sid}->{$hit_from}->{TO}       = $hit_to;
-						$matches->{$sid}->{$hit_from}->{QSEQ}     = $qseq;
-						$matches->{$sid}->{$hit_from}->{HSEQ}     = $hseq;
-						$matches->{$sid}->{$hit_from}->{IDEN}     = $ident;
-						$matches->{$sid}->{$hit_from}->{ALI_LEN}  = $ali_len;
-						$matches->{$sid}->{$hit_from}->{GAPS}     = $gaps;
+						$matches->{$sid}->{$hit_from} = { %$rec, ALTS => [ $rec ] };
 					}
 				}
 			}
