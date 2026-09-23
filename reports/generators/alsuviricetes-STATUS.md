@@ -1,97 +1,162 @@
 # Alsuviricetes module status
 
-Last updated 17 September 2026. The repository of record is
+Last updated 22 September 2026. The repository of record is
 `LowVan_Skill/` (github.com/jimdavis1/LowVan_Skill). `Viral_Annotation/` is a
 runtime target only and has no git remote.
 
 ## Shipped in the kit
 
-| module | features | profiles | rep contigs | routing | quality | reports |
+Fourteen modules, 156 features, 2,803 alignments, 215 rep contigs,
+3 transcript-edited reference sets.
+
+| module | features | profiles | rep contigs | routing | genuinely clean | artifacts |
 |---|---|---|---|---|---|---|
-| Alpharhabdovirinae | 43 | 529 | 10 | — | — | registry, audit |
+| Alpharhabdovirinae | 43 | 529 | 9 | — | — | registry, audit |
 | Betarhabdovirinae | 14 | 340 | 8 | — | — | — |
 | Novirhabdovirus | 8 | 21 | 2 | — | — | — |
 | Dichorhavirus | 8 | 26 | 1 | — | — | — |
+| Merhavirus | 8 | 16 | 8 | — | — | — |
 | Togaviridae | 14 | 228 | 9 | — | — | — |
 | Matonaviridae | 7 | 16 | 4 | — | — | all four |
-| Hepeviridae | 4 | 63 | 24 | 622/669 | **89.1%** | all four |
-| **Tobamovirus** | 4 | 98 | 25 | 99/102 | **89.4%** | **all four** |
-| **Trivirinae** | 5 | 157 | 25 | 407/409 | **88.5%** | **all four** |
+| Hepeviridae | 4 | 63 | 24 | 93.0% | **89.1%** | all four |
+| Tobamovirus | 4 | 98 | 25 | 97.1% | **89.4%** | all four |
+| Trivirinae | 5 | 157 | 25 | 99.5% | **88.5%** | all four |
+| **Alphaflexiviridae** | 6 | 259 | 25 | 90.1% | **92.4%** | **all four** |
+| **Allexivirus** | 7 | 76 | 25 | 99.0% | **89.3%** | **all four** |
+| **Orthoflavivirus** | 16 | 337 | 25 | 98.3% | **62.0%** | **all four** |
+| **Hepaciviridae** | 12 | 637 | 25 | 96.0% | **57.8%** | none yet |
 
-Every module's installed profile count now equals its shipped alignment count.
+Quality is **genuinely clean**: no genome, contig *or* feature flag.
+`run_gto_eval.py` decides good-versus-poor on genome and contig flags alone,
+so its headline runs a few points higher.
 
-Quality is reported as **genuinely clean**: no genome, contig *or* feature
-flag. `run_gto_eval.py` decides good-versus-poor on genome and contig flags
-alone, so its headline is 1-4 points higher than these figures. Scored
-consistently the three modules converge at 88-89%.
+**The two newest rows have the hardest denominators, and the low numbers are
+not what they look like.** Both declare many essential features over one
+polyprotein, so a genuinely-clean verdict requires every one of them at once;
+Alphaflexiviridae above declares six features in total. Orthoflavivirus's
+per-feature rates are 91.8–99.8%. Hepaciviridae's panel is **species-capped**,
+which deliberately over-weights the rare divergent hepaciviruses against the
+HCV that dominate the database — split apart, the 62 HCV genomes are 90.3%
+genuinely clean and the 289 others 50.9%. Neither row is comparable to the
+five above it.
 
-**Hepeviridae was checked against the denominator bug and is unaffected.**
-All 47 of its unscored genomes are *unrouted*, with no `viral_family` field,
-so they fail a different and correct check and are already counted in the
-622/669 routing figure. Its denominator of 622 is exactly the routed set.
-Tobamovirus was inflated (95.5% reported, 90.4% true) because its five had
-routed and then cleared no profile, which is a different situation.
+**Denominators are not comparable.** Hepeviridae (n=622), Alphaflexiviridae
+(n=170) and Allexivirus (n=103) were scored on full routed sets. Tobamovirus
+(n=94) and Trivirinae (n=96) rest on ~95-genome samples whose 95% confidence
+intervals are about eleven points wide, so the apparent convergence at 88-89%
+across those two was never measurable.
 
-## Next, in order
+## Allexivirus was split out of Alphaflexiviridae
 
-Chosen on the two rules the user set: easiest first, and weight crop/human
-impact. A module is only started once its rep contigs are known to fit the
-25-reference budget.
+One feature needed opposite settings in two genera. Lezzhov et al. 2015
+(J Gen Virol 96:3159-64, PMID 26296665) showed by site-directed mutagenesis
+that shallot virus X initiates TGB3 at a **CUG**, translated by leaky scanning
+from a bicistronic template shared with TGB2. The coding sequence is conserved
+across the genus; only the initiator is non-canonical.
+
+`upstream_ext` is now set per feature from measurement rather than policy.
+`scan_to_met_start` was instrumented across all 273 annotated genomes and
+every firing recorded as finding a Met or running to the previous in-frame
+stop:
+
+```
+                Allexivirus      Potexvirus
+  feature     found / ran-to    found / ran-to    ext
+  CP             12 / 2            26 / 6          1 / 1
+  TGB2            0 / 0            13 / 4          1 / 1
+  ALLEXI_40K     19 / 4             - / -          1 / -
+  NABP            0 / 0             1 / 0          1 / 1
+  REP             1 / 4             3 / 6          0 / 0
+  TGB1            0 / 18            7 / 18         0 / 0
+  TGB3            2 / 190          38 / 10         0 / 1
+```
+
+TGB3 is the row that cannot be reconciled in one module. Two results would
+have been missed by setting this from policy: **TGB1 and REP fail in both
+genera** and are 0 in both modules.
+
+Measured effect of the split, same genomes and tools before and after:
+
+| | combined | after |
+|---|---|---|
+| genuinely clean | 227/271 (83.8%) | 249/273 (**91.2%**) |
+| `Feature is too long` | 30 | **4** |
+| TGB3 calls not at a Met | 100/266 (37.6%) | 5/164 (**3.0%**) in Alphaflexiviridae |
+
+The Allexivirus TGB3 non-Met rate is 96% and is **expected**, not a defect:
+there is no AUG. Its 5' coordinate is approximate because the CUG cannot be
+located mechanically — 65% of genomes have some in-frame CTG upstream at 1-47
+codons with no consistent offset, and 35% have none before a stop.
+
+## Defects found and fixed this unit
+
+- **`install_module.py` never pruned stale alignments.** It pruned stale
+  profiles inside a rebuilt feature but had no equivalent for alignments, so
+  every rebuild left the old ones behind. Alphaflexiviridae shipped 276
+  profiles against 289 alignments. Fixed; backfilled Hepeviridae 63/61 -> 63/63
+  and Tobamovirus 98/100 -> 98/98.
+- **223 rhabdovirus alignments were ragged** — raw unaligned sequence sets with
+  no gap characters, 152 in Alpharhabdovirinae and 71 in Betarhabdovirinae.
+  The kit ships alignments and rebuilds profiles from them, so those profiles
+  could not be rebuilt at all. Realigned with MAFFT; verified end to end by
+  regenerating 529/529 Alpharhabdovirinae profiles from kit files alone. This
+  closes the "223 of 1474" item.
+- **`loN` profile names removed.** The prefix leaked a build-pipeline detail
+  into `family_assignments` in every annotated genome. 684 profiles renumbered
+  to plain integers across twelve modules; generator fixed.
+- **`renumber_leftover_profiles.py` missed the working directory's `pssms/`.**
+  `install_module.py` installs from there, so the first reinstall after
+  renumbering put 124 `loN` profiles back against integer-named alignments.
+  Fixed and repaired across six working directories (182 profiles).
+
+## Deliberately not changed
+
+**`scan_to_met_start` runaway extension.** When no upstream Met exists the
+function returns the codon after the previous in-frame stop rather than
+declining, so the CDS runs to the edge of the upstream ORF. A patch was
+written and measured (+18 points genuinely-clean on a 148-genome subset, a
+no-op where profiles are adequate) and then **reverted at the curator's
+direction**: the original behaviour stands. The per-feature `upstream_ext`
+settings above are the containment.
+
+**`coverage_cutoff` does not measure coverage.** Computes the alignment
+against its own query span, so it is 1.0 for any gapless alignment and cannot
+reject a partial profile match. Reported, deliberately unpatched.
+
+## Next
 
 | module | measured routing | notes |
 |---|---|---|
-| Alphaflexiviridae | 84.9% at budget | Potexvirus + Allexivirus + Lolavirus as one module, per PARTITIONING.md. one module, 7 features and 123 profiles built; collections triaged and Mandarivirus recovered by homology three times under a Potexvirus label. Splitting would reach ~95% for 50 references |
-| Quinvirinae | 81.0% | pome and stone fruit; the TGB half of the family already split |
-| Capillovirus | 100% | apple stem grooving; needs a mature peptide (CP inside the polyprotein) |
-| Bromoviridae | unmeasured | **cucumber mosaic virus**; 3 segments, needs per-segment clustering |
+| Quinvirinae | 81.0% | **no working directory exists** — this is a from-scratch build, not a rename |
+| Capillovirus | 100% | apple stem grooving; CP inside the ORF1 polyprotein, needs a mature peptide |
+| Bromoviridae | unmeasured | cucumber mosaic virus; 3 segments, needs per-segment clustering |
 | Botrexvirus_Platypuvirus_Sclerodarnavirus | unmeasured | 42 genomes, fungal; may not ship |
 
 Unmeasured beyond that: Crinivirus, Virgaviridae minors, Kitaviridae,
 Mayoviridae, Benyviridae.
 
-## Module names must be real taxa
-
-A module name is not a label. It is the `Viral_PSSM.json` key, the
-`Viral-PSSMs/<M>.pssms/` and `PSSM-Alignments/<M>/` directories, the
-`Splice-Variants/<M>/` lookup, the `<M>.<n>.dna` rep-contig filenames — and it
-is written into every output GTO as `viral_family`, where anything downstream
-will read it as a taxon.
-
-`Betaflexiviridae_MP` was invented to mean "the movement-protein half" and was
-the only invalid name among 39 installed modules. It is now **Trivirinae**,
-which is the ICTV subfamily covering exactly those genera. Two consequences:
-
-- `Betaflexiviridae_TGB` is **Quinvirinae**, the sibling subfamily.
-- Botrexvirus, Platypuvirus and Sclerodarnavirus share no subfamily, so that
-  module is `Botrexvirus_Platypuvirus_Sclerodarnavirus` — long, does not
-  resolve anywhere, and correct: every component is a real genus and the
-  membership is on the label.
-
-A genus split out of its parent keeps a real name too: `Merhavirus` out of
-`Alpharhabdovirinae`, `Orthopneumovirus_muris` out of `Orthopneumovirus`.
-
 ## Tabled on the rep-contig budget
 
 | module | coverage at 25 | why |
 |---|---|---|
-| Endornaviridae | ~30% | 141 species, 141 clusters. One ORF, so trivially easy to build and impossible to route |
+| Endornaviridae | ~30% | 141 species, 141 clusters. One ORF, trivial to build and impossible to route |
 | Closteroviridae (mono) | 74.6% | try splitting before retrying |
 | Tymoviridae (lumped) | 74.6% | try splitting before retrying |
 
-## Deferred by the user
-
-**MERHA_L_SPLICED.** Real: Kuwata 2011 (PMID 21507977) describes a 76-nt
-GU-AG intron in the citrus tristeza-related CTRV L gene at 8648-8723. All 13
-CTRV genomes are near-complete. Before it ships, the splice call must be shown
-to *replace* the truncated L call rather than duplicate it.
-
 ## Open questions for the curator
 
-- `coverage_cutoff` does not measure coverage. Reported, deliberately left
-  unpatched pending a decision.
-- ~30 hand-made modules in the runtime directory are not in the kit, and 15 of
-  them have no alignments at all, so their profiles cannot be rebuilt.
 - Every citation in the Claude-made modules is model-proposed and lives in
-  `PMID_claude_generated`. None has been read and confirmed.
-- Tobamovirus: 13 of 88 unassigned features are canonical names ("30K
-  protein", "29K protein", "17 kDa protein") the binning rules should catch.
+  `PMID_claude_generated`. None has been read and confirmed, including the
+  Lezzhov paper that justifies the Allexivirus split.
+- **Alphaflexiviridae NABP is trained backwards** — 338:54 Allexivirus to
+  Potexvirus, inherited from before the split, for genomes that now route
+  elsewhere, and called on 5 of 170. Rebuilding it from Potexvirus sequences
+  alone would be more honest.
+- **Allexivirus TGB3 rests on three sequences** from one virus. Two more exist
+  in the collection (Blackberry calico, Garlic virus C AS16) and never
+  clustered. Recovering them is the cheapest improvement available.
+- **Lolavirus is named but unmodelled** — 10 genomes, four sequences per
+  feature, no rep contig, riding on Potexvirus homology.
+- `copy_num` in `viral_genome_quality.pl` couples "expected copy number" to
+  "required present", so a genus-restricted accessory can have neither.
+- ~30 hand-made modules in the runtime directory are not in the kit.
