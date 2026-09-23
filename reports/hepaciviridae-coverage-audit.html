@@ -1,0 +1,112 @@
+<title>Hepaciviridae Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &amp;middot; Hepaciviridae module &amp;middot; 23 September 2026</div><h1>Hepaciviridae</h1><h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">Does the hepacivirus module actually work?</h2><p class="stand">Hepatitis C and its animal relatives. Twelve features over one polyprotein, 808 profiles, 25 references that route 94.7% of the genus. It calls the core features on <i>Hepacivirus C</i> at 98.4% and F at 87.4%, and it cannot call the envelope proteins of ten rodent and marsupial lineages at all &mdash; because nobody has ever annotated them.</p><div class="tiles"><div class="tile"><div class="v">12</div><div class="l">features declared, 11 with profiles&lt;br&gt;+1 transcript-edited</div></div><div class="tile"><div class="v">808</div><div class="l">profiles over 64,834 sequences</div></div><div class="tile"><div class="v">94.7%</div><div class="l">genomes routed&lt;br&gt;25 refs, 7,064 genomes &amp;ge;6 kb</div></div><div class="tile"><div class="v">98.4%</div><div class="l">core features called&lt;br&gt;on &lt;i&gt;Hepacivirus C&lt;/i&gt;</div></div><div class="tile"><div class="v">87.4%</div><div class="l">F called on the HCV panel&lt;br&gt;up from 46.6%</div></div><div class="tile"><div class="v">0.07%</div><div class="l">of the dump has a feature&lt;br&gt;no data can model</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">Hepaciviridae is one genus, <i>Hepacivirus</i>, and one genome organisation: a single positive-sense RNA, one long ORF, one polyprotein cut into ten mature peptides. ICTV split it out of Flaviviridae in 2025; BV-BRC has not caught up and files all 264,938 records under <code>family = Flaviviridae</code>, so the module is named for the real taxon and not the stale field.</p><div class="tiles"><div class="tile"><div class="v">63,977</div><div class="l">genomes in the dump</div></div><div class="tile"><div class="v">119</div><div class="l">species</div></div><div class="tile"><div class="v">12</div><div class="l">features</div></div><div class="tile"><div class="v">218,893</div><div class="l">protein occurrences binned</div></div></div><p class="note">Eleven features are called by PSSMs. The twelfth, <b>F</b> (ARFP / core+1), is a <code>transcript_edit</code> feature with 3,644 curated nucleotide references and no profile &mdash; a +1 frameshift product of the core coding region.</p><p class="note"><b>The dump excludes records under 1,000 nt</b>, 212,295 of 278,030. The median Hepacivirus record is a 467-nt NS5B genotyping fragment that cannot yield a protein above any feature's runt floor. This is a departure from the Orthoflavivirus precedent, which dumped everything, and it changes the denominator of every &lsquo;% binned&rsquo; figure here.</p><p class="note"><b>Two naming traps.</b> An annotation string reading <code>NS1</code> in Hepacivirus means <b>E2</b>, inherited from the flavivirus naming this family was split out of. And NS3-4A, NS5AB, NS4, E1/E2 and core-E2 are precursors, not features &mdash; they are excluded rather than binned, along with a bare <code>NS5</code>, which is ambiguous between NS5A and NS5B.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">Collections from BV-BRC annotation strings, cleaned against cleavage chemistry and length, then clustered into profiles.</p><div class="scroll"><table><thead><tr><th>filter</th><th>sequences dropped</th><th>why</th></tr></thead><tbody><tr><td>ambiguity (&gt;2 non-standard residues)</td><td>11,131</td><td>368 of them carried a premature stop</td></tr><tr><td>junction chemistry</td><td>8,807</td><td>termini contradicting the protease&#x27;s P1/P1&amp;prime; classes</td></tr><tr><td>pre-floor on POLY (&amp;lt;2,400 aa)</td><td>8,514</td><td>applied BEFORE the median, or fragments drag the window shut</td></tr><tr><td>runts (&amp;lt;70% of median)</td><td>3,480</td><td></td></tr><tr><td>overlong (&amp;gt;130% of median)</td><td>146</td><td></td></tr></tbody></table></div><p class="note">The <code>JUNCTION</code> table is residue classes per boundary, transferred from Orthoflavivirus and re-written for this family's enzymes: the NS3-4A protease (Cys or Thr at P1, Ser or Ala at P1&prime;), the NS2-3 autoprotease, and host signalase. Same machinery, different table &mdash; no new code.</p><p class="note"><b>171 of the 808 profiles come from the leftover pass</b>, which had never been run on five features. E2 was the worst: 2,148 of its 6,897 sequences, 31%, were covered by no profile. Every one of the 171 was checked by blasting its members against all twelve collections &mdash; all 171 match their own feature best among the mature peptides, none matches a different feature. POLY must be excluded from that comparison: a mature peptide is a substring of its polyprotein and wins on bits while covering 4% of it.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">25 representative contigs, the project's fixed budget, measured over the 7,064 Hepacivirus genomes at or above 6,000 nt &mdash; 198 clusters at 70% identity.</p><div class="bars"><div class="bar"><div class="bl">5 refs</div><div class="bt"><i style="width:78.00%"></i></div><div class="bv">78%</div><div class="bn">HCV genotypes 1-3</div></div><div class="bar"><div class="bl">10 refs</div><div class="bt"><i style="width:89.00%"></i></div><div class="bv">89%</div><div class="bn"></div></div><div class="bar"><div class="bl">15 refs</div><div class="bt"><i style="width:92.00%"></i></div><div class="bv">92%</div><div class="bn"></div></div><div class="bar"><div class="bl">20 refs</div><div class="bt"><i style="width:94.00%"></i></div><div class="bv">94%</div><div class="bn"></div></div><div class="bar"><div class="bl">25 refs</div><div class="bt"><i style="width:94.70%"></i></div><div class="bv">94.7%</div><div class="bn">the shipped budget</div></div><div class="bar"><div class="bl">50 refs</div><div class="bt"><i style="width:97.00%"></i></div><div class="bv">97%</div><div class="bn">twice the budget buys 2 points</div></div></div><p class="note"><b>94.7%, not the 96.0% recorded earlier.</b> The earlier figure came from a different denominator; this one is stated with its criterion &mdash; 7,064 genomes at &ge;6 kb &mdash; so it can be reproduced. The largest clusters are 2,038, 1,353, 1,207 and 656 genomes, all HCV.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">406 genomes annotated, species-capped across 80 species. 351 scored; 55 called nothing at all.</p><div class="bars"><div class="bar"><div class="bl">POLY</div><div class="bt"><i style="width:99.15%"></i></div><div class="bv">99.1%</div><div class="bn">66 profiles, HCV 98.4%</div></div><div class="bar"><div class="bl">C</div><div class="bt"><i style="width:99.43%"></i></div><div class="bv">99.4%</div><div class="bn">12 profiles, HCV 98.4%</div></div><div class="bar"><div class="bl">E1</div><div class="bt"><i style="width:78.35%"></i></div><div class="bv">78.3%</div><div class="bn">75 profiles, HCV 98.4%</div></div><div class="bar"><div class="bl">E2</div><div class="bt"><i style="width:72.36%"></i></div><div class="bv">72.4%</div><div class="bn">330 profiles, HCV 98.4%</div></div><div class="bar"><div class="bl">P7</div><div class="bt"><i style="width:89.74%"></i></div><div class="bv">89.7%</div><div class="bn">106 profiles, HCV 96.8%</div></div><div class="bar"><div class="bl">NS2</div><div class="bt"><i style="width:86.61%"></i></div><div class="bv">86.6%</div><div class="bn">112 profiles, HCV 98.4%</div></div><div class="bar"><div class="bl">NS3</div><div class="bt"><i style="width:99.43%"></i></div><div class="bv">99.4%</div><div class="bn">7 profiles, HCV 98.4%</div></div><div class="bar"><div class="bl">NS4A</div><div class="bt"><i style="width:99.72%"></i></div><div class="bv">99.7%</div><div class="bn">14 profiles, HCV 100.0%</div></div><div class="bar"><div class="bl">NS4B</div><div class="bt"><i style="width:99.43%"></i></div><div class="bv">99.4%</div><div class="bn">14 profiles, HCV 98.4%</div></div><div class="bar"><div class="bl">NS5A</div><div class="bt"><i style="width:99.15%"></i></div><div class="bv">99.1%</div><div class="bn">49 profiles, HCV 98.4%</div></div><div class="bar"><div class="bl">NS5B</div><div class="bt"><i style="width:99.72%"></i></div><div class="bv">99.7%</div><div class="bn">23 profiles, HCV 98.4%</div></div><div class="bar"><div class="bl">F</div><div class="bt"><i style="width:29.34%"></i></div><div class="bv">29.3%</div><div class="bn">0 profiles, HCV 88.7%</div></div></div><div class="verdict warn"><b>E1, E2, NS2 and p7 read low, and the number is nearly meaningless as stated.</b> The panel is <i>species-capped</i>: every species gets equal weight, so 44 genomes of rare divergent hepaciviruses carry the same weight as 51,573 <i>Hepacivirus C</i>. On HCV itself all four call at 96.8&ndash;98.4%.</div><p class="note">The genomes that miss E2 belong to 11 taxa. <b>Ten of them have a polyprotein in the collection and no E2 &mdash; there is nothing to train a profile on.</b> The best E2 profile scores 33&ndash;40 bits against a cutoff of 150: no homology, not a near miss, so lowering the threshold buys five genomes and admits noise. In the whole dump those lineages total 44 genomes, <b>0.07%</b>.</p><p class="note">This is <i>not</i> the NS5A story, which looked identical and was not. NS5A's missing sequences were in the collection; merging 102 of them took it from 33 to 49 profiles and 65.7% to 99.1%. E2's are absent from the source, and re-clustering cannot invent them &mdash; the leftover pass moved E1, E2, NS2 and p7 by 0.3 to 0.4 points and that is the measurement saying so.</p></section><section><h2><span class="num">06</span>F, and the defect that hid it</h2><p class="lede">F is the +1 frameshift product of the core region &mdash; the opposite direction to NS1&prime;, so its references are one base SHORTER than the genome and carry a dash where the genome has a base.</p><div class="tiles"><div class="tile"><div class="v">3,644</div><div class="l">curated references</div></div><div class="tile"><div class="v">87.4%</div><div class="l">called on the HCV panel</div></div><div class="tile"><div class="v">46.6%</div><div class="l">before the fix</div></div><div class="tile"><div class="v">126&amp;ndash;162 aa</div><div class="l">product length</div></div></div><p class="note"><code>best_blastn_match_by_loc</code> kept one HSP per location, the highest bit score, and discarded the rest. Every reference is a separate query against the same genome, so all 3,644 competed for one slot. When the winner came from another genotype its one-base deletion sat at a position right for it and wrong for the genome being annotated, the product picked up an internal stop, and the call was demoted to <code>Uncorrected f protein encoding region</code> &mdash; with no way to reach the next reference, including, in 44 of 53 cases, <b>the genome's own</b>. The losers are now kept and walked in score order.</p><p class="note">The reference set itself had to be rebuilt first. The extension pass cut <b>2,723 of 2,788</b> references one codon short, producing <code>MSTNPKPQEK</code> where core reads <code>MSTNPKPQRK</code>. Nothing downstream would have caught it &mdash; a reference that translates cleanly is indistinguishable from a correct one. Final state: 0 internal stops, 0 non-ACGT bases, 99.8% of edits at codon 10 or 11, and 100% of products beginning with a genuine core decapeptide.</p><p class="note">Also worth recording: Xu 2001's &ldquo;stretch of 10A&rdquo; is <b>not a homopolymer</b>. The site is <code>CAAAGAAAAACCAAA</code> in 435 of 844 records and its longest run is five. Testing for <code>A{7,}</code> matches one record in 844 and reads as the site being absent.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Three limits, all measured, none of them fixable by tuning.</p><p class="note"><b>1. Mature peptides in ten divergent lineages.</b> <i>Hepacivirus glareoli</i>, koala, possum, shrew and unnamed hepaciviruses have a polyprotein annotation and no mature peptides, so E1, E2, NS2 and p7 cannot be modelled from sequence. Nor can the sites be read off the literature: <code>NC_038429</code> (<i>H. glareoli</i>) carries one gene feature and <b>zero</b> mat_peptides, and koala and possum hepacivirus have no RefSeq record at all. 44 genomes, 0.07% of the dump.</p><p class="note"><b>2. <i>Rodent hepacivirus</i> &mdash; investigated, and the same wall.</b> 119 genomes, and the one lineage that looked like an exception because <code>NC_021153</code> carries all ten mature peptides with published coordinates. It is not an exception. All 58 failing genomes carry exactly one annotation in BV-BRC &mdash; <code>polyprotein</code> &mdash; so there is nothing to train on, and the 40 <i>Rodent hepacivirus</i> E2 sequences that <i>are</i> in the collection come from a different sub-lineage filed under the same taxid and hit <b>zero</b> of the 58. The published coordinates do not transfer either: the reference's own mature peptides reach all 58 for C (61 bits), NS3 (359) and NS5B (402), confirming they are related at ~40% identity, but <b>E2 and p7 give no hit at all</b> and E1 scores 73 against a cutoff of 100. E2 is the hypervariable envelope and p7 is 54 hydrophobic residues; homology does not cross 40% identity for either. ~80 genomes, <b>0.13%</b> of the dump.</p><p class="note"><b>3. 55 of 406 panel genomes call nothing.</b> 42 of them have essentially no ambiguous bases, so this is profile coverage rather than assembly quality. tblastn from the POLY collection hits all of them at a median 99.5% coverage, several at 100% identity &mdash; their protein is in the training data and the module still cannot reach it.</p><p class="note"><b>The route that remains, for all of the above, is positional derivation.</b> The annotator already supports it &mdash; a feature can take its boundaries from a neighbour's PSSM match via <code>non_pssm_partner</code> with <code>begin_pssm</code> and <code>end_pssm</code> offsets &mdash; and the anchors are there: p7 is called in 51 of the 58 rodent genomes and the polyprotein in all of them. It was not done here because placing the E2 start requires assuming E1's length, which is an inference rather than a measured cleavage site, and the standing rule on this project is that a cut site is backed by the literature or it is not made.</p></section><p class="src">Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure is computed from the run by <code>build_audit_facts.py</code>; the panel, the collections and the manifests are in <code>work/Hepaciviridae</code>.</p></div>

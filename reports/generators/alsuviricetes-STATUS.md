@@ -6,7 +6,7 @@ runtime target only and has no git remote.
 
 ## Shipped in the kit
 
-Fourteen modules, 156 features, 2,803 alignments, 215 rep contigs,
+Fourteen modules, 156 features, 2,974 alignments, 215 rep contigs,
 3 transcript-edited reference sets.
 
 | module | features | profiles | rep contigs | routing | genuinely clean | artifacts |
@@ -24,21 +24,26 @@ Fourteen modules, 156 features, 2,803 alignments, 215 rep contigs,
 | **Alphaflexiviridae** | 6 | 259 | 25 | 90.1% | **92.4%** | **all four** |
 | **Allexivirus** | 7 | 76 | 25 | 99.0% | **89.3%** | **all four** |
 | **Orthoflavivirus** | 16 | 337 | 25 | 98.3% | **62.0%** | **all four** |
-| **Hepaciviridae** | 12 | 637 | 25 | 96.0% | **57.8%** | none yet |
+| **Hepaciviridae** | 12 | 808 | 25 | 94.7% | **53.8%** | **all four** |
 
 Quality is **genuinely clean**: no genome, contig *or* feature flag.
 `run_gto_eval.py` decides good-versus-poor on genome and contig flags alone,
 so its headline runs a few points higher.
 
+**Hepaciviridae's 53.8% is a species-capped figure and means almost nothing on
+its own.** The panel gives every species equal weight, so 44 genomes of rare
+divergent hepaciviruses count for as much as 51,573 *Hepacivirus C*. On HCV
+itself the eleven PSSM features call at 96.8&ndash;98.4% and F at 87.4%. The
+features that read low &mdash; E1, E2, NS2, p7 &mdash; do so because ten
+lineages have a polyprotein annotation and no mature peptides at all, which is
+0.07% of the database. See §05 and §07 of the audit.
+
 **The two newest rows have the hardest denominators, and the low numbers are
 not what they look like.** Both declare many essential features over one
 polyprotein, so a genuinely-clean verdict requires every one of them at once;
 Alphaflexiviridae above declares six features in total. Orthoflavivirus's
-per-feature rates are 91.8–99.8%. Hepaciviridae's panel is **species-capped**,
-which deliberately over-weights the rare divergent hepaciviruses against the
-HCV that dominate the database — split apart, the 62 HCV genomes are 90.3%
-genuinely clean and the 289 others 50.9%. Neither row is comparable to the
-five above it.
+per-feature rates are 91.8–99.8%. Neither row is comparable to the five above
+it.
 
 **Denominators are not comparable.** Hepeviridae (n=622), Alphaflexiviridae
 (n=170) and Allexivirus (n=103) were scored on full routed sets. Tobamovirus
