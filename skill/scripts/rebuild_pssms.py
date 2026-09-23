@@ -19,6 +19,8 @@ modified -- only pssms/*.pssm are written.
 import argparse, glob, os, re, shutil, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from norm_pssm import norm as _norm   # noqa: E402
 # order matters: the first directory holding <n>.fa is the PSSM's source
 SUBDIRS = ("corrected_alis", "reclustered_alis", "truncated_alis", "alis")
 
@@ -83,6 +85,21 @@ def build(src, lid, title, tmp):
     text = subprocess.run([sys.executable, os.path.join(HERE, "norm_pssm.py"), raw],
                           capture_output=True, text=True).stdout
     os.remove(raw)
+    #  Force the query id back to the PSSM's own.
+    #
+    #  psiblast does not preserve it: rebuilding cluster 2 yields
+    #  `local str "1"` however the subject is labelled. That is a name, not a
+    #  score -- across a 30-PSSM sample, 16 reproduced exactly and the other
+    #  14 differed in this one line and nothing else -- but leaving it made
+    #  rebuild_pssms report 389 of 808 Hepaciviridae PSSMs stale when every
+    #  score was identical.
+    #
+    #  It also matters for --write, not only for the comparison: writing
+    #  psiblast's id would silently renumber a rebuilt profile's query, so the
+    #  substitution has to happen here, in what gets written, rather than
+    #  being neutralised at compare time.
+    if lid is not None:
+        text = re.sub(r'local str "[^"]*"', 'local str "%s"' % lid, text, count=1)
     return text
 
 
@@ -109,7 +126,13 @@ def main():
         text = build(src, lid, title, tmp)
         if text is None:
             failed.append((tax, feat, num, "psiblast produced nothing"))
-        elif open(p, errors="replace").read() == text:
+        #  Normalise BOTH sides. Comparing a normalised rebuild against the raw
+        #  stored file makes the comparison sensitive to anything norm_pssm
+        #  strips, which is the opposite of the point. The `descr` block is
+        #  emitted by some pipeline runs and not others and holds no scores;
+        #  leaving it on one side of the comparison reported 399 of 808
+        #  Hepaciviridae PSSMs stale when every score was identical.
+        elif _norm(open(p, errors="replace").read()) == _norm(text):
             ok += 1
         else:
             stale.append((tax, feat, num, p, src, text))

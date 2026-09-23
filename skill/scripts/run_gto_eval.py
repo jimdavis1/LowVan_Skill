@@ -181,7 +181,13 @@ def main():
         else:
             good += 1
             if hasff: featflagged += 1
-        rows.append((b, nf, len(gf), len(cf), "; ".join(allf)[:200]))
+        #  The feature-flag count belongs in the table. "Genuinely clean" --
+        #  the figure every coverage audit leads with -- is no genome, contig
+        #  OR feature flag, and without this column the table cannot reproduce
+        #  it: reading quality.tsv gives the "good" number instead, which is
+        #  several points higher and answers a different question.
+        nff = sum(len(f.get("feature_quality_flags") or []) for f in feat)
+        rows.append((b, nf, len(gf), len(cf), nff, "; ".join(allf)[:200]))
 
     tot = good + poor + unann
     print("\n  scored %d genome(s)" % tot)
@@ -214,7 +220,8 @@ def main():
 
     if args.report:
         with open(args.report, "w") as fh:
-            fh.write("genome\tn_features\tn_genome_flags\tn_contig_flags\tflags\n")
+            fh.write("genome\tn_features\tn_genome_flags\tn_contig_flags"
+                     "\tn_feature_flags\tflags\n")
             for r in sorted(rows):
                 fh.write("\t".join(str(x) for x in r) + "\n")
         print("\n  wrote %s" % args.report)

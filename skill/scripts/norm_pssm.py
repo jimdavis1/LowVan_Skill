@@ -5,6 +5,20 @@ psiblast writes an intermediateData block (freqRatios) the pipeline's PSSMs do
 not carry, renders a numeric query id as `local id N` rather than
 `local str "N"`, and indents differently. This rewrites all three so a
 recomputed PSSM is byte-identical to one the pipeline produced.
+
+It also drops the `descr` block. Some pipeline runs emit
+
+    descr {
+      title "1 Untitled PSSM 1"
+    },
+
+and some do not; it is a label, it holds no scores, and psiblast omits it on a
+rebuild. Leaving it in made rebuild_pssms.py report 399 of 808 Hepaciviridae
+PSSMs as stale when every score was identical -- the block was the entire
+difference, and it correlated perfectly: all 399 flagged carried it, all 409
+clean ones did not, and nothing was genuinely out of date. A staleness check
+that is wrong half the time is worse than none, because the next real hit gets
+ignored with the rest.
 """
 import re, sys
 
@@ -30,6 +44,7 @@ def strip_block(t, key):
 
 def norm(t):
     t = strip_block(t, "intermediateData")
+    t = strip_block(t, "descr")
     t = re.sub(r'local id (\d+)', r'local str "\1"', t)
     out, d, inq = [], 0, False
     for line in t.split("\n"):
