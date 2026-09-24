@@ -155,9 +155,20 @@ Mayoviridae, Benyviridae.
 
 | module | coverage at 25 | why |
 |---|---|---|
-| Endornaviridae | ~30% | 141 species, 141 clusters. One ORF, trivial to build and impossible to route |
-| Closteroviridae (mono) | 74.6% | try splitting before retrying |
-| Tymoviridae (lumped) | 74.6% | try splitting before retrying |
+| Endornaviridae | **71.8%** | 202 genomes in 69 clusters. The curve does not bend — 41% at 5 refs, 72% at 25, 91% at 50 — because nearly every genome is its own cluster. **No split can help**: one ORF, no capsid, uniformly divergent |
+| Closteroviridae | **77.0%** | six genera in one module; **not yet split**, and the split is the lever to try |
+| Quinvirinae | **81.0%** | 1,694 genomes in 142 clusters; **not yet split** |
+
+Re-measured 23 September with one fixed criterion — records at ≥6,000 nt for a
+monopartite taxon, merged by `genome_name` for a multipartite one. It
+reproduces the independent 22 September figures (Closteroviridae 77.0% against
+76.6%, Quinvirinae 81.0% against 81.1%), which is why the numbers above
+supersede the older ones.
+
+**Tymoviridae is no longer tabled.** Lumped it gated 74.6%; gated per genus its
+three members all clear — Marafivirus 100%, Tymovirus 91.2%, Maculavirus 100%.
+Same genomes, same budget. The lumped figure was measuring the module boundary,
+not the taxon, and it is the precedent for splitting the two above.
 
 ## Open questions for the curator
 
