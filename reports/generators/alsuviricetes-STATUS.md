@@ -1,12 +1,12 @@
 # Alsuviricetes module status
 
-Last updated 22 September 2026. The repository of record is
+Last updated 24 September 2026. The repository of record is
 `LowVan_Skill/` (github.com/jimdavis1/LowVan_Skill). `Viral_Annotation/` is a
 runtime target only and has no git remote.
 
 ## Shipped in the kit
 
-Fourteen modules, 156 features, 2,974 alignments, 215 rep contigs,
+Sixteen modules, 178 features, 3,144 alignments, 265 rep contigs,
 3 transcript-edited reference sets.
 
 | module | features | profiles | rep contigs | routing | genuinely clean | artifacts |
@@ -25,10 +25,21 @@ Fourteen modules, 156 features, 2,974 alignments, 215 rep contigs,
 | **Allexivirus** | 7 | 76 | 25 | 99.0% | **89.3%** | **all four** |
 | **Orthoflavivirus** | 16 | 337 | 25 | 98.3% | **62.0%** | **all four** |
 | **Hepaciviridae** | 12 | 808 | 25 | 94.7% | **53.8%** | **all four** |
+| **Pestiviridae** | 13 | 103 | 25 | 98.8% | **28.9%** | **all four** |
+| **Pegivirus** | 9 | 67 | 25 | 92.8% | **20.8%** | **all four** |
 
 Quality is **genuinely clean**: no genome, contig *or* feature flag.
 `run_gto_eval.py` decides good-versus-poor on genome and contig flags alone,
 so its headline runs a few points higher.
+
+**Pestiviridae declares one feature that has no PSSM at all.** NS2 is cut at
+the Arg1589-Gly1590 site fixed by protein sequencing (PMID 12827468) rather
+than modelled, because BV-BRC holds 69 NS2 records of which 34 are the right
+length and 24 of those end in the wrong residue. It calls on 111 genomes with
+110 ending in the correct Arg. The same was tried on Npro and **rejected on
+measurement** — 58% ending in the conserved Cys168 against the PSSM's 96% —
+because a derived end inherits its anchor's boundary and the capsid profile
+does not place that junction reliably.
 
 **Hepaciviridae's 53.8% is a species-capped figure and means almost nothing on
 its own.** The panel gives every species equal weight, so 44 genomes of rare
