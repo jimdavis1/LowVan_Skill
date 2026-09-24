@@ -1,0 +1,251 @@
+{
+   "Pegivirus": {
+      "close_genomes": {
+         "Pegivirus.1.dna": {
+            "genome_ids": "PV539248",
+            "genome_name": "GB virus C GBV-C/human/USA/MA-Broad_BWH-23304/2024"
+         },
+         "Pegivirus.10.dna": {
+            "genome_ids": "PV294947",
+            "genome_name": "Pegivirus sp. HN_K9p_14"
+         },
+         "Pegivirus.11.dna": {
+            "genome_ids": "KC796084",
+            "genome_name": "Bat pegivirus"
+         },
+         "Pegivirus.12.dna": {
+            "genome_ids": "MT276211",
+            "genome_name": "Equine pegivirus 1 C35"
+         },
+         "Pegivirus.13.dna": {
+            "genome_ids": "LZ229747",
+            "genome_name": "Human pegivirus 2"
+         },
+         "Pegivirus.14.dna": {
+            "genome_ids": "PV539266",
+            "genome_name": "GB virus C GBV-C/human/USA/MA-Broad_MGH-23575/2025"
+         },
+         "Pegivirus.15.dna": {
+            "genome_ids": "LC859349",
+            "genome_name": "Tree shrew pegivirus TB039"
+         },
+         "Pegivirus.16.dna": {
+            "genome_ids": "KC796087",
+            "genome_name": "Bat pegivirus"
+         },
+         "Pegivirus.17.dna": {
+            "genome_ids": "NC_030291",
+            "genome_name": "Pegivirus B 68"
+         },
+         "Pegivirus.18.dna": {
+            "genome_ids": "LZ229746",
+            "genome_name": "Human pegivirus 2"
+         },
+         "Pegivirus.19.dna": {
+            "genome_ids": "PQ421782",
+            "genome_name": "Pegivirus sp. YL-ZHXW"
+         },
+         "Pegivirus.2.dna": {
+            "genome_ids": "KT427412",
+            "genome_name": "Human pegivirus 2 ABT0128A.US"
+         },
+         "Pegivirus.20.dna": {
+            "genome_ids": "PQ421784",
+            "genome_name": "Wufeng Blarinella griselda pegivirus 1 SJ-HSQ"
+         },
+         "Pegivirus.21.dna": {
+            "genome_ids": "KC796081",
+            "genome_name": "Bat pegivirus"
+         },
+         "Pegivirus.22.dna": {
+            "genome_ids": "KC796089",
+            "genome_name": "Bat pegivirus"
+         },
+         "Pegivirus.23.dna": {
+            "genome_ids": "U94421",
+            "genome_name": "Pegivirus A Alab"
+         },
+         "Pegivirus.24.dna": {
+            "genome_ids": "U22303",
+            "genome_name": "Pegivirus A"
+         },
+         "Pegivirus.25.dna": {
+            "genome_ids": "NC_021154",
+            "genome_name": "Rodent pegivirus"
+         },
+         "Pegivirus.3.dna": {
+            "genome_ids": "KF234530",
+            "genome_name": "Simian pegivirus SPgVkrc"
+         },
+         "Pegivirus.4.dna": {
+            "genome_ids": "PP467555",
+            "genome_name": "Norway rat pegivirus Bailey-purpleX"
+         },
+         "Pegivirus.5.dna": {
+            "genome_ids": "KF234513",
+            "genome_name": "Simian pegivirus SPgVkrc"
+         },
+         "Pegivirus.6.dna": {
+            "genome_ids": "LC602141",
+            "genome_name": "Rodent pegivirus RPgV-IND079"
+         },
+         "Pegivirus.7.dna": {
+            "genome_ids": "PP211442",
+            "genome_name": "Wufeng Niviventer fulvescens pegivirus 1 Ni.confucianus_flavi_4"
+         },
+         "Pegivirus.8.dna": {
+            "genome_ids": "MT276199",
+            "genome_name": "Pegivirus D HorseA1"
+         },
+         "Pegivirus.9.dna": {
+            "genome_ids": "NC_034442",
+            "genome_name": "Pegivirus K"
+         }
+      },
+      "features": {
+         "E1": {
+            "anno": "Mature envelope glycoprotein E1",
+            "bit_cutoff": 80,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "mat_peptide",
+            "gene_symbol": "E1",
+            "kmers": 1,
+            "max_len": 385,
+            "min_len": 258,
+            "segment": "Single RNA Segment",
+            "type": "mat_peptide",
+            "upstream_ext": 0
+         },
+         "E2": {
+            "anno": "Mature envelope glycoprotein E2",
+            "bit_cutoff": 100,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "mat_peptide",
+            "gene_symbol": "E2",
+            "kmers": 1,
+            "max_len": 405,
+            "min_len": 221,
+            "segment": "Single RNA Segment",
+            "type": "mat_peptide",
+            "upstream_ext": 0
+         },
+         "NS2": {
+            "anno": "Mature protease NS2 protein",
+            "bit_cutoff": 60,
+            "comment": "Built from the p7-NS2 and NS2 records together. Pegivirus does not separately cleave p7 -- the canonical product list is E1, E2, NS2, NS3, NS4A, NS4B, NS5A, NS5B -- and the dump's three annotations agree on where NS2 ends (C-terminal Thr) while contradicting each other on where it starts.",
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "mat_peptide",
+            "gene_symbol": "NS2",
+            "kmers": 1,
+            "max_len": 254,
+            "min_len": 215,
+            "segment": "Single RNA Segment",
+            "type": "mat_peptide",
+            "upstream_ext": 0
+         },
+         "NS3": {
+            "anno": "Mature protease and helicase NS3 protein",
+            "bit_cutoff": 300,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "mat_peptide",
+            "gene_symbol": "NS3",
+            "kmers": 1,
+            "max_len": 628,
+            "min_len": 441,
+            "segment": "Single RNA Segment",
+            "type": "mat_peptide",
+            "upstream_ext": 0
+         },
+         "NS4A": {
+            "anno": "Mature protease cofactor NS4A protein",
+            "bit_cutoff": 25,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "mat_peptide",
+            "gene_symbol": "NS4A",
+            "kmers": 1,
+            "max_len": 80,
+            "min_len": 61,
+            "segment": "Single RNA Segment",
+            "type": "mat_peptide",
+            "upstream_ext": 0
+         },
+         "NS4B": {
+            "anno": "Mature non-structural protein NS4B",
+            "bit_cutoff": 80,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "mat_peptide",
+            "gene_symbol": "NS4B",
+            "kmers": 1,
+            "max_len": 301,
+            "min_len": 225,
+            "segment": "Single RNA Segment",
+            "type": "mat_peptide",
+            "upstream_ext": 0
+         },
+         "NS5A": {
+            "anno": "Mature non-structural protein NS5A",
+            "bit_cutoff": 100,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "mat_peptide",
+            "gene_symbol": "NS5A",
+            "kmers": 1,
+            "max_len": 481,
+            "min_len": 305,
+            "segment": "Single RNA Segment",
+            "type": "mat_peptide",
+            "upstream_ext": 0
+         },
+         "NS5B": {
+            "anno": "RNA-dependent RNA polymerase",
+            "bit_cutoff": 250,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "mat_peptide",
+            "gene_symbol": "NS5B",
+            "kmers": 1,
+            "max_len": 599,
+            "min_len": 431,
+            "segment": "Single RNA Segment",
+            "type": "mat_peptide",
+            "upstream_ext": 0
+         },
+         "POLY": {
+            "anno": "Genome polyprotein",
+            "bit_cutoff": 400,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "POLY",
+            "kmers": 1,
+            "max_len": 3484,
+            "min_len": 2006,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         }
+      },
+      "segments": {
+         "Single RNA Segment": {
+            "max_len": 16119,
+            "min_len": 7397,
+            "replicon_geometry": "linear"
+         }
+      }
+   }
+}

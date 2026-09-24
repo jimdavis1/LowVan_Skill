@@ -50,12 +50,25 @@ with ThreadPoolExecutor(max_workers=a.jobs) as ex:
         for x in res: got[x["genome_id"]].append(x)
         n+=1
         if n%20==0: sys.stderr.write("  %d/%d\n"%(n,len(batches)))
-w=0
+#  Deduplicate contig ids within a genome. BV-BRC occasionally returns the
+#  same sequence record twice -- 3 of 2,006 Pestivirus genomes and 3 of 670
+#  Pegivirus -- and rast-create-genome then dies with
+#      Error -32603 invoking add_contigs: Attempt to add duplicate contig id
+#  losing the whole genome rather than the duplicate. Keyed on accession
+#  because that is what becomes the contig id below; a genuinely different
+#  segment has a different accession and is kept.
+w=0; deduped=0
 for gid,recs in got.items():
+    seen=set(); keep=[]
+    for x in recs:
+        acc=x.get("accession",gid)
+        if acc in seen: deduped+=1; continue
+        seen.add(acc); keep.append(x)
     with open(os.path.join(a.out,gid+".fna"),"w") as f:
-        for x in recs:
+        for x in keep:
             f.write(">%s   %s\n%s\n"%(x.get("accession",gid),x.get("description","") or meta[gid][1],x["sequence"]))
     w+=1
+if deduped: sys.stderr.write("dropped %d duplicate contig record(s)\n"%deduped)
 missing=[g for g in gids if g not in got]
 with open(a.out+".metadata","w") as f:
     f.write("genome_id\tgenome_name\tfamily\tgenus\tspecies\tlength\taccession\n")

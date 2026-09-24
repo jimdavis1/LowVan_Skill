@@ -73,7 +73,41 @@ def validate(workdir, mod_json):
         # A feature declared with "special" is called by an external program
         # (transcript_edit / splice), so it legitimately has no PSSM.
         special = {f for f in feats if block["features"][f].get("special")}
-        missing = feats - built - special
+        #  A feature that takes its coordinates from a NEIGHBOUR'S PSSM match
+        #  has no profiles of its own and is not missing. annotate_by_viral_pssm.pl
+        #  calls these through non_pssm_partner: the partner declares the
+        #  partnership and the derived feature declares `begin`/`end` with a
+        #  pssm name, a START/STOP anchor and an offset. Pestiviridae NS2 is the
+        #  first of them -- it is cut from p7's C-terminus to the residue before
+        #  NS3's N-terminal Gly, the Gly1590 of the conserved Arg1589-Gly1590
+        #  site -- and without this the installer reported it as "DECLARED BUT
+        #  UNBUILT -> would never be called", which is the opposite of true.
+        #  The segments block must be {name: {min_len, max_len, replicon_geometry}}.
+        #  viral_genome_quality.pl dereferences it as a hash, so a bare scalar
+        #  kills quality scoring on EVERY genome with
+        #      Can't use string ("1") as a HASH ref ... line 302
+        #  while annotation itself succeeds -- so the module looks built and
+        #  scores nothing. --check passed this shape until now.
+        segs = block.get("segments")
+        if not isinstance(segs, dict) or not segs:
+            print("       segments block is missing or not an object"); problems += 1
+        else:
+            for sname, sv in segs.items():
+                if not isinstance(sv, dict):
+                    print("       segment %r is %r, expected an object with "
+                          "min_len/max_len/replicon_geometry" % (sname, sv)); problems += 1
+                    continue
+                for need in ("min_len", "max_len", "replicon_geometry"):
+                    if need not in sv:
+                        print("       segment %r has no %s" % (sname, need)); problems += 1
+            declared = {v.get("segment") for v in block["features"].values() if v.get("segment")}
+            for d0 in sorted(declared - set(segs)):
+                print("       feature(s) declare segment %r, which the segments "
+                      "block does not define" % d0); problems += 1
+
+        derived = {f for f in feats
+                   if block["features"][f].get("begin") or block["features"][f].get("end")}
+        missing = feats - built - special - derived
         orphan = built - feats
 
         n = sum(len(v) for v in pssms.values())
@@ -82,6 +116,20 @@ def validate(workdir, mod_json):
         if special:
             print("       %2d special (no PSSM expected): %s"
                   % (len(special), ", ".join(sorted(special))))
+        if derived:
+            print("       %2d derived from a neighbour's PSSM (no PSSM expected): %s"
+                  % (len(derived), ", ".join(sorted(derived))))
+            for f in sorted(derived):
+                v = block["features"][f]
+                for side in ("begin", "end"):
+                    d = v.get(side) or {}
+                    anc = d.get("%s_pssm" % side)
+                    if anc and anc not in feats:
+                        print("          %s: %s anchors on %r, which this module "
+                              "does not declare" % (f, side, anc)); problems += 1
+                    elif anc and f not in (block["features"][anc].get("non_pssm_partner") or []):
+                        print("          %s: %s anchors on %s, but %s does not list it "
+                              "in non_pssm_partner" % (f, side, anc, anc)); problems += 1
         if missing:
             print("       %2d DECLARED BUT UNBUILT -> would never be called:" % len(missing))
             print("          %s" % ", ".join(sorted(missing)))

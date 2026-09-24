@@ -1,0 +1,102 @@
+{
+ "Pestiviridae.1.dna": {
+  "genome_ids": "MW853928",
+  "genome_name": "Classical swine fever virus AH-CSFV20178-5"
+ },
+ "Pestiviridae.10.dna": {
+  "genome_ids": "NC_077001",
+  "genome_name": "Rodent pestivirus RtNn-PestV/HuB2014"
+ },
+ "Pestiviridae.11.dna": {
+  "genome_ids": "LY723124",
+  "genome_name": "Porcine pestivirus"
+ },
+ "Pestiviridae.12.dna": {
+  "genome_ids": "NC_023176",
+  "genome_name": "Porcine pestivirus isolate Bungowannah"
+ },
+ "Pestiviridae.13.dna": {
+  "genome_ids": "LT907991",
+  "genome_name": "Bovine viral diarrhea virus 1 VE/138cp/05"
+ },
+ "Pestiviridae.14.dna": {
+  "genome_ids": "MH282908",
+  "genome_name": "Bat pestivirus BtSk-PestV-1/GX2017"
+ },
+ "Pestiviridae.15.dna": {
+  "genome_ids": "PQ197220",
+  "genome_name": "Pestivirus O IT-2021-60514-45"
+ },
+ "Pestiviridae.16.dna": {
+  "genome_ids": "PP663643",
+  "genome_name": "Pestivirus sp. SCQS"
+ },
+ "Pestiviridae.17.dna": {
+  "genome_ids": "PX221775",
+  "genome_name": "Pestivirus NMFS_2_4"
+ },
+ "Pestiviridae.18.dna": {
+  "genome_ids": "MK910229",
+  "genome_name": "Phocoena pestivirus NS170386"
+ },
+ "Pestiviridae.19.dna": {
+  "genome_ids": "PV605303",
+  "genome_name": "Norway rat pestivirus 23ZJ832"
+ },
+ "Pestiviridae.2.dna": {
+  "genome_ids": "PX529693",
+  "genome_name": "Bovine viral diarrhea virus 1 USL186_TX"
+ },
+ "Pestiviridae.20.dna": {
+  "genome_ids": "PX236820",
+  "genome_name": "Ferret pestivirus M16"
+ },
+ "Pestiviridae.21.dna": {
+  "genome_ids": "NC_003678",
+  "genome_name": "Pestivirus giraffe-1 H138"
+ },
+ "Pestiviridae.22.dna": {
+  "genome_ids": "NC_077000",
+  "genome_name": "Rodent pestivirus RtAp-PestV/JL2014"
+ },
+ "Pestiviridae.23.dna": {
+  "genome_ids": "ON811738",
+  "genome_name": "Trinbago virus TIGMIC_1"
+ },
+ "Pestiviridae.24.dna": {
+  "genome_ids": "PX552531",
+  "genome_name": "Bovine viral diarrhea virus 1 CHQHBVDV101-2025"
+ },
+ "Pestiviridae.25.dna": {
+  "genome_ids": "NC_024018",
+  "genome_name": "Pronghorn antelope pestivirus"
+ },
+ "Pestiviridae.3.dna": {
+  "genome_ids": "PX122064",
+  "genome_name": "Bovine viral diarrhea virus 2 5111103"
+ },
+ "Pestiviridae.4.dna": {
+  "genome_ids": "MW183241",
+  "genome_name": "Atypical porcine pestivirus USA/023005/2016"
+ },
+ "Pestiviridae.5.dna": {
+  "genome_ids": "OM451130",
+  "genome_name": "Pangolin pestivirus 3 ZJ-MO1"
+ },
+ "Pestiviridae.6.dna": {
+  "genome_ids": "KU563155",
+  "genome_name": "Bovine viral diarrhea virus 3"
+ },
+ "Pestiviridae.7.dna": {
+  "genome_ids": "KJ463423",
+  "genome_name": "Border disease virus Coos Bay 5 c"
+ },
+ "Pestiviridae.8.dna": {
+  "genome_ids": "OP474161",
+  "genome_name": "Pangolin pestivirus T7"
+ },
+ "Pestiviridae.9.dna": {
+  "genome_ids": "PQ180399",
+  "genome_name": "Dermacentor pesti-like virus Hebei_020"
+ }
+}
