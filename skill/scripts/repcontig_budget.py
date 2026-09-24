@@ -24,17 +24,44 @@ ap.add_argument("--budget",type=int,default=25)
 ap.add_argument("--mi",type=float,default=0.7)
 ap.add_argument("--label",default=None)
 ap.add_argument("--meta",default="Alsu.full.tsv")
+ap.add_argument("--merge-by-name",action="store_true",
+  help="treat records sharing a genome_name as ONE genome: apply --min-len to "
+       "their combined length and cluster their concatenated sequence. Required "
+       "for any multipartite taxon.")
+ap.add_argument("--any-family",action="store_true",
+  help="do not filter on the family column; --genera alone selects")
 a=ap.parse_args()
 gen=set(x for x in a.genera.split(",") if x)
 
-rows=[]
+#  Every BV-BRC record in Alsuviricetes has contigs=1, so a three-segment
+#  ilarvirus is THREE genome records sharing one genome_name. Filtering records
+#  on --min-len therefore asks whether a single SEGMENT clears the floor, which
+#  for a multipartite virus is almost never true: Bromoviridae has 793 genomes
+#  at >=6 kb and 11 RECORDS at >=6 kb. Routing does not work that way either --
+#  merge_segments.py runs before annotation -- so --merge-by-name measures what
+#  actually happens.
+#
+#  It also removes the need to guess a per-taxon floor. Deriving one from the
+#  median record length admitted fragments and reported Quinvirinae at 89.6%
+#  against an independently measured 81.1%; deriving it from a p90 of merged
+#  lengths broke differently, gating Tymovirus on 5 genomes of 80 because
+#  records sharing a name inflated the estimate. One fixed criterion on merged
+#  genomes is both simpler and right.
+rows=[]; byname=collections.defaultdict(list)
 for l in open(a.meta):
     p=l.rstrip("\n").split("\t")
-    if len(p)<10 or p[2]!=a.family: continue
+    if len(p)<10: continue
+    if not a.any_family and p[2]!=a.family: continue
     if gen and (p[3] or "") not in gen: continue
     try: ln=int(p[6])
     except: continue
-    if ln>=a.min_len: rows.append(p[0])
+    if a.merge_by_name: byname[p[1]].append((p[0],ln))
+    elif ln>=a.min_len: rows.append(p[0])
+name_of={}
+if a.merge_by_name:
+    for nm,recs in byname.items():
+        if sum(x[1] for x in recs)>=a.min_len:
+            for gid,_ in recs: rows.append(gid); name_of[gid]=nm
 if not rows: sys.exit("none")
 label=a.label or (a.family if not gen else "+".join(sorted(gen)))
 
@@ -46,6 +73,10 @@ for i in range(0,len(rows),150):
     for x in r.json(): seqs[x["genome_id"]]=seqs.get(x["genome_id"],"")+x["sequence"]
 
 tmp=tempfile.mkdtemp(); fa=os.path.join(tmp,"g.fna")
+if a.merge_by_name:
+    byg=collections.defaultdict(str)
+    for g,s in seqs.items(): byg[name_of.get(g,g)]+=s
+    seqs=dict(byg)
 with open(fa,"w") as f:
     for g,s in seqs.items(): f.write(">%s\n%s\n"%(g,s))
 pre=os.path.join(tmp,"c")
