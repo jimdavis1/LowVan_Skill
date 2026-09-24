@@ -1,0 +1,169 @@
+<title>Pegivirus PSSM Registry</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:1120px; margin:0 auto; padding:40px 22px 72px; display:flex; flex-direction:column; gap:30px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  .stand { max-width:70ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .stand b { color:var(--ink); font-weight:600; }
+
+  .figs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-top:1px solid var(--base); border-bottom:1px solid var(--grid); }
+  .fig { padding:13px 16px 13px 0; }
+  .fig+.fig { padding-left:16px; border-left:1px solid var(--grid); }
+  .fig .n { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:23px; font-weight:500; display:block; letter-spacing:-.02em; }
+  .fig .k { font-size:12px; color:var(--ink2); }
+
+  .bar { display:flex; height:10px; border-radius:2px; overflow:hidden; gap:2px; background:transparent; }
+  .bar i,.bar b { display:block; height:10px; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; font-size:12.5px; color:var(--ink2); align-items:center; }
+  .legend span { display:inline-flex; gap:6px; align-items:center; }
+  .sw { width:10px; height:10px; border-radius:2px; }
+
+  .ctrl { display:flex; gap:7px; flex-wrap:wrap; align-items:center; }
+  .ctrl button { font-family:var(--sans); font-size:12.5px; padding:5px 11px; border-radius:3px;
+    border:1px solid var(--hair); background:var(--surface); color:var(--ink2); cursor:pointer; }
+  .ctrl button[aria-pressed="true"] { background:var(--ink); color:var(--plane); border-color:var(--ink); }
+  .ctrl button:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+
+  .tax { display:flex; flex-direction:column; gap:9px; }
+  .taxhd { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; border-bottom:1px solid var(--base); padding-bottom:7px; }
+  .taxhd h2 { font-family:var(--serif); font-weight:600; font-size:20px; margin:0; }
+  .taxmeta { display:flex; gap:14px; font-family:var(--mono); font-size:11.5px; color:var(--muted); flex-wrap:wrap; }
+  .taxmeta b { color:var(--ink2); font-weight:500; }
+  .taxnote { margin:0; font-size:13.5px; color:var(--ink2); max-width:82ch; }
+
+  .tw { overflow-x:auto; border:1px solid var(--hair); border-radius:4px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { padding:7px 11px; text-align:left; border-bottom:1px solid var(--grid); vertical-align:top; }
+  thead th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted);
+    font-weight:500; white-space:nowrap; position:sticky; top:0; background:var(--surface); }
+  tbody tr:last-child td { border-bottom:0; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.anno { min-width:19ch; }
+  td.m { font-family:var(--mono); color:var(--ink2); white-space:nowrap; }
+  td.ty { font-size:11.5px; color:var(--muted); }
+  .num, td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  td.pss code { font-family:var(--mono); font-size:11px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .dash { color:var(--muted); }
+  .nd { color:var(--missed); font-size:13px; }
+
+  .covcell { white-space:nowrap; min-width:110px; }
+  .cov { display:inline-flex; width:74px; height:9px; border-radius:2px; overflow:hidden; gap:2px; vertical-align:middle; }
+  .cov i { background:var(--built); } .cov b { background:var(--missed); }
+  .covn { font-family:var(--mono); font-size:11px; color:var(--ink2); margin-left:7px; font-variant-numeric:tabular-nums; }
+
+  .chip { font-family:var(--mono); font-size:10.5px; padding:2px 7px; border-radius:9px; white-space:nowrap;
+    border:1px solid var(--hair); color:var(--ink2); }
+  .chip.s-built { border-color:var(--built); color:var(--built); }
+  .chip.s-derived { border-color:var(--base); color:var(--ink2); }
+  .chip.s-too-few { border-color:var(--missed); color:var(--missed); }
+  .chip.s-no-collection { color:var(--muted); }
+
+  .gap { border-left:2px solid var(--missed); padding:3px 0 3px 15px; max-width:84ch; }
+  .gap h2 { font-family:var(--serif); font-size:19px; margin:0 0 5px; }
+  .gap p { margin:0 0 10px; font-size:14px; color:var(--ink2); }
+  .gap p:last-of-type { margin-bottom:14px; }
+  .keys code { font-family:var(--mono); font-size:10.5px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .src { font-size:12px; color:var(--muted); border-top:1px solid var(--grid); padding-top:13px; }
+  .src code { font-family:var(--mono); }
+  @media (max-width:760px) { .figs { grid-template-columns:repeat(2,1fr); } h1 { font-size:25px; } }
+</style>
+<div class="wrap">
+ <header>
+  <div class="eyebrow">LowVan &middot; Pegivirus module &middot; 24 September 2026</div>
+  <h1>Pegivirus</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">Annotation strings and the PSSMs that call them</h2>
+  <p class="stand">Every feature declared in <code>Pegivirus_Viral_PSSM.json</code>, the annotation string it emits, and the profiles built for it. <b>9 of 9 declared features have a profile</b>, giving <b>67 PSSMs</b> over 2,006 sequences &mdash; of which <b>100% are callable</b> by their own module. The remaining 0 cannot be satisfied from this BV-BRC dump.</p>
+ </header>
+ <div class="figs">
+  <div class="fig"><span class="n">67</span><span class="k">PSSMs built</span></div>
+  <div class="fig"><span class="n">9/9</span><span class="k">features with a profile</span></div>
+  <div class="fig"><span class="n">9</span><span class="k">of 9 annotation strings reachable</span></div>
+  <div class="fig"><span class="n">100%</span><span class="k">median per-feature call rate</span></div>
+  <div class="fig"><span class="n">0</span><span class="k">features unsatisfiable</span></div>
+ </div>
+ <div class="legend">
+  <span><i class="sw" style="background:var(--built)"></i> callable by its own module</span>
+  <span><i class="sw" style="background:var(--missed)"></i> in the collection but not called</span>
+  <span><i class="nd">&#9702;</i> non-default build parameters (1)</span>
+ </div>
+ <div class="ctrl"><span class="eyebrow" style="margin-right:4px">show</span>
+  <button aria-pressed="true" data-f="all">all 9</button>
+  <button aria-pressed="false" data-f="built">built (9)</button>
+  <button aria-pressed="false" data-f="gap">gaps (0)</button>
+  <button aria-pressed="false" data-f="derived">derived (0)</button>
+ </div>
+<section class="tax">
+ <div class="taxhd"><h2>Pegivirus</h2><span class="taxmeta">9 of 9 features built &middot; 67 PSSMs &middot; 100% callable</span></div>
+ <div class="tw"><table><thead><tr><th>Key</th><th>Annotation string</th><th>Gene</th><th>Type</th><th class="num">Bit</th><th class="num">Length</th><th class="num">Seqs</th><th>PSSMs</th><th>Callable</th><th>Status</th></tr></thead>
+ <tbody><tr data-status="built"><td class="k">E1</td><td class="anno">Mature envelope glycoprotein E1</td><td class="m">E1</td><td class="m ty">mat_pep</td><td class="m num">80</td><td class="m num">258&ndash;385</td><td class="m num">244</td><td class="pss"><code>1</code> <code>2_1</code> <code>3</code> <code>4</code></td><td class="covcell"><div class="cov" title="244 of 244 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">E2</td><td class="anno">Mature envelope glycoprotein E2</td><td class="m">E2</td><td class="m ty">mat_pep</td><td class="m num">100</td><td class="m num">221&ndash;405</td><td class="m num">381</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="380 of 381 in-range sequences callable"><i style="width:99.74%"></i><b style="width:0.26%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS2</td><td class="anno">Mature protease NS2 protein</td><td class="m">NS2</td><td class="m ty">mat_pep</td><td class="m num">60</td><td class="m num">215&ndash;254</td><td class="m num">224</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code></td><td class="covcell"><div class="cov" title="224 of 224 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS3</td><td class="anno">Mature protease and helicase NS3 protein</td><td class="m">NS3</td><td class="m ty">mat_pep</td><td class="m num">300</td><td class="m num">441&ndash;628</td><td class="m num">207</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code></td><td class="covcell"><div class="cov" title="207 of 207 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS4A <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">Mature protease cofactor NS4A protein</td><td class="m">NS4A</td><td class="m ty">mat_pep</td><td class="m num">25</td><td class="m num">61&ndash;80</td><td class="m num">58</td><td class="pss"><code>1</code> <code>2</code> <code>3</code></td><td class="covcell"><div class="cov" title="58 of 58 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS4B</td><td class="anno">Mature non-structural protein NS4B</td><td class="m">NS4B</td><td class="m ty">mat_pep</td><td class="m num">80</td><td class="m num">225&ndash;301</td><td class="m num">153</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code></td><td class="covcell"><div class="cov" title="153 of 153 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS5A</td><td class="anno">Mature non-structural protein NS5A</td><td class="m">NS5A</td><td class="m ty">mat_pep</td><td class="m num">100</td><td class="m num">305&ndash;481</td><td class="m num">249</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code></td><td class="covcell"><div class="cov" title="249 of 249 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS5B</td><td class="anno">RNA-dependent RNA polymerase</td><td class="m">NS5B</td><td class="m ty">mat_pep</td><td class="m num">250</td><td class="m num">431&ndash;599</td><td class="m num">241</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code></td><td class="covcell"><div class="cov" title="241 of 241 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">POLY</td><td class="anno">Genome polyprotein</td><td class="m">POLY</td><td class="m ty">CDS</td><td class="m num">400</td><td class="m num">2006&ndash;3484</td><td class="m num">249</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="248 of 249 in-range sequences callable"><i style="width:99.60%"></i><b style="width:0.40%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr></tbody></table></div>
+</section>
+ <section class="gap">
+  <h2>What was missed, and why</h2>
+  <p><b>0 features have no collection at all</b> &mdash; the protein does not appear in BV-BRC under any product string the binning rules match, so there is nothing to align.</p>
+  <div class="tw"><table><thead><tr><th>Module</th><th class="num">Features</th><th>Keys with no collection</th></tr></thead>
+  <tbody><tr><td colspan="3" class="dash">none</td></tr></tbody></table></div>
+  <p style="margin-top:14px"><b>0 features have a collection too small to profile.</b></p>
+  <div class="tw"><table><thead><tr><th>Module</th><th>Feature</th><th class="num">Seqs</th><th>Why not buildable</th></tr></thead>
+  <tbody><tr><td colspan="4" class="dash">none</td></tr></tbody></table></div>
+  
+ </section>
+ <div class="src">Generated from <code>Pegivirus_Viral_PSSM.json</code> and the built
+ <code>Alignments/&lt;Module&gt;/&lt;Feature&gt;/pssms/</code> trees by <code>collect_registry.py</code> and
+ <code>gen_registry.py</code>. Callable measured by running each feature&rsquo;s own PSSMs back against its own
+ collection with <code>psiblast -in_pssm</code> and testing every sequence against that feature&rsquo;s
+ <code>bit_cutoff</code> &mdash; self-recall, a floor rather than a validation. PSSM labels are cluster ids;
+ files are <code>&lt;Module&gt;.&lt;Feature&gt;.&lt;cluster&gt;.pssm</code>.</div>
+</div>
+<script>
+ var btns=[].slice.call(document.querySelectorAll('.ctrl button'));
+ btns.forEach(function(b){
+   b.addEventListener('click',function(){
+     btns.forEach(function(x){x.setAttribute('aria-pressed', x===b ? 'true':'false');});
+     var f=b.getAttribute('data-f');
+     document.querySelectorAll('tbody tr').forEach(function(tr){
+       var s=tr.getAttribute('data-status'), show;
+       if(f==='all') show=true;
+       else if(f==='gap') show=(s==='no-collection'||s==='too-few');
+       else show=(s===f);
+       tr.hidden=!show;
+     });
+     document.querySelectorAll('section.tax').forEach(function(sec){
+       var any=[].slice.call(sec.querySelectorAll('tbody tr')).some(function(t){return !t.hidden;});
+       sec.hidden=!any;
+     });
+   });
+ });
+</script>

@@ -1,0 +1,113 @@
+<title>Pegivirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &amp;middot; Pegivirus module &amp;middot; 24 September 2026</div><h1>Pegivirus</h1><h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">Does the pegivirus module actually work?</h2><p class="stand">Human pegivirus and its relatives in bats, rodents, horses and primates. Nine features over one polyprotein, and the module is defined as much by what pegivirus <i>lacks</i> as by what it has: no capsid, no Npro, no Erns, and p7 that is never separately cleaved.</p><div class="tiles"><div class="tile"><div class="v">9</div><div class="l">features declared, all with profiles</div></div><div class="tile"><div class="v">67</div><div class="l">profiles over 2,006 sequences</div></div><div class="tile"><div class="v">92.8%</div><div class="l">genomes routed&lt;br&gt;25 refs, 670 genomes</div></div><div class="tile"><div class="v">0</div><div class="l">genomes called nothing</div></div><div class="tile"><div class="v">99.2%</div><div class="l">NS3, NS4A, NS4B, polyprotein</div></div><div class="tile"><div class="v">20.8%</div><div class="l">genuinely clean&lt;br&gt;species-capped panel</div></div></div></header><section><h2><span class="num">01</span>A separate module, on genome organisation</h2><p class="lede">Pegivirus sits next to Pestivirus and Hepacivirus in the old Flaviviridae, and its polyprotein is cut differently enough that it cannot share a module with either.</p><pre class="mono">Pestivirus   Npro - C - Erns - E1 - E2 - p7 - NS2 - NS3 - NS4A-4B-5A-5B
+Pegivirus            (no core)  E1 - E2 -   p7-NS2  - NS3 - NS4A-4B-5A-5B</pre><p class="note">Declaring them together would report <b>Npro, Erns and C as missing on every one of 7,340 pegivirus records</b>. A module is a group of taxa that share a genome organisation, not a clade.</p></section><section><h2><span class="num">02</span>No capsid, and no separate p7</h2><p class="lede">Both absences are in the literature and both are visible in the data.</p><p class="note"><b>No core feature is declared.</b> GBV-A and GBV-C are unique in the family for lacking a well-defined capsid protein. The dump holds 9 records under a core or capsid string and <b>not one is a pegivirus capsid</b>: three are 15-22 aa signal peptides (<code>MELLWLFSVFQVAGG</code>, <code>MAVLLLLLVAEAGAILAPATHA</code>) and one 183-aa record is <b>hepatitis B virus core protein</b> (<code>MDIDPYKEFGATVELLSFLPSDFF...</code>), misfiled.</p><p class="note"><b>No p7 feature either.</b> The canonical product list is E1, E2, NS2, NS3, NS4A, NS4B, NS5A, NS5B &mdash; p7 is not a separately recognised product. The dump agrees: <code>p7-NS2</code> fused is the dominant annotation at <b>190 records tight on 253 aa</b>, against 40 for NS2 alone at 238 and 9 for p7 alone at 68.</p><div class="verdict warn">The three annotations agree on where NS2 <b>ends</b> &mdash; all share a C-terminal Thr &mdash; and contradict each other on where it <b>starts</b>: 253 &minus; 238 = 15, not the 68 a separate p7 would require. <b>The internal boundary is not placed, because the data does not support placing it.</b> NS2 is built from the p7-NS2 and NS2 records together.</div></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">25 representative contigs over the 670 pegivirus genomes at or above 6,000 nt.</p><div class="tiles"><div class="tile"><div class="v">25</div><div class="l">rep contigs</div></div><div class="tile"><div class="v">670</div><div class="l">genomes</div></div><div class="tile"><div class="v">92.8%</div><div class="l">routed</div></div><div class="tile"><div class="v">39</div><div class="l">clusters uncovered, 48 genomes</div></div></div><p class="note">Matching the gate measured independently on 24 September. 64 clusters at 70% identity, the largest holding 339 genomes.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">135 genomes annotated, species-capped across 46 species. 130 routed, and <b>none called nothing</b>.</p><div class="bars"><div class="bar"><div class="bl">NS3</div><div class="bt"><i style="width:99.23%"></i></div><div class="bv">99.2%</div><div class="bn"></div></div><div class="bar"><div class="bl">NS4A</div><div class="bt"><i style="width:99.23%"></i></div><div class="bv">99.2%</div><div class="bn"></div></div><div class="bar"><div class="bl">NS4B</div><div class="bt"><i style="width:99.23%"></i></div><div class="bv">99.2%</div><div class="bn"></div></div><div class="bar"><div class="bl">POLY</div><div class="bt"><i style="width:99.23%"></i></div><div class="bv">99.2%</div><div class="bn"></div></div><div class="bar"><div class="bl">NS2</div><div class="bt"><i style="width:97.69%"></i></div><div class="bv">97.7%</div><div class="bn"></div></div><div class="bar"><div class="bl">NS5B</div><div class="bt"><i style="width:97.69%"></i></div><div class="bv">97.7%</div><div class="bn"></div></div><div class="bar"><div class="bl">E2</div><div class="bt"><i style="width:90.77%"></i></div><div class="bv">90.8%</div><div class="bn"></div></div><div class="bar"><div class="bl">E1</div><div class="bt"><i style="width:76.15%"></i></div><div class="bv">76.2%</div><div class="bn"></div></div><div class="bar"><div class="bl">NS5A</div><div class="bt"><i style="width:66.92%"></i></div><div class="bv">66.9%</div><div class="bn"></div></div></div><p class="note"><b>NS5A at 66.9% is the outlier, and it is the source-annotation ceiling again.</b> Of the 17 taxa that miss it, <b>not one has a single NS5A training sequence</b>. The leftover pool is 7 sequences, so re-clustering cannot help. E1 at 76.2% is the same shape.</p><p class="note">Zero genomes called nothing &mdash; every routed genome gets at least the polyprotein &mdash; which is the strongest single result here and the one Pestiviridae does not match (13 of 172).</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede"></p><p class="note"><b>The junction chemistry has not been checked against published cleavage sites.</b> The <code>JUNCTION</code> table for this module is deliberately almost empty &mdash; only the polyprotein's initiator Met &mdash; because imposing HCV's residue classes on pegivirus would be an assumption, and a filter that encodes an assumption will later appear to confirm it. Pestiviridae's table was measured first and linked to citations; this one has not been, so no constraint is applied. That measurement is the obvious next improvement.</p><p class="note"><b>20.8% genuinely clean</b> on a species-capped panel that gives 46 species equal weight. NS5A and E1 account for most of the shortfall and neither is fixable from sequence.</p></section><p class="src">Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>, module <code>modules/Pegivirus</code>. Panel and collections in <code>work/Pegivirus</code>.</p></div>

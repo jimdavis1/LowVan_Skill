@@ -26,7 +26,7 @@ import os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
-TAXA = ["Orthoflavivirus", "Hepaciviridae", "Alphaflexiviridae", "Allexivirus",
+TAXA = ["Orthoflavivirus", "Hepaciviridae", "Pestiviridae", "Pegivirus", "Alphaflexiviridae", "Allexivirus",
         "Hepeviridae", "Tobamovirus", "Trivirinae", "Matonaviridae",
         "Togaviridae", "Rhabdoviridae"]
 KINDS = [("Coverage Audit", "coverage audit"),
