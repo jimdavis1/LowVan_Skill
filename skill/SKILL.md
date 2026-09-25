@@ -27,6 +27,29 @@ extra segment or a different accessory set gets its own. Getting this wrong is
 expensive later, so settle it before building collections
 (`references/module-partitioning.md`).
 
+**And gate the split before you build.** Several families share one
+organisation across every genus and still should not be one module, because 25
+references are chosen greedily and a divergent genus absorbs the ones a tight
+genus needed. Quinvirinae lumped routes 81.0%; split, Foveavirus goes 94.6% →
+100% and Carlavirus 65.5% → 76.3% — *every* genus improves. Closteroviridae
+77.0% → 95.8% / 89.5% / 99.4%. Tymoviridae was tabled at 74.6% and each of its
+genera clears alone. The measurement is cheap and it is the difference between
+a module and a documented gap.
+
+## Read this before you trust a number
+
+**`references/silent-failures.md`.** Every failure recorded there produced no
+error message: the build completed, the numbers looked plausible, and something
+was wrong. A malformed `segments` block that kills quality scoring on every
+genome while annotation succeeds. A `copy_num` on a genus-specific accessory
+that drove genuinely-clean to 0.0% on a module whose features call at 98–100%.
+A dump whose three index-aligned files arrive misaligned — on *every* taxon so
+far — attaching the wrong annotation to the wrong sequence. A staleness check
+that flagged 399 of 808 profiles when none were stale.
+
+The defence is always the same: **check the thing you care about, not a proxy
+for it.** Zero quality failures does not mean the features were called.
+
 ## Workflow
 
 Work through these in order. Do not skip 7 or 9 — they catch defects the earlier
@@ -254,7 +277,22 @@ python3 scripts/apply_signalp.py --workdir . --parent G \
         --stage-queries Alignments/G_SIGNALP_QUERIES.faa
 ```
 
-#### First decide whether you need SignalP at all
+#### First: can the cut site be read from the literature?
+
+**`references/deriving-mature-peptides.md`.** For a polyprotein virus, the
+source annotation is the weakest input in the chain. Where a cleavage site is
+published, cut there rather than modelling the product — it is better evidence
+than the records and it reaches lineages that have none. Pestiviridae NS2 has
+69 database records of which 10 end in the right residue; cut at the
+protein-sequenced Arg1589–Gly1590 site instead, **110 of 111 derived products
+end in the correct Arg**.
+
+It is not automatically better. The same method on Npro *lost* — 58% ending in
+the conserved Cys168 against the PSSM's 96% — because a derivation inherits its
+anchor's boundary and the capsid profile does not place that junction reliably.
+Measure both and keep the winner.
+
+#### Then decide whether you need SignalP at all
 
 **SignalP is optional, and a module without cleaved products is still a valid
 module.** Work down this list and stop at the first one that applies:
@@ -842,7 +880,28 @@ with three internal products has six cleaved termini, and every one left to
 drift compounds along the chain. Only genuine protease sites keep a 0; give
 every other terminus a 1 and let the annotator find the codon.
 
-### 15. Log what you analysed, then delete the bulk
+### 15. Ship it — kit, Box, runtime, commit
+
+**A module is not built when its PSSMs exist in a temp directory.** Twice in
+this project a module was measured, reported as finished, and found later to
+exist only under `/tmp` — not in the kit, not in Box, not in the runtime repo,
+not committed. The curator had to ask both times.
+
+```bash
+python3 scripts/ship_module.py --module <M> --workdir . --panel <panel> --check
+python3 scripts/ship_module.py --module <M> --workdir . --panel <panel>
+git -C $LOWVAN_KIT add -A modules/<M> && git -C $LOWVAN_KIT commit && git push
+```
+
+`--check` reports the three placements — kit alignments, Box working copy,
+runtime JSON — and exits non-zero while any is missing, so it can gate a loop.
+It deliberately does **not** try to detect git state: `git` invoked from a
+Python subprocess on macOS can die with `xcrun: error: unable to load
+libxcrun` and return failure whatever the tree looks like, and a check that
+lies is worse than no check. Confirm the commit yourself with
+`git -C $LOWVAN_KIT status --porcelain modules/<M>`.
+
+### 16. Log what you analysed, then delete the bulk
 
 Annotating a taxon leaves hundreds of megabytes of GTOs behind. Orthoflavivirus
 left **788 MB** across `gto/`, `gto_out/`, the transcript-edit pass and three
@@ -873,6 +932,8 @@ built.
 
 | File | Read it when |
 |---|---|
+| `references/silent-failures.md` | **before trusting any number** — failures that produce no error |
+| `references/deriving-mature-peptides.md` | cutting a mature peptide at a published cleavage site |
 | `references/inputs.md` | taking delivery of the BV-BRC dump |
 | `references/module-partitioning.md` | deciding what the modules are (step 2, before rules) |
 | `references/annotation-triage.md` | writing classification rules |

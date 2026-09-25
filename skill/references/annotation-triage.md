@@ -232,3 +232,68 @@ to be weak: Alpharhabdovirinae `UNCHAR` recovers 4% of its own collection,
 because a single profile cannot cover a bag of unrelated proteins. That number
 is honest, not a failure to fix. Do not tune it; either split the bag into real
 features when the literature names them, or leave it as a documented floor.
+
+## A mass is not a homology group, any more than a position is
+
+The U-number trap above covers positional labels — `U1`, `ORF3`, `VP2`. The
+same applies to **masses**, and closterovirids are named almost entirely that
+way: `p13`, `p20`, `p23`, `19 kDa protein`, `5 kDa protein`.
+
+Two consequences, both measured on the Closteroviridae split:
+
+**String rules miss core features.** First-pass binning reached only 37–46% of
+occurrences because the source calls things by mass:
+
+| module | what the rule expected | what the source says |
+|---|---|---|
+| Ampelovirus | polyprotein | `methyltransferase/helicase` |
+| Ampelovirus | HSP90 | `p55`, `60 kDa protein`, `Hsp90-like` |
+| Closterovirus | HSP70h / HSP90h | `p65` / `p63` |
+| Closterovirus | CP / CPm | `p25` / `p27` |
+| Ampelovirus | CP | also `divergent coat protein`, `coat protein duplicate` |
+
+Clustering the unbinned pool found all of them and lifted binning to
+**83.0% / 74.3%**.
+
+**Similar masses are not the same protein.** Ampelovirus `19.6 kDa protein`
+and `19.7 kDa protein` cluster **separately** — p20A at 177 aa and p20B at 179.
+Any rule keyed on mass or length merges two distinct proteins.
+
+The same held for Quinvirinae's accessories: 471 positionally-labelled
+sequences clustered into three groups sharing no homology, of which p14
+(median 119 aa) and ORF2A (median 123) are inseparable by length, and 295 of
+the records are labelled only `hypothetical protein`.
+
+### The method
+
+1. Bin what the strings clearly name.
+2. Cluster the **unbinned pool** at ~30% identity, 60% coverage.
+3. Read each cluster's dominant label as a *description* of the group, not as
+   its definition. Groups above ~25 members are worth declaring.
+4. Revise the rules from what the clustering found, then rebuild.
+5. For records carrying no informative label at all, seed each collection from
+   the explicitly-labelled members and assign the rest by blastp — and **leave
+   the ones that match nothing unassigned rather than guessing**. On
+   Quinvirinae that placed 298 of 309 and left 11.
+
+## Set length windows per module, and check them per genus
+
+A relative floor — a fraction of the feature's own median — fails on a bimodal
+or genus-split distribution, because the median sits in the larger mode.
+
+Quinvirinae coat protein, measured by genus:
+
+| genus | n | p10 | median |
+|---|---|---|---|
+| Foveavirus | 858 | 256 | **395** — bimodal, 302 in a short class |
+| Robigovirus | 132 | 267 | 268 |
+| Banmivirus | 49 | 238 | **238** |
+
+Pooled median 376 puts a 70% floor at 263, which deleted **46 of Banmivirus's
+49**, Sustrivirus's only one, and all 302 short Foveavirus. The short and long
+Foveavirus classes are homologous at ~41% identity over 74–80% coverage, so
+both are real. Explicit bounds of 200–460: **679 sequences → 987**.
+
+This is the Betaflexiviridae/Citrivirus lesson restated — and note it bit again
+even with that lesson written down, because the failure was *within* a genus,
+not across genera.

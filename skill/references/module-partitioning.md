@@ -183,3 +183,77 @@ group may be wrong, not merely unnamed.
 
 Only once that search comes up empty does the concatenation apply.
 
+## Splitting on measurement, when the organisation rule says one module
+
+The rule above is that a module is a group of taxa sharing a genome
+organisation. Sometimes every genus in a family shares the organisation and the
+module still should not be one. **Gate the split before building and let the
+measurement decide.**
+
+The mechanism is budget competition. 25 references are chosen greedily,
+largest cluster first, so a divergent genus absorbs references a tight one
+needed and neither ends up well covered.
+
+### Quinvirinae, 24 September 2026
+
+Six genera, all with replicase / TGB1-3 / CP / NABP. Lumped they route
+**81.0%**, and the loss is not confined to the divergent genus:
+
+| genus | total | uncovered lumped | lumped | split |
+|---|---|---|---|---|
+| Foveavirus | 794 | 43 | 94.6% | **100%** |
+| Carlavirus | 714 | 246 | 65.5% | **76.3%** |
+| Robigovirus | 121 | 22 | 81.8% | **100%** |
+| Ravavirus, Sustrivirus | 4 | 4 | **0%** | covered |
+
+13 of the 25 references go to Carlavirus, which has 102 clusters over 714
+genomes and still reaches 65.5%; Foveavirus needs five references for 92%, gets
+seven, and falls from 100%. **Splitting improved every genus, the divergent one
+included.**
+
+The collections agreed independently: coat protein is 299 aa in Carlavirus and
+379 in Quinvirinae — a shared window spans both and admits junk — and NABP is a
+Carlavirus feature that a lumped module would declare on 1,983 genomes that do
+not have it.
+
+### Closteroviridae, 24 September 2026
+
+Six genera sharing ORF1a / ORF1b / p6 / HSP70h / HSP90h / CPm / CP.
+
+| grouping | 25 refs |
+|---|---|
+| lumped | **77.0%** |
+| two-way | 88.6% / 89.5% |
+| **three-way** | **95.8% / 89.5% / 99.4%** |
+
+Three beats two for every group; a fourth module adds nothing over the
+three-way. Test the groupings rather than assuming one split point.
+
+### Tymoviridae — the precedent
+
+Tabled at **74.6%** lumped. Gated per genus: Marafivirus 100%, Tymovirus 91.2%,
+Maculavirus 100%. Same genomes, same budget. **The lumped figure was measuring
+the module boundary, not the taxon.**
+
+### How to run the test
+
+```bash
+#  monopartite: records at >=6,000 nt, no merging
+python3 scripts/repcontig_budget.py --meta <class>.full.tsv --any-family \
+    --family X --genera "GenusA" --min-len 6000 --budget 25 --label GenusA
+
+#  multipartite: merge records sharing a genome_name FIRST
+python3 scripts/repcontig_budget.py ... --merge-by-name
+```
+
+**Do not guess a per-taxon length floor.** Two attempts failed differently: a
+floor from the median record length admits fragments and reported Quinvirinae
+at 89.6% against a true 81.1%; a floor from a p90 of merged lengths broke the
+other way and gated Tymovirus on 5 genomes of 80. One fixed 6 kb criterion,
+merged only where the genome is genuinely segmented, reproduces independent
+measurements exactly.
+
+**And merge only what is segmented.** For a monopartite virus, records sharing
+a genome_name are separate submissions of the same isolate, and concatenating
+them manufactures coverage — Closteroviridae reads 97.5% merged against 77.0%
+unmerged.
