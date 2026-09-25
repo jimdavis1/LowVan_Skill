@@ -1,0 +1,236 @@
+{
+   "Quinvirinae": {
+      "close_genomes": {
+         "Quinvirinae.1.dna": {
+            "genome_ids": "ON868740",
+            "genome_name": "Grapevine rupestris stem pitting-associated virus Shihezi-1"
+         },
+         "Quinvirinae.10.dna": {
+            "genome_ids": "KY310581",
+            "genome_name": "Asian prunus virus 2 BC"
+         },
+         "Quinvirinae.11.dna": {
+            "genome_ids": "OQ420750",
+            "genome_name": "Foveavirus mali Pe1"
+         },
+         "Quinvirinae.12.dna": {
+            "genome_ids": "OK546130",
+            "genome_name": "Banana mild mosaic virus MH6"
+         },
+         "Quinvirinae.13.dna": {
+            "genome_ids": "EU095327",
+            "genome_name": "Foveavirus mali PR1 (Pear)"
+         },
+         "Quinvirinae.14.dna": {
+            "genome_ids": "MZ221022",
+            "genome_name": "Cherry rusty mottle associated virus 13TF134"
+         },
+         "Quinvirinae.15.dna": {
+            "genome_ids": "LC522982",
+            "genome_name": "Foveavirus latensarmeniacae VIC18"
+         },
+         "Quinvirinae.16.dna": {
+            "genome_ids": "KF030878",
+            "genome_name": "Cherry twisted leaf associated virus 8265 (s3)"
+         },
+         "Quinvirinae.17.dna": {
+            "genome_ids": "MZ220962",
+            "genome_name": "Peach chlorotic mottle virus 13C253A"
+         },
+         "Quinvirinae.18.dna": {
+            "genome_ids": "OL874402",
+            "genome_name": "Banana mild mosaic virus ITC1854_BanMMV-3"
+         },
+         "Quinvirinae.19.dna": {
+            "genome_ids": "MK600387",
+            "genome_name": "Cherry virus Turkey BUR12"
+         },
+         "Quinvirinae.2.dna": {
+            "genome_ids": "OR832291",
+            "genome_name": "Foveavirus mali A13"
+         },
+         "Quinvirinae.20.dna": {
+            "genome_ids": "JX277553",
+            "genome_name": "Rubus canadensis virus 1 BM-01"
+         },
+         "Quinvirinae.21.dna": {
+            "genome_ids": "MF166685",
+            "genome_name": "Ribes americanum virus A Oregon"
+         },
+         "Quinvirinae.22.dna": {
+            "genome_ids": "AF315308",
+            "genome_name": "Sugarcane striate mosaic-associated virus"
+         },
+         "Quinvirinae.23.dna": {
+            "genome_ids": "AY072921",
+            "genome_name": "Robigovirus elaeis"
+         },
+         "Quinvirinae.24.dna": {
+            "genome_ids": "KT000366",
+            "genome_name": "Grapevine rupestris stem pitting-associated virus TI_21"
+         },
+         "Quinvirinae.25.dna": {
+            "genome_ids": "MG001925",
+            "genome_name": "Grapevine virus T VLJ-178"
+         },
+         "Quinvirinae.3.dna": {
+            "genome_ids": "MZ147996",
+            "genome_name": "Foveavirus mali 13TF150B"
+         },
+         "Quinvirinae.4.dna": {
+            "genome_ids": "MG195287",
+            "genome_name": "Grapevine virus T LA"
+         },
+         "Quinvirinae.5.dna": {
+            "genome_ids": "LC522996",
+            "genome_name": "Cherry necrotic rusty mottle virus LV27"
+         },
+         "Quinvirinae.6.dna": {
+            "genome_ids": "KY178276",
+            "genome_name": "Cherry green ring mottle virus Dneprovka"
+         },
+         "Quinvirinae.7.dna": {
+            "genome_ids": "OK546128",
+            "genome_name": "Banana mild mosaic virus MH4"
+         },
+         "Quinvirinae.8.dna": {
+            "genome_ids": "NC_028975",
+            "genome_name": "Asian prunus virus 3 Nanjing"
+         },
+         "Quinvirinae.9.dna": {
+            "genome_ids": "OL874428",
+            "genome_name": "Banana mild mosaic virus Sample_J_BanMMV-5"
+         }
+      },
+      "features": {
+         "CP": {
+            "anno": "Coat protein",
+            "bit_cutoff": 80,
+            "comment": "Explicit length bounds, not the relative runt/giant filter. CP is bimodal in Foveavirus -- a short class at ~256 aa and a long one at ~395, homologous at ~41% identity over 74-80% coverage -- and Banmivirus's is 238 aa. A 70% floor from the pooled median of 376 deleted 46 of Banmivirus's 49, Sustrivirus's only one, and all 302 short Foveavirus.",
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "CP",
+            "kmers": 1,
+            "max_len": 421,
+            "min_len": 200,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "ORF2A": {
+            "anno": "ORF2a protein",
+            "bit_cutoff": 30,
+            "comment": "Resolved by homology, not by label. P14 and ORF2A overlap in length (119 vs 123 aa) and 295 of the three groups' records are labelled only 'hypothetical protein', so neither a length nor a string rule separates them. Seeded from explicitly-labelled records, the rest assigned by blastp. Genus-specific, therefore NOT essential -- copy_num is deliberately absent. viral_genome_quality.pl treats any CDS/mat_peptide carrying copy_num as essential and flags it missing on every genome that lacks it. ORF2A exists only in Robigovirus; declaring it unconditionally produced 258 'missing essential feature' flags and drove genuinely-clean to 0% on a module whose core features call at 98-100%.",
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "ORF2a",
+            "kmers": 1,
+            "max_len": 124,
+            "min_len": 100,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "ORF5A": {
+            "anno": "ORF5a protein",
+            "bit_cutoff": 40,
+            "comment": "Resolved by homology, not by label. P14 and ORF2A overlap in length (119 vs 123 aa) and 295 of the three groups' records are labelled only 'hypothetical protein', so neither a length nor a string rule separates them. Seeded from explicitly-labelled records, the rest assigned by blastp. Genus-specific, therefore NOT essential -- copy_num is deliberately absent. viral_genome_quality.pl treats any CDS/mat_peptide carrying copy_num as essential and flags it missing on every genome that lacks it. ORF5A exists only in Robigovirus; declaring it unconditionally produced 258 'missing essential feature' flags and drove genuinely-clean to 0% on a module whose core features call at 98-100%.",
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "ORF5a",
+            "kmers": 1,
+            "max_len": 169,
+            "min_len": 155,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "P14": {
+            "anno": "14 kDa protein",
+            "bit_cutoff": 30,
+            "comment": "Resolved by homology, not by label. P14 and ORF2A overlap in length (119 vs 123 aa) and 295 of the three groups' records are labelled only 'hypothetical protein', so neither a length nor a string rule separates them. Seeded from explicitly-labelled records, the rest assigned by blastp. Genus-specific, therefore NOT essential -- copy_num is deliberately absent. viral_genome_quality.pl treats any CDS/mat_peptide carrying copy_num as essential and flags it missing on every genome that lacks it. P14 exists only in Foveavirus; declaring it unconditionally produced 258 'missing essential feature' flags and drove genuinely-clean to 0% on a module whose core features call at 98-100%.",
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "p14",
+            "kmers": 1,
+            "max_len": 127,
+            "min_len": 89,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "REP": {
+            "anno": "Replicase polyprotein",
+            "bit_cutoff": 400,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "REP",
+            "kmers": 1,
+            "max_len": 2208,
+            "min_len": 1600,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "TGB1": {
+            "anno": "Triple gene block protein 1",
+            "bit_cutoff": 60,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "TGB1",
+            "kmers": 1,
+            "max_len": 239,
+            "min_len": 159,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "TGB2": {
+            "anno": "Triple gene block protein 2",
+            "bit_cutoff": 30,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "TGB2",
+            "kmers": 1,
+            "max_len": 135,
+            "min_len": 109,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "TGB3": {
+            "anno": "Triple gene block protein 3",
+            "bit_cutoff": 25,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "TGB3",
+            "kmers": 1,
+            "max_len": 86,
+            "min_len": 56,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         }
+      },
+      "segments": {
+         "Single RNA Segment": {
+            "max_len": 10136,
+            "min_len": 6604,
+            "replicon_geometry": "linear"
+         }
+      }
+   }
+}

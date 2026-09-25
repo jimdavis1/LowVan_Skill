@@ -1,0 +1,206 @@
+{
+   "Carlavirus": {
+      "close_genomes": {
+         "Carlavirus.1.dna": {
+            "genome_ids": "MN689460",
+            "genome_name": "Potato virus S 18-1061"
+         },
+         "Carlavirus.10.dna": {
+            "genome_ids": "KY364848",
+            "genome_name": "Potato virus M PVM-YN"
+         },
+         "Carlavirus.11.dna": {
+            "genome_ids": "MK340756",
+            "genome_name": "Passiflora latent virus FJ"
+         },
+         "Carlavirus.12.dna": {
+            "genome_ids": "ON409683",
+            "genome_name": "Hop latent virus RI6"
+         },
+         "Carlavirus.13.dna": {
+            "genome_ids": "OK188830",
+            "genome_name": "Pea streak virus ZM1-NX2"
+         },
+         "Carlavirus.14.dna": {
+            "genome_ids": "NC_040703",
+            "genome_name": "Chrysanthemum virus R BJ"
+         },
+         "Carlavirus.15.dna": {
+            "genome_ids": "AY941198",
+            "genome_name": "Blueberry scorch virus BC-1"
+         },
+         "Carlavirus.16.dna": {
+            "genome_ids": "MZ173553",
+            "genome_name": "Papaya chlorotic spot associated virus TW"
+         },
+         "Carlavirus.17.dna": {
+            "genome_ids": "MT676865",
+            "genome_name": "Potato virus H PVH-AS"
+         },
+         "Carlavirus.18.dna": {
+            "genome_ids": "MW207172",
+            "genome_name": "Helenium virus S VR21"
+         },
+         "Carlavirus.19.dna": {
+            "genome_ids": "FJ531634",
+            "genome_name": "Kalanchoe latent virus PV-0290B"
+         },
+         "Carlavirus.2.dna": {
+            "genome_ids": "MT731497",
+            "genome_name": "Garlic common latent virus 2/R1/97"
+         },
+         "Carlavirus.20.dna": {
+            "genome_ids": "NC_011525",
+            "genome_name": "Potato latent virus"
+         },
+         "Carlavirus.21.dna": {
+            "genome_ids": "ON241322",
+            "genome_name": "Jasmine virus C TZS"
+         },
+         "Carlavirus.22.dna": {
+            "genome_ids": "NC_076712",
+            "genome_name": "papaya mottle-associated virus KE-Mer-04"
+         },
+         "Carlavirus.23.dna": {
+            "genome_ids": "OR233187",
+            "genome_name": "Cowpea mild mottle virus DSMZ PV-0908"
+         },
+         "Carlavirus.24.dna": {
+            "genome_ids": "NC_031089",
+            "genome_name": "Ligustrum virus A SK"
+         },
+         "Carlavirus.25.dna": {
+            "genome_ids": "MW176107",
+            "genome_name": "Soybean carlavirus 1 SCV1-IL"
+         },
+         "Carlavirus.3.dna": {
+            "genome_ids": "NC_016440",
+            "genome_name": "Garlic common latent virus WA-1"
+         },
+         "Carlavirus.4.dna": {
+            "genome_ids": "MW354944",
+            "genome_name": "Cowpea mild mottle virus CPMMV_JS_NJ"
+         },
+         "Carlavirus.5.dna": {
+            "genome_ids": "D14449",
+            "genome_name": "Potato virus M Russian wild"
+         },
+         "Carlavirus.6.dna": {
+            "genome_ids": "OM908370",
+            "genome_name": "Chrysanthemum virus B 21-0267"
+         },
+         "Carlavirus.7.dna": {
+            "genome_ids": "LC720794",
+            "genome_name": "Lily symptomless virus LSV_KSC"
+         },
+         "Carlavirus.8.dna": {
+            "genome_ids": "KU707475",
+            "genome_name": "Sweet potato chlorotic fleck virus AusCan"
+         },
+         "Carlavirus.9.dna": {
+            "genome_ids": "MT536156",
+            "genome_name": "Nerine latent virus 19-3013"
+         }
+      },
+      "features": {
+         "CP": {
+            "anno": "Coat protein",
+            "bit_cutoff": 80,
+            "comment": "Carlavirus CP is 299 aa against Quinvirinae's 379; a shared window would span both and admit junk.",
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "CP",
+            "kmers": 1,
+            "max_len": 381,
+            "min_len": 213,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "NABP": {
+            "anno": "Nucleic acid binding protein",
+            "bit_cutoff": 30,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "NABP",
+            "kmers": 1,
+            "max_len": 137,
+            "min_len": 82,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "REP": {
+            "anno": "Replicase polyprotein",
+            "bit_cutoff": 400,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "REP",
+            "kmers": 1,
+            "max_len": 2169,
+            "min_len": 1472,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "TGB1": {
+            "anno": "Triple gene block protein 1",
+            "bit_cutoff": 60,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "TGB1",
+            "kmers": 1,
+            "max_len": 280,
+            "min_len": 217,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "TGB2": {
+            "anno": "Triple gene block protein 2",
+            "bit_cutoff": 30,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "TGB2",
+            "kmers": 1,
+            "max_len": 125,
+            "min_len": 101,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         },
+         "TGB3": {
+            "anno": "Triple gene block protein 3",
+            "bit_cutoff": 25,
+            "copy_num": 1,
+            "coverage_cutoff": 0.65,
+            "downstream_ext": 0,
+            "feature_type": "CDS",
+            "gene_symbol": "TGB3",
+            "kmers": 1,
+            "max_len": 78,
+            "min_len": 47,
+            "segment": "Single RNA Segment",
+            "type": "CDS",
+            "upstream_ext": 1
+         }
+      },
+      "segments": {
+         "Single RNA Segment": {
+            "max_len": 10536,
+            "min_len": 7305,
+            "replicon_geometry": "linear"
+         }
+      }
+   }
+}

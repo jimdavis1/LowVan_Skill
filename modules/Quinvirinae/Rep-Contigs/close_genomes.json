@@ -1,0 +1,102 @@
+{
+ "Quinvirinae.1.dna": {
+  "genome_ids": "ON868740",
+  "genome_name": "Grapevine rupestris stem pitting-associated virus Shihezi-1"
+ },
+ "Quinvirinae.10.dna": {
+  "genome_ids": "KY310581",
+  "genome_name": "Asian prunus virus 2 BC"
+ },
+ "Quinvirinae.11.dna": {
+  "genome_ids": "OQ420750",
+  "genome_name": "Foveavirus mali Pe1"
+ },
+ "Quinvirinae.12.dna": {
+  "genome_ids": "OK546130",
+  "genome_name": "Banana mild mosaic virus MH6"
+ },
+ "Quinvirinae.13.dna": {
+  "genome_ids": "EU095327",
+  "genome_name": "Foveavirus mali PR1 (Pear)"
+ },
+ "Quinvirinae.14.dna": {
+  "genome_ids": "MZ221022",
+  "genome_name": "Cherry rusty mottle associated virus 13TF134"
+ },
+ "Quinvirinae.15.dna": {
+  "genome_ids": "LC522982",
+  "genome_name": "Foveavirus latensarmeniacae VIC18"
+ },
+ "Quinvirinae.16.dna": {
+  "genome_ids": "KF030878",
+  "genome_name": "Cherry twisted leaf associated virus 8265 (s3)"
+ },
+ "Quinvirinae.17.dna": {
+  "genome_ids": "MZ220962",
+  "genome_name": "Peach chlorotic mottle virus 13C253A"
+ },
+ "Quinvirinae.18.dna": {
+  "genome_ids": "OL874402",
+  "genome_name": "Banana mild mosaic virus ITC1854_BanMMV-3"
+ },
+ "Quinvirinae.19.dna": {
+  "genome_ids": "MK600387",
+  "genome_name": "Cherry virus Turkey BUR12"
+ },
+ "Quinvirinae.2.dna": {
+  "genome_ids": "OR832291",
+  "genome_name": "Foveavirus mali A13"
+ },
+ "Quinvirinae.20.dna": {
+  "genome_ids": "JX277553",
+  "genome_name": "Rubus canadensis virus 1 BM-01"
+ },
+ "Quinvirinae.21.dna": {
+  "genome_ids": "MF166685",
+  "genome_name": "Ribes americanum virus A Oregon"
+ },
+ "Quinvirinae.22.dna": {
+  "genome_ids": "AF315308",
+  "genome_name": "Sugarcane striate mosaic-associated virus"
+ },
+ "Quinvirinae.23.dna": {
+  "genome_ids": "AY072921",
+  "genome_name": "Robigovirus elaeis"
+ },
+ "Quinvirinae.24.dna": {
+  "genome_ids": "KT000366",
+  "genome_name": "Grapevine rupestris stem pitting-associated virus TI_21"
+ },
+ "Quinvirinae.25.dna": {
+  "genome_ids": "MG001925",
+  "genome_name": "Grapevine virus T VLJ-178"
+ },
+ "Quinvirinae.3.dna": {
+  "genome_ids": "MZ147996",
+  "genome_name": "Foveavirus mali 13TF150B"
+ },
+ "Quinvirinae.4.dna": {
+  "genome_ids": "MG195287",
+  "genome_name": "Grapevine virus T LA"
+ },
+ "Quinvirinae.5.dna": {
+  "genome_ids": "LC522996",
+  "genome_name": "Cherry necrotic rusty mottle virus LV27"
+ },
+ "Quinvirinae.6.dna": {
+  "genome_ids": "KY178276",
+  "genome_name": "Cherry green ring mottle virus Dneprovka"
+ },
+ "Quinvirinae.7.dna": {
+  "genome_ids": "OK546128",
+  "genome_name": "Banana mild mosaic virus MH4"
+ },
+ "Quinvirinae.8.dna": {
+  "genome_ids": "NC_028975",
+  "genome_name": "Asian prunus virus 3 Nanjing"
+ },
+ "Quinvirinae.9.dna": {
+  "genome_ids": "OL874428",
+  "genome_name": "Banana mild mosaic virus Sample_J_BanMMV-5"
+ }
+}
