@@ -41,8 +41,23 @@ def main():
     args = ap.parse_args()
 
     mod = json.load(open(args.json))
-    counts = {m: b["segments"] for m, b in mod.items()
-              if isinstance(b, dict) and b.get("segments", 1) > 1}
+    #  "segments" is written two ways in the wild and both must work here.
+    #  viral_genome_quality.pl wants a DICT keyed by segment name carrying
+    #  min_len/max_len/replicon_geometry; this script was written for a bare
+    #  INT count. Comparing the dict form to an int raised
+    #      TypeError: '>' not supported between 'dict' and 'int'
+    #  which crashed on the whole-repo JSON, so no module could be merged at
+    #  all -- including Arenaviridae, the one module that declares segments
+    #  properly. The count is the number of named segments.
+    def nseg(b):
+        v = b.get("segments")
+        if isinstance(v, dict):
+            return len(v)
+        if isinstance(v, int):
+            return v
+        return 1
+    counts = {m: nseg(b) for m, b in mod.items()
+              if isinstance(b, dict) and nseg(b) > 1}
     if not counts:
         print("  no module declares segments > 1; nothing to merge")
         return 0

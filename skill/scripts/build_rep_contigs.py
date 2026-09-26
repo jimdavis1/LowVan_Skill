@@ -58,6 +58,14 @@ for f in sorted(glob.glob(os.path.join(a.contigs, "*"))):
     s = "".join(parts)
     if len(s) < a.min_len:
         continue
+    #  --meta SELECTS, it does not merely name. It used to be read only into
+    #  the name lookup while the candidate set came entirely from the --contigs
+    #  glob, so passing a subset metadata changed nothing -- three different
+    #  per-genus subsets of Bromoviridae returned the identical 474/683 and the
+    #  same 25 accessions, which is how the gap was found. A split test is
+    #  worthless if the restriction is ignored.
+    if name and g not in name:
+        continue
     gseq[g], gacc[g] = s, acc or g
 if not gseq:
     sys.exit("no contigs in %s" % a.contigs)
