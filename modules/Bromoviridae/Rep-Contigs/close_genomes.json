@@ -1,0 +1,102 @@
+{
+ "Bromoviridae.1.dna": {
+  "genome_ids": "ON759476",
+  "genome_name": "Cucumber mosaic virus P12"
+ },
+ "Bromoviridae.10.dna": {
+  "genome_ids": "ON924219",
+  "genome_name": "Tobacco streak virus DSMZ PV-0612"
+ },
+ "Bromoviridae.11.dna": {
+  "genome_ids": "OR879100",
+  "genome_name": "Prune dwarf virus DSMZ PV-1061"
+ },
+ "Bromoviridae.12.dna": {
+  "genome_ids": "MW581047",
+  "genome_name": "Brome mosaic virus BMV-Sr"
+ },
+ "Bromoviridae.13.dna": {
+  "genome_ids": "MZ298670",
+  "genome_name": "Cucumber mosaic virus T101"
+ },
+ "Bromoviridae.14.dna": {
+  "genome_ids": "MT682307",
+  "genome_name": "Tobacco streak virus DSMZ PV-0615"
+ },
+ "Bromoviridae.15.dna": {
+  "genome_ids": "LC382467",
+  "genome_name": "Prunus necrotic ringspot virus Acot"
+ },
+ "Bromoviridae.16.dna": {
+  "genome_ids": "BK061627",
+  "genome_name": "Solanum nigrum ilarvirus 1 SRR10758312"
+ },
+ "Bromoviridae.17.dna": {
+  "genome_ids": "MW014929",
+  "genome_name": "Alfamovirus AMV IR-VM"
+ },
+ "Bromoviridae.18.dna": {
+  "genome_ids": "BK061622",
+  "genome_name": "Solanum nigrum ilarvirus 1 SRR10849156"
+ },
+ "Bromoviridae.19.dna": {
+  "genome_ids": "MN527482",
+  "genome_name": "Potato yellowing virus Hua-060A"
+ },
+ "Bromoviridae.2.dna": {
+  "genome_ids": "MZ666931",
+  "genome_name": "Cucumber mosaic virus TAA_CMV"
+ },
+ "Bromoviridae.20.dna": {
+  "genome_ids": "GU126412",
+  "genome_name": "Peanut stunt virus Ag"
+ },
+ "Bromoviridae.21.dna": {
+  "genome_ids": "OR889824",
+  "genome_name": "Apple necrotic mosaic virus A19"
+ },
+ "Bromoviridae.22.dna": {
+  "genome_ids": "MG924895",
+  "genome_name": "Apple necrotic mosaic virus ApNMV-Hua_Apple_China"
+ },
+ "Bromoviridae.23.dna": {
+  "genome_ids": "MK522388",
+  "genome_name": "Prune dwarf virus Niagara D5"
+ },
+ "Bromoviridae.24.dna": {
+  "genome_ids": "AB183262",
+  "genome_name": "Brome mosaic virus M2"
+ },
+ "Bromoviridae.25.dna": {
+  "genome_ids": "MW568003",
+  "genome_name": "Brome mosaic virus BMV-PK"
+ },
+ "Bromoviridae.3.dna": {
+  "genome_ids": "MW014933",
+  "genome_name": "Alfamovirus AMV IR-WS"
+ },
+ "Bromoviridae.4.dna": {
+  "genome_ids": "KX883818",
+  "genome_name": "Cucumber mosaic virus WHWN52449"
+ },
+ "Bromoviridae.5.dna": {
+  "genome_ids": "OP751989",
+  "genome_name": "Cucumber mosaic virus SVPUAT"
+ },
+ "Bromoviridae.6.dna": {
+  "genome_ids": "LC339509",
+  "genome_name": "Cucumber mosaic virus Ma-1"
+ },
+ "Bromoviridae.7.dna": {
+  "genome_ids": "AJ511989",
+  "genome_name": "Cucumber mosaic virus Ns"
+ },
+ "Bromoviridae.8.dna": {
+  "genome_ids": "MW291545",
+  "genome_name": "Cucumber mosaic virus Salvador"
+ },
+ "Bromoviridae.9.dna": {
+  "genome_ids": "MN656195",
+  "genome_name": "Prunus necrotic ringspot virus YJ5"
+ }
+}

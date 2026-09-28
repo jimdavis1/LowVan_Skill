@@ -1,0 +1,102 @@
+{
+ "Ampelovirus.1.dna": {
+  "genome_ids": "MK032068",
+  "genome_name": "Grapevine leafroll-associated virus 3 Vdl"
+ },
+ "Ampelovirus.10.dna": {
+  "genome_ids": "OP860287",
+  "genome_name": "Pineapple mealybug wilt-associated virus 3 PMWaV-3/S1-1"
+ },
+ "Ampelovirus.11.dna": {
+  "genome_ids": "LC523033",
+  "genome_name": "Plum bark necrosis stem pitting-associated virus QLD2"
+ },
+ "Ampelovirus.12.dna": {
+  "genome_ids": "MW929099",
+  "genome_name": "Cassava ampelovirus 1 Malawi_14"
+ },
+ "Ampelovirus.13.dna": {
+  "genome_ids": "KY707825",
+  "genome_name": "Grapevine leafroll-associated virus 3 Rod96"
+ },
+ "Ampelovirus.14.dna": {
+  "genome_ids": "JX513893",
+  "genome_name": "Grapevine leafroll-associated virus 5 GLAV5 1050-02"
+ },
+ "Ampelovirus.15.dna": {
+  "genome_ids": "NC_029783",
+  "genome_name": "Grapevine leafroll-associated virus 13 a177"
+ },
+ "Ampelovirus.16.dna": {
+  "genome_ids": "MW249042",
+  "genome_name": "Little cherry virus 2 GBVC_LChV-2_202"
+ },
+ "Ampelovirus.17.dna": {
+  "genome_ids": "MT773592",
+  "genome_name": "Manihot esculenta associated ampelovirus 2 MG-Mia-10"
+ },
+ "Ampelovirus.18.dna": {
+  "genome_ids": "MT953192",
+  "genome_name": "Grapevine leafroll-associated virus 1 RSA-03-06_Aigiorgitiko"
+ },
+ "Ampelovirus.19.dna": {
+  "genome_ids": "KU674797",
+  "genome_name": "Grapevine leafroll-associated virus 1 WA-PN"
+ },
+ "Ampelovirus.2.dna": {
+  "genome_ids": "OP752656",
+  "genome_name": "Grapevine leafroll-associated virus 4 WIL15_N6"
+ },
+ "Ampelovirus.20.dna": {
+  "genome_ids": "MH521094",
+  "genome_name": "Grapevine leafroll-associated virus 3 Cha137"
+ },
+ "Ampelovirus.21.dna": {
+  "genome_ids": "JQ655295",
+  "genome_name": "Grapevine leafroll-associated virus 3 GH11"
+ },
+ "Ampelovirus.22.dna": {
+  "genome_ids": "OP860296",
+  "genome_name": "Pineapple mealybug wilt-associated virus 6 PMWaV-6/S2-1"
+ },
+ "Ampelovirus.23.dna": {
+  "genome_ids": "KY821095",
+  "genome_name": "Grapevine leafroll-associated virus 4 LH3"
+ },
+ "Ampelovirus.24.dna": {
+  "genome_ids": "MW046699",
+  "genome_name": "Grapevine leafroll-associated virus 4 RSA-15-14_Hebron"
+ },
+ "Ampelovirus.25.dna": {
+  "genome_ids": "OQ079109",
+  "genome_name": "Grapevine leafroll-associated virus 4 SSg"
+ },
+ "Ampelovirus.3.dna": {
+  "genome_ids": "MH807218",
+  "genome_name": "Grapevine leafroll-associated virus 1 12G456"
+ },
+ "Ampelovirus.4.dna": {
+  "genome_ids": "MN116751",
+  "genome_name": "Sugarcane mild mosaic virus PSR07106"
+ },
+ "Ampelovirus.5.dna": {
+  "genome_ids": "KC590347",
+  "genome_name": "Plum bark necrosis stem pitting-associated virus Nanjing"
+ },
+ "Ampelovirus.6.dna": {
+  "genome_ids": "OP860294",
+  "genome_name": "Pineapple mealybug wilt-associated virus 1 PMWaV-1/S3-1"
+ },
+ "Ampelovirus.7.dna": {
+  "genome_ids": "MT953195",
+  "genome_name": "Grapevine leafroll-associated virus 1 RSA-18-02_Limberger"
+ },
+ "Ampelovirus.8.dna": {
+  "genome_ids": "MN539273",
+  "genome_name": "Pineapple mealybug wilt-associated virus 2 HANA187"
+ },
+ "Ampelovirus.9.dna": {
+  "genome_ids": "MW249043",
+  "genome_name": "Little cherry virus 2 GBVC_LChV-2_203"
+ }
+}

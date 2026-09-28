@@ -1,0 +1,102 @@
+{
+ "Closterovirus.1.dna": {
+  "genome_ids": "JQ798289",
+  "genome_name": "Citrus tristeza virus A18"
+ },
+ "Closterovirus.10.dna": {
+  "genome_ids": "NC_008585",
+  "genome_name": "Raspberry leaf mottle virus HCRL Glen Clova"
+ },
+ "Closterovirus.11.dna": {
+  "genome_ids": "DQ860839",
+  "genome_name": "Strawberry chlorotic fleck-associated virus"
+ },
+ "Closterovirus.12.dna": {
+  "genome_ids": "LC480257",
+  "genome_name": "Carnation necrotic fleck virus Dc"
+ },
+ "Closterovirus.13.dna": {
+  "genome_ids": "KU883267",
+  "genome_name": "Citrus tristeza virus LMS6-6"
+ },
+ "Closterovirus.14.dna": {
+  "genome_ids": "KJ748003",
+  "genome_name": "Rose leaf rosette-associated virus RLRaV-CWR.1"
+ },
+ "Closterovirus.15.dna": {
+  "genome_ids": "KT203917",
+  "genome_name": "Tobacco virus 1 AnHui"
+ },
+ "Closterovirus.16.dna": {
+  "genome_ids": "MG919988",
+  "genome_name": "Arracacha virus 1 MS#6"
+ },
+ "Closterovirus.17.dna": {
+  "genome_ids": "NC_040722",
+  "genome_name": "Blackcurrant leafroll-associated virus 1 BC28074"
+ },
+ "Closterovirus.18.dna": {
+  "genome_ids": "NC_040840",
+  "genome_name": "Blackcurrant leafroll-associated virus 1 GR"
+ },
+ "Closterovirus.19.dna": {
+  "genome_ids": "MH033657",
+  "genome_name": "Rehmannia virus 1 Rg"
+ },
+ "Closterovirus.2.dna": {
+  "genome_ids": "OR478447",
+  "genome_name": "Grapevine leafroll-associated virus 2 Vidal_17"
+ },
+ "Closterovirus.20.dna": {
+  "genome_ids": "MW489856",
+  "genome_name": "Fig closterovirus 2 Figclos"
+ },
+ "Closterovirus.21.dna": {
+  "genome_ids": "OM801605",
+  "genome_name": "Thesium chinense closterovirus 1 C1"
+ },
+ "Closterovirus.22.dna": {
+  "genome_ids": "NC_006944",
+  "genome_name": "Mint virus 1 NCGR MEN 454.004"
+ },
+ "Closterovirus.23.dna": {
+  "genome_ids": "LC735717",
+  "genome_name": "wheat closterovirus 1 WL20"
+ },
+ "Closterovirus.24.dna": {
+  "genome_ids": "NC_043106",
+  "genome_name": "Beet yellow stunt virus"
+ },
+ "Closterovirus.25.dna": {
+  "genome_ids": "MW056181",
+  "genome_name": "Rose leaf rosette-associated virus VP Rose 126"
+ },
+ "Closterovirus.3.dna": {
+  "genome_ids": "MW046690",
+  "genome_name": "Grapevine leafroll-associated virus 2 RSA-33-06_Teoulier"
+ },
+ "Closterovirus.4.dna": {
+  "genome_ids": "NC_001598",
+  "genome_name": "Beet yellows virus"
+ },
+ "Closterovirus.5.dna": {
+  "genome_ids": "KF533699",
+  "genome_name": "Carrot yellow leaf virus CYLV_S14"
+ },
+ "Closterovirus.6.dna": {
+  "genome_ids": "MW046646",
+  "genome_name": "Grapevine leafroll-associated virus 2 RSA-04-08_Anglianico"
+ },
+ "Closterovirus.7.dna": {
+  "genome_ids": "NC_040582",
+  "genome_name": "Blackcurrant leafroll-associated virus 1 Oregon"
+ },
+ "Closterovirus.8.dna": {
+  "genome_ids": "MH267701",
+  "genome_name": "Blackcurrant-associated closterovirus 1 BC"
+ },
+ "Closterovirus.9.dna": {
+  "genome_ids": "MW489855",
+  "genome_name": "Fig closterovirus 1 Figclo"
+ }
+}
