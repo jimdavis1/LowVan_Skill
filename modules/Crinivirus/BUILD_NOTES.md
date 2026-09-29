@@ -95,7 +95,7 @@ which clusters the module's entire BV-BRC holding and annotates one exemplar
 per cluster. That, not this sample, is the figure the coverage audit reports
 for reach across the taxon.
 
-## Correction, 29 September 2026: 23 features became 15
+## Correction, 29 September 2026: 23 features became 17
 
 The feature set above is what was *built*. It is not what shipped.
 
@@ -126,3 +126,22 @@ instead of eleven.** This defect *raises* a call rate, which is why
 self-recall (92-100% on every feature) and collection disjointness (zero
 containment at 90% blastp) both missed it. It is now checked by
 `qc_duplicate_calls.py`, run before `apply_copy_num.py`.
+
+### Second correction: the first audit over-dropped
+
+The duplicate-call check that produced the list above had **no containment
+floor** — it counted any overlap with a longer feature as nesting, and
+adjacent genes in a compact viral genome overlap routinely (Closterovirus
+HSP70 and HSP90 share 92 bases). On that faulty measure `P8A` and `P8B` were
+reported as 95% and 92% "inside HSP90" and were dropped.
+
+With an 80% containment floor applied, neither is flagged at all. The real
+relationships are `p9`↔`p8A` (33-34% identity over 91-99% coverage) and
+`p6A`↔`p8B` (29-36% over 79-81%): two duplicate *pairs*, each of which should
+survive as one merged feature. Both were restored.
+
+**`P8A` is called on 100% of routed genomes and earns `copy_num`** — dropping
+it was a real loss, caught only because the containment bug was found while
+checking a different module.
+
+Final: **17 features, 107 PSSMs, 90.0% clean, eight essential.**

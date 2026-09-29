@@ -2,14 +2,14 @@
  "title": "Crinivirus Coverage Audit",
  "eyebrow": "LowVan \u00b7 Crinivirus module \u00b7 29 September 2026",
  "h1": "Does the cucurbit yellow stunting disorder virus module actually work?",
- "standfirst": "<b>Crinivirus</b> is the bipartite genus of the <i>Closteroviridae</i>: cucurbit yellow stunting disorder virus, tomato chlorosis virus, sweet potato chlorotic stunt virus and about thirty more, all whitefly-transmitted and phloem-limited. RNA1 carries a ~1,990 aa replicase polyprotein and the RdRp; RNA2 carries the closterovirid quintuple gene block. <b>This module shipped only after a duplicate-call audit removed eight features that were counting other proteins' loci as their own.</b>",
+ "standfirst": "<b>Crinivirus</b> is the bipartite genus of the <i>Closteroviridae</i>: cucurbit yellow stunting disorder virus, tomato chlorosis virus, sweet potato chlorotic stunt virus and about thirty more, all whitefly-transmitted and phloem-limited. RNA1 carries a ~1,990 aa replicase polyprotein and the RdRp; RNA2 carries the closterovirid quintuple gene block. <b>This module shipped only after a duplicate-call audit found four pairs of features that were one protein each.</b>",
  "headline_tiles": [
   [
-   "15",
+   "17",
    "features, all with profiles"
   ],
   [
-   "95",
+   "107",
    "PSSMs"
   ],
   [
@@ -21,12 +21,12 @@
    "genomes clean"
   ],
   [
-   "12.1\u00d7",
+   "12.0\u00d7",
    "string collapse"
   ],
   [
    "8",
-   "features removed on audit"
+   "essential features"
   ]
  ],
  "sections": [
@@ -210,7 +210,7 @@
      ],
      "rows": [
       [
-       "CP, CPM, HSP70, HSP90, POLY",
+       "CP, CPM, HSP70, HSP90, P8A, POLY",
        "100.0%",
        "yes"
       ],
@@ -232,6 +232,11 @@
       [
        "SUPPRESSOR",
        "52.0%",
+       "no"
+      ],
+      [
+       "P8B",
+       "48.0%",
        "no"
       ],
       [
@@ -268,7 +273,7 @@
     },
     {
      "type": "prose",
-     "html": "Before the audit in \u00a708, <b>eleven</b> features cleared the 85% threshold. Five of those eleven were counting calls made inside another feature's coordinates. After the audit, seven clear it and all seven are supported."
+     "html": "Before the audit in \u00a708, <b>eleven</b> features cleared the 85% threshold and five of those were counting calls made inside another feature's coordinates. After it, eight clear it and all eight are supported."
     },
     {
      "type": "prose",
@@ -330,24 +335,28 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "The module originally declared 23 features. A duplicate-call audit of the scored genomes found seven firing between 82% and 98% of the time <em>inside</em> a longer feature, plus two pairs called on identical coordinates."
+     "html": "The module originally declared 23 features. A duplicate-call audit of the scored genomes found four pairs or groups that were <em>one protein each</em>, plus one short profile firing inside a longer feature."
     },
     {
      "type": "pre",
-     "text": "RNASE3  inside SUPPRESSOR   97%   ->  99% identical, 100% coverage: ONE PROTEIN\nP9      inside HSP90        98%   ->  47-90 aa profile at cutoff 25-30\nP8A     inside HSP90        95%\nP8B     inside HSP90        92%\nP6A     inside P8B          89%\nP26     inside P28          83%   ->  23-24% identical over 96-99% cov: ONE FAMILY\nP23     inside P22B         82%\nHSP70 + HSP90  identical coordinates, 7%  ->  genuine paralogues"
+     "text": "RNASE3 + SUPPRESSOR   99% id / 100% cov  -> one gene, merged\np26 + p27 + p28       23-24% id / 96-99% cov -> one family, merged into P27\np8  + p9              33-34% id / 91-99% cov -> one family, merged into P8A\np6  + p8B             29-36% id / 79-81% cov -> one family, merged into P8B\nP23 inside P22B 82%   29% id / 35% cov       -> promiscuous, dropped\nHSP70 + HSP90, 6%     64% id / 99% cov       -> real paralogues, kept"
     },
     {
      "type": "prose",
-     "html": "Three different problems needing three answers. <b>RNASE3 and SUPPRESSOR are one gene</b> \u2014 in sweet potato chlorotic stunt virus the RNase3 <em>is</em> the silencing suppressor \u2014 and were merged. <b>p26, p27 and p28 are one diverged family</b> and were merged into P27. <b>P8A, P9, P8B, P6A and P23</b> are 47\u201390 aa profiles with cutoffs of 25\u201330 that fire on anything, have no sequence similarity to what they land inside, and were dropped."
+     "html": "In <i>Sweet potato chlorotic stunt virus</i> the RNase3 <b>is</b> the silencing suppressor, so RNASE3 and SUPPRESSOR were one gene declared twice. The three mass-named groups are the mass trap again \u2014 this time splitting one protein into several rather than merging several into one."
     },
     {
      "type": "prose",
-     "html": "<b>This defect raises a feature's call rate, which is why nothing else caught it.</b> A profile firing inside a longer feature is present on nearly every genome that has the longer one, so it looks essential. Self-recall did not see it: every profile recovered its own collection perfectly. Collection disjointness did not see it: blastp at 90% identity found zero containment. It is now a kit check, <code>qc_duplicate_calls.py</code>, that runs before essentiality is assigned."
+     "html": "<b>The defect raises a feature's call rate, which is why nothing else caught it.</b> A profile firing inside a longer feature is present on nearly every genome that has the longer one, so it looks essential. Self-recall did not see it: every profile recovered its own collection. Collection disjointness did not see it: blastp at 90% identity found zero containment."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The first version of the check was itself wrong</b>, and that is worth recording. It counted any overlap with a longer feature as nesting, with no containment floor \u2014 and adjacent genes in a compact viral genome overlap routinely. On that faulty measure two real features (P8A and P8B) were dropped before the error was caught; P8A is called on 100% of genomes. The check now requires the shorter feature to be 80% contained."
     },
     {
      "type": "verdict",
      "kind": "good",
-     "html": "Resolved: 23 features to 15, quality 81.3% to 90.0%, and five spurious copy_num assignments removed."
+     "html": "Resolved: 23 features to 17, quality 81.3% to 90.0%, eight honestly-essential features."
     }
    ]
   },

@@ -1,7 +1,7 @@
 {
- "standfirst": "Bipartite, 15 features, 95 profiles. RNA1 carries the replicase polyprotein and the RdRp; RNA2 carries the closterovirid quintuple gene block. Shipped after a duplicate-call audit removed eight features that were firing on loci other features already occupied.",
+ "standfirst": "Bipartite, 17 features, 107 profiles. RNA1 carries the replicase polyprotein and the RdRp; RNA2 carries the closterovirid quintuple gene block. Shipped after a duplicate-call audit merged three pairs of features that were one protein each and dropped one promiscuous short profile.",
  "modules": {
-  "Crinivirus": "The module originally declared 23 features. A duplicate-call audit found seven firing 82-98% of the time inside a longer feature, and two pairs on identical coordinates. RNASE3 and SUPPRESSOR turned out to be one protein (99% identity over 100% coverage -- in Sweet potato chlorotic stunt virus the RNase3 IS the silencing suppressor) and were merged; p26, p27 and p28 are one diverged family (23-24% identity over 96-99% coverage) and were merged; five promiscuous 47-90 aa profiles were dropped. Quality went from 81.3% to 90.0% clean and five spurious copy_num assignments disappeared."
+  "Crinivirus": "The module originally declared 23 features. A duplicate-call audit found RNASE3 and SUPPRESSOR to be one protein (99% identity over 100% coverage -- in Sweet potato chlorotic stunt virus the RNase3 IS the silencing suppressor), p26/p27/p28 to be one diverged family (23-24% over 96-99%), and p8/p9 and p6/p8 to be two more such families. Those were merged; P23 was dropped as a short profile firing inside P22B with only 29% identity over 35% coverage. 17 features, 90.0% clean."
  },
  "gaps": "HSP70 and HSP90 are still called on identical coordinates in 6% of genomes. That one is biology rather than a defect: the collections share no sequences yet the proteins are 64% identical over 99% coverage, so they are genuine crinivirus paralogues and no cutoff separates them without losing one.",
  "derived": "None declared. The ORF1a/1b frameshift readthrough product is annotated on 46 records but is not a feature: ORF1a and the RdRp are called separately, as in the shipped Closterovirus module.",
@@ -9,6 +9,8 @@
   "P22A": "Called on 0.0% of routed genomes. All 26 of its source records sit on genome records under 6 kb and the evaluation population is genomes >=6 kb, so the feature was never offered a genome that could carry it. The profile recovers 26 of its 26 sequences.",
   "P25": "8 sequences, 212 aa. Genuinely rare -- all 8 source records are on full-length genomes.",
   "P6B": "8 sequences, 51 aa. Discovered cluster, built at -m 2.",
-  "P7B": "Its calls land on RNA1 contigs in about a quarter of genomes despite being declared RNA2. Moving it to RNA1 was tested and made the quality flags worse, so the declaration stands and the segment genuinely varies by species."
+  "P7B": "Its calls land on RNA1 contigs in about a quarter of genomes despite being declared RNA2. Moving it to RNA1 was tested and made the quality flags worse, so the declaration stands and the segment genuinely varies by species.",
+  "P8A": "One homology group covering the records named p8 and p9: 33-34% identity over 91-99% coverage. Called on 100% of routed genomes.",
+  "P8B": "A second p8-sized cluster merged with the records named p6: 29-36% identity over 79-81% coverage. Called on 48%, so accessory."
  }
 }
