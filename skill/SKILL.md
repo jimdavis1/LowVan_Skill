@@ -495,7 +495,14 @@ from the gene's fame put three shipped modules at 0.0% clean. So:
 
 1. `gen_module_json.py` writes the block with **no `copy_num` at all**
 2. install, then `run_gto_eval.py` measures `called/routed` per feature
-3. add `copy_num` only to the features that clear 0.85
+3. `apply_copy_num.py` adds it to the features that clear 0.85, and
+   removes it from any that do not:
+
+```bash
+python3 scripts/apply_copy_num.py --eval <M>/eval \
+        --json <M>/<M>_Viral_PSSM.json --module <M>          # report
+python3 scripts/apply_copy_num.py ... --write                 # apply
+```
 
 A missing `copy_num` costs nothing. A wrong one fails every genome in the
 taxon. Do it in the order where the cheap mistake is the possible one.
@@ -1018,6 +1025,8 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `collection_engine.py` | the binning engine: rules, length windows, ambiguity, chemistry, accessory discovery, tracking files |
 | `gen_module_json.py` | write the module JSON from what was actually built, with no `copy_num` |
 | `rescue_unassigned.py` | adopt unbinned sequences into a collection by homology |
+| `apply_copy_num.py` | mark essential only the features that measured >= 85% on real genomes |
+| `synmap_from_collections.py` | reconstruct `synonyms.tsv` for a module built before the engine wrote it |
 | `build_rep_contigs.py` | write the rep contigs that budget implies, largest cluster first |
 | `check_rep_contigs.py` | check that rep contigs route the taxon's genomes |
 | `install_module.py` | validate and install into a Viral_Annotation checkout |
