@@ -276,6 +276,29 @@ pipeline, and measure the rate over two minutes before deciding it is wrong.
 Reading PSSMs from a cloud-synced directory costs real time too — copying the
 runtime to local disk first takes nine seconds and is always worth it.
 
+### The budget estimate and the run disagree in both directions
+
+Two modules in the same batch showed the reference-budget figure missing the
+annotation run, in opposite directions, and both are worth knowing because
+only one of them is a defect.
+
+**Tymovirus: budget 92.2%, run 95.1%.** The budget picks references by
+clustering and counts a genome covered if it falls in a covered cluster.
+BLASTn at annotation time is more permissive than that clustering, so three
+genomes routed that the budget had written off. Not a defect — the budget is
+simply conservative, and **the conservative number is the one to plan with**
+and to put in the coverage audit.
+
+**Crinivirus: gate 100.0%, shipped set 92.4%.** Here the estimate was
+*optimistic*, and that always means something is wrong. `--merge-by-name`
+had collapsed 18 names carrying 3-8 records each — isolate collisions, not
+segments — so several genomes were being counted as one.
+
+The rule that separates them: **an estimate below the run is tolerable, an
+estimate above it is a bug.** If the budget claims more coverage than the
+annotator delivers, find out why before shipping; if it claims less, record
+the budget figure and move on.
+
 ## The last mile
 
 A module is not built when its PSSMs exist in a temp directory. Twice in this
