@@ -1,0 +1,306 @@
+{
+ "title": "Carlavirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Carlavirus module \u00b7 29 September 2026",
+ "h1": "Does the potato virus S module actually work?",
+ "standfirst": "<b>Carlavirus</b> is the largest genus in this build &mdash; 3,184 BV-BRC records covering potato virus S and M, carnation latent virus, chrysanthemum virus B and roughly ninety more, mostly of crops and ornamentals. Replicase, a triple gene block, coat protein and a nucleic-acid-binding protein. <b>Of the ten modules in this report series it is the cleanest.</b>",
+ "headline_tiles": [
+  [
+   "6",
+   "features, all with profiles"
+  ],
+  [
+   "316",
+   "PSSMs"
+  ],
+  [
+   "76.3%",
+   "genomes routed"
+  ],
+  [
+   "86.6%",
+   "genuinely clean"
+  ],
+  [
+   "17.7\u00d7",
+   "vocabulary collapse"
+  ],
+  [
+   "0",
+   "corrections needed"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One genus, one layout, and the largest profile set in the kit after Hepaciviridae.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "bit cutoff",
+      "collection",
+      "self-recall"
+     ],
+     "rows": [
+      [
+       "REP",
+       "Replicase",
+       "400",
+       "567",
+       "567 (100%)"
+      ],
+      [
+       "TGB1",
+       "Triple gene block protein 1",
+       "60",
+       "499",
+       "499 (100%)"
+      ],
+      [
+       "TGB2",
+       "Triple gene block protein 2",
+       "30",
+       "423",
+       "423 (100%)"
+      ],
+      [
+       "TGB3",
+       "Triple gene block protein 3",
+       "25",
+       "433",
+       "433 (100%)"
+      ],
+      [
+       "CP",
+       "Coat protein",
+       "80",
+       "751",
+       "751 (100%)"
+      ],
+      [
+       "NABP",
+       "Nucleic-acid-binding protein",
+       "30",
+       "466",
+       "466 (100%)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "316 profiles over six features, and every one recovers its entire collection. That is a floor rather than a validation, but with 3,139 sequences behind it, it is a high floor."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Split out of Quinvirinae on measurement, not organisation.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "All six Quinvirinae genera share the replicase / triple-gene-block / coat protein / NABP layout, so the organisation rule alone would have kept Carlavirus with them. Routing is what separated them: lumped, 25 references reach 81.0% overall, and Carlavirus &mdash; 102 clusters over 714 genomes &mdash; was consuming a budget the five smaller genera needed. Split, every genus improved, Carlavirus itself by eleven points."
+    },
+    {
+     "type": "prose",
+     "html": "Its dump had been bulk-cleaned before this report was written, so the genome list was rebuilt from the class-wide table and re-fetched: 3,184 genomes, 7,999 features, 4,815 unique sequences."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Conventional; the triple gene block descends by length.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "400 for the replicase, 80 for the coat protein, then 60 / 30 / 25 for TGB1, TGB2 and TGB3 as they shorten. NABP sits at 30."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "76.3% at the project budget \u2014 the weakest number on this page, and a real limit.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "references used"
+      ],
+      [
+       "76.3%",
+       "of genomes at \u22656 kb"
+      ],
+      [
+       "102",
+       "clusters in the genus"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The coverage curve is 49% at 5 references, 76% at 25, 89% at 50. Carlavirus has 102 clusters over 714 genomes at &ge;6&nbsp;kb, so a 25-reference budget cannot reach the tail however it is spent. This is the documented cost of the project's budget rule, not a defect in the module: everything it routes, it annotates well."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Roughly one genome in four of this genus is not reached by the shipped reference set. Raising the budget, not rebuilding the module, is what would fix it."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "All six features, on 93.3\u201399.3% of routed genomes.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on 149 routed genomes",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "REP",
+       "99.3%",
+       "yes"
+      ],
+      [
+       "TGB3",
+       "98.7%",
+       "yes"
+      ],
+      [
+       "TGB2",
+       "98.0%",
+       "yes"
+      ],
+      [
+       "CP",
+       "96.6%",
+       "yes"
+      ],
+      [
+       "TGB1",
+       "96.0%",
+       "yes"
+      ],
+      [
+       "NABP",
+       "93.3%",
+       "yes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every feature clears the 0.85 essentiality threshold and every <code>copy_num</code> assignment in the shipped module was already correct &mdash; the first module in this series measured against real genomes that needed no change."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Six of six features essential and called on at least 93.3% of routed genomes."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "86.6% genuinely clean, the highest in this report series.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "149",
+       "genomes scored"
+      ],
+      [
+       "86.6%",
+       "genuinely clean"
+      ],
+      [
+       "16",
+       "flagged"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The duplicate-call audit is essentially empty: one genome in 149 has two features on identical coordinates, and there are no nested calls at all. A genus with a simple, well-conserved layout and a deep profile set behaves exactly as it should."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "One real limit, and it is the routing.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>23.7% of the genus does not route.</b> 102 clusters is more diversity than 25 references can cover, and the coverage curve is still climbing at 50. That is the binding constraint on this module and no amount of profile work changes it."
+    },
+    {
+     "type": "prose",
+     "html": "<b>No mature peptides.</b> The replicase is a polyprotein whose cleavage sites are not documented for this genus in a form that can be located from the sequence."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The evaluation is a sample</b> &mdash; 149 genomes at &ge;6&nbsp;kb, seed 29. Routing in \u00a704 is a census over the whole genus."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Nothing wrong with the module.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Carlavirus is the control case for this report series. Three other modules were measured for the first time in the same pass and two needed <code>copy_num</code> corrections; this one did not, and its duplicate-call audit is clean. When the same checks that found real defects elsewhere find nothing here, that is evidence the checks discriminate rather than simply complain."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "No corrections. 316 profiles, six of six features essential on measurement, 86.6% of genomes clean."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "94 source strings became 6 \u2014 the largest collapse ratio in the build.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "94 \u2192 6",
+       "string collapse (15.7\u00d7)"
+      ],
+      [
+       "106",
+       "distinct source strings"
+      ],
+      [
+       "17.7\u00d7",
+       "strings per 100 genomes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The module's vocabulary is complete after two genomes. The source reaches 106 distinct strings with its knee at 133 and is still climbing at the end of the data &mdash; in a genus where six names suffice."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>carlavirus_audit.json</code>. Routing from <code>repcontig_budget.py</code>; call and quality rates from <code>run_gto_eval.py</code> over 149 genomes; duplicate calls from <code>qc_duplicate_calls.py</code>; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>."
+}
