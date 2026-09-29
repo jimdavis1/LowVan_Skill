@@ -245,6 +245,37 @@ a stray hash-named directory that the next glob would happily walk into.
 **Count the features you declared against the features that built**, every
 time. `-m 2` fixed it.
 
+### `--jobs N` is not N processes, and an over-subscribed box looks like a hang
+
+`run_gto_eval.py --jobs 8` on a 10-core machine drove the load average to
+**138** and completed **zero** genomes in two minutes. It was not deadlocked
+and nothing had crashed — each annotator spawns roughly ten short-lived BLAST
+children, so eight jobs is about eighty runnable processes, and every one of
+them was getting a tenth of a core.
+
+Three things made this hard to read, and all three are worth knowing:
+
+- **Load average lags.** It is a decaying one-minute average, so it keeps
+  climbing for a minute after you fix the cause and keeps falling for a
+  minute after you make things worse. Do not tune against it; count finished
+  genomes over a fixed interval instead.
+- **`pkill -f run_eval.sh` does not kill the work.** The driver dies, the
+  perl annotators and their BLAST children are reparented and keep running.
+  Two restarts stacked three generations of the same run against each other,
+  which is what actually produced the 138. Kill the whole family explicitly —
+  driver, `run_gto_eval.py`, `annotate_by_viral_pssm`,
+  `viral_genome_quality`, then `blastn`/`psiblast`/`tblastn` by name — and
+  confirm the count is zero before restarting.
+- **A restart re-scores before it advances.** Resume skips a genome only when
+  its `.qual.gto` exists, so the first minutes after a restart rebuild
+  quality for genomes that already had an `.ann.gto`. Polling in that window
+  shows a flat count and reads like a hang.
+
+Rule of thumb: **`--jobs` at about a third of the core count** for this
+pipeline, and measure the rate over two minutes before deciding it is wrong.
+Reading PSSMs from a cloud-synced directory costs real time too — copying the
+runtime to local disk first takes nine seconds and is always worth it.
+
 ## The last mile
 
 A module is not built when its PSSMs exist in a temp directory. Twice in this
