@@ -150,6 +150,101 @@ them, and say in the audit which figures are independent.**
 
 ---
 
+### A script that has never run once looks exactly like a script with nothing to do
+
+`rescue_unassigned.py` had never executed successfully in this project. Every
+Alsuviricetes dump crashed it on line 43:
+
+    ValueError: dictionary update sequence element #0 has length 3; 2 is required
+
+BV-BRC writes `uniq.seq` and `uniq.id_ann` with a TRAILING TAB, so every line
+splits into three fields and `dict(...)` refuses it. Six modules -- Carlavirus,
+Quinvirinae, Closterovirus, Ampelovirus, Velarivirus, Bromoviridae -- were
+built and shipped without a homology rescue, and nothing anywhere said so,
+because a rescue that never ran leaves the same evidence as a rescue that
+found nothing: no `RESCUED` artifact.
+
+Behind the crash sat a worse bug that the crash was hiding. `assigned` -- the
+set of sequences already binned, which the rescue must skip -- was built by
+taking the last pipe-delimited field of each collection FASTA header and
+treating it as an md5:
+
+    assigned.add(line.rstrip("\n").rsplit("|", 1)[-1])
+
+but `build_collections.py` writes the FEATURE ID as the header
+(`>fig|28347.83.peg.1`), so that expression yields `28347.83.peg.1` and never
+matches an md5. The set was permanently empty. **Had the trailing-tab crash
+been fixed on its own -- the obvious one-line fix -- the rescue would have
+re-adopted every already-binned sequence and silently duplicated the entire
+collection set.** The crash was the only thing preventing a much quieter
+corruption.
+
+Three lessons, in order of how much they cost:
+
+- A tool that has never produced output is not the same as a tool that found
+  nothing. **Check that each step in a pipeline has actually run at least
+  once**, by looking for its artifact, not by its silence.
+- When a script dies on input parsing, fix the parse *and then read the rest
+  of it*. The first error can be the only thing standing between you and a
+  defect that produces plausible output.
+- Assertions about identity -- "the md5 is the last field" -- decay when the
+  producer changes format. The comment asserting it was still there, still
+  confidently wrong.
+
+### A gate figure and the shipped reference set must agree, or one of them is wrong
+
+`repcontig_budget.py --merge-by-name` reported Crinivirus routing at **100.0%**
+at budget 25. `build_rep_contigs.py`, run with the same budget on the same
+data, covered 511 of 553 records = **92.4%**. The skill already says these two
+must reproduce each other, so the disagreement was the finding.
+
+Cause, and it is the second instance of it: `--merge-by-name` groups records by
+genome name to collapse the segments of one multipartite genome. But 18
+Crinivirus names carry between 3 and 8 records -- those are ISOLATE
+COLLISIONS, several independent isolates deposited under one name, not
+segments. Merging them counts several genomes as one and inflates coverage.
+Bromoviridae had already been corrected for exactly this (94.8% -> 69.5%);
+Crinivirus had not.
+
+**For a multipartite taxon, never accept a merged coverage figure without
+first checking the distribution of records per name.** Exactly `n` records for
+an `n`-segment virus is a segment set; more than `n` is a collision.
+`merge_segments.py` gets this right -- it refuses to merge a name whose record
+count exceeds the segment count, and logs it as `collision_not_merged` -- so
+the two tools disagreed with each other as well as with the truth.
+
+### One record can switch off a length check for the whole taxon
+
+Crinivirus segment windows are computed from observed contig lengths. One
+record -- "Plant associated crinivirus 1 MIR20SW", 16,522 nt -- is 65% longer
+than the next largest and almost certainly both segments on a single contig.
+Taken at face value it set RNA2's `max_len` to 17,348, which is not a loose
+bound but **no bound at all** for the other 276 RNA2 records, all of which sit
+between 6,575 and 8,672 nt.
+
+A window derived from extremes inherits every outlier's opinion. Bound it
+robustly -- discard anything beyond 1.5x the 95th percentile -- and say in the
+build notes which records that excluded. The cost of excluding a real genome
+from a *window* is that it may fail a length check; the cost of including a
+bad one is that nothing ever fails again.
+
+### A feature can fail to build and leave a directory named after a hash
+
+Crinivirus P6A -- 14 sequences of 53-55 aa -- produced zero alignments at the
+default `-m 5`, because no cluster reached five members. The pipeline still
+created an output directory, named `85c1dab168` after a content hash rather
+than after the feature, containing empty `alis/` and `pssms/`.
+
+`build_features.py` caught it and said so:
+
+    P6A            FAILED -- no output directory carries P6A profiles (1 new dirs)
+
+which is the behaviour you want, but note what the failure looks like from one
+step further away: 22 of 23 features built, a full run, no non-zero exit, and
+a stray hash-named directory that the next glob would happily walk into.
+**Count the features you declared against the features that built**, every
+time. `-m 2` fixed it.
+
 ## The last mile
 
 A module is not built when its PSSMs exist in a temp directory. Twice in this

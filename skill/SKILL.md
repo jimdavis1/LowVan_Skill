@@ -138,7 +138,14 @@ step where mistakes are least visible.
 
 Read `references/annotation-triage.md` before writing rules — it covers the
 **U-number trap** (positional labels like `U1`/`ORF3`/`VP2` are not homology
-groups), genus-dependent synonyms, and why every rule needs a genus column.
+groups, and **neither is a mass**: "p22" is four different proteins in
+Crinivirus while "p59" and "p60" are one), genus-dependent synonyms, why every
+rule needs a genus column, why a **bimodal** feature needs an explicit length
+window rather than a median, and how to **discover** accessory features by
+clustering instead of naming them off the source's masses.
+
+The logic lives in `scripts/collection_engine.py`; a taxon's
+`build_collections.py` declares only its own rules and calls `run()`.
 
 Output: `collections/<Module>/<FEAT>.fasta`, plus `synonyms.tsv`,
 `UNASSIGNED_TRACKING.tsv` and `NOT_MODELLED.tsv` so nothing vanishes silently.
@@ -464,6 +471,41 @@ One block per module: `close_genomes`, `segments`, `features`. Set `min_len` and
 `max_len` from the collection's own length distribution, and keep `bit_cutoff`
 high enough that a genus-specific accessory cannot fire on a sibling genus.
 Schema and every field: `references/json-schema.md`.
+
+**Generate it, do not hand-write it:**
+
+```bash
+python3 scripts/gen_module_json.py --workdir <M> --module <M> \
+        --features <M>/features.json --out <M>/<M>_Viral_PSSM.json \
+        [--segments <M>/segments.json]
+```
+
+Every number then comes from an artifact on disk — `min_len`/`max_len` from
+the built collection's own range **in amino acids**, `close_genomes` from
+`Rep-Contigs/close_genomes.json`, `segments` from measured contig lengths in
+the dict form the quality script needs. Hand-writing it is how Pestiviridae
+shipped with `segments` as `{"Single RNA Segment": 1}`: annotation worked and
+quality scoring was dead on every genome.
+
+**Set `copy_num` AFTER the module has been run, never before.** `copy_num` is
+what marks a feature essential, so a feature that carries it flags every
+genome that lacks it — and essentiality is `called/routed >= 0.85`, which is a
+measurement, not a property you can read off a gene's reputation. Deciding it
+from the gene's fame put three shipped modules at 0.0% clean. So:
+
+1. `gen_module_json.py` writes the block with **no `copy_num` at all**
+2. install, then `run_gto_eval.py` measures `called/routed` per feature
+3. add `copy_num` only to the features that clear 0.85
+
+A missing `copy_num` costs nothing. A wrong one fails every genome in the
+taxon. Do it in the order where the cheap mistake is the possible one.
+
+**Bound segment windows robustly.** They are computed from observed contig
+lengths, so one bad record sets them for everybody: a single 16,522 nt
+Crinivirus record — both segments on one contig — pushed RNA2's `max_len` to
+17,348, which is not a loose bound but no bound at all for the other 276
+records, all between 6,575 and 8,672 nt. Discard anything past 1.5x the 95th
+percentile and name what you excluded in the build notes.
 
 **Write it in one canonical format** — JSON::XS `pretty` + `canonical`: 3-space
 indent, `" : "`, sorted keys. Perl randomises hash order, so without sorted keys
@@ -973,6 +1015,9 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `check_dump.py` | verify the BV-BRC dump is complete and line-aligned |
 | `json_canon.py` | one canonical JSON format so diffs show only real changes |
 | `repcontig_budget.py` | go/no-go: what fraction routes on a fixed reference budget |
+| `collection_engine.py` | the binning engine: rules, length windows, ambiguity, chemistry, accessory discovery, tracking files |
+| `gen_module_json.py` | write the module JSON from what was actually built, with no `copy_num` |
+| `rescue_unassigned.py` | adopt unbinned sequences into a collection by homology |
 | `build_rep_contigs.py` | write the rep contigs that budget implies, largest cluster first |
 | `check_rep_contigs.py` | check that rep contigs route the taxon's genomes |
 | `install_module.py` | validate and install into a Viral_Annotation checkout |

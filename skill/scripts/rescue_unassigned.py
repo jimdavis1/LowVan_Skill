@@ -15,7 +15,8 @@ Adoption routes to the FEATURE KEY, never straight to the fasta, so the
 collection's length window still applies afterwards and a rescued fragment
 lands in <FEAT>.outliers.fasta like any other fragment.
 """
-import os, re, sys, subprocess, collections, argparse, tempfile
+import os
+import sys, re, sys, subprocess, collections, argparse, tempfile
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--workdir", default=".")
@@ -39,23 +40,43 @@ cdir = os.path.join(W, "collections", a.module)
 # the sequences that matched no rule
 g2g = {}
 for l in open(os.path.join(W, a.dump + ".id_name_gs")):
-    p = l.rstrip("\n").split("\t"); g2g[p[0]] = p[3] or "unclassified"
-seq = dict(l.rstrip("\n").split("\t") for l in open(os.path.join(W, a.dump + ".uniq.seq")))
+    p = l.rstrip("\n").split("\t")
+    if len(p) >= 4: g2g[p[0]] = p[3] or "unclassified"
+#  BV-BRC writes uniq.seq and uniq.id_ann with a TRAILING TAB, so every line
+#  splits into three fields, not two. dict() over that raises
+#  "dictionary update sequence element #0 has length 3" and this script died
+#  on every Alsuviricetes dump -- which is why no taxon in that class had ever
+#  been rescued. Take the first two fields and ignore the rest.
+seq = {}
+for l in open(os.path.join(W, a.dump + ".uniq.seq")):
+    f = l.rstrip("\n").split("\t")
+    if len(f) >= 2 and f[1]:
+        seq[f[0]] = f[1]
 
-# rebuild the unassigned set: anything in the dump that is in no collection file
+md5 = [l.strip() for l in open(os.path.join(W, a.dump + ".uniq.md5"))]
+ann = [l.rstrip("\n").split("\t") for l in open(os.path.join(W, a.dump + ".uniq.id_ann"))]
+if not (len(ann) == len(md5)):
+    sys.exit("uniq.md5 and uniq.id_ann differ in length -- run check_dump.py")
+
+#  rebuild the unassigned set: anything in the dump that is in no collection
+#  file. build_collections.py writes the FEATURE ID as the fasta header
+#  (>fig|28347.83.peg.1), not the md5, so the md5 cannot be recovered from the
+#  header at all -- the old rsplit("|") took "28347.83.peg.1" and compared it
+#  to md5s, which never matched, leaving `assigned` permanently empty. Had the
+#  parse bugs above been fixed on their own, this would have re-rescued every
+#  sequence that was ALREADY binned and duplicated it into the collections.
+#  Match on the feature id instead, which is what the header actually holds.
 assigned = set()
 for fn in os.listdir(cdir):
     if not fn.endswith(".fasta"): continue
     for line in open(os.path.join(cdir, fn)):
-        # NB the feature id itself contains a pipe (fig|1213422.5.CDS.2), so the
-        # md5 is the LAST field, not field 2.
-        if line.startswith(">"): assigned.add(line.rstrip("\n").rsplit("|", 1)[-1])
+        if line.startswith(">"): assigned.add(line[1:].split()[0].strip())
 
-md5 = [l.strip() for l in open(os.path.join(W, a.dump + ".uniq.md5"))]
-ann = [l.rstrip("\n").split("\t") for l in open(os.path.join(W, a.dump + ".uniq.id_ann"))]
 todo = []
-for m, (fid, an) in zip(md5, ann):
-    if m in assigned or not seq.get(m): continue
+for i, m in enumerate(md5):
+    fid = ann[i][0] if ann[i] else ""
+    an = ann[i][1] if len(ann[i]) > 1 else ""
+    if not fid or fid in assigned or not seq.get(m): continue
     gid = fid.split("|", 1)[1].rsplit(".", 2)[0]
     todo.append((fid, g2g.get(gid, "unclassified"), m, an, seq[m]))
 sys.stderr.write("%d sequences matched no rule\n" % len(todo))

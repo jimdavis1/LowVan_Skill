@@ -297,3 +297,107 @@ both are real. Explicit bounds of 200–460: **679 sequences → 987**.
 This is the Betaflexiviridae/Citrivirus lesson restated — and note it bit again
 even with that lesson written down, because the failure was *within* a genus,
 not across genera.
+
+
+## Use the engine, not a copy of the last taxon's script
+
+`scripts/collection_engine.py` holds the binning logic -- rules, length
+windows, ambiguity, cleavage chemistry, every tracking file. A taxon's
+`build_collections.py` should declare only what is specific to it and call
+`run()`. It was extracted after the fourth taxon reproduced the same 180
+lines with a different `RULES` table, and the copies had already started
+drifting.
+
+```python
+import os, sys
+sys.path.insert(0, os.environ["LOWVAN_KIT"] + "/skill/scripts")
+from collection_engine import run
+
+run(here=..., T="Crini", MODULE="Crinivirus",
+    RULES=[...], NOT_MODELLED=[...], WINDOW={...},
+    PRE_FLOOR={...}, JUNCTION={...}, ACCESSORY={...})
+```
+
+## A pooled median cannot arbitrate between two modes
+
+`RUNT`/`GIANT` (0.7x-1.3x the feature's median) assume the feature is
+unimodal. When it is not, the median lands in the larger mode and the smaller
+mode is deleted wholesale as "runt" or "overlong".
+
+Capillovirus MP has a 320 aa class and a 463 aa class. They are 42% identical
+over 212 residues (E=6e-61) -- divergent but unambiguously the same ORF2
+homology group, and both are real. The pooled median is 320, so the default
+window is 224-416 and **all 119 sequences of the 463 class are discarded**,
+with every number in the report self-consistent.
+
+This is the Citrivirus CP failure arriving through the length filter instead
+of through the string rules, and it needs the same answer: an explicit window.
+
+```python
+WINDOW={"MP": (260, 480)}     # replaces the median-relative test entirely
+```
+
+**Plot the length histogram of every feature before accepting its window.**
+Two modes with a gap between them means either two features or one feature
+needing an explicit window; it never means take the median.
+
+## A mass is not a homology group -- so do not let a mass form one
+
+Already recorded for U-numbers and positional labels. Closterovirid
+accessories make the point quantitatively. Measured on the Crinivirus dump:
+
+    "p22"        FOUR non-homologous groups, at 188, 191, 192 and 193 aa
+    "p26/27/28"  one group holding all three names, plus two further
+                 separate groups that also call themselves p26/p27/p28
+    "p59"/"p60"  ONE group of 78 sequences -- and it is the HSP90 homolog,
+                 which Closterovirus, Ampelovirus and Velarivirus all name
+                 HSP90 rather than by its mass
+    "p6/7/8/9"   at least seven groups, fragmenting by size
+
+Binning any of those on the string invents proteins that do not exist and
+splits ones that do. The mass is a *name*, and a name is only safe once the
+group exists.
+
+So: **discover accessory features by clustering, then name them.**
+
+```python
+ACCESSORY={"pool": r"^p\d{1,3}(\.\d)?( protein)?$|^\d{1,3} kda protein$|"
+                   r"suppressor of rna silencing",
+           "min_members": 8,      # enough to build a profile at -m 2
+           "min_med_len": 45,     # enough to give it a usable bit_cutoff
+           "min_seq_id": 0.25, "cov": 0.5}
+```
+
+The engine clusters the pool, keeps groups that clear both floors, names each
+after its dominant label, and suffixes A/B/C where one name covers several
+groups -- which is the Ampelovirus `P20A`/`P20B` precedent made general.
+`ACCESSORY_CLUSTERS.tsv` records what became what.
+
+Two floors, both load-bearing. `min_members` asks whether a profile can be
+built at all. `min_med_len` asks whether it can be given a cutoff: the
+discovered Crinivirus "p4" group is 33 aa, and a 33-residue profile cannot
+both fire on its own members and stay silent across a 9 kb genome. Ship it and
+it can only be wrong in one of two directions.
+
+### The free validation this buys you
+
+For a multipartite taxon, check which segment each discovered group sits on.
+Anchor two record sets -- the ones carrying POLY/RDRP are RNA1, the ones
+carrying HSP70/CPM are RNA2 -- and ask where each group's members fall. On
+Crinivirus the two anchor sets did not overlap at all, and **every one of the
+23 features landed entirely on one segment or the other**. A cluster that
+straddled both would have been an artefact; none did. It costs one query and
+tells you the clustering found real genes.
+
+## Re-running the binning leaves the previous rule set on disk
+
+`build_collections.py` writes `collections/<Module>/<KEY>.fasta` per feature.
+It does not remove files it no longer produces, and **every downstream step
+globs that directory**. Rename a feature and both names persist; change an
+accessory suffix and the old cluster stays. `SUPPRESSOROF` and `SUPPRESSOR`
+sat side by side, and a PSSM would have been built for both.
+
+The engine now deletes any `*.fasta` the current run did not produce and says
+which. That interacts with the rescue, which appends: the order is always
+**build collections, then rescue, then compare every count against the
+previous build** -- never one without the other.
