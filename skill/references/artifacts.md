@@ -165,3 +165,36 @@ thin, the audit has not been done.
   re-pick, and re-run the `dataviz` validator if you change them
 - save the generator, and the coverage audit's facts file, alongside the HTML in
   `Reports/generators/` so every page can be regenerated after the next rebuild
+
+
+## Two things that block these pages after the fact
+
+**The collapse page needs `synonyms.tsv`, and nothing warns you if it is
+missing until you try to build the page — long after the module shipped.**
+No `build_collections.py` emitted it before 29 September 2026, so ten
+Alsuviricetes modules reached the repo with no way to produce their headline
+artifact. `collection_engine.py` writes it now.
+
+For a module already built, `scripts/synmap_from_collections.py`
+reconstructs it from the dump and the collections on disk **without re-running
+the binning** — which would truncate the collections and discard the rescue.
+Be aware it answers a slightly different question:
+
+    engine's file        a RULE matched this string        vocabulary
+    reconstructed file   this string reached a collection  post-QC membership
+
+The reconstructed version counts sequences dropped on length, ambiguity or a
+cleavage check as unbound, so its bound fraction is lower. Say which one a
+page used, and do not compare the figure across modules built the two ways.
+
+**The saturation page needs per-genome feature tables, which only exist if
+the evaluation was run with `--tbl-dir`.** They are written into `_wd` and
+deleted with it otherwise. If the module has already been evaluated without
+it, the page cannot be built without re-annotating every genome — at roughly
+86 seconds per genome, that is hours for a taxon of any size. **Pass
+`--tbl-dir` on the first evaluation run**, every time, whether or not you
+think you want the page.
+
+Do not hand-synthesise a feature table to get around this. It has been tried:
+the gene-symbol column came out empty and the gap analysis reported
+"0 genomes" without erroring.
