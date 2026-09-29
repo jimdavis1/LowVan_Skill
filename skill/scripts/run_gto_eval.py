@@ -189,6 +189,40 @@ def main():
         nff = sum(len(f.get("feature_quality_flags") or []) for f in feat)
         rows.append((b, nf, len(gf), len(cf), nff, "; ".join(allf)[:200]))
 
+    #  Essentiality audit. copy_num marks a feature essential, and an
+    #  essential feature that most genomes do not carry flags all of them --
+    #  three modules have scored 0% this way (Quinvirinae, Closterovirus,
+    #  Ampelovirus) while their core features called at 91-100%. This is the
+    #  only place that can see the answer, because the test is the fraction of
+    #  GENOMES carrying the feature and that is what a panel measures.
+    try:
+        blk = json.load(open(os.path.join(R, "Viral_PSSM.json")))
+        fam = None
+        for q in sorted(glob.glob(os.path.join(args.out, "*.qual.gto")))[:1]:
+            fam = (json.load(open(q)).get("viral_family") or [None])[0] \
+                  if isinstance(json.load(open(q)).get("viral_family"), list) \
+                  else json.load(open(q)).get("viral_family")
+        feats = (blk.get(fam) or {}).get("features") or {}
+        if feats:
+            called = collections.Counter(); nrt = 0
+            for q in sorted(glob.glob(os.path.join(args.out, "*.qual.gto"))):
+                d = json.load(open(q))
+                if not d.get("features"): continue
+                nrt += 1
+                fns = {(f.get("function") or "") for f in d["features"]}
+                for k, v in feats.items():
+                    if v.get("anno") in fns: called[k] += 1
+            thin = [(k, called[k] / nrt) for k, v in feats.items()
+                    if v.get("copy_num") and nrt and called[k] / nrt < 0.85]
+            if thin:
+                print("\n  ESSENTIAL BUT RARE -- these carry copy_num and so flag every")
+                print("  genome that lacks them. Drop copy_num unless the feature is")
+                print("  genuinely present and merely uncallable:")
+                for k, f in sorted(thin, key=lambda x: x[1]):
+                    print("    %-8s called on %5.1f%% of routed genomes" % (k, 100.0 * f))
+    except Exception:
+        pass
+
     tot = good + poor + unann
     print("\n  scored %d genome(s)" % tot)
     if tot:

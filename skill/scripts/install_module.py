@@ -88,28 +88,12 @@ def validate(workdir, mod_json):
         #      Can't use string ("1") as a HASH ref ... line 302
         #  while annotation itself succeeds -- so the module looks built and
         #  scores nothing. --check passed this shape until now.
-        #  Warn when a feature is marked essential but is rare in the panel.
-        #  copy_num on an accessory ORF flags every genome that lacks it, and
-        #  the module then scores 0% while its core features call at 91-100%.
-        #  This has happened three times: Quinvirinae, Closterovirus,
-        #  Ampelovirus. There is no panel here, so the check is a reminder
-        #  keyed on the collection -- a feature whose collection is under a
-        #  fifth the size of the module's largest is probably an accessory.
-        colls = {}
-        cdir = os.path.join(workdir, "collections", module)
-        if os.path.isdir(cdir):
-            for f in glob.glob(os.path.join(cdir, "*.fasta")):
-                k = os.path.basename(f)[:-6]
-                colls[k] = sum(1 for l in open(f) if l.startswith(">"))
-        if colls:
-            big = max(colls.values())
-            thin = [k for k, v in colls.items()
-                    if v < big * 0.2 and block["features"].get(k, {}).get("copy_num")]
-            if thin:
-                print("       %d feature(s) marked ESSENTIAL on a small collection -- "
-                      "check they are present on most GENOMES, not just that they "
-                      "exist: %s" % (len(thin), ", ".join(sorted(thin))))
-
+        #  NOTE: essentiality cannot be checked here. The right test is the
+        #  fraction of GENOMES carrying the feature, and this script only sees
+        #  collections. A collection-size proxy was tried and did not work --
+        #  Closterovirus P13 holds 66 sequences against POLY's 187, well above
+        #  any sensible threshold, yet appears on 9.5% of genomes. The check
+        #  lives in run_gto_eval.py, which has the panel.
         segs = block.get("segments")
         if not isinstance(segs, dict) or not segs:
             print("       segments block is missing or not an object"); problems += 1
