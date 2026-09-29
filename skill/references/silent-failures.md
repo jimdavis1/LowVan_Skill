@@ -299,6 +299,39 @@ estimate above it is a bug.** If the budget claims more coverage than the
 annotator delivers, find out why before shipping; if it claims less, record
 the budget figure and move on.
 
+### A call rate of 0% can mean the feature was never offered a genome
+
+Crinivirus P22A: 26 sequences, a profile that recovers 26 of 26 of them, and
+**called on 0.0% of routed genomes**. Nothing was broken. Every one of its 26
+source records sits on a genome record shorter than 6 kb, and the evaluation
+population is genomes at or above 6 kb, so the feature was never put in front
+of a genome that could carry it.
+
+The same effect, in weaker form, across the module:
+
+    feature   source records <6 kb   called on
+    P22A          26 of 26             0.0%
+    RNASE3        41 of 57            48.7%
+    P7A           35 of 45            55.3%
+    P22C           0 of 11            13.3%      <- genuinely rare
+    P25            0 of  8             5.3%      <- genuinely rare
+
+The two populations are drawn differently and always have been:
+
+  collections    every protein record in the dump, whatever its genome length
+  evaluation     only genomes long enough to annotate, >= 6 kb
+
+So a low call rate has two possible causes that look identical in the report —
+the protein is rare, or the protein's genomes are partial. **Before reading a
+low call rate as a weak profile, check the length distribution of the source
+records.** One query separates them.
+
+This does not endanger the `copy_num` decision, and that is worth stating:
+both causes argue for the same answer. A feature that cannot be called on
+whole genomes must not be marked essential either way, so the safe direction
+is preserved. What it endangers is the *explanation* written next to the
+number in the coverage audit.
+
 ## The last mile
 
 A module is not built when its PSSMs exist in a temp directory. Twice in this
