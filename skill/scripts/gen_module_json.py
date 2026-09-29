@@ -26,6 +26,9 @@ costs nothing; a wrong one fails every genome in the taxon.
 """
 import argparse, collections, glob, json, os, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from json_canon import write_json   # one canonical format, or diffs are noise
+
 #  bit_cutoff convention, read off the shipped closterovirid and Bromoviridae
 #  modules. Role first, then length for anything unnamed.
 ROLE = {"POLY": 400, "REP": 400, "REP1": 400, "REP2": 300, "RDRP": 300,
@@ -122,9 +125,11 @@ def main():
         out[key] = d
 
     block = {M: {"close_genomes": close, "features": out, "segments": segments}}
-    with open(a.out, "w") as fh:
-        json.dump(block, fh, indent=1, sort_keys=True)
-        fh.write("\n")
+    #  Canonical on the way out. json.dump(indent=1) is not the project
+    #  format, and a module JSON that is not canonical makes its first real
+    #  diff unreadable -- Perl rewrites it in hash order the moment any tool
+    #  touches it.
+    write_json(block, a.out)
     print("  %s: %d features, %d references, %d segment(s) -> %s"
           % (M, len(out), len(close), len(segments), a.out))
     if missing:
