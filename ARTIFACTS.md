@@ -163,6 +163,8 @@ Not made: string collapse, vocabulary saturation.
 | Ampelovirus Coverage Audit | [open](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) | [source](reports/ampelovirus-coverage-audit.html) | 2026-09-29 |
 | Carlavirus Vocabulary Saturation | [open](https://claude.ai/artifact/CanGWVzZ16524CDkMgP3P3) | [source](reports/carlavirus-vocabulary-saturation.html) | 2026-09-29 |
 | Carlavirus Coverage Audit | [open](https://claude.ai/artifact/NmFkgdqungA9QQqwo4vnxk) | [source](reports/carlavirus-coverage-audit.html) | 2026-09-29 |
+| Quinvirinae Vocabulary Saturation | [open](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [source](reports/quinvirinae-vocabulary-saturation.html) | 2026-09-29 |
+| Quinvirinae Coverage Audit | [open](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) | [source](reports/quinvirinae-coverage-audit.html) | 2026-09-29 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
 | RdRp Read Nucleation | [open](https://claude.ai/artifact/D4L5hjJdBZqaE5DSsHUaXq) | — | 2026-09-17 |

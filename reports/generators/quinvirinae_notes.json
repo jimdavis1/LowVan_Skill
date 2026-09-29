@@ -1,0 +1,9 @@
+{
+ "standfirst": "The five genera left after Carlavirus was split out: Foveavirus, Robigovirus, Banmivirus, Ravavirus and Sustrivirus. All share the replicase / triple-gene-block / coat protein / NABP layout \u2014 organisation alone would have kept Carlavirus with them, and measurement is what separated them.",
+ "modules": {
+  "Quinvirinae": "Split from Carlavirus on 24 September 2026 on <em>routing</em>, not organisation. Lumped, 25 references reach 81.0%; the cost fell on every genus because Carlavirus has 102 clusters over 714 genomes and consumed a budget the smaller genera needed. Split, Robigovirus goes 81.8% to 100% and Foveavirus reaches 92% on five references."
+ },
+ "gaps": "89 source strings reached no collection. Reconstructed from the collections as shipped, so sequences dropped on length, ambiguity or a cleavage check count as unbound.",
+ "derived": "None declared.",
+ "why": {}
+}

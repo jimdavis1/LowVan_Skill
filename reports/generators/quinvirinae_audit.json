@@ -1,0 +1,311 @@
+{
+ "title": "Quinvirinae Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Quinvirinae module \u00b7 29 September 2026",
+ "h1": "Does the apple stem pitting virus module actually work?",
+ "standfirst": "<b>Quinvirinae</b> is the subfamily module covering <i>Foveavirus</i>, <i>Robigovirus</i>, <i>Banmivirus</i>, <i>Ravavirus</i> and <i>Sustrivirus</i> &mdash; apple stem pitting virus, cherry necrotic rusty mottle virus, and the woody-host relatives left after <i>Carlavirus</i> was split out. Same gene layout as Carlavirus: replicase, triple gene block, coat protein, nucleic-acid-binding protein.",
+ "headline_tiles": [
+  [
+   "8",
+   "features, all with profiles"
+  ],
+  [
+   "116",
+   "PSSMs"
+  ],
+  [
+   "98.0%",
+   "genomes routed"
+  ],
+  [
+   "81.3%",
+   "genuinely clean"
+  ],
+  [
+   "6.1\u00d7",
+   "vocabulary collapse"
+  ],
+  [
+   "1",
+   "open question"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Five genera that share a layout, separated from a sixth on measurement.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "length (aa)",
+      "bit cutoff",
+      "self-recall"
+     ],
+     "rows": [
+      [
+       "REP",
+       "Replicase",
+       "\u2013",
+       "400",
+       "742/742 (100%)"
+      ],
+      [
+       "TGB1",
+       "Triple gene block protein 1",
+       "159\u2013239",
+       "60",
+       "686/688 (99.7%)"
+      ],
+      [
+       "TGB2",
+       "Triple gene block protein 2",
+       "\u2013",
+       "30",
+       "621/622 (99.8%)"
+      ],
+      [
+       "TGB3",
+       "Triple gene block protein 3",
+       "\u2013",
+       "25",
+       "568/568 (100%)"
+      ],
+      [
+       "CP",
+       "Coat protein",
+       "200\u2013421",
+       "80",
+       "985/987 (99.8%)"
+      ],
+      [
+       "P14",
+       "14 kDa protein",
+       "89\u2013127",
+       "30",
+       "186/186 (100%)"
+      ],
+      [
+       "ORF5A",
+       "ORF5a protein",
+       "155\u2013169",
+       "40",
+       "132/132 (100%)"
+      ],
+      [
+       "ORF2A",
+       "ORF2a protein",
+       "100\u2013124",
+       "30",
+       "100/101 (99.0%)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "All six Quinvirinae genera share the replicase / triple-gene-block / coat protein layout, so the organisation rule alone would have kept <i>Carlavirus</i> with them. Routing separated them: lumped, 25 references reach 81.0%; split, this half reaches 98.0% and Carlavirus gained eleven points."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Its dump had to be re-fetched from scratch.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The working dump had been bulk-cleaned before this report was written, so the genome list was rebuilt from the class-wide table for the five genera and re-fetched: 9,505 features over 6,205 unique sequences."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Conventional, with the two alternative-frame ORFs at 30 and 40.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "400 for the replicase, 80 for the coat protein, 60 / 30 / 25 down the triple gene block. The accessories sit at 30&ndash;40, and \u00a707 has a note about what that costs."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "98.0% at the project budget \u2014 the best of the six backfilled modules.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "references used"
+      ],
+      [
+       "98.0%",
+       "of genomes at \u22656 kb"
+      ],
+      [
+       "78%",
+       "reached on only 5 references"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The curve is 78% at 5 references and 98% at 25. These are woody-host viruses with comparatively deep sampling per species, so a small reference set goes a long way &mdash; the opposite of Carlavirus, which needs more than the budget allows."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Five essential features at 97.3\u201399.3%, three accessories below.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on 150 routed genomes",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "REP, TGB2, TGB3",
+       "99.3%",
+       "yes"
+      ],
+      [
+       "CP",
+       "98.0%",
+       "yes"
+      ],
+      [
+       "TGB1",
+       "97.3%",
+       "yes"
+      ],
+      [
+       "P14",
+       "60.7%",
+       "no"
+      ],
+      [
+       "ORF2A",
+       "25.3%",
+       "no"
+      ],
+      [
+       "ORF5A",
+       "8.7%",
+       "no"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every <code>copy_num</code> assignment in the shipped module was already correct. No change was needed."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Five of five core features essential and called on at least 97.3% of routed genomes."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "81.3% genuinely clean.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "150",
+       "genomes scored"
+      ],
+      [
+       "81.3%",
+       "genuinely clean"
+      ],
+      [
+       "13",
+       "flagged"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "10 flags are a missing essential feature, 8 are contigs with too many ambiguous bases, 3 are &ldquo;too many HSPs&rdquo;. There are no exact duplicate calls anywhere in the module."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "One documented architecture note and one genuinely open question.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>ORF2a and ORF5a are called entirely inside TGB1 and CP</b> &mdash; 100% of their calls. That is the architecture their names describe: ORF2a is an alternative reading frame overlapping ORF2, ORF5a overlaps ORF5. The collections are unrelated to their hosts (28% and 31% identity over about a quarter coverage), neither is essential, and nothing about this is a defect."
+    },
+    {
+     "type": "prose",
+     "html": "<b>P14 is a different matter and is NOT resolved.</b> It is called entirely within the CP span on 100% of its 91 calls, and its collection is unrelated to CP (33% identity over 33% coverage) &mdash; so unlike the two alternative-frame ORFs, the name does not account for the overlap. p14 is the nucleic-acid-binding protein and should sit downstream of the coat protein. Either CP's called span runs long (its window reaches 421 aa, high for this group) or the profile is promiscuous at <code>bit_cutoff</code> 30. It is called on 60.7% of genomes and carries no <code>copy_num</code>, so no essentiality or quality figure depends on it &mdash; but it is an open question and is recorded as one on the feature itself."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The evaluation is a sample</b> &mdash; 150 genomes at &ge;6&nbsp;kb, seed 29. Routing in \u00a704 is a census."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "No corrections, and one thing worth returning to.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "This module's <code>copy_num</code> was already right, which puts it with Carlavirus and Ampelovirus rather than with Velarivirus and Closterovirus. The P14 nesting is the only finding, and the honest status is unresolved rather than fixed: diagnosing it properly means deciding whether the CP length window or the P14 cutoff is at fault, and that is a change to a shipped module on the strength of one measurement."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Eight of eight features have profiles and five are essential on measurement. P14's nesting is documented and open; nothing depends on it."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "52 source strings became 8.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "52 \u2192 8",
+       "string collapse (6.5\u00d7)"
+      ],
+      [
+       "49",
+       "distinct source strings"
+      ],
+      [
+       "6.1\u00d7",
+       "strings per 100 genomes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The smallest collapse ratio of the six backfilled modules, and that is a fact about the source rather than the module: these genera are annotated comparatively consistently, so there was less duplication to remove. The module's vocabulary is complete after eleven genomes; the source is still climbing at 150."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>quinvirinae_audit.json</code>. Routing from <code>repcontig_budget.py</code>; call and quality rates from <code>run_gto_eval.py</code> over 150 genomes; duplicate calls from <code>qc_duplicate_calls.py</code>; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>."
+}
