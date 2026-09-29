@@ -1,219 +1,220 @@
 {
-   "Velarivirus": {
-      "close_genomes": {
-         "Velarivirus.1.dna": {
-            "genome_ids": "MN131067",
-            "genome_name": "Little cherry virus 1 FT12"
+   "Velarivirus" : {
+      "close_genomes" : {
+         "Velarivirus.1.dna" : {
+            "genome_ids" : "MN131067",
+            "genome_name" : "Little cherry virus 1 FT12"
          },
-         "Velarivirus.10.dna": {
-            "genome_ids": "MN901923",
-            "genome_name": "Malus domestica virus A SK"
+         "Velarivirus.10.dna" : {
+            "genome_ids" : "MN901923",
+            "genome_name" : "Malus domestica virus A SK"
          },
-         "Velarivirus.11.dna": {
-            "genome_ids": "MW080812",
-            "genome_name": "Agapanthus velarivirus 19-3007"
+         "Velarivirus.11.dna" : {
+            "genome_ids" : "MW080812",
+            "genome_name" : "Agapanthus velarivirus 19-3007"
          },
-         "Velarivirus.12.dna": {
-            "genome_ids": "OR887735",
-            "genome_name": "Pyrus virus A 224-BE"
+         "Velarivirus.12.dna" : {
+            "genome_ids" : "OR887735",
+            "genome_name" : "Pyrus virus A 224-BE"
          },
-         "Velarivirus.13.dna": {
-            "genome_ids": "HM588723",
-            "genome_name": "Cordyline virus 1 Kahaluu-1"
+         "Velarivirus.13.dna" : {
+            "genome_ids" : "HM588723",
+            "genome_name" : "Cordyline virus 1 Kahaluu-1"
          },
-         "Velarivirus.14.dna": {
-            "genome_ids": "JQ599282",
-            "genome_name": "Cordyline virus 2 SJ1"
+         "Velarivirus.14.dna" : {
+            "genome_ids" : "JQ599282",
+            "genome_name" : "Cordyline virus 2 SJ1"
          },
-         "Velarivirus.15.dna": {
-            "genome_ids": "JQ599283",
-            "genome_name": "Cordyline virus 3 SJ1"
+         "Velarivirus.15.dna" : {
+            "genome_ids" : "JQ599283",
+            "genome_name" : "Cordyline virus 3 SJ1"
          },
-         "Velarivirus.16.dna": {
-            "genome_ids": "JQ599284",
-            "genome_name": "Cordyline virus 4 SJ1"
+         "Velarivirus.16.dna" : {
+            "genome_ids" : "JQ599284",
+            "genome_name" : "Cordyline virus 4 SJ1"
          },
-         "Velarivirus.17.dna": {
-            "genome_ids": "NC_025967",
-            "genome_name": "Persimmon virus B variant 1"
+         "Velarivirus.17.dna" : {
+            "genome_ids" : "NC_025967",
+            "genome_name" : "Persimmon virus B variant 1"
          },
-         "Velarivirus.18.dna": {
-            "genome_ids": "KJ572575",
-            "genome_name": "Mint vein banding-associated virus NCGR MEN 454"
+         "Velarivirus.18.dna" : {
+            "genome_ids" : "KJ572575",
+            "genome_name" : "Mint vein banding-associated virus NCGR MEN 454"
          },
-         "Velarivirus.19.dna": {
-            "genome_ids": "OR346827",
-            "genome_name": "Olive leaf yellowing-associated virus 22-0043_1"
+         "Velarivirus.19.dna" : {
+            "genome_ids" : "OR346827",
+            "genome_name" : "Olive leaf yellowing-associated virus 22-0043_1"
          },
-         "Velarivirus.2.dna": {
-            "genome_ids": "MW316018",
-            "genome_name": "Areca palm velarivirus 1 BTY"
+         "Velarivirus.2.dna" : {
+            "genome_ids" : "MW316018",
+            "genome_name" : "Areca palm velarivirus 1 BTY"
          },
-         "Velarivirus.20.dna": {
-            "genome_ids": "AB923925",
-            "genome_name": "Persimmon virus B variant 2"
+         "Velarivirus.20.dna" : {
+            "genome_ids" : "AB923925",
+            "genome_name" : "Persimmon virus B variant 2"
          },
-         "Velarivirus.21.dna": {
-            "genome_ids": "AB923927",
-            "genome_name": "Persimmon virus B variant 4"
+         "Velarivirus.21.dna" : {
+            "genome_ids" : "AB923927",
+            "genome_name" : "Persimmon virus B variant 4"
          },
-         "Velarivirus.22.dna": {
-            "genome_ids": "MT936300",
-            "genome_name": "Olivavirus actinidiae JX5-c18410"
+         "Velarivirus.22.dna" : {
+            "genome_ids" : "MT936300",
+            "genome_name" : "Olivavirus actinidiae JX5-c18410"
          },
-         "Velarivirus.23.dna": {
-            "genome_ids": "OR260412",
-            "genome_name": "Little cherry virus 1 Stepnoe"
+         "Velarivirus.23.dna" : {
+            "genome_ids" : "OR260412",
+            "genome_name" : "Little cherry virus 1 Stepnoe"
          },
-         "Velarivirus.24.dna": {
-            "genome_ids": "MT533601",
-            "genome_name": "Agapanthus velarivirus 19-3005"
+         "Velarivirus.24.dna" : {
+            "genome_ids" : "MT533601",
+            "genome_name" : "Agapanthus velarivirus 19-3005"
          },
-         "Velarivirus.25.dna": {
-            "genome_ids": "PP869314",
-            "genome_name": "Olive leaf mottling virus OLMV158"
+         "Velarivirus.25.dna" : {
+            "genome_ids" : "PP869314",
+            "genome_name" : "Olive leaf mottling virus OLMV158"
          },
-         "Velarivirus.3.dna": {
-            "genome_ids": "MN612756",
-            "genome_name": "Olivavirus actinidiae AcV1-Zhouzhi1"
+         "Velarivirus.3.dna" : {
+            "genome_ids" : "MN612756",
+            "genome_name" : "Olivavirus actinidiae AcV1-Zhouzhi1"
          },
-         "Velarivirus.4.dna": {
-            "genome_ids": "OR346830",
-            "genome_name": "Olive leaf yellowing-associated virus 22-0049"
+         "Velarivirus.4.dna" : {
+            "genome_ids" : "OR346830",
+            "genome_name" : "Olive leaf yellowing-associated virus 22-0049"
          },
-         "Velarivirus.5.dna": {
-            "genome_ids": "MT936297",
-            "genome_name": "Olivavirus actinidiae JS27"
+         "Velarivirus.5.dna" : {
+            "genome_ids" : "MT936297",
+            "genome_name" : "Olivavirus actinidiae JS27"
          },
-         "Velarivirus.6.dna": {
-            "genome_ids": "JN383343",
-            "genome_name": "Grapevine leafroll-associated virus 7 GLRaV-7 Swi"
+         "Velarivirus.6.dna" : {
+            "genome_ids" : "JN383343",
+            "genome_name" : "Grapevine leafroll-associated virus 7 GLRaV-7 Swi"
          },
-         "Velarivirus.7.dna": {
-            "genome_ids": "MW080811",
-            "genome_name": "Agapanthus velarivirus 19-3007"
+         "Velarivirus.7.dna" : {
+            "genome_ids" : "MW080811",
+            "genome_name" : "Agapanthus velarivirus 19-3007"
          },
-         "Velarivirus.8.dna": {
-            "genome_ids": "KF007212",
-            "genome_name": "Blueberry virus A Elliot"
+         "Velarivirus.8.dna" : {
+            "genome_ids" : "KF007212",
+            "genome_name" : "Blueberry virus A Elliot"
          },
-         "Velarivirus.9.dna": {
-            "genome_ids": "MN612757",
-            "genome_name": "Olivavirus actinidiae AcV-1-Zhouzhi2"
+         "Velarivirus.9.dna" : {
+            "genome_ids" : "MN612757",
+            "genome_name" : "Olivavirus actinidiae AcV-1-Zhouzhi2"
          }
       },
-      "features": {
-         "CP": {
-            "anno": "Coat protein",
-            "bit_cutoff": 80,
-            "copy_num": 1,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 0,
-            "feature_type": "CDS",
-            "gene_symbol": "CP",
-            "kmers": 1,
-            "max_len": 342,
-            "min_len": 215,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+      "features" : {
+         "CP" : {
+            "anno" : "Coat protein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CP",
+            "kmers" : 1,
+            "max_len" : 342,
+            "min_len" : 215,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "CPM": {
-            "anno": "Minor coat protein",
-            "bit_cutoff": 80,
-            "comment": "Present in Velarivirus only (1 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 0,
-            "feature_type": "CDS",
-            "gene_symbol": "CPM",
-            "kmers": 1,
-            "max_len": 701,
-            "min_len": 565,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "CPM" : {
+            "anno" : "Minor coat protein",
+            "bit_cutoff" : 80,
+            "comment" : "Present in Velarivirus only (1 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CPM",
+            "kmers" : 1,
+            "max_len" : 701,
+            "min_len" : 565,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "HSP70": {
-            "anno": "HSP70 homolog",
-            "bit_cutoff": 150,
-            "copy_num": 1,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 0,
-            "feature_type": "CDS",
-            "gene_symbol": "HSP70",
-            "kmers": 1,
-            "max_len": 618,
-            "min_len": 394,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "HSP70" : {
+            "anno" : "HSP70 homolog",
+            "bit_cutoff" : 150,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "HSP70",
+            "kmers" : 1,
+            "max_len" : 618,
+            "min_len" : 394,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "HSP90": {
-            "anno": "HSP90 homolog",
-            "bit_cutoff": 150,
-            "comment": "Present in Olivavirus, Velarivirus only (2 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 0,
-            "feature_type": "CDS",
-            "gene_symbol": "HSP90",
-            "kmers": 1,
-            "max_len": 594,
-            "min_len": 506,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "HSP90" : {
+            "anno" : "HSP90 homolog",
+            "bit_cutoff" : 150,
+            "comment" : "Present in Olivavirus, Velarivirus only (2 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "HSP90",
+            "kmers" : 1,
+            "max_len" : 594,
+            "min_len" : 506,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "POLY": {
-            "anno": "Replicase polyprotein",
-            "bit_cutoff": 400,
-            "copy_num": 1,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 0,
-            "feature_type": "CDS",
-            "gene_symbol": "POLY",
-            "kmers": 1,
-            "max_len": 3221,
-            "min_len": 1952,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "POLY" : {
+            "anno" : "Replicase polyprotein",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 3221,
+            "min_len" : 1952,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "RDRP": {
-            "anno": "RNA-dependent RNA polymerase",
-            "bit_cutoff": 300,
-            "copy_num": 1,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 0,
-            "feature_type": "CDS",
-            "gene_symbol": "RDRP",
-            "kmers": 1,
-            "max_len": 533,
-            "min_len": 466,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "RDRP" : {
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 300,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RDRP",
+            "kmers" : 1,
+            "max_len" : 533,
+            "min_len" : 466,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "THAU": {
-            "anno": "Thaumatin-like protein",
-            "bit_cutoff": 60,
-            "comment": "Present in Olivavirus only (1 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 0,
-            "feature_type": "CDS",
-            "gene_symbol": "THAU",
-            "kmers": 1,
-            "max_len": 265,
-            "min_len": 189,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "THAU" : {
+            "anno" : "Thaumatin-like protein",
+            "bit_cutoff" : 60,
+            "comment" : "Present in Olivavirus only (1 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "THAU",
+            "kmers" : 1,
+            "max_len" : 265,
+            "min_len" : 189,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          }
       },
-      "segments": {
-         "Single RNA Segment": {
-            "max_len": 21225,
-            "min_len": 8499,
-            "replicon_geometry": "linear"
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 21225,
+            "min_len" : 8499,
+            "replicon_geometry" : "linear"
          }
       }
    }
