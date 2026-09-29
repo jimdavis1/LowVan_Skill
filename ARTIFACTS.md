@@ -143,6 +143,7 @@ Not made: string collapse, vocabulary saturation.
 | Ampelovirus PSSM Registry | [open](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [source](reports/ampelovirus-pssm-registry.html) | 2026-09-29 |
 | Velarivirus PSSM Registry | [open](https://claude.ai/artifact/L4rADg3VE6QWsMG2XuTizY) | [source](reports/velarivirus-pssm-registry.html) | 2026-09-29 |
 | Bromoviridae PSSM Registry | [open](https://claude.ai/artifact/VtS14XFKWG1BtzBiX1f193) | [source](reports/bromoviridae-pssm-registry.html) | 2026-09-29 |
+| Capillovirus Vocabulary Saturation | [open](https://claude.ai/artifact/KRCGhYahtrFrXhC66FMCDG) | [source](reports/capillovirus-vocabulary-saturation.html) | 2026-09-29 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
 | RdRp Read Nucleation | [open](https://claude.ai/artifact/D4L5hjJdBZqaE5DSsHUaXq) | — | 2026-09-17 |
