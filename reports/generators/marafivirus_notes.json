@@ -1,0 +1,12 @@
+{
+ "standfirst": "A 219-protein taxon with a deliberately thin feature set: a ~2,100 aa replicase polyprotein with the coat protein fused at its C-terminus, plus separately expressed CP. 22 references route 100% of the genomes.",
+ "modules": {
+  "Marafivirus": "Kept separate from Tymovirus because the layouts differ -- marafiviruses carry CP inside ORF1 and lack the tymovirus overlapping/movement protein. A module is defined by genome organisation, so they do not share one."
+ },
+ "gaps": "The taxon is small enough that two of three features had to be built at -m 2. <em>RNA-dependent RNA polymerase</em> at 601 aa is an ORF1 domain footprint and is excluded, as in Capillovirus.",
+ "derived": "None declared.",
+ "why": {
+  "CP": "14 sequences covering both the p21 major and p31 minor forms. These are one reading frame -- p31 is the N-terminally extended product -- so they are one homology group. Splitting them on the words minor/major would have made two features of 4 and 5 sequences, neither buildable.",
+  "MP": "11 sequences. Marafiviruses are phloem-limited and leafhopper-transmitted, and a movement protein is not well established for the genus; the records exist, so the feature is built at -m 2 and carries no copy_num."
+ }
+}

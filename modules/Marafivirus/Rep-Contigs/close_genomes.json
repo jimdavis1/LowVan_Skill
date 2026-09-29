@@ -1,0 +1,90 @@
+{
+ "Marafivirus.1.dna": {
+  "genome_ids": "OL989471",
+  "genome_name": "Grapevine rupestris vein feathering virus Rk5"
+ },
+ "Marafivirus.10.dna": {
+  "genome_ids": "NC_002786",
+  "genome_name": "Maize rayado fino virus Costa Rican"
+ },
+ "Marafivirus.11.dna": {
+  "genome_ids": "FJ444852",
+  "genome_name": "Olive latent virus 3 CN1/1"
+ },
+ "Marafivirus.12.dna": {
+  "genome_ids": "JF727261",
+  "genome_name": "Switchgrass mosaic virus S1"
+ },
+ "Marafivirus.13.dna": {
+  "genome_ids": "BK013331",
+  "genome_name": "Glehnia littoralis marafivirus China"
+ },
+ "Marafivirus.14.dna": {
+  "genome_ids": "FJ915122",
+  "genome_name": "Blackberry virus S GSM-8"
+ },
+ "Marafivirus.15.dna": {
+  "genome_ids": "OR787588",
+  "genome_name": "Grapevine rupestris vein feathering virus GRVFV VURV-V grap23_5"
+ },
+ "Marafivirus.16.dna": {
+  "genome_ids": "MW328750",
+  "genome_name": "Davidia involucrata marafivirus 1"
+ },
+ "Marafivirus.17.dna": {
+  "genome_ids": "MW328752",
+  "genome_name": "Davidia involucrata marafivirus 2"
+ },
+ "Marafivirus.18.dna": {
+  "genome_ids": "MT036048",
+  "genome_name": "Camellia-associated marafivirus L17"
+ },
+ "Marafivirus.19.dna": {
+  "genome_ids": "MZ422607",
+  "genome_name": "Grapevine-associated marafivirus JMG"
+ },
+ "Marafivirus.2.dna": {
+  "genome_ids": "NC_012484",
+  "genome_name": "Grapevine Syrah virus 1"
+ },
+ "Marafivirus.20.dna": {
+  "genome_ids": "MZ305310",
+  "genome_name": "Pennisetum glaucum marafivirus PG100"
+ },
+ "Marafivirus.21.dna": {
+  "genome_ids": "ON149451",
+  "genome_name": "Sea buckthorn marafivirus BU1"
+ },
+ "Marafivirus.22.dna": {
+  "genome_ids": "OR162022",
+  "genome_name": "Triticum aestivum marafivirus Shanxi"
+ },
+ "Marafivirus.3.dna": {
+  "genome_ids": "MZ344576",
+  "genome_name": "Grapevine asteroid mosaic associated virus 14G480"
+ },
+ "Marafivirus.4.dna": {
+  "genome_ids": "MG676465",
+  "genome_name": "Alfalfa virus F SM-1_C50"
+ },
+ "Marafivirus.5.dna": {
+  "genome_ids": "KY110736",
+  "genome_name": "Citrus sudden death-associated virus CSRL02"
+ },
+ "Marafivirus.6.dna": {
+  "genome_ids": "KT273413",
+  "genome_name": "Nectarine marafivirus M NeVM/12P42"
+ },
+ "Marafivirus.7.dna": {
+  "genome_ids": "KY084481",
+  "genome_name": "Peach virus D SK"
+ },
+ "Marafivirus.8.dna": {
+  "genome_ids": "MN714643",
+  "genome_name": "Sorghum almum marafivirus SA-FL1"
+ },
+ "Marafivirus.9.dna": {
+  "genome_ids": "GU396990",
+  "genome_name": "Oat blue dwarf virus OBDV-2r"
+ }
+}

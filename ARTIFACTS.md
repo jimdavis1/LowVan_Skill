@@ -147,6 +147,8 @@ Not made: string collapse, vocabulary saturation.
 | Capillovirus Coverage Audit | [open](https://claude.ai/artifact/72Tkge2qkTd5sc5eumHUtP) | [source](reports/capillovirus-coverage-audit.html) | 2026-09-29 |
 | Carlavirus String Collapse | [open](https://claude.ai/artifact/DMcy8JVZfFPimPkWsXTMQ1) | [source](reports/carlavirus-string-collapse.html) | 2026-09-29 |
 | Carlavirus PSSM Registry | [open](https://claude.ai/artifact/8X8vzYkkKzKaGhL5Z35kgd) | [source](reports/carlavirus-pssm-registry.html) | 2026-09-29 |
+| Marafivirus Vocabulary Saturation | [open](https://claude.ai/artifact/UrU49iSx3Qf1vw7QSUTUSD) | [source](reports/marafivirus-vocabulary-saturation.html) | 2026-09-29 |
+| Marafivirus Coverage Audit | [open](https://claude.ai/artifact/WPLVahsQ7EMSvzP2MxnZ4k) | [source](reports/marafivirus-coverage-audit.html) | 2026-09-29 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
 | RdRp Read Nucleation | [open](https://claude.ai/artifact/D4L5hjJdBZqaE5DSsHUaXq) | — | 2026-09-17 |

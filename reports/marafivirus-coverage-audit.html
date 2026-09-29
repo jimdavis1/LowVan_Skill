@@ -1,0 +1,112 @@
+<title>Marafivirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan · Marafivirus module · 29 September 2026</div><h1>Does the maize rayado fino virus module actually work?</h1><p class="stand"><b>Marafivirus</b> is a small genus of the <i>Tymoviridae</i>, leafhopper-transmitted and phloem-limited: maize rayado fino virus, oat blue dwarf virus, grapevine asteroid mosaic virus and about twenty more. A ~2,100 aa replicase polyprotein with the coat protein fused at its C-terminus, plus separately expressed CP. 219 unique proteins in all of BV-BRC — this is a thin taxon, and the module is thin by design.</p><div class="tiles"><div class="tile"><div class="v">3</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">18</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">161/161</div><div class="l">genomes routed</div></div><div class="tile"><div class="v">97.3%</div><div class="l">genomes clean</div></div><div class="tile"><div class="v">8.0×</div><div class="l">string collapse</div></div><div class="tile"><div class="v">1</div><div class="l">feature correctly left non-essential</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">A separate module from Tymovirus, and the reason is gene layout.</p><p class="note">Marafivirus and Tymovirus are both <i>Tymoviridae</i> and would sit together under any phylogenetic rule. A LowVan module is defined by genome organisation instead, and the two differ: marafiviruses carry the coat protein <em>inside</em> ORF1 and lack the tymovirus overlapping/movement protein, which is a 628 aa ORF that overlaps the replicase. Different layout, different module.</p><div class="scroll"><table><thead><tr><th>feature</th><th>annotation</th><th>length (aa)</th><th>bit cutoff</th><th>profiles</th></tr></thead><tbody><tr><td>POLY</td><td>Replicase polyprotein</td><td>1798–2398</td><td>400</td><td>11</td></tr><tr><td>CP</td><td>Coat protein</td><td>183–309</td><td>80</td><td>4</td></tr><tr><td>MP</td><td>Movement protein</td><td>250–450</td><td>80</td><td>3</td></tr></tbody></table></div></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">252 features, 93.3% binned, and one deliberate refusal to split.</p><p class="note">The coat protein is <b>one</b> collection, not two. The source offers <code>21 kDa capsid protein</code>, <code>minor coat protein</code>, <code>major capsid protein</code> and <code>minor capsid protein</code>, but the p21 major and p31 minor forms are the same reading frame — p31 is the N-terminally extended product — so they are one homology group and clustering can separate them into profiles if it wants to. Splitting on the words <em>minor</em> and <em>major</em> would have made two features of 4 and 5 sequences, neither of which can build a profile at all.</p><p class="note">Two of the three features had to be built at <code>-m 2</code> rather than the default <code>-m 5</code>, because the taxon does not contain enough sequences to reach five members per cluster. That departure is recorded in each feature's <code>BUILD_PARAMS</code>.</p><p class="note"><code>RNA-dependent RNA polymerase</code> at 601 aa is an ORF1 domain footprint rather than a separate CDS, and is excluded for the same reason as in Capillovirus: declaring it would create a feature no genome separately encodes.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Conventional, and self-recall is near total despite the small collections.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit cutoff</th><th>profiles</th><th>collection</th><th>self-recall</th></tr></thead><tbody><tr><td>POLY</td><td>400</td><td>11</td><td>184</td><td>184 (100.0%)</td></tr><tr><td>CP</td><td>80</td><td>4</td><td>14</td><td>14 (100.0%)</td></tr><tr><td>MP</td><td>80</td><td>3</td><td>11</td><td>10 (90.9%)</td></tr></tbody></table></div><p class="note">Self-recall is a floor, not a validation. With collections of 11 and 14 sequences it is a very low floor — it says the profiles are not broken, nothing more. The held-out number in §05 is the real one, and it is where this module's interesting result is.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">Completely, on 22 of the 25-reference budget.</p><div class="tiles"><div class="tile"><div class="v">22</div><div class="l">references used</div></div><div class="tile"><div class="v">161/161</div><div class="l">genomes reached</div></div><div class="tile"><div class="v">100.0%</div><div class="l">coverage at budget 25</div></div></div><p class="note">22 references reach every genome in the taxon at ≥6 kb. The taxon is small but genuinely diverse — 22 references for 161 genomes is a poor ratio compared with Capillovirus's 13 for 334 — which is what a genus of many sparsely-sampled species looks like.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">Two of three on nearly every genome. The third is the point of this section.</p><div class="scroll"><table><thead><tr><th>feature</th><th>called on</th><th>of routed genomes</th><th>copy_num</th></tr></thead><tbody><tr><td>POLY</td><td>150</td><td>150 (100.0%)</td><td>yes</td></tr><tr><td>CP</td><td>146</td><td>150 (97.3%)</td><td>yes</td></tr><tr><td>MP</td><td>24</td><td>150 (16.0%)</td><td><b>no</b></td></tr></tbody></table></div><p class="note"><b>MP is called on 16.0% of genomes, and that is why it must not be marked essential.</b> <code>copy_num</code> is the field that makes a feature essential, and an essential feature flags every genome that lacks it. A protein called <em>movement protein</em> is exactly the kind whose reputation earns it <code>copy_num</code> on sight — and doing that here would have flagged 84% of the taxon while the module was working correctly. Three modules in this project have scored 0.0% clean that way.</p><p class="note">The 16% is not a failure of the profiles. Marafiviruses are phloem-limited and leafhopper-transmitted, and a movement protein is not established for the genus; the eleven records that exist are called, and the feature ships without <code>copy_num</code> and with a comment saying so.</p><div class="verdict stop">Essentiality was measured, not assumed. POLY and CP earned copy_num at 100.0% and 97.3%; MP did not, at 16.0%.</div></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">97.3% of scored genomes carry no flag.</p><div class="tiles"><div class="tile"><div class="v">150</div><div class="l">genomes scored</div></div><div class="tile"><div class="v">97.3%</div><div class="l">clean</div></div><div class="tile"><div class="v">4</div><div class="l">flagged</div></div></div><p class="note">Four genomes raised a genome or contig flag. That is a length or geometry disagreement rather than a mis-call, and at this sample size it is four records rather than a pattern.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Three limits, all consequences of how little data exists.</p><p class="note"><b>The taxon is too thin for the default build.</b> 219 unique proteins, of which 149 are polyprotein. CP and MP were built at <code>-m 2</code>. A module built from eleven sequences will generalise less well than one built from three hundred, and nothing on this page should be read as saying otherwise.</p><p class="note"><b>No mature peptides.</b> ORF1 is a polyprotein; its cleavage sites are not documented for this genus in a form that can be located from the sequence, so its products are not claimed.</p><p class="note"><b>The evaluation is a sample.</b> 150 of 161 genomes, so almost a census here — but the call and quality rates are still estimates. Routing in §04 is a census.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">One feature that would have failed the whole taxon if marked essential.</p><p class="note">The MP call rate is the finding. It was invisible before the module ran against real genomes, and it is exactly the measurement that the build order exists to obtain: ship with no <code>copy_num</code>, measure, then mark. Had the module been assembled the other way round — <code>copy_num</code> set from what a replicase, a coat protein and a movement protein <em>ought</em> to be — this module would have reported 16% clean instead of 97.3%.</p><div class="verdict stop">Nothing outstanding. Two features essential and called on ≥97%, one correctly non-essential, 97.3% of genomes clean.</div></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">24 source strings became 3; the module's vocabulary is complete by the tenth genome.</p><div class="tiles"><div class="tile"><div class="v">24 → 3</div><div class="l">string collapse (8.0×)</div></div><div class="tile"><div class="v">13.9</div><div class="l">source strings per 100 genomes</div></div><div class="tile"><div class="v">2.1</div><div class="l">module strings per 100 genomes</div></div></div><p class="note">The module curve reaches all three of its strings by the tenth genome and never moves again. The source curve reaches 20 distinct strings with its knee at 115 and is still climbing at the end of the data — in a genus of only 199 genomes.</p></section><p class="src">Generated from <code>marafivirus_audit.json</code>. Routing from <code>build_rep_contigs.py</code>; call and quality rates from <code>run_gto_eval.py</code> over 150 genomes; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>.</p></div>

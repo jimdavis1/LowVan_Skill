@@ -1,0 +1,310 @@
+{
+ "title": "Marafivirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Marafivirus module \u00b7 29 September 2026",
+ "h1": "Does the maize rayado fino virus module actually work?",
+ "standfirst": "<b>Marafivirus</b> is a small genus of the <i>Tymoviridae</i>, leafhopper-transmitted and phloem-limited: maize rayado fino virus, oat blue dwarf virus, grapevine asteroid mosaic virus and about twenty more. A ~2,100 aa replicase polyprotein with the coat protein fused at its C-terminus, plus separately expressed CP. 219 unique proteins in all of BV-BRC \u2014 this is a thin taxon, and the module is thin by design.",
+ "headline_tiles": [
+  [
+   "3",
+   "features, all with profiles"
+  ],
+  [
+   "18",
+   "PSSMs"
+  ],
+  [
+   "161/161",
+   "genomes routed"
+  ],
+  [
+   "97.3%",
+   "genomes clean"
+  ],
+  [
+   "8.0\u00d7",
+   "string collapse"
+  ],
+  [
+   "1",
+   "feature correctly left non-essential"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "A separate module from Tymovirus, and the reason is gene layout.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Marafivirus and Tymovirus are both <i>Tymoviridae</i> and would sit together under any phylogenetic rule. A LowVan module is defined by genome organisation instead, and the two differ: marafiviruses carry the coat protein <em>inside</em> ORF1 and lack the tymovirus overlapping/movement protein, which is a 628 aa ORF that overlaps the replicase. Different layout, different module."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "length (aa)",
+      "bit cutoff",
+      "profiles"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Replicase polyprotein",
+       "1798\u20132398",
+       "400",
+       "11"
+      ],
+      [
+       "CP",
+       "Coat protein",
+       "183\u2013309",
+       "80",
+       "4"
+      ],
+      [
+       "MP",
+       "Movement protein",
+       "250\u2013450",
+       "80",
+       "3"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "252 features, 93.3% binned, and one deliberate refusal to split.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The coat protein is <b>one</b> collection, not two. The source offers <code>21 kDa capsid protein</code>, <code>minor coat protein</code>, <code>major capsid protein</code> and <code>minor capsid protein</code>, but the p21 major and p31 minor forms are the same reading frame \u2014 p31 is the N-terminally extended product \u2014 so they are one homology group and clustering can separate them into profiles if it wants to. Splitting on the words <em>minor</em> and <em>major</em> would have made two features of 4 and 5 sequences, neither of which can build a profile at all."
+    },
+    {
+     "type": "prose",
+     "html": "Two of the three features had to be built at <code>-m 2</code> rather than the default <code>-m 5</code>, because the taxon does not contain enough sequences to reach five members per cluster. That departure is recorded in each feature's <code>BUILD_PARAMS</code>."
+    },
+    {
+     "type": "prose",
+     "html": "<code>RNA-dependent RNA polymerase</code> at 601 aa is an ORF1 domain footprint rather than a separate CDS, and is excluded for the same reason as in Capillovirus: declaring it would create a feature no genome separately encodes."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Conventional, and self-recall is near total despite the small collections.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit cutoff",
+      "profiles",
+      "collection",
+      "self-recall"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "400",
+       "11",
+       "184",
+       "184 (100.0%)"
+      ],
+      [
+       "CP",
+       "80",
+       "4",
+       "14",
+       "14 (100.0%)"
+      ],
+      [
+       "MP",
+       "80",
+       "3",
+       "11",
+       "10 (90.9%)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Self-recall is a floor, not a validation. With collections of 11 and 14 sequences it is a very low floor \u2014 it says the profiles are not broken, nothing more. The held-out number in \u00a705 is the real one, and it is where this module's interesting result is."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Completely, on 22 of the 25-reference budget.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "22",
+       "references used"
+      ],
+      [
+       "161/161",
+       "genomes reached"
+      ],
+      [
+       "100.0%",
+       "coverage at budget 25"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "22 references reach every genome in the taxon at \u22656 kb. The taxon is small but genuinely diverse \u2014 22 references for 161 genomes is a poor ratio compared with Capillovirus's 13 for 334 \u2014 which is what a genus of many sparsely-sampled species looks like."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Two of three on nearly every genome. The third is the point of this section.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on",
+      "of routed genomes",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "150",
+       "150 (100.0%)",
+       "yes"
+      ],
+      [
+       "CP",
+       "146",
+       "150 (97.3%)",
+       "yes"
+      ],
+      [
+       "MP",
+       "24",
+       "150 (16.0%)",
+       "<b>no</b>"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>MP is called on 16.0% of genomes, and that is why it must not be marked essential.</b> <code>copy_num</code> is the field that makes a feature essential, and an essential feature flags every genome that lacks it. A protein called <em>movement protein</em> is exactly the kind whose reputation earns it <code>copy_num</code> on sight \u2014 and doing that here would have flagged 84% of the taxon while the module was working correctly. Three modules in this project have scored 0.0% clean that way."
+    },
+    {
+     "type": "prose",
+     "html": "The 16% is not a failure of the profiles. Marafiviruses are phloem-limited and leafhopper-transmitted, and a movement protein is not established for the genus; the eleven records that exist are called, and the feature ships without <code>copy_num</code> and with a comment saying so."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Essentiality was measured, not assumed. POLY and CP earned copy_num at 100.0% and 97.3%; MP did not, at 16.0%."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "97.3% of scored genomes carry no flag.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "150",
+       "genomes scored"
+      ],
+      [
+       "97.3%",
+       "clean"
+      ],
+      [
+       "4",
+       "flagged"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Four genomes raised a genome or contig flag. That is a length or geometry disagreement rather than a mis-call, and at this sample size it is four records rather than a pattern."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Three limits, all consequences of how little data exists.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>The taxon is too thin for the default build.</b> 219 unique proteins, of which 149 are polyprotein. CP and MP were built at <code>-m 2</code>. A module built from eleven sequences will generalise less well than one built from three hundred, and nothing on this page should be read as saying otherwise."
+    },
+    {
+     "type": "prose",
+     "html": "<b>No mature peptides.</b> ORF1 is a polyprotein; its cleavage sites are not documented for this genus in a form that can be located from the sequence, so its products are not claimed."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The evaluation is a sample.</b> 150 of 161 genomes, so almost a census here \u2014 but the call and quality rates are still estimates. Routing in \u00a704 is a census."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "One feature that would have failed the whole taxon if marked essential.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The MP call rate is the finding. It was invisible before the module ran against real genomes, and it is exactly the measurement that the build order exists to obtain: ship with no <code>copy_num</code>, measure, then mark. Had the module been assembled the other way round \u2014 <code>copy_num</code> set from what a replicase, a coat protein and a movement protein <em>ought</em> to be \u2014 this module would have reported 16% clean instead of 97.3%."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Nothing outstanding. Two features essential and called on \u226597%, one correctly non-essential, 97.3% of genomes clean."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "24 source strings became 3; the module's vocabulary is complete by the tenth genome.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "24 \u2192 3",
+       "string collapse (8.0\u00d7)"
+      ],
+      [
+       "13.9",
+       "source strings per 100 genomes"
+      ],
+      [
+       "2.1",
+       "module strings per 100 genomes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The module curve reaches all three of its strings by the tenth genome and never moves again. The source curve reaches 20 distinct strings with its knee at 115 and is still climbing at the end of the data \u2014 in a genus of only 199 genomes."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>marafivirus_audit.json</code>. Routing from <code>build_rep_contigs.py</code>; call and quality rates from <code>run_gto_eval.py</code> over 150 genomes; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>."
+}
