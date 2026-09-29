@@ -1,0 +1,9 @@
+{
+ "standfirst": "The type genus of the closterovirids: a replicase polyprotein and RdRp on a single long RNA, then the quintuple gene block \u2014 HSP70 homolog, HSP90 homolog, CPm, CP \u2014 followed by a species-specific accessory set named by mass.",
+ "modules": {
+  "Closterovirus": "The accessories are the interesting part. P13 is carried by only about a tenth of the genomes in this module, so it must NOT hold copy_num: a feature marked essential flags every genome that lacks it, and marking the accessories essential is what took this module to 0.0% clean once."
+ },
+ "gaps": "The unbound tail is large and honest. This page is reconstructed from the collections as shipped, so a string whose sequences matched a rule but were then dropped on length, ambiguity or a cleavage check counts as unbound.",
+ "derived": "None declared.",
+ "why": {}
+}

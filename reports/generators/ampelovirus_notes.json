@@ -1,0 +1,9 @@
+{
+ "standfirst": "Same gene block as Closterovirus, a different accessory set, and the clearest example in the project of why a mass is not a protein: p20A and p20B are two non-homologous groups that happen to share a mass, and are numbered rather than merged.",
+ "modules": {
+  "Ampelovirus": "CPm carries no copy_num here while CP does \u2014 the minor coat protein is genuinely absent from part of the genus, and that is a measurement, not an assumption."
+ },
+ "gaps": "As with Closterovirus, the unbound tail reflects post-QC membership rather than rule matching.",
+ "derived": "None declared.",
+ "why": {}
+}

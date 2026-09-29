@@ -1,0 +1,302 @@
+{
+ "title": "Closterovirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Closterovirus module \u00b7 29 September 2026",
+ "h1": "Does the beet yellows virus module actually work?",
+ "standfirst": "<b>Closterovirus</b> is the type genus of the <i>Closteroviridae</i>: beet yellows virus, citrus tristeza virus, carrot yellow leaf virus. Among the longest RNA genomes of any plant virus at up to 19&nbsp;kb, with a replicase, an RdRp, the quintuple gene block and a long tail of species-specific accessories named by mass.",
+ "headline_tiles": [
+  [
+   "13",
+   "features, all with profiles"
+  ],
+  [
+   "80",
+   "PSSMs"
+  ],
+  [
+   "95.8%",
+   "genomes routed"
+  ],
+  [
+   "73.3%",
+   "genuinely clean"
+  ],
+  [
+   "17.6\u00d7",
+   "vocabulary collapse"
+  ],
+  [
+   "1",
+   "copy_num blocked"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Thirteen features: six core (POLY, RDRP, HSP70, HSP90, CPM, CP) and seven accessories carried by some species and not others.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "bit cutoff",
+      "self-recall"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Replicase polyprotein",
+       "400",
+       "226/227 (99.6%)"
+      ],
+      [
+       "RDRP",
+       "RNA-dependent RNA polymerase",
+       "300",
+       "162/164 (98.8%)"
+      ],
+      [
+       "HSP70",
+       "HSP70 homolog",
+       "150",
+       "230/230 (100%)"
+      ],
+      [
+       "HSP90",
+       "HSP90 homolog",
+       "150",
+       "194/195 (99.5%)"
+      ],
+      [
+       "CPM",
+       "Minor coat protein",
+       "80",
+       "257/260 (98.8%)"
+      ],
+      [
+       "CP",
+       "Coat protein",
+       "80",
+       "212/219 (96.8%)"
+      ],
+      [
+       "P33",
+       "p33 protein",
+       "60",
+       "119/119 (100%)"
+      ],
+      [
+       "P6",
+       "p6 protein",
+       "25",
+       "45/48 (93.8%)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in \u00a705 and \u00a706."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Binned from the BV-BRC protein dump, with the accessory names treated as untrustworthy.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The accessories are named by mass, and a mass is not a homology group. Where two masses turned out to be one protein they were merged; where one mass covered two non-homologous groups they were numbered apart."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Conventional for the feature class.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25\u201360 for the accessories by length."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "25 references reach 95.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "references used"
+      ],
+      [
+       "95.8%",
+       "of genomes at \u22656 kb"
+      ],
+      [
+       "",
+       "a long species tail remains"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "25 references reach 95.8% of the genus. The residue is the divergent tail of a genus with many sparsely-sampled species."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Measured against real genomes for the first time.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on routed genomes",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "HSP70, HSP90, CPM, POLY",
+       "96.7\u201398.7%",
+       "yes"
+      ],
+      [
+       "CP, P6",
+       "93.3%",
+       "yes (P6 added)"
+      ],
+      [
+       "RDRP",
+       "88.7%",
+       "yes"
+      ],
+      [
+       "P23",
+       "54.7%",
+       "no"
+      ],
+      [
+       "P20",
+       "53.3% standalone",
+       "<b>blocked</b>"
+      ],
+      [
+       "P18, P13, P33",
+       "42.7\u201344.7%",
+       "no"
+      ],
+      [
+       "P19",
+       "34.0%",
+       "no"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>P6 earns <code>copy_num</code> at 93.3%</b> and was shipping without it. <b>P20 does not, despite measuring 89.3% raw.</b> 40% of its calls are nested inside P19, so its standalone rate is 53.3% &mdash; marking it essential would grant essentiality earned on another feature's locus. This is why the duplicate-call audit has to run before essentiality is assigned."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "150",
+       "genomes scored"
+      ],
+      [
+       "73.3%",
+       "genuinely clean"
+      ],
+      [
+       "36",
+       "flagged"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>&ldquo;Genome has too many HSPs&rdquo; is the dominant flag</b>, and it is a different thing from a duplicate call: it means one feature's profile matched at several places in a genome, not that two features collided. The duplicate-call audit is clean for this module."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>CP and CPM cannot be separated on 44% of genomes.</b> They are called on identical coordinates there, and that is biology rather than a defect: the collections share no sequences, but the closterovirid minor coat protein <em>is</em> a duplicated coat protein gene and the two are 32% identical over 74% of their length. Both genes are real, both <code>copy_num</code> assignments are correct, and no cutoff separates the profiles without losing one."
+    },
+    {
+     "type": "prose",
+     "html": "<b>P20 is declared but not essential</b>, and its call rate should not be read at face value &mdash; see \u00a705."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The evaluation is a sample.</b> Measured on a random sample of up to 150 genomes at &ge;6&nbsp;kb (seed 29). Annotation costs about 86 seconds per genome, and 150 is ample for the decision it feeds: the test for <code>copy_num</code> is whether a feature is called on at least 85% of routed genomes, estimated to within about &plusmn;6 points at that sample size."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Two <code>copy_num</code> corrections in opposite directions, from the first measurement of this module against real genomes. One feature had earned essentiality and was not marked; another appeared to have earned it and had not."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Thirteen of thirteen features have profiles, self-recall 93.8\u2013100%, seven essential on measurement, and the one ambiguous case is documented rather than guessed."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "163 \u2192 13",
+       "string collapse (12.5\u00d7)"
+      ],
+      [
+       "246",
+       "distinct source strings"
+      ],
+      [
+       "17.6\u00d7",
+       "strings per 100 genomes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "246 distinct source strings for thirteen proteins, knee at 131 genomes and still climbing. Most of that tail is the mass names the accessories are given."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>closterovirus_audit.json</code>. Routing from <code>repcontig_budget.py</code>; call and quality rates from <code>run_gto_eval.py</code>; duplicate calls from <code>qc_duplicate_calls.py</code>; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>."
+}

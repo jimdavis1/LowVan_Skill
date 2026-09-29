@@ -158,6 +158,9 @@ Not made: string collapse, vocabulary saturation.
 | Velarivirus Vocabulary Saturation | [open](https://claude.ai/artifact/4SxhURLD9u5EiKDKZvvWKa) | [source](reports/velarivirus-vocabulary-saturation.html) | 2026-09-29 |
 | Closterovirus Vocabulary Saturation | [open](https://claude.ai/artifact/8yJX7hSR2qhznPkQYXq4pj) | [source](reports/closterovirus-vocabulary-saturation.html) | 2026-09-29 |
 | Ampelovirus Vocabulary Saturation | [open](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [source](reports/ampelovirus-vocabulary-saturation.html) | 2026-09-29 |
+| Velarivirus Coverage Audit | [open](https://claude.ai/artifact/DXSmF1X2SUerSi537MGndv) | [source](reports/velarivirus-coverage-audit.html) | 2026-09-29 |
+| Closterovirus Coverage Audit | [open](https://claude.ai/artifact/Ab6k6zYW9YHdrXhhk893kc) | [source](reports/closterovirus-coverage-audit.html) | 2026-09-29 |
+| Ampelovirus Coverage Audit | [open](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) | [source](reports/ampelovirus-coverage-audit.html) | 2026-09-29 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
 | RdRp Read Nucleation | [open](https://claude.ai/artifact/D4L5hjJdBZqaE5DSsHUaXq) | — | 2026-09-17 |

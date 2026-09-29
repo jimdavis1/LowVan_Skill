@@ -1,0 +1,335 @@
+{
+ "title": "Ampelovirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Ampelovirus module \u00b7 29 September 2026",
+ "h1": "Does the grapevine leafroll-associated virus 3 module actually work?",
+ "standfirst": "<b>Ampelovirus</b> is the mealybug-transmitted genus of the <i>Closteroviridae</i>, dominated by grapevine leafroll-associated virus 3 &mdash; one of the most economically damaging grapevine viruses in the world. Same gene block as Closterovirus, a different accessory set.",
+ "headline_tiles": [
+  [
+   "11",
+   "features, all with profiles"
+  ],
+  [
+   "139",
+   "PSSMs"
+  ],
+  [
+   "89.5%",
+   "genomes routed"
+  ],
+  [
+   "63.7%",
+   "genuinely clean"
+  ],
+  [
+   "14.9\u00d7",
+   "vocabulary collapse"
+  ],
+  [
+   "0",
+   "corrections needed"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Eleven features: five core plus CPm, and five accessories including the p20A/p20B pair.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "bit cutoff",
+      "self-recall"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Replicase polyprotein",
+       "400",
+       "265/266 (99.6%)"
+      ],
+      [
+       "RDRP",
+       "RNA-dependent RNA polymerase",
+       "300",
+       "229/230 (99.6%)"
+      ],
+      [
+       "HSP70",
+       "HSP70 homolog",
+       "150",
+       "293/293 (100%)"
+      ],
+      [
+       "HSP90",
+       "HSP90 homolog",
+       "150",
+       "267/270 (98.9%)"
+      ],
+      [
+       "CP",
+       "Coat protein",
+       "80",
+       "708/708 (100%)"
+      ],
+      [
+       "CPM",
+       "Minor coat protein",
+       "80",
+       "135/136 (99.3%)"
+      ],
+      [
+       "P24",
+       "p24 protein",
+       "30",
+       "65/67 (97.0%)"
+      ],
+      [
+       "P21",
+       "p21 protein",
+       "30",
+       "81/83 (97.6%)"
+      ],
+      [
+       "P20A",
+       "p20A protein",
+       "30",
+       "47/47 (100%)"
+      ],
+      [
+       "P20B",
+       "p20B protein",
+       "30",
+       "78/79 (98.7%)"
+      ],
+      [
+       "P7",
+       "p7 protein",
+       "25",
+       "93/95 (97.9%)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in \u00a705 and \u00a706."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Binned from the BV-BRC protein dump, with the accessory names treated as untrustworthy.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The accessories are named by mass, and a mass is not a homology group. Where two masses turned out to be one protein they were merged; where one mass covered two non-homologous groups they were numbered apart."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Conventional for the feature class.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25\u201360 for the accessories by length."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "89.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "references used"
+      ],
+      [
+       "89.5%",
+       "of genomes at \u22656 kb"
+      ],
+      [
+       "",
+       "lowest of the three closterovirids"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "89.5% at the 25-reference budget, the lowest of the three closterovirid modules and a documented gap rather than a defect &mdash; the genus is large and unevenly sampled."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Measured against real genomes for the first time.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on routed genomes",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "HSP70",
+       "99.3%",
+       "yes"
+      ],
+      [
+       "POLY",
+       "98.6%",
+       "yes"
+      ],
+      [
+       "RDRP",
+       "97.9%",
+       "yes"
+      ],
+      [
+       "CP",
+       "97.3%",
+       "yes"
+      ],
+      [
+       "HSP90",
+       "93.2%",
+       "yes"
+      ],
+      [
+       "CPM",
+       "63.0%",
+       "no"
+      ],
+      [
+       "P21",
+       "55.5%",
+       "no"
+      ],
+      [
+       "P7",
+       "53.4%",
+       "no"
+      ],
+      [
+       "P24",
+       "39.7%",
+       "no"
+      ],
+      [
+       "P20A / P20B",
+       "37.0%",
+       "no"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>No correction was needed.</b> The five essential features measure 93.2\u201399.3% and the six accessories 37.0\u201363.0%, so every <code>copy_num</code> assignment in the shipped module was already right. CPM is genuinely absent from a third of the genus."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "146",
+       "genomes scored"
+      ],
+      [
+       "63.7%",
+       "genuinely clean"
+      ],
+      [
+       "52",
+       "flagged"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "41 of the 52 flags are &ldquo;too many HSPs&rdquo; and 20 a missing essential feature &mdash; the latter consistent with essentials calling at 93\u201399% rather than 100%. <b>&ldquo;Genome has too many HSPs&rdquo; is the dominant flag</b>, and it is a different thing from a duplicate call: it means one feature's profile matched at several places in a genome, not that two features collided. The duplicate-call audit is clean for this module."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>p20A and p20B share a mass and are not the same protein.</b> They are numbered rather than merged, and that is the precedent every later module followed: a mass is a name, not a homology group."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Routing is 89.5%</b>, so roughly one genome in ten of the genus is not reached by the shipped reference set."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The evaluation is a sample.</b> Measured on a random sample of up to 150 genomes at &ge;6&nbsp;kb (seed 29). Annotation costs about 86 seconds per genome, and 150 is ample for the decision it feeds: the test for <code>copy_num</code> is whether a feature is called on at least 85% of routed genomes, estimated to within about &plusmn;6 points at that sample size."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Nothing. This is the only one of the three closterovirid modules that needed no change when it was finally measured, and that is worth recording as plainly as the modules that did."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Eleven of eleven features have profiles, self-recall 97.0\u2013100%, five essential on measurement, and no correction required."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "98 \u2192 11",
+       "string collapse (8.9\u00d7)"
+      ],
+      [
+       "164",
+       "distinct source strings"
+      ],
+      [
+       "14.9\u00d7",
+       "strings per 100 genomes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The module's vocabulary is complete after four genomes; the source reaches 164 distinct strings with its knee at 122."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>ampelovirus_audit.json</code>. Routing from <code>repcontig_budget.py</code>; call and quality rates from <code>run_gto_eval.py</code>; duplicate calls from <code>qc_duplicate_calls.py</code>; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>."
+}

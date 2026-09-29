@@ -1,0 +1,296 @@
+{
+ "title": "Velarivirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Velarivirus module \u00b7 29 September 2026",
+ "h1": "Does the grapevine leafroll-associated virus 7 module actually work?",
+ "standfirst": "<b>Velarivirus</b> is the smallest of the three closterovirid modules &mdash; grapevine leafroll-associated virus 7, cordyline virus 1&ndash;4, Actinidia virus 1 and a handful more. It is also the only one carrying a thaumatin-like protein, which no other closterovirid genus has.",
+ "headline_tiles": [
+  [
+   "7",
+   "features, all with profiles"
+  ],
+  [
+   "67",
+   "PSSMs"
+  ],
+  [
+   "100.0%",
+   "genomes routed"
+  ],
+  [
+   "62.0%",
+   "genuinely clean"
+  ],
+  [
+   "23.0\u00d7",
+   "vocabulary collapse"
+  ],
+  [
+   "1",
+   "copy_num correction"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Seven features on one long RNA: a replicase polyprotein and RdRp, then the quintuple gene block &mdash; HSP70 homolog, HSP90 homolog, CPm, CP &mdash; plus a thaumatin-like protein.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "bit cutoff",
+      "self-recall"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Replicase polyprotein",
+       "400",
+       "127/130 (97.7%)"
+      ],
+      [
+       "RDRP",
+       "RNA-dependent RNA polymerase",
+       "300",
+       "110/110 (100%)"
+      ],
+      [
+       "HSP70",
+       "HSP70 homolog",
+       "150",
+       "129/129 (100%)"
+      ],
+      [
+       "HSP90",
+       "HSP90 homolog",
+       "150",
+       "76/76 (100%)"
+      ],
+      [
+       "CP",
+       "Coat protein",
+       "80",
+       "85/85 (100%)"
+      ],
+      [
+       "CPM",
+       "Minor coat protein",
+       "80",
+       "73/73 (100%)"
+      ],
+      [
+       "THAU",
+       "Thaumatin-like protein",
+       "60",
+       "23/24 (95.8%)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in \u00a705 and \u00a706."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Binned from the BV-BRC protein dump, with the accessory names treated as untrustworthy.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The accessories are named by mass, and a mass is not a homology group. Where two masses turned out to be one protein they were merged; where one mass covered two non-homologous groups they were numbered apart."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Conventional for the feature class.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25\u201360 for the accessories by length."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "25 references reach every genome in the genus at &ge;6&nbsp;kb.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "references used"
+      ],
+      [
+       "100.0%",
+       "of genomes at \u22656 kb"
+      ],
+      [
+       "0",
+       "clusters uncovered"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "25 references reach every genome in the genus at &ge;6&nbsp;kb."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Measured against real genomes for the first time.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on routed genomes",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "HSP70",
+       "99.3%",
+       "yes"
+      ],
+      [
+       "RDRP",
+       "98.0%",
+       "yes"
+      ],
+      [
+       "POLY",
+       "96.0%",
+       "yes"
+      ],
+      [
+       "CP",
+       "94.7%",
+       "yes"
+      ],
+      [
+       "HSP90",
+       "91.3%",
+       "<b>yes \u2014 added</b>"
+      ],
+      [
+       "CPM",
+       "58.7%",
+       "no"
+      ],
+      [
+       "THAU",
+       "35.3%",
+       "no"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>HSP90 was shipping without <code>copy_num</code></b> on the assumption that only part of the genus carries it. This backfill is the first time the module has been measured against real genomes, and it calls on 91.3% &mdash; over the 0.85 threshold. Corrected. CPM at 58.7% and the thaumatin-like protein at 35.3% correctly keep none."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "150",
+       "genomes scored"
+      ],
+      [
+       "62.0%",
+       "genuinely clean"
+      ],
+      [
+       "46",
+       "flagged"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "35 of the 46 flags are &ldquo;too many HSPs&rdquo;, 18 are a missing essential feature. <b>&ldquo;Genome has too many HSPs&rdquo; is the dominant flag</b>, and it is a different thing from a duplicate call: it means one feature's profile matched at several places in a genome, not that two features collided. The duplicate-call audit is clean for this module."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>An earlier report in this session called this module defective. It was wrong.</b> A duplicate-call check without a containment floor reported RDRP as 79% nested inside POLY and the thaumatin-like protein as 66% inside HSP90. Adjacent genes in a compact viral genome overlap routinely; with an 80% containment floor applied, Velarivirus has no exact duplicates and no nested calls at all."
+    },
+    {
+     "type": "prose",
+     "html": "<b>No mature peptides.</b> The replicase is a polyprotein whose cleavage sites are not documented for this genus in a form that can be located from the sequence."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The evaluation is a sample.</b> Measured on a random sample of up to 150 genomes at &ge;6&nbsp;kb (seed 29). Annotation costs about 86 seconds per genome, and 150 is ample for the decision it feeds: the test for <code>copy_num</code> is whether a feature is called on at least 85% of routed genomes, estimated to within about &plusmn;6 points at that sample size."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The <code>copy_num</code> correction is the finding. It was invisible until the module was run against genomes, which is the whole argument for measuring essentiality rather than assigning it: a feature believed to be genus-partial turned out to be present on nine genomes in ten."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Seven of seven features have profiles and call at 95.8\u2013100% of their own collections; five are essential on measurement, and the sixth was corrected here."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "47 \u2192 7",
+       "string collapse (6.7\u00d7)"
+      ],
+      [
+       "161",
+       "distinct source strings"
+      ],
+      [
+       "23.0\u00d7",
+       "strings per 100 genomes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The largest collapse ratio in the whole report series. The module's vocabulary is complete after four genomes; the source reaches 161 distinct strings and is still climbing at 150."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>velarivirus_audit.json</code>. Routing from <code>repcontig_budget.py</code>; call and quality rates from <code>run_gto_eval.py</code>; duplicate calls from <code>qc_duplicate_calls.py</code>; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>."
+}

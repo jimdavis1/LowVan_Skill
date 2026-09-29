@@ -1,0 +1,9 @@
+{
+ "standfirst": "The smallest of the three closterovirid modules, and the one carrying a thaumatin-like protein that the others do not. Seven features.",
+ "modules": {
+  "Velarivirus": "Only POLY, RDRP, CP and HSP70 are essential here. CPm, HSP90 and the thaumatin-like protein are carried by part of the genus and deliberately omit copy_num."
+ },
+ "gaps": "44.1% of features reached a collection, the lowest of the eight modules on this page series. That is worth knowing rather than hiding: the genus is sparsely and inconsistently annotated in BV-BRC.",
+ "derived": "None declared.",
+ "why": {}
+}
