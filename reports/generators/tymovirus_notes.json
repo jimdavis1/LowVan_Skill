@@ -1,0 +1,9 @@
+{
+ "standfirst": "The cleanest taxon in this group: three overlapping ORFs, a ~1,830 aa replicase, a ~628 aa overlapping movement protein and a ~189 aa coat protein. 96.2% of features binned.",
+ "modules": {
+  "Tymovirus": "MP is bound before REP, because in tymoviruses the movement protein is <em>defined</em> by overlapping the replicase ORF -- any string naming both belongs to MP."
+ },
+ "gaps": "25 references reach 94 of 102 genomes; 8 clusters holding 8 genomes are uncovered and are named in the coverage audit. The residual unbinned strings are positional labels (HP2, HP3) and bare <em>hypothetical protein</em>.",
+ "derived": "None declared.",
+ "why": {}
+}

@@ -1,0 +1,306 @@
+{
+ "title": "Tymovirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Tymovirus module \u00b7 29 September 2026",
+ "h1": "Does the turnip yellow mosaic virus module actually work?",
+ "standfirst": "<b>Tymovirus</b> is the type genus of the <i>Tymoviridae</i> \u2014 turnip yellow mosaic virus and about thirty relatives, mostly of dicots. The cleanest layout in this build: three overlapping ORFs on one ~6.3 kb RNA, a ~1,830 aa replicase, a ~628 aa movement protein that overlaps it, and a ~189 aa coat protein from a subgenomic RNA.",
+ "headline_tiles": [
+  [
+   "3",
+   "features, all with profiles"
+  ],
+  [
+   "38",
+   "PSSMs"
+  ],
+  [
+   "97/102",
+   "genomes routed"
+  ],
+  [
+   "99.0%",
+   "genomes clean"
+  ],
+  [
+   "14.7\u00d7",
+   "string collapse"
+  ],
+  [
+   "43",
+   "source strings for 3 proteins"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One genus, three ORFs, and a deliberate separation from its sibling.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Tymovirus and Marafivirus are both <i>Tymoviridae</i>, but a LowVan module is defined by genome organisation rather than phylogeny and the two layouts differ: tymoviruses carry a distinct overlapping movement protein and their coat protein is a separate 3'-proximal ORF, while marafiviruses carry CP <em>inside</em> ORF1 and have no equivalent MP. Two modules."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "length (aa)",
+      "bit cutoff",
+      "profiles"
+     ],
+     "rows": [
+      [
+       "REP",
+       "Replicase polyprotein",
+       "1548\u20132412",
+       "400",
+       "14"
+      ],
+      [
+       "MP",
+       "Movement protein",
+       "541\u2013731",
+       "80",
+       "12"
+      ],
+      [
+       "CP",
+       "Coat protein",
+       "176\u2013214",
+       "80",
+       "12"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "MP is bound <em>before</em> REP in the binning rules, because in tymoviruses the movement protein is defined by overlapping the replicase ORF \u2014 any source string naming both (<code>overlapping protein/movement protein</code>, <code>overlapping out-of-phase protein</code>) belongs to MP."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "342 features, 96.2% binned, and three labels that carry no meaning at all.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<code>TYMVgp1</code>, <code>TYMVgp2</code> and <code>TYMVgp3</code> are positional labels \u2014 the U-number trap \u2014 and are not trusted as names. They are admitted only inside the three explicit length windows, and it is the window that actually decides them: gp1 is 628 aa (MP), gp2 is 1,844 (REP), gp3 is 189 (CP). A future record numbering its ORFs differently is rejected by the window rather than silently misfiled."
+    },
+    {
+     "type": "prose",
+     "html": "Length-encoded labels of the form <code>unnamed protein product; 206K ORF (AA 1-1844)</code> are handled the same way. The source also contains two outright misspellings of the same protein \u2014 <code>RNA-dependend RNA polymerase</code> and <code>RNA-depedent RNA polymerase</code> \u2014 which the rules absorb."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Conventional, with 38 profiles over three features.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit cutoff",
+      "profiles",
+      "collection",
+      "self-recall"
+     ],
+     "rows": [
+      [
+       "REP",
+       "400",
+       "14",
+       "89",
+       "86 (96.6%)"
+      ],
+      [
+       "MP",
+       "80",
+       "12",
+       "66",
+       "66 (100.0%)"
+      ],
+      [
+       "CP",
+       "80",
+       "12",
+       "72",
+       "68 (94.4%)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Twelve profiles for a 189 aa coat protein is a lot, and it reflects a genuinely divergent genus rather than over-splitting: each profile covers a different clade of an ORF that varies widely across thirty-odd species."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "95.1% at annotation time \u2014 better than the reference budget predicted.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "references used"
+      ],
+      [
+       "97/102",
+       "genomes routed"
+      ],
+      [
+       "95.1%",
+       "of the taxon"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The reference-budget measurement predicted 92.2% (94 of 102) at a budget of 25, and 8 clusters holding 8 genomes were recorded as uncovered. In the run, 97 of 102 routed \u2014 three better than predicted, because BLASTn at annotation time is more permissive than the clustering used to choose the references. The budget figure is the conservative one and is the number to plan with."
+    },
+    {
+     "type": "prose",
+     "html": "Tymovirus is the only one of the four modules in this group that does not reach 100%. It is a small, diverse genus: 34 clusters over 102 genomes, so a long tail of singletons is expected and is a documented gap rather than a defect."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "All three, on at least 95.9% of routed genomes.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on",
+      "of routed genomes",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "REP",
+       "97",
+       "97 (100.0%)",
+       "yes"
+      ],
+      [
+       "MP",
+       "93",
+       "97 (95.9%)",
+       "yes"
+      ],
+      [
+       "CP",
+       "93",
+       "97 (95.9%)",
+       "yes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "All three clear the 85% threshold and earn <code>copy_num</code>. Worth contrasting with the sibling module: Marafivirus MP is called on 16.0% of its genomes and ships <em>without</em> <code>copy_num</code>. Same word, same family, opposite answer \u2014 which is exactly why essentiality is measured per module rather than inferred from the protein's name."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Three of three features essential and called on \u226595.9% of routed genomes."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "99.0% of scored genomes carry no flag.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "97",
+       "genomes scored"
+      ],
+      [
+       "99.0%",
+       "clean"
+      ],
+      [
+       "1",
+       "flagged"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "One genome raised a flag. The whole taxon at \u22656 kb was scored \u2014 102 genomes, of which 97 routed \u2014 so unlike the other three modules in this group this is a census rather than a sample."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Two limits.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>Five genomes do not route.</b> 8 clusters holding 8 genomes were left uncovered by the 25-reference budget and 5 genomes failed to route in the run. They are the divergent tail of a small genus, and reaching them means either more references than the project budget allows or splitting a genus that is already small."
+    },
+    {
+     "type": "prose",
+     "html": "<b>No mature peptides.</b> The replicase is a polyprotein and its cleavage sites are not documented for this genus in a form that can be located from the sequence, so its products are not claimed. One record, <i>Piper methysticum tymovirus 1</i> at 9,491 nt, is 40% longer than a normal tymovirus genome; it is classified as Tymovirus in BV-BRC and is kept, but it widens the segment length window."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Nothing broken, and one number better than predicted.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Routing came in three genomes above the budget estimate. That direction is worth noting because the opposite happened in Crinivirus, where a gate figure of 100% was an artefact of merging records by genome name and the honest number is 92.4%. A prediction that disagrees with the run is a finding either way; here the conservative estimate was simply conservative."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Nothing outstanding. Three of three features essential and called, 99.0% of the genus clean."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "44 source strings became 3, and the module's vocabulary is complete after one genome.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "44 \u2192 3",
+       "string collapse (14.7\u00d7)"
+      ],
+      [
+       "43",
+       "distinct source strings"
+      ],
+      [
+       "14.3\u00d7",
+       "strings per 100 genomes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The starkest curve in this group. The module's vocabulary is flat at 3 from the first genome. The source reaches <b>43 distinct strings for three proteins</b> in a genus of only 129 genomes, with its knee at 79 and still climbing \u2014 positional labels, length-encoded labels, two misspellings and a dozen synonyms for &ldquo;replicase&rdquo;."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>tymovirus_audit.json</code>. Routing from <code>build_rep_contigs.py</code> and the annotation run; call and quality rates from <code>run_gto_eval.py</code> over all 102 genomes; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>."
+}

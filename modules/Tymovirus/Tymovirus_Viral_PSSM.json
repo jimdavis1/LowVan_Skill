@@ -1,0 +1,160 @@
+{
+   "Tymovirus" : {
+      "close_genomes" : {
+         "Tymovirus.1.dna" : {
+            "genome_ids" : "KJ690173",
+            "genome_name" : "Turnip yellow mosaic virus DSMZ PV-0299"
+         },
+         "Tymovirus.10.dna" : {
+            "genome_ids" : "AF098523",
+            "genome_name" : "Erysimum latent virus"
+         },
+         "Tymovirus.11.dna" : {
+            "genome_ids" : "MK440631",
+            "genome_name" : "Tarnsjo virus OTU30"
+         },
+         "Tymovirus.12.dna" : {
+            "genome_ids" : "EU684141",
+            "genome_name" : "Diascia yellow mottle virus OR"
+         },
+         "Tymovirus.13.dna" : {
+            "genome_ids" : "FN563124",
+            "genome_name" : "Chiltepin yellow mosaic virus 20.8"
+         },
+         "Tymovirus.14.dna" : {
+            "genome_ids" : "HQ425778",
+            "genome_name" : "Asclepias asymptomatic virus"
+         },
+         "Tymovirus.15.dna" : {
+            "genome_ids" : "J04375",
+            "genome_name" : "Ononis yellow mosaic virus"
+         },
+         "Tymovirus.16.dna" : {
+            "genome_ids" : "D00637",
+            "genome_name" : "Kennedya yellow mosaic virus Jervis Bay"
+         },
+         "Tymovirus.17.dna" : {
+            "genome_ids" : "MG323924",
+            "genome_name" : "Naranjilla chlorotic mosaic virus NarCMV"
+         },
+         "Tymovirus.18.dna" : {
+            "genome_ids" : "MH784952",
+            "genome_name" : "Naranjilla mild mosaic virus Nar-21"
+         },
+         "Tymovirus.19.dna" : {
+            "genome_ids" : "OL420671",
+            "genome_name" : "Erysimum leaf mottle virus DSMZ PV-1249"
+         },
+         "Tymovirus.2.dna" : {
+            "genome_ids" : "MW839452",
+            "genome_name" : "Andean potato latent virus Apu044"
+         },
+         "Tymovirus.20.dna" : {
+            "genome_ids" : "AY751779",
+            "genome_name" : "Plantago mottle virus"
+         },
+         "Tymovirus.21.dna" : {
+            "genome_ids" : "AY751780",
+            "genome_name" : "Anagyris vein yellowing virus"
+         },
+         "Tymovirus.22.dna" : {
+            "genome_ids" : "AY789137",
+            "genome_name" : "Dulcamara mottle virus"
+         },
+         "Tymovirus.23.dna" : {
+            "genome_ids" : "AF195000",
+            "genome_name" : "Chayote mosaic virus Chayote (Sechium edule)"
+         },
+         "Tymovirus.24.dna" : {
+            "genome_ids" : "NC_003634",
+            "genome_name" : "Physalis mottle virus"
+         },
+         "Tymovirus.25.dna" : {
+            "genome_ids" : "KT834406",
+            "genome_name" : "Tomato blistering mosaic virus SP-01"
+         },
+         "Tymovirus.3.dna" : {
+            "genome_ids" : "MW839458",
+            "genome_name" : "Andean potato mild mosaic virus Hco006"
+         },
+         "Tymovirus.4.dna" : {
+            "genome_ids" : "KJ690172",
+            "genome_name" : "Eggplant mosaic virus SCRI"
+         },
+         "Tymovirus.5.dna" : {
+            "genome_ids" : "KY823429",
+            "genome_name" : "Passion fruit yellow mosaic virus PFYMV_Antioquia"
+         },
+         "Tymovirus.6.dna" : {
+            "genome_ids" : "NC_011538",
+            "genome_name" : "Nemesia ring necrosis virus"
+         },
+         "Tymovirus.7.dna" : {
+            "genome_ids" : "AY751777",
+            "genome_name" : "Scrophularia mottle virus"
+         },
+         "Tymovirus.8.dna" : {
+            "genome_ids" : "OR762538",
+            "genome_name" : "Okra mosaic virus DSMZ PV-0264"
+         },
+         "Tymovirus.9.dna" : {
+            "genome_ids" : "NC_021851",
+            "genome_name" : "Tomato blistering mosaic virus SC50"
+         }
+      },
+      "features" : {
+         "CP" : {
+            "anno" : "Coat protein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CP",
+            "kmers" : 1,
+            "max_len" : 214,
+            "min_len" : 176,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "MP" : {
+            "anno" : "Movement protein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "MP",
+            "kmers" : 1,
+            "max_len" : 731,
+            "min_len" : 541,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "REP" : {
+            "anno" : "Replicase polyprotein",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "REP",
+            "kmers" : 1,
+            "max_len" : 2412,
+            "min_len" : 1548,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 9965,
+            "min_len" : 5729,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

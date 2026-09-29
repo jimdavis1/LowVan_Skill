@@ -1,0 +1,112 @@
+<title>Tymovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan · Tymovirus module · 29 September 2026</div><h1>Does the turnip yellow mosaic virus module actually work?</h1><p class="stand"><b>Tymovirus</b> is the type genus of the <i>Tymoviridae</i> — turnip yellow mosaic virus and about thirty relatives, mostly of dicots. The cleanest layout in this build: three overlapping ORFs on one ~6.3 kb RNA, a ~1,830 aa replicase, a ~628 aa movement protein that overlaps it, and a ~189 aa coat protein from a subgenomic RNA.</p><div class="tiles"><div class="tile"><div class="v">3</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">38</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">97/102</div><div class="l">genomes routed</div></div><div class="tile"><div class="v">99.0%</div><div class="l">genomes clean</div></div><div class="tile"><div class="v">14.7×</div><div class="l">string collapse</div></div><div class="tile"><div class="v">43</div><div class="l">source strings for 3 proteins</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One genus, three ORFs, and a deliberate separation from its sibling.</p><p class="note">Tymovirus and Marafivirus are both <i>Tymoviridae</i>, but a LowVan module is defined by genome organisation rather than phylogeny and the two layouts differ: tymoviruses carry a distinct overlapping movement protein and their coat protein is a separate 3'-proximal ORF, while marafiviruses carry CP <em>inside</em> ORF1 and have no equivalent MP. Two modules.</p><div class="scroll"><table><thead><tr><th>feature</th><th>annotation</th><th>length (aa)</th><th>bit cutoff</th><th>profiles</th></tr></thead><tbody><tr><td>REP</td><td>Replicase polyprotein</td><td>1548–2412</td><td>400</td><td>14</td></tr><tr><td>MP</td><td>Movement protein</td><td>541–731</td><td>80</td><td>12</td></tr><tr><td>CP</td><td>Coat protein</td><td>176–214</td><td>80</td><td>12</td></tr></tbody></table></div><p class="note">MP is bound <em>before</em> REP in the binning rules, because in tymoviruses the movement protein is defined by overlapping the replicase ORF — any source string naming both (<code>overlapping protein/movement protein</code>, <code>overlapping out-of-phase protein</code>) belongs to MP.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">342 features, 96.2% binned, and three labels that carry no meaning at all.</p><p class="note"><code>TYMVgp1</code>, <code>TYMVgp2</code> and <code>TYMVgp3</code> are positional labels — the U-number trap — and are not trusted as names. They are admitted only inside the three explicit length windows, and it is the window that actually decides them: gp1 is 628 aa (MP), gp2 is 1,844 (REP), gp3 is 189 (CP). A future record numbering its ORFs differently is rejected by the window rather than silently misfiled.</p><p class="note">Length-encoded labels of the form <code>unnamed protein product; 206K ORF (AA 1-1844)</code> are handled the same way. The source also contains two outright misspellings of the same protein — <code>RNA-dependend RNA polymerase</code> and <code>RNA-depedent RNA polymerase</code> — which the rules absorb.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Conventional, with 38 profiles over three features.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit cutoff</th><th>profiles</th><th>collection</th><th>self-recall</th></tr></thead><tbody><tr><td>REP</td><td>400</td><td>14</td><td>89</td><td>86 (96.6%)</td></tr><tr><td>MP</td><td>80</td><td>12</td><td>66</td><td>66 (100.0%)</td></tr><tr><td>CP</td><td>80</td><td>12</td><td>72</td><td>68 (94.4%)</td></tr></tbody></table></div><p class="note">Twelve profiles for a 189 aa coat protein is a lot, and it reflects a genuinely divergent genus rather than over-splitting: each profile covers a different clade of an ORF that varies widely across thirty-odd species.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">95.1% at annotation time — better than the reference budget predicted.</p><div class="tiles"><div class="tile"><div class="v">25</div><div class="l">references used</div></div><div class="tile"><div class="v">97/102</div><div class="l">genomes routed</div></div><div class="tile"><div class="v">95.1%</div><div class="l">of the taxon</div></div></div><p class="note">The reference-budget measurement predicted 92.2% (94 of 102) at a budget of 25, and 8 clusters holding 8 genomes were recorded as uncovered. In the run, 97 of 102 routed — three better than predicted, because BLASTn at annotation time is more permissive than the clustering used to choose the references. The budget figure is the conservative one and is the number to plan with.</p><p class="note">Tymovirus is the only one of the four modules in this group that does not reach 100%. It is a small, diverse genus: 34 clusters over 102 genomes, so a long tail of singletons is expected and is a documented gap rather than a defect.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">All three, on at least 95.9% of routed genomes.</p><div class="scroll"><table><thead><tr><th>feature</th><th>called on</th><th>of routed genomes</th><th>copy_num</th></tr></thead><tbody><tr><td>REP</td><td>97</td><td>97 (100.0%)</td><td>yes</td></tr><tr><td>MP</td><td>93</td><td>97 (95.9%)</td><td>yes</td></tr><tr><td>CP</td><td>93</td><td>97 (95.9%)</td><td>yes</td></tr></tbody></table></div><p class="note">All three clear the 85% threshold and earn <code>copy_num</code>. Worth contrasting with the sibling module: Marafivirus MP is called on 16.0% of its genomes and ships <em>without</em> <code>copy_num</code>. Same word, same family, opposite answer — which is exactly why essentiality is measured per module rather than inferred from the protein's name.</p><div class="verdict stop">Three of three features essential and called on ≥95.9% of routed genomes.</div></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">99.0% of scored genomes carry no flag.</p><div class="tiles"><div class="tile"><div class="v">97</div><div class="l">genomes scored</div></div><div class="tile"><div class="v">99.0%</div><div class="l">clean</div></div><div class="tile"><div class="v">1</div><div class="l">flagged</div></div></div><p class="note">One genome raised a flag. The whole taxon at ≥6 kb was scored — 102 genomes, of which 97 routed — so unlike the other three modules in this group this is a census rather than a sample.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Two limits.</p><p class="note"><b>Five genomes do not route.</b> 8 clusters holding 8 genomes were left uncovered by the 25-reference budget and 5 genomes failed to route in the run. They are the divergent tail of a small genus, and reaching them means either more references than the project budget allows or splitting a genus that is already small.</p><p class="note"><b>No mature peptides.</b> The replicase is a polyprotein and its cleavage sites are not documented for this genus in a form that can be located from the sequence, so its products are not claimed. One record, <i>Piper methysticum tymovirus 1</i> at 9,491 nt, is 40% longer than a normal tymovirus genome; it is classified as Tymovirus in BV-BRC and is kept, but it widens the segment length window.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Nothing broken, and one number better than predicted.</p><p class="note">Routing came in three genomes above the budget estimate. That direction is worth noting because the opposite happened in Crinivirus, where a gate figure of 100% was an artefact of merging records by genome name and the honest number is 92.4%. A prediction that disagrees with the run is a finding either way; here the conservative estimate was simply conservative.</p><div class="verdict stop">Nothing outstanding. Three of three features essential and called, 99.0% of the genus clean.</div></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">44 source strings became 3, and the module's vocabulary is complete after one genome.</p><div class="tiles"><div class="tile"><div class="v">44 → 3</div><div class="l">string collapse (14.7×)</div></div><div class="tile"><div class="v">43</div><div class="l">distinct source strings</div></div><div class="tile"><div class="v">14.3×</div><div class="l">strings per 100 genomes</div></div></div><p class="note">The starkest curve in this group. The module's vocabulary is flat at 3 from the first genome. The source reaches <b>43 distinct strings for three proteins</b> in a genus of only 129 genomes, with its knee at 79 and still climbing — positional labels, length-encoded labels, two misspellings and a dozen synonyms for &ldquo;replicase&rdquo;.</p></section><p class="src">Generated from <code>tymovirus_audit.json</code>. Routing from <code>build_rep_contigs.py</code> and the annotation run; call and quality rates from <code>run_gto_eval.py</code> over all 102 genomes; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>.</p></div>
