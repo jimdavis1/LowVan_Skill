@@ -127,6 +127,10 @@ Not made: string collapse, vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
+| Capillovirus String Collapse | [open](https://claude.ai/artifact/UxFYYiPSxUmVHpnfZvttL6) | [source](reports/capillovirus-string-collapse.html) | 2026-09-29 |
+| Marafivirus String Collapse | [open](https://claude.ai/artifact/8hsgb6VBLoWthJQ5fDekmN) | [source](reports/marafivirus-string-collapse.html) | 2026-09-29 |
+| Tymovirus String Collapse | [open](https://claude.ai/artifact/FWqWHTDrJDVku9KhJLAtm1) | [source](reports/tymovirus-string-collapse.html) | 2026-09-29 |
+| Crinivirus String Collapse | [open](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [source](reports/crinivirus-string-collapse.html) | 2026-09-29 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
 | RdRp Read Nucleation | [open](https://claude.ai/artifact/D4L5hjJdBZqaE5DSsHUaXq) | — | 2026-09-17 |

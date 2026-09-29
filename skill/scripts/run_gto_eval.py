@@ -228,6 +228,25 @@ def main():
                 print("  genuinely present and merely uncallable:")
                 for k, f in sorted(thin, key=lambda x: x[1]):
                     print("    %-8s called on %5.1f%% of routed genomes" % (k, 100.0 * f))
+
+            #  The complement, and the reason this block exists at all. The
+            #  safe build order is to ship with NO copy_num, measure here,
+            #  and then add it to whatever earned it -- a missing copy_num
+            #  costs nothing, a wrong one fails every genome in the taxon.
+            #  Reporting only the first direction left the second half of
+            #  that workflow with nothing to read.
+            fat = [(k, called[k] / nrt) for k, v in feats.items()
+                   if not v.get("copy_num") and nrt and called[k] / nrt >= 0.85]
+            if fat:
+                print("\n  EARNS copy_num -- called on >= 85%% of routed genomes and")
+                print("  not currently marked essential. Add copy_num: 1 to these:")
+                for k, f in sorted(fat, key=lambda x: -x[1]):
+                    print("    %-8s called on %5.1f%% of routed genomes" % (k, 100.0 * f))
+
+            print("\n  call rate, every declared feature (%d routed genome(s)):" % nrt)
+            for k in sorted(feats, key=lambda x: -called[x]):
+                print("    %-11s %5.1f%%  %s" % (k, 100.0 * called[k] / nrt if nrt else 0.0,
+                                                 "copy_num" if feats[k].get("copy_num") else ""))
     except Exception:
         pass
 
