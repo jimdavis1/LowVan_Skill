@@ -1,0 +1,384 @@
+{
+ "title": "Crinivirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Crinivirus module \u00b7 29 September 2026",
+ "h1": "Does the cucurbit yellow stunting disorder virus module actually work?",
+ "standfirst": "<b>Crinivirus</b> is the bipartite genus of the <i>Closteroviridae</i>: cucurbit yellow stunting disorder virus, tomato chlorosis virus, sweet potato chlorotic stunt virus and about thirty more, all whitefly-transmitted and phloem-limited. RNA1 carries a ~1,990 aa replicase polyprotein and the RdRp; RNA2 carries the closterovirid quintuple gene block. <b>This module shipped only after a duplicate-call audit removed eight features that were counting other proteins' loci as their own.</b>",
+ "headline_tiles": [
+  [
+   "15",
+   "features, all with profiles"
+  ],
+  [
+   "95",
+   "PSSMs"
+  ],
+  [
+   "511/553",
+   "records routed"
+  ],
+  [
+   "90.0%",
+   "genomes clean"
+  ],
+  [
+   "12.1\u00d7",
+   "string collapse"
+  ],
+  [
+   "8",
+   "features removed on audit"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Bipartite, so one genome arrives as two records and must be merged before annotation.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Every BV-BRC record carries <code>contigs=1</code>, so a crinivirus genome is deposited as two separate records sharing a name. <code>merge_segments.py</code> is mandatory at annotation time, and it correctly refuses to merge a name whose record count exceeds the segment count \u2014 45 name collisions in this taxon, several isolates deposited under one name."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "segment",
+      "carries",
+      "length (nt)"
+     ],
+     "rows": [
+      [
+       "RNA1",
+       "POLY, RDRP, SUPPRESSOR, P22A, P22B, P22C, P25, P6B, P7A",
+       "6,548\u20139,877"
+      ],
+      [
+       "RNA2",
+       "CP, CPM, HSP70, HSP90, P27, P7B",
+       "6,246\u20139,105"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Segment assignment was measured, not assumed: anchoring RNA1 on the records carrying POLY/RDRP and RNA2 on those carrying HSP70/CPM gives two sets with <b>zero overlap</b>, and every feature falls entirely on one side. A discovered cluster that straddled both would have been an artefact."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "1,749 unique proteins, and the accessory names are worthless.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "A mass is not a homology group. Measured by clustering the mass-named pool: <b>p22</b> is four non-homologous groups at 188, 191, 192 and 193 aa; <b>p59</b> and <b>p60</b> are one group of 78 that is the HSP90 homolog; <b>p6/p7/p8/p9</b> fragment into at least seven groups by size. Accessory features are therefore <em>discovered by clustering</em> and only then named, with A/B/C suffixes where one name covers several groups."
+    },
+    {
+     "type": "prose",
+     "html": "The 13 records labelled <b>movement protein</b> are all exactly 518 aa and 98\u201399% identical to the p59/p60 collection. In closterovirids the HSP90 homolog is part of the movement machinery, which is what that label reports; they were binned to HSP90 rather than given a feature that would have duplicated it."
+    },
+    {
+     "type": "prose",
+     "html": "The <b>ORF1a/1b fusion</b> \u2014 46 records at 2,413\u20132,499 aa \u2014 is the +1 frameshift readthrough product and is not declared. ORF1a and the RdRp are called separately, as in the shipped Closterovirus module."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Conventional for the core; the accessories are where the trouble was.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit cutoff",
+      "profiles",
+      "collection",
+      "self-recall"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "400",
+       "11",
+       "265",
+       "265 (100%)"
+      ],
+      [
+       "RDRP",
+       "300",
+       "10",
+       "133",
+       "122 (92%)"
+      ],
+      [
+       "HSP70",
+       "150",
+       "10",
+       "166",
+       "166 (100%)"
+      ],
+      [
+       "HSP90",
+       "150",
+       "14",
+       "128",
+       "125 (98%)"
+      ],
+      [
+       "CPM",
+       "80",
+       "14",
+       "219",
+       "219 (100%)"
+      ],
+      [
+       "CP",
+       "80",
+       "14",
+       "117",
+       "116 (99%)"
+      ],
+      [
+       "P27",
+       "30",
+       "8",
+       "76",
+       "76 (100%)"
+      ],
+      [
+       "SUPPRESSOR",
+       "30",
+       "4",
+       "76",
+       "76 (100%)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Self-recall is 92\u2013100% throughout and told us nothing about the defect in \u00a708. Every profile recovered its own collection perfectly while five of them were firing on other proteins' loci."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "92.4%, and the gate figure that said 100% was wrong.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "references used"
+      ],
+      [
+       "511/553",
+       "records routed"
+      ],
+      [
+       "92.4%",
+       "of the taxon"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<code>repcontig_budget.py --merge-by-name</code> reported <b>100.0%</b>. The shipped set covers 511 of 553 records = <b>92.4%</b>. The gate had merged records by genome name, but 18 names carry between 3 and 8 records \u2014 isolate collisions rather than segments \u2014 so several genomes were counted as one. Same defect that took Bromoviridae from 94.8% to 69.5%."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "92.4% is the honest figure. An estimate <em>above</em> the run is always a bug; an estimate below it is merely conservative."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Seven features essential, eight accessory \u2014 and the first count was wrong.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on 100 routed genomes",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "CP, CPM, HSP70, HSP90, POLY",
+       "100.0%",
+       "yes"
+      ],
+      [
+       "P27",
+       "99.0%",
+       "yes"
+      ],
+      [
+       "RDRP",
+       "97.0%",
+       "yes"
+      ],
+      [
+       "P7A",
+       "59.0%",
+       "no"
+      ],
+      [
+       "SUPPRESSOR",
+       "52.0%",
+       "no"
+      ],
+      [
+       "P7B",
+       "34.0%",
+       "no"
+      ],
+      [
+       "P22B",
+       "23.0%",
+       "no"
+      ],
+      [
+       "P6B",
+       "22.0%",
+       "no"
+      ],
+      [
+       "P22C",
+       "10.0%",
+       "no"
+      ],
+      [
+       "P25",
+       "5.0%",
+       "no"
+      ],
+      [
+       "P22A",
+       "0.0%",
+       "no"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Before the audit in \u00a708, <b>eleven</b> features cleared the 85% threshold. Five of those eleven were counting calls made inside another feature's coordinates. After the audit, seven clear it and all seven are supported."
+    },
+    {
+     "type": "prose",
+     "html": "<b>P22A's 0.0% is not a broken profile.</b> All 26 of its source records sit on genome records under 6 kb, and the evaluation population is genomes at or above 6 kb, so the feature was never offered a genome that could carry it. It recovers 26 of its own 26 sequences. A low call rate has two causes that look identical in the report \u2014 the protein is rare, or its genomes are partial \u2014 and one query on the source records' lengths separates them."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "90.0% clean, up from 81.3% before the audit.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "100",
+       "genomes scored"
+      ],
+      [
+       "90.0%",
+       "clean"
+      ],
+      [
+       "10",
+       "flagged"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "All ten remaining flags are <code>Too many contigs for RNA2</code>. They come from P7B, whose calls land on RNA1 contigs in about a quarter of genomes despite being declared RNA2. Moving it to RNA1 was tested and made the count <em>worse</em> (27 \u2192 43 genomes), so the declaration stands: the protein's segment genuinely varies across species."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Three limits, one of them permanent.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>HSP70 and HSP90 cannot be separated on 6% of genomes.</b> They are called on identical coordinates there. This is not a binning error \u2014 the two collections share no sequences at all \u2014 but genuine paralogy: in criniviruses the two proteins are 64% identical over 99% of their length, and no bit_cutoff separates them without losing one. A documented limit, not a defect to fix."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The evaluation excludes partial genomes.</b> Collections are drawn from every protein record in the dump; the evaluation only from genomes at or above 6 kb. Features whose sequences come mostly from partial records \u2014 P22A entirely, P7A and RNASE3 substantially \u2014 show call rates that understate their real prevalence."
+    },
+    {
+     "type": "prose",
+     "html": "<b>No mature peptides.</b> ORF1a is a polyprotein and its cleavage sites are not documented for this genus in a form that can be located from the sequence."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Eight features that were counting another protein's locus as their own.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The module originally declared 23 features. A duplicate-call audit of the scored genomes found seven firing between 82% and 98% of the time <em>inside</em> a longer feature, plus two pairs called on identical coordinates."
+    },
+    {
+     "type": "pre",
+     "text": "RNASE3  inside SUPPRESSOR   97%   ->  99% identical, 100% coverage: ONE PROTEIN\nP9      inside HSP90        98%   ->  47-90 aa profile at cutoff 25-30\nP8A     inside HSP90        95%\nP8B     inside HSP90        92%\nP6A     inside P8B          89%\nP26     inside P28          83%   ->  23-24% identical over 96-99% cov: ONE FAMILY\nP23     inside P22B         82%\nHSP70 + HSP90  identical coordinates, 7%  ->  genuine paralogues"
+    },
+    {
+     "type": "prose",
+     "html": "Three different problems needing three answers. <b>RNASE3 and SUPPRESSOR are one gene</b> \u2014 in sweet potato chlorotic stunt virus the RNase3 <em>is</em> the silencing suppressor \u2014 and were merged. <b>p26, p27 and p28 are one diverged family</b> and were merged into P27. <b>P8A, P9, P8B, P6A and P23</b> are 47\u201390 aa profiles with cutoffs of 25\u201330 that fire on anything, have no sequence similarity to what they land inside, and were dropped."
+    },
+    {
+     "type": "prose",
+     "html": "<b>This defect raises a feature's call rate, which is why nothing else caught it.</b> A profile firing inside a longer feature is present on nearly every genome that has the longer one, so it looks essential. Self-recall did not see it: every profile recovered its own collection perfectly. Collection disjointness did not see it: blastp at 90% identity found zero containment. It is now a kit check, <code>qc_duplicate_calls.py</code>, that runs before essentiality is assigned."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Resolved: 23 features to 15, quality 81.3% to 90.0%, and five spurious copy_num assignments removed."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "181 source strings became 15.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "181 \u2192 15",
+       "string collapse (12.1\u00d7)"
+      ],
+      [
+       "95",
+       "distinct source strings"
+      ],
+      [
+       "6.8\u00d7",
+       "strings per 100 genomes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The module's curve reaches 14 of its strings by the thirteenth genome. The source reaches 95 distinct strings with its knee at 88 and is still climbing \u2014 most of that tail is the mass names that \u00a702 had to discard."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>crinivirus_audit.json</code>. Routing from <code>build_rep_contigs.py</code>; call and quality rates from <code>run_gto_eval.py</code> over 100 genomes after the audit; duplicate calls from <code>qc_duplicate_calls.py</code>; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>."
+}

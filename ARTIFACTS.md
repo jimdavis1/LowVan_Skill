@@ -153,6 +153,8 @@ Not made: string collapse, vocabulary saturation.
 | Tymovirus Vocabulary Saturation | [open](https://claude.ai/artifact/DBakDPHuHADrHWkDRadqUK) | [source](reports/tymovirus-vocabulary-saturation.html) | 2026-09-29 |
 | Tymovirus Coverage Audit | [open](https://claude.ai/artifact/BcR2cenCdnFyLZGus2S5up) | [source](reports/tymovirus-coverage-audit.html) | 2026-09-29 |
 | Quinvirinae PSSM Registry | [open](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [source](reports/quinvirinae-pssm-registry.html) | 2026-09-29 |
+| Crinivirus Vocabulary Saturation | [open](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [source](reports/crinivirus-vocabulary-saturation.html) | 2026-09-29 |
+| Crinivirus Coverage Audit | [open](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) | [source](reports/crinivirus-coverage-audit.html) | 2026-09-29 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
 | RdRp Read Nucleation | [open](https://claude.ai/artifact/D4L5hjJdBZqaE5DSsHUaXq) | — | 2026-09-17 |

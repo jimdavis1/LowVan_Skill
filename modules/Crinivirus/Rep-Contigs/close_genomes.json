@@ -1,0 +1,102 @@
+{
+ "Crinivirus.1.dna": {
+  "genome_ids": "NC_004123",
+  "genome_name": "Sweet potato chlorotic stunt virus EA"
+ },
+ "Crinivirus.10.dna": {
+  "genome_ids": "MT319730",
+  "genome_name": "Potato yellow vein virus Umbita"
+ },
+ "Crinivirus.11.dna": {
+  "genome_ids": "MG489894",
+  "genome_name": "Lettuce chlorosis virus Almeria"
+ },
+ "Crinivirus.12.dna": {
+  "genome_ids": "MG489895",
+  "genome_name": "Lettuce chlorosis virus Almeria"
+ },
+ "Crinivirus.13.dna": {
+  "genome_ids": "NC_005895",
+  "genome_name": "Strawberry pallidosis-associated virus M1"
+ },
+ "Crinivirus.14.dna": {
+  "genome_ids": "EF547827",
+  "genome_name": "Cucurbit yellow stunting disorder virus Arizona-1"
+ },
+ "Crinivirus.15.dna": {
+  "genome_ids": "FJ492808",
+  "genome_name": "Cucurbit yellow stunting disorder virus Arizona-1"
+ },
+ "Crinivirus.16.dna": {
+  "genome_ids": "NC_005896",
+  "genome_name": "Strawberry pallidosis-associated virus M1"
+ },
+ "Crinivirus.17.dna": {
+  "genome_ids": "LC415907",
+  "genome_name": "Tomato infectious chlorosis virus"
+ },
+ "Crinivirus.18.dna": {
+  "genome_ids": "LC415906",
+  "genome_name": "Tomato infectious chlorosis virus"
+ },
+ "Crinivirus.19.dna": {
+  "genome_ids": "OP976048",
+  "genome_name": "chieh-qua chlorotic virus chieh-qua-CM"
+ },
+ "Crinivirus.2.dna": {
+  "genome_ids": "MW260408",
+  "genome_name": "Sweet potato chlorotic stunt virus 19-2100"
+ },
+ "Crinivirus.20.dna": {
+  "genome_ids": "MT819949",
+  "genome_name": "Cucurbit yellow stunting disorder virus KB"
+ },
+ "Crinivirus.21.dna": {
+  "genome_ids": "LC100132",
+  "genome_name": "Beet pseudoyellows virus MI"
+ },
+ "Crinivirus.22.dna": {
+  "genome_ids": "KR002686",
+  "genome_name": "Tetterwort vein chlorosis virus Yesan"
+ },
+ "Crinivirus.23.dna": {
+  "genome_ids": "KR002687",
+  "genome_name": "Tetterwort vein chlorosis virus Yesan"
+ },
+ "Crinivirus.24.dna": {
+  "genome_ids": "OM514355",
+  "genome_name": "Sedum sarmentosum crinivirus KXLZCFY121"
+ },
+ "Crinivirus.25.dna": {
+  "genome_ids": "EU191904",
+  "genome_name": "Bean yellow disorder virus Bn-03"
+ },
+ "Crinivirus.3.dna": {
+  "genome_ids": "KJ815045",
+  "genome_name": "Tomato chlorosis virus Nanjing"
+ },
+ "Crinivirus.4.dna": {
+  "genome_ids": "KY471129",
+  "genome_name": "Tomato chlorosis virus ToCR-186"
+ },
+ "Crinivirus.5.dna": {
+  "genome_ids": "MW260369",
+  "genome_name": "Sweet potato chlorotic stunt virus 19-2054"
+ },
+ "Crinivirus.6.dna": {
+  "genome_ids": "MH819191",
+  "genome_name": "Cucurbit chlorotic yellows virus SD"
+ },
+ "Crinivirus.7.dna": {
+  "genome_ids": "MW629379",
+  "genome_name": "Cucurbit chlorotic yellows virus CaF1-523_1"
+ },
+ "Crinivirus.8.dna": {
+  "genome_ids": "MW260425",
+  "genome_name": "Sweet potato chlorotic stunt virus 19-2115"
+ },
+ "Crinivirus.9.dna": {
+  "genome_ids": "AY330918",
+  "genome_name": "Beet pseudoyellows virus"
+ }
+}

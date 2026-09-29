@@ -1,0 +1,119 @@
+<title>Crinivirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan · Crinivirus module · 29 September 2026</div><h1>Does the cucurbit yellow stunting disorder virus module actually work?</h1><p class="stand"><b>Crinivirus</b> is the bipartite genus of the <i>Closteroviridae</i>: cucurbit yellow stunting disorder virus, tomato chlorosis virus, sweet potato chlorotic stunt virus and about thirty more, all whitefly-transmitted and phloem-limited. RNA1 carries a ~1,990 aa replicase polyprotein and the RdRp; RNA2 carries the closterovirid quintuple gene block. <b>This module shipped only after a duplicate-call audit removed eight features that were counting other proteins' loci as their own.</b></p><div class="tiles"><div class="tile"><div class="v">15</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">95</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">511/553</div><div class="l">records routed</div></div><div class="tile"><div class="v">90.0%</div><div class="l">genomes clean</div></div><div class="tile"><div class="v">12.1×</div><div class="l">string collapse</div></div><div class="tile"><div class="v">8</div><div class="l">features removed on audit</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">Bipartite, so one genome arrives as two records and must be merged before annotation.</p><p class="note">Every BV-BRC record carries <code>contigs=1</code>, so a crinivirus genome is deposited as two separate records sharing a name. <code>merge_segments.py</code> is mandatory at annotation time, and it correctly refuses to merge a name whose record count exceeds the segment count — 45 name collisions in this taxon, several isolates deposited under one name.</p><div class="scroll"><table><thead><tr><th>segment</th><th>carries</th><th>length (nt)</th></tr></thead><tbody><tr><td>RNA1</td><td>POLY, RDRP, SUPPRESSOR, P22A, P22B, P22C, P25, P6B, P7A</td><td>6,548–9,877</td></tr><tr><td>RNA2</td><td>CP, CPM, HSP70, HSP90, P27, P7B</td><td>6,246–9,105</td></tr></tbody></table></div><p class="note">Segment assignment was measured, not assumed: anchoring RNA1 on the records carrying POLY/RDRP and RNA2 on those carrying HSP70/CPM gives two sets with <b>zero overlap</b>, and every feature falls entirely on one side. A discovered cluster that straddled both would have been an artefact.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">1,749 unique proteins, and the accessory names are worthless.</p><p class="note">A mass is not a homology group. Measured by clustering the mass-named pool: <b>p22</b> is four non-homologous groups at 188, 191, 192 and 193 aa; <b>p59</b> and <b>p60</b> are one group of 78 that is the HSP90 homolog; <b>p6/p7/p8/p9</b> fragment into at least seven groups by size. Accessory features are therefore <em>discovered by clustering</em> and only then named, with A/B/C suffixes where one name covers several groups.</p><p class="note">The 13 records labelled <b>movement protein</b> are all exactly 518 aa and 98–99% identical to the p59/p60 collection. In closterovirids the HSP90 homolog is part of the movement machinery, which is what that label reports; they were binned to HSP90 rather than given a feature that would have duplicated it.</p><p class="note">The <b>ORF1a/1b fusion</b> — 46 records at 2,413–2,499 aa — is the +1 frameshift readthrough product and is not declared. ORF1a and the RdRp are called separately, as in the shipped Closterovirus module.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Conventional for the core; the accessories are where the trouble was.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit cutoff</th><th>profiles</th><th>collection</th><th>self-recall</th></tr></thead><tbody><tr><td>POLY</td><td>400</td><td>11</td><td>265</td><td>265 (100%)</td></tr><tr><td>RDRP</td><td>300</td><td>10</td><td>133</td><td>122 (92%)</td></tr><tr><td>HSP70</td><td>150</td><td>10</td><td>166</td><td>166 (100%)</td></tr><tr><td>HSP90</td><td>150</td><td>14</td><td>128</td><td>125 (98%)</td></tr><tr><td>CPM</td><td>80</td><td>14</td><td>219</td><td>219 (100%)</td></tr><tr><td>CP</td><td>80</td><td>14</td><td>117</td><td>116 (99%)</td></tr><tr><td>P27</td><td>30</td><td>8</td><td>76</td><td>76 (100%)</td></tr><tr><td>SUPPRESSOR</td><td>30</td><td>4</td><td>76</td><td>76 (100%)</td></tr></tbody></table></div><p class="note">Self-recall is 92–100% throughout and told us nothing about the defect in §08. Every profile recovered its own collection perfectly while five of them were firing on other proteins' loci.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">92.4%, and the gate figure that said 100% was wrong.</p><div class="tiles"><div class="tile"><div class="v">25</div><div class="l">references used</div></div><div class="tile"><div class="v">511/553</div><div class="l">records routed</div></div><div class="tile"><div class="v">92.4%</div><div class="l">of the taxon</div></div></div><p class="note"><code>repcontig_budget.py --merge-by-name</code> reported <b>100.0%</b>. The shipped set covers 511 of 553 records = <b>92.4%</b>. The gate had merged records by genome name, but 18 names carry between 3 and 8 records — isolate collisions rather than segments — so several genomes were counted as one. Same defect that took Bromoviridae from 94.8% to 69.5%.</p><div class="verdict warn">92.4% is the honest figure. An estimate <em>above</em> the run is always a bug; an estimate below it is merely conservative.</div></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">Seven features essential, eight accessory — and the first count was wrong.</p><div class="scroll"><table><thead><tr><th>feature</th><th>called on 100 routed genomes</th><th>copy_num</th></tr></thead><tbody><tr><td>CP, CPM, HSP70, HSP90, POLY</td><td>100.0%</td><td>yes</td></tr><tr><td>P27</td><td>99.0%</td><td>yes</td></tr><tr><td>RDRP</td><td>97.0%</td><td>yes</td></tr><tr><td>P7A</td><td>59.0%</td><td>no</td></tr><tr><td>SUPPRESSOR</td><td>52.0%</td><td>no</td></tr><tr><td>P7B</td><td>34.0%</td><td>no</td></tr><tr><td>P22B</td><td>23.0%</td><td>no</td></tr><tr><td>P6B</td><td>22.0%</td><td>no</td></tr><tr><td>P22C</td><td>10.0%</td><td>no</td></tr><tr><td>P25</td><td>5.0%</td><td>no</td></tr><tr><td>P22A</td><td>0.0%</td><td>no</td></tr></tbody></table></div><p class="note">Before the audit in §08, <b>eleven</b> features cleared the 85% threshold. Five of those eleven were counting calls made inside another feature's coordinates. After the audit, seven clear it and all seven are supported.</p><p class="note"><b>P22A's 0.0% is not a broken profile.</b> All 26 of its source records sit on genome records under 6 kb, and the evaluation population is genomes at or above 6 kb, so the feature was never offered a genome that could carry it. It recovers 26 of its own 26 sequences. A low call rate has two causes that look identical in the report — the protein is rare, or its genomes are partial — and one query on the source records' lengths separates them.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">90.0% clean, up from 81.3% before the audit.</p><div class="tiles"><div class="tile"><div class="v">100</div><div class="l">genomes scored</div></div><div class="tile"><div class="v">90.0%</div><div class="l">clean</div></div><div class="tile"><div class="v">10</div><div class="l">flagged</div></div></div><p class="note">All ten remaining flags are <code>Too many contigs for RNA2</code>. They come from P7B, whose calls land on RNA1 contigs in about a quarter of genomes despite being declared RNA2. Moving it to RNA1 was tested and made the count <em>worse</em> (27 → 43 genomes), so the declaration stands: the protein's segment genuinely varies across species.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Three limits, one of them permanent.</p><p class="note"><b>HSP70 and HSP90 cannot be separated on 6% of genomes.</b> They are called on identical coordinates there. This is not a binning error — the two collections share no sequences at all — but genuine paralogy: in criniviruses the two proteins are 64% identical over 99% of their length, and no bit_cutoff separates them without losing one. A documented limit, not a defect to fix.</p><p class="note"><b>The evaluation excludes partial genomes.</b> Collections are drawn from every protein record in the dump; the evaluation only from genomes at or above 6 kb. Features whose sequences come mostly from partial records — P22A entirely, P7A and RNASE3 substantially — show call rates that understate their real prevalence.</p><p class="note"><b>No mature peptides.</b> ORF1a is a polyprotein and its cleavage sites are not documented for this genus in a form that can be located from the sequence.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Eight features that were counting another protein's locus as their own.</p><p class="note">The module originally declared 23 features. A duplicate-call audit of the scored genomes found seven firing between 82% and 98% of the time <em>inside</em> a longer feature, plus two pairs called on identical coordinates.</p><pre class="mono">RNASE3  inside SUPPRESSOR   97%   -&gt;  99% identical, 100% coverage: ONE PROTEIN
+P9      inside HSP90        98%   -&gt;  47-90 aa profile at cutoff 25-30
+P8A     inside HSP90        95%
+P8B     inside HSP90        92%
+P6A     inside P8B          89%
+P26     inside P28          83%   -&gt;  23-24% identical over 96-99% cov: ONE FAMILY
+P23     inside P22B         82%
+HSP70 + HSP90  identical coordinates, 7%  -&gt;  genuine paralogues</pre><p class="note">Three different problems needing three answers. <b>RNASE3 and SUPPRESSOR are one gene</b> — in sweet potato chlorotic stunt virus the RNase3 <em>is</em> the silencing suppressor — and were merged. <b>p26, p27 and p28 are one diverged family</b> and were merged into P27. <b>P8A, P9, P8B, P6A and P23</b> are 47–90 aa profiles with cutoffs of 25–30 that fire on anything, have no sequence similarity to what they land inside, and were dropped.</p><p class="note"><b>This defect raises a feature's call rate, which is why nothing else caught it.</b> A profile firing inside a longer feature is present on nearly every genome that has the longer one, so it looks essential. Self-recall did not see it: every profile recovered its own collection perfectly. Collection disjointness did not see it: blastp at 90% identity found zero containment. It is now a kit check, <code>qc_duplicate_calls.py</code>, that runs before essentiality is assigned.</p><div class="verdict stop">Resolved: 23 features to 15, quality 81.3% to 90.0%, and five spurious copy_num assignments removed.</div></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">181 source strings became 15.</p><div class="tiles"><div class="tile"><div class="v">181 → 15</div><div class="l">string collapse (12.1×)</div></div><div class="tile"><div class="v">95</div><div class="l">distinct source strings</div></div><div class="tile"><div class="v">6.8×</div><div class="l">strings per 100 genomes</div></div></div><p class="note">The module's curve reaches 14 of its strings by the thirteenth genome. The source reaches 95 distinct strings with its knee at 88 and is still climbing — most of that tail is the mass names that §02 had to discard.</p></section><p class="src">Generated from <code>crinivirus_audit.json</code>. Routing from <code>build_rep_contigs.py</code>; call and quality rates from <code>run_gto_eval.py</code> over 100 genomes after the audit; duplicate calls from <code>qc_duplicate_calls.py</code>; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>.</p></div>
