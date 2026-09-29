@@ -385,6 +385,22 @@ separates three cases that need different answers:
              coverage -- genuine paralogues the profiles cannot separate.
              Document it; do not "fix" it.
 
+**In the closterovirids this is most of what the check finds, and it is
+biology.** Crinivirus HSP70/HSP90 are 64% identical over 99% coverage with
+disjoint collections; Closterovirus CP/CPM are 32% over 74%, because the
+minor coat protein IS a duplicated coat protein gene. Both pairs are real,
+both genes present, both `copy_num` assignments correct. Raising a cutoff
+until the pair separates simply loses one of them.
+
+**A containment floor is not optional.** The first version of this check
+counted ANY overlap with a longer feature as nested, and adjacent genes in a
+compact viral genome overlap as a matter of course -- Closterovirus HSP70
+(1,794 nt) and HSP90 (1,503 nt) share 92 bases. Without the floor it reported
+an entire healthy gene block as defective: Velarivirus was wrongly called at
+62% clean, and two real Crinivirus features were dropped before the error was
+caught. Require the shorter feature to be **80% contained** in the longer one.
+
+
 **Declare the overlaps that are real.** Capillovirus CP is fused inside its
 ORF1 polyprotein and its MP overlaps ORF1; Tymovirus MP overlaps the
 replicase by definition. Those are architecture, not defects, and the check
