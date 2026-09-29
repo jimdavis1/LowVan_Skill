@@ -135,6 +135,10 @@ Not made: string collapse, vocabulary saturation.
 | Ampelovirus String Collapse | [open](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [source](reports/ampelovirus-string-collapse.html) | 2026-09-29 |
 | Velarivirus String Collapse | [open](https://claude.ai/artifact/964Y7kzdrnjiBkAg74b8oz) | [source](reports/velarivirus-string-collapse.html) | 2026-09-29 |
 | Bromoviridae String Collapse | [open](https://claude.ai/artifact/1wZ4m4Ri6VarEWj6vGB8UT) | [source](reports/bromoviridae-string-collapse.html) | 2026-09-29 |
+| Capillovirus PSSM Registry | [open](https://claude.ai/artifact/2MhyYGJDyaiuKpH8dT8DMP) | [source](reports/capillovirus-pssm-registry.html) | 2026-09-29 |
+| Marafivirus PSSM Registry | [open](https://claude.ai/artifact/BJLdgUbZv3VZyFmBZwPur2) | [source](reports/marafivirus-pssm-registry.html) | 2026-09-29 |
+| Tymovirus PSSM Registry | [open](https://claude.ai/artifact/Rthyn6HHDwXe4VGhrgvXvt) | [source](reports/tymovirus-pssm-registry.html) | 2026-09-29 |
+| Crinivirus PSSM Registry | [open](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [source](reports/crinivirus-pssm-registry.html) | 2026-09-29 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
 | RdRp Read Nucleation | [open](https://claude.ai/artifact/D4L5hjJdBZqaE5DSsHUaXq) | — | 2026-09-17 |
