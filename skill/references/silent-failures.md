@@ -332,6 +332,54 @@ whole genomes must not be marked essential either way, so the safe direction
 is preserved. What it endangers is the *explanation* written next to the
 number in the coverage audit.
 
+### Two profiles on one ORF: the defect that raises a feature's call rate
+
+Crinivirus shipped 23 features. Five of them were called on 96-100% of routed
+genomes and duly earned `copy_num`. They had earned nothing: they were firing
+on a locus another feature already occupied.
+
+    RNASE3  inside SUPPRESSOR   97% of its calls
+    P9      inside HSP90        98%
+    P8A     inside HSP90        95%
+    P26     inside P28          83%
+    P23     inside P22B         82%
+    HSP70 + HSP90 on IDENTICAL coordinates in 7% of genomes
+
+**This raises the call rate, which is why it survives every other check.** A
+feature that fires inside a longer one is present on nearly every genome that
+has the longer one, so it looks essential. Self-recall does not see it — each
+profile recovers its own collection perfectly. Collection disjointness does
+not see it either: blastp at 90% found *zero* containment between these
+collections and the ones they were firing inside.
+
+`scripts/qc_duplicate_calls.py` looks for it in the scored genomes, and
+separates three cases that need different answers:
+
+  EXACT      identical coordinates. RNASE3 and SUPPRESSOR turned out to be
+             99% identical over 100% coverage -- in Sweet potato chlorotic
+             stunt virus the RNase3 IS the silencing suppressor, so this was
+             one gene declared twice. Merge.
+  NESTED     shorter inside longer. If the collections are homologous over
+             most of their length it is one family split by the mass trap --
+             P26/P27/P28 were 23-24% identical over 96-99% coverage, one
+             diverged protein under three masses. If they are NOT homologous,
+             the short profile is promiscuous: P8A, P9, P8B, P6A and P23 are
+             47-90 aa with bit_cutoffs of 25-30 and fire on anything.
+  PARALOGUE  both long, collections disjoint but similar. Crinivirus HSP70
+             and HSP90 share no sequences yet are 64% identical over 99%
+             coverage -- genuine paralogues the profiles cannot separate.
+             Document it; do not "fix" it.
+
+**Declare the overlaps that are real.** Capillovirus CP is fused inside its
+ORF1 polyprotein and its MP overlaps ORF1; Tymovirus MP overlaps the
+replicase by definition. Those are architecture, not defects, and the check
+takes `--expected CP:POLY,MP:POLY` so it does not cry wolf. A check that
+reports known biology as a finding gets ignored, and then the real finding
+gets ignored with it.
+
+**Run it before `apply_copy_num.py`,** because its whole failure mode is
+manufacturing call rate.
+
 ## The last mile
 
 A module is not built when its PSSMs exist in a temp directory. Twice in this

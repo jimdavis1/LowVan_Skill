@@ -495,6 +495,9 @@ from the gene's fame put three shipped modules at 0.0% clean. So:
 
 1. `gen_module_json.py` writes the block with **no `copy_num` at all**
 2. install, then `run_gto_eval.py` measures `called/routed` per feature
+2b. **`qc_duplicate_calls.py` first** — a feature firing inside a longer one
+   is present on nearly every genome and will earn `copy_num` it has not
+   earned. This invalidated five of Crinivirus's eleven assignments
 3. `apply_copy_num.py` adds it to the features that clear 0.85, and
    removes it from any that do not:
 
@@ -1025,6 +1028,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `collection_engine.py` | the binning engine: rules, length windows, ambiguity, chemistry, accessory discovery, tracking files |
 | `gen_module_json.py` | write the module JSON from what was actually built, with no `copy_num` |
 | `rescue_unassigned.py` | adopt unbinned sequences into a collection by homology |
+| `qc_duplicate_calls.py` | find features called on a locus another feature already occupies |
 | `apply_copy_num.py` | mark essential only the features that measured >= 85% on real genomes |
 | `synmap_from_collections.py` | reconstruct `synonyms.tsv` for a module built before the engine wrote it |
 | `build_rep_contigs.py` | write the rep contigs that budget implies, largest cluster first |
