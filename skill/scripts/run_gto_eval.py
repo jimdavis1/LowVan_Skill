@@ -55,6 +55,25 @@ def main():
                          "keeps the interpreter its own deps are installed under.")
     args = ap.parse_args()
 
+    #  Refuse to start on a box that is already annotating. Two concurrent
+    #  evaluations on ten cores drove the load average to 148 and throughput
+    #  to nearly zero: each annotator spawns ~10 short-lived BLAST children,
+    #  so 12 jobs is ~120 runnable processes. This was written down as a
+    #  lesson and then re-tripped three times in one session, so it is a
+    #  check now rather than a paragraph.
+    try:
+        import subprocess as _sp
+        _n = _sp.run(["pgrep", "-fc", "annotate_by_viral_pssm.pl"],
+                     capture_output=True, text=True).stdout.strip()
+        _n = int(_n) if _n.isdigit() else 0
+    except Exception:
+        _n = 0
+    if _n and not os.environ.get("LOWVAN_ALLOW_CONCURRENT_EVAL"):
+        sys.exit("refusing to start: %d annotate_by_viral_pssm.pl already running.\n"
+                 "Two evaluations at once thrash the box -- finish or stop the other\n"
+                 "first, or set LOWVAN_ALLOW_CONCURRENT_EVAL=1 if you are certain." % _n)
+
+
     R = os.path.abspath(args.repo)
     #  Everything below joins onto args.out and args.report, and the
     #  subprocesses run with cwd=<out>/_wd, so relative values resolve

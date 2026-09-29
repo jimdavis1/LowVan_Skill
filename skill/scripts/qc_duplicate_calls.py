@@ -79,6 +79,12 @@ def main():
     ap.add_argument("--collections", default=None,
                     help="collections/<Module> dir; enables the blastp column")
     ap.add_argument("--nested-frac", type=float, default=0.35)
+    ap.add_argument("--contain", type=float, default=0.80,
+                    help="fraction of the SHORTER feature that must lie inside "
+                         "the longer one to count as nested (default 0.80). "
+                         "Adjacent genes in a compact viral genome routinely "
+                         "overlap by a few dozen bases; without this floor "
+                         "every gene block looks nested.")
     ap.add_argument("--expected", default="",
                     help="comma-separated CHILD:PARENT overlaps that are real "
                          "genome architecture, e.g. CP:POLY,MP:REP. These are "
@@ -125,8 +131,16 @@ def main():
             for j, (k2, s2, _r2) in enumerate(fs):
                 if i == j or k2 == k:
                     continue
-                if s[0] == s2[0] and s[1] <= s2[2] and s2[1] <= s[2] \
-                   and (s2[2] - s2[1]) > (s[2] - s[1]):
+                if s[0] != s2[0] or (s2[2] - s2[1]) <= (s[2] - s[1]):
+                    continue
+                ov = min(s[2], s2[2]) - max(s[1], s2[1]) + 1
+                mine = s[2] - s[1] + 1
+                #  Containment, not mere overlap. Adjacent genes in a viral
+                #  gene block share a few dozen bases as a matter of course --
+                #  Closterovirus HSP70 (1794 nt) and HSP90 (1503 nt) overlap
+                #  by 92 -- and counting that as "nested" reported the entire
+                #  gene block as a defect.
+                if mine > 0 and ov / mine >= a.contain:
                     nested[k] += 1
                     who[k][k2] += 1
                     break

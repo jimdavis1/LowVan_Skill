@@ -273,6 +273,21 @@ Three things made this hard to read, and all three are worth knowing:
 
 Rule of thumb: **`--jobs` at about a third of the core count** for this
 pipeline, and measure the rate over two minutes before deciding it is wrong.
+
+**Never run two evaluations at once.** This was written down as a lesson and
+then re-tripped three times in the same session — once by restarting without
+killing the children, once by starting a re-check beside a backfill, once by
+doing it again an hour later. Documentation did not fix it, so
+`run_gto_eval.py` now refuses to start when `annotate_by_viral_pssm.pl` is
+already running (`LOWVAN_ALLOW_CONCURRENT_EVAL=1` overrides). Serialise and
+chain instead:
+
+```bash
+while ! grep -q "DONE" first.log; do sleep 30; done; ./second.sh
+```
+
+A lesson that only exists in prose gets re-learned. If the mistake is cheap to
+detect, make the tool detect it.
 Reading PSSMs from a cloud-synced directory costs real time too — copying the
 runtime to local disk first takes nine seconds and is always worth it.
 
