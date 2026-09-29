@@ -129,6 +129,24 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
     if not (len(ann) == len(seq) == n):
         sys.exit("uniq.* files are not the same length -- run check_dump.py")
 
+    #  genus per genome, for synonyms.tsv. A collapse report without a genus
+    #  column cannot show that one annotation absorbed strings from several
+    #  genera, which is most of its argument.
+    g2genus = {}
+    gpath = os.path.join(here, "%s.id_name_gs" % T)
+    if os.path.exists(gpath):
+        for l in open(gpath, errors="replace"):
+            f = l.rstrip("\n").split("\t")
+            if len(f) >= 4:
+                g2genus[f[0]] = f[3] or "unclassified"
+
+    def genus_of(fid):
+        try:
+            return g2genus.get(".".join(fid.split("|", 1)[1].split(".")[:2]),
+                               "unclassified")
+        except IndexError:
+            return "unclassified"
+
     per_md5 = collections.Counter()
     for l in open(os.path.join(here, "%s.id_md5" % T), errors="replace"):
         p = l.rstrip("\n").split("\t")
@@ -136,6 +154,7 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
             per_md5[p[1].strip()] += 1
 
     out = collections.defaultdict(list)
+    syn = collections.Counter()          # (annotation, genus, bins_to) -> features
     unassigned = collections.Counter()
     notmodelled = collections.Counter()
     feat_counts = collections.Counter()
@@ -147,6 +166,8 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
             continue
         key, why = classify(a, rules, notmod)
         nfeat = per_md5.get(md5s[i], 1)
+        fid0 = ann[i][0] if ann[i] else ""
+        syn[(" ".join(a.split()), genus_of(fid0), key or "UNASSIGNED")] += nfeat
         if key:
             out[key].append((ann[i][0] if ann[i] else md5s[i], a, s))
             feat_counts[key] += nfeat
@@ -168,6 +189,12 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
             out[k] = [(fid, a, sq) for fid, a, sq, _nf in rows]
             feat_counts[k] = sum(nf for _f, _a, _s, nf in rows)
             for _fid, a, _s, nf in rows:
+                gk = genus_of(_fid)
+                if syn.get((a, gk, "UNASSIGNED")):
+                    syn[(a, gk, "UNASSIGNED")] -= nf
+                    if syn[(a, gk, "UNASSIGNED")] <= 0:
+                        del syn[(a, gk, "UNASSIGNED")]
+                syn[(a, gk, k)] += nf
                 #  decrement by the FEATURE count, not by one: unassigned was
                 #  incremented by nfeat, so decrementing by one leaves a
                 #  phantom residue and understates the binned fraction.
@@ -300,6 +327,10 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
     dump("AMBIGUOUS_KEPT.tsv", "feature\ttaxon\tfeature_id\tn_amb\tlength", sorted(xkept))
     dump("JUNCTION_DROPPED.tsv", "feature\tfeature_id\tlength\tfirst\tlast\tbad_end", sorted(jdetail))
     dump("JUNCTION_SUMMARY.tsv", "feature\tdropped", ((k, jdropped[k]) for k in sorted(jdropped)))
+    with open(os.path.join(td, "synonyms.tsv"), "w") as fh:
+        fh.write("count\tannotation\tgenus\tbins_to\n")
+        for (a, g, k), c in sorted(syn.items(), key=lambda x: -x[1]):
+            fh.write("%d\t%s\t%s\t%s\n" % (c, a, g, k))
     dump("ACCESSORY_CLUSTERS.tsv", "feature\tmembers\tmin_len\tmed_len\tmax_len\tlabels",
          ((k, len(v), min(len(r[2]) for r in v),
            sorted(len(r[2]) for r in v)[len(v) // 2],
@@ -324,4 +355,19 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
     print("  %-9s %8s %9d" % ("NOTMOD", "", sum(notmodelled.values())))
     print("  %-9s %8d %9d" % ("UNASSIG", len(unassigned), sum(unassigned.values())))
     print("\n  binned %d of %d features = %.1f%%" % (tot, allf, 100.0 * tot / allf))
+
+    #  This run truncated the collections, so any sequences that
+    #  rescue_unassigned.py had adopted by homology are gone. The skill has
+    #  said so in prose for a while and it still is not enough -- it was
+    #  re-tripped while adding synonyms.tsv, on a re-run made for an unrelated
+    #  reason. Say it where it cannot be missed, and name the command.
+    if os.path.exists(os.path.join(td, "RESCUED.tsv")):
+        print("\n  *** A RESCUE WAS DISCARDED BY THIS RUN ***\n"
+              "  collections/RESCUED.tsv exists, so rescue_unassigned.py had\n"
+              "  added sequences to these collections by homology. Writing them\n"
+              "  fresh has just removed those sequences. Re-run it NOW with the\n"
+              "  same windows, then compare every collection count against the\n"
+              "  previous build before building any PSSM:\n"
+              "      python3 rescue_unassigned.py --workdir . --module %s \\\n"
+              "              --dump %s --expected 'KEY:lo-hi,...' --write" % (MODULE, T))
     return out

@@ -119,6 +119,13 @@ def main():
                 if not os.path.isdir(os.path.join(R, SPECIAL_DIR[kind])):
                     continue
                 dst = os.path.join(wd, b + "." + kind + ".gto")
+                #  annotate_by_viral_pssm.pl is run with -tmp and removes its
+                #  own working directory on the way out, so by the time the
+                #  special-feature passes run, cwd=wd may no longer exist and
+                #  subprocess dies with FileNotFoundError on the CWD rather
+                #  than on the program -- which reads like a missing script.
+                #  Intermittent: 21 genomes succeeded before the first hit.
+                os.makedirs(wd, exist_ok=True)
                 rs = subprocess.run([args.perl, os.path.join(R, prog),
                                      "-i", src, "-o", dst,
                                      "-j", os.path.join(R, "Viral_PSSM.json"),
@@ -137,6 +144,7 @@ def main():
             src_tbl = os.path.join(wd, b + ".stdout.txt")
             if os.path.exists(src_tbl) and os.path.getsize(src_tbl) > 0:
                 shutil.copyfile(src_tbl, os.path.join(args.tbl_dir, b + ".feature.tbl"))
+        os.makedirs(wd, exist_ok=True)   # same reason as above
         r = subprocess.run([args.perl, os.path.join(R, "viral_genome_quality.pl"),
                             "-i", ann, "-o", qual, "-p", b],
                            capture_output=True, text=True, env=env, cwd=wd)
