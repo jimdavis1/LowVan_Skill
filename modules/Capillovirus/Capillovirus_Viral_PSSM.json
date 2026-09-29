@@ -1,0 +1,112 @@
+{
+   "Capillovirus" : {
+      "close_genomes" : {
+         "Capillovirus.1.dna" : {
+            "genome_ids" : "OR734970",
+            "genome_name" : "Capillovirus mali A2"
+         },
+         "Capillovirus.10.dna" : {
+            "genome_ids" : "MW328729",
+            "genome_name" : "Avellana capillovirus 1"
+         },
+         "Capillovirus.11.dna" : {
+            "genome_ids" : "MW328738",
+            "genome_name" : "Breadfruit capillovirus 1 arto"
+         },
+         "Capillovirus.12.dna" : {
+            "genome_ids" : "ON240063",
+            "genome_name" : "polyscias capillovirus 1 ZWY-16"
+         },
+         "Capillovirus.13.dna" : {
+            "genome_ids" : "OM525829",
+            "genome_name" : "Gerbera capillovirus A Bonghwa"
+         },
+         "Capillovirus.2.dna" : {
+            "genome_ids" : "KY510919",
+            "genome_name" : "Cherry virus A 4399 2A2/13TF169_N11"
+         },
+         "Capillovirus.3.dna" : {
+            "genome_ids" : "MG783575",
+            "genome_name" : "Mume virus A pm14"
+         },
+         "Capillovirus.4.dna" : {
+            "genome_ids" : "OR608918",
+            "genome_name" : "Paris capillovirus 1 YLuD-Paris"
+         },
+         "Capillovirus.5.dna" : {
+            "genome_ids" : "KT763043",
+            "genome_name" : "Currant virus A"
+         },
+         "Capillovirus.6.dna" : {
+            "genome_ids" : "KU375548",
+            "genome_name" : "Yacon virus A 4Y_2"
+         },
+         "Capillovirus.7.dna" : {
+            "genome_ids" : "MK936045",
+            "genome_name" : "Loquat virus A"
+         },
+         "Capillovirus.8.dna" : {
+            "genome_ids" : "MN047299",
+            "genome_name" : "rubber tree virus 1 RTCV1_HN/Qionghai"
+         },
+         "Capillovirus.9.dna" : {
+            "genome_ids" : "OQ067396",
+            "genome_name" : "Capillovirus sp. 6261J"
+         }
+      },
+      "features" : {
+         "CP" : {
+            "anno" : "Coat protein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CP",
+            "kmers" : 1,
+            "max_len" : 328,
+            "min_len" : 203,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "MP" : {
+            "anno" : "Movement protein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "MP",
+            "kmers" : 1,
+            "max_len" : 492,
+            "min_len" : 248,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "POLY" : {
+            "anno" : "Replicase polyprotein",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 2675,
+            "min_len" : 1537,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 8321,
+            "min_len" : 5999,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}
