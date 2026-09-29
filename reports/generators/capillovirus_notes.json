@@ -1,0 +1,11 @@
+{
+ "standfirst": "One genus, one genome layout: a ~241 kDa ORF1 polyprotein carrying the coat protein at its C-terminus, and a 36 kDa ORF2 movement protein. Three features, built from 779 unique proteins, routing 100% of the taxon on 13 references.",
+ "modules": {
+  "Capillovirus": "Small and homogeneous, so the work was in the annotation strings rather than the biology. Three different labels -- <em>serine protease</em>, <em>36K protein</em> and <em>putative movement protein</em> -- turned out to be 96.9-98.4% identical to one another and are all ORF2; the protease label is simply wrong, since capilloviruses encode a papain-like cysteine protease as an ORF1 domain."
+ },
+ "gaps": "The only strings not modelled are ORF1 domain footprints -- 26 features annotated <em>RNA-dependent RNA polymerase core region</em>, every one of them exactly 270 aa, which is a Pfam hit rather than a separate CDS. Declaring it would create a feature no genome separately encodes.",
+ "derived": "No cleaved products are declared. ORF1 is a polyprotein and its mature peptides have no coordinates in the literature that could be read off the sequence, so none are claimed.",
+ "why": {
+  "CP": "45 sequences after 11 records whose CP is annotated inside the ORF1 polyprotein were dropped on the Met rule -- 8 of them beginning at Ile at exactly 205 aa. Built at -m 2."
+ }
+}

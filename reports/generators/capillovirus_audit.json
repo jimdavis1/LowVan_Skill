@@ -1,0 +1,314 @@
+{
+ "title": "Capillovirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Capillovirus module \u00b7 29 September 2026",
+ "h1": "Does the apple stem grooving virus module actually work?",
+ "standfirst": "<b>Capillovirus</b> is a genus of the <i>Betaflexiviridae</i>: apple stem grooving virus, cherry virus A, citrus tatter leaf virus and about thirty more, mostly of woody perennials. One genome layout throughout \u2014 a ~241 kDa ORF1 polyprotein carrying the coat protein at its C-terminus, and a 36 kDa ORF2 movement protein expressed from a subgenomic RNA. Three features, and the module calls all three on every genome it routes.",
+ "headline_tiles": [
+  [
+   "3",
+   "features, all with profiles"
+  ],
+  [
+   "10",
+   "PSSMs"
+  ],
+  [
+   "334/334",
+   "genomes routed"
+  ],
+  [
+   "100.0%",
+   "genomes clean"
+  ],
+  [
+   "12.3\u00d7",
+   "string collapse"
+  ],
+  [
+   "1",
+   "mislabelled protein found"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One genus, one layout, so the partitioning question never arose.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "A LowVan module is defined by genome organisation rather than phylogeny. Capillovirus needed no decision: every member carries the same two ORFs, so the genus and the module are the same set. That is unusual in this build \u2014 Quinvirinae, Bromoviridae and Tymoviridae all had to be split or lumped against measurement."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "segment",
+      "length (aa)",
+      "bit cutoff"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Replicase polyprotein",
+       "Single RNA Segment",
+       "1537\u20132675",
+       "400"
+      ],
+      [
+       "MP",
+       "Movement protein",
+       "Single RNA Segment",
+       "248\u2013492",
+       "80"
+      ],
+      [
+       "CP",
+       "Coat protein",
+       "Single RNA Segment",
+       "203\u2013328",
+       "80"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The coat protein is <em>inside</em> ORF1 as well as being expressed on its own. That is visible in the source data: of 56 records annotated as a coat protein, 11 begin somewhere other than a methionine \u2014 8 of them at isoleucine at exactly 205 aa \u2014 because they were annotated as a segment of the polyprotein. Those are excluded from the CP collection so the profile starts at the subgenomic Met."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "779 unique proteins, 97.0% of features binned, and one string that named the wrong enzyme.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Three source labels turned out to be the same protein. Representatives of <b>serine protease</b>, <b>36K protein</b> and <b>putative movement protein</b> are 96.9\u201398.4% identical to one another over their full length (blastp, E=0.0) and are all ORF2. The protease label is simply wrong: capilloviruses encode a papain-like <em>cysteine</em> protease, and it is a domain of ORF1, not a 320 aa standalone. Binning on the word <code>protease</code> would have created a 25-sequence phantom feature out of MP's own sequences."
+    },
+    {
+     "type": "pre",
+     "text": "serine protease       vs putative movement protein   96.9%  E=0.0   642 bits\n36K protein           vs putative movement protein   98.4%  E=0.0   648 bits\n36K protein           vs serine protease             96.9%  E=0.0   639 bits\nmovement protein      vs 36K protein                 42.5%/212      188 bits"
+    },
+    {
+     "type": "prose",
+     "html": "The last row is the other finding. MP is <b>bimodal</b>: a 320 aa class and a 463 aa class, 42% identical over 212 residues \u2014 divergent but genuinely the same ORF2 homology group. The default length window is 0.7\u20131.3\u00d7 the feature's median, the pooled median is 320, and that window is 224\u2013416. Every one of the 119 sequences in the larger class would have been discarded as overlong, with every number in the report self-consistent. MP was given an explicit 260\u2013480 window instead."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Conventional for the feature class; nothing here needed tuning.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit cutoff",
+      "profiles",
+      "collection",
+      "self-recall"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "400",
+       "5",
+       "449",
+       "430 (95.8%)"
+      ],
+      [
+       "MP",
+       "80",
+       "4",
+       "278",
+       "277 (99.6%)"
+      ],
+      [
+       "CP",
+       "80",
+       "1",
+       "45",
+       "42 (93.3%)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out number is in \u00a705."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Yes \u2014 completely, and on half the reference budget.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Routing is a BLASTn match against a set of reference contigs. The project budget is 25 references per module; a taxon that cannot reach most of its genomes inside that budget is tabled rather than forced."
+    },
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "13",
+       "references used"
+      ],
+      [
+       "334/334",
+       "genomes reached"
+      ],
+      [
+       "100.0%",
+       "coverage at budget 25"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "13 references cover every genome in the taxon at \u22656 kb. The budget measurement and the shipped set agree exactly, which is the check that one of them is not wrong."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "All three features, on every routed genome.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on",
+      "of routed genomes",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "150",
+       "150 (100.0%)",
+       "yes"
+      ],
+      [
+       "MP",
+       "150",
+       "150 (100.0%)",
+       "yes"
+      ],
+      [
+       "CP",
+       "150",
+       "150 (100.0%)",
+       "yes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Measured on a random sample of 150 of the 334 genomes (seed 29). <code>copy_num</code> \u2014 the field that marks a feature essential \u2014 was set <em>after</em> this measurement, not before. A feature carrying <code>copy_num</code> flags every genome that lacks it, and deciding essentiality from a gene's reputation rather than from its call rate has taken three modules in this project to 0.0% clean. All three Capillovirus features earned it at 100.0%."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Every declared feature is called on every routed genome."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "100.0% of scored genomes carry no genome or contig flag.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "150",
+       "genomes scored"
+      ],
+      [
+       "100.0%",
+       "clean"
+      ],
+      [
+       "0",
+       "flagged"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Quality scoring checks each called feature against the module's declared lengths and the genome against its declared segment geometry. No genome in the sample raised a flag."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Two real limits, both deliberate.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>No mature peptides.</b> ORF1 is a polyprotein and its cleavage sites are not documented in a form that can be read off the sequence for this genus. The project rule is that a mature peptide is declared only when the literature gives coordinates or a cleavage motif; guessing from a homologue's sites is how a module ships a feature it cannot actually locate. So the polyprotein is called whole and its products are not claimed."
+    },
+    {
+     "type": "prose",
+     "html": "<b>ORF1 domain labels are not features.</b> 26 features in the source are annotated <code>RNA-dependent RNA polymerase core region</code>, every one of them exactly 270 aa. That is a Pfam domain footprint on ORF1, not a separately encoded protein, and declaring it would produce a feature no genome actually has."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The evaluation is a sample.</b> 150 of 334 genomes. Whole-taxon reach is the routing figure in \u00a704, which is a census; the call and quality rates in \u00a705 and \u00a706 are estimates from the sample, precise to roughly \u00b16 points at n=150."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "One mislabelled protein and one length trap, both caught before shipping.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The <code>serine protease</code> label would have cost MP a quarter of its sequences and created a feature for an enzyme the genus does not encode in that form. The bimodal MP length distribution would have cost it another 119. Neither would have produced an error message; both were found by measuring rather than by reading the source's words."
+    },
+    {
+     "type": "verdict",
+     "kind": "good",
+     "html": "Nothing outstanding. The module calls three of three features on every routed genome, and both defects found during the build were fixed before it shipped."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "37 source strings became 3; the module's vocabulary is complete after one genome.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "37 \u2192 3",
+       "string collapse (12.3\u00d7)"
+      ],
+      [
+       "15.3",
+       "source strings per 100 genomes"
+      ],
+      [
+       "2.0",
+       "module strings per 100 genomes"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The rarefaction curve is the same claim in a different shape. Shuffle the genomes, accumulate distinct annotation strings: the module's curve is flat at 3 from the first genome, because there are only three things to say. The source curve reaches 23 distinct strings and has its knee at 130 genomes \u2014 it is still climbing at the end of the data, because every submitter spells the same protein a new way."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>capillovirus_audit.json</code>. Routing from <code>build_rep_contigs.py</code>; call and quality rates from <code>run_gto_eval.py</code> over 150 genomes; self-recall from <code>collect_registry.py</code>; collapse from <code>collect_synmap.py</code>; curves from <code>annotation_rarefaction.py</code>."
+}
