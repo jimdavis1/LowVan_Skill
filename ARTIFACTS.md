@@ -152,6 +152,7 @@ Not made: string collapse, vocabulary saturation.
 | Quinvirinae String Collapse | [open](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [source](reports/quinvirinae-string-collapse.html) | 2026-09-29 |
 | Tymovirus Vocabulary Saturation | [open](https://claude.ai/artifact/DBakDPHuHADrHWkDRadqUK) | [source](reports/tymovirus-vocabulary-saturation.html) | 2026-09-29 |
 | Tymovirus Coverage Audit | [open](https://claude.ai/artifact/BcR2cenCdnFyLZGus2S5up) | [source](reports/tymovirus-coverage-audit.html) | 2026-09-29 |
+| Quinvirinae PSSM Registry | [open](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [source](reports/quinvirinae-pssm-registry.html) | 2026-09-29 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
 | RdRp Read Nucleation | [open](https://claude.ai/artifact/D4L5hjJdBZqaE5DSsHUaXq) | — | 2026-09-17 |
