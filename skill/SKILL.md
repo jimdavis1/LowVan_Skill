@@ -497,7 +497,13 @@ from the gene's fame put three shipped modules at 0.0% clean. So:
 2. install, then `run_gto_eval.py` measures `called/routed` per feature
 2b. **`qc_duplicate_calls.py` first** — a feature firing inside a longer one
    is present on nearly every genome and will earn `copy_num` it has not
-   earned. This invalidated five of Crinivirus's eleven assignments
+   earned. `apply_copy_num.py` now blocks that case itself: it measures a
+   raw and a standalone rate per feature and uses them **asymmetrically** —
+   an ADD needs both over the threshold, a DROP uses the raw rate only.
+   Adding on a raw rate grants essentiality on another feature's locus;
+   dropping on a standalone rate demotes genuine overlapping ORFs, and
+   Capillovirus CP sits inside its own polyprotein at a 2% standalone rate.
+   Pass `--expected CP:POLY` for architecture that is real
 3. `apply_copy_num.py` adds it to the features that clear 0.85, and
    removes it from any that do not:
 
