@@ -121,7 +121,7 @@
          "CPM": {
             "anno": "Minor coat protein",
             "bit_cutoff": 80,
-            "copy_num": 1,
+            "comment": "Accessory ORF, present on 40% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff": 0.65,
             "downstream_ext": 0,
             "feature_type": "CDS",
@@ -166,7 +166,7 @@
          "P20A": {
             "anno": "p20A protein",
             "bit_cutoff": 30,
-            "copy_num": 1,
+            "comment": "Accessory ORF, present on 6% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff": 0.65,
             "downstream_ext": 0,
             "feature_type": "CDS",
@@ -181,7 +181,7 @@
          "P20B": {
             "anno": "p20B protein",
             "bit_cutoff": 30,
-            "copy_num": 1,
+            "comment": "Accessory ORF, present on 6% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff": 0.65,
             "downstream_ext": 0,
             "feature_type": "CDS",
@@ -196,7 +196,7 @@
          "P21": {
             "anno": "p21 protein",
             "bit_cutoff": 30,
-            "copy_num": 1,
+            "comment": "Accessory ORF, present on 27% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff": 0.65,
             "downstream_ext": 0,
             "feature_type": "CDS",
@@ -211,7 +211,7 @@
          "P24": {
             "anno": "p24 protein",
             "bit_cutoff": 30,
-            "copy_num": 1,
+            "comment": "Accessory ORF, present on 53% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff": 0.65,
             "downstream_ext": 0,
             "feature_type": "CDS",
@@ -226,7 +226,7 @@
          "P7": {
             "anno": "p7 protein",
             "bit_cutoff": 25,
-            "copy_num": 1,
+            "comment": "Accessory ORF, present on 19% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff": 0.65,
             "downstream_ext": 0,
             "feature_type": "CDS",

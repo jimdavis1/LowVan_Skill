@@ -28,9 +28,25 @@ produced **258 "missing essential feature" flags** and drove genuinely-clean to
 **0.0%** on a module whose core features call at 98–100%. Removing `copy_num`
 from those three: **79.6%**.
 
-**Before setting `copy_num`, count the taxa in the feature's collection.**
-Genus-specific accessories, readthrough products, and anything variable in
-presence across the module get none.
+**The first version of this rule was wrong, and the bug recurred because of
+it.** After Quinvirinae I wrote "count the taxa in the feature's collection"
+and automated that as *single genus → everything essential*. It promptly
+happened again in two more modules, because **accessory ORFs vary by species
+WITHIN a genus**: Closterovirus p13 is carried by 9.5% of genomes and
+Ampelovirus p20A/p20B by 6.1%, both in single-genus modules. Both scored
+**0.0% genuinely clean** while their core features called at 91–100%.
+
+**Set `copy_num` on the fraction of GENOMES that carry the feature, not on how
+many genera it spans.** Measure it on the panel:
+
+```python
+essential = called[k] / routed >= 0.85
+```
+
+That de-escalated 7 of Closterovirus's 13 features (0.0% → 33.8%) and 6 of
+Ampelovirus's 11 (0.0% → 52.5%).
+
+Readthrough products and anything variable in presence get none either.
 
 Note the distinction that matters. A feature that is *absent* in some genera
 should be non-essential. A feature that is *present but uncallable* — like
