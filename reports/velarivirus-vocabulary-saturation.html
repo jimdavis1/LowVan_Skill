@@ -1,0 +1,193 @@
+<title>Velarivirus Vocabulary Saturation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --src:#eb6834; --mod:#2a78d6;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --src:#d95926; --mod:#3987e5;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --src:#d95926; --mod:#3987e5;
+  }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:900px; margin:0 auto; padding-block:40px 72px; padding-left:22px; padding-right:22px;
+           display:flex; flex-direction:column; gap:28px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  .stand { max-width:68ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .stand b { color:var(--ink); font-weight:600; }
+
+  .figs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+           border-top:1px solid var(--base); border-bottom:1px solid var(--grid); }
+  .fig { padding:13px 16px 13px 0; }
+  .fig+.fig { padding-left:16px; border-left:1px solid var(--grid); }
+  .fig .n { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:23px;
+             font-weight:500; display:block; letter-spacing:-.02em; }
+  .fig .k { font-size:12px; color:var(--ink2); }
+
+  figure { margin:0; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface); padding:6px 4px 2px; position:relative; }
+  svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:9px; max-width:74ch; }
+
+  .legend { display:flex; gap:18px; flex-wrap:wrap; font-size:13px; color:var(--ink2);
+             align-items:center; margin-bottom:10px; }
+  .legend span { display:inline-flex; gap:7px; align-items:center; }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; }
+
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+          background:var(--surface); border:1px solid var(--base); border-radius:4px;
+          padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+          font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+  details { border-top:1px solid var(--grid); padding-top:14px; }
+  summary { cursor:pointer; font-size:13.5px; color:var(--ink2); }
+  summary:focus-visible { outline:2px solid var(--mod); outline-offset:3px; }
+  .tw { overflow-x:auto; margin-top:12px; border:1px solid var(--hair); border-radius:4px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { padding:6px 11px; text-align:right; border-bottom:1px solid var(--grid); }
+  th:first-child, td:first-child { text-align:left; }
+  thead th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase;
+              color:var(--muted); font-weight:500; }
+  tbody td { font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink2); }
+  tbody tr:last-child td { border-bottom:0; }
+  .note { font-size:13.5px; color:var(--ink2); max-width:74ch; }
+  .note b { color:var(--ink); }
+  .src { font-size:12px; color:var(--muted); border-top:1px solid var(--grid); padding-top:13px; }
+  .src code { font-family:var(--mono); }
+  @media (max-width:620px) { .figs { grid-template-columns:repeat(2,1fr); } h1 { font-size:25px; } }
+</style>
+<div class="wrap">
+ <header>
+  <div class="eyebrow">LowVan &middot; Velarivirus module &middot; 29 September 2026</div>
+  <h1>Velarivirus</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">A controlled vocabulary stops growing. Free text does not.</h2>
+  <p class="stand">A Velarivirus genome encodes the same 7 modelled proteins as
+  any other, so a curated vocabulary needs exactly 7 names no matter how many
+  genomes you read. Free-text product strings have no such ceiling: each new
+  submitter spells the same proteins a new way. Sampling 150 annotated genomes
+  100 times over shows the two curves doing exactly that &mdash; the module is
+  <b>saturated after 4 genomes</b>,
+  while the source vocabulary is <b>still climbing at 150</b>.</p>
+ </header>
+
+ <div class="figs">
+  <div class="fig"><span class="n" style="color:var(--mod)">7</span><span class="k">strings, controlled vocabulary</span></div>
+  <div class="fig"><span class="n" style="color:var(--src)">161</span><span class="k">strings, BV-BRC free text</span></div>
+  <div class="fig"><span class="n">23.0&times;</span><span class="k">collapse per 100 genomes</span></div>
+  <div class="fig"><span class="n">122</span><span class="k">genomes before free text saturates</span></div>
+ </div>
+
+ <figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of genomes sampled. Free-text strings rise from about 9 to 161; the controlled vocabulary stays flat at about 7.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="267.5" x2="648" y2="267.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="106.5" x2="648" y2="106.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="271.5" text-anchor="end" class="tick">50</text><text x="47" y="191.0" text-anchor="end" class="tick">100</text><text x="47" y="110.5" text-anchor="end" class="tick">150</text><text x="47" y="30.0" text-anchor="end" class="tick">200</text><text x="58.0" y="369" text-anchor="middle" class="tick">1</text><text x="252.0" y="369" text-anchor="middle" class="tick">50</text><text x="450.0" y="369" text-anchor="middle" class="tick">100</text><text x="648.0" y="369" text-anchor="middle" class="tick">150</text>
+    <text class="axtitle" x="58" y="392">genomes sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <path d="M58.0 333.33 L62.0 322.58 L65.9 313.64 L69.9 306.04 L73.8 299.91 L77.8 293.87 L81.8 287.82 L85.7 282.38 L89.7 277.27 L93.6 272.31 L97.6 268.11 L101.6 262.88 L105.5 258.87 L109.5 255.54 L113.4 252.61 L117.4 248.95 L121.4 245.93 L125.3 243.35 L129.3 240.11 L133.2 236.88 L137.2 234.49 L141.2 231.53 L145.1 228.41 L149.1 225.99 L153.0 223.51 L157.0 220.94 L161.0 218.25 L164.9 215.53 L168.9 213.48 L172.8 211.34 L176.8 209.52 L180.8 206.51 L184.7 204.13 L188.7 202.21 L192.6 200.36 L196.6 198.33 L200.6 196.56 L204.5 194.78 L208.5 192.73 L212.4 190.49 L216.4 188.61 L220.3 186.61 L224.3 184.94 L228.3 183.73 L232.2 181.88 L236.2 179.98 L240.1 178.18 L244.1 176.34 L248.1 174.81 L252.0 173.19 L256.0 172.04 L259.9 170.19 L263.9 168.73 L267.9 167.07 L271.8 165.55 L275.8 164.17 L279.7 162.95 L283.7 161.19 L287.7 159.66 L291.6 157.62 L295.6 155.77 L299.5 154.59 L303.5 153.32 L307.5 152.03 L311.4 150.79 L315.4 149.83 L319.3 148.79 L323.3 147.49 L327.3 146.06 L331.2 144.85 L335.2 143.53 L339.1 142.47 L343.1 141.47 L347.1 140.33 L351.0 139.09 L355.0 137.72 L358.9 136.49 L362.9 135.22 L366.9 134.59 L370.8 133.32 L374.8 132.08 L378.7 130.91 L382.7 129.99 L386.7 128.88 L390.6 127.70 L394.6 126.91 L398.5 125.93 L402.5 124.82 L406.5 123.82 L410.4 123.18 L414.4 122.44 L418.3 121.62 L422.3 120.86 L426.3 120.12 L430.2 119.35 L434.2 118.49 L438.1 117.74 L442.1 117.13 L446.1 116.27 L450.0 115.39 L454.0 114.55 L457.9 113.73 L461.9 113.15 L465.9 112.15 L469.8 111.49 L473.8 110.73 L477.7 109.90 L481.7 109.43 L485.7 108.79 L489.6 108.16 L493.6 107.66 L497.5 107.35 L501.5 106.79 L505.4 106.05 L509.4 105.65 L513.4 105.10 L517.3 104.44 L521.3 103.91 L525.2 103.57 L529.2 102.83 L533.2 102.30 L537.1 101.72 L541.1 101.44 L545.0 100.72 L549.0 100.22 L553.0 99.43 L556.9 99.05 L560.9 98.34 L564.8 97.85 L568.8 97.45 L572.8 97.15 L576.7 96.65 L580.7 96.07 L584.6 95.55 L588.6 94.92 L592.6 94.38 L596.5 93.85 L600.5 93.39 L604.4 92.88 L608.4 92.49 L612.4 91.83 L616.3 91.41 L620.3 90.95 L624.2 90.63 L628.2 90.37 L632.2 90.05 L636.1 89.76 L640.1 89.58 L644.0 89.16 L648.0 88.79" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 338.61 L62.0 337.68 L65.9 337.31 L69.9 337.10 L73.8 336.94 L77.8 336.86 L81.8 336.81 L85.7 336.79 L89.7 336.78 L93.6 336.75 L97.6 336.75 L101.6 336.75 L105.5 336.73 L109.5 336.73 L113.4 336.73 L117.4 336.73 L121.4 336.73 L125.3 336.73 L129.3 336.73 L133.2 336.73 L137.2 336.73 L141.2 336.73 L145.1 336.73 L149.1 336.73 L153.0 336.73 L157.0 336.73 L161.0 336.73 L164.9 336.73 L168.9 336.73 L172.8 336.73 L176.8 336.73 L180.8 336.73 L184.7 336.73 L188.7 336.73 L192.6 336.73 L196.6 336.73 L200.6 336.73 L204.5 336.73 L208.5 336.73 L212.4 336.73 L216.4 336.73 L220.3 336.73 L224.3 336.73 L228.3 336.73 L232.2 336.73 L236.2 336.73 L240.1 336.73 L244.1 336.73 L248.1 336.73 L252.0 336.73 L256.0 336.73 L259.9 336.73 L263.9 336.73 L267.9 336.73 L271.8 336.73 L275.8 336.73 L279.7 336.73 L283.7 336.73 L287.7 336.73 L291.6 336.73 L295.6 336.73 L299.5 336.73 L303.5 336.73 L307.5 336.73 L311.4 336.73 L315.4 336.73 L319.3 336.73 L323.3 336.73 L327.3 336.73 L331.2 336.73 L335.2 336.73 L339.1 336.73 L343.1 336.73 L347.1 336.73 L351.0 336.73 L355.0 336.73 L358.9 336.73 L362.9 336.73 L366.9 336.73 L370.8 336.73 L374.8 336.73 L378.7 336.73 L382.7 336.73 L386.7 336.73 L390.6 336.73 L394.6 336.73 L398.5 336.73 L402.5 336.73 L406.5 336.73 L410.4 336.73 L414.4 336.73 L418.3 336.73 L422.3 336.73 L426.3 336.73 L430.2 336.73 L434.2 336.73 L438.1 336.73 L442.1 336.73 L446.1 336.73 L450.0 336.73 L454.0 336.73 L457.9 336.73 L461.9 336.73 L465.9 336.73 L469.8 336.73 L473.8 336.73 L477.7 336.73 L481.7 336.73 L485.7 336.73 L489.6 336.73 L493.6 336.73 L497.5 336.73 L501.5 336.73 L505.4 336.73 L509.4 336.73 L513.4 336.73 L517.3 336.73 L521.3 336.73 L525.2 336.73 L529.2 336.73 L533.2 336.73 L537.1 336.73 L541.1 336.73 L545.0 336.73 L549.0 336.73 L553.0 336.73 L556.9 336.73 L560.9 336.73 L564.8 336.73 L568.8 336.73 L572.8 336.73 L576.7 336.73 L580.7 336.73 L584.6 336.73 L588.6 336.73 L592.6 336.73 L596.5 336.73 L600.5 336.73 L604.4 336.73 L608.4 336.73 L612.4 336.73 L616.3 336.73 L620.3 336.73 L624.2 336.73 L628.2 336.73 L632.2 336.73 L636.1 336.73 L640.1 336.73 L644.0 336.73 L648.0 336.73" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="648.0" cy="88.79" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="648.0" cy="336.73" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="658.0" y="87.79" fill="var(--src)">free text</text>
+    <text class="endsub" x="658.0" y="100.79">161 strings</text>
+    <text class="endlab" x="658.0" y="339.73" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="658.0" y="352.73">7 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of the
+  150 annotated genomes. The controlled curve is flat because the 7 names are
+  fixed in advance; the free-text curve rises because it is a record of how many
+  different ways people have written those same 7 proteins down.</figcaption>
+ </figure>
+
+ <p class="note">The ratio is the number worth quoting: at the end of each curve,
+ free text costs <b>107.3 strings per 100 genomes</b> and the controlled
+ vocabulary <b>4.7</b> &mdash; a <b>23.0-fold collapse</b>.
+ Reaching 95% of its final size takes the source vocabulary <b>122 genomes</b>
+ (81% of the set); the module gets there on genome
+ <b>4</b>.</p>
+
+ <details>
+  <summary>Table view &mdash; 3 genome steps</summary>
+  <div class="tw"><table>
+   <thead><tr><th>genomes sampled</th><th>free text</th><th>controlled</th><th>ratio</th></tr></thead>
+   <tbody>
+   <tr><td>1</td><td>9.11</td><td>5.83</td><td>1.56&times;</td></tr><tr><td>4</td><td>26.06</td><td>6.77</td><td>3.85&times;</td></tr><tr><td>7</td><td>37.38</td><td>6.95</td><td>5.38&times;</td></tr><tr><td>10</td><td>47.01</td><td>6.99</td><td>6.73&times;</td></tr><tr><td>13</td><td>55.36</td><td>7.00</td><td>7.91&times;</td></tr><tr><td>16</td><td>61.52</td><td>7.00</td><td>8.79&times;</td></tr><tr><td>19</td><td>67.01</td><td>7.00</td><td>9.57&times;</td></tr><tr><td>22</td><td>72.34</td><td>7.00</td><td>10.33&times;</td></tr><tr><td>25</td><td>77.32</td><td>7.00</td><td>11.05&times;</td></tr><tr><td>28</td><td>82.28</td><td>7.00</td><td>11.75&times;</td></tr><tr><td>31</td><td>86.01</td><td>7.00</td><td>12.29&times;</td></tr><tr><td>34</td><td>90.55</td><td>7.00</td><td>12.94&times;</td></tr><tr><td>37</td><td>94.06</td><td>7.00</td><td>13.44&times;</td></tr><tr><td>40</td><td>97.83</td><td>7.00</td><td>13.98&times;</td></tr><tr><td>43</td><td>101.28</td><td>7.00</td><td>14.47&times;</td></tr><tr><td>46</td><td>104.36</td><td>7.00</td><td>14.91&times;</td></tr><tr><td>49</td><td>107.57</td><td>7.00</td><td>15.37&times;</td></tr><tr><td>52</td><td>110.44</td><td>7.00</td><td>15.78&times;</td></tr><tr><td>55</td><td>113.32</td><td>7.00</td><td>16.19&times;</td></tr><tr><td>58</td><td>116.03</td><td>7.00</td><td>16.58&times;</td></tr><tr><td>61</td><td>119.40</td><td>7.00</td><td>17.06&times;</td></tr><tr><td>64</td><td>121.72</td><td>7.00</td><td>17.39&times;</td></tr><tr><td>67</td><td>123.73</td><td>7.00</td><td>17.68&times;</td></tr><tr><td>70</td><td>126.18</td><td>7.00</td><td>18.03&times;</td></tr><tr><td>73</td><td>128.28</td><td>7.00</td><td>18.33&times;</td></tr><tr><td>76</td><td>130.61</td><td>7.00</td><td>18.66&times;</td></tr><tr><td>79</td><td>132.55</td><td>7.00</td><td>18.94&times;</td></tr><tr><td>82</td><td>134.84</td><td>7.00</td><td>19.26&times;</td></tr><tr><td>85</td><td>136.83</td><td>7.00</td><td>19.55&times;</td></tr><tr><td>88</td><td>138.62</td><td>7.00</td><td>19.80&times;</td></tr><tr><td>91</td><td>140.10</td><td>7.00</td><td>20.01&times;</td></tr><tr><td>94</td><td>141.54</td><td>7.00</td><td>20.22&times;</td></tr><tr><td>97</td><td>143.02</td><td>7.00</td><td>20.43&times;</td></tr><tr><td>100</td><td>144.48</td><td>7.00</td><td>20.64&times;</td></tr><tr><td>103</td><td>145.87</td><td>7.00</td><td>20.84&times;</td></tr><tr><td>106</td><td>147.37</td><td>7.00</td><td>21.05&times;</td></tr><tr><td>109</td><td>148.58</td><td>7.00</td><td>21.23&times;</td></tr><tr><td>112</td><td>149.47</td><td>7.00</td><td>21.35&times;</td></tr><tr><td>115</td><td>150.53</td><td>7.00</td><td>21.50&times;</td></tr><tr><td>118</td><td>151.61</td><td>7.00</td><td>21.66&times;</td></tr><tr><td>121</td><td>152.61</td><td>7.00</td><td>21.80&times;</td></tr><tr><td>124</td><td>153.59</td><td>7.00</td><td>21.94&times;</td></tr><tr><td>127</td><td>154.63</td><td>7.00</td><td>22.09&times;</td></tr><tr><td>130</td><td>155.62</td><td>7.00</td><td>22.23&times;</td></tr><tr><td>133</td><td>156.48</td><td>7.00</td><td>22.35&times;</td></tr><tr><td>136</td><td>157.53</td><td>7.00</td><td>22.50&times;</td></tr><tr><td>139</td><td>158.46</td><td>7.00</td><td>22.64&times;</td></tr><tr><td>142</td><td>159.37</td><td>7.00</td><td>22.77&times;</td></tr><tr><td>145</td><td>160.02</td><td>7.00</td><td>22.86&times;</td></tr><tr><td>148</td><td>160.51</td><td>7.00</td><td>22.93&times;</td></tr><tr><td>150</td><td>161.00</td><td>7.00</td><td>23.00&times;</td></tr>
+   </tbody>
+  </table></div>
+ </details>
+
+ <div class="src">Generated by <code>skill/scripts/gen_rarefaction.py</code> from
+ <code>rarefaction.json</code>, written by the kit&rsquo;s
+ <code>annotation_rarefaction.py</code> at 100 replicates. Categorical pair
+ <code>#2a78d6</code>/<code>#eb6834</code> (light) and <code>#3987e5</code>/<code>#d95926</code>
+ (dark), validated by <code>validate_palette.py</code>: worst CVD &Delta;E 24.7,
+ normal-vision &Delta;E 31.8, contrast &ge;3.12:1.</div>
+</div>
+<script>
+ var SRC=[9.11, 15.79, 21.34, 26.06, 29.87, 33.62, 37.38, 40.76, 43.93, 47.01, 49.62, 52.87, 55.36, 57.43, 59.25, 61.52, 63.4, 65.0, 67.01, 69.02, 70.5, 72.34, 74.28, 75.78, 77.32, 78.92, 80.59, 82.28, 83.55, 84.88, 86.01, 87.88, 89.36, 90.55, 91.7, 92.96, 94.06, 95.17, 96.44, 97.83, 99.0, 100.24, 101.28, 102.03, 103.18, 104.36, 105.48, 106.62, 107.57, 108.58, 109.29, 110.44, 111.35, 112.38, 113.32, 114.18, 114.94, 116.03, 116.98, 118.25, 119.4, 120.13, 120.92, 121.72, 122.49, 123.09, 123.73, 124.54, 125.43, 126.18, 127.0, 127.66, 128.28, 128.99, 129.76, 130.61, 131.37, 132.16, 132.55, 133.34, 134.11, 134.84, 135.41, 136.1, 136.83, 137.32, 137.93, 138.62, 139.24, 139.64, 140.1, 140.61, 141.08, 141.54, 142.02, 142.55, 143.02, 143.4, 143.93, 144.48, 145.0, 145.51, 145.87, 146.49, 146.9, 147.37, 147.89, 148.18, 148.58, 148.97, 149.28, 149.47, 149.82, 150.28, 150.53, 150.87, 151.28, 151.61, 151.82, 152.28, 152.61, 152.97, 153.14, 153.59, 153.9, 154.39, 154.63, 155.07, 155.37, 155.62, 155.81, 156.12, 156.48, 156.8, 157.19, 157.53, 157.86, 158.14, 158.46, 158.7, 159.11, 159.37, 159.66, 159.86, 160.02, 160.22, 160.4, 160.51, 160.77, 161.0], MOD=[5.83, 6.41, 6.64, 6.77, 6.87, 6.92, 6.95, 6.96, 6.97, 6.99, 6.99, 6.99, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0];
+ var Lm=58, PWm=590, Nn=150, VB=780;
+ var cb=document.getElementById('cb'), hit=document.getElementById('hit'),
+     xh=document.getElementById('xh'), ds=document.getElementById('ds'),
+     dm=document.getElementById('dm'), tip=document.getElementById('tip');
+ var svg=cb.querySelector('svg');
+ function X(i){ return Lm + PWm*i/(Nn-1); }
+ function Y(v){ return 26 + 322*(1 - v/200); }
+ function show(e){
+   var r=svg.getBoundingClientRect(), sx=(e.clientX-r.left)*VB/r.width;
+   var i=Math.round((sx-Lm)/PWm*(Nn-1));
+   if(i<0) i=0; if(i>Nn-1) i=Nn-1;
+   var x=X(i);
+   xh.setAttribute('x1',x); xh.setAttribute('x2',x); xh.setAttribute('opacity','1');
+   ds.setAttribute('cx',x); ds.setAttribute('cy',Y(SRC[i])); ds.setAttribute('opacity','1');
+   dm.setAttribute('cx',x); dm.setAttribute('cy',Y(MOD[i])); dm.setAttribute('opacity','1');
+   tip.innerHTML='<div style="color:var(--muted);margin-bottom:3px">'+(i+1)+
+     ' genome'+(i?'s':'')+' sampled</div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--src)"></i>free text <b>'+SRC[i].toFixed(2)+'</b></div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--mod)"></i>controlled <b>'+MOD[i].toFixed(2)+'</b></div>';
+   tip.style.opacity='1';
+   var px=x*r.width/VB, tw=tip.offsetWidth;
+   tip.style.left=Math.min(Math.max(px+12,4), r.width-tw-4)+'px';
+   tip.style.top='14px';
+ }
+ function hide(){ xh.setAttribute('opacity','0'); ds.setAttribute('opacity','0');
+                  dm.setAttribute('opacity','0'); tip.style.opacity='0'; }
+ hit.addEventListener('mousemove',show);
+ hit.addEventListener('mouseleave',hide);
+ hit.addEventListener('touchmove',function(e){ if(e.touches[0]) show(e.touches[0]); },{passive:true});
+ hit.addEventListener('touchend',hide);
+</script>
