@@ -82,8 +82,31 @@ On KT000366 the annotator also calls `ORF2a` at 6816–6947 inside `TGB1` at
 6578–7240 — **100%** containment, again out of frame. Whatever is decided for
 `P14:CP` applies to `ORF2A:TGB1` on the same reasoning.
 
-**Action:** pass `--expected P14:CP` to `qc_duplicate_calls.py` for this module.
-Neither feature is dropped and neither profile set is rebuilt.
+### Closed, 30 September 2026
+
+Curator's call: **real variation, one protein encoded overlapping the other,
+and rare enough to ship.** Neither feature is dropped, neither profile set is
+rebuilt, and `P14` keeps its `14 kDa protein` call where it earns it.
+
+**Action:** pass `--expected P14:CP` to `qc_duplicate_calls.py` for this module,
+so the check does not cry wolf on a pair that has been measured and accepted.
+
+How rare, exactly — the collision happens on every genome where `P14` is called,
+so its call rate *is* its frequency:
+
+```
+genomes evaluated          108
+P14 called                  24   22.2%
+P14 not called              84   77.8%
+```
+
+22.2% is a minority feature, not a handful, and worth stating plainly rather
+than leaving "rare" to do the work. What makes it safe to ship is not the count
+but that `P14` carries **no `copy_num`** — it is not essential, so the 84
+genomes without it are not flagged for missing it (`quality2.tsv`: zero
+"missing essential feature: 14 kDa protein" against 84 in the pre-correction
+`quality.tsv`). A genome either has the overlapping ORF or it does not, and
+both outcomes are clean.
 
 Do not generalise this to other nested pairs. The measurement above is what
 distinguishes a real overlapping ORF from a profile calling someone else's gene,

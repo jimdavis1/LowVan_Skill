@@ -206,6 +206,10 @@
     },
     {
      "type": "prose",
+     "html": "These accessory rates come from a 150-routed-genome run whose output is not on disk. The 108-genome quality run that <i>is</i> on disk gives P14 22.2%, ORF2a 29.6% and ORF5a 25.9%. The core-feature rates are not in question; the three accessory rates are, and &sect;07 says so."
+    },
+    {
+     "type": "prose",
      "html": "Every <code>copy_num</code> assignment in the shipped module was already correct. No change was needed."
     },
     {
@@ -246,7 +250,7 @@
   {
    "num": "07",
    "title": "What it cannot do",
-   "lede": "One documented architecture note and one genuinely open question.",
+   "lede": "Two documented architecture notes, one closed question, and one number still to reproduce.",
    "blocks": [
     {
      "type": "prose",
@@ -254,7 +258,19 @@
     },
     {
      "type": "prose",
-     "html": "<b>P14 is a different matter and is NOT resolved.</b> It is called entirely within the CP span on 100% of its 91 calls, and its collection is unrelated to CP (33% identity over 33% coverage) &mdash; so unlike the two alternative-frame ORFs, the name does not account for the overlap. p14 is the nucleic-acid-binding protein and should sit downstream of the coat protein. Either CP's called span runs long (its window reaches 421 aa, high for this group) or the profile is promiscuous at <code>bit_cutoff</code> 30. It is called on 60.7% of genomes and carries no <code>copy_num</code>, so no essentiality or quality figure depends on it &mdash; but it is an open question and is recorded as one on the feature itself."
+     "html": "<b>P14 is closed, 30 September 2026.</b> Where it is called it sits inside the CP span &mdash; 92.5% and 89.6% containment on the two GRSPaV rep contigs, above the 80% floor that keeps the duplicate-call check from crying wolf over the routine short overlaps of a compact genome. It is <b>not</b> a profile calling someone else's gene. The two features share no detectable homology in either direction: blastp over 170 P14 &times; 915 CP collection members returns <b>zero HSPs at E&nbsp;&le;&nbsp;1e-3</b>; the best P14 profile scores 21.7 bits against a CP member and the best CP profile 22.4 bits against a P14 member, against cutoffs of 30 and 80; and the two proteins actually emitted at that locus &mdash; a 259&nbsp;aa nucleocapsid protein and a 125&nbsp;aa 14&nbsp;kDa protein &mdash; align nowhere at all, not even at E&nbsp;&le;&nbsp;1000. What the coordinates show instead is an out-of-frame overlapping ORF: on ON868740, CP at 7847&ndash;8623 in frame <b>+2</b> and p14 at 8277&ndash;8651 in frame <b>+3</b>; on KT000366, 7771&ndash;8547 (+2) and 8228&ndash;8584 (+3). Real variation, one protein encoded overlapping another, accepted by the curator as such. Neither feature is dropped and neither profile set is rebuilt; <code>qc_duplicate_calls.py</code> takes <code>--expected P14:CP</code> for this module. Nothing depends on it either way, because P14 carries no <code>copy_num</code>."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The earlier reading of this overlap was wrong and is worth recording as such.</b> This section previously called it unexplained and offered two candidate causes &mdash; that CP's called span runs long, or that the P14 profile is promiscuous at <code>bit_cutoff</code> 30. Neither is the case. The frames settle it, and no window or cutoff needs touching. The inference that a nested call must mean one profile is misbehaving is the thing to distrust: in a compact viral genome it can equally mean the genes genuinely overlap, and only a homology measurement in both directions distinguishes the two."
+    },
+    {
+     "type": "prose",
+     "html": "<b>P14's call rate is unreconciled and should be re-measured.</b> &sect;05's table reports 60.7% of 150 routed genomes (91 calls). The only measurement on disk is a 108-genome quality run, which gives <b>22.2% (24 calls)</b> &mdash; cross-checked against that run's feature-count distribution, which accounts for all 24 exactly. The two disagree on ORF5a as well, 8.7% against 25.9%, so this is not a rounding difference and one of them is measuring a different population or is simply wrong. The 150-genome output is not on disk to check. The closure above does not rest on the rate &mdash; it rests on the frames and the absence of homology &mdash; but the rate should not be quoted from either source until one is reproduced."
+    },
+    {
+     "type": "prose",
+     "html": "One thing the on-disk run does show clearly is that the accessories are nearly <b>mutually exclusive</b>: 52 genomes carry the five core features and nothing else, 22 carry core&nbsp;+&nbsp;P14, 24 carry core&nbsp;+&nbsp;ORF2a&nbsp;+&nbsp;ORF5a, and exactly one carries all three. That is two accessory architectures inside one module rather than a gradient, and it is the kind of split that a single pooled call rate hides."
     },
     {
      "type": "prose",
@@ -265,16 +281,16 @@
   {
    "num": "08",
    "title": "What the run found",
-   "lede": "No corrections, and one thing worth returning to.",
+   "lede": "No corrections, the open question closed, and one measurement to redo.",
    "blocks": [
     {
      "type": "prose",
-     "html": "This module's <code>copy_num</code> was already right, which puts it with Carlavirus and Ampelovirus rather than with Velarivirus and Closterovirus. The P14 nesting is the only finding, and the honest status is unresolved rather than fixed: diagnosing it properly means deciding whether the CP length window or the P14 cutoff is at fault, and that is a change to a shipped module on the strength of one measurement."
+     "html": "This module's <code>copy_num</code> was already right, which puts it with Carlavirus and Ampelovirus rather than with Velarivirus and Closterovirus. The P14 nesting was the only finding and it is now resolved rather than merely documented: measured in both directions, shown to be an out-of-frame overlapping ORF, and closed by the curator as real variation. No feature was dropped and no profile set was rebuilt. P14 carries no <code>copy_num</code>, so genomes without it are not flagged for missing it &mdash; <code>quality2.tsv</code> reports zero &lsquo;missing essential feature: 14 kDa protein&rsquo; against 84 in the pre-correction <code>quality.tsv</code>. The same architecture appears once more in the module: ORF2a is called 100% inside TGB1, out of frame, on KT000366 &mdash; still flagged, on the same reasoning but not yet the same decision. One measurement is left open: P14's call rate, which &sect;05 and the on-disk quality run do not agree on."
     },
     {
      "type": "verdict",
-     "kind": "warn",
-     "html": "Eight of eight features have profiles and five are essential on measurement. P14's nesting is documented and open; nothing depends on it."
+     "kind": "ok",
+     "html": "Eight of eight features have profiles and five are essential on measurement. P14's nesting is measured, explained and closed &mdash; an out-of-frame overlapping ORF, no homology with CP in either direction, nothing depending on it. Its call rate is the one number here still to be reproduced."
     }
    ]
   },
