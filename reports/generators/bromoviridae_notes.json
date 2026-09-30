@@ -3,7 +3,7 @@
  "modules": {
   "Bromoviridae": "The naming trap is that 1a and 2a are different proteins on different segments and the source calls both <b>replicase</b>. That string is routed by LENGTH against the two measured medians, and anything far below either is left unbinned rather than assigned to whichever is nearer."
  },
- "gaps": "Routing across the family is 69.5%, not the 94.8% first reported: that figure came from merging records by genome name, which collapses isolate collisions as well as segments. A three-way split (Cucumovirus 94.0%, Ilarvirus 71.0%, Alfamovirus-group 100%) is documented but has not been acted on.",
+ "gaps": "Routing across the family is 74.2% of complete genomes, re-measured on 30 September 2026 because neither figure reported before could be substantiated: 94.8% came from merging records by genome name, which collapses isolate collisions as well as segments, and 69.5% had no computation behind it. A three-way split would reach about 90% (Cucumovirus 95.5%, Ilarvirus 74.1%, Alfamovirus-group 100%) and has not been acted on.",
  "derived": "None declared.",
  "why": {}
 }

@@ -187,7 +187,7 @@
     },
     {
      "type": "prose",
-     "html": "<code>repcontig_budget.py --merge-by-name</code> reported <b>100.0%</b>. The shipped set covers 511 of 553 records = <b>92.4%</b>. The gate had merged records by genome name, but 18 names carry between 3 and 8 records \u2014 isolate collisions rather than segments \u2014 so several genomes were counted as one. Same defect that took Bromoviridae from 94.8% to 69.5%."
+     "html": "<code>repcontig_budget.py --merge-by-name</code> reported <b>100.0%</b>. The shipped set covers 511 of 553 records = <b>92.4%</b>. The gate had merged records by genome name, but 18 names carry between 3 and 8 records \u2014 isolate collisions rather than segments \u2014 so several genomes were counted as one. Same defect that took Bromoviridae from 94.8% to 74.2%."
     },
     {
      "type": "verdict",
