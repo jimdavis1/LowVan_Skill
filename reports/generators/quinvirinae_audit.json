@@ -262,6 +262,10 @@
     },
     {
      "type": "prose",
+     "html": "<b>ORF2a nested in TGB1 is closed too, on the same measurement.</b> On KT000366 the annotator calls ORF2a at 6819&ndash;6962 in frame <b>+3</b>, entirely inside TGB1 at 6578&ndash;7240 in frame <b>+2</b> &mdash; 100% containment. The two-direction test gives the same answer as P14:CP: blastp over 95 ORF2A &times; 654 TGB1 collection members returns <b>zero HSPs at E&nbsp;&le;&nbsp;1e-3</b>, the best cross-profile score is 22.2 bits in either direction against cutoffs of 30 and 60, and the two emitted proteins &mdash; 221&nbsp;aa and 43&nbsp;aa &mdash; align nowhere at E&nbsp;&le;&nbsp;1000. <code>qc_duplicate_calls.py</code> takes <code>--expected P14:CP,ORF2A:TGB1</code> for this module. Two real out-of-frame overlapping ORFs in one eight-feature module is a property of this genome organisation, not a pattern to assume elsewhere."
+    },
+    {
+     "type": "prose",
      "html": "<b>The earlier reading of this overlap was wrong and is worth recording as such.</b> This section previously called it unexplained and offered two candidate causes &mdash; that CP's called span runs long, or that the P14 profile is promiscuous at <code>bit_cutoff</code> 30. Neither is the case. The frames settle it, and no window or cutoff needs touching. The inference that a nested call must mean one profile is misbehaving is the thing to distrust: in a compact viral genome it can equally mean the genes genuinely overlap, and only a homology measurement in both directions distinguishes the two."
     },
     {
@@ -285,7 +289,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "This module's <code>copy_num</code> was already right, which puts it with Carlavirus and Ampelovirus rather than with Velarivirus and Closterovirus. The P14 nesting was the only finding and it is now resolved rather than merely documented: measured in both directions, shown to be an out-of-frame overlapping ORF, and closed by the curator as real variation. No feature was dropped and no profile set was rebuilt. P14 carries no <code>copy_num</code>, so genomes without it are not flagged for missing it &mdash; <code>quality2.tsv</code> reports zero &lsquo;missing essential feature: 14 kDa protein&rsquo; against 84 in the pre-correction <code>quality.tsv</code>. The same architecture appears once more in the module: ORF2a is called 100% inside TGB1, out of frame, on KT000366 &mdash; still flagged, on the same reasoning but not yet the same decision. One measurement is left open: P14's call rate, which &sect;05 and the on-disk quality run do not agree on."
+     "html": "This module's <code>copy_num</code> was already right, which puts it with Carlavirus and Ampelovirus rather than with Velarivirus and Closterovirus. The P14 nesting was the only finding and it is now resolved rather than merely documented: measured in both directions, shown to be an out-of-frame overlapping ORF, and closed by the curator as real variation. No feature was dropped and no profile set was rebuilt. P14 carries no <code>copy_num</code>, so genomes without it are not flagged for missing it &mdash; <code>quality2.tsv</code> reports zero &lsquo;missing essential feature: 14 kDa protein&rsquo; against 84 in the pre-correction <code>quality.tsv</code>. The same architecture appears once more in the module: ORF2a is called 100% inside TGB1, out of frame, on KT000366, and is closed on the same measurement and the same reasoning. One measurement is left open: P14's call rate, which &sect;05 and the on-disk quality run do not agree on."
     },
     {
      "type": "verdict",

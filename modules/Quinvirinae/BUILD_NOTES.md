@@ -76,11 +76,32 @@ members are `fig|196400.1392.peg.6` and `fig|196400.1603.peg.6`, both 119 aa,
 both annotated `14 kDa protein` in BV-BRC, 90% identical to each other. They
 are genuine P14s; there is no mis-assigned sequence in the cluster.
 
-### The same architecture appears elsewhere in this module
+### ORF2A nested in TGB1 — same architecture, measured the same way, closed
 
-On KT000366 the annotator also calls `ORF2a` at 6816–6947 inside `TGB1` at
-6578–7240 — **100%** containment, again out of frame. Whatever is decided for
-`P14:CP` applies to `ORF2A:TGB1` on the same reasoning.
+On KT000366 the annotator also calls `ORF2a` inside `TGB1`. Measured 30
+September 2026 by the same two-direction test, with the same outcome:
+
+| test | result |
+|---|---|
+| blastp, 95 ORF2A members × 654 TGB1 members, E ≤ 1e-3 | **0 HSPs** |
+| same, relaxed to E ≤ 10 with `-comp_based_stats 0` | 882 HSPs, best 25.0 bits, E = 0.16, ≤ 33% query coverage |
+| each of the 4 ORF2A PSSMs vs all TGB1 members | best **22.2 bits**; ORF2A `bit_cutoff` is 30 |
+| each of the 12 TGB1 PSSMs vs all ORF2A members | best **22.2 bits**; TGB1 `bit_cutoff` is 60 |
+| the two emitted proteins on KT000366 | **0 alignments at E ≤ 1000** |
+
+```
+TGB1    6578-7240   frame +2   663 nt / 221 aa
+ORF2a   6819-6962   frame +3   144 nt /  43 aa
+ORF2a lies 100% inside TGB1, in a different frame
+```
+
+Same conclusion, same action: **closed on the same reasoning as P14:CP**, and
+`qc_duplicate_calls.py` takes `--expected P14:CP,ORF2A:TGB1` for this module.
+
+Two nested pairs, both real, both out of frame, in one eight-feature module.
+That is a property of this genome organisation, not a pattern to assume
+elsewhere — the measurement is cheap and it is what separates an overlapping
+ORF from a profile calling someone else's gene.
 
 ### Closed, 30 September 2026
 
@@ -88,7 +109,8 @@ Curator's call: **real variation, one protein encoded overlapping the other,
 and rare enough to ship.** Neither feature is dropped, neither profile set is
 rebuilt, and `P14` keeps its `14 kDa protein` call where it earns it.
 
-**Action:** pass `--expected P14:CP` to `qc_duplicate_calls.py` for this module,
+**Action:** pass `--expected P14:CP,ORF2A:TGB1` to `qc_duplicate_calls.py` for
+this module,
 so the check does not cry wolf on a pair that has been measured and accepted.
 
 How rare, exactly — the collision happens on every genome where `P14` is called,
