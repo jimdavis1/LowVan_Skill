@@ -58,3 +58,10 @@ measurement at 93.3-99.3%, and the duplicate-call audit is empty.
 
 The figure is stated in §04 of the coverage audit with a warning verdict, so
 the limit travels with the module rather than living only here.
+
+**Do not generalise this decision.** It was the curator's call on this taxon
+with these numbers in front of them, not a precedent for shipping any module
+that misses the budget. The standing instruction is unchanged: measure
+coverage at 25 references before building, and table the taxon if it does not
+reach. A taxon that lands in between is a question to ask, not a rule to
+apply.
