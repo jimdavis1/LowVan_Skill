@@ -1,6 +1,6 @@
 {
  "title": "Tobamovirus Coverage Audit",
- "eyebrow": "LowVan · Tobamovirus module · 17 September 2026",
+ "eyebrow": "LowVan \u00b7 Tobamovirus module \u00b7 17 September 2026",
  "h1": "Does the tobacco mosaic virus module actually work?",
  "standfirst": "<b>Tobamovirus</b> is the genus of tobacco mosaic virus &mdash; the first virus ever described, and the cause of tomato brown rugose fruit virus, which has closed greenhouses across four continents since 2014. This is the audit of the module built for it: what it covers, where its thresholds sit, whether genomes reach it, whether it calls the proteins, and what it cannot do. Every figure is reproducible from <code>work/Tobamovirus/</code>.",
  "headline_tiles": [
@@ -21,7 +21,7 @@
    "genomes genuinely clean"
   ],
   [
-   "66.8×",
+   "66.8\u00d7",
    "string collapse"
   ],
   [
@@ -33,7 +33,7 @@
   {
    "num": "01",
    "title": "What the module covers",
-   "lede": "One genus, one genome organisation, one module — and for once that was not a judgement call.",
+   "lede": "One genus, one genome organisation, one module \u2014 and for once that was not a judgement call.",
    "blocks": [
     {
      "type": "prose",
@@ -59,7 +59,7 @@
        "3,070"
       ],
       [
-       "genomes with a contig ≥ 6 kb",
+       "genomes with a contig \u2265 6 kb",
        "1,390"
       ],
       [
@@ -201,7 +201,7 @@
       [
        "near-complete exemplars tested",
        "102",
-       "—"
+       "\u2014"
       ],
       [
        "routed to Tobamovirus",
@@ -239,7 +239,7 @@
        "183K",
        "93.9",
        93.9,
-       "93 genomes, 94 calls — one genome is called twice"
+       "93 genomes, 94 calls \u2014 one genome is called twice"
       ],
       [
        "MP",
@@ -265,7 +265,7 @@
   {
    "num": "06",
    "title": "Are the calls right?",
-   "lede": "94 genomes through the full GTO quality pipeline — and getting the denominator right took two fixes.",
+   "lede": "94 genomes through the full GTO quality pipeline \u2014 and getting the denominator right took two fixes.",
    "blocks": [
     {
      "type": "tiles",
@@ -294,7 +294,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>This figure was published as 95.5% and that was wrong twice.</b> Five genomes routed, cleared no profile, and were dropped before scoring, so the run reported 89 scored and 85/89 = 95.5%. The true denominator is 94. And <code>run_gto_eval.py</code> decides good-versus-poor on genome and contig flags only — feature-level flags are printed four lines lower and ignored — so one of the 85 carries a length flag and is not clean. <b>84 of 94 = 89.4%.</b>"
+     "html": "<b>This figure was published as 95.5% and that was wrong twice.</b> Five genomes routed, cleared no profile, and were dropped before scoring, so the run reported 89 scored and 85/89 = 95.5%. The true denominator is 94. And <code>run_gto_eval.py</code> decides good-versus-poor on genome and contig flags only \u2014 feature-level flags are printed four lines lower and ignored \u2014 so one of the 85 carries a length flag and is not clean. <b>84 of 94 = 89.4%.</b>"
     },
     {
      "type": "pre",
@@ -302,7 +302,7 @@
     },
     {
      "type": "prose",
-     "html": "Two bugs, in series. <code>annotate_by_viral_pssm.pl</code> emits a <code>no_features_called</code> sentinel row so a routed genome does not lose its taxon assignment; the GTO wrapper pushed that row as a feature, and <code>GenomeTypeObject</code> died on its missing location. Fixing that only moved the failure, because <code>viral_genome_quality.pl</code> opens with <code>$genome_in-&gt;{features}-&gt;[0] or die</code>. A genome that called nothing is not unscoreable — it is the worst case, and the bucket exists for it. Both are fixed in the kit."
+     "html": "Two bugs, in series. <code>annotate_by_viral_pssm.pl</code> emits a <code>no_features_called</code> sentinel row so a routed genome does not lose its taxon assignment; the GTO wrapper pushed that row as a feature, and <code>GenomeTypeObject</code> died on its missing location. Fixing that only moved the failure, because <code>viral_genome_quality.pl</code> opens with <code>$genome_in-&gt;{features}-&gt;[0] or die</code>. A genome that called nothing is not unscoreable \u2014 it is the worst case, and the bucket exists for it. Both are fixed in the kit."
     },
     {
      "type": "verdict",
@@ -352,7 +352,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>Five genomes route and call nothing at all</b> — 5.3% of the panel, and the single largest gap in the module. They are not plant tobamoviruses:<br><br><code>2052571.3</code> Podosphaera prunicola tobamo-like virus, 11,449 nt<br><code>2743167.3</code> Erysiphe necator associated tobamo-like virus, 11,430 nt<br><code>2501286.3</code> Acidomyces richmondensis tobamo-like virus, 10,291 nt<br><code>2859595.4</code> Rubber tree latent virus 1, 11,923 nt<br><code>2950833.3</code> Plant associated tobamo-like virus 1, 6,553 nt<br><br>Three are viruses of powdery-mildew and acidophilic <i>fungi</i>, and four have genomes roughly twice the length of a tobamovirus. They reach the module because BLASTn against the rep contigs is more permissive than the protein profiles are — <code>2950833.3</code> routes at 10,241 bits and then clears no profile at any feature. Widening the profiles to cover them would not be fixing a threshold; it would be admitting a different group of viruses into a genus module. The honest options are to leave them uncalled, as here, or to tighten routing so the module stops claiming them."
+     "html": "<b>Five genomes route and call nothing at all</b> \u2014 5.3% of the panel, and the single largest gap in the module. They are not plant tobamoviruses:<br><br><code>2052571.3</code> Podosphaera prunicola tobamo-like virus, 11,449 nt<br><code>2743167.3</code> Erysiphe necator associated tobamo-like virus, 11,430 nt<br><code>2501286.3</code> Acidomyces richmondensis tobamo-like virus, 10,291 nt<br><code>2859595.4</code> Rubber tree latent virus 1, 11,923 nt<br><code>2950833.3</code> Plant associated tobamo-like virus 1, 6,553 nt<br><br>Three are viruses of powdery-mildew and acidophilic <i>fungi</i>, and four have genomes roughly twice the length of a tobamovirus. They reach the module because BLASTn against the rep contigs is more permissive than the protein profiles are \u2014 <code>2950833.3</code> routes at 10,241 bits and then clears no profile at any feature. Widening the profiles to cover them would not be fixing a threshold; it would be admitting a different group of viruses into a genus module. The honest options are to leave them uncalled, as here, or to tighten routing so the module stops claiming them."
     },
     {
      "type": "prose",
@@ -398,6 +398,10 @@
    "title": "What the vocabulary bought",
    "lede": "267 ways of saying four things, and 49 that say nothing.",
    "blocks": [
+    {
+     "type": "figure",
+     "from": "tobamovirus-vocabulary-saturation.html"
+    },
     {
      "type": "table",
      "headers": [

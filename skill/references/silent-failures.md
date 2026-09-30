@@ -203,7 +203,7 @@ genome name to collapse the segments of one multipartite genome. But 18
 Crinivirus names carry between 3 and 8 records -- those are ISOLATE
 COLLISIONS, several independent isolates deposited under one name, not
 segments. Merging them counts several genomes as one and inflates coverage.
-Bromoviridae had already been corrected for exactly this (94.8% -> 69.5%);
+Bromoviridae had already been corrected for exactly this (94.8% -> 74.2%);
 Crinivirus had not.
 
 **For a multipartite taxon, never accept a merged coverage figure without

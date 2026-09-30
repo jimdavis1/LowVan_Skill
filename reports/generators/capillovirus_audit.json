@@ -304,6 +304,10 @@
      ]
     },
     {
+     "type": "figure",
+     "from": "capillovirus-vocabulary-saturation.html"
+    },
+    {
      "type": "prose",
      "html": "The rarefaction curve is the same claim in a different shape. Shuffle the genomes, accumulate distinct annotation strings: the module's curve is flat at 3 from the first genome, because there are only three things to say. The source curve reaches 23 distinct strings and has its knee at 130 genomes \u2014 it is still climbing at the end of the data, because every submitter spells the same protein a new way."
     }

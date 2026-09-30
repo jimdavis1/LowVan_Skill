@@ -13,7 +13,7 @@
    "PSSMs"
   ],
   [
-   "69.5%",
+   "74.2%",
    "genomes routed"
   ],
   [
@@ -117,7 +117,7 @@
   {
    "num": "04",
    "title": "Does it route?",
-   "lede": "69.5% \u2014 the honest figure, and it is not the one first reported.",
+   "lede": "74.2% of complete genomes \u2014 measured properly, and neither figure reported before.",
    "blocks": [
     {
      "type": "tiles",
@@ -127,27 +127,80 @@
        "references used"
       ],
       [
-       "69.5%",
-       "of genomes at \u22656 kb"
+       "600",
+       "complete genomes"
       ],
       [
-       "56",
-       "clusters in the family"
+       "130",
+       "clusters at 70%"
       ]
      ]
     },
     {
      "type": "prose",
-     "html": "An earlier measurement reported <b>94.8%</b>. That used <code>--merge-by-name</code>, which collapses records sharing a genome name &mdash; intended for the segments of one multipartite genome, but it also merges independent isolates deposited under one name, counting several genomes as one. The unmerged figure is 69.5%."
+     "html": "This figure was re-measured from scratch on 30 September 2026 because neither number previously reported could be substantiated. <b>94.8%</b> came from <code>--merge-by-name</code>, which collapses records sharing a genome name; that is right for the three segments of one multipartite genome but it also merges independent isolates deposited under one name, and 55 of 1,264 Bromoviridae names carry more than three records. <b>69.5%</b> appeared in the prose of this page and in the build notes with <em>no recorded computation behind it at all</em>."
     },
     {
      "type": "prose",
-     "html": "A three-way split is documented and has <em>not</em> been acted on: Cucumovirus alone routes 94.0%, Ilarvirus 71.0%, and the Alfamovirus group 100%. Splitting would improve every genus, as it did for Carlavirus and Quinvirinae."
+     "html": "The measurement that stands: 2,964 segment records of at least 2&nbsp;kb assemble into <b>600 complete three-segment genomes</b> (<code>merge_segments.py</code> refusing the 63 name collisions and 144 incomplete sets), which fall into 130 clusters at 70% nucleotide identity. 25 references reach 445 of them."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "references",
+      "genomes reached",
+      "of 600"
+     ],
+     "rows": [
+      [
+       "5",
+       "225",
+       "37.5%"
+      ],
+      [
+       "10",
+       "318",
+       "53.0%"
+      ],
+      [
+       "15",
+       "379",
+       "63.2%"
+      ],
+      [
+       "20",
+       "418",
+       "69.7%"
+      ],
+      [
+       "25",
+       "445",
+       "74.2%"
+      ],
+      [
+       "30",
+       "466",
+       "77.7%"
+      ],
+      [
+       "50",
+       "516",
+       "86.0%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>A three-way split would reach about 90%.</b> Given each genus its own 25-reference budget: Cucumovirus 335 genomes over 40 clusters &rarr; <b>95.5%</b>; Ilarvirus 162 over 67 clusters &rarr; <b>74.1%</b>; Alfamovirus, Bromovirus and Anulavirus together 98 genomes over 20 clusters &rarr; <b>100%</b>. Weighted, 90.4% against 74.2% lumped."
+    },
+    {
+     "type": "prose",
+     "html": "Cucumovirus is the natural boundary because it is the one real organisational difference in the family: it carries the <b>2b</b> silencing suppressor on RNA2 and the other four genera do not, which is why <code>P2B</code> is called on 50.0% of routed genomes and correctly carries no <code>copy_num</code>."
     },
     {
      "type": "verdict",
      "kind": "warn",
-     "html": "69.5% routed. The family is held together by shared gene layout, but its routing would be better served by three modules."
+     "html": "74.2% routed as one module, about 90% as three. The split is not done; the figure on this page is now measured rather than asserted."
     }
    ]
   },
@@ -232,7 +285,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "<b>30.5% of the family does not route</b> on 25 references, and the documented three-way split that would fix it has not been done."
+     "html": "<b>25.8% of complete genomes do not route</b> on 25 references, and the three-way split that would take it to roughly 90% has not been done. Section 04 has the measurement."
     },
     {
      "type": "prose",
@@ -293,6 +346,10 @@
        "strings per 100 genomes"
       ]
      ]
+    },
+    {
+     "type": "figure",
+     "from": "bromoviridae-vocabulary-saturation.html"
     },
     {
      "type": "prose",

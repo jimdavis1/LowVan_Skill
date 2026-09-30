@@ -296,6 +296,10 @@
      ]
     },
     {
+     "type": "figure",
+     "from": "carlavirus-vocabulary-saturation.html"
+    },
+    {
      "type": "prose",
      "html": "The module's vocabulary is complete after two genomes. The source reaches 106 distinct strings with its knee at 133 and is still climbing at the end of the data &mdash; in a genus where six names suffice."
     }

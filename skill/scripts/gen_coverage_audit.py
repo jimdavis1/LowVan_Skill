@@ -20,7 +20,7 @@ Schema: see the two shipped facts files in example-hepeviridae/ and
 example-matonaviridae/. Palette is the report series' validated categorical
 pair (#2a78d6/#eb6834 light, #3987e5/#d95926 dark).
 """
-import json, argparse, html
+import json, argparse, html, os
 
 CSS = """
   :root {
@@ -201,6 +201,20 @@ def main():
             elif t == "pre":     body.append('<pre class="mono">%s</pre>' % esc(b["text"]))
             elif t == "prose":   body.append('<p class="note">%s</p>' % b["html"])
             elif t == "verdict": body.append(verdict(b.get("kind", "ok"), b["html"]))
+            elif t == "figure":
+                #  Lift the rendered chart out of the taxon's saturation page
+                #  so section 09 shows the curve instead of only describing
+                #  it. Every audit in the series shipped without one because
+                #  no block type emitted a figure, though the CSS for it was
+                #  there all along.
+                src = b["from"]
+                if not os.path.exists(src):
+                    raise SystemExit("figure source not found: %s" % src)
+                h = open(src).read()
+                i, j = h.find("<figure"), h.rfind("</figure>")
+                if i < 0 or j < 0:
+                    raise SystemExit("no <figure> in %s" % src)
+                body.append(h[i:j + len("</figure>")])
         S.append(section(s["num"], s["title"], s["lede"], "".join(body)))
 
     page = ("<title>%s</title>\n<style>%s</style>\n"

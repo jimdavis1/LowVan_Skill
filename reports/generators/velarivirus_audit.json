@@ -286,6 +286,10 @@
      ]
     },
     {
+     "type": "figure",
+     "from": "velarivirus-vocabulary-saturation.html"
+    },
+    {
      "type": "prose",
      "html": "The largest collapse ratio in the whole report series. The module's vocabulary is complete after four genomes; the source reaches 161 distinct strings and is still climbing at 150."
     }

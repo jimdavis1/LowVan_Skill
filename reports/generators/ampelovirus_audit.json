@@ -325,6 +325,10 @@
      ]
     },
     {
+     "type": "figure",
+     "from": "ampelovirus-vocabulary-saturation.html"
+    },
+    {
      "type": "prose",
      "html": "The module's vocabulary is complete after four genomes; the source reaches 164 distinct strings with its knee at 122."
     }

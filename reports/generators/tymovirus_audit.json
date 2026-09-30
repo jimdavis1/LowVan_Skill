@@ -296,6 +296,10 @@
      ]
     },
     {
+     "type": "figure",
+     "from": "tymovirus-vocabulary-saturation.html"
+    },
+    {
      "type": "prose",
      "html": "The starkest curve in this group. The module's vocabulary is flat at 3 from the first genome. The source reaches <b>43 distinct strings for three proteins</b> in a genus of only 129 genomes, with its knee at 79 and still climbing \u2014 positional labels, length-encoded labels, two misspellings and a dozen synonyms for &ldquo;replicase&rdquo;."
     }

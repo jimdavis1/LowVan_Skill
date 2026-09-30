@@ -383,6 +383,10 @@
      ]
     },
     {
+     "type": "figure",
+     "from": "crinivirus-vocabulary-saturation.html"
+    },
+    {
      "type": "prose",
      "html": "The module's curve reaches 16 of its 17 annotation strings by the thirteenth genome &mdash; P22A's string never appears, because none of its genomes clear the 6&nbsp;kb evaluation floor. The source reaches 95 distinct strings with its knee at 88 and is still climbing; most of that tail is the mass names &sect;02 had to discard."
     }
