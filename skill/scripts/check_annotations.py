@@ -228,7 +228,16 @@ def main():
     #  lineage-prefixed uncharacterized proteins are named for the lineage and
     #  position they occupy, so Viti_ORF2 and Roca_ORF4 differing is the
     #  convention working, not drifting.
-    PER_FEATURE = {"Uncharacterized lineage-specific protein"}
+    #
+    #  `Small hydrophobic protein` is the same situation for a different
+    #  reason. In the paramyxoviruses and pneumoviruses it names one gene per
+    #  taxon, so a house symbol `SH` works there. The closterovirid hallmark
+    #  array carries SEVERAL small hydrophobic genes in one genome -- Crinivirus
+    #  P6B, P7A, P7B and P8B are four non-homologous proteins (blastp finds no
+    #  HSP between any pair at 1e-3) that share the description, so each needs
+    #  its own symbol and collapsing them onto `SH` would lose the distinction.
+    PER_FEATURE = {"Uncharacterized lineage-specific protein",
+                   "Small hydrophobic protein"}
 
     exempt_used = []
     for a, uses in reused:
@@ -249,9 +258,20 @@ def main():
             if (module, key) in EXEMPT:
                 exempt_used.append((module, key, a, sym, EXEMPT[(module, key)]))
                 continue
-            base = sym.split("_", 1)[1] if "_" in sym else None
+            #  Take the TRAILING token, not the second one: S1 Table prefixes
+            #  can be multi-segment (`G_COV_ORF5a`, `SARS_COV2_ORF3d`), and
+            #  split("_", 1) leaves `COV_ORF5a` / `COV2_ORF3d` behind.
+            base = sym.rsplit("_", 1)[-1] if "_" in sym else None
+            #  The prefix can be on either side. Stripping only ours misses the
+            #  reverse case: Quinvirinae's bare `ORF5a` against Gammacoronavirus's
+            #  namespaced `G_COV_ORF5a` for the same string is the convention
+            #  working, and Quinvirinae collapses no subgenera so the bare form
+            #  is the correct one for it.
+            wl_base = {w.rsplit("_", 1)[-1].lower() for w in want if "_" in w}
             if base and base.lower() in wl:
                 nspaced.append((module, key, a, sym, base))
+            elif sym.lower() in wl_base:
+                nspaced.append((module, key, a, sym, sym))
             else:
                 mism.append((module, key, a, sym, sorted(want)))
     if nspaced:

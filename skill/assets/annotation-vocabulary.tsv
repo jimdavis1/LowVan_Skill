@@ -531,3 +531,68 @@ Orthoflavivirus	Mature non-structural protein NS4A	NS4A	mat_peptide	Single RNA S
 Orthoflavivirus	Signal peptide of NS4B	2K	mat_peptide	Single RNA Segment	1	
 Orthoflavivirus	Mature non-structural protein NS4B	NS4B	mat_peptide	Single RNA Segment	1	
 Orthoflavivirus	Mature envelope glycoprotein E	E	mat_peptide	Single RNA Segment	1	
+Ampelovirus	HSP70 homolog	HSP70	CDS		0	
+Ampelovirus	HSP90 homolog	HSP90	CDS		0	
+Ampelovirus	Minor coat protein	CPM	CDS		0	
+Ampelovirus	Nucleocapsid protein	N	CDS		0	
+Ampelovirus	RNA silencing suppressor P20B protein	P20B	CDS		0	
+Ampelovirus	RNA-dependent RNA polymerase	L	CDS		0	
+Ampelovirus	Replicase polyprotein	POLY	CDS		0	
+Ampelovirus	Uncharacterized lineage-specific P20A protein	P20A	CDS		0	
+Ampelovirus	Uncharacterized lineage-specific P21 protein	P21	CDS		0	
+Ampelovirus	Uncharacterized lineage-specific P24 protein	P24	CDS		0	
+Ampelovirus	Uncharacterized lineage-specific P7 protein	P7	CDS		0	
+Bromoviridae	Movement protein	Mov	CDS	RNA3	0	
+Bromoviridae	Nucleocapsid protein	N	CDS	RNA3	0	
+Bromoviridae	RNA silencing suppressor 2b protein	2b	CDS	RNA2	0	20404501
+Bromoviridae	RNA-dependent RNA polymerase 2a	REP2	CDS	RNA2	0	
+Bromoviridae	Replication protein 1a	REP1	CDS	RNA1	0	
+Closterovirus	HSP70 homolog	HSP70	CDS		0	
+Closterovirus	HSP90 homolog	HSP90	CDS		0	
+Closterovirus	Host range determinant P13 protein	P13	CDS		0	
+Closterovirus	Host range determinant P18 protein	P18	CDS		0	
+Closterovirus	Membrane-associated viroporin P33 protein	P33	CDS		0	
+Closterovirus	Minor coat protein	CPM	CDS		0	
+Closterovirus	Movement protein	Mov	CDS		0	
+Closterovirus	Nucleocapsid protein	N	CDS		0	
+Closterovirus	RNA silencing suppressor P23 protein	P23	CDS		0	
+Closterovirus	RNA-dependent RNA polymerase	L	CDS		0	
+Closterovirus	Replicase polyprotein	POLY	CDS		0	
+Closterovirus	Uncharacterized lineage-specific P19 protein	P19	CDS		0	
+Closterovirus	Uncharacterized lineage-specific P20 protein	P20	CDS		0	
+Crinivirus	HSP70 homolog	HSP70	CDS	RNA2	0	
+Crinivirus	HSP90 homolog	HSP90	CDS	RNA2	0	
+Crinivirus	Minor coat protein	CPM	CDS	RNA2	0	
+Crinivirus	Nucleocapsid protein	N	CDS	RNA2	0	
+Crinivirus	RNA silencing suppressor P22A protein	P22A	CDS	RNA1	0	
+Crinivirus	RNA silencing suppressor P22B protein	P22B	CDS	RNA1	0	26334965;27928924
+Crinivirus	RNA silencing suppressor P22C protein	P22C	CDS	RNA1	0	31502079;32045630
+Crinivirus	RNA silencing suppressor P25 protein	P25	CDS	RNA1	0	19540278
+Crinivirus	RNA-dependent RNA polymerase	L	CDS	RNA1	0	
+Crinivirus	Replicase polyprotein	POLY	CDS	RNA1	0	
+Crinivirus	Suppressor of RNA silencing	SUPPRESSOR	CDS	RNA1	0	
+Crinivirus	Uncharacterized lineage-specific P27 protein	P27	CDS	RNA2	0	
+Crinivirus	Uncharacterized lineage-specific P8A protein	P8A	CDS	RNA2	0	
+Quinvirinae	Nucleocapsid protein	N	CDS		0	
+Quinvirinae	Replicase polyprotein	POLY	CDS		0	
+Quinvirinae	Triple gene block protein 1	TGB1	CDS		0	
+Quinvirinae	Triple gene block protein 2	TGB2	CDS		0	
+Quinvirinae	Triple gene block protein 3	TGB3	CDS		0	
+Quinvirinae	Uncharacterized lineage-specific ORF2a protein	ORF2a	CDS		0	
+Quinvirinae	Uncharacterized lineage-specific ORF5a protein	ORF5a	CDS		0	
+Quinvirinae	Uncharacterized lineage-specific P14 protein	P14	CDS		0	
+Velarivirus	HSP70 homolog	HSP70	CDS		0	
+Velarivirus	HSP90 homolog	HSP90	CDS		0	
+Velarivirus	Minor coat protein	CPM	CDS		0	
+Velarivirus	Nucleocapsid protein	N	CDS		0	
+Velarivirus	RNA-dependent RNA polymerase	L	CDS		0	
+Velarivirus	Replicase polyprotein	POLY	CDS		0	
+Velarivirus	Thaumatin-like protein	THAU	CDS		0	
+Capillovirus	Replicase polyprotein	POLY	CDS		0	
+Carlavirus	Replicase polyprotein	POLY	CDS		0	
+Marafivirus	Replicase polyprotein	POLY	CDS		0	
+Tymovirus	Replicase polyprotein	POLY	CDS		0	
+Crinivirus	Small hydrophobic protein	P6B	CDS		0	
+Crinivirus	Small hydrophobic protein	P7A	CDS		0	
+Crinivirus	Small hydrophobic protein	P7B	CDS		0	
+Crinivirus	Small hydrophobic protein	P8B	CDS		0	

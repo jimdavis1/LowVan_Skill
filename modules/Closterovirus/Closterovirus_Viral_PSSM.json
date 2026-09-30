@@ -165,7 +165,7 @@
             "upstream_ext" : 1
          },
          "P13" : {
-            "anno" : "p13 protein",
+            "anno" : "Host range determinant P13 protein",
             "bit_cutoff" : 30,
             "comment" : "Accessory ORF, present on 9% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,
@@ -180,7 +180,7 @@
             "upstream_ext" : 1
          },
          "P18" : {
-            "anno" : "p18 protein",
+            "anno" : "Host range determinant P18 protein",
             "bit_cutoff" : 30,
             "comment" : "Accessory ORF, present on 12% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,
@@ -195,7 +195,7 @@
             "upstream_ext" : 1
          },
          "P19" : {
-            "anno" : "p19 protein",
+            "anno" : "Uncharacterized lineage-specific P19 protein",
             "bit_cutoff" : 30,
             "comment" : "Accessory ORF, present on 22% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,
@@ -210,7 +210,7 @@
             "upstream_ext" : 1
          },
          "P20" : {
-            "anno" : "p20 protein",
+            "anno" : "Uncharacterized lineage-specific P20 protein",
             "bit_cutoff" : 30,
             "comment" : "Raw call rate 89.3% clears the 0.85 essentiality threshold, but 40% of those calls are nested inside P19 and its standalone rate is 53.3%. copy_num deliberately withheld. Resolve duplicate calls before assigning essentiality, or a feature earns it on another feature's locus.",
             "coverage_cutoff" : 0.65,
@@ -225,7 +225,7 @@
             "upstream_ext" : 1
          },
          "P23" : {
-            "anno" : "p23 protein",
+            "anno" : "RNA silencing suppressor P23 protein",
             "bit_cutoff" : 30,
             "comment" : "Accessory ORF, present on 42% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,
@@ -240,7 +240,7 @@
             "upstream_ext" : 1
          },
          "P33" : {
-            "anno" : "p33 protein",
+            "anno" : "Membrane-associated viroporin P33 protein",
             "bit_cutoff" : 60,
             "comment" : "Accessory ORF, present on 9% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,
@@ -255,14 +255,14 @@
             "upstream_ext" : 1
          },
          "P6" : {
-            "anno" : "p6 protein",
+            "anno" : "Movement protein",
             "bit_cutoff" : 25,
             "comment" : "Accessory ORF, present on 81% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "CDS",
-            "gene_symbol" : "P6",
+            "gene_symbol" : "Mov",
             "kmers" : 1,
             "max_len" : 61,
             "min_len" : 48,

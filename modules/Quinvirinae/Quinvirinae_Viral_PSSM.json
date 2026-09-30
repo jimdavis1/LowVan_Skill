@@ -120,7 +120,7 @@
             "upstream_ext" : 1
          },
          "ORF2A" : {
-            "anno" : "ORF2a protein",
+            "anno" : "Uncharacterized lineage-specific ORF2a protein",
             "bit_cutoff" : 30,
             "comment" : "Called entirely within the TGB1 span (100% of 38 calls). That is the architecture the name describes -- ORF2a is an alternative reading frame overlapping ORF2 -- not a duplicate call. The collections are unrelated (28% identity over 28% coverage). Accessory, 25.3%, no copy_num.",
             "coverage_cutoff" : 0.65,
@@ -135,7 +135,7 @@
             "upstream_ext" : 1
          },
          "ORF5A" : {
-            "anno" : "ORF5a protein",
+            "anno" : "Uncharacterized lineage-specific ORF5a protein",
             "bit_cutoff" : 40,
             "comment" : "Called entirely within the CP span (100% of 13 calls), which is again what the name describes: ORF5a overlaps ORF5. Collections unrelated (31% over 26%). Accessory, 8.7%, no copy_num.",
             "coverage_cutoff" : 0.65,
@@ -150,13 +150,13 @@
             "upstream_ext" : 1
          },
          "P14" : {
-            "anno" : "14 kDa protein",
+            "anno" : "Uncharacterized lineage-specific P14 protein",
             "bit_cutoff" : 30,
             "comment" : "Called entirely within the CP span (100% of 91 calls) and the collections are NOT related (33% identity over 33% coverage), so unlike ORF2a and ORF5a this is not an overlap the name accounts for -- p14 is the nucleic-acid-binding protein and should sit downstream of the coat protein. Either CP's called span runs long (its window reaches 421 aa, high for this group) or the profile is promiscuous at bit_cutoff 30. Flagged for review; it is called on 60.7% of genomes and carries no copy_num, so nothing depends on it. NOT resolved.",
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "CDS",
-            "gene_symbol" : "p14",
+            "gene_symbol" : "P14",
             "kmers" : 1,
             "max_len" : 127,
             "min_len" : 89,
@@ -171,7 +171,7 @@
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "CDS",
-            "gene_symbol" : "REP",
+            "gene_symbol" : "POLY",
             "kmers" : 1,
             "max_len" : 2208,
             "min_len" : 1600,

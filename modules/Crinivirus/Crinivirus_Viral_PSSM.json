@@ -165,7 +165,7 @@
             "upstream_ext" : 1
          },
          "P22A" : {
-            "anno" : "p22A protein",
+            "anno" : "RNA silencing suppressor P22A protein",
             "bit_cutoff" : 30,
             "comment" : "Called on 0.0% of routed genomes because all 26 of its source records sit on genome records under 6 kb, and the evaluation population is genomes >=6 kb. The profile recovers 26 of its 26 sequences; it was never offered a genome that could carry it.",
             "coverage_cutoff" : 0.65,
@@ -180,7 +180,7 @@
             "upstream_ext" : 1
          },
          "P22B" : {
-            "anno" : "p22B protein",
+            "anno" : "RNA silencing suppressor P22B protein",
             "bit_cutoff" : 30,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
@@ -194,7 +194,7 @@
             "upstream_ext" : 1
          },
          "P22C" : {
-            "anno" : "p22C protein",
+            "anno" : "RNA silencing suppressor P22C protein",
             "bit_cutoff" : 30,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
@@ -208,7 +208,7 @@
             "upstream_ext" : 1
          },
          "P25" : {
-            "anno" : "p25 protein",
+            "anno" : "RNA silencing suppressor P25 protein",
             "bit_cutoff" : 30,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
@@ -222,7 +222,7 @@
             "upstream_ext" : 1
          },
          "P27" : {
-            "anno" : "p27 protein",
+            "anno" : "Uncharacterized lineage-specific P27 protein",
             "bit_cutoff" : 30,
             "comment" : "One homology group covering the records named p26, p27 and p28: 23-24% identity over 96-99% coverage, which is one diverged family rather than three proteins. Shipping them separately produced duplicate calls on identical coordinates in 23% of genomes. A mass is not a homology group.",
             "copy_num" : 1,
@@ -238,7 +238,7 @@
             "upstream_ext" : 1
          },
          "P6B" : {
-            "anno" : "p6B protein",
+            "anno" : "Small hydrophobic protein",
             "bit_cutoff" : 25,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
@@ -252,7 +252,7 @@
             "upstream_ext" : 1
          },
          "P7A" : {
-            "anno" : "p7A protein",
+            "anno" : "Small hydrophobic protein",
             "bit_cutoff" : 25,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
@@ -266,7 +266,7 @@
             "upstream_ext" : 1
          },
          "P7B" : {
-            "anno" : "p7B protein",
+            "anno" : "Small hydrophobic protein",
             "bit_cutoff" : 25,
             "comment" : "Called on 34.0%. Its calls land on RNA1 contigs in about a quarter of genomes despite being declared RNA2; moving it to RNA1 was tested and made the quality flags worse, so the declaration stands and the segment genuinely varies by species.",
             "coverage_cutoff" : 0.65,
@@ -281,7 +281,7 @@
             "upstream_ext" : 1
          },
          "P8A" : {
-            "anno" : "p8A protein",
+            "anno" : "Uncharacterized lineage-specific P8A protein",
             "bit_cutoff" : 25,
             "comment" : "One homology group covering the records named p8 and p9: 33-34% identity over 91-99% coverage. Shipping them separately produced duplicate calls -- p9 was contained in p8A on 66% of its calls and the two were on identical coordinates in 4% of genomes.",
             "copy_num" : 1,
@@ -297,7 +297,7 @@
             "upstream_ext" : 1
          },
          "P8B" : {
-            "anno" : "p8B protein",
+            "anno" : "Small hydrophobic protein",
             "bit_cutoff" : 25,
             "comment" : "One homology group covering a second p8-sized cluster and the records named p6: 29-36% identity over 79-81% coverage. Same duplicate-call reason as P8A.",
             "coverage_cutoff" : 0.65,

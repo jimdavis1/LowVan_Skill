@@ -164,7 +164,7 @@
             "upstream_ext" : 1
          },
          "P20A" : {
-            "anno" : "p20A protein",
+            "anno" : "Uncharacterized lineage-specific P20A protein",
             "bit_cutoff" : 30,
             "comment" : "Accessory ORF, present on 6% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,
@@ -179,7 +179,7 @@
             "upstream_ext" : 1
          },
          "P20B" : {
-            "anno" : "p20B protein",
+            "anno" : "RNA silencing suppressor P20B protein",
             "bit_cutoff" : 30,
             "comment" : "Accessory ORF, present on 6% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,
@@ -194,7 +194,7 @@
             "upstream_ext" : 1
          },
          "P21" : {
-            "anno" : "p21 protein",
+            "anno" : "Uncharacterized lineage-specific P21 protein",
             "bit_cutoff" : 30,
             "comment" : "Accessory ORF, present on 27% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,
@@ -209,7 +209,7 @@
             "upstream_ext" : 1
          },
          "P24" : {
-            "anno" : "p24 protein",
+            "anno" : "Uncharacterized lineage-specific P24 protein",
             "bit_cutoff" : 30,
             "comment" : "Accessory ORF, present on 53% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,
@@ -224,7 +224,7 @@
             "upstream_ext" : 1
          },
          "P7" : {
-            "anno" : "p7 protein",
+            "anno" : "Uncharacterized lineage-specific P7 protein",
             "bit_cutoff" : 25,
             "comment" : "Accessory ORF, present on 19% of genomes in this module -- NOT essential, copy_num deliberately absent. Essentiality is judged on the fraction of GENOMES carrying the feature, not on genus membership: accessory ORFs vary by species within a genus.",
             "coverage_cutoff" : 0.65,

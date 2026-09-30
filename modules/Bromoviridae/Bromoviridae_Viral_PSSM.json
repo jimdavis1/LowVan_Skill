@@ -134,13 +134,13 @@
             "upstream_ext" : 1
          },
          "P2B" : {
-            "anno" : "2b protein",
+            "anno" : "RNA silencing suppressor 2b protein",
             "bit_cutoff" : 30,
             "comment" : "Present in Bromovirus, Cucumovirus, Ilarvirus only (3 of 6 genera), therefore NOT essential -- copy_num is deliberately absent.",
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "CDS",
-            "gene_symbol" : "P2B",
+            "gene_symbol" : "2b",
             "kmers" : 1,
             "max_len" : 131,
             "min_len" : 80,

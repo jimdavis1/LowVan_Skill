@@ -141,7 +141,7 @@
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "CDS",
-            "gene_symbol" : "REP",
+            "gene_symbol" : "POLY",
             "kmers" : 1,
             "max_len" : 2169,
             "min_len" : 1472,
