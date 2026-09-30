@@ -108,6 +108,33 @@
                          white-space:nowrap; }
   .scroll { overflow-x:auto; }
   @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
 </style>
 <div class="wrap"><header><div class="eyebrow">LowVan · Capillovirus module · 29 September 2026</div><h1>Does the apple stem grooving virus module actually work?</h1><p class="stand"><b>Capillovirus</b> is a genus of the <i>Betaflexiviridae</i>: apple stem grooving virus, cherry virus A, citrus tatter leaf virus and about thirty more, mostly of woody perennials. One genome layout throughout — a ~241 kDa ORF1 polyprotein carrying the coat protein at its C-terminus, and a 36 kDa ORF2 movement protein expressed from a subgenomic RNA. Three features, and the module calls all three on every genome it routes.</p><div class="tiles"><div class="tile"><div class="v">3</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">10</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">334/334</div><div class="l">genomes routed</div></div><div class="tile"><div class="v">100.0%</div><div class="l">genomes clean</div></div><div class="tile"><div class="v">12.3×</div><div class="l">string collapse</div></div><div class="tile"><div class="v">1</div><div class="l">mislabelled protein found</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One genus, one layout, so the partitioning question never arose.</p><p class="note">A LowVan module is defined by genome organisation rather than phylogeny. Capillovirus needed no decision: every member carries the same two ORFs, so the genus and the module are the same set. That is unusual in this build — Quinvirinae, Bromoviridae and Tymoviridae all had to be split or lumped against measurement.</p><div class="scroll"><table><thead><tr><th>feature</th><th>annotation</th><th>segment</th><th>length (aa)</th><th>bit cutoff</th></tr></thead><tbody><tr><td>POLY</td><td>Replicase polyprotein</td><td>Single RNA Segment</td><td>1537–2675</td><td>400</td></tr><tr><td>MP</td><td>Movement protein</td><td>Single RNA Segment</td><td>248–492</td><td>80</td></tr><tr><td>CP</td><td>Coat protein</td><td>Single RNA Segment</td><td>203–328</td><td>80</td></tr></tbody></table></div><p class="note">The coat protein is <em>inside</em> ORF1 as well as being expressed on its own. That is visible in the source data: of 56 records annotated as a coat protein, 11 begin somewhere other than a methionine — 8 of them at isoleucine at exactly 205 aa — because they were annotated as a segment of the polyprotein. Those are excluded from the CP collection so the profile starts at the subgenomic Met.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">779 unique proteins, 97.0% of features binned, and one string that named the wrong enzyme.</p><p class="note">Three source labels turned out to be the same protein. Representatives of <b>serine protease</b>, <b>36K protein</b> and <b>putative movement protein</b> are 96.9–98.4% identical to one another over their full length (blastp, E=0.0) and are all ORF2. The protease label is simply wrong: capilloviruses encode a papain-like <em>cysteine</em> protease, and it is a domain of ORF1, not a 320 aa standalone. Binning on the word <code>protease</code> would have created a 25-sequence phantom feature out of MP's own sequences.</p><pre class="mono">serine protease       vs putative movement protein   96.9%  E=0.0   642 bits
 36K protein           vs putative movement protein   98.4%  E=0.0   648 bits
