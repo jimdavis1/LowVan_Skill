@@ -1,0 +1,64 @@
+# Quinvirinae — build notes
+
+## P14 is nested inside CP, and that is genome organisation, not cross-talk
+
+`qc_duplicate_calls.py` flags `P14` as NESTED in `CP`. The question that settles
+what to do about it is whether the two features share homology — if they do, one
+profile set is calling the other's gene and a feature has to go; if they do not,
+the module is looking at two genuinely overlapping ORFs and the right answer is
+to declare the pair expected.
+
+They do not share homology. Measured 30 September 2026, both directions:
+
+| test | result |
+|---|---|
+| blastp, 170 P14 members × 915 CP members, E ≤ 1e-3 | **0 HSPs** of 155,550 pairs |
+| same, relaxed to E ≤ 10 with `-comp_based_stats 0` | 276 HSPs, best 24.3 bits, E = 0.67, ≤ 43% query coverage |
+| each of the 4 P14 PSSMs vs all CP members | best **21.7 bits** (P14.3 → CP.1_2); P14 `bit_cutoff` is 30 |
+| each of the 32 CP PSSMs vs all P14 members | best **22.4 bits** (CP.21 → a P14.1 member); CP `bit_cutoff` is 80 |
+
+No profile of either feature comes within 8 bits of the *other* feature's own
+cutoff, so neither can call the other's gene. The relaxed hits are short
+low-identity fragments of the kind any two 100–400 aa proteins produce once
+composition correction is switched off; that switch is on in the annotator.
+
+**So no CP alignment and no P14 alignment overlap in similarity.** The pair that
+overlaps does so in coordinates. On GRSPaV Shihezi-1 (ON868740, 8825 nt):
+
+```
+CP    7847-8623   frame +2   777 nt / 259 aa
+P14   8307-8648   frame +3   342 nt / 114 aa
+overlap 8307-8623 = 317 nt  ->  92.7% of P14 lies inside CP
+                                40.8% of CP lies inside P14
+```
+
+Different frames, 92.7% containment. The 80% containment floor exists to stop
+the QC reporting the routine short overlaps of compact viral genomes as defects
+(adjacent genes in Closterovirus HSP70/HSP90 share 92 of 1503 nt); 92.7% clears
+it easily, which is why this one was reported. It is still not a defect.
+
+The overlap is confined to one host lineage. Of 170 P14 members, 169 are
+*Grapevine rupestris stem pitting-associated virus* (taxon 196400) and one is
+GRSPaV-2 (2893791) — all four P14 alignments are GRSPaV. All 171 GRSPaV coat
+proteins sit in a single CP alignment, **CP.2**. So the co-occupying pairs are
+`CP.2 × P14.1`, `CP.2 × P14.2`, `CP.2 × P14.3`, `CP.2 × P14.4`, and the other
+31 CP alignments never meet a P14 at all.
+
+**Action:** pass `--expected P14:CP` to `qc_duplicate_calls.py` for this module.
+Neither feature is dropped and neither profile set is rebuilt.
+
+Do not generalise this to other nested pairs. The measurement above is what
+distinguishes a real overlapping ORF from a profile calling someone else's gene,
+and it has to be made each time.
+
+## Annotation vocabulary
+
+`CP` shipped as `Coat protein` with `gene_symbol` `CP`. Corrected 30 September
+2026 to the controlled string `Nucleocapsid protein` with symbol `N`, which is
+what `annotation-vocabulary.tsv` carries for every other taxon in the kit and
+what Allexivirus, Alphaflexiviridae, Tobamovirus and Trivirinae already used.
+
+`ORF2A`, `ORF5A` and `P14` still emit `ORF2a protein`, `ORF5a protein` and
+`14 kDa protein`. `check_annotations.py` flags all three: the first two are bare
+positional symbols and the third is a mass name. Open, pending a decision on what
+to call an accessory whose function is unknown.

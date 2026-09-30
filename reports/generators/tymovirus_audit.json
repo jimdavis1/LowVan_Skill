@@ -1,8 +1,8 @@
 {
  "title": "Tymovirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Tymovirus module \u00b7 29 September 2026",
+ "eyebrow": "LowVan · Tymovirus module · 29 September 2026",
  "h1": "Does the turnip yellow mosaic virus module actually work?",
- "standfirst": "<b>Tymovirus</b> is the type genus of the <i>Tymoviridae</i> \u2014 turnip yellow mosaic virus and about thirty relatives, mostly of dicots. The cleanest layout in this build: three overlapping ORFs on one ~6.3 kb RNA, a ~1,830 aa replicase, a ~628 aa movement protein that overlaps it, and a ~189 aa coat protein from a subgenomic RNA.",
+ "standfirst": "<b>Tymovirus</b> is the type genus of the <i>Tymoviridae</i> — turnip yellow mosaic virus and about thirty relatives, mostly of dicots. The cleanest layout in this build: three overlapping ORFs on one ~6.3 kb RNA, a ~1,830 aa replicase, a ~628 aa movement protein that overlaps it, and a ~189 aa coat protein from a subgenomic RNA.",
  "headline_tiles": [
   [
    "3",
@@ -21,7 +21,7 @@
    "genomes clean"
   ],
   [
-   "14.7\u00d7",
+   "14.7×",
    "string collapse"
   ],
   [
@@ -52,21 +52,21 @@
       [
        "REP",
        "Replicase polyprotein",
-       "1548\u20132412",
+       "1548–2412",
        "400",
        "14"
       ],
       [
        "MP",
        "Movement protein",
-       "541\u2013731",
+       "541–731",
        "80",
        "12"
       ],
       [
        "CP",
-       "Coat protein",
-       "176\u2013214",
+       "Nucleocapsid protein",
+       "176–214",
        "80",
        "12"
       ]
@@ -74,7 +74,7 @@
     },
     {
      "type": "prose",
-     "html": "MP is bound <em>before</em> REP in the binning rules, because in tymoviruses the movement protein is defined by overlapping the replicase ORF \u2014 any source string naming both (<code>overlapping protein/movement protein</code>, <code>overlapping out-of-phase protein</code>) belongs to MP."
+     "html": "MP is bound <em>before</em> REP in the binning rules, because in tymoviruses the movement protein is defined by overlapping the replicase ORF — any source string naming both (<code>overlapping protein/movement protein</code>, <code>overlapping out-of-phase protein</code>) belongs to MP."
     }
    ]
   },
@@ -85,11 +85,11 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "<code>TYMVgp1</code>, <code>TYMVgp2</code> and <code>TYMVgp3</code> are positional labels \u2014 the U-number trap \u2014 and are not trusted as names. They are admitted only inside the three explicit length windows, and it is the window that actually decides them: gp1 is 628 aa (MP), gp2 is 1,844 (REP), gp3 is 189 (CP). A future record numbering its ORFs differently is rejected by the window rather than silently misfiled."
+     "html": "<code>TYMVgp1</code>, <code>TYMVgp2</code> and <code>TYMVgp3</code> are positional labels — the U-number trap — and are not trusted as names. They are admitted only inside the three explicit length windows, and it is the window that actually decides them: gp1 is 628 aa (MP), gp2 is 1,844 (REP), gp3 is 189 (CP). A future record numbering its ORFs differently is rejected by the window rather than silently misfiled."
     },
     {
      "type": "prose",
-     "html": "Length-encoded labels of the form <code>unnamed protein product; 206K ORF (AA 1-1844)</code> are handled the same way. The source also contains two outright misspellings of the same protein \u2014 <code>RNA-dependend RNA polymerase</code> and <code>RNA-depedent RNA polymerase</code> \u2014 which the rules absorb."
+     "html": "Length-encoded labels of the form <code>unnamed protein product; 206K ORF (AA 1-1844)</code> are handled the same way. The source also contains two outright misspellings of the same protein — <code>RNA-dependend RNA polymerase</code> and <code>RNA-depedent RNA polymerase</code> — which the rules absorb."
     }
    ]
   },
@@ -140,7 +140,7 @@
   {
    "num": "04",
    "title": "Does it route?",
-   "lede": "95.1% at annotation time \u2014 better than the reference budget predicted.",
+   "lede": "95.1% at annotation time — better than the reference budget predicted.",
    "blocks": [
     {
      "type": "tiles",
@@ -161,7 +161,7 @@
     },
     {
      "type": "prose",
-     "html": "The reference-budget measurement predicted 92.2% (94 of 102) at a budget of 25, and 8 clusters holding 8 genomes were recorded as uncovered. In the run, 97 of 102 routed \u2014 three better than predicted, because BLASTn at annotation time is more permissive than the clustering used to choose the references. The budget figure is the conservative one and is the number to plan with."
+     "html": "The reference-budget measurement predicted 92.2% (94 of 102) at a budget of 25, and 8 clusters holding 8 genomes were recorded as uncovered. In the run, 97 of 102 routed — three better than predicted, because BLASTn at annotation time is more permissive than the clustering used to choose the references. The budget figure is the conservative one and is the number to plan with."
     },
     {
      "type": "prose",
@@ -205,12 +205,12 @@
     },
     {
      "type": "prose",
-     "html": "All three clear the 85% threshold and earn <code>copy_num</code>. Worth contrasting with the sibling module: Marafivirus MP is called on 16.0% of its genomes and ships <em>without</em> <code>copy_num</code>. Same word, same family, opposite answer \u2014 which is exactly why essentiality is measured per module rather than inferred from the protein's name."
+     "html": "All three clear the 85% threshold and earn <code>copy_num</code>. Worth contrasting with the sibling module: Marafivirus MP is called on 16.0% of its genomes and ships <em>without</em> <code>copy_num</code>. Same word, same family, opposite answer — which is exactly why essentiality is measured per module rather than inferred from the protein's name."
     },
     {
      "type": "verdict",
      "kind": "good",
-     "html": "Three of three features essential and called on \u226595.9% of routed genomes."
+     "html": "Three of three features essential and called on ≥95.9% of routed genomes."
     }
    ]
   },
@@ -238,7 +238,7 @@
     },
     {
      "type": "prose",
-     "html": "One genome raised a flag. The whole taxon at \u22656 kb was scored \u2014 102 genomes, of which 97 routed \u2014 so unlike the other three modules in this group this is a census rather than a sample."
+     "html": "One genome raised a flag. The whole taxon at ≥6 kb was scored — 102 genomes, of which 97 routed — so unlike the other three modules in this group this is a census rather than a sample."
     }
    ]
   },
@@ -282,15 +282,15 @@
      "type": "tiles",
      "items": [
       [
-       "44 \u2192 3",
-       "string collapse (14.7\u00d7)"
+       "44 → 3",
+       "string collapse (14.7×)"
       ],
       [
        "43",
        "distinct source strings"
       ],
       [
-       "14.3\u00d7",
+       "14.3×",
        "strings per 100 genomes"
       ]
      ]
@@ -301,7 +301,7 @@
     },
     {
      "type": "prose",
-     "html": "The starkest curve in this group. The module's vocabulary is flat at 3 from the first genome. The source reaches <b>43 distinct strings for three proteins</b> in a genus of only 129 genomes, with its knee at 79 and still climbing \u2014 positional labels, length-encoded labels, two misspellings and a dozen synonyms for &ldquo;replicase&rdquo;."
+     "html": "The starkest curve in this group. The module's vocabulary is flat at 3 from the first genome. The source reaches <b>43 distinct strings for three proteins</b> in a genus of only 129 genomes, with its knee at 79 and still climbing — positional labels, length-encoded labels, two misspellings and a dozen synonyms for &ldquo;replicase&rdquo;."
     }
    ]
   }

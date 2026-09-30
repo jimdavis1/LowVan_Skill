@@ -1,6 +1,6 @@
 {
  "title": "Velarivirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Velarivirus module \u00b7 29 September 2026",
+ "eyebrow": "LowVan · Velarivirus module · 29 September 2026",
  "h1": "Does the grapevine leafroll-associated virus 7 module actually work?",
  "standfirst": "<b>Velarivirus</b> is the smallest of the three closterovirid modules &mdash; grapevine leafroll-associated virus 7, cordyline virus 1&ndash;4, Actinidia virus 1 and a handful more. It is also the only one carrying a thaumatin-like protein, which no other closterovirid genus has.",
  "headline_tiles": [
@@ -21,7 +21,7 @@
    "genuinely clean"
   ],
   [
-   "23.0\u00d7",
+   "23.0×",
    "vocabulary collapse"
   ],
   [
@@ -70,7 +70,7 @@
       ],
       [
        "CP",
-       "Coat protein",
+       "Nucleocapsid protein",
        "80",
        "85/85 (100%)"
       ],
@@ -90,7 +90,7 @@
     },
     {
      "type": "prose",
-     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in \u00a705 and \u00a706."
+     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in §05 and §06."
     }
    ]
   },
@@ -112,7 +112,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25\u201360 for the accessories by length."
+     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25–60 for the accessories by length."
     }
    ]
   },
@@ -130,7 +130,7 @@
       ],
       [
        "100.0%",
-       "of genomes at \u22656 kb"
+       "of genomes at ≥6 kb"
       ],
       [
        "0",
@@ -180,7 +180,7 @@
       [
        "HSP90",
        "91.3%",
-       "<b>yes \u2014 added</b>"
+       "<b>yes — added</b>"
       ],
       [
        "CPM",
@@ -259,7 +259,7 @@
     {
      "type": "verdict",
      "kind": "good",
-     "html": "Seven of seven features have profiles and call at 95.8\u2013100% of their own collections; five are essential on measurement, and the sixth was corrected here."
+     "html": "Seven of seven features have profiles and call at 95.8–100% of their own collections; five are essential on measurement, and the sixth was corrected here."
     }
    ]
   },
@@ -272,15 +272,15 @@
      "type": "tiles",
      "items": [
       [
-       "47 \u2192 7",
-       "string collapse (6.7\u00d7)"
+       "47 → 7",
+       "string collapse (6.7×)"
       ],
       [
        "161",
        "distinct source strings"
       ],
       [
-       "23.0\u00d7",
+       "23.0×",
        "strings per 100 genomes"
       ]
      ]

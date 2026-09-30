@@ -1,8 +1,8 @@
 {
  "title": "Marafivirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Marafivirus module \u00b7 29 September 2026",
+ "eyebrow": "LowVan · Marafivirus module · 29 September 2026",
  "h1": "Does the maize rayado fino virus module actually work?",
- "standfirst": "<b>Marafivirus</b> is a small genus of the <i>Tymoviridae</i>, leafhopper-transmitted and phloem-limited: maize rayado fino virus, oat blue dwarf virus, grapevine asteroid mosaic virus and about twenty more. A ~2,100 aa replicase polyprotein with the coat protein fused at its C-terminus, plus separately expressed CP. 219 unique proteins in all of BV-BRC \u2014 this is a thin taxon, and the module is thin by design.",
+ "standfirst": "<b>Marafivirus</b> is a small genus of the <i>Tymoviridae</i>, leafhopper-transmitted and phloem-limited: maize rayado fino virus, oat blue dwarf virus, grapevine asteroid mosaic virus and about twenty more. A ~2,100 aa replicase polyprotein with the coat protein fused at its C-terminus, plus separately expressed CP. 219 unique proteins in all of BV-BRC — this is a thin taxon, and the module is thin by design.",
  "headline_tiles": [
   [
    "3",
@@ -21,7 +21,7 @@
    "genomes clean"
   ],
   [
-   "8.0\u00d7",
+   "8.0×",
    "string collapse"
   ],
   [
@@ -52,21 +52,21 @@
       [
        "POLY",
        "Replicase polyprotein",
-       "1798\u20132398",
+       "1798–2398",
        "400",
        "11"
       ],
       [
        "CP",
-       "Coat protein",
-       "183\u2013309",
+       "Nucleocapsid protein",
+       "183–309",
        "80",
        "4"
       ],
       [
        "MP",
        "Movement protein",
-       "250\u2013450",
+       "250–450",
        "80",
        "3"
       ]
@@ -81,7 +81,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "The coat protein is <b>one</b> collection, not two. The source offers <code>21 kDa capsid protein</code>, <code>minor coat protein</code>, <code>major capsid protein</code> and <code>minor capsid protein</code>, but the p21 major and p31 minor forms are the same reading frame \u2014 p31 is the N-terminally extended product \u2014 so they are one homology group and clustering can separate them into profiles if it wants to. Splitting on the words <em>minor</em> and <em>major</em> would have made two features of 4 and 5 sequences, neither of which can build a profile at all."
+     "html": "The coat protein is <b>one</b> collection, not two. The source offers <code>21 kDa capsid protein</code>, <code>minor coat protein</code>, <code>major capsid protein</code> and <code>minor capsid protein</code>, but the p21 major and p31 minor forms are the same reading frame — p31 is the N-terminally extended product — so they are one homology group and clustering can separate them into profiles if it wants to. Splitting on the words <em>minor</em> and <em>major</em> would have made two features of 4 and 5 sequences, neither of which can build a profile at all."
     },
     {
      "type": "prose",
@@ -133,7 +133,7 @@
     },
     {
      "type": "prose",
-     "html": "Self-recall is a floor, not a validation. With collections of 11 and 14 sequences it is a very low floor \u2014 it says the profiles are not broken, nothing more. The held-out number in \u00a705 is the real one, and it is where this module's interesting result is."
+     "html": "Self-recall is a floor, not a validation. With collections of 11 and 14 sequences it is a very low floor — it says the profiles are not broken, nothing more. The held-out number in §05 is the real one, and it is where this module's interesting result is."
     }
    ]
   },
@@ -161,7 +161,7 @@
     },
     {
      "type": "prose",
-     "html": "22 references reach every genome in the taxon at \u22656 kb. The taxon is small but genuinely diverse \u2014 22 references for 161 genomes is a poor ratio compared with Capillovirus's 13 for 334 \u2014 which is what a genus of many sparsely-sampled species looks like."
+     "html": "22 references reach every genome in the taxon at ≥6 kb. The taxon is small but genuinely diverse — 22 references for 161 genomes is a poor ratio compared with Capillovirus's 13 for 334 — which is what a genus of many sparsely-sampled species looks like."
     }
    ]
   },
@@ -201,7 +201,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>MP is called on 16.0% of genomes, and that is why it must not be marked essential.</b> <code>copy_num</code> is the field that makes a feature essential, and an essential feature flags every genome that lacks it. A protein called <em>movement protein</em> is exactly the kind whose reputation earns it <code>copy_num</code> on sight \u2014 and doing that here would have flagged 84% of the taxon while the module was working correctly. Three modules in this project have scored 0.0% clean that way."
+     "html": "<b>MP is called on 16.0% of genomes, and that is why it must not be marked essential.</b> <code>copy_num</code> is the field that makes a feature essential, and an essential feature flags every genome that lacks it. A protein called <em>movement protein</em> is exactly the kind whose reputation earns it <code>copy_num</code> on sight — and doing that here would have flagged 84% of the taxon while the module was working correctly. Three modules in this project have scored 0.0% clean that way."
     },
     {
      "type": "prose",
@@ -257,7 +257,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>The evaluation is a sample.</b> 150 of 161 genomes, so almost a census here \u2014 but the call and quality rates are still estimates. Routing in \u00a704 is a census."
+     "html": "<b>The evaluation is a sample.</b> 150 of 161 genomes, so almost a census here — but the call and quality rates are still estimates. Routing in §04 is a census."
     }
    ]
   },
@@ -268,12 +268,12 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "The MP call rate is the finding. It was invisible before the module ran against real genomes, and it is exactly the measurement that the build order exists to obtain: ship with no <code>copy_num</code>, measure, then mark. Had the module been assembled the other way round \u2014 <code>copy_num</code> set from what a replicase, a coat protein and a movement protein <em>ought</em> to be \u2014 this module would have reported 16% clean instead of 97.3%."
+     "html": "The MP call rate is the finding. It was invisible before the module ran against real genomes, and it is exactly the measurement that the build order exists to obtain: ship with no <code>copy_num</code>, measure, then mark. Had the module been assembled the other way round — <code>copy_num</code> set from what a replicase, a coat protein and a movement protein <em>ought</em> to be — this module would have reported 16% clean instead of 97.3%."
     },
     {
      "type": "verdict",
      "kind": "good",
-     "html": "Nothing outstanding. Two features essential and called on \u226597%, one correctly non-essential, 97.3% of genomes clean."
+     "html": "Nothing outstanding. Two features essential and called on ≥97%, one correctly non-essential, 97.3% of genomes clean."
     }
    ]
   },
@@ -286,8 +286,8 @@
      "type": "tiles",
      "items": [
       [
-       "24 \u2192 3",
-       "string collapse (8.0\u00d7)"
+       "24 → 3",
+       "string collapse (8.0×)"
       ],
       [
        "13.9",
@@ -305,7 +305,7 @@
     },
     {
      "type": "prose",
-     "html": "The module curve reaches all three of its strings by the tenth genome and never moves again. The source curve reaches 20 distinct strings with its knee at 115 and is still climbing at the end of the data \u2014 in a genus of only 199 genomes."
+     "html": "The module curve reaches all three of its strings by the tenth genome and never moves again. The source curve reaches 20 distinct strings with its knee at 115 and is still climbing at the end of the data — in a genus of only 199 genomes."
     }
    ]
   }

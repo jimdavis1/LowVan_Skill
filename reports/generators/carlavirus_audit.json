@@ -1,6 +1,6 @@
 {
  "title": "Carlavirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Carlavirus module \u00b7 29 September 2026",
+ "eyebrow": "LowVan · Carlavirus module · 29 September 2026",
  "h1": "Does the potato virus S module actually work?",
  "standfirst": "<b>Carlavirus</b> is the largest genus in this build &mdash; 3,184 BV-BRC records covering potato virus S and M, carnation latent virus, chrysanthemum virus B and roughly ninety more, mostly of crops and ornamentals. Replicase, a triple gene block, coat protein and a nucleic-acid-binding protein. <b>Of the ten modules in this report series it is the cleanest.</b>",
  "headline_tiles": [
@@ -21,7 +21,7 @@
    "genuinely clean"
   ],
   [
-   "17.7\u00d7",
+   "17.7×",
    "vocabulary collapse"
   ],
   [
@@ -75,7 +75,7 @@
       ],
       [
        "CP",
-       "Coat protein",
+       "Nucleocapsid protein",
        "80",
        "751",
        "751 (100%)"
@@ -124,7 +124,7 @@
   {
    "num": "04",
    "title": "Does it route?",
-   "lede": "76.3% at the project budget \u2014 the weakest number on this page, and a real limit.",
+   "lede": "76.3% at the project budget — the weakest number on this page, and a real limit.",
    "blocks": [
     {
      "type": "tiles",
@@ -135,7 +135,7 @@
       ],
       [
        "76.3%",
-       "of genomes at \u22656 kb"
+       "of genomes at ≥6 kb"
       ],
       [
        "102",
@@ -157,7 +157,7 @@
   {
    "num": "05",
    "title": "Does it call the proteins?",
-   "lede": "All six features, on 93.3\u201399.3% of routed genomes.",
+   "lede": "All six features, on 93.3–99.3% of routed genomes.",
    "blocks": [
     {
      "type": "table",
@@ -253,7 +253,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>The evaluation is a sample</b> &mdash; 149 genomes at &ge;6&nbsp;kb, seed 29. Routing in \u00a704 is a census over the whole genus."
+     "html": "<b>The evaluation is a sample</b> &mdash; 149 genomes at &ge;6&nbsp;kb, seed 29. Routing in §04 is a census over the whole genus."
     }
    ]
   },
@@ -276,21 +276,21 @@
   {
    "num": "09",
    "title": "What the vocabulary bought",
-   "lede": "94 source strings became 6 \u2014 the largest collapse ratio in the build.",
+   "lede": "94 source strings became 6 — the largest collapse ratio in the build.",
    "blocks": [
     {
      "type": "tiles",
      "items": [
       [
-       "94 \u2192 6",
-       "string collapse (15.7\u00d7)"
+       "94 → 6",
+       "string collapse (15.7×)"
       ],
       [
        "106",
        "distinct source strings"
       ],
       [
-       "17.7\u00d7",
+       "17.7×",
        "strings per 100 genomes"
       ]
      ]

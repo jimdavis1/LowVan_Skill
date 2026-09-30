@@ -1,8 +1,8 @@
 {
  "title": "Bromoviridae Coverage Audit",
- "eyebrow": "LowVan \u00b7 Bromoviridae module \u00b7 29 September 2026",
+ "eyebrow": "LowVan · Bromoviridae module · 29 September 2026",
  "h1": "Does the cucumber mosaic virus module actually work?",
- "standfirst": "<b>Bromoviridae</b> is a tripartite plant-virus family built at family level because all five genera share the layout: RNA1 carries 1a, RNA2 the RdRp and in the cucumoviruses 2b, RNA3 the movement protein and the coat protein. Cucumber mosaic virus, brome mosaic virus, alfalfa mosaic virus, tobacco streak virus. <b>This module was measured for the first time here and a real defect came out of it.</b>",
+ "standfirst": "<b>Bromoviridae</b> is a tripartite plant-virus family built at family level because all five genera share the layout: RNA1 carries 1a, RNA2 the RdRp and in the cucumoviruses 2b, RNA3 the movement protein and the coat protein. Cucumber mosaic virus, brome mosaic virus, alfalfa mosaic virus, tobacco streak virus. <b>It routes 74.2% of complete genomes, and the remaining 25.8% receive no annotation at all &mdash; that is an accepted limit, closed on 30 September 2026, not outstanding work.</b>",
  "headline_tiles": [
   [
    "5",
@@ -17,16 +17,16 @@
    "genomes routed"
   ],
   [
+   "25.8%",
+   "NOT annotated"
+  ],
+  [
    "89.2%",
-   "genuinely clean"
+   "clean, of those routed"
   ],
   [
-   "9.8\u00d7",
+   "9.8×",
    "vocabulary collapse"
-  ],
-  [
-   "1",
-   "defect found and fixed"
   ]
  ],
  "sections": [
@@ -49,35 +49,35 @@
        "REP1",
        "Replication protein 1a",
        "RNA1",
-       "908\u20131099",
+       "908–1099",
        "400"
       ],
       [
        "REP2",
        "RNA-dependent RNA polymerase 2a",
        "RNA2",
-       "595\u2013900",
+       "595–900",
        "300"
       ],
       [
        "P2B",
        "2b protein",
        "RNA2",
-       "80\u2013131",
+       "80–131",
        "30"
       ],
       [
        "MP",
        "Movement protein",
        "RNA3",
-       "207\u2013337",
+       "207–337",
        "80"
       ],
       [
        "CP",
-       "Coat protein",
+       "Nucleocapsid protein",
        "RNA3",
-       "157\u2013279",
+       "157–279",
        "80"
       ]
      ]
@@ -99,7 +99,7 @@
     },
     {
      "type": "prose",
-     "html": "\u00a708 is about what happened when that routing was given no margin."
+     "html": "§08 is about what happened when that routing was given no margin."
     }
    ]
   },
@@ -110,14 +110,14 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "REP2's <code>max_len</code> was 993 aa and is now 900. The old value was <em>exactly REP1's median length</em>, which is the whole of \u00a708 in one number."
+     "html": "REP2's <code>max_len</code> was 993 aa and is now 900. The old value was <em>exactly REP1's median length</em>, which is the whole of §08 in one number."
     }
    ]
   },
   {
    "num": "04",
    "title": "Does it route?",
-   "lede": "74.2% of complete genomes \u2014 measured properly, and neither figure reported before.",
+   "lede": "74.2% of complete genomes. One genome in four gets nothing.",
    "blocks": [
     {
      "type": "tiles",
@@ -200,14 +200,14 @@
     {
      "type": "verdict",
      "kind": "warn",
-     "html": "74.2% routed as one module, about 90% as three. The split is not done; the figure on this page is now measured rather than asserted."
+     "html": "<b>Closed, 30 September 2026.</b> Shipped at 74.2% by the curator's decision, not split. 155 of 600 complete genomes &mdash; <b>25.8% of the family</b> &mdash; match no reference and so receive no LowVan annotation whatsoever: not a wrong call, no call. A three-way split would reach about 90% and remains available if that becomes worth doing; it is recorded here as a known and accepted cost rather than a pending task."
     }
    ]
   },
   {
    "num": "05",
    "title": "Does it call the proteins?",
-   "lede": "Four essential features at 99.3\u2013100%.",
+   "lede": "Four essential features at 99.3–100%.",
    "blocks": [
     {
      "type": "table",
@@ -253,7 +253,7 @@
   {
    "num": "06",
    "title": "Are the calls right?",
-   "lede": "89.2% genuinely clean \u2014 after the fix in \u00a708. Before it, 43.9%.",
+   "lede": "89.2% genuinely clean — after the fix in §08. Before it, 43.9%.",
    "blocks": [
     {
      "type": "tiles",
@@ -285,7 +285,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "<b>25.8% of complete genomes do not route</b> on 25 references, and the three-way split that would take it to roughly 90% has not been done. Section 04 has the measurement."
+     "html": "<b>One genome in four of this family is not annotated by this module.</b> 155 of 600 complete genomes match none of the 25 references, so the annotator never reaches them and they carry no features at all. Everything in &sect;05 and &sect;06 &mdash; the call rates, the 89.2% clean &mdash; describes only the 445 that did route. Read the two together: a high quality score on a partial denominator is not a high quality score on the family."
     },
     {
      "type": "prose",
@@ -293,7 +293,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>The evaluation is a sample</b> &mdash; 148 genomes at &ge;6&nbsp;kb, seed 29. Routing in \u00a704 is a census."
+     "html": "<b>The evaluation is a sample</b> &mdash; 148 genomes at &ge;6&nbsp;kb, seed 29. Routing in §04 is a census."
     }
    ]
   },
@@ -322,6 +322,10 @@
      "type": "verdict",
      "kind": "good",
      "html": "Fixed. Three contaminating sequences and one length ceiling, worth 45 points of genome quality."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The routing gap was accepted rather than fixed.</b> The three-way split that would take the family from 74.2% to roughly 90% is measured, documented and undone. That was a judgement about where effort goes, made with these numbers in hand, and it applies to this family only."
     }
    ]
   },
@@ -334,15 +338,15 @@
      "type": "tiles",
      "items": [
       [
-       "68 \u2192 5",
-       "string collapse (13.6\u00d7)"
+       "68 → 5",
+       "string collapse (13.6×)"
       ],
       [
        "49",
        "distinct source strings"
       ],
       [
-       "9.8\u00d7",
+       "9.8×",
        "strings per 100 genomes"
       ]
      ]
@@ -353,7 +357,7 @@
     },
     {
      "type": "prose",
-     "html": "The module's vocabulary is complete after two genomes. The source reaches 49 distinct strings with its knee at 132 and is still climbing &mdash; and among those strings is the bare word <em>replicase</em> standing for two different proteins, which is what \u00a708 is ultimately about."
+     "html": "The module's vocabulary is complete after two genomes. The source reaches 49 distinct strings with its knee at 132 and is still climbing &mdash; and among those strings is the bare word <em>replicase</em> standing for two different proteins, which is what §08 is ultimately about."
     }
    ]
   }
