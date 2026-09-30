@@ -173,8 +173,15 @@ def section(num, title, lede, body):
             % (esc(num), esc(title), lede, body))
 
 def verdict(kind, text):
-    return '<div class="verdict%s">%s</div>' % (
-        "" if kind == "ok" else (" warn" if kind == "warn" else " stop"), text)
+    #  "good" and "ok" are the positive style, "warn" amber, "stop" red.
+    #  The original mapped anything that was not ok/warn to stop, so every
+    #  page written with kind="good" rendered its positive conclusion in the
+    #  red callout -- ten published audits, each inverting its own verdict.
+    cls = {"good": "", "ok": "", "warn": " warn",
+           "stop": " stop", "bad": " stop"}.get(kind)
+    if cls is None:
+        raise SystemExit("unknown verdict kind %r -- use good/ok/warn/stop" % kind)
+    return '<div class="verdict%s">%s</div>' % (cls, text)
 
 def main():
     ap = argparse.ArgumentParser()

@@ -199,7 +199,7 @@
   {
    "num": "05",
    "title": "Does it call the proteins?",
-   "lede": "Seven features essential, eight accessory \u2014 and the first count was wrong.",
+   "lede": "Eight features essential, nine accessory \u2014 and the first count was wrong.",
    "blocks": [
     {
      "type": "table",
@@ -363,28 +363,28 @@
   {
    "num": "09",
    "title": "What the vocabulary bought",
-   "lede": "181 source strings became 15.",
+   "lede": "204 source strings became 17.",
    "blocks": [
     {
      "type": "tiles",
      "items": [
       [
-       "181 \u2192 15",
-       "string collapse (12.1\u00d7)"
+       "204 \u2192 17",
+       "string collapse (12.0\u00d7)"
       ],
       [
        "95",
        "distinct source strings"
       ],
       [
-       "6.8\u00d7",
+       "5.9\u00d7",
        "strings per 100 genomes"
       ]
      ]
     },
     {
      "type": "prose",
-     "html": "The module's curve reaches 14 of its strings by the thirteenth genome. The source reaches 95 distinct strings with its knee at 88 and is still climbing \u2014 most of that tail is the mass names that \u00a702 had to discard."
+     "html": "The module's curve reaches 16 of its 17 annotation strings by the thirteenth genome &mdash; P22A's string never appears, because none of its genomes clear the 6&nbsp;kb evaluation floor. The source reaches 95 distinct strings with its knee at 88 and is still climbing; most of that tail is the mass names &sect;02 had to discard."
     }
    ]
   }
