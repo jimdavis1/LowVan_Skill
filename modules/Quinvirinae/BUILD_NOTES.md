@@ -49,6 +49,39 @@ proteins sit in a single CP alignment, **CP.2**. So the co-occupying pairs are
 `CP.2 × P14.1`, `CP.2 × P14.2`, `CP.2 × P14.3`, `CP.2 × P14.4`, and the other
 31 CP alignments never meet a P14 at all.
 
+### The exact cases, named
+
+There is nothing to find in the clusters or the alignments — that is the point.
+The collision is between two *calls*, each made correctly by its own profile.
+From live runs of `annotate_by_viral_pssm.pl` on the two GRSPaV rep contigs:
+
+| genome | CP profile | bits | CP CDS | P14 profile | bits | P14 CDS | overlap | % of P14 |
+|---|---|---|---|---|---|---|---|---|
+| ON868740 (Shihezi-1) | `Quinvirinae.CP.2.pssm` | 495.0 | 7847–8623 (+2) | `Quinvirinae.P14.4.pssm` | 210.3 | 8277–8651 (+3) | 347 nt | 92.5% |
+| KT000366 (TI_21) | `Quinvirinae.CP.2.pssm` | 476.1 | 7771–8547 (+2) | `Quinvirinae.P14.2.pssm` | 223.5 | 8228–8584 (+3) | 320 nt | 89.6% |
+
+`CP.2` is the CP profile in both because it is the only one of the 32 that holds
+GRSPaV members (all 171 of them). The P14 profile differs between the two
+genomes — `P14.4` on one, `P14.2` on the other — which is itself evidence that
+nothing systematic is wrong with any single P14 alignment: whichever P14 profile
+is nearest fires, and each clears the P14 cutoff of 30 by seven-fold while the
+CP call clears 80 by six-fold. Both are right.
+
+The two proteins LowVan emitted at that locus on ON868740 — a 259 aa
+`Nucleocapsid protein` and a 125 aa `14 kDa protein` — share no sequence at
+all: blastp one against the other reports **zero alignments at E ≤ 1000**.
+
+`P14.4`, the profile that fired on ON868740, is the two-member alignment. Its
+members are `fig|196400.1392.peg.6` and `fig|196400.1603.peg.6`, both 119 aa,
+both annotated `14 kDa protein` in BV-BRC, 90% identical to each other. They
+are genuine P14s; there is no mis-assigned sequence in the cluster.
+
+### The same architecture appears elsewhere in this module
+
+On KT000366 the annotator also calls `ORF2a` at 6816–6947 inside `TGB1` at
+6578–7240 — **100%** containment, again out of frame. Whatever is decided for
+`P14:CP` applies to `ORF2A:TGB1` on the same reasoning.
+
 **Action:** pass `--expected P14:CP` to `qc_duplicate_calls.py` for this module.
 Neither feature is dropped and neither profile set is rebuilt.
 
