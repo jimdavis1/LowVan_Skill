@@ -1,0 +1,9 @@
+{
+ "standfirst": "Tripartite, and built at family level because all five genera share the layout. RNA1 carries 1a, RNA2 the RdRp and in the cucumoviruses 2b, RNA3 the movement protein and the coat protein.",
+ "modules": {
+  "Bromoviridae": "The naming trap is that 1a and 2a are different proteins on different segments and the source calls both <b>replicase</b>. That string is routed by LENGTH against the two measured medians, and anything far below either is left unbinned rather than assigned to whichever is nearer."
+ },
+ "gaps": "Routing across the family is 69.5%, not the 94.8% first reported: that figure came from merging records by genome name, which collapses isolate collisions as well as segments. A three-way split (Cucumovirus 94.0%, Ilarvirus 71.0%, Alfamovirus-group 100%) is documented but has not been acted on.",
+ "derived": "None declared.",
+ "why": {}
+}
