@@ -26,11 +26,16 @@ composition correction is switched off; that switch is on in the annotator.
 overlaps does so in coordinates. On GRSPaV Shihezi-1 (ON868740, 8825 nt):
 
 ```
-CP    7847-8623   frame +2   777 nt / 259 aa
-P14   8307-8648   frame +3   342 nt / 114 aa
-overlap 8307-8623 = 317 nt  ->  92.7% of P14 lies inside CP
-                                40.8% of CP lies inside P14
+CP  (N)   7847-8623   frame +2   777 nt / 259 aa
+P14       8277-8651   frame +3   375 nt / 125 aa
+overlap 8277-8623 = 347 nt  ->  92.5% of P14 lies inside CP
+                                44.7% of CP lies inside P14
 ```
+
+Those are the annotator's own coordinates, from a live run of
+`annotate_by_viral_pssm.pl` on this contig, not a tblastn of a collection
+member — the QC reads what the annotator emitted, so that is the number that
+has to clear the floor.
 
 Different frames, 92.7% containment. The 80% containment floor exists to stop
 the QC reporting the routine short overlaps of compact viral genomes as defects
