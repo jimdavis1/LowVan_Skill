@@ -294,6 +294,10 @@
     {
      "type": "prose",
      "html": "<b>The evaluation is a sample</b> &mdash; 148 genomes at &ge;6&nbsp;kb, seed 29. Routing in §04 is a census."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The homology rescue has never run on this module, and should be re-done.</b> Deferred 30 September 2026 by the curator, not forgotten. Step 2 bins proteins by their annotation string; <code>rescue_unassigned.py</code> takes everything no string rule matched, blastp&rsquo;s it against this module's own collections and adopts each sequence into the feature it matches at &ge;80% identity over &ge;60% of the query. It recovers exactly the sequences a string rule cannot reach &mdash; <code>hypothetical protein</code>, masses like <code>64kDa protein</code>, positional labels like <code>ORF3</code>, and outright typos (<code>Polypretein</code>, <code>Coat prtein</code>) &mdash; and it refuses everything below threshold rather than sweeping it into an uncharacterized bag. Measured here: <b>1256 sequences matched no rule and 819 would be adopted</b>, against 2901 currently binned &mdash; about 28% more training data. Until it runs, this module's profiles are built from a collection missing that fraction of its own taxon, and the population missing is the divergent one: on Alpharhabdovirinae, 85 of 85 genomes with an uncalled P had a full-length, correct-looking gene that resembled a leftover sequence and none that resembled a clustered one. Neither self-recall nor a reference panel shows this."
     }
    ]
   },

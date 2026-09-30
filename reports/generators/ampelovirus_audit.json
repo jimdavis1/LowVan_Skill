@@ -283,6 +283,14 @@
     {
      "type": "prose",
      "html": "<b>The evaluation is a sample.</b> Measured on a random sample of up to 150 genomes at &ge;6&nbsp;kb (seed 29). Annotation costs about 86 seconds per genome, and 150 is ample for the decision it feeds: the test for <code>copy_num</code> is whether a feature is called on at least 85% of routed genomes, estimated to within about &plusmn;6 points at that sample size."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The homology rescue has never run on this module, and should be re-done.</b> Deferred 30 September 2026 by the curator, not forgotten. Step 2 bins proteins by their annotation string; <code>rescue_unassigned.py</code> takes everything no string rule matched, blastp&rsquo;s it against this module's own collections and adopts each sequence into the feature it matches at &ge;80% identity over &ge;60% of the query. It recovers exactly the sequences a string rule cannot reach &mdash; <code>hypothetical protein</code>, masses like <code>64kDa protein</code>, positional labels like <code>ORF3</code>, and outright typos (<code>Polypretein</code>, <code>Coat prtein</code>) &mdash; and it refuses everything below threshold rather than sweeping it into an uncharacterized bag. Measured here: <b>1185 sequences matched no rule and 679 would be adopted</b>, against 2274 currently binned &mdash; about 30% more training data. Until it runs, this module's profiles are built from a collection missing that fraction of its own taxon, and the population missing is the divergent one: on Alpharhabdovirinae, 85 of 85 genomes with an uncalled P had a full-length, correct-looking gene that resembled a leftover sequence and none that resembled a clustered one. Neither self-recall nor a reference panel shows this."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Three features are mass bins holding more than one homology group, and must be split.</b> <code>P7</code> (five groups: GLRaV-3 47 | GLRaV-1 29 | three GLRaV-13 groups of 3), <code>P21</code> (GLRaV-3 with PMWaV-6 40 | GLRaV-1 38) and <code>P24</code> (GLRaV-1 42 | SCMMV 11 | PMWaV 9). No pair of groups shares a blastp HSP at 1e-3. A bin must be one homology group; until these are split each calls two or more different proteins under one key. Deferred alongside the rescue, because splitting forces a <code>build_collections</code> re-run that discards a rescue &mdash; the two are one job."
     }
    ]
   },
