@@ -174,7 +174,7 @@
             "gene_symbol" : "POLY",
             "kmers" : 1,
             "max_len" : 2208,
-            "min_len" : 1600,
+            "min_len" : 1541,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1
@@ -204,7 +204,7 @@
             "gene_symbol" : "TGB2",
             "kmers" : 1,
             "max_len" : 135,
-            "min_len" : 109,
+            "min_len" : 102,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1

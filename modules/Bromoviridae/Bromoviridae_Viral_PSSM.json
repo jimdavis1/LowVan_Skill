@@ -128,7 +128,7 @@
             "gene_symbol" : "Mov",
             "kmers" : 1,
             "max_len" : 337,
-            "min_len" : 207,
+            "min_len" : 200,
             "segment" : "RNA3",
             "type" : "CDS",
             "upstream_ext" : 1
@@ -157,8 +157,8 @@
             "feature_type" : "CDS",
             "gene_symbol" : "REP1",
             "kmers" : 1,
-            "max_len" : 1099,
-            "min_len" : 908,
+            "max_len" : 1100,
+            "min_len" : 727,
             "segment" : "RNA1",
             "type" : "CDS",
             "upstream_ext" : 1
@@ -173,7 +173,7 @@
             "feature_type" : "CDS",
             "gene_symbol" : "REP2",
             "kmers" : 1,
-            "max_len" : 900,
+            "max_len" : 886,
             "min_len" : 595,
             "segment" : "RNA2",
             "type" : "CDS",

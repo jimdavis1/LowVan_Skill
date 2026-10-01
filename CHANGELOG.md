@@ -553,3 +553,55 @@ containment in one direction only: Hepeviridae ORF3 cluster 8 is 75 aa and
 row with cluster 8 as BLAST query aligned 69 of 75 residues (qcov 0.92, under
 the 0.95 cut) while the reverse row aligned all 75. It also covers
 `reclustered_alis/`, which the pipeline's QC never sees.
+
+---
+
+## Alsuviricetes — the homology rescue, backfilled (1 October 2026)
+
+### Six modules rescued, 842 -> 901 profiles
+
+`rescue_unassigned.py` had never run on Ampelovirus, Bromoviridae, Carlavirus,
+Closterovirus, Quinvirinae or Velarivirus. Adopted 3,114 of 5,121 unassigned
+sequences at >=80% identity over >=60% of the query; training sets grew 9-24%.
+
+Worth **+20 genomes across 770 panel genomes**, 70.3% -> 72.9% genuinely clean,
+measured against a control rather than the stored baseline. Carlavirus (+12)
+and Quinvirinae (+4) gained with nothing lost; Ampelovirus lost two net.
+
+**Allexivirus did not need it.** Its profiles are selected from
+Alphaflexiviridae, whose rescue did run; re-running over the parent adopts 3
+sequences, all *Potexvirus*. The audit note claiming otherwise is corrected.
+
+### `skill/SKILL.md` — a rescue invalidates `min_len`/`max_len`
+
+Those bounds are derived from the collection, verified across 36 features where
+every untouched one matches its collection's extremes exactly. After a rescue
+they are stale, and `viral_genome_quality.pl` then reports "Feature is too
+short" against a protein the module has just learned to model. 13 features
+across the six modules needed refreshing; Velarivirus `RDRP` had reached 455 aa
+against a `min_len` of 466 and cost 7 genomes before it was caught. The step is
+now named in the documented order, and `work/fix_bounds.py` performs it.
+
+### `skill/references/silent-failures.md` — three entries
+
+- **Derived numbers go stale when their source changes**, and are
+  indistinguishable from curated ones.
+- **A control is not optional when the baseline predates an unrelated change.**
+  Scoring against `measurements/quality.tsv`, written before the 30 September
+  `copy_num` edits, turned Closterovirus's real 27.0% -> 36.5% into an apparent
+  0% -> 36.5% and hid that Ampelovirus had regressed.
+- **The build log records an intention; the collection is the fact.**
+  Bromoviridae `REP2` held 587 sequences against a log saying 590; restoring
+  the three missing ones reintroduced `1a` proteins mislabelled
+  `RNA-dependent RNA polymerase` (97-99.6% identity to `REP1` over all 993
+  residues) and cost 8 genomes.
+
+### Not changed, deliberately
+
+**`-m` in `features.json` never reaches the command line.** The file writes
+`"-m": "3"`, `DEFAULTS` is keyed `m`, so the run keeps `-m 5` while
+`BUILD_PARAMS` records a departure that did not happen. 28 features in seven
+modules, including shipped Pestiviridae and Pegivirus. The fix is written
+(`work/patch_build_features.py`) and **not applied**: it changes clustering on
+those features, and applying it during the rescue would have left neither
+effect measurable. Curator's decision.

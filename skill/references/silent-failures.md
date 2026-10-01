@@ -417,3 +417,59 @@ A module is not built when its PSSMs exist in a temp directory. Twice in this
 project a module was measured, reported as finished, and found later to exist
 only under `/tmp` — not in the kit, not in Box, not in the runtime, not
 committed. Use `ship_module.py --check` before calling anything done.
+
+---
+
+### Derived numbers go stale when their source changes, and look authoritative
+
+`min_len`/`max_len` in a module JSON are computed from the collection. Nothing
+says so in the file, and they are indistinguishable from curated values. After
+the homology rescue added sequences to six modules, 13 features carried bounds
+computed from the *previous* collection, and `viral_genome_quality.pl` then
+flagged "Feature is too short" on proteins the module had just learned to
+model. Velarivirus `RDRP` reached 455 aa against a `min_len` of 466.
+
+The derivation was confirmed before it was trusted: across 36 features, every
+bound that had *not* been touched matched its collection's min and max exactly.
+
+**After any step that changes a collection, refresh everything derived from it
+in the same pass.** Rebuilding the profiles is the obvious half; the JSON is
+the half that is easy to miss, because it lives in a different file and looks
+hand-written.
+
+---
+
+### A control is not optional when the baseline predates an unrelated change
+
+The six rescued modules were first scored against `measurements/quality.tsv`,
+the only surviving per-genome baseline. It predates the 30 September `copy_num`
+and vocabulary edits. On Closterovirus those edits alone retire 184 "missing
+essential feature" flags, because six accessories stopped being essential — so
+the rescue appeared to take the module from **0% to 36.5%** when its real
+contribution was **27.0% to 36.5%**. Ampelovirus looked like 0% to 50.5% and is
+actually 52.5% to **50.5%**, a net loss. Two of the three headline improvements
+were somebody else's work and one was a regression wearing its clothes.
+
+The fix is cheap and mechanical: score the *shipped* module on the *same*
+panels with the *current* JSON, and compare against that.
+
+**Before quoting a delta, date the baseline and ask what else changed in
+between.** A stored table carries no record of the configuration that produced
+it.
+
+---
+
+### The build log is a record of an intention; the collection is the fact
+
+Bromoviridae `REP2.fasta` held 587 sequences where its build log said 590. The
+three missing sequences were restored on the strength of the log. They had been
+removed deliberately: blastp puts all three at 97-99.6% identity to `REP1`
+across all 993 residues, so they are `1a` proteins that BV-BRC labels
+`RNA-dependent RNA polymerase`. Restoring them raised `REP2`'s `max_len` from
+886 to 993, produced a profile that called the 1a ORF a second time, and cost
+8 genomes to *Too many contigs for RNA2*.
+
+The signal that would have caught it immediately: **`REP2` held no sequence
+above 900 aa before the change and four after.** A collection whose length
+extremes move after a rescue has had its membership changed, not merely
+extended. Count, min and max — not count alone.

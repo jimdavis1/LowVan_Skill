@@ -1,6 +1,6 @@
 {
  "title": "Velarivirus Coverage Audit",
- "eyebrow": "LowVan · Velarivirus module · 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Velarivirus module \u00b7 29 September 2026",
  "h1": "Does the grapevine leafroll-associated virus 7 module actually work?",
  "standfirst": "<b>Velarivirus</b> is the smallest of the three closterovirid modules &mdash; grapevine leafroll-associated virus 7, cordyline virus 1&ndash;4, Actinidia virus 1 and a handful more. It is also the only one carrying a thaumatin-like protein, which no other closterovirid genus has.",
  "headline_tiles": [
@@ -21,7 +21,7 @@
    "genuinely clean"
   ],
   [
-   "23.0×",
+   "23.0\u00d7",
    "vocabulary collapse"
   ],
   [
@@ -90,7 +90,7 @@
     },
     {
      "type": "prose",
-     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in §05 and §06."
+     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in \u00a705 and \u00a706."
     }
    ]
   },
@@ -112,7 +112,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25–60 for the accessories by length."
+     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25\u201360 for the accessories by length."
     }
    ]
   },
@@ -130,7 +130,7 @@
       ],
       [
        "100.0%",
-       "of genomes at ≥6 kb"
+       "of genomes at \u22656 kb"
       ],
       [
        "0",
@@ -180,7 +180,7 @@
       [
        "HSP90",
        "91.3%",
-       "<b>yes — added</b>"
+       "<b>yes \u2014 added</b>"
       ],
       [
        "CPM",
@@ -247,7 +247,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>The homology rescue has never run on this module, and should be re-done.</b> Deferred 30 September 2026 by the curator, not forgotten. Step 2 bins proteins by their annotation string; <code>rescue_unassigned.py</code> takes everything no string rule matched, blastp&rsquo;s it against this module's own collections and adopts each sequence into the feature it matches at &ge;80% identity over &ge;60% of the query. It recovers exactly the sequences a string rule cannot reach &mdash; <code>hypothetical protein</code>, masses like <code>64kDa protein</code>, positional labels like <code>ORF3</code>, and outright typos (<code>Polypretein</code>, <code>Coat prtein</code>) &mdash; and it refuses everything below threshold rather than sweeping it into an uncharacterized bag. Measured here: <b>683 sequences matched no rule and 110 would be adopted</b>, against 627 currently binned &mdash; about 18% more training data. Until it runs, this module's profiles are built from a collection missing that fraction of its own taxon, and the population missing is the divergent one: on Alpharhabdovirinae, 85 of 85 genomes with an uncalled P had a full-length, correct-looking gene that resembled a leftover sequence and none that resembled a clustered one. Neither self-recall nor a reference panel shows this."
+     "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>110 of 683</b> unassigned sequences were adopted; the training set went 627 &rarr; 705 sequences (+12%) and the profile set 67 &rarr; 69. The only module where the rescue is a net loss, and the smallest adoption rate of the six at 16%. One genome regressed: <code>HSP90</code> is called at 497&ndash;505 aa against a collection minimum of 506 and a source annotation of 513 (<code>p60 protein</code>, genome 1654603). The cause is not shorter training data &mdash; all 22 adopted sequences are inside the window &mdash; but a change in HSP90&rsquo;s clustering, 8 alignments to 7, whose merged consensus places the N-terminus further in. <b>The real gap here is declared features, not training data:</b> of 573 sequences the rescue refused, 185 are <code>hypothetical protein</code> and 85 are named by mass &mdash; <code>p25</code>, <code>p21</code>, <code>p60</code>, <code>p27</code>, <code>p4</code>, <code>P22</code> across <i>Velarivirus</i> and <i>Olivavirus</i>. The module declares seven features and not one accessory, so those proteins have nowhere to go and no rescue can place them. Measured against a control &mdash; the shipped module scored on the same 64 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>50.0%</b> to <b>48.4%</b> (0 genome(s) improved, 1 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely."
     }
    ]
   },
@@ -263,7 +263,7 @@
     {
      "type": "verdict",
      "kind": "good",
-     "html": "Seven of seven features have profiles and call at 95.8–100% of their own collections; five are essential on measurement, and the sixth was corrected here."
+     "html": "Seven of seven features have profiles and call at 95.8\u2013100% of their own collections; five are essential on measurement, and the sixth was corrected here."
     }
    ]
   },
@@ -276,15 +276,15 @@
      "type": "tiles",
      "items": [
       [
-       "47 → 7",
-       "string collapse (6.7×)"
+       "47 \u2192 7",
+       "string collapse (6.7\u00d7)"
       ],
       [
        "161",
        "distinct source strings"
       ],
       [
-       "23.0×",
+       "23.0\u00d7",
        "strings per 100 genomes"
       ]
      ]

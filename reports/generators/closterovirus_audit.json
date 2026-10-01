@@ -1,6 +1,6 @@
 {
  "title": "Closterovirus Coverage Audit",
- "eyebrow": "LowVan · Closterovirus module · 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Closterovirus module \u00b7 29 September 2026",
  "h1": "Does the beet yellows virus module actually work?",
  "standfirst": "<b>Closterovirus</b> is the type genus of the <i>Closteroviridae</i>: beet yellows virus, citrus tristeza virus, carrot yellow leaf virus. Among the longest RNA genomes of any plant virus at up to 19&nbsp;kb, with a replicase, an RdRp, the quintuple gene block and a long tail of species-specific accessories named by mass.",
  "headline_tiles": [
@@ -21,7 +21,7 @@
    "genuinely clean"
   ],
   [
-   "17.6×",
+   "17.6\u00d7",
    "vocabulary collapse"
   ],
   [
@@ -96,7 +96,7 @@
     },
     {
      "type": "prose",
-     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in §05 and §06."
+     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in \u00a705 and \u00a706."
     }
    ]
   },
@@ -118,7 +118,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25–60 for the accessories by length."
+     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25\u201360 for the accessories by length."
     }
    ]
   },
@@ -136,7 +136,7 @@
       ],
       [
        "95.8%",
-       "of genomes at ≥6 kb"
+       "of genomes at \u22656 kb"
       ],
       [
        "",
@@ -165,7 +165,7 @@
      "rows": [
       [
        "HSP70, HSP90, CPM, POLY",
-       "96.7–98.7%",
+       "96.7\u201398.7%",
        "yes"
       ],
       [
@@ -190,7 +190,7 @@
       ],
       [
        "P18, P13, P33",
-       "42.7–44.7%",
+       "42.7\u201344.7%",
        "no"
       ],
       [
@@ -245,7 +245,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>P20 is declared but not essential</b>, and its call rate should not be read at face value &mdash; see §05."
+     "html": "<b>P20 is declared but not essential</b>, and its call rate should not be read at face value &mdash; see \u00a705."
     },
     {
      "type": "prose",
@@ -253,7 +253,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>The homology rescue has never run on this module, and should be re-done.</b> Deferred 30 September 2026 by the curator, not forgotten. Step 2 bins proteins by their annotation string; <code>rescue_unassigned.py</code> takes everything no string rule matched, blastp&rsquo;s it against this module's own collections and adopts each sequence into the feature it matches at &ge;80% identity over &ge;60% of the query. It recovers exactly the sequences a string rule cannot reach &mdash; <code>hypothetical protein</code>, masses like <code>64kDa protein</code>, positional labels like <code>ORF3</code>, and outright typos (<code>Polypretein</code>, <code>Coat prtein</code>) &mdash; and it refuses everything below threshold rather than sweeping it into an uncharacterized bag. Measured here: <b>640 sequences matched no rule and 420 would be adopted</b>, against 1857 currently binned &mdash; about 23% more training data. Until it runs, this module's profiles are built from a collection missing that fraction of its own taxon, and the population missing is the divergent one: on Alpharhabdovirinae, 85 of 85 genomes with an uncalled P had a full-length, correct-looking gene that resembled a leftover sequence and none that resembled a clustered one. Neither self-recall nor a reference panel shows this."
+     "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>420 of 640</b> unassigned sequences were adopted; the training set went 1857 &rarr; 2091 sequences (+13%) and the profile set 80 &rarr; 97. Both the gains and the losses are the same defect, in opposite directions: genomes carrying a duplicate <code>Replicase polyprotein</code> call went 38 &rarr; 22. Thirteen genomes that called POLY three times now call it once; six that called it once now call it twice. The cause is the ORF1a/ORF1ab &minus;1 ribosomal frameshift, whose fusion product is binned into POLY alongside ORF1a and cannot be separated by length. The 14 fewer features called are spurious duplicates removed, not coverage lost. This needs <code>transcript_edit</code> references, not more training data. Measured against a control &mdash; the shipped module scored on the same 74 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>27.0%</b> to <b>36.5%</b> (13 genome(s) improved, 6 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely."
     },
     {
      "type": "prose",
@@ -273,7 +273,7 @@
     {
      "type": "verdict",
      "kind": "good",
-     "html": "Thirteen of thirteen features have profiles, self-recall 93.8–100%, seven essential on measurement, and the one ambiguous case is documented rather than guessed."
+     "html": "Thirteen of thirteen features have profiles, self-recall 93.8\u2013100%, seven essential on measurement, and the one ambiguous case is documented rather than guessed."
     }
    ]
   },
@@ -286,15 +286,15 @@
      "type": "tiles",
      "items": [
       [
-       "163 → 13",
-       "string collapse (12.5×)"
+       "163 \u2192 13",
+       "string collapse (12.5\u00d7)"
       ],
       [
        "246",
        "distinct source strings"
       ],
       [
-       "17.6×",
+       "17.6\u00d7",
        "strings per 100 genomes"
       ]
      ]

@@ -159,7 +159,7 @@
             "gene_symbol" : "HSP90",
             "kmers" : 1,
             "max_len" : 560,
-            "min_len" : 459,
+            "min_len" : 428,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1
@@ -280,7 +280,7 @@
             "gene_symbol" : "POLY",
             "kmers" : 1,
             "max_len" : 3582,
-            "min_len" : 2421,
+            "min_len" : 2137,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1

@@ -1,6 +1,6 @@
 {
  "title": "Carlavirus Coverage Audit",
- "eyebrow": "LowVan · Carlavirus module · 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Carlavirus module \u00b7 29 September 2026",
  "h1": "Does the potato virus S module actually work?",
  "standfirst": "<b>Carlavirus</b> is the largest genus in this build &mdash; 3,184 BV-BRC records covering potato virus S and M, carnation latent virus, chrysanthemum virus B and roughly ninety more, mostly of crops and ornamentals. Replicase, a triple gene block, coat protein and a nucleic-acid-binding protein. <b>Of the ten modules in this report series it is the cleanest.</b>",
  "headline_tiles": [
@@ -21,7 +21,7 @@
    "genuinely clean"
   ],
   [
-   "17.7×",
+   "17.7\u00d7",
    "vocabulary collapse"
   ],
   [
@@ -124,7 +124,7 @@
   {
    "num": "04",
    "title": "Does it route?",
-   "lede": "76.3% at the project budget — the weakest number on this page, and a real limit.",
+   "lede": "76.3% at the project budget \u2014 the weakest number on this page, and a real limit.",
    "blocks": [
     {
      "type": "tiles",
@@ -135,7 +135,7 @@
       ],
       [
        "76.3%",
-       "of genomes at ≥6 kb"
+       "of genomes at \u22656 kb"
       ],
       [
        "102",
@@ -157,7 +157,7 @@
   {
    "num": "05",
    "title": "Does it call the proteins?",
-   "lede": "All six features, on 93.3–99.3% of routed genomes.",
+   "lede": "All six features, on 93.3\u201399.3% of routed genomes.",
    "blocks": [
     {
      "type": "table",
@@ -253,11 +253,11 @@
     },
     {
      "type": "prose",
-     "html": "<b>The evaluation is a sample</b> &mdash; 149 genomes at &ge;6&nbsp;kb, seed 29. Routing in §04 is a census over the whole genus."
+     "html": "<b>The evaluation is a sample</b> &mdash; 149 genomes at &ge;6&nbsp;kb, seed 29. Routing in \u00a704 is a census over the whole genus."
     },
     {
      "type": "prose",
-     "html": "<b>The homology rescue has never run on this module, and should be re-done.</b> Deferred 30 September 2026 by the curator, not forgotten. Step 2 bins proteins by their annotation string; <code>rescue_unassigned.py</code> takes everything no string rule matched, blastp&rsquo;s it against this module's own collections and adopts each sequence into the feature it matches at &ge;80% identity over &ge;60% of the query. It recovers exactly the sequences a string rule cannot reach &mdash; <code>hypothetical protein</code>, masses like <code>64kDa protein</code>, positional labels like <code>ORF3</code>, and outright typos (<code>Polypretein</code>, <code>Coat prtein</code>) &mdash; and it refuses everything below threshold rather than sweeping it into an uncharacterized bag. Not yet measured here &mdash; the BV-BRC dump was bulk-cleaned and needs a re-fetch first. The four modules that were measured gained 18&ndash;30%. Until it runs, this module's profiles are built from a collection missing that fraction of its own taxon, and the population missing is the divergent one: on Alpharhabdovirinae, 85 of 85 genomes with an uncalled P had a full-length, correct-looking gene that resembled a leftover sequence and none that resembled a clustered one. Neither self-recall nor a reference panel shows this."
+     "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>425 of 524</b> unassigned sequences were adopted; the training set went 3139 &rarr; 3463 sequences (+10%) and the profile set 316 &rarr; 338. The best result of the six: twelve genomes gained, none lost. The 99 sequences left out are mostly <code>replicase polyprotein</code> and <code>polyprotein</code> fragments sitting just below the 80% identity floor, which is the threshold declining a borderline call rather than sweeping it in. Measured against a control &mdash; the shipped module scored on the same 286 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>81.5%</b> to <b>85.7%</b> (12 genome(s) improved, 0 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely."
     }
    ]
   },
@@ -280,21 +280,21 @@
   {
    "num": "09",
    "title": "What the vocabulary bought",
-   "lede": "94 source strings became 6 — the largest collapse ratio in the build.",
+   "lede": "94 source strings became 6 \u2014 the largest collapse ratio in the build.",
    "blocks": [
     {
      "type": "tiles",
      "items": [
       [
-       "94 → 6",
-       "string collapse (15.7×)"
+       "94 \u2192 6",
+       "string collapse (15.7\u00d7)"
       ],
       [
        "106",
        "distinct source strings"
       ],
       [
-       "17.7×",
+       "17.7\u00d7",
        "strings per 100 genomes"
       ]
      ]

@@ -163,6 +163,13 @@ truncated collection — every number self-consistent and wrong. Widening to
 Mandarivirus coat protein in Alphaflexiviridae, 90 residues longer than the
 potexvirus form.
 
+**A rescue invalidates `min_len`/`max_len`.** Those bounds are derived from
+the collection, so adding sequences to it makes them wrong, and the stale bound
+makes `viral_genome_quality.pl` report "Feature is too short" against a protein
+the module now models correctly. Refresh them from the collections between the
+PSSM rebuild and the evaluation — `work/fix_bounds.py` in the Alsuviricetes
+project does exactly this and touches nothing else.
+
 **Re-running `build_collections.py` discards the homology rescue.** It
 truncates the collection files that `rescue_unassigned.py` appends to, so a
 re-run to adjust one window silently drops every rescued sequence:

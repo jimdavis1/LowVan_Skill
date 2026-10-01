@@ -189,7 +189,7 @@
             "gene_symbol" : "L",
             "kmers" : 1,
             "max_len" : 533,
-            "min_len" : 466,
+            "min_len" : 455,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1

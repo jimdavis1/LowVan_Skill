@@ -157,7 +157,7 @@
             "feature_type" : "CDS",
             "gene_symbol" : "HSP90",
             "kmers" : 1,
-            "max_len" : 565,
+            "max_len" : 575,
             "min_len" : 348,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
@@ -188,7 +188,7 @@
             "gene_symbol" : "P20B",
             "kmers" : 1,
             "max_len" : 179,
-            "min_len" : 177,
+            "min_len" : 167,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1
@@ -233,7 +233,7 @@
             "gene_symbol" : "P7",
             "kmers" : 1,
             "max_len" : 65,
-            "min_len" : 54,
+            "min_len" : 52,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1

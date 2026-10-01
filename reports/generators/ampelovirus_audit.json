@@ -1,6 +1,6 @@
 {
  "title": "Ampelovirus Coverage Audit",
- "eyebrow": "LowVan · Ampelovirus module · 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Ampelovirus module \u00b7 29 September 2026",
  "h1": "Does the grapevine leafroll-associated virus 3 module actually work?",
  "standfirst": "<b>Ampelovirus</b> is the mealybug-transmitted genus of the <i>Closteroviridae</i>, dominated by grapevine leafroll-associated virus 3 &mdash; one of the most economically damaging grapevine viruses in the world. Same gene block as Closterovirus, a different accessory set.",
  "headline_tiles": [
@@ -21,7 +21,7 @@
    "genuinely clean"
   ],
   [
-   "14.9×",
+   "14.9\u00d7",
    "vocabulary collapse"
   ],
   [
@@ -114,7 +114,7 @@
     },
     {
      "type": "prose",
-     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in §05 and §06."
+     "html": "Self-recall is a floor, not a validation: a profile that cannot recover its own training data will certainly not recover anything new, but recovering it proves very little. The held-out numbers are in \u00a705 and \u00a706."
     }
    ]
   },
@@ -136,7 +136,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25–60 for the accessories by length."
+     "html": "400 for the replicase polyprotein, 300 for the RdRp, 150 for the HSP70 and HSP90 homologs, 80 for the coat proteins, 25\u201360 for the accessories by length."
     }
    ]
   },
@@ -154,7 +154,7 @@
       ],
       [
        "89.5%",
-       "of genomes at ≥6 kb"
+       "of genomes at \u22656 kb"
       ],
       [
        "",
@@ -235,7 +235,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>No correction was needed.</b> The five essential features measure 93.2–99.3% and the six accessories 37.0–63.0%, so every <code>copy_num</code> assignment in the shipped module was already right. CPM is genuinely absent from a third of the genus."
+     "html": "<b>No correction was needed.</b> The five essential features measure 93.2\u201399.3% and the six accessories 37.0\u201363.0%, so every <code>copy_num</code> assignment in the shipped module was already right. CPM is genuinely absent from a third of the genus."
     }
    ]
   },
@@ -263,7 +263,7 @@
     },
     {
      "type": "prose",
-     "html": "41 of the 52 flags are &ldquo;too many HSPs&rdquo; and 20 a missing essential feature &mdash; the latter consistent with essentials calling at 93–99% rather than 100%. <b>&ldquo;Genome has too many HSPs&rdquo; is the dominant flag</b>, and it is a different thing from a duplicate call: it means one feature's profile matched at several places in a genome, not that two features collided. The duplicate-call audit is clean for this module."
+     "html": "41 of the 52 flags are &ldquo;too many HSPs&rdquo; and 20 a missing essential feature &mdash; the latter consistent with essentials calling at 93\u201399% rather than 100%. <b>&ldquo;Genome has too many HSPs&rdquo; is the dominant flag</b>, and it is a different thing from a duplicate call: it means one feature's profile matched at several places in a genome, not that two features collided. The duplicate-call audit is clean for this module."
     }
    ]
   },
@@ -286,7 +286,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>The homology rescue has never run on this module, and should be re-done.</b> Deferred 30 September 2026 by the curator, not forgotten. Step 2 bins proteins by their annotation string; <code>rescue_unassigned.py</code> takes everything no string rule matched, blastp&rsquo;s it against this module's own collections and adopts each sequence into the feature it matches at &ge;80% identity over &ge;60% of the query. It recovers exactly the sequences a string rule cannot reach &mdash; <code>hypothetical protein</code>, masses like <code>64kDa protein</code>, positional labels like <code>ORF3</code>, and outright typos (<code>Polypretein</code>, <code>Coat prtein</code>) &mdash; and it refuses everything below threshold rather than sweeping it into an uncharacterized bag. Measured here: <b>1185 sequences matched no rule and 679 would be adopted</b>, against 2274 currently binned &mdash; about 30% more training data. Until it runs, this module's profiles are built from a collection missing that fraction of its own taxon, and the population missing is the divergent one: on Alpharhabdovirinae, 85 of 85 genomes with an uncalled P had a full-length, correct-looking gene that resembled a leftover sequence and none that resembled a clustered one. Neither self-recall nor a reference panel shows this."
+     "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>679 of 1185</b> unassigned sequences were adopted; the training set went 2274 &rarr; 2819 sequences (+24%) and the profile set 139 &rarr; 147. Its five regressions are one defect on one virus: a profile trained on the 2510-aa ORF1a+ORF1b frameshift fusion of <i>Sugarcane mild mosaic virus</i> matches both halves, so <code>Replicase polyprotein</code> is called twice. POLY was already 27% fusion-length before the rescue (73 of 266); adding 15 more of that virus&rsquo;s sequences gave the fusions their own cluster and made the contamination visible. Genomes with a duplicate POLY call went 13 &rarr; 18 here, against 38 &rarr; 22 in Closterovirus. Measured against a control &mdash; the shipped module scored on the same 99 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>52.5%</b> to <b>50.5%</b> (3 genome(s) improved, 5 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely."
     },
     {
      "type": "prose",
@@ -306,7 +306,7 @@
     {
      "type": "verdict",
      "kind": "good",
-     "html": "Eleven of eleven features have profiles, self-recall 97.0–100%, five essential on measurement, and no correction required."
+     "html": "Eleven of eleven features have profiles, self-recall 97.0\u2013100%, five essential on measurement, and no correction required."
     }
    ]
   },
@@ -319,15 +319,15 @@
      "type": "tiles",
      "items": [
       [
-       "98 → 11",
-       "string collapse (8.9×)"
+       "98 \u2192 11",
+       "string collapse (8.9\u00d7)"
       ],
       [
        "164",
        "distinct source strings"
       ],
       [
-       "14.9×",
+       "14.9\u00d7",
        "strings per 100 genomes"
       ]
      ]

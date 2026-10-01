@@ -159,7 +159,7 @@
             "gene_symbol" : "TGB1",
             "kmers" : 1,
             "max_len" : 280,
-            "min_len" : 217,
+            "min_len" : 197,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1
@@ -174,7 +174,7 @@
             "gene_symbol" : "TGB2",
             "kmers" : 1,
             "max_len" : 125,
-            "min_len" : 101,
+            "min_len" : 81,
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1

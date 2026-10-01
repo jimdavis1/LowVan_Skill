@@ -1,6 +1,6 @@
 {
  "title": "Bromoviridae Coverage Audit",
- "eyebrow": "LowVan · Bromoviridae module · 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Bromoviridae module \u00b7 29 September 2026",
  "h1": "Does the cucumber mosaic virus module actually work?",
  "standfirst": "<b>Bromoviridae</b> is a tripartite plant-virus family built at family level because all five genera share the layout: RNA1 carries 1a, RNA2 the RdRp and in the cucumoviruses 2b, RNA3 the movement protein and the coat protein. Cucumber mosaic virus, brome mosaic virus, alfalfa mosaic virus, tobacco streak virus. <b>It routes 74.2% of complete genomes, and the remaining 25.8% receive no annotation at all &mdash; that is an accepted limit, closed on 30 September 2026, not outstanding work.</b>",
  "headline_tiles": [
@@ -25,7 +25,7 @@
    "clean, of those routed"
   ],
   [
-   "9.8×",
+   "9.8\u00d7",
    "vocabulary collapse"
   ]
  ],
@@ -49,35 +49,35 @@
        "REP1",
        "Replication protein 1a",
        "RNA1",
-       "908–1099",
+       "908\u20131099",
        "400"
       ],
       [
        "REP2",
        "RNA-dependent RNA polymerase 2a",
        "RNA2",
-       "595–900",
+       "595\u2013900",
        "300"
       ],
       [
        "P2B",
        "2b protein",
        "RNA2",
-       "80–131",
+       "80\u2013131",
        "30"
       ],
       [
        "MP",
        "Movement protein",
        "RNA3",
-       "207–337",
+       "207\u2013337",
        "80"
       ],
       [
        "CP",
        "Nucleocapsid protein",
        "RNA3",
-       "157–279",
+       "157\u2013279",
        "80"
       ]
      ]
@@ -99,7 +99,7 @@
     },
     {
      "type": "prose",
-     "html": "§08 is about what happened when that routing was given no margin."
+     "html": "\u00a708 is about what happened when that routing was given no margin."
     }
    ]
   },
@@ -110,7 +110,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "REP2's <code>max_len</code> was 993 aa and is now 900. The old value was <em>exactly REP1's median length</em>, which is the whole of §08 in one number."
+     "html": "REP2's <code>max_len</code> was 993 aa and is now 900. The old value was <em>exactly REP1's median length</em>, which is the whole of \u00a708 in one number."
     }
    ]
   },
@@ -207,7 +207,7 @@
   {
    "num": "05",
    "title": "Does it call the proteins?",
-   "lede": "Four essential features at 99.3–100%.",
+   "lede": "Four essential features at 99.3\u2013100%.",
    "blocks": [
     {
      "type": "table",
@@ -253,7 +253,7 @@
   {
    "num": "06",
    "title": "Are the calls right?",
-   "lede": "89.2% genuinely clean — after the fix in §08. Before it, 43.9%.",
+   "lede": "89.2% genuinely clean \u2014 after the fix in \u00a708. Before it, 43.9%.",
    "blocks": [
     {
      "type": "tiles",
@@ -293,11 +293,11 @@
     },
     {
      "type": "prose",
-     "html": "<b>The evaluation is a sample</b> &mdash; 148 genomes at &ge;6&nbsp;kb, seed 29. Routing in §04 is a census."
+     "html": "<b>The evaluation is a sample</b> &mdash; 148 genomes at &ge;6&nbsp;kb, seed 29. Routing in \u00a704 is a census."
     },
     {
      "type": "prose",
-     "html": "<b>The homology rescue has never run on this module, and should be re-done.</b> Deferred 30 September 2026 by the curator, not forgotten. Step 2 bins proteins by their annotation string; <code>rescue_unassigned.py</code> takes everything no string rule matched, blastp&rsquo;s it against this module's own collections and adopts each sequence into the feature it matches at &ge;80% identity over &ge;60% of the query. It recovers exactly the sequences a string rule cannot reach &mdash; <code>hypothetical protein</code>, masses like <code>64kDa protein</code>, positional labels like <code>ORF3</code>, and outright typos (<code>Polypretein</code>, <code>Coat prtein</code>) &mdash; and it refuses everything below threshold rather than sweeping it into an uncharacterized bag. Measured here: <b>1256 sequences matched no rule and 819 would be adopted</b>, against 2901 currently binned &mdash; about 28% more training data. Until it runs, this module's profiles are built from a collection missing that fraction of its own taxon, and the population missing is the divergent one: on Alpharhabdovirinae, 85 of 85 genomes with an uncalled P had a full-length, correct-looking gene that resembled a leftover sequence and none that resembled a clustered one. Neither self-recall nor a reference panel shows this."
+     "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>816 of 1253</b> unassigned sequences were adopted; the training set went 2904 &rarr; 3568 sequences (+23%) and the profile set 124 &rarr; 135. Exactly neutral, and only after a correction. Four 993-aa sequences annotated <code>RNA-dependent RNA polymerase</code> entered <code>REP2</code>; blastp puts them at 97&ndash;99.6% identity to <code>REP1</code> across all 993 residues, so they are <code>1a</code> proteins mislabelled at source. They raised <code>REP2</code>&rsquo;s <code>max_len</code> from 886 to 993 and produced a profile that called the 1a ORF a second time, flagging <i>Too many contigs for RNA2</i> on 8 genomes. Removed to <code>REP2.rejected_1a.fasta</code>. The check that catches this: <b>REP2 held no sequence above 900 aa before the rescue and four after</b> &mdash; a collection whose maximum length jumps is a binning change, not a coverage gain. Measured against a control &mdash; the shipped module scored on the same 139 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>84.9%</b> to <b>84.9%</b> (0 genome(s) improved, 0 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely."
     }
    ]
   },
@@ -342,15 +342,15 @@
      "type": "tiles",
      "items": [
       [
-       "68 → 5",
-       "string collapse (13.6×)"
+       "68 \u2192 5",
+       "string collapse (13.6\u00d7)"
       ],
       [
        "49",
        "distinct source strings"
       ],
       [
-       "9.8×",
+       "9.8\u00d7",
        "strings per 100 genomes"
       ]
      ]
@@ -361,7 +361,7 @@
     },
     {
      "type": "prose",
-     "html": "The module's vocabulary is complete after two genomes. The source reaches 49 distinct strings with its knee at 132 and is still climbing &mdash; and among those strings is the bare word <em>replicase</em> standing for two different proteins, which is what §08 is ultimately about."
+     "html": "The module's vocabulary is complete after two genomes. The source reaches 49 distinct strings with its knee at 132 and is still climbing &mdash; and among those strings is the bare word <em>replicase</em> standing for two different proteins, which is what \u00a708 is ultimately about."
     }
    ]
   }
