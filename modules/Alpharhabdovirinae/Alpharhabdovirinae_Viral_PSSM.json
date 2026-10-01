@@ -326,6 +326,7 @@
             "anno" : "RNA-dependent RNA polymerase",
             "feature_type" : "CDS",
             "gene_symbol" : "Merha_L",
+            "kmers" : 0,
             "max_len" : 2336,
             "min_len" : 1910,
             "segment" : "Single RNA Segment",

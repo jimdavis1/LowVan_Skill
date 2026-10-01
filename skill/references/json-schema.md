@@ -407,3 +407,35 @@ no dependency outside its own working directory.
 preserving existing key order and appending new modules, and writes a `.bak`
 first. It replaces a module wholesale if the key already exists — so a
 re-install after a rebuild is safe and idempotent.
+
+## `kmers` is reserved, and defaults to 0
+
+`kmers: 1` marks a protein as a **clean unobstructed region holding a single
+ORF** — no special feature, no overlapping reading frame. It is not read by
+`annotate_by_viral_pssm.pl`; it exists so a future k-mer-based annotator can
+be pointed at the regions where k-mers are unambiguous. Setting it wrongly
+costs nothing today and corrupts that project later, which is exactly the kind
+of error nothing downstream will catch.
+
+So it is **reserved, not default**. Set it to `0` unless the feature is
+demonstrably clean:
+
+| | `kmers` |
+|---|---|
+| polyprotein or other single clean ORF | `1` |
+| `mat_peptide` — always, it sits inside its parent | `0` |
+| anything with `special` (`transcript_edit`, splice) | `0` |
+| a CDS overlapping another declared ORF | `0` |
+
+**Only ever demote.** An existing `0` is a judgement that the region is
+obstructed; promoting it asserts a cleanliness nobody measured. A first pass
+at this rule promoted 42 rhabdovirus features from 0 to 1 on the grounds that
+they were plain CDS with no `special` — in genomes whose P region overlaps
+accessory ORFs extensively, where those zeros were deliberate. Reverted.
+
+Applied 1 October 2026: 79 features demoted across 12 modules — 59
+`mat_peptide`, 12 overlapping ORFs, 8 `special`. The overlaps are the ones
+each module has measured and recorded: Quinvirinae `P14`-in-`CP` and
+`ORF2A`-in-`TGB1`, Closterovirus `CP`/`CPM` on identical coordinates in 44% of
+genomes, and `POLY`/`ORF1A` in the three closterovirid modules, where POLY
+holds ORF1a and the ORF1a+ORF1b fusion together.
