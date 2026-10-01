@@ -1,16 +1,16 @@
 {
  "title": "Bromoviridae Coverage Audit",
- "eyebrow": "LowVan \u00b7 Bromoviridae module \u00b7 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Bromoviridae module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
  "h1": "Does the cucumber mosaic virus module actually work?",
  "standfirst": "<b>Bromoviridae</b> is a tripartite plant-virus family built at family level because all five genera share the layout: RNA1 carries 1a, RNA2 the RdRp and in the cucumoviruses 2b, RNA3 the movement protein and the coat protein. Cucumber mosaic virus, brome mosaic virus, alfalfa mosaic virus, tobacco streak virus. <b>It routes 74.2% of complete genomes, and the remaining 25.8% receive no annotation at all &mdash; that is an accepted limit, closed on 30 September 2026, not outstanding work.</b>",
  "headline_tiles": [
   [
-   "5",
-   "features, all with profiles"
+   "135",
+   "PSSMs (after the rescue)"
   ],
   [
-   "123",
-   "PSSMs"
+   "135",
+   "PSSMs (after the rescue)"
   ],
   [
    "74.2%",
@@ -297,7 +297,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>816 of 1253</b> unassigned sequences were adopted; the training set went 2904 &rarr; 3568 sequences (+23%) and the profile set 124 &rarr; 135. Exactly neutral, and only after a correction. Four 993-aa sequences annotated <code>RNA-dependent RNA polymerase</code> entered <code>REP2</code>; blastp puts them at 97&ndash;99.6% identity to <code>REP1</code> across all 993 residues, so they are <code>1a</code> proteins mislabelled at source. They raised <code>REP2</code>&rsquo;s <code>max_len</code> from 886 to 993 and produced a profile that called the 1a ORF a second time, flagging <i>Too many contigs for RNA2</i> on 8 genomes. Removed to <code>REP2.rejected_1a.fasta</code>. The check that catches this: <b>REP2 held no sequence above 900 aa before the rescue and four after</b> &mdash; a collection whose maximum length jumps is a binning change, not a coverage gain. Measured against a control &mdash; the shipped module scored on the same 139 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>84.9%</b> to <b>84.9%</b> (0 genome(s) improved, 0 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely."
+     "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>816 of 1253</b> unassigned sequences were adopted; the training set went 2904 &rarr; 3568 sequences (+23%) and the profile set 124 &rarr; 135. Exactly neutral, and only after a correction. Four 993-aa sequences annotated <code>RNA-dependent RNA polymerase</code> entered <code>REP2</code>; blastp puts them at 97&ndash;99.6% identity to <code>REP1</code> across all 993 residues, so they are <code>1a</code> proteins mislabelled at source. They raised <code>REP2</code>&rsquo;s <code>max_len</code> from 886 to 993 and produced a profile that called the 1a ORF a second time, flagging <i>Too many contigs for RNA2</i> on 8 genomes. Removed to <code>REP2.rejected_1a.fasta</code>. The check that catches this: <b>REP2 held no sequence above 900 aa before the rescue and four after</b> &mdash; a collection whose maximum length jumps is a binning change, not a coverage gain. Measured against a control &mdash; the shipped module scored on the same 139 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>84.9%</b> to <b>84.9%</b> (0 genome(s) improved, 0 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely. <b>And it re-opened the defect &sect;08 describes.</b> The rescue adopted one more 993-aa <code>1a</code> into <code>REP2</code>, and three others were put back by hand because <code>REP2.fasta</code> held 587 sequences against a build log saying 590 &mdash; the three &sect;08 had deliberately removed. All four raised <code>max_len</code> to 993 again and cost 8 genomes to <i>Too many contigs for RNA2</i> before they were caught. Removed to <code>REP2.rejected_1a.fasta</code>; <code>max_len</code> restored to the 900 this section records. The one-line check that catches it: <b>REP2 held no sequence above 900 aa before the rescue and four after.</b> A collection whose length extremes move has had its membership changed, not merely extended &mdash; count, min and max, never count alone."
     }
    ]
   },

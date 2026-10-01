@@ -173,7 +173,7 @@
             "feature_type" : "CDS",
             "gene_symbol" : "REP2",
             "kmers" : 1,
-            "max_len" : 886,
+            "max_len" : 900,
             "min_len" : 595,
             "segment" : "RNA2",
             "type" : "CDS",

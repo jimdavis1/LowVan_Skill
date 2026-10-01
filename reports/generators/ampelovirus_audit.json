@@ -1,16 +1,16 @@
 {
  "title": "Ampelovirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Ampelovirus module \u00b7 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Ampelovirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
  "h1": "Does the grapevine leafroll-associated virus 3 module actually work?",
  "standfirst": "<b>Ampelovirus</b> is the mealybug-transmitted genus of the <i>Closteroviridae</i>, dominated by grapevine leafroll-associated virus 3 &mdash; one of the most economically damaging grapevine viruses in the world. Same gene block as Closterovirus, a different accessory set.",
  "headline_tiles": [
   [
-   "11",
-   "features, all with profiles"
+   "147",
+   "PSSMs (after the rescue)"
   ],
   [
-   "139",
-   "PSSMs"
+   "147",
+   "PSSMs (after the rescue)"
   ],
   [
    "89.5%",

@@ -1,16 +1,16 @@
 {
  "title": "Closterovirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Closterovirus module \u00b7 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Closterovirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
  "h1": "Does the beet yellows virus module actually work?",
  "standfirst": "<b>Closterovirus</b> is the type genus of the <i>Closteroviridae</i>: beet yellows virus, citrus tristeza virus, carrot yellow leaf virus. Among the longest RNA genomes of any plant virus at up to 19&nbsp;kb, with a replicase, an RdRp, the quintuple gene block and a long tail of species-specific accessories named by mass.",
  "headline_tiles": [
   [
-   "13",
-   "features, all with profiles"
+   "97",
+   "PSSMs (after the rescue)"
   ],
   [
-   "80",
-   "PSSMs"
+   "97",
+   "PSSMs (after the rescue)"
   ],
   [
    "95.8%",

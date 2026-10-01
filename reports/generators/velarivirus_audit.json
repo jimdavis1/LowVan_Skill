@@ -1,16 +1,16 @@
 {
  "title": "Velarivirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Velarivirus module \u00b7 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Velarivirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
  "h1": "Does the grapevine leafroll-associated virus 7 module actually work?",
  "standfirst": "<b>Velarivirus</b> is the smallest of the three closterovirid modules &mdash; grapevine leafroll-associated virus 7, cordyline virus 1&ndash;4, Actinidia virus 1 and a handful more. It is also the only one carrying a thaumatin-like protein, which no other closterovirid genus has.",
  "headline_tiles": [
   [
-   "7",
-   "features, all with profiles"
+   "69",
+   "PSSMs (after the rescue)"
   ],
   [
-   "67",
-   "PSSMs"
+   "69",
+   "PSSMs (after the rescue)"
   ],
   [
    "100.0%",

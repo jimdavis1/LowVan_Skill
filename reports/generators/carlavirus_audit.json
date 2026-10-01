@@ -1,16 +1,16 @@
 {
  "title": "Carlavirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Carlavirus module \u00b7 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Carlavirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
  "h1": "Does the potato virus S module actually work?",
  "standfirst": "<b>Carlavirus</b> is the largest genus in this build &mdash; 3,184 BV-BRC records covering potato virus S and M, carnation latent virus, chrysanthemum virus B and roughly ninety more, mostly of crops and ornamentals. Replicase, a triple gene block, coat protein and a nucleic-acid-binding protein. <b>Of the ten modules in this report series it is the cleanest.</b>",
  "headline_tiles": [
   [
-   "6",
-   "features, all with profiles"
+   "338",
+   "PSSMs (after the rescue)"
   ],
   [
-   "316",
-   "PSSMs"
+   "338",
+   "PSSMs (after the rescue)"
   ],
   [
    "76.3%",

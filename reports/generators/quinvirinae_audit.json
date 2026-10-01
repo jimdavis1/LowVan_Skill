@@ -1,16 +1,16 @@
 {
  "title": "Quinvirinae Coverage Audit",
- "eyebrow": "LowVan \u00b7 Quinvirinae module \u00b7 29 September 2026",
+ "eyebrow": "LowVan \u00b7 Quinvirinae module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
  "h1": "Does the apple stem pitting virus module actually work?",
  "standfirst": "<b>Quinvirinae</b> is the subfamily module covering <i>Foveavirus</i>, <i>Robigovirus</i>, <i>Banmivirus</i>, <i>Ravavirus</i> and <i>Sustrivirus</i> &mdash; apple stem pitting virus, cherry necrotic rusty mottle virus, and the woody-host relatives left after <i>Carlavirus</i> was split out. Same gene layout as Carlavirus: replicase, triple gene block, coat protein, nucleic-acid-binding protein.",
  "headline_tiles": [
   [
-   "8",
-   "features, all with profiles"
+   "115",
+   "PSSMs (after the rescue)"
   ],
   [
-   "116",
-   "PSSMs"
+   "115",
+   "PSSMs (after the rescue)"
   ],
   [
    "98.0%",

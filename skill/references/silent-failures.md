@@ -473,3 +473,31 @@ The signal that would have caught it immediately: **`REP2` held no sequence
 above 900 aa before the change and four after.** A collection whose length
 extremes move after a rescue has had its membership changed, not merely
 extended. Count, min and max — not count alone.
+
+---
+
+### The answer was already published, on the page describing the module
+
+Bromoviridae `REP2.fasta` held 587 sequences against a build log saying 590,
+and the three missing ones were restored on the strength of the log. Section 08
+of that module's own coverage audit — written a day earlier, published, and
+sitting in `reports/` — says exactly what they are:
+
+> Three 1a sequences had been binned into the REP2 collection. They formed
+> their own cluster, produced their own profile, and that profile fired on 1a
+> […] Removing the three sequences, rebuilding REP2 and tightening `max_len`
+> to 900 took the module from **43.9% to 89.2% genuinely clean**.
+
+So a documented fix worth 45 points was undone, cost 8 genomes, and was then
+re-derived from scratch by blastp. The measurement agreed with the page, which
+is some comfort, but the page was free.
+
+It also cost a second mistake. `max_len` 900 sits deliberately *above* the
+886-aa collection maximum — a margin chosen to keep REP1 and REP2 separable —
+and the bounds-refresh script, which derives bounds from the collection,
+narrowed it to 886. **A bound tighter than its collection is a decision; a
+bound looser than its collection is stale.** The script now only ever widens.
+
+**Before changing a module, read its coverage audit.** The audits exist to
+record why a module is the way it is, and a discrepancy between two files is
+exactly the question they were written to answer.
