@@ -139,8 +139,23 @@ The recoveries are humbling, because each is a real protein lost to a string:
 (blank)            90.9% -> N     no annotation at all
 ```
 
-**Adopt at >= 80% identity over >= 60% of the query. Below that, leave the
-protein out.** Not adopted, and not swept into the uncharacterized bag either.
+**Adopt at >= 80% identity over >= 85% of the query. Below that, leave the
+protein out.**
+
+> The coverage floor was **0.60 until 1 October 2026** and is now **0.85**, on
+> the curator's instruction after the Alsuviricetes backfill: *"bring the
+> coverage up to 85% if we ever do the rescue again, i don't want to slurp back
+> in all those short proteins."* Every module rescued before that date was built
+> at 0.60 and its audit says so. `filter_unchar.py --cov` and
+> `reroute_outliers.py --min-qcov` were raised with it and must stay equal.
+>
+> Know what the floor measures. It is coverage of the **query**, so it rejects
+> a partial *alignment*, not a short *protein* — a truncated sequence aligns
+> over nearly all of itself and passes. The length window is what bounds
+> truncation after adoption. Measured at 0.60 over six modules: of 2,196
+> adoptions, 20 (0.9%) fell below their collection's previous minimum length.
+> To exclude short proteins outright, use a floor at the collection's existing
+> minimum; this flag will not do it. Not adopted, and not swept into the uncharacterized bag either.
 Below 80% it is its own lineage-specific protein, and absent a literature-based
 function saying what that protein is, there is nothing to build. Filing it under
 "uncharacterized" only dilutes that collection with proteins you declined to

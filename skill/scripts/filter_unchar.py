@@ -57,8 +57,8 @@ def main():
     ap.add_argument("--pident", type=float, default=80.0,
                     help="drop an UNCHAR member at or above this %% identity "
                          "to a named feature (default 80)")
-    ap.add_argument("--cov", type=float, default=0.60,
-                    help="minimum aligned fraction of the UNCHAR member (default 0.60)")
+    ap.add_argument("--cov", type=float, default=0.85,
+                    help="minimum aligned fraction of the UNCHAR member (default 0.85). MUST equal rescue_unassigned.py --min-qcov, or a protein adopted into a named feature is also left in the grab-bag and both profiles fire on one locus. Raised with it, 1 October 2026.")
     ap.add_argument("--write", action="store_true")
     args = ap.parse_args()
 

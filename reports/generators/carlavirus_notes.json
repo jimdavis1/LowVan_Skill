@@ -1,5 +1,5 @@
 {
- "standfirst": "The largest module in this build: 316 profiles over six features, covering 3,184 BV-BRC records. Replicase, a triple gene block (TGB1/2/3), coat protein, and a nucleic-acid-binding protein.",
+ "standfirst": "The largest module in this build: 338 profiles over six features, covering 3,184 BV-BRC records. Replicase, a triple gene block (TGB1/2/3), coat protein, and a nucleic-acid-binding protein.",
  "modules": {
   "Carlavirus": "Split out of Quinvirinae on 24 September 2026 on <em>measurement</em>, not organisation. All six Quinvirinae genera share the replicase/TGB1-3/CP/NABP layout, so the organisation rule alone would have kept them together \u2014 but lumped, 25 references reach only 81.0%. Carlavirus has 102 clusters over 714 genomes at 6 kb and cannot spare a budget it shares; splitting improved every genus, Carlavirus itself gaining eleven points."
  },

@@ -9,7 +9,7 @@ feature, where qc_cross_feature.py then reports it as a MISLABEL.
 
 This asks the cheap question the length gate could not: does the outlier match
 some OTHER feature's in-range collection? Same threshold as the homology rescue
-(>= 80% identity over >= 60% of the query), because SKILL.md requires the
+(>= 80% identity over >= 85% of the query), because SKILL.md requires the
 adoption threshold to be identical everywhere or a sequence gets claimed twice.
 
 Only moves an outlier when the better match is a different feature AND the
@@ -32,7 +32,7 @@ ap.add_argument("--workdir",default=".")
 ap.add_argument("--module",required=True)
 ap.add_argument("--expected",required=True)
 ap.add_argument("--min-id",type=float,default=80.0)
-ap.add_argument("--min-qcov",type=float,default=0.60)
+ap.add_argument("--min-qcov",type=float,default=0.85)
 ap.add_argument("--write",action="store_true")
 a=ap.parse_args()
 

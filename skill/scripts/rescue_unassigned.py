@@ -2,8 +2,28 @@
 """Homology rescue for sequences no triage rule matched.
 
 references/annotation-triage.md: blast every unmatched protein against the named
-collections OF ITS OWN MODULE and adopt at >= 80% identity over >= 60% of the
-query. Below that, leave it out -- not adopted, and not swept into an
+collections OF ITS OWN MODULE and adopt at >= 80% identity over >= 85% of the
+query.
+
+THE COVERAGE FLOOR IS 0.85, RAISED FROM 0.60 ON THE CURATOR'S INSTRUCTION,
+1 October 2026: "bring the coverage up to 85% if we ever do the rescue again,
+i don't want to slurp back in all those short proteins."
+
+Read what this does and does not do before relying on it. `ln / qlen` is
+coverage of the QUERY, so it rejects a partial ALIGNMENT -- a protein matching
+a collection member over only part of itself. It does NOT by itself reject a
+short PROTEIN: a truncated sequence aligns over nearly all of itself and so
+scores a high query coverage by construction. Raising the floor to 0.85 still
+tightens adoption considerably, because most borderline hits are partial
+alignments; it is not a truncation filter.
+
+What actually bounds truncation is the feature's length window, applied after
+adoption. Measured over the six Alsuviricetes modules rescued at 0.60: of 2,196
+sequences adopted into collections, 20 (0.9%) fell below their collection's
+previous MINIMUM length, worst Bromoviridae REP1 at 727 aa against a prior
+floor of 908. Those 20 are what invalidated 13 features' min_len/max_len. If
+short proteins must be excluded outright rather than merely bounded, the
+instrument is a floor at the collection's existing minimum, not this flag. Below that, leave it out -- not adopted, and not swept into an
 uncharacterized bag either, because that asserts a homology the number does not
 support.
 
@@ -23,7 +43,7 @@ ap.add_argument("--workdir", default=".")
 ap.add_argument("--module",  required=True)
 ap.add_argument("--dump",    required=True)
 ap.add_argument("--min-id",  type=float, default=80.0)
-ap.add_argument("--min-qcov",type=float, default=0.60)
+ap.add_argument("--min-qcov",type=float, default=0.85)
 ap.add_argument("--expected", required=True,
                 help="KEY:lo-hi,KEY:lo-hi ... the same windows build_collections used")
 ap.add_argument("--write", action="store_true")

@@ -501,3 +501,46 @@ bound looser than its collection is stale.** The script now only ever widens.
 **Before changing a module, read its coverage audit.** The audits exist to
 record why a module is the way it is, and a discrepancy between two files is
 exactly the question they were written to answer.
+
+---
+
+### A coverage floor on the query does not screen a short protein
+
+`rescue_unassigned.py` adopted at ">= 80% identity over >= 60% of the query",
+and the second clause reads like a guard against fragments. It is not one.
+`ln / qlen` is coverage of the **query**, and a truncated protein aligns over
+nearly all of *itself*, so it scores a high query coverage by construction. The
+floor rejects a partial *alignment*; it says nothing about a partial *protein*.
+
+What bounds truncation is the feature's length window, applied after adoption.
+Measured over the six modules rescued at 0.60: of 2,196 sequences adopted into
+collections, **20 (0.9%) fell below their collection's previous minimum
+length** — worst Bromoviridae `REP1` at 727 aa against a prior floor of 908,
+and Closterovirus `POLY` at 2137 against 2421. Those 20 are exactly what
+invalidated 13 features' `min_len`/`max_len`.
+
+The floor is now 0.85 on the curator's instruction, which tightens adoption
+because most borderline hits really are partial alignments. **If short proteins
+must be excluded rather than merely bounded, the instrument is a floor at the
+collection's existing minimum.** Say which of the two a threshold is doing.
+
+---
+
+### A median is the wrong yardstick for a bimodal collection
+
+Asked to size how many truncated proteins the rescue had admitted, the first
+measurement compared each adopted sequence to its feature's median length and
+reported **116 of 2,196 at least 15% short**, with Quinvirinae `CP` the worst
+at 33 of 38 adoptions.
+
+That figure was an artefact. Quinvirinae `CP` is bimodal — *Foveavirus* coat
+protein is ~259 aa, the other genera ~393+ — and the collection **already held
+190 sequences at exactly 259 aa**, 435 of 987 below 275. The 27 adoptions at
+259 aa joined an existing dominant mode. They were not truncations, and the
+feature's `LEN_OVERRIDE` of (200, 460) exists precisely because its length
+varies by genus.
+
+A tight mode at one length with a matching mass name (`28 kDa coat protein`)
+is a real protein form; fragments scatter. **Before calling a sequence short,
+look at the distribution it is short against** — and prefer the collection's
+extremes to its median, which is what the REP2 episode had already shown.
