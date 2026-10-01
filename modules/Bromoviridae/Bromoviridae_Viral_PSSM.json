@@ -178,6 +178,20 @@
             "segment" : "RNA2",
             "type" : "CDS",
             "upstream_ext" : 1
+         },
+         "UNC1" : {
+            "anno" : "Uncharacterized lineage-specific UNC1 protein",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "UNC1",
+            "kmers" : 1,
+            "max_len" : 230,
+            "min_len" : 125,
+            "segment" : "RNA3",
+            "type" : "CDS",
+            "upstream_ext" : 0
          }
       },
       "segments" : {

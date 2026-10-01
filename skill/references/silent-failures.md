@@ -596,3 +596,24 @@ Fixed in three places, because documentation alone is what failed:
 
 **A file that records a loss is not a file that prevents one.** When a step
 writes a manifest of what it could not do, something downstream has to read it.
+
+---
+
+### A rebuild that shrinks a profile set validates exactly like one that grows it
+
+`build_features.py` starts a rebuild with `shutil.rmtree(dest)`. That removes
+the feature's **leftover** profiles as well as its clustered ones, and the
+leftover pass is a separate script that nobody re-runs unless they remember.
+
+Rebuilding three merged Carlavirus features took the module from **338 profiles
+to 234** — 104 gone, a third of the module — and `install_module.py` validated
+it without complaint, because validation asks whether every declared feature
+has *at least one* PSSM, not whether it still has as many as it had.
+Re-running the leftover pass recovered it to 346.
+
+This is the same shape as the stale-alignment bug the installer was already
+fixed for: the check was about presence, and the defect was about quantity.
+
+`build_features.py` now prints how many profiles a rebuild is about to discard,
+so the shrink appears in the build log at the moment it happens. **When a step
+deletes before it writes, log what it deleted.**

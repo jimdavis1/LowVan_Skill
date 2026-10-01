@@ -48,6 +48,16 @@ def run_one(workdir, module, key, anno, params, extra_flags):
     assert float(params["mi"]) >= MI_FLOOR, "-mi %s breaches the %.1f floor" % (params["mi"], MI_FLOOR)
     dest = os.path.join(adir, key)
     if os.path.exists(dest):
+        #  This destroys the feature's LEFTOVER profiles too, and nothing
+        #  downstream notices: install_module.py checks that every declared
+        #  feature has at least one PSSM, not that it still has as many as it
+        #  had. Rebuilding three merged Carlavirus features took the module
+        #  from 338 profiles to 234 and installed clean. Say how many are
+        #  about to go, so a silent shrink is visible in the build log.
+        gone = len(glob.glob(os.path.join(dest, "pssms", "*.pssm")))
+        if gone:
+            print("  %-14s rebuilding: %d existing profile(s) discarded; re-run "
+                  "build_leftover_pssms.py for this key afterwards" % (key, gone))
         shutil.rmtree(dest)
     before = set(os.listdir(adir))
 
