@@ -148,7 +148,28 @@ The logic lives in `scripts/collection_engine.py`; a taxon's
 `build_collections.py` declares only its own rules and calls `run()`.
 
 Output: `collections/<Module>/<FEAT>.fasta`, plus `synonyms.tsv`,
-`UNASSIGNED_TRACKING.tsv` and `NOT_MODELLED.tsv` so nothing vanishes silently.
+`UNASSIGNED_TRACKING.tsv` and `NOT_MODELLED.tsv`.
+
+**`UNASSIGNED_TRACKING.tsv` is a list of unfinished work, not a resolution.**
+Writing it does not mean nothing vanished — everything in it *did* vanish from
+the module, and the file is the record of that, not the remedy. A string in
+there with more than a handful of occurrences is a protein the taxon really
+encodes and the module does not call.
+
+**So the accessory-discovery pass is mandatory, not optional.** Cluster the
+unassigned pool by identity with `mmseqs` and declare each group that reaches
+the member floor as an uncharacterized lineage-specific feature
+(`filter_unchar.py` splits them into `UNC1..UNCn`). Only a **true singleton**
+is left out. Velarivirus shipped with 125 unassigned strings including
+`putative transmembrane protein` x43, `p4` x28, `p21` x28, `p25` x26 and
+`p60` x25 — none of them singletons, all of them real proteins — because this
+pass was never run and nothing objected. Ampelovirus and Closterovirus
+shipped the same way.
+
+**The test, before a module is finished:** does any row of
+`UNASSIGNED_TRACKING.tsv` reach the member floor? If so the module is not
+finished, whatever its quality figures say. `collection_engine.py` now says so
+in its own output and `install_module.py` refuses to install silently.
 
 **Read `<FEAT>.outliers.fasta` broken down by genus before accepting a length
 window.** A window set from the two biggest genera deletes any genus whose

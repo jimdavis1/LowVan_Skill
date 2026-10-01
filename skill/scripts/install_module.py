@@ -62,9 +62,54 @@ def scan_pssms(workdir, module):
     return out
 
 
+def unassigned_pool(workdir, floor=5):
+    """Strings still unassigned at or above the member floor.
+
+    The last gate before a module ships. UNASSIGNED_TRACKING.tsv records the
+    proteins no rule bound and no clustering claimed; a string in there with
+    several occurrences is a real lineage-specific protein the module does not
+    call, not a singleton. Velarivirus, Ampelovirus and Closterovirus each
+    shipped with such a pool untouched -- Velarivirus with 125 strings, topped
+    by `putative transmembrane protein` x43 -- because an unclustered pool
+    leaves exactly the evidence an empty one does.
+
+    Reported, not fatal: a genuinely tabled accessory set is a curator's call.
+    But it is said out loud at install time, every time.
+    """
+    p = os.path.join(workdir, "collections", "UNASSIGNED_TRACKING.tsv")
+    if not os.path.exists(p):
+        return None
+    big = []
+    with open(p) as fh:
+        fh.readline()
+        for line in fh:
+            f = line.rstrip("\n").split("\t")
+            if len(f) < 2:
+                continue
+            try:
+                n = int(f[0])
+            except ValueError:
+                continue
+            if n >= floor:
+                big.append((n, f[1]))
+    return sorted(big, reverse=True)
+
+
 def validate(workdir, mod_json):
     """Return {module: pssms} for installable modules, printing every problem."""
     ok, problems = {}, []
+
+    pool = unassigned_pool(workdir)
+    if pool:
+        print("  UNASSIGNED POOL: %d string(s) at >= 5 occurrences were never "
+              "clustered" % len(pool))
+        for n, a in pool[:6]:
+            print("      %-5d %s" % (n, a[:58]))
+        if len(pool) > 6:
+            print("      ... and %d more" % (len(pool) - 6))
+        print("      These are not singletons. Run filter_unchar.py and declare "
+              "each group\n      that reaches the floor, or record the decision "
+              "to table them.\n")
     for module, block in mod_json.items():
         feats = set(block.get("features", {}))
         pssms = scan_pssms(workdir, module)

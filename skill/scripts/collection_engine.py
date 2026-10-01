@@ -343,6 +343,30 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
     dump("NOT_MODELLED.tsv", "features\tannotation\treason",
          ((c, a, w) for (a, w), c in notmodelled.most_common()))
 
+    #  An unassigned pool is unfinished work, not a tracking artifact. Writing
+    #  UNASSIGNED_TRACKING.tsv used to be described as making sure "nothing
+    #  vanishes silently", which read as though the file resolved the pool. It
+    #  does not -- everything in it vanished from the module. Velarivirus,
+    #  Ampelovirus and Closterovirus each shipped with a large pool and no
+    #  accessory clustering, and nothing objected, because an unclustered pool
+    #  leaves the same evidence as an empty one: no ACCESSORY_CLUSTERS.tsv.
+    #
+    #  Say it here, at the point the file is written, with the command.
+    ACCESSORY_FLOOR = 5
+    big = [(c, a) for a, c in unassigned.most_common() if c >= ACCESSORY_FLOOR]
+    if big:
+        print("\n  *** %d UNASSIGNED STRING(S) REACH THE MEMBER FLOOR ***\n"
+              "  These are proteins this taxon encodes and this module does not\n"
+              "  call. They are NOT singletons and must not be left orphaned.\n"
+              "  Cluster them by identity and declare each group that reaches\n"
+              "  the floor as an uncharacterized lineage-specific feature:\n"
+              "      python3 scripts/filter_unchar.py --workdir . --module %s --write\n"
+              "  Largest, with their occurrence counts:" % (len(big), MODULE))
+        for c, a in big[:10]:
+            print("      %-5d %s" % (c, a[:62]))
+        print("  %d more at >= %d occurrences." % (max(0, len(big) - 10), ACCESSORY_FLOOR)
+              if len(big) > 10 else "  (that is all of them)")
+
     print("  %-9s %8s %9s %8s %8s %8s %8s %9s" %
           ("feature", "uniq", "features", "prefloor", "runt", "overlong", "amb", "junction"))
     tot = 0

@@ -544,3 +544,55 @@ A tight mode at one length with a matching mass name (`28 kDa coat protein`)
 is a real protein form; fragments scatter. **Before calling a sequence short,
 look at the distribution it is short against** — and prefer the collection's
 extremes to its median, which is what the REP2 episode had already shown.
+
+---
+
+### A tracking file was mistaken for a resolution
+
+`SKILL.md` described step 2's outputs as "`UNASSIGNED_TRACKING.tsv` and
+`NOT_MODELLED.tsv` **so nothing vanishes silently**." That sentence is why
+three closterovirid modules shipped with their accessory proteins unmodelled.
+
+The file does not stop anything vanishing. Everything listed in it *has*
+vanished from the module; the file is the receipt. Read as a safeguard, it
+turns the unassigned pool into something already handled, and the mandatory
+accessory-discovery pass — cluster the pool by identity, declare each group
+that reaches the member floor, leave out only true singletons — looks optional.
+
+It also had the failure shape this document already warns about twice: **an
+unclustered pool leaves exactly the evidence an empty one does.** No
+`ACCESSORY_CLUSTERS.tsv`, no `UNC*` feature, nothing in any log. Velarivirus,
+Ampelovirus and Closterovirus were each measured, audited, published and
+declared finished in that state.
+
+Measured once a gate existed to ask, across the 16 modules with a tracking
+file: **8,757 protein occurrences in 398 distinct strings sit above the member
+floor, never clustered.**
+
+| module | strings ≥5 | occurrences | largest |
+|---|---|---|---|
+| Flaviviridae | 91 | 2,637 | 454 × `alternative reading frame 4 polyprotein` |
+| Bromoviridae | 37 | 1,173 | 306 × `replicase` |
+| Ampelovirus | 53 | 1,128 | 173 × `5 kDa protein` |
+| Quinvirinae | 17 | 680 | 361 × `hypothetical protein` |
+| Trivirinae | 7 | 493 | 433 × `hypothetical protein` |
+| Hepeviridae | 9 | 491 | 268 × `hypothetical protein` |
+| Velarivirus | 34 | 467 | 43 × `putative transmembrane protein` |
+| Crinivirus | 33 | 434 | 65 × `p5.2` |
+| Closterovirus | 39 | 397 | 34 × `helicase` |
+
+Not all of those are missing features — Bromoviridae's `replicase` is the
+ambiguous string its build notes deliberately leave unbinned, and some will
+cluster into nothing. **That is the point: the pass that decides was never
+run**, so nobody knows which.
+
+Fixed in three places, because documentation alone is what failed:
+
+- `SKILL.md` now says the file is a list of unfinished work and states the test.
+- `collection_engine.py` prints a block naming the strings and the command,
+  where the file is written.
+- `install_module.py` reports the pool at install time — the last gate before
+  a module ships.
+
+**A file that records a loss is not a file that prevents one.** When a step
+writes a manifest of what it could not do, something downstream has to read it.
