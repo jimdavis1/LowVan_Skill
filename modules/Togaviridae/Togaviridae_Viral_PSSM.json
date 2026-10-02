@@ -41,11 +41,13 @@
       "features" : {
          "6K" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "7968923",
+               "coordinates" : [
                   "18822126",
                   "7241658",
                   "1985194"
+               ],
+               "function" : [
+                  "7968923"
                ]
             },
             "anno" : "Mature 6K membrane protein",
@@ -63,10 +65,12 @@
          },
          "C" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "7968923",
-                  "9094737",
+               "coordinates" : [
                   "3553612"
+               ],
+               "function" : [
+                  "7968923",
+                  "9094737"
                ]
             },
             "anno" : "Nucleocapsid protein",
@@ -84,10 +88,12 @@
          },
          "E1" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "7968923",
-                  "11301009",
+               "coordinates" : [
                   "7241658"
+               ],
+               "function" : [
+                  "7968923",
+                  "11301009"
                ]
             },
             "anno" : "Mature envelope glycoprotein E1",
@@ -105,10 +111,12 @@
          },
          "E2" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "7968923",
+               "coordinates" : [
                   "8627739",
                   "1985194"
+               ],
+               "function" : [
+                  "7968923"
                ]
             },
             "anno" : "Mature envelope glycoprotein E2",
@@ -126,9 +134,11 @@
          },
          "E3" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
+                  "8627739"
+               ],
+               "function" : [
                   "7968923",
-                  "8627739",
                   "2200886",
                   "23035234"
                ]
@@ -148,7 +158,7 @@
          },
          "NSP1" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "7968923",
                   "10357827"
                ]
@@ -171,11 +181,13 @@
                "37862073"
             ],
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "7968923",
+               "coordinates" : [
                   "6322438",
                   "12466484",
                   "12021349"
+               ],
+               "function" : [
+                  "7968923"
                ]
             },
             "anno" : "Nonstructural polyprotein",
@@ -194,7 +206,7 @@
          },
          "NSP2" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "7968923",
                   "36792007"
                ]
@@ -217,7 +229,7 @@
                "37862073"
             ],
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "7968923",
                   "30825649"
                ]
@@ -241,7 +253,7 @@
                "37862073"
             ],
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "7968923",
                   "19036396"
                ]
@@ -264,10 +276,12 @@
                "37862073"
             ],
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "7968923",
+               "coordinates" : [
                   "2141206",
                   "12917405"
+               ],
+               "function" : [
+                  "7968923"
                ]
             },
             "anno" : "Nonstructural polyprotein P123",
@@ -285,9 +299,11 @@
          },
          "PE2" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
+                  "8627739"
+               ],
+               "function" : [
                   "7968923",
-                  "8627739",
                   "21430054",
                   "23864626",
                   "21124458"
@@ -308,11 +324,13 @@
          },
          "STP" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "7968923",
+               "coordinates" : [
                   "6322438",
                   "12466484",
                   "12021349"
+               ],
+               "function" : [
+                  "7968923"
                ]
             },
             "anno" : "Structural polyprotein",
@@ -330,8 +348,10 @@
          },
          "TF" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "18822126",
+               "coordinates" : [
+                  "18822126"
+               ],
+               "function" : [
                   "23720714",
                   "7968923"
                ]

@@ -105,7 +105,7 @@
       "features" : {
          "2K" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "8445732"
                ]
             },
@@ -155,7 +155,7 @@
          },
          "E" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "7753193"
                ]
             },
@@ -205,7 +205,7 @@
          },
          "NS1P" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "19196463",
                   "19906906"
                ]
@@ -237,7 +237,7 @@
          },
          "NS2B" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "33494395"
                ]
             },
@@ -257,8 +257,7 @@
          },
          "NS3" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "8107205",
+               "coordinates" : [
                   "33494395"
                ]
             },
@@ -278,7 +277,7 @@
          },
          "NS4A" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "8445732"
                ]
             },
@@ -298,7 +297,7 @@
          },
          "NS4B" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "8445732"
                ]
             },
@@ -317,11 +316,6 @@
             "upstream_ext" : 0
          },
          "NS5" : {
-            "PMID_claude_generated" : {
-               "unclassified" : [
-                  "2170676"
-               ]
-            },
             "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 400,
             "copy_num" : 1,
@@ -338,7 +332,7 @@
          },
          "POLY" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "2174669"
                ]
             },
@@ -372,11 +366,6 @@
             "upstream_ext" : 0
          },
          "PRM" : {
-            "PMID_claude_generated" : {
-               "unclassified" : [
-                  "18184701"
-               ]
-            },
             "anno" : "Membrane glycoprotein precursor prM",
             "bit_cutoff" : 60,
             "copy_num" : 1,

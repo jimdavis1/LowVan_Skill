@@ -104,11 +104,6 @@
       },
       "features" : {
          "ALLEXI_40K" : {
-            "PMID_claude_generated" : {
-               "unclassified" : [
-                  "11752591"
-               ]
-            },
             "anno" : "Uncharacterized lineage-specific protein",
             "bit_cutoff" : 60,
             "coverage_cutoff" : 0.65,
@@ -168,7 +163,7 @@
          },
          "TGB1" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "1853569"
                ]
             },
@@ -188,7 +183,7 @@
          },
          "TGB2" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "1853569"
                ]
             },
@@ -208,7 +203,7 @@
          },
          "TGB3" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "26296665"
                ]
             },

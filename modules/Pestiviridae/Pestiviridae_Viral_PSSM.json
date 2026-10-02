@@ -165,7 +165,7 @@
          },
          "NPRO" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "9499122",
                   "24146623"
                ]
@@ -187,7 +187,7 @@
          },
          "NS2" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "12827468"
                ]
             },

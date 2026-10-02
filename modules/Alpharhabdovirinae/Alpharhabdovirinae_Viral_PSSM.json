@@ -73,9 +73,11 @@
          },
          "EPHEM_ALPHA1" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "24257609",
+               "coordinates" : [
                   "9191923"
+               ],
+               "function" : [
+                  "24257609"
                ]
             },
             "anno" : "Class Ia viroporin alpha1 protein",
@@ -95,7 +97,7 @@
                "25679389"
             ],
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "9191923"
                ]
             },
@@ -129,7 +131,7 @@
          },
          "EPHEM_BETA" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "9191923"
                ]
             },
@@ -147,7 +149,7 @@
          },
          "EPHEM_GAMMA" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "9191923"
                ]
             },
@@ -165,7 +167,7 @@
          },
          "EPHEM_GNS" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "1413521",
                   "8337841"
                ]
@@ -664,7 +666,7 @@
                "8610460"
             ],
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "8607260"
                ]
             },

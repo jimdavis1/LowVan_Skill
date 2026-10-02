@@ -110,8 +110,10 @@
                "9010293"
             ],
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "4038520",
+               "coordinates" : [
+                  "4038520"
+               ],
+               "function" : [
                   "8683214",
                   "28276468"
                ]

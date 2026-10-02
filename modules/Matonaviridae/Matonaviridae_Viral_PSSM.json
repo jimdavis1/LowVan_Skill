@@ -21,8 +21,10 @@
       "features" : {
          "C" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "2214022",
+               "coordinates" : [
+                  "2214022"
+               ],
+               "function" : [
                   "11160697"
                ]
             },
@@ -41,7 +43,7 @@
          },
          "E1" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "2273395"
                ]
             },
@@ -60,8 +62,10 @@
          },
          "E2" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "2273395",
+               "coordinates" : [
+                  "2273395"
+               ],
+               "function" : [
                   "39207105"
                ]
             },
@@ -80,7 +84,7 @@
          },
          "P110" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "2273395"
                ]
             },
@@ -99,10 +103,12 @@
          },
          "P150" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "9557742",
+               "coordinates" : [
                   "10799588",
                   "10823845"
+               ],
+               "function" : [
+                  "9557742"
                ]
             },
             "anno" : "Protease p150 protein",
@@ -120,10 +126,12 @@
          },
          "P200" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "9557742",
+               "coordinates" : [
                   "10799588",
                   "10823845"
+               ],
+               "function" : [
+                  "9557742"
                ]
             },
             "anno" : "Nonstructural polyprotein",
@@ -141,7 +149,7 @@
          },
          "P90" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "10799588",
                   "10823845"
                ]

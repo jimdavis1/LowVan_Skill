@@ -37,7 +37,7 @@
       "features" : {
          "ACYTO_VIROPORIN" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "38819305"
                ]
             },
@@ -199,7 +199,7 @@
                "40999317"
             ],
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "26700068"
                ]
             },

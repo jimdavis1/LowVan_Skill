@@ -37,7 +37,7 @@
       "features" : {
          "G" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "35723908"
                ]
             },
@@ -56,7 +56,7 @@
          },
          "G_MAT" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "6897030"
                ]
             },
@@ -74,7 +74,7 @@
          },
          "G_SP" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "6897030"
                ]
             },
@@ -92,7 +92,7 @@
          },
          "L" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "35723908"
                ]
             },
@@ -111,7 +111,7 @@
          },
          "L_SPLICED" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "21507977"
                ]
             },
@@ -126,7 +126,7 @@
          },
          "M" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "35723908"
                ]
             },
@@ -145,7 +145,7 @@
          },
          "N" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "35723908"
                ]
             },
@@ -164,7 +164,7 @@
          },
          "P" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "35723908"
                ]
             },

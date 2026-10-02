@@ -105,7 +105,7 @@
       "features" : {
          "CP" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "36399124",
                   "15098118"
                ]
@@ -125,7 +125,7 @@
          },
          "MP" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "36399124",
                   "15098118"
                ]
@@ -145,8 +145,10 @@
          },
          "NABP" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
-                  "9125055",
+               "coordinates" : [
+                  "9125055"
+               ],
+               "function" : [
                   "16847135"
                ]
             },
@@ -164,7 +166,7 @@
          },
          "REP" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "function" : [
                   "36399124",
                   "15098118"
                ]
@@ -184,7 +186,7 @@
          },
          "VITI_ORF2" : {
             "PMID_claude_generated" : {
-               "unclassified" : [
+               "coordinates" : [
                   "9125055"
                ]
             },
