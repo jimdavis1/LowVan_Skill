@@ -1052,6 +1052,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `evaluate_coverage.py` | cluster the taxon's whole BV-BRC holding, annotate one exemplar per cluster, and report routing, quality and protein distribution |
 | `apply_signalp.py` | stage consensus N-termini for SignalP, then cut verified `_SP` / `_MAT` products from a parent CDS |
 | `norm_pssm.py` | normalise `psiblast -out_pssm` output to the pipeline's format |
+| `test_profile_specificity.py` | can this feature's profiles call it? measure on real precursors instead of assuming from length |
 | `qc_cross_feature.py` | find clusters binned under the wrong feature |
 | `qc_nterm_cross_cluster.py` | find clusters that start upstream of the rest of their feature |
 | `check_annotations.py` | check annotation strings and gene symbols against the vocabulary |

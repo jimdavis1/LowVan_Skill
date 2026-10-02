@@ -51,7 +51,7 @@ def classify(anno, rules, notmod):
     return None, None
 
 
-def accessory_clusters(pool, min_members, min_seq_id, cov, min_med_len=45):
+def accessory_clusters(pool, min_members, min_seq_id, cov, min_med_len=0):
     """Split a pool of (id, anno, seq) into homology groups by clustering.
 
     For taxa whose accessory proteins are named by MASS. A mass is not a
@@ -79,16 +79,36 @@ def accessory_clusters(pool, min_members, min_seq_id, cov, min_med_len=45):
     for l in open(t + "/c_cluster.tsv"):
         r, m = l.rstrip("\n").split("\t")
         groups[r].append(int(m))
-    #  A cluster must be big enough to build a profile AND long enough for
-    #  that profile to be specific. Below ~45 aa a PSSM cannot be given a
-    #  bit_cutoff that both fires on its own members and stays silent across
-    #  a 9 kb genome, so a 33 aa "p4" is dropped rather than shipped as a
-    #  feature that can only be wrong in one of two directions.
+    #  A cluster must be big enough to build a profile. It used to also have
+    #  to clear a 45 aa median on the assumption that a shorter profile cannot
+    #  be given a bit_cutoff that both fires on its members and stays silent
+    #  across a whole genome -- so a 33 aa "p4" was dropped unbuilt.
+    #
+    #  THAT ASSUMPTION IS SOMETIMES FALSE AND MUST BE MEASURED, NOT ASSUMED.
+    #  Enterovirus VPg is 22 aa. Over 5,052 profile x polyprotein pairs it
+    #  scores 21.2 bits at the 10th percentile on target against a MAXIMUM of
+    #  19.3 anywhere else in the same 2,185-residue polyprotein: a cutoff of
+    #  20 calls it and is silent everywhere else. Length was never the
+    #  variable -- conservation is. A short generic peptide fails the test; a
+    #  short highly-conserved one passes it.
+    #
+    #  So short clusters are kept and REPORTED, and the decision is made by
+    #  scripts/test_profile_specificity.py against real precursors. Set
+    #  min_med_len explicitly if a taxon genuinely needs a floor.
     def medlen(g):
         L = sorted(len(pool[i][2]) for i in g)
         return L[len(L) // 2]
     big = [g for g in groups.values()
            if len(g) >= min_members and medlen(g) >= min_med_len]
+    short = [g for g in groups.values()
+             if len(g) >= min_members and medlen(g) < min_med_len]
+    if short:
+        print("  %d cluster(s) reach the member floor but fall under the %d aa "
+              "median length floor." % (len(short), min_med_len))
+        for g in sorted(short, key=len, reverse=True)[:6]:
+            print("      %3d members, median %d aa" % (len(g), medlen(g)))
+        print("      Length is not the variable -- conservation is. Before "
+              "dropping these,\n      measure them: scripts/test_profile_specificity.py")
     big.sort(key=len, reverse=True)
 
     def base(idxs):

@@ -231,3 +231,46 @@ consensus. Dropped clusters land in `truncated_alis/` so you can inspect them.
 
 Note what this does *not* catch: a cluster of the wrong protein entirely, at
 full length. That needs `scripts/qc_cross_feature.py`.
+
+## Measure whether a feature is callable; do not infer it from length
+
+A profile has to do two things at once: score its own members above the
+feature's `bit_cutoff`, and score everything else in a translated genome
+below it. Whether a given profile manages that is a property of how
+**conserved** the protein is, not of how long it is — and the only way to
+know is to run it against sequences that contain the feature.
+
+```bash
+python3 scripts/test_profile_specificity.py \
+        --pssm-dir Alignments/<Module>/<FEAT>/pssms \
+        --subjects full_length_precursors.faa
+```
+
+It scores every profile against every subject, splits the hits into the
+feature's own locus and everywhere else, and reports whether a single cutoff
+separates them. Use subjects that **contain** the feature — full-length
+precursors or translated genomes — never the feature's own collection, which
+only measures self-recall and always says yes.
+
+**Worked example, and the reason this page exists.** Enterovirus VPg (3B) is
+**22 amino acids**. The standing assumption was that nothing that short can be
+specific across a 7.2 kb genome, and `accessory_clusters` enforced it with a
+45 aa median-length floor that dropped short clusters unbuilt. Measured over
+5,052 profile × polyprotein pairs:
+
+| | bit score |
+|---|---|
+| at the VPg locus | min 13.9, **10th pct 21.2**, median 27.0, max 50.4 |
+| anywhere else in the same polyprotein | median 14.3, 99th pct 17.6, **max 19.3** |
+
+Every off-target hit in 300 full-length polyproteins scores below the 10th
+percentile on target. `bit_cutoff: 20` calls VPg and is silent across the
+other 2,160 residues, and 95% of hits land in a 120-residue window.
+
+The floor was therefore discarding real features on a prior. It now defaults
+to 0; short clusters are kept and the engine **reports** them with a pointer
+to this test. Set `min_med_len` explicitly only where a taxon has measured
+that it needs one.
+
+**A short generic peptide will still fail this test, and should.** The point is
+that the test distinguishes the two cases and the length does not.
