@@ -183,12 +183,53 @@ Verify with:
 
 ```bash
 python3 scripts/check_dlits.py --json <T>_Viral_PSSM.json
+python3 scripts/check_dlits.py --json modules/*/*_Viral_PSSM.json --verify
 ```
 
 which catches DOIs in the PMID field, ids that do not resolve in PubMed (for a
 model-proposed citation, that is the fabrication case), and disagreement between
 the two lists — then prints every citation with its title so relevance can be
 eyeballed.
+
+### `--verify`: the id resolves and the paper is still wrong
+
+An id that resolves passes every structural check, and that is the common
+failure. Four PMIDs recalled from memory for the Enterovirus module were
+written down; three resolved — to papers on *E. coli* sex factor F, HIV
+epidemiology, and AML stromal layers. Well-formed, real, and about nothing to
+do with picornaviruses. **A recalled PMID is a guess with a checksum.**
+
+`--verify` fetches each record's title *and abstract* and asks whether the
+paper has anything to do with the feature citing it:
+
+| verdict | meaning |
+|---|---|
+| names their feature | the text contains a content word from the feature's `anno`, `gene_symbol` or key |
+| about the taxon, not the feature | normal for a genome or taxonomy paper cited for `coordinates`; worth a look when cited for `function` |
+| **SUSPECT** | neither. Look it up and replace or remove it |
+
+Three design points, each of which was a false-positive source first:
+
+- **Abstracts, not titles.** Strauss 1994 *The alphaviruses: gene expression,
+  replication, and evolution* shares no word with "Sindbis virus", so on titles
+  alone the canonical alphavirus review was called a fabrication 14 times.
+- **Stem the module name.** `Alpharhabdovirinae`[:6] is `alphar`, which does
+  not occur in *ICTV Virus Taxonomy Profile: Rhabdoviridae*. Stripping the rank
+  suffix and then the rank prefix gives `rhabdo`, which matches
+  Rhabdoviridae, rhabdovirus and rhabdoviral alike.
+- **Pass every module at once.** A module is named at whatever rank its
+  partition sits at, so the family-level Rhabdoviridae paper is accepted for
+  `Alpharhabdovirinae` and rejected for `Dichorhavirus` and `Merhavirus` —
+  the same paper. An id cleared in any module in the run is cleared in all of
+  them. `--json` therefore takes a list.
+
+Together those took the sweep from 195 flags to **0 across 15 modules and 189
+citation-feature pairs**, while still catching all three fabricated ids.
+
+**`--verify` cannot confirm that a paper supports a claim.** It catches the
+gross mismatch and nothing finer. A paper that is on-topic and still does not
+establish what the feature asserts passes it; only a curator reading the paper
+settles that.
 
 **Do not put a model-proposed citation into the vocabulary.** The table has no
 provenance column, so a flagged citation entering it silently becomes a curated
