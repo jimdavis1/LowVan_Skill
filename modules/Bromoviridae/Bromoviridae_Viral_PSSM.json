@@ -189,7 +189,7 @@
             "kmers" : 1,
             "max_len" : 230,
             "min_len" : 125,
-            "segment" : "RNA3",
+            "segment" : "RNA2",
             "type" : "CDS",
             "upstream_ext" : 0
          }

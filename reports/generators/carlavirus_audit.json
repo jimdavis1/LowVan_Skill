@@ -1,23 +1,23 @@
 {
  "title": "Carlavirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Carlavirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
+ "eyebrow": "LowVan \u00b7 Carlavirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026 \u00b7 ORF1a, RdRp and accessories 2 October 2026",
  "h1": "Does the potato virus S module actually work?",
  "standfirst": "<b>Carlavirus</b> is the largest genus in this build &mdash; 3,184 BV-BRC records covering potato virus S and M, carnation latent virus, chrysanthemum virus B and roughly ninety more, mostly of crops and ornamentals. Replicase, a triple gene block, coat protein and a nucleic-acid-binding protein. <b>Of the ten modules in this report series it is the cleanest.</b>",
  "headline_tiles": [
   [
-   "338",
-   "PSSMs (after the rescue)"
+   "6",
+   "features, all with profiles"
   ],
   [
-   "338",
-   "PSSMs (after the rescue)"
+   "346",
+   "PSSMs"
   ],
   [
    "76.3%",
    "genomes routed"
   ],
   [
-   "86.6%",
+   "86.4%",
    "genuinely clean"
   ],
   [
@@ -258,6 +258,10 @@
     {
      "type": "prose",
      "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>425 of 524</b> unassigned sequences were adopted; the training set went 3139 &rarr; 3463 sequences (+10%) and the profile set 316 &rarr; 338. The best result of the six: twelve genomes gained, none lost. The 99 sequences left out are mostly <code>replicase polyprotein</code> and <code>polyprotein</code> fragments sitting just below the 80% identity floor, which is the threshold declining a borderline call rather than sweeping it in. Measured against a control &mdash; the shipped module scored on the same 286 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>81.5%</b> to <b>85.7%</b> (12 genome(s) improved, 0 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely."
+    },
+    {
+     "type": "prose",
+     "html": "Measured on the same 286 genomes scored after the homology rescue: genuinely clean <b>85.7%</b> &rarr; <b>86.4%</b>, features called <b>1642 &rarr; 1644</b> (2 genome(s) improved, 0 regressed). The new accessories carry no <code>copy_num</code>, so they name proteins without counting against the verdict &mdash; which is why the clean rate can hold while the feature count rises sharply. <b>What this does not show is whether the new calls are right.</b> It shows they fire, do not collide and trip no quality check; whether a group is one protein correctly identified is a curation question."
     }
    ]
   },

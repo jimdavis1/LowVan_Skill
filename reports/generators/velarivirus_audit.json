@@ -1,23 +1,23 @@
 {
  "title": "Velarivirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Velarivirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
+ "eyebrow": "LowVan \u00b7 Velarivirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026 \u00b7 ORF1a, RdRp and accessories 2 October 2026",
  "h1": "Does the grapevine leafroll-associated virus 7 module actually work?",
  "standfirst": "<b>Velarivirus</b> is the smallest of the three closterovirid modules &mdash; grapevine leafroll-associated virus 7, cordyline virus 1&ndash;4, Actinidia virus 1 and a handful more. It is also the only one carrying a thaumatin-like protein, which no other closterovirid genus has.",
  "headline_tiles": [
   [
-   "69",
-   "PSSMs (after the rescue)"
+   "31",
+   "features, all with profiles"
   ],
   [
-   "69",
-   "PSSMs (after the rescue)"
+   "113",
+   "PSSMs"
   ],
   [
    "100.0%",
    "genomes routed"
   ],
   [
-   "62.0%",
+   "48.4%",
    "genuinely clean"
   ],
   [
@@ -248,6 +248,18 @@
     {
      "type": "prose",
      "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>110 of 683</b> unassigned sequences were adopted; the training set went 627 &rarr; 705 sequences (+12%) and the profile set 67 &rarr; 69. The only module where the rescue is a net loss, and the smallest adoption rate of the six at 16%. One genome regressed: <code>HSP90</code> is called at 497&ndash;505 aa against a collection minimum of 506 and a source annotation of 513 (<code>p60 protein</code>, genome 1654603). The cause is not shorter training data &mdash; all 22 adopted sequences are inside the window &mdash; but a change in HSP90&rsquo;s clustering, 8 alignments to 7, whose merged consensus places the N-terminus further in. <b>The real gap here is declared features, not training data:</b> of 573 sequences the rescue refused, 185 are <code>hypothetical protein</code> and 85 are named by mass &mdash; <code>p25</code>, <code>p21</code>, <code>p60</code>, <code>p27</code>, <code>p4</code>, <code>P22</code> across <i>Velarivirus</i> and <i>Olivavirus</i>. The module declares seven features and not one accessory, so those proteins have nowhere to go and no rescue can place them. Measured against a control &mdash; the shipped module scored on the same 64 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>50.0%</b> to <b>48.4%</b> (0 genome(s) improved, 1 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely."
+    },
+    {
+     "type": "prose",
+     "html": "<b>ORF1a and the RdRp were rebuilt from the genome, 2 October 2026.</b> <code>POLY</code> held three different things at once &mdash; ORF1a, the ORF1a+ORF1b frameshift fusion, and partials of both &mdash; and no threshold separates them: every member has some C-terminal RdRp-like hit and only the long ones have a real one. So <code>ORF1A</code> is extracted by <em>coordinate</em> instead, tblastn locating the reading frame and the walk going to the ATG and to the in-frame stop. On <i>Ampelovirus</i> genome 126071.15 that is ATG&nbsp;490 &rarr; TAG&nbsp;6448&ndash;6450, 1986&nbsp;aa, matching the tblastn exactly. <b>The frameshift is +1, measured not assumed</b> &mdash; frames 1&rarr;2, which by the kit's own rule reads as +1, with the subject jumping 6447&rarr;6449 so base 6448 is skipped. The partitioning note saying &minus;1 was wrong. <b><code>ORF1b</code> is not a separate product here</b>, unlike the coronaviruses where it carries NSP12&ndash;16: the 524&nbsp;aa portion matches an <code>RDRP</code> collection member end to end at 99.6%. And there is no ATG for it &mdash; the only one nearby is in ORF1a's frame &mdash; so the RdRp's N-terminus is made by the frameshift, which by the kit's N-terminus rule makes it a <code>mat_peptide</code> carried by <code>special: transcript_edit</code> with 52 junction-spanning nucleotide references and no PSSM at all."
+    },
+    {
+     "type": "prose",
+     "html": "<b>24 accessory features were added, 2 October 2026.</b> The unassigned pool had never been clustered for this module &mdash; <code>UNASSIGNED_TRACKING.tsv</code> recorded it and nothing downstream read the file. Running the kit's own <code>accessory_clusters</code> over it (mmseqs at 25% identity) produced homology groups that a string rule cannot reach: on <i>Velarivirus</i>, 21 sequences all exactly 157&nbsp;aa with half of them labelled <code>hypothetical protein</code>. Groups that produced no profile are deliberately <em>not</em> declared, and groups measured to be homologous to each other were merged &mdash; a first pass ran at a member floor of 5 against the kit's default of 12 and over-split seven features across three modules."
+    },
+    {
+     "type": "prose",
+     "html": "Measured on the same 64 genomes scored after the homology rescue: genuinely clean <b>48.4%</b> &rarr; <b>48.4%</b>, features called <b>362 &rarr; 667</b> (0 genome(s) improved, 0 regressed). The new accessories carry no <code>copy_num</code>, so they name proteins without counting against the verdict &mdash; which is why the clean rate can hold while the feature count rises sharply. <b>What this does not show is whether the new calls are right.</b> It shows they fire, do not collide and trip no quality check; whether a group is one protein correctly identified is a curation question."
     }
    ]
   },

@@ -1,5 +1,5 @@
 {
- "standfirst": "The smallest of the three closterovirid modules, and the one carrying a thaumatin-like protein that the others do not. Seven features.",
+ "standfirst": "The smallest of the three closterovirid modules, and the one carrying a thaumatin-like protein that the others do not. Thirty-one features: seven core, the coordinate-built ORF1a, the transcript-edited RdRp and 22 lineage-specific accessories.",
  "modules": {
   "Velarivirus": "Only POLY, RDRP, CP and HSP70 are essential here. CPm, HSP90 and the thaumatin-like protein are carried by part of the genus and deliberately omit copy_num."
  },

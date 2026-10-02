@@ -265,20 +265,6 @@
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 0
-         },
-         "UNC4" : {
-            "anno" : "Uncharacterized lineage-specific UNC4 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC4",
-            "kmers" : 1,
-            "max_len" : 224,
-            "min_len" : 224,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
          }
       },
       "segments" : {

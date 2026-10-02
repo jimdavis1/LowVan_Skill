@@ -1,23 +1,23 @@
 {
  "title": "Closterovirus Coverage Audit",
- "eyebrow": "LowVan \u00b7 Closterovirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
+ "eyebrow": "LowVan \u00b7 Closterovirus module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026 \u00b7 ORF1a, RdRp and accessories 2 October 2026",
  "h1": "Does the beet yellows virus module actually work?",
  "standfirst": "<b>Closterovirus</b> is the type genus of the <i>Closteroviridae</i>: beet yellows virus, citrus tristeza virus, carrot yellow leaf virus. Among the longest RNA genomes of any plant virus at up to 19&nbsp;kb, with a replicase, an RdRp, the quintuple gene block and a long tail of species-specific accessories named by mass.",
  "headline_tiles": [
   [
-   "97",
-   "PSSMs (after the rescue)"
+   "18",
+   "features, all with profiles"
   ],
   [
-   "97",
-   "PSSMs (after the rescue)"
+   "118",
+   "PSSMs"
   ],
   [
    "95.8%",
    "genomes routed"
   ],
   [
-   "73.3%",
+   "36.5%",
    "genuinely clean"
   ],
   [
@@ -258,6 +258,18 @@
     {
      "type": "prose",
      "html": "<b>Four features are mass bins holding more than one homology group, and must be split.</b> <code>P18</code> (CTV 75 | Thesium 2), <code>P19</code> (GLRaV-2 51 | wheat and Triticum 2), <code>P20</code> (CTV 54 | BYV 9) and <code>P23</code> (CTV 94 | Thesium 2 | Raspberry 2) &mdash; no pair of groups shares a blastp HSP at 1e-3. <code>P20</code> is the clearest: CTV p20 is a silencing suppressor and BYV p20 an Hsp70h-interacting vascular-transport protein, and the literature puts CTV p20's real homolog at BYV <i>p21</i>. A bin must be one homology group; until these are split each calls two or more different proteins under one key. Deferred alongside the rescue, because splitting forces a <code>build_collections</code> re-run that discards a rescue &mdash; the two are one job."
+    },
+    {
+     "type": "prose",
+     "html": "<b>ORF1a and the RdRp were rebuilt from the genome, 2 October 2026.</b> <code>POLY</code> held three different things at once &mdash; ORF1a, the ORF1a+ORF1b frameshift fusion, and partials of both &mdash; and no threshold separates them: every member has some C-terminal RdRp-like hit and only the long ones have a real one. So <code>ORF1A</code> is extracted by <em>coordinate</em> instead, tblastn locating the reading frame and the walk going to the ATG and to the in-frame stop. On <i>Ampelovirus</i> genome 126071.15 that is ATG&nbsp;490 &rarr; TAG&nbsp;6448&ndash;6450, 1986&nbsp;aa, matching the tblastn exactly. <b>The frameshift is +1, measured not assumed</b> &mdash; frames 1&rarr;2, which by the kit's own rule reads as +1, with the subject jumping 6447&rarr;6449 so base 6448 is skipped. The partitioning note saying &minus;1 was wrong. <b><code>ORF1b</code> is not a separate product here</b>, unlike the coronaviruses where it carries NSP12&ndash;16: the 524&nbsp;aa portion matches an <code>RDRP</code> collection member end to end at 99.6%. And there is no ATG for it &mdash; the only one nearby is in ORF1a's frame &mdash; so the RdRp's N-terminus is made by the frameshift, which by the kit's N-terminus rule makes it a <code>mat_peptide</code> carried by <code>special: transcript_edit</code> with 60 junction-spanning nucleotide references and no PSSM at all."
+    },
+    {
+     "type": "prose",
+     "html": "<b>4 accessory features were added, 2 October 2026.</b> The unassigned pool had never been clustered for this module &mdash; <code>UNASSIGNED_TRACKING.tsv</code> recorded it and nothing downstream read the file. Running the kit's own <code>accessory_clusters</code> over it (mmseqs at 25% identity) produced homology groups that a string rule cannot reach: on <i>Velarivirus</i>, 21 sequences all exactly 157&nbsp;aa with half of them labelled <code>hypothetical protein</code>. Groups that produced no profile are deliberately <em>not</em> declared, and groups measured to be homologous to each other were merged &mdash; a first pass ran at a member floor of 5 against the kit's default of 12 and over-split seven features across three modules."
+    },
+    {
+     "type": "prose",
+     "html": "Measured on the same 74 genomes scored after the homology rescue: genuinely clean <b>36.5%</b> &rarr; <b>36.5%</b>, features called <b>649 &rarr; 833</b> (0 genome(s) improved, 0 regressed). The new accessories carry no <code>copy_num</code>, so they name proteins without counting against the verdict &mdash; which is why the clean rate can hold while the feature count rises sharply. <b>What this does not show is whether the new calls are right.</b> It shows they fire, do not collide and trip no quality check; whether a group is one protein correctly identified is a curation question."
     }
    ]
   },

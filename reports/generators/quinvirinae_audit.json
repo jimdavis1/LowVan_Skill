@@ -1,23 +1,23 @@
 {
  "title": "Quinvirinae Coverage Audit",
- "eyebrow": "LowVan \u00b7 Quinvirinae module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026",
+ "eyebrow": "LowVan \u00b7 Quinvirinae module \u00b7 29 September 2026 \u00b7 rescue backfilled 1 October 2026 \u00b7 ORF1a, RdRp and accessories 2 October 2026",
  "h1": "Does the apple stem pitting virus module actually work?",
  "standfirst": "<b>Quinvirinae</b> is the subfamily module covering <i>Foveavirus</i>, <i>Robigovirus</i>, <i>Banmivirus</i>, <i>Ravavirus</i> and <i>Sustrivirus</i> &mdash; apple stem pitting virus, cherry necrotic rusty mottle virus, and the woody-host relatives left after <i>Carlavirus</i> was split out. Same gene layout as Carlavirus: replicase, triple gene block, coat protein, nucleic-acid-binding protein.",
  "headline_tiles": [
   [
-   "115",
-   "PSSMs (after the rescue)"
+   "11",
+   "features, all with profiles"
   ],
   [
-   "115",
-   "PSSMs (after the rescue)"
+   "128",
+   "PSSMs"
   ],
   [
    "98.0%",
    "genomes routed"
   ],
   [
-   "81.3%",
+   "83.3%",
    "genuinely clean"
   ],
   [
@@ -283,6 +283,14 @@
     {
      "type": "prose",
      "html": "<b>The homology rescue has now run on this module.</b> Completed 1 October 2026, closing the item deferred on 30 September. <code>rescue_unassigned.py</code> takes every protein no annotation-string rule matched, blastp&rsquo;s it against this module&rsquo;s own collections and adopts each into the feature it matches at &ge;80% identity over &ge;60% of the query, refusing everything below that rather than sweeping it into a grab-bag. It had never run on this module because it crashed on the trailing tab BV-BRC writes into <code>uniq.seq</code>. <b>664 of 836</b> unassigned sequences were adopted; the training set went 4026 &rarr; 4374 sequences (+9%) and the profile set 116 &rarr; 115. Four genomes gained, none lost, and one profile fewer &mdash; the added sequences merged clusters that had been separate rather than creating new ones, which is what more training data is supposed to do. <code>ORF2A</code> and <code>ORF5A</code> gained nothing at all, correctly: <code>assign_accessories.py</code> had already claimed that pool by homology. 280 partial replicases were parked in <code>REP.outliers.fasta</code> and were not used for profile building. Measured against a control &mdash; the shipped module scored on the same 108 genomes with the current JSON &mdash; the rescue moved genuinely-clean from <b>79.6%</b> to <b>83.3%</b> (4 genome(s) improved, 0 regressed). The earlier comparison against <code>measurements/quality.tsv</code> was discarded: that table predates the 30 September <code>copy_num</code> and vocabulary edits, which on some modules dominate the rescue entirely."
+    },
+    {
+     "type": "prose",
+     "html": "<b>3 accessory features were added, 2 October 2026.</b> The unassigned pool had never been clustered for this module &mdash; <code>UNASSIGNED_TRACKING.tsv</code> recorded it and nothing downstream read the file. Running the kit's own <code>accessory_clusters</code> over it (mmseqs at 25% identity) produced homology groups that a string rule cannot reach: on <i>Velarivirus</i>, 21 sequences all exactly 157&nbsp;aa with half of them labelled <code>hypothetical protein</code>. Groups that produced no profile are deliberately <em>not</em> declared, and groups measured to be homologous to each other were merged &mdash; a first pass ran at a member floor of 5 against the kit's default of 12 and over-split seven features across three modules."
+    },
+    {
+     "type": "prose",
+     "html": "Measured on the same 108 genomes scored after the homology rescue: genuinely clean <b>83.3%</b> &rarr; <b>83.3%</b>, features called <b>610 &rarr; 917</b> (0 genome(s) improved, 0 regressed). The new accessories carry no <code>copy_num</code>, so they name proteins without counting against the verdict &mdash; which is why the clean rate can hold while the feature count rises sharply. <b>What this does not show is whether the new calls are right.</b> It shows they fire, do not collide and trip no quality check; whether a group is one protein correctly identified is a curation question."
     }
    ]
   },
