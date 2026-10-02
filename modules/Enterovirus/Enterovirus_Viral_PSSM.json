@@ -1,0 +1,378 @@
+{
+   "Enterovirus" : {
+      "close_genomes" : {
+         "Enterovirus.1.dna" : {
+            "genome_ids" : "ON730871",
+            "genome_name" : "Coxsackievirus A4 JN19520/Shandong/China/2019"
+         },
+         "Enterovirus.10.dna" : {
+            "genome_ids" : "OM177688",
+            "genome_name" : "Coxsackievirus A9 JHU-126/2020"
+         },
+         "Enterovirus.11.dna" : {
+            "genome_ids" : "PX282790",
+            "genome_name" : "Rhinovirus C RVC/China/Hangzhou-24-S-310"
+         },
+         "Enterovirus.12.dna" : {
+            "genome_ids" : "PZ934172",
+            "genome_name" : "Rhinovirus C RV-C11/RV-195540/2024_CAP"
+         },
+         "Enterovirus.13.dna" : {
+            "genome_ids" : "PZ934227",
+            "genome_name" : "Rhinovirus C RV-C6/RV-211238/2024_CAP"
+         },
+         "Enterovirus.14.dna" : {
+            "genome_ids" : "PZ133668",
+            "genome_name" : "Enterovirus SsF"
+         },
+         "Enterovirus.15.dna" : {
+            "genome_ids" : "OP342698",
+            "genome_name" : "rhinovirus C15 RVC15/China/2017/BJR32"
+         },
+         "Enterovirus.16.dna" : {
+            "genome_ids" : "PV423959",
+            "genome_name" : "Rhinovirus A RHV00177"
+         },
+         "Enterovirus.17.dna" : {
+            "genome_ids" : "EF015886",
+            "genome_name" : "Enterovirus C96 BAN00-10488"
+         },
+         "Enterovirus.18.dna" : {
+            "genome_ids" : "PX684448",
+            "genome_name" : "Enterovirus E BEV/XZ87"
+         },
+         "Enterovirus.19.dna" : {
+            "genome_ids" : "PZ934153",
+            "genome_name" : "Rhinovirus B RV-B69/RV-416292/2024_CAP"
+         },
+         "Enterovirus.2.dna" : {
+            "genome_ids" : "FV537076",
+            "genome_name" : "Human poliovirus 1"
+         },
+         "Enterovirus.20.dna" : {
+            "genome_ids" : "GU568096",
+            "genome_name" : "Rhinovirus B BCH214"
+         },
+         "Enterovirus.21.dna" : {
+            "genome_ids" : "PP930041",
+            "genome_name" : "Enterovirus sp. mt25vf_Goat_cow"
+         },
+         "Enterovirus.22.dna" : {
+            "genome_ids" : "PP930071",
+            "genome_name" : "Enterovirus sp. mt36vf_Wild_boar"
+         },
+         "Enterovirus.23.dna" : {
+            "genome_ids" : "PZ934275",
+            "genome_name" : "Rhinovirus C RV-C2/RV-129734/2023_CAP"
+         },
+         "Enterovirus.24.dna" : {
+            "genome_ids" : "MH484165",
+            "genome_name" : "Enterovirus C96 3499/BRA-PA/10"
+         },
+         "Enterovirus.25.dna" : {
+            "genome_ids" : "PP930121",
+            "genome_name" : "Enterovirus sp. mt27vf_Pig_D"
+         },
+         "Enterovirus.3.dna" : {
+            "genome_ids" : "AB469183",
+            "genome_name" : "Enterovirus A71 EV71-GFP"
+         },
+         "Enterovirus.4.dna" : {
+            "genome_ids" : "MZ229642",
+            "genome_name" : "Echovirus E11 strain Swab-3/HB.ES/CHN/2019"
+         },
+         "Enterovirus.5.dna" : {
+            "genome_ids" : "PQ807712",
+            "genome_name" : "enterovirus D68 TZ2018HFMD376"
+         },
+         "Enterovirus.6.dna" : {
+            "genome_ids" : "PV423930",
+            "genome_name" : "Rhinovirus A RHV00114"
+         },
+         "Enterovirus.7.dna" : {
+            "genome_ids" : "PZ934110",
+            "genome_name" : "Rhinovirus A RV-A73/RV-337249/2024_CAP"
+         },
+         "Enterovirus.8.dna" : {
+            "genome_ids" : "PX282732",
+            "genome_name" : "Rhinovirus A RVA/China/Hangzhou-24-2-292"
+         },
+         "Enterovirus.9.dna" : {
+            "genome_ids" : "PX282760",
+            "genome_name" : "Rhinovirus B RVB/China/Hangzhou-24-S-476"
+         }
+      },
+      "features" : {
+         "2A" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "3011278"
+               ]
+            },
+            "anno" : "Picornain 2A, protease (2A)",
+            "bit_cutoff" : 70,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2A",
+            "kmers" : 0,
+            "max_len" : 180,
+            "min_len" : 108,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2B" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 2B, viroporin",
+            "bit_cutoff" : 50,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2B",
+            "kmers" : 0,
+            "max_len" : 118,
+            "min_len" : 76,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2C" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 2C, ATPase/helicase",
+            "bit_cutoff" : 150,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2C",
+            "kmers" : 0,
+            "max_len" : 396,
+            "min_len" : 257,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3A" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 3A",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3A",
+            "kmers" : 0,
+            "max_len" : 106,
+            "min_len" : 60,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3C" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Picornain 3C, protease (3C)",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3C",
+            "kmers" : 0,
+            "max_len" : 219,
+            "min_len" : 145,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3D" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "RNA-directed RNA polymerase 3D",
+            "bit_cutoff" : 200,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3D",
+            "kmers" : 0,
+            "max_len" : 554,
+            "min_len" : 365,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "POLY" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874",
+                  "6264310"
+               ]
+            },
+            "anno" : "Genome polyprotein",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 2644,
+            "min_len" : 1714,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP1" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP1 (1D)",
+            "bit_cutoff" : 120,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP1",
+            "kmers" : 0,
+            "max_len" : 370,
+            "min_len" : 219,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP2" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP2 (1B)",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP2",
+            "kmers" : 0,
+            "max_len" : 325,
+            "min_len" : 198,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP3" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP3 (1C)",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP3",
+            "kmers" : 0,
+            "max_len" : 288,
+            "min_len" : 188,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP4" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP4 (1A)",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP4",
+            "kmers" : 0,
+            "max_len" : 82,
+            "min_len" : 53,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VPG" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "6202874"
+               ],
+               "function" : [
+                  "217003"
+               ]
+            },
+            "anno" : "Genome-linked protein VPg (3B)",
+            "bit_cutoff" : 20,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VPg",
+            "kmers" : 0,
+            "max_len" : 27,
+            "min_len" : 16,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 8500,
+            "min_len" : 6000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

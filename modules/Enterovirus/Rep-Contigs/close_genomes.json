@@ -1,0 +1,102 @@
+{
+ "Enterovirus.1.dna": {
+  "genome_ids": "ON730871",
+  "genome_name": "Coxsackievirus A4 JN19520/Shandong/China/2019"
+ },
+ "Enterovirus.10.dna": {
+  "genome_ids": "OM177688",
+  "genome_name": "Coxsackievirus A9 JHU-126/2020"
+ },
+ "Enterovirus.11.dna": {
+  "genome_ids": "PX282790",
+  "genome_name": "Rhinovirus C RVC/China/Hangzhou-24-S-310"
+ },
+ "Enterovirus.12.dna": {
+  "genome_ids": "PZ934172",
+  "genome_name": "Rhinovirus C RV-C11/RV-195540/2024_CAP"
+ },
+ "Enterovirus.13.dna": {
+  "genome_ids": "PZ934227",
+  "genome_name": "Rhinovirus C RV-C6/RV-211238/2024_CAP"
+ },
+ "Enterovirus.14.dna": {
+  "genome_ids": "PZ133668",
+  "genome_name": "Enterovirus SsF"
+ },
+ "Enterovirus.15.dna": {
+  "genome_ids": "OP342698",
+  "genome_name": "rhinovirus C15 RVC15/China/2017/BJR32"
+ },
+ "Enterovirus.16.dna": {
+  "genome_ids": "PV423959",
+  "genome_name": "Rhinovirus A RHV00177"
+ },
+ "Enterovirus.17.dna": {
+  "genome_ids": "EF015886",
+  "genome_name": "Enterovirus C96 BAN00-10488"
+ },
+ "Enterovirus.18.dna": {
+  "genome_ids": "PX684448",
+  "genome_name": "Enterovirus E BEV/XZ87"
+ },
+ "Enterovirus.19.dna": {
+  "genome_ids": "PZ934153",
+  "genome_name": "Rhinovirus B RV-B69/RV-416292/2024_CAP"
+ },
+ "Enterovirus.2.dna": {
+  "genome_ids": "FV537076",
+  "genome_name": "Human poliovirus 1"
+ },
+ "Enterovirus.20.dna": {
+  "genome_ids": "GU568096",
+  "genome_name": "Rhinovirus B BCH214"
+ },
+ "Enterovirus.21.dna": {
+  "genome_ids": "PP930041",
+  "genome_name": "Enterovirus sp. mt25vf_Goat_cow"
+ },
+ "Enterovirus.22.dna": {
+  "genome_ids": "PP930071",
+  "genome_name": "Enterovirus sp. mt36vf_Wild_boar"
+ },
+ "Enterovirus.23.dna": {
+  "genome_ids": "PZ934275",
+  "genome_name": "Rhinovirus C RV-C2/RV-129734/2023_CAP"
+ },
+ "Enterovirus.24.dna": {
+  "genome_ids": "MH484165",
+  "genome_name": "Enterovirus C96 3499/BRA-PA/10"
+ },
+ "Enterovirus.25.dna": {
+  "genome_ids": "PP930121",
+  "genome_name": "Enterovirus sp. mt27vf_Pig_D"
+ },
+ "Enterovirus.3.dna": {
+  "genome_ids": "AB469183",
+  "genome_name": "Enterovirus A71 EV71-GFP"
+ },
+ "Enterovirus.4.dna": {
+  "genome_ids": "MZ229642",
+  "genome_name": "Echovirus E11 strain Swab-3/HB.ES/CHN/2019"
+ },
+ "Enterovirus.5.dna": {
+  "genome_ids": "PQ807712",
+  "genome_name": "enterovirus D68 TZ2018HFMD376"
+ },
+ "Enterovirus.6.dna": {
+  "genome_ids": "PV423930",
+  "genome_name": "Rhinovirus A RHV00114"
+ },
+ "Enterovirus.7.dna": {
+  "genome_ids": "PZ934110",
+  "genome_name": "Rhinovirus A RV-A73/RV-337249/2024_CAP"
+ },
+ "Enterovirus.8.dna": {
+  "genome_ids": "PX282732",
+  "genome_name": "Rhinovirus A RVA/China/Hangzhou-24-2-292"
+ },
+ "Enterovirus.9.dna": {
+  "genome_ids": "PX282760",
+  "genome_name": "Rhinovirus B RVB/China/Hangzhou-24-S-476"
+ }
+}
