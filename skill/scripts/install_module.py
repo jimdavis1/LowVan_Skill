@@ -141,20 +141,24 @@ def validate(workdir, mod_json):
         #  lives in run_gto_eval.py, which has the panel.
         segs = block.get("segments")
         if not isinstance(segs, dict) or not segs:
-            print("       segments block is missing or not an object"); problems += 1
+            print("       segments block is missing or not an object")
+            problems.append((module, "segments-missing", []))
         else:
             for sname, sv in segs.items():
                 if not isinstance(sv, dict):
                     print("       segment %r is %r, expected an object with "
-                          "min_len/max_len/replicon_geometry" % (sname, sv)); problems += 1
+                          "min_len/max_len/replicon_geometry" % (sname, sv))
+                    problems.append((module, "segment-not-object", [sname]))
                     continue
                 for need in ("min_len", "max_len", "replicon_geometry"):
                     if need not in sv:
-                        print("       segment %r has no %s" % (sname, need)); problems += 1
+                        print("       segment %r has no %s" % (sname, need))
+                        problems.append((module, "segment-field", [sname, need]))
             declared = {v.get("segment") for v in block["features"].values() if v.get("segment")}
             for d0 in sorted(declared - set(segs)):
                 print("       feature(s) declare segment %r, which the segments "
-                      "block does not define" % d0); problems += 1
+                      "block does not define" % d0)
+                problems.append((module, "segment-undeclared", [d0]))
 
         derived = {f for f in feats
                    if block["features"][f].get("begin") or block["features"][f].get("end")}
@@ -167,6 +171,32 @@ def validate(workdir, mod_json):
         if special:
             print("       %2d special (no PSSM expected): %s"
                   % (len(special), ", ".join(sorted(special))))
+
+        #  "no PSSM expected" is not the same as "no PSSM present". A feature
+        #  that was built as a normal PSSM feature and later redeclared
+        #  `special` keeps its old profiles in the workdir, and every install
+        #  ships them. The annotator then calls the feature twice -- once from
+        #  the stale profiles, once from the special handler -- and the quality
+        #  run reports "Genome has too many HSPs for: <that feature>" with no
+        #  hint of the cause.
+        #
+        #  This is not hypothetical. Velarivirus, Ampelovirus and Closterovirus
+        #  all shipped RDRP as `special: transcript_edit` while still carrying
+        #  10, 18 and 9 RDRP profiles. It cost Velarivirus 64.1% -> 4.7% clean
+        #  genomes and Ampelovirus 51.5% -> 2.0%, and it was invisible because
+        #  the line above says "no PSSM expected" however many are sitting
+        #  there. Count them instead of asserting the expectation.
+        stale = sorted(f for f in special if pssms.get(f))
+        if stale:
+            print("  REFUSING: %d feature(s) are declared special but still have "
+                  "PSSMs:" % len(stale))
+            for f in stale:
+                print("       %-16s %d profile(s) -- delete Alignments/%s/%s "
+                      "and rebuild" % (f, len(pssms[f]), module, f))
+            print("       The annotator would call each of these twice. Remove "
+                  "the profiles,\n       or drop `special` if the PSSMs are "
+                  "the intended caller.")
+            problems.append((module, "special-has-pssms", stale))
         if derived:
             print("       %2d derived from a neighbour's PSSM (no PSSM expected): %s"
                   % (len(derived), ", ".join(sorted(derived))))
@@ -177,10 +207,12 @@ def validate(workdir, mod_json):
                     anc = d.get("%s_pssm" % side)
                     if anc and anc not in feats:
                         print("          %s: %s anchors on %r, which this module "
-                              "does not declare" % (f, side, anc)); problems += 1
+                              "does not declare" % (f, side, anc))
+                        problems.append((module, "anchor-missing", [f, side, anc]))
                     elif anc and f not in (block["features"][anc].get("non_pssm_partner") or []):
                         print("          %s: %s anchors on %s, but %s does not list it "
-                              "in non_pssm_partner" % (f, side, anc, anc)); problems += 1
+                              "in non_pssm_partner" % (f, side, anc, anc))
+                        problems.append((module, "anchor-unlisted", [f, side, anc]))
         if missing:
             print("       %2d DECLARED BUT UNBUILT -> would never be called:" % len(missing))
             print("          %s" % ", ".join(sorted(missing)))
