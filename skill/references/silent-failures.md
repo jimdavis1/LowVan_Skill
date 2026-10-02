@@ -674,3 +674,45 @@ measured miss rate is a floor, and the real one on unseen genomes is higher.
 It is the reason the 32 recovered genomes matter more than their share of the
 panel suggests -- they were the members the reference set could not reach even
 with the answer in front of it.
+
+---
+
+### The build tree lives in scratch and nothing says to save it
+
+Builds run in `/private/tmp` because Box sync turns many-small-file I/O into
+load average with the job itself at single-digit CPU. That instruction lived in
+the project's `env.sh` — *"Build in scratch; only the finished module goes to
+Box"* — and nowhere in this skill. So the Enterovirus module was built,
+evaluated, installed and committed, and the entire build tree stayed in
+`/private/tmp`, one reboot from gone: `clusters/`, `alis/`, `corrected_alis/`,
+`Curation_Report`, `Truncation_Report`, `FLAGGED_NTERM`, `BUILD_PARAMS`,
+`Leftover_Seqs.aa`. None of it is reconstructible from the installed module,
+and a curator cannot check the work without it.
+
+Every other taxon already stored this under `<Taxon>/work/<Module>/`. Nothing
+in the workflow said so, nothing checked, and the module looked finished.
+
+**An instruction that lives only in the environment is not part of the
+workflow.** `archive_workdir.py` now does the preservation with a required
+`--dest`, `install_module.py` says so after any install run out of scratch, and
+step 9 of SKILL.md documents it.
+
+---
+
+### `corrected_alis/` is not the whole provenance
+
+Every module in this project preserved `PSSM-Alignments/<FEAT>/corrected_alis/`
+and nothing else, which reads as complete and is not. The leftover pass and the
+N-terminal re-clustering write their alignments to `reclustered_alis/`, so on
+Enterovirus `corrected_alis/` held 634 alignments against **701 installed
+profiles** — 67 shipped profiles whose alignment was not preserved, 32 of them
+in 3D and 25 in VP1.
+
+Nothing reported it. The counts only disagree if you compare them, and the two
+live in different trees.
+
+`archive_workdir.py --repo` now compares the preserved alignments against the
+installed PSSMs per feature and names the profiles that have none. Note the id
+shapes differ — a profile is `<Module>.<FEAT>.<n>.pssm` and its alignment is
+`<n>.fa` — and comparing filenames instead of cluster ids reports *every*
+profile as missing, which is how the first version of that check behaved.

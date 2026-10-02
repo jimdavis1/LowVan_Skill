@@ -624,6 +624,49 @@ python3 scripts/install_module.py --workdir . --repo $LOWVAN_DATA_DIR
 declared with no PSSM is never called; a PSSM with no JSON entry is never
 loaded. Both are silent at runtime.
 
+#### Then preserve the build tree. It is not in the module.
+
+Build in scratch — Box sync turns many-small-file I/O into load average with
+the job itself at single-digit CPU. That is right for speed and wrong for
+memory: scratch is `/private/tmp`, a reboot takes it, and **the build tree is
+the only record of how the module was made**. `clusters/` says what grouped
+with what, `alis/` is before correction and `corrected_alis/` after,
+`Curation_Report` and `Truncation_Report` and `FLAGGED_NTERM` say what the
+pipeline flagged for a curator, `BUILD_PARAMS` records every departure from the
+documented defaults, `Leftover_Seqs.aa` is the pool the second pass drew from.
+None of it is reconstructible from the installed module, and nobody can check
+the work without it.
+
+```bash
+python3 scripts/archive_workdir.py --workdir $LOWVAN_SCRATCH \
+        --module <Module> --dest <where you keep builds> --repo $LOWVAN_DATA_DIR
+```
+
+`--dest` is required and has no default: where the archive lives is your
+decision, not the script's. It writes `<dest>/<Module>/`, matching how every
+taxon already stores it:
+
+```
+<Taxon>/work/<Module>/Alignments/<Module>/<FEATURE>/{alis, clusters,
+    corrected_alis, reclustered_alis, Curation_Report, Truncation_Report,
+    FLAGGED_NTERM, BUILD_PARAMS, Leftover_Seqs.aa, pssms, ...}
+```
+
+With `--repo` it checks the thing that is easy to get wrong: that the preserved
+alignments account for **every installed PSSM**. `corrected_alis/` alone does
+not — the leftover pass and the N-terminal re-clustering write to
+`reclustered_alis/`, and on Enterovirus that was 67 of 701 profiles, 32 of them
+in 3D alone, with nothing reporting the shortfall. `install_module.py` says so
+after any install run out of scratch, and `--archived-to` silences it once the
+archive exists.
+
+**The archive is local; the module is the git artifact.** The repo carries the
+JSON, the rep contigs, and the alignments behind the shipped profiles under
+`modules/<Module>/PSSM-Alignments/<FEAT>/{corrected_alis,reclustered_alis}/`.
+The rest of the build tree stays wherever `--dest` put it — `.gitignore`
+excludes `Alignments/` and `collections/` so it cannot be committed by
+accident.
+
 ### 10. Run it and score it
 
 ```bash
@@ -1108,6 +1151,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `annotation_rarefaction.py` | vocabulary growth curve, controlled versus free text |
 | `fetch_bvbrc.py` | batched, resumable BV-BRC fetch; ~400x faster than a per-line loop |
 | `log_and_clean.py` | log the genomes a module was tested on, then delete the regenerable bulk |
+| `archive_workdir.py` | preserve the scratch build tree where you keep builds, and verify every installed PSSM has its alignment |
 | `make_panel.py` | draw a held-out panel from the build's own contigs, excluding the reference genomes |
 | `make_gto.py` | contig FASTAs -> GTOs, with genome ids issued by the ID server |
 | `run_gto_eval.py` | annotate and quality-score GTOs; the good-vs-poor breakdown |
@@ -1118,6 +1162,8 @@ All take `--workdir` pointing at the module working directory, which looks like:
   as unbuildable with the reason
 - `qc_cross_feature.py` reports no MISLABEL rows
 - `rebuild_pssms.py` reports 0 stale
+- the build tree is archived (`archive_workdir.py --repo` reports every
+  installed profile has its alignment)
 - `install_module.py --check` reports no problems
 - `json_canon.py --check` reports every JSON canonical
 - `check_rep_contigs.py` routes every test genome

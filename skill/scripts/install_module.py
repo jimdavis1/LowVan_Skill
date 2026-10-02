@@ -423,6 +423,10 @@ def main():
     ap.add_argument("--json", help="module JSON (default: <workdir>/*_Viral_PSSM.json)")
     ap.add_argument("--check", action="store_true", help="validate only, write nothing")
     ap.add_argument("--only", help="comma-separated module names to install")
+    ap.add_argument("--archived-to", default=None,
+                    help="where this module's build tree is preserved. Pass it "
+                         "once archive_workdir.py has run, to silence the "
+                         "scratch note below.")
     args = ap.parse_args()
 
     workdir = os.path.abspath(args.workdir)
@@ -448,6 +452,26 @@ def main():
     print("\ninstalling into %s:" % repo)
     install(workdir, repo, modules, mod_json)
     print("\nrun with:  export LOWVAN_DATA_DIR=%s" % repo)
+
+    #  A module installs fine from scratch and the build tree is gone on the
+    #  next reboot -- clusters/, alis/, corrected_alis/, reclustered_alis/,
+    #  Curation_Report, Truncation_Report, BUILD_PARAMS. None of it is
+    #  reconstructible from what was just installed, and a curator cannot
+    #  check the work without it. Installing is the moment the module is
+    #  finished, so it is the moment to say so.
+    wd = os.path.abspath(workdir)
+    if any(wd.startswith(x) for x in ("/tmp/", "/private/tmp/", "/var/tmp/",
+                                      "/var/folders/")) and not args.archived_to:
+        names = ", ".join(sorted(modules)) or "<Module>"
+        print()
+        print("  NOTE: built in scratch (%s)." % wd)
+        print("        The build tree is not reconstructible from what was just")
+        print("        installed. Preserve it wherever you keep your builds:")
+        print()
+        print("          python3 scripts/archive_workdir.py --workdir %s \\" % wd)
+        print("                  --module %s --dest <your work dir> \\" % names)
+        print("                  --repo %s" % repo)
+        print()
     return 0
 
 
