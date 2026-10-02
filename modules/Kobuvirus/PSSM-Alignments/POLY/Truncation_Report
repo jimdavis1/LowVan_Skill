@@ -1,0 +1,7 @@
+Cluster	N_Seqs	Consensus_Len	Verdict	Substring_Of	Percent_Id	Query_Coverage	Len_Ratio
+1	131	2481	keep	(best: 4)	52.0	0.984	0.992
+2	115	2429	keep	(best: 6)	79.5	0.992	0.998
+3	36	2464	keep	(best: 1)	66.5	0.996	0.993
+4	8	2501	keep				
+5	8	2501	keep				
+6	7	2434	keep	(best: 1)	58.4	0.978	0.981

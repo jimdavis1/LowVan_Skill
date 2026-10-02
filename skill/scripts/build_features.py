@@ -15,6 +15,30 @@ DEFAULTS = dict(m="5", f="0.33", n="0.75", c="0", fd="0.20", e="3", efo="0.15",
                 nterm_eval_length="10")
 MI_FLOOR = 0.6   # references/pipeline.md: never redefine "same protein" below this
 
+def _normalise(given):
+    """Accept {"-m": 2} or {"m": "5"} and return DEFAULTS-shaped string params.
+
+    DEFAULTS is keyed WITHOUT the leading dash. A features.json written with
+    dashes -- which is how the flags appear everywhere else, including in this
+    script's own BUILD_PARAMS output -- therefore added unused keys and left
+    the command on its defaults. Nothing failed: the run proceeded at -m 5 and
+    -mi 0.8 while BUILD_PARAMS recorded `departures: {"-m": 2}`, so the file
+    asserted a departure that had not happened. Avihepatovirus and Senecavirus
+    were built at -m 5 for features holding 3 to 5 sequences, produced nothing,
+    and the evidence said they had been built at -m 2.
+
+    Unknown keys are fatal rather than ignored, for the same reason.
+    """
+    out = {}
+    for k, v in (given or {}).items():
+        kk = k[1:] if k.startswith("-") else k
+        if kk not in DEFAULTS:
+            raise SystemExit("build_features: unknown parameter %r "
+                             "(known: %s)" % (k, ", ".join(sorted(DEFAULTS))))
+        out[kk] = str(v)
+    return out
+
+
 def _write_params(dest, key, anno, params, cmd, extra_flags, note=None):
     """Record how a feature was built, next to the feature.
 
@@ -153,7 +177,7 @@ def main():
     res = []
     for key, d in spec.items():
         if only and key not in only: continue
-        params = dict(DEFAULTS); params.update(d.get("params", {}))
+        params = dict(DEFAULTS); params.update(_normalise(d.get("params")))
         r = run_one(a.workdir, a.module, key, d["anno"], params, d.get("flags", []))
         if r: res.append(r)
     print("\n%d features built, %d PSSMs total" % (len(res), sum(r["pssms"] for r in res)))

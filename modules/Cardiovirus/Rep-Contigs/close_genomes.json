@@ -1,0 +1,62 @@
+{
+ "Cardiovirus.1.dna": {
+  "genome_ids": "KM269482",
+  "genome_name": "Encephalomyocarditis virus ATCC VR-129B"
+ },
+ "Cardiovirus.10.dna": {
+  "genome_ids": "KY432928",
+  "genome_name": "cardiovirus E1 RtMrut-PicoV/JL2014-1"
+ },
+ "Cardiovirus.11.dna": {
+  "genome_ids": "PX221759",
+  "genome_name": "Cardiovirus JLCC_HXJS_43_12"
+ },
+ "Cardiovirus.12.dna": {
+  "genome_ids": "KP892662",
+  "genome_name": "Encephalomyocarditis virus MM"
+ },
+ "Cardiovirus.13.dna": {
+  "genome_ids": "OF449081",
+  "genome_name": "Encephalomyocarditis virus"
+ },
+ "Cardiovirus.14.dna": {
+  "genome_ids": "ON584156",
+  "genome_name": "Vole cardiovirus 14657"
+ },
+ "Cardiovirus.15.dna": {
+  "genome_ids": "OP778142",
+  "genome_name": "Saffold virus Uganda 2010"
+ },
+ "Cardiovirus.2.dna": {
+  "genome_ids": "EF165067",
+  "genome_name": "Saffold virus 1"
+ },
+ "Cardiovirus.3.dna": {
+  "genome_ids": "PP211433",
+  "genome_name": "Rodent Cardiovirus Ra.norvegicus_picorna_25"
+ },
+ "Cardiovirus.4.dna": {
+  "genome_ids": "MH976711",
+  "genome_name": "Rodent Cardiovirus AMzj-2018"
+ },
+ "Cardiovirus.5.dna": {
+  "genome_ids": "ON907867",
+  "genome_name": "Cardiovirus C RnF01/con/CPiV1"
+ },
+ "Cardiovirus.6.dna": {
+  "genome_ids": "PQ678023",
+  "genome_name": "Cardiovirus F BSTC-YNSC83"
+ },
+ "Cardiovirus.7.dna": {
+  "genome_ids": "MZ544193",
+  "genome_name": "Cardiovirus A 22084x5-1820"
+ },
+ "Cardiovirus.8.dna": {
+  "genome_ids": "MZ382838",
+  "genome_name": "Marmot cardiovirus HHMCDV"
+ },
+ "Cardiovirus.9.dna": {
+  "genome_ids": "ON136175",
+  "genome_name": "Cardiovirus sp."
+ }
+}

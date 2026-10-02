@@ -1,0 +1,14 @@
+{
+ "Senecavirus.1.dna": {
+  "genome_ids": "KY618834",
+  "genome_name": "Senecavirus A USA/IN_Purdue_4914-26/2015"
+ },
+ "Senecavirus.2.dna": {
+  "genome_ids": "OR416237",
+  "genome_name": "Senecavirus sp. 'cetus' harbor porpoise/NMFS2017026/liver/USA/2017"
+ },
+ "Senecavirus.3.dna": {
+  "genome_ids": "OL519620",
+  "genome_name": "Senecavirus sp. CPSV"
+ }
+}

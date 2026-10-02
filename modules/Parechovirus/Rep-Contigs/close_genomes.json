@@ -1,0 +1,102 @@
+{
+ "Parechovirus.1.dna": {
+  "genome_ids": "KT879931",
+  "genome_name": "Human parechovirus 5 174Chzj98"
+ },
+ "Parechovirus.10.dna": {
+  "genome_ids": "OR867093",
+  "genome_name": "Parechovirus sp. PPYCC16/10"
+ },
+ "Parechovirus.11.dna": {
+  "genome_ids": "PQ319861",
+  "genome_name": "Parechovirus A ABHPeV_775"
+ },
+ "Parechovirus.12.dna": {
+  "genome_ids": "OR951293",
+  "genome_name": "Myotis bat parechovirus 1 JX2020"
+ },
+ "Parechovirus.13.dna": {
+  "genome_ids": "OZ373362",
+  "genome_name": "Human parechovirus type 1 PicoBank/HPeV1/a Respiratory swabs"
+ },
+ "Parechovirus.14.dna": {
+  "genome_ids": "NC_021482",
+  "genome_name": "Sebokele virus 1"
+ },
+ "Parechovirus.15.dna": {
+  "genome_ids": "FV537060",
+  "genome_name": "Parechovirus A"
+ },
+ "Parechovirus.16.dna": {
+  "genome_ids": "OR951291",
+  "genome_name": "Myotis bat parechovirus 2 GX2017"
+ },
+ "Parechovirus.17.dna": {
+  "genome_ids": "MG438289",
+  "genome_name": "Human parechovirus 1 ETH_P1_2016"
+ },
+ "Parechovirus.18.dna": {
+  "genome_ids": "MK904598",
+  "genome_name": "Parechovirus A HMA"
+ },
+ "Parechovirus.19.dna": {
+  "genome_ids": "MK904599",
+  "genome_name": "Parechovirus A JPS"
+ },
+ "Parechovirus.2.dna": {
+  "genome_ids": "EU716175",
+  "genome_name": "Human parechovirus 8 BR/217/2006"
+ },
+ "Parechovirus.20.dna": {
+  "genome_ids": "MW248164",
+  "genome_name": "Parechovirus A WA17c-11-ICG"
+ },
+ "Parechovirus.21.dna": {
+  "genome_ids": "PQ066000",
+  "genome_name": "Parechovirus A SPA4_PaV-A1"
+ },
+ "Parechovirus.22.dna": {
+  "genome_ids": "MF352429",
+  "genome_name": "Rattus tanezumi parechovirus Wencheng-Rt386-3"
+ },
+ "Parechovirus.23.dna": {
+  "genome_ids": "PX095822",
+  "genome_name": "Parechovirus sp. SQ/N.fuscus/Pare"
+ },
+ "Parechovirus.24.dna": {
+  "genome_ids": "PV605211",
+  "genome_name": "Parechovirus sp. 22AP260"
+ },
+ "Parechovirus.25.dna": {
+  "genome_ids": "MG600084",
+  "genome_name": "parechovirus F1 LPWC210215"
+ },
+ "Parechovirus.3.dna": {
+  "genome_ids": "MZ544229",
+  "genome_name": "Scotophilus kuhlii parechovirus 17819x20-34"
+ },
+ "Parechovirus.4.dna": {
+  "genome_ids": "FJ384560",
+  "genome_name": "Ljungan virus 145SL"
+ },
+ "Parechovirus.5.dna": {
+  "genome_ids": "LC740522",
+  "genome_name": "Parechovirus sp. Bovine_Parechovirus_Lav1-218040/2022/JPN"
+ },
+ "Parechovirus.6.dna": {
+  "genome_ids": "MW476112",
+  "genome_name": "Parechovirus A B852"
+ },
+ "Parechovirus.7.dna": {
+  "genome_ids": "AF538689",
+  "genome_name": "Ljungan virus M1146"
+ },
+ "Parechovirus.8.dna": {
+  "genome_ids": "FV537058",
+  "genome_name": "Parechovirus A"
+ },
+ "Parechovirus.9.dna": {
+  "genome_ids": "MW248156",
+  "genome_name": "Parechovirus A Qcom11f-08-ICG"
+ }
+}

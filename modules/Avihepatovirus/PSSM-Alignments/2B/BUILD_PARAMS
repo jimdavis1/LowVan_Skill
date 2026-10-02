@@ -1,0 +1,4 @@
+feature: 2B
+annotation: Protein 2B, viroporin
+command: fasta-cluster-pssm-2.pl -a Protein 2B, viroporin -p Avihepatovirus.2B -m 2 -f 0.33 -n 0.75 -c 0 -fd 0.20 -e 3 -efo 0.15 -mi 0.6 -mc 0.6 -p_nterm 65 -n_nterm 3 -nterm_eval_length 10 -nterm-mmseq-id 0.7
+departures: {"m": "2", "mi": "0.6", "mc": "0.6"}

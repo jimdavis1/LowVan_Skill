@@ -716,3 +716,51 @@ installed PSSMs per feature and names the profiles that have none. Note the id
 shapes differ — a profile is `<Module>.<FEAT>.<n>.pssm` and its alignment is
 `<n>.fa` — and comparing filenames instead of cluster ids reports *every*
 profile as missing, which is how the first version of that check behaved.
+
+---
+
+### A parameter that is recorded as applied, and is not
+
+`build_features.py` keeps its defaults in a dict keyed WITHOUT the leading
+dash — `DEFAULTS = dict(m="5", mi="0.8", ...)` — and built the command from
+`params["m"]`. A `features.json` written with dashes, which is how the flags
+appear everywhere else including in this script's own `BUILD_PARAMS` output,
+therefore did this:
+
+```python
+params = dict(DEFAULTS); params.update({"-m": 2})   # adds a NEW key
+cmd = [... "-m", params["m"] ...]                   # still "5"
+```
+
+Nothing failed. The run proceeded at `-m 5` and `-mi 0.8` while `BUILD_PARAMS`
+recorded `departures: {"-m": 2}` — the file asserted a departure that had not
+happened, which is worse than recording nothing.
+
+Avihepatovirus has 277 unique proteins over 264 genomes, so features hold 2 to
+5 sequences. Asked for `-m 2` and silently given `-m 5`, **every one of its
+twelve features built zero profiles** and the evidence on disk said they had
+been built at `-m 2`. Two rounds of lowering `-mi` changed nothing, for the
+same reason. With the parameters actually applied, eleven of twelve built at
+once.
+
+`_normalise()` now accepts either spelling and is **fatal on an unknown key**,
+because the failure mode of the alternative is a parameter that looks set and
+is not.
+
+**A departure recorded but not applied is a false record.** Where a script
+writes down what it did, build that record from the same values it passed.
+
+---
+
+### `-m 2` does not mean two
+
+The clustering tool treats a cluster of exactly `min_seqs` as small and sends
+it to the leftovers: `Processing MMSeqs clusters (min_seqs=2) ... Found 1
+clusters, Created 0 cluster files, Put 2 sequences from 1 small clusters into
+Leftover_Seqs.aa`. So `-m 2` requires three members, and a feature with two
+unique sequences builds nothing from the main pass however low `-mi` goes.
+
+Four features across Avihepatovirus and Senecavirus were in exactly that
+state. `-m 1` built all four. The leftover pass would also have reached them,
+but only if the main pass had created the feature directory first — and it had
+not, because it "failed".

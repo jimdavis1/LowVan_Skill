@@ -1,0 +1,323 @@
+{
+   "Cardiovirus" : {
+      "close_genomes" : {
+         "Cardiovirus.1.dna" : {
+            "genome_ids" : "KM269482",
+            "genome_name" : "Encephalomyocarditis virus ATCC VR-129B"
+         },
+         "Cardiovirus.10.dna" : {
+            "genome_ids" : "KY432928",
+            "genome_name" : "cardiovirus E1 RtMrut-PicoV/JL2014-1"
+         },
+         "Cardiovirus.11.dna" : {
+            "genome_ids" : "PX221759",
+            "genome_name" : "Cardiovirus JLCC_HXJS_43_12"
+         },
+         "Cardiovirus.12.dna" : {
+            "genome_ids" : "KP892662",
+            "genome_name" : "Encephalomyocarditis virus MM"
+         },
+         "Cardiovirus.13.dna" : {
+            "genome_ids" : "OF449081",
+            "genome_name" : "Encephalomyocarditis virus"
+         },
+         "Cardiovirus.14.dna" : {
+            "genome_ids" : "ON584156",
+            "genome_name" : "Vole cardiovirus 14657"
+         },
+         "Cardiovirus.15.dna" : {
+            "genome_ids" : "OP778142",
+            "genome_name" : "Saffold virus Uganda 2010"
+         },
+         "Cardiovirus.2.dna" : {
+            "genome_ids" : "EF165067",
+            "genome_name" : "Saffold virus 1"
+         },
+         "Cardiovirus.3.dna" : {
+            "genome_ids" : "PP211433",
+            "genome_name" : "Rodent Cardiovirus Ra.norvegicus_picorna_25"
+         },
+         "Cardiovirus.4.dna" : {
+            "genome_ids" : "MH976711",
+            "genome_name" : "Rodent Cardiovirus AMzj-2018"
+         },
+         "Cardiovirus.5.dna" : {
+            "genome_ids" : "ON907867",
+            "genome_name" : "Cardiovirus C RnF01/con/CPiV1"
+         },
+         "Cardiovirus.6.dna" : {
+            "genome_ids" : "PQ678023",
+            "genome_name" : "Cardiovirus F BSTC-YNSC83"
+         },
+         "Cardiovirus.7.dna" : {
+            "genome_ids" : "MZ544193",
+            "genome_name" : "Cardiovirus A 22084x5-1820"
+         },
+         "Cardiovirus.8.dna" : {
+            "genome_ids" : "MZ382838",
+            "genome_name" : "Marmot cardiovirus HHMCDV"
+         },
+         "Cardiovirus.9.dna" : {
+            "genome_ids" : "ON136175",
+            "genome_name" : "Cardiovirus sp."
+         }
+      },
+      "features" : {
+         "2A" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 2A",
+            "bit_cutoff" : 63,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2A",
+            "kmers" : 0,
+            "max_len" : 171,
+            "min_len" : 113,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2B" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 2B, viroporin",
+            "bit_cutoff" : 57,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2B",
+            "kmers" : 0,
+            "max_len" : 180,
+            "min_len" : 101,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2C" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 2C, ATPase/helicase",
+            "bit_cutoff" : 146,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2C",
+            "kmers" : 0,
+            "max_len" : 390,
+            "min_len" : 260,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3A" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 3A",
+            "bit_cutoff" : 39,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3A",
+            "kmers" : 0,
+            "max_len" : 105,
+            "min_len" : 70,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3C" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Picornain 3C, protease (3C)",
+            "bit_cutoff" : 97,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3C",
+            "kmers" : 0,
+            "max_len" : 260,
+            "min_len" : 164,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3D" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "RNA-directed RNA polymerase 3D",
+            "bit_cutoff" : 207,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3D",
+            "kmers" : 0,
+            "max_len" : 553,
+            "min_len" : 368,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "L" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Leader protein, zinc-finger host antagonist",
+            "bit_cutoff" : 31,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "L",
+            "kmers" : 0,
+            "max_len" : 85,
+            "min_len" : 53,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "POLY" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Genome polyprotein",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 2764,
+            "min_len" : 1843,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP1" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP1 (1D)",
+            "bit_cutoff" : 124,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP1",
+            "kmers" : 0,
+            "max_len" : 332,
+            "min_len" : 218,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP2" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP2 (1B)",
+            "bit_cutoff" : 120,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP2",
+            "kmers" : 0,
+            "max_len" : 325,
+            "min_len" : 204,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP3" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP3 (1C)",
+            "bit_cutoff" : 103,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP3",
+            "kmers" : 0,
+            "max_len" : 278,
+            "min_len" : 184,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP4" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP4 (1A)",
+            "bit_cutoff" : 31,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP4",
+            "kmers" : 0,
+            "max_len" : 86,
+            "min_len" : 56,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VPG" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Genome-linked protein VPg (3B)",
+            "bit_cutoff" : 20,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VPG",
+            "kmers" : 0,
+            "max_len" : 24,
+            "min_len" : 16,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 10000,
+            "min_len" : 5000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

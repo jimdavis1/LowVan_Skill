@@ -1,0 +1,17 @@
+Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
+1	211	T	737	726	3	1	0	2	2	0,212,213	7	1	T	REVIEW-nonMet
+2	211	T	498	489	3	0	0	1	6	107,212,213	2	0	T	REVIEW-nonMet
+3	209	T	116	114	4	1	0	0	0	0,140,211,212	2	1	T	REVIEW-nonMet
+4	214	T	116	81	3	0	0	0	35	22,215,216	0	0	T	REVIEW-nonMet
+5	219	T	93	93	0	0	0	0	0		0	0	T	REVIEW-nonMet
+6	216	T	40	39	3	0	0	0	0	84,217,218	1	0	T	REVIEW-nonMet
+7	214	T	40	31	2	0	0	0	9	214,215	0	0	T	REVIEW-nonMet
+8	211	T	34	31	37	0	0	1	1	40,46,47,48,49,63,64,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,136,137,166,201,221,222,223,224,225,245,246,247	1	0	T	REVIEW-nonMet
+9	210	T	28	28	2	0	0	0	0	46,137	0	0	T	REVIEW-nonMet
+10	219	T	26	26	0	0	0	0	0		0	0	T	REVIEW-nonMet
+11	248	V	17	16	0	0	0	0	1		0	0	V	REVIEW-nonMet
+12	231	T	8	8	0	1	0	0	0	0	0	1	T	REVIEW-nonMet
+13	219	V	8	8	0	0	0	0	0		0	0	V	REVIEW-nonMet
+14	219	V	8	8	0	0	0	0	0		0	0	V	REVIEW-nonMet
+15	219	V	7	7	0	0	0	0	0		0	0	V	REVIEW-nonMet
+16	214	T	6	6	0	0	0	0	0		0	0	T	REVIEW-nonMet

@@ -1,0 +1,54 @@
+{
+ "Aphthovirus.1.dna": {
+  "genome_ids": "JA280131",
+  "genome_name": "Foot-and-mouth disease virus"
+ },
+ "Aphthovirus.10.dna": {
+  "genome_ids": "PX864609",
+  "genome_name": "Foot-and-mouth disease virus A Gha_WEW-12"
+ },
+ "Aphthovirus.11.dna": {
+  "genome_ids": "ON784047",
+  "genome_name": "Foot-and-mouth disease virus O V04667"
+ },
+ "Aphthovirus.12.dna": {
+  "genome_ids": "ON784046",
+  "genome_name": "Foot-and-mouth disease virus O V04666"
+ },
+ "Aphthovirus.13.dna": {
+  "genome_ids": "OM451203",
+  "genome_name": "Coypu aphthovirus GX-A1"
+ },
+ "Aphthovirus.2.dna": {
+  "genome_ids": "PX941976",
+  "genome_name": "Bovine rhinitis A virus WBYDN/7383"
+ },
+ "Aphthovirus.3.dna": {
+  "genome_ids": "OQ547742",
+  "genome_name": "Aphthovirus sp. RBV-JN022"
+ },
+ "Aphthovirus.4.dna": {
+  "genome_ids": "AY593835",
+  "genome_name": "Foot-and-mouth disease virus - type O O PanAsia"
+ },
+ "Aphthovirus.5.dna": {
+  "genome_ids": "FV536926",
+  "genome_name": "Foot-and-mouth disease virus"
+ },
+ "Aphthovirus.6.dna": {
+  "genome_ids": "FV536928",
+  "genome_name": "Foot-and-mouth disease virus"
+ },
+ "Aphthovirus.7.dna": {
+  "genome_ids": "OP020160",
+  "genome_name": "Bovine rhinitis A virus BRAV2_NSWL15.1"
+ },
+ "Aphthovirus.8.dna": {
+  "genome_ids": "JB027157",
+  "genome_name": "Equine rhinitis A virus"
+ },
+ "Aphthovirus.9.dna": {
+  "genome_ids": "KY322674",
+  "genome_name": "Foot-and-mouth disease virus - type O SKR/6/2014"
+ }
+}

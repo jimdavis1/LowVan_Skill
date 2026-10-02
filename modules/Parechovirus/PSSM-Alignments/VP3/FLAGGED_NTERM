@@ -1,0 +1,6 @@
+Alignment	Stop_Col	Stop_Res	Occupancy	Identity_Among_Occupied	Seqs_With_Residue	Final_Seqs
+1	1	A	1.000	0.937	126	126
+2	5	K	1.000	0.602	93	92
+3	0	G	0.923	1.000	12	12
+4	0	A	1.000	0.909	11	11
+5	0	G	1.000	1.000	7	7

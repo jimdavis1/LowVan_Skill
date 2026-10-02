@@ -1,0 +1,291 @@
+{
+   "Teschovirus" : {
+      "close_genomes" : {
+         "Teschovirus.1.dna" : {
+            "genome_ids" : "PP930021",
+            "genome_name" : "Teschovirus sp. mt17vf_Pig"
+         },
+         "Teschovirus.2.dna" : {
+            "genome_ids" : "PP930043",
+            "genome_name" : "Teschovirus sp. mt1vf_Pig"
+         },
+         "Teschovirus.3.dna" : {
+            "genome_ids" : "OQ818323",
+            "genome_name" : "Rousettus madagascariensis teschovirus MIZ190"
+         },
+         "Teschovirus.4.dna" : {
+            "genome_ids" : "OR951333",
+            "genome_name" : "Pteropodidae bat teschovirus YN2016_267_11102"
+         },
+         "Teschovirus.5.dna" : {
+            "genome_ids" : "OQ818318",
+            "genome_name" : "Eidolon dupreanum teschovirus KEL164"
+         },
+         "Teschovirus.6.dna" : {
+            "genome_ids" : "OR951324",
+            "genome_name" : "Pteropodidae bat teschovirus YN2017"
+         },
+         "Teschovirus.7.dna" : {
+            "genome_ids" : "OR951335",
+            "genome_name" : "Pteropodidae bat teschovirus YN2017"
+         }
+      },
+      "features" : {
+         "2A" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 2A, StopGo peptide",
+            "bit_cutoff" : 20,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2A",
+            "kmers" : 0,
+            "max_len" : 25,
+            "min_len" : 16,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2B" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 2B, viroporin",
+            "bit_cutoff" : 65,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2B",
+            "kmers" : 0,
+            "max_len" : 175,
+            "min_len" : 116,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2C" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 2C, ATPase/helicase",
+            "bit_cutoff" : 144,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2C",
+            "kmers" : 0,
+            "max_len" : 385,
+            "min_len" : 256,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3A" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Protein 3A",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3A",
+            "kmers" : 0,
+            "max_len" : 109,
+            "min_len" : 72,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3C" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Picornain 3C, protease (3C)",
+            "bit_cutoff" : 92,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3C",
+            "kmers" : 0,
+            "max_len" : 246,
+            "min_len" : 164,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3D" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "RNA-directed RNA polymerase 3D",
+            "bit_cutoff" : 203,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3D",
+            "kmers" : 0,
+            "max_len" : 542,
+            "min_len" : 361,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "L" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Leader protein",
+            "bit_cutoff" : 38,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "L",
+            "kmers" : 0,
+            "max_len" : 103,
+            "min_len" : 68,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "POLY" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Genome polyprotein",
+            "bit_cutoff" : 400,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 2647,
+            "min_len" : 1664,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP1" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP1 (1D)",
+            "bit_cutoff" : 118,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP1",
+            "kmers" : 0,
+            "max_len" : 315,
+            "min_len" : 210,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP2" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP2 (1B)",
+            "bit_cutoff" : 126,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP2",
+            "kmers" : 0,
+            "max_len" : 336,
+            "min_len" : 224,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP3" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP3 (1C)",
+            "bit_cutoff" : 108,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP3",
+            "kmers" : 0,
+            "max_len" : 290,
+            "min_len" : 193,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP4" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Capsid protein VP4 (1A)",
+            "bit_cutoff" : 33,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP4",
+            "kmers" : 0,
+            "max_len" : 88,
+            "min_len" : 59,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VPG" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2252396"
+               ]
+            },
+            "anno" : "Genome-linked protein VPg (3B)",
+            "bit_cutoff" : 20,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VPG",
+            "kmers" : 0,
+            "max_len" : 30,
+            "min_len" : 20,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 10000,
+            "min_len" : 5000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

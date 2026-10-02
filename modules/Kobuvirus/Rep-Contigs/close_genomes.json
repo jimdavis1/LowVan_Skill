@@ -1,0 +1,94 @@
+{
+ "Kobuvirus.1.dna": {
+  "genome_ids": "PQ110014",
+  "genome_name": "aichivirus A8 Murine kobuvirus MKV1/Mus_musculus/AJ34-MKV/2023/MN-USA"
+ },
+ "Kobuvirus.10.dna": {
+  "genome_ids": "NC_027919",
+  "genome_name": "Kobuvirus cattle/Kagoshima-1-22-KoV/2014/JPN"
+ },
+ "Kobuvirus.11.dna": {
+  "genome_ids": "MT152346",
+  "genome_name": "Grey squirrel kobuvirus UK 2010"
+ },
+ "Kobuvirus.12.dna": {
+  "genome_ids": "PZ621247",
+  "genome_name": "Porcine kobuvirus MCL-26-Pig-17_RNA-13481"
+ },
+ "Kobuvirus.13.dna": {
+  "genome_ids": "PX390165",
+  "genome_name": "aichivirus A1 Env/ARG/BG-ARE/Summer 2023"
+ },
+ "Kobuvirus.14.dna": {
+  "genome_ids": "KJ934637",
+  "genome_name": "Kobuvirus SZAL6-KoV/2011/HUN"
+ },
+ "Kobuvirus.15.dna": {
+  "genome_ids": "KT325852",
+  "genome_name": "Rabbit picornavirus Rabbit01/2013/HUN"
+ },
+ "Kobuvirus.16.dna": {
+  "genome_ids": "OP821762",
+  "genome_name": "Rabbit picornavirus UJS-2019"
+ },
+ "Kobuvirus.17.dna": {
+  "genome_ids": "PQ541177",
+  "genome_name": "Mus musculus kobuvirus Mu. musculus_pico"
+ },
+ "Kobuvirus.18.dna": {
+  "genome_ids": "OQ758029",
+  "genome_name": "Kobuvirus sp. goat/KoV/KT-G4/2020-HUN"
+ },
+ "Kobuvirus.19.dna": {
+  "genome_ids": "OR867088",
+  "genome_name": "Kobuvirus sp. MSJDC22/7654"
+ },
+ "Kobuvirus.2.dna": {
+  "genome_ids": "PP930045",
+  "genome_name": "Kobuvirus sp. mt1vf_Pig"
+ },
+ "Kobuvirus.20.dna": {
+  "genome_ids": "NC_026314",
+  "genome_name": "rabbit kobuvirus Berlin/Jan2011/0572"
+ },
+ "Kobuvirus.21.dna": {
+  "genome_ids": "KY432931",
+  "genome_name": "aichivirus A7 RtMruf-PicoV/JL2014-2"
+ },
+ "Kobuvirus.22.dna": {
+  "genome_ids": "PP654852",
+  "genome_name": "Fontanars bat-associated kobuvirus"
+ },
+ "Kobuvirus.23.dna": {
+  "genome_ids": "PQ678042",
+  "genome_name": "Yunnan rodent kobuvirus 1 DHRL-YNSC05"
+ },
+ "Kobuvirus.3.dna": {
+  "genome_ids": "OP414041",
+  "genome_name": "Porcine kobuvirus PF196/con/PicV8"
+ },
+ "Kobuvirus.4.dna": {
+  "genome_ids": "PX941980",
+  "genome_name": "Kobuvirus sp. WBYDN/8425"
+ },
+ "Kobuvirus.5.dna": {
+  "genome_ids": "NC_027918",
+  "genome_name": "Kobuvirus cattle/Kagoshima-2-24-KoV/2015/JPN"
+ },
+ "Kobuvirus.6.dna": {
+  "genome_ids": "OQ818322",
+  "genome_name": "Eidolon dupreanum kobuvirus KEL318"
+ },
+ "Kobuvirus.7.dna": {
+  "genome_ids": "OR951282",
+  "genome_name": "Aichivirus F GD2017_210_5247"
+ },
+ "Kobuvirus.8.dna": {
+  "genome_ids": "PV939097",
+  "genome_name": "Yangtze finless porpoise kobuvirus 2 YFP/HB/2021/02"
+ },
+ "Kobuvirus.9.dna": {
+  "genome_ids": "MG692431",
+  "genome_name": "Aichi virus 1 ETH/2016/P9"
+ }
+}

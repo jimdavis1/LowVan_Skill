@@ -1,0 +1,102 @@
+{
+ "Sapelovirus.1.dna": {
+  "genome_ids": "PP930020",
+  "genome_name": "Sapelovirus sp. mt36vf_Wild_boar"
+ },
+ "Sapelovirus.10.dna": {
+  "genome_ids": "OM451191",
+  "genome_name": "Coypu sapelovirus 2 HuN-A2"
+ },
+ "Sapelovirus.11.dna": {
+  "genome_ids": "MN807752",
+  "genome_name": "Sapelovirus A SZ1M-F/PSV/HUN/2013"
+ },
+ "Sapelovirus.12.dna": {
+  "genome_ids": "JN420368",
+  "genome_name": "California sea lion sapelovirus 1 1162"
+ },
+ "Sapelovirus.13.dna": {
+  "genome_ids": "JN420367",
+  "genome_name": "California sea lion sapelovirus 2 1153"
+ },
+ "Sapelovirus.14.dna": {
+  "genome_ids": "MF352431",
+  "genome_name": "Bat sapelovirus Henan-Mr221"
+ },
+ "Sapelovirus.15.dna": {
+  "genome_ids": "KY855433",
+  "genome_name": "Marmot sapelovirus 2 HT6"
+ },
+ "Sapelovirus.16.dna": {
+  "genome_ids": "MK521918",
+  "genome_name": "Tasmanian devil-associated sapelovirus wukalina/Tasmania/Sarcophilus_harrisii/2017/DN12 5220"
+ },
+ "Sapelovirus.17.dna": {
+  "genome_ids": "MW826472",
+  "genome_name": "Sapelovirus sp. XZS03"
+ },
+ "Sapelovirus.18.dna": {
+  "genome_ids": "MW826529",
+  "genome_name": "Sapelovirus sp. YSN01"
+ },
+ "Sapelovirus.19.dna": {
+  "genome_ids": "MW826551",
+  "genome_name": "Sapelovirus sp. YSS02"
+ },
+ "Sapelovirus.2.dna": {
+  "genome_ids": "PV793802",
+  "genome_name": "Sapelovirus sp. PicornaviridaeGoosefe95V2"
+ },
+ "Sapelovirus.20.dna": {
+  "genome_ids": "ON136181",
+  "genome_name": "Sapelovirus sp."
+ },
+ "Sapelovirus.21.dna": {
+  "genome_ids": "MW588167",
+  "genome_name": "Mute swan feces associated sapelovirus 1 Abbotsbury/A/2016"
+ },
+ "Sapelovirus.22.dna": {
+  "genome_ids": "MW588168",
+  "genome_name": "Mute swan feces associated sapelovirus 1 Abbotsbury/B/2016"
+ },
+ "Sapelovirus.23.dna": {
+  "genome_ids": "MW588170",
+  "genome_name": "Mute swan feces associated sapelovirus 2 Abbotsbury/A/2016"
+ },
+ "Sapelovirus.24.dna": {
+  "genome_ids": "MW588171",
+  "genome_name": "Mute swan feces associated sapelovirus 3 Abbotsbury/A/2016"
+ },
+ "Sapelovirus.25.dna": {
+  "genome_ids": "OM451188",
+  "genome_name": "Coypu sapelovirus 1 GX-F1"
+ },
+ "Sapelovirus.3.dna": {
+  "genome_ids": "PP930022",
+  "genome_name": "Sapelovirus sp. mt23vf_Pig_A"
+ },
+ "Sapelovirus.4.dna": {
+  "genome_ids": "OR951327",
+  "genome_name": "Pteropodidae bat sapelovirus YN2017_253_1837"
+ },
+ "Sapelovirus.5.dna": {
+  "genome_ids": "LC503602",
+  "genome_name": "Sapelovirus B Cam13"
+ },
+ "Sapelovirus.6.dna": {
+  "genome_ids": "KX644938",
+  "genome_name": "Bat sapelovirus"
+ },
+ "Sapelovirus.7.dna": {
+  "genome_ids": "NC_004451",
+  "genome_name": "Simian sapelovirus 1 2383"
+ },
+ "Sapelovirus.8.dna": {
+  "genome_ids": "NC_040605",
+  "genome_name": "Marmot sapelovirus 1 HT5"
+ },
+ "Sapelovirus.9.dna": {
+  "genome_ids": "LC849240",
+  "genome_name": "Sapelovirus sp. MiV-D1/Raccoon_dog/Kodo2023-7/2023/JPN"
+ }
+}

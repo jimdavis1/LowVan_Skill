@@ -1,0 +1,38 @@
+{
+ "Avihepatovirus.1.dna": {
+  "genome_ids": "PQ777123",
+  "genome_name": "Duck hepatitis A virus 3 112803"
+ },
+ "Avihepatovirus.2.dna": {
+  "genome_ids": "OL956952",
+  "genome_name": "duck egg-reducing syndrome virus AH204"
+ },
+ "Avihepatovirus.3.dna": {
+  "genome_ids": "PV014360",
+  "genome_name": "Avihepatovirus A DHAV/18Yak"
+ },
+ "Avihepatovirus.4.dna": {
+  "genome_ids": "PP263372",
+  "genome_name": "Duck hepatitis A virus 1 YN-JS-2019"
+ },
+ "Avihepatovirus.5.dna": {
+  "genome_ids": "MH453803",
+  "genome_name": "Avihepatovirus sp. MW24"
+ },
+ "Avihepatovirus.6.dna": {
+  "genome_ids": "PV793811",
+  "genome_name": "Avihepatovirus sp. PicornaviridaeGoosefe95V3"
+ },
+ "Avihepatovirus.7.dna": {
+  "genome_ids": "PV793810",
+  "genome_name": "Avihepatovirus sp. PicornaviridaeCranefe72V2"
+ },
+ "Avihepatovirus.8.dna": {
+  "genome_ids": "PV793815",
+  "genome_name": "Avihepatovirus sp. 95V1"
+ },
+ "Avihepatovirus.9.dna": {
+  "genome_ids": "MW588066",
+  "genome_name": "Mute swan feces associated avihepatovirus Abbotsbury/A/2016"
+ }
+}

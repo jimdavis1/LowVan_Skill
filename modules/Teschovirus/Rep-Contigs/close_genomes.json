@@ -1,0 +1,30 @@
+{
+ "Teschovirus.1.dna": {
+  "genome_ids": "PP930021",
+  "genome_name": "Teschovirus sp. mt17vf_Pig"
+ },
+ "Teschovirus.2.dna": {
+  "genome_ids": "PP930043",
+  "genome_name": "Teschovirus sp. mt1vf_Pig"
+ },
+ "Teschovirus.3.dna": {
+  "genome_ids": "OQ818323",
+  "genome_name": "Rousettus madagascariensis teschovirus MIZ190"
+ },
+ "Teschovirus.4.dna": {
+  "genome_ids": "OR951333",
+  "genome_name": "Pteropodidae bat teschovirus YN2016_267_11102"
+ },
+ "Teschovirus.5.dna": {
+  "genome_ids": "OQ818318",
+  "genome_name": "Eidolon dupreanum teschovirus KEL164"
+ },
+ "Teschovirus.6.dna": {
+  "genome_ids": "OR951324",
+  "genome_name": "Pteropodidae bat teschovirus YN2017"
+ },
+ "Teschovirus.7.dna": {
+  "genome_ids": "OR951335",
+  "genome_name": "Pteropodidae bat teschovirus YN2017"
+ }
+}
