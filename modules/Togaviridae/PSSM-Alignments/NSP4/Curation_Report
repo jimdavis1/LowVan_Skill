@@ -1,0 +1,9 @@
+Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
+1	611	Y	473	469	6	6	0	0	2	0,1,2,3,4,5	2	6	Y	REVIEW-nonMet
+2	608	Y	139	138	3	0	0	0	0	608,609,610	1	0	Y	REVIEW-nonMet
+3	611	Y	108	106	3	0	0	2	0	611,612,613	0	0	Y	REVIEW-nonMet
+4	610	Y	93	92	6	6	0	0	0	0,1,2,3,4,5	1	6	Y	REVIEW-nonMet
+5	607	Y	83	80	53	36	0	0	1	0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,630,631	2	36	Y	REVIEW-nonMet
+6	611	Y	26	26	1	0	0	0	0	368	0	0	Y	REVIEW-nonMet
+7	609	Y	16	16	0	0	0	0	0		0	0	Y	REVIEW-nonMet
+8	610	Y	13	13	0	0	0	0	0		0	0	Y	REVIEW-nonMet

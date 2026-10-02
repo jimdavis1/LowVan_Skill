@@ -1,0 +1,10 @@
+feature      PE2
+annotation   Envelope glycoprotein precursor pE2
+defaults     -m 5 -f 0.33 -n 0.75 -c 0 -fd 0.20 -e 3 -efo 0.15 -mi 0.8 -mc 0.8 -p_nterm 65 -n_nterm 3 -nterm_eval_length 10 -nterm-mmseq-id 0.7
+departures   -x  (keep non-standard residues). Input is PE2.build.fasta,
+             which admits X ONLY in the recovered sequences. Required
+             because P123 carries the readthrough opal as X and
+             FCP_Main_Utils.pm:244 drops /(B|J|X|Z)/i without -x.
+source       Extracted/Togaviridae.PE2.faa (extract_combos.py) -- the
+             BV-BRC export has no usable collection for this feature.
+built        2026-09-14T15:47:28Z

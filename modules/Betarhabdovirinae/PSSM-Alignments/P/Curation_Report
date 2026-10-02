@@ -1,0 +1,26 @@
+Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
+1	295	M	47	41	0	0	0	0	6		0	0	M	ok
+2	343	M	13	13	0	0	0	0	0		0	0	M	ok
+3	355	M	10	10	8	0	0	0	0	56,57,58,59,60,61,62,63	0	0	M	ok
+4	333	M	10	10	0	0	0	0	0		0	0	M	ok
+5	300	M	9	9	1	0	0	0	0	300	0	0	M	ok
+6	345	M	6	6	0	0	0	0	0		0	0	M	ok
+7	335	M	6	6	0	0	0	0	0		0	0	M	ok
+8	280	M	5	5	0	0	0	0	0	0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54	0	55	M	ok
+10	295	M	5	5	0	0	0	0	0		0	0	M	ok
+11	270	M	5	5	3	0	0	0	0	21,22,23	0	0	M	ok
+12	353	M	5	3	0	0	0	0	1		0	0	M	ok
+13	346	M	4	4	0	0	0	0	0		0	0	M	ok
+14	329	M	4	4	0	0	0	0	0		0	0	M	ok
+15	300	M	4	4	0	0	0	0	0		0	0	M	ok
+16	295	M	4	4	0	0	0	0	0		0	0	M	ok
+17	298	M	3	3	0	0	0	0	0		0	0	M	ok
+18	326	M	3	3	0	0	0	0	0		0	0	M	ok
+19	325	M	3	3	0	0	0	0	0		0	0	M	ok
+20	283	M	3	3	0	0	0	0	0		0	0	M	ok
+21	322	M	3	3	0	0	0	0	0		0	0	M	ok
+22	336	M	3	3	0	0	0	0	0		0	0	M	ok
+23	294	M	3	3	0	0	0	0	0		0	0	M	ok
+24	349	M	3	3	0	0	0	0	0		0	0	M	ok
+25	318	M	3	3	0	0	0	0	0		0	0	M	ok
+26	322	M	3	3	0	0	0	0	0		0	0	M	ok

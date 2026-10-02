@@ -1,0 +1,10 @@
+Alpharhabdovirinae UNC14 -- built at -m 2 -mi 0.8 -e 2
+
+3 sequences; 3 reached a cluster, 0 left over, 1 PSSM(s).
+Chosen over -m 5/3/2 x -mi 0.8/0.6 by coverage first, then
+fewest profiles among settings within 5 points of the best coverage.
+fewest profiles among those within 5 points of the best coverage.
+-mi never goes below 0.6: that is the identity at which two proteins
+are declared the same thing, and a looser profile covers only by
+admitting anything. -m 1 is excluded for the same reason.
+Derived from the post-re-export collection, not inherited. 11 Sep 2026

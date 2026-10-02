@@ -1,0 +1,11 @@
+feature      NSP3
+annotation   Nonstructural protein nsP3
+defaults     -m 5 -f 0.33 -n 0.75 -c 0 -fd 0.20 -e 3 -efo 0.15 -mi 0.8 -mc 0.8  -p_nterm 65 -n_nterm 3 -nterm_eval_length 10 -nterm-mmseq-id 0.7
+departures   -x  (keep non-standard residues).  REQUIRED: the recovered
+             full-length nsP3 sequences carry the readthrough position as
+             X, and FCP_Main_Utils.pm:244 drops every sequence matching
+             /(B|J|X|Z)/i unless -x is given. Input is NSP3.build.fasta,
+             which admits X ONLY in the recovered sequences, so -x does
+             not silently widen the collection to assembly ambiguity.
+input        collections/Togaviridae/NSP3.build.fasta
+built        2026-09-14T14:20:44Z

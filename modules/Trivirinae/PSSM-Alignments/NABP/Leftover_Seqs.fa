@@ -1,0 +1,216 @@
+>fig|2571274.5.peg.5|Vitivirus Nucleic acid binding protein
+---------MEN----------------PT------------------------------
+-------------FLAGRSSYAKRRRSKRLGIC--------------VCGSIM--H-NID
+N-CRRSSLSA---SKSDRLDWVKYGR-----------VVLEDETRINSSIVRLVAHEYGL
+------------------VDLQNKIDNSGC-------------EPPKHPSRSP-------
+--EET--PEYYSW----------------------
+>fig|2571274.10.peg.5|Vitivirus Nucleic acid binding protein
+---------MEN----------------PT------------------------------
+-------------FLAGRSSYAKRRRSKRLGIC--------------VCGSIM--H-NID
+N-CRRSSLSA---SKSDRLDWVKYGR-----------VVLEDETRINSSIVRLVAHEYGL
+------------------VGLQNKIDNSRC-------------EPPKHPSRSP-------
+--EET--PEYYSW----------------------
+>fig|2571274.6.peg.5|Vitivirus Nucleic acid binding protein
+---------MEN----------------PT------------------------------
+-------------FLAGRSSYAKRRRSKRLGIC--------------VCGSIM--H-NID
+N-CRRSSLSA---SKSDRLDWVKYGR-----------VVLEDETRINSSIVRLVAHEYGL
+------------------VDLQNKIDNSRC-------------EPPKHPSRSP-------
+--EET--PEYYSW----------------------
+>fig|2571274.8.peg.5|Vitivirus Nucleic acid binding protein
+---------MEN----------------PT------------------------------
+-------------FLAGRSSYAKRRRSKRLGIC--------------VCGSIM--H-NIN
+N-CRRSSLSA---SKSDRLDWVKYGR-----------VVLEDETRINSSIVRLVAHEYGL
+------------------VGLQNKIDNSGC-------------EPPKHPSRSP-------
+--EET--PEYYSW----------------------
+>fig|2045345.40.peg.5|Vitivirus Nucleic acid binding protein
+---------MEN----------------PI------------------------------
+-------------FLAGRSSYAKRRRSKRLGIC--------------VCGSIM--H-NIN
+N-CRRSSLSA---SKSDRLDWVKYGR-----------VVLEDETRINSSIVRLVAHEYRL
+------------------VDLQNKIDDNRC-------------EPPKHPSRSP-------
+--EET--PEYYSW----------------------
+>fig|2571274.3.peg.5|Vitivirus Nucleic acid binding protein
+---------MEN----------------PV------------------------------
+-------------FLAGRSSYAKRRRARRLDLC--------------VCGSVM--H-NNQ
+G-CTRSRLSK---SKSDRLDWVKYGR-----------VVLEDETRINSAIVRRVALEYNL
+------------------ADILDKLNKLEC-------------VTPKHPSRSP-------
+--EET--PEFYRW----------------------
+>fig|2571274.14.peg.5|Vitivirus Nucleic acid binding protein
+---------MDD----------------PV------------------------------
+-------------FLAGRSTYAKKRRAKRLGIC--------------RCGAIM--H-NIL
+G-CNKQAISL---AKSDRLDFVKYGR-----------VILEDETRTNSAIVRRVALEYGL
+-------------------DIDYKVADV-----------------PRHPSRSP-------
+--EET--PEFYQW----------------------
+>fig|2016034.5.peg.5|Vitivirus Nucleic acid binding protein
+---------MDD----------------PS------------------------------
+-------------FLAGRSSYAKKRRAKRMNVC--------------KCGAIM--H-NNP
+D-CRKKAISG---HKIDRLEFVKRGR-----------VTLSGETPVYRTWVRWVECEYGI
+V----------------VIPSDES--DGE-------------------------------
+-----------------------------------
+>fig|2093496.3.peg.5|Vitivirus Nucleic acid binding protein
+---------MDD----------------PS------------------------------
+-------------FLAGRSSYAKARRRRRMNVC--------------KCGAIM--H-NNP
+D-CKSSSLGS---RKTDRLEFVKRGR-----------VALWGETPVYKTWVRWCEQEYGI
+Y----------------NYDSDES--DVDAI-----------GDAKIHPINE--------
+-----------------------------------
+>fig|3027323.3.peg.5|Vitivirus Nucleic acid binding protein
+---------MDD----------------PS------------------------------
+-------------FLNGRSSYAKNRRARRMNVC--------------KCGAIM--H-NKS
+D-CKSSSLSS---KKSDRLMFVKYGR-----------VTLTGETHVYDSWVRSVKAEYQL
+--------------------SDETVPTVEVV------------EVSRHPSRSP-------
+--EET--PEYYNW----------------------
+>fig|3051702.3.peg.5|Vitivirus Nucleic acid binding protein
+---------MDD----------------PS------------------------------
+-------------LLNGRSTFAKRRRQKKLGLC--------------RCGA-F--H-NVE
+G-CRSKSISL---VKMNRLDFVKKGR-----------VVIEDET-TSGALPGLVARVYHW
+I----------------KFDL--KQIRVA--------------DAPRHPSRSP-------
+--EET--PEFYVW----------------------
+>fig|312998.4.peg.5|Vitivirus Nucleic acid binding protein
+---------MDD----------------PS------------------------------
+-------------LLSGRSTYAKRRRKNRLNVC--------------RCGAIM--H-NND
+N-CRSKVGSL---VKMNRLEFVQKGR-----------VVIEDET-TSGALPGLVASTYHW
+I----------------KFNIPEKVNKGA--------------NAPRHPSRSP-------
+--EET--PEYYVW----------------------
+>fig|48876.3.peg.5|Vitivirus Nucleic acid binding protein
+---------MDD----------------PS------------------------------
+-------------FLTGISTLAKKRRARKLGIC--------------NCGAMFATH-NK-
+D-CRKKGMGL---HYLMRLDWVRKGR-----------VA-NSET-LYPALVGWICKVYKL
+CEITMFKSDDCYCEDHLSYNRNEKIIKLI--------------ITGREPV----------
+-----------------------------------
+>fig|48876.7.peg.3|Vitivirus Nucleic acid binding protein
+---------MDD----------------PS------------------------------
+-------------FLTGVSTLAKKRRARKLGIC--------------NCGAMFATH-NK-
+D-CRKRGMGL---HYLMRLDWVRKGR-----------VA-KSET-LYPALVAWICKAYRL
+CEITMFKSDDCYCEDHLSYNRNEKIIRLI--------------MTGREPV----------
+-----------------------------------
+>fig|3070926.3.peg.4|Trichovirus Nucleic acid binding protein
+MMEFNPKRNKDDRKIA-SFCIAMMRHGIPSGL-----LSVLNGLARRAL--------RDE
+VGN---------KALCGLSSLAKKRRAKRLAVCSFCYR--------TNCVGDY-------
+K-CAKSRNGL--NSRFEKGEWIRRGKS---------SSIMLGDTPV--------------
+------------C----SFSLSKHIES----------------EVGKIPYL---------
+-----------------------------------
+>fig|2765862.5.peg.3|Prunevirus Nucleic acid binding protein
+-MH------VDGRVMMFALCINRIL---PVGV-----RDIVICYAILVR--------KQE
+IASE------RKEPLCGVSTFAAKRRAKRLGVCHRCMRDKPGYYFTRRCDGIR-------
+--CVP--------NKFEKVAWVKSGKS---------KIQHEFET----------------
+------------------------------------------------PDRTSGWMLRRH
+IREEI--ERFL------------------------
+>fig|641245.3.peg.4|Trichovirus Nucleic acid binding protein
+-MPL------------------------PGGLTKRVLLGILHTLGFLGQDNLRNIFSRLE
+VG-----------VYEGKSSYARKRRAKLLGVCHKCFK-------VNNCCV---------
+R-CSETA-KL---KREWKKDWVLNGLRKGTDAIPEPRLIHLLEG----------------
+----------------LGINTNN-------------------------------------
+-----------------------------------
+>fig|2593961.3.peg.5|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+------MSSMEKARYMGESRSAAKRRAARWGVC-------------YCCGRIE--CNRNS
+K-NKGHQTKS----QAEVYSALREPANRY-----------LPKV----------------
+--ATRYVSNAV-------QHQLDDLELAGISLECTKRFVGVVYNGG---VKSP-------
+--EET--PWAYKYGEY-------------------
+>fig|3142688.3.peg.5|Vitivirus Nucleic acid binding protein
+----------------------------------------------------------M-
+-----NIVDMERTRYMGESRSAAKRRAKRWGVC-------------YCCGRIE--CNKNS
+K-NK-NQTKS----QAEVYSALREPAIRY-----------LPKV----------------
+--ATRYISSAI-------QHQLDDLDLAGISLDHNVRLIGVVYNGG---VRSP-------
+--EET--PWAYKFGEC-----NNKWGNV-------
+>fig|3142688.4.peg.5|Vitivirus Nucleic acid binding protein
+----------------------------------------------------------M-
+-----NIVDMERTRYMGESRSAAKRRAKRWGVC-------------YCCGRIE--CNKNS
+K-NK-NQTKS----QAEVYSALREPAIRY-----------LPKV----------------
+--ATRYISSAI-------QHQLDDLDLAGISLDHNVRLIGVVYNGG---VRSP-------
+--EET--PWAYKFGEC-----NNNGGNV-------
+>fig|2794429.3.peg.5|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+---------MERTRYMGESRSAAKRRAKRWGVC-------------YCCGRLE--CNKYS
+K-NK-NQTKS----QAEVYSALREPATRY-----------LPKV----------------
+--ATRYISSAI-------QHQLDDLDLAGISLDHTVRFVGVVHNGG---VRSP-------
+--EET--PWAYKFGEC-----NNEGSNV-------
+>fig|2185086.3.peg.5|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+----------MESYLLGESKSAAKRRARRWGVC-------------YCHGRLE--R----
+A-NK--QTNA----QVEVERALRGPATRY-----------QSKV----------------
+--GQCYVTNAI-------QHCLDDMHKRGDHTFDNKFKI-NGPAYG---SKSP-------
+--EET--PWAYNWTNT-------------------
+>fig|387423.6.peg.5|Vitivirus Nucleic acid binding protein
+----------------------------------------------------------M-
+------NKSSNNPWLLGESRSAAKRRAKRWGVC-------------FCHGRVE--C----
+A-NK--QTNS----QADVRAALMEPATRW-----------LSKT----------------
+--GTRYVTNAI-------QHCLDDMEARGDYSFHKNFKSGNEPNGG---ARSP-------
+--EET--PWAYNWNQCLEPVRDGKESP--------
+>fig|2917347.7.peg.5|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+------------MSCLGESKSASKRRAKRYGVC-------------YSCGRSV--C-KCD
+R-NK---TSPFDLRDMRMYEAVRKPATRY-----------LTES----------------
+--RGSYLHNAS-------QKALDELERLNISGYDKYVKF-NKAPVG---CKSP-------
+--EET--PEFYSF----------------------
+>fig|2917347.6.peg.5|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+------------MSCLGESKSASKRRAKRYGVC-------------YSCGRSV--C-KCD
+R-NK---TSPFDLRDMRMYEAVRKPATRY-----------LTES----------------
+--RGSYLHNAS-------QKALDELERLNISGYDKYVKF-NKAPIG---CKSP-------
+--EET--PEFYSF----------------------
+>fig|2917347.4.peg.5|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+------------MSCLGESKSASKRRAKRYGVC-------------YSCGRSV--C-KCD
+R-NK---TSPFDLRDMRMYEAVRKPATRY-----------LTES----------------
+--RGSYLHNAS-------QKALDELERLNISGYDKYVKF-NKAPAG---CKSP-------
+--EET--PEFYSF----------------------
+>fig|35289.156.peg.2|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+-----------MSKNMGEFRSAAKRRASRYGCG-------------YGCGKLE--V----
+--HGGRRTTIF---QEEVEACIRDPAIRY-----------FTEN----------------
+--GGWYVTNSI-------CLALSELEKVGKFEFPSLFKH-NRAPIG---MRNP-------
+--EET--PEFFNWGAD-----FNPGSSVFADRPLK
+>fig|35289.157.peg.2|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+-----------MSKYMGESRSAGKRRATRYGRW-------------YSCGPLE--C----
+--NGGRRTALL---PDGVKACIKTPGIWD-----------FPEN----------------
+--GGPLITNPI-------TLALSEVEKVGKSEFPSVFKH-NSAPIG---MRSP-------
+--EET--PEFYNWGAD-----FNAGSSVFADRPYE
+>fig|1972716.3.peg.4|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+----------MGEPFLGNSKSSAKRRARRHDRC-------------LKCGAIS--H--LS
+K-CKQLPSAS----QMECQSYLVSGPNRF-----------KTER----------------
+----PHWSNVD-------WLCLRDAQAAGVEYHREWLLN-KHSGNGL-KIKSP-------
+--EET--PEYYNY----------------------
+>fig|2057934.3.peg.5|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+----------MEAPFLGKSKSSAKRRARRHDRC-------------LKCGAFS--H--IN
+K-CKIMPSVS----QSGCQSYLISGPTRF-----------VTER----------------
+----PHWTNAD-------WLCLRDSEKAGVTYYREWLLN-KHSGNGT-KIKSP-------
+--EET--PEYYNG----------------------
+>fig|2605718.3.peg.5|Vitivirus Nucleic acid binding protein
+------------------------------------------------------------
+----------MGEPFLGESKSSAKRRAIRHGLC-------------IRCAKLI--H--IG
+E-CKKNMTNS----QYQVQEYLLRGPNRF-----------RTER----------------
+----PYTCSVD-------YLHSRDCDLAGVEYYRNKVFE-YHSGNGT-KIKSP-------
+--EET--PEFYSW----------------------
+>fig|2967992.3.peg.5|Vitivirus Nucleic acid binding protein
+----------------------------------------------------------ME
+QSPSSSGGAGKPNHYLGNSKSAAKRRANRHGIC-------------RACGKGL--P---H
+E-CNRKTTRA----RTDVLEYVKMGPTRF-----------RTER----------------
+--THSWANSLL-------YKDLYSAGRTDIVWFEIVYGRINKLEPVIFELTGP-------
+--K--------------------------------
+>fig|3351437.3.peg.4|Tepovirus Nucleic acid binding protein
+---------MFCVESLELLKVLSFKTDLPSEI-----RLEIVSRSNEVR--------KLE
+R-----QEEQRLLAFRGVSRSARKRRSAFLGLC-------------FKCGSLQ--H--IH
+A-CPKSSTRA----RDDKVEMLKGDPIRK-----------FSEK----------------
+--SLRPNSMAA-------FHLETLVGRV------------ISKSVN-LTIKD--------
+--TYK------------------------------
+>fig|3351448.3.peg.4|Tepovirus Nucleic acid binding protein
+---------MSKEHTLALCLV---RSGLPTEI-----RVIIRVIYNEVR--------KLE
+R-----QEEQRLLCCNGLSRSARKRRARRIQRC-------------YKCGKIE--H--GK
+TQCKLNQTKS----QHDFKYIIKEGTIRN----------IFSEN----------------
+--PFKVGTYAYDC----WFSLKLTYTEI------------IKDRLG-I------------
+-----------------------------------
+>fig|3351444.3.peg.4|Tepovirus Nucleic acid binding protein
+-MA------FNKRKTIFLL----YGVGFPMDI-----VMLIMSKVNKVR--------DAE
+-------------PFNGRSRSSIKRRSAYFNIC-------------IGCGRIK--H--EG
+K-CRWNTSNA----ASDYKELVLRGPIKS-----------MTEK----------------
+--LLRPNSNAS-------YAAQRYCERIPEY---------ISKSLGDLTIKEP-------
+--KWKVLPSTRR-----------------------
+>fig|3351440.3.peg.4|Tepovirus Nucleic acid binding protein
+---------MDH--PIFAL----LSVGLPLDL-----AHIIVKLSRKMD--------GFE
+R------------FCRGSSRSAAKRRAAKLSLC-------------HKCGKFE--H---S
+GLCSKNRTNA----QHSRVAVLHSDLIRL-----------KVERSVFNVSALMIVDSY--
+---------------WRDFRSKMKPEKAG-------------------PRRSL-------
+-------NAKYLWSA--------------------

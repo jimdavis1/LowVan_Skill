@@ -1,0 +1,128 @@
+Alignment	Total_Columns	Nterm_Columns	Eval_Length	Poor_Columns	Status
+85.fa	274	25	10	0	OK
+76.fa	281	25	10	0	OK
+27.fa	271	25	10	4	Needs reclustering
+13.fa	305	25	10	0	OK
+42.fa	294	25	10	2	OK
+52.fa	284	25	10	0	OK
+37.fa	300	25	10	0	OK
+66.fa	297	25	10	0	OK
+95.fa	292	25	10	5	Needs reclustering
+46.fa	261	25	10	0	OK
+17.fa	289	25	10	0	OK
+81.fa	279	25	10	1	OK
+23.fa	263	25	10	0	OK
+72.fa	296	25	10	0	OK
+62.fa	287	25	10	3	Needs reclustering
+33.fa	298	25	10	1	OK
+91.fa	296	25	10	0	OK
+56.fa	303	25	10	0	OK
+47.fa	302	25	10	1	OK
+16.fa	292	25	10	1	OK
+80.fa	298	25	10	0	OK
+22.fa	281	25	10	2	OK
+73.fa	275	25	10	6	Needs reclustering
+63.fa	283	25	10	1	OK
+32.fa	305	25	10	2	OK
+90.fa	281	25	10	0	OK
+57.fa	296	25	10	7	Needs reclustering
+84.fa	281	25	10	0	OK
+77.fa	273	25	10	0	OK
+26.fa	292	25	10	2	OK
+12.fa	295	25	10	0	OK
+43.fa	274	25	10	3	Needs reclustering
+53.fa	295	25	10	1	OK
+36.fa	296	25	10	2	OK
+67.fa	296	25	10	3	Needs reclustering
+19.fa	289	25	10	1	OK
+48.fa	289	25	10	2	OK
+115.fa	296	25	10	0	OK
+121.fa	286	25	10	3	Needs reclustering
+105.fa	283	25	10	0	OK
+58.fa	309	25	10	2	OK
+29.fa	287	25	10	1	OK
+78.fa	274	25	10	0	OK
+125.fa	292	25	10	0	OK
+111.fa	287	25	10	1	OK
+101.fa	292	25	10	2	OK
+4.fa	307	25	10	1	OK
+68.fa	299	25	10	1	OK
+39.fa	292	25	10	0	OK
+28.fa	292	25	10	3	Needs reclustering
+79.fa	291	25	10	0	OK
+124.fa	272	25	10	0	OK
+110.fa	295	25	10	0	OK
+100.fa	296	25	10	0	OK
+5.fa	297	25	10	0	OK
+69.fa	282	25	10	3	Needs reclustering
+38.fa	276	25	10	0	OK
+49.fa	278	25	10	0	OK
+114.fa	272	25	10	3	Needs reclustering
+120.fa	286	25	10	3	Needs reclustering
+104.fa	283	25	10	3	Needs reclustering
+59.fa	294	25	10	2	OK
+1.fa	305	25	10	0	OK
+89.fa	272	25	10	0	OK
+127.fa	284	25	10	3	Needs reclustering
+113.fa	346	25	10	1	OK
+103.fa	283	25	10	3	Needs reclustering
+99.fa	275	25	10	0	OK
+6.fa	305	25	10	4	Needs reclustering
+117.fa	282	25	10	0	OK
+123.fa	295	25	10	1	OK
+107.fa	294	25	10	1	OK
+2.fa	297	25	10	0	OK
+116.fa	296	25	10	0	OK
+122.fa	290	25	10	0	OK
+106.fa	284	25	10	2	OK
+3.fa	301	25	10	0	OK
+88.fa	272	25	10	1	OK
+126.fa	283	25	10	1	OK
+112.fa	289	25	10	3	Needs reclustering
+102.fa	293	25	10	0	OK
+98.fa	272	25	10	0	OK
+7.fa	283	25	10	2	OK
+119.fa	274	25	10	2	OK
+15.fa	281	25	10	1	OK
+44.fa	282	25	10	0	OK
+70.fa	288	25	10	0	OK
+21.fa	281	25	10	3	Needs reclustering
+83.fa	296	25	10	1	OK
+93.fa	297	25	10	0	OK
+31.fa	299	25	10	0	OK
+60.fa	274	25	10	0	OK
+54.fa	278	25	10	1	OK
+109.fa	273	25	10	0	OK
+129.fa	289	25	10	0	OK
+25.fa	296	25	10	0	OK
+74.fa	274	25	10	0	OK
+87.fa	313	25	10	1	OK
+40.fa	252	25	10	1	OK
+11.fa	298	25	10	0	OK
+50.fa	296	25	10	3	Needs reclustering
+8.fa	302	25	10	0	OK
+97.fa	288	25	10	2	OK
+64.fa	288	25	10	1	OK
+35.fa	282	25	10	2	OK
+128.fa	290	25	10	2	OK
+24.fa	275	25	10	0	OK
+75.fa	291	25	10	0	OK
+86.fa	281	25	10	0	OK
+41.fa	292	25	10	0	OK
+10.fa	309	25	10	1	OK
+51.fa	281	25	10	2	OK
+9.fa	292	25	10	1	OK
+96.fa	282	25	10	5	Needs reclustering
+65.fa	287	25	10	3	Needs reclustering
+34.fa	291	25	10	1	OK
+118.fa	284	25	10	0	OK
+14.fa	291	25	10	0	OK
+45.fa	283	25	10	1	OK
+71.fa	296	25	10	2	OK
+20.fa	295	25	10	0	OK
+82.fa	275	25	10	0	OK
+92.fa	293	25	10	0	OK
+30.fa	275	25	10	0	OK
+61.fa	295	25	10	0	OK
+55.fa	297	25	10	0	OK
+108.fa	284	25	10	0	OK

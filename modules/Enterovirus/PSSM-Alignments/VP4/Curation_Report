@@ -1,0 +1,28 @@
+Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
+1	69	M	526	491	1	0	0	10	0	69	25	0	M	ok
+2	68	G	123	108	1	1	0	0	0	0	15	1	G	REVIEW-nonMet
+3	69	M	117	115	0	0	0	1	1		0	0	M	ok
+4	69	M	114	108	1	0	0	3	0	69	3	0	M	ok
+5	69	M	92	88	0	0	0	4	0		0	0	M	ok
+6	69	M	72	71	0	0	0	0	1		0	0	M	ok
+7	68	G	67	60	1	1	0	0	0	0	7	1	G	REVIEW-nonMet
+8	67	M	55	55	0	0	0	0	0		0	0	M	ok
+9	68	G	48	39	1	1	0	2	0	0	7	1	G	REVIEW-nonMet
+10	69	M	47	43	2	0	0	1	0	69,70	3	0	M	ok
+11	69	M	45	44	0	0	0	1	0		0	0	M	ok
+12	69	M	38	37	0	0	0	1	0		0	0	M	ok
+13	69	M	37	36	1	0	0	0	0	69	1	0	M	ok
+14	69	M	36	34	0	0	0	2	0		0	0	M	ok
+15	69	M	26	25	0	0	0	0	1		0	0	M	ok
+16	67	M	24	24	0	0	0	0	0		0	0	M	ok
+17	67	M	23	23	0	0	0	0	0		0	0	M	ok
+18	69	M	21	21	0	0	0	0	0		0	0	M	ok
+19	69	M	21	21	0	0	0	0	0		0	0	M	ok
+20	69	M	21	21	0	0	0	0	0		0	0	M	ok
+21	69	M	17	17	0	0	0	0	0		0	0	M	ok
+22	69	M	14	14	0	0	0	0	0		0	0	M	ok
+23	69	M	13	13	1	0	0	0	0	69	0	0	M	ok
+24	69	M	12	9	0	0	0	3	0		0	0	M	ok
+25	69	M	7	7	0	0	0	0	0		0	0	M	ok
+26	67	M	7	7	0	0	0	0	0		0	0	M	ok
+27	69	M	6	6	0	0	0	0	0		0	0	M	ok

@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "consensus",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "truncation_qc/consensus.faa",
+  "number-of-letters": 203,
+  "number-of-sequences": 2,
+  "last-updated": "2026-09-10T22:25:00",
+  "number-of-volumes": 1,
+  "bytes-total": 37370,
+  "bytes-to-cache": 334,
+  "files": [
+    "consensus.pdb",
+    "consensus.phr",
+    "consensus.pin",
+    "consensus.pot",
+    "consensus.psq",
+    "consensus.ptf",
+    "consensus.pto"
+  ]
+}

@@ -1,0 +1,31 @@
+Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
+1	63	A	1326	1320	1	0	0	5	1	43	0	0	A	REVIEW-nonMet
+2	63	A	503	503	0	0	0	0	0		0	0	A	REVIEW-nonMet
+3	63	A	240	239	0	0	0	0	1		0	0	A	REVIEW-nonMet
+4	63	A	129	128	11	1	0	0	0	0,64,65,66,67,68,69,70,71,72,73	1	1	A	REVIEW-nonMet
+5	63	A	91	91	0	0	0	0	0		0	0	A	REVIEW-nonMet
+6	63	A	91	91	0	0	0	0	0		0	0	A	REVIEW-nonMet
+7	63	A	85	85	0	0	0	0	0		0	0	A	REVIEW-nonMet
+8	63	A	40	40	0	0	0	0	0		0	0	A	REVIEW-nonMet
+9	63	A	34	34	0	0	0	0	0		0	0	A	REVIEW-nonMet
+10	63	A	32	32	0	0	0	0	0		0	0	A	REVIEW-nonMet
+11	63	A	30	30	0	0	0	0	0		0	0	A	REVIEW-nonMet
+12	63	A	30	30	0	0	0	0	0		0	0	A	REVIEW-nonMet
+13	63	A	21	21	0	0	0	0	0		0	0	A	REVIEW-nonMet
+14	63	A	21	21	0	0	0	0	0		0	0	A	REVIEW-nonMet
+15	63	A	15	15	0	0	0	0	0		0	0	A	REVIEW-nonMet
+16	63	T	15	15	0	0	0	0	0		0	0	A	REVIEW-nonMet
+17	63	A	13	13	0	0	0	0	0		0	0	A	REVIEW-nonMet
+18	63	A	13	12	0	0	0	1	0		0	0	A	REVIEW-nonMet
+19	63	A	9	9	0	0	0	0	0		0	0	A	REVIEW-nonMet
+20	63	A	8	7	0	0	0	0	1		0	0	A	REVIEW-nonMet
+21	63	A	8	8	0	0	0	0	0		0	0	A	REVIEW-nonMet
+22	63	A	7	7	0	0	0	0	0		0	0	A	REVIEW-nonMet
+23	63	A	7	7	0	0	0	0	0		0	0	A	REVIEW-nonMet
+24	63	Y	7	7	0	0	0	0	0		0	0	Y	REVIEW-nonMet
+25	55	P	7	6	0	2	0	0	0	0,1	1	2	P	REVIEW-nonMet
+26	63	A	7	7	0	0	0	0	0		0	0	A	REVIEW-nonMet
+27	63	A	6	6	0	0	0	0	0		0	0	A	REVIEW-nonMet
+28	63	A	6	6	0	0	0	0	0		0	0	A	REVIEW-nonMet
+29	63	A	6	6	0	0	0	0	0		0	0	A	REVIEW-nonMet
+30	63	A	6	6	0	0	0	0	0		0	0	A	REVIEW-nonMet

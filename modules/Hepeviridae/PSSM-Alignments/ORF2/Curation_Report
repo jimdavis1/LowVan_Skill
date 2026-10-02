@@ -1,0 +1,7 @@
+Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
+1	660	M	943	796	29	14	0	8	128	0,1,2,3,4,5,6,7,8,9,10,11,12,13,95,134,135,136,137,147,148,206,207,208,281,282,283,309,481	11	14	M	ok
+2	644	M	81	73	24	6	0	1	7	0,1,2,3,4,5,25,26,27,28,29,30,31,32,33,34,35,36,64,68,69,70,71,72	0	6	M	ok
+3	606	M	26	25	1	0	0	0	1	36	0	0	M	ok
+4	655	M	14	11	1	0	0	3	0	608	0	0	M	ok
+5	633	M	9	9	3	0	0	0	0	11,12,607	0	0	M	ok
+6	663	M	7	6	3	0	0	1	0	25,26,45	0	0	M	ok

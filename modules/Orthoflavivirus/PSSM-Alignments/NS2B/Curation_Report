@@ -1,0 +1,16 @@
+Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
+1	130	S	380	379	1	0	0	1	0	33	0	0	S	REVIEW-nonMet
+2	130	S	315	315	0	0	0	0	0		0	0	S	REVIEW-nonMet
+3	131	G	148	148	0	0	0	0	0		0	0	G	REVIEW-nonMet
+4	130	S	145	145	0	0	0	0	0		0	0	S	REVIEW-nonMet
+5	131	S	105	105	0	0	0	0	0		0	0	S	REVIEW-nonMet
+6	130	S	82	82	0	0	0	0	0		0	0	S	REVIEW-nonMet
+7	130	S	53	53	0	0	0	0	0		0	0	S	REVIEW-nonMet
+8	131	G	52	52	0	0	0	0	0		0	0	G	REVIEW-nonMet
+9	130	S	48	48	0	0	0	0	0		0	0	S	REVIEW-nonMet
+10	131	G	38	38	0	0	0	0	0		0	0	G	REVIEW-nonMet
+11	131	G	15	15	0	0	0	0	0		0	0	G	REVIEW-nonMet
+12	131	S	15	15	0	0	0	0	0		0	0	S	REVIEW-nonMet
+13	131	S	14	14	0	0	0	0	0		0	0	S	REVIEW-nonMet
+14	131	S	13	13	0	0	0	0	0		0	0	S	REVIEW-nonMet
+15	131	G	8	8	0	0	0	0	0		0	0	G	REVIEW-nonMet

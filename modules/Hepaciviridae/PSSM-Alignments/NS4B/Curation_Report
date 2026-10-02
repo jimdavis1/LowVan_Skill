@@ -1,0 +1,7 @@
+Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
+1	261	S	2965	2960	2	0	0	0	4	101,113	1	0	S	REVIEW-nonMet
+2	261	A	271	271	0	0	0	0	0		0	0	A	REVIEW-nonMet
+3	261	S	237	237	0	0	0	0	0		0	0	S	REVIEW-nonMet
+4	261	S	155	155	6	0	0	0	0	185,186,187,188,189,205	0	0	S	REVIEW-nonMet
+5	261	S	25	25	0	0	0	0	0		0	0	S	REVIEW-nonMet
+6	246	A	6	6	0	0	0	0	0		0	0	A	REVIEW-nonMet

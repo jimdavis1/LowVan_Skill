@@ -1,0 +1,28 @@
+Alignment	Total_Columns	Nterm_Columns	Eval_Length	Poor_Columns	Status
+27.fa	321	25	10	0	OK
+13.fa	325	25	10	0	OK
+17.fa	326	25	10	1	OK
+23.fa	321	25	10	0	OK
+16.fa	326	25	10	0	OK
+22.fa	322	25	10	0	OK
+26.fa	326	25	10	0	OK
+12.fa	329	25	10	3	Needs reclustering
+19.fa	330	25	10	0	OK
+4.fa	322	25	10	0	OK
+5.fa	330	25	10	0	OK
+18.fa	326	25	10	0	OK
+1.fa	329	25	10	0	OK
+6.fa	328	25	10	2	OK
+2.fa	329	25	10	0	OK
+3.fa	329	25	10	0	OK
+7.fa	329	25	10	3	Needs reclustering
+15.fa	321	25	10	0	OK
+21.fa	324	25	10	0	OK
+25.fa	325	25	10	0	OK
+11.fa	325	25	10	0	OK
+8.fa	330	25	10	0	OK
+24.fa	326	25	10	0	OK
+10.fa	325	25	10	0	OK
+9.fa	321	25	10	0	OK
+14.fa	326	25	10	0	OK
+20.fa	327	25	10	1	OK

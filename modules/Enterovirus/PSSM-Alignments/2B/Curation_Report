@@ -1,0 +1,30 @@
+Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
+1	99	G	901	889	13	11	0	3	7	0,1,2,3,4,5,6,7,8,9,10,110,111	2	11	G	REVIEW-nonMet
+2	99	G	728	720	2	0	0	2	0	99,100	6	0	G	REVIEW-nonMet
+3	97	G	305	304	0	0	0	0	1		0	0	G	REVIEW-nonMet
+4	95	G	180	175	0	0	0	5	0		0	0	G	REVIEW-nonMet
+5	97	G	137	132	0	0	0	0	5		0	0	G	REVIEW-nonMet
+6	99	G	102	100	3	2	0	2	0	0,1,101	0	2	G	REVIEW-nonMet
+7	99	G	84	84	0	0	0	0	0		0	0	G	REVIEW-nonMet
+8	97	G	84	84	0	0	0	0	0		0	0	G	REVIEW-nonMet
+9	97	G	65	65	0	0	0	0	0		0	0	G	REVIEW-nonMet
+10	95	G	51	50	0	0	0	1	0		0	0	G	REVIEW-nonMet
+11	99	G	40	40	0	0	0	0	0		0	0	G	REVIEW-nonMet
+12	99	G	35	35	0	0	0	0	0		0	0	G	REVIEW-nonMet
+13	97	G	34	34	0	0	0	0	0		0	0	G	REVIEW-nonMet
+14	99	G	31	31	0	0	0	0	0		0	0	G	REVIEW-nonMet
+15	97	G	30	30	0	0	0	0	0		0	0	G	REVIEW-nonMet
+16	99	G	28	27	1	1	0	0	0	0	1	1	G	REVIEW-nonMet
+17	99	G	28	27	10	10	0	0	0	0,1,2,3,4,5,6,7,8,9	1	10	G	REVIEW-nonMet
+18	99	G	26	25	6	5	0	0	0	0,1,2,3,4,104	1	5	G	REVIEW-nonMet
+19	97	G	22	22	0	0	0	0	0		0	0	G	REVIEW-nonMet
+20	99	G	20	20	0	0	0	0	0		0	0	G	REVIEW-nonMet
+21	97	G	20	20	0	0	0	0	0		0	0	G	REVIEW-nonMet
+22	99	G	18	18	0	0	0	0	0		0	0	G	REVIEW-nonMet
+23	99	G	18	18	0	0	0	0	0		0	0	G	REVIEW-nonMet
+24	95	G	13	13	0	0	0	0	0		0	0	G	REVIEW-nonMet
+25	99	G	12	12	0	0	0	0	0		0	0	G	REVIEW-nonMet
+26	97	G	10	10	0	0	0	0	0		0	0	G	REVIEW-nonMet
+27	99	G	8	8	0	0	0	0	0		0	0	G	REVIEW-nonMet
+28	97	G	8	8	0	0	0	0	0		0	0	G	REVIEW-nonMet
+29	95	G	7	7	0	0	0	0	0		0	0	G	REVIEW-nonMet
