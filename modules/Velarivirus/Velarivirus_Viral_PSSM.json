@@ -356,7 +356,7 @@
             "feature_type" : "mat_peptide",
             "gene_symbol" : "L",
             "kmers" : 0,
-            "max_len" : 533,
+            "max_len" : 560,
             "min_len" : 455,
             "segment" : "Single RNA Segment",
             "special" : "transcript_edit",

@@ -629,15 +629,40 @@ loaded. Both are silent at runtime.
 ```bash
 python3 scripts/check_rep_contigs.py --repdir Rep-Contigs --acc-file accs.txt
 python3 scripts/validate_calls.py   --repo $LOWVAN_DATA_DIR --fasta genome.fna
-python3 scripts/evaluate_module.py  --repo $LOWVAN_DATA_DIR --acc-file accs.txt
+
+#  score a held-out panel -- from the contigs the build already downloaded
+python3 scripts/make_panel.py    --contigs Contigs --metadata Contigs.metadata \
+        --close-genomes Rep-Contigs/close_genomes.json --out Panel --tsv panel.tsv
+python3 scripts/make_gto.py      --fasta-dir Panel --metadata panel.tsv --out gto
+python3 scripts/run_gto_eval.py  --gto-dir gto --repo $LOWVAN_DATA_DIR \
+        --out gto_out --jobs 8 --report eval.tsv --tbl-dir tbl
 ```
 
 `validate_calls.py` asks whether one genome's output is *internally* sound —
 does every protein start with M, is any truncated by an internal stop, is the
 length inside what the JSON declares, did two features land on the same
 coordinates. It needs no reference annotation, so it works on a genome nobody
-has annotated before. `evaluate_module.py` then asks the different question of
-whether the calls agree with GenBank across a held-out set.
+has annotated before.
+
+**Score the held-out panel from BV-BRC, not from NCBI.** Step 6c already
+downloaded every contig in the taxon to build the rep contigs, and BV-BRC
+carries the feature table too, so the panel costs nothing: hold out the
+genomes that became references, and `make_gto.py` + `run_gto_eval.py` do the
+rest locally.
+
+`evaluate_module.py` is the exception, not the default. It fetches sequence and
+GenBank CDS coordinates from NCBI eutils, one accession at a time, and exists
+for the narrow case where you want to compare against a **submitter's**
+annotation rather than BV-BRC's. A 48-accession panel on it spent six minutes
+of wall clock to accumulate 1.3 seconds of CPU — it is blocked on the network
+start to finish, and it is rate-limited, so it does not parallelise out of the
+problem. Reach for it only when the GenBank comparison is the point.
+
+Holding the panel out is the part that actually matters, and it is easy to get
+wrong in the other direction: the closterovirid transcript-edit reference sets
+were extracted from the very panels the quality run scores, which is self-recall
+wearing different clothes. Exclude the reference genomes explicitly, by
+accession, and say in the audit how the panel was drawn.
 
 Check routing first. Routing is a **nucleotide** BLASTn against rep contigs, so
 a divergent group needs more of them than you expect — one per genus was not
@@ -1070,7 +1095,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `check_rep_contigs.py` | check that rep contigs route the taxon's genomes |
 | `install_module.py` | validate and install into a Viral_Annotation checkout |
 | `validate_calls.py` | is one genome's output internally sound? no reference needed |
-| `evaluate_module.py` | run the annotator on held-out genomes and score |
+| `evaluate_module.py` | score against **GenBank** CDS via NCBI eutils — slow, rate-limited; use the GTO path unless the submitter comparison is the point |
 | `collect_registry.py` | measure per-feature self-recall |
 | `gen_registry.py` | render the PSSM registry artifact |
 | `collect_synmap.py` | gather data for the string-collapse artifact |
@@ -1083,6 +1108,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `annotation_rarefaction.py` | vocabulary growth curve, controlled versus free text |
 | `fetch_bvbrc.py` | batched, resumable BV-BRC fetch; ~400x faster than a per-line loop |
 | `log_and_clean.py` | log the genomes a module was tested on, then delete the regenerable bulk |
+| `make_panel.py` | draw a held-out panel from the build's own contigs, excluding the reference genomes |
 | `make_gto.py` | contig FASTAs -> GTOs, with genome ids issued by the ID server |
 | `run_gto_eval.py` | annotate and quality-score GTOs; the good-vs-poor breakdown |
 
@@ -1095,8 +1121,8 @@ All take `--workdir` pointing at the module working directory, which looks like:
 - `install_module.py --check` reports no problems
 - `json_canon.py --check` reports every JSON canonical
 - `check_rep_contigs.py` routes every test genome
-- `evaluate_module.py` reports **0 duplicates**, and the misses are all
-  features you know you did not build
+- the held-out panel (`run_gto_eval.py`) reports **0 duplicates**, and the
+  misses are all features you know you did not build
 - `check_cleaved_ends.py` shows a single spike at every `cleave=` terminus
 - no feature trails its neighbours by 20 points with the cause unexplained
 - **all four** artifacts published, with prose: PSSM registry, string collapse,

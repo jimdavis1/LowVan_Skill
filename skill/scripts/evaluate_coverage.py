@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run the finished module over the taxon's whole BV-BRC holding and report.
 
-evaluate_module.py scores a handful of hand-picked reference genomes. That is a
+run_gto_eval.py scores a held-out panel of a few dozen genomes. That is a
 correctness check, not a coverage one: the panel is small, curated, and usually
 the same genomes the profiles were built from. This runs the module over
 everything BV-BRC has for the taxon and answers four questions the small panel

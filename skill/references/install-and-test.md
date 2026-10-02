@@ -126,11 +126,27 @@ notices that, because the CDS call is perfectly correct.
 ## Score it
 
 ```bash
+#  the default: a held-out panel from the contigs the build already downloaded
+python3 scripts/make_panel.py   --contigs Contigs --metadata Contigs.metadata \
+        --close-genomes Rep-Contigs/close_genomes.json --out Panel --tsv panel.tsv
+python3 scripts/make_gto.py     --fasta-dir Panel --metadata panel.tsv --out gto
+python3 scripts/run_gto_eval.py --gto-dir gto --repo $LOWVAN_DATA_DIR \
+        --out gto_out --jobs 8 --report eval.tsv --tbl-dir tbl
+
+#  only when you specifically want the GenBank submitter comparison
 python3 scripts/evaluate_module.py --repo $LOWVAN_DATA_DIR --acc-file accs.txt
 ```
 
-Fetches each accession's sequence and its GenBank CDS coordinates, runs the
-annotator, and compares. GenBank CDS come from submitters, so they are a
+Building the rep contigs already pulled every contig in the taxon from BV-BRC,
+and BV-BRC carries the feature table as well, so a held-out panel costs nothing
+but excluding the genomes that became references. `evaluate_module.py` instead
+fetches sequence and GenBank CDS from NCBI eutils one accession at a time: a
+48-accession panel spent six minutes of wall clock for 1.3 seconds of CPU,
+blocked on the network throughout, and it is rate-limited so more threads do
+not help. Use it when comparing against a **submitter's** annotation is the
+actual question, not as the routine score.
+
+Either way the reference CDS come from submitters, so they are a
 yardstick and not truth — the recall percentage matters less than two specific
 outcomes:
 

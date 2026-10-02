@@ -56,8 +56,11 @@ feature's own PSSMs against that feature's own collection with
 **Be honest about what self-recall means.** It is a floor, not a validation. A
 profile that cannot recover the sequences it was built from will certainly not
 recover anything new — but recovering them proves very little. Say so on the
-page. The held-out evaluation from `evaluate_module.py` is the real test, and
-belongs alongside it.
+page. The held-out evaluation is the real test and belongs alongside it —
+`run_gto_eval.py` over a panel drawn from the build's own BV-BRC contigs with
+the reference genomes excluded, and the audit should say how the panel was
+drawn. A panel that includes the genomes the references came from is self-recall
+again, one level up.
 
 Statuses assigned per feature:
 
@@ -139,7 +142,7 @@ Nine sections, in this order, because it is the order a reviewer asks them in:
 | 09 | what the vocabulary bought |
 
 The generator takes a **facts file you write by hand**. That is deliberate: the
-numbers come from `evaluate_module.py`, `check_rep_contigs.py`,
+numbers come from `run_gto_eval.py`, `check_rep_contigs.py`,
 `evaluate_coverage.py`, `run_gto_eval.py`, `collect_synmap.py` and
 `annotation_rarefaction.py`, and a page that scrapes a working directory for
 whichever of those happen to have run is worse than one whose inputs are

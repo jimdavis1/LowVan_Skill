@@ -1,5 +1,22 @@
 #!/usr/bin/env python3
-"""Run an installed LowVan module over held-out genomes and score the calls.
+"""Score an installed LowVan module against GENBANK CDS, over NCBI eutils.
+
+**This is not the routine held-out evaluation. Use the GTO path for that:**
+
+    python3 make_gto.py     --fasta-dir Panel --metadata panel.tsv --out gto
+    python3 run_gto_eval.py --gto-dir gto --repo $LOWVAN_DATA_DIR --out gto_out
+
+Building the rep contigs already downloads every contig in the taxon from
+BV-BRC, and BV-BRC carries the feature table too, so a held-out panel costs
+nothing but excluding the genomes that became references -- and it runs
+locally. This script instead fetches each accession's sequence and CDS from
+NCBI eutils one at a time. A 48-accession panel spent six minutes of wall
+clock to accumulate 1.3 seconds of CPU: it is blocked on the network from
+start to finish, and eutils is rate-limited, so threads do not help.
+
+Reach for it when comparing against a **submitter's** GenBank annotation is
+the actual question -- a different yardstick from BV-BRC's, occasionally worth
+having -- and not as the default score.
 
 For each accession it fetches the nucleotide sequence and the GenBank CDS
 coordinates, runs annotate_by_viral_pssm.pl, and compares. Reference CDS come

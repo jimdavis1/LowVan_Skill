@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate what the annotator produced for one genome, before you commit.
 
-`evaluate_module.py` asks whether the calls line up with GenBank. This asks a
+`run_gto_eval.py` asks whether the calls line up with a reference panel. This asks a
 different and more basic question: is the output *internally* sound? It needs no
 reference annotation, so it works on a genome nobody has annotated yet — which
 is the case you care about when deciding whether a module is fit to ship.
