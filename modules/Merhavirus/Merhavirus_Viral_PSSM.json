@@ -36,9 +36,11 @@
       },
       "features" : {
          "G" : {
-            "PMID_claude_generated" : [
-               "35723908"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "35723908"
+               ]
+            },
             "anno" : "Envelope glycoprotein precursor",
             "bit_cutoff" : 100,
             "copy_num" : 1,
@@ -53,9 +55,11 @@
             "upstream_ext" : 1
          },
          "G_MAT" : {
-            "PMID_claude_generated" : [
-               "6897030"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "6897030"
+               ]
+            },
             "anno" : "Mature envelope glycoprotein",
             "bit_cutoff" : 100,
             "coverage_cutoff" : 0.65,
@@ -69,9 +73,11 @@
             "upstream_ext" : 0
          },
          "G_SP" : {
-            "PMID_claude_generated" : [
-               "6897030"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "6897030"
+               ]
+            },
             "anno" : "Signal peptide of G",
             "bit_cutoff" : 30,
             "coverage_cutoff" : 0.65,
@@ -85,9 +91,11 @@
             "upstream_ext" : 1
          },
          "L" : {
-            "PMID_claude_generated" : [
-               "35723908"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "35723908"
+               ]
+            },
             "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 100,
             "copy_num" : 1,
@@ -102,9 +110,11 @@
             "upstream_ext" : 1
          },
          "L_SPLICED" : {
-            "PMID_claude_generated" : [
-               "21507977"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "21507977"
+               ]
+            },
             "anno" : "RNA-dependent RNA polymerase",
             "feature_type" : "CDS",
             "gene_symbol" : "L",
@@ -115,9 +125,11 @@
             "special" : "splice"
          },
          "M" : {
-            "PMID_claude_generated" : [
-               "35723908"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "35723908"
+               ]
+            },
             "anno" : "Matrix protein",
             "bit_cutoff" : 60,
             "copy_num" : 1,
@@ -132,9 +144,11 @@
             "upstream_ext" : 1
          },
          "N" : {
-            "PMID_claude_generated" : [
-               "35723908"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "35723908"
+               ]
+            },
             "anno" : "Nucleocapsid protein",
             "bit_cutoff" : 100,
             "copy_num" : 1,
@@ -149,9 +163,11 @@
             "upstream_ext" : 1
          },
          "P" : {
-            "PMID_claude_generated" : [
-               "35723908"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "35723908"
+               ]
+            },
             "anno" : "Phosphoprotein",
             "bit_cutoff" : 80,
             "copy_num" : 1,

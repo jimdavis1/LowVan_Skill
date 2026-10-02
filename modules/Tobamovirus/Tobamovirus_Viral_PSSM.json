@@ -104,10 +104,12 @@
       },
       "features" : {
          "CP" : {
-            "PMID_claude_generated" : [
-               "2769760",
-               "28786782"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "2769760",
+                  "28786782"
+               ]
+            },
             "anno" : "Nucleocapsid protein",
             "bit_cutoff" : 80,
             "copy_num" : 1,
@@ -122,10 +124,12 @@
             "upstream_ext" : 1
          },
          "MP" : {
-            "PMID_claude_generated" : [
-               "17794341",
-               "28786782"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "17794341",
+                  "28786782"
+               ]
+            },
             "anno" : "Movement protein",
             "bit_cutoff" : 120,
             "copy_num" : 1,
@@ -140,11 +144,13 @@
             "upstream_ext" : 1
          },
          "REP126" : {
-            "PMID_claude_generated" : [
-               "6964389",
-               "16453503",
-               "28786782"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "6964389",
+                  "16453503",
+                  "28786782"
+               ]
+            },
             "anno" : "Methyltransferase and helicase replication protein",
             "bit_cutoff" : 600,
             "copy_num" : 1,
@@ -159,12 +165,14 @@
             "upstream_ext" : 1
          },
          "REP183" : {
-            "PMID_claude_generated" : [
-               "6964389",
-               "16453503",
-               "16453524",
-               "28786782"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "6964389",
+                  "16453503",
+                  "16453524",
+                  "28786782"
+               ]
+            },
             "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 800,
             "copy_num" : 1,

@@ -104,10 +104,12 @@
       },
       "features" : {
          "CP" : {
-            "PMID_claude_generated" : [
-               "32525472",
-               "24672528"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "32525472",
+                  "24672528"
+               ]
+            },
             "anno" : "Nucleocapsid protein",
             "bit_cutoff" : 80,
             "copy_num" : 1,
@@ -122,9 +124,11 @@
             "upstream_ext" : 1
          },
          "NABP" : {
-            "PMID_claude_generated" : [
-               "11722009"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "11722009"
+               ]
+            },
             "anno" : "Nucleic acid-binding protein",
             "bit_cutoff" : 80,
             "coverage_cutoff" : 0.65,
@@ -138,10 +142,12 @@
             "upstream_ext" : 1
          },
          "REP" : {
-            "PMID_claude_generated" : [
-               "32525472",
-               "15098118"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "32525472",
+                  "15098118"
+               ]
+            },
             "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 400,
             "copy_num" : 1,
@@ -156,10 +162,12 @@
             "upstream_ext" : 0
          },
          "TGB1" : {
-            "PMID_claude_generated" : [
-               "12771402",
-               "1853569"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "12771402",
+                  "1853569"
+               ]
+            },
             "anno" : "Triple gene block protein 1",
             "bit_cutoff" : 60,
             "copy_num" : 1,
@@ -174,10 +182,12 @@
             "upstream_ext" : 0
          },
          "TGB2" : {
-            "PMID_claude_generated" : [
-               "12771402",
-               "1853569"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "12771402",
+                  "1853569"
+               ]
+            },
             "anno" : "Triple gene block protein 2",
             "bit_cutoff" : 50,
             "copy_num" : 1,
@@ -192,10 +202,12 @@
             "upstream_ext" : 1
          },
          "TGB3" : {
-            "PMID_claude_generated" : [
-               "12771402",
-               "1853569"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "12771402",
+                  "1853569"
+               ]
+            },
             "anno" : "Triple gene block protein 3",
             "bit_cutoff" : 30,
             "copy_num" : 1,

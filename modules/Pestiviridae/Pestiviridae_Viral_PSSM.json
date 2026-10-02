@@ -164,10 +164,12 @@
             "upstream_ext" : 0
          },
          "NPRO" : {
-            "PMID_claude_generated" : [
-               "9499122",
-               "24146623"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "9499122",
+                  "24146623"
+               ]
+            },
             "anno" : "Autoprotease Npro",
             "bit_cutoff" : 60,
             "comment" : "PSSM, not derived. Derivation from POLY START to C START-1 was tried and REJECTED on measurement: it gave no coverage gain (120 calls against the PSSM's 122) and the C-terminus collapsed from 96% ending in the conserved Cys168 to 58%, because the derived end inherits whatever boundary the capsid profile places and only 43 of 100 shared genomes agreed. Contrast NS2, whose downstream anchor is NS3's N-terminal Gly -- the literature site itself -- and which validates at 110/111 ending in the correct Arg. A derivation is only as good as its anchor's boundary.",
@@ -184,9 +186,11 @@
             "upstream_ext" : 0
          },
          "NS2" : {
-            "PMID_claude_generated" : [
-               "12827468"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "12827468"
+               ]
+            },
             "anno" : "Mature protease NS2 protein",
             "begin" : {
                "begin_offset" : 1,

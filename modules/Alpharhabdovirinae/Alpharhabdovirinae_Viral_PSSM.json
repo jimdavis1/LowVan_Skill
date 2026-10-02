@@ -72,10 +72,12 @@
             "upstream_ext" : 1
          },
          "EPHEM_ALPHA1" : {
-            "PMID_claude_generated" : [
-               "24257609",
-               "9191923"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "24257609",
+                  "9191923"
+               ]
+            },
             "anno" : "Class Ia viroporin alpha1 protein",
             "bit_cutoff" : 30,
             "coverage_cutoff" : 0.65,
@@ -92,9 +94,11 @@
             "PMID" : [
                "25679389"
             ],
-            "PMID_claude_generated" : [
-               "9191923"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "9191923"
+               ]
+            },
             "anno" : "Uncharacterized lineage-specific alpha2 protein",
             "bit_cutoff" : 40,
             "coverage_cutoff" : 0.65,
@@ -124,9 +128,11 @@
             "upstream_ext" : 1
          },
          "EPHEM_BETA" : {
-            "PMID_claude_generated" : [
-               "9191923"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "9191923"
+               ]
+            },
             "anno" : "Uncharacterized lineage-specific beta protein",
             "bit_cutoff" : 60,
             "coverage_cutoff" : 0.65,
@@ -140,9 +146,11 @@
             "upstream_ext" : 1
          },
          "EPHEM_GAMMA" : {
-            "PMID_claude_generated" : [
-               "9191923"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "9191923"
+               ]
+            },
             "anno" : "Uncharacterized lineage-specific gamma protein",
             "bit_cutoff" : 40,
             "coverage_cutoff" : 0.65,
@@ -156,10 +164,12 @@
             "upstream_ext" : 1
          },
          "EPHEM_GNS" : {
-            "PMID_claude_generated" : [
-               "1413521",
-               "8337841"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "1413521",
+                  "8337841"
+               ]
+            },
             "anno" : "Nonstructural envelope glycoprotein GNS",
             "bit_cutoff" : 100,
             "coverage_cutoff" : 0.65,
@@ -653,9 +663,11 @@
                "8388490",
                "8610460"
             ],
-            "PMID_claude_generated" : [
-               "8607260"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "8607260"
+               ]
+            },
             "anno" : "C protein",
             "bit_cutoff" : 30,
             "coverage_cutoff" : 0.65,

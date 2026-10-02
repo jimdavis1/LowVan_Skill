@@ -104,9 +104,11 @@
       },
       "features" : {
          "2K" : {
-            "PMID_claude_generated" : [
-               "8445732"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "8445732"
+               ]
+            },
             "anno" : "Signal peptide of NS4B",
             "bit_cutoff" : 25,
             "copy_num" : 1,
@@ -152,9 +154,11 @@
             "upstream_ext" : 1
          },
          "E" : {
-            "PMID_claude_generated" : [
-               "7753193"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7753193"
+               ]
+            },
             "anno" : "Mature envelope glycoprotein E",
             "bit_cutoff" : 200,
             "copy_num" : 1,
@@ -200,10 +204,12 @@
             "upstream_ext" : 0
          },
          "NS1P" : {
-            "PMID_claude_generated" : [
-               "19196463",
-               "19906906"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "19196463",
+                  "19906906"
+               ]
+            },
             "anno" : "NS1-prime protein",
             "feature_type" : "mat_peptide",
             "gene_symbol" : "NS1-Prime",
@@ -230,9 +236,11 @@
             "upstream_ext" : 0
          },
          "NS2B" : {
-            "PMID_claude_generated" : [
-               "33494395"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "33494395"
+               ]
+            },
             "anno" : "Mature protease cofactor NS2B protein",
             "bit_cutoff" : 60,
             "copy_num" : 1,
@@ -248,10 +256,12 @@
             "upstream_ext" : 0
          },
          "NS3" : {
-            "PMID_claude_generated" : [
-               "8107205",
-               "33494395"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "8107205",
+                  "33494395"
+               ]
+            },
             "anno" : "Mature protease and helicase NS3 protein",
             "bit_cutoff" : 300,
             "copy_num" : 1,
@@ -267,9 +277,11 @@
             "upstream_ext" : 0
          },
          "NS4A" : {
-            "PMID_claude_generated" : [
-               "8445732"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "8445732"
+               ]
+            },
             "anno" : "Mature non-structural protein NS4A",
             "bit_cutoff" : 60,
             "copy_num" : 1,
@@ -285,9 +297,11 @@
             "upstream_ext" : 0
          },
          "NS4B" : {
-            "PMID_claude_generated" : [
-               "8445732"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "8445732"
+               ]
+            },
             "anno" : "Mature non-structural protein NS4B",
             "bit_cutoff" : 100,
             "copy_num" : 1,
@@ -303,9 +317,11 @@
             "upstream_ext" : 0
          },
          "NS5" : {
-            "PMID_claude_generated" : [
-               "2170676"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "2170676"
+               ]
+            },
             "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 400,
             "copy_num" : 1,
@@ -321,9 +337,11 @@
             "upstream_ext" : 0
          },
          "POLY" : {
-            "PMID_claude_generated" : [
-               "2174669"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "2174669"
+               ]
+            },
             "anno" : "Genome polyprotein",
             "bit_cutoff" : 400,
             "copy_num" : 1,
@@ -354,9 +372,11 @@
             "upstream_ext" : 0
          },
          "PRM" : {
-            "PMID_claude_generated" : [
-               "18184701"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "18184701"
+               ]
+            },
             "anno" : "Membrane glycoprotein precursor prM",
             "bit_cutoff" : 60,
             "copy_num" : 1,

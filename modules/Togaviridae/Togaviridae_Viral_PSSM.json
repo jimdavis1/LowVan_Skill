@@ -40,12 +40,14 @@
       },
       "features" : {
          "6K" : {
-            "PMID_claude_generated" : [
-               "7968923",
-               "18822126",
-               "7241658",
-               "1985194"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "18822126",
+                  "7241658",
+                  "1985194"
+               ]
+            },
             "anno" : "Mature 6K membrane protein",
             "bit_cutoff" : 38,
             "copy_num" : 1,
@@ -60,11 +62,13 @@
             "upstream_ext" : 0
          },
          "C" : {
-            "PMID_claude_generated" : [
-               "7968923",
-               "9094737",
-               "3553612"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "9094737",
+                  "3553612"
+               ]
+            },
             "anno" : "Nucleocapsid protein",
             "bit_cutoff" : 100,
             "copy_num" : 1,
@@ -79,11 +83,13 @@
             "upstream_ext" : 1
          },
          "E1" : {
-            "PMID_claude_generated" : [
-               "7968923",
-               "11301009",
-               "7241658"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "11301009",
+                  "7241658"
+               ]
+            },
             "anno" : "Mature envelope glycoprotein E1",
             "bit_cutoff" : 250,
             "copy_num" : 1,
@@ -98,11 +104,13 @@
             "upstream_ext" : 0
          },
          "E2" : {
-            "PMID_claude_generated" : [
-               "7968923",
-               "8627739",
-               "1985194"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "8627739",
+                  "1985194"
+               ]
+            },
             "anno" : "Mature envelope glycoprotein E2",
             "bit_cutoff" : 150,
             "copy_num" : 1,
@@ -117,12 +125,14 @@
             "upstream_ext" : 0
          },
          "E3" : {
-            "PMID_claude_generated" : [
-               "7968923",
-               "8627739",
-               "2200886",
-               "23035234"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "8627739",
+                  "2200886",
+                  "23035234"
+               ]
+            },
             "anno" : "Mature envelope glycoprotein E3",
             "bit_cutoff" : 45,
             "copy_num" : 1,
@@ -137,10 +147,12 @@
             "upstream_ext" : 0
          },
          "NSP1" : {
-            "PMID_claude_generated" : [
-               "7968923",
-               "10357827"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "10357827"
+               ]
+            },
             "anno" : "mRNA-capping enzyme nsP1 protein",
             "bit_cutoff" : 300,
             "copy_num" : 1,
@@ -158,12 +170,14 @@
             "PMID" : [
                "37862073"
             ],
-            "PMID_claude_generated" : [
-               "7968923",
-               "6322438",
-               "12466484",
-               "12021349"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "6322438",
+                  "12466484",
+                  "12021349"
+               ]
+            },
             "anno" : "Nonstructural polyprotein",
             "bit_cutoff" : 1500,
             "copy_num" : 1,
@@ -179,10 +193,12 @@
             "upstream_ext" : 1
          },
          "NSP2" : {
-            "PMID_claude_generated" : [
-               "7968923",
-               "36792007"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "36792007"
+               ]
+            },
             "anno" : "Protease nsP2 protein",
             "bit_cutoff" : 400,
             "copy_num" : 1,
@@ -200,10 +216,12 @@
             "PMID" : [
                "37862073"
             ],
-            "PMID_claude_generated" : [
-               "7968923",
-               "30825649"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "30825649"
+               ]
+            },
             "anno" : "Nonstructural protein nsP3",
             "bit_cutoff" : 150,
             "copy_num" : 1,
@@ -222,10 +240,12 @@
             "PMID" : [
                "37862073"
             ],
-            "PMID_claude_generated" : [
-               "7968923",
-               "19036396"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "19036396"
+               ]
+            },
             "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 150,
             "copy_num" : 1,
@@ -243,11 +263,13 @@
             "PMID" : [
                "37862073"
             ],
-            "PMID_claude_generated" : [
-               "7968923",
-               "2141206",
-               "12917405"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "2141206",
+                  "12917405"
+               ]
+            },
             "anno" : "Nonstructural polyprotein P123",
             "bit_cutoff" : 900,
             "copy_num" : 1,
@@ -262,13 +284,15 @@
             "upstream_ext" : 1
          },
          "PE2" : {
-            "PMID_claude_generated" : [
-               "7968923",
-               "8627739",
-               "21430054",
-               "23864626",
-               "21124458"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "8627739",
+                  "21430054",
+                  "23864626",
+                  "21124458"
+               ]
+            },
             "anno" : "Envelope glycoprotein precursor pE2",
             "bit_cutoff" : 200,
             "copy_num" : 1,
@@ -283,12 +307,14 @@
             "upstream_ext" : 0
          },
          "STP" : {
-            "PMID_claude_generated" : [
-               "7968923",
-               "6322438",
-               "12466484",
-               "12021349"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "7968923",
+                  "6322438",
+                  "12466484",
+                  "12021349"
+               ]
+            },
             "anno" : "Structural polyprotein",
             "bit_cutoff" : 600,
             "copy_num" : 1,
@@ -303,11 +329,13 @@
             "upstream_ext" : 1
          },
          "TF" : {
-            "PMID_claude_generated" : [
-               "18822126",
-               "23720714",
-               "7968923"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "18822126",
+                  "23720714",
+                  "7968923"
+               ]
+            },
             "anno" : "TransFrame protein",
             "feature_type" : "mat_peptide",
             "gene_symbol" : "TF",

@@ -149,11 +149,13 @@
             "upstream_ext" : 0
          },
          "F" : {
-            "PMID_claude_generated" : [
-               "11447125",
-               "11350035",
-               "15755749"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "11447125",
+                  "11350035",
+                  "15755749"
+               ]
+            },
             "anno" : "F protein",
             "feature_type" : "CDS",
             "gene_symbol" : "F",

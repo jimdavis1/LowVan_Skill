@@ -104,10 +104,12 @@
       },
       "features" : {
          "CP" : {
-            "PMID_claude_generated" : [
-               "36399124",
-               "15098118"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "36399124",
+                  "15098118"
+               ]
+            },
             "anno" : "Nucleocapsid protein",
             "bit_cutoff" : 45,
             "copy_num" : 1,
@@ -122,10 +124,12 @@
             "upstream_ext" : 1
          },
          "MP" : {
-            "PMID_claude_generated" : [
-               "36399124",
-               "15098118"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "36399124",
+                  "15098118"
+               ]
+            },
             "anno" : "Movement protein",
             "bit_cutoff" : 50,
             "copy_num" : 1,
@@ -140,10 +144,12 @@
             "upstream_ext" : 1
          },
          "NABP" : {
-            "PMID_claude_generated" : [
-               "9125055",
-               "16847135"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "9125055",
+                  "16847135"
+               ]
+            },
             "anno" : "Nucleic acid-binding protein",
             "bit_cutoff" : 60,
             "coverage_cutoff" : 0.65,
@@ -157,10 +163,12 @@
             "upstream_ext" : 1
          },
          "REP" : {
-            "PMID_claude_generated" : [
-               "36399124",
-               "15098118"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "36399124",
+                  "15098118"
+               ]
+            },
             "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 400,
             "copy_num" : 1,
@@ -175,9 +183,11 @@
             "upstream_ext" : 1
          },
          "VITI_ORF2" : {
-            "PMID_claude_generated" : [
-               "9125055"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "9125055"
+               ]
+            },
             "anno" : "Uncharacterized lineage-specific protein",
             "bit_cutoff" : 50,
             "coverage_cutoff" : 0.65,

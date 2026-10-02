@@ -439,3 +439,37 @@ each module has measured and recorded: Quinvirinae `P14`-in-`CP` and
 `ORF2A`-in-`TGB1`, Closterovirus `CP`/`CPM` on identical coordinates in 44% of
 genomes, and `POLY`/`ORF1A` in the three closterovirid modules, where POLY
 holds ORF1a and the ORF1a+ORF1b fusion together.
+
+## `PMID_claude_generated` says what the paper supports
+
+The flag is a **mapping from category to ids**, not a bare list:
+
+```json
+"PMID_claude_generated" : {
+   "function"    : [ "12345678" ],
+   "coordinates" : [ "23456789" ]
+}
+```
+
+| category | the paper is cited for |
+|---|---|
+| `function` | what the protein **does** — the claim the annotation string makes |
+| `coordinates` | where its **boundaries are** — a cleavage site, a start codon, a frameshift position, a domain span |
+
+They are different claims with different failure modes, which is why they are
+recorded apart. A wrong `function` mislabels a feature and a reader can see it.
+A wrong `coordinate` silently moves a cut site: the output still translates,
+still has plausible length, and nothing downstream catches it. A reviewer
+deciding how much to trust a derived `mat_peptide` needs to know whether the
+citation behind it is about the boundary at all.
+
+`PMID` and `PMID_claude_generated` remain **disjoint**, and the rule that puts
+an id in the flag is unchanged: whoever supplied it. A model that searched
+PubMed, matched the title and read the abstract has proposed a citation, not
+confirmed one.
+
+**Migration, 2 October 2026.** The 75 entries that predate this field carry no
+category and none was inferred — guessing which of the two a paper supports is
+the error the field exists to prevent. They sit under `unclassified` and
+`check_dlits.py` counts them, so the backlog is visible rather than silently
+defaulted to one or the other.

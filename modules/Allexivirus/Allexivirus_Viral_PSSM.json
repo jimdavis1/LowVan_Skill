@@ -104,9 +104,11 @@
       },
       "features" : {
          "ALLEXI_40K" : {
-            "PMID_claude_generated" : [
-               "11752591"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "11752591"
+               ]
+            },
             "anno" : "Uncharacterized lineage-specific protein",
             "bit_cutoff" : 60,
             "coverage_cutoff" : 0.65,
@@ -165,9 +167,11 @@
             "upstream_ext" : 0
          },
          "TGB1" : {
-            "PMID_claude_generated" : [
-               "1853569"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "1853569"
+               ]
+            },
             "anno" : "Triple gene block protein 1",
             "bit_cutoff" : 60,
             "copy_num" : 1,
@@ -183,9 +187,11 @@
             "upstream_ext" : 0
          },
          "TGB2" : {
-            "PMID_claude_generated" : [
-               "1853569"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "1853569"
+               ]
+            },
             "anno" : "Triple gene block protein 2",
             "bit_cutoff" : 50,
             "copy_num" : 1,
@@ -201,9 +207,11 @@
             "upstream_ext" : 1
          },
          "TGB3" : {
-            "PMID_claude_generated" : [
-               "26296665"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "26296665"
+               ]
+            },
             "anno" : "Triple gene block protein 3",
             "bit_cutoff" : 30,
             "copy_num" : 1,

@@ -36,9 +36,11 @@
       },
       "features" : {
          "ACYTO_VIROPORIN" : {
-            "PMID_claude_generated" : [
-               "38819305"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "38819305"
+               ]
+            },
             "anno" : "Uncharacterized lineage-specific protein",
             "bit_cutoff" : 30,
             "coverage_cutoff" : 0.65,
@@ -196,9 +198,11 @@
                "8178430",
                "40999317"
             ],
-            "PMID_claude_generated" : [
-               "26700068"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "26700068"
+               ]
+            },
             "anno" : "Movement protein",
             "bit_cutoff" : 80,
             "coverage_cutoff" : 0.65,

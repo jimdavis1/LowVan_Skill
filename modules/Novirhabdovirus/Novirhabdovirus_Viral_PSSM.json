@@ -109,11 +109,13 @@
             "PMID" : [
                "9010293"
             ],
-            "PMID_claude_generated" : [
-               "4038520",
-               "8683214",
-               "28276468"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "4038520",
+                  "8683214",
+                  "28276468"
+               ]
+            },
             "anno" : "Non-virion protein",
             "bit_cutoff" : 40,
             "copy_num" : 1,

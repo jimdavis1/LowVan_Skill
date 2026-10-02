@@ -100,11 +100,13 @@
       },
       "features" : {
          "ORF1" : {
-            "PMID_claude_generated" : [
-               "1518855",
-               "23255617",
-               "36852909"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "1518855",
+                  "23255617",
+                  "36852909"
+               ]
+            },
             "anno" : "Nonstructural polyprotein",
             "bit_cutoff" : 800,
             "copy_num" : 1,
@@ -119,9 +121,11 @@
             "upstream_ext" : 1
          },
          "ORF2" : {
-            "PMID_claude_generated" : [
-               "19622744"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "19622744"
+               ]
+            },
             "anno" : "Nucleocapsid protein",
             "bit_cutoff" : 250,
             "copy_num" : 1,
@@ -136,10 +140,12 @@
             "upstream_ext" : 1
          },
          "ORF3" : {
-            "PMID_claude_generated" : [
-               "28096411",
-               "34523963"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "28096411",
+                  "34523963"
+               ]
+            },
             "anno" : "Membrane-associated viroporin required for virion release ORF3 protein",
             "bit_cutoff" : 90,
             "copy_num" : 1,
@@ -154,9 +160,11 @@
             "upstream_ext" : 1
          },
          "ORF4_ROCA" : {
-            "PMID_claude_generated" : [
-               "31399875"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "31399875"
+               ]
+            },
             "anno" : "Uncharacterized lineage-specific protein",
             "bit_cutoff" : 60,
             "coverage_cutoff" : 0.65,

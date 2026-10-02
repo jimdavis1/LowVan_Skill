@@ -37,6 +37,32 @@ from collections import defaultdict
 
 ESUMMARY = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
 FLAG = "PMID_claude_generated"
+#  What the proposed paper SUPPORTS. A citation for what a protein does and one
+#  for where its boundaries are are different claims with different failure
+#  modes: a wrong function mislabels a feature, a wrong coordinate silently
+#  moves a cut site and nothing downstream catches it. So the flag is a mapping
+#  from category to ids, not a bare list.
+CATEGORIES = ("function", "coordinates")
+
+def flagged_ids(ent):
+    """Every proposed id, whatever shape the field is in."""
+    v = ent.get(FLAG)
+    if not v: return []
+    if isinstance(v, list): return list(v)          # pre-2 October form
+    out = []
+    for cat, ids in v.items(): out.extend(ids or [])
+    return out
+
+def uncategorised(ent):
+    """Proposed ids filed under neither 'function' nor 'coordinates'."""
+    v = ent.get(FLAG)
+    if not v: return []
+    if isinstance(v, list): return list(v)
+    out = []
+    for cat, ids in v.items():
+        if cat not in CATEGORIES: out.extend(ids or [])
+    return out
+
 
 
 def pubmed(ids):

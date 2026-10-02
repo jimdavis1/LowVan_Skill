@@ -90,9 +90,11 @@
                "8178430",
                "40999317"
             ],
-            "PMID_claude_generated" : [
-               "26700068"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "26700068"
+               ]
+            },
             "anno" : "Movement protein",
             "bit_cutoff" : 100,
             "copy_num" : 1,

@@ -20,10 +20,12 @@
       },
       "features" : {
          "C" : {
-            "PMID_claude_generated" : [
-               "2214022",
-               "11160697"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "2214022",
+                  "11160697"
+               ]
+            },
             "anno" : "Nucleocapsid protein",
             "bit_cutoff" : 100,
             "copy_num" : 1,
@@ -38,9 +40,11 @@
             "upstream_ext" : 1
          },
          "E1" : {
-            "PMID_claude_generated" : [
-               "2273395"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "2273395"
+               ]
+            },
             "anno" : "Mature envelope glycoprotein E1",
             "bit_cutoff" : 150,
             "copy_num" : 1,
@@ -55,10 +59,12 @@
             "upstream_ext" : 0
          },
          "E2" : {
-            "PMID_claude_generated" : [
-               "2273395",
-               "39207105"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "2273395",
+                  "39207105"
+               ]
+            },
             "anno" : "Mature envelope glycoprotein E2",
             "bit_cutoff" : 90,
             "copy_num" : 1,
@@ -73,9 +79,11 @@
             "upstream_ext" : 0
          },
          "P110" : {
-            "PMID_claude_generated" : [
-               "2273395"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "2273395"
+               ]
+            },
             "anno" : "Structural polyprotein",
             "bit_cutoff" : 250,
             "copy_num" : 1,
@@ -90,11 +98,13 @@
             "upstream_ext" : 1
          },
          "P150" : {
-            "PMID_claude_generated" : [
-               "9557742",
-               "10799588",
-               "10823845"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "9557742",
+                  "10799588",
+                  "10823845"
+               ]
+            },
             "anno" : "Protease p150 protein",
             "bit_cutoff" : 250,
             "copy_num" : 1,
@@ -109,11 +119,13 @@
             "upstream_ext" : 1
          },
          "P200" : {
-            "PMID_claude_generated" : [
-               "9557742",
-               "10799588",
-               "10823845"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "9557742",
+                  "10799588",
+                  "10823845"
+               ]
+            },
             "anno" : "Nonstructural polyprotein",
             "bit_cutoff" : 400,
             "copy_num" : 1,
@@ -128,10 +140,12 @@
             "upstream_ext" : 1
          },
          "P90" : {
-            "PMID_claude_generated" : [
-               "10799588",
-               "10823845"
-            ],
+            "PMID_claude_generated" : {
+               "unclassified" : [
+                  "10799588",
+                  "10823845"
+               ]
+            },
             "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 200,
             "copy_num" : 1,
