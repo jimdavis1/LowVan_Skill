@@ -617,3 +617,60 @@ fixed for: the check was about presence, and the defect was about quantity.
 `build_features.py` now prints how many profiles a rebuild is about to discard,
 so the shrink appears in the build log at the moment it happens. **When a step
 deletes before it writes, log what it deleted.**
+
+---
+
+### "No PSSM expected" is a statement about the declaration, not about the disk
+
+`install_module.py` printed `1 special (no PSSM expected): RDRP` for
+Velarivirus, Ampelovirus and Closterovirus while shipping 10, 18 and 9 RDRP
+profiles left over from before those features were redeclared
+`special: transcript_edit`. The annotator called the RdRp twice -- once from
+the stale profiles, once from the transcript-edit handler -- and the only
+symptom was `Genome has too many HSPs for: RNA-dependent RNA polymerase`.
+Clean genomes fell to **4.7%** (Velarivirus, from 64.1%) and **2.0%**
+(Ampelovirus, from 51.5%), with nothing naming the cause.
+
+The line was true of the JSON and false of the filesystem, and it was printed
+in the same run that copied the profiles into place.
+
+**When a validator prints an expectation, make it count the thing instead.**
+The installer now counts profiles under every `special` feature and refuses.
+
+---
+
+### Requiring a value you are not going to use
+
+The ORF1b junction reference is `g[stop-60:stop] + ORF1b` -- it needs ORF1a's
+**stop** codon and nothing else. The extractor nonetheless computed both bounds
+and bailed on either being absent:
+
+```python
+atg, stop = orf_bounds(g, best[0], None)
+if not atg or not stop: fails["no ORF bounds"] += 1; continue
+```
+
+Every 5'-truncated assembly -- ORF1a's start codon lying off the front of the
+contig -- was therefore discarded along with its perfectly good junction and
+its complete RdRp. **32 genomes across three modules**, each of which then
+reported `missing essential feature: RNA-dependent RNA polymerase`. Splitting
+the two outputs so the RdRp and its reference need only the stop recovered
+Velarivirus 52 -> 59 references, Ampelovirus 89 -> 95, Closterovirus 60 -> 73.
+The ORF1a counts did not move, which is correct: a 5'-truncated assembly really
+has no ORF1a.
+
+The failure counter said `no ORF bounds` 7/11/11, which read as a data problem
+and was a control-flow one. **Name the failure after the thing that was
+missing, not after the function that returned it** -- `no ORF1a start codon`
+would have been read in a minute.
+
+---
+
+### A reference set built from the genomes you evaluate on
+
+The transcript-edit reference sets were extracted from the same genome panels
+the quality run scores. That is self-recall wearing different clothes: the
+measured miss rate is a floor, and the real one on unseen genomes is higher.
+It is the reason the 32 recovered genomes matter more than their share of the
+panel suggests -- they were the members the reference set could not reach even
+with the answer in front of it.
