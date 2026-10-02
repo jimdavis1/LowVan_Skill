@@ -38,9 +38,21 @@ ap.add_argument("--subjects", required=True,
                      "full-length precursors or translated genomes, not the "
                      "feature's own collection")
 ap.add_argument("--locus", default=None, help="LO-HI residue window of the true locus")
+ap.add_argument("--locus-ids", default=None,
+                help="File of subject ids that ARE the feature, one per line. "
+                     "Use this when the feature is a standalone protein rather "
+                     "than a domain of a precursor: the subjects are then the "
+                     "whole protein complement of genomes that carry it, and "
+                     "on-target means the profile hit the right PROTEIN, not "
+                     "the right residue window. Same question, different axis.")
 ap.add_argument("--window", type=int, default=60,
                 help="half-width around the modal position when --locus is absent")
 a = ap.parse_args()
+
+locus_ids = set()
+if a.locus_ids:
+    locus_ids = {l.split()[0] for l in open(a.locus_ids) if l.strip()}
+    if not locus_ids: sys.exit("--locus-ids file is empty")
 
 td = tempfile.mkdtemp()
 subprocess.run(["makeblastdb", "-in", a.subjects, "-dbtype", "prot",
@@ -62,7 +74,14 @@ for p in pssms:
         raw.append((os.path.basename(p), s, int(ss), float(b)))
 if not raw: sys.exit("no hits at all -- the profiles cannot see these subjects")
 
-if a.locus:
+lo = hi = None
+if locus_ids:
+    missing = locus_ids - {r[1] for r in raw}
+    print("on-target axis: subject identity. %d of %d feature-bearing subjects "
+          "were hit by at least one profile%s"
+          % (len(locus_ids) - len(missing), len(locus_ids),
+             "; %d never hit" % len(missing) if missing else ""))
+elif a.locus:
     lo, hi = (int(x) for x in a.locus.split("-"))
 else:
     best = collections.defaultdict(list)
@@ -72,28 +91,65 @@ else:
     lo, hi = mode - a.window, mode + a.window
     print("locus taken from the data: modal top-hit start %d -> window %d-%d" % (mode, lo, hi))
 
+def ontarget(subj, st):
+    return subj in locus_ids if locus_ids else (lo <= st <= hi)
+
 per = collections.defaultdict(list)
 for prof, s, st, b in raw: per[(prof, s)].append((b, st))
 on, off, found = [], [], 0
-for v in per.values():
-    i = [b for b, st in v if lo <= st <= hi]
-    o = [b for b, st in v if not (lo <= st <= hi)]
+for (prof, subj), v in per.items():
+    i = [b for b, st in v if ontarget(subj, st)]
+    o = [b for b, st in v if not ontarget(subj, st)]
     if i: on.append(max(i)); found += 1
     if o: off.append(max(o))
 on.sort(); off.sort()
+
+#  The pair view above is not the question the annotator asks. It runs EVERY
+#  profile over a genome and calls the feature if ANY of them clears the
+#  cutoff, so the decision is per subject, not per profile x subject: does the
+#  BEST on-target score beat the BEST off-target score anywhere in the same
+#  genome? A feature whose profiles are divergent alleles of one gene fails the
+#  pair view by construction -- allele A's profile scores near-zero on allele
+#  B's protein, which the pair view records as a weak on-target hit, when in
+#  truth B is called by B's own profile. Velarivirus P4 failed the pair view at
+#  10th pct 16.3 vs off-target max 24.1 and passed this one comfortably.
+sbest_on, sbest_off = collections.defaultdict(float), collections.defaultdict(float)
+for prof, subj, st, b in raw:
+    d = sbest_on if ontarget(subj, st) else sbest_off
+    d[subj] = max(d[subj], b)
+gon = sorted(sbest_on.values()); goff = sorted(sbest_off.values())
 def pct(v, q): return v[min(len(v) - 1, int(q * len(v)))] if v else 0.0
 
-print("%d profile x subject pairs with a hit; %d (%.0f%%) hit the locus"
+print("%d profile x subject pairs with a hit; %d (%.0f%%) hit the target"
       % (len(per), found, 100.0 * found / max(1, len(per))))
-print("  at the locus : min %.1f  10th %.1f  median %.1f  max %.1f"
-      % (on[0], pct(on, .10), pct(on, .50), on[-1]) if on else "  at the locus : none")
+print("  on target    : min %.1f  10th %.1f  median %.1f  max %.1f"
+      % (on[0], pct(on, .10), pct(on, .50), on[-1]) if on else "  on target    : none")
 if off:
     print("  elsewhere    : median %.1f  90th %.1f  99th %.1f  MAX %.1f"
           % (pct(off, .50), pct(off, .90), pct(off, .99), off[-1]))
 else:
     print("  elsewhere    : no off-target hit at all")
 floor = pct(on, .10); ceil = off[-1] if off else 0.0
+if gon:
+    print()
+    print("per-subject view (what the annotator actually does -- best profile wins)")
+    print("  best on target  : min %.1f  10th %.1f  median %.1f"
+          % (gon[0], pct(gon, .10), pct(gon, .50)))
+    if goff:
+        print("  best off target : median %.1f  99th %.1f  MAX %.1f"
+              % (pct(goff, .50), pct(goff, .99), goff[-1]))
+    gfloor, gceil = gon[0], (goff[-1] if goff else 0.0)
+    if gfloor > gceil:
+        print("  -> CALLABLE at bit_cutoff %d: every feature-bearing subject scores "
+              "above it (worst %.1f) and nothing else reaches it (best %.1f)."
+              % (int(gceil) + 1, gfloor, gceil))
+    else:
+        bad = sum(1 for v in gon if v <= gceil)
+        print("  -> a single cutoff loses %d of %d subjects (worst on-target %.1f "
+              "vs best off-target %.1f)." % (bad, len(gon), gfloor, gceil))
+
 print()
+print("pair view (every profile judged on its own):")
 if floor > ceil:
     print("CALLABLE. Suggested bit_cutoff %d: above every off-target hit (%.1f) "
           "and below the 10th percentile on-target (%.1f)."

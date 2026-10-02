@@ -276,6 +276,20 @@
             "type" : "CDS",
             "upstream_ext" : 0
          },
+         "P4" : {
+            "anno" : "Uncharacterized lineage-specific P4 protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "P4",
+            "kmers" : 1,
+            "max_len" : 39,
+            "min_len" : 28,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         },
          "P60" : {
             "anno" : "Uncharacterized lineage-specific P60 protein",
             "bit_cutoff" : 60,

@@ -274,3 +274,48 @@ that it needs one.
 
 **A short generic peptide will still fail this test, and should.** The point is
 that the test distinguishes the two cases and the length does not.
+
+#### Score per subject, not per profile x subject
+
+The annotator runs **every** profile over a genome and calls the feature if
+**any** of them clears the cutoff. So the question is per subject: does the
+best on-target score beat the best off-target score anywhere in the same
+genome? Judging each profile independently fails a feature whose profiles are
+divergent alleles of one gene by construction — allele A's profile scores near
+nothing on allele B's protein, which the pair view records as a weak on-target
+hit, when B is in fact called by B's own profile.
+
+Velarivirus P4 failed the pair view (10th pct on target 16.7 against an
+off-target max of 24.1) and passed the per-subject view comfortably (worst on
+target 41.3). The script now prints both and the per-subject line is the
+decision. Use `--locus-ids` when the feature is a standalone protein rather
+than a domain of a precursor: on-target then means the profile hit the right
+**protein**, with the subjects being the whole protein complement of genomes
+that carry it.
+
+#### The leftover profiles are what make a short feature callable
+
+Both short features measured here were *not separable* on their cluster
+profiles alone and became separable once `build_leftover_pssms.py` had run:
+
+| | cluster profiles only | with leftovers |
+|---|---|---|
+| Velarivirus P4 | worst on target **22.5** vs off-target max 24.1 | 5 profiles, worst **41.3** |
+| Ampelovirus P4 | worst on target **24.9** vs off-target max 24.9 | 7 profiles, worst **37.3** |
+
+The sequences dragging the floor down were exactly the ones no cluster covered.
+This is the same finding as Alpharhabdovirinae P, measured a different way: the
+uncovered population *is* the failure. **Run the leftover pass before concluding
+a short feature is not callable** — on this evidence the pre-leftover result is
+not informative.
+
+#### Decide gene identity by co-occurrence, not by label
+
+mmseqs at 25% identity split Velarivirus p4 into 3 groups and Ampelovirus 4 kDa
+into 3. Source labels could not resolve them — the largest Velarivirus group is
+mostly `hypothetical protein` and `p4` appears in all three. The test that did:
+**do two groups ever share a genome?** Pairwise overlap was zero in all six
+comparisons, so each is a divergent allele of one gene, not a paralogue. They
+were merged into one feature with several profiles, which is also what made the
+cutoff work. Three separate 5-to-29-member features would have been wrong and
+would each have been too thin to build.
