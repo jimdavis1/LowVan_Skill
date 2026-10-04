@@ -37,6 +37,6 @@
  ],
  "lede09": "Picornavirus submitters mostly use the positional names, so the source vocabulary is small.",
  "p09": [
-  "Teschovirus records mostly say <code>VP2</code>, <code>2B</code> or <code>3D</code>, or the same name with &ldquo;protein&rdquo; appended. That leaves about two spellings per protein, far fewer than the dozens a plant-virus replicase attracts. The collapse is therefore modest. The module's thirteen strings are fixed from the first genome, while the source vocabulary keeps growing until the 93rd."
+  "Teschovirus records mostly say <code>VP2</code>, <code>2B</code> or <code>3D</code>, or the same name with &ldquo;protein&rdquo; appended. That leaves about two spellings per protein, far fewer than the dozens a plant-virus replicase attracts, so the collapse is modest. Drawn one protein at a time from 153 genomes, the module reaches 95% of its 13 strings after 37 proteins. The source needs 827 of its 1,514 records to reach 95% of its 25."
  ]
 }

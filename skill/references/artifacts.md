@@ -105,20 +105,22 @@ python3 scripts/gen_rarefaction.py --rarefaction rarefaction.json \
         --taxon <Family> --out rarefaction.html
 ```
 
-Shuffle the genomes, accumulate distinct annotation strings, average over
-replicates. A controlled vocabulary **saturates**, because the *n*th genome
-reuses names the first *n*−1 established; free text climbs roughly linearly,
-because every submitter spells the same protein a new way.
+Rarefy over **proteins**: pool every annotated protein (one row per called
+feature, one per source product), shuffle, draw them one at a time and count
+distinct strings, averaged over replicates. The x-axis is proteins sampled and
+both curves start at (0, 0). A controlled vocabulary **saturates**, because the
+*n*th protein reuses a name already seen; free text keeps climbing, because
+every submitter spells the same protein a new way.
+
+The kit shuffled whole genomes until 4 October 2026. That starts each curve at
+one genome's vocabulary instead of 0 and puts genomes on the x-axis; every
+saturation page built before then needs regenerating.
 
 `--old` is a headerless `genome_id<TAB>product` TSV of the source strings; cut it
-from the dump. Report the **ratio**, not just the picture: strings per 100
-genomes at the end of each curve says how much collapse the vocabulary bought.
-
-Hepeviridae: free text reaches 95% of its final vocabulary at 533 genomes and is
-still climbing, the controlled set at **13**; 10.2 strings per 100 genomes
-against 0.6, a 15.8-fold difference. Matonaviridae, a conserved taxon whose
-submitters were more consistent, gives 13.9 against 3.2 — only 4.3-fold. Both
-numbers are honest; the shape of the curve is the claim, not the ratio alone.
+from the dump, one row per protein. Report the **ratio** at equal depth: the
+two pools differ in size, so compare distinct strings at the protein count both
+curves reach (`common_n` in the JSON). The Hepeviridae and Matonaviridae figures
+once quoted here were genome-level and are withdrawn until regenerated.
 
 ## 4. Coverage audit — the whole module in nine questions
 

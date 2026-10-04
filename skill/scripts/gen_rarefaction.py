@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Render the vocabulary rarefaction curve as a standalone Artifact page.
 
+Curves are over PROTEINS sampled and start at 0 (see annotation_rarefaction.py).
 The kit ships no generator for this (annotation_rarefaction.py writes JSON
 only). Promoted into the kit from the Matonaviridae build and
 parameterised with --taxon / --rarefaction / --out. Palette is the report
@@ -22,21 +23,19 @@ _ap.add_argument("--date", default=datetime.date.today().strftime("%-d %B %Y"))
 _ap.add_argument("--out", default="rarefaction.html")
 _a = _ap.parse_args()
 d = json.load(open(_a.rarefaction))
-src, mod = d['source'], d['module']
-N = d['n_genomes']
+if d.get("unit") != "proteins":
+    raise SystemExit("%s is a genome-level rarefaction from the old annotation_rarefaction.py; "
+                     "re-run it -- the curve must be over proteins and start at 0" % _a.rarefaction)
+S, M = d['source'], d['module']
+G = d['n_genomes']
 reps = d['replicates']
+XMAX = max(S['n'], M['n'])
 
 # ---- geometry -----------------------------------------------------------
 VBW, VBH = 780, 400
 L, R, T, B = 58, 132, 26, 52          # generous right margin for direct labels
 PW, PH = VBW - L - R, VBH - T - B
 #  Axes, tick values and every rate on this page are derived from the input.
-#  They used to be constants carried over from the taxon the template was
-#  first written against -- YMAX 32, ticks to 216 genomes, and a hardcoded
-#  "13.9 strings per 100 genomes ... 3.2 ... 4.3-fold collapse" in the prose.
-#  On a taxon with 3,624 genomes and 355 source strings that clipped both
-#  curves off the top and the right of the plot AND asserted another taxon's
-#  measurements as fact. A report generator must not contain a measurement.
 def _nice(hi):
     """A round axis maximum at or above hi, with a sensible tick step."""
     import math
@@ -52,26 +51,15 @@ def _nice(hi):
              for k in range(5)]
     return top, ticks
 
-YMAX, yticks = _nice(max(max(src), max(mod)))
-xs = lambda i: L + PW * i / (N - 1)
+YMAX, yticks = _nice(max(max(S['y']), max(M['y'])))
+XTOP, xticks = _nice(XMAX)
+xs = lambda x: L + PW * x / XTOP
 ys = lambda v: T + PH * (1 - v / YMAX)
 
-def path(series):
-    return ' '.join(('M' if i == 0 else 'L') + f'{xs(i):.1f} {ys(v):.2f}'
-                    for i, v in enumerate(series))
+def path(c):
+    return ' '.join(('M' if i == 0 else 'L') + f'{xs(x):.1f} {ys(v):.2f}'
+                    for i, (x, v) in enumerate(zip(c['x'], c['y'])))
 
-def _xticks(n):
-    import math
-    if n <= 10:
-        return list(range(1, n + 1))
-    mag = 10 ** math.floor(math.log10(n))
-    step = mag if n / mag >= 4 else mag / 2
-    t = [1] + [int(step * k) for k in range(1, int(n // step) + 1)]
-    #  drop a last tick that would collide with the N label
-    t = [v for v in t if v <= n - (0.04 * n)] + [n]
-    return sorted(set(t))
-
-xticks = _xticks(N)
 grid = ''.join(
     f'<line x1="{L}" y1="{ys(v):.1f}" x2="{L+PW}" y2="{ys(v):.1f}" '
     f'stroke="var(--grid)" stroke-width="1"/>' for v in yticks)
@@ -79,17 +67,33 @@ ylab = ''.join(
     f'<text x="{L-11}" y="{ys(v)+4:.1f}" text-anchor="end" class="tick">{v}</text>'
     for v in yticks)
 xlab = ''.join(
-    f'<text x="{xs(t-1):.1f}" y="{T+PH+21}" text-anchor="middle" class="tick">{t}</text>'
+    f'<text x="{xs(t):.1f}" y="{T+PH+21}" text-anchor="middle" class="tick">{t:,}</text>'
     for t in xticks)
 
-# saturation marker: where the source curve reaches 95% of its final size
 knee = d['source_knee']
 srcs, mods = d['source_total'], d['module_total']
-#  the same three quantities annotation_rarefaction.py prints, recomputed here
-#  from the curves rather than restated from memory
-src_per100 = 100.0 * src[-1] / N
-mod_per100 = 100.0 * mod[-1] / N
-ratio = src[-1] / mod[-1] if mod[-1] else float('nan')
+CN = d['common_n']
+ratio = d['source_at_common'] / d['module_at_common'] if d['module_at_common'] else float('nan')
+src_end, mod_end = S['y'][-1], M['y'][-1]
+#  one marker where both curves have been sampled to the same depth
+cx = xs(CN)
+#  label positions: keep the two end labels from overlapping
+sy, my = ys(src_end), ys(mod_end)
+if abs(sy - my) < 30:
+    if sy <= my: my = sy + 30
+    else: sy = my + 30
+
+def at(c, x):
+    """value of a thinned curve at protein count x (linear between kept points)"""
+    import bisect
+    if x > c['n']: return None
+    i = bisect.bisect_left(c['x'], x)
+    if c['x'][i] == x: return c['y'][i]
+    x0, x1, y0, y1 = c['x'][i-1], c['x'][i], c['y'][i-1], c['y'][i]
+    return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
+rows = sorted({int(round(CN * f)) for f in (0.002, 0.01, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5, 0.75, 1.0)} - {0})
+table = ''.join(f"<tr><td>{k:,}</td><td>{at(S,k):.2f}</td><td>{at(M,k):.2f}</td>"
+                f"<td>{at(S,k)/at(M,k):.2f}&times;</td></tr>" for k in rows)
 
 HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -175,20 +179,20 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
   <div class="eyebrow">LowVan &middot; {_a.taxon} module &middot; {_a.date}</div>
   <h1>{_a.taxon}</h1>
   <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">A controlled vocabulary stops growing. Free text does not.</h2>
-  <p class="stand">A {_a.taxon} genome encodes the same {mods} modelled proteins as
-  any other, so a curated vocabulary needs exactly {mods} names no matter how many
-  genomes you read. Free-text product strings have no such ceiling: each new
-  submitter spells the same proteins a new way. Sampling {N} annotated genomes
-  {reps} times over shows the two curves doing exactly that &mdash; the module is
-  <b>saturated after {"one genome" if d['module_knee'] <= 1 else f"{d['module_knee']} genomes"}</b>,
-  while the source vocabulary is <b>still climbing at {N}</b>.</p>
+  <p class="stand">Take every annotated protein from {G:,} {_a.taxon} genomes, shuffle
+  them, and draw them one at a time, counting the distinct annotation strings seen so far.
+  A curated vocabulary needs exactly {mods} names however many proteins you read, so its
+  curve flattens; free-text product strings have no ceiling, because each submitter spells
+  the same proteins a new way. Over {reps} random orderings the module reaches 95% of its
+  vocabulary after <b>{d['module_knee']:,} proteins</b>; the source after
+  <b>{knee:,}</b> of its {S['n']:,}.</p>
  </header>
 
  <div class="figs">
   <div class="fig"><span class="n" style="color:var(--mod)">{mods}</span><span class="k">strings, controlled vocabulary</span></div>
   <div class="fig"><span class="n" style="color:var(--src)">{srcs}</span><span class="k">strings, BV-BRC free text</span></div>
-  <div class="fig"><span class="n">{ratio:.1f}&times;</span><span class="k">collapse per 100 genomes</span></div>
-  <div class="fig"><span class="n">{knee}</span><span class="k">genomes before free text saturates</span></div>
+  <div class="fig"><span class="n">{ratio:.1f}&times;</span><span class="k">collapse at {CN:,} proteins sampled</span></div>
+  <div class="fig"><span class="n">{knee:,}</span><span class="k">proteins before free text reaches 95%</span></div>
  </div>
 
  <figure>
@@ -197,22 +201,23 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
    <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
   </div>
   <div class="chartbox" id="cb">
-   <svg viewBox="0 0 {VBW} {VBH}" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of genomes sampled. Free-text strings rise from about {src[0]:.0f} to {srcs}; the controlled vocabulary stays flat at about {mods}.">
+   <svg viewBox="0 0 {VBW} {VBH}" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to {srcs} over {S['n']} proteins; the controlled vocabulary flattens at {mods}.">
     {grid}
     <line x1="{L}" y1="{T+PH}" x2="{L+PW}" y2="{T+PH}" stroke="var(--base)" stroke-width="1"/>
     {ylab}{xlab}
-    <text class="axtitle" x="{L}" y="{VBH-8}">genomes sampled</text>
+    <text class="axtitle" x="{L}" y="{VBH-8}">proteins sampled</text>
     <text class="axtitle" x="{L-11}" y="{T-10}" text-anchor="end">strings</text>
 
-    <path d="{path(src)}" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
-    <path d="{path(mod)}" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+    <line x1="{cx:.1f}" y1="{T}" x2="{cx:.1f}" y2="{T+PH}" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="{path(S)}" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="{path(M)}" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
 
-    <circle cx="{xs(N-1):.1f}" cy="{ys(src[-1]):.2f}" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
-    <circle cx="{xs(N-1):.1f}" cy="{ys(mod[-1]):.2f}" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
-    <text class="endlab" x="{xs(N-1)+10:.1f}" y="{ys(src[-1])-1:.2f}" fill="var(--src)">free text</text>
-    <text class="endsub" x="{xs(N-1)+10:.1f}" y="{ys(src[-1])+12:.2f}">{srcs} strings</text>
-    <text class="endlab" x="{xs(N-1)+10:.1f}" y="{ys(mod[-1])+3:.2f}" fill="var(--mod)">controlled</text>
-    <text class="endsub" x="{xs(N-1)+10:.1f}" y="{ys(mod[-1])+16:.2f}">{mods} strings</text>
+    <circle cx="{xs(S['n']):.1f}" cy="{ys(src_end):.2f}" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="{xs(M['n']):.1f}" cy="{ys(mod_end):.2f}" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="{min(xs(S['n'])+10, L+PW+8):.1f}" y="{sy-1:.2f}" fill="var(--src)">free text</text>
+    <text class="endsub" x="{min(xs(S['n'])+10, L+PW+8):.1f}" y="{sy+12:.2f}">{srcs} strings</text>
+    <text class="endlab" x="{min(xs(M['n'])+10, L+PW+8):.1f}" y="{my+3:.2f}" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="{min(xs(M['n'])+10, L+PW+8):.1f}" y="{my+16:.2f}">{mods} strings</text>
 
     <line id="xh" x1="0" y1="{T}" x2="0" y2="{T+PH}" stroke="var(--base)" stroke-width="1" opacity="0"/>
     <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
@@ -221,25 +226,24 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
    </svg>
    <div class="tip" id="tip"></div>
   </div>
-  <figcaption>Mean distinct annotation strings over {reps} random orderings of the
-  {N} annotated genomes. The controlled curve is flat because the {mods} names are
-  fixed in advance; the free-text curve rises because it is a record of how many
-  different ways people have written those same {mods} proteins down.</figcaption>
+  <figcaption>Mean distinct annotation strings over {reps} random orderings of every
+  annotated protein in the {G:,} genomes both sources annotate: {S['n']:,} source
+  product records and {M['n']:,} module calls. Both curves start at zero. The dashed line
+  marks {CN:,} proteins, the depth both curves reach, where the two are compared.</figcaption>
  </figure>
 
- <p class="note">The ratio is the number worth quoting: at the end of each curve,
- free text costs <b>{src_per100:.1f} strings per 100 genomes</b> and the controlled
- vocabulary <b>{mod_per100:.1f}</b> &mdash; a <b>{ratio:.1f}-fold collapse</b>.
- Reaching 95% of its final size takes the source vocabulary <b>{knee} genomes</b>
- ({100.0*knee/N:.0f}% of the set); the module gets there on genome
- <b>{d['module_knee']}</b>.</p>
+ <p class="note">Compared at the same sampling depth, {CN:,} proteins, free text has
+ used <b>{d['source_at_common']:.1f} distinct strings</b> and the controlled vocabulary
+ <b>{d['module_at_common']:.1f}</b> &mdash; a <b>{ratio:.1f}-fold collapse</b>. The
+ source vocabulary reaches 95% of its final size after {knee:,} of its {S['n']:,} proteins;
+ the module after {d['module_knee']:,} of {M['n']:,}.</p>
 
  <details>
-  <summary>Table view &mdash; {max(1, N//40)} genome steps</summary>
+  <summary>Table view &mdash; proteins sampled</summary>
   <div class="tw"><table>
-   <thead><tr><th>genomes sampled</th><th>free text</th><th>controlled</th><th>ratio</th></tr></thead>
+   <thead><tr><th>proteins sampled</th><th>free text</th><th>controlled</th><th>ratio</th></tr></thead>
    <tbody>
-   {''.join(f"<tr><td>{i+1}</td><td>{src[i]:.2f}</td><td>{mod[i]:.2f}</td><td>{src[i]/mod[i]:.2f}&times;</td></tr>" for i in sorted(set(list(range(0, N, max(1, N//40))) + [N-1])))}
+   {table}
    </tbody>
   </table></div>
  </details>
@@ -252,26 +256,28 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
  normal-vision &Delta;E 31.8, contrast &ge;3.12:1.</div>
 </div>
 <script>
- var SRC={json.dumps([round(v,2) for v in src])}, MOD={json.dumps([round(v,2) for v in mod])};
- var Lm={L}, PWm={PW}, Nn={N}, VB={VBW};
+ var SX={json.dumps(S['x'])}, SY={json.dumps(S['y'])}, MX={json.dumps(M['x'])}, MY={json.dumps(M['y'])};
+ var Lm={L}, PWm={PW}, XT={XTOP}, VB={VBW};
  var cb=document.getElementById('cb'), hit=document.getElementById('hit'),
      xh=document.getElementById('xh'), ds=document.getElementById('ds'),
      dm=document.getElementById('dm'), tip=document.getElementById('tip');
  var svg=cb.querySelector('svg');
- function X(i){{ return Lm + PWm*i/(Nn-1); }}
+ function X(x){{ return Lm + PWm*x/XT; }}
+ function at(xa,ya,x){{ if(x>xa[xa.length-1]) return null; var i=0; while(xa[i]<x) i++;
+   if(xa[i]===x||i===0) return ya[i]; return ya[i-1]+(ya[i]-ya[i-1])*(x-xa[i-1])/(xa[i]-xa[i-1]); }}
  function Y(v){{ return {T} + {PH}*(1 - v/{YMAX}); }}
  function show(e){{
    var r=svg.getBoundingClientRect(), sx=(e.clientX-r.left)*VB/r.width;
-   var i=Math.round((sx-Lm)/PWm*(Nn-1));
-   if(i<0) i=0; if(i>Nn-1) i=Nn-1;
-   var x=X(i);
+   var k=Math.round((sx-Lm)/PWm*XT); var top=Math.max(SX[SX.length-1],MX[MX.length-1]);
+   if(k<0) k=0; if(k>top) k=top;
+   var x=X(k), s=at(SX,SY,k), m=at(MX,MY,k);
    xh.setAttribute('x1',x); xh.setAttribute('x2',x); xh.setAttribute('opacity','1');
-   ds.setAttribute('cx',x); ds.setAttribute('cy',Y(SRC[i])); ds.setAttribute('opacity','1');
-   dm.setAttribute('cx',x); dm.setAttribute('cy',Y(MOD[i])); dm.setAttribute('opacity','1');
-   tip.innerHTML='<div style="color:var(--muted);margin-bottom:3px">'+(i+1)+
-     ' genome'+(i?'s':'')+' sampled</div>'+
-     '<div class="tiprow"><i class="sw" style="background:var(--src)"></i>free text <b>'+SRC[i].toFixed(2)+'</b></div>'+
-     '<div class="tiprow"><i class="sw" style="background:var(--mod)"></i>controlled <b>'+MOD[i].toFixed(2)+'</b></div>';
+   if(s!==null){{ ds.setAttribute('cx',x); ds.setAttribute('cy',Y(s)); ds.setAttribute('opacity','1'); }} else ds.setAttribute('opacity','0');
+   if(m!==null){{ dm.setAttribute('cx',x); dm.setAttribute('cy',Y(m)); dm.setAttribute('opacity','1'); }} else dm.setAttribute('opacity','0');
+   tip.innerHTML='<div style="color:var(--muted);margin-bottom:3px">'+k.toLocaleString()+
+     ' protein'+(k===1?'':'s')+' sampled</div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--src)"></i>free text <b>'+(s===null?'&mdash;':s.toFixed(2))+'</b></div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--mod)"></i>controlled <b>'+(m===null?'&mdash;':m.toFixed(2))+'</b></div>';
    tip.style.opacity='1';
    var px=x*r.width/VB, tw=tip.offsetWidth;
    tip.style.left=Math.min(Math.max(px+12,4), r.width-tw-4)+'px';
@@ -288,5 +294,6 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
 out = _a.out
 open(out, 'w').write(HTML)
 print(f"wrote {out} ({len(HTML)} bytes)")
-print(f"  source {src[0]:.2f} -> {src[-1]:.2f} ({srcs} total), knee {knee}")
-print(f"  module {mod[0]:.2f} -> {mod[-1]:.2f} ({mods} total), knee {d['module_knee']}")
+print(f"  source 0 -> {src_end:.2f} over {S['n']} proteins ({srcs} total), knee {knee}")
+print(f"  module 0 -> {mod_end:.2f} over {M['n']} proteins ({mods} total), knee {d['module_knee']}")
+print(f"  at {CN} proteins: {d['source_at_common']:.1f} vs {d['module_at_common']:.1f} = {ratio:.1f}x")

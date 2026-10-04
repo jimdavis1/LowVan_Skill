@@ -907,18 +907,24 @@ python3 scripts/gen_coverage_audit.py --facts <taxon>_audit.json \
 - **String collapse** — how many BV-BRC strings each annotation absorbs. This is
   the number the LowVan manuscript reports.
 - **Vocabulary rarefaction** — the same claim as a curve, and the more
-  convincing form of it. Shuffle the genomes, accumulate distinct annotation
-  strings, average over replicates. A controlled vocabulary saturates, because
-  the Nth genome reuses names the first N-1 established; free text climbs
-  roughly linearly, because every submitter spells the same protein a new way.
+  convincing form of it. **Rarefy over proteins, not genomes**: pool every
+  annotated protein, shuffle, draw them one at a time and count distinct
+  strings, averaged over replicates. The x-axis is proteins sampled and both
+  curves start at (0, 0) -- k proteins can carry at most k strings. Shuffling
+  whole genomes starts the curve at one genome's vocabulary (13, 15) and is
+  wrong; every page built before 4 October 2026 used it. A controlled
+  vocabulary saturates, because the Nth protein reuses a name already seen;
+  free text keeps climbing, because every submitter spells it a new way.
 
   ```bash
   python3 scripts/annotation_rarefaction.py --new coverage_eval/ann \
           --old bvbrc_products.tsv --out rarefaction.json --replicates 100
   ```
 
-  Report the ratio, not just the picture: strings per 100 genomes at the end of
-  each curve says how much collapse the vocabulary actually bought.
+  Report the ratio, not just the picture, and report it at equal depth: the
+  source and the module hold different numbers of proteins (a polyprotein-only
+  source record against a dozen mature-peptide calls), so compare distinct
+  strings at the protein count both curves reach.
 - **PSSM registry** — every declared feature, its profiles, and what fraction of
   its own collection it recovers.
 - **Coverage audit** — the whole module in nine questions: what it covers, how it
