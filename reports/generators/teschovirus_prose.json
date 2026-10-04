@@ -1,0 +1,42 @@
+{
+ "date": "4 October 2026",
+ "h1": "Does the porcine teschovirus module work?",
+ "standfirst": "<b>Teschovirus</b> is the genus of porcine teschovirus, the cause of Teschen&ndash;Talfan disease (porcine polioencephalomyelitis). Most infections are subclinical, which is why the genus is sequenced mostly from surveillance of healthy herds. This audit covers the module built for it: what it covers, how it was built, where the cutoffs sit, whether genomes reach it, whether it calls the proteins, and what it cannot do.",
+ "lede01": "One genus and one layout. Almost all of the genus is a single species.",
+ "p01": [
+  "The teschovirus polyprotein runs leader, VP4, VP2, VP3, VP1, then a 2A of about 20 residues that ends NPG&darr;P and releases the capsid precursor by ribosome skipping rather than by proteolysis, then 2B, 2C, 3A, a single VPg, 3C and 3D. The leader is short, 86 residues in the porcine viruses.",
+  "<i>Teschovirus asilesi</i> (porcine teschovirus A) accounts for 267 of the 327 genomes. The rest are a handful of porcine serotypes, teschovirus B, and a small group of bat teschoviruses from Madagascar and Yunnan that matter to section 07."
+ ],
+ "lede02": "Every feature built at the documented defaults, from 25 to 190 sequences.",
+ "p02": [
+  "BV-BRC annotates the genus densely. Unlike Avihepatovirus, every mature peptide had a collection large enough for <code>-m 5 -mi 0.8</code>, so no profile needed a departure and no cut site had to be projected from polyproteins. The leftover pass then built profiles for the divergent members that reached no first-pass cluster."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the median. Bit cutoffs at 0.45&times; the median length, with a floor of 20.",
+ "p03": [
+  "The leader window, 68 to 103 residues, deliberately excludes a second annotated length. Twenty-three unique leaders in the source are 118 residues long. Each of them is the 86-residue leader plus 32 residues read from an upstream in-frame AUG, and is 93% identical to the short form over their shared length. This is a choice of start codon on the same protein, as with the aphthovirus Lab/Lb leaders, and the module models the conserved <code>MECLK&hellip;</code> start that every record shares."
+ ],
+ "lede04": "160 exemplars, 160 routed.",
+ "p04": [],
+ "lede05": "Every mature peptide is called on at least 158 of 160 exemplars except the leader, which is called on 151.",
+ "p05": [
+  "Seven of the nine exemplars without a leader call are bat teschoviruses: Rousettus madagascariensis teschovirus MIZ190 and MIZ205, Eidolon dupreanum teschovirus KEL164, and four Pteropodidae bat teschoviruses from Yunnan. They route and every other protein is called on them, so their leader is too divergent from the porcine leaders for any profile to reach. The other two are a 5.9 kb partial assembly (118140.410) and porcine teschovirus 16 MoI2-2-1."
+ ],
+ "lede06": "39 of 40 held-out genomes clean.",
+ "p06": [
+  "The flagged genome is 118140.487, Teschovirus A PTV-SDRS/2024. At 6,389 nucleotides it is about 700 shorter than a complete teschovirus, and its polyprotein is called as three separate HSPs, which is what a deposited sequence with frameshifting indels produces. VP2, VP3 and 3D are missing from it in the coverage run for the same reason. The defect is in the genome, and the quality flag is the correct result."
+ ],
+ "lede07": "The bat teschovirus leader, and nothing else measured.",
+ "p07": [
+  "<b>The bat teschovirus leader is not called.</b> Seven genomes from three bat teschovirus species route to the module and have every other protein called, but no leader. None of them carries a leader annotation in BV-BRC, so no sequence from that lineage is in the Ldr collection. Adding one requires an annotated bat teschovirus genome, or projecting a cut site across from the porcine viruses, and that has not been done.",
+  "<b>The longer leader is not modelled as a separate form.</b> On a genome whose polyprotein actually starts at the upstream AUG, the module calls the 86-residue leader, so the call is 32 residues short of the translated product. Which AUG ribosomes use in vivo is not established by anything in the source data."
+ ],
+ "verdict07": "The module calls every teschovirus protein on the porcine viruses, which are all but eight of the 327 genomes. The one systematic gap is the bat lineage's leader, and closing it needs an annotated bat genome. A threshold change cannot reach it.",
+ "lede08": "This module needed no rebuild.",
+ "p08": [
+  "Full-taxon coverage was run for the first time on 4 October 2026. It found no feature trailing the best-called protein by 20 points, so step 13 had nothing to chase. The only finding was the second leader length, and it turned out to be a start-codon variant of the same protein."
+ ],
+ "lede09": "Picornavirus submitters mostly use the positional names, so the source vocabulary is small.",
+ "p09": [
+  "Teschovirus records mostly say <code>VP2</code>, <code>2B</code> or <code>3D</code>, or the same name with &ldquo;protein&rdquo; appended. That leaves about two spellings per protein, far fewer than the dozens a plant-virus replicase attracts. The collapse is therefore modest. The module's thirteen strings are fixed from the first genome, while the source vocabulary keeps growing until the 93rd."
+ ]
+}

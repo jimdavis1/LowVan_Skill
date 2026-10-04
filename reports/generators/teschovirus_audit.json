@@ -1,0 +1,639 @@
+{
+ "title": "Teschovirus Coverage Audit",
+ "eyebrow": "LowVan &middot; Teschovirus module &middot; 4 October 2026",
+ "h1": "Does the porcine teschovirus module work?",
+ "standfirst": "<b>Teschovirus</b> is the genus of porcine teschovirus, the cause of Teschen&ndash;Talfan disease (porcine polioencephalomyelitis). Most infections are subclinical, which is why the genus is sequenced mostly from surveillance of healthy herds. This audit covers the module built for it: what it covers, how it was built, where the cutoffs sit, whether genomes reach it, whether it calls the proteins, and what it cannot do.",
+ "headline_tiles": [
+  [
+   "13",
+   "features, all with profiles"
+  ],
+  [
+   "49",
+   "PSSMs"
+  ],
+  [
+   "160/160",
+   "exemplars routed"
+  ],
+  [
+   "97.5%",
+   "held-out genomes genuinely clean"
+  ],
+  [
+   "1.9&times;",
+   "string collapse"
+  ],
+  [
+   "1.9&times;",
+   "vocabulary growth, source vs module"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One genus and one layout. Almost all of the genus is a single species.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The teschovirus polyprotein runs leader, VP4, VP2, VP3, VP1, then a 2A of about 20 residues that ends NPG&darr;P and releases the capsid precursor by ribosome skipping rather than by proteolysis, then 2B, 2C, 3A, a single VPg, 3C and 3D. The leader is short, 86 residues in the porcine viruses."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "327"
+      ],
+      [
+       "protein features",
+       "2,970"
+      ],
+      [
+       "unique sequences",
+       "1,613"
+      ],
+      [
+       "genomes with a contig &ge; 5 kb",
+       "250"
+      ],
+      [
+       "species",
+       "13"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<i>Teschovirus asilesi</i> (porcine teschovirus A) accounts for 267 of the 327 genomes. The rest are a handful of porcine serotypes, teschovirus B, and a small group of bat teschoviruses from Madagascar and Yunnan that matter to section 07."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Every feature built at the documented defaults, from 25 to 190 sequences.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Genome polyprotein",
+       "POLY",
+       "125",
+       "5",
+       "defaults"
+      ],
+      [
+       "Ldr",
+       "Leader protein",
+       "Ldr",
+       "153",
+       "2",
+       "defaults"
+      ],
+      [
+       "VP4",
+       "Capsid protein VP4 (1A)",
+       "VP4",
+       "53",
+       "1",
+       "defaults"
+      ],
+      [
+       "VP2",
+       "Capsid protein VP2 (1B)",
+       "VP2",
+       "190",
+       "9",
+       "defaults"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "VP3",
+       "183",
+       "4",
+       "defaults"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "VP1",
+       "187",
+       "14",
+       "defaults"
+      ],
+      [
+       "2A",
+       "Protein 2A, StopGo peptide",
+       "2A",
+       "25",
+       "1",
+       "defaults"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "2B",
+       "119",
+       "2",
+       "defaults"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "2C",
+       "142",
+       "2",
+       "defaults"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "3A",
+       "50",
+       "2",
+       "defaults"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "VPG",
+       "34",
+       "2",
+       "defaults"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "3C",
+       "97",
+       "3",
+       "defaults"
+      ],
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "3D",
+       "151",
+       "2",
+       "defaults"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "BV-BRC annotates the genus densely. Unlike Avihepatovirus, every mature peptide had a collection large enough for <code>-m 5 -mi 0.8</code>, so no profile needed a departure and no cut site had to be projected from polyproteins. The leftover pass then built profiles for the divergent members that reached no first-pass cluster."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Windows at 0.8&times; to 1.2&times; the median. Bit cutoffs at 0.45&times; the median length, with a floor of 20.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "400",
+       "0.65",
+       "1,664",
+       "2,647"
+      ],
+      [
+       "Ldr",
+       "38",
+       "0.65",
+       "68",
+       "103"
+      ],
+      [
+       "VP4",
+       "33",
+       "0.65",
+       "59",
+       "88"
+      ],
+      [
+       "VP2",
+       "126",
+       "0.65",
+       "224",
+       "336"
+      ],
+      [
+       "VP3",
+       "108",
+       "0.65",
+       "193",
+       "290"
+      ],
+      [
+       "VP1",
+       "118",
+       "0.65",
+       "210",
+       "315"
+      ],
+      [
+       "2A",
+       "20",
+       "0.65",
+       "16",
+       "25"
+      ],
+      [
+       "2B",
+       "65",
+       "0.65",
+       "116",
+       "175"
+      ],
+      [
+       "2C",
+       "144",
+       "0.65",
+       "256",
+       "385"
+      ],
+      [
+       "3A",
+       "40",
+       "0.65",
+       "72",
+       "109"
+      ],
+      [
+       "VPG",
+       "20",
+       "0.65",
+       "20",
+       "30"
+      ],
+      [
+       "3C",
+       "92",
+       "0.65",
+       "164",
+       "246"
+      ],
+      [
+       "3D",
+       "203",
+       "0.65",
+       "361",
+       "542"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The leader window, 68 to 103 residues, deliberately excludes a second annotated length. Twenty-three unique leaders in the source are 118 residues long. Each of them is the 86-residue leader plus 32 residues read from an upstream in-frame AUG, and is 93% identical to the short form over their shared length. This is a choice of start codon on the same protein, as with the aphthovirus Lab/Lb leaders, and the module models the conserved <code>MECLK&hellip;</code> start that every record shares."
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>1508 of 1509 (99.9%)</b> &mdash; POLY 125/125, Ldr 152/153, VP4 53/53, VP2 190/190, VP3 183/183, VP1 187/187, 2A 25/25, 2B 119/119, 2C 142/142, 3A 50/50, VPG 34/34, 3C 97/97, 3D 151/151. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "160 exemplars, 160 routed.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes &ge; 5 kb, clustered at 95% nucleotide identity",
+       "160",
+       "&mdash;"
+      ],
+      [
+       "routed to Teschovirus",
+       "160",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "7 rep contigs ship with the module; 7 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Every mature peptide is called on at least 158 of 160 exemplars except the leader, which is called on 151.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "POLY",
+       "99.4",
+       99.4,
+       "159 of 160 routed exemplars"
+      ],
+      [
+       "Ldr",
+       "94.4",
+       94.4,
+       "151 of 160 routed exemplars"
+      ],
+      [
+       "VP4",
+       "99.4",
+       99.4,
+       "159 of 160 routed exemplars"
+      ],
+      [
+       "VP2",
+       "99.4",
+       99.4,
+       "159 of 160 routed exemplars"
+      ],
+      [
+       "VP3",
+       "99.4",
+       99.4,
+       "159 of 160 routed exemplars"
+      ],
+      [
+       "VP1",
+       "100.0",
+       100.0,
+       "160 of 160 routed exemplars"
+      ],
+      [
+       "2A",
+       "100.0",
+       100.0,
+       "160 of 160 routed exemplars"
+      ],
+      [
+       "2B",
+       "100.0",
+       100.0,
+       "160 of 160 routed exemplars"
+      ],
+      [
+       "2C",
+       "100.0",
+       100.0,
+       "160 of 160 routed exemplars"
+      ],
+      [
+       "3A",
+       "100.0",
+       100.0,
+       "160 of 160 routed exemplars"
+      ],
+      [
+       "VPG",
+       "100.0",
+       100.0,
+       "160 of 160 routed exemplars"
+      ],
+      [
+       "3C",
+       "100.0",
+       100.0,
+       "160 of 160 routed exemplars"
+      ],
+      [
+       "3D",
+       "98.8",
+       98.8,
+       "158 of 160 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>148 of 160 routed exemplars get every declared feature.</b> No core feature trails the best-called one by 20 points or more."
+    },
+    {
+     "type": "prose",
+     "html": "Seven of the nine exemplars without a leader call are bat teschoviruses: Rousettus madagascariensis teschovirus MIZ190 and MIZ205, Eidolon dupreanum teschovirus KEL164, and four Pteropodidae bat teschoviruses from Yunnan. They route and every other protein is called on them, so their leader is too divergent from the porcine leaders for any profile to reach. The other two are a 5.9 kb partial assembly (118140.410) and porcine teschovirus 16 MoI2-2-1."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "39 of 40 held-out genomes clean.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "40",
+       "held-out genomes"
+      ],
+      [
+       "39",
+       "no genome/contig flags"
+      ],
+      [
+       "39",
+       "genuinely clean"
+      ],
+      [
+       "1",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "97.5%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 40 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "pre",
+     "text": "   1  Genome has too many HSPs for: Genome polyprotein\n   1  Count = 3"
+    },
+    {
+     "type": "prose",
+     "html": "The flagged genome is 118140.487, Teschovirus A PTV-SDRS/2024. At 6,389 nucleotides it is about 700 shorter than a complete teschovirus, and its polyprotein is called as three separate HSPs, which is what a deposited sequence with frameshifting indels produces. VP2, VP3 and 3D are missing from it in the coverage run for the same reason. The defect is in the genome, and the quality flag is the correct result."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "The bat teschovirus leader, and nothing else measured.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>The bat teschovirus leader is not called.</b> Seven genomes from three bat teschovirus species route to the module and have every other protein called, but no leader. None of them carries a leader annotation in BV-BRC, so no sequence from that lineage is in the Ldr collection. Adding one requires an annotated bat teschovirus genome, or projecting a cut site across from the porcine viruses, and that has not been done."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The longer leader is not modelled as a separate form.</b> On a genome whose polyprotein actually starts at the upstream AUG, the module calls the 86-residue leader, so the call is 32 residues short of the translated product. Which AUG ribosomes use in vivo is not established by anything in the source data."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "The module calls every teschovirus protein on the porcine viruses, which are all but eight of the 327 genomes. The one systematic gap is the bat lineage's leader, and closing it needs an annotated bat genome. A threshold change cannot reach it."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "This module needed no rebuild.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Full-taxon coverage was run for the first time on 4 October 2026. It found no feature trailing the best-called protein by 20 points, so step 13 had nothing to chase. The only finding was the second leader length, and it turned out to be a start-codon variant of the same protein."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "Picornavirus submitters mostly use the positional names, so the source vocabulary is small.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "teschovirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "VP2",
+       "Capsid protein VP2 (1B)",
+       "2"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "2"
+      ],
+      [
+       "2A",
+       "Protein 2A, StopGo peptide",
+       "2"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "2"
+      ],
+      [
+       "VP4",
+       "Capsid protein VP4 (1A)",
+       "2"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "2"
+      ],
+      [
+       "Ldr",
+       "Leader protein",
+       "2"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "2"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "2"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "2"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "2"
+      ],
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "2"
+      ],
+      [
+       "POLY",
+       "Genome polyprotein",
+       "1"
+      ],
+      [
+       "<i>unbound</i>",
+       "&mdash;",
+       "15"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over 100 shuffles of 153 genomes: the source vocabulary reaches <b>25</b> distinct strings, the module's <b>13</b>. <b>16.3 strings per 100 genomes against 8.5 &mdash; a 1.9-fold difference.</b> The source curve reaches 95% of its final size at 93 genomes, the module's at 1."
+    },
+    {
+     "type": "prose",
+     "html": "Teschovirus records mostly say <code>VP2</code>, <code>2B</code> or <code>3D</code>, or the same name with &ldquo;protein&rdquo; appended. That leaves about two spellings per protein, far fewer than the dozens a plant-virus replicase attracts. The collapse is therefore modest. The module's thirteen strings are fixed from the first genome, while the source vocabulary keeps growing until the 93rd."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>teschovirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Picornaviridae/work/Teschovirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}

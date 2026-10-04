@@ -1,0 +1,9 @@
+{
+ "standfirst": "Porcine teschovirus is a single-genus module: a short leader, the four-capsid-protein layout, a 2A StopGo peptide of about 20 residues and a single VPg. BV-BRC annotates the genus densely, so every feature was built at the documented defaults.",
+ "modules": {
+  "Teschovirus": "L+, VP4-VP2-VP3-VP1, 2A StopGo, one VPg. POLY is the only feature with copy_num; the thirteen mature peptides are derived from it."
+ },
+ "gaps": "No feature lacks a collection. The leader comes in two annotated lengths: 86 residues, and 118 residues when an upstream in-frame AUG is used. The module models the 86-residue form, which every 118-residue record contains.",
+ "derived": "All mature peptides are cleavage products of POLY, with both extensions set to 0.",
+ "why": {}
+}

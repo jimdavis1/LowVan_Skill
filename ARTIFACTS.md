@@ -35,6 +35,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Pestiviridae** | [live](https://claude.ai/artifact/2wDv9SfmPrtHWSch4gek5c) | [live](https://claude.ai/artifact/9UrwQLi5mBSkVmB4UrtLJm) | [live](https://claude.ai/artifact/KcbRvV3YqDZWutCDNEWkxh) | [live](https://claude.ai/artifact/LEF7bVuNmTvA8vs94ptF26) |
 | **Quinvirinae** | [live](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [live](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [live](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [live](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) |
 | **Rhabdoviridae** | — | [live](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | — | [live](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) |
+| **Teschovirus** | [live](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [live](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [live](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [live](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) |
 | **Tobamovirus** | [live](https://claude.ai/artifact/4r5eFifqQBs3msQyeTDRkd) | [live](https://claude.ai/artifact/Jaxj3wb1cGkEng25cDoXDz) | [live](https://claude.ai/artifact/GDgyPgzSQr3PoNyBXKF75F) | [live](https://claude.ai/artifact/Lqb3QrZN9vuQT2tHNnxjjf) |
 | **Togaviridae** | [src only](reports/togaviridae-string-collapse.html) | [live](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | — | [live](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) |
 | **Trivirinae** | [live](https://claude.ai/artifact/SSFaUYG921SiiHWL7Psjv3) | [live](https://claude.ai/artifact/QgcHG4Qph1dDCw1pf5my49) | [live](https://claude.ai/artifact/9bYCnLShKySrUS9NecRe7e) | [live](https://claude.ai/artifact/7h9mdYRw6QdqjqrHDwxcP4) |
@@ -209,6 +210,15 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 | Rhabdoviridae PSSM Registry | [open](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | [source](reports/rhabdoviridae-pssm-registry.html) | 2026-09-09 |
 
 Not made: string collapse, vocabulary saturation.
+
+### Teschovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Teschovirus Coverage Audit | [open](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) | [source](reports/teschovirus-coverage-audit.html) | 2026-10-04 |
+| Teschovirus PSSM Registry | [open](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [source](reports/teschovirus-pssm-registry.html) | 2026-10-04 |
+| Teschovirus String Collapse | [open](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [source](reports/teschovirus-string-collapse.html) | 2026-10-04 |
+| Teschovirus Vocabulary Saturation | [open](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [source](reports/teschovirus-vocabulary-saturation.html) | 2026-10-04 |
 
 ### Tobamovirus
 

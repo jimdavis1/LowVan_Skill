@@ -1,0 +1,174 @@
+<title>Teschovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &amp;middot; Teschovirus module &amp;middot; 4 October 2026</div><h1>Does the porcine teschovirus module work?</h1><p class="stand"><b>Teschovirus</b> is the genus of porcine teschovirus, the cause of Teschen&ndash;Talfan disease (porcine polioencephalomyelitis). Most infections are subclinical, which is why the genus is sequenced mostly from surveillance of healthy herds. This audit covers the module built for it: what it covers, how it was built, where the cutoffs sit, whether genomes reach it, whether it calls the proteins, and what it cannot do.</p><div class="tiles"><div class="tile"><div class="v">13</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">49</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">160/160</div><div class="l">exemplars routed</div></div><div class="tile"><div class="v">97.5%</div><div class="l">held-out genomes genuinely clean</div></div><div class="tile"><div class="v">1.9&amp;times;</div><div class="l">string collapse</div></div><div class="tile"><div class="v">1.9&amp;times;</div><div class="l">vocabulary growth, source vs module</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One genus and one layout. Almost all of the genus is a single species.</p><p class="note">The teschovirus polyprotein runs leader, VP4, VP2, VP3, VP1, then a 2A of about 20 residues that ends NPG&darr;P and releases the capsid precursor by ribosome skipping rather than by proteolysis, then 2B, 2C, 3A, a single VPg, 3C and 3D. The leader is short, 86 residues in the porcine viruses.</p><div class="scroll"><table><thead><tr><th></th><th>count</th></tr></thead><tbody><tr><td>genomes in the BV-BRC protein dump</td><td>327</td></tr><tr><td>protein features</td><td>2,970</td></tr><tr><td>unique sequences</td><td>1,613</td></tr><tr><td>genomes with a contig &amp;ge; 5 kb</td><td>250</td></tr><tr><td>species</td><td>13</td></tr></tbody></table></div><p class="note"><i>Teschovirus asilesi</i> (porcine teschovirus A) accounts for 267 of the 327 genomes. The rest are a handful of porcine serotypes, teschovirus B, and a small group of bat teschoviruses from Madagascar and Yunnan that matter to section 07.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">Every feature built at the documented defaults, from 25 to 190 sequences.</p><div class="scroll"><table><thead><tr><th>feature</th><th>annotation</th><th>symbol</th><th>collection</th><th>profiles</th><th>departures</th></tr></thead><tbody><tr><td>POLY</td><td>Genome polyprotein</td><td>POLY</td><td>125</td><td>5</td><td>defaults</td></tr><tr><td>Ldr</td><td>Leader protein</td><td>Ldr</td><td>153</td><td>2</td><td>defaults</td></tr><tr><td>VP4</td><td>Capsid protein VP4 (1A)</td><td>VP4</td><td>53</td><td>1</td><td>defaults</td></tr><tr><td>VP2</td><td>Capsid protein VP2 (1B)</td><td>VP2</td><td>190</td><td>9</td><td>defaults</td></tr><tr><td>VP3</td><td>Capsid protein VP3 (1C)</td><td>VP3</td><td>183</td><td>4</td><td>defaults</td></tr><tr><td>VP1</td><td>Capsid protein VP1 (1D)</td><td>VP1</td><td>187</td><td>14</td><td>defaults</td></tr><tr><td>2A</td><td>Protein 2A, StopGo peptide</td><td>2A</td><td>25</td><td>1</td><td>defaults</td></tr><tr><td>2B</td><td>Protein 2B, viroporin</td><td>2B</td><td>119</td><td>2</td><td>defaults</td></tr><tr><td>2C</td><td>Protein 2C, ATPase/helicase</td><td>2C</td><td>142</td><td>2</td><td>defaults</td></tr><tr><td>3A</td><td>Protein 3A</td><td>3A</td><td>50</td><td>2</td><td>defaults</td></tr><tr><td>VPG</td><td>Genome-linked protein VPg (3B)</td><td>VPG</td><td>34</td><td>2</td><td>defaults</td></tr><tr><td>3C</td><td>Picornain 3C, protease (3C)</td><td>3C</td><td>97</td><td>3</td><td>defaults</td></tr><tr><td>3D</td><td>RNA-directed RNA polymerase 3D</td><td>3D</td><td>151</td><td>2</td><td>defaults</td></tr></tbody></table></div><p class="note">BV-BRC annotates the genus densely. Unlike Avihepatovirus, every mature peptide had a collection large enough for <code>-m 5 -mi 0.8</code>, so no profile needed a departure and no cut site had to be projected from polyproteins. The leftover pass then built profiles for the divergent members that reached no first-pass cluster.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Windows at 0.8&times; to 1.2&times; the median. Bit cutoffs at 0.45&times; the median length, with a floor of 20.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit_cutoff</th><th>coverage_cutoff</th><th>min_len</th><th>max_len</th></tr></thead><tbody><tr><td>POLY</td><td>400</td><td>0.65</td><td>1,664</td><td>2,647</td></tr><tr><td>Ldr</td><td>38</td><td>0.65</td><td>68</td><td>103</td></tr><tr><td>VP4</td><td>33</td><td>0.65</td><td>59</td><td>88</td></tr><tr><td>VP2</td><td>126</td><td>0.65</td><td>224</td><td>336</td></tr><tr><td>VP3</td><td>108</td><td>0.65</td><td>193</td><td>290</td></tr><tr><td>VP1</td><td>118</td><td>0.65</td><td>210</td><td>315</td></tr><tr><td>2A</td><td>20</td><td>0.65</td><td>16</td><td>25</td></tr><tr><td>2B</td><td>65</td><td>0.65</td><td>116</td><td>175</td></tr><tr><td>2C</td><td>144</td><td>0.65</td><td>256</td><td>385</td></tr><tr><td>3A</td><td>40</td><td>0.65</td><td>72</td><td>109</td></tr><tr><td>VPG</td><td>20</td><td>0.65</td><td>20</td><td>30</td></tr><tr><td>3C</td><td>92</td><td>0.65</td><td>164</td><td>246</td></tr><tr><td>3D</td><td>203</td><td>0.65</td><td>361</td><td>542</td></tr></tbody></table></div><p class="note">The leader window, 68 to 103 residues, deliberately excludes a second annotated length. Twenty-three unique leaders in the source are 118 residues long. Each of them is the 86-residue leader plus 32 residues read from an upstream in-frame AUG, and is 93% identical to the short form over their shared length. This is a choice of start codon on the same protein, as with the aphthovirus Lab/Lb leaders, and the module models the conserved <code>MECLK&hellip;</code> start that every record shares.</p><div class="verdict">Self-recall against each feature's own in-range collection: <b>1508 of 1509 (99.9%)</b> &mdash; POLY 125/125, Ldr 152/153, VP4 53/53, VP2 190/190, VP3 183/183, VP1 187/187, 2A 25/25, 2B 119/119, 2C 142/142, 3A 50/50, VPG 34/34, 3C 97/97, 3D 151/151. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06.</div></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">160 exemplars, 160 routed.</p><div class="scroll"><table><thead><tr><th></th><th>count</th><th>%</th></tr></thead><tbody><tr><td>genomes &amp;ge; 5 kb, clustered at 95% nucleotide identity</td><td>160</td><td>&amp;mdash;</td></tr><tr><td>routed to Teschovirus</td><td>160</td><td>100.0%</td></tr><tr><td>unrouted</td><td>0</td><td>0.0%</td></tr></tbody></table></div><p class="note">7 rep contigs ship with the module; 7 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">Every mature peptide is called on at least 158 of 160 exemplars except the leader, which is called on 151.</p><div class="bars"><div class="bar"><div class="bl">POLY</div><div class="bt"><i style="width:99.40%"></i></div><div class="bv">99.4%</div><div class="bn">159 of 160 routed exemplars</div></div><div class="bar"><div class="bl">Ldr</div><div class="bt"><i style="width:94.40%"></i></div><div class="bv">94.4%</div><div class="bn">151 of 160 routed exemplars</div></div><div class="bar"><div class="bl">VP4</div><div class="bt"><i style="width:99.40%"></i></div><div class="bv">99.4%</div><div class="bn">159 of 160 routed exemplars</div></div><div class="bar"><div class="bl">VP2</div><div class="bt"><i style="width:99.40%"></i></div><div class="bv">99.4%</div><div class="bn">159 of 160 routed exemplars</div></div><div class="bar"><div class="bl">VP3</div><div class="bt"><i style="width:99.40%"></i></div><div class="bv">99.4%</div><div class="bn">159 of 160 routed exemplars</div></div><div class="bar"><div class="bl">VP1</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">160 of 160 routed exemplars</div></div><div class="bar"><div class="bl">2A</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">160 of 160 routed exemplars</div></div><div class="bar"><div class="bl">2B</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">160 of 160 routed exemplars</div></div><div class="bar"><div class="bl">2C</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">160 of 160 routed exemplars</div></div><div class="bar"><div class="bl">3A</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">160 of 160 routed exemplars</div></div><div class="bar"><div class="bl">VPG</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">160 of 160 routed exemplars</div></div><div class="bar"><div class="bl">3C</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">160 of 160 routed exemplars</div></div><div class="bar"><div class="bl">3D</div><div class="bt"><i style="width:98.80%"></i></div><div class="bv">98.8%</div><div class="bn">158 of 160 routed exemplars</div></div></div><p class="note"><b>148 of 160 routed exemplars get every declared feature.</b> No core feature trails the best-called one by 20 points or more.</p><p class="note">Seven of the nine exemplars without a leader call are bat teschoviruses: Rousettus madagascariensis teschovirus MIZ190 and MIZ205, Eidolon dupreanum teschovirus KEL164, and four Pteropodidae bat teschoviruses from Yunnan. They route and every other protein is called on them, so their leader is too divergent from the porcine leaders for any profile to reach. The other two are a 5.9 kb partial assembly (118140.410) and porcine teschovirus 16 MoI2-2-1.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">39 of 40 held-out genomes clean.</p><div class="tiles"><div class="tile"><div class="v">40</div><div class="l">held-out genomes</div></div><div class="tile"><div class="v">39</div><div class="l">no genome/contig flags</div></div><div class="tile"><div class="v">39</div><div class="l">genuinely clean</div></div><div class="tile"><div class="v">1</div><div class="l">flagged</div></div><div class="tile"><div class="v">0</div><div class="l">called nothing</div></div><div class="tile"><div class="v">97.5%</div><div class="l">clean</div></div></div><p class="note">The panel is 40 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all.</p><pre class="mono">   1  Genome has too many HSPs for: Genome polyprotein
+   1  Count = 3</pre><p class="note">The flagged genome is 118140.487, Teschovirus A PTV-SDRS/2024. At 6,389 nucleotides it is about 700 shorter than a complete teschovirus, and its polyprotein is called as three separate HSPs, which is what a deposited sequence with frameshifting indels produces. VP2, VP3 and 3D are missing from it in the coverage run for the same reason. The defect is in the genome, and the quality flag is the correct result.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">The bat teschovirus leader, and nothing else measured.</p><p class="note"><b>The bat teschovirus leader is not called.</b> Seven genomes from three bat teschovirus species route to the module and have every other protein called, but no leader. None of them carries a leader annotation in BV-BRC, so no sequence from that lineage is in the Ldr collection. Adding one requires an annotated bat teschovirus genome, or projecting a cut site across from the porcine viruses, and that has not been done.</p><p class="note"><b>The longer leader is not modelled as a separate form.</b> On a genome whose polyprotein actually starts at the upstream AUG, the module calls the 86-residue leader, so the call is 32 residues short of the translated product. Which AUG ribosomes use in vivo is not established by anything in the source data.</p><div class="verdict warn">The module calls every teschovirus protein on the porcine viruses, which are all but eight of the 327 genomes. The one systematic gap is the bat lineage's leader, and closing it needs an annotated bat genome. A threshold change cannot reach it.</div></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">This module needed no rebuild.</p><p class="note">Full-taxon coverage was run for the first time on 4 October 2026. It found no feature trailing the best-called protein by 20 points, so step 13 had nothing to chase. The only finding was the second leader length, and it turned out to be a start-codon variant of the same protein.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">Picornavirus submitters mostly use the positional names, so the source vocabulary is small.</p><figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of genomes sampled. Free-text strings rise from about 9 to 25; the controlled vocabulary stays flat at about 13.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="262.1" x2="648" y2="262.1" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="111.9" x2="648" y2="111.9" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="266.1" text-anchor="end" class="tick">8</text><text x="47" y="191.0" text-anchor="end" class="tick">15</text><text x="47" y="115.9" text-anchor="end" class="tick">22</text><text x="47" y="30.0" text-anchor="end" class="tick">30</text><text x="58.0" y="369" text-anchor="middle" class="tick">1</text><text x="248.2" y="369" text-anchor="middle" class="tick">50</text><text x="442.3" y="369" text-anchor="middle" class="tick">100</text><text x="648.0" y="369" text-anchor="middle" class="tick">153</text>
+    <text class="axtitle" x="58" y="392">genomes sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <path d="M58.0 246.36 L61.9 213.83 L65.8 201.49 L69.6 200.09 L73.5 194.62 L77.4 193.12 L81.3 191.72 L85.2 190.43 L89.1 189.15 L92.9 186.57 L96.8 185.28 L100.7 177.55 L104.6 177.55 L108.5 174.98 L112.3 173.69 L116.2 172.40 L120.1 172.40 L124.0 168.54 L127.9 164.67 L131.8 163.39 L135.6 160.81 L139.5 160.81 L143.4 156.95 L147.3 156.95 L151.2 156.95 L155.0 155.66 L158.9 153.08 L162.8 150.51 L166.7 147.93 L170.6 147.93 L174.4 146.64 L178.3 145.35 L182.2 142.78 L186.1 140.20 L190.0 137.63 L193.9 137.63 L197.7 136.34 L201.6 132.47 L205.5 129.90 L209.4 126.03 L213.3 123.46 L217.1 123.46 L221.0 120.88 L224.9 120.88 L228.8 120.88 L232.7 119.59 L236.6 119.59 L240.4 118.31 L244.3 117.02 L248.2 117.02 L252.1 117.02 L256.0 115.73 L259.8 114.44 L263.7 114.44 L267.6 114.44 L271.5 114.44 L275.4 114.44 L279.2 114.44 L283.1 114.44 L287.0 114.44 L290.9 111.87 L294.8 111.87 L298.7 111.87 L302.5 111.87 L306.4 110.58 L310.3 109.29 L314.2 109.29 L318.1 109.29 L321.9 108.00 L325.8 108.00 L329.7 108.00 L333.6 108.00 L337.5 104.14 L341.4 104.14 L345.2 102.85 L349.1 102.85 L353.0 102.85 L356.9 102.85 L360.8 102.85 L364.6 102.85 L368.5 101.56 L372.4 101.56 L376.3 101.56 L380.2 100.27 L384.1 100.27 L387.9 98.99 L391.8 97.70 L395.7 96.41 L399.6 95.12 L403.5 93.83 L407.3 93.83 L411.2 93.83 L415.1 91.26 L419.0 91.26 L422.9 91.26 L426.8 91.26 L430.6 89.97 L434.5 89.97 L438.4 89.97 L442.3 86.11 L446.2 86.11 L450.0 86.11 L453.9 86.11 L457.8 86.11 L461.7 86.11 L465.6 86.11 L469.4 86.11 L473.3 86.11 L477.2 84.82 L481.1 84.82 L485.0 83.53 L488.9 83.53 L492.7 83.53 L496.6 82.24 L500.5 82.24 L504.4 82.24 L508.3 82.24 L512.1 82.24 L516.0 82.24 L519.9 82.24 L523.8 82.24 L527.7 82.24 L531.6 82.24 L535.4 82.24 L539.3 82.24 L543.2 82.24 L547.1 82.24 L551.0 82.24 L554.8 82.24 L558.7 82.24 L562.6 82.24 L566.5 80.95 L570.4 80.95 L574.2 79.67 L578.1 79.67 L582.0 79.67 L585.9 79.67 L589.8 79.67 L593.7 79.67 L597.5 79.67 L601.4 79.67 L605.3 79.67 L609.2 79.67 L613.1 79.67 L616.9 79.67 L620.8 79.67 L624.7 79.67 L628.6 79.67 L632.5 79.67 L636.4 79.67 L640.2 79.67 L644.1 79.67 L648.0 79.67" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 209.43 L61.9 208.47 L65.8 208.47 L69.6 208.47 L73.5 208.47 L77.4 208.47 L81.3 208.47 L85.2 208.47 L89.1 208.47 L92.9 208.47 L96.8 208.47 L100.7 208.47 L104.6 208.47 L108.5 208.47 L112.3 208.47 L116.2 208.47 L120.1 208.47 L124.0 208.47 L127.9 208.47 L131.8 208.47 L135.6 208.47 L139.5 208.47 L143.4 208.47 L147.3 208.47 L151.2 208.47 L155.0 208.47 L158.9 208.47 L162.8 208.47 L166.7 208.47 L170.6 208.47 L174.4 208.47 L178.3 208.47 L182.2 208.47 L186.1 208.47 L190.0 208.47 L193.9 208.47 L197.7 208.47 L201.6 208.47 L205.5 208.47 L209.4 208.47 L213.3 208.47 L217.1 208.47 L221.0 208.47 L224.9 208.47 L228.8 208.47 L232.7 208.47 L236.6 208.47 L240.4 208.47 L244.3 208.47 L248.2 208.47 L252.1 208.47 L256.0 208.47 L259.8 208.47 L263.7 208.47 L267.6 208.47 L271.5 208.47 L275.4 208.47 L279.2 208.47 L283.1 208.47 L287.0 208.47 L290.9 208.47 L294.8 208.47 L298.7 208.47 L302.5 208.47 L306.4 208.47 L310.3 208.47 L314.2 208.47 L318.1 208.47 L321.9 208.47 L325.8 208.47 L329.7 208.47 L333.6 208.47 L337.5 208.47 L341.4 208.47 L345.2 208.47 L349.1 208.47 L353.0 208.47 L356.9 208.47 L360.8 208.47 L364.6 208.47 L368.5 208.47 L372.4 208.47 L376.3 208.47 L380.2 208.47 L384.1 208.47 L387.9 208.47 L391.8 208.47 L395.7 208.47 L399.6 208.47 L403.5 208.47 L407.3 208.47 L411.2 208.47 L415.1 208.47 L419.0 208.47 L422.9 208.47 L426.8 208.47 L430.6 208.47 L434.5 208.47 L438.4 208.47 L442.3 208.47 L446.2 208.47 L450.0 208.47 L453.9 208.47 L457.8 208.47 L461.7 208.47 L465.6 208.47 L469.4 208.47 L473.3 208.47 L477.2 208.47 L481.1 208.47 L485.0 208.47 L488.9 208.47 L492.7 208.47 L496.6 208.47 L500.5 208.47 L504.4 208.47 L508.3 208.47 L512.1 208.47 L516.0 208.47 L519.9 208.47 L523.8 208.47 L527.7 208.47 L531.6 208.47 L535.4 208.47 L539.3 208.47 L543.2 208.47 L547.1 208.47 L551.0 208.47 L554.8 208.47 L558.7 208.47 L562.6 208.47 L566.5 208.47 L570.4 208.47 L574.2 208.47 L578.1 208.47 L582.0 208.47 L585.9 208.47 L589.8 208.47 L593.7 208.47 L597.5 208.47 L601.4 208.47 L605.3 208.47 L609.2 208.47 L613.1 208.47 L616.9 208.47 L620.8 208.47 L624.7 208.47 L628.6 208.47 L632.5 208.47 L636.4 208.47 L640.2 208.47 L644.1 208.47 L648.0 208.47" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="648.0" cy="79.67" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="648.0" cy="208.47" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="658.0" y="78.67" fill="var(--src)">free text</text>
+    <text class="endsub" x="658.0" y="91.67">25 strings</text>
+    <text class="endlab" x="658.0" y="211.47" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="658.0" y="224.47">13 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of the
+  153 annotated genomes. The controlled curve is flat because the 13 names are
+  fixed in advance; the free-text curve rises because it is a record of how many
+  different ways people have written those same 13 proteins down.</figcaption>
+ </figure><div class="scroll"><table><thead><tr><th>feature</th><th>annotation string</th><th>source strings absorbed</th></tr></thead><tbody><tr><td>VP2</td><td>Capsid protein VP2 (1B)</td><td>2</td></tr><tr><td>VP3</td><td>Capsid protein VP3 (1C)</td><td>2</td></tr><tr><td>2A</td><td>Protein 2A, StopGo peptide</td><td>2</td></tr><tr><td>VP1</td><td>Capsid protein VP1 (1D)</td><td>2</td></tr><tr><td>VP4</td><td>Capsid protein VP4 (1A)</td><td>2</td></tr><tr><td>2B</td><td>Protein 2B, viroporin</td><td>2</td></tr><tr><td>Ldr</td><td>Leader protein</td><td>2</td></tr><tr><td>2C</td><td>Protein 2C, ATPase/helicase</td><td>2</td></tr><tr><td>3A</td><td>Protein 3A</td><td>2</td></tr><tr><td>VPG</td><td>Genome-linked protein VPg (3B)</td><td>2</td></tr><tr><td>3C</td><td>Picornain 3C, protease (3C)</td><td>2</td></tr><tr><td>3D</td><td>RNA-directed RNA polymerase 3D</td><td>2</td></tr><tr><td>POLY</td><td>Genome polyprotein</td><td>1</td></tr><tr><td><i>unbound</i></td><td>&amp;mdash;</td><td>15</td></tr></tbody></table></div><p class="note">Rarefaction over 100 shuffles of 153 genomes: the source vocabulary reaches <b>25</b> distinct strings, the module's <b>13</b>. <b>16.3 strings per 100 genomes against 8.5 &mdash; a 1.9-fold difference.</b> The source curve reaches 95% of its final size at 93 genomes, the module's at 1.</p><p class="note">Teschovirus records mostly say <code>VP2</code>, <code>2B</code> or <code>3D</code>, or the same name with &ldquo;protein&rdquo; appended. That leaves about two spellings per protein, far fewer than the dozens a plant-virus replicase attracts. The collapse is therefore modest. The module's thirteen strings are fixed from the first genome, while the source vocabulary keeps growing until the 93rd.</p></section><p class="src">Generated from <code>teschovirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Picornaviridae/work/Teschovirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.</p></div>
