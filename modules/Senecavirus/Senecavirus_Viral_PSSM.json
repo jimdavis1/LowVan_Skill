@@ -129,7 +129,7 @@
             "type" : "mat_peptide",
             "upstream_ext" : 0
          },
-         "L" : {
+         "Ldr" : {
             "PMID_claude_generated" : {
                "function" : [
                   "2252396"
@@ -140,7 +140,7 @@
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
-            "gene_symbol" : "L",
+            "gene_symbol" : "Ldr",
             "kmers" : 0,
             "max_len" : 94,
             "min_len" : 63,
