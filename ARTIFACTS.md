@@ -23,6 +23,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Avihepatovirus** | [live](https://claude.ai/artifact/6RHPEZykKvhFBP9wrrH1qU) | [live](https://claude.ai/artifact/JFVvSbRmU1Fv6nq7Wqi7gC) | [live](https://claude.ai/artifact/P3wF6BgumacJUGYqZ4v7X8) | [live](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) |
 | **Bromoviridae** | [live](https://claude.ai/artifact/1wZ4m4Ri6VarEWj6vGB8UT) | [live](https://claude.ai/artifact/VtS14XFKWG1BtzBiX1f193) | [live](https://claude.ai/artifact/LLVpuYZWg7GbRrFbcBMpiK) | [live](https://claude.ai/artifact/MLcThSnPEmReaR28vFsLN5) |
 | **Capillovirus** | [live](https://claude.ai/artifact/UxFYYiPSxUmVHpnfZvttL6) | [live](https://claude.ai/artifact/2MhyYGJDyaiuKpH8dT8DMP) | [live](https://claude.ai/artifact/KRCGhYahtrFrXhC66FMCDG) | [live](https://claude.ai/artifact/72Tkge2qkTd5sc5eumHUtP) |
+| **Cardiovirus** | [live](https://claude.ai/artifact/44d26MFMAYpvzfoKyDjqS7) | [live](https://claude.ai/artifact/WuCYigqaWqd7yeoyQ4PMN5) | [live](https://claude.ai/artifact/SiYcBoWrvoLUSpYcuBk47P) | [live](https://claude.ai/artifact/CWpYjvdg3sbjLaRp68LFti) |
 | **Carlavirus** | [live](https://claude.ai/artifact/DMcy8JVZfFPimPkWsXTMQ1) | [live](https://claude.ai/artifact/8X8vzYkkKzKaGhL5Z35kgd) | [live](https://claude.ai/artifact/CanGWVzZ16524CDkMgP3P3) | [live](https://claude.ai/artifact/NmFkgdqungA9QQqwo4vnxk) |
 | **Closterovirus** | [live](https://claude.ai/artifact/R7s4HEWxG7uE5rUVP45bFE) | [live](https://claude.ai/artifact/6ZfGY1KaXuL3cYbY8fuMUN) | [live](https://claude.ai/artifact/8yJX7hSR2qhznPkQYXq4pj) | [live](https://claude.ai/artifact/Ab6k6zYW9YHdrXhhk893kc) |
 | **Crinivirus** | [live](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [live](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [live](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [live](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) |
@@ -100,6 +101,15 @@ published — the file is in this repo. `—` was not made.
 | Capillovirus PSSM Registry | [open](https://claude.ai/artifact/2MhyYGJDyaiuKpH8dT8DMP) | [source](reports/capillovirus-pssm-registry.html) | 2026-09-29 |
 | Capillovirus String Collapse | [open](https://claude.ai/artifact/UxFYYiPSxUmVHpnfZvttL6) | [source](reports/capillovirus-string-collapse.html) | 2026-09-29 |
 | Capillovirus Vocabulary Saturation | [open](https://claude.ai/artifact/KRCGhYahtrFrXhC66FMCDG) | [source](reports/capillovirus-vocabulary-saturation.html) | 2026-09-29 |
+
+### Cardiovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Cardiovirus Coverage Audit | [open](https://claude.ai/artifact/CWpYjvdg3sbjLaRp68LFti) | [source](reports/cardiovirus-coverage-audit.html) | 2026-10-04 |
+| Cardiovirus PSSM Registry | [open](https://claude.ai/artifact/WuCYigqaWqd7yeoyQ4PMN5) | [source](reports/cardiovirus-pssm-registry.html) | 2026-10-04 |
+| Cardiovirus String Collapse | [open](https://claude.ai/artifact/44d26MFMAYpvzfoKyDjqS7) | [source](reports/cardiovirus-string-collapse.html) | 2026-10-04 |
+| Cardiovirus Vocabulary Saturation | [open](https://claude.ai/artifact/SiYcBoWrvoLUSpYcuBk47P) | [source](reports/cardiovirus-vocabulary-saturation.html) | 2026-10-04 |
 
 ### Carlavirus
 

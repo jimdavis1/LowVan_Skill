@@ -1,0 +1,43 @@
+{
+ "date": "4 October 2026",
+ "h1": "Does the cardiovirus module work?",
+ "standfirst": "<b>Cardiovirus</b> holds encephalomyocarditis virus (Cardiovirus A, <i>C. rueckerti</i>), Theiler's murine encephalomyelitis virus (Cardiovirus B, <i>C. theileri</i>) and Saffold virus (Cardiovirus D, <i>C. saffoldi</i>), the one of the three isolated from humans. Theiler's virus is also the standard animal model of multiple sclerosis. This audit covers the module built for the genus: what it covers, how it was built, where the cutoffs sit, whether genomes reach it, whether it calls the proteins, and what it cannot do.",
+ "lede01": "One genus, one layout, thirteen features &mdash; and two proteins the layout does not describe.",
+ "p01": [
+  "The cardiovirus polyprotein is leader, VP4, VP2, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C, 3D. The leader is a 67&ndash;76 residue zinc-finger protein, median 71, that antagonises host nucleocytoplasmic trafficking, not a protease: it is a different protein from the 201-residue aphthovirus leader protease that occupies the same slot, which is why the two genera are separate modules.",
+  "Two further proteins are made from the same RNA and are <b>not</b> in the module. L* is translated from an alternative AUG in the leader region, out of frame with the polyprotein. 2B* is a transframe fusion made by ribosomal frameshifting inside 2B. Both are well attested, and section 07 reports what this module does about them, which is nothing yet."
+ ],
+ "lede02": "Thirteen features at the documented defaults, 60 profiles.",
+ "p02": [
+  "Every collection was large enough to build at <code>-m 5 -mi 0.8</code>. The thinnest are VPg at 22 sequences and 3A at 36, which still cleared the floor, so no feature needed a departure and no cut site had to be projected from polyproteins."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median, bit cutoffs at 0.45&times; the median length with a floor of 20.",
+ "p03": [],
+ "lede04": "Fifteen rep contigs, and every exemplar routes.",
+ "p04": [],
+ "lede05": "Every core protein on at least 97 of 106 exemplars, and no feature trails the best by 20 points.",
+ "p05": [
+  "The lowest are VPg at 97, and 2A and 3A at 98. VPg is 22 residues, so it sits on the 20-bit floor where the length window does most of the discrimination; the nine genomes that miss it are not concentrated in any one species. The leader is called on 101, which for a protein this short and this variable across the genus is the expected shape rather than a coverage hole."
+ ],
+ "lede06": "40 of 40 held-out genomes clean, with no flag of any kind.",
+ "p06": [
+  "The panel is 40 genomes drawn round-robin across species from the genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. No genome, contig or feature flag fired on any of them. This is the cleanest panel of the ten picornavirus modules."
+ ],
+ "lede07": "Two proteins the module does not call, both proven, both measurable in this data.",
+ "p07": [
+  "<b>L* is not a feature.</b> Theiler's virus translates L* from an alternative AUG in the leader coding region, out of frame with the polyprotein; virus carrying a mutated L* start has sharply reduced demyelinating activity (Chen <i>et al.</i> 1995, PMID 7585219; the alternative initiation site was mapped by Kong &amp; Roos 1991, PMID 2033677). Searching the 106 routed exemplars for an ORF of 100 codons or more, starting at an AUG within 150 nucleotides of the polyprotein start and in a different frame, finds one in <b>41 of them</b> &mdash; 23 <i>C. theileri</i>, 6 <i>C. ranori</i>, 4 rodent cardioviruses, and singletons elsewhere. Median length 156 residues. The protein is there and the module does not name it.",
+  "<b>2B* is not a feature.</b> Encephalomyocarditis virus makes a 128&ndash;129 residue transframe protein by &minus;1 ribosomal frameshifting at a conserved <code>G_GUU_UUY</code> motif shortly after the 2A/2B junction; knocking it out gives a small-plaque phenotype (Loughran <i>et al.</i> 2011, PMID 22025686). Theiler's virus uses the same site at an efficiency of 74&ndash;82%, the highest recorded for any virus, into a much shorter ORF (Finch <i>et al.</i> 2015, PMID 26063423). Reading the motif at its correct codon phase in the 106 exemplars finds it in-frame and intact in <b>21</b>, all of them <i>C. rueckerti</i>, and the resulting construct translates to <b>128&ndash;130 residues</b> in every one &mdash; a match to the published length that was not fitted to it. The theilovirus genomes carry the motif too, 16 nucleotides before the called 2B start.",
+  "Neither is a threshold problem and neither is a profile problem. L* needs a collection and a normal PSSM feature, since an overlapping ORF in another frame is still found by tblastn. 2B* needs <code>special: transcript_edit</code> and a per-genome nucleotide reference set, because it is not collinear with the genome. Both are work orders, not mysteries: the sequences are extracted and counted above. Neither has been built."
+ ],
+ "verdict07": "The module calls all thirteen polyprotein products reliably and calls neither of the genus's two out-of-frame proteins. That is a real gap of known size &mdash; 41 L* ORFs and 21 EMCV 2B* constructs in 106 exemplars &mdash; and it is the next work on this module.",
+ "lede08": "Nothing needed fixing, and that is itself the finding.",
+ "p08": [
+  "Full-taxon coverage and the held-out panel were both run for the first time on 4 October 2026. Coverage routed every exemplar, no feature trailed its neighbours by 20 points, and the panel returned no flags, so steps 13 and 14 had nothing to chase. The module was built on 2 October and has not been rebuilt.",
+  "What the run did surface is what the earlier steps are structurally unable to see: two proteins that are absent from the module's own feature list. No measurement of how well the declared features perform can report a protein that was never declared. Finding them took reading the genus's literature and then going back to the sequence to check, which is section 07."
+ ],
+ "lede09": "Seventy ways of writing thirteen proteins.",
+ "p09": [
+  "Cardiovirus is better annotated than the duck or porcine genera and correspondingly more inconsistent: 97 distinct source strings collapse into 14 controlled ones. Drawn one protein at a time, the source vocabulary needs 711 of its 818 records to reach 95% of its final 70 strings and is still rising at the end; the module reaches 95% of its 13 after 38 proteins and adds nothing after that.",
+  "Nineteen source strings bind to no feature, and the two groups of them say different things. Most are ordinary names &mdash; <code>polyprotein</code> (36 records), <code>protein 2A</code>, <code>capsid protein VP1</code> &mdash; that <i>do</i> match a rule but whose sequences were then dropped by the length and ambiguity filters, so they reach no collection. <code>collect_synmap.py</code> reads collection membership rather than rule matches, so a filtered record is indistinguishable here from an unmatched one; the count is a lower bound on what the vocabulary binds. The other group is not an artefact: <b>five distinct strings name L*</b> (<code>L* protein</code>, <code>protein L*</code>, <code>L* peptide</code>, <code>L*</code>) and one names <code>protein 2B*</code>. Those reach no collection because the module declares no such feature &mdash; the source data naming the two proteins section 07 says the module does not call."
+ ]
+}
