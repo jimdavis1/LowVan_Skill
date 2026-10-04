@@ -41,6 +41,9 @@
       "features" : {
          "2A1" : {
             "PMID_claude_generated" : {
+               "coordinates" : [
+                  "17067712"
+               ],
                "function" : [
                   "2252396"
                ]
@@ -60,19 +63,43 @@
          },
          "2A2" : {
             "PMID_claude_generated" : {
+               "coordinates" : [
+                  "17067712",
+                  "17292992"
+               ],
                "function" : [
                   "2252396"
                ]
             },
             "anno" : "Protein 2A2",
-            "bit_cutoff" : 128,
+            "bit_cutoff" : 72,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
             "gene_symbol" : "2A2",
             "kmers" : 0,
-            "max_len" : 342,
-            "min_len" : 228,
+            "max_len" : 193,
+            "min_len" : 129,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2A3" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "17067712",
+                  "17292992"
+               ]
+            },
+            "anno" : "Protein 2A3",
+            "bit_cutoff" : 56,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2A3",
+            "kmers" : 0,
+            "max_len" : 149,
+            "min_len" : 99,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0
@@ -84,13 +111,13 @@
                ]
             },
             "anno" : "Protein 2B, viroporin",
-            "bit_cutoff" : 53,
+            "bit_cutoff" : 54,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
             "gene_symbol" : "2B",
             "kmers" : 0,
-            "max_len" : 142,
+            "max_len" : 143,
             "min_len" : 95,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
@@ -103,13 +130,13 @@
                ]
             },
             "anno" : "Protein 2C, ATPase/helicase",
-            "bit_cutoff" : 149,
+            "bit_cutoff" : 150,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
             "gene_symbol" : "2C",
             "kmers" : 0,
-            "max_len" : 399,
+            "max_len" : 400,
             "min_len" : 266,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
@@ -122,13 +149,13 @@
                ]
             },
             "anno" : "Protein 3A",
-            "bit_cutoff" : 41,
+            "bit_cutoff" : 42,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
             "gene_symbol" : "3A",
             "kmers" : 0,
-            "max_len" : 111,
+            "max_len" : 112,
             "min_len" : 74,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
@@ -148,7 +175,7 @@
             "gene_symbol" : "3C",
             "kmers" : 0,
             "max_len" : 217,
-            "min_len" : 144,
+            "min_len" : 145,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0
@@ -160,13 +187,13 @@
                ]
             },
             "anno" : "RNA-directed RNA polymerase 3D",
-            "bit_cutoff" : 203,
+            "bit_cutoff" : 204,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
             "gene_symbol" : "3D",
             "kmers" : 0,
-            "max_len" : 543,
+            "max_len" : 544,
             "min_len" : 362,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
@@ -206,7 +233,7 @@
             "gene_symbol" : "VP0",
             "kmers" : 0,
             "max_len" : 307,
-            "min_len" : 204,
+            "min_len" : 205,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0
@@ -224,7 +251,7 @@
             "feature_type" : "mat_peptide",
             "gene_symbol" : "VP1",
             "kmers" : 0,
-            "max_len" : 285,
+            "max_len" : 286,
             "min_len" : 190,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
@@ -237,14 +264,14 @@
                ]
             },
             "anno" : "Capsid protein VP3 (1C)",
-            "bit_cutoff" : 106,
+            "bit_cutoff" : 107,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
             "gene_symbol" : "VP3",
             "kmers" : 0,
             "max_len" : 284,
-            "min_len" : 189,
+            "min_len" : 190,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0
@@ -262,7 +289,7 @@
             "feature_type" : "mat_peptide",
             "gene_symbol" : "VPG",
             "kmers" : 0,
-            "max_len" : 40,
+            "max_len" : 41,
             "min_len" : 27,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",

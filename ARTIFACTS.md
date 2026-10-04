@@ -20,6 +20,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Allexivirus** | [live](https://claude.ai/artifact/Nod4NnVCU3arrmBqiTPh1J) | [live](https://claude.ai/artifact/PR148JCFeHCx5rsiqSPe8d) | [live](https://claude.ai/artifact/S5H57Gg1N2DECvutD8JBTS) | [live](https://claude.ai/artifact/KAyMy13QTKUsFASLRsoTwo) |
 | **Alphaflexiviridae** | [live](https://claude.ai/artifact/1opeHxTHrAVEx7nsy8DMc1) | [live](https://claude.ai/artifact/TseN29Pu2NS87fMCJRTP1a) | [live](https://claude.ai/artifact/DrNtpzKawMfnQvEFgdvJCP) | [live](https://claude.ai/artifact/MzC77du44ZP2iBnPogQPx1) |
 | **Ampelovirus** | [live](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [live](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [live](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [live](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) |
+| **Avihepatovirus** | [live](https://claude.ai/artifact/6RHPEZykKvhFBP9wrrH1qU) | [live](https://claude.ai/artifact/JFVvSbRmU1Fv6nq7Wqi7gC) | [live](https://claude.ai/artifact/P3wF6BgumacJUGYqZ4v7X8) | [live](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) |
 | **Bromoviridae** | [live](https://claude.ai/artifact/1wZ4m4Ri6VarEWj6vGB8UT) | [live](https://claude.ai/artifact/VtS14XFKWG1BtzBiX1f193) | [live](https://claude.ai/artifact/LLVpuYZWg7GbRrFbcBMpiK) | [live](https://claude.ai/artifact/MLcThSnPEmReaR28vFsLN5) |
 | **Capillovirus** | [live](https://claude.ai/artifact/UxFYYiPSxUmVHpnfZvttL6) | [live](https://claude.ai/artifact/2MhyYGJDyaiuKpH8dT8DMP) | [live](https://claude.ai/artifact/KRCGhYahtrFrXhC66FMCDG) | [live](https://claude.ai/artifact/72Tkge2qkTd5sc5eumHUtP) |
 | **Carlavirus** | [live](https://claude.ai/artifact/DMcy8JVZfFPimPkWsXTMQ1) | [live](https://claude.ai/artifact/8X8vzYkkKzKaGhL5Z35kgd) | [live](https://claude.ai/artifact/CanGWVzZ16524CDkMgP3P3) | [live](https://claude.ai/artifact/NmFkgdqungA9QQqwo4vnxk) |
@@ -71,6 +72,15 @@ published — the file is in this repo. `—` was not made.
 | Ampelovirus PSSM Registry | [open](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [source](reports/ampelovirus-pssm-registry.html) | 2026-09-29 |
 | Ampelovirus String Collapse | [open](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [source](reports/ampelovirus-string-collapse.html) | 2026-09-29 |
 | Ampelovirus Vocabulary Saturation | [open](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [source](reports/ampelovirus-vocabulary-saturation.html) | 2026-09-29 |
+
+### Avihepatovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Avihepatovirus Coverage Audit | [open](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) | [source](reports/avihepatovirus-coverage-audit.html) | 2026-10-04 |
+| Avihepatovirus PSSM Registry | [open](https://claude.ai/artifact/JFVvSbRmU1Fv6nq7Wqi7gC) | [source](reports/avihepatovirus-pssm-registry.html) | 2026-10-04 |
+| Avihepatovirus String Collapse | [open](https://claude.ai/artifact/6RHPEZykKvhFBP9wrrH1qU) | [source](reports/avihepatovirus-string-collapse.html) | 2026-10-04 |
+| Avihepatovirus Vocabulary Saturation | [open](https://claude.ai/artifact/P3wF6BgumacJUGYqZ4v7X8) | [source](reports/avihepatovirus-vocabulary-saturation.html) | 2026-10-04 |
 
 ### Bromoviridae
 

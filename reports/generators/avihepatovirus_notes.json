@@ -1,0 +1,9 @@
+{
+ "standfirst": "Duck hepatitis A virus is a single-genus module with one polyprotein and thirteen declared features. Almost every genome in BV-BRC carries only the polyprotein, so the first build had 2 to 5 training sequences per mature peptide. This version projects the cut sites of the few annotated genomes onto the rest, which raises every collection to 18&ndash;120 sequences, and it separates 2A2 from 2A3.",
+ "modules": {
+  "Avihepatovirus": "L-less, VP0 left uncleaved, three 2A proteins (2A1 StopGo, 2A2 AIG1-like with an NTP-binding motif, 2A3 parechovirus-like) and a single VPg. Only POLY is essential (copy_num 1); every mature peptide is derived from it."
+ },
+ "gaps": "Thirteen of 196 unique polyproteins are less than 50% identical to every reference polyprotein, so no cut sites were projected onto them. Their mature peptides are still covered only by profiles built from the rest of the genus.",
+ "derived": "Every mature peptide is a cleavage product of POLY. Its training set comes from the source's own mat_peptide records, plus segments cut from the other polyproteins at coordinates carried across a global alignment. Only cut coordinates already in the source annotation were projected; none were predicted. 2A3 has no collection in the source under its own name: it is 2A2 split at the conserved HLPR motif, where the DHAV-3 reference genome places the boundary.",
+ "why": {}
+}

@@ -1,0 +1,47 @@
+{
+ "date": "4 October 2026",
+ "h1": "Does the duck hepatitis A virus module work?",
+ "standfirst": "<b>Avihepatovirus</b> is the genus of duck hepatitis A virus (DHAV). It causes an acute, often fatal hepatitis in ducklings under a few weeks old and is one of the most economically important diseases of commercial duck farming. This audit covers the module built for it: what it covers, how it was built, where the cutoffs sit, whether genomes reach it, whether it calls the proteins, and what it cannot do. The module was rebuilt on 4 October 2026, and every number on this page comes from the rebuilt version.",
+ "lede01": "One genus, one polyprotein, and three 2A proteins where most picornaviruses have one.",
+ "p01": [
+  "The DHAV genome encodes a single polyprotein, cleaved by the 3C protease alone into VP0, VP3 and VP1 (VP0 stays uncleaved), then three 2A proteins, 2B, 2C, 3A, a single VPg, 3C and 3D. There is no leader. Each of the three 2A proteins has a different ancestry: 2A1 is a ~20-residue aphthovirus-like StopGo peptide ending NPG, 2A2 is AIG1-like with an NTP-binding motif, and 2A3 resembles the parechovirus 2A.",
+  "Most of the genus is a single species, <i>Avihepatovirus ahepati</i> (DHAV-1, -2 and -3). A second lineage is sequenced much more thinly: duck egg-reducing syndrome virus, a mute-swan virus and four goose and crane viruses still labelled <i>Avihepatovirus sp.</i> Their genomes run 8.3 to 9.0 kb, against about 7.7 kb for DHAV, and their polyproteins are less than 40% identical to any DHAV. Section 07 covers what that means for the module."
+ ],
+ "lede02": "The first build had 2 to 5 training sequences per mature peptide. This rebuild has 18 to 120.",
+ "p02": [
+  "BV-BRC holds 196 unique DHAV polyproteins, but only five genomes carry mat_peptide records. A collection built from annotation strings therefore had two 3C sequences and three of 2B. <code>project_matpeptides.py</code> takes the cut coordinates from those five genomes, where every mature peptide is an exact substring of its own polyprotein, and carries them across a global alignment to every other polyprotein. Nothing is predicted: a cut only ever moves along an alignment. A projected segment is kept only if the whole polyprotein is at least 50% identical to its reference, the segment is inside the feature's length window, and the segment is at least 35% identical to the reference segment.",
+  "The cut sites came out crisp. All 55 projected 3C sequences end in Q, all 91 2C sequences end NQ, and the 100 VP0 sequences end in Q, which is the 3C cleavage signature. Length is constant within every feature except VP1, which ranges from 237 to 240 residues.",
+  "<b>2A3 is new in this rebuild.</b> RefSeq and BV-BRC annotate a single 285-residue &ldquo;2A2&rdquo;, which is 2A2 and 2A3 together. The DHAV-3 genome 1006063.235 annotates them separately, as 161 + 124 residues, with 2A3 starting at a conserved <code>HLPR</code> motif. That motif sits at the same position in every DHAV-1 and DHAV-3 sequence in the collection. The module now splits at it, so 2A2 is 161 residues and 2A3 is 124. The organisation is from Tseng, Knowles &amp; Tsai 2007 (PMID 17067712) and Tseng &amp; Tsai 2007 (PMID 17292992), both carried as model-proposed citations."
+ ],
+ "lede03": "Every window is 0.8&times; to 1.2&times; the collection median. Every bit cutoff is 0.45&times; the median length, with a floor of 20.",
+ "p03": [
+  "2A1 and VPG sit on the 20-bit floor because they are 20 and 34 residues long. For a peptide that short, the length window does the work of separating signal from noise, and the bit cutoff does little."
+ ],
+ "lede04": "Nine rep contigs, and every DHAV and every divergent genome routes.",
+ "p04": [
+  "Every exemplar routes, including the seven from the divergent lineage. At the nucleotide level they are close enough for a rep contig to claim them. The gap opens at the protein level."
+ ],
+ "lede05": "Every feature is called on every DHAV genome. The misses are all in the divergent lineage.",
+ "p05": [
+  "The lagging features are 2A2, VPG and VP1, and every exemplar missing one of them belongs to the divergent lineage: 2212748.4/.5/.6/.7, 2832257.15, 2987487.12 and 2987487.16. On the fifteen DHAV exemplars every feature is called, apart from three isolated misses (VP3 on 1006063.268; 2C, VP1 and POLY on 1006061.232). Before the rebuild, 2A3 did not exist as a feature. It is now called on all 22 exemplars, including the divergent ones."
+ ],
+ "lede06": "39 of 40 held-out genomes clean. The one failure is a stop codon in the deposited sequence.",
+ "p06": [
+  "885378.3 (Duck hepatitis virus SH-1/CHN/2010) is flagged for missing the polyprotein. The 2A3 region of the deposited sequence translates <code>&hellip;WNGN*KP&hellip;</code>: a premature stop inside 2A3. The polyprotein ORF is therefore broken, and POLY and 2A3 are both correctly withheld. The other eleven mature peptides are still called at their expected coordinates. This is a defect in the genome, and the module behaves correctly on it."
+ ],
+ "lede07": "The divergent lineage, and a 3C that starts one codon late.",
+ "p07": [
+  "<b>The divergent avihepatoviruses are covered only partly.</b> Duck egg-reducing syndrome virus, the swan virus and the goose and crane viruses account for 13 of 196 unique polyproteins and 7 of 22 exemplars. None of them carries a mat_peptide record, and none is more than 40% identical to a reference polyprotein, so no cut sites were projected onto them. A test at 25% identity showed why: the conserved junctions still land on Q, but the 2B, 3A, VP3 and VPG ends drift, and no 2A2 reference spans the lineage. On these genomes the module calls 3C, 3D, VP0, 2A3, 2B and 3A, misses VPG and 2A2 on all seven, VP1 on two and 2A1 on one. Their genomes are 600 to 1,300 nucleotides longer than DHAV, so their organisation may contain a protein that DHAV lacks. Nothing in the source annotation shows what it is.",
+  "<b>3C starts one codon late.</b> <code>check_cleaved_ends.py</code> over the 196 annotated genomes finds every junction exactly adjacent in 91&ndash;100% of genomes, with one exception: 3C starts 3 nucleotides after VPG ends in 94% of them. The 3C call loses its first residue. Both extensions are 0, as they must be for a protease cut, so the annotator does not walk back to the cut site. The offset is the same on every genome, so it does not drift, but the 3C N-terminus is one residue short."
+ ],
+ "verdict07": "The module covers DHAV completely, and it covers the divergent avihepatovirus lineage for its conserved proteins only. Closing that gap needs annotated genomes from the lineage. Lowering a threshold cannot close it, because no sequence in BV-BRC shows where its VPg or 2A2 begins.",
+ "lede08": "The first build was correct and too thin. This rebuild found a missing protein.",
+ "p08": [
+  "The first coverage run called VPG on 68% of exemplars and VP1 on 86%, from profiles built on four and five sequences. Projecting the five annotated genomes onto the other 191 polyproteins made the collections 10 to 25 times larger without inventing a single coordinate. Checking the source's own 2A records during that work showed that the 285-residue &ldquo;2A2&rdquo; is two proteins, and 2A3 is now called on every exemplar.",
+  "The same projection explains why the lagging features did not recover after the rebuild. Every exemplar that still misses VPG or 2A2 belongs to the lineage that no reference reaches, so the remaining gap is in the source data and no profile change can close it."
+ ],
+ "lede09": "Thirteen strings from the first genome, against a source vocabulary that is still growing.",
+ "p09": [
+  "Most DHAV genomes in BV-BRC carry one product, &ldquo;polyprotein&rdquo;, and the few with mature peptides spell them several ways (&ldquo;2C&rdquo;, &ldquo;2C protein&rdquo;, &ldquo;protein 2C&rdquo;). The source vocabulary is therefore small, but it still grows across the whole set and reaches 95% of its final size only at the 171st of 188 genomes. The module names thirteen proteins on every genome and uses all thirteen strings from the first one. The collapse is modest because the source says little, and for most of these genomes the module names twelve proteins the source never named."
+ ]
+}
