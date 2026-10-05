@@ -297,15 +297,15 @@
                   "2252396"
                ]
             },
-            "anno" : "Genome-linked protein VPg tandem (3B1-3B2-3B3)",
-            "bit_cutoff" : 31,
+            "anno" : "Genome-linked protein VPg (3B)",
+            "bit_cutoff" : 42,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
-            "gene_symbol" : "VPG",
+            "gene_symbol" : "VPg",
             "kmers" : 0,
             "max_len" : 85,
-            "min_len" : 60,
+            "min_len" : 19,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0

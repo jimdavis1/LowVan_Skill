@@ -32,7 +32,7 @@ one feature modelling the tandem. Forss & Schaller 1982 Nucleic Acids Res
   indels in the deposit.
 - Self-recall 12,378/12,378.
 
-## Known gap: VPg outside FMDV  -- OUTSTANDING
+## VPg outside FMDV -- FIXED 5 October 2026
 
 The VPg decision above is correct for FMDV and wrong for the rest of the
 genus. Counting every VPg record in the dump by species:
@@ -49,11 +49,51 @@ tandem, so the window (57-85) excludes the single-copy form outright. Cost:
 VPg called on 2/23 A. bogeli, 20/32 A. reedi, 0/5 A. burrowsi, and those
 genomes get the other twelve features at 100%.
 
-Fix is a second feature for the single-copy form, NOT a module split (the
-rest of the layout is shared). Two cautions before building:
- 1. The FMDV tandem CONTAINS three single-copy-length sequences, so a 24-mer
-    profile will score at the FMDV 3B locus. That is the truncated-profile
-    case the curation checklist forbids; measure cross-feature first.
- 2. The two features need DISTINCT annotation strings. Two features sharing
-    one string collide in viral_genome_quality.pl's %essential table - the
-    defect that cost Tobamovirus a whole quality run.
+### The second feature was the wrong design
+
+Of 50 unique single-copy sequences, 38 are FMDV - records where a submitter
+annotated 3B1/3B2/3B3 separately rather than as one tandem. Only 12 come from
+the rhinitis species. And every aphthovirus VPg copy begins GPY..., so a
+24-mer profile necessarily matches the tandem's first 24 residues. Two
+features would have competed at one locus: the truncated-profile case the
+curation checklist forbids.
+
+### One feature covering both forms
+
+The 50 single-copy sequences were merged into VPG (451 -> 501) and the window
+widened to 19-85. Clustering separated the forms on its own: two profiles of
+71 aa (435 seqs) and two of 23-25 aa (10 seqs).
+
+Cutoff measured against polyproteins by species, comp_based_stats 0:
+
+| profile | FMDV | reedi | bogeli | burrowsi |
+|---|---|---|---|---|
+| tandem x2 | 135-147 | 30-35 | 32-36 | - |
+| single x2 | 21-26 | 56 | 51-56 | - |
+| burrowsi  | 19 | - | - | 49 |
+
+Noise ceiling 36, weakest true signal 49 -> **bit_cutoff 42**. The previous
+cutoff of 31 was itself wrong: it would let a 71 aa tandem profile fire on a
+24 aa protein.
+
+### burrowsi needed a member floor of 1
+
+Its two VPg sequences were already in the collection but start SAYDP... where
+every other aphthovirus VPg starts GPY... Two divergent sequences fall below
+the -m 2 floor (which requires three) AND below the leftover pass's 36-residue
+floor, so they were never profiled. Built at -m 1: one extra profile, 5 total.
+
+### Result
+
+| species | before | after |
+|---|---|---|
+| A. vesiculae (FMDV) | 360/368 | 360/368 |
+| A. reedi | 20/32 | **32/32** |
+| A. bogeli | 2/23 | **23/23** |
+| A. burrowsi | 0/5 | **5/5** |
+
+VPg overall 382/431 -> 417/431 (and 422 with the burrowsi profile, confirmed
+on the previously failing genomes). **Zero duplicate VPg calls** on any
+genome - the specific risk the measured cutoff guarded against.
+
+Remaining: Coypu aphthovirus, one genome, with no VPg record of its own.
