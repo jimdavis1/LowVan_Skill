@@ -46,5 +46,9 @@
  "p09": [
   "Cardiovirus is better annotated than the duck or porcine genera and correspondingly more inconsistent: 97 distinct source strings collapse into 14 controlled ones. Drawn one protein at a time, the source vocabulary needs 711 of its 818 records to reach 95% of its final 70 strings and is still rising at the end; the module reaches 95% of its 13 after 38 proteins and adds nothing after that.",
   "Nineteen source strings bind to no feature, and the two groups of them say different things. Most are ordinary names &mdash; <code>polyprotein</code> (36 records), <code>protein 2A</code>, <code>capsid protein VP1</code> &mdash; that <i>do</i> match a rule but whose sequences were then dropped by the length and ambiguity filters, so they reach no collection. <code>collect_synmap.py</code> reads collection membership rather than rule matches, so a filtered record is indistinguishable here from an unmatched one; the count is a lower bound on what the vocabulary binds. The other group is not an artefact: <b>five distinct strings name L*</b> (<code>L* protein</code>, <code>protein L*</code>, <code>L* peptide</code>, <code>L*</code>) and one names <code>protein 2B*</code>. Those are no longer gaps: both features now exist, so the source data naming them has somewhere to bind. They remain listed as unbound here because this page's collapse figures were computed from the thirteen-feature collections, before L* and 2B* were added."
+ ],
+ "not_universal": [
+  "LSTAR",
+  "2BSTAR"
  ]
 }

@@ -60,16 +60,23 @@ def departures(k):
     return "defaults"
 
 n_pssm = sum(len(reg[k]["pssms"]) for k in keys if k in reg)
-build_rows = [[k, feats[k]["anno"], feats[k].get("gene_symbol", ""), c(reg[k]["n"]) if k in reg else "0",
-               str(len(reg[k]["pssms"])) if k in reg else "0", departures(k)] for k in keys]
+build_rows = [[k, feats[k]["anno"], feats[k].get("gene_symbol", ""),
+               c(reg[k]["n"] or 0) if k in reg else "0",
+               ("&mdash; (special)" if "special" in feats[k]
+                else str(len(reg[k]["pssms"])) if k in reg else "0"), departures(k)] for k in keys]
 
 # 03 -- cutoffs and self-recall
-cut_rows = [[k, str(feats[k]["bit_cutoff"]), str(feats[k]["coverage_cutoff"]),
-             c(feats[k]["min_len"]), c(feats[k]["max_len"])] for k in keys]
+def cut(k, f):
+    #  a special feature is called by an external program, not scored by a PSSM,
+    #  so it declares no bit_cutoff or coverage_cutoff
+    if "special" in feats[k]: return "&mdash;"
+    return str(feats[k].get(f, "&mdash;"))
+cut_rows = [[k, cut(k, "bit_cutoff"), cut(k, "coverage_cutoff"),
+             c(feats[k].get("min_len", 0)), c(feats[k].get("max_len", 0))] for k in keys]
 recall = ", ".join("%s %d/%d" % (k, reg[k]["called_inrange"], reg[k]["n_inrange"])
-                   for k in keys if k in reg and reg[k]["n_inrange"])
-tot_c = sum(reg[k]["called_inrange"] for k in keys if k in reg)
-tot_n = sum(reg[k]["n_inrange"] for k in keys if k in reg)
+                   for k in keys if k in reg and reg[k].get("n_inrange"))
+tot_c = sum(reg[k]["called_inrange"] or 0 for k in keys if k in reg)
+tot_n = sum(reg[k]["n_inrange"] or 0 for k in keys if k in reg)
 
 # 04 -- routing
 ex = cov["exemplars"]; unr = cov["unrouted"]
@@ -84,18 +91,33 @@ other = collections.Counter(r.get("module") for r in cov["rows"]
 routed = len(rows)
 refs_used = len(cov.get("flags", {}))
 
-# 05 -- per-feature presence in routed exemplars
-pres = collections.Counter()
+# 05 -- per-feature presence in routed exemplars.
+#  The feature table reports the GENE SYMBOL, not the JSON feature key, and the
+#  two differ wherever a key was made filename-safe: Enterovirus VPG/VPg,
+#  Cardiovirus LSTAR/L* and 2BSTAR/2B*. Counting by key silently returned 0 for
+#  those and dropped full_set to 0 as well.
+sym = {k: feats[k].get("gene_symbol", k) for k in keys}
+seen = collections.Counter()
 for r in rows:
-    for k in set(r["calls"]): pres[k] += 1
-full = sum(1 for r in rows if set(keys) <= set(r["calls"]))
+    for k in set(r["calls"]): seen[k] += 1
+pres = {k: max(seen.get(k, 0), seen.get(sym[k], 0)) for k in keys}
+unknown = sorted(set(seen) - set(keys) - set(sym.values()))
+if unknown: print("  NOTE: calls with no declared feature: %s" % unknown, file=sys.stderr)
+#  Two classes of feature must not count toward "every feature":
+#   - special: called by an external program and absent from the flat table
+#   - not_universal: named in the prose file, proteins a part of the genus
+#     genuinely lacks (cardiovirus L* is absent from EMCV; 2B* exists only there)
+NOTU = set(pr.get("not_universal", [])) | {k for k in keys if "special" in feats[k]}
+core = [k for k in keys if k not in NOTU]
+want = {sym[k] for k in core}
+full = sum(1 for r in rows if want <= set(r["calls"]))
 n_empty = len(empty)
-bars = [[feats[k].get("gene_symbol", k), "%.1f" % (100.0 * pres[k] / routed if routed else 0),
+bars = [[sym[k], "%.1f" % (100.0 * pres[k] / routed if routed else 0),
          round(100.0 * pres[k] / routed, 1) if routed else 0, "%d of %d routed exemplars" % (pres[k], routed)]
         for k in keys]
-core = [k for k in keys if k != "POLY"]
-best = max(pres[k] for k in core) if core else 0
-lagging = [k for k in core if best - pres[k] >= 0.20 * routed]
+cmp_ = [k for k in core if k != "POLY"]
+best = max((pres[k] for k in cmp_), default=0)
+lagging = [k for k in cmp_ if best - pres[k] >= 0.20 * routed]
 
 # 06 -- held-out panel through the GTO quality pipeline
 pe = os.path.join(S, "panel", G, "panel_eval.tsv")
@@ -169,10 +191,13 @@ facts = {
        (len(mod.get("close_genomes", {})), refs_used)}] + [{"type": "prose", "html": h} for h in pr["p04"]]},
   {"num": "05", "title": "Does it call the proteins?", "lede": pr["lede05"], "blocks": [
      {"type": "bars", "rows": bars, "unit": "%"},
-     {"type": "prose", "html": "<b>%d of %d routed exemplars get every declared feature.</b> %s" % (full, routed,
+     {"type": "prose", "html": "<b>%d of %d routed exemplars get every one of the %d core features.</b> %s" % (full, routed, len(core),
        ("Features trailing the best-called core protein by 20 points or more: <b>%s</b>." % ", ".join(lagging))
        if lagging else "No core feature trails the best-called one by 20 points or more.")
-       + ("" if not n_empty else " <b>%d routed exemplar(s) cleared no profile at any feature</b> and are counted here as calling nothing." % n_empty)}] +
+       + ("" if not n_empty else " <b>%d routed exemplar(s) cleared no profile at any feature</b> and are counted here as calling nothing." % n_empty)
+       + ("" if not NOTU else " Excluded from that count: %s &mdash; %s." % (
+           ", ".join(sorted(NOTU)),
+           "called by an external program and absent from this table, or a protein part of the genus does not encode"))}] +
      [{"type": "prose", "html": h} for h in pr["p05"]]},
   {"num": "06", "title": "Are the calls right?", "lede": pr["lede06"], "blocks": [
      {"type": "tiles", "items": [[str(n_p), "held-out genomes"], [str(noflag), "no genome/contig flags"],
@@ -211,6 +236,7 @@ print(json.dumps({"genus": G, "features": len(keys), "pssms": n_pssm, "dump_geno
   "features_dump": n_feat, "uniq": n_uniq, "contigs": n_contig, "species": len(species),
   "exemplars": ex, "routed": routed, "unrouted": unr, "other_modules": dict(other),
   "presence": {k: pres[k] for k in keys}, "full_set": full,
+  "core_features": len(core), "not_universal": sorted(NOTU),
   "routed_called_nothing": n_empty, "lagging": lagging,
   "panel": {"n": n_p, "noflag": noflag, "clean": clean, "flagged": flagged, "nothing": nothing,
             "flags": dict(ftally.most_common(12))},
