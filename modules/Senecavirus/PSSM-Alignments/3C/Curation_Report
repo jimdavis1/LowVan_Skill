@@ -1,2 +1,2 @@
 Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
-1	211	Q	14	13	4	4	0	0	1	0,1,2,3	0	4	Q	REVIEW-nonMet
+1	211	Q	160	159	4	4	0	0	1	0,1,2,3	0	4	Q	REVIEW-nonMet

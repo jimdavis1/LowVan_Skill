@@ -38,6 +38,8 @@ per-taxon tables below carry the dates and the source paths.
 | **Pestiviridae** | [live](https://claude.ai/artifact/2wDv9SfmPrtHWSch4gek5c) | [live](https://claude.ai/artifact/9UrwQLi5mBSkVmB4UrtLJm) | [live](https://claude.ai/artifact/KcbRvV3YqDZWutCDNEWkxh) | [live](https://claude.ai/artifact/LEF7bVuNmTvA8vs94ptF26) |
 | **Quinvirinae** | [live](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [live](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [live](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [live](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) |
 | **Rhabdoviridae** | — | [live](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | — | [live](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) |
+| **Sapelovirus** | [live](https://claude.ai/artifact/57VNf18a2R6sdpqC3k3JAR) | [live](https://claude.ai/artifact/R3NPTkzAW38A1af9UtGrT1) | [live](https://claude.ai/artifact/5pNjSX9oLvh83MCHYMoC6z) | [live](https://claude.ai/artifact/88yMxbSKFycQvTt6m6NvZ2) |
+| **Senecavirus** | [live](https://claude.ai/artifact/Tbtxi52p4gQ7wdFwbsTPLq) | [live](https://claude.ai/artifact/XJMxY4EvPdae8nU5LNiJfq) | [live](https://claude.ai/artifact/5mSFF5p1EuhXYZo5UgtXYZ) | [live](https://claude.ai/artifact/Xr21mDLyZzcSebbLyeU1T7) |
 | **Teschovirus** | [live](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [live](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [live](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [live](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) |
 | **Tobamovirus** | [live](https://claude.ai/artifact/4r5eFifqQBs3msQyeTDRkd) | [live](https://claude.ai/artifact/Jaxj3wb1cGkEng25cDoXDz) | [live](https://claude.ai/artifact/GDgyPgzSQr3PoNyBXKF75F) | [live](https://claude.ai/artifact/Lqb3QrZN9vuQT2tHNnxjjf) |
 | **Togaviridae** | [src only](reports/togaviridae-string-collapse.html) | [live](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | — | [live](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) |
@@ -240,6 +242,24 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 | Rhabdoviridae PSSM Registry | [open](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | [source](reports/rhabdoviridae-pssm-registry.html) | 2026-09-09 |
 
 Not made: string collapse, vocabulary saturation.
+
+### Sapelovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Sapelovirus Coverage Audit | [open](https://claude.ai/artifact/88yMxbSKFycQvTt6m6NvZ2) | [source](reports/sapelovirus-coverage-audit.html) | 2026-10-05 |
+| Sapelovirus PSSM Registry | [open](https://claude.ai/artifact/R3NPTkzAW38A1af9UtGrT1) | [source](reports/sapelovirus-pssm-registry.html) | 2026-10-05 |
+| Sapelovirus String Collapse | [open](https://claude.ai/artifact/57VNf18a2R6sdpqC3k3JAR) | [source](reports/sapelovirus-string-collapse.html) | 2026-10-05 |
+| Sapelovirus Vocabulary Saturation | [open](https://claude.ai/artifact/5pNjSX9oLvh83MCHYMoC6z) | [source](reports/sapelovirus-vocabulary-saturation.html) | 2026-10-05 |
+
+### Senecavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Senecavirus Coverage Audit | [open](https://claude.ai/artifact/Xr21mDLyZzcSebbLyeU1T7) | [source](reports/senecavirus-coverage-audit.html) | 2026-10-05 |
+| Senecavirus PSSM Registry | [open](https://claude.ai/artifact/XJMxY4EvPdae8nU5LNiJfq) | [source](reports/senecavirus-pssm-registry.html) | 2026-10-05 |
+| Senecavirus String Collapse | [open](https://claude.ai/artifact/Tbtxi52p4gQ7wdFwbsTPLq) | [source](reports/senecavirus-string-collapse.html) | 2026-10-05 |
+| Senecavirus Vocabulary Saturation | [open](https://claude.ai/artifact/5mSFF5p1EuhXYZo5UgtXYZ) | [source](reports/senecavirus-vocabulary-saturation.html) | 2026-10-05 |
 
 ### Teschovirus
 

@@ -1,0 +1,9 @@
+{
+ "standfirst": "Porcine sapelovirus and its simian and avian relatives. Thirteen features. The mature-peptide collections were enlarged on 5 October by projecting cut coordinates from annotated genomes onto the rest, and the leader was derived from the polyprotein N-terminus rather than projected, because almost no sapelovirus genome in BV-BRC carries a leader annotation.",
+ "modules": {
+  "Sapelovirus": "Leader, VP4-VP2-VP3-VP1, a 2A of about 226 residues (a full protein, not the StopGo peptide the same slot holds in Teschovirus or Aphthovirus), 2B, 2C, 3A, one VPg, 3C, 3D. Only POLY carries copy_num."
+ },
+ "gaps": "The leader is the one feature the source barely annotates: 11 records in a genus of 435 genomes. It is now built from leaders derived as the polyprotein N-terminus up to the start of VP4, a boundary that falls on a canonical 3C Q-G cleavage site in 166 of 170 genomes where both the polyprotein and VP4 are placed.",
+ "derived": "All twelve mature peptides are cleavage products of POLY, with both extensions set to 0. Most of the collection comes from coordinates carried across global alignments from genomes whose own annotation places them; none was predicted.",
+ "why": {}
+}

@@ -1,0 +1,45 @@
+{
+ "date": "5 October 2026",
+ "h1": "Does the Seneca Valley virus module work?",
+ "standfirst": "<b>Senecavirus</b> is the genus of Seneca Valley virus, which causes vesicular disease in pigs that is clinically indistinguishable from foot-and-mouth disease. That resemblance is the reason it matters: an outbreak has to be ruled out as FMD before trade restrictions lift. This audit covers the module built for it, which was rebuilt on 5 October after shipping a feature that could never be called.",
+ "lede01": "One genus, essentially one virus, and 956 genomes that collapse to ten distinct types.",
+ "p01": [
+  "The polyprotein is a leader, VP4, VP2, VP3, VP1, a 2A of nine residues, 2B, 2C, 3A, VPg, 3C and 3D &mdash; the standard L+ picornavirus layout.",
+  "The striking thing about this genus is its homogeneity. BV-BRC holds 993 genomes, but clustered at 95% nucleotide identity they collapse to <b>ten</b> exemplars. Every percentage on this page therefore has a denominator of ten, and a single genome moves a feature by ten points. Three rep contigs route the entire genus."
+ ],
+ "lede02": "Rebuilt on 5 October. Most collections grew by an order of magnitude; one could not grow at all.",
+ "p02": [
+  "BV-BRC annotates few mature peptides for this genus despite the genome count, so the collections were enlarged by projecting cut coordinates from the annotated genomes onto the other polyproteins. 3D went from 35 sequences to 371, 3A from 29 to 215, VP3 from 28 to 230, 2B from 13 to 118.",
+  "<b>2A did not grow, because it is nine residues long.</b> The sequence is <code>SGDVETNPG</code>, ending in the StopGo <code>NPG</code> motif, and there are eight distinct ones in the whole genus. A nine-residue peptide is at the edge of what a profile can represent: it builds only at a clustering identity floor of 0.6 and a member floor of 1, and its bit cutoff is the 20-bit floor rather than anything derived from its length."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median, bit cutoffs at 0.45&times; the median length with a floor of 20.",
+ "p03": [
+  "Two features departed from the documented clustering defaults: POLY at <code>-m 2</code>, and 2A at <code>-m 1 -mi 0.6 -mc 0.6</code>. The 2A departure is not optional &mdash; at the documented <code>-m 5 -mi 0.8</code> it builds nothing at all, which is section 08."
+ ],
+ "lede04": "Three rep contigs, and all ten exemplars route.",
+ "p04": [],
+ "lede05": "Ten of thirteen features on every exemplar.",
+ "p05": [
+  "2A, which could not be called at all before the rebuild, is now called on 10 of 10. VPg is called on 7, and the leader and 3A on 8. With ten exemplars those are three genomes and two genomes respectively, so they are individual cases rather than a pattern; six exemplars carry all thirteen features."
+ ],
+ "lede06": "39 of 40 held-out genomes clean.",
+ "p06": [
+  "The one flagged genome is missing its polyprotein call. Because the panel is drawn across a genus this homogeneous, the forty panel genomes are far more similar to one another than in any other module here, and a clean rate of 39/40 says less than the same number would elsewhere."
+ ],
+ "lede07": "A nine-residue protein, and a denominator of ten.",
+ "p07": [
+  "<b>2A is at the limit of the method.</b> It is real, it is called, and it is nine residues. A profile that short carries very little information, and it is called on the strength of its length window as much as its score &mdash; its 20-bit cutoff is a floor, not a measurement. It works here because the genus is homogeneous enough that nine residues are nearly invariant. That would not transfer to a diverse genus, and the same StopGo slot in Teschovirus and Aphthovirus holds peptides of 21 and 18 residues that are modelled with ordinary confidence.",
+  "<b>Ten exemplars is a thin basis for any coverage claim.</b> 956 genomes collapsing to ten means this module has been tested against ten distinct genome types, and the full-taxon run that is a real measurement elsewhere in this family is, here, barely larger than the held-out panel. The module is almost certainly correct for Seneca Valley virus as deposited; nothing in this data says how it behaves on a divergent senecavirus, because there is not one."
+ ],
+ "verdict07": "The module calls every Senecavirus protein, including a nine-residue StopGo peptide that needed a clustering floor of one member to exist at all. The honest limitation is not a gap but a denominator: ten distinct genome types is what BV-BRC holds, and the coverage figures should be read with that in mind.",
+ "lede08": "The run found a feature declared with no profile behind it.",
+ "p08": [
+  "<b>Senecavirus shipped a 2A that could never be called.</b> The rebuild used the documented clustering defaults for thin collections, and at <code>-m 2 -mi 0.8</code> a set of eight nine-residue peptides produces no cluster and therefore no profile. The feature stayed declared in the JSON with nothing behind it, which is the worst failure mode available: the annotator reports it as missing on every genome, and nothing at runtime complains.",
+  "<code>install_module.py --check</code> did report it &mdash; it printed <code>1 problem</code> &mdash; and the wrapper script that ran it grepped only for the success lines, so the warning never reached anyone. The original 2 October build had used <code>-m 1 -mi 0.6</code> for this feature and been correct; the rebuild silently dropped that.",
+  "Both halves are fixed. The rebuild now chooses <code>-m 1 -mi 0.6 -mc 0.6</code> for any collection under ten sequences or with a median length under twenty residues, and a hard gate refuses to ship a module in which any non-special feature has no profile. 2A went from 0 calls to 10 of 10."
+ ],
+ "lede09": "Few proteins, few names.",
+ "p09": [
+  "Senecavirus collapses at 2.6&times;, the lowest of the ten picornavirus modules, with six unbound strings. A genus this homogeneous and this recently described has not accumulated much naming variety for the vocabulary to absorb."
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "standfirst": "Seneca Valley virus, the cause of vesicular disease in pigs that is clinically indistinguishable from foot-and-mouth disease and so matters for differential diagnosis. Thirteen features. BV-BRC holds 956 genomes but annotated only a few dozen mature peptides, so the collections were enlarged on 5 October by projecting cut coordinates from the annotated genomes onto the rest.",
+ "modules": {
+  "Senecavirus": "Leader, VP4-VP2-VP3-VP1, a 9-residue StopGo 2A, 2B, 2C, 3A, one VPg, 3C, 3D. Only POLY carries copy_num."
+ },
+ "gaps": "The 2A peptide is 9 residues (SGDVETNPG, ending in the StopGo NPG motif). It is real and it is called, but it sits at the limit of what a profile can represent: it builds only at a clustering identity floor of 0.6 and a member floor of 1, and its bit cutoff is the 20-bit floor rather than anything derived from its length.",
+ "derived": "All twelve mature peptides are cleavage products of POLY, with both extensions set to 0.",
+ "why": {}
+}

@@ -1,0 +1,45 @@
+{
+ "date": "5 October 2026",
+ "h1": "Does the sapelovirus module work?",
+ "standfirst": "<b>Sapelovirus</b> is the genus of porcine sapelovirus, which causes enteric, respiratory and occasionally neurological disease in pigs, together with simian sapelovirus and a scattering of bat, bird and rodent viruses. This audit covers the module built for it. It was rebuilt on 5 October after the first full-taxon run showed its leader being called on 6 of 209 genomes, and the rebuild is the interesting part.",
+ "lede01": "One genus, 28 species, and a 2A that is a whole protein rather than a peptide.",
+ "p01": [
+  "The sapelovirus polyprotein is a leader, VP4, VP2, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C and 3D. The 2A is about 226 residues &mdash; a full protein, not the 18 to 21 residue StopGo peptide that the same slot holds in Aphthovirus and Teschovirus. That difference is one of the reasons these genera are separate modules even though their slot names are identical.",
+  "<i>Sapelovirus</i> is thinly annotated for its size: 435 genomes and 1,719 unique sequences spread over 28 species, most of which contribute a handful of genomes each."
+ ],
+ "lede02": "Rebuilt on 5 October. The leader needed a different technique from everything else.",
+ "p02": [
+  "The mature-peptide collections were enlarged by projection: take the genomes whose own mat_peptide records are exact substrings of their own polyprotein, align every other polyprotein to its nearest such reference, and carry the cut coordinates across. Nothing is predicted; a cut only ever moves along an alignment, and it is kept only if the polyprotein is at least 50% identical to its reference and the extracted segment is inside the feature's window and at least 35% identical to the reference segment.",
+  "<b>That technique could not reach the leader, because there was nothing to project from.</b> Only 11 of 435 sapelovirus genomes carry a leader annotation at all, and not one of those genomes also places VP4, so no reference existed that positioned both. The leader had 11 training sequences and was called on 6 of 209 exemplars.",
+  "<b>So the leader was derived rather than projected.</b> In an L+ picornavirus the polyprotein begins with the leader, so the leader is the polyprotein N-terminus up to the start of the next product. Of 170 genomes that place both the polyprotein and VP4, <b>166 put that boundary at exactly 84 residues, and the junction reads &hellip;NKPQ&darr;GAYN &mdash; a canonical 3C Q&darr;G cleavage site.</b> A boundary that independently lands on the protease's own recognition signature in 98% of genomes is a measurement, not a convenience. The leader collection went from 11 sequences to 75, and this is now a general <code>--first-product</code> option in the projection tool."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median, bit cutoffs at 0.45&times; the median length with a floor of 20. No feature needed a departure.",
+ "p03": [],
+ "lede04": "25 rep contigs, 208 of 209 exemplars routed.",
+ "p04": [],
+ "lede05": "The rebuild moved the leader from 6 exemplars to 170, and complete genomes from 5 to 167.",
+ "p05": [
+  "Before the rebuild, 5 of 209 exemplars carried all thirteen features, because the leader was absent from almost every one. After it, <b>167 of 208 do</b>. The leader is now called on 170, 2A on 180 and 3A on 193; everything else is on 195 or more.",
+  "This is the clearest illustration in the family of what a thin collection costs. Nothing was wrong with the profiles, the thresholds or the genomes &mdash; the feature simply had eleven sequences behind it, and eleven sequences cannot represent a genus of 28 species."
+ ],
+ "lede06": "34 of 40 held-out genomes clean.",
+ "p06": [
+  "Of the six flagged, three carry contigs with more than 1% ambiguous bases and one has its polyprotein called twice. Those are properties of the deposited sequences. This is the lowest clean rate of the ten picornavirus modules, and it tracks the quality of what has been submitted for this genus rather than anything the module does."
+ ],
+ "lede07": "The leader in the divergent host lineages, and that is now the whole of it.",
+ "p07": [
+  "<b>38 exemplars still miss the leader, and they are not scattered.</b> They are 4 of 4 Pteropodidae bat sapeloviruses, 2 of 2 bat sapeloviruses, 2 of 2 and 2 of 2 mute swan feces associated sapeloviruses, 2 of 2 coypu sapelovirus 2, and 12 of 21 genomes labelled only <i>Sapelovirus sp.</i> Every one of those genomes routes and gets its other twelve features.",
+  "The derivation that rescued the leader for the porcine and simian viruses cannot reach these, for the same reason the projection could not: it requires a reference polyprotein at least 50% identical, and these lineages are further away than that. Their leaders are presumably there &mdash; the polyprotein is called on all of them &mdash; but nothing in the data says where one ends and VP4 begins.",
+  "This is the same shape of gap that every module in this family has: the well-sequenced host species are covered and the divergent host-associated lineages are not. It is a statement about what has been submitted to BV-BRC, not about the thresholds."
+ ],
+ "verdict07": "The leader went from a defect to a documented limit. It is now called on 82% of exemplars and the residual misses are entirely bat, bird, rodent and unclassified genomes too divergent for any reference to position their cut sites. Closing that needs annotated genomes from those lineages, not a threshold change.",
+ "lede08": "The run found a feature that every earlier step had passed.",
+ "p08": [
+  "The leader built without error, produced a profile, recovered its own training sequences, and passed the install check and the cross-feature QC. All of that was true of eleven sequences. Only the full-taxon run asks the question that matters &mdash; how often is this called on genomes nobody curated &mdash; and the answer was 6 of 209.",
+  "The fix was not a threshold and not more references. It was noticing that the first product of a polyprotein does not need a mat_peptide record to be located, because its N-terminus is the polyprotein's own start, and then checking that the resulting boundary falls where the protease would cut."
+ ],
+ "lede09": "A sparsely annotated genus, and a correspondingly modest collapse.",
+ "p09": [
+  "Sapelovirus names collapse at 2.9&times;, among the lowest in this family, because submitters mostly use the bare positional labels and there is little free-text variety to absorb. Nineteen source strings bind to no feature."
+ ]
+}
