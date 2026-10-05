@@ -101,6 +101,25 @@
             "type" : "mat_peptide",
             "upstream_ext" : 0
          },
+         "2BSTAR" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "22025686"
+               ],
+               "function" : [
+                  "26063423"
+               ]
+            },
+            "anno" : "TransFrame protein",
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2B*",
+            "kmers" : 0,
+            "max_len" : 133,
+            "min_len" : 127,
+            "segment" : "Single RNA Segment",
+            "special" : "transcript_edit",
+            "type" : "mat_peptide"
+         },
          "2C" : {
             "PMID_claude_generated" : {
                "function" : [
@@ -176,6 +195,28 @@
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0
+         },
+         "LSTAR" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "2033677"
+               ],
+               "function" : [
+                  "7585219"
+               ]
+            },
+            "anno" : "L* protein",
+            "bit_cutoff" : 70,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "L*",
+            "kmers" : 0,
+            "max_len" : 187,
+            "min_len" : 125,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
          "Ldr" : {
             "PMID_claude_generated" : {

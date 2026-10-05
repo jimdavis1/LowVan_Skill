@@ -19,11 +19,12 @@ Separate from Aphthovirus because the leader slot holds a different protein:
   genome, contig or feature flag. Cleanest panel of the ten modules.
 - Self-recall 1083/1086.
 
-## Known gaps: two proven proteins not declared
+## L* and 2B* -- BUILT 5 October 2026
 
 Both are out of frame with the polyprotein, so no amount of tuning the
-thirteen declared features reaches them. Sequences extracted and counted;
-neither feature is built.
+thirteen declared features reaches them. Both are now declared and built;
+the module carries 15 features and 72 PSSMs. `special_cardio.py` extracts
+both from the annotated genomes.
 
 **L*** - alternative AUG in the leader region, different frame. Chen 1995
 Nat Med 1:927 (PMID 7585219) shows mutating its start cripples demyelination;
@@ -32,7 +33,11 @@ Searching the 106 exemplars for an out-of-frame ORF >= 100 codons starting at
 an AUG within 150 nt of the polyprotein start finds 41 (23 C. theileri,
 6 C. ranori, 4 rodent cardiovirus, singletons elsewhere), median 156 aa.
 L* is collinear with itself, so it needs only a collection and an ordinary
-PSSM feature - tblastn finds an overlapping ORF in any frame.
+PSSM feature - tblastn finds an overlapping ORF in any frame. Built that way:
+key LSTAR, anno "L* protein", symbol "L*", CDS, kmers 0 (it overlaps POLY),
+upstream_ext 1 / downstream_ext 0. 47 sequences over 209 annotated genomes,
+median 156 aa, window 125-187, bit_cutoff 70, 7 profiles (2 first-pass +
+5 leftover).
 
 **2B*** - -1 programmed ribosomal frameshift at a conserved G_GUU_UUY motif
 just after the 2A/2B junction. Loughran 2011 PNAS 108:E1111 (PMID 22025686),
@@ -42,8 +47,25 @@ Reading the heptamer at its correct codon phase (the lone purine is the third
 base of a codon) finds it intact in 21 exemplars, all C. rueckerti (= EMCV),
 and the construct translates to 128-130 aa in every one - an independent match
 to the published length. Theilovirus genomes carry the motif 16 nt before the
-called 2B start. 2B* is NOT collinear, so it needs `special: transcript_edit`
-and a per-genome nucleotide reference set, not a PSSM.
+called 2B start. 2B* is NOT collinear, so it is declared
+`special: transcript_edit` with a per-genome nucleotide reference set and no
+PSSM: key 2BSTAR, anno "TransFrame protein" (reusing the Togaviridae TF
+vocabulary string), symbol "2B*", mat_peptide, window 127-133.
+
+Over all 209 annotated genomes the motif is in phase and intact in 80, every
+one C. rueckerti, slip codon at position 8 in 77 of them. Reference set:
+80 constructs, all ending in a stop (the product terminates there, so the
+stop codon is kept and the protein carries a trailing *), 0 internal stops,
+0 ambiguous bases, 129 aa x76 / 130 x3 / 131 x1. The N-terminus is
+PFMAKPKKQVF..., which is 2B's own start - the shared 11-12 residues the
+frameshift papers describe, reproduced without being imposed.
+
+SELF ROUND-TRIP: 12 donor genomes through the full chain (make_gto ->
+annotate_by_viral_pssm-GTO -> get_transcript_edited_features) recover their
+own protein BYTE-IDENTICALLY, 12/12, 129 aa, none missing, none differing.
+Note the called feature reaches the GTO but not the flat feature table -
+the table has no representation for a special feature, so evaluate_coverage
+cannot see 2B* and reports it as absent rather than as low.
 
 Five distinct source strings name L* and one names 2B*, so BV-BRC records
 both proteins the module does not call.
