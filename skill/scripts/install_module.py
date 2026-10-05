@@ -252,6 +252,20 @@ def validate(workdir, mod_json):
     return ok, problems
 
 
+#  Problems that make the shipped module WRONG rather than merely untidy, so
+#  installing past them is never what the caller meant.
+#
+#  `unbuilt` is the one that keeps recurring. A feature declared in the JSON
+#  with no profile behind it is never called and says nothing at runtime: the
+#  annotator simply reports it missing on every genome. It was detected here
+#  from the start, but only ever printed -- the module stayed "installable" and
+#  shipped anyway. Senecavirus shipped a 2A like that (eight 9-residue StopGo
+#  peptides that will not cluster at -mi 0.8), and the four grouped
+#  Picornaviridae modules all shipped POLY the same way. In both cases the
+#  warning was on screen and scrolled past.
+FATAL = {"unbuilt", "special-has-pssms", "segments-missing"}
+
+
 
 def _retire(parent, keep, what, module, dry):
     """Remove feature subdirectories under parent that are not in keep."""
@@ -421,6 +435,9 @@ def main():
     ap.add_argument("--workdir", default=".", help="module working directory")
     ap.add_argument("--repo", required=True, help="Viral_Annotation checkout")
     ap.add_argument("--json", help="module JSON (default: <workdir>/*_Viral_PSSM.json)")
+    ap.add_argument("--force-known-bad", action="store_true",
+                    help="install despite a FATAL problem. Only for a module you are "
+                         "deliberately shipping incomplete, and say so in the build notes.")
     ap.add_argument("--check", action="store_true", help="validate only, write nothing")
     ap.add_argument("--only", help="comma-separated module names to install")
     ap.add_argument("--archived-to", default=None,
@@ -442,10 +459,19 @@ def main():
         keep = set(args.only.split(","))
         modules = {k: v for k, v in modules.items() if k in keep}
 
+    fatal = [] if args.force_known_bad else [p for p in problems if p[1] in FATAL and (not args.only or p[0] in set(args.only.split(",")))]
     if args.check:
-        print("\n--check: nothing written. %d installable, %d problem(s)."
-              % (len(modules), len(problems)))
-        return 0
+        print("\n--check: nothing written. %d installable, %d problem(s)%s."
+              % (len(modules), len(problems),
+                 ", %d FATAL" % len(fatal) if fatal else ""))
+        for m, kind, items in fatal:
+            print("   FATAL %-18s %s: %s" % (kind, m, ", ".join(items)))
+        return 1 if fatal else 0
+    if fatal:
+        for m, kind, items in fatal:
+            print("\n   FATAL %-18s %s: %s" % (kind, m, ", ".join(items)))
+        sys.exit("\nREFUSING to install: fix these or pass --force-known-bad.\n"
+                 "A feature declared with no profile is never called and is silent at runtime.")
     if not modules:
         sys.exit("\nnothing installable")
 
