@@ -1,0 +1,660 @@
+{
+ "title": "Enterovirus Coverage Audit",
+ "eyebrow": "LowVan &middot; Enterovirus module &middot; 5 October 2026",
+ "h1": "Does the enterovirus module work?",
+ "standfirst": "<b>Enterovirus</b> is the genus of poliovirus, the rhinoviruses that cause most common colds, the coxsackieviruses and echoviruses, EV-A71 and EV-D68. It is by a wide margin the largest module in this project: 26,364 genomes, 70,226 unique protein sequences and 701 profiles. This audit covers what it includes, how it was built, whether genomes reach it, whether it calls the proteins, and what it cannot do.",
+ "headline_tiles": [
+  [
+   "12",
+   "features, all with profiles"
+  ],
+  [
+   "701",
+   "PSSMs"
+  ],
+  [
+   "2856/2856",
+   "exemplars routed"
+  ],
+  [
+   "90.0%",
+   "held-out genomes genuinely clean"
+  ],
+  [
+   "29.2&times;",
+   "string collapse"
+  ],
+  [
+   "19.9&times;",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One genus, seven species groups, and a single genome organisation across all of them.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The enterovirus polyprotein is VP4, VP2, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C and 3D. There is no leader, and the 2A is a chymotrypsin-like protease &mdash; not the StopGo peptide the same slot holds in Aphthovirus and Teschovirus, and not the 71-residue zinc-finger protein it holds in Cardiovirus. The slot names are shared across the family and the proteins in them are not, which is why these are separate modules."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "26,364"
+      ],
+      [
+       "protein features",
+       "220,600"
+      ],
+      [
+       "unique sequences",
+       "70,226"
+      ],
+      [
+       "genomes with a contig &ge; 5 kb",
+       "17,755"
+      ],
+      [
+       "species",
+       "66"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>One module for the whole genus was a measured decision, not a convenience.</b> The per-species-group medians agree to within a few residues &mdash; 3C is 182&ndash;183 residues in every one of the seven groups, 2C is 322&ndash;330, 3D is 457&ndash;462. Routing lumped reaches 97% of genomes on 25 references, while splitting by species group reaches 99&ndash;100% each but costs seven reference budgets to buy two points. The species subsets exist for measurement only."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Twelve features, 701 profiles, every one at the documented defaults.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Genome polyprotein",
+       "POLY",
+       "10,562",
+       "49",
+       "defaults"
+      ],
+      [
+       "VP4",
+       "Capsid protein VP4 (1A)",
+       "VP4",
+       "1,726",
+       "33",
+       "defaults"
+      ],
+      [
+       "VP2",
+       "Capsid protein VP2 (1B)",
+       "VP2",
+       "5,393",
+       "55",
+       "defaults"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "VP3",
+       "5,150",
+       "79",
+       "defaults"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "VP1",
+       "9,199",
+       "184",
+       "defaults"
+      ],
+      [
+       "2A",
+       "Picornain 2A, protease (2A)",
+       "2A",
+       "6,063",
+       "46",
+       "defaults"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "2B",
+       "3,261",
+       "49",
+       "defaults"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "2C",
+       "5,327",
+       "31",
+       "defaults"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "3A",
+       "3,038",
+       "47",
+       "defaults"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "VPg",
+       "740",
+       "38",
+       "defaults"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "3C",
+       "4,251",
+       "33",
+       "defaults"
+      ],
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "3D",
+       "8,817",
+       "57",
+       "defaults"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "This is the best-sampled genus in the family and nothing needed a departure. The triage assigned <b>99.0% of 55,534 mature peptides</b>, and a string that matched two different features was refused rather than arbitrated &mdash; which caught <code>coat protein VP4 (P1B)</code> and <code>1D protein, VP4</code>, both self-contradictory on their face."
+    },
+    {
+     "type": "prose",
+     "html": "425 proteins annotated only <code>protease</code> could be 2A or 3C, and the string cannot say which. Rather than split them on a prior they were placed by blastp against the collections the unambiguous strings had already built, at the project floor of 80% identity over 85% coverage: <b>408 of 408 bare <code>protease</code> records went to 3C, unanimously.</b> The same floor correctly refused the precursors &mdash; <code>VP4-2C</code>, <code>P1</code>, <code>P1-P2</code> &mdash; because a precursor cannot cover 85% of a single mature peptide. 71 of 70,226 proteins end up unplaced."
+    },
+    {
+     "type": "prose",
+     "html": "<b>VPg is 22 residues and was measured callable rather than assumed.</b> Against 300 full-length polyproteins over 5,052 profile-by-subject pairs, scores at the VPg locus run from a 10th percentile of 21.2 bits to a median of 27.0; anywhere else on the same polyproteins the 99th percentile is 17.6 and the maximum 19.3. A cutoff of 20 therefore calls it and is silent across the other 2,160 residues. That is the measurement a 22-residue feature needs before it can be trusted."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Windows set from the per-species-group medians, not from the observed extremes.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "400",
+       "0.65",
+       "1,714",
+       "2,644"
+      ],
+      [
+       "VP4",
+       "40",
+       "0.65",
+       "53",
+       "82"
+      ],
+      [
+       "VP2",
+       "100",
+       "0.65",
+       "198",
+       "325"
+      ],
+      [
+       "VP3",
+       "100",
+       "0.65",
+       "188",
+       "288"
+      ],
+      [
+       "VP1",
+       "120",
+       "0.65",
+       "219",
+       "370"
+      ],
+      [
+       "2A",
+       "70",
+       "0.65",
+       "108",
+       "180"
+      ],
+      [
+       "2B",
+       "50",
+       "0.65",
+       "76",
+       "118"
+      ],
+      [
+       "2C",
+       "150",
+       "0.65",
+       "257",
+       "396"
+      ],
+      [
+       "3A",
+       "40",
+       "0.65",
+       "60",
+       "106"
+      ],
+      [
+       "VPG",
+       "20",
+       "0.65",
+       "16",
+       "27"
+      ],
+      [
+       "3C",
+       "100",
+       "0.65",
+       "145",
+       "219"
+      ],
+      [
+       "3D",
+       "200",
+       "0.65",
+       "365",
+       "554"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every median landed within 4% of the published size and most are exact: VP4 69, VP2 261, VP3 238, VP1 296, 2A 150, 2B 99, 2C 329, 3A 86, VPg 22, 3C 183, 3D 461. The binning rules know nothing about length, so that agreement is an independent check that the triage is right."
+    },
+    {
+     "type": "prose",
+     "html": "6,294 sequences fall outside the windows and <b>98.4% of them are short</b> &mdash; a 17-residue \"VP4\", a 7-residue \"VPg polypeptide\", a 470-residue \"polyprotein\". Only 100 are long. The windows are excluding truncations from partial genome records, which is what they are for."
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>63428 of 63527 (99.8%)</b> &mdash; POLY 10560/10562, VP4 1720/1726, VP2 5391/5393, VP3 5145/5150, VP1 9192/9199, 2A 6055/6063, 2B 3249/3261, 2C 5320/5327, 3A 3018/3038, VPG 720/740, 3C 4243/4251, 3D 8815/8817. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "25 rep contigs, and all 2,856 exemplars route.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes &ge; 5 kb, clustered at 95% nucleotide identity",
+       "2,856",
+       "&mdash;"
+      ],
+      [
+       "routed to Enterovirus",
+       "2,856",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "25 rep contigs ship with the module; 25 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold."
+    },
+    {
+     "type": "prose",
+     "html": "26,364 genomes clustered at 95% nucleotide identity give 2,856 distinct genome types, and every one of them routes. Nothing in this genus is unrouted, which is the payoff of the lumping decision in section 01: a single reference set covering the whole genus turns out to reach all of it."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Every feature on at least 2,784 of 2,856 exemplars, and 2,690 genomes carry all twelve.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "POLY",
+       "98.7",
+       98.7,
+       "2820 of 2856 routed exemplars"
+      ],
+      [
+       "VP4",
+       "98.5",
+       98.5,
+       "2812 of 2856 routed exemplars"
+      ],
+      [
+       "VP2",
+       "98.5",
+       98.5,
+       "2813 of 2856 routed exemplars"
+      ],
+      [
+       "VP3",
+       "98.0",
+       98.0,
+       "2800 of 2856 routed exemplars"
+      ],
+      [
+       "VP1",
+       "98.7",
+       98.7,
+       "2820 of 2856 routed exemplars"
+      ],
+      [
+       "2A",
+       "98.3",
+       98.3,
+       "2807 of 2856 routed exemplars"
+      ],
+      [
+       "2B",
+       "97.8",
+       97.8,
+       "2793 of 2856 routed exemplars"
+      ],
+      [
+       "2C",
+       "98.6",
+       98.6,
+       "2817 of 2856 routed exemplars"
+      ],
+      [
+       "3A",
+       "97.8",
+       97.8,
+       "2792 of 2856 routed exemplars"
+      ],
+      [
+       "VPg",
+       "97.5",
+       97.5,
+       "2784 of 2856 routed exemplars"
+      ],
+      [
+       "3C",
+       "98.9",
+       98.9,
+       "2824 of 2856 routed exemplars"
+      ],
+      [
+       "3D",
+       "98.7",
+       98.7,
+       "2818 of 2856 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>2690 of 2856 routed exemplars get every one of the 12 core features.</b> No core feature trails the best-called one by 20 points or more. <b>8 routed exemplar(s) cleared no profile at any feature</b> and are counted here as calling nothing."
+    },
+    {
+     "type": "prose",
+     "html": "The lowest is VPg at 2,784 of 2,856, which is 97.5% &mdash; for a 22-residue peptide called on the strength of a 20-bit cutoff, across 2,856 distinct genome types. No feature trails the best-called one by anything approaching 20 points, so step 13 had nothing to chase."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "36 of 40 held-out genomes clean.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "40",
+       "held-out genomes"
+      ],
+      [
+       "36",
+       "no genome/contig flags"
+      ],
+      [
+       "36",
+       "genuinely clean"
+      ],
+      [
+       "4",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "90.0%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 40 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "pre",
+     "text": "   3  Genome has too many HSPs for: Genome polyprotein\n   3  Count = 2\n   1  Contig has too many ambiguous bases, Frac > 0.01"
+    },
+    {
+     "type": "prose",
+     "html": "Three of the four flagged have their polyprotein called twice and one carries a contig with more than 1% ambiguous bases. Duplicate polyprotein HSPs are the signature of frameshifting indels in a deposited sequence rather than a defect in the profiles."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Eight genomes route and call nothing, and every one of them is a broken deposit.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>Eight of 2,856 routed exemplars clear no profile at any feature.</b> That is the category worth examining in any module, because a genome that routes and then calls nothing has passed the nucleotide filter and failed every protein one &mdash; which usually means either a genuinely divergent virus or a damaged sequence. Here it is damage, in two distinct forms, and neither is a coverage gap."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Three contain no cytosine at all.</b> Human poliovirus 1 <code>12080.3096</code> and Enterovirus D70 <code>12090.79</code> and <code>12090.87</code> are full length, have zero ambiguous bases, and are 0.0% C. Their 5&prime; ends read <code>TTAAAATAGTTTTGGGG&hellip;</code> where an enterovirus reads <code>TTAAAACAGCTCTGGGG&hellip;</code>: every C has become T. These are bisulfite-converted sequences deposited as genomes. The conversion destroys every reading frame &mdash; the longest ORF in the poliovirus genome is 158 residues against the ~2,200 of a real polyprotein &mdash; so no profile can match, and none should."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The other five are 88&ndash;94% ambiguous.</b> They are rat-derived Enterovirus D and Rhinovirus A deposits in which almost every position is N. There is nothing to call."
+    },
+    {
+     "type": "prose",
+     "html": "<b>So this module has no measured coverage gap.</b> Every exemplar routes, every feature is called on at least 97.5% of them, and the only genomes that come back empty are ones where the deposited sequence does not encode the proteins it claims to. That is an unusual position for a module to be in, and it reflects how heavily this genus is sequenced rather than anything special about the profiles."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "No coverage gap was found. All 2,856 exemplars route, the weakest feature is called on 97.5% of them, and the eight genomes that call nothing are three bisulfite-converted deposits with no cytosine and five that are 88-94% ambiguous. The limitation on this page is that a genus this densely sequenced cannot tell you how the module behaves on a divergent enterovirus, because BV-BRC does not hold one."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "The run confirmed the build rather than correcting it.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Unlike most modules in this family, Enterovirus needed no rebuild. Its collections were already large &mdash; 53,036 mature peptides across eleven features &mdash; so the projection technique that roughly tripled Hepatovirus, Kobuvirus and Senecavirus had nothing to add here. No feature was declared without a profile, no feature trailed its neighbours, and nothing was mis-binned."
+    },
+    {
+     "type": "prose",
+     "html": "What the full-taxon run did add was the examination in section 07. A per-genome count alone would have reported eight failures and left it there; what makes them interpretable is that three of them have a base composition no virus has."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "239 ways of writing twelve proteins &mdash; the largest collapse in the family.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "enterovirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "45"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "39"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "31"
+      ],
+      [
+       "VP2",
+       "Capsid protein VP2 (1B)",
+       "27"
+      ],
+      [
+       "2A",
+       "Picornain 2A, protease (2A)",
+       "27"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "26"
+      ],
+      [
+       "VP4",
+       "Capsid protein VP4 (1A)",
+       "25"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "25"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "21"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "20"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "16"
+      ],
+      [
+       "POLY",
+       "Genome polyprotein",
+       "10"
+      ],
+      [
+       "<i>pool</i>",
+       "not modelled",
+       "42"
+      ],
+      [
+       "<i>precursors</i>",
+       "not modelled",
+       "9"
+      ],
+      [
+       "<i>unplaced</i>",
+       "not modelled",
+       "17"
+      ],
+      [
+       "<i>unbound</i>",
+       "&mdash;",
+       "124"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over proteins: every annotated protein in the 2,684 genomes both sources annotate (28,109 source product records, 32,233 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>239</b> distinct strings, the module's <b>12</b>. At the depth both reach, 28,109 proteins, free text has used <b>239.0 strings against 12.0 &mdash; a 19.9-fold difference.</b> The source reaches 95% of its final size after 21,926 proteins, the module after 34."
+    },
+    {
+     "type": "prose",
+     "html": "The source vocabulary for this genus runs to 380 distinct product strings, of which 256 bind to a feature and collapse into 13 controlled ones &mdash; a <b>29.2&times; collapse</b>, the highest of the ten picornavirus modules. The remaining 124 bind to nothing."
+    },
+    {
+     "type": "prose",
+     "html": "Drawn one protein at a time, the shape is as stark as the ratio: the module reaches 95% of its vocabulary after <b>34 proteins</b> and adds nothing thereafter, while the source needs <b>21,926 of its 28,109 records</b> to reach 95% of its own and is still climbing at the end. That gap &mdash; 34 against 21,926 &mdash; is the clearest single illustration in this project of what a controlled vocabulary is for."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>enterovirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Picornaviridae/work/Enterovirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}

@@ -1,0 +1,51 @@
+{
+ "date": "5 October 2026",
+ "h1": "Does the enterovirus module work?",
+ "standfirst": "<b>Enterovirus</b> is the genus of poliovirus, the rhinoviruses that cause most common colds, the coxsackieviruses and echoviruses, EV-A71 and EV-D68. It is by a wide margin the largest module in this project: 26,364 genomes, 70,226 unique protein sequences and 701 profiles. This audit covers what it includes, how it was built, whether genomes reach it, whether it calls the proteins, and what it cannot do.",
+ "lede01": "One genus, seven species groups, and a single genome organisation across all of them.",
+ "p01": [
+  "The enterovirus polyprotein is VP4, VP2, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C and 3D. There is no leader, and the 2A is a chymotrypsin-like protease &mdash; not the StopGo peptide the same slot holds in Aphthovirus and Teschovirus, and not the 71-residue zinc-finger protein it holds in Cardiovirus. The slot names are shared across the family and the proteins in them are not, which is why these are separate modules.",
+  "<b>One module for the whole genus was a measured decision, not a convenience.</b> The per-species-group medians agree to within a few residues &mdash; 3C is 182&ndash;183 residues in every one of the seven groups, 2C is 322&ndash;330, 3D is 457&ndash;462. Routing lumped reaches 97% of genomes on 25 references, while splitting by species group reaches 99&ndash;100% each but costs seven reference budgets to buy two points. The species subsets exist for measurement only."
+ ],
+ "lede02": "Twelve features, 701 profiles, every one at the documented defaults.",
+ "p02": [
+  "This is the best-sampled genus in the family and nothing needed a departure. The triage assigned <b>99.0% of 55,534 mature peptides</b>, and a string that matched two different features was refused rather than arbitrated &mdash; which caught <code>coat protein VP4 (P1B)</code> and <code>1D protein, VP4</code>, both self-contradictory on their face.",
+  "425 proteins annotated only <code>protease</code> could be 2A or 3C, and the string cannot say which. Rather than split them on a prior they were placed by blastp against the collections the unambiguous strings had already built, at the project floor of 80% identity over 85% coverage: <b>408 of 408 bare <code>protease</code> records went to 3C, unanimously.</b> The same floor correctly refused the precursors &mdash; <code>VP4-2C</code>, <code>P1</code>, <code>P1-P2</code> &mdash; because a precursor cannot cover 85% of a single mature peptide. 71 of 70,226 proteins end up unplaced.",
+  "<b>VPg is 22 residues and was measured callable rather than assumed.</b> Against 300 full-length polyproteins over 5,052 profile-by-subject pairs, scores at the VPg locus run from a 10th percentile of 21.2 bits to a median of 27.0; anywhere else on the same polyproteins the 99th percentile is 17.6 and the maximum 19.3. A cutoff of 20 therefore calls it and is silent across the other 2,160 residues. That is the measurement a 22-residue feature needs before it can be trusted."
+ ],
+ "lede03": "Windows set from the per-species-group medians, not from the observed extremes.",
+ "p03": [
+  "Every median landed within 4% of the published size and most are exact: VP4 69, VP2 261, VP3 238, VP1 296, 2A 150, 2B 99, 2C 329, 3A 86, VPg 22, 3C 183, 3D 461. The binning rules know nothing about length, so that agreement is an independent check that the triage is right.",
+  "6,294 sequences fall outside the windows and <b>98.4% of them are short</b> &mdash; a 17-residue \"VP4\", a 7-residue \"VPg polypeptide\", a 470-residue \"polyprotein\". Only 100 are long. The windows are excluding truncations from partial genome records, which is what they are for."
+ ],
+ "lede04": "25 rep contigs, and all 2,856 exemplars route.",
+ "p04": [
+  "26,364 genomes clustered at 95% nucleotide identity give 2,856 distinct genome types, and every one of them routes. Nothing in this genus is unrouted, which is the payoff of the lumping decision in section 01: a single reference set covering the whole genus turns out to reach all of it."
+ ],
+ "lede05": "Every feature on at least 2,784 of 2,856 exemplars, and 2,690 genomes carry all twelve.",
+ "p05": [
+  "The lowest is VPg at 2,784 of 2,856, which is 97.5% &mdash; for a 22-residue peptide called on the strength of a 20-bit cutoff, across 2,856 distinct genome types. No feature trails the best-called one by anything approaching 20 points, so step 13 had nothing to chase."
+ ],
+ "lede06": "36 of 40 held-out genomes clean.",
+ "p06": [
+  "Three of the four flagged have their polyprotein called twice and one carries a contig with more than 1% ambiguous bases. Duplicate polyprotein HSPs are the signature of frameshifting indels in a deposited sequence rather than a defect in the profiles."
+ ],
+ "lede07": "Eight genomes route and call nothing, and every one of them is a broken deposit.",
+ "p07": [
+  "<b>Eight of 2,856 routed exemplars clear no profile at any feature.</b> That is the category worth examining in any module, because a genome that routes and then calls nothing has passed the nucleotide filter and failed every protein one &mdash; which usually means either a genuinely divergent virus or a damaged sequence. Here it is damage, in two distinct forms, and neither is a coverage gap.",
+  "<b>Three contain no cytosine at all.</b> Human poliovirus 1 <code>12080.3096</code> and Enterovirus D70 <code>12090.79</code> and <code>12090.87</code> are full length, have zero ambiguous bases, and are 0.0% C. Their 5&prime; ends read <code>TTAAAATAGTTTTGGGG&hellip;</code> where an enterovirus reads <code>TTAAAACAGCTCTGGGG&hellip;</code>: every C has become T. These are bisulfite-converted sequences deposited as genomes. The conversion destroys every reading frame &mdash; the longest ORF in the poliovirus genome is 158 residues against the ~2,200 of a real polyprotein &mdash; so no profile can match, and none should.",
+  "<b>The other five are 88&ndash;94% ambiguous.</b> They are rat-derived Enterovirus D and Rhinovirus A deposits in which almost every position is N. There is nothing to call.",
+  "<b>So this module has no measured coverage gap.</b> Every exemplar routes, every feature is called on at least 97.5% of them, and the only genomes that come back empty are ones where the deposited sequence does not encode the proteins it claims to. That is an unusual position for a module to be in, and it reflects how heavily this genus is sequenced rather than anything special about the profiles."
+ ],
+ "verdict07": "No coverage gap was found. All 2,856 exemplars route, the weakest feature is called on 97.5% of them, and the eight genomes that call nothing are three bisulfite-converted deposits with no cytosine and five that are 88-94% ambiguous. The limitation on this page is that a genus this densely sequenced cannot tell you how the module behaves on a divergent enterovirus, because BV-BRC does not hold one.",
+ "lede08": "The run confirmed the build rather than correcting it.",
+ "p08": [
+  "Unlike most modules in this family, Enterovirus needed no rebuild. Its collections were already large &mdash; 53,036 mature peptides across eleven features &mdash; so the projection technique that roughly tripled Hepatovirus, Kobuvirus and Senecavirus had nothing to add here. No feature was declared without a profile, no feature trailed its neighbours, and nothing was mis-binned.",
+  "What the full-taxon run did add was the examination in section 07. A per-genome count alone would have reported eight failures and left it there; what makes them interpretable is that three of them have a base composition no virus has."
+ ],
+ "lede09": "239 ways of writing twelve proteins &mdash; the largest collapse in the family.",
+ "p09": [
+  "The source vocabulary for this genus runs to 380 distinct product strings, of which 256 bind to a feature and collapse into 13 controlled ones &mdash; a <b>29.2&times; collapse</b>, the highest of the ten picornavirus modules. The remaining 124 bind to nothing.",
+  "Drawn one protein at a time, the shape is as stark as the ratio: the module reaches 95% of its vocabulary after <b>34 proteins</b> and adds nothing thereafter, while the source needs <b>21,926 of its 28,109 records</b> to reach 95% of its own and is still climbing at the end. That gap &mdash; 34 against 21,926 &mdash; is the clearest single illustration in this project of what a controlled vocabulary is for."
+ ]
+}

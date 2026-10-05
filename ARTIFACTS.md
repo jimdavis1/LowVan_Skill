@@ -28,6 +28,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Carlavirus** | [live](https://claude.ai/artifact/DMcy8JVZfFPimPkWsXTMQ1) | [live](https://claude.ai/artifact/8X8vzYkkKzKaGhL5Z35kgd) | [live](https://claude.ai/artifact/CanGWVzZ16524CDkMgP3P3) | [live](https://claude.ai/artifact/NmFkgdqungA9QQqwo4vnxk) |
 | **Closterovirus** | [live](https://claude.ai/artifact/R7s4HEWxG7uE5rUVP45bFE) | [live](https://claude.ai/artifact/6ZfGY1KaXuL3cYbY8fuMUN) | [live](https://claude.ai/artifact/8yJX7hSR2qhznPkQYXq4pj) | [live](https://claude.ai/artifact/Ab6k6zYW9YHdrXhhk893kc) |
 | **Crinivirus** | [live](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [live](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [live](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [live](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) |
+| **Enterovirus** | [live](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [live](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [live](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [live](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) |
 | **Hepaciviridae** | [live](https://claude.ai/artifact/SuSzzD4Lgid5Nqh4wsAUsw) | [live](https://claude.ai/artifact/G2CDRQ1g7bPZQwJCAeVCNR) | [live](https://claude.ai/artifact/PFSG6T5FP4Pdv82KTtpRb3) | [live](https://claude.ai/artifact/8vMTNVAXKjhCEqmbsUBcry) |
 | **Hepeviridae** | [src only](reports/hepeviridae-string-collapse.html) | [live](https://claude.ai/artifact/Rv8Qtd6yogBhSxwxN83zUB) | [live](https://claude.ai/artifact/Lhe1p5zfzv6drE9XPXWB9n) | [live](https://claude.ai/artifact/9rab6t9Wg2jyUjpd31FCmz) |
 | **Marafivirus** | [live](https://claude.ai/artifact/8hsgb6VBLoWthJQ5fDekmN) | [live](https://claude.ai/artifact/BJLdgUbZv3VZyFmBZwPur2) | [live](https://claude.ai/artifact/UrU49iSx3Qf1vw7QSUTUSD) | [live](https://claude.ai/artifact/WPLVahsQ7EMSvzP2MxnZ4k) |
@@ -150,6 +151,15 @@ published — the file is in this repo. `—` was not made.
 | Crinivirus PSSM Registry | [open](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [source](reports/crinivirus-pssm-registry.html) | 2026-09-29 |
 | Crinivirus String Collapse | [open](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [source](reports/crinivirus-string-collapse.html) | 2026-09-29 |
 | Crinivirus Vocabulary Saturation | [open](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [source](reports/crinivirus-vocabulary-saturation.html) | 2026-09-29 |
+
+### Enterovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Enterovirus Coverage Audit | [open](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) | [source](reports/enterovirus-coverage-audit.html) | 2026-10-05 |
+| Enterovirus PSSM Registry | [open](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [source](reports/enterovirus-pssm-registry.html) | 2026-10-05 |
+| Enterovirus String Collapse | [open](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [source](reports/enterovirus-string-collapse.html) | 2026-10-05 |
+| Enterovirus Vocabulary Saturation | [open](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [source](reports/enterovirus-vocabulary-saturation.html) | 2026-10-05 |
 
 ### Hepaciviridae
 
