@@ -21,7 +21,7 @@ echo "=== Box work tree (previous build kept as *.$STAMP)"
 [ -d $W/Alignments.$STAMP ] || mv $W/Alignments $W/Alignments.$STAMP
 [ -d $W/collections.$STAMP ] || mv $W/collections $W/collections.$STAMP
 #  Extracted/ exists only for genera that were projected
-rsync -a --exclude 'tmp/' $B/Alignments $B/collections $W/
+rsync -a --exclude 'tmp/' --exclude '.L-renamed-to-*' $B/Alignments $B/collections $W/
 [ -d $B/Extracted ] && rsync -a $B/Extracted $W/
 cp $B/${G}_Viral_PSSM.json $W/
 [ -f $B/features.json ] && cp $B/features.json $W/

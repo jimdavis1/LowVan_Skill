@@ -1,9 +1,9 @@
 {
- "standfirst": "Encephalomyocarditis virus, Theiler's murine encephalomyelitis virus and Saffold virus in one module: thirteen polyprotein products, 60 profiles, every feature built at the documented defaults. The two out-of-frame proteins of the genus, L* and 2B*, are not declared here; the coverage audit measures what that costs.",
+ "standfirst": "Encephalomyocarditis virus, Theiler's murine encephalomyelitis virus and Saffold virus in one module. Fifteen features and 72 profiles: thirteen polyprotein products built at the documented defaults, plus the two proteins cardioviruses make out of frame with that polyprotein &mdash; L*, an ordinary PSSM feature, and 2B*, which is not collinear with the genome and is called from a set of per-genome nucleotide references instead.",
  "modules": {
   "Cardiovirus": "The leader is a 67-76 residue zinc-finger host antagonist, not a protease, which is why this genus is separate from Aphthovirus whose leader occupies the same slot at 201 residues. Only POLY carries copy_num."
  },
- "gaps": "No declared feature lacks a collection. The thinnest are VPg at 22 sequences and 3A at 36, both of which still cleared the -m 5 floor. What is missing is not a thin feature but two undeclared proteins: L* and 2B*, both out of frame with the polyprotein.",
- "derived": "All thirteen mature peptides are cleavage products of POLY, with both extensions set to 0.",
+ "gaps": "No declared feature lacks a profile. 2B* has no PSSM by design: it is a transcript-edited feature called from 80 nucleotide references, all from C. rueckerti, which is the only species carrying the long +2 ORF.",
+ "derived": "Thirteen mature peptides are cleavage products of POLY with both extensions set to 0. L* is a separate CDS overlapping POLY in another frame, so kmers is 0. 2B* is a -1 ribosomal frameshift product sharing its N-terminus with 2B; its reference set round-trips byte-identically on 12 of 12 donor genomes.",
  "why": {}
 }

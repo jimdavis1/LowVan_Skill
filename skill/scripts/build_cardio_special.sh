@@ -14,9 +14,9 @@ $PY $S/special_cardio.py $SP/all/ann $S/Contigs.$G $SP/out
 
 echo "=== stage the module build tree"
 rm -rf $B; mkdir -p $B/collections/$G $B/Alignments/$G
-rsync -a --exclude 'tmp/' $S/fin/$G/collections/$G/ $B/collections/$G/
+rsync -a --exclude 'tmp/' --exclude '.L-renamed-to-*' $S/fin/$G/collections/$G/ $B/collections/$G/
 rm -f $B/collections/$G/L.fasta   # pre-rename duplicate of Ldr.fasta, not a declared feature
-rsync -a --exclude 'tmp/' $S/fin/$G/Alignments/$G/  $B/Alignments/$G/
+rsync -a --exclude 'tmp/' --exclude '.L-renamed-to-*' $S/fin/$G/Alignments/$G/  $B/Alignments/$G/
 rsync -a /Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Picornaviridae/work/$G/Rep-Contigs $B/
 cp $LOWVAN_KIT/modules/$G/${G}_Viral_PSSM.json $B/
 

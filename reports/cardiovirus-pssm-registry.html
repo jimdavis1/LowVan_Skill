@@ -94,15 +94,15 @@
 </style>
 <div class="wrap">
  <header>
-  <div class="eyebrow">LowVan &middot; Cardiovirus module &middot; 4 October 2026</div>
+  <div class="eyebrow">LowVan &middot; Cardiovirus module &middot; 5 October 2026</div>
   <h1>Cardiovirus</h1>
   <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">Annotation strings and the PSSMs that call them</h2>
-  <p class="stand">Encephalomyocarditis virus, Theiler's murine encephalomyelitis virus and Saffold virus in one module: thirteen polyprotein products, 60 profiles, every feature built at the documented defaults. The two out-of-frame proteins of the genus, L* and 2B*, are not declared here; the coverage audit measures what that costs.</p>
+  <p class="stand">Encephalomyocarditis virus, Theiler's murine encephalomyelitis virus and Saffold virus in one module. Fifteen features and 72 profiles: thirteen polyprotein products built at the documented defaults, plus the two proteins cardioviruses make out of frame with that polyprotein &mdash; L*, an ordinary PSSM feature, and 2B*, which is not collinear with the genome and is called from a set of per-genome nucleotide references instead.</p>
  </header>
  <div class="figs">
-  <div class="fig"><span class="n">60</span><span class="k">PSSMs built</span></div>
-  <div class="fig"><span class="n">13/13</span><span class="k">features with a profile</span></div>
-  <div class="fig"><span class="n">13</span><span class="k">of 13 annotation strings reachable</span></div>
+  <div class="fig"><span class="n">67</span><span class="k">PSSMs built</span></div>
+  <div class="fig"><span class="n">14/15</span><span class="k">features with a profile</span></div>
+  <div class="fig"><span class="n">14</span><span class="k">of 15 annotation strings reachable</span></div>
   <div class="fig"><span class="n">100%</span><span class="k">median per-feature call rate</span></div>
   <div class="fig"><span class="n">0</span><span class="k">features unsatisfiable</span></div>
  </div>
@@ -112,21 +112,23 @@
   <span><i class="nd">&#9702;</i> non-default build parameters (12)</span>
  </div>
  <div class="ctrl"><span class="eyebrow" style="margin-right:4px">show</span>
-  <button aria-pressed="true" data-f="all">all 13</button>
-  <button aria-pressed="false" data-f="built">built (13)</button>
+  <button aria-pressed="true" data-f="all">all 15</button>
+  <button aria-pressed="false" data-f="built">built (14)</button>
   <button aria-pressed="false" data-f="gap">gaps (0)</button>
-  <button aria-pressed="false" data-f="derived">derived (0)</button>
+  <button aria-pressed="false" data-f="derived">derived (1)</button>
  </div>
 <section class="tax">
- <div class="taxhd"><h2>Cardiovirus</h2><span class="taxmeta">13 of 13 features built &middot; 60 PSSMs &middot; 100% callable</span></div>
+ <div class="taxhd"><h2>Cardiovirus</h2><span class="taxmeta">14 of 15 features built &middot; 67 PSSMs &middot; 100% callable</span></div>
 <p class="taxnote">The leader is a 67-76 residue zinc-finger host antagonist, not a protease, which is why this genus is separate from Aphthovirus whose leader occupies the same slot at 201 residues. Only POLY carries copy_num.</p>
  <div class="tw"><table><thead><tr><th>Key</th><th>Annotation string</th><th>Gene</th><th>Type</th><th class="num">Bit</th><th class="num">Length</th><th class="num">Seqs</th><th>PSSMs</th><th>Callable</th><th>Status</th></tr></thead>
  <tbody><tr data-status="built"><td class="k">2A <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">Protein 2A</td><td class="m">2A</td><td class="m ty">mat_pep</td><td class="m num">63</td><td class="m num">113&ndash;171</td><td class="m num">101</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code></td><td class="covcell"><div class="cov" title="101 of 101 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
   <tr data-status="built"><td class="k">2B <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">Protein 2B, viroporin</td><td class="m">2B</td><td class="m ty">mat_pep</td><td class="m num">57</td><td class="m num">101&ndash;180</td><td class="m num">83</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code></td><td class="covcell"><div class="cov" title="82 of 83 in-range sequences callable"><i style="width:98.80%"></i><b style="width:1.20%"></b></div><span class="covn">99%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="special"><td class="k">2BSTAR</td><td class="anno">TransFrame protein</td><td class="m">2B*</td><td class="m ty">mat_pep</td><td class="m num">&mdash;</td><td class="m num">127&ndash;133</td><td class="m num"><span class="dash">&mdash;</span></td><td class="pss"><span class="dash">&mdash;</span></td><td class="covcell"><span class="dash">&mdash;</span></td><td><span class="chip s-special">external</span></td></tr>
   <tr data-status="built"><td class="k">2C <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">Protein 2C, ATPase/helicase</td><td class="m">2C</td><td class="m ty">mat_pep</td><td class="m num">146</td><td class="m num">260&ndash;390</td><td class="m num">107</td><td class="pss"><code>1</code> <code>2</code> <code>3</code></td><td class="covcell"><div class="cov" title="107 of 107 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
   <tr data-status="built"><td class="k">3A <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">Protein 3A</td><td class="m">3A</td><td class="m ty">mat_pep</td><td class="m num">39</td><td class="m num">70&ndash;105</td><td class="m num">36</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code></td><td class="covcell"><div class="cov" title="36 of 36 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
   <tr data-status="built"><td class="k">3C <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">Picornain 3C, protease (3C)</td><td class="m">3C</td><td class="m ty">mat_pep</td><td class="m num">97</td><td class="m num">164&ndash;260</td><td class="m num">92</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code></td><td class="covcell"><div class="cov" title="92 of 92 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
   <tr data-status="built"><td class="k">3D <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">RNA-directed RNA polymerase 3D</td><td class="m">3D</td><td class="m ty">mat_pep</td><td class="m num">207</td><td class="m num">368&ndash;553</td><td class="m num">109</td><td class="pss"><code>1</code> <code>2</code> <code>3</code></td><td class="covcell"><div class="cov" title="109 of 109 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">LSTAR</td><td class="anno">L* protein</td><td class="m">L*</td><td class="m ty">CDS</td><td class="m num">70</td><td class="m num">125&ndash;187</td><td class="m num">47</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code></td><td class="covcell"><div class="cov" title="45 of 47 in-range sequences callable"><i style="width:95.74%"></i><b style="width:4.26%"></b></div><span class="covn">96%</span></td><td><span class="chip s-built">built</span></td></tr>
   <tr data-status="built"><td class="k">Ldr</td><td class="anno">Leader protein, zinc-finger host antagonist</td><td class="m">Ldr</td><td class="m ty">mat_pep</td><td class="m num">31</td><td class="m num">53&ndash;85</td><td class="m num">69</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code></td><td class="covcell"><div class="cov" title="69 of 69 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
   <tr data-status="built"><td class="k">POLY <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">Genome polyprotein</td><td class="m">POLY</td><td class="m ty">CDS</td><td class="m num">400</td><td class="m num">1843&ndash;2764</td><td class="m num">106</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code></td><td class="covcell"><div class="cov" title="106 of 106 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
   <tr data-status="built"><td class="k">VP1 <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">Capsid protein VP1 (1D)</td><td class="m">VP1</td><td class="m ty">mat_pep</td><td class="m num">124</td><td class="m num">218&ndash;332</td><td class="m num">126</td><td class="pss"><code>1</code> <code>10</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="126 of 126 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
@@ -137,13 +139,13 @@
 </section>
  <section class="gap">
   <h2>What was missed, and why</h2>
-  <p>No declared feature lacks a collection. The thinnest are VPg at 22 sequences and 3A at 36, both of which still cleared the -m 5 floor. What is missing is not a thin feature but two undeclared proteins: L* and 2B*, both out of frame with the polyprotein.</p>
+  <p>No declared feature lacks a profile. 2B* has no PSSM by design: it is a transcript-edited feature called from 80 nucleotide references, all from C. rueckerti, which is the only species carrying the long +2 ORF.</p>
   <div class="tw"><table><thead><tr><th>Module</th><th class="num">Features</th><th>Keys with no collection</th></tr></thead>
   <tbody><tr><td colspan="3" class="dash">none</td></tr></tbody></table></div>
   <p style="margin-top:14px"><b>0 features have a collection too small to profile.</b></p>
   <div class="tw"><table><thead><tr><th>Module</th><th>Feature</th><th class="num">Seqs</th><th>Why not buildable</th></tr></thead>
   <tbody><tr><td colspan="4" class="dash">none</td></tr></tbody></table></div>
-  <p style="margin-top:14px">All thirteen mature peptides are cleavage products of POLY, with both extensions set to 0.</p>
+  <p style="margin-top:14px">Thirteen mature peptides are cleavage products of POLY with both extensions set to 0. L* is a separate CDS overlapping POLY in another frame, so kmers is 0. 2B* is a -1 ribosomal frameshift product sharing its N-terminus with 2B; its reference set round-trips byte-identically on 12 of 12 donor genomes.</p>
  </section>
  <div class="src">Generated from <code>Cardiovirus_Viral_PSSM.json</code> and the built
  <code>Alignments/&lt;Module&gt;/&lt;Feature&gt;/pssms/</code> trees by <code>collect_registry.py</code> and
