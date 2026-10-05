@@ -1,11 +1,51 @@
->fig|3019276.6.mat_peptide.9 Genome-linked protein VPg (3B)
-AAYSGLPKQKTQ-KSAKPIPTRHIQRQ
->fig|3019276.18.mat_peptide.9 Genome-linked protein VPg (3B)
-AAYSGLPKQKIQ-KSAKPIPTRHIQRQ
+>ext14|Kobuvirus|VPG|ref=r5 Genome-linked protein VPg (3B)
+AAYSGIPHQKSKPKSQKPVPTRHIQRQ
+>fig|72149.28.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSAIPHQKSKPKSQKPVPTRHIQRQ
+>fig|1313215.1133.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSAIPHQKSKPKSQKPVPTRHTQRQ
+>ext11|Kobuvirus|VPG|ref=r104 Genome-linked protein VPg (3B)
+AAYSAIPHQKSKPKSQKSVPTRHIQRQ
+>fig|1313215.74.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSAIPHQKPKPKSQKPVPTRHIQRQ
+>fig|72149.104.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSAISHQKPKPKSQKPVPTRHIQRQ
+>ext15|Kobuvirus|VPG|ref=r92 Genome-linked protein VPg (3B)
+AAYSGIPHQKTKPKSAKPIPTRHIQRQ
+>ext25|Kobuvirus|VPG|ref=r92 Genome-linked protein VPg (3B)
+AAYSGLPHQKTKPKSAKPIPTRHIQRQ
+>ext26|Kobuvirus|VPG|ref=r92 Genome-linked protein VPg (3B)
+AAYSGLPHQKTKPKSAKPIPTRHVQRQ
+>ext20|Kobuvirus|VPG|ref=r92 Genome-linked protein VPg (3B)
+AAYSGLPHQKAKPKAAKPIPTRHIQRQ
 >fig|1281440.3.mat_peptide.8 Genome-linked protein VPg (3B)
 AAYSGLPHQKAKPKSAKPIPTRHIQRQ
+>ext23|Kobuvirus|VPG|ref=r92 Genome-linked protein VPg (3B)
+AAYSGLPHQKAKPKSVKPIPTRHIQRQ
+>ext29|Kobuvirus|VPG|ref=r46 Genome-linked protein VPg (3B)
+AAYSGMPHQKAKPKSQKPIPTRHIQRQ
 >fig|1836608.153.mat_peptide.9 Genome-linked protein VPg (3B)
 AAYSGLPHQKAKPKSQKPIPTRHIQRQ
+>ext33|Kobuvirus|VPG|ref=r46 Genome-linked protein VPg (3B)
+AAYSGMPHQKPKPKSQKPIPTRHIQRQ
+>ext24|Kobuvirus|VPG|ref=r92 Genome-linked protein VPg (3B)
+AAYSGLPHQKTKPKSAKPIPPRHIQRQ
+>ext36|Kobuvirus|VPG|ref=r116 Genome-linked protein VPg (3B)
+AAYSGMPHQKSKPKSQKPIPTHHIQRQ
+>ext41|Kobuvirus|VPG|ref=r5 Genome-linked protein VPg (3B)
+AAYSGMPHQRSKPKSQKPIPTHHIQRQ
+>ext43|Kobuvirus|VPG|ref=r5 Genome-linked protein VPg (3B)
+AAYSGVPHQKPKSKSDKPIPTRHIQRQ
+>ext51|Kobuvirus|VPG|ref=r5 Genome-linked protein VPg (3B)
+AAYSGVPHQKTKSKSDKPIPTRHIQRQ
+>ext47|Kobuvirus|VPG|ref=r5 Genome-linked protein VPg (3B)
+AAYSGVPHQKSKPKSDKPIPTRHIQRQ
+>ext50|Kobuvirus|VPG|ref=r5 Genome-linked protein VPg (3B)
+AAYSGVPHQKSKSKSEKPIPIRHIQRQ
+>ext49|Kobuvirus|VPG|ref=r113 Genome-linked protein VPg (3B)
+AAYSGVPHQKSKPKTPKPIPTQHIQRQ
+>fig|1379496.55.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSGVPHQRSKPKTPKPIPTRHIQRQ
 >fig|1379496.100.mat_peptide.8 Genome-linked protein VPg (3B)
 AAYSGMPHQKNKPKAPKPIPTRHIQRQ
 >fig|1379496.95.mat_peptide.8 Genome-linked protein VPg (3B)
@@ -16,5 +56,21 @@ AAYSGMPHQKSKPKTPKPIPTRHIQRQ
 AAYSGMPHQKNKPKTPKPIPTRHIQRQ
 >fig|1379496.103.mat_peptide.8 Genome-linked protein VPg (3B)
 AAYSGMPHQKGKPKAPKPIPTRHIQRQ
->fig|1379496.55.mat_peptide.8 Genome-linked protein VPg (3B)
-AAYSGVPHQRSKPKTPKPIPTRHIQRQ
+>fig|1141624.44.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSGVPHQKQRPKSQKPVPTNHIQRQ
+>fig|72149.27.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSGVPHQKQKPKSQKPVPTNHIQRQ
+>fig|1141624.7.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSGMPHQKQKPKSQKPVPTNHIQRQ
+>fig|72149.23.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSGAPHQKQKPKSQKPVPTNHIQRQ
+>fig|72149.50.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSGVPHQKQKPKSQKPIPTSHIQRQ
+>ext40|Kobuvirus|VPG|ref=r116 Genome-linked protein VPg (3B)
+AAYSGMPHQKSKTKSNKPIPTRHIQRQ
+>fig|72149.59.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSGMPHQKSKPKSQKPLPTTHIRRQ
+>fig|1141624.75.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSGVPHQKSKPKSQKPIPTNCIKRQ
+>fig|1141624.77.mat_peptide.8 Genome-linked protein VPg (3B)
+AAYSGMPHQKSKPKSQKPIPTNCIKRQ

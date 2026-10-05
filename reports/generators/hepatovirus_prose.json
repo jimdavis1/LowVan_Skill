@@ -1,0 +1,45 @@
+{
+ "date": "5 October 2026",
+ "h1": "Does the hepatitis A virus module work?",
+ "standfirst": "<b>Hepatovirus</b> is the genus of hepatitis A virus, still a notifiable cause of acute liver disease worldwide and vaccine-preventable since 1995. The genus also holds bat, rodent, hedgehog, seal and bird hepatoviruses described in the last decade. This audit covers the module built for it, which was rebuilt on 5 October because it was the thinnest-trained of the ten.",
+ "lede01": "One genus, 37 species, and the same layout as Enterovirus.",
+ "p01": [
+  "The hepatovirus polyprotein is VP4, VP2, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C and 3D. There is no leader and VP0 is cleaved, which is the organisation Enterovirus has and which separates both from the VP0-uncleaved group that holds Parechovirus, Kobuvirus and Avihepatovirus.",
+  "The sampling is lopsided. BV-BRC holds 1,718 genomes but only <b>919 unique protein sequences</b>, because hepatitis A virus is sequenced repeatedly and the non-primate hepatoviruses hardly at all. Most of the 37 species contribute one or two genomes."
+ ],
+ "lede02": "Rebuilt on 5 October: the thinnest-trained module in the family, roughly doubled.",
+ "p02": [
+  "Before the rebuild this module had 42 profiles across twelve features, built from barely 340 annotated mature peptides. Several features had fewer than twenty training sequences: VPg had 9, 2B had 13, VP4 had 20.",
+  "The collections were enlarged by projection &mdash; taking genomes whose own mat_peptide records are exact substrings of their own polyprotein, aligning every other polyprotein to its nearest such reference, and carrying the cut coordinates across. Nothing is predicted. A segment is kept only if the polyprotein is at least 50% identical to its reference, the segment falls inside the feature's window, and it is at least 35% identical to the reference segment.",
+  "3D went from 40 sequences to 203, 2C from 61 to 142, VP1 from 77 to 138, VPg from 9 to 37. The module now carries <b>86 profiles</b>, and every feature built at the documented defaults."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median, bit cutoffs at 0.45&times; the median length with a floor of 20.",
+ "p03": [],
+ "lede04": "25 rep contigs, 113 of 116 exemplars routed.",
+ "p04": [
+  "All three unrouted genomes are bird-associated: two <i>Hepatovirus sp.</i> from goose faeces and one mute swan hepatovirus. A genome no rep contig claims is never annotated at all, so these are a routing gap rather than a profile gap."
+ ],
+ "lede05": "Eleven features on at least 99 of 113 exemplars, and 89 genomes carry all twelve.",
+ "p05": [
+  "VP4 is the lowest at 96 of 113. It is the shortest capsid protein in the genome, about 23 residues in this genus, and short proteins are where divergence costs most because there is less sequence over which a profile can accumulate score. The misses are concentrated in the non-primate species: 6 of 12 <i>Hepatovirus sp.</i>, both bar-headed goose hepatoviruses, Loch Leven virus, and both mute swan hepatoviruses &mdash; against 2 of 59 for hepatitis A virus itself.",
+  "One routed exemplar clears no profile at any feature."
+ ],
+ "lede06": "36 of 39 held-out genomes clean.",
+ "p06": [],
+ "lede07": "The non-primate hepatoviruses, at both ends of the pipeline.",
+ "p07": [
+  "<b>Hepatitis A virus itself is called completely</b> &mdash; VP4 on 57 of 59 exemplars and every other feature at or near 100%. The module does the job it is principally needed for.",
+  "<b>The bird hepatoviruses fail twice.</b> Three of them do not route at all, so they are never annotated; of those that do route, both bar-headed goose genomes and both mute swan genomes miss VP4. These are the most recently described members of the genus and the most thinly sequenced, and the module has essentially nothing to learn them from.",
+  "<b>Projection could not reach them either.</b> It requires a reference polyprotein at least 50% identical, and the non-primate hepatoviruses are further from hepatitis A virus than that. So the rebuild that doubled this module improved it mostly where it was already adequate, and left the thin end thin. That is the honest shape of the result: more training data for the species that already had some."
+ ],
+ "verdict07": "Hepatitis A virus is covered completely. The non-primate hepatoviruses are covered partially and the bird hepatoviruses barely at all, failing both at routing and at VP4. Closing that needs annotated genomes from those lineages, not a threshold change or another projection pass.",
+ "lede08": "The run showed what a thin collection costs, and what enlarging it does and does not buy.",
+ "p08": [
+  "This module was built correctly on 2 October from the data available and had 42 profiles behind twelve features. Nothing in the build, the install check or the cross-feature QC can report that a feature has too few training sequences; the profiles recovered their own data perfectly, because there was so little of it.",
+  "Doubling the collections moved the complete-genome count from 84 to 89 and lifted 2B and VPg by a few exemplars each. That is a real but modest gain, and it is worth stating plainly rather than presenting the doubling as a transformation &mdash; compare Sapelovirus, where the same technique moved the leader from 6 calls to 170. The difference is that Sapelovirus had a feature that was broken, while Hepatovirus had features that were merely thin."
+ ],
+ "lede09": "A well-named genus by this family's standards.",
+ "p09": [
+  "Hepatovirus collapses at 6.3&times;, above the family median. Submitters of hepatitis A virus sequences are relatively consistent, and most of the variety the vocabulary absorbs comes from the recently described animal hepatoviruses."
+ ]
+}

@@ -1,0 +1,635 @@
+{
+ "title": "Kobuvirus Coverage Audit",
+ "eyebrow": "LowVan &middot; Kobuvirus module &middot; 5 October 2026",
+ "h1": "Does the kobuvirus module work?",
+ "standfirst": "<b>Kobuvirus</b> is the genus of Aichivirus A, a cause of gastroenteritis in people, together with the bovine and porcine kobuviruses of veterinary importance and a long tail of rodent, bat and bird viruses. Forty-five species in one module. This audit covers what it includes, how it was built, whether genomes reach it, whether it calls the proteins, and what it cannot do.",
+ "headline_tiles": [
+  [
+   "12",
+   "features, all with profiles"
+  ],
+  [
+   "115",
+   "PSSMs"
+  ],
+  [
+   "313/313",
+   "exemplars routed"
+  ],
+  [
+   "80.0%",
+   "held-out genomes genuinely clean"
+  ],
+  [
+   "3.5&times;",
+   "string collapse"
+  ],
+  [
+   "3.5&times;",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One genus, 45 species, and an uncleaved VP0.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The kobuvirus polyprotein is a leader, VP0, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C and 3D. <b>VP0 is never cleaved into VP4 and VP2</b>, so the mature capsid carries three proteins rather than four &mdash; the same arrangement as Parechovirus and Avihepatovirus, and the reason those genera group apart from Enterovirus and Hepatovirus."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "956"
+      ],
+      [
+       "protein features",
+       "3,237"
+      ],
+      [
+       "unique sequences",
+       "1,907"
+      ],
+      [
+       "genomes with a contig &ge; 5 kb",
+       "515"
+      ],
+      [
+       "species",
+       "45"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "This is the most species-rich module in the family: 45 species across 956 genomes. <i>Kobuvirus cebes</i> and <i>K. aichi</i> account for most of the exemplars and the remainder are one- and two-genome species."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Rebuilt on 5 October; the collections roughly doubled.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Genome polyprotein",
+       "POLY",
+       "350",
+       "13",
+       "defaults"
+      ],
+      [
+       "Ldr",
+       "Leader protein",
+       "Ldr",
+       "268",
+       "15",
+       "defaults"
+      ],
+      [
+       "VP0",
+       "Capsid protein VP0 (1AB)",
+       "VP0",
+       "351",
+       "7",
+       "defaults"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "VP3",
+       "275",
+       "7",
+       "defaults"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "VP1",
+       "408",
+       "16",
+       "defaults"
+      ],
+      [
+       "2A",
+       "Protein 2A",
+       "2A",
+       "249",
+       "11",
+       "defaults"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "2B",
+       "209",
+       "10",
+       "defaults"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "2C",
+       "244",
+       "4",
+       "defaults"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "3A",
+       "224",
+       "13",
+       "defaults"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "VPG",
+       "92",
+       "8",
+       "defaults"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "3C",
+       "258",
+       "8",
+       "defaults"
+      ],
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "3D",
+       "403",
+       "3",
+       "defaults"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Collections were enlarged by projection &mdash; cut coordinates carried from genomes whose own annotation places them, across global alignments, onto the other polyproteins. Nothing is predicted and a cut only ever moves along an alignment. 2A went from 96 sequences to 249, 3C from 100 to 258, 3D from 222 to 403, VP1 from 222 to 408."
+    },
+    {
+     "type": "prose",
+     "html": "The module now carries <b>115 profiles</b> across twelve features, up from 97, with every feature built at the documented defaults."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Windows at 0.8&times; to 1.2&times; the collection median, bit cutoffs at 0.45&times; the median length with a floor of 20.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "400",
+       "0.65",
+       "1,971",
+       "2,956"
+      ],
+      [
+       "Ldr",
+       "84",
+       "0.65",
+       "150",
+       "224"
+      ],
+      [
+       "VP0",
+       "165",
+       "0.65",
+       "294",
+       "440"
+      ],
+      [
+       "VP3",
+       "100",
+       "0.65",
+       "178",
+       "268"
+      ],
+      [
+       "VP1",
+       "120",
+       "0.65",
+       "214",
+       "320"
+      ],
+      [
+       "2A",
+       "61",
+       "0.65",
+       "109",
+       "163"
+      ],
+      [
+       "2B",
+       "74",
+       "0.65",
+       "132",
+       "198"
+      ],
+      [
+       "2C",
+       "151",
+       "0.65",
+       "268",
+       "402"
+      ],
+      [
+       "3A",
+       "42",
+       "0.65",
+       "74",
+       "112"
+      ],
+      [
+       "VPG",
+       "20",
+       "0.65",
+       "22",
+       "32"
+      ],
+      [
+       "3C",
+       "86",
+       "0.65",
+       "154",
+       "230"
+      ],
+      [
+       "3D",
+       "211",
+       "0.65",
+       "374",
+       "562"
+      ]
+     ]
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>3318 of 3331 (99.6%)</b> &mdash; POLY 349/350, Ldr 267/268, VP0 351/351, VP3 275/275, VP1 407/408, 2A 246/249, 2B 208/209, 2C 244/244, 3A 223/224, VPG 88/92, 3C 257/258, 3D 403/403. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "23 rep contigs, and all 313 exemplars route.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes &ge; 5 kb, clustered at 95% nucleotide identity",
+       "313",
+       "&mdash;"
+      ],
+      [
+       "routed to Kobuvirus",
+       "313",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "23 rep contigs ship with the module; 23 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold."
+    },
+    {
+     "type": "prose",
+     "html": "Nothing in this genus is unrouted, despite 45 species. Twenty-three references reach all of them."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Eleven features on at least 305 of 313 exemplars, and 278 genomes carry all twelve.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "POLY",
+       "99.4",
+       99.4,
+       "311 of 313 routed exemplars"
+      ],
+      [
+       "Ldr",
+       "91.7",
+       91.7,
+       "287 of 313 routed exemplars"
+      ],
+      [
+       "VP0",
+       "98.7",
+       98.7,
+       "309 of 313 routed exemplars"
+      ],
+      [
+       "VP3",
+       "99.7",
+       99.7,
+       "312 of 313 routed exemplars"
+      ],
+      [
+       "VP1",
+       "99.4",
+       99.4,
+       "311 of 313 routed exemplars"
+      ],
+      [
+       "2A",
+       "98.7",
+       98.7,
+       "309 of 313 routed exemplars"
+      ],
+      [
+       "2B",
+       "99.0",
+       99.0,
+       "310 of 313 routed exemplars"
+      ],
+      [
+       "2C",
+       "99.4",
+       99.4,
+       "311 of 313 routed exemplars"
+      ],
+      [
+       "3A",
+       "97.8",
+       97.8,
+       "306 of 313 routed exemplars"
+      ],
+      [
+       "VPG",
+       "98.7",
+       98.7,
+       "309 of 313 routed exemplars"
+      ],
+      [
+       "3C",
+       "97.4",
+       97.4,
+       "305 of 313 routed exemplars"
+      ],
+      [
+       "3D",
+       "98.1",
+       98.1,
+       "307 of 313 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>278 of 313 routed exemplars get every one of the 12 core features.</b> No core feature trails the best-called one by 20 points or more."
+    },
+    {
+     "type": "prose",
+     "html": "The leader is the lowest at 287 of 313. Everything else is on 305 or more, and no feature trails the best-called one by anything close to 20 points."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "32 of 40 held-out genomes clean.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "40",
+       "held-out genomes"
+      ],
+      [
+       "34",
+       "no genome/contig flags"
+      ],
+      [
+       "32",
+       "genuinely clean"
+      ],
+      [
+       "8",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "80.0%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 40 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "pre",
+     "text": "   5  Contig has too many ambiguous bases, Frac > 0.01\n   3  Genome has too many HSPs for: Genome polyprotein\n   2  Count = 2\n   1  Count = 3"
+    },
+    {
+     "type": "prose",
+     "html": "The eight flagged divide between contigs with more than 1% ambiguous bases and genomes whose polyprotein is called twice. Both are properties of the deposited sequences rather than of the profiles, and both are more common here than in the better-sequenced genera because much of this genus comes from metagenomic surveys."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "The leader in the one- and two-genome species.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>26 exemplars miss the leader, and they concentrate in the smallest species.</b> It is missing from 3 of 3 <i>Kobuvirus ecuni</i>, 3 of 3 <i>K. femyomini</i>, 2 of 2 grey squirrel kobuviruses and 5 of 15 genomes labelled only <i>Kobuvirus sp.</i> &mdash; against 2 of 146 for <i>K. cebes</i> and 2 of 49 for <i>K. aichi</i>. A species represented by two or three genomes contributes almost nothing to a collection, so its leader is covered only to the extent that it resembles the well-sequenced ones."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The leader is where this shows first because it is the least conserved feature.</b> Every other protein in the genome is called on 97% or more of exemplars including those same small species, so the module reaches them and reads them; it is the leader specifically that diverges faster than the profiles follow."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Projection did not change this.</b> It roughly doubled every collection, including the leader's, and the leader call rate did not move. That is informative rather than disappointing: the sequences projection adds come from genomes that already had a close reference, so it deepens coverage of the populations already represented and does not extend it to new ones. Where a gap is caused by a lineage being absent rather than thin, more data of the same kind does not close it."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Every exemplar routes and eleven of twelve features are called on 97% or more. The leader is called on 92% and the misses are concentrated in species represented by two or three genomes each. That is a sampling limit in BV-BRC rather than a tunable threshold, and the rebuild demonstrated it directly: doubling the collection did not move the number."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "The rebuild deepened the module without widening it.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Projection added 18 profiles and roughly doubled every collection, and the coverage figures barely moved: 278 complete genomes before and after, the leader at 287 both times. Taken with Sapelovirus, where the same technique moved a feature from 6 calls to 170, and Hepatovirus, where it moved the complete count by five, this is the clearest statement of what the technique does."
+    },
+    {
+     "type": "prose",
+     "html": "Projection carries cut coordinates from an annotated genome to a close relative. It therefore converts <i>unannotated</i> genomes into training data, which helps enormously when a feature is annotated in almost no genome at all &mdash; Sapelovirus had eleven leaders &mdash; and helps very little when a feature is already represented and the gap is a lineage no reference comes within 50% identity of. Kobuvirus was in the second case and the measurement says so."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "Forty-five species, and a correspondingly varied vocabulary.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "kobuvirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "6"
+      ],
+      [
+       "VP0",
+       "Capsid protein VP0 (1AB)",
+       "4"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "3"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "3"
+      ],
+      [
+       "2A",
+       "Protein 2A",
+       "3"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "3"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "3"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "3"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "3"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "3"
+      ],
+      [
+       "Ldr",
+       "Leader protein",
+       "3"
+      ],
+      [
+       "POLY",
+       "Genome polyprotein",
+       "2"
+      ],
+      [
+       "<i>pool</i>",
+       "not modelled",
+       "5"
+      ],
+      [
+       "<i>precursors</i>",
+       "not modelled",
+       "1"
+      ],
+      [
+       "<i>unbound</i>",
+       "&mdash;",
+       "23"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over proteins: every annotated protein in the 270 genomes both sources annotate (1,242 source product records, 3,215 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>42</b> distinct strings, the module's <b>12</b>. At the depth both reach, 1,242 proteins, free text has used <b>42.0 strings against 12.0 &mdash; a 3.5-fold difference.</b> The source reaches 95% of its final size after 1,105 proteins, the module after 36."
+    },
+    {
+     "type": "prose",
+     "html": "Kobuvirus collapses at 3.5&times;. The source vocabulary is larger than for the single-species genera simply because 45 species have been described by many different groups, but the per-protein naming is fairly disciplined."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>kobuvirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Picornaviridae/work/Kobuvirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}

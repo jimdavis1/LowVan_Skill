@@ -1,0 +1,45 @@
+{
+ "date": "5 October 2026",
+ "h1": "Does the kobuvirus module work?",
+ "standfirst": "<b>Kobuvirus</b> is the genus of Aichivirus A, a cause of gastroenteritis in people, together with the bovine and porcine kobuviruses of veterinary importance and a long tail of rodent, bat and bird viruses. Forty-five species in one module. This audit covers what it includes, how it was built, whether genomes reach it, whether it calls the proteins, and what it cannot do.",
+ "lede01": "One genus, 45 species, and an uncleaved VP0.",
+ "p01": [
+  "The kobuvirus polyprotein is a leader, VP0, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C and 3D. <b>VP0 is never cleaved into VP4 and VP2</b>, so the mature capsid carries three proteins rather than four &mdash; the same arrangement as Parechovirus and Avihepatovirus, and the reason those genera group apart from Enterovirus and Hepatovirus.",
+  "This is the most species-rich module in the family: 45 species across 956 genomes. <i>Kobuvirus cebes</i> and <i>K. aichi</i> account for most of the exemplars and the remainder are one- and two-genome species."
+ ],
+ "lede02": "Rebuilt on 5 October; the collections roughly doubled.",
+ "p02": [
+  "Collections were enlarged by projection &mdash; cut coordinates carried from genomes whose own annotation places them, across global alignments, onto the other polyproteins. Nothing is predicted and a cut only ever moves along an alignment. 2A went from 96 sequences to 249, 3C from 100 to 258, 3D from 222 to 403, VP1 from 222 to 408.",
+  "The module now carries <b>115 profiles</b> across twelve features, up from 97, with every feature built at the documented defaults."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median, bit cutoffs at 0.45&times; the median length with a floor of 20.",
+ "p03": [],
+ "lede04": "23 rep contigs, and all 313 exemplars route.",
+ "p04": [
+  "Nothing in this genus is unrouted, despite 45 species. Twenty-three references reach all of them."
+ ],
+ "lede05": "Eleven features on at least 305 of 313 exemplars, and 278 genomes carry all twelve.",
+ "p05": [
+  "The leader is the lowest at 287 of 313. Everything else is on 305 or more, and no feature trails the best-called one by anything close to 20 points."
+ ],
+ "lede06": "32 of 40 held-out genomes clean.",
+ "p06": [
+  "The eight flagged divide between contigs with more than 1% ambiguous bases and genomes whose polyprotein is called twice. Both are properties of the deposited sequences rather than of the profiles, and both are more common here than in the better-sequenced genera because much of this genus comes from metagenomic surveys."
+ ],
+ "lede07": "The leader in the one- and two-genome species.",
+ "p07": [
+  "<b>26 exemplars miss the leader, and they concentrate in the smallest species.</b> It is missing from 3 of 3 <i>Kobuvirus ecuni</i>, 3 of 3 <i>K. femyomini</i>, 2 of 2 grey squirrel kobuviruses and 5 of 15 genomes labelled only <i>Kobuvirus sp.</i> &mdash; against 2 of 146 for <i>K. cebes</i> and 2 of 49 for <i>K. aichi</i>. A species represented by two or three genomes contributes almost nothing to a collection, so its leader is covered only to the extent that it resembles the well-sequenced ones.",
+  "<b>The leader is where this shows first because it is the least conserved feature.</b> Every other protein in the genome is called on 97% or more of exemplars including those same small species, so the module reaches them and reads them; it is the leader specifically that diverges faster than the profiles follow.",
+  "<b>Projection did not change this.</b> It roughly doubled every collection, including the leader's, and the leader call rate did not move. That is informative rather than disappointing: the sequences projection adds come from genomes that already had a close reference, so it deepens coverage of the populations already represented and does not extend it to new ones. Where a gap is caused by a lineage being absent rather than thin, more data of the same kind does not close it."
+ ],
+ "verdict07": "Every exemplar routes and eleven of twelve features are called on 97% or more. The leader is called on 92% and the misses are concentrated in species represented by two or three genomes each. That is a sampling limit in BV-BRC rather than a tunable threshold, and the rebuild demonstrated it directly: doubling the collection did not move the number.",
+ "lede08": "The rebuild deepened the module without widening it.",
+ "p08": [
+  "Projection added 18 profiles and roughly doubled every collection, and the coverage figures barely moved: 278 complete genomes before and after, the leader at 287 both times. Taken with Sapelovirus, where the same technique moved a feature from 6 calls to 170, and Hepatovirus, where it moved the complete count by five, this is the clearest statement of what the technique does.",
+  "Projection carries cut coordinates from an annotated genome to a close relative. It therefore converts <i>unannotated</i> genomes into training data, which helps enormously when a feature is annotated in almost no genome at all &mdash; Sapelovirus had eleven leaders &mdash; and helps very little when a feature is already represented and the gap is a lineage no reference comes within 50% identity of. Kobuvirus was in the second case and the measurement says so."
+ ],
+ "lede09": "Forty-five species, and a correspondingly varied vocabulary.",
+ "p09": [
+  "Kobuvirus collapses at 3.5&times;. The source vocabulary is larger than for the single-species genera simply because 45 species have been described by many different groups, but the per-protein naming is fairly disciplined."
+ ]
+}

@@ -30,7 +30,9 @@ per-taxon tables below carry the dates and the source paths.
 | **Crinivirus** | [live](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [live](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [live](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [live](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) |
 | **Enterovirus** | [live](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [live](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [live](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [live](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) |
 | **Hepaciviridae** | [live](https://claude.ai/artifact/SuSzzD4Lgid5Nqh4wsAUsw) | [live](https://claude.ai/artifact/G2CDRQ1g7bPZQwJCAeVCNR) | [live](https://claude.ai/artifact/PFSG6T5FP4Pdv82KTtpRb3) | [live](https://claude.ai/artifact/8vMTNVAXKjhCEqmbsUBcry) |
+| **Hepatovirus** | [live](https://claude.ai/artifact/93JNSJkTL6tnxWAqqh1Ehj) | [live](https://claude.ai/artifact/HPeVWDKLb1684L7Lksqrug) | [live](https://claude.ai/artifact/BExLQ7zj3sT4KhFebPsmqK) | [live](https://claude.ai/artifact/4EgbaxJcXnos8VjP5o5qwq) |
 | **Hepeviridae** | [src only](reports/hepeviridae-string-collapse.html) | [live](https://claude.ai/artifact/Rv8Qtd6yogBhSxwxN83zUB) | [live](https://claude.ai/artifact/Lhe1p5zfzv6drE9XPXWB9n) | [live](https://claude.ai/artifact/9rab6t9Wg2jyUjpd31FCmz) |
+| **Kobuvirus** | [live](https://claude.ai/artifact/G5BNV47HTuCKGDHstSCYkD) | [live](https://claude.ai/artifact/HXpLhyF1AdFbSbKPFcLgEp) | [live](https://claude.ai/artifact/JT8vdj6PBbm31asVQdHxGZ) | [live](https://claude.ai/artifact/644ijYfi9wT8E9YRUkxu31) |
 | **Marafivirus** | [live](https://claude.ai/artifact/8hsgb6VBLoWthJQ5fDekmN) | [live](https://claude.ai/artifact/BJLdgUbZv3VZyFmBZwPur2) | [live](https://claude.ai/artifact/UrU49iSx3Qf1vw7QSUTUSD) | [live](https://claude.ai/artifact/WPLVahsQ7EMSvzP2MxnZ4k) |
 | **Matonaviridae** | [src only](reports/matonaviridae-string-collapse.html) | [live](https://claude.ai/artifact/Pg9oPLPEMsSJwVX1cNaZkj) | [live](https://claude.ai/artifact/Py71icixnS8G7aHoRekJ4B) | [live](https://claude.ai/artifact/AxuNuwq21AAiGws5JvQoWo) |
 | **Orthoflavivirus** | [live](https://claude.ai/artifact/MFXjT53roYWz1ymQkrh1ur) | [live](https://claude.ai/artifact/AkjDvmo28d4bVZCndjymXP) | [live](https://claude.ai/artifact/9c5gUBxFf4jHNfYizWHw7m) | [live](https://claude.ai/artifact/RokLyf9pujJnw37CAri2DR) |
@@ -170,6 +172,15 @@ published — the file is in this repo. `—` was not made.
 | Hepaciviridae String Collapse | [open](https://claude.ai/artifact/SuSzzD4Lgid5Nqh4wsAUsw) | [source](reports/hepaciviridae-string-collapse.html) | 2026-09-23 |
 | Hepaciviridae Vocabulary Saturation | [open](https://claude.ai/artifact/PFSG6T5FP4Pdv82KTtpRb3) | [source](reports/hepaciviridae-vocabulary-saturation.html) | 2026-09-23 |
 
+### Hepatovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Hepatovirus Coverage Audit | [open](https://claude.ai/artifact/4EgbaxJcXnos8VjP5o5qwq) | [source](reports/hepatovirus-coverage-audit.html) | 2026-10-05 |
+| Hepatovirus PSSM Registry | [open](https://claude.ai/artifact/HPeVWDKLb1684L7Lksqrug) | [source](reports/hepatovirus-pssm-registry.html) | 2026-10-05 |
+| Hepatovirus String Collapse | [open](https://claude.ai/artifact/93JNSJkTL6tnxWAqqh1Ehj) | [source](reports/hepatovirus-string-collapse.html) | 2026-10-05 |
+| Hepatovirus Vocabulary Saturation | [open](https://claude.ai/artifact/BExLQ7zj3sT4KhFebPsmqK) | [source](reports/hepatovirus-vocabulary-saturation.html) | 2026-10-05 |
+
 ### Hepeviridae
 
 | page | live | source | updated |
@@ -179,6 +190,15 @@ published — the file is in this repo. `—` was not made.
 | Hepeviridae Vocabulary Saturation | [open](https://claude.ai/artifact/Lhe1p5zfzv6drE9XPXWB9n) | [source](reports/hepeviridae-vocabulary-saturation.html) | 2026-09-17 |
 
 Built but never published, source is here: [string collapse](reports/hepeviridae-string-collapse.html).
+
+### Kobuvirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Kobuvirus Coverage Audit | [open](https://claude.ai/artifact/644ijYfi9wT8E9YRUkxu31) | [source](reports/kobuvirus-coverage-audit.html) | 2026-10-05 |
+| Kobuvirus PSSM Registry | [open](https://claude.ai/artifact/HXpLhyF1AdFbSbKPFcLgEp) | [source](reports/kobuvirus-pssm-registry.html) | 2026-10-05 |
+| Kobuvirus String Collapse | [open](https://claude.ai/artifact/G5BNV47HTuCKGDHstSCYkD) | [source](reports/kobuvirus-string-collapse.html) | 2026-10-05 |
+| Kobuvirus Vocabulary Saturation | [open](https://claude.ai/artifact/JT8vdj6PBbm31asVQdHxGZ) | [source](reports/kobuvirus-vocabulary-saturation.html) | 2026-10-05 |
 
 ### Marafivirus
 

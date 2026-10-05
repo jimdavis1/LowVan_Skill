@@ -1,24 +1,52 @@
->fig|12092.2022.mat_peptide.2 Capsid protein VP4 (1A)
-MAKQGIFQTVGSGLDHILSLA
->fig|12092.2042.mat_peptide.2 Capsid protein VP4 (1A)
-MSKQGIFQTVGSGLDHILSLA
->fig|208726.99.mat_peptide.2 Capsid protein VP4 (1A)
-MSRQGIFQTVGSGLDHILSLA
->fig|12092.11712.mat_peptide.2 Capsid protein VP4 (1A)
-MSKHGIFQTVGSGLDHILSLA
->fig|12092.11712.mat_peptide.1 Capsid protein VP4 (1A)
-MKMSKHGIFQTVGSGLDHILSLA
->fig|12092.9634.mat_peptide.2 Capsid protein VP4 (1A)
-MSHKGLLQSVGEGLDKILTLS
+>ext33|Hepatovirus|VP4|ref=r9 Capsid protein VP4 (1A)
+MSKQGLFQSVGEGLDHILSLA
+>ext9|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MIMASKRGLFQSVGEGLDKVLSLA
+>ext20|Hepatovirus|VP4|ref=r9 Capsid protein VP4 (1A)
+MMSKQGIFQSVGEGLDHILSLA
+>ext8|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MFYDVMMEKKGILQTVGSSLDKILTLA
+>ext12|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MMEKKGILQTVGSSLDKILTLA
+>ext13|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MMEKKGLLQTVGSSLDKILTLA
 >fig|12092.9634.mat_peptide.1 Capsid protein VP4 (1A)
 MMMSHKGLLQSVGEGLDKILTLS
->fig|1768064.5.mat_peptide.1 Capsid protein VP4 (1A)
-MMTDKQGLLQTVGSSLDRILTLA
+>ext18|Hepatovirus|VP4|ref=r9 Capsid protein VP4 (1A)
+MMSHKGLLQSVGEGLDKILTLS
+>fig|12092.9634.mat_peptide.2 Capsid protein VP4 (1A)
+MSHKGLLQSVGEGLDKILTLS
+>ext11|Hepatovirus|VP4|ref=r9 Capsid protein VP4 (1A)
+MKMSSTKGLFQTVGDKMDQILSLA
+>ext6|Hepatovirus|VP4|ref=r9 Capsid protein VP4 (1A)
+MESHKGLFQTVGDKMDQILSLA
+>ext17|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MMSDKKGLFQTVGSSLDEILTLA
 >fig|3044250.6.mat_peptide.1 Capsid protein VP4 (1A)
 MKMADKKGLFQTVGSSLDDILTLA
+>ext30|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MRMAGILQTVGRGLEKILTLN
+>ext1|Hepatovirus|VP4|ref=r25 Capsid protein VP4 (1A)
+IYEMAGLLQTVGRGLEKILTLN
+>ext34|Hepatovirus|VP4|ref=r29 Capsid protein VP4 (1A)
+MSLLQNIGEGLDKILSLA
+>fig|2200757.3.mat_peptide.1 Capsid protein VP4 (1A)
+MNGIMALFQNIGEGLDKILSLA
+>ext19|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MMSHNGILQTVGRSLDRILTLA
+>ext22|Hepatovirus|VP4|ref=r30 Capsid protein VP4 (1A)
+MMSSNKKDGLFQTIGSGLDKVLSLA
+>ext23|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MMTDKKQNPGLFQAVGSGLDKILTLS
+>ext3|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MASKENCSGGLLQTVGKSLDKILTLS
+>ext4|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MEHFGLLQTLGEGVDKILTLS
+>ext5|Hepatovirus|VP4|ref=r31 Capsid protein VP4 (1A)
+MENKNKGIFQTVGESLDGILTLA
 >fig|12092.4674.mat_peptide.1 Capsid protein VP4 (1A)
 MSQKRGILQTVGGALDKILTLS
 >fig|1708572.5.mat_peptide.1 Capsid protein VP4 (1A)
 MMERSGLLQRIGENMDKILTLA
->fig|2200757.3.mat_peptide.1 Capsid protein VP4 (1A)
-MNGIMALFQNIGEGLDKILSLA
+>fig|1768064.5.mat_peptide.1 Capsid protein VP4 (1A)
+MMTDKQGLLQTVGSSLDRILTLA
