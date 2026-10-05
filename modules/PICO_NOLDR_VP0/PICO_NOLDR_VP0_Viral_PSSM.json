@@ -1,0 +1,226 @@
+{
+   "PICO_NOLDR_VP0" : {
+      "close_genomes" : {
+         "PICO_NOLDR_VP0.1.dna" : {
+            "genome_ids" : "MW504484",
+            "genome_name" : "Pasivirus A 15213_PASI_len_6943_cov_423.850900"
+         },
+         "PICO_NOLDR_VP0.10.dna" : {
+            "genome_ids" : "KF979333",
+            "genome_name" : "Chicken picornavirus 2 44C"
+         },
+         "PICO_NOLDR_VP0.11.dna" : {
+            "genome_ids" : "MK189163",
+            "genome_name" : "Potamipivirus A TSPV"
+         },
+         "PICO_NOLDR_VP0.12.dna" : {
+            "genome_ids" : "NC_076220",
+            "genome_name" : "Guangdong spotted longbarbel catfish picornavirus GDDSYC43605"
+         },
+         "PICO_NOLDR_VP0.13.dna" : {
+            "genome_ids" : "LC556993",
+            "genome_name" : "Eel picornavirus Eel/14980"
+         },
+         "PICO_NOLDR_VP0.14.dna" : {
+            "genome_ids" : "MZ712015",
+            "genome_name" : "Gilthead seabream picornavirus QQ241"
+         },
+         "PICO_NOLDR_VP0.2.dna" : {
+            "genome_ids" : "MG708279",
+            "genome_name" : "Avisivirus AVE052/AsV"
+         },
+         "PICO_NOLDR_VP0.3.dna" : {
+            "genome_ids" : "KC465953",
+            "genome_name" : "Fathead minnow picornavirus 09-283"
+         },
+         "PICO_NOLDR_VP0.4.dna" : {
+            "genome_ids" : "PQ541140",
+            "genome_name" : "Rat limnipivirus Da. incomtus_pico_1"
+         },
+         "PICO_NOLDR_VP0.5.dna" : {
+            "genome_ids" : "KC465954",
+            "genome_name" : "Turkey avisivirus turkey/M176-TuASV/2011/HUN"
+         },
+         "PICO_NOLDR_VP0.6.dna" : {
+            "genome_ids" : "NC_009891",
+            "genome_name" : "Seal picornavirus type 1 HO.02.21"
+         },
+         "PICO_NOLDR_VP0.7.dna" : {
+            "genome_ids" : "JX134222",
+            "genome_name" : "Bluegill picornavirus 04-032"
+         },
+         "PICO_NOLDR_VP0.8.dna" : {
+            "genome_ids" : "KC843627",
+            "genome_name" : "Eel picornavirus 1 F15/05"
+         },
+         "PICO_NOLDR_VP0.9.dna" : {
+            "genome_ids" : "KF306267",
+            "genome_name" : "Carp picornavirus 1 F37/06"
+         }
+      },
+      "features" : {
+         "2A" : {
+            "anno" : "Protein 2A",
+            "bit_cutoff" : 58,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2A",
+            "kmers" : 0,
+            "max_len" : 155,
+            "min_len" : 103,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2B" : {
+            "anno" : "Protein 2B, viroporin",
+            "bit_cutoff" : 56,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2B",
+            "kmers" : 0,
+            "max_len" : 150,
+            "min_len" : 100,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2C" : {
+            "anno" : "Protein 2C, ATPase/helicase",
+            "bit_cutoff" : 149,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2C",
+            "kmers" : 0,
+            "max_len" : 397,
+            "min_len" : 265,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3A" : {
+            "anno" : "Protein 3A",
+            "bit_cutoff" : 40,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3A",
+            "kmers" : 0,
+            "max_len" : 108,
+            "min_len" : 72,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3C" : {
+            "anno" : "Picornain 3C, protease (3C)",
+            "bit_cutoff" : 86,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3C",
+            "kmers" : 0,
+            "max_len" : 229,
+            "min_len" : 153,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3D" : {
+            "anno" : "RNA-directed RNA polymerase 3D",
+            "bit_cutoff" : 205,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3D",
+            "kmers" : 0,
+            "max_len" : 546,
+            "min_len" : 364,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "POLY" : {
+            "anno" : "Genome polyprotein",
+            "bit_cutoff" : 959,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 2557,
+            "min_len" : 1705,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP0" : {
+            "anno" : "Capsid protein VP0 (1AB)",
+            "bit_cutoff" : 114,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP0",
+            "kmers" : 0,
+            "max_len" : 304,
+            "min_len" : 202,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP1" : {
+            "anno" : "Capsid protein VP1 (1D)",
+            "bit_cutoff" : 130,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP1",
+            "kmers" : 0,
+            "max_len" : 348,
+            "min_len" : 232,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP3" : {
+            "anno" : "Capsid protein VP3 (1C)",
+            "bit_cutoff" : 109,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP3",
+            "kmers" : 0,
+            "max_len" : 290,
+            "min_len" : 194,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VPG" : {
+            "anno" : "Genome-linked protein VPg (3B)",
+            "bit_cutoff" : 20,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VPg",
+            "kmers" : 0,
+            "max_len" : 30,
+            "min_len" : 20,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 12000,
+            "min_len" : 5000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

@@ -1,0 +1,102 @@
+{
+ "PICO_NOLDR_VP4.1.dna": {
+  "genome_ids": "OR136489",
+  "genome_name": "Tremovirus A mecurvirus turkey/67/Germany/2020"
+ },
+ "PICO_NOLDR_VP4.10.dna": {
+  "genome_ids": "KX545380",
+  "genome_name": "Human cosavirus Cosavirus-zj-1"
+ },
+ "PICO_NOLDR_VP4.11.dna": {
+  "genome_ids": "MT094379",
+  "genome_name": "Cosavirus D HCoSV/CHVir173/GER/2018"
+ },
+ "PICO_NOLDR_VP4.12.dna": {
+  "genome_ids": "JN867758",
+  "genome_name": "Cosavirus F PK5006"
+ },
+ "PICO_NOLDR_VP4.13.dna": {
+  "genome_ids": "NC_040673",
+  "genome_name": "Pelodiscus sinensis picornavirus 1 CNSR2011"
+ },
+ "PICO_NOLDR_VP4.14.dna": {
+  "genome_ids": "MG600110",
+  "genome_name": "tremovirus B2 WHWGGF75534"
+ },
+ "PICO_NOLDR_VP4.15.dna": {
+  "genome_ids": "FJ438907",
+  "genome_name": "cosavirus B1 HCoSV-B1"
+ },
+ "PICO_NOLDR_VP4.16.dna": {
+  "genome_ids": "MG571822",
+  "genome_name": "Human cosavirus E/D"
+ },
+ "PICO_NOLDR_VP4.17.dna": {
+  "genome_ids": "MG979713",
+  "genome_name": "Human cosavirus E/D Goiatins"
+ },
+ "PICO_NOLDR_VP4.18.dna": {
+  "genome_ids": "MH933763",
+  "genome_name": "Human cosavirus HCoSV/CMRHP44/CMR/2014"
+ },
+ "PICO_NOLDR_VP4.19.dna": {
+  "genome_ids": "PX663558",
+  "genome_name": "Dicipivirus Ac-SPS"
+ },
+ "PICO_NOLDR_VP4.2.dna": {
+  "genome_ids": "PV418597",
+  "genome_name": "Canine picodicistrovirus CPDV/Dog/AUS/hopevale_3t14/2022"
+ },
+ "PICO_NOLDR_VP4.20.dna": {
+  "genome_ids": "PP386527",
+  "genome_name": "Cosavirus A A96_AFP38_NGR_2020-A"
+ },
+ "PICO_NOLDR_VP4.21.dna": {
+  "genome_ids": "PP386522",
+  "genome_name": "Cosavirus B A126_AFP35_NGR_2020-B"
+ },
+ "PICO_NOLDR_VP4.22.dna": {
+  "genome_ids": "MN784123",
+  "genome_name": "Cosavirus F NGR_2017_NHP_CV"
+ },
+ "PICO_NOLDR_VP4.23.dna": {
+  "genome_ids": "PX666880",
+  "genome_name": "Dicipivirus sp. Ac_ChD"
+ },
+ "PICO_NOLDR_VP4.24.dna": {
+  "genome_ids": "PV605234",
+  "genome_name": "Dicipivirus sp. 21DB07"
+ },
+ "PICO_NOLDR_VP4.25.dna": {
+  "genome_ids": "OM451195",
+  "genome_name": "Hedgehog dicipivirus 2 HeN-F3"
+ },
+ "PICO_NOLDR_VP4.3.dna": {
+  "genome_ids": "NC_023984",
+  "genome_name": "Human cosavirus Cosavirus_Amsterdam_1994"
+ },
+ "PICO_NOLDR_VP4.4.dna": {
+  "genome_ids": "MG571817",
+  "genome_name": "Human cosavirus A"
+ },
+ "PICO_NOLDR_VP4.5.dna": {
+  "genome_ids": "PP386524",
+  "genome_name": "Cosavirus A A45_AFP36_NGR_2020-A"
+ },
+ "PICO_NOLDR_VP4.6.dna": {
+  "genome_ids": "PP386516",
+  "genome_name": "Cosavirus E A15_AFP13_NGR_2020-E"
+ },
+ "PICO_NOLDR_VP4.7.dna": {
+  "genome_ids": "MF188967",
+  "genome_name": "Hedgehog dicipivirus hedgehog/H14/2015/HUN"
+ },
+ "PICO_NOLDR_VP4.8.dna": {
+  "genome_ids": "PP386530",
+  "genome_name": "Cosavirus A A58_AFP47_NGR_2020-A"
+ },
+ "PICO_NOLDR_VP4.9.dna": {
+  "genome_ids": "NC_025961",
+  "genome_name": "Cosavirus JMY-2014 Cosa-CHN"
+ }
+}

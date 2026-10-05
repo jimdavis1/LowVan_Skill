@@ -1,0 +1,9 @@
+{
+ "standfirst": "Five genera with a leader and an uncleaved VP0: Sicinivirus, Salivirus, Oscivirus, Passerivirus and Shanbavirus. Salivirus causes human gastroenteritis; the rest are bird viruses. Grouped because each alone is too thin to model and all share one layout.",
+ "modules": {
+  "PICO_LDR_VP0": "The leader slot was split on the genus: Sicinivirus carries a 462-residue leader against 64-174 for the other four. No function is documented for it, so it is declared with the vocabulary's uncharacterized form and the tag kept in the feature key and gene symbol rather than given an invented name."
+ },
+ "gaps": "The long Sicinivirus leader is modelled but not named. Giving it a functional annotation would need a citation a human has read, and there is none.",
+ "derived": "All mature peptides are cleavage products of POLY with both extensions set to 0.",
+ "why": {}
+}

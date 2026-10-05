@@ -1,0 +1,9 @@
+{
+ "standfirst": "Cosavirus, Dicipivirus and Tremovirus: three genera with no leader and the four-capsid-protein layout. Cosavirus is a human enteric virus; Tremovirus is avian encephalomyelitis virus. Too small to model separately, identical in organisation, so built as one module.",
+ "modules": {
+  "PICO_NOLDR_VP4": "Cosavirus, Dicipivirus, Tremovirus. The 2A slot was split on the genus: Cosavirus 2A is 31 residues against 141-164 for Tremovirus and Dicipivirus, which is a different protein rather than a short form."
+ },
+ "gaps": "No declared feature lacks a profile. Dicipivirus is unusual in the family for having a dicistronic genome, which this module does not attempt to represent - it models the polyprotein products only.",
+ "derived": "All mature peptides are cleavage products of POLY with both extensions set to 0.",
+ "why": {}
+}

@@ -1,0 +1,4 @@
+feature: 3C
+annotation: Picornain 3C, protease (3C)
+command: fasta-cluster-pssm-2.pl -a Picornain 3C, protease (3C) -p PICO_LDR_VP4.3C -m 5 -f 0.33 -n 0.75 -c 0 -fd 0.20 -e 3 -efo 0.15 -mi 0.8 -mc 0.8 -p_nterm 65 -n_nterm 3 -nterm_eval_length 10 -nterm-mmseq-id 0.7
+departures: none

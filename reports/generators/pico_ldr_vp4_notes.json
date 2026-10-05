@@ -1,0 +1,9 @@
+{
+ "standfirst": "Six small picornavirus genera that share one genome organisation: a leader, the four-capsid-protein layout, and a single VPg. None holds enough sequence to model alone - Tottorivirus has ten genomes, Anativirus thirty-eight - so they are built together and their diversity becomes extra profiles inside each feature rather than extra modules.",
+ "modules": {
+  "PICO_LDR_VP4": "Bopivirus, Erbovirus, Mischivirus, Hunnivirus, Tottorivirus, Anativirus. Two slots hold more than one protein and were split on the genus: Bopivirus 2A is a 212-residue protein against 12-55 for the StopGo peptides of the rest, and the Erbovirus leader is a 219-residue protease against 51-84 for the rest."
+ },
+ "gaps": "The two splits are the point. A slot name is a homology group inside a genus and not across one, so a single 2A feature spanning 12 to 212 residues would have blurred two unrelated proteins into one profile set.",
+ "derived": "All mature peptides are cleavage products of POLY with both extensions set to 0.",
+ "why": {}
+}

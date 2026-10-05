@@ -1,0 +1,298 @@
+{
+   "PICO_LDR_VP0" : {
+      "close_genomes" : {
+         "PICO_LDR_VP0.1.dna" : {
+            "genome_ids" : "KT240115",
+            "genome_name" : "Salivirus A Hu/Baja-5332/2013/HUN"
+         },
+         "PICO_LDR_VP0.10.dna" : {
+            "genome_ids" : "OQ363779",
+            "genome_name" : "Rhinolophus bat shanbavirus GD/L58.18/2021"
+         },
+         "PICO_LDR_VP0.11.dna" : {
+            "genome_ids" : "OR951227",
+            "genome_name" : "Bat picornavirus GX2016"
+         },
+         "PICO_LDR_VP0.12.dna" : {
+            "genome_ids" : "KJ641687",
+            "genome_name" : "Bat picornavirus BtMf-PicoV/FJ2012"
+         },
+         "PICO_LDR_VP0.13.dna" : {
+            "genome_ids" : "KJ641697",
+            "genome_name" : "Bat picornavirus BtNv-PicoV/SC2013"
+         },
+         "PICO_LDR_VP0.14.dna" : {
+            "genome_ids" : "PV093045",
+            "genome_name" : "Sicinivirus sp. WHM13"
+         },
+         "PICO_LDR_VP0.15.dna" : {
+            "genome_ids" : "NC_014411",
+            "genome_name" : "Passerivirus A1 00356"
+         },
+         "PICO_LDR_VP0.16.dna" : {
+            "genome_ids" : "PX068467",
+            "genome_name" : "Sicinivirus ME Bavaria/Germany/2024"
+         },
+         "PICO_LDR_VP0.17.dna" : {
+            "genome_ids" : "NC_014412",
+            "genome_name" : "Oscivirus A1 10717"
+         },
+         "PICO_LDR_VP0.18.dna" : {
+            "genome_ids" : "NC_014413",
+            "genome_name" : "Oscivirus A2 10878"
+         },
+         "PICO_LDR_VP0.19.dna" : {
+            "genome_ids" : "PV383547",
+            "genome_name" : "Bat picornavirus F51.2"
+         },
+         "PICO_LDR_VP0.2.dna" : {
+            "genome_ids" : "MT225405",
+            "genome_name" : "Sicinivirus A UT-G-Masoumi"
+         },
+         "PICO_LDR_VP0.20.dna" : {
+            "genome_ids" : "PZ530493",
+            "genome_name" : "Bat picornavirus GD/YNYY2022"
+         },
+         "PICO_LDR_VP0.21.dna" : {
+            "genome_ids" : "MW684787",
+            "genome_name" : "Sicinivirus sp. Chicken/NLD/2019/V_M_005_picorna_5"
+         },
+         "PICO_LDR_VP0.22.dna" : {
+            "genome_ids" : "PP930216",
+            "genome_name" : "Sicinivirus sp. mt24vf_Chicken"
+         },
+         "PICO_LDR_VP0.23.dna" : {
+            "genome_ids" : "MF977321",
+            "genome_name" : "Passerivirus sp. waxbill/DB01/HUN/2014"
+         },
+         "PICO_LDR_VP0.24.dna" : {
+            "genome_ids" : "PP745776",
+            "genome_name" : "Shanbavirus A 096_15727"
+         },
+         "PICO_LDR_VP0.25.dna" : {
+            "genome_ids" : "PP745977",
+            "genome_name" : "Shanbavirus A 310_2833"
+         },
+         "PICO_LDR_VP0.3.dna" : {
+            "genome_ids" : "MZ679273",
+            "genome_name" : "Sicinivirus sp. 295-k141_161823"
+         },
+         "PICO_LDR_VP0.4.dna" : {
+            "genome_ids" : "MW684781",
+            "genome_name" : "Sicinivirus sp. Environment/NLD/2019/VE_7_picorna_3"
+         },
+         "PICO_LDR_VP0.5.dna" : {
+            "genome_ids" : "KJ641698",
+            "genome_name" : "Shanbavirus A BtMf-PicoV-1/SAX2011"
+         },
+         "PICO_LDR_VP0.6.dna" : {
+            "genome_ids" : "KJ641694",
+            "genome_name" : "Bat picornavirus BtRs-PicoV/YN2010"
+         },
+         "PICO_LDR_VP0.7.dna" : {
+            "genome_ids" : "PP930024",
+            "genome_name" : "Sicinivirus sp. mt7vf_Chicken_A"
+         },
+         "PICO_LDR_VP0.8.dna" : {
+            "genome_ids" : "PV383543",
+            "genome_name" : "Bat picornavirus F49"
+         },
+         "PICO_LDR_VP0.9.dna" : {
+            "genome_ids" : "ON024080",
+            "genome_name" : "Pangolin shanbavirus PSV/BIME1/P251T/pangolin/2018"
+         }
+      },
+      "features" : {
+         "2A" : {
+            "anno" : "Protein 2A",
+            "bit_cutoff" : 58,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2A",
+            "kmers" : 0,
+            "max_len" : 155,
+            "min_len" : 103,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2B" : {
+            "anno" : "Protein 2B, viroporin",
+            "bit_cutoff" : 81,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2B",
+            "kmers" : 0,
+            "max_len" : 216,
+            "min_len" : 144,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "2C" : {
+            "anno" : "Protein 2C, ATPase/helicase",
+            "bit_cutoff" : 153,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "2C",
+            "kmers" : 0,
+            "max_len" : 408,
+            "min_len" : 272,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3A" : {
+            "anno" : "Protein 3A",
+            "bit_cutoff" : 68,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3A",
+            "kmers" : 0,
+            "max_len" : 180,
+            "min_len" : 120,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3C" : {
+            "anno" : "Picornain 3C, protease (3C)",
+            "bit_cutoff" : 86,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3C",
+            "kmers" : 0,
+            "max_len" : 228,
+            "min_len" : 152,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "3D" : {
+            "anno" : "RNA-directed RNA polymerase 3D",
+            "bit_cutoff" : 212,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "3D",
+            "kmers" : 0,
+            "max_len" : 564,
+            "min_len" : 376,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "Ldr" : {
+            "anno" : "Leader protein",
+            "bit_cutoff" : 50,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "Ldr",
+            "kmers" : 0,
+            "max_len" : 132,
+            "min_len" : 88,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "Ldr_LONG" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 208,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "Ldr-long",
+            "kmers" : 0,
+            "max_len" : 554,
+            "min_len" : 370,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "POLY" : {
+            "anno" : "Genome polyprotein",
+            "bit_cutoff" : 1064,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 2838,
+            "min_len" : 1892,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP0" : {
+            "anno" : "Capsid protein VP0 (1AB)",
+            "bit_cutoff" : 153,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP0",
+            "kmers" : 0,
+            "max_len" : 407,
+            "min_len" : 271,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP1" : {
+            "anno" : "Capsid protein VP1 (1D)",
+            "bit_cutoff" : 124,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP1",
+            "kmers" : 0,
+            "max_len" : 331,
+            "min_len" : 221,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP3" : {
+            "anno" : "Capsid protein VP3 (1C)",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP3",
+            "kmers" : 0,
+            "max_len" : 268,
+            "min_len" : 178,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VPG" : {
+            "anno" : "Genome-linked protein VPg (3B)",
+            "bit_cutoff" : 20,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VPg",
+            "kmers" : 0,
+            "max_len" : 34,
+            "min_len" : 22,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 12000,
+            "min_len" : 5000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

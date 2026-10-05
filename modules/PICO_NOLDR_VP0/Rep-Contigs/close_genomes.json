@@ -1,0 +1,58 @@
+{
+ "PICO_NOLDR_VP0.1.dna": {
+  "genome_ids": "MW504484",
+  "genome_name": "Pasivirus A 15213_PASI_len_6943_cov_423.850900"
+ },
+ "PICO_NOLDR_VP0.10.dna": {
+  "genome_ids": "KF979333",
+  "genome_name": "Chicken picornavirus 2 44C"
+ },
+ "PICO_NOLDR_VP0.11.dna": {
+  "genome_ids": "MK189163",
+  "genome_name": "Potamipivirus A TSPV"
+ },
+ "PICO_NOLDR_VP0.12.dna": {
+  "genome_ids": "NC_076220",
+  "genome_name": "Guangdong spotted longbarbel catfish picornavirus GDDSYC43605"
+ },
+ "PICO_NOLDR_VP0.13.dna": {
+  "genome_ids": "LC556993",
+  "genome_name": "Eel picornavirus Eel/14980"
+ },
+ "PICO_NOLDR_VP0.14.dna": {
+  "genome_ids": "MZ712015",
+  "genome_name": "Gilthead seabream picornavirus QQ241"
+ },
+ "PICO_NOLDR_VP0.2.dna": {
+  "genome_ids": "MG708279",
+  "genome_name": "Avisivirus AVE052/AsV"
+ },
+ "PICO_NOLDR_VP0.3.dna": {
+  "genome_ids": "KC465953",
+  "genome_name": "Fathead minnow picornavirus 09-283"
+ },
+ "PICO_NOLDR_VP0.4.dna": {
+  "genome_ids": "PQ541140",
+  "genome_name": "Rat limnipivirus Da. incomtus_pico_1"
+ },
+ "PICO_NOLDR_VP0.5.dna": {
+  "genome_ids": "KC465954",
+  "genome_name": "Turkey avisivirus turkey/M176-TuASV/2011/HUN"
+ },
+ "PICO_NOLDR_VP0.6.dna": {
+  "genome_ids": "NC_009891",
+  "genome_name": "Seal picornavirus type 1 HO.02.21"
+ },
+ "PICO_NOLDR_VP0.7.dna": {
+  "genome_ids": "JX134222",
+  "genome_name": "Bluegill picornavirus 04-032"
+ },
+ "PICO_NOLDR_VP0.8.dna": {
+  "genome_ids": "KC843627",
+  "genome_name": "Eel picornavirus 1 F15/05"
+ },
+ "PICO_NOLDR_VP0.9.dna": {
+  "genome_ids": "KF306267",
+  "genome_name": "Carp picornavirus 1 F37/06"
+ }
+}

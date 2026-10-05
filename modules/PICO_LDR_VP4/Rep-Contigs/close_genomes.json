@@ -1,0 +1,102 @@
+{
+ "PICO_LDR_VP4.1.dna": {
+  "genome_ids": "OP263980",
+  "genome_name": "Bovine picornavirus BoP21/2021/CHN"
+ },
+ "PICO_LDR_VP4.10.dna": {
+  "genome_ids": "KX260139",
+  "genome_name": "Erbovirus A 396"
+ },
+ "PICO_LDR_VP4.11.dna": {
+  "genome_ids": "OR867092",
+  "genome_name": "Mischivirus sp. MSWZC17/6"
+ },
+ "PICO_LDR_VP4.12.dna": {
+  "genome_ids": "PX221813",
+  "genome_name": "Hunnivirus TB_HX_45_5"
+ },
+ "PICO_LDR_VP4.13.dna": {
+  "genome_ids": "MZ679276",
+  "genome_name": "Tottorivirus sp. 138bR-k141_172227"
+ },
+ "PICO_LDR_VP4.14.dna": {
+  "genome_ids": "PV605201",
+  "genome_name": "Mischivirus E 22AP072"
+ },
+ "PICO_LDR_VP4.15.dna": {
+  "genome_ids": "OP263975",
+  "genome_name": "Bovine picornavirus BoP16/2021/CHN"
+ },
+ "PICO_LDR_VP4.16.dna": {
+  "genome_ids": "LC113907",
+  "genome_name": "Swine picornavirus Japan Tottori-WOL"
+ },
+ "PICO_LDR_VP4.17.dna": {
+  "genome_ids": "MF352413",
+  "genome_name": "Niviventer confucianus hunnivirus Wencheng-Nc42-1"
+ },
+ "PICO_LDR_VP4.18.dna": {
+  "genome_ids": "PQ584611",
+  "genome_name": "Anativirus biphaco Quail/SLO/70-18/2018"
+ },
+ "PICO_LDR_VP4.19.dna": {
+  "genome_ids": "PX941776",
+  "genome_name": "Bopivirus sp. QYN/7747"
+ },
+ "PICO_LDR_VP4.2.dna": {
+  "genome_ids": "MZ544197",
+  "genome_name": "Hunnivirus A 22054x5-16"
+ },
+ "PICO_LDR_VP4.20.dna": {
+  "genome_ids": "MW298059",
+  "genome_name": "Bopivirus sp. bovine/TV-9682/2019-HUN"
+ },
+ "PICO_LDR_VP4.21.dna": {
+  "genome_ids": "PQ678040",
+  "genome_name": "Yunnan rodent hunnivirus 2 LCYD-YNSC170"
+ },
+ "PICO_LDR_VP4.22.dna": {
+  "genome_ids": "NC_006553",
+  "genome_name": "Avian sapelovirus TW90A"
+ },
+ "PICO_LDR_VP4.23.dna": {
+  "genome_ids": "OQ198171",
+  "genome_name": "Canine picornavirus PicornaviridaeDogfe343C1"
+ },
+ "PICO_LDR_VP4.24.dna": {
+  "genome_ids": "NC_075428",
+  "genome_name": "Canine picornavirus A128thr"
+ },
+ "PICO_LDR_VP4.25.dna": {
+  "genome_ids": "PX221745",
+  "genome_name": "Hunnivirus HLJ_1"
+ },
+ "PICO_LDR_VP4.3.dna": {
+  "genome_ids": "NC_075992",
+  "genome_name": "anativirus B1 Pf-CHK1/PhV"
+ },
+ "PICO_LDR_VP4.4.dna": {
+  "genome_ids": "OQ198165",
+  "genome_name": "Canine picornavirus PicornaviridaeDogfe442C1"
+ },
+ "PICO_LDR_VP4.5.dna": {
+  "genome_ids": "OK642419",
+  "genome_name": "water buffalo hunnivirus BufHuV-GX-2106"
+ },
+ "PICO_LDR_VP4.6.dna": {
+  "genome_ids": "ON024074",
+  "genome_name": "Pangolin hunnivirus PHV/BIME2/P035T/pangolin/2018"
+ },
+ "PICO_LDR_VP4.7.dna": {
+  "genome_ids": "OR148683",
+  "genome_name": "hunnivirus A1 85282"
+ },
+ "PICO_LDR_VP4.8.dna": {
+  "genome_ids": "MZ679283",
+  "genome_name": "Bopivirus sp. 65-k141_231889"
+ },
+ "PICO_LDR_VP4.9.dna": {
+  "genome_ids": "PP654855",
+  "genome_name": "Cabezo Gordo bat-associated mischivirus"
+ }
+}

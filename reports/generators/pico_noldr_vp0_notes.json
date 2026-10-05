@@ -1,0 +1,9 @@
+{
+ "standfirst": "Five genera of fish, bird and seal picornaviruses with no leader and an uncleaved VP0: Pasivirus, Avisivirus, Limnipivirus, Potamipivirus and Aquamavirus. The smallest of the four grouped modules - 68 genomes above 5 kb - and the only one where fourteen references route the whole set.",
+ "modules": {
+  "PICO_NOLDR_VP0": "Pasivirus supplies most of the sequence. Aquamavirus contributed 2C and VP3 records of 15 and 40 residues against 330 and 230 for the rest; those are fragments rather than short forms and were dropped rather than allowed to drag the length windows down."
+ },
+ "gaps": "Aquamavirus is represented in the capsid and polymerase features but not in 2C or VP3, because the only records it offers for those are fragments.",
+ "derived": "All mature peptides are cleavage products of POLY with both extensions set to 0.",
+ "why": {}
+}
