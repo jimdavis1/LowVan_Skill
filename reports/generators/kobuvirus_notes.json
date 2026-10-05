@@ -1,0 +1,9 @@
+{
+ "standfirst": "Aichivirus A, the human kobuvirus, plus the bovine, porcine and many rodent and bat kobuviruses: 45 species in one module. Twelve features, VP0 left uncleaved. Collections were enlarged substantially on 5 October by projecting cut coordinates from annotated genomes onto the rest of the polyproteins.",
+ "modules": {
+  "Kobuvirus": "Leader, VP0 (uncleaved), VP3, VP1, 2A, 2B, 2C, 3A, one VPg, 3C, 3D. Only POLY carries copy_num. The uncleaved VP0 is what separates this group from the Enterovirus and Aphthovirus layout."
+ },
+ "gaps": "No feature lacks a collection. The leader is the least complete, and the genomes that miss it are concentrated in the small, thinly sequenced species rather than spread across the genus.",
+ "derived": "All eleven mature peptides are cleavage products of POLY, with both extensions set to 0.",
+ "why": {}
+}

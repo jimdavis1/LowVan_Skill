@@ -1,0 +1,9 @@
+{
+ "standfirst": "Poliovirus, the rhinoviruses, coxsackieviruses, echoviruses and EV-D68 and EV-A71: the largest module in the project by a wide margin, built from 53,000 mature peptides across 26,364 genomes. Twelve features, 701 profiles, and seven species groups that share one genome organisation exactly.",
+ "modules": {
+  "Enterovirus": "L-less, VP4-VP2-VP3-VP1, a chymotrypsin-like 2A protease, 2B, 2C, 3A, one VPg, 3C, 3D. One module for the whole genus: the per-species-group medians agree to within a few residues, and lumped routing reaches 97% of genomes on 25 references where splitting would cost seven reference budgets to buy two points."
+ },
+ "gaps": "No feature lacks a collection; this is the best-sampled genus in the family and every feature built at the documented defaults. The gaps are in routing and in individual divergent genomes rather than in any feature.",
+ "derived": "All eleven mature peptides are cleavage products of POLY, with both extensions set to 0. VPg is 22 residues and was measured callable rather than assumed: against 300 full-length polyproteins its profiles score a 10th percentile of 21.2 bits at the VPg locus and a 99th percentile of 17.6 bits anywhere else, so a cutoff of 20 calls it and is silent across the other 2,160 residues.",
+ "why": {}
+}

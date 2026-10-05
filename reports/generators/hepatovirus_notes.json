@@ -1,0 +1,9 @@
+{
+ "standfirst": "Hepatitis A virus and its bat, rodent, hedgehog and avian relatives. Twelve features. BV-BRC holds 1,718 genomes but only 919 unique protein sequences and barely 340 annotated mature peptides, so this was the thinnest-trained module of the ten; the collections were enlarged on 5 October by projecting cut coordinates from the annotated genomes onto the rest.",
+ "modules": {
+  "Hepatovirus": "No leader; VP4-VP2-VP3-VP1 with VP0 cleaved, 2A, 2B, 2C, 3A, one VPg, 3C, 3D. Only POLY carries copy_num. Shares its layout with Enterovirus, which is why those two sit in the same organisational group."
+ },
+ "gaps": "The non-primate hepatoviruses are the weak point: the bird- and swan-associated genomes supply the unrouted genomes and a disproportionate share of the missing capsid calls. Hepatitis A virus itself is called completely.",
+ "derived": "All eleven mature peptides are cleavage products of POLY, with both extensions set to 0.",
+ "why": {}
+}
