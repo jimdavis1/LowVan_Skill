@@ -1,0 +1,9 @@
+{
+ "standfirst": "Human parechovirus is a common cause of sepsis-like illness and meningitis in young infants. Eleven features, 66 profiles, VP0 left uncleaved and no leader. Collections are healthy throughout: 3,062 unique sequences across the genus and no feature built with a departure.",
+ "modules": {
+  "Parechovirus": "L-less, VP0 uncleaved (so VP0-VP3-VP1 rather than VP4-VP2-VP3-VP1), 2A, 2B, 2C, 3A, one VPg, 3C, 3D. Only POLY carries copy_num."
+ },
+ "gaps": "No feature lacks a collection and none was built with a departure from the documented defaults. The one systematic miss is 3A on the bat parechoviruses, which is a coverage gap in a divergent host lineage rather than a thin feature.",
+ "derived": "All ten mature peptides are cleavage products of POLY, with both extensions set to 0.",
+ "why": {}
+}

@@ -1,0 +1,596 @@
+{
+ "title": "Parechovirus Coverage Audit",
+ "eyebrow": "LowVan &middot; Parechovirus module &middot; 5 October 2026",
+ "h1": "Does the human parechovirus module work?",
+ "standfirst": "<b>Parechovirus</b> is the genus of human parechovirus, which infects most children before school age and is a leading cause of sepsis-like illness and meningitis in infants under three months. The genus also holds parechoviruses of rodents, ferrets, cattle and bats. This audit covers the module built for it: what it covers, how it was built, where the cutoffs sit, whether genomes reach it, whether it calls the proteins, and what it cannot do.",
+ "headline_tiles": [
+  [
+   "11",
+   "features, all with profiles"
+  ],
+  [
+   "66",
+   "PSSMs"
+  ],
+  [
+   "244/245",
+   "exemplars routed"
+  ],
+  [
+   "100.0%",
+   "held-out genomes genuinely clean"
+  ],
+  [
+   "4.7&times;",
+   "string collapse"
+  ],
+  [
+   "4.0&times;",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One genus, eleven features, and a capsid that is cleaved one time fewer than most picornaviruses.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The parechovirus polyprotein is VP0, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C, 3D. There is no leader, and <b>VP0 is never cleaved into VP4 and VP2</b>, so the mature capsid carries three proteins rather than four. That is the organisational difference that puts this genus and Avihepatovirus in a different group from Enterovirus and Hepatovirus, which cleave VP0."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "813"
+      ],
+      [
+       "protein features",
+       "6,974"
+      ],
+      [
+       "unique sequences",
+       "3,062"
+      ],
+      [
+       "genomes with a contig &ge; 5 kb",
+       "667"
+      ],
+      [
+       "species",
+       "24"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<i>Parechovirus ahumpari</i> (human parechovirus) is 202 of the 244 routed exemplars. The remainder are the animal parechoviruses, including three bat species that section 07 is about."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Eleven features, 66 profiles, every one at the documented defaults.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Genome polyprotein",
+       "POLY",
+       "331",
+       "9",
+       "defaults"
+      ],
+      [
+       "VP0",
+       "Capsid protein VP0 (1AB)",
+       "VP0",
+       "305",
+       "10",
+       "defaults"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "VP3",
+       "267",
+       "11",
+       "defaults"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "VP1",
+       "322",
+       "11",
+       "defaults"
+      ],
+      [
+       "2A",
+       "Protein 2A",
+       "2A",
+       "311",
+       "6",
+       "defaults"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "2B",
+       "131",
+       "3",
+       "defaults"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "2C",
+       "291",
+       "3",
+       "defaults"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "3A",
+       "222",
+       "3",
+       "defaults"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "VPG",
+       "119",
+       "3",
+       "defaults"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "3C",
+       "241",
+       "3",
+       "defaults"
+      ],
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "3D",
+       "391",
+       "4",
+       "defaults"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "3,062 unique sequences across the genus is ample, and every mature peptide had a collection large enough to build at <code>-m 5 -mi 0.8</code>. No feature needed a departure and nothing had to be projected from polyproteins."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Windows at 0.8&times; to 1.2&times; the collection median, bit cutoffs at 0.45&times; the median length with a floor of 20.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "400",
+       "0.65",
+       "1,860",
+       "2,790"
+      ],
+      [
+       "VP0",
+       "130",
+       "0.65",
+       "207",
+       "346"
+      ],
+      [
+       "VP3",
+       "113",
+       "0.65",
+       "195",
+       "302"
+      ],
+      [
+       "VP1",
+       "103",
+       "0.65",
+       "184",
+       "356"
+      ],
+      [
+       "2A",
+       "64",
+       "0.65",
+       "114",
+       "254"
+      ],
+      [
+       "2B",
+       "58",
+       "0.65",
+       "103",
+       "168"
+      ],
+      [
+       "2C",
+       "148",
+       "0.65",
+       "263",
+       "400"
+      ],
+      [
+       "3A",
+       "52",
+       "0.65",
+       "93",
+       "156"
+      ],
+      [
+       "VPG",
+       "20",
+       "0.65",
+       "20",
+       "34"
+      ],
+      [
+       "3C",
+       "87",
+       "0.65",
+       "155",
+       "237"
+      ],
+      [
+       "3D",
+       "211",
+       "0.65",
+       "375",
+       "564"
+      ]
+     ]
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>2913 of 2931 (99.4%)</b> &mdash; POLY 331/331, VP0 305/305, VP3 266/267, VP1 320/322, 2A 308/311, 2B 126/131, 2C 291/291, 3A 221/222, VPG 117/119, 3C 238/241, 3D 390/391. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "25 rep contigs, 244 of 245 exemplars routed.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes &ge; 5 kb, clustered at 95% nucleotide identity",
+       "245",
+       "&mdash;"
+      ],
+      [
+       "routed to Parechovirus",
+       "244",
+       "99.6%"
+      ],
+      [
+       "unrouted",
+       "1",
+       "0.4%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "25 rep contigs ship with the module; 23 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold."
+    },
+    {
+     "type": "prose",
+     "html": "The one genome that does not route is <code>3413225.3</code>, Bos parechovirus 1 NZ1, at 6,134 nucleotides. It is the only bovine parechovirus in the set, so no reference is close enough to claim it at the nucleotide level. A twenty-sixth reference would fix exactly this one genome, which is the kind of marginal gain the 25-reference budget exists to decline."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Ten of eleven features on at least 236 of 244 exemplars. The eleventh is 3A.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "POLY",
+       "98.4",
+       98.4,
+       "240 of 244 routed exemplars"
+      ],
+      [
+       "VP0",
+       "98.0",
+       98.0,
+       "239 of 244 routed exemplars"
+      ],
+      [
+       "VP3",
+       "97.5",
+       97.5,
+       "238 of 244 routed exemplars"
+      ],
+      [
+       "VP1",
+       "97.1",
+       97.1,
+       "237 of 244 routed exemplars"
+      ],
+      [
+       "2A",
+       "97.5",
+       97.5,
+       "238 of 244 routed exemplars"
+      ],
+      [
+       "2B",
+       "97.5",
+       97.5,
+       "238 of 244 routed exemplars"
+      ],
+      [
+       "2C",
+       "98.0",
+       98.0,
+       "239 of 244 routed exemplars"
+      ],
+      [
+       "3A",
+       "89.3",
+       89.3,
+       "218 of 244 routed exemplars"
+      ],
+      [
+       "VPG",
+       "96.7",
+       96.7,
+       "236 of 244 routed exemplars"
+      ],
+      [
+       "3C",
+       "97.5",
+       97.5,
+       "238 of 244 routed exemplars"
+      ],
+      [
+       "3D",
+       "98.8",
+       98.8,
+       "241 of 244 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>207 of 244 routed exemplars get every declared feature.</b> No core feature trails the best-called one by 20 points or more."
+    },
+    {
+     "type": "prose",
+     "html": "3A is called on 218 of 244. The misses are concentrated rather than scattered: <b>8 of 8 Scotophilus kuhlii parechoviruses, 2 of 2 Myotis bat parechovirus 1 and 2 of 2 Myotis bat parechovirus 2</b> &mdash; every bat parechovirus in the set &mdash; plus 8 of 202 human parechoviruses. 207 of 244 exemplars get all eleven features."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "39 of 39 held-out genomes clean, with no flag of any kind.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "39",
+       "held-out genomes"
+      ],
+      [
+       "39",
+       "no genome/contig flags"
+      ],
+      [
+       "39",
+       "genuinely clean"
+      ],
+      [
+       "0",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "100.0%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 39 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "prose",
+     "html": "The panel is drawn round-robin across species from the genus's own BV-BRC contigs with every rep-contig reference genome excluded. No genome, contig or feature flag fired on any of them."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "The bat parechovirus 3A, and one bovine genome that never arrives.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>3A is not called on any bat parechovirus.</b> All twelve bat genomes route and get their other ten features, so the module reaches them and reads them; it is 3A specifically that no profile covers. 3A is the shortest of the non-VPg features here, and short proteins are where sequence divergence costs the most, because there is less of the protein over which a profile can accumulate score. Whether a profile built from bat 3A sequences would separate cleanly from the human one has not been measured, and the collection contains no bat 3A to build from."
+    },
+    {
+     "type": "prose",
+     "html": "<b>One genome does not route at all.</b> Bos parechovirus 1 NZ1 is the single bovine parechovirus in BV-BRC and no rep contig claims it. A genome that does not route is never annotated however good the profiles are, so this is a routing gap rather than a profile gap, and it costs one genome."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Eight human parechoviruses also miss 3A.</b> Those are scattered across a species with 202 exemplars and are more likely to be individual divergent isolates or partial assemblies than a lineage the profiles systematically miss. They have not been examined one by one."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "The module calls all eleven proteins on the human parechoviruses, which are what the genus is medically about, and misses 3A on every bat parechovirus. Closing that needs bat 3A sequences in the collection, which BV-BRC does not currently annotate; it is not a threshold that can be lowered."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Nothing needed fixing.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Full-taxon coverage and the held-out panel were both run for the first time on 5 October 2026. No feature trailed the best-called one by 20 points, the panel returned no flags at all, and the module has not been rebuilt since it was built on 2 October."
+    },
+    {
+     "type": "prose",
+     "html": "The bat 3A gap is visible only in the per-species breakdown of the full-taxon run. At the genus level 3A is called on 89% of exemplars, which reads as ordinary variation; it is only when the misses turn out to be 12 of 12 bat genomes that it becomes a statement about what the module covers."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "Thirteen strings the rules never matched, out of a genus that submitters name fairly consistently.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "parechovirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "VP0",
+       "Capsid protein VP0 (1AB)",
+       "7"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "6"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "6"
+      ],
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "6"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "5"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "5"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "3"
+      ],
+      [
+       "2A",
+       "Protein 2A",
+       "2"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "2"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "2"
+      ],
+      [
+       "POLY",
+       "Genome polyprotein",
+       "2"
+      ],
+      [
+       "<i>pool</i>",
+       "not modelled",
+       "10"
+      ],
+      [
+       "<i>unbound</i>",
+       "&mdash;",
+       "13"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over proteins: every annotated protein in the 226 genomes both sources annotate (2,087 source product records, 2,475 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>44</b> distinct strings, the module's <b>11</b>. At the depth both reach, 2,087 proteins, free text has used <b>44.0 strings against 11.0 &mdash; a 4.0-fold difference.</b> The source reaches 95% of its final size after 1,558 proteins, the module after 32."
+    },
+    {
+     "type": "prose",
+     "html": "Parechovirus names collapse at 4.7&times;, in the middle of the range for this family. Drawn one protein at a time, the module's vocabulary is fixed early while the source vocabulary is still growing at the end of the set &mdash; the ordinary shape, and the reason the ratio is worth quoting at equal sampling depth rather than at each curve's own end."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>parechovirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Picornaviridae/work/Parechovirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}

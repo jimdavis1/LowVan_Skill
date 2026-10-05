@@ -1,0 +1,44 @@
+{
+ "date": "5 October 2026",
+ "h1": "Does the human parechovirus module work?",
+ "standfirst": "<b>Parechovirus</b> is the genus of human parechovirus, which infects most children before school age and is a leading cause of sepsis-like illness and meningitis in infants under three months. The genus also holds parechoviruses of rodents, ferrets, cattle and bats. This audit covers the module built for it: what it covers, how it was built, where the cutoffs sit, whether genomes reach it, whether it calls the proteins, and what it cannot do.",
+ "lede01": "One genus, eleven features, and a capsid that is cleaved one time fewer than most picornaviruses.",
+ "p01": [
+  "The parechovirus polyprotein is VP0, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C, 3D. There is no leader, and <b>VP0 is never cleaved into VP4 and VP2</b>, so the mature capsid carries three proteins rather than four. That is the organisational difference that puts this genus and Avihepatovirus in a different group from Enterovirus and Hepatovirus, which cleave VP0.",
+  "<i>Parechovirus ahumpari</i> (human parechovirus) is 202 of the 244 routed exemplars. The remainder are the animal parechoviruses, including three bat species that section 07 is about."
+ ],
+ "lede02": "Eleven features, 66 profiles, every one at the documented defaults.",
+ "p02": [
+  "3,062 unique sequences across the genus is ample, and every mature peptide had a collection large enough to build at <code>-m 5 -mi 0.8</code>. No feature needed a departure and nothing had to be projected from polyproteins."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median, bit cutoffs at 0.45&times; the median length with a floor of 20.",
+ "p03": [],
+ "lede04": "25 rep contigs, 244 of 245 exemplars routed.",
+ "p04": [
+  "The one genome that does not route is <code>3413225.3</code>, Bos parechovirus 1 NZ1, at 6,134 nucleotides. It is the only bovine parechovirus in the set, so no reference is close enough to claim it at the nucleotide level. A twenty-sixth reference would fix exactly this one genome, which is the kind of marginal gain the 25-reference budget exists to decline."
+ ],
+ "lede05": "Ten of eleven features on at least 236 of 244 exemplars. The eleventh is 3A.",
+ "p05": [
+  "3A is called on 218 of 244. The misses are concentrated rather than scattered: <b>8 of 8 Scotophilus kuhlii parechoviruses, 2 of 2 Myotis bat parechovirus 1 and 2 of 2 Myotis bat parechovirus 2</b> &mdash; every bat parechovirus in the set &mdash; plus 8 of 202 human parechoviruses. 207 of 244 exemplars get all eleven features."
+ ],
+ "lede06": "39 of 39 held-out genomes clean, with no flag of any kind.",
+ "p06": [
+  "The panel is drawn round-robin across species from the genus's own BV-BRC contigs with every rep-contig reference genome excluded. No genome, contig or feature flag fired on any of them."
+ ],
+ "lede07": "The bat parechovirus 3A, and one bovine genome that never arrives.",
+ "p07": [
+  "<b>3A is not called on any bat parechovirus.</b> All twelve bat genomes route and get their other ten features, so the module reaches them and reads them; it is 3A specifically that no profile covers. 3A is the shortest of the non-VPg features here, and short proteins are where sequence divergence costs the most, because there is less of the protein over which a profile can accumulate score. Whether a profile built from bat 3A sequences would separate cleanly from the human one has not been measured, and the collection contains no bat 3A to build from.",
+  "<b>One genome does not route at all.</b> Bos parechovirus 1 NZ1 is the single bovine parechovirus in BV-BRC and no rep contig claims it. A genome that does not route is never annotated however good the profiles are, so this is a routing gap rather than a profile gap, and it costs one genome.",
+  "<b>Eight human parechoviruses also miss 3A.</b> Those are scattered across a species with 202 exemplars and are more likely to be individual divergent isolates or partial assemblies than a lineage the profiles systematically miss. They have not been examined one by one."
+ ],
+ "verdict07": "The module calls all eleven proteins on the human parechoviruses, which are what the genus is medically about, and misses 3A on every bat parechovirus. Closing that needs bat 3A sequences in the collection, which BV-BRC does not currently annotate; it is not a threshold that can be lowered.",
+ "lede08": "Nothing needed fixing.",
+ "p08": [
+  "Full-taxon coverage and the held-out panel were both run for the first time on 5 October 2026. No feature trailed the best-called one by 20 points, the panel returned no flags at all, and the module has not been rebuilt since it was built on 2 October.",
+  "The bat 3A gap is visible only in the per-species breakdown of the full-taxon run. At the genus level 3A is called on 89% of exemplars, which reads as ordinary variation; it is only when the misses turn out to be 12 of 12 bat genomes that it becomes a statement about what the module covers."
+ ],
+ "lede09": "Thirteen strings the rules never matched, out of a genus that submitters name fairly consistently.",
+ "p09": [
+  "Parechovirus names collapse at 4.7&times;, in the middle of the range for this family. Drawn one protein at a time, the module's vocabulary is fixed early while the source vocabulary is still growing at the end of the set &mdash; the ordinary shape, and the reason the ratio is worth quoting at equal sampling depth rather than at each curve's own end."
+ ]
+}

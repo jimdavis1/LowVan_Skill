@@ -1,0 +1,9 @@
+{
+ "standfirst": "Foot-and-mouth disease virus and the equine and bovine rhinitis viruses in one module. The best-sampled genus in the family: 13,159 unique sequences, thirteen features, 129 profiles, every one built at the documented defaults. Every measured median matched the published FMDV size.",
+ "modules": {
+  "Aphthovirus": "Leader protease (~201 aa), VP4-VP2-VP3-VP1, an 18 aa StopGo 2A, 2B, 2C, 3A, VPg, 3C, 3D. Separate from Cardiovirus because the leader slot holds a protease here and a 71 aa zinc-finger protein there. Only POLY carries copy_num."
+ },
+ "gaps": "No feature lacks a collection. The real gap is inside VPG: its collection is 443 FMDV tandem sequences of 71 residues against 8 of anything else, so the single-copy 24-25 residue VPg of the equine and bovine rhinitis viruses falls outside the window. See the coverage audit, section 07.",
+ "derived": "All twelve mature peptides are cleavage products of POLY, with both extensions set to 0. VPG models the FMDV 3B1-3B2-3B3 tandem as one feature because three profiles built from mutually paralogous 23-residue peptides would never separate.",
+ "why": {}
+}

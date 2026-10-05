@@ -1,0 +1,48 @@
+{
+ "date": "5 October 2026",
+ "h1": "Does the foot-and-mouth disease virus module work?",
+ "standfirst": "<b>Aphthovirus</b> is the genus of foot-and-mouth disease virus, the most economically consequential livestock pathogen there is: an outbreak closes borders, and the 2001 British epidemic cost some 6 million animals. The genus also holds the equine and bovine rhinitis viruses. This audit covers the module built for it &mdash; what it covers, how it was built, where the cutoffs sit, whether genomes reach it, whether it calls the proteins, and the one place where it systematically does not.",
+ "lede01": "One genus, four species, and a genome layout that is identical everywhere except at 3B.",
+ "p01": [
+  "The aphthovirus polyprotein is a leader protease, VP4, VP2, VP3, VP1, a 2A of 18 residues that separates the capsid precursor by ribosome skipping rather than proteolysis, then 2B, 2C, 3A, VPg, 3C and 3D. The leader is a genuine papain-like protease of about 201 residues, which is why this genus is a separate module from Cardiovirus, whose leader slot holds a 71-residue zinc-finger protein instead.",
+  "<i>Aphthovirus vesiculae</i> (FMDV) is 368 of the 431 near-complete exemplars. The rest are <i>A. reedi</i> and <i>A. bogeli</i> (equine rhinitis A and B) and <i>A. burrowsi</i> (bovine rhinitis). Section 07 is about the single respect in which those three differ from FMDV, which the module did not account for."
+ ],
+ "lede02": "Thirteen features at the documented defaults, 129 profiles &mdash; the largest collection set of the ten picornavirus modules.",
+ "p02": [
+  "13,159 unique sequences from 4,296 genomes makes this the best-sampled genus in the family, and every feature built at <code>-m 5 -mi 0.8</code> without a departure. Each measured median matched the published FMDV size: leader 201, VP4 85, VP2 218, VP3 220, VP1 211, <b>2A 18</b>, 2C 318, 3A 153, 3C 213, 3D 470. Nothing in the binning rules knows about length, so that agreement is an independent check that the triage was right.",
+  "<b>VPg was set to the FMDV tandem deliberately.</b> FMDV carries three tandem copies of 3B, and 410 BV-BRC records annotate all three as a single <code>3B1/3B2/3B3</code> mat_peptide of 71 residues (23 + 24 + 24). Three profiles built from mutually paralogous 23-residue peptides would never separate, so the module models the tandem as one feature. That decision is correct for FMDV and is the direct cause of the gap in section 07."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median, bit cutoffs at 0.45&times; the median length with a floor of 20.",
+ "p03": [
+  "The VPg window is 57&ndash;85 residues, set from a collection in which 443 of 451 sequences are the 71-residue tandem. A 24-residue single copy cannot clear it."
+ ],
+ "lede04": "Thirteen rep contigs, and every one of 431 exemplars routes.",
+ "p04": [
+  "Thirteen references cover a genus of 4,296 genomes with nothing unrouted, which is what a densely sampled genus with one dominant species looks like."
+ ],
+ "lede05": "Twelve of thirteen features on essentially every exemplar. The thirteenth is VPg.",
+ "p05": [
+  "Eleven features are called on 415 or more of 431 exemplars and the leader on 415. VPg is called on 382, and the 49 misses are not scattered: they are <b>21 of 23 <i>A. bogeli</i>, 12 of 32 <i>A. reedi</i>, and 5 of 5 <i>A. burrowsi</i></b>. Those same genomes get all twelve other features at 100%. A feature that fails on whole species while its neighbours succeed on the same genomes is not a threshold problem, and section 07 says what it is."
+ ],
+ "lede06": "39 of 40 held-out genomes clean.",
+ "p06": [
+  "The one flagged genome has its polyprotein called three times, which is the signature of a deposited sequence carrying frameshifting indels rather than a defect in the module."
+ ],
+ "lede07": "A module-partitioning error with a known size and a known fix.",
+ "p07": [
+  "<b>The rhinitis aphthoviruses have one VPg, not three.</b> Counting every VPg record in the dump by species settles it: <i>A. vesiculae</i> contributes 2,209 records of 71 residues, the tandem. <i>A. reedi</i> contributes 62 records and every one is <b>25 residues</b>. <i>A. bogeli</i> contributes 25 records, all 24 or 25. <i>A. burrowsi</i> contributes 5, all 24. There is no tandem outside FMDV, and there is no single copy inside it. The two populations do not overlap at all.",
+  "The module's VPg collection is 451 sequences of which 443 are the 71-residue tandem, and the window that follows from it is 57&ndash;85. A 24-residue VPg cannot clear that window at any bit cutoff, so the module does not fail to <i>score</i> these proteins &mdash; it declines to consider them. That is why the loss is total in <i>A. burrowsi</i> and near-total in <i>A. bogeli</i>, and why no amount of threshold tuning would recover any of it.",
+  "<b>The fix is a second feature, not a module split.</b> Splitting was the first thing to check, since differing copy number at a locus is exactly the kind of genome-organisation difference that normally forces separate modules. It is not warranted here: the three rhinitis species get the other twelve features on 100% of their genomes, so every other aspect of the layout is shared. What is needed is one more declared feature carrying the single-copy form, with the tandem feature renamed to say what it actually models.",
+  "<b>It needs measuring before it is built, for a specific reason.</b> The FMDV tandem <i>contains</i> three sequences of single-copy length, so a 24-residue profile will score against the FMDV 3B locus as well as its intended target. That is the truncated-profile case the curation checklist forbids, and it would show up as two features competing at one locus rather than as a clean gain. The two features would also need distinct annotation strings: two features sharing one string collide in the quality tool's <code>%essential</code> table, which is the defect that cost the Tobamovirus module an entire quality run. Neither obstacle is severe; both mean this is a measured change rather than a one-line edit."
+ ],
+ "verdict07": "Twelve features are right across the whole genus. The thirteenth is right for FMDV and absent for the other three species, costing 49 of 431 exemplars, and it is a partitioning decision rather than a tuning problem. The fix is one additional feature for the single-copy VPg, and it needs a cross-feature measurement first because the FMDV tandem contains the single-copy form.",
+ "lede08": "The run found a decision that every earlier step had agreed with.",
+ "p08": [
+  "The VPg decision survived the build, the install check, the cross-feature QC and the held-out panel. None of those can see it: the profiles recover their own training data perfectly, because the training data is all FMDV; the panel is drawn across species but scores whole genomes rather than per-feature completeness; and a feature that is never called on a species produces no wrong answer to flag, only a missing one.",
+  "Only the full-taxon run breaks it down per feature per species, and that is where 21 of 23, 12 of 32 and 5 of 5 become visible as a pattern rather than as noise. The build notes recorded the tandem decision honestly at the time and recorded the bimodality that justified it; what they did not do is ask what happened to the other mode."
+ ],
+ "lede09": "The densest annotation in the family, and the largest collapse.",
+ "p09": [
+  "Aphthovirus is the most heavily submitted genus here, and its free text is correspondingly varied: 53 source strings bind to no feature at all and the bound ones collapse at 10.9&times;, the highest ratio of the ten picornavirus modules. Drawn one protein at a time, the module's vocabulary is fixed within the first few dozen proteins while the source vocabulary is still climbing at the end of the set."
+ ]
+}

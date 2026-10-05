@@ -20,6 +20,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Allexivirus** | [live](https://claude.ai/artifact/Nod4NnVCU3arrmBqiTPh1J) | [live](https://claude.ai/artifact/PR148JCFeHCx5rsiqSPe8d) | [live](https://claude.ai/artifact/S5H57Gg1N2DECvutD8JBTS) | [live](https://claude.ai/artifact/KAyMy13QTKUsFASLRsoTwo) |
 | **Alphaflexiviridae** | [live](https://claude.ai/artifact/1opeHxTHrAVEx7nsy8DMc1) | [live](https://claude.ai/artifact/TseN29Pu2NS87fMCJRTP1a) | [live](https://claude.ai/artifact/DrNtpzKawMfnQvEFgdvJCP) | [live](https://claude.ai/artifact/MzC77du44ZP2iBnPogQPx1) |
 | **Ampelovirus** | [live](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [live](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [live](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [live](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) |
+| **Aphthovirus** | [live](https://claude.ai/artifact/KdaADibFPANEzfuUFHPFKn) | [live](https://claude.ai/artifact/9tbrUrJKKq41HT6MS88stL) | [live](https://claude.ai/artifact/VG7VGspxEMqfRJvTUNJwzo) | [live](https://claude.ai/artifact/1ZtduTvq8yXtbpb1CxTyex) |
 | **Avihepatovirus** | [live](https://claude.ai/artifact/6RHPEZykKvhFBP9wrrH1qU) | [live](https://claude.ai/artifact/JFVvSbRmU1Fv6nq7Wqi7gC) | [live](https://claude.ai/artifact/P3wF6BgumacJUGYqZ4v7X8) | [live](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) |
 | **Bromoviridae** | [live](https://claude.ai/artifact/1wZ4m4Ri6VarEWj6vGB8UT) | [live](https://claude.ai/artifact/VtS14XFKWG1BtzBiX1f193) | [live](https://claude.ai/artifact/LLVpuYZWg7GbRrFbcBMpiK) | [live](https://claude.ai/artifact/MLcThSnPEmReaR28vFsLN5) |
 | **Capillovirus** | [live](https://claude.ai/artifact/UxFYYiPSxUmVHpnfZvttL6) | [live](https://claude.ai/artifact/2MhyYGJDyaiuKpH8dT8DMP) | [live](https://claude.ai/artifact/KRCGhYahtrFrXhC66FMCDG) | [live](https://claude.ai/artifact/72Tkge2qkTd5sc5eumHUtP) |
@@ -32,6 +33,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Marafivirus** | [live](https://claude.ai/artifact/8hsgb6VBLoWthJQ5fDekmN) | [live](https://claude.ai/artifact/BJLdgUbZv3VZyFmBZwPur2) | [live](https://claude.ai/artifact/UrU49iSx3Qf1vw7QSUTUSD) | [live](https://claude.ai/artifact/WPLVahsQ7EMSvzP2MxnZ4k) |
 | **Matonaviridae** | [src only](reports/matonaviridae-string-collapse.html) | [live](https://claude.ai/artifact/Pg9oPLPEMsSJwVX1cNaZkj) | [live](https://claude.ai/artifact/Py71icixnS8G7aHoRekJ4B) | [live](https://claude.ai/artifact/AxuNuwq21AAiGws5JvQoWo) |
 | **Orthoflavivirus** | [live](https://claude.ai/artifact/MFXjT53roYWz1ymQkrh1ur) | [live](https://claude.ai/artifact/AkjDvmo28d4bVZCndjymXP) | [live](https://claude.ai/artifact/9c5gUBxFf4jHNfYizWHw7m) | [live](https://claude.ai/artifact/RokLyf9pujJnw37CAri2DR) |
+| **Parechovirus** | [live](https://claude.ai/artifact/EUx6FLSssTPNRWJ7FcDyL6) | [live](https://claude.ai/artifact/GYiXCX6ammFZUqqK7MbNWs) | [live](https://claude.ai/artifact/6xMJKTWE3i5FXH8yFXBUBf) | [live](https://claude.ai/artifact/V6xRs6ePghUPkaTX1SyuBL) |
 | **Pegivirus** | [live](https://claude.ai/artifact/K2iJfd8E9rtDErhCeDHWix) | [live](https://claude.ai/artifact/GhMTLt7Rd19Ek3mJL7JFWr) | [live](https://claude.ai/artifact/1KUB1A9tKmxJaEHKZbWzYM) | [live](https://claude.ai/artifact/Gy9STnMecUF9MaByUNmugx) |
 | **Pestiviridae** | [live](https://claude.ai/artifact/2wDv9SfmPrtHWSch4gek5c) | [live](https://claude.ai/artifact/9UrwQLi5mBSkVmB4UrtLJm) | [live](https://claude.ai/artifact/KcbRvV3YqDZWutCDNEWkxh) | [live](https://claude.ai/artifact/LEF7bVuNmTvA8vs94ptF26) |
 | **Quinvirinae** | [live](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [live](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [live](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [live](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) |
@@ -74,6 +76,15 @@ published — the file is in this repo. `—` was not made.
 | Ampelovirus PSSM Registry | [open](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [source](reports/ampelovirus-pssm-registry.html) | 2026-09-29 |
 | Ampelovirus String Collapse | [open](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [source](reports/ampelovirus-string-collapse.html) | 2026-09-29 |
 | Ampelovirus Vocabulary Saturation | [open](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [source](reports/ampelovirus-vocabulary-saturation.html) | 2026-09-29 |
+
+### Aphthovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Aphthovirus Coverage Audit | [open](https://claude.ai/artifact/1ZtduTvq8yXtbpb1CxTyex) | [source](reports/aphthovirus-coverage-audit.html) | 2026-10-05 |
+| Aphthovirus PSSM Registry | [open](https://claude.ai/artifact/9tbrUrJKKq41HT6MS88stL) | [source](reports/aphthovirus-pssm-registry.html) | 2026-10-05 |
+| Aphthovirus String Collapse | [open](https://claude.ai/artifact/KdaADibFPANEzfuUFHPFKn) | [source](reports/aphthovirus-string-collapse.html) | 2026-10-05 |
+| Aphthovirus Vocabulary Saturation | [open](https://claude.ai/artifact/VG7VGspxEMqfRJvTUNJwzo) | [source](reports/aphthovirus-vocabulary-saturation.html) | 2026-10-05 |
 
 ### Avihepatovirus
 
@@ -184,6 +195,15 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 | Orthoflavivirus PSSM Registry | [open](https://claude.ai/artifact/AkjDvmo28d4bVZCndjymXP) | [source](reports/orthoflavivirus-pssm-registry.html) | 2026-09-22 |
 | Orthoflavivirus String Collapse | [open](https://claude.ai/artifact/MFXjT53roYWz1ymQkrh1ur) | [source](reports/orthoflavivirus-string-collapse.html) | 2026-09-22 |
 | Orthoflavivirus Vocabulary Saturation | [open](https://claude.ai/artifact/9c5gUBxFf4jHNfYizWHw7m) | [source](reports/orthoflavivirus-vocabulary-saturation.html) | 2026-09-22 |
+
+### Parechovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Parechovirus Coverage Audit | [open](https://claude.ai/artifact/V6xRs6ePghUPkaTX1SyuBL) | [source](reports/parechovirus-coverage-audit.html) | 2026-10-05 |
+| Parechovirus PSSM Registry | [open](https://claude.ai/artifact/GYiXCX6ammFZUqqK7MbNWs) | [source](reports/parechovirus-pssm-registry.html) | 2026-10-05 |
+| Parechovirus String Collapse | [open](https://claude.ai/artifact/EUx6FLSssTPNRWJ7FcDyL6) | [source](reports/parechovirus-string-collapse.html) | 2026-10-05 |
+| Parechovirus Vocabulary Saturation | [open](https://claude.ai/artifact/6xMJKTWE3i5FXH8yFXBUBf) | [source](reports/parechovirus-vocabulary-saturation.html) | 2026-10-05 |
 
 ### Pegivirus
 

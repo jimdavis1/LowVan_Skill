@@ -36,6 +36,10 @@ ap.add_argument("--dump", default="G")
 ap.add_argument("--min-id", type=float, default=0.50)
 ap.add_argument("--min-seg-id", type=float, default=0.35)
 ap.add_argument("--split", action="append", default=[])
+ap.add_argument("--first-product", default="",
+                help="KEY:NEXTKEY -- KEY is the polyprotein N-terminus up to the start of "
+                     "NEXTKEY. For a leader, which few genomes annotate but every polyprotein "
+                     "carries. Derived, not projected: the coordinates are the reference's own.")
 ap.add_argument("--threads", type=int, default=4)
 a = ap.parse_args()
 W, G = a.workdir, a.genus
@@ -78,6 +82,9 @@ for gid, seqs in bygen.items():
             for s in seqs & cs:
                 i = p.find(s)
                 if i >= 0 and p.find(s, i + 1) < 0: cuts[k] = (i, i + len(s))
+        if a.first_product:
+            k0, k1 = a.first_product.split(":")
+            if k1 in cuts and cuts[k1][0] > 0: cuts[k0] = (0, cuts[k1][0])
         if len(cuts) >= 5 and (p not in refs or len(cuts) > len(refs[p])): refs[p] = cuts
 print("  %d polyproteins, %d reference polyproteins with >=5 placed mat_peptides" % (len(polyset), len(refs)))
 if not refs: sys.exit("no references")
