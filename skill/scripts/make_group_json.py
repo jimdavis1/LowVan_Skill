@@ -18,7 +18,7 @@ ANNO = {
     "Ldr":  ("Leader protein", "Ldr"),
     #  ERBV L has C-terminal processing activity -- Hinton 2002 J Gen Virol
     #  83:3111 (PMID 12466488). Model-proposed citation.
-    "Ldr_PRO":  ("Leader protease (Lpro)", "Ldr"),
+    "Ldr_PRO":  ("Leader protease (Lpro)", "Lpro"),
     #  Sicinivirus carries a 462-residue leader against 64-174 for the rest of
     #  its group. No function is documented for it, so the vocabulary's
     #  uncharacterized form is used and the tag stays in the key and symbol.
@@ -85,6 +85,11 @@ for G in GROUPS:
     seen = collections.Counter(f["anno"] for f in feats.values())
     dup = [a for a, n in seen.items() if n > 1]
     if dup: raise SystemExit("%s: duplicate annotation strings %s" % (G, dup))
+    #  and distinct gene symbols: the feature table reports the SYMBOL, so two
+    #  features sharing one are indistinguishable in every downstream count
+    sseen = collections.Counter(f["gene_symbol"] for f in feats.values())
+    sdup = [a for a, n in sseen.items() if n > 1]
+    if sdup: raise SystemExit("%s: duplicate gene symbols %s" % (G, sdup))
     block = {G: {"features": feats,
                  "segments": {"Single RNA Segment": {"min_len": 5000, "max_len": 12000,
                                                      "replicon_geometry": "linear"}}}}
