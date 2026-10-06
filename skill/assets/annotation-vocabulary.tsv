@@ -597,3 +597,24 @@ Crinivirus	Small hydrophobic protein	P7A	CDS		0
 Crinivirus	Small hydrophobic protein	P7B	CDS		0	
 Crinivirus	Small hydrophobic protein	P8B	CDS		0	
 Cardiovirus	L* protein	L*	CDS	Single RNA Segment	0	
+Picornaviridae	Capsid protein VP0 (1AB)	VP0	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Capsid protein VP1 (1D)	VP1	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Capsid protein VP2 (1B)	VP2	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Capsid protein VP3 (1C)	VP3	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Capsid protein VP4 (1A)	VP4	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Genome-linked protein VPg (3B)	VPg	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Leader protease (Lpro)	Lpro	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Leader protein	Ldr	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Leader protein, zinc-finger host antagonist	Ldr	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Picornain 2A, protease (2A)	2A	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Picornain 3C, protease (3C)	3C	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Protein 2A	2A	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Protein 2A (pX)	2A	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Protein 2A, StopGo peptide	2A	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Protein 2A1, StopGo peptide	2A1	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Protein 2A2	2A2	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Protein 2A3	2A3	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Protein 2B, viroporin	2B	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Protein 2C, ATPase/helicase	2C	mat_peptide	Single RNA Segment	0	
+Picornaviridae	Protein 3A	3A	mat_peptide	Single RNA Segment	0	
+Picornaviridae	RNA-directed RNA polymerase 3D	3D	mat_peptide	Single RNA Segment	0	
