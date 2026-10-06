@@ -32,14 +32,16 @@ script grepped only for success lines so the warning was never seen. The
 2 October build had used `-m 1 -mi 0.6` and been correct.
 
 Both halves fixed:
- - rebuild_genus now picks `-m 1 -mi 0.6 -mc 0.6` for any collection with
-   <10 sequences or a median length <20 residues
+ - rebuild_genus now picks `-m 1` for any collection with <10 sequences or a
+   median length <20 residues. **The MEMBER floor only - never -mi.** The
+   first fix also dropped the identity floor to 0.6, which was wrong and
+   unnecessary: 2A builds at the documented `-mi 0.8` with `-m 1` alone.
+   Lowering -mi redefines "same protein" and merges unrelated sequences
  - a hard gate refuses to ship if any non-special feature has no PSSM
 
 2A: 0 calls -> 10/10.
 
-Departures from the documented defaults: POLY `-m 2`, 2A `-m 1 -mi 0.6
--mc 0.6`. 22 PSSMs.
+Departures from the documented defaults: POLY `-m 2`, 2A `-m 1`. 22 PSSMs.
 
 ## Measured 5 October 2026
 

@@ -1,8 +1,4 @@
->ext1|Senecavirus|2A|ref=r12 Protein 2A, StopGo peptide
-AGDVETNPG
->ext5|Senecavirus|2A|ref=r4 Protein 2A, StopGo peptide
-SGDVESNPG
->fig|390157.544.mat_peptide.6 Protein 2A, StopGo peptide
-SGDIETNPG
 >fig|390157.562.mat_peptide.6 Protein 2A, StopGo peptide
 SGDVETNPG
+>ext1|Senecavirus|2A|ref=r12 Protein 2A, StopGo peptide
+AGDVETNPG
