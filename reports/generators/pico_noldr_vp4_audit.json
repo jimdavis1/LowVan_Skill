@@ -1,6 +1,6 @@
 {
  "title": "PICO_NOLDR_VP4 Coverage Audit",
- "eyebrow": "LowVan &middot; PICO_NOLDR_VP4 module &middot; 5 October 2026",
+ "eyebrow": "LowVan &middot; PICO_NOLDR_VP4 module &middot; 6 October 2026",
  "h1": "Does the grouped cosavirus module work?",
  "standfirst": "<b>PICO_NOLDR_VP4</b> groups three genera with no leader and the four-capsid-protein layout: Cosavirus, a human enteric virus; Tremovirus, avian encephalomyelitis virus; and Dicipivirus. None has enough sequence to model alone. Unlike the other grouped modules in this family, this one largely works &mdash; and the reason is worth reading alongside its sibling pages.",
  "headline_tiles": [
@@ -520,6 +520,18 @@
     {
      "type": "prose",
      "html": "<b>Dicipivirus is dicistronic and this module does not represent that.</b> Its genome carries two ORFs separated by an intergenic IRES rather than one polyprotein. It was grouped here on its capsid and replicase layout, and the module models polyprotein products only. Whether it warrants its own module on genome-organisation grounds is open; 19 near-complete genomes is thin either way."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Tremovirus is in the wrong module, and VP4 is the symptom.</b> VP4 is called on 54/54 Cosavirus and 16/19 Dicipivirus exemplars and on <b>0 of 10 Tremovirus</b>, unchanged by the 6 October projection rebuild. The cause is size, not a missing profile: Cosavirus VP4 has a median of 68 residues, Dicipivirus 44, and Tremovirus <b>20</b>. The feature declares 54&ndash;82 with a bit cutoff of 31, both computed from the pooled median."
+    },
+    {
+     "type": "prose",
+     "html": "<b>A second VP4 feature is not the fix.</b> The two forms are the same protein, so it would need a second annotation string for <i>Capsid protein VP4 (1A)</i>, and one annotation string means one feature. The real statement is that a ~20-residue VP4 is a different genome organisation &mdash; it is the <i>hepatovirus</i> form (Hepatovirus VP4 median 23, declared 18&ndash;28 in its own module), not the cosavirus one. By the rule that a module is defined by genome organisation rather than phylogeny, <b>Tremovirus does not belong here</b>. Moving it is a partitioning change and is left for a curator; Tremovirus routes here meanwhile and gets its other twelve features."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Rosavirus routes here on 48 of 48 exemplars and has no module of its own.</b> It receives 7.1 features per genome despite contributing <b>zero mat_peptide records</b> to any collection in this family &mdash; it is annotated entirely by profiles trained on Cosavirus and Dicipivirus. Measured 6 October across all 404 genomes &ge;6 kb of the 36 unclaimed genera."
     },
     {
      "type": "verdict",

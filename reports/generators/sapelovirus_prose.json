@@ -1,5 +1,5 @@
 {
- "date": "5 October 2026",
+ "date": "6 October 2026",
  "h1": "Does the sapelovirus module work?",
  "standfirst": "<b>Sapelovirus</b> is the genus of porcine sapelovirus, which causes enteric, respiratory and occasionally neurological disease in pigs, together with simian sapelovirus and a scattering of bat, bird and rodent viruses. This audit covers the module built for it. It was rebuilt on 5 October after the first full-taxon run showed its leader being called on 6 of 209 genomes, and the rebuild is the interesting part.",
  "lede01": "One genus, 28 species, and a 2A that is a whole protein rather than a peptide.",
@@ -30,7 +30,10 @@
  "p07": [
   "<b>38 exemplars still miss the leader, and they are not scattered.</b> They are 4 of 4 Pteropodidae bat sapeloviruses, 2 of 2 bat sapeloviruses, 2 of 2 and 2 of 2 mute swan feces associated sapeloviruses, 2 of 2 coypu sapelovirus 2, and 12 of 21 genomes labelled only <i>Sapelovirus sp.</i> Every one of those genomes routes and gets its other twelve features.",
   "The derivation that rescued the leader for the porcine and simian viruses cannot reach these, for the same reason the projection could not: it requires a reference polyprotein at least 50% identical, and these lineages are further away than that. Their leaders are presumably there &mdash; the polyprotein is called on all of them &mdash; but nothing in the data says where one ends and VP4 begins.",
-  "This is the same shape of gap that every module in this family has: the well-sequenced host species are covered and the divergent host-associated lineages are not. It is a statement about what has been submitted to BV-BRC, not about the thresholds."
+  "This is the same shape of gap that every module in this family has: the well-sequenced host species are covered and the divergent host-associated lineages are not. It is a statement about what has been submitted to BV-BRC, not about the thresholds.",
+  "<b>2A is not projected: its P1 residue is conserved at only 54%.</b> The 6 October rebuild added 182 sequences to this module at &ge;80% identity, and held the leader gain at 171 of 209, but 2A was left alone because the cut cannot be placed. The module lost 4 calls of 2,603 (2B &minus;5, VPg &minus;2, against 2A +1 and 3A +1) while dropping every projected sequence that had come across below 80%.",
+  "<b>VP2's cut is conserved on a lysine, and that is not an error.</b> The VP0&rarr;VP4+VP2 maturation cleavage is autocatalytic rather than a 3C product, and in this genus it sits on a K at 99%. An earlier version of the test required P1 to be Q or E &mdash; the canonical 3C residues &mdash; and wrongly refused it. <b>Conservation is the criterion, not the identity of the residue</b>.",
+  "<b>Parabovirus routes here on 12 of 12 exemplars at 9.8 features per genome, and has no module of its own.</b> Three Rabovirus exemplars and one Felipivirus land here as well. Measured 6 October across all 404 genomes &ge;6 kb of the 36 unclaimed genera."
  ],
  "verdict07": "The leader went from a defect to a documented limit. It is now called on 82% of exemplars and the residual misses are entirely bat, bird, rodent and unclassified genomes too divergent for any reference to position their cut sites. Closing that needs annotated genomes from those lineages, not a threshold change.",
  "lede08": "The run found a feature that every earlier step had passed.",

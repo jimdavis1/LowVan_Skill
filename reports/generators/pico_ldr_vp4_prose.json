@@ -2,7 +2,12 @@
  "date": "6 October 2026",
  "h1": "Does the grouped hunnivirus module work?",
  "standfirst": "<b>PICO_LDR_VP4</b> groups six small genera that share one genome organisation &mdash; a leader, the four-capsid-protein layout, a single VPg: Bopivirus, Erbovirus, Mischivirus, Hunnivirus, Tottorivirus and Anativirus. Together they are bovine, equine, bat, duck and rodent viruses that no one would model separately. This is the largest of the four grouped modules and the one where the per-genus picture is most uneven.",
- "not_universal": ["Ldr", "Ldr_PRO", "2A", "2A_LONG"],
+ "not_universal": [
+  "Ldr",
+  "Ldr_PRO",
+  "2A",
+  "2A_LONG"
+ ],
  "lede01": "Six genera, 201 near-complete exemplars, and two slots holding more than one protein.",
  "p01": [
   "Hunnivirus supplies 76 of the routed exemplars, Bopivirus 41, Mischivirus and Anativirus 26 each, Erbovirus 7 and Tottorivirus 6."
@@ -24,14 +29,13 @@
  ],
  "lede06": "36 of 39 held-out genomes clean.",
  "p06": [],
- "lede07": "Four features are missing from the most numerous genus, and the training data says why.",
+ "lede07": "The gap this page reported has been closed, and what is still missing is refused on evidence.",
  "p07": [
-  "<b>Hunnivirus has 122 polyprotein sequences and almost no annotated mature peptides.</b> It contributes <b>0</b> sequences to VP1, and 2 each to 2B, 3A and the leader &mdash; against 122 to POLY. It is called on VP1 zero times out of 76, and on 2B, 3A and the leader zero times.",
-  "<b>Tottorivirus and Anativirus follow the same rule.</b> Tottorivirus contributes 0 sequences to 3A and VP1 and gets 0 calls for both. Anativirus contributes 0 to the leader and gets 0. Where a genus contributes two or more sequences the feature is usually called; where it contributes none it never is.",
-  "<b>This is not a threshold that can be lowered.</b> A profile cannot be built from zero sequences, and the leftover pass &mdash; the sanctioned route to a two-member profile &mdash; has nothing to work from either. The proteins are present in these genomes; the polyprotein is called on 122 Hunnivirus records. What is missing is any annotated example of the mature peptide to train on.",
-  "<b>The fix that would work is projection, and it was not applied here.</b> Three genus modules in this family had the same shape &mdash; many polyproteins, few annotated mature peptides &mdash; and were rebuilt by carrying cut coordinates from the annotated genomes onto the rest across a global alignment. That technique took the Sapelovirus leader from 6 calls in 209 to 170 in 208. It was not run on the grouped modules, and Hunnivirus with 122 polyproteins and 0 annotated VP1 records is exactly the case it is designed for."
+  "<b>The projection rebuild this section called for was done on 6 October, and it closed the gap.</b> Hunnivirus annotates every product <i>except</i> VP1 on its two reference genomes and tiles the whole polyprotein, leaving a 234-residue hole between the end of VP3 and the start of 2A. Deriving VP1 from that hole &mdash; the references' own coordinates, nothing predicted &mdash; produced three training sequences, and three were enough: <b>VP1 went 0/76 to 75/76, 2B 0/76 to 76/76, 3A 0 to 71/76 and the leader 0 to 54/76. Tottorivirus gained 2B and VP1 at 6/6, Mischivirus the leader at 12&rarr;21/42. The module gained 309 calls in total.</b>",
+  "<b>Every transferred cut had to clear two tests it did not face before.</b> The polyprotein must be at least 80% identical to the reference it is copied from, and the cleavage site must be conserved: P1 is measured across all the references that place a feature, and the feature is projected only if that residue is conserved and every projected cut lands on it. Nineteen feature/genus combinations in this module failed that second test and were left alone rather than filled in &mdash; Bopivirus VP4 at 88%, Erbovirus 3C at 86%, Anativirus VP1 at 50% on two references.",
+  "<b>The module also annotates a genus it does not declare.</b> Of the 36 Picornaviridae genera no module claims, Boosepivirus routes here on 15 of 15 exemplars and receives <b>13.9 features per genome</b> &mdash; near-complete annotation for a genus with <b>zero mat_peptide records of its own</b>. Malagasivirus and Mosavirus route here too. That is the partitioning rule paying off: these genomes share the organisation, so profiles trained on other genera fit them."
  ],
- "verdict07": "Both genus-conditional splits work and neither feature ever fires on the wrong genus. Erbovirus and Bopivirus are well covered; Hunnivirus misses four features because it contributes zero or two sequences to each of them while contributing 122 polyproteins. That last fact makes this module the strongest candidate in the family for a projection rebuild, which has not been done.",
+ "verdict07": "Both genus-conditional splits work and neither feature ever fires on the wrong genus. The projection rebuild of 6 October closed the Hunnivirus gap this page previously reported &mdash; VP1 0/76 to 75/76, and 309 calls gained across the module &mdash; using only cut coordinates carried from genomes at least 80% identical across a conserved cleavage site. What remains unprojected is refused on evidence: nineteen feature/genus combinations whose P1 residue is not conserved enough across their references to place the cut with confidence.",
  "lede08": "The run located a fix that exists and was not applied.",
  "p08": [
   "The splits were decided before building, by comparing per-genus medians inside each slot, and the coverage run confirms both were right: each form is called on its own genera and never on the others.",

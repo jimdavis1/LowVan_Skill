@@ -2,7 +2,10 @@
  "date": "6 October 2026",
  "h1": "Does the grouped salivirus module work?",
  "standfirst": "<b>PICO_LDR_VP0</b> groups five genera with a leader and an uncleaved VP0: Sicinivirus, Salivirus, Oscivirus, Passerivirus and Shanbavirus. Salivirus causes human gastroenteritis; the rest are bird viruses. This audit covers what the grouping delivers, which here is sharply split between the genera that supplied training sequences and the one that did not.",
- "not_universal": ["Ldr", "Ldr_LONG"],
+ "not_universal": [
+  "Ldr",
+  "Ldr_LONG"
+ ],
  "lede01": "Five genera, 136 near-complete exemplars, and a leader that is two different proteins.",
  "p01": [
   "The layout is POLY, leader, VP0, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C, 3D. VP0 is never cleaved to VP4+VP2, which is what groups these genera with Parechovirus and Kobuvirus rather than with Enterovirus.",
@@ -33,9 +36,12 @@
   "<b>Shanbavirus is the second most numerous genus here and the worst covered.</b> The reason is not divergence in the abstract &mdash; it is that Shanbavirus contributes <b>exactly one sequence</b> to every mature-peptide collection in this module except 3D, where it contributes ten.",
   "The two numbers line up without exception. Shanbavirus gets 3D on 43 of 44 and essentially nothing else; the one feature it supplied ten sequences to is the one feature it is called on. A single sequence cannot form a cluster at any member floor, and the leftover pass, which drops the floor to two, cannot build from one either.",
   "<b>The same rule explains every other number on this page.</b> Salivirus contributes 4&ndash;9 sequences per feature and is called on all of them. Oscivirus contributes 3&ndash;4 and is called on all of them. Passerivirus contributes 2&ndash;3 and is called on all but one. Sicinivirus contributes 10&ndash;13 and is called on nearly all. The threshold is somewhere between one and two sequences, and it is absolute.",
-  "<b>So the module covers four genera and routes a fifth.</b> Shanbavirus genomes reach it, get their polyprotein and their polymerase called, and keep the rest of their proteins unannotated. That is worth shipping &mdash; a routed genome with POLY and 3D is better annotated than one that routes nowhere &mdash; but the module should not be described as covering five genera."
+  "<b>So the module covers four genera and routes a fifth.</b> Shanbavirus genomes reach it, get their polyprotein and their polymerase called, and keep the rest of their proteins unannotated. That is worth shipping &mdash; a routed genome with POLY and 3D is better annotated than one that routes nowhere &mdash; but the module should not be described as covering five genera.",
+  "<b>The 6 October projection rebuild helped Shanbavirus and cost Salivirus.</b> Shanbavirus gained VPg (21&rarr;25 of 53) and the leader (0&rarr;2); the module is net +1 call. But <b>Salivirus 3A fell from 13/13 to 4/13</b>, and the cause is worth naming precisely because it is counter-intuitive: the 3A collection grew from 26 to 57 sequences, every new one at &ge;80% identity to a reference that annotates the cut, and with the larger set the main pass clusters differently. The profile that used to cover Salivirus no longer exists.",
+  "<b>That is a re-clustering effect, not bad data, and not the length window.</b> The window was held at 120&ndash;202 by the rule that a window may widen but never narrow; widening it alone recovers only three of the nine lost calls. Recovering the rest means splitting 3A by genus or forcing the leftover pass to cover it. <b>It should be done before this module is called finished.</b>",
+  "<b>Two genera with no module of their own route here.</b> Gallivirus lands on this module for 9 of 11 exemplars and Ailurivirus for 5 of 5, measured 6 October across all 404 genomes of the 36 unclaimed genera. Gallivirus gets 7.9 features per genome; Ailurivirus gets 2.8, which is routing without much annotation &mdash; it reaches the module and collects little beyond the polyprotein."
  ],
- "verdict07": "Four of the five genera are called completely or nearly so. Shanbavirus contributes one sequence per protein to the training data and is called on the one feature where it contributed ten. This is a data limit with a precise threshold, not a tuning problem: no parameter builds a profile from a single sequence.",
+ "verdict07": "Four of the five declared genera are called completely or nearly so, and Shanbavirus remains limited by contributing one sequence per protein to the training data. The 6 October projection rebuild left the module net +1 but moved Salivirus 3A from 13/13 to 4/13 through re-clustering, which is an open regression, not a data limit. Gallivirus and Ailurivirus route here without being declared.",
  "lede08": "The run produced a rule worth carrying to the next grouped module.",
  "p08": [
   "Three grouped modules in this family now show the same thing from different angles. Here Shanbavirus has 44 genomes and 1 sequence per protein and is uncovered. In PICO_NOLDR_VP0 four genera have 1&ndash;3 sequences each and are uncovered, and a rebuild through the leftover pass moved the result by a single genome. In PICO_NOLDR_VP4 Tremovirus contributes one 2B and two 3A sequences and misses both.",

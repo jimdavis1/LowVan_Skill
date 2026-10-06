@@ -1,6 +1,6 @@
 {
  "title": "Cardiovirus Coverage Audit",
- "eyebrow": "LowVan &middot; Cardiovirus module &middot; 5 October 2026",
+ "eyebrow": "LowVan &middot; Cardiovirus module &middot; 6 October 2026",
  "h1": "Does the cardiovirus module work?",
  "standfirst": "<b>Cardiovirus</b> holds encephalomyocarditis virus (Cardiovirus A, <i>C. rueckerti</i>), Theiler's murine encephalomyelitis virus (Cardiovirus B, <i>C. theileri</i>) and Saffold virus (Cardiovirus D, <i>C. saffoldi</i>), the one of the three isolated from humans. Theiler's virus is also the standard animal model of multiple sclerosis. This audit covers the module built for the genus. It was extended on 5 October with the two proteins cardioviruses make out of frame with their own polyprotein, L* and 2B*, which the first version did not call.",
  "headline_tiles": [
@@ -173,7 +173,7 @@
       [
        "VPG",
        "Genome-linked protein VPg (3B)",
-       "VPG",
+       "VPg",
        "22",
        "3",
        "defaults"
@@ -197,7 +197,7 @@
       [
        "2BSTAR",
        "TransFrame protein",
-       "2B*",
+       "TF",
        "0",
        "&mdash; (special)",
        "&mdash;"
@@ -464,7 +464,7 @@
        "98 of 106 routed exemplars"
       ],
       [
-       "VPG",
+       "VPg",
        "91.5",
        91.5,
        "97 of 106 routed exemplars"
@@ -482,7 +482,7 @@
        "104 of 106 routed exemplars"
       ],
       [
-       "2B*",
+       "TF",
        "0.0",
        0.0,
        "0 of 106 routed exemplars"
@@ -498,7 +498,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>93 of 106 routed exemplars get every one of the 13 core features.</b> No core feature trails the best-called one by 20 points or more. Excluded from that count: 2BSTAR, LSTAR &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
+     "html": "<b>0 of 106 routed exemplars get every one of the 13 core features.</b> No core feature trails the best-called one by 20 points or more. Excluded from that count: 2BSTAR, LSTAR &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
     },
     {
      "type": "prose",
@@ -578,6 +578,10 @@
     {
      "type": "prose",
      "html": "<b>Nineteen source strings bind to no feature</b>, and after this build five of them are no longer a gap: the strings naming L* and 2B* now have features behind them. The rest are ordinary names whose sequences were dropped by the length and ambiguity filters, which <code>collect_synmap.py</code> cannot distinguish from strings that matched no rule."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Mupivirus routes here on 8 of 8 exemplars and has no module of its own.</b> It receives 7.0 features per genome. Measured 6 October across all 404 genomes &ge;6 kb of the 36 Picornaviridae genera that no module claims; of those 36, eighteen route into an existing module and collect between 3 and 14 features with no further work."
     },
     {
      "type": "verdict",

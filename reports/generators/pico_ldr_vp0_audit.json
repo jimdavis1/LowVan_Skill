@@ -554,9 +554,21 @@
      "html": "<b>So the module covers four genera and routes a fifth.</b> Shanbavirus genomes reach it, get their polyprotein and their polymerase called, and keep the rest of their proteins unannotated. That is worth shipping &mdash; a routed genome with POLY and 3D is better annotated than one that routes nowhere &mdash; but the module should not be described as covering five genera."
     },
     {
+     "type": "prose",
+     "html": "<b>The 6 October projection rebuild helped Shanbavirus and cost Salivirus.</b> Shanbavirus gained VPg (21&rarr;25 of 53) and the leader (0&rarr;2); the module is net +1 call. But <b>Salivirus 3A fell from 13/13 to 4/13</b>, and the cause is worth naming precisely because it is counter-intuitive: the 3A collection grew from 26 to 57 sequences, every new one at &ge;80% identity to a reference that annotates the cut, and with the larger set the main pass clusters differently. The profile that used to cover Salivirus no longer exists."
+    },
+    {
+     "type": "prose",
+     "html": "<b>That is a re-clustering effect, not bad data, and not the length window.</b> The window was held at 120&ndash;202 by the rule that a window may widen but never narrow; widening it alone recovers only three of the nine lost calls. Recovering the rest means splitting 3A by genus or forcing the leftover pass to cover it. <b>It should be done before this module is called finished.</b>"
+    },
+    {
+     "type": "prose",
+     "html": "<b>Two genera with no module of their own route here.</b> Gallivirus lands on this module for 9 of 11 exemplars and Ailurivirus for 5 of 5, measured 6 October across all 404 genomes of the 36 unclaimed genera. Gallivirus gets 7.9 features per genome; Ailurivirus gets 2.8, which is routing without much annotation &mdash; it reaches the module and collects little beyond the polyprotein."
+    },
+    {
      "type": "verdict",
      "kind": "warn",
-     "html": "Four of the five genera are called completely or nearly so. Shanbavirus contributes one sequence per protein to the training data and is called on the one feature where it contributed ten. This is a data limit with a precise threshold, not a tuning problem: no parameter builds a profile from a single sequence."
+     "html": "Four of the five declared genera are called completely or nearly so, and Shanbavirus remains limited by contributing one sequence per protein to the training data. The 6 October projection rebuild left the module net +1 but moved Salivirus 3A from 13/13 to 4/13 through re-clustering, which is an open regression, not a data limit. Gallivirus and Ailurivirus route here without being declared."
     }
    ]
   },

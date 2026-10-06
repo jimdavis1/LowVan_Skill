@@ -1,6 +1,6 @@
 {
  "title": "Avihepatovirus Coverage Audit",
- "eyebrow": "LowVan &middot; Avihepatovirus module &middot; 4 October 2026",
+ "eyebrow": "LowVan &middot; Avihepatovirus module &middot; 6 October 2026",
  "h1": "Does the duck hepatitis A virus module work?",
  "standfirst": "<b>Avihepatovirus</b> is the genus of duck hepatitis A virus (DHAV). It causes an acute, often fatal hepatitis in ducklings under a few weeks old and is one of the most economically important diseases of commercial duck farming. This audit covers the module built for it: what it covers, how it was built, where the cutoffs sit, whether genomes reach it, whether it calls the proteins, and what it cannot do. The module was rebuilt on 4 October 2026, and every number on this page comes from the rebuilt version.",
  "headline_tiles": [
@@ -528,6 +528,14 @@
     {
      "type": "prose",
      "html": "<b>3C starts one codon late.</b> <code>check_cleaved_ends.py</code> over the 196 annotated genomes finds every junction exactly adjacent in 91&ndash;100% of genomes, with one exception: 3C starts 3 nucleotides after VPG ends in 94% of them. The 3C call loses its first residue. Both extensions are 0, as they must be for a protease cut, so the annotator does not walk back to the cut site. The offset is the same on every genome, so it does not drift, but the 3C N-terminus is one residue short."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The projected boundaries reproduce the published motif independently.</b> After the 6 October rebuild, 2A1 ends in <code>NPG</code> on <b>18 of 18</b> sequences (most common tail <code>GVEPNPG</code>) and 2A2 begins with <code>P</code> on 50 of 51 &mdash; the StopGo <code>NPG|P</code> site documented for DHAV 2A1. 2A3 begins <code>HLPR</code> on 34 of 34, the motif the split was made at. None of this was fitted; the cuts were carried from reference genomes and landed on the motif."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Aalivirus and Grusopivirus route here without being declared.</b> Five of five exemplars each, at 9.8 features per genome, measured 6 October across the 404 genomes &ge;6 kb of the 36 genera no module claims."
     },
     {
      "type": "verdict",

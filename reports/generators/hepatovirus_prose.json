@@ -1,5 +1,5 @@
 {
- "date": "5 October 2026",
+ "date": "6 October 2026",
  "h1": "Does the hepatitis A virus module work?",
  "standfirst": "<b>Hepatovirus</b> is the genus of hepatitis A virus, still a notifiable cause of acute liver disease worldwide and vaccine-preventable since 1995. The genus also holds bat, rodent, hedgehog, seal and bird hepatoviruses described in the last decade. This audit covers the module built for it, which was rebuilt on 5 October because it was the thinnest-trained of the ten.",
  "lede01": "One genus, 37 species, and the same layout as Enterovirus.",
@@ -30,7 +30,10 @@
  "p07": [
   "<b>Hepatitis A virus itself is called completely</b> &mdash; VP4 on 57 of 59 exemplars and every other feature at or near 100%. The module does the job it is principally needed for.",
   "<b>The bird hepatoviruses fail twice.</b> Three of them do not route at all, so they are never annotated; of those that do route, both bar-headed goose genomes and both mute swan genomes miss VP4. These are the most recently described members of the genus and the most thinly sequenced, and the module has essentially nothing to learn them from.",
-  "<b>Projection could not reach them either.</b> It requires a reference polyprotein at least 50% identical, and the non-primate hepatoviruses are further from hepatitis A virus than that. So the rebuild that doubled this module improved it mostly where it was already adequate, and left the thin end thin. That is the honest shape of the result: more training data for the species that already had some."
+  "<b>Projection could not reach them either.</b> It requires a reference polyprotein at least 50% identical, and the non-primate hepatoviruses are further from hepatitis A virus than that. So the rebuild that doubled this module improved it mostly where it was already adequate, and left the thin end thin. That is the honest shape of the result: more training data for the species that already had some.",
+  "<b>VPg and 2B were refused by the cleavage-site test on 6 October and are no longer projected.</b> For VPg, P1 is E in 79% of the references that place it &mdash; but the remaining 21% are four different residues (D, T, G and C), so the cut cannot be placed with confidence on a target that resembles them. For 2B, P1 is Q in 58%. Both keep their pre-projection collections (9 and 13 sequences) and both still build two profiles.",
+  "<b>That cost the module 13 calls of 1,316, and the trade was deliberate.</b> 2B fell 102&rarr;97, 3A 108&rarr;102, 2A 106&rarr;105 and VPg 99&rarr;98. Against that, <b>480 of this module's 1,602 projected sequences &mdash; 30% &mdash; had been carried across below 80% identity</b> and are gone. A 1% loss in calls in exchange for removing a third of the training data that could not be trusted residue-by-residue is the right direction for an annotation module.",
+  "<b>Gruhelivirus and Crahelivirus route here without being declared.</b> Three of three and one of one exemplars respectively, at 8.3 and 9.0 features per genome, measured 6 October across the 404 genomes of the 36 genera no module claims."
  ],
  "verdict07": "Hepatitis A virus is covered completely. The non-primate hepatoviruses are covered partially and the bird hepatoviruses barely at all, failing both at routing and at VP4. Closing that needs annotated genomes from those lineages, not a threshold change or another projection pass.",
  "lede08": "The run showed what a thin collection costs, and what enlarging it does and does not buy.",
