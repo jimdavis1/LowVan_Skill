@@ -43,6 +43,19 @@ Both halves fixed:
 
 Departures from the documented defaults: POLY `-m 2`, 2A `-m 1`. 22 PSSMs.
 
+### 2A `-m 1` is a deliberate, approved exception
+
+The documented pass (`-m 5`) and `-m 2` both produce no cluster and no output
+directory for a set of eight 9-residue peptides, so the leftover pass - the
+sanctioned route to a 2-member profile - has no `Leftover_Seqs.aa` to read.
+`-m 1` yields one 2-member cluster and that profile calls 2A on 10/10
+exemplars. Approved 5 Oct 2026 and recorded in the feature's BUILD_PARAMS.
+
+**The identity floor is NOT lowered**: `-mi` stays at the documented 0.8.
+Two-member clusters are fine; a member floor of 1 is not, and this is the
+only feature in the family that uses one. Do not copy it anywhere that can
+be built by a sanctioned route.
+
 ## Measured 5 October 2026
 
 - Coverage: 956 genomes >= 5 kb, 10 exemplars, 10 routed, 6 complete.

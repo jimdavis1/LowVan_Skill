@@ -76,12 +76,21 @@ Noise ceiling 36, weakest true signal 49 -> **bit_cutoff 42**. The previous
 cutoff of 31 was itself wrong: it would let a 71 aa tandem profile fire on a
 24 aa protein.
 
-### burrowsi needed a member floor of 1
+### burrowsi came from the leftover pass, not a lowered member floor
 
 Its two VPg sequences were already in the collection but start SAYDP... where
-every other aphthovirus VPg starts GPY... Two divergent sequences fall below
-the -m 2 floor (which requires three) AND below the leftover pass's 36-residue
-floor, so they were never profiled. Built at -m 1: one extra profile, 5 total.
+every other aphthovirus VPg starts GPY... They fall below the main pass's -m 5
+and below the leftover pass's default length floor, which is relative to the
+feature median (71 aa for a tandem-dominated collection).
+
+Built the sanctioned way: documented main pass (`departures: none`, 3
+profiles), then `build_leftover_pssms.py --min-seqs 2 --min-len-frac 0.3`,
+which adds 2 more including the burrowsi pair. 5 profiles total. The identity
+floor is never lowered in the leftover pass by design.
+
+An earlier attempt used `-m 1` on the main pass and produced the same five
+profiles, but a member floor of 1 is not allowed; two-member clusters reached
+through the leftover pass are.
 
 ### Result
 
