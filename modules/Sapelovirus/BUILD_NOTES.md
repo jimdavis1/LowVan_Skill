@@ -49,5 +49,54 @@ Now a general `--first-product KEY:NEXTKEY` option in project_matpeptides.py.
 4/4 Pteropodidae bat, 2/2 bat, 2/2 and 2/2 mute swan feces associated,
 2/2 coypu sapelovirus 2, 12/21 `Sapelovirus sp.` All route and get their
 other twelve features. The derivation needs a reference polyprotein >=50%
+(SUPERSEDED: 0.80, see the 6 October section below)
 identical and these are further away. Needs annotated genomes from those
 lineages, not a threshold change.
+
+## Mature-peptide projection rebuilt at a defensible identity floor (6 October 2026)
+
+The first projection ran at `--min-id 0.50 --min-seg-id 0.35`. Both are
+far too low: below ~80% the global alignment stops being trustworthy
+residue by residue and a transferred cut lands wherever the gaps fell.
+754 of 13,884 projected sequences family-wide had come across below 80%.
+
+Rebuilt from the pre-projection collections at **`--min-id 0.80`,
+`--min-seg-id 0.80`**, plus a cleavage-site test: for every feature the
+P1 residue is measured across all the references that place it, and the
+feature is projected only if P1 is >=90% conserved **and every projected
+cut lands on that residue**. Conservation is the criterion, not the
+identity of the residue, because the polyprotein carries three kinds of
+cut -- 3C protease (Q|G canonical, also Q|S, Q|R, E|G, E|Q; the S1 pocket
+reading P1 is the most conserved part of the protease across the family,
+Meng 2022 *J Virol* 96:e0073622, PMID 35727031), the StopGo skip at the
+end of the D(V/I)ExNPG|P motif, and the autocatalytic VP0 -> VP4+VP2
+maturation cut.
+
+**182 sequences added**, every one at >=80% identity to a reference that
+annotates the cut itself.
+
+| key | projected | new | was in collection |
+|---|---|---|---|
+| 2B | 29 | 6 | 43 |
+| 2C | 77 | 19 | 120 |
+| 3A | 78 | 11 | 104 |
+| 3C | 81 | 7 | 114 |
+| 3D | 125 | 18 | 176 |
+| Ldr | 68 | 64 | 9 |
+| VP1 | 145 | 19 | 239 |
+| VP2 | 90 | 16 | 141 |
+| VP3 | 98 | 19 | 150 |
+| VP4 | 17 | 2 | 36 |
+| VPg | 26 | 1 | 36 |
+
+### Features the cleavage-site test refused
+
+Not projected, because the cut cannot be placed with confidence:
+
+- `2A P1 L 54% (n=160) P1' G158 L2 NOT CONSERVED (54%)`
+
+### What it cost
+
+Coverage over the same 209 exemplars: **2603 calls -> 2599 (-4)**.
+Features that lost calls: `2B` -5, `VPg` -2.
+

@@ -110,14 +110,14 @@
                ]
             },
             "anno" : "Protein 2A (pX)",
-            "bit_cutoff" : 32,
+            "bit_cutoff" : 28,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
             "gene_symbol" : "2A",
             "kmers" : 0,
-            "max_len" : 85,
-            "min_len" : 57,
+            "max_len" : 74,
+            "min_len" : 50,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0
@@ -192,8 +192,8 @@
             "feature_type" : "mat_peptide",
             "gene_symbol" : "3C",
             "kmers" : 0,
-            "max_len" : 264,
-            "min_len" : 176,
+            "max_len" : 263,
+            "min_len" : 175,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0

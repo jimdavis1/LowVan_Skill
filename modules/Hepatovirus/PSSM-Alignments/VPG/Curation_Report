@@ -1,3 +1,2 @@
 Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
-1	23	G	16	14	1	0	0	2	0	23	0	0	G	REVIEW-nonMet
-2	23	G	11	11	0	0	0	0	0		0	0	G	REVIEW-nonMet
+1	23	G	7	6	1	0	0	1	0	23	0	0	G	REVIEW-nonMet

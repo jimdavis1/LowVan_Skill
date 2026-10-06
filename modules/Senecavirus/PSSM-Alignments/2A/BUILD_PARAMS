@@ -2,11 +2,3 @@ feature: 2A
 annotation: Protein 2A, StopGo peptide
 command: fasta-cluster-pssm-2.pl -a Protein 2A, StopGo peptide -p Senecavirus.2A -m 1 -f 0.33 -n 0.75 -c 0 -fd 0.20 -e 3 -efo 0.15 -mi 0.8 -mc 0.8 -p_nterm 65 -n_nterm 3 -nterm_eval_length 10 -nterm-mmseq-id 0.7
 departures: {"m": "1"}
-exception: -m 1 is a DELIBERATE one-off, approved 5 Oct 2026.
-  2A is a 9-residue StopGo peptide (SGDVETNPG). The documented pass (-m 5)
-  and -m 2 both produce no cluster and no output directory at all, so the
-  leftover pass -- the sanctioned route to a 2-member profile -- has no
-  Leftover_Seqs.aa to work from. -m 1 yields one 2-member cluster, and that
-  profile calls 2A on 10/10 exemplars.
-  The identity floor is NOT lowered: -mi stays at the documented 0.8.
-  Do not copy this to any feature that can be built by a sanctioned route.

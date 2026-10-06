@@ -1,41 +1,41 @@
->ext4|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext3|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKKHPKPPGALSLMEMQ
->ext20|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext19|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 SAYDGPKKHSKPPGALSLMEMQ
->ext5|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext4|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKKHSKPPGALSLMEMQ
->ext7|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext6|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKKNPKPPGALSLMEMQ
 >ext10|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
-NAYDGPKKNSKPPGALSLMEMR
->ext11|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKKNSKPPGALTLMEMQ
->ext12|Senecavirus|VPG|ref=r5 Genome-linked protein VPg (3B)
+>ext11|Senecavirus|VPG|ref=r5 Genome-linked protein VPg (3B)
 NAYDGPKKNTKPPGALSLMEMQ
->ext13|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext12|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKKSSKPPGALSLMEMQ
->ext14|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext13|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKKTSKPPGALSLMEMQ
->ext15|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext14|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKKYSKPPGALSLMEMQ
->ext16|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext15|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKRNSKPPGALSLMEMQ
->ext17|Senecavirus|VPG|ref=r7 Genome-linked protein VPg (3B)
+>ext16|Senecavirus|VPG|ref=r7 Genome-linked protein VPg (3B)
 NAYDGPRKNSKPPGALSLMEMQ
->ext18|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext17|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGSKKNSKPPGALSLMEMQ
->ext19|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext18|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NTYDGPKKNSKPPGALSLMEMQ
->ext21|Senecavirus|VPG|ref=r34 Genome-linked protein VPg (3B)
-SAYDGPKKNSKPPGALSLMEMQ
->ext2|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext1|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGLKKHSKPPGALSLMEMQ
->ext3|Senecavirus|VPG|ref=r52 Genome-linked protein VPg (3B)
+>ext20|Senecavirus|VPG|ref=r34 Genome-linked protein VPg (3B)
+SAYDGPKKNSKPPGALSLMEMQ
+>ext2|Senecavirus|VPG|ref=r52 Genome-linked protein VPg (3B)
 NAYDGLKKNSKPPGALSLMEMQ
->ext6|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext5|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKKNFKPPGALSLMEMQ
->ext8|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+>ext7|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
 NAYDGPKKNSKAPGALSLMEMQ
+>ext9|Senecavirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+NAYDGPKKNSKPPGALSLMEMR
 >fig|390157.561.mat_peptide.10 Genome-linked protein VPg (3B)
 SEMNAYDGPKKNSKPPGALSLM
 >fig|390157.562.mat_peptide.10 Genome-linked protein VPg (3B)

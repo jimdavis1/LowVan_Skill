@@ -1,8 +1,6 @@
 Alignment	Ali_Len	First_AA	Original Seqs	Final Seqs	Low_Occ_Cols_Cut	N_Term_Cut	C_Term_Cut	Dash_Starts_Removed	Seq_w_End_Dashes_Removed	Cut_Cols	Identical_Collapsed	Nterm_Stop_Col	Nterm_Stop_Res	Nterm_Flag
-1	136	C	113	113	1	0	0	0	0	41	0	0	C	REVIEW-nonMet
-2	134	C	27	27	0	0	0	0	0		0	0	C	REVIEW-nonMet
-3	111	V	23	23	25	25	0	0	0	0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24	0	25	V	REVIEW-nonMet
-4	111	T	20	15	0	0	0	0	0	0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24	5	25	V	REVIEW-nonMet
-5	111	V	16	15	25	25	0	0	0	0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24	1	25	V	REVIEW-nonMet
-6	111	V	13	13	0	0	0	0	0		0	0	V	REVIEW-nonMet
-7	136	C	11	8	1	1	0	0	3	0	0	1	C	REVIEW-nonMet
+1	134	C	21	21	0	0	0	0	0		0	0	C	REVIEW-nonMet
+2	111	V	16	15	25	25	0	0	0	0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24	1	25	V	REVIEW-nonMet
+3	111	V	11	11	25	25	0	0	0	0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24	0	25	V	REVIEW-nonMet
+4	111	V	10	10	0	0	0	0	0		0	0	V	REVIEW-nonMet
+5	136	C	8	6	1	1	0	0	2	0	0	1	C	REVIEW-nonMet

@@ -73,3 +73,46 @@ behaves on a divergent senecavirus, because none exists in the data.
 The 9 aa 2A works because this genus is homogeneous enough that nine
 residues are near-invariant. That would not transfer: the same StopGo slot
 in Teschovirus and Aphthovirus holds 21 and 18 aa peptides.
+
+## Mature-peptide projection rebuilt at a defensible identity floor (6 October 2026)
+
+The first projection ran at `--min-id 0.50 --min-seg-id 0.35`. Both are
+far too low: below ~80% the global alignment stops being trustworthy
+residue by residue and a transferred cut lands wherever the gaps fell.
+754 of 13,884 projected sequences family-wide had come across below 80%.
+
+Rebuilt from the pre-projection collections at **`--min-id 0.80`,
+`--min-seg-id 0.80`**, plus a cleavage-site test: for every feature the
+P1 residue is measured across all the references that place it, and the
+feature is projected only if P1 is >=90% conserved **and every projected
+cut lands on that residue**. Conservation is the criterion, not the
+identity of the residue, because the polyprotein carries three kinds of
+cut -- 3C protease (Q|G canonical, also Q|S, Q|R, E|G, E|Q; the S1 pocket
+reading P1 is the most conserved part of the protease across the family,
+Meng 2022 *J Virol* 96:e0073622, PMID 35727031), the StopGo skip at the
+end of the D(V/I)ExNPG|P motif, and the autocatalytic VP0 -> VP4+VP2
+maturation cut.
+
+**1559 sequences added**, every one at >=80% identity to a reference that
+annotates the cut itself.
+
+| key | projected | new | was in collection |
+|---|---|---|---|
+| 2A | 3 | 1 | 4 |
+| 2B | 113 | 104 | 13 |
+| 2C | 136 | 124 | 21 |
+| 3A | 205 | 185 | 29 |
+| 3C | 160 | 145 | 19 |
+| 3D | 358 | 336 | 35 |
+| Ldr | 93 | 85 | 13 |
+| VP1 | 181 | 162 | 25 |
+| VP2 | 182 | 174 | 13 |
+| VP3 | 219 | 199 | 28 |
+| VP4 | 28 | 25 | 4 |
+| VPg | 21 | 19 | 3 |
+
+### What it cost
+
+Coverage over the same 10 exemplars: **126 calls -> 126 (+0)**.
+No feature lost a single call.
+
