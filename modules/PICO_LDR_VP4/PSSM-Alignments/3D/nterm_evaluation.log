@@ -1,5 +1,5 @@
 Alignment	Total_Columns	Nterm_Columns	Eval_Length	Poor_Columns	Status
 4.fa	468	25	10	0	OK
 1.fa	463	25	10	0	OK
-2.fa	496	25	10	0	OK
-3.fa	456	25	10	0	OK
+2.fa	456	25	10	2	OK
+3.fa	496	25	10	0	OK

@@ -9,7 +9,7 @@
    "features, all with profiles"
   ],
   [
-   "22",
+   "19",
    "PSSMs"
   ],
   [
@@ -102,15 +102,15 @@
        "VP0",
        "Capsid protein VP0 (1AB)",
        "VP0",
-       "100",
-       "3",
+       "96",
+       "2",
        "defaults"
       ],
       [
        "VP3",
        "Capsid protein VP3 (1C)",
        "VP3",
-       "96",
+       "95",
        "2",
        "defaults"
       ],
@@ -118,8 +118,8 @@
        "VP1",
        "Capsid protein VP1 (1D)",
        "VP1",
-       "120",
-       "3",
+       "116",
+       "2",
        "defaults"
       ],
       [
@@ -134,15 +134,15 @@
        "2A2",
        "Protein 2A2",
        "2A2",
-       "94",
-       "2",
+       "51",
+       "1",
        "defaults"
       ],
       [
        "2A3",
        "Protein 2A3",
        "2A3",
-       "62",
+       "34",
        "1",
        "defaults"
       ],
@@ -150,7 +150,7 @@
        "2B",
        "Protein 2B, viroporin",
        "2B",
-       "51",
+       "49",
        "1",
        "defaults"
       ],
@@ -173,7 +173,7 @@
       [
        "VPG",
        "Genome-linked protein VPg (3B)",
-       "VPG",
+       "VPg",
        "25",
        "2",
        "defaults"
@@ -325,7 +325,7 @@
     {
      "type": "verdict",
      "kind": "ok",
-     "html": "Self-recall against each feature's own in-range collection: <b>1087 of 1087 (100.0%)</b> &mdash; POLY 196/196, VP0 100/100, VP3 96/96, VP1 120/120, 2A1 18/18, 2A2 94/94, 2A3 62/62, 2B 51/51, 2C 92/92, 3A 61/61, VPG 25/25, 3C 55/55, 3D 117/117. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+     "html": "Self-recall against each feature's own in-range collection: <b>1005 of 1005 (100.0%)</b> &mdash; POLY 196/196, VP0 96/96, VP3 95/95, VP1 116/116, 2A1 18/18, 2A2 51/51, 2A3 34/34, 2B 49/49, 2C 92/92, 3A 61/61, VPG 25/25, 3C 55/55, 3D 117/117. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
     }
    ]
   },
@@ -438,7 +438,7 @@
        "22 of 22 routed exemplars"
       ],
       [
-       "VPG",
+       "VPg",
        "68.2",
        68.2,
        "15 of 22 routed exemplars"
@@ -460,7 +460,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>12 of 22 routed exemplars get every declared feature.</b> Features trailing the best-called core protein by 20 points or more: <b>2A2, VPG</b>."
+     "html": "<b>12 of 22 routed exemplars get every one of the 13 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>2A2, VPG</b>."
     },
     {
      "type": "prose",

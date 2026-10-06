@@ -110,7 +110,7 @@
        "VP4",
        "Capsid protein VP4 (1A)",
        "VP4",
-       "31",
+       "29",
        "1",
        "defaults"
       ],
@@ -118,7 +118,7 @@
        "VP2",
        "Capsid protein VP2 (1B)",
        "VP2",
-       "189",
+       "187",
        "2",
        "defaults"
       ],
@@ -126,7 +126,7 @@
        "VP3",
        "Capsid protein VP3 (1C)",
        "VP3",
-       "230",
+       "227",
        "2",
        "defaults"
       ],
@@ -134,7 +134,7 @@
        "VP1",
        "Capsid protein VP1 (1D)",
        "VP1",
-       "189",
+       "187",
        "2",
        "defaults"
       ],
@@ -142,15 +142,15 @@
        "2A",
        "Protein 2A, StopGo peptide",
        "2A",
-       "8",
+       "5",
        "1",
-       "-m 1, -mc 0.6, -mi 0.6"
+       "-m 1"
       ],
       [
        "2B",
        "Protein 2B, viroporin",
        "2B",
-       "118",
+       "117",
        "2",
        "defaults"
       ],
@@ -158,7 +158,7 @@
        "2C",
        "Protein 2C, ATPase/helicase",
        "2C",
-       "146",
+       "145",
        "2",
        "defaults"
       ],
@@ -166,15 +166,15 @@
        "3A",
        "Protein 3A",
        "3A",
-       "215",
+       "214",
        "2",
        "defaults"
       ],
       [
        "VPG",
        "Genome-linked protein VPg (3B)",
-       "VPG",
-       "23",
+       "VPg",
+       "22",
        "1",
        "defaults"
       ],
@@ -182,7 +182,7 @@
        "3C",
        "Picornain 3C, protease (3C)",
        "3C",
-       "166",
+       "164",
        "2",
        "defaults"
       ],
@@ -321,7 +321,7 @@
     {
      "type": "verdict",
      "kind": "ok",
-     "html": "Self-recall against each feature's own in-range collection: <b>2502 of 2511 (99.6%)</b> &mdash; POLY 727/727, Ldr 98/98, VP4 31/31, VP2 189/189, VP3 230/230, VP1 189/189, 2A 0/8, 2B 118/118, 2C 146/146, 3A 215/215, VPG 22/23, 3C 166/166, 3D 371/371. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+     "html": "Self-recall against each feature's own in-range collection: <b>2487 of 2493 (99.8%)</b> &mdash; POLY 727/727, Ldr 98/98, VP4 29/29, VP2 187/187, VP3 227/227, VP1 187/187, 2A 0/5, 2B 117/117, 2C 145/145, 3A 214/214, VPG 21/22, 3C 164/164, 3D 371/371. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
     }
    ]
   },
@@ -430,7 +430,7 @@
        "8 of 10 routed exemplars"
       ],
       [
-       "VPG",
+       "VPg",
        "70.0",
        70.0,
        "7 of 10 routed exemplars"

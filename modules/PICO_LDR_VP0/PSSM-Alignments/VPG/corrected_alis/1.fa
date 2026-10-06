@@ -1,12 +1,24 @@
->fig|1755588.14.mat_peptide.9 Genome-linked protein VPg (3B)
-PLPPPAPVRHCLSLGAMTVSKNVVQ
->fig|1755588.13.mat_peptide.9 Genome-linked protein VPg (3B)
-PLPPPAPVRHCLSLGAMTISKSVVQ
+>ext17|PICO_LDR_VP0|Sicinivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+PLPPPAPVRQCLSGGAMTVAKNVVD
+>ext13|PICO_LDR_VP0|Sicinivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+PLPPPAPVRHCLSLGAMTISRNVVQ
+>ext16|PICO_LDR_VP0|Sicinivirus|VPG|ref=r6 Genome-linked protein VPg (3B)
+PLPPPAPVRHCLSLGAMTVSRNVVQ
 >fig|1755588.5.mat_peptide.9 Genome-linked protein VPg (3B)
 PLPPPAPVRHCLSLGAMTISKNVVQ
+>fig|3453667.3.mat_peptide.8 Genome-linked protein VPg (3B)
+PLPPPAPVRHCLSLGAMTVSKNVVQ
 >fig|1755588.9.mat_peptide.7 Genome-linked protein VPg (3B)
 PLPPPAPVRHCLSLGAMTVAKNVVQ
->fig|1755588.7.mat_peptide.9 Genome-linked protein VPg (3B)
-PLPPPAPVRHCLSLGAMTISRNVVQ
+>ext11|PICO_LDR_VP0|Sicinivirus|VPG|ref=r6 Genome-linked protein VPg (3B)
+PLPPPAPVRHCLSLGAMTISKSVLQ
+>fig|1755588.13.mat_peptide.9 Genome-linked protein VPg (3B)
+PLPPPAPVRHCLSLGAMTISKSVVQ
+>ext18|PICO_LDR_VP0|Sicinivirus|VPG|ref=r6 Genome-linked protein VPg (3B)
+PLPPPAPVRQCLSLGAMTVSKNVVQ
+>ext26|PICO_LDR_VP0|Sicinivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+PLPPPAPVRHCLSLGAMTISRSVVQ
 >fig|1755588.8.mat_peptide.9 Genome-linked protein VPg (3B)
 RLPPPAPVRHCLSLGAMTISKNVVQ
+>ext25|PICO_LDR_VP0|Sicinivirus|VPG|ref=r3 Genome-linked protein VPg (3B)
+SLPPPAPVRHCLSLGAMTVARNIVQ

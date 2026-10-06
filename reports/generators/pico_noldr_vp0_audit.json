@@ -9,7 +9,7 @@
    "features, all with profiles"
   ],
   [
-   "28",
+   "46",
    "PSSMs"
   ],
   [
@@ -21,7 +21,7 @@
    "held-out genomes genuinely clean"
   ],
   [
-   "0.0&times;",
+   "3.6&times;",
    "string collapse"
   ],
   [
@@ -48,15 +48,15 @@
      "rows": [
       [
        "genomes in the BV-BRC protein dump",
-       "0"
+       "119"
       ],
       [
        "protein features",
-       "0"
+       "654"
       ],
       [
        "unique sequences",
-       "0"
+       "424"
       ],
       [
        "genomes with a contig &ge; 5 kb",
@@ -102,31 +102,31 @@
        "VP0",
        "Capsid protein VP0 (1AB)",
        "VP0",
-       "32",
-       "2",
+       "47",
+       "6",
        "defaults"
       ],
       [
        "VP3",
        "Capsid protein VP3 (1C)",
        "VP3",
-       "32",
-       "2",
+       "45",
+       "3",
        "defaults"
       ],
       [
        "VP1",
        "Capsid protein VP1 (1D)",
        "VP1",
-       "38",
-       "3",
+       "49",
+       "5",
        "defaults"
       ],
       [
        "2A",
        "Protein 2A",
        "2A",
-       "23",
+       "33",
        "1",
        "defaults"
       ],
@@ -134,31 +134,31 @@
        "2B",
        "Protein 2B, viroporin",
        "2B",
-       "32",
-       "3",
+       "45",
+       "6",
        "defaults"
       ],
       [
        "2C",
        "Protein 2C, ATPase/helicase",
        "2C",
-       "33",
-       "1",
+       "45",
+       "3",
        "defaults"
       ],
       [
        "3A",
        "Protein 3A",
        "3A",
-       "25",
-       "2",
+       "39",
+       "4",
        "defaults"
       ],
       [
        "VPG",
        "Genome-linked protein VPg (3B)",
        "VPg",
-       "18",
+       "23",
        "2",
        "-m 2"
       ],
@@ -166,16 +166,16 @@
        "3C",
        "Picornain 3C, protease (3C)",
        "3C",
-       "29",
-       "1",
+       "39",
+       "2",
        "defaults"
       ],
       [
        "3D",
        "RNA-directed RNA polymerase 3D",
        "3D",
-       "30",
-       "2",
+       "46",
+       "5",
        "defaults"
       ]
      ]
@@ -217,9 +217,9 @@
       ],
       [
        "VP3",
-       "109",
+       "108",
        "0.65",
-       "194",
+       "193",
        "290"
       ],
       [
@@ -227,7 +227,7 @@
        "130",
        "0.65",
        "232",
-       "348"
+       "349"
       ],
       [
        "2A",
@@ -283,7 +283,7 @@
     {
      "type": "verdict",
      "kind": "ok",
-     "html": "Self-recall against each feature's own in-range collection: <b>301 of 367 (82.0%)</b> &mdash; POLY 70/75, VP0 24/32, VP3 25/32, VP1 29/38, 2A 22/23, 2B 25/32, 2C 30/33, 3A 19/25, VPG 10/18, 3C 19/29, 3D 28/30. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+     "html": "Self-recall against each feature's own in-range collection: <b>440 of 486 (90.5%)</b> &mdash; POLY 70/75, VP0 44/47, VP3 41/45, VP1 43/49, 2A 32/33, 2B 42/45, 2C 42/45, 3A 35/39, VPG 15/23, 3C 30/39, 3D 46/46. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
     }
    ]
   },
@@ -343,21 +343,21 @@
       ],
       [
        "VP0",
-       "56.6",
-       56.6,
-       "30 of 53 routed exemplars"
+       "77.4",
+       77.4,
+       "41 of 53 routed exemplars"
       ],
       [
        "VP3",
-       "66.0",
-       66.0,
-       "35 of 53 routed exemplars"
+       "81.1",
+       81.1,
+       "43 of 53 routed exemplars"
       ],
       [
        "VP1",
-       "58.5",
-       58.5,
-       "31 of 53 routed exemplars"
+       "73.6",
+       73.6,
+       "39 of 53 routed exemplars"
       ],
       [
        "2A",
@@ -367,46 +367,46 @@
       ],
       [
        "2B",
-       "58.5",
-       58.5,
-       "31 of 53 routed exemplars"
+       "81.1",
+       81.1,
+       "43 of 53 routed exemplars"
       ],
       [
        "2C",
-       "77.4",
-       77.4,
-       "41 of 53 routed exemplars"
+       "86.8",
+       86.8,
+       "46 of 53 routed exemplars"
       ],
       [
        "3A",
-       "54.7",
-       54.7,
-       "29 of 53 routed exemplars"
+       "69.8",
+       69.8,
+       "37 of 53 routed exemplars"
       ],
       [
        "VPg",
-       "54.7",
-       54.7,
-       "29 of 53 routed exemplars"
-      ],
-      [
-       "3C",
        "56.6",
        56.6,
        "30 of 53 routed exemplars"
       ],
       [
+       "3C",
+       "58.5",
+       58.5,
+       "31 of 53 routed exemplars"
+      ],
+      [
        "3D",
-       "83.0",
-       83.0,
-       "44 of 53 routed exemplars"
+       "92.5",
+       92.5,
+       "49 of 53 routed exemplars"
       ]
      ],
      "unit": "%"
     },
     {
      "type": "prose",
-     "html": "<b>29 of 53 routed exemplars get every one of the 11 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>VP0, VP1, 2A, 2B, 3A, VPG, 3C</b>."
+     "html": "<b>29 of 53 routed exemplars get every one of the 11 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>2A, 3A, VPG, 3C</b>."
     },
     {
      "type": "prose",
@@ -527,9 +527,69 @@
      ],
      "rows": [
       [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "6"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "6"
+      ],
+      [
+       "VP0",
+       "Capsid protein VP0 (1AB)",
+       "6"
+      ],
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "6"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "5"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "2"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "2"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "2"
+      ],
+      [
+       "2A",
+       "Protein 2A",
+       "2"
+      ],
+      [
+       "POLY",
+       "Genome polyprotein",
+       "1"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "1"
+      ],
+      [
+       "<i>pool</i>",
+       "not modelled",
+       "4"
+      ],
+      [
        "<i>unbound</i>",
        "&mdash;",
-       "0"
+       "11"
       ]
      ]
     },

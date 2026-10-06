@@ -9,7 +9,7 @@
    "features, all with profiles"
   ],
   [
-   "100",
+   "118",
    "PSSMs"
   ],
   [
@@ -21,11 +21,11 @@
    "held-out genomes genuinely clean"
   ],
   [
-   "0.0&times;",
+   "3.6&times;",
    "string collapse"
   ],
   [
-   "3.4&times;",
+   "3.5&times;",
    "vocabulary collapse at equal proteins sampled"
   ]
  ],
@@ -48,15 +48,15 @@
      "rows": [
       [
        "genomes in the BV-BRC protein dump",
-       "0"
+       "396"
       ],
       [
        "protein features",
-       "0"
+       "1,200"
       ],
       [
        "unique sequences",
-       "0"
+       "859"
       ],
       [
        "genomes with a contig &ge; 5 kb",
@@ -98,15 +98,15 @@
        "Ldr",
        "Leader protein",
        "Ldr",
-       "33",
-       "3",
+       "59",
+       "8",
        "defaults"
       ],
       [
        "VP4",
        "Capsid protein VP4 (1A)",
        "VP4",
-       "36",
+       "42",
        "8",
        "defaults"
       ],
@@ -114,7 +114,7 @@
        "VP2",
        "Capsid protein VP2 (1B)",
        "VP2",
-       "49",
+       "65",
        "8",
        "defaults"
       ],
@@ -122,23 +122,23 @@
        "VP3",
        "Capsid protein VP3 (1C)",
        "VP3",
-       "48",
-       "7",
+       "62",
+       "8",
        "defaults"
       ],
       [
        "VP1",
        "Capsid protein VP1 (1D)",
        "VP1",
-       "57",
-       "8",
+       "71",
+       "11",
        "defaults"
       ],
       [
        "2A",
        "Protein 2A, StopGo peptide",
        "2A",
-       "16",
+       "18",
        "3",
        "-m 2"
       ],
@@ -146,39 +146,39 @@
        "2B",
        "Protein 2B, viroporin",
        "2B",
-       "41",
-       "5",
+       "63",
+       "8",
        "defaults"
       ],
       [
        "2C",
        "Protein 2C, ATPase/helicase",
        "2C",
-       "35",
-       "4",
+       "56",
+       "7",
        "defaults"
       ],
       [
        "3A",
        "Protein 3A",
        "3A",
-       "28",
-       "5",
+       "45",
+       "7",
        "defaults"
       ],
       [
        "VPG",
        "Genome-linked protein VPg (3B)",
        "VPg",
-       "27",
+       "37",
        "6",
-       "defaults"
+       "-m 2"
       ],
       [
        "3C",
        "Picornain 3C, protease (3C)",
        "3C",
-       "36",
+       "63",
        "6",
        "defaults"
       ],
@@ -186,8 +186,8 @@
        "3D",
        "RNA-directed RNA polymerase 3D",
        "3D",
-       "62",
-       "8",
+       "89",
+       "9",
        "defaults"
       ],
       [
@@ -256,27 +256,27 @@
        "32",
        "0.65",
        "56",
-       "84"
+       "85"
       ],
       [
        "VP2",
        "108",
        "0.65",
-       "193",
+       "191",
        "289"
       ],
       [
        "VP3",
-       "103",
+       "102",
        "0.65",
-       "182",
+       "181",
        "274"
       ],
       [
        "VP1",
-       "139",
+       "137",
        "0.65",
-       "246",
+       "244",
        "370"
       ],
       [
@@ -291,20 +291,20 @@
        "50",
        "0.65",
        "88",
-       "132"
+       "182"
       ],
       [
        "2C",
        "149",
        "0.65",
-       "266",
+       "265",
        "398"
       ],
       [
        "3A",
-       "57",
+       "50",
        "0.65",
-       "101",
+       "90",
        "151"
       ],
       [
@@ -319,7 +319,7 @@
        "83",
        "0.65",
        "148",
-       "222"
+       "244"
       ],
       [
        "3D",
@@ -347,7 +347,7 @@
     {
      "type": "verdict",
      "kind": "ok",
-     "html": "Self-recall against each feature's own in-range collection: <b>739 of 792 (93.3%)</b> &mdash; POLY 285/294, Ldr 25/33, VP4 34/36, VP2 49/49, VP3 48/48, VP1 53/57, 2A 13/16, 2B 30/41, 2C 35/35, 3A 24/28, VPG 21/27, 3C 31/36, 3D 62/62, 2A_LONG 23/24, Ldr_PRO 6/6. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+     "html": "Self-recall against each feature's own in-range collection: <b>951 of 994 (95.7%)</b> &mdash; POLY 285/294, Ldr 55/59, VP4 40/42, VP2 65/65, VP3 62/62, VP1 67/71, 2A 15/18, 2B 56/63, 2C 56/56, 3A 43/45, VPG 31/37, 3C 58/63, 3D 89/89, 2A_LONG 23/24, Ldr_PRO 6/6. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
     }
    ]
   },
@@ -428,9 +428,9 @@
       ],
       [
        "Ldr",
-       "23.6",
-       23.6,
-       "43 of 182 routed exemplars"
+       "58.2",
+       58.2,
+       "106 of 182 routed exemplars"
       ],
       [
        "VP4",
@@ -440,9 +440,9 @@
       ],
       [
        "VP2",
-       "97.8",
-       97.8,
-       "178 of 182 routed exemplars"
+       "98.4",
+       98.4,
+       "179 of 182 routed exemplars"
       ],
       [
        "VP3",
@@ -452,9 +452,9 @@
       ],
       [
        "VP1",
-       "34.6",
-       34.6,
-       "63 of 182 routed exemplars"
+       "79.1",
+       79.1,
+       "144 of 182 routed exemplars"
       ],
       [
        "2A",
@@ -464,21 +464,21 @@
       ],
       [
        "2B",
-       "41.8",
-       41.8,
-       "76 of 182 routed exemplars"
+       "86.8",
+       86.8,
+       "158 of 182 routed exemplars"
       ],
       [
        "2C",
-       "98.9",
-       98.9,
-       "180 of 182 routed exemplars"
+       "100.0",
+       100.0,
+       "182 of 182 routed exemplars"
       ],
       [
        "3A",
-       "28.6",
-       28.6,
-       "52 of 182 routed exemplars"
+       "67.6",
+       67.6,
+       "123 of 182 routed exemplars"
       ],
       [
        "VPg",
@@ -515,7 +515,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>52 of 182 routed exemplars get every one of the 11 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>VP1, 2B, 3A</b>. Excluded from that count: 2A, 2A_LONG, Ldr, Ldr_PRO &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
+     "html": "<b>112 of 182 routed exemplars get every one of the 11 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>VP1, 3A</b>. Excluded from that count: 2A, 2A_LONG, Ldr, Ldr_PRO &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
     },
     {
      "type": "prose",
@@ -632,15 +632,100 @@
      ],
      "rows": [
       [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "6"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "5"
+      ],
+      [
+       "POLY",
+       "Genome polyprotein",
+       "4"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "4"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "4"
+      ],
+      [
+       "Ldr",
+       "Leader protein",
+       "4"
+      ],
+      [
+       "VP2",
+       "Capsid protein VP2 (1B)",
+       "3"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "3"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "3"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "3"
+      ],
+      [
+       "2A",
+       "Protein 2A, StopGo peptide",
+       "3"
+      ],
+      [
+       "Ldr_PRO",
+       "Leader protease (Lpro)",
+       "3"
+      ],
+      [
+       "VP4",
+       "Capsid protein VP4 (1A)",
+       "2"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "2"
+      ],
+      [
+       "2A_LONG",
+       "Protein 2A",
+       "1"
+      ],
+      [
+       "<i>precursors</i>",
+       "not modelled",
+       "3"
+      ],
+      [
+       "<i>pool</i>",
+       "not modelled",
+       "4"
+      ],
+      [
        "<i>unbound</i>",
        "&mdash;",
-       "0"
+       "12"
       ]
      ]
     },
     {
      "type": "prose",
-     "html": "Rarefaction over proteins: every annotated protein in the 191 genomes both sources annotate (683 source product records, 2,001 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>56</b> distinct strings, the module's <b>18</b>. At the depth both reach, 683 proteins, free text has used <b>56.0 strings against 16.4 &mdash; a 3.4-fold difference.</b> The source reaches 95% of its final size after 636 proteins, the module after 1,117."
+     "html": "Rarefaction over proteins: every annotated protein in the 191 genomes both sources annotate (683 source product records, 2,294 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>56</b> distinct strings, the module's <b>18</b>. At the depth both reach, 683 proteins, free text has used <b>56.0 strings against 16.1 &mdash; a 3.5-fold difference.</b> The source reaches 95% of its final size after 636 proteins, the module after 1,449."
     }
    ]
   }

@@ -1,6 +1,10 @@
->fig|1511783.15.mat_peptide.10 Genome-linked protein VPg (3B)
-RPYNSTAHKMPVTRFTRGRRVLVSQ
->fig|1511783.38.mat_peptide.8 Genome-linked protein VPg (3B)
-RPYNSTAHKMPVTKLTRGRRVLVSQ
 >fig|1511783.34.mat_peptide.8 Genome-linked protein VPg (3B)
 RPYNHTAHSMPVTKFTRGRRVLVSQ
+>ext4|PICO_NOLDR_VP0|Pasivirus|VPG|ref=r19 Genome-linked protein VPg (3B)
+RPYNHTAHNMPVTKLTRGRRVLVSQ
+>ext5|PICO_NOLDR_VP0|Pasivirus|VPG|ref=r4 Genome-linked protein VPg (3B)
+RPYNHTAHSMPATKLTRGRRVLVSQ
+>fig|1511783.36.mat_peptide.8 Genome-linked protein VPg (3B)
+RPYNQTSHSMPVTKLTRGRRVLVSQ
+>fig|1511783.15.mat_peptide.10 Genome-linked protein VPg (3B)
+RPYNSTAHKMPVTRFTRGRRVLVSQ

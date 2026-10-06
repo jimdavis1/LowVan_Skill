@@ -167,7 +167,7 @@
             "feature_type" : "mat_peptide",
             "gene_symbol" : "3A",
             "kmers" : 0,
-            "max_len" : 127,
+            "max_len" : 130,
             "min_len" : 85,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
@@ -253,7 +253,7 @@
             "gene_symbol" : "VP3",
             "kmers" : 0,
             "max_len" : 281,
-            "min_len" : 187,
+            "min_len" : 186,
             "segment" : "Single RNA Segment",
             "type" : "mat_peptide",
             "upstream_ext" : 0

@@ -9,11 +9,11 @@
    "features, all with profiles"
   ],
   [
-   "63",
+   "46",
    "PSSMs"
   ],
   [
-   "208/209",
+   "207/209",
    "exemplars routed"
   ],
   [
@@ -102,7 +102,7 @@
        "Ldr",
        "Leader protein",
        "Ldr",
-       "75",
+       "73",
        "2",
        "defaults"
       ],
@@ -110,55 +110,55 @@
        "VP4",
        "Capsid protein VP4 (1A)",
        "VP4",
-       "47",
-       "3",
+       "38",
+       "1",
        "defaults"
       ],
       [
        "VP2",
        "Capsid protein VP2 (1B)",
        "VP2",
-       "166",
-       "4",
+       "157",
+       "2",
        "defaults"
       ],
       [
        "VP3",
        "Capsid protein VP3 (1C)",
        "VP3",
-       "172",
-       "5",
+       "169",
+       "4",
        "defaults"
       ],
       [
        "VP1",
        "Capsid protein VP1 (1D)",
        "VP1",
-       "263",
-       "9",
+       "258",
+       "7",
        "defaults"
       ],
       [
        "2A",
        "Protein 2A",
        "2A",
-       "248",
-       "7",
+       "223",
+       "3",
        "defaults"
       ],
       [
        "2B",
        "Protein 2B, viroporin",
        "2B",
-       "54",
-       "4",
+       "49",
+       "3",
        "defaults"
       ],
       [
        "2C",
        "Protein 2C, ATPase/helicase",
        "2C",
-       "142",
+       "139",
        "4",
        "defaults"
       ],
@@ -166,23 +166,23 @@
        "3A",
        "Protein 3A",
        "3A",
-       "122",
-       "5",
+       "115",
+       "2",
        "defaults"
       ],
       [
        "VPG",
        "Genome-linked protein VPg (3B)",
-       "VPG",
-       "41",
-       "6",
+       "VPg",
+       "37",
+       "4",
        "defaults"
       ],
       [
        "3C",
        "Picornain 3C, protease (3C)",
        "3C",
-       "128",
+       "121",
        "4",
        "defaults"
       ],
@@ -190,7 +190,7 @@
        "3D",
        "RNA-directed RNA polymerase 3D",
        "3D",
-       "195",
+       "194",
        "4",
        "defaults"
       ]
@@ -321,7 +321,7 @@
     {
      "type": "verdict",
      "kind": "ok",
-     "html": "Self-recall against each feature's own in-range collection: <b>1856 of 1862 (99.7%)</b> &mdash; POLY 209/209, Ldr 73/75, VP4 45/47, VP2 166/166, VP3 172/172, VP1 263/263, 2A 246/248, 2B 54/54, 2C 142/142, 3A 122/122, VPG 41/41, 3C 128/128, 3D 195/195. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+     "html": "Self-recall against each feature's own in-range collection: <b>1775 of 1782 (99.6%)</b> &mdash; POLY 209/209, Ldr 71/73, VP4 35/38, VP2 157/157, VP3 169/169, VP1 258/258, 2A 222/223, 2B 49/49, 2C 139/139, 3A 115/115, VPG 36/37, 3C 121/121, 3D 194/194. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
     }
    ]
   },
@@ -345,8 +345,13 @@
       ],
       [
        "routed to Sapelovirus",
-       "208",
-       "99.5%"
+       "207",
+       "99.0%"
+      ],
+      [
+       "routed to PICO_LDR_VP4",
+       "1",
+       "0.5%"
       ],
       [
        "routed to Teschovirus",
@@ -362,7 +367,7 @@
     },
     {
      "type": "prose",
-     "html": "25 rep contigs ship with the module; 26 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold."
+     "html": "25 rep contigs ship with the module; 27 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold."
     }
    ]
   },
@@ -378,86 +383,86 @@
        "POLY",
        "100.0",
        100.0,
-       "208 of 208 routed exemplars"
+       "207 of 207 routed exemplars"
       ],
       [
        "Ldr",
-       "81.7",
-       81.7,
-       "170 of 208 routed exemplars"
+       "82.1",
+       82.1,
+       "170 of 207 routed exemplars"
       ],
       [
        "VP4",
        "97.1",
        97.1,
-       "202 of 208 routed exemplars"
+       "201 of 207 routed exemplars"
       ],
       [
        "VP2",
        "98.6",
        98.6,
-       "205 of 208 routed exemplars"
+       "204 of 207 routed exemplars"
       ],
       [
        "VP3",
        "99.5",
        99.5,
-       "207 of 208 routed exemplars"
+       "206 of 207 routed exemplars"
       ],
       [
        "VP1",
        "97.1",
        97.1,
-       "202 of 208 routed exemplars"
+       "201 of 207 routed exemplars"
       ],
       [
        "2A",
-       "86.5",
-       86.5,
-       "180 of 208 routed exemplars"
+       "87.0",
+       87.0,
+       "180 of 207 routed exemplars"
       ],
       [
        "2B",
-       "93.8",
-       93.8,
-       "195 of 208 routed exemplars"
+       "91.3",
+       91.3,
+       "189 of 207 routed exemplars"
       ],
       [
        "2C",
        "99.5",
        99.5,
-       "207 of 208 routed exemplars"
+       "206 of 207 routed exemplars"
       ],
       [
        "3A",
-       "92.8",
-       92.8,
-       "193 of 208 routed exemplars"
+       "93.2",
+       93.2,
+       "193 of 207 routed exemplars"
       ],
       [
-       "VPG",
-       "97.1",
-       97.1,
-       "202 of 208 routed exemplars"
+       "VPg",
+       "96.1",
+       96.1,
+       "199 of 207 routed exemplars"
       ],
       [
        "3C",
        "99.0",
        99.0,
-       "206 of 208 routed exemplars"
+       "205 of 207 routed exemplars"
       ],
       [
        "3D",
        "98.6",
        98.6,
-       "205 of 208 routed exemplars"
+       "204 of 207 routed exemplars"
       ]
      ],
      "unit": "%"
     },
     {
      "type": "prose",
-     "html": "<b>167 of 208 routed exemplars get every declared feature.</b> No core feature trails the best-called one by 20 points or more."
+     "html": "<b>167 of 207 routed exemplars get every one of the 13 core features.</b> No core feature trails the best-called one by 20 points or more."
     },
     {
      "type": "prose",
@@ -652,7 +657,7 @@
     },
     {
      "type": "prose",
-     "html": "Rarefaction over proteins: every annotated protein in the 205 genomes both sources annotate (1,815 source product records, 2,567 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>40</b> distinct strings, the module's <b>14</b>. At the depth both reach, 1,815 proteins, free text has used <b>40.0 strings against 13.7 &mdash; a 2.9-fold difference.</b> The source reaches 95% of its final size after 1,193 proteins, the module after 606."
+     "html": "Rarefaction over proteins: every annotated protein in the 205 genomes both sources annotate (1,815 source product records, 2,563 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>40</b> distinct strings, the module's <b>14</b>. At the depth both reach, 1,815 proteins, free text has used <b>40.0 strings against 14.0 &mdash; a 2.9-fold difference.</b> The source reaches 95% of its final size after 1,193 proteins, the module after 308."
     },
     {
      "type": "prose",

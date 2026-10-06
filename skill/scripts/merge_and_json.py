@@ -52,8 +52,21 @@ for k in keys:
     #  POLY is left alone deliberately: its collection never changes and the
     #  rebuild keeps its existing alignments, so its window stays as curated.
     if k in F and k != "POLY" and k not in patch.get("keep_cutoffs", []):
-        F[k]["min_len"], F[k]["max_len"] = int(round(0.8 * med)), int(round(1.2 * med))
-        F[k]["bit_cutoff"] = max(20, int(round(0.45 * med)))
+        lo, hi = int(round(0.8 * med)), int(round(1.2 * med))
+        bit = max(20, int(round(0.45 * med)))
+        #  ADDING TRAINING DATA MUST NOT REMOVE CALLABLE GENOMES. The 0.8x/1.2x
+        #  rule is computed from the median, so a projection that brings in
+        #  longer sequences drags the whole window up and genomes that used to
+        #  sit inside it fall out the bottom: PICO_LDR_VP0 3A went 120-180 ->
+        #  134-202 on a median moving 150 -> 168 and lost 13 calls, with more
+        #  training data than before. So the window may only ever WIDEN here,
+        #  and the bit cutoff may only ever fall.
+        #  A SPLIT key is the exception: its collection was replaced, not
+        #  extended, and the old window describes the lumped product.
+        if not split and "min_len" in F[k]:
+            lo, hi = min(lo, F[k]["min_len"]), max(hi, F[k]["max_len"])
+            bit = min(bit, F[k].get("bit_cutoff", bit))
+        F[k]["min_len"], F[k]["max_len"], F[k]["bit_cutoff"] = lo, hi, bit
 def norm(x):
     if isinstance(x, dict): return {k: norm(v) for k, v in x.items()}
     if isinstance(x, list): return [norm(v) for v in x]

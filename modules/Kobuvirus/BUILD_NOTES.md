@@ -86,7 +86,7 @@ Not projected, because the cut cannot be placed with confidence:
 
 ### What it cost
 
-Coverage over the same 313 exemplars: **3734 calls -> 3738 (+4)**.
+Coverage over the same 313 exemplars: **3734 calls -> 3739 (+5)**.
 No feature lost a single call.
 
 ### Why `2A` and `VP3` were refused: two incompatible annotation conventions

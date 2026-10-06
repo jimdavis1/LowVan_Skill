@@ -1,16 +1,22 @@
->fig|1564115.21.mat_peptide.10 Genome-linked protein VPg (3B)
-GSYETIQKTLPKPPQIRRMVVEQ
->fig|1564115.29.mat_peptide.10 Genome-linked protein VPg (3B)
-GSYESIQKTVPKPPQIRRMVIEQ
->fig|1564115.35.mat_peptide.10 Genome-linked protein VPg (3B)
-GSYESIQKTVPKPPQIRRMVVEQ
->fig|1564115.30.mat_peptide.10 Genome-linked protein VPg (3B)
-GSYESIQKTIPKPPQIRRMVVEQ
->fig|1564115.8.mat_peptide.10 Genome-linked protein VPg (3B)
-GSYESIQKTLPKPPQIRRMVVEQ
->fig|1564115.9.mat_peptide.10 Genome-linked protein VPg (3B)
-GSYESIQKTMPKPPQIRRMVVEQ
->fig|1564115.33.mat_peptide.10 Genome-linked protein VPg (3B)
-GSYESIQKTVPRPPQIRRMVVEQ
->fig|1564115.37.mat_peptide.10 Genome-linked protein VPg (3B)
-GGYESIQRTAPKPPQIRRMVVEQ
+>ext10|PICO_LDR_VP4|Hunnivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+GAYSGNAVVRDRKKPNGLKVIDIASLQ
+>fig|1431464.5.mat_peptide.10 Genome-linked protein VPg (3B)
+GAYSGNAVVRDKKKPNGLKVIDIASLQ
+>ext9|PICO_LDR_VP4|Hunnivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+GAYSGNAVVRDKRKPNGLKVIDIASLQ
+>ext2|PICO_LDR_VP4|Hunnivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+GAYNGNAVVRDKKKPNGLKVIDIASLQ
+>fig|1168173.3.mat_peptide.10 Genome-linked protein VPg (3B)
+GAYSGNAVVREKKKPNGLKVIDIASLQ
+>ext4|PICO_LDR_VP4|Hunnivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+GAYSGNAAVRDKRKPNGLKVIDIASLQ
+>ext5|PICO_LDR_VP4|Hunnivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+GAYSGNAAVRDKRRPNGLKVIDIASLQ
+>ext12|PICO_LDR_VP4|Hunnivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+GAYSSNAVVRDKRKPNGLKVIDIASLQ
+>ext3|PICO_LDR_VP4|Hunnivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+GAYSGNAAVRDKRKPHGLKVIDIASLQ
+>ext7|PICO_LDR_VP4|Hunnivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+GAYSGNAVVRDKKKLNGLKVIDIASLQ
+>ext6|PICO_LDR_VP4|Hunnivirus|VPG|ref=r1 Genome-linked protein VPg (3B)
+GAYSGNAPARDKKKPNGLKVVDIASFQ
