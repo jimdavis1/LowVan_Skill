@@ -1,0 +1,610 @@
+{
+ "title": "PICO_LDR_VP0 Coverage Audit",
+ "eyebrow": "LowVan &middot; PICO_LDR_VP0 module &middot; 6 October 2026",
+ "h1": "Does the grouped salivirus module work?",
+ "standfirst": "<b>PICO_LDR_VP0</b> groups five genera with a leader and an uncleaved VP0: Sicinivirus, Salivirus, Oscivirus, Passerivirus and Shanbavirus. Salivirus causes human gastroenteritis; the rest are bird viruses. This audit covers what the grouping delivers, which here is sharply split between the genera that supplied training sequences and the one that did not.",
+ "headline_tiles": [
+  [
+   "13",
+   "features, all with profiles"
+  ],
+  [
+   "70",
+   "PSSMs"
+  ],
+  [
+   "119/136",
+   "exemplars routed"
+  ],
+  [
+   "74.4%",
+   "held-out genomes genuinely clean"
+  ],
+  [
+   "0.0&times;",
+   "string collapse"
+  ],
+  [
+   "2.0&times;",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Five genera, 136 near-complete exemplars, and a leader that is two different proteins.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The layout is POLY, leader, VP0, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C, 3D. VP0 is never cleaved to VP4+VP2, which is what groups these genera with Parechovirus and Kobuvirus rather than with Enterovirus."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "0"
+      ],
+      [
+       "protein features",
+       "0"
+      ],
+      [
+       "unique sequences",
+       "0"
+      ],
+      [
+       "genomes with a contig &ge; 5 kb",
+       "218"
+      ],
+      [
+       "species",
+       "0"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Sicinivirus supplies 56 of the routed exemplars and Shanbavirus 44, with Salivirus 12, Oscivirus 4 and Passerivirus 3. That ordering by genome count is not the ordering that matters, as section 07 shows."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Thirteen features, 70 profiles, and the leader split on the genus before building.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Genome polyprotein",
+       "POLY",
+       "161",
+       "14",
+       "defaults"
+      ],
+      [
+       "Ldr",
+       "Leader protein",
+       "Ldr",
+       "13",
+       "4",
+       "-m 2"
+      ],
+      [
+       "VP0",
+       "Capsid protein VP0 (1AB)",
+       "VP0",
+       "27",
+       "5",
+       "defaults"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "VP3",
+       "28",
+       "5",
+       "defaults"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "VP1",
+       "27",
+       "7",
+       "-m 2"
+      ],
+      [
+       "2A",
+       "Protein 2A",
+       "2A",
+       "24",
+       "6",
+       "defaults"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "2B",
+       "23",
+       "4",
+       "defaults"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "2C",
+       "27",
+       "4",
+       "defaults"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "3A",
+       "26",
+       "5",
+       "defaults"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "VPg",
+       "19",
+       "4",
+       "-m 2"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "3C",
+       "26",
+       "4",
+       "defaults"
+      ],
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "3D",
+       "38",
+       "7",
+       "defaults"
+      ],
+      [
+       "Ldr_LONG",
+       "Uncharacterized lineage-specific protein",
+       "Ldr-long",
+       "8",
+       "1",
+       "-m 2"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>Sicinivirus carries a 462-residue leader against 64&ndash;174 for the other four.</b> A slot name is a homology group inside a genus and not across one, so the slot was split before any profile was built. <code>Ldr</code> holds the short form; <code>Ldr_LONG</code> holds the Sicinivirus protein."
+    },
+    {
+     "type": "prose",
+     "html": "<code>Ldr_LONG</code> is declared with the vocabulary's <i>Uncharacterized lineage-specific protein</i> string rather than a name of its own. A PubMed search found no functional description for the Sicinivirus leader, and inventing a designation is not allowed; the lineage tag stays in the feature key and the gene symbol. The protein is modelled and called &mdash; 55 of 56 Sicinivirus exemplars &mdash; it is simply not named beyond its lineage."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Windows at 0.8&times; to 1.2&times; the collection median; bit cutoffs at 0.45&times; the median length.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "1064",
+       "0.65",
+       "1,892",
+       "2,838"
+      ],
+      [
+       "Ldr",
+       "50",
+       "0.65",
+       "88",
+       "132"
+      ],
+      [
+       "VP0",
+       "153",
+       "0.65",
+       "271",
+       "407"
+      ],
+      [
+       "VP3",
+       "100",
+       "0.65",
+       "178",
+       "268"
+      ],
+      [
+       "VP1",
+       "124",
+       "0.65",
+       "221",
+       "331"
+      ],
+      [
+       "2A",
+       "58",
+       "0.65",
+       "103",
+       "155"
+      ],
+      [
+       "2B",
+       "81",
+       "0.65",
+       "144",
+       "216"
+      ],
+      [
+       "2C",
+       "153",
+       "0.65",
+       "272",
+       "408"
+      ],
+      [
+       "3A",
+       "68",
+       "0.65",
+       "120",
+       "180"
+      ],
+      [
+       "VPG",
+       "20",
+       "0.65",
+       "22",
+       "34"
+      ],
+      [
+       "3C",
+       "86",
+       "0.65",
+       "152",
+       "228"
+      ],
+      [
+       "3D",
+       "212",
+       "0.65",
+       "376",
+       "564"
+      ],
+      [
+       "Ldr_LONG",
+       "208",
+       "0.65",
+       "370",
+       "554"
+      ]
+     ]
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>434 of 447 (97.1%)</b> &mdash; POLY 156/161, Ldr 10/13, VP0 25/27, VP3 28/28, VP1 26/27, 2A 24/24, 2B 23/23, 2C 27/27, 3A 25/26, VPG 18/19, 3C 26/26, 3D 38/38, Ldr_LONG 8/8. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "25 rep contigs, 119 of 136 exemplars routed.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes &ge; 5 kb, clustered at 95% nucleotide identity",
+       "136",
+       "&mdash;"
+      ],
+      [
+       "routed to PICO_LDR_VP0",
+       "119",
+       "87.5%"
+      ],
+      [
+       "routed to Kobuvirus",
+       "4",
+       "2.9%"
+      ],
+      [
+       "routed to PICO_LDR_VP4",
+       "3",
+       "2.2%"
+      ],
+      [
+       "routed to Sapelovirus",
+       "2",
+       "1.5%"
+      ],
+      [
+       "routed to Parechovirus",
+       "1",
+       "0.7%"
+      ],
+      [
+       "unrouted",
+       "7",
+       "5.1%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "25 rep contigs ship with the module; 32 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold."
+    },
+    {
+     "type": "prose",
+     "html": "Seventeen exemplars do not route. Routing is the part that shared genome organisation reliably delivers, and even here it is not complete."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "The leader split works. Four of the five genera are called completely. The fifth is not.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "POLY",
+       "100.0",
+       100.0,
+       "119 of 119 routed exemplars"
+      ],
+      [
+       "Ldr",
+       "14.3",
+       14.3,
+       "17 of 119 routed exemplars"
+      ],
+      [
+       "VP0",
+       "63.0",
+       63.0,
+       "75 of 119 routed exemplars"
+      ],
+      [
+       "VP3",
+       "73.9",
+       73.9,
+       "88 of 119 routed exemplars"
+      ],
+      [
+       "VP1",
+       "62.2",
+       62.2,
+       "74 of 119 routed exemplars"
+      ],
+      [
+       "2A",
+       "63.0",
+       63.0,
+       "75 of 119 routed exemplars"
+      ],
+      [
+       "2B",
+       "61.3",
+       61.3,
+       "73 of 119 routed exemplars"
+      ],
+      [
+       "2C",
+       "60.5",
+       60.5,
+       "72 of 119 routed exemplars"
+      ],
+      [
+       "3A",
+       "58.0",
+       58.0,
+       "69 of 119 routed exemplars"
+      ],
+      [
+       "VPg",
+       "70.6",
+       70.6,
+       "84 of 119 routed exemplars"
+      ],
+      [
+       "3C",
+       "55.5",
+       55.5,
+       "66 of 119 routed exemplars"
+      ],
+      [
+       "3D",
+       "91.6",
+       91.6,
+       "109 of 119 routed exemplars"
+      ],
+      [
+       "Ldr-long",
+       "46.2",
+       46.2,
+       "55 of 119 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>65 of 119 routed exemplars get every one of the 11 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>VP0, VP1, 2A, 2B, 2C, 3A, VPG, 3C</b>. Excluded from that count: Ldr, Ldr_LONG &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The split is clean:</b> Sicinivirus gets <code>Ldr_LONG</code> on 55 of 56 and <code>Ldr</code> on zero; Salivirus, Oscivirus and Passerivirus get <code>Ldr</code> and never <code>Ldr_LONG</code>. Neither feature fires on a genus it does not belong to, so both are excluded from the complete-genome count."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Salivirus (12), Oscivirus (4) and Passerivirus (3) are called on every feature</b>, and Sicinivirus on 47 to 56 of 56. <b>Shanbavirus, with 44 exemplars, gets POLY on 44, 3D on 43, VP3 on 13, VPg on 12 and nothing else at all.</b>"
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "29 of 39 held-out genomes clean.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "39",
+       "held-out genomes"
+      ],
+      [
+       "37",
+       "no genome/contig flags"
+      ],
+      [
+       "29",
+       "genuinely clean"
+      ],
+      [
+       "10",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "74.4%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 39 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "pre",
+     "text": "   2  Genome has too many HSPs for: Genome polyprotein\n   2  Count = 2\n   2  Contig has too many ambiguous bases, Frac > 0.01"
+    },
+    {
+     "type": "prose",
+     "html": "The panel is drawn across species, so it includes Shanbavirus genomes whose mature peptides are mostly uncalled; the clean rate reflects that rather than a defect in the called features."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Genome count does not predict coverage. Sequence count does, exactly.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>Shanbavirus is the second most numerous genus here and the worst covered.</b> The reason is not divergence in the abstract &mdash; it is that Shanbavirus contributes <b>exactly one sequence</b> to every mature-peptide collection in this module except 3D, where it contributes ten."
+    },
+    {
+     "type": "prose",
+     "html": "The two numbers line up without exception. Shanbavirus gets 3D on 43 of 44 and essentially nothing else; the one feature it supplied ten sequences to is the one feature it is called on. A single sequence cannot form a cluster at any member floor, and the leftover pass, which drops the floor to two, cannot build from one either."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The same rule explains every other number on this page.</b> Salivirus contributes 4&ndash;9 sequences per feature and is called on all of them. Oscivirus contributes 3&ndash;4 and is called on all of them. Passerivirus contributes 2&ndash;3 and is called on all but one. Sicinivirus contributes 10&ndash;13 and is called on nearly all. The threshold is somewhere between one and two sequences, and it is absolute."
+    },
+    {
+     "type": "prose",
+     "html": "<b>So the module covers four genera and routes a fifth.</b> Shanbavirus genomes reach it, get their polyprotein and their polymerase called, and keep the rest of their proteins unannotated. That is worth shipping &mdash; a routed genome with POLY and 3D is better annotated than one that routes nowhere &mdash; but the module should not be described as covering five genera."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Four of the five genera are called completely or nearly so. Shanbavirus contributes one sequence per protein to the training data and is called on the one feature where it contributed ten. This is a data limit with a precise threshold, not a tuning problem: no parameter builds a profile from a single sequence."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "The run produced a rule worth carrying to the next grouped module.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Three grouped modules in this family now show the same thing from different angles. Here Shanbavirus has 44 genomes and 1 sequence per protein and is uncovered. In PICO_NOLDR_VP0 four genera have 1&ndash;3 sequences each and are uncovered, and a rebuild through the leftover pass moved the result by a single genome. In PICO_NOLDR_VP4 Tremovirus contributes one 2B and two 3A sequences and misses both."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The check is cheap and it is predictive: count how many sequences each genus contributes to each feature before building.</b> A genus at zero or one cannot be covered by that feature, and knowing it in advance converts a disappointing coverage run into a declared limitation. Nothing in the build, the install check or the self-recall measurement can report it, because the profiles that do get built recover their own training data perfectly."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "pico_ldr_vp0-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "<i>unbound</i>",
+       "&mdash;",
+       "0"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over proteins: every annotated protein in the 113 genomes both sources annotate (366 source product records, 1,067 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>31</b> distinct strings, the module's <b>16</b>. At the depth both reach, 366 proteins, free text has used <b>31.0 strings against 15.2 &mdash; a 2.0-fold difference.</b> The source reaches 95% of its final size after 332 proteins, the module after 370."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>pico_ldr_vp0_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Picornaviridae/work/PICO_LDR_VP0/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}

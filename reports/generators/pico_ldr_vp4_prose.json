@@ -1,0 +1,42 @@
+{
+ "date": "6 October 2026",
+ "h1": "Does the grouped hunnivirus module work?",
+ "standfirst": "<b>PICO_LDR_VP4</b> groups six small genera that share one genome organisation &mdash; a leader, the four-capsid-protein layout, a single VPg: Bopivirus, Erbovirus, Mischivirus, Hunnivirus, Tottorivirus and Anativirus. Together they are bovine, equine, bat, duck and rodent viruses that no one would model separately. This is the largest of the four grouped modules and the one where the per-genus picture is most uneven.",
+ "not_universal": ["Ldr", "Ldr_PRO", "2A", "2A_LONG"],
+ "lede01": "Six genera, 201 near-complete exemplars, and two slots holding more than one protein.",
+ "p01": [
+  "Hunnivirus supplies 76 of the routed exemplars, Bopivirus 41, Mischivirus and Anativirus 26 each, Erbovirus 7 and Tottorivirus 6."
+ ],
+ "lede02": "Fifteen features, 100 profiles, and two genus-conditional splits made before building.",
+ "p02": [
+  "<b>Bopivirus 2A is a 212-residue protein; the other five genera carry 12&ndash;55 residue StopGo peptides.</b> Split into <code>2A</code> (StopGo) and <code>2A_LONG</code> (Bopivirus).",
+  "<b>The Erbovirus leader is a 219-residue protease; the others are 51&ndash;84 residues.</b> Split into <code>Ldr</code> and <code>Ldr_PRO</code>. Equine rhinitis B virus L has confirmed C-terminal processing activity (Hinton 2002, <i>J Gen Virol</i> 83:3111, PMID 12466488, model-proposed), so <code>Ldr_PRO</code> takes the existing <i>Leader protease (Lpro)</i> vocabulary string rather than a new one.",
+  "Two features in one module must never share an annotation string or a gene symbol; the generator refuses either."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median; bit cutoffs at 0.45&times; the median length.",
+ "p03": [],
+ "lede04": "25 rep contigs, 182 of 201 exemplars routed.",
+ "p04": [],
+ "lede05": "Both splits work exactly as intended, and coverage varies sharply by genus.",
+ "p05": [
+  "<b>The splits are clean.</b> Bopivirus gets <code>2A_LONG</code> on 32 of 41 and <code>2A</code> on 41; Erbovirus gets <code>Ldr_PRO</code> on 7 of 7 and <code>Ldr</code> on zero; no other genus gets either. All four split features are excluded from the complete-genome count, since no genome should carry both halves of a split.",
+  "<b>Erbovirus (7 of 7 on every feature) and Bopivirus (32&ndash;41 of 41) are covered well.</b> Hunnivirus, the most numerous genus, is called on POLY, VP4, VP2, VP3, 2A, 2C, 3C and 3D but on <b>zero of 76 for VP1, 2B, 3A and the leader</b>. Anativirus misses VP1 and 3A; Tottorivirus misses VP1, 2A, 2B, 3A, VPg and the leader."
+ ],
+ "lede06": "36 of 39 held-out genomes clean.",
+ "p06": [],
+ "lede07": "Four features are missing from the most numerous genus, and the training data says why.",
+ "p07": [
+  "<b>Hunnivirus has 122 polyprotein sequences and almost no annotated mature peptides.</b> It contributes <b>0</b> sequences to VP1, and 2 each to 2B, 3A and the leader &mdash; against 122 to POLY. It is called on VP1 zero times out of 76, and on 2B, 3A and the leader zero times.",
+  "<b>Tottorivirus and Anativirus follow the same rule.</b> Tottorivirus contributes 0 sequences to 3A and VP1 and gets 0 calls for both. Anativirus contributes 0 to the leader and gets 0. Where a genus contributes two or more sequences the feature is usually called; where it contributes none it never is.",
+  "<b>This is not a threshold that can be lowered.</b> A profile cannot be built from zero sequences, and the leftover pass &mdash; the sanctioned route to a two-member profile &mdash; has nothing to work from either. The proteins are present in these genomes; the polyprotein is called on 122 Hunnivirus records. What is missing is any annotated example of the mature peptide to train on.",
+  "<b>The fix that would work is projection, and it was not applied here.</b> Three genus modules in this family had the same shape &mdash; many polyproteins, few annotated mature peptides &mdash; and were rebuilt by carrying cut coordinates from the annotated genomes onto the rest across a global alignment. That technique took the Sapelovirus leader from 6 calls in 209 to 170 in 208. It was not run on the grouped modules, and Hunnivirus with 122 polyproteins and 0 annotated VP1 records is exactly the case it is designed for."
+ ],
+ "verdict07": "Both genus-conditional splits work and neither feature ever fires on the wrong genus. Erbovirus and Bopivirus are well covered; Hunnivirus misses four features because it contributes zero or two sequences to each of them while contributing 122 polyproteins. That last fact makes this module the strongest candidate in the family for a projection rebuild, which has not been done.",
+ "lede08": "The run located a fix that exists and was not applied.",
+ "p08": [
+  "The splits were decided before building, by comparing per-genus medians inside each slot, and the coverage run confirms both were right: each form is called on its own genera and never on the others.",
+  "What the run also shows is that the grouped modules were built without the projection step that was applied to Avihepatovirus, Hepatovirus, Kobuvirus, Senecavirus and Sapelovirus. Those five had the same problem &mdash; polyproteins in abundance, annotated mature peptides scarce &mdash; and projection roughly tripled their collections. Hunnivirus here has 122 polyproteins and zero annotated VP1 records, which is the clearest instance of that shape anywhere in the family. Applying it is the obvious next work on this module and is recorded as such rather than presented as done."
+ ],
+ "lede09": "",
+ "p09": []
+}

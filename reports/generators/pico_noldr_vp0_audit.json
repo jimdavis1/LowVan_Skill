@@ -1,0 +1,544 @@
+{
+ "title": "PICO_NOLDR_VP0 Coverage Audit",
+ "eyebrow": "LowVan &middot; PICO_NOLDR_VP0 module &middot; 5 October 2026",
+ "h1": "Does the grouped fish and bird picornavirus module work?",
+ "standfirst": "<b>PICO_NOLDR_VP0</b> groups five genera of fish, bird and seal picornaviruses that share one genome organisation: no leader, and a capsid left as VP0 rather than cleaved. None has enough sequence in BV-BRC to model alone. This audit is mostly about what that grouping does and does not buy, because the answer here is sharper than for any other module in the family.",
+ "headline_tiles": [
+  [
+   "11",
+   "features, all with profiles"
+  ],
+  [
+   "28",
+   "PSSMs"
+  ],
+  [
+   "53/53",
+   "exemplars routed"
+  ],
+  [
+   "95.0%",
+   "held-out genomes genuinely clean"
+  ],
+  [
+   "0.0&times;",
+   "string collapse"
+  ],
+  [
+   "4.1&times;",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Five genera, 68 near-complete genomes, and one of them supplies most of the data.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Pasivirus (pig), Avisivirus and Limnipivirus (birds and fish), Potamipivirus (fish) and Aquamavirus (seal). The layout is shared: POLY, VP0, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C, 3D."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "0"
+      ],
+      [
+       "protein features",
+       "0"
+      ],
+      [
+       "unique sequences",
+       "0"
+      ],
+      [
+       "genomes with a contig &ge; 5 kb",
+       "68"
+      ],
+      [
+       "species",
+       "0"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Of the 53 near-complete exemplars, <b>29 are Pasivirus</b>. Limnipivirus contributes 11, Avisivirus 8, Potamipivirus 3 and Aquamavirus 2. That imbalance is the whole story of this page."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Eleven features, 28 profiles. Aquamavirus fragments were dropped rather than modelled.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "Genome polyprotein",
+       "POLY",
+       "75",
+       "9",
+       "defaults"
+      ],
+      [
+       "VP0",
+       "Capsid protein VP0 (1AB)",
+       "VP0",
+       "32",
+       "2",
+       "defaults"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3 (1C)",
+       "VP3",
+       "32",
+       "2",
+       "defaults"
+      ],
+      [
+       "VP1",
+       "Capsid protein VP1 (1D)",
+       "VP1",
+       "38",
+       "3",
+       "defaults"
+      ],
+      [
+       "2A",
+       "Protein 2A",
+       "2A",
+       "23",
+       "1",
+       "defaults"
+      ],
+      [
+       "2B",
+       "Protein 2B, viroporin",
+       "2B",
+       "32",
+       "3",
+       "defaults"
+      ],
+      [
+       "2C",
+       "Protein 2C, ATPase/helicase",
+       "2C",
+       "33",
+       "1",
+       "defaults"
+      ],
+      [
+       "3A",
+       "Protein 3A",
+       "3A",
+       "25",
+       "2",
+       "defaults"
+      ],
+      [
+       "VPG",
+       "Genome-linked protein VPg (3B)",
+       "VPg",
+       "18",
+       "2",
+       "-m 2"
+      ],
+      [
+       "3C",
+       "Picornain 3C, protease (3C)",
+       "3C",
+       "29",
+       "1",
+       "defaults"
+      ],
+      [
+       "3D",
+       "RNA-directed RNA polymerase 3D",
+       "3D",
+       "30",
+       "2",
+       "defaults"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Aquamavirus contributed 2C records of 15 residues and VP3 records of 40, against 330 and 230 for every other genus. Those are fragments, not short forms, and left in they would have dragged the 2C window floor to 12 and the VP3 floor to 32 &mdash; wide enough to admit a fragment of anything. They were dropped, so Aquamavirus is represented in the capsid and polymerase features and not in those two."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Windows at 0.8&times; to 1.2&times; the collection median; bit cutoffs at 0.45&times; the median length.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "959",
+       "0.65",
+       "1,705",
+       "2,557"
+      ],
+      [
+       "VP0",
+       "114",
+       "0.65",
+       "202",
+       "304"
+      ],
+      [
+       "VP3",
+       "109",
+       "0.65",
+       "194",
+       "290"
+      ],
+      [
+       "VP1",
+       "130",
+       "0.65",
+       "232",
+       "348"
+      ],
+      [
+       "2A",
+       "58",
+       "0.65",
+       "103",
+       "155"
+      ],
+      [
+       "2B",
+       "56",
+       "0.65",
+       "100",
+       "150"
+      ],
+      [
+       "2C",
+       "149",
+       "0.65",
+       "265",
+       "397"
+      ],
+      [
+       "3A",
+       "40",
+       "0.65",
+       "72",
+       "108"
+      ],
+      [
+       "VPG",
+       "20",
+       "0.65",
+       "20",
+       "30"
+      ],
+      [
+       "3C",
+       "86",
+       "0.65",
+       "153",
+       "229"
+      ],
+      [
+       "3D",
+       "205",
+       "0.65",
+       "364",
+       "546"
+      ]
+     ]
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>301 of 367 (82.0%)</b> &mdash; POLY 70/75, VP0 24/32, VP3 25/32, VP1 29/38, 2A 22/23, 2B 25/32, 2C 30/33, 3A 19/25, VPG 10/18, 3C 19/29, 3D 28/30. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Fourteen rep contigs, and all 53 exemplars route.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes &ge; 5 kb, clustered at 95% nucleotide identity",
+       "53",
+       "&mdash;"
+      ],
+      [
+       "routed to PICO_NOLDR_VP0",
+       "53",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "14 rep contigs ship with the module; 14 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold."
+    },
+    {
+     "type": "prose",
+     "html": "Routing is the part that works. Fourteen references reach every genome in all five genera, which is what shared genome organisation delivers: the nucleotide-level similarity is enough to assign a genome to the module."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Pasivirus gets everything. The other four genera get the polyprotein and little else.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "POLY",
+       "92.5",
+       92.5,
+       "49 of 53 routed exemplars"
+      ],
+      [
+       "VP0",
+       "56.6",
+       56.6,
+       "30 of 53 routed exemplars"
+      ],
+      [
+       "VP3",
+       "66.0",
+       66.0,
+       "35 of 53 routed exemplars"
+      ],
+      [
+       "VP1",
+       "58.5",
+       58.5,
+       "31 of 53 routed exemplars"
+      ],
+      [
+       "2A",
+       "54.7",
+       54.7,
+       "29 of 53 routed exemplars"
+      ],
+      [
+       "2B",
+       "58.5",
+       58.5,
+       "31 of 53 routed exemplars"
+      ],
+      [
+       "2C",
+       "77.4",
+       77.4,
+       "41 of 53 routed exemplars"
+      ],
+      [
+       "3A",
+       "54.7",
+       54.7,
+       "29 of 53 routed exemplars"
+      ],
+      [
+       "VPg",
+       "54.7",
+       54.7,
+       "29 of 53 routed exemplars"
+      ],
+      [
+       "3C",
+       "56.6",
+       56.6,
+       "30 of 53 routed exemplars"
+      ],
+      [
+       "3D",
+       "83.0",
+       83.0,
+       "44 of 53 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>29 of 53 routed exemplars get every one of the 11 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>VP0, VP1, 2A, 2B, 3A, VPG, 3C</b>."
+    },
+    {
+     "type": "prose",
+     "html": "<b>This is the measurement that matters and it is stark:</b><br><br><code>genus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;&nbsp;POLY&nbsp;&nbsp;VP0&nbsp;&nbsp;VP3&nbsp;&nbsp;VP1&nbsp;&nbsp;&nbsp;2A&nbsp;&nbsp;&nbsp;2B&nbsp;&nbsp;&nbsp;2C&nbsp;&nbsp;&nbsp;3A&nbsp;&nbsp;VPg&nbsp;&nbsp;&nbsp;3C&nbsp;&nbsp;&nbsp;3D</code><br><code>Pasivirus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;29</code><br><code>Limnipivirus&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;7</code><br><code>Avisivirus&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;5</code><br><code>Potamipivirus&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;3</code><br><code>Aquamavirus&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;0</code>"
+    },
+    {
+     "type": "prose",
+     "html": "Pasivirus is called on 29 of 29 for every one of the eleven features. The other 24 exemplars get the polyprotein in most cases, 3D in about half, and almost nothing else."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "38 of 40 held-out genomes clean.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "40",
+       "held-out genomes"
+      ],
+      [
+       "38",
+       "no genome/contig flags"
+      ],
+      [
+       "38",
+       "genuinely clean"
+      ],
+      [
+       "2",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "95.0%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 40 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "pre",
+     "text": "   2  Genome is missing essential feature: Genome polyprotein"
+    },
+    {
+     "type": "prose",
+     "html": "The panel is drawn round-robin across species, so it is dominated by Pasivirus in the same proportion as the genus holdings. A high clean rate here is not evidence that the module works for the other four genera."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Shared organisation routes a genome. It does not give you a profile.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>For seven of the eleven features, only Pasivirus contributed a cluster at all.</b> VP0, VP3, 2A, 2C, 3A, VPg and 3C are each built from Pasivirus sequences and nothing else. VP1 and 2B add Aquamavirus, 3D adds Limnipivirus, and POLY &mdash; the longest and most conserved feature &mdash; manages four of the five genera."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The cause is arithmetic, not divergence alone.</b> Limnipivirus contributes 3 sequences to most collections, Avisivirus 3, Potamipivirus 3 and Aquamavirus 1. A profile needs at least two sequences from the same genus that are similar enough to cluster, and with one to three sequences apiece that condition usually fails. The documented member floor of five is unreachable; even the leftover pass, which drops the floor to two, cannot build from a single sequence."
+    },
+    {
+     "type": "prose",
+     "html": "<b>This was diagnosed, a fix was attempted, and the fix did not work.</b> The first build used the documented <code>-m 5</code> throughout, which let only Pasivirus cluster. The module was rebuilt with the leftover pass at its floor of two, which is the sanctioned route to a small profile. The call rates moved by exactly one genome &mdash; POLY from 48 to 49. Reporting that is more useful than reporting the rebuild as an improvement, because it locates the limit precisely: the problem is not the floor, it is that four of these genera have one to three sequences per protein in the entire public record."
+    },
+    {
+     "type": "prose",
+     "html": "<b>So what the module is, honestly, is a Pasivirus module that four other genera route to.</b> That is still worth shipping &mdash; a genome that routes and gets its polyprotein called is better annotated than one that routes nowhere &mdash; but it should not be described as covering five genera. Closing the gap needs more sequence from those genera, not a parameter change."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Routing works for all five genera; profiles work for one. Pasivirus is called completely, and the other four get the polyprotein and little else because they contribute one to three sequences per protein. A rebuild through the leftover pass changed the result by a single genome, which is the evidence that this is a data limit rather than a tuning one."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "The run found that the grouping premise only half holds.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Grouping by genome organisation is the project's partitioning rule, and it is right about what it claims: these five genera do share a layout, and the shared layout is enough for fourteen reference contigs to route all of them. What the rule does not promise, and what this module demonstrates, is that routing and calling are different problems. Profiles need sequence similarity within a feature, and organisation-sharing does not supply it."
+    },
+    {
+     "type": "prose",
+     "html": "The practical lesson for the next grouped module is to check, before building, how many sequences each genus contributes to each feature. A genus contributing fewer than two sequences to a feature cannot be covered by it, and knowing that in advance turns a disappointing coverage run into a declared limitation."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "Little free text to collapse.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "pico_noldr_vp0-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "<i>unbound</i>",
+       "&mdash;",
+       "0"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over proteins: every annotated protein in the 54 genomes both sources annotate (359 source product records, 379 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>45</b> distinct strings, the module's <b>11</b>. At the depth both reach, 359 proteins, free text has used <b>45.0 strings against 11.0 &mdash; a 4.1-fold difference.</b> The source reaches 95% of its final size after 327 proteins, the module after 32."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>pico_noldr_vp0_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Picornaviridae/work/PICO_NOLDR_VP0/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}

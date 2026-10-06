@@ -1,0 +1,46 @@
+{
+ "date": "6 October 2026",
+ "h1": "Does the grouped salivirus module work?",
+ "standfirst": "<b>PICO_LDR_VP0</b> groups five genera with a leader and an uncleaved VP0: Sicinivirus, Salivirus, Oscivirus, Passerivirus and Shanbavirus. Salivirus causes human gastroenteritis; the rest are bird viruses. This audit covers what the grouping delivers, which here is sharply split between the genera that supplied training sequences and the one that did not.",
+ "not_universal": ["Ldr", "Ldr_LONG"],
+ "lede01": "Five genera, 136 near-complete exemplars, and a leader that is two different proteins.",
+ "p01": [
+  "The layout is POLY, leader, VP0, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C, 3D. VP0 is never cleaved to VP4+VP2, which is what groups these genera with Parechovirus and Kobuvirus rather than with Enterovirus.",
+  "Sicinivirus supplies 56 of the routed exemplars and Shanbavirus 44, with Salivirus 12, Oscivirus 4 and Passerivirus 3. That ordering by genome count is not the ordering that matters, as section 07 shows."
+ ],
+ "lede02": "Thirteen features, 70 profiles, and the leader split on the genus before building.",
+ "p02": [
+  "<b>Sicinivirus carries a 462-residue leader against 64&ndash;174 for the other four.</b> A slot name is a homology group inside a genus and not across one, so the slot was split before any profile was built. <code>Ldr</code> holds the short form; <code>Ldr_LONG</code> holds the Sicinivirus protein.",
+  "<code>Ldr_LONG</code> is declared with the vocabulary's <i>Uncharacterized lineage-specific protein</i> string rather than a name of its own. A PubMed search found no functional description for the Sicinivirus leader, and inventing a designation is not allowed; the lineage tag stays in the feature key and the gene symbol. The protein is modelled and called &mdash; 55 of 56 Sicinivirus exemplars &mdash; it is simply not named beyond its lineage."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median; bit cutoffs at 0.45&times; the median length.",
+ "p03": [],
+ "lede04": "25 rep contigs, 119 of 136 exemplars routed.",
+ "p04": [
+  "Seventeen exemplars do not route. Routing is the part that shared genome organisation reliably delivers, and even here it is not complete."
+ ],
+ "lede05": "The leader split works. Four of the five genera are called completely. The fifth is not.",
+ "p05": [
+  "<b>The split is clean:</b> Sicinivirus gets <code>Ldr_LONG</code> on 55 of 56 and <code>Ldr</code> on zero; Salivirus, Oscivirus and Passerivirus get <code>Ldr</code> and never <code>Ldr_LONG</code>. Neither feature fires on a genus it does not belong to, so both are excluded from the complete-genome count.",
+  "<b>Salivirus (12), Oscivirus (4) and Passerivirus (3) are called on every feature</b>, and Sicinivirus on 47 to 56 of 56. <b>Shanbavirus, with 44 exemplars, gets POLY on 44, 3D on 43, VP3 on 13, VPg on 12 and nothing else at all.</b>"
+ ],
+ "lede06": "29 of 39 held-out genomes clean.",
+ "p06": [
+  "The panel is drawn across species, so it includes Shanbavirus genomes whose mature peptides are mostly uncalled; the clean rate reflects that rather than a defect in the called features."
+ ],
+ "lede07": "Genome count does not predict coverage. Sequence count does, exactly.",
+ "p07": [
+  "<b>Shanbavirus is the second most numerous genus here and the worst covered.</b> The reason is not divergence in the abstract &mdash; it is that Shanbavirus contributes <b>exactly one sequence</b> to every mature-peptide collection in this module except 3D, where it contributes ten.",
+  "The two numbers line up without exception. Shanbavirus gets 3D on 43 of 44 and essentially nothing else; the one feature it supplied ten sequences to is the one feature it is called on. A single sequence cannot form a cluster at any member floor, and the leftover pass, which drops the floor to two, cannot build from one either.",
+  "<b>The same rule explains every other number on this page.</b> Salivirus contributes 4&ndash;9 sequences per feature and is called on all of them. Oscivirus contributes 3&ndash;4 and is called on all of them. Passerivirus contributes 2&ndash;3 and is called on all but one. Sicinivirus contributes 10&ndash;13 and is called on nearly all. The threshold is somewhere between one and two sequences, and it is absolute.",
+  "<b>So the module covers four genera and routes a fifth.</b> Shanbavirus genomes reach it, get their polyprotein and their polymerase called, and keep the rest of their proteins unannotated. That is worth shipping &mdash; a routed genome with POLY and 3D is better annotated than one that routes nowhere &mdash; but the module should not be described as covering five genera."
+ ],
+ "verdict07": "Four of the five genera are called completely or nearly so. Shanbavirus contributes one sequence per protein to the training data and is called on the one feature where it contributed ten. This is a data limit with a precise threshold, not a tuning problem: no parameter builds a profile from a single sequence.",
+ "lede08": "The run produced a rule worth carrying to the next grouped module.",
+ "p08": [
+  "Three grouped modules in this family now show the same thing from different angles. Here Shanbavirus has 44 genomes and 1 sequence per protein and is uncovered. In PICO_NOLDR_VP0 four genera have 1&ndash;3 sequences each and are uncovered, and a rebuild through the leftover pass moved the result by a single genome. In PICO_NOLDR_VP4 Tremovirus contributes one 2B and two 3A sequences and misses both.",
+  "<b>The check is cheap and it is predictive: count how many sequences each genus contributes to each feature before building.</b> A genus at zero or one cannot be covered by that feature, and knowing it in advance converts a disappointing coverage run into a declared limitation. Nothing in the build, the install check or the self-recall measurement can report it, because the profiles that do get built recover their own training data perfectly."
+ ],
+ "lede09": "",
+ "p09": []
+}

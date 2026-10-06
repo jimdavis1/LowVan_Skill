@@ -1,0 +1,42 @@
+{
+ "date": "5 October 2026",
+ "h1": "Does the grouped cosavirus module work?",
+ "standfirst": "<b>PICO_NOLDR_VP4</b> groups three genera with no leader and the four-capsid-protein layout: Cosavirus, a human enteric virus; Tremovirus, avian encephalomyelitis virus; and Dicipivirus. None has enough sequence to model alone. Unlike the other grouped modules in this family, this one largely works &mdash; and the reason is worth reading alongside its sibling pages.",
+ "not_universal": ["2A", "2A_LONG"],
+ "lede01": "Three genera, 83 near-complete exemplars, and a 2A slot holding two different proteins.",
+ "p01": [
+  "The layout is POLY, VP4, VP2, VP3, VP1, 2A, 2B, 2C, 3A, VPg, 3C, 3D. Cosavirus supplies 54 of the 83 exemplars, Dicipivirus 19 and Tremovirus 10 &mdash; a far more even spread than the fish and bird group, which is most of why this module behaves better."
+ ],
+ "lede02": "Thirteen features, 72 profiles, and one slot split on the genus before building.",
+ "p02": [
+  "<b>Cosavirus 2A is 31 residues; Tremovirus and Dicipivirus 2A are 141 and 164.</b> A slot name is a homology group inside a genus and not across one, so a single 2A feature spanning 31 to 164 residues would have blurred two unrelated proteins. The slot was split before any profile was built: <code>2A</code> keeps the short Cosavirus form with the vocabulary string \"Protein 2A, StopGo peptide\", and <code>2A_LONG</code> takes the long form as \"Protein 2A\". Two features in one module must never share an annotation string, because the quality tool keys its essential-feature table by the string."
+ ],
+ "lede03": "Windows at 0.8&times; to 1.2&times; the collection median; bit cutoffs at 0.45&times; the median length.",
+ "p03": [],
+ "lede04": "25 rep contigs, and all 83 exemplars route.",
+ "p04": [],
+ "lede05": "The split works exactly as designed, and Cosavirus is called completely.",
+ "p05": [
+  "<b>The 2A split is clean:</b> Cosavirus gets <code>2A</code> on 53 of 54 and <code>2A_LONG</code> on zero; Tremovirus gets <code>2A_LONG</code> on 10 of 10 and <code>2A</code> on zero; Dicipivirus gets <code>2A_LONG</code> on 12 of 19 and <code>2A</code> on zero. Neither feature ever fires on a genus it does not belong to. Both are therefore excluded from the complete-genome count, since no genome should carry both.",
+  "<b>Cosavirus is called on 54 of 54 for nine of the eleven shared features</b>, with VPg at 48 and 3D at 52. Dicipivirus runs 12 to 17 of 19. Tremovirus is 7 to 10 of 10 on most features but misses three entirely, which is section 07."
+ ],
+ "lede06": "26 of 40 held-out genomes clean.",
+ "p06": [
+  "The lowest clean rate of the grouped modules. Six of the fourteen flagged are missing the polyprotein call and three carry contigs with more than 1% ambiguous bases; this group draws heavily on metagenomic submissions where partial and ambiguous deposits are common."
+ ],
+ "lede07": "Tremovirus misses three features outright.",
+ "p07": [
+  "<b>Tremovirus is called on 0 of 10 for VP4, 2B and 3A</b> while getting VP2, VP3, VP1, 2C, 3C and 3D on all ten. That pattern &mdash; most features fine, three absent &mdash; is not a divergence gradient; it is three specific proteins no profile covers.",
+  "<b>VP4 was a known risk that was not acted on.</b> The per-genus medians before building were Cosavirus 68, Dicipivirus 44, Tremovirus 20 residues. That is a 3.4-fold spread and it was flagged as borderline at the time, then left as one feature because VP4 is genuinely variable across picornaviruses. The coverage run says the call was wrong: a 20-residue Tremovirus VP4 is no more reachable from a 68-residue Cosavirus profile than the 2A forms were from each other, and it should have been split on the same reasoning.",
+  "<b>2B and 3A have no such excuse.</b> Their medians are close across the three genera (2B 102&ndash;126, 3A 87&ndash;108), so these are ordinary coverage failures: Tremovirus contributes one 2B sequence and two 3A sequences to collections of 39 and 42, which is too few to form a cluster of its own and too divergent to fall inside a Cosavirus one.",
+  "<b>Dicipivirus is dicistronic and this module does not represent that.</b> Its genome carries two ORFs separated by an intergenic IRES rather than one polyprotein. It was grouped here on its capsid and replicase layout, and the module models polyprotein products only. Whether it warrants its own module on genome-organisation grounds is open; 19 near-complete genomes is thin either way."
+ ],
+ "verdict07": "Cosavirus is covered completely and Dicipivirus well. Tremovirus misses VP4, 2B and 3A on all ten of its genomes: VP4 because a 20-residue protein was left in a feature built around a 68-residue one, and 2B and 3A because Tremovirus contributes one and two sequences respectively. The VP4 case is actionable and should be split; the other two need more sequence.",
+ "lede08": "The run confirmed one judgement and overturned another.",
+ "p08": [
+  "Two slots were checked for mixed proteins before building, by comparing per-genus medians. 2A was split and the result is exactly right: each form is called on its own genera and never on the others. VP4 was examined by the same method, found to span 20 to 68 residues, and left alone on the grounds that VP4 varies anyway. The coverage run shows that was the wrong call.",
+  "The useful distinction is that the 2A medians differed by 5-fold and the VP4 medians by 3.4-fold, and the threshold between \"variable protein\" and \"different protein\" was set by intuition rather than measurement. Checking whether the thin genus's sequences actually fall inside the dominant genus's profile, before building, would have decided it."
+ ],
+ "lede09": "",
+ "p09": []
+}
