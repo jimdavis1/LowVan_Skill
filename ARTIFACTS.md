@@ -39,10 +39,10 @@ per-taxon tables below carry the dates and the source paths.
 | **Parechovirus** | [live](https://claude.ai/artifact/EUx6FLSssTPNRWJ7FcDyL6) | [live](https://claude.ai/artifact/GYiXCX6ammFZUqqK7MbNWs) | [live](https://claude.ai/artifact/6xMJKTWE3i5FXH8yFXBUBf) | [live](https://claude.ai/artifact/V6xRs6ePghUPkaTX1SyuBL) |
 | **Pegivirus** | [live](https://claude.ai/artifact/K2iJfd8E9rtDErhCeDHWix) | [live](https://claude.ai/artifact/GhMTLt7Rd19Ek3mJL7JFWr) | [live](https://claude.ai/artifact/1KUB1A9tKmxJaEHKZbWzYM) | [live](https://claude.ai/artifact/Gy9STnMecUF9MaByUNmugx) |
 | **Pestiviridae** | [live](https://claude.ai/artifact/2wDv9SfmPrtHWSch4gek5c) | [live](https://claude.ai/artifact/9UrwQLi5mBSkVmB4UrtLJm) | [live](https://claude.ai/artifact/KcbRvV3YqDZWutCDNEWkxh) | [live](https://claude.ai/artifact/LEF7bVuNmTvA8vs94ptF26) |
-| **PICO_LDR_VP0** | [src only](reports/pico_ldr_vp0-string-collapse.html) | [src only](reports/pico_ldr_vp0-pssm-registry.html) | [src only](reports/pico_ldr_vp0-vocabulary-saturation.html) | [live](https://claude.ai/artifact/RYMzkjW5JdUu8pHae7eBUz) |
-| **PICO_LDR_VP4** | [src only](reports/pico_ldr_vp4-string-collapse.html) | [src only](reports/pico_ldr_vp4-pssm-registry.html) | [src only](reports/pico_ldr_vp4-vocabulary-saturation.html) | [live](https://claude.ai/artifact/B2Hy5H5UF7VbawdnjMMQCU) |
-| **PICO_NOLDR_VP0** | [src only](reports/pico_noldr_vp0-string-collapse.html) | [src only](reports/pico_noldr_vp0-pssm-registry.html) | [src only](reports/pico_noldr_vp0-vocabulary-saturation.html) | [live](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) |
-| **PICO_NOLDR_VP4** | [src only](reports/pico_noldr_vp4-string-collapse.html) | [src only](reports/pico_noldr_vp4-pssm-registry.html) | [src only](reports/pico_noldr_vp4-vocabulary-saturation.html) | [live](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) |
+| **PICO_LDR_VP0** | [live](https://claude.ai/artifact/DsaQvYVYzTqnmZvFZ93BUc) | [live](https://claude.ai/artifact/D3DZs4rxzkWXYR8PgSi7Lf) | [live](https://claude.ai/artifact/X1n5W5t98hjUZTriS1tFdk) | [live](https://claude.ai/artifact/RYMzkjW5JdUu8pHae7eBUz) |
+| **PICO_LDR_VP4** | [live](https://claude.ai/artifact/LVc4VEW9iCpooM6ou4iyu7) | [live](https://claude.ai/artifact/Pfmpmk7RFRSj9pYXsL4qPZ) | [live](https://claude.ai/artifact/DsoiNuENyGrBgh1tb7TUuy) | [live](https://claude.ai/artifact/B2Hy5H5UF7VbawdnjMMQCU) |
+| **PICO_NOLDR_VP0** | [live](https://claude.ai/artifact/FPxCxJr26eRtF8PJY8wH4p) | [live](https://claude.ai/artifact/Lr9uABqCQZxhBqiw83BJSS) | [live](https://claude.ai/artifact/MQxP6qyN2pCqry717Y5ehK) | [live](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) |
+| **PICO_NOLDR_VP4** | [live](https://claude.ai/artifact/D4ncL6xGyYttgDBcpqDJzF) | [live](https://claude.ai/artifact/CgHakkLnCawRjWZdawJwWB) | [live](https://claude.ai/artifact/4PMpusDUm7dpDGq1Pp2pxL) | [live](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) |
 | **Quinvirinae** | [live](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [live](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [live](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [live](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) |
 | **Rhabdoviridae** | — | [live](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | — | [live](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) |
 | **Sapelovirus** | [live](https://claude.ai/artifact/57VNf18a2R6sdpqC3k3JAR) | [live](https://claude.ai/artifact/R3NPTkzAW38A1af9UtGrT1) | [live](https://claude.ai/artifact/5pNjSX9oLvh83MCHYMoC6z) | [live](https://claude.ai/artifact/88yMxbSKFycQvTt6m6NvZ2) |
@@ -264,32 +264,36 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 | page | live | source | updated |
 |---|---|---|---|
 | PICO_LDR_VP0 Coverage Audit | [open](https://claude.ai/artifact/RYMzkjW5JdUu8pHae7eBUz) | [source](reports/pico_ldr_vp0-coverage-audit.html) | 2026-10-06 |
-
-Built but never published, source is here: [PSSM registry](reports/pico_ldr_vp0-pssm-registry.html), [string collapse](reports/pico_ldr_vp0-string-collapse.html), [vocabulary saturation](reports/pico_ldr_vp0-vocabulary-saturation.html).
+| PICO_LDR_VP0 PSSM Registry | [open](https://claude.ai/artifact/D3DZs4rxzkWXYR8PgSi7Lf) | [source](reports/pico_ldr_vp0-pssm-registry.html) | 2026-10-06 |
+| PICO_LDR_VP0 String Collapse | [open](https://claude.ai/artifact/DsaQvYVYzTqnmZvFZ93BUc) | [source](reports/pico_ldr_vp0-string-collapse.html) | 2026-10-06 |
+| PICO_LDR_VP0 Vocabulary Saturation | [open](https://claude.ai/artifact/X1n5W5t98hjUZTriS1tFdk) | [source](reports/pico_ldr_vp0-vocabulary-saturation.html) | 2026-10-06 |
 
 ### PICO_LDR_VP4
 
 | page | live | source | updated |
 |---|---|---|---|
 | PICO_LDR_VP4 Coverage Audit | [open](https://claude.ai/artifact/B2Hy5H5UF7VbawdnjMMQCU) | [source](reports/pico_ldr_vp4-coverage-audit.html) | 2026-10-06 |
-
-Built but never published, source is here: [PSSM registry](reports/pico_ldr_vp4-pssm-registry.html), [string collapse](reports/pico_ldr_vp4-string-collapse.html), [vocabulary saturation](reports/pico_ldr_vp4-vocabulary-saturation.html).
+| PICO_LDR_VP4 PSSM Registry | [open](https://claude.ai/artifact/Pfmpmk7RFRSj9pYXsL4qPZ) | [source](reports/pico_ldr_vp4-pssm-registry.html) | 2026-10-06 |
+| PICO_LDR_VP4 String Collapse | [open](https://claude.ai/artifact/LVc4VEW9iCpooM6ou4iyu7) | [source](reports/pico_ldr_vp4-string-collapse.html) | 2026-10-06 |
+| PICO_LDR_VP4 Vocabulary Saturation | [open](https://claude.ai/artifact/DsoiNuENyGrBgh1tb7TUuy) | [source](reports/pico_ldr_vp4-vocabulary-saturation.html) | 2026-10-06 |
 
 ### PICO_NOLDR_VP0
 
 | page | live | source | updated |
 |---|---|---|---|
 | PICO_NOLDR_VP0 Coverage Audit | [open](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) | [source](reports/pico_noldr_vp0-coverage-audit.html) | 2026-10-05 |
-
-Built but never published, source is here: [PSSM registry](reports/pico_noldr_vp0-pssm-registry.html), [string collapse](reports/pico_noldr_vp0-string-collapse.html), [vocabulary saturation](reports/pico_noldr_vp0-vocabulary-saturation.html).
+| PICO_NOLDR_VP0 PSSM Registry | [open](https://claude.ai/artifact/Lr9uABqCQZxhBqiw83BJSS) | [source](reports/pico_noldr_vp0-pssm-registry.html) | 2026-10-06 |
+| PICO_NOLDR_VP0 String Collapse | [open](https://claude.ai/artifact/FPxCxJr26eRtF8PJY8wH4p) | [source](reports/pico_noldr_vp0-string-collapse.html) | 2026-10-06 |
+| PICO_NOLDR_VP0 Vocabulary Saturation | [open](https://claude.ai/artifact/MQxP6qyN2pCqry717Y5ehK) | [source](reports/pico_noldr_vp0-vocabulary-saturation.html) | 2026-10-06 |
 
 ### PICO_NOLDR_VP4
 
 | page | live | source | updated |
 |---|---|---|---|
 | PICO_NOLDR_VP4 Coverage Audit | [open](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) | [source](reports/pico_noldr_vp4-coverage-audit.html) | 2026-10-05 |
-
-Built but never published, source is here: [PSSM registry](reports/pico_noldr_vp4-pssm-registry.html), [string collapse](reports/pico_noldr_vp4-string-collapse.html), [vocabulary saturation](reports/pico_noldr_vp4-vocabulary-saturation.html).
+| PICO_NOLDR_VP4 PSSM Registry | [open](https://claude.ai/artifact/CgHakkLnCawRjWZdawJwWB) | [source](reports/pico_noldr_vp4-pssm-registry.html) | 2026-10-06 |
+| PICO_NOLDR_VP4 String Collapse | [open](https://claude.ai/artifact/D4ncL6xGyYttgDBcpqDJzF) | [source](reports/pico_noldr_vp4-string-collapse.html) | 2026-10-06 |
+| PICO_NOLDR_VP4 Vocabulary Saturation | [open](https://claude.ai/artifact/4PMpusDUm7dpDGq1Pp2pxL) | [source](reports/pico_noldr_vp4-vocabulary-saturation.html) | 2026-10-06 |
 
 ### Quinvirinae
 
