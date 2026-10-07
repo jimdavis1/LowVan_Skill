@@ -189,7 +189,7 @@
       [
        "3D",
        "RNA-dependent RNA polymerase",
-       "3D",
+       "RDRP",
        "109",
        "3",
        "defaults"
@@ -476,7 +476,7 @@
        "106 of 106 routed exemplars"
       ],
       [
-       "3D",
+       "RDRP",
        "98.1",
        98.1,
        "104 of 106 routed exemplars"
@@ -498,7 +498,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>0 of 106 routed exemplars get every one of the 13 core features.</b> No core feature trails the best-called one by 20 points or more. Excluded from that count: 2BSTAR, LSTAR &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
+     "html": "<b>93 of 106 routed exemplars get every one of the 13 core features.</b> No core feature trails the best-called one by 20 points or more. Excluded from that count: 2BSTAR, LSTAR &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
     },
     {
      "type": "prose",

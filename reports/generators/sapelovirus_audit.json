@@ -189,7 +189,7 @@
       [
        "3D",
        "RNA-dependent RNA polymerase",
-       "3D",
+       "RDRP",
        "194",
        "4",
        "defaults"
@@ -452,7 +452,7 @@
        "205 of 207 routed exemplars"
       ],
       [
-       "3D",
+       "RDRP",
        "98.6",
        98.6,
        "204 of 207 routed exemplars"

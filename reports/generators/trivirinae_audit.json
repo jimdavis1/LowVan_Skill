@@ -1,8 +1,8 @@
 {
  "title": "Trivirinae Coverage Audit",
- "eyebrow": "LowVan \u00b7 Trivirinae module \u00b7 18 September 2026",
+ "eyebrow": "LowVan · Trivirinae module · 18 September 2026",
  "h1": "Does the single-movement-protein module actually work?",
- "standfirst": "<b>Trivirinae</b> is the half of the family that moves by one movement protein rather than a triple gene block \u2014 <b>Trichovirus, Vitivirus, Citrivirus, Tepovirus, Prunevirus, Chordovirus, Divavirus, Wamavirus</b>. Between them: apple chlorotic leaf spot, grapevine Pinot gris disease, citrus leaf blotch, cherry mottle leaf. This is the audit of the module built for them. Every figure is reproducible from <code>work/Trivirinae/</code>.",
+ "standfirst": "<b>Trivirinae</b> is the half of the family that moves by one movement protein rather than a triple gene block — <b>Trichovirus, Vitivirus, Citrivirus, Tepovirus, Prunevirus, Chordovirus, Divavirus, Wamavirus</b>. Between them: apple chlorotic leaf spot, grapevine Pinot gris disease, citrus leaf blotch, cherry mottle leaf. This is the audit of the module built for them. Every figure is reproducible from <code>work/Trivirinae/</code>.",
  "headline_tiles": [
   [
    "5",
@@ -21,7 +21,7 @@
    "genomes genuinely clean"
   ],
   [
-   "23\u00d7",
+   "23×",
    "string collapse"
   ],
   [
@@ -37,7 +37,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "Betaflexiviridae splits cleanly in two on how its members move between cells. One half carries a <b>triple gene block</b>; this one carries a <b>single movement protein</b>. Splitting on that is not a tidiness exercise \u2014 it is worth 16 percentage points of routing: the family lumped reaches <b>75.3%</b> of its genomes on 25 references, this half reaches <b>91.6%</b> and the TGB half 81.0%."
+     "html": "Betaflexiviridae splits cleanly in two on how its members move between cells. One half carries a <b>triple gene block</b>; this one carries a <b>single movement protein</b>. Splitting on that is not a tidiness exercise — it is worth 16 percentage points of routing: the family lumped reaches <b>75.3%</b> of its genomes on 25 references, this half reaches <b>91.6%</b> and the TGB half 81.0%."
     },
     {
      "type": "table",
@@ -59,7 +59,7 @@
        "6,705"
       ],
       [
-       "genomes with a contig \u2265 6 kb",
+       "genomes with a contig ≥ 6 kb",
        "1,385"
       ],
       [
@@ -70,7 +70,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>Capillovirus is deliberately absent.</b> Its coat protein sits inside the ORF1 polyprotein \u2014 residues 1909-2100 of 2105, measured by BLASTp against Trichovirus and Tepovirus CPs \u2014 so it has no separate CP coding sequence and cannot share this module's CP feature. It gets its own module."
+     "html": "<b>Capillovirus is deliberately absent.</b> Its coat protein sits inside the ORF1 polyprotein — residues 1909-2100 of 2105, measured by BLASTp against Trichovirus and Tepovirus CPs — so it has no separate CP coding sequence and cannot share this module's CP feature. It gets its own module."
     }
    ]
   },
@@ -92,7 +92,7 @@
       [
        "REP",
        "RNA-dependent RNA polymerase",
-       "L",
+       "RDRP",
        "1,204",
        "41"
       ],
@@ -132,7 +132,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>VITI_ORF2 mostly has no name to bin on.</b> 235 of its 289 source records say only &ldquo;hypothetical protein&rdquo; and the rest give a mass. It is nonetheless one homology group \u2014 426 Vitivirus sequences, 67 of 70 sampled hitting another member at a median 97% identity, and not one hit to CP or NABP \u2014 so it reaches the collection through the homology rescue rather than through a text rule, and ships with the uncharacterized annotation because no paper establishes a function for it."
+     "html": "<b>VITI_ORF2 mostly has no name to bin on.</b> 235 of its 289 source records say only &ldquo;hypothetical protein&rdquo; and the rest give a mass. It is nonetheless one homology group — 426 Vitivirus sequences, 67 of 70 sampled hitting another member at a median 97% identity, and not one hit to CP or NABP — so it reaches the collection through the homology rescue rather than through a text rule, and ships with the uncharacterized annotation because no paper establishes a function for it."
     }
    ]
   },
@@ -195,7 +195,7 @@
     {
      "type": "verdict",
      "kind": "ok",
-     "html": "In-range self-recall: <b>REP 1204/1204 (100%), CP 1790/1791 (99.9%), MP 1296/1297 (99.9%), VITI_ORF2 288/289 (99.7%), NABP 463/470 (98.5%)</b>. A floor, not a validation \u2014 profiles finding their own training data proves little. The held-out figures are in \u00a705 and \u00a706."
+     "html": "In-range self-recall: <b>REP 1204/1204 (100%), CP 1790/1791 (99.9%), MP 1296/1297 (99.9%), VITI_ORF2 288/289 (99.7%), NABP 463/470 (98.5%)</b>. A floor, not a validation — profiles finding their own training data proves little. The held-out figures are in §05 and §06."
     }
    ]
   },
@@ -215,7 +215,7 @@
       [
        "near-complete exemplars tested",
        "409",
-       "\u2014"
+       "—"
       ],
       [
        "routed to Trivirinae",
@@ -231,7 +231,7 @@
     },
     {
      "type": "prose",
-     "html": "The 25 references cover <b>1,268 of 1,385</b> genomes when measured by clustering at 70% identity \u2014 91.6%, the figure the budget rule is applied to \u2014 and route <b>99.5%</b> of the near-complete exemplars, which are clustered at 95%. Both numbers are real and they answer different questions: the first is what fraction of the deposited set a fixed reference budget reaches, the second is whether a genome that arrives actually finds the module. 62 clusters holding 117 genomes sit outside the budget."
+     "html": "The 25 references cover <b>1,268 of 1,385</b> genomes when measured by clustering at 70% identity — 91.6%, the figure the budget rule is applied to — and route <b>99.5%</b> of the near-complete exemplars, which are clustered at 95%. Both numbers are real and they answer different questions: the first is what fraction of the deposited set a fixed reference budget reaches, the second is whether a genome that arrives actually finds the module. 62 clusters holding 117 genomes sit outside the budget."
     }
    ]
   },
@@ -260,19 +260,19 @@
        "CP",
        "98.5",
        98.5,
-       "401 of 407, up from 92.1% \u2014 see \u00a708"
+       "401 of 407, up from 92.1% — see §08"
       ],
       [
        "NABP",
        "45.7",
        45.7,
-       "186 genomes \u2014 but 92% of Vitivirus and 38% of Prunevirus"
+       "186 genomes — but 92% of Vitivirus and 38% of Prunevirus"
       ],
       [
        "Viti_ORF2",
        "37.8",
        37.8,
-       "154 genomes \u2014 84% of Vitivirus, 0% of everything else"
+       "154 genomes — 84% of Vitivirus, 0% of everything else"
       ]
      ]
     },
@@ -282,7 +282,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>NABP also fires on 14 Trichovirus genomes, and that is real.</b> All 14 are Cherry mottle leaf virus, Peach mosaic virus or Mexico trichovirus, all 7,972-8,018 nt against <i>Trichovirus mali</i> at 7,328-7,561 \u2014 those species carry an extra ORF. It is a species-level architecture difference inside the genus, comfortably above the 39-bit noise ceiling, and not a false positive."
+     "html": "<b>NABP also fires on 14 Trichovirus genomes, and that is real.</b> All 14 are Cherry mottle leaf virus, Peach mosaic virus or Mexico trichovirus, all 7,972-8,018 nt against <i>Trichovirus mali</i> at 7,328-7,561 — those species carry an extra ORF. It is a species-level architecture difference inside the genus, comfortably above the 39-bit noise ceiling, and not a false positive."
     },
     {
      "type": "prose",
@@ -322,7 +322,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>85 of 96, not 89.</b> <code>run_gto_eval.py</code> decides good-versus-poor on genome and contig flags only; feature-level flags are printed four lines lower and do not count. Four of the 89 &ldquo;good&rdquo; genomes carry a length flag, so the honest figure is 85. Scored the same way, Tobamovirus is 89.4% and Hepeviridae 89.1% \u2014 this module is the middle of the three, not the best, which is what the uncorrected 92.7% made it look like."
+     "html": "<b>85 of 96, not 89.</b> <code>run_gto_eval.py</code> decides good-versus-poor on genome and contig flags only; feature-level flags are printed four lines lower and do not count. Four of the 89 &ldquo;good&rdquo; genomes carry a length flag, so the honest figure is 85. Scored the same way, Tobamovirus is 89.4% and Hepeviridae 89.1% — this module is the middle of the three, not the best, which is what the uncorrected 92.7% made it look like."
     },
     {
      "type": "prose",
@@ -367,7 +367,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>553 of 11,260 features (4.9%) matched no binning rule</b>, across 42 distinct strings after the rescue recovered 351. The residue is genuinely uninformative \u2014 &ldquo;hypothetical protein&rdquo;, &ldquo;unknown&rdquo;, bare ORF numbers \u2014 and is listed in full on the collapse page rather than hidden."
+     "html": "<b>553 of 11,260 features (4.9%) matched no binning rule</b>, across 42 distinct strings after the rescue recovered 351. The residue is genuinely uninformative — &ldquo;hypothetical protein&rdquo;, &ldquo;unknown&rdquo;, bare ORF numbers — and is listed in full on the collapse page rather than hidden."
     },
     {
      "type": "verdict",
@@ -391,11 +391,11 @@
     },
     {
      "type": "prose",
-     "html": "That cluster held 11 sequences of 249-250 aa against a modal CP of 193, all annotated from the same upstream Met; the correct start is the Met at residue 58. Its profile therefore anchored 57 codons early, landed inside the movement protein ORF in another frame, hit a stop, and was rejected \u2014 <i>while scoring 451 bits and beating the clean profiles at 263 and 247 that would have called the protein</i>. The pipeline's N-terminal check logged it <code>OK</code>, because that check asks whether a cluster's members agree with each other and all 11 agreed perfectly. Trimmed to the right Met, <b>26 of 26 recover</b>."
+     "html": "That cluster held 11 sequences of 249-250 aa against a modal CP of 193, all annotated from the same upstream Met; the correct start is the Met at residue 58. Its profile therefore anchored 57 codons early, landed inside the movement protein ORF in another frame, hit a stop, and was rejected — <i>while scoring 451 bits and beating the clean profiles at 263 and 247 that would have called the protein</i>. The pipeline's N-terminal check logged it <code>OK</code>, because that check asks whether a cluster's members agree with each other and all 11 agreed perfectly. Trimmed to the right Met, <b>26 of 26 recover</b>."
     },
     {
      "type": "prose",
-     "html": "<b>A length window set from the dominant genera deleted a genus.</b> CP was built at 150-280 because Vitivirus and Trichovirus sit at 193-198 aa. Citrus leaf blotch virus coat protein is ~41 kDa \u2014 <b>median 363</b> \u2014 so 90 real Citrivirus CPs went to the outliers file and the collection kept 5 atypical short ones. The profiles were then built with almost no Citrivirus, and the quality run flagged Citrivirus CP &ldquo;too long&rdquo; against a <code>max_len</code> computed from that same truncated collection. Widening to 150-400 takes Citrivirus CP from <b>5 sequences to 95</b>."
+     "html": "<b>A length window set from the dominant genera deleted a genus.</b> CP was built at 150-280 because Vitivirus and Trichovirus sit at 193-198 aa. Citrus leaf blotch virus coat protein is ~41 kDa — <b>median 363</b> — so 90 real Citrivirus CPs went to the outliers file and the collection kept 5 atypical short ones. The profiles were then built with almost no Citrivirus, and the quality run flagged Citrivirus CP &ldquo;too long&rdquo; against a <code>max_len</code> computed from that same truncated collection. Widening to 150-400 takes Citrivirus CP from <b>5 sequences to 95</b>."
     },
     {
      "type": "verdict",
@@ -455,7 +455,7 @@
     },
     {
      "type": "prose",
-     "html": "115 bound strings collapse into 5 controlled annotations, a <b>23.0-fold</b> reduction over 6,503 occurrences. Rarefaction over 100 shuffles: free text climbs to 86 distinct strings and is still rising at the end of the set, the controlled vocabulary saturates at <b>5</b> by the fifth genome \u2014 <b>21.5 strings per 100 genomes against 1.2, a 17.2-fold difference</b>."
+     "html": "115 bound strings collapse into 5 controlled annotations, a <b>23.0-fold</b> reduction over 6,503 occurrences. Rarefaction over 100 shuffles: free text climbs to 86 distinct strings and is still rising at the end of the set, the controlled vocabulary saturates at <b>5</b> by the fifth genome — <b>21.5 strings per 100 genomes against 1.2, a 17.2-fold difference</b>."
     },
     {
      "type": "prose",

@@ -109,8 +109,14 @@ if unknown: print("  NOTE: calls with no declared feature: %s" % unknown, file=s
 #     genuinely lacks (cardiovirus L* is absent from EMCV; 2B* exists only there)
 NOTU = set(pr.get("not_universal", [])) | {k for k in keys if "special" in feats[k]}
 core = [k for k in keys if k not in NOTU]
-want = {sym[k] for k in core}
-full = sum(1 for r in rows if want <= set(r["calls"]))
+#  Match on EITHER the key or the gene symbol, exactly as `pres` above does.
+#  A coverage run records whatever name the module carried at the time, so a
+#  later symbol change leaves the two out of step: renaming the picornavirus
+#  polymerase 3D -> RDRP made this subset test match nothing and dropped
+#  Enterovirus from "2690 of 2856 get every core feature" to 0 of 2856, with
+#  no error anywhere. Nothing had been re-measured; only a label moved.
+full = sum(1 for r in rows
+           if all((k in r["calls"]) or (sym[k] in r["calls"]) for k in core))
 n_empty = len(empty)
 bars = [[sym[k], "%.1f" % (100.0 * pres[k] / routed if routed else 0),
          round(100.0 * pres[k] / routed, 1) if routed else 0, "%d of %d routed exemplars" % (pres[k], routed)]

@@ -65,3 +65,25 @@ cardiovirus-pssm-registry, cardiovirus-string-collapse
 
 Only the label differs; no measurement changed. The pages are correct in the
 repo, so this is a publishing backlog, not a data problem.
+
+## Also stale after the RDRP symbol change (7 October)
+
+`gene_symbol` moved to `RDRP` for the RNA-dependent RNA polymerase in 33
+skill-repo modules. The coverage audit prints the symbol, so every audit for
+those modules had to be re-rendered. 14 Picornaviridae + Tobamovirus +
+Trivirinae were regenerated here.
+
+**Five audits cannot be regenerated in this working tree** -- they have no
+`reports/generators/<slug>_audit.json`, so their inputs live wherever they were
+originally built:
+
+| page | still shows |
+|---|---|
+| hepaciviridae-coverage-audit | NS5B |
+| matonaviridae-coverage-audit | p90 |
+| orthoflavivirus-coverage-audit | NS5 |
+| pegivirus-coverage-audit | NS5B |
+| pestiviridae-coverage-audit | NS5B |
+
+Re-render them from their own working trees; the module JSONs are already
+correct.

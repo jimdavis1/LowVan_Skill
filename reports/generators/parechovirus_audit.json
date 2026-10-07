@@ -173,7 +173,7 @@
       [
        "3D",
        "RNA-dependent RNA polymerase",
-       "3D",
+       "RDRP",
        "391",
        "4",
        "defaults"
@@ -396,7 +396,7 @@
        "238 of 244 routed exemplars"
       ],
       [
-       "3D",
+       "RDRP",
        "98.8",
        98.8,
        "241 of 244 routed exemplars"
@@ -406,7 +406,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>0 of 244 routed exemplars get every one of the 11 core features.</b> No core feature trails the best-called one by 20 points or more."
+     "html": "<b>207 of 244 routed exemplars get every one of the 11 core features.</b> No core feature trails the best-called one by 20 points or more."
     },
     {
      "type": "prose",
