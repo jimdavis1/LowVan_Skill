@@ -481,7 +481,7 @@ Togaviridae	Nonstructural polyprotein	nsP1234	CDS	Single RNA Segment	1
 Togaviridae	mRNA-capping enzyme nsP1 protein	nsP1	mat_peptide	Single RNA Segment	1	
 Togaviridae	Protease nsP2 protein	nsP2	mat_peptide	Single RNA Segment	1	
 Togaviridae	Nonstructural protein nsP3	nsP3	mat_peptide	Single RNA Segment	1	
-Togaviridae	RNA-dependent RNA polymerase	nsP4	mat_peptide	Single RNA Segment	1	
+Togaviridae	RNA-dependent RNA polymerase	RDRP	mat_peptide	Single RNA Segment	1	
 Togaviridae	Structural polyprotein	STP	CDS	Single RNA Segment	1	
 Togaviridae	Nucleocapsid protein	C	mat_peptide	Single RNA Segment	1	
 Togaviridae	Mature envelope glycoprotein E3	E3	mat_peptide	Single RNA Segment	1	
@@ -493,7 +493,7 @@ Togaviridae	Nonstructural polyprotein P123	nsP123	CDS	Single RNA Segment	1
 Togaviridae	TransFrame protein	TF	mat_peptide	Single RNA Segment	0	18822126;23720714
 Matonaviridae	Nonstructural polyprotein	p200	CDS	Single RNA Segment	1	
 Matonaviridae	Protease p150 protein	p150	mat_peptide	Single RNA Segment	1	
-Matonaviridae	RNA-dependent RNA polymerase	p90	mat_peptide	Single RNA Segment	1	
+Matonaviridae	RNA-dependent RNA polymerase	RDRP	mat_peptide	Single RNA Segment	1	
 Matonaviridae	Structural polyprotein	p110	CDS	Single RNA Segment	1	
 Matonaviridae	Nucleocapsid protein	C	mat_peptide	Single RNA Segment	1	
 Matonaviridae	Mature envelope glycoprotein E2	E2	mat_peptide	Single RNA Segment	1	
@@ -503,15 +503,15 @@ Hepeviridae	Nucleocapsid protein	ORF2	CDS	Single RNA Segment	1
 Hepeviridae	Membrane-associated viroporin required for virion release ORF3 protein	ORF3	CDS	Single RNA Segment	1	
 Hepeviridae	Uncharacterized lineage-specific protein	Roca_ORF4	CDS	Single RNA Segment	0	
 Tobamovirus	Methyltransferase and helicase replication protein	126K	CDS	Single RNA Segment	1	
-Tobamovirus	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
+Tobamovirus	RNA-dependent RNA polymerase	RDRP	CDS	Single RNA Segment	1	
 Tobamovirus	Movement protein	Mov	CDS	Single RNA Segment	1	
 Tobamovirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
-Trivirinae	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
+Trivirinae	RNA-dependent RNA polymerase	RDRP	CDS	Single RNA Segment	1	
 Trivirinae	Movement protein	Mov	CDS	Single RNA Segment	1	
 Trivirinae	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
 Trivirinae	Nucleic acid-binding protein	NABP	CDS	Single RNA Segment	0	
 Trivirinae	Uncharacterized lineage-specific protein	Viti_ORF2	CDS	Single RNA Segment	0	
-Alphaflexiviridae	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	1	
+Alphaflexiviridae	RNA-dependent RNA polymerase	RDRP	CDS	Single RNA Segment	1	
 Alphaflexiviridae	Triple gene block protein 1	TGB1	CDS	Single RNA Segment	1	
 Alphaflexiviridae	Triple gene block protein 2	TGB2	CDS	Single RNA Segment	1	
 Alphaflexiviridae	Triple gene block protein 3	TGB3	CDS	Single RNA Segment	1	
@@ -536,7 +536,7 @@ Ampelovirus	HSP90 homolog	HSP90	CDS		0
 Ampelovirus	Minor coat protein	CPM	CDS		0	
 Ampelovirus	Nucleocapsid protein	N	CDS		0	
 Ampelovirus	RNA silencing suppressor P20B protein	P20B	CDS		0	
-Ampelovirus	RNA-dependent RNA polymerase	L	CDS		0	
+Ampelovirus	RNA-dependent RNA polymerase	RDRP	CDS		0	
 Ampelovirus	Replicase polyprotein	POLY	CDS		0	
 Ampelovirus	Uncharacterized lineage-specific P20A protein	P20A	CDS		0	
 Ampelovirus	Uncharacterized lineage-specific P21 protein	P21	CDS		0	
@@ -556,7 +556,7 @@ Closterovirus	Minor coat protein	CPM	CDS		0
 Closterovirus	Movement protein	Mov	CDS		0	
 Closterovirus	Nucleocapsid protein	N	CDS		0	
 Closterovirus	RNA silencing suppressor P23 protein	P23	CDS		0	
-Closterovirus	RNA-dependent RNA polymerase	L	CDS		0	
+Closterovirus	RNA-dependent RNA polymerase	RDRP	CDS		0	
 Closterovirus	Replicase polyprotein	POLY	CDS		0	
 Closterovirus	Uncharacterized lineage-specific P19 protein	P19	CDS		0	
 Closterovirus	Uncharacterized lineage-specific P20 protein	P20	CDS		0	
@@ -568,7 +568,7 @@ Crinivirus	RNA silencing suppressor P22A protein	P22A	CDS	RNA1	0
 Crinivirus	RNA silencing suppressor P22B protein	P22B	CDS	RNA1	0	26334965;27928924
 Crinivirus	RNA silencing suppressor P22C protein	P22C	CDS	RNA1	0	31502079;32045630
 Crinivirus	RNA silencing suppressor P25 protein	P25	CDS	RNA1	0	19540278
-Crinivirus	RNA-dependent RNA polymerase	L	CDS	RNA1	0	
+Crinivirus	RNA-dependent RNA polymerase	RDRP	CDS	RNA1	0	
 Crinivirus	Replicase polyprotein	POLY	CDS	RNA1	0	
 Crinivirus	Suppressor of RNA silencing	SUPPRESSOR	CDS	RNA1	0	
 Crinivirus	Uncharacterized lineage-specific P27 protein	P27	CDS	RNA2	0	
@@ -585,7 +585,7 @@ Velarivirus	HSP70 homolog	HSP70	CDS		0
 Velarivirus	HSP90 homolog	HSP90	CDS		0	
 Velarivirus	Minor coat protein	CPM	CDS		0	
 Velarivirus	Nucleocapsid protein	N	CDS		0	
-Velarivirus	RNA-dependent RNA polymerase	L	CDS		0	
+Velarivirus	RNA-dependent RNA polymerase	RDRP	CDS		0	
 Velarivirus	Replicase polyprotein	POLY	CDS		0	
 Velarivirus	Thaumatin-like protein	THAU	CDS		0	
 Capillovirus	Replicase polyprotein	POLY	CDS		0	
@@ -617,4 +617,4 @@ Picornaviridae	Protein 2A3	2A3	mat_peptide	Single RNA Segment	0
 Picornaviridae	Protein 2B, viroporin	2B	mat_peptide	Single RNA Segment	0	
 Picornaviridae	Protein 2C, ATPase/helicase	2C	mat_peptide	Single RNA Segment	0	
 Picornaviridae	Protein 3A	3A	mat_peptide	Single RNA Segment	0	
-Picornaviridae	RNA-dependent RNA polymerase	3D	mat_peptide	Single RNA Segment	0	
+Picornaviridae	RNA-dependent RNA polymerase	RDRP	mat_peptide	Single RNA Segment	0	

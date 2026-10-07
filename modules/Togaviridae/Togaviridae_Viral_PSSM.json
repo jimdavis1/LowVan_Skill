@@ -264,7 +264,7 @@
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "mat_peptide",
-            "gene_symbol" : "nsP4",
+            "gene_symbol" : "RDRP",
             "kmers" : 0,
             "max_len" : 663,
             "min_len" : 562,

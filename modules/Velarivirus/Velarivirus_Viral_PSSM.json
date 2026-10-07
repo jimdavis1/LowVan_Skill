@@ -354,7 +354,7 @@
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
-            "gene_symbol" : "L",
+            "gene_symbol" : "RDRP",
             "kmers" : 0,
             "max_len" : 560,
             "min_len" : 455,

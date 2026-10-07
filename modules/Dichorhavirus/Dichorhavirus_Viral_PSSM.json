@@ -60,7 +60,7 @@
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
-            "gene_symbol" : "L",
+            "gene_symbol" : "RDRP",
             "kmers" : 1,
             "max_len" : 2067,
             "min_len" : 1662,
