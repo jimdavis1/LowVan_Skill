@@ -196,7 +196,7 @@
                   "2252396"
                ]
             },
-            "anno" : "RNA-directed RNA polymerase 3D",
+            "anno" : "RNA-dependent RNA polymerase",
             "bit_cutoff" : 211,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,

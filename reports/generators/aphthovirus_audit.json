@@ -101,7 +101,7 @@
       [
        "Ldr",
        "Leader protease (Lpro)",
-       "Ldr",
+       "Lpro",
        "1,152",
        "6",
        "defaults"
@@ -188,7 +188,7 @@
       ],
       [
        "3D",
-       "RNA-directed RNA polymerase 3D",
+       "RNA-dependent RNA polymerase",
        "3D",
        "1,197",
        "5",
@@ -380,7 +380,7 @@
        "416 of 431 routed exemplars"
       ],
       [
-       "Ldr",
+       "Lpro",
        "96.3",
        96.3,
        "415 of 431 routed exemplars"
@@ -456,7 +456,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>409 of 431 routed exemplars get every one of the 13 core features.</b> No core feature trails the best-called one by 20 points or more."
+     "html": "<b>0 of 431 routed exemplars get every one of the 13 core features.</b> No core feature trails the best-called one by 20 points or more."
     },
     {
      "type": "prose",
@@ -591,7 +591,7 @@
       ],
       [
        "3D",
-       "RNA-directed RNA polymerase 3D",
+       "RNA-dependent RNA polymerase",
        "15"
       ],
       [

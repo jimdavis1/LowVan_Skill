@@ -173,7 +173,7 @@
       [
        "VPG",
        "Genome-linked protein VPg (3B)",
-       "VPG",
+       "VPg",
        "34",
        "2",
        "defaults"
@@ -188,7 +188,7 @@
       ],
       [
        "3D",
-       "RNA-directed RNA polymerase 3D",
+       "RNA-dependent RNA polymerase",
        "3D",
        "151",
        "2",
@@ -426,7 +426,7 @@
        "160 of 160 routed exemplars"
       ],
       [
-       "VPG",
+       "VPg",
        "100.0",
        100.0,
        "160 of 160 routed exemplars"
@@ -448,7 +448,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>148 of 160 routed exemplars get every declared feature.</b> No core feature trails the best-called one by 20 points or more."
+     "html": "<b>0 of 160 routed exemplars get every one of the 13 core features.</b> No core feature trails the best-called one by 20 points or more."
     },
     {
      "type": "prose",
@@ -609,7 +609,7 @@
       ],
       [
        "3D",
-       "RNA-directed RNA polymerase 3D",
+       "RNA-dependent RNA polymerase",
        "2"
       ],
       [
