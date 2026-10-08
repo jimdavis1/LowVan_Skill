@@ -104,8 +104,21 @@ PARTIAL = re.compile(r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal
 The 25 `truncated VP7` / `truncated NSP3` records had been binned as clean
 because only the comma form was being matched.
 
-**`putative` is not a partiality marker.** It expresses uncertainty about
-identity, not about completeness. Keep those records.
+**`truncated` is always discarded**, in either shape -- as a comma suffix or as
+the `truncated VP7` prefix. There is no homology test that rescues it, because
+the objection is not to the identity but to the completeness.
+
+**`putative` is a different thing, and it is kept -- but it has to be earned.**
+It is not a partiality claim; it is the submitter saying they are unsure *which*
+protein this is. So the string is not taken at face value: the record goes to
+UNASSIGNED and the homology rescue adopts it only at >=80% identity over >=60%
+of the query against a named collection. `probable`, `possible` and `predicted`
+are treated the same way.
+
+Binning `putative X` by name instead would let one uncertain submitter's guess
+into the training set for X, where it trains the profile that then propagates
+the same guess. Routing it through homology means the collection decides whether
+the guess was right.
 
 ### Why parking them in outliers is not good enough
 

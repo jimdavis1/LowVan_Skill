@@ -56,18 +56,27 @@ def compiled(rules):
 #  326 median.
 #
 #  The qualifier is not always a comma suffix: `truncated VP7` is a PREFIX, and
-#  25 such records were binned as clean until that was checked. `putative` is
-#  NOT a partiality marker -- it is uncertainty about identity, not about
-#  completeness -- and those records are kept.
+#  25 such records were binned as clean until that was checked. TRUNCATED IS
+#  ALWAYS DISCARDED, in either shape.
 PARTIAL = re.compile(
     r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
     r"|^\s*truncated\b", re.I)
+
+#  `putative` is NOT a partiality claim -- it is the submitter saying they are
+#  unsure WHICH protein this is. So it is kept, but it has to be EARNED: the
+#  string is not taken at face value, the record goes to unassigned, and the
+#  homology rescue adopts it only at >=80% identity over >=60% of the query
+#  against a named collection. Binning it by name instead would let one
+#  uncertain submitter's guess train the profile that then propagates it.
+PUTATIVE = re.compile(r"^\s*(putative|probable|possible|predicted)\b", re.I)
 
 
 def classify(anno, rules, notmod):
     a = " ".join(anno.split())
     if PARTIAL.search(a):
         return None, "partial"
+    if PUTATIVE.search(a):
+        return None, None          # -> unassigned; the rescue arbitrates
     for rx, why in notmod:
         if re.search(rx, a, re.I):
             return None, why

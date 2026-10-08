@@ -92,14 +92,26 @@ for fn in os.listdir(cdir):
     for line in open(os.path.join(cdir, fn)):
         if line.startswith(">"): assigned.add(line[1:].split()[0].strip())
 
-todo = []
+#  PROJECT RULE: a record the source annotates as partial or incomplete is
+#  DISCARDED, and that has to hold HERE as well. This script re-derives the
+#  unassigned set from the dump, so without this test it hands every discarded
+#  fragment straight back: on Rotavirus it adopted 36,800 of them at >=80%
+#  identity, because they ARE genuine VP4/VP7/VP6 by homology -- they are simply
+#  not whole. `truncated` is caught in both shapes, comma suffix and prefix.
+PARTIAL = re.compile(
+    r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
+    r"|^\s*truncated\b", re.I)
+
+todo, n_partial = [], 0
 for i, m in enumerate(md5):
     fid = ann[i][0] if ann[i] else ""
     an = ann[i][1] if len(ann[i]) > 1 else ""
     if not fid or fid in assigned or not seq.get(m): continue
+    if PARTIAL.search(" ".join((an or "").split())):
+        n_partial += 1; continue
     gid = fid.split("|", 1)[1].rsplit(".", 2)[0]
     todo.append((fid, g2g.get(gid, "unclassified"), m, an, seq[m]))
-sys.stderr.write("%d sequences matched no rule\n" % len(todo))
+sys.stderr.write("%d sequences matched no rule; %d discarded as partial-annotated\n" % (len(todo), n_partial))
 if not todo: sys.exit(0)
 
 tmp = tempfile.mkdtemp()
