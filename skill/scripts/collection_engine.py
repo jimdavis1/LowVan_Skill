@@ -40,8 +40,34 @@ def compiled(rules):
     return [(k, re.compile(p, re.I)) for k, p in rules]
 
 
+#  PROJECT RULE (8 October 2026): a record the source annotates as partial or
+#  incomplete is DISCARDED -- not binned, not offered to the homology rescue,
+#  not parked in <FEAT>.outliers.fasta. The submitter is saying the sequence is
+#  not the whole protein, and a profile has no business training on it.
+#
+#  This is a different test from the length gate and it runs first. The length
+#  gate asks whether a sequence is the wrong SIZE; this asks whether the source
+#  says it is a FRAGMENT. A record can fail either independently, and no length
+#  window can substitute: rotavirus VP7 is 326 aa in RVA and 244-251 in
+#  RVB/RVG/RVJ, so the window must reach down to ~195, and a TRUNCATED RVA VP7
+#  at 276 then passes it. There were 10,105 of those against 5,461 full-length
+#  RVA records -- outnumbering them two to one and dragging the consensus ~50
+#  residues short. Discarding on the annotation puts RVA VP7 straight back to a
+#  326 median.
+#
+#  The qualifier is not always a comma suffix: `truncated VP7` is a PREFIX, and
+#  25 such records were binned as clean until that was checked. `putative` is
+#  NOT a partiality marker -- it is uncertainty about identity, not about
+#  completeness -- and those records are kept.
+PARTIAL = re.compile(
+    r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
+    r"|^\s*truncated\b", re.I)
+
+
 def classify(anno, rules, notmod):
     a = " ".join(anno.split())
+    if PARTIAL.search(a):
+        return None, "partial"
     for rx, why in notmod:
         if re.search(rx, a, re.I):
             return None, why

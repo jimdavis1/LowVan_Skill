@@ -73,6 +73,62 @@ Strictly additive — anything that matched before still matches on pass one. It
 exists because `L-protein` missed `^L (protein|polymerase)` on a single hyphen
 and sat unbinned, which is how Varicosavirus lost a third of its L sequences.
 
+## Discard anything the source annotates as partial
+
+**A record whose annotation says it is partial or incomplete is DISCARDED.**
+Not binned, not offered to the homology rescue, not parked in
+`<FEAT>.outliers.fasta`. The submitter is telling you the sequence is not the
+whole protein, and a profile has no business being trained on it.
+
+This is a different test from the length gate below, and it runs first. The
+length gate asks *is this sequence the wrong size*; this asks *does the source
+say it is a fragment*. A record can fail either independently.
+
+The qualifier vocabulary is wider than it looks. Measured across one
+Sedoreoviridae dump:
+
+```
+, fragment     43,026 features
+, N-terminal   17,743
+, C-terminal    6,135
+truncated X        25     <- a PREFIX, not a comma suffix
+```
+
+so match both shapes:
+
+```python
+PARTIAL = re.compile(r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
+                     r"|^\s*truncated\b", re.I)
+```
+
+The 25 `truncated VP7` / `truncated NSP3` records had been binned as clean
+because only the comma form was being matched.
+
+**`putative` is not a partiality marker.** It expresses uncertainty about
+identity, not about completeness. Keep those records.
+
+### Why parking them in outliers is not good enough
+
+Rotavirus VP7 is the worked example. It is full length at 326 aa in Rotavirus A
+and at 244-251 in RVB/RVG/RVJ, so the module window has to reach down to ~195 to
+keep the short species -- and a *truncated RVA* VP7 at 276 then passes it.
+
+    RVA VP7, clean label     5,461 records, median 326   <- true full length
+    RVA VP7, partial label  10,105 records, median 276   <- truncated
+
+The truncated records outnumbered the full-length ones two to one. No single
+length window separates them, because the truncated RVA sequences are the same
+size as legitimate RVB ones. Discarding on the annotation does separate them:
+RVA VP7 goes straight back to a 326 median.
+
+The homology rescue makes this worse if it is allowed to see them, because they
+*are* genuine VP7 by homology -- it adopted 36,800 such records at >=80%
+identity and handed them all back. They have to be removed before the rescue,
+not after.
+
+Counts still go to `NOT_MODELLED.tsv`, and an audit file naming every discarded
+string keeps the decision reviewable. What is not kept is the sequence.
+
 ## Length gates catch some errors, not this one
 
 Keep an `EXPECTED = {feature: (min_aa, max_aa)}` table and split anything outside

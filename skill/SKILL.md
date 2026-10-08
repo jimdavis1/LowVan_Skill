@@ -136,6 +136,16 @@ Histogram every annotation string by genus, then write rules mapping strings to
 feature keys. This is the step that determines everything downstream, and the
 step where mistakes are least visible.
 
+**Discard anything the source annotates as partial or incomplete.** Not binned,
+not rescued, not parked in outliers — a deposit that says `, fragment`,
+`, N-terminal`, `, C-terminal` or `truncated X` is the submitter telling you the
+sequence is not the whole protein. `collection_engine.py` enforces this before
+any rule is tried. No length window can substitute for it: rotavirus VP7 is
+326 aa in RVA and 244–251 in RVB/RVG/RVJ, so the window has to reach down to
+~195, and a *truncated RVA* VP7 at 276 passes it — there were 10,105 of those
+against 5,461 full-length RVA records. `putative` is not a partiality marker and
+those records are kept.
+
 Read `references/annotation-triage.md` before writing rules — it covers the
 **U-number trap** (positional labels like `U1`/`ORF3`/`VP2` are not homology
 groups, and **neither is a mass**: "p22" is four different proteins in
