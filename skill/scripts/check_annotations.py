@@ -124,6 +124,44 @@ def main():
     args = ap.parse_args()
 
     known, taxa_of, symbol_of, symbol_by_taxon = set(), {}, {}, {}
+
+
+def guard_partial_vs_subunit(vocab_path):
+    """No string the project PUBLISHES may be classified partial.
+
+    collection_engine discards anything annotated as a fragment, and the
+    qualifier it matches includes `, N-terminal` / `, C-terminal`. Those same
+    words appear adjectivally inside 32 legitimate S1 Table entries that name
+    CLEAVED SUBUNITS -- Gn/Gc across five bunyavirus families and both
+    filoviruses, HA1/HA2, HEF1/HEF2, spike S1/S2, fusion F1/F2.
+
+    What separates them is anchoring: the discard qualifier must be
+    comma-introduced and at the END of the string. That is easy to loosen by
+    accident, and the damage would be a cleaved product silently vanishing from
+    every module that declares one. So assert it here rather than trust it.
+    """
+    partial = re.compile(r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
+                         r"|^\s*truncated\b", re.I)
+    bad = []
+    with open(vocab_path) as fh:
+        for line in fh:
+            f = line.rstrip("\n").split("\t")
+            if len(f) < 2 or f[0] == "Taxon":
+                continue
+            if partial.search(f[1]):
+                bad.append((f[0], f[1]))
+    if bad:
+        print("\nFATAL: the partial-discard rule would delete %d PUBLISHED "
+              "annotation string(s):" % len(bad))
+        for t, a in bad[:12]:
+            print("    %-24s %s" % (t, a))
+        print("  These are cleaved subunits, not fragments. The qualifier must stay")
+        print("  anchored as comma-introduced AND end-of-string.")
+        raise SystemExit(1)
+    return len(bad)
+
+
+    guard_partial_vs_subunit(args.vocab)
     with open(args.vocab) as fh:
         for row in csv.DictReader(fh, delimiter="\t"):
             a = (row.get("Annotation") or "").strip()

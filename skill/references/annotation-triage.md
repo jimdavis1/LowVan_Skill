@@ -104,6 +104,30 @@ PARTIAL = re.compile(r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal
 The 25 `truncated VP7` / `truncated NSP3` records had been binned as clean
 because only the comma form was being matched.
 
+### N-terminal and C-terminal are not always partiality markers
+
+A trailing bare positional qualifier is the submitter saying the record is only
+a piece. The same words used *adjectivally inside a full product name* are
+naming a genuine cleaved subunit, and those are kept:
+
+```
+putative capsid glycoprotein VP7, N-terminal          -> DISCARD (a piece of VP7)
+Mature N-terminal envelope glycoprotein Gn            -> KEEP    (a real subunit)
+Mature hemagglutinin C-terminal membrane fusion subunit -> KEEP  (HA2)
+Mature N-terminal spike protein receptor binding domain S1 -> KEEP
+```
+
+32 strings in S1 Table are of the second kind -- Gn/Gc across five bunyavirus
+families and both filoviruses, HA1/HA2, HEF1/HEF2, spike S1/S2, fusion F1/F2.
+Discarding those would delete a cleaved product from every module that declares
+one.
+
+The anchoring is what separates them: the qualifier must be **comma-introduced
+and at the end of the string**, with nothing after it. `check_annotations.py`
+asserts that no string in the published vocabulary is classified partial, so a
+future loosening of this regex fails the QC run instead of silently removing
+subunits.
+
 **`truncated` is always discarded**, in either shape -- as a comma suffix or as
 the `truncated VP7` prefix. There is no homology test that rescues it, because
 the objection is not to the identity but to the completeness.
