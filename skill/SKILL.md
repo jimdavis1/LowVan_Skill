@@ -626,6 +626,27 @@ glycoproteins labelled "nucleoprotein" in BV-BRC; the resulting profile called
 Length gates do not catch this class — 524 aa is inside the range a real
 nucleocapsid can occupy.
 
+**If it reports anything, follow it with the whole-collection audit.**
+`qc_cross_feature` compares one cluster master at a time, so a collection
+contaminated by a handful of mislabelled deposits gets fixed one cluster per
+rebuild — Orbivirus reported 10 collisions, then 4 after a rebuild, then more,
+because each re-clustering exposes the next layer.
+
+```bash
+python3 scripts/audit_contamination.py --workdir . --module <M>
+python3 scripts/audit_contamination.py --workdir . --module <M> --write
+#  then REBUILD every affected feature, and re-audit until it comes back clean
+```
+
+It asks the question once of every sequence: 49 contaminating Orbivirus VP2
+records came out in one pass. **Compare to the canonical, never to the
+collection you are auditing** — the collections contaminate each other, so a
+true VP2 scored 1881 bits against the VP2 collection and 1872 against VP3, a
+9-bit margin that decides nothing, while the same comparison against each
+feature's canonical (the median member of its largest cluster) returns 400–2000
+bits. After the fix the Orbivirus collection medians landed exactly on the
+expected 961 and 901.
+
 ### 9. Install
 
 ```bash
@@ -1141,6 +1162,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `norm_pssm.py` | normalise `psiblast -out_pssm` output to the pipeline's format |
 | `test_profile_specificity.py` | can this feature's profiles call it? measure on real precursors instead of assuming from length |
 | `qc_cross_feature.py` | find clusters binned under the wrong feature |
+| `audit_contamination.py` | test every sequence in every collection against each feature's canonical |
 | `qc_nterm_cross_cluster.py` | find clusters that start upstream of the rest of their feature |
 | `check_annotations.py` | check annotation strings and gene symbols against the vocabulary |
 | `check_dlits.py` | verify DLIT citations resolve, and that model-proposed ones are flagged |
@@ -1180,6 +1202,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 - every module in the JSON has PSSMs, or is deliberately declared and recorded
   as unbuildable with the reason
 - `qc_cross_feature.py` reports no MISLABEL rows
+- `audit_contamination.py` comes back clean (run it after any MISLABEL fix)
 - `rebuild_pssms.py` reports 0 stale
 - the build tree is archived (`archive_workdir.py --repo` reports every
   installed profile has its alignment)
