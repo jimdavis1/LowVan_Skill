@@ -155,7 +155,10 @@ bars = [[sym[k], "%.1f" % (100.0 * pres[k] / routed if routed else 0),
         for k in keys]
 cmp_ = [k for k in core if k != "POLY"]
 best = max((pres[k] for k in cmp_), default=0)
-lagging = [k for k in cmp_ if best - pres[k] >= 0.20 * routed]
+#  name them the way the bars above do -- the table reports the gene
+#  symbol, so reporting the JSON key here printed "VP8STAR, VP5STAR"
+#  under a chart labelled VP8*, VP5*.
+lagging = [sym[k] for k in cmp_ if best - pres[k] >= 0.20 * routed]
 
 # 06 -- held-out panel through the GTO quality pipeline
 pe = a.panel or os.path.join(S, "panel", G, "panel_eval.tsv")
