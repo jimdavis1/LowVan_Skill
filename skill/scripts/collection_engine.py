@@ -80,9 +80,23 @@ def classify(anno, rules, notmod):
     for rx, why in notmod:
         if re.search(rx, a, re.I):
             return None, why
-    for k, rx in rules:
-        if rx.search(a):
-            return k, None
+    #  A string that matches TWO features names neither of them. Taking the
+    #  first rule in table order is what the loop used to do, and it is a silent
+    #  mis-bin: one Rotavirus submission batch prefixed every gene with VP7's
+    #  description -- `outer capsid glycoprotein NSP1`, `... VP2`, `... VP6` and
+    #  so on -- and 216 sequences of nine different proteins went into VP7,
+    #  because the VP7 rule happened to sit above the others. The cross-feature
+    #  QC found them afterwards at 92-99% identity to the protein they really
+    #  were.
+    #
+    #  Several alternatives inside ONE rule resolving to the same key is not a
+    #  conflict (`RNA capping protein VP3` matching both \bVP3\b and `capping`
+    #  is fine), so compare the set of KEYS, not the number of hits.
+    hits = {k for k, rx in rules if rx.search(a)}
+    if len(hits) == 1:
+        return hits.pop(), None
+    if len(hits) > 1:
+        return None, "conflict:" + "+".join(sorted(hits))
     return None, None
 
 

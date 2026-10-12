@@ -618,3 +618,16 @@ Picornaviridae	Protein 2B, viroporin	2B	mat_peptide	Single RNA Segment	0
 Picornaviridae	Protein 2C, ATPase/helicase	2C	mat_peptide	Single RNA Segment	0	
 Picornaviridae	Protein 3A	3A	mat_peptide	Single RNA Segment	0	
 Picornaviridae	RNA-dependent RNA polymerase	RDRP	mat_peptide	Single RNA Segment	0	
+Rotavirus	Non-structural protein NSP1, interferon antagonist	NSP1	CDS	Segment 5	1	
+Rotavirus	Non-structural protein NSP2, NTPase	NSP2	CDS	Segment 8	1	
+Rotavirus	Non-structural protein NSP3, translation enhancer	NSP3	CDS	Segment 7	1	
+Rotavirus	Non-structural protein NSP4, enterotoxin	NSP4	CDS	Segment 10	1	
+Rotavirus	Non-structural protein NSP5	NSP5	CDS	Segment 11	1	
+Rotavirus	Non-structural protein NSP6	NSP6	CDS	Segment 11	0	
+Rotavirus	Core capsid protein VP2	VP2	CDS	Segment 2	1	
+Rotavirus	Capping enzyme VP3	VP3	CDS	Segment 3	1	
+Rotavirus	Outer capsid spike protein VP4	VP4	CDS	Segment 4	1	
+Rotavirus	Mature C-terminal outer capsid spike protein VP5*	VP5*	mat_peptide	Segment 4	0	9573310
+Rotavirus	Inner capsid protein VP6	VP6	CDS	Segment 6	1	
+Rotavirus	Outer capsid glycoprotein VP7	VP7	CDS	Segment 9	1	
+Rotavirus	Mature N-terminal outer capsid spike protein VP8*	VP8*	mat_peptide	Segment 4	0	9573310
