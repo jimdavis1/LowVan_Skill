@@ -112,13 +112,21 @@ def main():
             "bit_cutoff": spec.get("bit_cutoff", cutoff(key, med)),
             "coverage_cutoff": 0.65,
             "downstream_ext": 0,
-            "feature_type": "CDS",
-            "gene_symbol": key,
-            "kmers": 1,
+            "feature_type": spec.get("feature_type", "CDS"),
+            #  The key is filename-safe and the symbol is what the annotator
+            #  and the genome-quality tool report, so they are not always the
+            #  same string -- Enterovirus VPG/VPg, Cardiovirus LSTAR/L*, and
+            #  any polymerase, which this project names RDRP whatever its
+            #  positional label in the taxon. Honour an explicit gene_symbol;
+            #  it used to be silently overwritten with the key, so Orbivirus
+            #  VP1 shipped as symbol "VP1" while carrying the SAME annotation
+            #  string as Rotavirus VP1, which ships as RDRP.
+            "gene_symbol": spec.get("gene_symbol", key),
+            "kmers": spec.get("kmers", 1),
             "max_len": hi,
             "min_len": lo,
             "segment": seg,
-            "type": "CDS",
+            "type": spec.get("feature_type", "CDS"),
             "upstream_ext": 1,
         }
         if spec.get("comment"): d["comment"] = spec["comment"]
