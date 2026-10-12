@@ -38,7 +38,12 @@ SLABEL = {"built": "built", "derived": "derived", "special": "external",
 GAPS = ("too-few", "no-collection")
 
 
-def row_html(r):
+def row_html(r, why=""):
+    #  `why` is the curator's note for THIS feature, from notes["why"][<key>].
+    #  It used to render only for a feature whose collection was too small to
+    #  profile, so a note written about a feature that built successfully went
+    #  nowhere -- the whole Rotavirus set of 14 was discarded silently. The note
+    #  is the rationale for the row, and the row is where it belongs.
     st = r["status"]
     pss = " ".join("<code>%s</code>" % html.escape(p.rsplit(".", 2)[-2])
                    for p in r["pssms"]) or '<span class="dash">&mdash;</span>'
@@ -80,7 +85,7 @@ def row_html(r):
     else:
         cov = '<span class="dash">&mdash;</span>'
     bounds = ("%s&ndash;%s" % (r["minl"], r["maxl"])) if r["minl"] is not None else "&mdash;"
-    return ('<tr data-status="%s"><td class="k">%s%s</td><td class="anno">%s</td>'
+    return ('<tr data-status="%s"><td class="k">%s%s</td><td class="anno">%s%s</td>'
             '<td class="m">%s</td><td class="m ty">%s</td><td class="m num">%s</td>'
             '<td class="m num">%s</td><td class="m num">%s</td><td class="pss">%s</td>'
             '<td class="covcell">%s</td><td><span class="chip s-%s">%s</span></td></tr>'
@@ -88,6 +93,7 @@ def row_html(r):
                ' <span class="nd" title="non-default build parameters">&#9702;</span>'
                if r["nondefault"] else "",
                html.escape(r["anno"]),
+               ('<span class="why">%s</span>' % why) if why else "",
                html.escape(r["gene"]) or "&mdash;",
                "mat_pep" if r["ftype"] == "mat_peptide" else html.escape(r["ftype"] or "CDS"),
                r["bit"] if r["bit"] is not None else "&mdash;",
@@ -171,7 +177,8 @@ def main():
                sum(len(r["pssms"]) for r in rows),
                (" &middot; %d%% callable" % round(100.0 * k / s)) if s else "",
                ('<p class="taxnote">%s</p>\n' % note) if note else "",
-               "\n  ".join(row_html(r) for r in rows)))
+               "\n  ".join(row_html(r, notes.get("why", {}).get(r["key"], ""))
+                         for r in rows)))
 
     # gap tables
     nc = collections.defaultdict(list)

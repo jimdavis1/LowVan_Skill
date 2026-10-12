@@ -16,14 +16,43 @@ Measurement inputs (all under ~/lowvan_scratch/picorna):
 """
 import collections, glob, json, os, sys
 
-G, PROSE, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
-S = os.path.expanduser("~/lowvan_scratch/picorna")
-F = os.path.join(S, "fin", G)
+#  Paths were hardcoded to the Picornaviridae layout (~/lowvan_scratch/picorna,
+#  fin/<G>). Every other taxon has a different one -- Sedoreoviridae builds in
+#  ~/lowvan_scratch/sedo/rota -- so take them as options and keep the old
+#  defaults, which leaves the picornavirus invocations working unchanged.
+import argparse
+ap = argparse.ArgumentParser()
+ap.add_argument("taxon")
+ap.add_argument("prose")
+ap.add_argument("out")
+ap.add_argument("--scratch", default=os.path.expanduser("~/lowvan_scratch/picorna"))
+ap.add_argument("--workdir", default=None, help="module working dir; default <scratch>/fin/<taxon>")
+ap.add_argument("--coverage", default=None, help="default <scratch>/coverage/<taxon>.json")
+ap.add_argument("--contigs", default=None, help="default <scratch>/Contigs.<taxon>")
+ap.add_argument("--meta", default=None, help="full.tsv for the species count")
+ap.add_argument("--panel", default=None, help="default <scratch>/panel/<taxon>/panel_eval.tsv")
+#  Three more things were written for one family. The feature ORDER below is the
+#  picornavirus genome layout and means nothing to a segmented virus; the §04
+#  routing sentence names the Picornaviridae run; the source note points at
+#  Picornaviridae/work. Each is now an option that defaults to what it was.
+ap.add_argument("--order", default=None,
+                help="comma-separated feature keys, in genome order; the rest sort alphabetically after")
+ap.add_argument("--family", default="Picornaviridae", help="for the source note's repository path")
+ap.add_argument("--meta-species-col", type=int, default=4,
+                help="0-based column of --meta holding the species label")
+ap.add_argument("--meta-genus-col", type=int, default=3)
+ap.add_argument("--routing-note", default=None,
+                help="replaces the sentence in 04 describing what routing was measured against; "
+                     "%%d rep contigs and %%d used are substituted in that order")
+a = ap.parse_args()
+G, PROSE, OUT = a.taxon, a.prose, a.out
+S = a.scratch
+F = a.workdir or os.path.join(S, "fin", G)
 pr = json.load(open(PROSE))
 mod = json.load(open(os.path.join(F, "%s_Viral_PSSM.json" % G)))[G]
 feats = mod["features"]
 reg = {f["key"]: f for f in json.load(open(os.path.join(F, "registry.json")))[G]["features"]}
-cov = json.load(open(os.path.join(S, "coverage", "%s.json" % G)))
+cov = json.load(open(a.coverage or os.path.join(S, "coverage", "%s.json" % G)))
 agg = json.load(open(os.path.join(F, "agg.json")))
 unb = json.load(open(os.path.join(F, "unbinned.json")))
 rar = json.load(open(os.path.join(F, "rarefaction.json")))
@@ -32,17 +61,20 @@ def c(n): return "{:,}".format(n)
 def P(x, y): return "%.1f%%" % (100.0 * x / y) if y else "&mdash;"
 
 #  order features as the genome is laid out, POLY first
-ORDER = ["POLY", "Ldr", "VP0", "VP4", "VP2", "VP3", "VP1", "2A", "2A1", "2A2", "2A3",
-         "2B", "2C", "3A", "VPG", "3C", "3D"]
+ORDER = (a.order.split(",") if a.order else
+         ["POLY", "Ldr", "VP0", "VP4", "VP2", "VP3", "VP1", "2A", "2A1", "2A2", "2A3",
+          "2B", "2C", "3A", "VPG", "3C", "3D"])
 keys = sorted(feats, key=lambda k: (ORDER.index(k) if k in ORDER else 99, k))
 
 # 01 -- the dump
 gen_ids = [l.split("\t")[0] for l in open(os.path.join(F, "G.id_name_gs"))]
-species = {l.rstrip("\n").split("\t")[4] for l in open(os.path.join(S, "Picorna.full.tsv"))
-           if l.split("\t")[3] == G}
+species = {l.rstrip("\n").split("\t")[a.meta_species_col]
+           for l in open(a.meta or os.path.join(S, "Picorna.full.tsv"))
+           if len(l.split("\t")) > a.meta_species_col
+           and l.split("\t")[a.meta_genus_col] == G}
 n_feat = sum(1 for _ in open(os.path.join(F, "G.id_md5")))
 n_uniq = sum(1 for _ in open(os.path.join(F, "G.uniq.md5")))
-n_contig = len(glob.glob(os.path.join(S, "Contigs.%s" % G, "*.fna")))
+n_contig = len(glob.glob(os.path.join(a.contigs or os.path.join(S, "Contigs.%s" % G), "*.fna")))
 
 # 02 -- departures from the documented defaults
 def departures(k):
@@ -126,7 +158,7 @@ best = max((pres[k] for k in cmp_), default=0)
 lagging = [k for k in cmp_ if best - pres[k] >= 0.20 * routed]
 
 # 06 -- held-out panel through the GTO quality pipeline
-pe = os.path.join(S, "panel", G, "panel_eval.tsv")
+pe = a.panel or os.path.join(S, "panel", G, "panel_eval.tsv")
 prow = [l.rstrip("\n").split("\t") for l in open(pe)][1:]
 n_p = len(prow)
 nothing = sum(1 for r in prow if int(r[1]) == 0)
@@ -191,9 +223,10 @@ facts = {
        ["routed to %s" % G, c(routed), P(routed, ex)]] +
        [["routed to %s" % m, c(n), P(n, ex)] for m, n in other.most_common()] +
        [["unrouted", c(len(unr)), P(len(unr), ex)]]},
-     {"type": "prose", "html": "%d rep contigs ship with the module; %d of them are the best BLASTn hit for at least one exemplar. "
+     {"type": "prose", "html": (a.routing_note or
+       "%d rep contigs ship with the module; %d of them are the best BLASTn hit for at least one exemplar. "
        "Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing "
-       "threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold." %
+       "threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold.") %
        (len(mod.get("close_genomes", {})), refs_used)}] + [{"type": "prose", "html": h} for h in pr["p04"]]},
   {"num": "05", "title": "Does it call the proteins?", "lede": pr["lede05"], "blocks": [
      {"type": "bars", "rows": bars, "unit": "%"},
@@ -232,8 +265,8 @@ facts = {
      [{"type": "prose", "html": h} for h in pr["p09"]]}],
  "source_note": "Generated from <code>%s_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by "
    "<code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and "
-   "annotation_rarefaction.py output in <code>Picornaviridae/work/%s/</code>. All citations in this module are "
-   "model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator." % (slug, G),
+   "annotation_rarefaction.py output in <code>%s/work/%s/</code>. All citations in this module are "
+   "model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator." % (slug, a.family, G),
 }
 json.dump(facts, open(OUT, "w"), indent=1)
 
