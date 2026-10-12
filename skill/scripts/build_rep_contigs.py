@@ -41,21 +41,35 @@ for l in open(a.meta):
 #  genome id -> (accession, description, sequence).  The accession is on the
 #  contig header BV-BRC served, not in the metadata table, which is why this
 #  reads the contigs rather than re-querying.
-gseq, gacc = {}, {}
+gseq, gacc, grecs = {}, {}, {}
 for f in sorted(glob.glob(os.path.join(a.contigs, "*"))):
     g = os.path.basename(f)
     for ext in (".fna", ".fa", ".fasta"):
         if g.endswith(ext):
             g = g[: -len(ext)]
             break
-    acc, parts = None, []
+    #  Keep the contigs SEPARATE. This used to join every record in the file
+    #  into one string and write one contig, which for a segmented virus
+    #  fuses the whole genome under the first segment's header: a Rotavirus
+    #  reference came out as 18 kb of "28875.58294_seg1". Routing still
+    #  worked -- BLASTn finds the right HSP in a concatenated subject -- so
+    #  nothing failed, but the shipped file said something untrue about the
+    #  genome, and it disagreed with the influenza rep contigs, which carry
+    #  one record per segment. Clustering below still uses the concatenation,
+    #  because that is the genome-level comparison it wants.
+    acc, recs, hdr, parts = None, [], None, []
     for line in open(f):
         if line.startswith(">"):
+            if hdr is not None:
+                recs.append((hdr, "".join(parts)))
+            hdr, parts = line[1:].rstrip("\n"), []
             if acc is None:
-                acc = line[1:].split()[0]
+                acc = hdr.split()[0]
         else:
             parts.append(line.strip())
-    s = "".join(parts)
+    if hdr is not None:
+        recs.append((hdr, "".join(parts)))
+    s = "".join(x[1] for x in recs)
     if len(s) < a.min_len:
         continue
     #  --meta SELECTS, it does not merely name. It used to be read only into
@@ -66,7 +80,7 @@ for f in sorted(glob.glob(os.path.join(a.contigs, "*"))):
     #  worthless if the restriction is ignored.
     if name and g not in name:
         continue
-    gseq[g], gacc[g] = s, acc or g
+    gseq[g], gacc[g], grecs[g] = s, acc or g, recs
 if not gseq:
     sys.exit("no contigs in %s" % a.contigs)
 
@@ -102,10 +116,12 @@ print("%-28s %d genomes, %d clusters at %.0f%% identity"
 for i, (rep, mem) in enumerate(chosen, 1):
     fn = "%s.%d.dna" % (a.module, i)
     with open(os.path.join(a.out, fn), "w") as fh:
-        fh.write(">%s %s\n" % (gacc[rep], name.get(rep, rep)))
-        s = gseq[rep]
-        for j in range(0, len(s), 60):
-            fh.write(s[j:j + 60] + "\n")
+        #  one record per source contig; a single-contig genome is unchanged
+        for ci, (chdr, cseq) in enumerate(grecs[rep], 1):
+            cacc = chdr.split()[0]
+            fh.write(">%s %s\n" % (cacc, name.get(rep, rep)))
+            for j in range(0, len(cseq), 60):
+                fh.write(cseq[j:j + 60] + "\n")
     close[fn] = {"genome_ids": gacc[rep], "genome_name": name.get(rep, rep)}
     print("   %-28s %-12s %5d nt  covers %4d genome(s)  %s"
           % (fn, gacc[rep], len(gseq[rep]), len(mem), name.get(rep, rep)[:34]))
