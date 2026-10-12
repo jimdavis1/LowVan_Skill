@@ -117,28 +117,19 @@ def symbol_collisions(vocab_rows, ours):
     return out
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--json", required=True, help="module JSON")
-    ap.add_argument("--vocab", default=VOCAB, help="S1 Table TSV")
-    args = ap.parse_args()
-
-    known, taxa_of, symbol_of, symbol_by_taxon = set(), {}, {}, {}
-
-
 def guard_partial_vs_subunit(vocab_path):
     """No string the project PUBLISHES may be classified partial.
 
     collection_engine discards anything annotated as a fragment, and the
     qualifier it matches includes `, N-terminal` / `, C-terminal`. Those same
-    words appear adjectivally inside 32 legitimate S1 Table entries that name
+    words appear adjectivally inside 32 legitimate S1 Table entries naming
     CLEAVED SUBUNITS -- Gn/Gc across five bunyavirus families and both
     filoviruses, HA1/HA2, HEF1/HEF2, spike S1/S2, fusion F1/F2.
 
     What separates them is anchoring: the discard qualifier must be
     comma-introduced and at the END of the string. That is easy to loosen by
-    accident, and the damage would be a cleaved product silently vanishing from
-    every module that declares one. So assert it here rather than trust it.
+    accident and the damage would be a cleaved product silently vanishing from
+    every module that declares one, so assert it rather than trust it.
     """
     partial = re.compile(r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
                          r"|^\s*truncated\b", re.I)
@@ -155,12 +146,18 @@ def guard_partial_vs_subunit(vocab_path):
               "annotation string(s):" % len(bad))
         for t, a in bad[:12]:
             print("    %-24s %s" % (t, a))
-        print("  These are cleaved subunits, not fragments. The qualifier must stay")
-        print("  anchored as comma-introduced AND end-of-string.")
+        print("  These are cleaved subunits, not fragments. The qualifier must")
+        print("  stay anchored as comma-introduced AND end-of-string.")
         raise SystemExit(1)
-    return len(bad)
 
 
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--json", required=True, help="module JSON")
+    ap.add_argument("--vocab", default=VOCAB, help="S1 Table TSV")
+    args = ap.parse_args()
+
+    known, taxa_of, symbol_of, symbol_by_taxon = set(), {}, {}, {}
     guard_partial_vs_subunit(args.vocab)
     with open(args.vocab) as fh:
         for row in csv.DictReader(fh, delimiter="\t"):
