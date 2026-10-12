@@ -19,7 +19,7 @@ Writes <Module>.<n>.dna (one contig each, header ">ACCESSION Genome name")
 and close_genomes.json, which is what the module JSON's close_genomes block
 is built from.
 """
-import os, sys, json, glob, argparse, tempfile, subprocess, collections
+import os, re, sys, json, glob, argparse, tempfile, subprocess, collections
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--contigs", required=True, help="directory of per-genome FASTA")
@@ -30,6 +30,10 @@ ap.add_argument("--budget", type=int, default=25)
 ap.add_argument("--mi", type=float, default=0.7)
 ap.add_argument("--min-len", type=int, default=0)
 ap.add_argument("--threads", type=int, default=6)
+ap.add_argument("--segment-level", action="store_true",
+                help="SEGMENTED, REASSORTING taxa: cluster individual segments and choose "
+                     "genomes by how many uncovered segment clusters each one adds, instead "
+                     "of clustering whole concatenated genomes. See the note below.")
 a = ap.parse_args()
 
 name = {}
@@ -80,15 +84,46 @@ for f in sorted(glob.glob(os.path.join(a.contigs, "*"))):
     #  worthless if the restriction is ignored.
     if name and g not in name:
         continue
-    gseq[g], gacc[g], grecs[g] = s, acc or g, recs
+    #  `acc` is the first contig's header token, which for an unsegmented
+    #  genome is a real accession (NC_002023). For a genome this project
+    #  merged from segments it is our own "<gid>_seg1" label, and shipping
+    #  that as the reference's identity says the whole genome is segment 1.
+    gseq[g], gacc[g], grecs[g] = s, re.sub(r"_seg\d+$", "", acc or g), recs
 if not gseq:
     sys.exit("no contigs in %s" % a.contigs)
 
+#  --------------------------------------------------------------------------
+#  WHAT GETS CLUSTERED, and why it is not always the genome.
+#
+#  The default concatenates each genome and clusters that. For a REASSORTING
+#  segmented virus that is the wrong model, and it fails in a way that looks
+#  like a hopeless taxon rather than a bad measurement: a concatenated
+#  rotavirus is a mosaic, so every fresh combination of otherwise-common
+#  segments becomes its own cluster. Rotavirus gave 1,574 clusters for 6,648
+#  genomes, 74% of them singletons, and a projected reach of 49%. Orbivirus
+#  gives 54.7% at 30 references by this rule.
+#
+#  What actually happens at runtime is different. Every incoming record of a
+#  segmented virus is ONE segment; a rep contig is a whole genome carrying all
+#  of them; so an incoming segment routes if it resembles ANY segment of ANY
+#  chosen reference. Measured that way the same Orbivirus set reaches 100% at
+#  30, and Rotavirus 100% at 33.
+#
+#  --segment-level switches to that model: cluster segments, then choose
+#  genomes greedily by how many uncovered SEGMENT clusters each one adds. Use
+#  it for any taxon whose records arrive one segment at a time.
+#  --------------------------------------------------------------------------
 tmp = tempfile.mkdtemp(prefix="repc.")
 fa = os.path.join(tmp, "g.fna")
 with open(fa, "w") as fh:
-    for g, s in gseq.items():
-        fh.write(">%s\n%s\n" % (g, s))
+    if a.segment_level:
+        for g, recs in grecs.items():
+            for i, (_h, cs) in enumerate(recs, 1):
+                if len(cs) >= 300:
+                    fh.write(">%s@@%d\n%s\n" % (g, i, cs))
+    else:
+        for g, s in gseq.items():
+            fh.write(">%s\n%s\n" % (g, s))
 pre = os.path.join(tmp, "c")
 r = subprocess.run(["mmseqs", "easy-cluster", fa, pre, os.path.join(tmp, "t"),
                     "--min-seq-id", str(a.mi), "-c", "0.5", "--cov-mode", "1",
@@ -96,23 +131,50 @@ r = subprocess.run(["mmseqs", "easy-cluster", fa, pre, os.path.join(tmp, "t"),
 if not os.path.exists(pre + "_cluster.tsv"):
     sys.exit("mmseqs produced no clustering:\n" + r.stderr[-2000:])
 
-clu = collections.defaultdict(list)
-for l in open(pre + "_cluster.tsv"):
-    rep, mem = l.rstrip("\n").split("\t")
-    clu[rep].append(mem)
+if a.segment_level:
+    seg2clu = {}
+    for l in open(pre + "_cluster.tsv"):
+        rep, mem = l.rstrip("\n").split("\t")[:2]
+        seg2clu[mem] = rep
+    gclu = collections.defaultdict(set)
+    for seg, rep in seg2clu.items():
+        gclu[seg.split("@@")[0]].add(rep)
+    covered, chosen_g, pool = set(), [], dict(gclu)
+    while len(chosen_g) < a.budget:
+        best = max(pool, key=lambda k: len(pool[k] - covered), default=None)
+        if best is None or not (pool[best] - covered):
+            break
+        covered |= pool[best]; chosen_g.append(best); pool.pop(best)
+    #  how many genomes each reference routes, for the printout: a genome is
+    #  routed by the first chosen reference sharing a segment cluster with it
+    chosen = []
+    claimed = set()
+    for g in chosen_g:
+        mem = [h for h, v in gclu.items() if h not in claimed and (v & gclu[g])]
+        claimed |= set(mem)
+        chosen.append((g, mem))
+    routed = len(claimed)
+    print("%-28s %d genomes, %d SEGMENT clusters at %.0f%% identity (--segment-level)"
+          % (a.module, len(gclu), len(set(seg2clu.values())), 100 * a.mi))
+else:
+    clu = collections.defaultdict(list)
+    for l in open(pre + "_cluster.tsv"):
+        rep, mem = l.rstrip("\n").split("\t")
+        clu[rep].append(mem)
+    order = sorted(clu.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+    chosen = order[: a.budget]
+    routed = sum(len(v) for _, v in chosen)
+    print("%-28s %d genomes, %d clusters at %.0f%% identity"
+          % (a.module, len(gseq), len(clu), 100 * a.mi))
 
-order = sorted(clu.items(), key=lambda kv: (-len(kv[1]), kv[0]))
-chosen = order[: a.budget]
 N = len(gseq)
-covered = sum(len(v) for _, v in chosen)
+covered = routed
 
 os.makedirs(a.out, exist_ok=True)
 for old in glob.glob(os.path.join(a.out, "%s.*.dna" % a.module)):
     os.remove(old)
 
 close = {}
-print("%-28s %d genomes, %d clusters at %.0f%% identity"
-      % (a.module, N, len(clu), 100 * a.mi))
 for i, (rep, mem) in enumerate(chosen, 1):
     fn = "%s.%d.dna" % (a.module, i)
     with open(os.path.join(a.out, fn), "w") as fh:
@@ -130,6 +192,10 @@ json.dump(close, open(os.path.join(a.out, "close_genomes.json"), "w"),
           indent=1, sort_keys=True)
 print("\n   %d reference(s) cover %d/%d genomes = %.1f%%"
       % (len(chosen), covered, N, 100.0 * covered / N))
-if len(clu) > a.budget:
+if a.segment_level:
+    if N - covered:
+        print("   %d genome(s) share no segment cluster with any reference -- name "
+              "this in the coverage audit" % (N - covered))
+elif len(clu) > a.budget:
     print("   %d cluster(s) left uncovered, holding %d genome(s) -- name this in "
           "the coverage audit" % (len(clu) - a.budget, N - covered))
