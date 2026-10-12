@@ -631,3 +631,14 @@ Rotavirus	Mature C-terminal outer capsid spike protein VP5*	VP5*	mat_peptide	Seg
 Rotavirus	Inner capsid protein VP6	VP6	CDS	Segment 6	1	
 Rotavirus	Outer capsid glycoprotein VP7	VP7	CDS	Segment 9	1	
 Rotavirus	Mature N-terminal outer capsid spike protein VP8*	VP8*	mat_peptide	Segment 4	0	9573310
+Orbivirus	Non-structural protein NS1, tubule protein	NS1	CDS	Segment 5	1	
+Orbivirus	Non-structural protein NS2, inclusion body protein	NS2	CDS	Segment 8	1	
+Orbivirus	Non-structural protein NS3, viroporin	NS3	CDS	Segment 10	1	
+Orbivirus	Non-structural protein NS4, interferon antagonist	NS4	CDS	Segment 9	0	
+Orbivirus	Non-structural protein NS5	NS5	CDS	Segment 10	0	
+Orbivirus	Outer capsid protein VP2	VP2	CDS	Segment 2	0	
+Orbivirus	Subcore shell protein VP3	VP3	CDS	Segment 3	1	
+Orbivirus	Capping enzyme VP4	VP4	CDS	Segment 4	1	
+Orbivirus	Outer capsid protein VP5	VP5	CDS	Segment 6	1	
+Orbivirus	Helicase VP6	VP6	CDS	Segment 9	1	
+Orbivirus	Core surface protein VP7	VP7	CDS	Segment 7	1	

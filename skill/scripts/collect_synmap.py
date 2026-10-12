@@ -83,11 +83,25 @@ for k, srcs in agg.items():
 out.sort(key=lambda x: -x["total"])
 json.dump(out, open("agg.json", "w"), indent=1)
 
+#  The engine records a string as UNASSIGNED in synonyms.tsv BEFORE the
+#  homology rescue runs, and RESCUED.tsv then records what the rescue adopted.
+#  A rescued string therefore appears in both files, and counting them
+#  independently put it in agg.json AND in unbinned.json at once: Orbivirus
+#  showed "RNA-dependent RNA polymerase" as 228 bound to VP1 and 391 unbound,
+#  which inflates the unbound tail and double-counts the occurrences. Subtract
+#  what the rescue took.
+rescued = collections.Counter()
+for r in rows:
+    if r["bins_to"] not in UNBOUND:
+        rescued[r["annotation"] or "(empty string)"] += int(r["count"])
+
 un = collections.defaultdict(lambda: [0, set()])
 for r in rows:
     if r["bins_to"] not in UNBOUND: continue
     s = r["annotation"] or "(empty string)"
-    un[s][0] += int(r["count"]); un[s][1].add(r["genus"] or "(no genus)")
+    left = int(r["count"]) - rescued.get(s, 0)
+    if left <= 0: continue          # the rescue took all of it
+    un[s][0] += left; un[s][1].add(r["genus"] or "(no genus)")
 ul = sorted(([s, v[0], sorted(v[1])] for s, v in un.items()), key=lambda x: -x[1])
 json.dump(ul, open("unbinned.json", "w"), indent=1)
 
