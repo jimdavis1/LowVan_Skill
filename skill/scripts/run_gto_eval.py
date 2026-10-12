@@ -214,7 +214,13 @@ def main():
         #  it: reading quality.tsv gives the "good" number instead, which is
         #  several points higher and answers a different question.
         nff = sum(len(f.get("feature_quality_flags") or []) for f in feat)
-        rows.append((b, nf, len(gf), len(cf), nff, "; ".join(allf)[:200]))
+        #  The flags column used to be truncated at 200 characters. Anything
+        #  reading it back -- gen_facts.py's tally, any per-species breakdown --
+        #  then splits a half-written flag into its own category: a Rotavirus
+        #  panel produced "Genome is missing essent" and "Mature C-" as if they
+        #  were distinct findings. The column is the audit trail; it is written
+        #  in full.
+        rows.append((b, nf, len(gf), len(cf), nff, "; ".join(allf)))
 
     #  Essentiality audit. copy_num marks a feature essential, and an
     #  essential feature that most genomes do not carry flags all of them --

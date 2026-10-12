@@ -19,6 +19,7 @@ Requires blastp and makeblastdb on PATH.
 
 import argparse
 import glob
+import json
 import os
 import re
 import shutil
@@ -59,6 +60,19 @@ def masters(workdir, module):
                     out.append((feat, num, ident, seq.replace("-", "").replace(".", "").upper()))
                     break
     return out
+
+
+def feature_types(workdir, module):
+    """key -> feature_type from the module JSON, {} if it is not written yet."""
+    p = os.path.join(workdir, "%s_Viral_PSSM.json" % module)
+    if not os.path.exists(p):
+        return {}
+    try:
+        d = json.load(open(p))
+    except ValueError:
+        return {}
+    f = (d.get(module) or {}).get("features") or {}
+    return {k: (v.get("feature_type") or "CDS") for k, v in f.items()}
 
 
 def run_module(workdir, module, pident, cov, tmp):
@@ -120,6 +134,15 @@ def run_module(workdir, module, pident, cov, tmp):
         if cur is None or pid > cur[0]:
             best[q][f] = (pid, alen, sid)
 
+    #  A mature peptide IS a piece of its parent CDS, so it matches that CDS at
+    #  100% by construction. The existing exemption only covers derived features
+    #  with no collection of their own; Rotavirus VP8*/VP5* are cut out of
+    #  curated VP4 and written as collections, so all 22 of their clusters were
+    #  reported as MISLABEL against VP4 -- 22 findings, none of them real, in a
+    #  report whose value is that it is short. A mat_peptide colliding with a
+    #  CDS is the parent relationship and is reported separately.
+    ftype = feature_types(workdir, module)
+
     flags = []
     for feat, num, ident, seq in reps:
         # Derived features (G_MAT, G_SP...) have no collection of their own and
@@ -140,7 +163,11 @@ def run_module(workdir, module, pident, cov, tmp):
         # simply got binned both specifically and generically -- so they are
         # separated out rather than mixed in with true mislabels.
         if pid >= pident and alen >= cov * len(seq):
-            kind = "UNCHAR" if "UNCHAR" in (feat, of) else "MISLABEL"
+            if (ftype.get(feat) == "mat_peptide"
+                    and ftype.get(of, "CDS") != "mat_peptide"):
+                kind = "PARENT"
+            else:
+                kind = "UNCHAR" if "UNCHAR" in (feat, of) else "MISLABEL"
             flags.append((kind, module, feat, num, ident, len(seq), of, pid, alen, sid))
     return flags
 
@@ -168,11 +195,12 @@ def main():
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
-    if not allflags:
+    if not [f for f in allflags if f[0] != "PARENT"]:
         print("\nNo cross-feature contamination found.")
-        return 0
+        allflags = [f for f in allflags if f[0] == "PARENT"]
     hard = [f for f in allflags if f[0] == "MISLABEL"]
     soft = [f for f in allflags if f[0] == "UNCHAR"]
+    par = [f for f in allflags if f[0] == "PARENT"]
 
     def show(rows, title):
         if not rows:
@@ -189,6 +217,10 @@ def main():
         print("\n  One of the two source annotations is wrong. Whichever cluster is")
         print("  mislabelled will call its feature on the other protein's locus.")
         print("  Decide from length and gene order, then drop or move that cluster.")
+    if par:
+        print("\n%d mature-peptide cluster(s) match their parent CDS, as they must "
+              "by construction; not a finding." % len(par))
+        print("  %s" % ", ".join(sorted({"%s->%s" % (f[2], f[6]) for f in par})))
     show(soft, "UNCHAR overlap -- same protein binned both specifically and generically")
     if soft:
         print("\n  Lower severity: fold these into the specific feature, or accept the")
