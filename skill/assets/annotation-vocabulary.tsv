@@ -642,3 +642,12 @@ Orbivirus	Capping enzyme VP4	VP4	CDS	VP4 Segment	1
 Orbivirus	Outer capsid protein VP5	VP5	CDS	VP5 Segment	1	
 Orbivirus	Helicase VP6	VP6	CDS	VP6 Segment	1	
 Orbivirus	Core surface protein VP7	VP7	CDS	VP7 Segment	1	
+Seadornavirus	Core protein VP4	VP4	CDS	VP4 Segment	1	
+Seadornavirus	Core protein VP5	VP5	CDS	VP5 Segment	1	
+Seadornavirus	NTPase/helicase VP6	VP6	CDS	VP6 Segment	1	
+Seadornavirus	Outer capsid protein VP7	VP7	CDS	VP7 Segment	1	
+Seadornavirus	Core protein VP8	VP8	CDS	VP8 Segment	1	
+Seadornavirus	Outer capsid protein VP9	VP9	CDS	VP9 Segment	1	
+Seadornavirus	Core protein VP10	VP10	CDS	VP10 Segment	1	
+Seadornavirus	Non-structural protein VP11	VP11	CDS	VP11 Segment	1	
+Seadornavirus	Non-structural dsRNA-binding protein VP12	VP12	CDS	VP12 Segment	1	
