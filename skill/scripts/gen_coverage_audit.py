@@ -20,6 +20,7 @@ Schema: see the two shipped facts files in example-hepeviridae/ and
 example-matonaviridae/. Palette is the report series' validated categorical
 pair (#2a78d6/#eb6834 light, #3987e5/#d95926 dark).
 """
+import re
 import json, argparse, html, os
 
 CSS = """
@@ -160,7 +161,18 @@ CSS = """
 
 """
 
-def esc(x): return html.escape(str(x))
+#  Every facts file writes HTML entities -- &mdash;, &times;, &ge;, &middot;
+#  -- because most of what it emits is prose, which is inserted raw. But the
+#  title, eyebrow, h1, tile values, table headers and table cells all go
+#  through esc(), which turned "10.8&times;" into "10.8&amp;times;" and
+#  rendered it as its own source text. Chasing the entities out of the facts
+#  file fixes the call sites that exist today and not the next one, so escape
+#  here and then put the named entities back.
+_ENT = re.compile(r"&amp;(#\d{1,6}|#x[0-9A-Fa-f]{1,6}|[A-Za-z][A-Za-z0-9]{1,31});")
+
+
+def esc(x):
+    return _ENT.sub(r"&\1;", html.escape(str(x)))
 
 def tiles(items):
     out = ['<div class="tiles">']

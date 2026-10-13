@@ -58,8 +58,12 @@ unb = json.load(open(os.path.join(F, "unbinned.json")))
 rar = json.load(open(os.path.join(F, "rarefaction.json")))
 
 def c(n): return "{:,}".format(n)
-def P(x, y): return "%.1f%%" % (100.0 * x / y) if y else "&mdash;"
+def P(x, y): return "%.1f%%" % (100.0 * x / y) if y else "\u2014"
 
+#  NOTE: tile values and table cells are html-escaped by gen_coverage_audit,
+#  so they carry LITERAL characters (\u00d7 \u2014 \u2265), not HTML entities.
+#  Prose blocks are inserted raw and keep entities. Mixing the two produced a
+#  headline tile reading "10.8&times;".
 #  order features as the genome is laid out, POLY first
 ORDER = (a.order.split(",") if a.order else
          ["POLY", "Ldr", "VP0", "VP4", "VP2", "VP3", "VP1", "2A", "2A1", "2A2", "2A3",
@@ -79,7 +83,7 @@ n_contig = len(glob.glob(os.path.join(a.contigs or os.path.join(S, "Contigs.%s" 
 # 02 -- departures from the documented defaults
 def departures(k):
     p = os.path.join(F, "Alignments", G, k, "BUILD_PARAMS")
-    if not os.path.exists(p): return "&mdash;"
+    if not os.path.exists(p): return "\u2014"
     for l in open(p):
         if l.startswith("departures:"):
             raw = l.split(":", 1)[1].strip()
@@ -94,15 +98,15 @@ def departures(k):
 n_pssm = sum(len(reg[k]["pssms"]) for k in keys if k in reg)
 build_rows = [[k, feats[k]["anno"], feats[k].get("gene_symbol", ""),
                c(reg[k]["n"] or 0) if k in reg else "0",
-               ("&mdash; (special)" if "special" in feats[k]
+               ("\u2014 (special)" if "special" in feats[k]
                 else str(len(reg[k]["pssms"])) if k in reg else "0"), departures(k)] for k in keys]
 
 # 03 -- cutoffs and self-recall
 def cut(k, f):
     #  a special feature is called by an external program, not scored by a PSSM,
     #  so it declares no bit_cutoff or coverage_cutoff
-    if "special" in feats[k]: return "&mdash;"
-    return str(feats[k].get(f, "&mdash;"))
+    if "special" in feats[k]: return "\u2014"
+    return str(feats[k].get(f, "\u2014"))
 cut_rows = [[k, cut(k, "bit_cutoff"), cut(k, "coverage_cutoff"),
              c(feats[k].get("min_len", 0)), c(feats[k].get("max_len", 0))] for k in keys]
 recall = ", ".join("%s %d/%d" % (k, reg[k]["called_inrange"], reg[k]["n_inrange"])
@@ -186,7 +190,7 @@ agg_rows = [[a["key"], a["anno"], str(a["nstrings"])] for a in sorted(bound, key
 others = [a for a in agg if a["key"] not in feats]
 for a in others:
     agg_rows.append(["<i>%s</i>" % a["key"].lower(), "not modelled", str(a["nstrings"])])
-agg_rows.append(["<i>unbound</i>", "&mdash;", str(len(unb))])
+agg_rows.append(["<i>unbound</i>", "\u2014", str(len(unb))])
 
 slug = G.lower()
 facts = {
@@ -199,8 +203,8 @@ facts = {
    [str(n_pssm), "PSSMs"],
    ["%d/%d" % (routed, ex), "exemplars routed"],
    [P(clean, n_p), "held-out genomes genuinely clean"],
-   ["%.1f&times;" % collapse, "string collapse"],
-   ["%.1f&times;" % fold, "vocabulary collapse at equal proteins sampled"]],
+   ["%.1f\u00d7" % collapse, "string collapse"],
+   ["%.1f\u00d7" % fold, "vocabulary collapse at equal proteins sampled"]],
  "sections": [
   {"num": "01", "title": "What the module covers", "lede": pr["lede01"], "blocks":
     [{"type": "prose", "html": h} for h in pr["p01"][:1]] +
@@ -208,7 +212,7 @@ facts = {
        ["genomes in the BV-BRC protein dump", c(len(gen_ids))],
        ["protein features", c(n_feat)],
        ["unique sequences", c(n_uniq)],
-       ["genomes with a contig &ge; 5 kb", c(n_contig)],
+       ["genomes with a contig \u2265 5 kb", c(n_contig)],
        ["species", c(len(species))]]}] +
     [{"type": "prose", "html": h} for h in pr["p01"][1:]]},
   {"num": "02", "title": "How it was built", "lede": pr["lede02"], "blocks":
@@ -222,7 +226,7 @@ facts = {
       "This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06." % (tot_c, tot_n, P(tot_c, tot_n), recall)}]},
   {"num": "04", "title": "Does it route?", "lede": pr["lede04"], "blocks": [
      {"type": "table", "headers": ["", "count", "%"], "rows": [
-       ["genomes &ge; 5 kb, clustered at 95% nucleotide identity", c(ex), "&mdash;"],
+       ["genomes \u2265 5 kb, clustered at 95% nucleotide identity", c(ex), "\u2014"],
        ["routed to %s" % G, c(routed), P(routed, ex)]] +
        [["routed to %s" % m, c(n), P(n, ex)] for m, n in other.most_common()] +
        [["unrouted", c(len(unr)), P(len(unr), ex)]]},
