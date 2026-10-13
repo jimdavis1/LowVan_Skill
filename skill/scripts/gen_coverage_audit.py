@@ -169,10 +169,17 @@ CSS = """
 #  file fixes the call sites that exist today and not the next one, so escape
 #  here and then put the named entities back.
 _ENT = re.compile(r"&amp;(#\d{1,6}|#x[0-9A-Fa-f]{1,6}|[A-Za-z][A-Za-z0-9]{1,31});")
+#  Facts files also use inline formatting inside escaped fields -- a <br> in a
+#  tile label to break "genomes routed" from "25 refs, 37,175 genomes", an <i>
+#  for a species name. Escaping turned those into visible "<br>" text on the
+#  Hepaciviridae, Pegivirus, Pestiviridae, Orthoflavivirus and Matonaviridae
+#  pages. Restore a closed whitelist of harmless inline tags; everything else,
+#  <script> included, stays escaped.
+_TAG = re.compile(r"&lt;(/?(?:br|i|b|em|strong|code|sub|sup|small))\s*/?&gt;")
 
 
 def esc(x):
-    return _ENT.sub(r"&\1;", html.escape(str(x)))
+    return _TAG.sub(r"<\1>", _ENT.sub(r"&\1;", html.escape(str(x))))
 
 def tiles(items):
     out = ['<div class="tiles">']
