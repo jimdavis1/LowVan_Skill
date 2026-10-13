@@ -21,10 +21,11 @@ WHAT IT CHECKS, AND WHY EACH ONE EXISTS
    "LowVan &middot; Orbivirus module" in the eyebrow, and "contig &ge; 5 kb"
    in the first table.
 
-2. PLACEHOLDER LEFT IN TEXT -- "%s", "%d", "nan", "None", "(not in JSON)",
-   "undefined" standing alone. A format string that was never filled, or a
-   lookup that missed. "undefined CDS" is a real BV-BRC annotation and is not
-   flagged; a bare "undefined" is.
+2. PLACEHOLDER LEFT IN TEXT -- an unfilled "%s"/"%d" anywhere, or a sentinel
+   value ("None", "nan", "null", "undefined", "(not in JSON)") standing as the
+   ENTIRE text of an element. The second test is deliberately narrow: "None"
+   and "nan" are ordinary words, and "None has enough sequence in BV-BRC to
+   model alone" is correct prose, not a leaked value.
 
 3. ANGLE-BRACKET PLACEHOLDER IN PROSE -- "the explicit VP<n> forms" reads as
    broken markup to anyone who does not already know it is a placeholder.
@@ -41,8 +42,15 @@ WHAT IT CHECKS, AND WHY EACH ONE EXISTS
 import argparse, html, os, re, sys
 
 ENTITY = re.compile(r"&amp;(#\d{1,6}|#x[0-9A-Fa-f]{1,6}|[A-Za-z][A-Za-z0-9]{1,31});")
-PLACEHOLDER = re.compile(
-    r"%[sdfr]\b|\bnan\b|\bNone\b|\(not in JSON\)|(?<![\w-])undefined(?!\s+CDS)\b")
+#  A format specifier that was never filled is always a bug, wherever it sits.
+#  The sentinel VALUES are different: "None" and "nan" are also ordinary
+#  English and Python words, and a page that says "None has enough sequence in
+#  BV-BRC to model alone" is correct prose. Flag those only when the sentinel
+#  is the ENTIRE text of an element -- a cell, a tile, a span -- which is what
+#  a leaked value looks like.
+UNFILLED = re.compile(r"%[sdfr]\b")
+SENTINEL = re.compile(
+    r">\s*(None|nan|NaN|null|undefined|\(not in JSON\)|&mdash;None)\s*<")
 ANGLE = re.compile(r"&lt;[A-Za-z_][A-Za-z0-9_ -]{0,20}&gt;")
 TAGS_OK = {
     "a","abbr","aside","b","blockquote","br","button","canvas","caption","circle",
@@ -66,9 +74,10 @@ def check(path):
     if ent:
         out.append(("double-escaped entity", ["&%s;" % e for e in ent][:8]))
 
-    ph = sorted({m.group(0) for m in PLACEHOLDER.finditer(text)})
+    ph = sorted({m.group(0) for m in UNFILLED.finditer(text)})
+    ph += sorted({m.group(1) for m in SENTINEL.finditer(body)})
     if ph:
-        out.append(("placeholder left in text", ph[:8]))
+        out.append(("placeholder left in text", sorted(set(ph))[:8]))
 
     #  A path template inside a <code> span -- Alignments/<Module>/<Feature>/ --
     #  is the universal convention and the slashes make it obviously a

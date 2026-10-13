@@ -76,7 +76,13 @@ for r in rows:
     agg[k][s][0] += int(r["count"]); agg[k][s][1].add(r["genus"] or "(no genus)")
 out = []
 for k, srcs in agg.items():
-    out.append(dict(key=k, anno=key2anno.get(k, "(not in JSON)"), gene=key2gene.get(k, ""),
+    #  A collapse target with no entry in the module JSON is a collection
+    #  bucket rather than a declared feature -- POOL and PRECURSORS, which the
+    #  engine makes and the module deliberately does not declare. Saying
+    #  "(not in JSON)" on the page describes the file layout to a reader who
+    #  is looking at biology; the coverage audit already calls these "not
+    #  modelled", so use its words.
+    out.append(dict(key=k, anno=key2anno.get(k, "not modelled"), gene=key2gene.get(k, ""),
                     total=sum(v[0] for v in srcs.values()), nstrings=len(srcs),
                     srcs=sorted(([s, v[0], sorted(v[1])] for s, v in srcs.items()),
                                 key=lambda x: -x[1])))
