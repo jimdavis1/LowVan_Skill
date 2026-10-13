@@ -936,6 +936,37 @@ python3 scripts/gen_rarefaction.py --rarefaction rarefaction.json \
     --taxon <Family> --out rarefaction.html
 python3 scripts/gen_coverage_audit.py --facts <taxon>_audit.json \
     --out coverage-audit.html          # <- write the facts file by hand
+
+python3 scripts/check_artifact_html.py *.html    # <- REQUIRED before publishing
+```
+
+### Lint every page before publishing it
+
+`check_artifact_html.py` is not optional and it is not a formality. Every
+defect it tests for has shipped to a published URL, and two of them shipped
+**twice**, because the only check being applied was reading the page — and a
+page that is 50 kB of correct numbers reads fine while a tile says
+`10.8&times;`.
+
+    double-escaped entity        "&amp;times;" renders as the text "&times;"
+    placeholder left in text     %s, %d, nan, None, (not in JSON), undefined
+    angle placeholder in prose   "the explicit VP<n> forms" reads as markup
+    unknown tag                  anything a generated page should not emit
+    empty section                a heading with no body: a missing prose key
+
+The first is the one that keeps recurring, and it is structural rather than
+careless. A facts file writes HTML entities throughout because most of what it
+emits is **prose, which renderers insert raw** — but titles, eyebrows, tile
+values, table headers and table cells go through `html.escape()`, which turns
+the entity into its own source text. `esc()` in `gen_coverage_audit.py` now
+restores character references after escaping, so new entities are safe; the
+lint is what proves it for any page, including ones from the other three
+generators.
+
+Exit status is 1 if anything is reported, so gate the publish on it:
+
+```bash
+python3 scripts/check_artifact_html.py --quiet artifacts/*.html && echo OK to publish
 ```
 
 - **String collapse** — how many BV-BRC strings each annotation absorbs. This is
@@ -1162,6 +1193,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `norm_pssm.py` | normalise `psiblast -out_pssm` output to the pipeline's format |
 | `test_profile_specificity.py` | can this feature's profiles call it? measure on real precursors instead of assuming from length |
 | `qc_cross_feature.py` | find clusters binned under the wrong feature |
+| `check_artifact_html.py` | lint a rendered artifact page before publishing |
 | `audit_contamination.py` | test every sequence in every collection against each feature's canonical |
 | `qc_nterm_cross_cluster.py` | find clusters that start upstream of the rest of their feature |
 | `check_annotations.py` | check annotation strings and gene symbols against the vocabulary |
@@ -1213,6 +1245,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
   misses are all features you know you did not build
 - `check_cleaved_ends.py` shows a single spike at every `cleave=` terminus
 - no feature trails its neighbours by 20 points with the cause unexplained
+- `check_artifact_html.py` passes on every page **before** it is published
 - **all four** artifacts published, with prose: PSSM registry, string collapse,
   vocabulary rarefaction and the coverage audit
 
