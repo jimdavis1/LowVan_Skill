@@ -1253,6 +1253,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `filter_unchar.py` | split uncharacterized proteins into `UNC1..UNCn` by homology |
 | `analyze_feature_gap.py` | why is this feature called less often than its neighbours? |
 | `check_cleaved_ends.py` | are `cleave=` termini crisp, or is the alignment drifting? |
+| `check_met_start.py` | does every **CDS** profile begin at the protein's start? |
 | `merge_segments.py` | reassemble multi-segment genomes split one record per segment |
 | `minimal_refs.py` | greedy set cover for the fewest reference contigs that close a routing gap |
 | `annotation_rarefaction.py` | vocabulary growth curve, controlled versus free text |
@@ -1278,6 +1279,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 - the held-out panel (`run_gto_eval.py`) reports **0 duplicates**, and the
   misses are all features you know you did not build
 - `check_cleaved_ends.py` shows a single spike at every `cleave=` terminus
+- `check_met_start.py` is clean, or every finding is a documented non-AUG start
 - no feature trails its neighbours by 20 points with the cause unexplained
 - `check_artifact_html.py` passes on every page **before** it is published
 - **all four** artifacts published, with prose: PSSM registry, string collapse,

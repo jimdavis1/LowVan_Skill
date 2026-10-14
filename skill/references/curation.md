@@ -61,6 +61,49 @@ if ($occf < $n_occ || $cons < $frac_n_term) {
 Non-Met starts are rare but real. A flagged alignment you check by hand is
 correct; a silently truncated protein is not.
 
+### Be suspicious of any non-mat_peptide alignment that does not start at Met
+
+A mature peptide begins at a protease cut, so a non-Met first residue is
+expected there and means nothing. A **CDS has no such excuse**: a translated
+protein starts at Met, so a CDS alignment whose first column is not Met is wrong
+until shown otherwise. Treat it as a finding, not a curiosity.
+
+`FLAGGED_NTERM` exists to tell you this and nothing reads it. Norovirus `POLY`
+shipped with eight flagged alignments — cluster 1, holding 2,598 of 3,411
+sequences, trimmed at column 349 — and the annotator then called the
+polyprotein a median **127 codons late on 409 genomes**, while every mature
+peptide inside it tiled correctly. The module looked healthy from every other
+angle: 411/411 routed, every profile self-recalling, the peptides landing within
+1–3 aa of their published lengths.
+
+The file is also incomplete. It is written during the first pass, so alignments
+produced by **N-terminal re-clustering and by the leftover pass are never
+tested**: `POLY` cluster 4 was flagged, re-clustered into `4_1`, `4_2`, `4_3`,
+and all three inherited an ~80-residue trim with no flag anywhere.
+
+```bash
+python3 scripts/check_met_start.py --workdir . --module <M> --repo $VA_REPO
+```
+
+It tests the alignments that actually became **installed** profiles, skips
+mature peptides, and separates the two failure modes, which have different
+fixes:
+
+| kind | what it means | fix |
+|---|---|---|
+| `TRIMMED` | the alignment starts N residues into its own members | split the cluster on its N-terminus — trimming further deletes real protein |
+| `NON_MET` | offset 0, but the members themselves lack Met | drop collection sequences that another sequence extends, then rebuild |
+
+**`NON_MET` is usually a collection problem, and the test for it is
+self-contained**: a sequence is N-terminally incomplete if any *other* sequence
+in the same collection extends its N-terminus. Do not test it against one
+canonical start — that is genogroup-specific and silently discards divergent
+lineages. In Norovirus `POLY`, 46.4% of the collection was truncated this way,
+most of it by **one or two residues** of ragged source annotation, which was
+enough to make the N-terminal columns low-occupancy and trigger the trim.
+Restricting to the 1,827 complete sequences left the collection tighter (p05
+1,679 against 1,660) and kept every divergent start.
+
 ## Splitting on N-terminal multimodality
 
 The most common real problem: one cluster contains several distinct N-termini —
