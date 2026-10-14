@@ -96,11 +96,11 @@ for fn in os.listdir(cdir):
 #  DISCARDED, and that has to hold HERE as well. This script re-derives the
 #  unassigned set from the dump, so without this test it hands every discarded
 #  fragment straight back: on Rotavirus it adopted 36,800 of them at >=80%
-#  identity, because they ARE genuine VP4/VP7/VP6 by homology -- they are simply
-#  not whole. `truncated` is caught in both shapes, comma suffix and prefix.
-PARTIAL = re.compile(
-    r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
-    r"|^\s*truncated\b", re.I)
+#  identity, because they ARE genuine VP4/VP7/VP6 by homology -- they are
+#  simply not whole. Shared with the binner so the two cannot disagree; they
+#  did, and Sapovirus `Partial Capsid Protein` was binned out and rescued back
+#  in the same run.
+from annotation_rules import PARTIAL  # noqa: E402
 
 todo, n_partial = [], 0
 for i, m in enumerate(md5):

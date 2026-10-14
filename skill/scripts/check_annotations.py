@@ -131,8 +131,7 @@ def guard_partial_vs_subunit(vocab_path):
     accident and the damage would be a cleaved product silently vanishing from
     every module that declares one, so assert it rather than trust it.
     """
-    partial = re.compile(r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
-                         r"|^\s*truncated\b", re.I)
+    from annotation_rules import PARTIAL as partial
     bad = []
     with open(vocab_path) as fh:
         for line in fh:

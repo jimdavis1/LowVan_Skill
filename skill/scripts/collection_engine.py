@@ -40,35 +40,10 @@ def compiled(rules):
     return [(k, re.compile(p, re.I)) for k, p in rules]
 
 
-#  PROJECT RULE (8 October 2026): a record the source annotates as partial or
-#  incomplete is DISCARDED -- not binned, not offered to the homology rescue,
-#  not parked in <FEAT>.outliers.fasta. The submitter is saying the sequence is
-#  not the whole protein, and a profile has no business training on it.
-#
-#  This is a different test from the length gate and it runs first. The length
-#  gate asks whether a sequence is the wrong SIZE; this asks whether the source
-#  says it is a FRAGMENT. A record can fail either independently, and no length
-#  window can substitute: rotavirus VP7 is 326 aa in RVA and 244-251 in
-#  RVB/RVG/RVJ, so the window must reach down to ~195, and a TRUNCATED RVA VP7
-#  at 276 then passes it. There were 10,105 of those against 5,461 full-length
-#  RVA records -- outnumbering them two to one and dragging the consensus ~50
-#  residues short. Discarding on the annotation puts RVA VP7 straight back to a
-#  326 median.
-#
-#  The qualifier is not always a comma suffix: `truncated VP7` is a PREFIX, and
-#  25 such records were binned as clean until that was checked. TRUNCATED IS
-#  ALWAYS DISCARDED, in either shape.
-PARTIAL = re.compile(
-    r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
-    r"|^\s*truncated\b", re.I)
-
-#  `putative` is NOT a partiality claim -- it is the submitter saying they are
-#  unsure WHICH protein this is. So it is kept, but it has to be EARNED: the
-#  string is not taken at face value, the record goes to unassigned, and the
-#  homology rescue adopts it only at >=80% identity over >=60% of the query
-#  against a named collection. Binning it by name instead would let one
-#  uncertain submitter's guess train the profile that then propagates it.
-PUTATIVE = re.compile(r"^\s*(putative|probable|possible|predicted)\b", re.I)
+#  The partial/putative tests live in annotation_rules.py so the binner,
+#  the homology rescue and the published-vocabulary guard cannot drift
+#  apart. See that file for the rule and why its anchoring is load-bearing.
+from annotation_rules import PARTIAL, PUTATIVE  # noqa: E402
 
 
 def classify(anno, rules, notmod):
