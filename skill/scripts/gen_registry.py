@@ -102,6 +102,32 @@ def row_html(r, why=""):
                pss, cov, st, SLABEL.get(st, st)))
 
 
+
+def _prose(val):
+    """Render a notes field that may be prose OR a per-feature mapping.
+
+    `gaps` and `derived` were documented as prose and interpolated straight
+    into the page with %s. Supplying a dict keyed by feature -- which is the
+    natural shape, and what three modules did -- printed its repr into the
+    live HTML:
+
+        <p>{'POLY': '25 of 407 calls cover ...', 'VP2': 'Called on 397 ...'}</p>
+
+    Valid HTML, so the artifact lint passed it, and it shipped on every
+    registry page in the family. Accept both shapes instead of trusting the
+    caller: a mapping becomes one paragraph per feature with the key in bold.
+    """
+    if not val:
+        return ""
+    if isinstance(val, dict):
+        return "\n".join(
+            '<p><b class="mono">%s</b> &mdash; %s</p>' % (k, v)
+            for k, v in val.items() if v)
+    if isinstance(val, (list, tuple)):
+        return "\n".join("<p>%s</p>" % x for x in val if x)
+    return str(val)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--registry", default="registry.json")
@@ -266,11 +292,12 @@ def main():
         "GAPNC": gapnc or '<tr><td colspan="3" class="dash">none</td></tr>',
         "GAPTF": gaptf or '<tr><td colspan="4" class="dash">none</td></tr>',
         "NTOOFEW": counts["too-few"],
-        "GAPPROSE": notes.get("gaps") or (
+        "GAPPROSE": _prose(notes.get("gaps")) or (
             "<b>%d features have no collection at all</b> &mdash; the protein does not appear in "
             "BV-BRC under any product string the binning rules match, so there is nothing to align."
             % counts["no-collection"]),
-        "DERIVED": ('<p style="margin-top:14px">%s</p>' % notes["derived"]) if notes.get("derived") else "",
+        "DERIVED": ('<div style="margin-top:14px">%s</div>' % _prose(notes["derived"]))
+                   if notes.get("derived") else "",
     }
     with open(args.out, "w") as fh:
         fh.write(page)

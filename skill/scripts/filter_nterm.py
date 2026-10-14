@@ -66,6 +66,12 @@ def main():
                     help="k-mer for the singleton test (default 10)")
     ap.add_argument("--max-mismatch", type=int, default=3,
                     help="mismatches allowed when matching starts (default 3)")
+    ap.add_argument("--min-extenders", type=int, default=2,
+                    help="distinct sequences that must extend a start before it "
+                         "counts as truncated (default 2)")
+    ap.add_argument("--extend-ratio", type=float, default=0.10,
+                    help="extenders must be at least this fraction of the "
+                         "sequences starting with that k-mer (default 0.10)")
     ap.add_argument("--min-support", type=int, default=2,
                     help="other sequences that must share a start (default 2)")
     ap.add_argument("--no-singleton", action="store_true",
@@ -82,20 +88,47 @@ def main():
 
     #  EXTENDED: is this sequence's opening k-mer found at an INTERNAL offset
     #  of some other sequence? If so, that other sequence extends it.
-    internal = collections.defaultdict(set)
+    internal = collections.defaultdict(lambda: [set(), 0])
     for _, x in recs:
+        seen = set()
         for k in range(1, a.max_offset + 1):
             if len(x) >= k + a.k:
-                internal[x[k:k + a.k]].add(k)
+                kmer = x[k:k + a.k]
+                internal[kmer][0].add(k)
+                if kmer not in seen:
+                    internal[kmer][1] += 1      # how many sequences extend it
+                    seen.add(kmer)
 
+    #  How many sequences START with each k-mer, which is the evidence AGAINST
+    #  calling it a truncation.
+    n_start = collections.Counter(x[:a.k] for _, x in recs if len(x) >= a.k)
+
+    #  "Longer means correct" is only true when the longer form is the normal
+    #  one. It is not always: a handful of records annotated from an upstream
+    #  in-frame Met are longer and WRONG, and because every correct sequence
+    #  shares its opening k-mer, two such records can condemn hundreds.
+    #
+    #  Vesivirus CAPSID: 408 records begin MCSTCANV at 668 residues, which is
+    #  exactly the literature length. TWO records begin MSMCSTCANV at 670. The
+    #  unguarded test flagged ~248 of the correct 408 as truncations.
+    #
+    #  So an extension must be CORROBORATED: at least --min-extenders distinct
+    #  sequences must extend the k-mer, and they must not be swamped by the
+    #  sequences that begin with it.
     extended, offs = set(), collections.Counter()
     for i, (h, x) in enumerate(recs):
         if len(x) < a.k:
             continue
-        hit = internal.get(x[:a.k])
-        if hit:
-            extended.add(i)
-            offs[min(hit)] += 1
+        rec = internal.get(x[:a.k])
+        if not rec:
+            continue
+        where, n_ext = rec
+        if n_ext < a.min_extenders:
+            continue
+        if n_ext < a.extend_ratio * n_start.get(x[:a.k], 0):
+            continue
+        extended.add(i)
+        offs[min(where)] += 1
 
     #  SINGLETON: does this sequence's start resemble any other's?
     singleton = set()

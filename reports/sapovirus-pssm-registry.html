@@ -135,13 +135,14 @@
 </section>
  <section class="gap">
   <h2>What was missed, and why</h2>
-  <p>{'NS1': 'Called on 144 of 217 polyprotein-carrying contigs. This is a coverage gap, not a threshold: at 35 bits it called 136, at 24 it calls 144, and at 16 it calls 219 only by placing itself in the wrong position on 95% of genomes. 69 residues is too short for a lower cutoff to stay specific.', 'NS6_7': 'The NS6-7/VP1 junction overlaps on 26 of 141 genomes carrying all seven products. Median overlap is zero, so most calls are exact, but this is the one cleavage site norovirus does not have and it is the least crisp junction in the module.'}</p>
+  <p><p><b class="mono">NS1</b> &mdash; Called on 144 of 217 polyprotein-carrying contigs. This is a coverage gap, not a threshold: at 35 bits it called 136, at 24 it calls 144, and at 16 it calls 219 only by placing itself in the wrong position on 95% of genomes. 69 residues is too short for a lower cutoff to stay specific.</p>
+<p><b class="mono">NS6_7</b> &mdash; The NS6-7/VP1 junction overlaps on 26 of 141 genomes carrying all seven products. Median overlap is zero, so most calls are exact, but this is the one cleavage site norovirus does not have and it is the least crisp junction in the module.</p></p>
   <div class="tw"><table><thead><tr><th>Module</th><th class="num">Features</th><th>Keys with no collection</th></tr></thead>
   <tbody><tr><td colspan="3" class="dash">none</td></tr></tbody></table></div>
   <p style="margin-top:14px"><b>0 features have a collection too small to profile.</b></p>
   <div class="tw"><table><thead><tr><th>Module</th><th>Feature</th><th class="num">Seqs</th><th>Why not buildable</th></tr></thead>
   <tbody><tr><td colspan="4" class="dash">none</td></tr></tbody></table></div>
-  <p style="margin-top:14px">{'VP1': 'Not derived from a prediction. The NS7/VP1 cleavage site is documented for Mc10 (GI.1) at E1722/G1723, with P1 &isin; {E, Q} and P1&prime; &isin; {A, G, S} conserved across GI&ndash;GV, and it was written down before any profile was built.'}</p>
+  <div style="margin-top:14px"><p><b class="mono">VP1</b> &mdash; Not derived from a prediction. The NS7/VP1 cleavage site is documented for Mc10 (GI.1) at E1722/G1723, with P1 &isin; {E, Q} and P1&prime; &isin; {A, G, S} conserved across GI&ndash;GV, and it was written down before any profile was built.</p></div>
  </section>
  <div class="src">Generated from <code>Sapovirus_Viral_PSSM.json</code> and the built
  <code>Alignments/&lt;Module&gt;/&lt;Feature&gt;/pssms/</code> trees by <code>collect_registry.py</code> and

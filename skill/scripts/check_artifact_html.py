@@ -52,6 +52,20 @@ UNFILLED = re.compile(r"%[sdfr]\b")
 SENTINEL = re.compile(
     r">\s*(None|nan|NaN|null|undefined|\(not in JSON\)|&mdash;None)\s*<")
 ANGLE = re.compile(r"&lt;[A-Za-z_][A-Za-z0-9_ -]{0,20}&gt;")
+
+#  A STRINGIFIED PYTHON CONTAINER. This is valid HTML, reads as content, and
+#  shipped on every registry page in the Caliciviridae family before anyone
+#  noticed: a notes field documented as prose was handed a dict keyed by
+#  feature and interpolated with %s, so the page rendered
+#
+#      <p>{'POLY': '25 of 407 calls cover ...', 'VP2': 'Called on 397 ...'}</p>
+#
+#  Nothing else here could catch it -- the tags are closed, the entities are
+#  fine, no placeholder is left. The signature is a quoted key followed by a
+#  colon inside braces, or a list of quoted strings, in rendered TEXT.
+PYREPR = re.compile(
+    r"[\{\[]\s*&#39;[^&]{1,60}&#39;\s*[:,]"      # {'key': ...  or  ['a', ...
+    r"|[\{\[]\s*'[^']{1,60}'\s*[:,]")
 TAGS_OK = {
     "a","abbr","aside","b","blockquote","br","button","canvas","caption","circle",
     "clippath","code","col","colgroup","dd","defs","details","div","dl","dt","em",
@@ -78,6 +92,10 @@ def check(path):
     ph += sorted({m.group(1) for m in SENTINEL.finditer(body)})
     if ph:
         out.append(("placeholder left in text", sorted(set(ph))[:8]))
+
+    pyr = sorted({m.group(0)[:48] for m in PYREPR.finditer(body)})
+    if pyr:
+        out.append(("stringified Python container in text", pyr[:4]))
 
     #  A path template inside a <code> span -- Alignments/<Module>/<Feature>/ --
     #  is the universal convention and the slashes make it obviously a

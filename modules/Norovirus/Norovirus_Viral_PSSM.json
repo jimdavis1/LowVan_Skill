@@ -113,7 +113,7 @@
     "gene_symbol": "NS1-2",
     "kmers": 1,
     "max_len": 432,
-    "min_len": 235,
+    "min_len": 272,
     "segment": "Single RNA Segment",
     "type": "mat_peptide",
     "upstream_ext": 1
