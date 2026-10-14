@@ -280,22 +280,33 @@ each product sits in the chain, then set the flags from its two termini:
 |---|---|---|---|---|
 | first (signal peptide) | initiating Met | cleavage | **1** | **0** |
 | internal (e.g. Gn, HA1) | cleavage | cleavage | **0** | **0** |
-| last (e.g. Gc, HA2) | cleavage | protein's true end | **0** | **0** |
+| last (e.g. Gc, HA2) | cleavage | protein's true end | **0** | **1** |
 
 Which collapses to a rule worth remembering: **only the first product of a
-precursor ever gets `upstream_ext: 1`; every mature peptide gets
-`downstream_ext: 0`.** The last product is 0 as well, because a mature peptide
-never includes the stop codon even when it runs to the protein's real end.
+precursor ever gets `upstream_ext: 1`, and only the last one ever gets
+`downstream_ext: 1`.** Both flags are set from the product's own two termini,
+and a terminus that is a cleavage site never scans.
+
+The last product scans to the stop because its C-terminus *is* the protein's
+real end: without the scan it stops wherever the PSSM hit happened to stop, and
+the C-terminus becomes an artefact of profile coverage rather than biology.
+Turn it off only where biology says the product ends before the stop — a
+readthrough, an internal termination, a product whose real C-terminus is a
+cleavage site after all. This is why `S2`, `HA2`, `Gc`, `GP2`, `G_MAT`, `F1`,
+`NSP16` and `Delta` all ship with `downstream_ext: 1`.
 
 Sanity check on any multi-product precursor: the products should **tile** it.
 Rabies G, which has a single cleavage:
 
 ```
 G         3318..4892      524 aa + stop
-SP        3318..3374       19 aa      starts where G starts
-G_mature  3375..4889      505 aa      starts one base after SP ends
-                                      ends 3 nt short of G -- the stop codon
+SP        3318..3374       19 aa      starts where G starts  (upstream_ext 1)
+G_mature  3375..4892      505 aa      starts one base after SP ends
+                                      ends where G ends      (downstream_ext 1)
 ```
+
+Two products, no gap and no overlap, and together they span the precursor
+exactly. That is what tiling looks like.
 
 Gaps or overlaps between adjacent products mean a flag is wrong or a cleavage
 coordinate is off.
@@ -321,13 +332,29 @@ mat_peptide  G_mature  3374  4888   KFPIYTIPDKLGPWSPID...   505 aa
 processing. Nothing errored in the broken state; the feature was simply wrong
 in every genome the module annotated.
 
-Two consequences elsewhere, both worth copying into a new module:
+Three consequences elsewhere, all worth copying into a new module:
 
 - Do not expect Met at a cleaved N-terminus. `validate_calls.py` keys its
   `NO_MET` check off `upstream_ext == 0` for exactly this reason.
-- A mat_peptide sharing a boundary with its parent CDS is the symptom to watch
-  for. If mature and precursor start at the same coordinate, the extension flag
-  is wrong.
+- A mat_peptide sharing its **start** with its parent CDS is the symptom to
+  watch for, unless it is the first product. Sharing the **end** is expected of
+  the last product and of nothing else.
+- The symptom scales with the length of the chain, so measure it on the whole
+  panel rather than one genome. Norovirus declares six mature peptides in a row
+  and shipped with `upstream_ext: 1` on all of them, which put the Met scan in
+  front of five cleaved N-termini at once:
+
+  ```
+                     up=1            up=0         literature
+  NS6                 345             180            181
+  NS7                 561             510            510
+  junctions       200/200 overlap   2/200          0
+  sum - POLY        +371 aa          -4 aa          0
+  ```
+
+  No feature errored and every profile self-recalled; the peptides simply ran
+  into each other. The cheap whole-panel test is to sum the products and
+  subtract the precursor — it should be about zero, and it was +371.
 
 ## The annotation string is a key, not a label
 

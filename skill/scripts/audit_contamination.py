@@ -29,7 +29,7 @@ bits, so a genuinely divergent species -- whose VP2 may resemble no canonical
 closely -- is left where the source put it rather than dragged to whichever
 canonical happens to be nearest.
 """
-import argparse, collections, os, subprocess, tempfile
+import argparse, collections, json, os, subprocess, tempfile
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--workdir", default=".")
@@ -41,6 +41,28 @@ a = ap.parse_args()
 
 A = os.path.join(a.workdir, "Alignments", a.module)
 C = os.path.join(a.workdir, "collections", a.module)
+
+
+def feature_types(workdir, module):
+    """key -> feature_type from the module JSON, {} if it is not written yet."""
+    p = os.path.join(workdir, "%s_Viral_PSSM.json" % module)
+    if not os.path.exists(p):
+        return {}
+    try:
+        d = json.load(open(p))
+    except ValueError:
+        return {}
+    f = (d.get(module) or {}).get("features") or {}
+    return {k: (v.get("feature_type") or "CDS") for k, v in f.items()}
+
+
+#  A mature peptide IS a piece of its parent CDS and matches it at 100% by
+#  construction, so "move VP8* into VP4" is not a finding -- it is the
+#  definition of VP8*. Rotavirus reported 5 of them. qc_cross_feature learned
+#  this already; the same rule belongs here, where the consequence is worse
+#  because --write would delete the derived feature's collection into its
+#  parent.
+FTYPE = feature_types(a.workdir, a.module)
 
 
 def readfa(p):
@@ -120,7 +142,8 @@ for l in r.stdout.splitlines():
     feat = sid.split("@@")[0]
     if b > best[qid].get(feat, 0): best[qid][feat] = b
 
-move = collections.Counter(); blocked = collections.Counter(); nohit = 0
+move = collections.Counter(); blocked = collections.Counter()
+parent = collections.Counter(); nohit = 0
 plan = collections.defaultdict(dict)
 for qid, d in best.items():
     k, i = qid.split("@@"); i = int(i)
@@ -128,6 +151,8 @@ for qid, d in best.items():
     if top[0] == k: continue
     if top[1] - d.get(k, 0.0) < a.margin: continue
     #  the destination has to be able to hold a sequence this long
+    if FTYPE.get(k) == "mat_peptide" and FTYPE.get(top[0], "CDS") != "mat_peptide":
+        parent[(k, top[0])] += 1; continue
     lo, hi = span.get(top[0], (0, 10 ** 9))
     if not (lo <= qlen[k][i] <= hi):
         blocked[(k, top[0])] += 1; continue
@@ -139,6 +164,10 @@ if not move:
 print("  %-6s -> %-6s %s" % ("from", "to", "sequences"))
 for (f, t), n in move.most_common(): print("  %-6s -> %-6s %6d" % (f, t, n))
 print("  %d sequences in total" % sum(move.values()))
+if parent:
+    print("  %d mature-peptide sequence(s) matched their parent CDS, as they must: %s"
+          % (sum(parent.values()),
+             ", ".join("%s->%s %d" % (a_, b_, n) for (a_, b_), n in parent.most_common(6))))
 if blocked:
     print("  %d further hit the margin but were BLOCKED on length: %s"
           % (sum(blocked.values()),

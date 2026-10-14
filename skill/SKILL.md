@@ -1105,6 +1105,40 @@ with three internal products has six cleaved termini, and every one left to
 drift compounds along the chain. Only genuine protease sites keep a 0; give
 every other terminus a 1 and let the annotator find the codon.
 
+#### The same error runs the other way, and it is bigger
+
+`upstream_ext: 1` on a cleaved N-terminus is the mirror image, and it costs
+more. It runs `scan_to_met_start`, which walks **left** in 3-nt steps until it
+meets a Met or a stop. An internal mature peptide never begins with Met, so the
+scan fires on every call — and inside a polyprotein ORF there is no stop to halt
+it, so it runs into the upstream neighbour until it reaches an arbitrary Met.
+A cleaved terminus has no codon to find; the scan invents one.
+
+Norovirus declared six mature peptides in a row and shipped with the flag on
+all six, putting that scan in front of five cleaved N-termini at once:
+
+```
+                 up=1          up=0       literature
+NS6               345           180          181
+NS7               561           510          510
+junctions     200/200 ovl     2/200           0
+sum - POLY      +371 aa       -4 aa           0
+```
+
+Nothing errored, every profile self-recalled, and the eight-genome spot checks
+looked fine. **So run the whole-panel tiling test, which is one line and
+catches both directions at once:** sum a precursor's products across every
+panel genome and subtract the precursor. It should be about zero.
+
+```bash
+python3 scripts/check_cleaved_ends.py --json <T>_Viral_PSSM.json \
+        --ann-dir panel/gto_out --precursor POLY --products NS1_2,NS3,NS4,NS5,NS6,NS7
+```
+
+**This is a gate, not a diagnostic.** Any module declaring two or more mature
+peptides on one precursor runs it before shipping, and a non-zero median
+sum-minus-precursor blocks the ship until the flags are right.
+
 ### 15. Ship it — kit, Box, runtime, commit
 
 **A module is not built when its PSSMs exist in a temp directory.** Twice in

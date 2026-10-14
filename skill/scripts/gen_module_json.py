@@ -107,12 +107,25 @@ def main():
         if seg is None:
             sys.exit("feature %s has no 'segment' and the module has %d segments"
                      % (key, len(segments)))
+        #  upstream_ext=1 makes the annotator run scan_to_met_start, which walks
+        #  LEFT in 3-nt steps until it meets a Met or a stop. An internal mature
+        #  peptide never begins with Met, so the scan fires on every call, and
+        #  inside a polyprotein ORF there is no stop to halt it -- it runs into
+        #  the upstream neighbour until it reaches an arbitrary Met. Norovirus
+        #  shipped that way and every one of the five junctions overlapped on
+        #  40/40 panel genomes (NS5/NS6 by a median 496 nt); the six peptides
+        #  summed to a median 371 aa MORE than the polyprotein containing them.
+        #  So a mat_peptide defaults to no N-terminal scan. It is still only a
+        #  default: a product whose N-terminus really is the parent's start Met
+        #  may set upstream_ext back to 1, and for that product the scan is a
+        #  no-op anyway because the hit already begins with M.
+        ftype = spec.get("feature_type", "CDS")
         d = {
             "anno": spec["anno"],
             "bit_cutoff": spec.get("bit_cutoff", cutoff(key, med)),
             "coverage_cutoff": 0.65,
-            "downstream_ext": 0,
-            "feature_type": spec.get("feature_type", "CDS"),
+            "downstream_ext": spec.get("downstream_ext", 0),
+            "feature_type": ftype,
             #  The key is filename-safe and the symbol is what the annotator
             #  and the genome-quality tool report, so they are not always the
             #  same string -- Enterovirus VPG/VPg, Cardiovirus LSTAR/L*, and
@@ -126,8 +139,9 @@ def main():
             "max_len": hi,
             "min_len": lo,
             "segment": seg,
-            "type": spec.get("feature_type", "CDS"),
-            "upstream_ext": 1,
+            "type": ftype,
+            "upstream_ext": spec.get("upstream_ext",
+                                     0 if ftype == "mat_peptide" else 1),
         }
         if spec.get("comment"): d["comment"] = spec["comment"]
         out[key] = d
