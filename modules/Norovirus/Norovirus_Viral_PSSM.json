@@ -1,0 +1,249 @@
+{
+ "Norovirus": {
+  "close_genomes": {
+   "Norovirus.1.dna": {
+    "genome_ids": "1938392.160.con.0001",
+    "genome_name": "Norovirus sp. Norozj-5"
+   },
+   "Norovirus.10.dna": {
+    "genome_ids": "122929.46516.con.0001",
+    "genome_name": "Norovirus GII 23DIA-PD90070-1"
+   },
+   "Norovirus.11.dna": {
+    "genome_ids": "1183318.3.con.0001",
+    "genome_name": "Norovirus Hu/GIV.1/LakeMacquarie/NSW268O/2010/AU"
+   },
+   "Norovirus.12.dna": {
+    "genome_ids": "673457.4.con.0001",
+    "genome_name": "Norovirus dog/GVI.1/HKU_Ca026F/2007/HKG"
+   },
+   "Norovirus.13.dna": {
+    "genome_ids": "122929.4115.con.0001",
+    "genome_name": "Norovirus GII 15-65"
+   },
+   "Norovirus.14.dna": {
+    "genome_ids": "316620.3.con.0001",
+    "genome_name": "Norovirus swine/GII/OH-QW125/03/US"
+   },
+   "Norovirus.15.dna": {
+    "genome_ids": "340017.195.con.0001",
+    "genome_name": "Norovirus GIII 41-Caliciviridae-16"
+   },
+   "Norovirus.16.dna": {
+    "genome_ids": "1246677.5.con.0001",
+    "genome_name": "Norovirus GV NR/rat01-NoV/HUN/2017"
+   },
+   "Norovirus.17.dna": {
+    "genome_ids": "150080.56.con.0001",
+    "genome_name": "Norovirus isolates"
+   },
+   "Norovirus.18.dna": {
+    "genome_ids": "150080.58.con.0001",
+    "genome_name": "Norovirus isolates"
+   },
+   "Norovirus.19.dna": {
+    "genome_ids": "1514709.4.con.0001",
+    "genome_name": "Bat norovirus"
+   },
+   "Norovirus.2.dna": {
+    "genome_ids": "122929.3223.con.0001",
+    "genome_name": "Norovirus GII"
+   },
+   "Norovirus.20.dna": {
+    "genome_ids": "2070151.5.con.0001",
+    "genome_name": "California sea lion norovirus Csl/NoV2/PF080916-2"
+   },
+   "Norovirus.21.dna": {
+    "genome_ids": "3386173.3.con.0001",
+    "genome_name": "Yunnan rodent norovirus 1 PEML-YNSC173"
+   },
+   "Norovirus.22.dna": {
+    "genome_ids": "122928.1200.con.0001",
+    "genome_name": "Norovirus GI"
+   },
+   "Norovirus.23.dna": {
+    "genome_ids": "122929.22888.con.0001",
+    "genome_name": "Norovirus GII RIVM-NOV-2016-0222_R01-04_minor"
+   },
+   "Norovirus.24.dna": {
+    "genome_ids": "122929.22904.con.0001",
+    "genome_name": "Norovirus GII RIVM-NOV-2018-0125_R03-01"
+   },
+   "Norovirus.25.dna": {
+    "genome_ids": "122929.22920.con.0001",
+    "genome_name": "Norovirus GII RIVM-NOV-2018-0454_R03-16_minor"
+   },
+   "Norovirus.3.dna": {
+    "genome_ids": "122928.4118.con.0001",
+    "genome_name": "Norovirus GI Norovirus GI/Hu/IN/2018/GI.3[P13]/NICED-RV-791"
+   },
+   "Norovirus.4.dna": {
+    "genome_ids": "357231.241.con.0001",
+    "genome_name": "Murine norovirus"
+   },
+   "Norovirus.5.dna": {
+    "genome_ids": "122929.18014.con.0001",
+    "genome_name": "Norovirus GII N21051"
+   },
+   "Norovirus.6.dna": {
+    "genome_ids": "122928.2700.con.0001",
+    "genome_name": "Norovirus GI Hu/GI/JP/2012/GI.P6-GI.6/HO-5"
+   },
+   "Norovirus.7.dna": {
+    "genome_ids": "1274209.38.con.0001",
+    "genome_name": "Norovirus GVI BUCT-K1"
+   },
+   "Norovirus.8.dna": {
+    "genome_ids": "340017.143.con.0001",
+    "genome_name": "Norovirus GIII"
+   },
+   "Norovirus.9.dna": {
+    "genome_ids": "122928.1047.con.0001",
+    "genome_name": "Norovirus GI Baltimore16082"
+   }
+  },
+  "features": {
+   "NS1_2": {
+    "anno": "Non-structural protein NS1-2",
+    "bit_cutoff": 100,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS1-2",
+    "kmers": 1,
+    "max_len": 432,
+    "min_len": 235,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 1
+   },
+   "NS3": {
+    "anno": "NTPase NS3",
+    "bit_cutoff": 200,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS3",
+    "kmers": 1,
+    "max_len": 390,
+    "min_len": 313,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NS4": {
+    "anno": "Non-structural protein NS4",
+    "bit_cutoff": 45,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS4",
+    "kmers": 1,
+    "max_len": 224,
+    "min_len": 140,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NS5": {
+    "anno": "Viral genome-linked protein VPg",
+    "bit_cutoff": 70,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS5",
+    "kmers": 1,
+    "max_len": 152,
+    "min_len": 106,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NS6": {
+    "anno": "3C-like protease NS6",
+    "bit_cutoff": 110,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "NS6",
+    "kmers": 1,
+    "max_len": 193,
+    "min_len": 143,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NS7": {
+    "anno": "RNA-dependent RNA polymerase",
+    "bit_cutoff": 325,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "RDRP",
+    "kmers": 1,
+    "max_len": 601,
+    "min_len": 408,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "POLY": {
+    "anno": "Nonstructural polyprotein",
+    "bit_cutoff": 400,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "POLY",
+    "kmers": 1,
+    "max_len": 1910,
+    "min_len": 1353,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP1": {
+    "anno": "Major capsid protein VP1",
+    "bit_cutoff": 255,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "VP1",
+    "kmers": 1,
+    "max_len": 656,
+    "min_len": 412,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP2": {
+    "anno": "Minor structural protein VP2",
+    "bit_cutoff": 75,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "VP2",
+    "kmers": 1,
+    "max_len": 298,
+    "min_len": 171,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "Single RNA Segment": {
+    "max_len": 8519,
+    "min_len": 6159,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

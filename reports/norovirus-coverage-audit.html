@@ -1,0 +1,145 @@
+<title>Norovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; Norovirus module &middot; 14 October 2026</div><h1>Norovirus</h1><p class="stand">One module for the whole genus. A single positive-sense RNA segment of about 7.5 kb, three open reading frames, and a non-structural polyprotein that is cleaved into six mature peptides. The deposited vocabulary is dominated by a second population the module has to refuse: 74,001 genomes contribute 159,695 protein features, but most of them are genotyping amplicons of 90-odd residues deposited under the name of the full-length protein. This audit says what the module calls, what it refuses, and which of the remaining gaps are biology and which are ours.</p><div class="tiles"><div class="tile"><div class="v">9</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">176</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">411/411</div><div class="l">exemplars routed</div></div><div class="tile"><div class="v">39/40</div><div class="l">held-out genomes clean</div></div><div class="tile"><div class="v">17.6&times;</div><div class="l">string collapse</div></div><div class="tile"><div class="v">6.1&times;</div><div class="l">vocabulary collapse at equal proteins sampled</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One genus, one module. The genome organisation is uniform across every genogroup, so nothing here needed partitioning.</p><p class="note">Norovirus is the dominant cause of epidemic non-bacterial gastroenteritis worldwide. The genome is a single positive-sense RNA of roughly 7.5 kb carrying three open reading frames: ORF1 encodes a non-structural polyprotein cleaved by its own 3C-like protease into six mature peptides, ORF2 the major capsid protein VP1, and ORF3 the minor structural protein VP2. Murine norovirus adds a fourth frame, ORF4, encoding virulence factor 1 &mdash; see &sect;07.</p><div class="scroll"><table><thead><tr><th></th><th>count</th></tr></thead><tbody><tr><td>genomes in the BV-BRC protein dump</td><td>74,001</td></tr><tr><td>protein features</td><td>159,695</td></tr><tr><td>unique sequences</td><td>53,612</td></tr><tr><td>genomes with a complete contig</td><td>411</td></tr><tr><td>distinct annotation strings</td><td>158</td></tr></tbody></table></div><p class="note">The genogroup distribution is steeply skewed, and the module is measured against all of it rather than the dominant clade: GII 41,416 genomes, GI 8,069, Norwalk virus 520, murine norovirus 314, GIII 311, GIV 162, GIX 80, GV 56, GVI 52. The held-out panel and the routing figures below deliberately include the rare genogroups, because the two defects this build found were both invisible in GII and obvious outside it.</p><p class="note">The six ORF1 products map onto the published cleavage map: p48 = NS1-2, NTPase = NS3, p22 = NS4, VPg = NS5, Pro = NS6, RdRp = NS7. Cleavage sites were taken from the literature <b>before</b> any profile was built, for GI Norwalk and GII MD145 both, and recorded in <code>CLEAVAGE_SITES.md</code>.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">The hard part was not homology. It was separating two populations that share a vocabulary.</p><p class="note">Norovirus is genotyped by sequencing a short amplicon across the ORF1/ORF2 junction or inside the capsid, and that amplicon is deposited under the name of the full-length protein. The result is two populations under one string. The median record called RdRp is <b>93 residues against a true 510</b>.</p><div class="scroll"><table><thead><tr><th>coarse string</th><th>records</th><th>full-length</th><th>mature-peptide name</th><th>full-length</th></tr></thead><tbody><tr><td>RdRp</td><td>33,095</td><td>19.5%</td><td>Pro</td><td>95.0%</td></tr><tr><td>VP1</td><td>31,416</td><td>26.3%</td><td>NTPase</td><td>98.9%</td></tr><tr><td>nonstructural polyprotein</td><td>24,409</td><td>18.5%</td><td>VPg</td><td>99.7%</td></tr><tr><td>capsid protein</td><td>14,811</td><td>9.5%</td><td>p48</td><td>97.8%</td></tr><tr><td>major capsid</td><td>6,104</td><td>11.3%</td><td>p22</td><td>99.7%</td></tr></tbody></table></div><p class="note">So <b>no length window was taken from a median</b>. Each was estimated from the 1st&ndash;99th percentile of the records carrying a mature-peptide name &mdash; a population that is 95&ndash;99.7% complete &mdash; and each brackets the length the literature gives. A 0.7&ndash;1.3&times; window from the RdRp median would be 65&ndash;121 residues: it would delete every real polymerase and keep only the fragments, with no label left to fall back on.</p><pre class="mono">POLY 1289-2067 (1699)   NS1_2 249-464 (330)   NS3 308-420 (366)
+NS4   140-231  (179)    NS5    105-161 (133)  NS6 153-210 (181)
+NS7   422-586  (510)    VP1    437-638 (540)  VP2 182-308 (259)</pre><p class="note"><code>capsid protein</code> and <code>capsid</code> are bound to no feature: 16,826 records that do not say whether VP1 or VP2 is meant. The homology rescue arbitrates them per sequence rather than per string.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Nine features, 176 profiles. Bit cutoffs are set high enough that a mature peptide cannot fire on its neighbour.</p><div class="scroll"><table><thead><tr><th>feature</th><th>type</th><th>bit</th><th>min</th><th>max</th><th>PSSMs</th><th>collection</th></tr></thead><tbody><tr><td>POLY</td><td>CDS</td><td>400</td><td>1353</td><td>1910</td><td>10</td><td>1,692</td></tr><tr><td>NS1_2</td><td>mat_peptide</td><td>100</td><td>235</td><td>432</td><td>19</td><td>2,200</td></tr><tr><td>NS3</td><td>mat_peptide</td><td>200</td><td>313</td><td>390</td><td>8</td><td>1,285</td></tr><tr><td>NS4</td><td>mat_peptide</td><td>45</td><td>140</td><td>224</td><td>29</td><td>2,070</td></tr><tr><td>NS5</td><td>mat_peptide</td><td>70</td><td>106</td><td>152</td><td>7</td><td>675</td></tr><tr><td>NS6</td><td>mat_peptide</td><td>110</td><td>143</td><td>193</td><td>7</td><td>862</td></tr><tr><td>NS7</td><td>mat_peptide</td><td>325</td><td>408</td><td>601</td><td>9</td><td>2,456</td></tr><tr><td>VP1</td><td>CDS</td><td>255</td><td>412</td><td>656</td><td>42</td><td>5,250</td></tr><tr><td>VP2</td><td>CDS</td><td>75</td><td>171</td><td>298</td><td>45</td><td>2,795</td></tr></tbody></table></div><p class="note">The extension flags are set from each product's own two termini, not from a default. NS1-2 takes <code>upstream_ext 1</code> because its N-terminus <i>is</i> the polyprotein's initiating Met; NS7 takes <code>downstream_ext 1</code> because its C-terminus is the protein's real end; the four internal peptides take <code>0/0</code> because both of their termini are protease cuts, which no codon marks. Getting this wrong is &sect;08.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">Every exemplar reaches the module.</p><div class="verdict"><b>411 of 411 exemplars routed, 0 unrouted (0.0%)</b>, on 25 representative contigs. Contig lengths run 6,554&ndash;12,580 nt with a median of 7,528.</div><p class="note">The reference set was chosen to span the genogroups rather than the record counts: GI, GII, GIII, GIV, GV, GVI and GIX are all represented, alongside murine, bat, swine, canine, rat and California sea lion noroviruses. Routing is the one place where the GII-heavy record distribution would have been actively misleading.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">Nine features, measured on all 411 complete genomes, not on the panel.</p><div class="scroll"><table><thead><tr><th>feature</th><th>called</th><th>of 411</th><th>rate</th></tr></thead><tbody><tr><td>POLY</td><td>409</td><td>411</td><td>99.5%</td></tr><tr><td>NS1-2</td><td>407</td><td>411</td><td>99.0%</td></tr><tr><td>NS3</td><td>404</td><td>411</td><td>98.3%</td></tr><tr><td>NS4</td><td>407</td><td>411</td><td>99.0%</td></tr><tr><td>NS5</td><td>406</td><td>411</td><td>98.8%</td></tr><tr><td>NS6</td><td>407</td><td>411</td><td>99.0%</td></tr><tr><td>NS7</td><td>407</td><td>411</td><td>99.0%</td></tr><tr><td>VP1</td><td>408</td><td>411</td><td>99.3%</td></tr><tr><td>VP2</td><td>397</td><td>411</td><td>96.6%</td></tr></tbody></table></div><p class="note">The core proteins appear in near-equal numbers, which is what a complete genome should give: every genome has one of each. VP2 trails the rest by about 2.5 points and is the one feature with a visible coverage hole in its profiles.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">Called is not correct. For a polyprotein the test is whether the products tile it.</p><p class="note">The six mature peptides should sum to the polyprotein that contains them, with no gap and no overlap. Summing the products across every genome and subtracting the precursor is one line and catches both an over-extension and a truncation at once.</p><div class="scroll"><table><thead><tr><th>peptide</th><th>literature</th><th>median called</th><th>p05</th><th>p95</th></tr></thead><tbody><tr><td>NS1-2</td><td>330</td><td>331</td><td>258</td><td>392</td></tr><tr><td>NS3</td><td>366</td><td>366</td><td>362</td><td>366</td></tr><tr><td>NS4</td><td>179</td><td>179</td><td>160</td><td>200</td></tr><tr><td>NS5</td><td>133</td><td>133</td><td>114</td><td>140</td></tr><tr><td>NS6</td><td>181</td><td>181</td><td>181</td><td>183</td></tr><tr><td>NS7</td><td>510</td><td>511</td><td>471</td><td>511</td></tr></tbody></table></div><div class="verdict">Across 398 genomes carrying the polyprotein and all six peptides: <b>sum(peptides) &minus; polyprotein = 0 aa at the median</b>, every junction medians at zero overlap, <b>NS7 ends exactly where the polyprotein ends on 99.5%</b>, and NS1-2 starts exactly where it starts on 76.1%. The published GII polyprotein is 1,699 residues and the six literature lengths sum to 1,699.</div><div class="verdict">Self-recall against each feature's own in-range collection: <b>19,284 of 19,285 (99.99%)</b> &mdash; POLY 1692/1692, NS1-2 2200/2200, NS3 1285/1285, NS4 2070/2070, NS5 675/675, NS6 862/862, NS7 2456/2456, VP1 5250/5250, VP2 2794/2795. This is a floor rather than a validation &mdash; a profile finding its own training data proves only that the build completed. The held-out figures above and in &sect;05 are what the module is judged on.</div><div class="verdict">Held-out panel of 40 genomes spanning the genogroups: <b>39 clean (97.5%)</b>. The single flag is <i>Contig has too many ambiguous bases</i> &mdash; a property of the deposited sequence, not of the module.</div></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Four gaps, each measured. None closes by tuning a cutoff.</p><p class="note"><b>The polyprotein is partial on about 6% of genomes.</b> 25 of 407 POLY calls cover only 17&ndash;84% of the expected 1,699 residues. These are not short genomes &mdash; their median length is 7,371 nt against 7,530 for the rest &mdash; they are divergent lineages the POLY profiles match only in part. Two things keep this honest rather than silent: <code>min_len</code> is 1,353, so every one is flagged too-short by the quality tool, and <b>the mature peptides are still called on them</b>, six of six on most. Closing it needs profiles for those lineages, not a lower cutoff.</p><p class="note"><b>ORF4 / VF1 is not declared.</b> 39 features in the dump carry the name. It is a real protein &mdash; murine norovirus virulence factor 1 &mdash; and not a synonym for anything the module models. It was not evaluated as a feature in this build and should be.</p><p class="note"><b>147 bindable sequences were left on the table.</b> 22 annotation strings map unambiguously onto a declared feature but are not matched by the rules &mdash; <code>VP-1</code> with a hyphen, a bare <code>ORF1</code>, <code>small basic protein</code> for VP2, the typo <code>major capid protein</code>. Binding every one of them and keeping only what clears the length window adds 147 sequences: POLY +4.2%, everything else under 1.5%. Measured and tabled rather than guessed at, because a rebuild discards the homology rescue. The spellings are recorded for the three Caliciviridae modules that follow.</p><p class="note"><b>The genotyping fragments are refused by design.</b> 14,837 sequences were excluded from VP1 and 8,571 from NS7. Every one of them falls <i>below</i> the window &mdash; VP1 outliers have a median length of 94 residues against a kept median of 540 &mdash; and <b>none falls above it</b> in any feature. That distinction is the check worth copying: all-below means fragments, any-above means a real population is being cut.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Two defects, both silent, both in the machinery rather than the biology. Each is now a gate in the build.</p><p class="note"><b>The extension flags were never honoured.</b> The module generator hardcoded <code>upstream_ext: 1</code> on every feature while reading every neighbouring field from the curator's spec. On a mature peptide that flag runs a scan that walks left until it meets a Met or a stop. An internal mature peptide never begins with Met, and inside a polyprotein ORF there is no stop to halt the scan, so it ran into the upstream neighbour and stopped at an arbitrary Met.</p><pre class="mono">                     up=1            up=0         literature
+NS6                   345             180            181
+NS7                   561             510            510
+junctions         200/200 overlap   2/200             0
+sum - POLY          +371 aa         -4 aa             0</pre><p class="note">Nothing errored. Every profile self-recalled, all 411 genomes routed, and the peptides landed within a few residues of plausible lengths. The six products simply ran into each other, by a median 371 residues more than the polyprotein that contained them.</p><p class="note"><b>The polyprotein profiles had been trimmed off their own N-terminus.</b> 46% of the POLY collection was N-terminally truncated in the source annotation &mdash; most of it by <i>one or two residues</i> &mdash; which was enough to make the first columns low-occupancy and trigger the curation step that trims ragged ends. The largest cluster, 2,598 of 3,411 sequences, was trimmed at column 349. The annotator then called the polyprotein a median <b>127 codons late on 409 genomes</b> while every mature peptide inside it tiled correctly.</p><div class="scroll"><table><thead><tr><th></th><th>before</th><th>after</th><th>truth</th></tr></thead><tbody><tr><td>POLY start coordinate</td><td>383</td><td>5</td><td>~5</td></tr><tr><td>POLY starts within 20 nt</td><td>10.6%</td><td>90.4%</td><td>&mdash;</td></tr><tr><td>sum(peptides) &minus; POLY</td><td>+124 aa</td><td>0 aa</td><td>0</td></tr><tr><td>NS1-2 start &minus; POLY start</td><td>&minus;372 nt</td><td>0</td><td>0</td></tr></tbody></table></div><p class="note">The pipeline had detected this and written it to a file nobody reads. <code>FLAGGED_NTERM</code> records every alignment whose trim stopped on a non-Met residue &mdash; eight of them here &mdash; for review. It is also incomplete: it is written during the first pass, so the alignments produced by re-clustering and by the leftover pass are never tested, and three profiles inherited an 80-residue trim with no flag anywhere.</p><div class="verdict">Both are now gates rather than notes. The generator honours the per-terminus flags and defaults a mature peptide to no N-terminal scan; <code>check_met_start.py</code> treats a <b>CDS</b> profile that does not begin at Met as a finding, separating a trimmed alignment from a truncated collection because the two have different fixes. A mature peptide is exempt: it begins at a protease cut, and a non-Met start there means nothing.</div></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">The point of the module, stated as a ratio.</p><p class="note">158 distinct annotation strings across 168,870 occurrences collapse onto <b>9 controlled annotations</b> &mdash; a 17.6&times; reduction. 40 strings remain unbound, and &sect;07 says what binding them would be worth.</p><p class="note">Rarefied over proteins rather than genomes, and compared at the depth both curves reach: at 2,844 proteins sampled the source vocabulary holds <b>55.0 distinct strings</b> and the module holds <b>9.0</b> &mdash; a <b>6.1&times;</b> collapse. The source needs 2,308 proteins to reach 95% of its final vocabulary; the module needs 27, because a controlled vocabulary saturates as soon as every protein has been named once, while free text keeps climbing as each submitter spells it a new way.</p></section><p class="src">Measured from the shipped module: Norovirus_Viral_PSSM.json, 176 PSSMs, 25 representative contigs. Routing and per-feature call rates from evaluate_coverage over 411 complete genomes; boundary and tiling figures from the same run's annotations; held-out figures from a 40-genome panel; string collapse from collect_synmap; rarefaction over 100 replicates.</p></div>

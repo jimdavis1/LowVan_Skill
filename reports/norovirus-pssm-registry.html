@@ -1,0 +1,172 @@
+<title>Norovirus PSSM Registry</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:1120px; margin:0 auto; padding:40px 22px 72px; display:flex; flex-direction:column; gap:30px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  .stand { max-width:70ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .stand b { color:var(--ink); font-weight:600; }
+
+  .figs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-top:1px solid var(--base); border-bottom:1px solid var(--grid); }
+  .fig { padding:13px 16px 13px 0; }
+  .fig+.fig { padding-left:16px; border-left:1px solid var(--grid); }
+  .fig .n { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:23px; font-weight:500; display:block; letter-spacing:-.02em; }
+  .fig .k { font-size:12px; color:var(--ink2); }
+
+  .bar { display:flex; height:10px; border-radius:2px; overflow:hidden; gap:2px; background:transparent; }
+  .bar i,.bar b { display:block; height:10px; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; font-size:12.5px; color:var(--ink2); align-items:center; }
+  .legend span { display:inline-flex; gap:6px; align-items:center; }
+  .sw { width:10px; height:10px; border-radius:2px; }
+
+  .ctrl { display:flex; gap:7px; flex-wrap:wrap; align-items:center; }
+  .ctrl button { font-family:var(--sans); font-size:12.5px; padding:5px 11px; border-radius:3px;
+    border:1px solid var(--hair); background:var(--surface); color:var(--ink2); cursor:pointer; }
+  .ctrl button[aria-pressed="true"] { background:var(--ink); color:var(--plane); border-color:var(--ink); }
+  .ctrl button:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+
+  .tax { display:flex; flex-direction:column; gap:9px; }
+  .taxhd { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; border-bottom:1px solid var(--base); padding-bottom:7px; }
+  .taxhd h2 { font-family:var(--serif); font-weight:600; font-size:20px; margin:0; }
+  .taxmeta { display:flex; gap:14px; font-family:var(--mono); font-size:11.5px; color:var(--muted); flex-wrap:wrap; }
+  .taxmeta b { color:var(--ink2); font-weight:500; }
+  .taxnote { margin:0; font-size:13.5px; color:var(--ink2); max-width:82ch; }
+
+  .tw { overflow-x:auto; border:1px solid var(--hair); border-radius:4px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { padding:7px 11px; text-align:left; border-bottom:1px solid var(--grid); vertical-align:top; }
+  thead th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted);
+    font-weight:500; white-space:nowrap; position:sticky; top:0; background:var(--surface); }
+  tbody tr:last-child td { border-bottom:0; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.anno { min-width:19ch; }
+  td.anno .why { display:block; margin-top:3px; font-size:12.5px;
+                 line-height:1.45; color:var(--muted); max-width:62ch; }
+  td.m { font-family:var(--mono); color:var(--ink2); white-space:nowrap; }
+  td.ty { font-size:11.5px; color:var(--muted); }
+  .num, td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  td.pss code { font-family:var(--mono); font-size:11px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .dash { color:var(--muted); }
+  .nd { color:var(--missed); font-size:13px; }
+
+  .covcell { white-space:nowrap; min-width:110px; }
+  .cov { display:inline-flex; width:74px; height:9px; border-radius:2px; overflow:hidden; gap:2px; vertical-align:middle; }
+  .cov i { background:var(--built); } .cov b { background:var(--missed); }
+  .covn { font-family:var(--mono); font-size:11px; color:var(--ink2); margin-left:7px; font-variant-numeric:tabular-nums; }
+
+  .chip { font-family:var(--mono); font-size:10.5px; padding:2px 7px; border-radius:9px; white-space:nowrap;
+    border:1px solid var(--hair); color:var(--ink2); }
+  .chip.s-built { border-color:var(--built); color:var(--built); }
+  .chip.s-derived { border-color:var(--base); color:var(--ink2); }
+  .chip.s-too-few { border-color:var(--missed); color:var(--missed); }
+  .chip.s-no-collection { color:var(--muted); }
+
+  .gap { border-left:2px solid var(--missed); padding:3px 0 3px 15px; max-width:84ch; }
+  .gap h2 { font-family:var(--serif); font-size:19px; margin:0 0 5px; }
+  .gap p { margin:0 0 10px; font-size:14px; color:var(--ink2); }
+  .gap p:last-of-type { margin-bottom:14px; }
+  .keys code { font-family:var(--mono); font-size:10.5px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .src { font-size:12px; color:var(--muted); border-top:1px solid var(--grid); padding-top:13px; }
+  .src code { font-family:var(--mono); }
+  @media (max-width:760px) { .figs { grid-template-columns:repeat(2,1fr); } h1 { font-size:25px; } }
+</style>
+<div class="wrap">
+ <header>
+  <div class="eyebrow">LowVan &middot; Norovirus module &middot; 14 Oct 2026</div>
+  <h1>Norovirus</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">Annotation strings and the PSSMs that call them</h2>
+  <p class="stand">176 position-specific scoring matrices behind the nine declared features of the Norovirus module. Each row is one feature: the collection it was built from, how many profiles that collection yielded, and why the number is what it is.</p>
+ </header>
+ <div class="figs">
+  <div class="fig"><span class="n">176</span><span class="k">PSSMs built</span></div>
+  <div class="fig"><span class="n">9/9</span><span class="k">features with a profile</span></div>
+  <div class="fig"><span class="n">9</span><span class="k">of 9 annotation strings reachable</span></div>
+  <div class="fig"><span class="n">100%</span><span class="k">median per-feature call rate</span></div>
+  <div class="fig"><span class="n">0</span><span class="k">features unsatisfiable</span></div>
+ </div>
+ <div class="legend">
+  <span><i class="sw" style="background:var(--built)"></i> callable by its own module</span>
+  <span><i class="sw" style="background:var(--missed)"></i> in the collection but not called</span>
+  <span><i class="nd">&#9702;</i> non-default build parameters (0)</span>
+ </div>
+ <div class="ctrl"><span class="eyebrow" style="margin-right:4px">show</span>
+  <button aria-pressed="true" data-f="all">all 9</button>
+  <button aria-pressed="false" data-f="built">built (9)</button>
+  <button aria-pressed="false" data-f="gap">gaps (0)</button>
+  <button aria-pressed="false" data-f="derived">derived (0)</button>
+ </div>
+<section class="tax">
+ <div class="taxhd"><h2>Norovirus</h2><span class="taxmeta">9 of 9 features built &middot; 176 PSSMs &middot; 52% callable</span></div>
+<p class="taxnote">One module for the whole genus. A single positive-sense RNA segment of about 7.5 kb with three open reading frames &mdash; a non-structural polyprotein cleaved into six mature peptides, the major capsid VP1, and the minor structural protein VP2 &mdash; and no genogroup departs from that layout, so nothing here needed partitioning. The collections are large but the usable fraction is small: the genus is genotyped by sequencing a short amplicon and depositing it under the full protein's name, so 14,837 sequences were refused from VP1 alone, every one of them below the length window.</p>
+ <div class="tw"><table><thead><tr><th>Key</th><th>Annotation string</th><th>Gene</th><th>Type</th><th class="num">Bit</th><th class="num">Length</th><th class="num">Seqs</th><th>PSSMs</th><th>Callable</th><th>Status</th></tr></thead>
+ <tbody><tr data-status="built"><td class="k">NS1_2</td><td class="anno">Non-structural protein NS1-2<span class="why">p48, the first cleavage product, and the only mature peptide whose N-terminus is the polyprotein's initiating Met rather than a protease cut. It is correspondingly the only one carrying <code>upstream_ext 1</code>. The most variable of the six in length &mdash; 258 to 392 residues across genogroups against a GII literature value of 330 &mdash; which is why it needs 19 profiles.</span></td><td class="m">NS1-2</td><td class="m ty">mat_pep</td><td class="m num">100</td><td class="m num">235&ndash;432</td><td class="m num">2225</td><td class="pss"><code>1</code> <code>10</code> <code>12</code> <code>14</code> <code>15</code> <code>16_1</code> <code>17</code> <code>18</code> <code>2</code> <code>20</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>3</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code></td><td class="covcell"><div class="cov" title="2200 of 2200 in-range sequences callable; 2224 of 2225 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS3</td><td class="anno">NTPase NS3<span class="why">The NTPase, 366 residues and almost invariant: p05 362, p95 366. Eight profiles cover 1,285 sequences, the tightest length distribution of any feature in the module.</span></td><td class="m">NS3</td><td class="m ty">mat_pep</td><td class="m num">200</td><td class="m num">313&ndash;390</td><td class="m num">1336</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code></td><td class="covcell"><div class="cov" title="1285 of 1285 in-range sequences callable; 1324 of 1336 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS4</td><td class="anno">Non-structural protein NS4<span class="why">p22, 179 residues. 29 profiles &mdash; the second largest set &mdash; because the protein is short, poorly conserved, and carries the lowest bit cutoff in the module at 45. Both of its termini are protease cuts, so neither end scans for a codon.</span></td><td class="m">NS4</td><td class="m ty">mat_pep</td><td class="m num">45</td><td class="m num">140&ndash;224</td><td class="m num">2078</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="2070 of 2070 in-range sequences callable; 2078 of 2078 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS5</td><td class="anno">Viral genome-linked protein VPg<span class="why">VPg, the genome-linked protein, covalently attached to the 5&prime; end of the RNA. 133 residues, 7 profiles, and the smallest collection in the module at 675 &mdash; the string <code>VPg</code> is specific enough that almost nothing reaches it by accident.</span></td><td class="m">NS5</td><td class="m ty">mat_pep</td><td class="m num">70</td><td class="m num">106&ndash;152</td><td class="m num">684</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code></td><td class="covcell"><div class="cov" title="675 of 675 in-range sequences callable; 683 of 684 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS6</td><td class="anno">3C-like protease NS6<span class="why">The 3C-like protease that performs every cleavage in this chain, 181 residues. Called at a median of exactly 181 with p05 and p95 at 181 and 183, the crispest feature in the module. It is also the one that exposed the extension-flag defect: with the N-terminal scan left on it was called at 345.</span></td><td class="m">NS6</td><td class="m ty">mat_pep</td><td class="m num">110</td><td class="m num">143&ndash;193</td><td class="m num">911</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code></td><td class="covcell"><div class="cov" title="862 of 862 in-range sequences callable; 896 of 911 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS7</td><td class="anno">RNA-dependent RNA polymerase<span class="why">The RNA-dependent RNA polymerase, 510 residues, declared with the gene symbol RDRP so the name means one thing across the project. Its C-terminus is the polyprotein's real end, so it carries <code>downstream_ext 1</code> and lands exactly on the precursor's stop on 99.5% of genomes. 8,571 sequences were refused as fragments &mdash; the median record deposited as RdRp is 93 residues.</span></td><td class="m">RDRP</td><td class="m ty">mat_pep</td><td class="m num">325</td><td class="m num">408&ndash;601</td><td class="m num">11027</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="2456 of 2456 in-range sequences callable; 4289 of 11027 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">POLY</td><td class="anno">Nonstructural polyprotein<span class="why">The ORF1 non-structural polyprotein, 1,699 residues in GII. Only 10 profiles, from 1,692 sequences, because the collection was twice filtered on its N-terminus: once to drop sequences another sequence extends, and once to drop those whose N-terminus is a singleton. 46% of the original 3,411 were N-terminally truncated in the source, most by one or two residues &mdash; enough to make the first alignment columns low-occupancy and get them trimmed away, which cost the polyprotein a median 127 codons at call time.</span></td><td class="m">POLY</td><td class="m ty">CDS</td><td class="m num">400</td><td class="m num">1353&ndash;1910</td><td class="m num">3934</td><td class="pss"><code>1</code> <code>10</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1692 of 1692 in-range sequences callable; 2962 of 3934 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP1</td><td class="anno">Major capsid protein VP1<span class="why">The major capsid protein and the basis of genotyping, 540 residues. 42 profiles from 5,250 sequences, the largest collection in the module and also the most heavily filtered: 14,837 further sequences fell below the window with a median length of 94. The string <code>capsid protein</code> is bound to no feature at all, because it does not say whether VP1 or VP2 is meant; the homology rescue arbitrates those 16,826 records one sequence at a time.</span></td><td class="m">VP1</td><td class="m ty">CDS</td><td class="m num">255</td><td class="m num">412&ndash;656</td><td class="m num">20087</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>34</code> <code>35</code> <code>36</code> <code>37</code> <code>38</code> <code>39</code> <code>4</code> <code>40</code> <code>41</code> <code>42</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="5250 of 5250 in-range sequences callable; 6140 of 20087 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP2</td><td class="anno">Minor structural protein VP2<span class="why">The minor structural protein, 259 residues, known in the older calicivirus literature as the small basic protein. 45 profiles &mdash; the largest set in the module &mdash; for a short and poorly conserved protein, and it still trails the other features by about 2.5 points in per-genome call rate. It is the one feature with a coverage hole worth returning to.</span></td><td class="m">VP2</td><td class="m ty">CDS</td><td class="m num">75</td><td class="m num">171&ndash;298</td><td class="m num">2990</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>35</code> <code>36</code> <code>37</code> <code>39</code> <code>4</code> <code>40</code> <code>41</code> <code>42</code> <code>43</code> <code>44</code> <code>45</code> <code>46</code> <code>47</code> <code>48</code> <code>49</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="2794 of 2795 in-range sequences callable; 2934 of 2990 including length-outliers"><i style="width:99.96%"></i><b style="width:0.04%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr></tbody></table></div>
+</section>
+ <section class="gap">
+  <h2>What was missed, and why</h2>
+  <p>{'POLY': '25 of 407 calls cover only 17&ndash;84% of the polyprotein. These are divergent lineages the profiles match in part, not short genomes: their median contig is 7,371 nt against 7,530 for the rest. All are flagged too-short by <code>min_len</code>, and the mature peptides inside them are still called.', 'VP2': 'Called on 397 of 411 genomes against 404&ndash;409 for the rest. The gap is in the profiles, not the declaration.'}</p>
+  <div class="tw"><table><thead><tr><th>Module</th><th class="num">Features</th><th>Keys with no collection</th></tr></thead>
+  <tbody><tr><td colspan="3" class="dash">none</td></tr></tbody></table></div>
+  <p style="margin-top:14px"><b>0 features have a collection too small to profile.</b></p>
+  <div class="tw"><table><thead><tr><th>Module</th><th>Feature</th><th class="num">Seqs</th><th>Why not buildable</th></tr></thead>
+  <tbody><tr><td colspan="4" class="dash">none</td></tr></tbody></table></div>
+  <p style="margin-top:14px">{'NS1_2': 'Cleavage sites were taken from the literature before any profile was built, for GI Norwalk and GII MD145 both. Comparing the two showed that P2, P1 and P1&prime; are conserved while P4 and P3 vary by genogroup, which is why a motif written from GI alone matched 12% of polyproteins and the conserved core matched 99%.'}</p>
+ </section>
+ <div class="src">Generated from <code>Norovirus_Viral_PSSM.json</code> and the built
+ <code>Alignments/&lt;Module&gt;/&lt;Feature&gt;/pssms/</code> trees by <code>collect_registry.py</code> and
+ <code>gen_registry.py</code>. Callable measured by running each feature&rsquo;s own PSSMs back against its own
+ collection with <code>psiblast -in_pssm</code> and testing every sequence against that feature&rsquo;s
+ <code>bit_cutoff</code> &mdash; self-recall, a floor rather than a validation. PSSM labels are cluster ids;
+ files are <code>&lt;Module&gt;.&lt;Feature&gt;.&lt;cluster&gt;.pssm</code>.</div>
+</div>
+<script>
+ var btns=[].slice.call(document.querySelectorAll('.ctrl button'));
+ btns.forEach(function(b){
+   b.addEventListener('click',function(){
+     btns.forEach(function(x){x.setAttribute('aria-pressed', x===b ? 'true':'false');});
+     var f=b.getAttribute('data-f');
+     document.querySelectorAll('tbody tr').forEach(function(tr){
+       var s=tr.getAttribute('data-status'), show;
+       if(f==='all') show=true;
+       else if(f==='gap') show=(s==='no-collection'||s==='too-few');
+       else show=(s===f);
+       tr.hidden=!show;
+     });
+     document.querySelectorAll('section.tax').forEach(function(sec){
+       var any=[].slice.call(sec.querySelectorAll('tbody tr')).some(function(t){return !t.hidden;});
+       sec.hidden=!any;
+     });
+   });
+ });
+</script>
