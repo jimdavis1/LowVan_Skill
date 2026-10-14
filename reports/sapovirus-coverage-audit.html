@@ -1,0 +1,145 @@
+<title>Sapovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; Sapovirus module &middot; 14 October 2026</div><h1>Sapovirus</h1><p class="stand">One module for the genus, and a different genome from its neighbour. Sapovirus carries two open reading frames where Norovirus carries three, because VP1 sits in frame with the non-structural polyprotein rather than on its own &mdash; so ORF1 is cleaved into seven products, not six, and the capsid is a mature peptide here. This audit says what the module calls, what it refuses, and which of the remaining gaps are biology and which are ours.</p><div class="tiles"><div class="tile"><div class="v">9</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">125</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">220/223</div><div class="l">exemplars routed</div></div><div class="tile"><div class="v">35/35</div><div class="l">held-out genomes clean</div></div><div class="tile"><div class="v">12.2&times;</div><div class="l">string collapse</div></div><div class="tile"><div class="v">6.4&times;</div><div class="l">vocabulary collapse at equal proteins sampled</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One genus, one module, and the reason it is not part of Norovirus is the genome, not the tree.</p><p class="note">Sapovirus causes acute gastroenteritis in people and in pigs, and is increasingly recognised in outbreaks where norovirus is not found. Human infections are dominated by genogroups GI, GII, GIV and GV; the remainder of the genus is porcine, bat, rodent, shrew, mink and sea lion viruses.</p><pre class="mono">Norovirus   ORF1 (six NS)                  | ORF2 VP1 | ORF3 VP2   3 ORFs
+Sapovirus   ORF1 (six NS + VP1 IN FRAME)   | ORF2 VP2             2 ORFs</pre><p class="note">That is a difference in genome organisation, which is what this project partitions on, and it has two consequences the module has to encode: <b>VP1 is a mature peptide here</b> rather than a CDS, and ORF1 carries a <b>sixth cleavage site</b> &mdash; NS7/VP1 &mdash; that norovirus does not have at all. The sequence check agrees: best blastp identity between the genera is RdRp 32.8% and VP1 39.7%, well under the 80% required before anything is shared across an alignment.</p><div class="scroll"><table><thead><tr><th></th><th>count</th></tr></thead><tbody><tr><td>genomes in the BV-BRC protein dump</td><td>7,073</td></tr><tr><td>protein features</td><td>15,385</td></tr><tr><td>unique sequences</td><td>7,362</td></tr><tr><td>genomes &ge; 6.5 kb</td><td>926</td></tr><tr><td>distinct annotation strings</td><td>100</td></tr></tbody></table></div></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">The cleavage map came from the literature first. The vocabulary then confirmed every length in it, independently.</p><p class="note">Six sites were taken from the Mc10 (GI.1) reference and written into <code>CLEAVAGE_SITES.md</code> <b>before any profile was built</b> &mdash; NS1/NS2 at E69/G70, NS2/NS3 at Q325/G326, NS3/NS4 at Q666/G667, NS4/NS5 at E940/A941, NS5/NS6-7 at E1055/A1056, and NS7/VP1 at E1722/G1723. P1 is E or Q and P1&prime; is A, G or S, conserved across GI&ndash;GV.</p><p class="note">The deposited vocabulary then reproduced every one of those lengths on its own. Median length of the records carrying each mature-peptide name, against the Mc10 value:</p><div class="scroll"><table><thead><tr><th>annotation string</th><th>median length</th><th>Mc10</th><th>feature</th></tr></thead><tbody><tr><td>Protein p11</td><td>69</td><td>69</td><td>NS1</td></tr><tr><td>Protein p28</td><td>256</td><td>256</td><td>NS2</td></tr><tr><td>NTPase</td><td>341</td><td>341</td><td>NS3</td></tr><tr><td>Protein p32</td><td>274</td><td>274</td><td>NS4</td></tr><tr><td>Viral genome_linked protein</td><td>114</td><td>115</td><td>NS5</td></tr><tr><td>Protease-polymerase p70</td><td>668</td><td>667</td><td>NS6-7</td></tr><tr><td>Capsid protein</td><td>554</td><td>556</td><td>VP1</td></tr></tbody></table></div><p class="note"><b>NS6 and NS7 are one product.</b> Sapovirus does not cleave between the protease and the polymerase, so the module declares a single <code>NS6_7</code> where Norovirus declares two features. The <code>p70</code> records confirm it at 668 residues against the 667 the map predicts.</p><p class="note">Two populations share the vocabulary, as in Norovirus, and here the labels help: this genus deposits partiality qualifiers freely &mdash; 762 <code>, fragment</code>, 523 <code>, C-terminal</code>, 371 <code>, N-terminal</code>, 210 <code>Partial Capsid Protein</code> &mdash; and all are discarded. What the labels miss, the window catches: <code>capsid protein</code> in lower case has a median length of 131 against a true 556.</p><p class="note"><b>Every window was set from the full-length mode of the clean population</b>, not from a raw percentile and never from a median. <code>Capsid protein</code> is 92.4% full-length with a fragment mode at 100&ndash;149 residues; its unfiltered 1st percentile would have put the VP1 floor at 92 and admitted every fragment in the genus.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Nine features, 125 profiles. Every cutoff was measured against what the profiles actually score, because scaling them from a shipped module was wrong five times out of nine.</p><div class="scroll"><table><thead><tr><th>feature</th><th>type</th><th>up/down</th><th>bit</th><th>min</th><th>max</th><th>PSSMs</th><th>collection</th></tr></thead><tbody><tr><td>POLY</td><td>CDS</td><td>1/1</td><td>855</td><td>1893</td><td>2443</td><td>12</td><td>461</td></tr><tr><td>NS1</td><td>mat_peptide</td><td>1/0</td><td>24</td><td>52</td><td>76</td><td>11</td><td>171</td></tr><tr><td>NS2</td><td>mat_peptide</td><td>0/0</td><td>52</td><td>209</td><td>272</td><td>9</td><td>211</td></tr><tr><td>NS3</td><td>mat_peptide</td><td>0/0</td><td>190</td><td>307</td><td>363</td><td>9</td><td>159</td></tr><tr><td>NS4</td><td>mat_peptide</td><td>0/0</td><td>55</td><td>200</td><td>304</td><td>12</td><td>183</td></tr><tr><td>NS5</td><td>mat_peptide</td><td>0/0</td><td>60</td><td>80</td><td>124</td><td>9</td><td>97</td></tr><tr><td>NS6_7</td><td>mat_peptide</td><td>0/0</td><td>299</td><td>519</td><td>721</td><td>10</td><td>293</td></tr><tr><td>VP1</td><td>mat_peptide</td><td>0/1</td><td>242</td><td>488</td><td>605</td><td>18</td><td>385</td></tr><tr><td>VP2</td><td>CDS</td><td>1/1</td><td>27</td><td>120</td><td>216</td><td>35</td><td>704</td></tr></tbody></table></div><p class="note">The extension flags follow each product's own two termini. NS1 takes <code>upstream_ext 1</code> because its N-terminus <i>is</i> ORF1's initiating Met; VP1 takes <code>downstream_ext 1</code> because its C-terminus is the polyprotein's real end; the five internal products take <code>0/0</code>, because a protease cut is marked by no codon and a scan for one invents a boundary.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">25 references, and the three genomes they miss are nameable.</p><div class="verdict"><b>220 of 223 exemplars routed (98.7%)</b> on 25 representative contigs. The budget measurement over all 926 genomes &ge; 6 kb gave 97.6% at the same 25, and the shipped set reproduces it exactly &mdash; the selection that was measured is the selection that ships.</div><p class="note">The three that do not route are <b>Bat faecal sapovirus Ad02/aus/1</b>, <b>Yunnan shrew sapovirus 1</b> and <b>Rousettus madagascariensis sapovirus 4</b>. All three are divergent animal lineages, and the first was surfaced independently by the held-out panel &mdash; which is the argument for stratifying a panel across lineages rather than sampling it by record count, where 343 GI and 217 GII genomes would have drowned them.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">Measured on every complete genome, not on the panel.</p><div class="scroll"><table><thead><tr><th>product</th><th>called</th><th>of 217 with POLY</th></tr></thead><tbody><tr><td>POLY</td><td>217</td><td>&mdash;</td></tr><tr><td>NS1</td><td>144</td><td>66.4%</td></tr><tr><td>NS2</td><td>214</td><td>98.6%</td></tr><tr><td>NS3</td><td>218</td><td>100%</td></tr><tr><td>NS4</td><td>219</td><td>100%</td></tr><tr><td>NS5</td><td>218</td><td>100%</td></tr><tr><td>NS6-7</td><td>218</td><td>100%</td></tr><tr><td>VP1</td><td>219</td><td>100%</td></tr><tr><td>VP2</td><td>216</td><td>99.5%</td></tr></tbody></table></div><p class="note">Eight of nine features are called on essentially every genome that carries a polyprotein. NS1 is the exception and &sect;07 says why it is a gap rather than a setting.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">Called is not correct. For a polyprotein the test is whether the products tile it.</p><div class="scroll"><table><thead><tr><th>product</th><th>Mc10</th><th>median called</th><th>p05</th><th>p95</th></tr></thead><tbody><tr><td>NS1</td><td>69</td><td>56</td><td>37</td><td>71</td></tr><tr><td>NS2</td><td>256</td><td>254</td><td>252</td><td>257</td></tr><tr><td>NS3</td><td>341</td><td>341</td><td>340</td><td>341</td></tr><tr><td>NS4</td><td>274</td><td>274</td><td>274</td><td>283</td></tr><tr><td>NS5</td><td>115</td><td>114</td><td>114</td><td>115</td></tr><tr><td>NS6-7</td><td>667</td><td>666</td><td>664</td><td>667</td></tr><tr><td>VP1</td><td>556</td><td>557</td><td>543</td><td>566</td></tr></tbody></table></div><div class="verdict">Across 141 genomes carrying the polyprotein and all seven products: <b>sum(products) &minus; polyprotein = &minus;1 aa at the median</b>, four of the six junctions have <b>zero</b> overlaps, NS1 starts exactly where the polyprotein starts on 90.8%, and <b>VP1 ends exactly where the polyprotein ends on 99.3%</b>. Six of the seven products land within two residues of their published Mc10 lengths.</div><div class="verdict">Self-recall against each feature's own in-range collection: <b>2,664 of 2,664 (100.0%)</b>. This is a floor rather than a validation &mdash; a profile finding its own training data proves only that the build completed.</div><div class="verdict">Held-out panel, 36 genomes stratified across 20 lineages &mdash; GI to GXIII plus bat, porcine, rat, rodent, mink and sea lion: <b>35 of 35 evaluated are clean</b>, with no genome or contig flag of any kind. The 36th is the unroutable bat sapovirus in &sect;04, which is a routing gap and not an annotation error.</div><div class="verdict">Cross-feature contamination audit: <b>2,664 sequences against 125 cluster references, nothing above 50 bits</b>. That check matters more here than in most modules, because VP1 is a subsequence of POLY in this genus and several cutoffs are low.</div></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Three gaps, each measured. None closes by moving a cutoff &mdash; two were proved not to, by moving it.</p><p class="note"><b>NS1 is called on two genomes in three.</b> 144 of 217. This is a coverage gap and not a threshold, and the evidence is direct: at 35 bits it called 136, at 24 it calls 144, and at 16 it calls 219 &mdash; by placing itself in the wrong position on 95% of genomes, overlapping NS2 on 198 of 214 and collapsing the tiling sum from &minus;1 to &minus;32 residues. 69 residues is too short for a lower cutoff to stay specific. Closing it needs profiles for the lineages it misses.</p><p class="note"><b>The NS6-7/VP1 junction is the least crisp in the module</b>, overlapping on 26 of 141 genomes. Median overlap is zero, so most calls are exact. This is the one cleavage site norovirus does not have, and the only junction in the genus between two products of very different size and conservation.</p><p class="note"><b>Three divergent animal lineages do not route</b>, named in &sect;04. Twenty-two clusters holding 22 genomes sit outside the 25-reference budget; raising the budget reaches them, at a cost this project has fixed at 25.</p><p class="note"><b>The genotyping fragments are refused by design.</b> 14,837 sequences were excluded from VP1 and 8,571 from NS6-7, every one of them below the window and <b>none above it</b> in any feature. That split is the check worth copying: all-below means fragments, any-above means a real population is being cut.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Two defects in the machinery, both caught by gates this project paid for earlier, and one of them caught before it shipped.</p><p class="note"><b>The polyprotein profiles were trimmed off their own N-terminus, and the gate caught it pre-flight.</b> 30% of the POLY collection was N-terminally ragged &mdash; most of it by one or two residues of source annotation &mdash; which dropped the occupancy of the first alignment columns below the curation threshold and got them trimmed. One 71-member cluster had lost its first <b>151 residues</b> and another its first 199. Norovirus shipped with exactly this defect and it was found only by measuring annotations afterwards; here <code>check_met_start.py</code> reported it before installation, and after filtering the collection the gate reports <i>every CDS profile begins at its protein's start</i>.</p><p class="note"><b>Five of nine bit cutoffs could not call the sequences they were built from.</b> Cutoffs scaled by length from the homologous Norovirus features sat <i>above</i> their own weakest training member &mdash; NS1 35 against 27.4, NS2 80 against 58.8, NS6-7 400 against 333 &mdash; so NS1 was called on 136 genomes and NS2 on 177, for no reason but the threshold.</p><p class="note">Correcting it took three measured rounds, and the second is the one worth recording, because <b>it looked like success</b>:</p><pre class="mono">                          scaled      margin 0.6    margin 0.9
+contigs with all seven       133            214           141
+NS1 median length             60             36            56   (Mc10 69)
+NS1 starts at POLY start    96.2%           5.6%         90.8%
+NS1/NS2 junction overlap     0/133        198/214         9/141
+sum(products) - POLY          -1            -32            -1</pre><div class="verdict"><b>Counting calls cannot distinguish those three columns; only the tiling test can.</b> At 16 bits a 69-residue profile matches almost anything, so a spurious internal match outscored the true N-terminal one and every other product's p05 degraded with it. <code>derive_cutoffs.py</code> now measures each cutoff against the weakest self-hit that actually spans its subject &mdash; NS4's weakest raw hit was 20.4 bits and its weakest genuine one 61.6 &mdash; and its docstring carries this table as the reason the tiling check belongs in the same loop.</div><p class="note">One number in this module is set from coverage rather than from that formula. NS3's measured floor of 239 sits below its weakest training member at 266 and still undercalled it at 185 of 217 genomes, because <b>wild NS3 is more divergent than anything in the collection</b>. At 190 it calls 218 with a p05 of 340. The weakest training member is a ceiling on a cutoff, not the right value for it.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">The point of the module, stated as a ratio.</p><p class="note">110 distinct annotation strings across 13,601 occurrences collapse onto <b>9 controlled annotations</b> &mdash; a 12.2&times; reduction, with 39 strings left unbound.</p><p class="note">Rarefied over proteins rather than genomes, and compared at the depth both curves reach: at 965 proteins sampled the source vocabulary holds <b>58.0 distinct strings</b> and the module holds <b>9.0</b> &mdash; a <b>6.4&times;</b> collapse. The source needs 779 proteins to reach 95% of its final vocabulary; the module needs 27, because a controlled vocabulary saturates once every protein has been named, while free text keeps climbing as each submitter spells it again.</p></section><p class="src">Measured from the shipped module: Sapovirus_Viral_PSSM.json, 125 PSSMs, 25 representative contigs. Routing and per-feature call rates from evaluate_coverage over 223 exemplars; boundary and tiling figures from the same run's annotations; held-out figures from a 36-genome panel stratified across 20 lineages; self-recall from collect_registry; contamination from audit_contamination; string collapse from collect_synmap; rarefaction over 100 replicates.</p></div>

@@ -1,0 +1,102 @@
+{
+ "Sapovirus.1.dna": {
+  "genome_ids": "515176.468.con.0001",
+  "genome_name": "Sapovirus GI Hu/GI.1/JPN/2005/EH-93"
+ },
+ "Sapovirus.10.dna": {
+  "genome_ids": "3144110.3.con.0001",
+  "genome_name": "Eidolon dupreanum sapovirus 1 KEL168"
+ },
+ "Sapovirus.11.dna": {
+  "genome_ids": "1959930.10.con.0001",
+  "genome_name": "Bat sapovirus"
+ },
+ "Sapovirus.12.dna": {
+  "genome_ids": "1960015.3.con.0001",
+  "genome_name": "Sapovirus GVII/Ishi-Im3-1"
+ },
+ "Sapovirus.13.dna": {
+  "genome_ids": "1960017.3.con.0001",
+  "genome_name": "Sapovirus GX/HgTa2"
+ },
+ "Sapovirus.14.dna": {
+  "genome_ids": "1071406.3.con.0001",
+  "genome_name": "Sapovirus dog/AN210D/USA/2009"
+ },
+ "Sapovirus.15.dna": {
+  "genome_ids": "1185359.6.con.0001",
+  "genome_name": "Bat sapovirus TLC58/HK"
+ },
+ "Sapovirus.16.dna": {
+  "genome_ids": "1959930.270.con.0001",
+  "genome_name": "Bat sapovirus BtSaV/A11B14/OAU/NGR/2020"
+ },
+ "Sapovirus.17.dna": {
+  "genome_ids": "1959930.66.con.0001",
+  "genome_name": "Bat sapovirus YN2016"
+ },
+ "Sapovirus.18.dna": {
+  "genome_ids": "1959930.258.con.0001",
+  "genome_name": "Bat sapovirus BtSaV/A2GB9/GBOKO/NGR/2020"
+ },
+ "Sapovirus.19.dna": {
+  "genome_ids": "1959930.273.con.0001",
+  "genome_name": "Bat sapovirus BtSaV/A12B8/OAU/NGR/2020"
+ },
+ "Sapovirus.2.dna": {
+  "genome_ids": "1503998.136.con.0001",
+  "genome_name": "Sapovirus GII.3 Hu/JPN/GII.3/2014/Mie-713"
+ },
+ "Sapovirus.20.dna": {
+  "genome_ids": "1959930.56.con.0001",
+  "genome_name": "Bat sapovirus GX2016"
+ },
+ "Sapovirus.21.dna": {
+  "genome_ids": "1960016.3.con.0001",
+  "genome_name": "Sapovirus GVIII/Ishi-Im1-1"
+ },
+ "Sapovirus.22.dna": {
+  "genome_ids": "2917291.6.con.0001",
+  "genome_name": "Bamboo rat sapovirus GX-F1"
+ },
+ "Sapovirus.23.dna": {
+  "genome_ids": "3083540.3.con.0001",
+  "genome_name": "Jingmen bat sapovirus 1 JM_My.chinensis_calici_1"
+ },
+ "Sapovirus.24.dna": {
+  "genome_ids": "3349314.3.con.0001",
+  "genome_name": "Rattus norvegicus sapovirus 1 Ra.norvegicus_calici_2"
+ },
+ "Sapovirus.25.dna": {
+  "genome_ids": "3386169.3.con.0001",
+  "genome_name": "Yunnan rodent sapovirus 1 BNML-YNSC33"
+ },
+ "Sapovirus.3.dna": {
+  "genome_ids": "1454551.115.con.0001",
+  "genome_name": "Porcine sapovirus PF183/con/CalV1"
+ },
+ "Sapovirus.4.dna": {
+  "genome_ids": "515180.40.con.0001",
+  "genome_name": "Sapovirus GV Hu/GV.1/JPN/2014/OS-281"
+ },
+ "Sapovirus.5.dna": {
+  "genome_ids": "1697440.18.con.0001",
+  "genome_name": "Sapovirus GII.8 05-099-515477/2014/TW"
+ },
+ "Sapovirus.6.dna": {
+  "genome_ids": "1454551.3.con.0001",
+  "genome_name": "Porcine sapovirus Pig/HgYa2018/JPN/2018"
+ },
+ "Sapovirus.7.dna": {
+  "genome_ids": "1471435.3.con.0001",
+  "genome_name": "Sapovirus GVI WB/GVI/Toyama2/2018"
+ },
+ "Sapovirus.8.dna": {
+  "genome_ids": "515180.5.con.0001",
+  "genome_name": "Sapovirus GV WB/GV/Ishikawa12/2018"
+ },
+ "Sapovirus.9.dna": {
+  "genome_ids": "1861835.3.con.0001",
+  "genome_name": "Sapovirus GVII/RV0042"
+ }
+}

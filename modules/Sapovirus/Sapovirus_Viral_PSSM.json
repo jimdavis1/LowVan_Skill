@@ -1,0 +1,241 @@
+{
+   "Sapovirus" : {
+      "close_genomes" : {
+         "Sapovirus.1.dna" : {
+            "genome_ids" : "515176.468.con.0001",
+            "genome_name" : "Sapovirus GI Hu/GI.1/JPN/2005/EH-93"
+         },
+         "Sapovirus.10.dna" : {
+            "genome_ids" : "3144110.3.con.0001",
+            "genome_name" : "Eidolon dupreanum sapovirus 1 KEL168"
+         },
+         "Sapovirus.11.dna" : {
+            "genome_ids" : "1959930.10.con.0001",
+            "genome_name" : "Bat sapovirus"
+         },
+         "Sapovirus.12.dna" : {
+            "genome_ids" : "1960015.3.con.0001",
+            "genome_name" : "Sapovirus GVII/Ishi-Im3-1"
+         },
+         "Sapovirus.13.dna" : {
+            "genome_ids" : "1960017.3.con.0001",
+            "genome_name" : "Sapovirus GX/HgTa2"
+         },
+         "Sapovirus.14.dna" : {
+            "genome_ids" : "1071406.3.con.0001",
+            "genome_name" : "Sapovirus dog/AN210D/USA/2009"
+         },
+         "Sapovirus.15.dna" : {
+            "genome_ids" : "1185359.6.con.0001",
+            "genome_name" : "Bat sapovirus TLC58/HK"
+         },
+         "Sapovirus.16.dna" : {
+            "genome_ids" : "1959930.270.con.0001",
+            "genome_name" : "Bat sapovirus BtSaV/A11B14/OAU/NGR/2020"
+         },
+         "Sapovirus.17.dna" : {
+            "genome_ids" : "1959930.66.con.0001",
+            "genome_name" : "Bat sapovirus YN2016"
+         },
+         "Sapovirus.18.dna" : {
+            "genome_ids" : "1959930.258.con.0001",
+            "genome_name" : "Bat sapovirus BtSaV/A2GB9/GBOKO/NGR/2020"
+         },
+         "Sapovirus.19.dna" : {
+            "genome_ids" : "1959930.273.con.0001",
+            "genome_name" : "Bat sapovirus BtSaV/A12B8/OAU/NGR/2020"
+         },
+         "Sapovirus.2.dna" : {
+            "genome_ids" : "1503998.136.con.0001",
+            "genome_name" : "Sapovirus GII.3 Hu/JPN/GII.3/2014/Mie-713"
+         },
+         "Sapovirus.20.dna" : {
+            "genome_ids" : "1959930.56.con.0001",
+            "genome_name" : "Bat sapovirus GX2016"
+         },
+         "Sapovirus.21.dna" : {
+            "genome_ids" : "1960016.3.con.0001",
+            "genome_name" : "Sapovirus GVIII/Ishi-Im1-1"
+         },
+         "Sapovirus.22.dna" : {
+            "genome_ids" : "2917291.6.con.0001",
+            "genome_name" : "Bamboo rat sapovirus GX-F1"
+         },
+         "Sapovirus.23.dna" : {
+            "genome_ids" : "3083540.3.con.0001",
+            "genome_name" : "Jingmen bat sapovirus 1 JM_My.chinensis_calici_1"
+         },
+         "Sapovirus.24.dna" : {
+            "genome_ids" : "3349314.3.con.0001",
+            "genome_name" : "Rattus norvegicus sapovirus 1 Ra.norvegicus_calici_2"
+         },
+         "Sapovirus.25.dna" : {
+            "genome_ids" : "3386169.3.con.0001",
+            "genome_name" : "Yunnan rodent sapovirus 1 BNML-YNSC33"
+         },
+         "Sapovirus.3.dna" : {
+            "genome_ids" : "1454551.115.con.0001",
+            "genome_name" : "Porcine sapovirus PF183/con/CalV1"
+         },
+         "Sapovirus.4.dna" : {
+            "genome_ids" : "515180.40.con.0001",
+            "genome_name" : "Sapovirus GV Hu/GV.1/JPN/2014/OS-281"
+         },
+         "Sapovirus.5.dna" : {
+            "genome_ids" : "1697440.18.con.0001",
+            "genome_name" : "Sapovirus GII.8 05-099-515477/2014/TW"
+         },
+         "Sapovirus.6.dna" : {
+            "genome_ids" : "1454551.3.con.0001",
+            "genome_name" : "Porcine sapovirus Pig/HgYa2018/JPN/2018"
+         },
+         "Sapovirus.7.dna" : {
+            "genome_ids" : "1471435.3.con.0001",
+            "genome_name" : "Sapovirus GVI WB/GVI/Toyama2/2018"
+         },
+         "Sapovirus.8.dna" : {
+            "genome_ids" : "515180.5.con.0001",
+            "genome_name" : "Sapovirus GV WB/GV/Ishikawa12/2018"
+         },
+         "Sapovirus.9.dna" : {
+            "genome_ids" : "1861835.3.con.0001",
+            "genome_name" : "Sapovirus GVII/RV0042"
+         }
+      },
+      "features" : {
+         "NS1" : {
+            "anno" : "Non-structural protein NS1",
+            "bit_cutoff" : 24,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS1",
+            "kmers" : 0,
+            "max_len" : 76,
+            "min_len" : 52,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "NS2" : {
+            "anno" : "Non-structural protein NS2",
+            "bit_cutoff" : 52,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS2",
+            "kmers" : 0,
+            "max_len" : 272,
+            "min_len" : 209,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS3" : {
+            "anno" : "NTPase NS3",
+            "bit_cutoff" : 190,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS3",
+            "kmers" : 0,
+            "max_len" : 363,
+            "min_len" : 307,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS4" : {
+            "anno" : "Non-structural protein NS4",
+            "bit_cutoff" : 55,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS4",
+            "kmers" : 0,
+            "max_len" : 304,
+            "min_len" : 200,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS5" : {
+            "anno" : "Viral genome-linked protein VPg",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS5",
+            "kmers" : 0,
+            "max_len" : 124,
+            "min_len" : 80,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS6_7" : {
+            "anno" : "Protease-polymerase NS6-7",
+            "bit_cutoff" : 299,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "RDRP",
+            "kmers" : 0,
+            "max_len" : 721,
+            "min_len" : 519,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "POLY" : {
+            "anno" : "Nonstructural polyprotein",
+            "bit_cutoff" : 855,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 2439,
+            "min_len" : 2060,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP1" : {
+            "anno" : "Major capsid protein VP1",
+            "bit_cutoff" : 242,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP1",
+            "kmers" : 0,
+            "max_len" : 605,
+            "min_len" : 488,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP2" : {
+            "anno" : "Minor structural protein VP2",
+            "bit_cutoff" : 27,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "VP2",
+            "kmers" : 1,
+            "max_len" : 216,
+            "min_len" : 124,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 8202,
+            "min_len" : 6181,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}
