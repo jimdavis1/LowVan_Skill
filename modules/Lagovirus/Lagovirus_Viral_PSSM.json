@@ -1,0 +1,163 @@
+{
+   "Lagovirus" : {
+      "close_genomes" : {
+         "Lagovirus.1.dna" : {
+            "genome_ids" : "11976.1918.con.0001",
+            "genome_name" : "Rabbit hemorrhagic disease virus Senasica_20"
+         },
+         "Lagovirus.2.dna" : {
+            "genome_ids" : "33756.48.con.0001",
+            "genome_name" : "European brown hare syndrome virus EBHSV-GD"
+         }
+      },
+      "features" : {
+         "NS1" : {
+            "anno" : "Non-structural protein NS1",
+            "bit_cutoff" : 187,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS1",
+            "kmers" : 0,
+            "max_len" : 151,
+            "min_len" : 109,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "NS2" : {
+            "anno" : "Non-structural protein NS2",
+            "bit_cutoff" : 319,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS2",
+            "kmers" : 0,
+            "max_len" : 237,
+            "min_len" : 196,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS3" : {
+            "anno" : "NTPase NS3",
+            "bit_cutoff" : 585,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS3",
+            "kmers" : 0,
+            "max_len" : 372,
+            "min_len" : 328,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS4" : {
+            "anno" : "Non-structural protein NS4",
+            "bit_cutoff" : 424,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS4",
+            "kmers" : 0,
+            "max_len" : 292,
+            "min_len" : 258,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS5" : {
+            "anno" : "Viral genome-linked protein VPg",
+            "bit_cutoff" : 198,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS5",
+            "kmers" : 0,
+            "max_len" : 120,
+            "min_len" : 107,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS6" : {
+            "anno" : "3C-like protease NS6",
+            "bit_cutoff" : 252,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "NS6",
+            "kmers" : 0,
+            "max_len" : 151,
+            "min_len" : 134,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "NS7" : {
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 765,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "RDRP",
+            "kmers" : 0,
+            "max_len" : 546,
+            "min_len" : 402,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "POLY" : {
+            "anno" : "Nonstructural polyprotein",
+            "bit_cutoff" : 3375,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POLY",
+            "kmers" : 1,
+            "max_len" : 2484,
+            "min_len" : 2063,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP1" : {
+            "anno" : "Major capsid protein VP1",
+            "bit_cutoff" : 695,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VP1",
+            "kmers" : 0,
+            "max_len" : 613,
+            "min_len" : 478,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VP2" : {
+            "anno" : "Minor structural protein VP2",
+            "bit_cutoff" : 106,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "VP2",
+            "kmers" : 1,
+            "max_len" : 124,
+            "min_len" : 85,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 7897,
+            "min_len" : 6504,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

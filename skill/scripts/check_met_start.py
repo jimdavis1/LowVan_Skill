@@ -91,8 +91,20 @@ def main():
     for key in keys:
         spec = feats.get(key) or {}
         ftype = spec.get("feature_type") or spec.get("type") or "CDS"
-        if ftype == "mat_peptide":
-            continue                      # a cut site is not expected to be Met
+        #  A mature peptide whose N-terminus is a protease cut is exempt: no
+        #  codon marks a cut site and Met there would be a coincidence. But a
+        #  mature peptide carrying upstream_ext 1 is, by this project's own
+        #  flag semantics, a LEADING product -- its N-terminus IS the parent's
+        #  initiating Met -- so the rule applies to it exactly as to a CDS.
+        #
+        #  Skipping every mat_peptide missed that. Lagovirus NS1 is the first
+        #  ORF1 product; its collection carried the same N-terminal truncation
+        #  as POLY (median 138 against a literature 143, 41.6% beginning at
+        #  Met) and the gate passed it in silence. The annotator then called
+        #  NS1 nine residues short, starting at the polyprotein's own start on
+        #  only 36.9% of genomes.
+        if ftype == "mat_peptide" and not spec.get("upstream_ext"):
+            continue
 
         cpath = os.path.join(W, "collections", M, key + ".fasta")
         if not os.path.exists(cpath):

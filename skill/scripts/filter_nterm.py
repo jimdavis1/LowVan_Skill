@@ -70,6 +70,8 @@ def main():
                     help="other sequences that must share a start (default 2)")
     ap.add_argument("--no-singleton", action="store_true",
                     help="run only the EXTENDED test")
+    ap.add_argument("--require-met", action="store_true",
+                    help="also drop every sequence that does not begin with Met")
     ap.add_argument("--write", action="store_true",
                     help="rewrite the fasta, keeping a .preNterm backup")
     a = ap.parse_args()
@@ -119,7 +121,22 @@ def main():
             if sup < a.min_support:
                 singleton.add(i)
 
-    drop = extended | singleton
+    #  A third test, off by default and needed where the full-length form is a
+    #  MINORITY of the deposits. EXTENDED only catches a truncation whose longer
+    #  counterpart is also in the collection; where most records are short, the
+    #  short ones have nothing to be caught by and survive. Lagovirus POLY is
+    #  that case: 747 records, only 93 beginning at the real start, and after
+    #  EXTENDED + SINGLETON the collection was still 63% non-Met. Restricting to
+    #  Met left 126 sequences with a median length of exactly 2,344 -- the
+    #  literature ORF1 -- still covering both species.
+    #
+    #  Only for a CDS, and only after checking what it removes: a protein with a
+    #  genuine non-AUG start loses everything here.
+    nomet = set()
+    if a.require_met:
+        nomet = {i for i, (_, x) in enumerate(recs) if not x.upper().startswith("M")}
+
+    drop = extended | singleton | nomet
     keep = [r for i, r in enumerate(recs) if i not in drop]
 
     print("  %s" % a.fasta)
@@ -129,6 +146,9 @@ def main():
     if not a.no_singleton:
         print("    SINGLETON (start unique)     %6d  (%.1f%%)"
               % (len(singleton), 100.0 * len(singleton) / len(recs)))
+    if a.require_met:
+        print("    NO-MET    (does not start M) %6d  (%.1f%%)"
+              % (len(nomet), 100.0 * len(nomet) / len(recs)))
     print("    kept                         %6d  (%.1f%%)"
           % (len(keep), 100.0 * len(keep) / len(recs)))
     if offs:
