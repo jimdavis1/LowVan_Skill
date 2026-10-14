@@ -1,0 +1,78 @@
+{
+ "Vesivirus.1.dna": {
+  "genome_ids": "11978.2410.con.0001",
+  "genome_name": "Feline calicivirus FCV-HY220313"
+ },
+ "Vesivirus.10.dna": {
+  "genome_ids": "3062546.4.con.0001",
+  "genome_name": "Stoat vesivirus ST004"
+ },
+ "Vesivirus.11.dna": {
+  "genome_ids": "11978.1803.con.0001",
+  "genome_name": "Feline calicivirus DS1"
+ },
+ "Vesivirus.12.dna": {
+  "genome_ids": "11978.1804.con.0001",
+  "genome_name": "Feline calicivirus DS3"
+ },
+ "Vesivirus.13.dna": {
+  "genome_ids": "11978.1805.con.0001",
+  "genome_name": "Feline calicivirus DS4"
+ },
+ "Vesivirus.14.dna": {
+  "genome_ids": "11978.1806.con.0001",
+  "genome_name": "Feline calicivirus DS2"
+ },
+ "Vesivirus.15.dna": {
+  "genome_ids": "11978.1807.con.0001",
+  "genome_name": "Feline calicivirus DS6"
+ },
+ "Vesivirus.16.dna": {
+  "genome_ids": "11978.1809.con.0001",
+  "genome_name": "Feline calicivirus DS7"
+ },
+ "Vesivirus.17.dna": {
+  "genome_ids": "2587462.3.con.0001",
+  "genome_name": "San Miguel sea lion virus 12"
+ },
+ "Vesivirus.18.dna": {
+  "genome_ids": "3035005.3.con.0001",
+  "genome_name": "European badger vesivirus B40/2021/HUN"
+ },
+ "Vesivirus.19.dna": {
+  "genome_ids": "37300.14.con.0001",
+  "genome_name": "Bovine calicivirus Mukti/India/UK-B6/2016"
+ },
+ "Vesivirus.2.dna": {
+  "genome_ids": "154122.12.con.0001",
+  "genome_name": "Mink calicivirus MCV-DL/2007/CN"
+ },
+ "Vesivirus.3.dna": {
+  "genome_ids": "1176484.55.con.0001",
+  "genome_name": "Canine vesivirus CaVV/Dog/AUS/illawarra_3/2022"
+ },
+ "Vesivirus.4.dna": {
+  "genome_ids": "11978.1808.con.0001",
+  "genome_name": "Feline calicivirus DS5"
+ },
+ "Vesivirus.5.dna": {
+  "genome_ids": "1960046.4.con.0001",
+  "genome_name": "Hom-1 vesivirus"
+ },
+ "Vesivirus.6.dna": {
+  "genome_ids": "1176484.17.con.0001",
+  "genome_name": "Canine vesivirus"
+ },
+ "Vesivirus.7.dna": {
+  "genome_ids": "1564182.6.con.0001",
+  "genome_name": "San Miguel sea lion virus 8"
+ },
+ "Vesivirus.8.dna": {
+  "genome_ids": "1615583.4.con.0001",
+  "genome_name": "Vesivirus ferret badger/JX12/China/2012 FBCV-JX12"
+ },
+ "Vesivirus.9.dna": {
+  "genome_ids": "2917288.6.con.0001",
+  "genome_name": "Asian badger vesivirus SD-T1-2"
+ }
+}

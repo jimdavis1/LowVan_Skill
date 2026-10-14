@@ -102,7 +102,20 @@ def self_recall(pssms, colls, bit_cutoff, tmp, threads):
     hit = set()
     for p in pssms:
         r = subprocess.run(
+            #  -comp_based_stats 0 is NOT optional, and leaving it out is the
+            #  CBS trap this project already documented and then fell into
+            #  here. Composition-based statistics rescale a score by the
+            #  subject's amino-acid composition, which costs a SHORT profile
+            #  far more than a long one -- the same PSSM against the same
+            #  subjects gives a median 22 bits at -comp_based_stats 2 and 43
+            #  at 0. Self-recall was therefore under-reported, worst for the
+            #  shortest features: Vesivirus NS5 (111 aa) read 66 of 184 and
+            #  NS1 (46 aa) read 105 of 158, where both are 100% measured
+            #  correctly. Every bit_cutoff in every module JSON was chosen
+            #  against scores measured at 0, so measuring recall at 2 compares
+            #  a threshold to a different scale.
             ["psiblast", "-in_pssm", p, "-db", os.path.join(tmp, "coll"),
+             "-comp_based_stats", "0",
              "-outfmt", "6 sseqid bitscore", "-evalue", "10",
              "-max_target_seqs", str(len(keys) + 10), "-num_threads", str(threads)],
             capture_output=True, text=True)
