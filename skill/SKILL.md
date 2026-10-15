@@ -197,6 +197,20 @@ truncated collection — every number self-consistent and wrong. Widening to
 Mandarivirus coat protein in Alphaflexiviridae, 90 residues longer than the
 potexvirus form.
 
+> **This check only started working in October 2026.** Until then
+> `<FEAT>.outliers.fasta` was written *only* by `rescue_unassigned.py`, so it
+> held the homology-rescued strays and never the sequences the window itself
+> removed — the one population the check exists to catch was the one it could
+> not see. Those were discarded with no record but a count in
+> `RUNT_DROPPED.tsv` / `GIANT_DROPPED.tsv`. Bavovirus VP2 was windowed at
+> 250-320 from a median of 287 and lost all six 215 aa VP2s that way: a whole
+> divergent clade, annotated `VP2` by the source, Met-initiated, none marked
+> partial, and genuine homologs at 25% identity over 192 residues. The
+> collection engine now parks window-dropped sequences in that file and prints
+> the count, the length range and the filename. **Any module built before this
+> may have lost a clade the same way; the cheap test is to re-run
+> `build_collections.py` and read the file it now writes.**
+
 **A rescue invalidates `min_len`/`max_len`.** Those bounds are derived from
 the collection, so adding sequences to it makes them wrong, and the stale bound
 makes `viral_genome_quality.pl` report "Feature is too short" against a protein

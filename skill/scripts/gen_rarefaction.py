@@ -23,6 +23,96 @@ _ap.add_argument("--date", default=datetime.date.today().strftime("%-d %B %Y"))
 _ap.add_argument("--out", default="rarefaction.html")
 _a = _ap.parse_args()
 d = json.load(open(_a.rarefaction))
+
+#  A taxon too small to rarefy still gets this page, because the fourth
+#  artifact is not optional and because "the pool was too small" is itself a
+#  measurement worth publishing. Report the raw collapse and say plainly that
+#  no curve was drawn -- never draw one through too few points.
+if d.get("insufficient"):
+    import html as _h
+    _esc = _h.escape
+    _src = d.get("source_strings", [])
+    _mod = d.get("module_strings", [])
+    _rows = "".join(
+        "<tr><td>%s</td><td class=n>%s</td></tr>" % (_esc(k), v) for k, v in (
+            ("genomes annotated by both", d.get("n_genomes", "&mdash;")),
+            ("proteins, source annotation", d.get("n_proteins_source", "&mdash;")),
+            ("proteins, this module", d.get("n_proteins_module", "&mdash;")),
+            ("distinct strings, source", len(_src) or d.get("source_total", 0)),
+            ("distinct strings, module", len(_mod) or d.get("module_total", 0)),
+        ))
+    _lst = lambda xs: "".join("<li><code>%s</code></li>" % _esc(x) for x in xs)
+    HTML = """<title>%(tax)s Vocabulary Saturation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root { color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --hair:rgba(11,11,11,.10); --src:#eb6834; --mod:#2a78d6;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) { color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --hair:rgba(255,255,255,.10); --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --hair:rgba(255,255,255,.10); --src:#d95926; --mod:#3987e5; }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:900px; margin:0 auto; padding-block:40px 72px; padding-left:22px; padding-right:22px;
+          display:flex; flex-direction:column; gap:26px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:19px; margin:0 0 10px; }
+  .stand { max-width:68ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .card { background:var(--surface); border:1px solid var(--hair); border-radius:10px; padding:20px 22px; }
+  .note { border-left:3px solid var(--src); padding:14px 18px; background:var(--surface); border-radius:0 8px 8px 0; }
+  table { border-collapse:collapse; width:100%%; font-size:14px; }
+  td { padding:7px 4px; border-bottom:1px solid var(--grid); }
+  td.n { text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  tr:last-child td { border-bottom:0; }
+  .cols { display:flex; flex-wrap:wrap; gap:26px; }
+  .cols > div { flex:1 1 260px; min-width:0; }
+  ul { margin:8px 0 0; padding-left:20px; } li { margin:4px 0; }
+  code { font-family:var(--mono); font-size:12.5px; }
+  p { margin:0 0 10px; } p:last-child { margin-bottom:0; }
+  .foot { color:var(--muted); font-size:12.5px; }
+</style>
+<div class="wrap">
+  <div>
+    <div class="eyebrow">LowVan &middot; %(tax)s module &middot; %(date)s</div>
+    <h1>%(tax)s Vocabulary Saturation</h1>
+    <p class="stand">Every other module in this series answers the vocabulary question with a
+    rarefaction curve. %(tax)s is too small for one, and that is the finding on this page
+    rather than a reason to omit it.</p>
+  </div>
+  <div class="note">
+    <p><b>No curve was drawn.</b> %(reason)s</p>
+    <p>A rarefaction asks how fast distinct annotation strings accumulate as proteins are
+    drawn. With a pool this small the curve would be a handful of points and its plateau an
+    artefact of running out of proteins, not evidence that a vocabulary had saturated.</p>
+  </div>
+  <div class="card">
+    <h2>What was measured</h2>
+    <table>%(rows)s</table>
+  </div>
+  <div class="card">
+    <h2>The collapse, stated directly</h2>
+    <div class="cols">
+      <div><b>Source strings</b><ul>%(src)s</ul></div>
+      <div><b>This module</b><ul>%(mod)s</ul></div>
+    </div>
+    <p class="foot" style="margin-top:14px">Counted over the proteins both the source and the
+    module annotate. The string-collapse page carries the same comparison across the whole
+    dump, which for a taxon this size is the more informative of the two.</p>
+  </div>
+</div>
+""" % {"tax": _esc(_a.taxon), "date": _esc(_a.date),
+       "reason": _esc(d.get("reason", "the shared protein pool was below the floor.")),
+       "rows": _rows, "src": _lst(_src), "mod": _lst(_mod)}
+    open(_a.out, "w").write(HTML)
+    print("wrote %s (%d bytes) -- declined form, pool too small" % (_a.out, len(HTML)))
+    sys.exit(0)
+
 if d.get("unit") != "proteins":
     raise SystemExit("%s is a genome-level rarefaction from the old annotation_rarefaction.py; "
                      "re-run it -- the curve must be over proteins and start at 0" % _a.rarefaction)

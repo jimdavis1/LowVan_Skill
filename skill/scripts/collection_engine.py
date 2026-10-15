@@ -284,7 +284,7 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
 
     #  ---- length: explicit WINDOW if given, else median-relative
     dropped = collections.Counter(); overlong = collections.Counter()
-    prefloored = collections.Counter(); windowed = {}
+    prefloored = collections.Counter(); windowed = {}; windrop = {}
     for k in list(out):
         if k in PRE_FLOOR:
             before = len(out[k])
@@ -301,6 +301,17 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
             lo, hi = RUNT * med, GIANT * med
         dropped[k] = sum(1 for r in out[k] if len(r[2]) < lo)
         overlong[k] = sum(1 for r in out[k] if len(r[2]) > hi)
+        #  Keep the sequences, not just the count. The curator's documented
+        #  check on a length window is "read <FEAT>.outliers.fasta broken down
+        #  by genus" -- but that file was written ONLY by rescue_unassigned.py,
+        #  so it held the homology-rescued strays and never the sequences this
+        #  window itself removed. The one population the check exists to catch
+        #  was the one population it could not see. Bavovirus VP2 was set to
+        #  (250,320) from a median of 287 and silently deleted five 215 aa VP2s
+        #  -- a whole divergent clade, annotated "VP2" by the source, matching
+        #  the rule, 25% identical to the modal form over 192 aa. They left no
+        #  trace but a number in GIANT/RUNT_DROPPED.tsv.
+        windrop[k] = [r for r in out[k] if not (lo <= len(r[2]) <= hi)]
         out[k] = [r for r in out[k] if lo <= len(r[2]) <= hi]
 
     #  ---- cleavage chemistry / terminal residue
@@ -346,6 +357,22 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
     if stale:
         print("  removed %d stale collection(s) from a previous rule set: %s"
               % (len(stale), ", ".join(x[:-6] for x in stale)))
+
+    #  Written AFTER the stale sweep, which removes any <FEAT>.outliers.fasta
+    #  left by a previous rescue, and BEFORE rescue_unassigned.py, which opens
+    #  the same path in append mode. So one file per feature accumulates both
+    #  kinds of stray: removed by this window, and rescued from elsewhere.
+    for k, rows in sorted(windrop.items()):
+        if not rows:
+            continue
+        with open(os.path.join(cdir, k + ".outliers.fasta"), "w") as fh:
+            for fid, _a, s in rows:
+                fh.write(">%s\n%s\n" % (fid, s))
+        lens = sorted(len(s) for _f, _a, s in rows)
+        print("  %-14s %3d sequence(s) outside %d-%d parked in %s.outliers.fasta"
+              " (lengths %d-%d) -- READ THIS BEFORE ACCEPTING THE WINDOW"
+              % (k, len(rows), windowed.get(k, (0, 0))[0],
+                 windowed.get(k, (0, 0))[1], k, lens[0], lens[-1]))
 
     td = os.path.join(here, "collections")
     def dump(name, header, rowsrc):

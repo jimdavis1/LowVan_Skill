@@ -52,6 +52,28 @@ So: sit just below the weakest member the profile must still find, not far
 below it. Lower the margin only for a feature that is genuinely absent from
 most genomes and whose boundaries do not matter, and re-run the tiling test
 afterwards either way.
+
+**"The weakest member a profile must find" is per member, not per pair.**
+Until October 2026 this script pooled every profile x sequence hit into one
+list and took the global minimum. For a feature holding one clade that is
+correct, because every profile is responsible for every member. For a feature
+holding two divergent clades it is badly wrong: each profile scores the OTHER
+clade near zero, and no profile is responsible for the clade it does not
+model. Bavovirus VP2 has two profiles, each scoring its own clade 401-568 bits
+and the other 29-34, so the pooled minimum was 29 and the cutoff came out 26.
+At 26 bits those profiles called 253 Norovirus VP2s, 18 Nebovirus, 11
+Recovirus, 2 Nacovirus and 1 Sapovirus -- 285 proteins from other genera
+against 21 of their own, with only genome routing standing between that and a
+wrong annotation. The requirement is that every member be callable by SOME
+profile: min over members of (max over profiles), which gives 401 and a cutoff
+of 360, admitting nothing foreign at all.
+
+Single-clade features are unaffected -- Lagovirus NS3, NS4 and NS7 all return
+the identical cutoff either way, which is the check that the two statistics
+differ only where they should. **Every module built before this fix has
+cutoffs at or below what this script now proposes, and the multi-clade ones
+are substantially below.** Re-cut them, then re-measure coverage and the
+panel, because raising a cutoff removes true calls as well as false ones.
 """
 import argparse, glob, json, os, statistics, subprocess, sys
 
@@ -89,20 +111,38 @@ def main():
         for p in pssms[:a.max_profiles]:
             r = subprocess.run(["psiblast", "-in_pssm", p, "-subject", coll,
                                 "-comp_based_stats", "0",
-                                "-outfmt", "6 bitscore length slen",
+                                "-outfmt", "6 sseqid bitscore length slen",
                                 "-max_target_seqs", "5000"],
                                capture_output=True, text=True)
             for line in r.stdout.splitlines():
                 q = line.split("\t")
-                if len(q) >= 3:
+                if len(q) >= 4:
                     try:
-                        rows.append((float(q[0]), int(q[1]), int(q[2])))
+                        rows.append((q[0], float(q[1]), int(q[2]), int(q[3])))
                     except ValueError:
                         pass
         if not rows:
             continue
-        raw = sorted(x[0] for x in rows)
-        genuine = sorted(b for b, ln, sl in rows if sl and ln >= a.min_cov * sl)
+        raw = sorted(x[1] for x in rows)
+        #  Score every member by the BEST profile that covers it, not by the
+        #  worst hit anywhere in the matrix.
+        #
+        #  A feature holding two divergent clades has one profile per clade,
+        #  and each profile scores the OTHER clade near zero. Pooling every
+        #  PSSM x subject pair made that cross-clade hit look like a member the
+        #  cutoff had to admit. Bavovirus VP2: each profile scores its own
+        #  clade 401-568 bits and the other 29-34, so the pooled minimum was
+        #  29 and the cutoff came out 26 -- low enough to call 253 Norovirus
+        #  VP2s, 18 Nebovirus and 11 Recovirus, with only genome routing
+        #  keeping them out. Per subject best is 401, giving 361.
+        #
+        #  The requirement is that every member be callable by SOME profile,
+        #  which is exactly min over members of (max over profiles).
+        bysub = {}
+        for sid, b, ln, sl in rows:
+            if sl and ln >= a.min_cov * sl and b > bysub.get(sid, -1):
+                bysub[sid] = b
+        genuine = sorted(bysub.values())
         if not genuine:
             print("  %-8s  no hit spans %.0f%% of its subject -- skipped"
                   % (key, 100 * a.min_cov))

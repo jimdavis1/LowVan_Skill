@@ -66,6 +66,10 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--replicates", type=int, default=100)
     ap.add_argument("--seed", type=int, default=1)
+    ap.add_argument("--min-proteins", type=int, default=40,
+                    help="floor on the shared protein pool; below it the run "
+                         "records the raw collapse instead of a curve (default 40, "
+                         "the pool of the smallest module that drew a usable curve)")
     args = ap.parse_args()
 
     new = collections.defaultdict(list)
@@ -86,16 +90,45 @@ def main():
 
     shared = sorted(set(new) & set(old))
     print("  %d genome(s) annotated by both" % len(shared))
-    if len(shared) < 20:
-        print("  ERROR: too few shared genomes to rarefy", file=sys.stderr)
-        return 1
     npool = [s for g in shared for s in new[g]]
     opool = [s for g in shared for s in old[g]]
+
+    #  Guard on the PROTEIN pool, because that is the unit the experiment
+    #  draws from -- a genome count is only a proxy for it, and a bad one for
+    #  a two-ORF taxon where 28 genomes carry 54 proteins. Bavovirus has 14
+    #  shared genomes and 27/26 proteins: the old genome guard refused with
+    #  exit 1 and wrote nothing, which left the taxon with no fourth artifact
+    #  and no record of WHY. Decline, but say so on disk, so the page can
+    #  report the limitation instead of a curve drawn through too few points.
+    #
+    #  The floor is 40 rather than something rounder because it is calibrated,
+    #  not chosen: Nebovirus is the smallest shipped module whose curve was
+    #  judged usable and its pool is 47. A higher floor would retroactively
+    #  invalidate a page that has already shipped, which is a regression
+    #  dressed as a stricter check. Bavovirus sits at 26 against a source
+    #  vocabulary of 4 strings -- too few draws for "saturation" to mean
+    #  anything, whatever the genome count says.
+    m = min(len(opool), len(npool))
+    if m < args.min_proteins:
+        print("  too few proteins to rarefy: %d (floor %d) -- writing the raw "
+              "collapse instead of a curve" % (m, args.min_proteins))
+        json.dump({"unit": "proteins", "insufficient": True,
+                   "reason": ("only %d protein(s) are annotated by both the source "
+                              "and the module, below the floor of %d needed for a "
+                              "rarefaction curve to mean anything"
+                              % (m, args.min_proteins)),
+                   "n_genomes": len(shared),
+                   "n_proteins_source": len(opool), "n_proteins_module": len(npool),
+                   "source_total": len(set(opool)), "module_total": len(set(npool)),
+                   "source_strings": sorted(set(opool)),
+                   "module_strings": sorted(set(npool))},
+                  open(args.out, "w"))
+        print("  wrote %s" % args.out)
+        return 0
     print("  proteins: source %d, module %d" % (len(opool), len(npool)))
 
     co = curve(opool, args.replicates, random.Random(args.seed))
     cn = curve(npool, args.replicates, random.Random(args.seed))
-    m = min(len(opool), len(npool))
 
     print("\n  proteins  source  module")
     for f in (0.001, 0.01, 0.05, 0.1, 0.25, 0.5, 1.0):
