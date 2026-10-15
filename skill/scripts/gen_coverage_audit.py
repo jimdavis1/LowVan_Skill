@@ -261,7 +261,10 @@ def main():
                 if i < 0 or j < 0:
                     raise SystemExit("no <figure> in %s" % src)
                 body.append(h[i:j + len("</figure>")])
-        S.append(section(s["num"], s["title"], s["lede"], "".join(body)))
+        #  A section without a lede is a style choice, not a malformed facts
+        #  file. This used to raise KeyError and lose the whole page after
+        #  every other section had rendered, which reads like a data error.
+        S.append(section(s["num"], s["title"], s.get("lede", ""), "".join(body)))
 
     page = ("<title>%s</title>\n<style>%s</style>\n"
             '<div class="wrap"><header>'

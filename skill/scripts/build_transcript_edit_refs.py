@@ -96,6 +96,11 @@ def main():
     ap.add_argument("--prefix", type=int, default=200,
                     help="residues of the pre-shift protein the construct must start with")
     ap.add_argument("--heptamer", default="", help="optional, reported not required")
+    ap.add_argument("--allow-non-met", action="store_true",
+                    help="keep constructs whose protein does not start at Met. Only for "
+                         "a product whose N-terminus is a cleavage rather than an "
+                         "initiation codon (see the CDS-or-mat_peptide note in "
+                         "references/special-features.md)")
     a = ap.parse_args()
 
     if not a.fused and not (a.n_part and a.c_part):
@@ -142,6 +147,15 @@ def main():
         p, ref = hit
         if set(ref) - set("ACGT"):
             stats["ambiguous base in construct"] += 1; continue
+        #  A CDS reference whose protein does not begin at Met is wrong, and
+        #  the cause is upstream: the deposited protein it was anchored on was
+        #  itself N-terminally truncated, so the construct inherits a start
+        #  that is not a start. 5-7% of the Astroviridae references were like
+        #  this. Refusing them here is the same rule check_met_start.py applies
+        #  to profiles -- be suspicious of any non-mat_peptide that does not
+        #  start with Met -- applied to a reference instead of an alignment.
+        if not a.allow_non_met and translate(ref)[:1] != "M":
+            stats["construct does not begin at Met"] += 1; continue
         if a.heptamer:
             stats["heptamer present" if a.heptamer in g[max(0, p - 12):p + 12]
                   else "heptamer absent"] += 1
