@@ -83,6 +83,21 @@ def main():
     if not os.path.exists(cg_path):
         sys.exit("no %s -- run build_rep_contigs.py first" % cg_path)
     close = json.load(open(cg_path))
+    #  Never declare a reference whose .dna is gone. close_genomes.json is
+    #  written once by build_rep_contigs.py and then edited by hand when a
+    #  reference turns out to be wrong -- deleting the file is the obvious
+    #  move and updating the manifest is the easy thing to forget. Vesivirus.19
+    #  was "Bovine calicivirus Mukti/India", a NEBOVIRUS misfiled in the
+    #  vesivirus reference set; it was removed from Rep-Contigs but left in the
+    #  manifest, so the next regeneration silently re-declared it and the
+    #  module shipped pointing at a BLASTn subject that does not exist.
+    orphaned = sorted(k for k in close
+                      if not os.path.exists(os.path.join(W, "Rep-Contigs", k)))
+    for k in orphaned:
+        del close[k]
+    if orphaned:
+        print("  dropped %d close_genome(s) with no .dna in Rep-Contigs: %s"
+              % (len(orphaned), ", ".join(orphaned)))
 
     if a.segments:
         segments = json.load(open(a.segments)) if os.path.exists(a.segments) \
