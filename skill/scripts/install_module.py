@@ -400,12 +400,31 @@ def install(workdir, repo, modules, mod_json, dry=False):
 
         # 3. rep contigs
         nr = 0
-        for f in sorted(glob.glob(os.path.join(workdir, "Rep-Contigs", module + ".*.dna"))):
+        src = sorted(glob.glob(os.path.join(workdir, "Rep-Contigs", module + ".*.dna")))
+        keep = {os.path.basename(f) for f in src}
+        for f in src:
             if not dry:
                 os.makedirs(os.path.join(repo, "Viral-Rep-Contigs"), exist_ok=True)
                 shutil.copy2(f, os.path.join(repo, "Viral-Rep-Contigs", os.path.basename(f)))
             nr += 1
         print("  %-24s %3d rep contigs -> Viral-Rep-Contigs/" % ("", nr))
+
+        #  A module that SHRINKS used to leave its dropped references behind.
+        #  Copying is not installing: the old file stays on disk, and a routing
+        #  subject on disk keeps routing whatever the JSON says. Vesivirus
+        #  dropped a reference that turned out to be a nebovirus, and the
+        #  runtime repo still held 19 files for an 18-reference module -- the
+        #  removed one still sitting there as a live BLASTn subject.
+        stale = sorted(
+            os.path.basename(f)
+            for f in glob.glob(os.path.join(repo, "Viral-Rep-Contigs", module + ".*.dna"))
+            if os.path.basename(f) not in keep)
+        if stale:
+            print("  %-24s %3d STALE rep contig(s) removed: %s"
+                  % ("", len(stale), ", ".join(stale[:6])))
+            if not dry:
+                for b in stale:
+                    os.remove(os.path.join(repo, "Viral-Rep-Contigs", b))
 
     # 4. merge the JSON and write it canonically
     with open(vp) as fh:
