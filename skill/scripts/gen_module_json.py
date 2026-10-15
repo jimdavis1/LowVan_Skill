@@ -12,7 +12,7 @@ artifact on disk instead:
   segments            measured contig lengths, in the dict form the quality
                       script needs
 
-COPY_NUM IS NEVER SET HERE, and that is deliberate. copy_num is what marks a
+COPY_NUM IS NEVER INVENTED HERE, and that is deliberate. copy_num is what marks a
 feature essential, so a feature that carries it flags every genome that lacks
 it. Essentiality cannot be known before the module has been run against
 genomes -- it is called/routed >= 0.85, not "is this gene famous". Getting it
@@ -20,6 +20,12 @@ from the gene's reputation put three shipped modules at 0.0% clean. So the
 module ships without copy_num, run_gto_eval.py measures called/routed, and
 copy_num is added afterwards to the features that earn it. A missing copy_num
 costs nothing; a wrong one fails every genome in the taxon.
+
+A copy_num ALREADY in the feature spec is a different thing: it is that
+measurement, folded back by the curator after apply_copy_num.py. It is passed
+through. Dropping it was a silent data loss -- apply_copy_num wrote the flags,
+the next routine regeneration of the JSON wiped them, and the module shipped
+marking nothing essential. Every Caliciviridae module did exactly that.
 
   python3 gen_module_json.py --workdir Crinivirus --module Crinivirus \
       --features Crinivirus/features.json --out Crinivirus/Crinivirus_Viral_PSSM.json
@@ -154,6 +160,15 @@ def main():
             if spec.get(field):
                 v = spec[field]
                 d[field] = v if isinstance(v, list) else [str(v)]
+        #  copy_num is still never INVENTED here -- see the note at the top --
+        #  but one already in the spec is a MEASURED value the curator folded
+        #  back after apply_copy_num.py, and silently dropping it destroyed the
+        #  measurement. Every Caliciviridae module lost its essentiality flags
+        #  this way: apply_copy_num wrote them, the next routine regeneration
+        #  wiped them, and the module shipped flagging nothing. Pass through
+        #  what is explicitly there; invent nothing.
+        if spec.get("copy_num") is not None:
+            d["copy_num"] = spec["copy_num"]
         out[key] = d
 
     block = {M: {"close_genomes": close, "features": out, "segments": segments}}
@@ -166,8 +181,13 @@ def main():
           % (M, len(out), len(close), len(segments), a.out))
     if missing:
         print("  NO COLLECTION (not declared): %s" % ", ".join(missing))
-    print("  copy_num set on 0 features by design -- run run_gto_eval.py, then "
-          "add copy_num where called/routed >= 0.85")
+    ncn = sum(1 for v in out.values() if "copy_num" in v)
+    if ncn:
+        print("  copy_num carried through on %d feature(s) from the spec "
+              "(measured, not invented)" % ncn)
+    else:
+        print("  copy_num set on 0 features by design -- run run_gto_eval.py, "
+              "then add copy_num where called/routed >= 0.85")
 
 
 main()
