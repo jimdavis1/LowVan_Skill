@@ -144,6 +144,16 @@ def main():
                                      0 if ftype == "mat_peptide" else 1),
         }
         if spec.get("comment"): d["comment"] = spec["comment"]
+        #  Citations. PMID is the curator's: a reference a person read and
+        #  chose. PMID_claude_generated is this project's own proposal and is
+        #  kept in a separate field precisely so the two are never confused.
+        #  Both were being dropped on the floor here, the same way the
+        #  extension flags were, so a feature declared with a literature
+        #  reference shipped without one.
+        for field in ("PMID", "PMID_claude_generated"):
+            if spec.get(field):
+                v = spec[field]
+                d[field] = v if isinstance(v, list) else [str(v)]
         out[key] = d
 
     block = {M: {"close_genomes": close, "features": out, "segments": segments}}

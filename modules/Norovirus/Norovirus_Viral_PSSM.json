@@ -207,6 +207,24 @@
     "type": "CDS",
     "upstream_ext": 1
    },
+   "VF1": {
+    "PMID": [
+     "34695940"
+    ],
+    "anno": "Virulence factor VF1 protein",
+    "bit_cutoff": 181,
+    "comment": "Genogroup GV only -- murine and rat norovirus. A fourth, overlapping reading frame inside ORF2, so it is called on the same span as VP1 in a different frame. Non-essential by design: 99% of noroviruses do not encode it and must not be flagged for its absence.",
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "VF1",
+    "kmers": 1,
+    "max_len": 235,
+    "min_len": 200,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
    "VP1": {
     "anno": "Major capsid protein VP1",
     "bit_cutoff": 255,

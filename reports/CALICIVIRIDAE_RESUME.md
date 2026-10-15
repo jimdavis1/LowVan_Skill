@@ -52,33 +52,74 @@ agreed every time, and it did three further jobs no one asked of it:
   about whether the VP1-containing frame counts as one ORF or two, and only
   the length distinguishes them. Both name VP2.
 
-## What is NOT built, and the numbers that justify it
+## What is NOT built — and two that SHOULD be
 
-Seven genera and the records carrying no genus at all. The floor is what
-Seadornavirus cleared: **46 complete genomes, 1,202 features, 696 sequences in
-collections.** Nothing below is close.
+**Corrected 15 October 2026.** The first version of this section declared all
+seven remaining genera unbuilt, on the grounds that their complete-genome
+counts fall below the 46 that Seadornavirus cleared. **That was the wrong
+test.** Complete-genome count is a proxy for buildability, not a measure of
+it: what decides whether a module can be built is whether the sequences
+cluster into groups that clear the member floor. Measured properly, two of
+them do.
 
-| genus | genomes | complete ≥6.5 kb | features | verdict |
-|---|---|---|---|---|
-| Nebovirus | 285 | **34** | 361 | closest; still under the floor on both counts |
-| Bavovirus | 56 | **28** | 87 | a quarter of Seadornavirus's features |
-| Recovirus | 72 | 5 | 103 | 5 complete genomes |
-| Valovirus | 9 | 5 | 19 | — |
-| Salovirus | 6 | 5 | 12 | — |
-| Nacovirus | 4 | 4 | 10 | — |
-| Minovirus | 2 | 2 | 8 | — |
-| **(no genus on the record)** | **634** | not measured | 1,066 | **worth triaging — see below** |
+| genus | genomes | complete | ORF1 full-length | clusters @80% | largest | verdict |
+|---|---|---|---|---|---|---|
+| **Nebovirus** | 285 | 34 | **27** | 3 | **19** | **BUILD** |
+| **Bavovirus** | 56 | 28 | **20** | 2 | **12** | **BUILD** |
+| Recovirus | 72 | 5 | not measured | — | — | below floor |
+| Valovirus | 9 | 5 | — | — | — | below floor |
+| Salovirus | 6 | 5 | — | — | — | below floor |
+| Nacovirus | 4 | 4 | — | — | — | below floor |
+| Minovirus | 2 | 2 | — | — | — | below floor |
+| (no genus on the record) | 634 | — | — | — | — | triage first |
 
-**1,068 unbuilt genomes against 86,614 built**, so the family is 98.8% covered
-by genome count. Nebovirus is the one to revisit first if it grows: it shares
-the Sapovirus/Lagovirus two-ORF layout, so it would join that partition rather
-than need a new one.
+Clusters of 19, 19, 12 and 14 clear `-m 5` outright, with no concession.
 
-**The 634 records with no genus are the real loose end.** They carry 1,066
-protein features — more than Nebovirus, Recovirus and Bavovirus combined — and
-nothing has been done to find out what they are. Some will be assignable by
-homology to a module that already exists, which would cost nothing but a
-rescue pass; the rest should be declared.
+### These 341 genomes are currently annotated with NOTHING
+
+61 near-complete Nebovirus and Bavovirus genomes were run through the shipped
+four-module repo. **Zero features were called on any of them** — not a poor
+annotation, no annotation at all. That is the strongest case for building a
+module that this project has measured.
+
+### Nebovirus is fully worked out and ready to build
+
+Two ORFs, the Sapovirus/Lagovirus layout. ORF1 is **2,210 aa** in the
+literature and the deposits give a median of exactly 2,210; ORF2 is 225 aa and
+the deposits give exactly 225.
+
+The published map (Newbury-1, PMC7111791 and J Virol 76:10089) is
+**NH2-P34-P37(2C)-P30-P7.6(VPg)-P20(3C)-P53(3D)-P57(VP1)-COOH**, with cleavage
+at `[EQ]↓[GA]`. The deposits do NOT name the mature peptides, so the vocabulary
+cross-check that pinned Lagovirus's two undocumented boundaries is unavailable
+here — but three independent lines converge anyway:
+
+- **catalytic anchors land inside their predicted products**: `GPPGHGKS`
+  (2C Walker A) uniquely at 456, `GYCG` (3C) at 1101, `GLPSG` at 1440 and
+  `YGDD` at 1485 (3D);
+- **conserved cleavage sites sit where the kDa map predicts**, every one of the
+  six junctions, with a majority of the 27 sequences agreeing:
+
+```
+P34/P37   302  PKQE|GG   17/27      VPg/3C   990  LGRE|GN   20/27
+P37/P30   645  PDRE|GP   19/27      3C/3D   1174  MKEE|AA   13/27
+P30/VPg   925  NDRQ|GW   19/27      3D/VP1  1659  LIRE|GN   20/27
+```
+
+- the shared **P2 arginine** across four of the six sites is a real signal, and
+  makes per-junction motifs specific.
+
+So Nebovirus is a full module — POLY, seven ORF1 products derived at measured
+motifs, VP2 from its own 28 deposits — using the technique already proven
+twice in this family (Vesivirus VP1, the Norovirus conserved cores).
+
+### Bavovirus is probably the same shape, and is not yet worked out
+
+Chicken calicivirus. 20 full-length ORF1 in 2 clusters, 20 VP2 in 2 clusters,
+so it builds. Its literature has **not** been searched, and it is far less
+studied than Nebovirus, so its mature-peptide set may have to be scoped to
+whatever is documented — or projected from Nebovirus, which would need the 80%
+identity floor checked first.
 
 ## Open items, in the order I would take them
 
@@ -88,15 +129,7 @@ rescue pass; the rest should be declared.
    murine norovirus virulence factor 1, a real protein and not a synonym for
    anything the module models. It was never evaluated as a feature; it should
    be, and either declared or tabled with a measurement.
-3. **Sapovirus: 147 bindable sequences tabled.** 22 annotation strings map
-   unambiguously onto a declared feature but are not matched by the rules —
-   `VP-1` hyphenated, bare `ORF1`, `small basic protein`, the typo
-   `major capid protein`. Binding all of them and keeping only what clears the
-   length window adds 147 sequences: POLY +4.2%, everything else under 1.5%.
-   Measured and tabled rather than guessed at, because re-running
-   `build_collections.py` discards the homology rescue. `UNASSIGNED_DECISION.md`
-   has the spellings.
-4. **Vesivirus ORF1 products are FCV-only.** 210 of 212 feline genomes carry
+3. **Vesivirus ORF1 products are FCV-only.** 210 of 212 feline genomes carry
    all six; **none** of the 58 non-FCV genomes carries any. The product names
    (`p5.6`, `p32`, `p39`, `p30`, `Pro-Pol`) are FCV nomenclature, so the
    collections are FCV sequences and the profiles do not reach a canine or mink
@@ -107,6 +140,22 @@ rescue pass; the rest should be declared.
    a cutoff: self-recall is already 100%, so the profiles are not failing to
    find what they were built from; they were built from the wrong half of the
    genus.
+
+## Settled, not open
+
+**Sapovirus's 147 bindable sequences: not worth binding.** Decided by the
+curator, 15 October 2026. The measurement stands — 22 annotation strings map
+unambiguously onto a declared feature, and binding every one of them while
+keeping only what clears the length window adds 147 sequences: POLY +4.2%,
+everything else under 1.5%. Against that, re-running `build_collections.py`
+discards the homology rescue and costs a full rebuild of a module measuring
+411/411 routed. **The gain does not pay for the rebuild.**
+
+The spellings are still recorded in `UNASSIGNED_DECISION.md`, and they were
+worth recording: Lagovirus and Vesivirus bound their equivalents correctly on
+the first pass because of them. This closes the question for Sapovirus only —
+a future rebuild of that module for some other reason should pick them up on
+the way past.
 
 ## What the four builds cost, and where
 
