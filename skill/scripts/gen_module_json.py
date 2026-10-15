@@ -165,6 +165,35 @@ def main():
                                      0 if ftype == "mat_peptide" else 1),
         }
         if spec.get("comment"): d["comment"] = spec["comment"]
+        #  Fields that change HOW a feature is called, not merely how it is
+        #  described. Each was being dropped here, which is silent and total:
+        #  a feature declared `special: transcript_edit` in the spec arrived in
+        #  the JSON as an ordinary PSSM feature, so the annotator looked for a
+        #  profile that by definition does not exist and the protein was never
+        #  called at all. Astrovirus ORF1ab is reached by a -1 ribosomal
+        #  frameshift and is the first feature in this project to need it.
+        #
+        #    special            transcript_edit | splice -- called by an
+        #                       external program from a nucleotide reference
+        #    internal_stop      the match may legitimately contain a stop
+        #    translate          emit a protein translation for this feature
+        #    non_pssm_partner   this feature's coordinates come from a
+        #                       neighbour's PSSM match
+        #    begin / end        the anchor pair that does it
+        for field in ("special", "internal_stop", "translate",
+                      "non_pssm_partner", "begin", "end"):
+            if spec.get(field) is not None:
+                d[field] = spec[field]
+        #  A `special` feature has no PSSM, so the fields that only describe
+        #  how a PSSM match is scored and extended describe nothing. Writing
+        #  them is not harmless: a bit_cutoff on a feature with no profile
+        #  reads as a threshold someone chose and invites a future curator to
+        #  tune it. 51 of the 54 special features already in the repo omit
+        #  them; this makes that the rule rather than the habit.
+        if d.get("special"):
+            for field in ("bit_cutoff", "coverage_cutoff", "kmers",
+                          "upstream_ext", "downstream_ext"):
+                d.pop(field, None)
         #  Citations. PMID is the curator's: a reference a person read and
         #  chose. PMID_claude_generated is this project's own proposal and is
         #  kept in a separate field precisely so the two are never confused.
