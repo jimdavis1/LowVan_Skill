@@ -74,6 +74,34 @@ differ only where they should. **Every module built before this fix has
 cutoffs at or below what this script now proposes, and the multi-clade ones
 are substantially below.** Re-cut them, then re-measure coverage and the
 panel, because raising a cutoff removes true calls as well as false ones.
+
+**And this number is a ceiling, not an answer.** It is derived from the
+training collection, so it says what the profiles need to find THEMSELVES. Wild
+sequences are routinely more divergent than anything in the collection, so a
+cutoff set here can sit above what real genomes score and quietly cost
+coverage. Re-cutting all five Caliciviridae modules from this statistic alone
+did exactly that: Sapovirus NS2 and NS3 each fell 26 points, Vesivirus VP2 fell
+from 100% to 45%, and Lagovirus NS1 lost 10 -- while POLY in both Sapovirus and
+Lagovirus gained nothing at all, because nothing foreign was anywhere near it.
+
+The question a cutoff actually has to answer is *what is the lowest value that
+still admits no protein from another taxon*. Measure it directly: score the
+feature's profiles against the whole family's proteins, apply the feature's own
+min_len/max_len, and take the highest score reached by any protein from a
+different genus. Then
+
+    cutoff = the curated/old value          if it already exceeds that score
+           = (highest foreign score) + 1    otherwise
+           = 0.9 x weakest member           when foreign outscores the weakest
+                                            member and no cutoff separates them
+
+The third case is real and worth naming: Sapovirus NS5, VP1 and VP2, and
+Vesivirus VP2, cannot be separated from other genera by score at all. Nothing
+is wrong with them -- genome routing is what keeps a norovirus out of the
+sapovirus module, and the cutoff is only the second line. Taking this route,
+Lagovirus and Vesivirus kept every curated cutoff but one apiece, Norovirus
+one, and the modules went back to their original call rates with the
+cross-clade leak still closed.
 """
 import argparse, glob, json, os, statistics, subprocess, sys
 
