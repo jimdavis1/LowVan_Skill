@@ -119,7 +119,7 @@ def main():
 
     print("  %-10s %7s %10s %9s %9s  %s"
           % ("feature", "curated", "maxForeign", "weakest", "-> cutoff", "basis"))
-    out, unsep = {}, []
+    out, unsep, kin = {}, [], []
     for k in sorted(feats):
         pssms = sorted(glob.glob(os.path.join(W, "Alignments", M, k, "pssms", "*.pssm")))
         if not pssms:
@@ -138,12 +138,34 @@ def main():
         elif weak and maxf + 1 > weak:
             cut, basis = max(10, int(weak * a.margin)), "NOT SEPARABLE -- routing is the defence"
             unsep.append(k)
+            #  Before believing that, ask whether the top "foreign" hit is
+            #  really foreign. Every NOT SEPARABLE verdict seen while building
+            #  the Spinareoviridae modules was a bad --map, not a property of
+            #  the protein: sibling dumps hold records of the module's OWN
+            #  taxon under other names, and scoring them as foreign puts the
+            #  bar above the members. Pteropine orthoreovirus is deposited as
+            #  Nelson Bay, Melaka, Kampar, Pulau, Paguyaman, Xi River, Kasama,
+            #  HK23629 and Lopburi, scattered across three dumps; a name-based
+            #  map missed Lopburi01 and Lopburi02 at 95-97% identity and made
+            #  sigma B look inseparable when its real cutoff is 277 against a
+            #  weakest member of 696. A hit this close is kin, so say so.
+            top = max((b, s) for s, (b, ln) in best.items()
+                      if lo <= ln <= hi
+                      and group.get(s, "") not in ("", M, "(none)", "unknown"))
+            kin.append((k, top[1], group.get(top[1], "?")))
         else:
             cut, basis = int(maxf) + 1, "lowest non-leaking value"
         out[k] = max(10, int(cut))
         print("  %-10s %7s %10.0f %9.0f %9d  %s"
               % (k, cur, maxf, weak, out[k], basis))
 
+    if kin:
+        print("\n  Before accepting those, CHECK THE MAP. The sequence that set the bar")
+        print("  is named below with the group --map assigns it. If it is really this")
+        print("  module's own taxon under another name -- sibling dumps routinely hold")
+        print("  such records -- it is kin, not foreign, and the verdict is an artefact:")
+        for k, sid, grp in kin:
+            print("     %-10s top 'foreign' hit %-44s as %s" % (k, sid[:44], grp))
     if unsep:
         print("\n  %d feature(s) cannot be separated from other taxa by score: %s"
               % (len(unsep), ", ".join(unsep)))
