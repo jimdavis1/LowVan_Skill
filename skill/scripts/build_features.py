@@ -83,6 +83,30 @@ def run_one(workdir, module, key, anno, params, extra_flags):
             print("  %-14s rebuilding: %d existing profile(s) discarded; re-run "
                   "build_leftover_pssms.py for this key afterwards" % (key, gone))
         shutil.rmtree(dest)
+
+    #  Clear any orphan output directory left by an earlier attempt at THIS
+    #  feature. fasta-cluster-pssm-2.pl names its temp directory from the
+    #  input, so re-running the same collection targets the same name, and it
+    #  opens with `mkdir($tmp_dir) or die`. A leftover from a previous run
+    #  therefore kills the next one before it starts, and the only symptom is
+    #  this script reporting "FAILED -- no output directory carries <KEY>
+    #  profiles (0 new dirs)" -- which reads as though nothing ran rather than
+    #  as a collision. It cost several rebuild cycles across Coltivirus,
+    #  Avian and Piscine Orthoreovirus before the pattern was clear: every
+    #  time, deleting the stray hash directory by hand made the rebuild work.
+    for d in list(os.listdir(adir)):
+        p = os.path.join(adir, d)
+        if d == key or not os.path.isdir(p):
+            continue
+        ps = glob.glob(os.path.join(p, "pssms", "*.pssm"))
+        stem = os.path.basename(ps[0]).split(".") if ps else []
+        owned = len(stem) > 2 and stem[1] == key
+        #  An empty husk is a dead run of something; a husk is never useful.
+        if owned or (not ps and not os.listdir(p)):
+            shutil.rmtree(p, ignore_errors=True)
+            print("  %-14s clearing stray output directory %s from an earlier "
+                  "attempt" % (key, d))
+
     before = set(os.listdir(adir))
 
     cmd = ["fasta-cluster-pssm-2.pl", "-a", anno, "-p", "%s.%s" % (module, key),
