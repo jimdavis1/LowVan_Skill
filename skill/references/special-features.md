@@ -57,6 +57,24 @@ one, and leave it off everywhere else:
 question an auditor actually asks. Writing the zeros makes that grep return
 everything.
 
+**The collection needs `-x`, and `build_features.py` now adds it for you when
+the feature declares `internal_stop`.** Where the read-through codon is
+deposited as an `X` — which is how Coltivirus segment 9 arrives, in 17 of 17
+members — `fasta-cluster-pssm-2.pl` drops every one of them, because by default
+it discards any sequence matching `/[BJXZ]/`. The whole collection then empties,
+and what you see is not a message about the feature but mmseqs dying on a
+0-byte temp file:
+
+```
+Cannot seek at the end of file 2c00cafae6.fasta
+VP9RDT  FAILED -- no output directory carries VP9RDT profiles
+```
+
+which reads like an mmseqs fault. Tobamovirus got this right by hand, setting
+`"flags": ["-x"]` on REP126 and REP183; nothing made the next module do the
+same. It is now derived from the declaration, so a feature that permits a
+read-through keeps the sequences that demonstrate one.
+
 `-mis N` (default 1) caps how many stops are tolerated. One opal is expected; a
 run of stops is a broken genome, and the annotator crops rather than inventing a
 readthrough across it.

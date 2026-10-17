@@ -36,6 +36,37 @@ gene order plus a homology hit to the N collection is what identifies them as
 N/P/M. Positional labels can be *resolved*, but only with evidence — gene order,
 length, and a homology hit — never by the number in the name.
 
+### When two labels are *swapped* between submitters
+
+The usual form is one label covering two proteins, and the cure is a length
+router. The harder form is two labels covering the same two proteins in
+**opposite directions**, and length cannot touch it.
+
+Coltivirus `VP6` and `VP7`. Pooling both labels and clustering gives exactly
+two homology groups, and each one holds both strings:
+
+    group A   n=23   17 x "VP6",  6 x "VP7"    median 697 aa
+    group B   n=21   15 x "VP7",  6 x "VP6"    median 684 aa
+
+A sequence deposited as `VP6` and one deposited as `VP7` are **100.0%
+identical**. The labels are about 70% reliable, which is worse than useless,
+because 70% looks like signal: a rule keyed on the string bins a quarter of
+each feature into the other one, and every downstream number stays
+self-consistent while two profiles quietly contaminate each other.
+
+Length cannot separate them — 697 against 684, with both collections spanning
+613-700 — so the only thing that can is homology. Pool the two labels into one
+key, cluster the pool, and name each group for the label that dominates it;
+check the result against an independent handle, which here was the ICTV mass
+order (VP6 78 kDa > VP7 76 kDa) and agreed. The homology rescue then confirmed
+it a second time, adopting a sequence deposited as `VP6` into `VP7` at >=80%
+identity.
+
+**The symptom to watch for** is a feature whose own members fall into two
+clusters that do not overlap in sequence but do overlap in length. Check
+whether the *other* label's members join one of them before concluding the
+feature is heterogeneous.
+
 ## Every rule needs a genus column
 
 The same product string maps to different features depending on genus. Real
