@@ -42,8 +42,15 @@ def main():
     nbound = sum(r["nstrings"] for r in agg)
     nocc = sum(r["total"] for r in agg)
     nanno = len({r["anno"] for r in agg})
-    ndistinct = nbound + len(unb)
-    ratio = (nbound / nanno) if nanno else 0
+    #  DISTINCT means the union, not the sum. One string can be bound to two
+    #  features -- Coltivirus deposits "VP6" on both VP6 and VP7, because the
+    #  two labels are swapped between submitters -- and summing per-feature
+    #  counts then reports 35 "distinct strings" where there are 33. The sum
+    #  is still the right number for the per-feature cards below, so both are
+    #  kept and only the headline uses the union.
+    bound_strings = {s[0] for r in agg for s in r["srcs"]}
+    ndistinct = len(bound_strings | {u[0] for u in unb})
+    ratio = (ndistinct / nanno) if nanno else 0
 
     cards = []
     for r in agg:
@@ -83,7 +90,7 @@ def main():
         "annotation strings</b> &mdash; a %.1f-fold reduction across %s protein "
         "occurrences. The remaining <b>%d bind to nothing</b>, and are listed at "
         "the end rather than hidden."
-        % (html.escape(args.taxon), ndistinct, nbound, nanno, ratio,
+        % (html.escape(args.taxon), ndistinct, len(bound_strings), nanno, ratio,
            "{:,}".format(nocc), len(unb)))
 
     css = open(os.path.join(ASSETS, "collapse.css")).read()
@@ -139,8 +146,11 @@ def main():
     with open(args.out, "w") as fh:
         fh.write(page)
     print("wrote %s (%d bytes)" % (args.out, len(page)))
-    print("  %d strings -> %d controlled (%.1fx), %d unbound, %s occurrences"
-          % (nbound, nanno, ratio, len(unb), "{:,}".format(nocc)))
+    print("  %d distinct strings -> %d controlled (%.1fx), %d unbound, %s occurrences"
+          % (ndistinct, nanno, ratio, len(unb), "{:,}".format(nocc)))
+    if nbound != len(bound_strings):
+        print("  (%d string-feature pairs: %d string(s) bind to more than one "
+              "feature)" % (nbound, nbound - len(bound_strings)))
     return 0
 
 
