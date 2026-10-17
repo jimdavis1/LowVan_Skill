@@ -69,6 +69,30 @@ def main():
         sys.exit("no *.dna files in %s" % args.repdir)
     print("%d rep contig files, %d test accessions\n" % (len(reps), len(accs)))
 
+    #  A reference missing one of the four bases entirely is not a sequence and
+    #  can never match a real genome, so it is dead routing weight that still
+    #  counts toward the budget. BV-BRC carries such records -- 48 of 710
+    #  Coltivirus segment records hold no cytosine, all described "Modified
+    #  Microbial Nucleic Acid." -- and because they cluster with each other the
+    #  greedy cover picks them AND reports the genomes they cover as routed.
+    #  build_rep_contigs.py now excludes them at selection; this finds the ones
+    #  already shipped.
+    dead = []
+    for r in reps:
+        s = "".join(l.strip().upper() for l in open(os.path.join(args.repdir, r),
+                                                    errors="replace")
+                    if not l.startswith(">"))
+        miss = sorted(set("ACGT") - (set(s) & set("ACGT")))
+        if s and miss:
+            dead.append((r, len(s), "".join(miss)))
+    if dead:
+        print("  %d reference(s) MISSING A BASE ENTIRELY -- these can never match "
+              "a real genome:" % len(dead))
+        for r, ln, miss in dead:
+            print("     %-30s %7d nt  no %s" % (r, ln, miss))
+        print("  Rebuild those modules' references; the coverage they were "
+              "credited with is not real.\n")
+
     tmp = tempfile.mkdtemp(prefix="reprout.")
     db = os.path.join(tmp, "rep.fa")
     # tag every sequence with the rep-contig file it came from, so a hit names

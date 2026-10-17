@@ -46,6 +46,7 @@ for l in open(a.meta):
 #  contig header BV-BRC served, not in the metadata table, which is why this
 #  reads the contigs rather than re-querying.
 gseq, gacc, grecs = {}, {}, {}
+corrupt = []
 for f in sorted(glob.glob(os.path.join(a.contigs, "*"))):
     g = os.path.basename(f)
     for ext in (".fna", ".fa", ".fasta"):
@@ -76,6 +77,21 @@ for f in sorted(glob.glob(os.path.join(a.contigs, "*"))):
     s = "".join(x[1] for x in recs)
     if len(s) < a.min_len:
         continue
+    #  A reference whose sequence is missing one of the four bases ENTIRELY is
+    #  not a sequence. BV-BRC carries such records -- 48 of 710 Coltivirus
+    #  segment records hold no cytosine at all, every one of them described
+    #  "Modified Microbial Nucleic Acid." -- and they are poison here
+    #  specifically, because they cluster happily with EACH OTHER. The greedy
+    #  cover then spends references on them and reports the genomes they
+    #  "cover" as routed: Coltivirus measured 25 references and 93.4% with
+    #  them in, and 23 references and 100.0% with them out. Ten of those 25
+    #  references were corrupt records covering other corrupt records.
+    #  The build repo shipped eight such references across six modules before
+    #  this check existed.
+    comp = set(s.upper()) & set("ACGT")
+    if len(comp) < 4:
+        corrupt.append((g, len(s), "".join(sorted(set("ACGT") - comp))))
+        continue
     #  --meta SELECTS, it does not merely name. It used to be read only into
     #  the name lookup while the candidate set came entirely from the --contigs
     #  glob, so passing a subset metadata changed nothing -- three different
@@ -89,6 +105,14 @@ for f in sorted(glob.glob(os.path.join(a.contigs, "*"))):
     #  merged from segments it is our own "<gid>_seg1" label, and shipping
     #  that as the reference's identity says the whole genome is segment 1.
     gseq[g], gacc[g], grecs[g] = s, re.sub(r"_seg\d+$", "", acc or g), recs
+if corrupt:
+    print("  %d record(s) EXCLUDED: sequence is missing a base entirely "
+          "(not a sequence; they cluster with each other and inflate coverage)"
+          % len(corrupt))
+    for g, ln, miss in corrupt[:8]:
+        print("     %-22s %7d nt  no %s" % (g, ln, miss))
+    if len(corrupt) > 8:
+        print("     ... and %d more" % (len(corrupt) - 8))
 if not gseq:
     sys.exit("no contigs in %s" % a.contigs)
 
