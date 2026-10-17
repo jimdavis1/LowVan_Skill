@@ -163,9 +163,25 @@ if a.segment_level:
     gclu = collections.defaultdict(set)
     for seg, rep in seg2clu.items():
         gclu[seg.split("@@")[0]].add(rep)
+    #  How many GENOMES sit in each segment cluster. This is the tiebreak, and
+    #  without it the whole mode degenerates wherever BV-BRC stores one record
+    #  per segment -- which is the case this mode exists for. There, every
+    #  genome record holds exactly one segment and therefore adds exactly ONE
+    #  uncovered cluster, so `max(..., key=number of clusters added)` scores
+    #  every candidate 1 and returns whichever the dict happens to yield first.
+    #  Avian Orthoreovirus picked references covering 350, 364 and 346 genomes
+    #  alongside others covering 1, 1 and 2, and reached 23.1% of 6,148
+    #  records on a budget of 25.
+    clu_pop = collections.Counter()
+    for g, cs in gclu.items():
+        for c in cs:
+            clu_pop[c] += 1
     covered, chosen_g, pool = set(), [], dict(gclu)
     while len(chosen_g) < a.budget:
-        best = max(pool, key=lambda k: len(pool[k] - covered), default=None)
+        def gain(k):
+            new = pool[k] - covered
+            return (len(new), sum(clu_pop[c] for c in new))
+        best = max(pool, key=gain, default=None)
         if best is None or not (pool[best] - covered):
             break
         covered |= pool[best]; chosen_g.append(best); pool.pop(best)
