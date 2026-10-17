@@ -178,7 +178,21 @@ def main():
     for key, d in spec.items():
         if only and key not in only: continue
         params = dict(DEFAULTS); params.update(_normalise(d.get("params")))
-        r = run_one(a.workdir, a.module, key, d["anno"], params, d.get("flags", []))
+        flags = list(d.get("flags", []))
+        #  A read-through feature carries the read-through codon as an X in
+        #  EVERY member, by construction. fasta-cluster-pssm-2.pl drops any
+        #  sequence matching /[BJXZ]/ unless -x is given, so the collection
+        #  empties, mmseqs is handed a 0-byte FASTA and dies with "Cannot seek
+        #  at the end of file" -- which names the temp file, not the feature,
+        #  and reads like an mmseqs fault rather than a filtered input.
+        #  Coltivirus VP9RDT lost all 17 of its sequences this way. Any
+        #  feature declaring internal_stop needs -x, so set it here rather
+        #  than relying on every module to remember.
+        if d.get("internal_stop") and "-x" not in flags:
+            flags.append("-x")
+            print("  %-14s internal_stop: adding -x so the read-through codon "
+                  "does not filter the collection to nothing" % key)
+        r = run_one(a.workdir, a.module, key, d["anno"], params, flags)
         if r: res.append(r)
     print("\n%d features built, %d PSSMs total" % (len(res), sum(r["pssms"] for r in res)))
 
