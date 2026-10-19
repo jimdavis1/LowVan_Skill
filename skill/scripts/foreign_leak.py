@@ -32,10 +32,23 @@ sapovirus module; the cutoff is the second line of defence, not the first.
             --db /tmp/calidb --group-field genus
     python3 foreign_leak.py ... --apply features_all.json
 
-`--db` is a protein BLAST database of the whole family, and `--map` a TSV of
-<subject-id> <TAB> <group> saying which taxon each subject belongs to; any
-subject whose group differs from --module (and is not blank/unknown) counts as
-foreign. Build both from the dump -- see references/inputs.md.
+`--db` is a protein BLAST database and `--map` a TSV of <subject-id> <TAB>
+<group> saying which taxon each subject belongs to; any subject whose group
+differs from --module (and is not blank/unknown) counts as foreign. Build both
+from the dump -- see references/inputs.md.
+
+**Put only FOREIGN sequences in --db.** Member sequences are scored and then
+thrown away: `maxf` keeps only hits whose group differs from the module, and
+the weakest-member figure comes from the collection FASTA, not from the
+database. So every member in --db is pure cost, paid once per profile.
+
+That is cheap on a small module and ruinous on a large one. HIV-1 has 795
+profiles, and a whole-family database of 92,248 sequences had the run at
+2 hours and a third of the way through ENV; the foreign-only database is
+5,002 sequences -- 18x smaller -- and returns bit-identical cutoffs.
+
+Keep the full membership in --map even so. The map is what tells the run
+which hits are kin, and the kin check below reads it.
 """
 import argparse, glob, json, os, subprocess, sys
 
@@ -97,7 +110,9 @@ def main():
     ap.add_argument("--workdir", default=".")
     ap.add_argument("--module", required=True)
     ap.add_argument("--json", help="module JSON (default <workdir>/<module>_Viral_PSSM.json)")
-    ap.add_argument("--db", required=True, help="protein BLAST db of the whole family")
+    ap.add_argument("--db", required=True,
+                help="protein BLAST db of FOREIGN sequences only -- members are "
+                     "scored then discarded, so including them is pure cost")
     ap.add_argument("--map", required=True, help="TSV: subject-id <TAB> group")
     ap.add_argument("--margin", type=float, default=0.9,
                     help="fallback multiplier on the weakest member when foreign "
