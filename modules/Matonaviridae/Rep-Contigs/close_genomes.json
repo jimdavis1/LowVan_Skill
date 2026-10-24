@@ -1,0 +1,18 @@
+{
+ "Matonaviridae.1.dna": {
+  "genome_ids": "NC_001545.2",
+  "genome_name": "Rubella virus RVi/1a reference (clade 1)"
+ },
+ "Matonaviridae.2.dna": {
+  "genome_ids": "NC_076948.1",
+  "genome_name": "Rubella virus RVi/Bismarck.ND.USA/23.08/2B (clade 2)"
+ },
+ "Matonaviridae.3.dna": {
+  "genome_ids": "NC_076451.1",
+  "genome_name": "Rustrela virus Donkey/19_041-1/2019/Germany"
+ },
+ "Matonaviridae.4.dna": {
+  "genome_ids": "NC_076450.1",
+  "genome_name": "Ruhugu virus Cyclops leaf-nosed bat/2017/Uganda"
+ }
+}

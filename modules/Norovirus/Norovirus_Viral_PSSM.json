@@ -104,6 +104,10 @@
   },
   "features": {
    "NS1_2": {
+    "PMID_claude_generated": [
+     "24991013",
+     "16873239"
+    ],
     "anno": "Non-structural protein NS1-2",
     "bit_cutoff": 100,
     "copy_num": 1,
@@ -119,6 +123,10 @@
     "upstream_ext": 1
    },
    "NS3": {
+    "PMID_claude_generated": [
+     "24991013",
+     "16873239"
+    ],
     "anno": "NTPase NS3",
     "bit_cutoff": 200,
     "copy_num": 1,
@@ -134,6 +142,10 @@
     "upstream_ext": 0
    },
    "NS4": {
+    "PMID_claude_generated": [
+     "24991013",
+     "16873239"
+    ],
     "anno": "Non-structural protein NS4",
     "bit_cutoff": 45,
     "copy_num": 1,
@@ -149,8 +161,13 @@
     "upstream_ext": 0
    },
    "NS5": {
+    "PMID_claude_generated": [
+     "24991013",
+     "16873239"
+    ],
     "anno": "Viral genome-linked protein VPg",
     "bit_cutoff": 70,
+    "copy_num": 1,
     "coverage_cutoff": 0.65,
     "downstream_ext": 0,
     "feature_type": "mat_peptide",
@@ -163,6 +180,10 @@
     "upstream_ext": 0
    },
    "NS6": {
+    "PMID_claude_generated": [
+     "24991013",
+     "16873239"
+    ],
     "anno": "3C-like protease NS6",
     "bit_cutoff": 110,
     "copy_num": 1,
@@ -178,6 +199,10 @@
     "upstream_ext": 0
    },
    "NS7": {
+    "PMID_claude_generated": [
+     "24991013",
+     "16873239"
+    ],
     "anno": "RNA-dependent RNA polymerase",
     "bit_cutoff": 325,
     "copy_num": 1,
@@ -193,6 +218,10 @@
     "upstream_ext": 0
    },
    "POLY": {
+    "PMID_claude_generated": [
+     "24991013",
+     "16873239"
+    ],
     "anno": "Nonstructural polyprotein",
     "bit_cutoff": 400,
     "copy_num": 1,
@@ -226,8 +255,11 @@
     "upstream_ext": 1
    },
    "VP1": {
+    "PMID_claude_generated": [
+     "31573467"
+    ],
     "anno": "Major capsid protein VP1",
-    "bit_cutoff": 255,
+    "bit_cutoff": 264,
     "copy_num": 1,
     "coverage_cutoff": 0.65,
     "downstream_ext": 1,
@@ -241,6 +273,9 @@
     "upstream_ext": 1
    },
    "VP2": {
+    "PMID_claude_generated": [
+     "31573467"
+    ],
     "anno": "Minor structural protein VP2",
     "bit_cutoff": 75,
     "copy_num": 1,

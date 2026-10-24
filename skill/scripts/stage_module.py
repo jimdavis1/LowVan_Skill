@@ -128,13 +128,30 @@ def stage(repo, kit, module, check=False):
     if check or problems:
         return not problems
 
-    #  Write. Replace the alignment and reference trees wholesale so a feature
-    #  that was dropped since the last staging does not survive as a leftover --
-    #  the stale-alignment defect install_module.py had.
-    for sub in ("PSSM-Alignments", "Rep-Contigs", "Splice-Variants", "Transcript-Editing"):
+    #  Clear only what this script owns, so a profile dropped since the last
+    #  staging does not survive as a leftover.
+    #
+    #  NOT the whole PSSM-Alignments tree. Beside each feature's corrected_alis
+    #  sits the curation trail -- alis/ (pre-curation), reclustered_alis/,
+    #  BUILD_PARAMS, Curation_Report, Truncation_Report, nterm_evaluation.log.
+    #  An earlier version of this function rmtree'd the lot and destroyed 3,998
+    #  such files across sixteen modules in one run. They were recoverable from
+    #  git, which is the only reason that was an incident and not a loss.
+    aligns = os.path.join(dest, "PSSM-Alignments")
+    for feat in (sorted(os.listdir(aligns)) if os.path.isdir(aligns) else []):
+        ca = os.path.join(aligns, feat, PAGE_SUBDIR)
+        if os.path.isdir(ca):
+            shutil.rmtree(ca)
+    for sub in ("Rep-Contigs", "Splice-Variants", "Transcript-Editing"):
         d = os.path.join(dest, sub)
-        if os.path.isdir(d):
-            shutil.rmtree(d)
+        if not os.path.isdir(d):
+            continue
+        for f in sorted(os.listdir(d)):
+            #  close_genomes.json is rewritten below; everything else in these
+            #  three is a reference file this script owns outright.
+            p = os.path.join(d, f)
+            if os.path.isfile(p):
+                os.remove(p)
     total = 0
     for src, dst in plan:
         total += copy_verified(src, dst)

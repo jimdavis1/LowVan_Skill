@@ -1,572 +1,572 @@
 {
-   "Velarivirus" : {
-      "close_genomes" : {
-         "Velarivirus.1.dna" : {
-            "genome_ids" : "MN131067",
-            "genome_name" : "Little cherry virus 1 FT12"
-         },
-         "Velarivirus.10.dna" : {
-            "genome_ids" : "MN901923",
-            "genome_name" : "Malus domestica virus A SK"
-         },
-         "Velarivirus.11.dna" : {
-            "genome_ids" : "MW080812",
-            "genome_name" : "Agapanthus velarivirus 19-3007"
-         },
-         "Velarivirus.12.dna" : {
-            "genome_ids" : "OR887735",
-            "genome_name" : "Pyrus virus A 224-BE"
-         },
-         "Velarivirus.13.dna" : {
-            "genome_ids" : "HM588723",
-            "genome_name" : "Cordyline virus 1 Kahaluu-1"
-         },
-         "Velarivirus.14.dna" : {
-            "genome_ids" : "JQ599282",
-            "genome_name" : "Cordyline virus 2 SJ1"
-         },
-         "Velarivirus.15.dna" : {
-            "genome_ids" : "JQ599283",
-            "genome_name" : "Cordyline virus 3 SJ1"
-         },
-         "Velarivirus.16.dna" : {
-            "genome_ids" : "JQ599284",
-            "genome_name" : "Cordyline virus 4 SJ1"
-         },
-         "Velarivirus.17.dna" : {
-            "genome_ids" : "NC_025967",
-            "genome_name" : "Persimmon virus B variant 1"
-         },
-         "Velarivirus.18.dna" : {
-            "genome_ids" : "KJ572575",
-            "genome_name" : "Mint vein banding-associated virus NCGR MEN 454"
-         },
-         "Velarivirus.19.dna" : {
-            "genome_ids" : "OR346827",
-            "genome_name" : "Olive leaf yellowing-associated virus 22-0043_1"
-         },
-         "Velarivirus.2.dna" : {
-            "genome_ids" : "MW316018",
-            "genome_name" : "Areca palm velarivirus 1 BTY"
-         },
-         "Velarivirus.20.dna" : {
-            "genome_ids" : "AB923925",
-            "genome_name" : "Persimmon virus B variant 2"
-         },
-         "Velarivirus.21.dna" : {
-            "genome_ids" : "AB923927",
-            "genome_name" : "Persimmon virus B variant 4"
-         },
-         "Velarivirus.22.dna" : {
-            "genome_ids" : "MT936300",
-            "genome_name" : "Olivavirus actinidiae JX5-c18410"
-         },
-         "Velarivirus.23.dna" : {
-            "genome_ids" : "OR260412",
-            "genome_name" : "Little cherry virus 1 Stepnoe"
-         },
-         "Velarivirus.24.dna" : {
-            "genome_ids" : "MT533601",
-            "genome_name" : "Agapanthus velarivirus 19-3005"
-         },
-         "Velarivirus.25.dna" : {
-            "genome_ids" : "PP869314",
-            "genome_name" : "Olive leaf mottling virus OLMV158"
-         },
-         "Velarivirus.3.dna" : {
-            "genome_ids" : "MN612756",
-            "genome_name" : "Olivavirus actinidiae AcV1-Zhouzhi1"
-         },
-         "Velarivirus.4.dna" : {
-            "genome_ids" : "OR346830",
-            "genome_name" : "Olive leaf yellowing-associated virus 22-0049"
-         },
-         "Velarivirus.5.dna" : {
-            "genome_ids" : "MT936297",
-            "genome_name" : "Olivavirus actinidiae JS27"
-         },
-         "Velarivirus.6.dna" : {
-            "genome_ids" : "JN383343",
-            "genome_name" : "Grapevine leafroll-associated virus 7 GLRaV-7 Swi"
-         },
-         "Velarivirus.7.dna" : {
-            "genome_ids" : "MW080811",
-            "genome_name" : "Agapanthus velarivirus 19-3007"
-         },
-         "Velarivirus.8.dna" : {
-            "genome_ids" : "KF007212",
-            "genome_name" : "Blueberry virus A Elliot"
-         },
-         "Velarivirus.9.dna" : {
-            "genome_ids" : "MN612757",
-            "genome_name" : "Olivavirus actinidiae AcV-1-Zhouzhi2"
-         }
-      },
-      "features" : {
-         "CP" : {
-            "anno" : "Nucleocapsid protein",
-            "bit_cutoff" : 80,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "N",
-            "kmers" : 1,
-            "max_len" : 342,
-            "min_len" : 215,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "CPM" : {
-            "anno" : "Minor coat protein",
-            "bit_cutoff" : 80,
-            "comment" : "Present in Velarivirus only (1 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "CPM",
-            "kmers" : 1,
-            "max_len" : 701,
-            "min_len" : 565,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "HSP70" : {
-            "anno" : "HSP70 homolog",
-            "bit_cutoff" : 150,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "HSP70",
-            "kmers" : 1,
-            "max_len" : 618,
-            "min_len" : 394,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "HSP90" : {
-            "anno" : "HSP90 homolog",
-            "bit_cutoff" : 150,
-            "comment" : "Present in Olivavirus, Velarivirus only (2 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "HSP90",
-            "kmers" : 1,
-            "max_len" : 594,
-            "min_len" : 506,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "ORF1A" : {
-            "anno" : "ORF1a polyprotein",
-            "bit_cutoff" : 400,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "ORF1a",
-            "kmers" : 0,
-            "max_len" : 3198,
-            "min_len" : 1952,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P12" : {
-            "anno" : "Uncharacterized lineage-specific P12 protein",
-            "bit_cutoff" : 30,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P12",
-            "kmers" : 1,
-            "max_len" : 182,
-            "min_len" : 48,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P18" : {
-            "anno" : "Uncharacterized lineage-specific P18 protein",
-            "bit_cutoff" : 30,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P18",
-            "kmers" : 1,
-            "max_len" : 149,
-            "min_len" : 148,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P19" : {
-            "anno" : "Uncharacterized lineage-specific P19 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P19",
-            "kmers" : 1,
-            "max_len" : 157,
-            "min_len" : 157,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P22" : {
-            "anno" : "Uncharacterized lineage-specific P22 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P22",
-            "kmers" : 1,
-            "max_len" : 191,
-            "min_len" : 121,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P25" : {
-            "anno" : "Uncharacterized lineage-specific P25 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P25",
-            "kmers" : 1,
-            "max_len" : 215,
-            "min_len" : 169,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P26" : {
-            "anno" : "Uncharacterized lineage-specific P26 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P26",
-            "kmers" : 1,
-            "max_len" : 215,
-            "min_len" : 215,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P27" : {
-            "anno" : "Uncharacterized lineage-specific P27 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P27",
-            "kmers" : 1,
-            "max_len" : 230,
-            "min_len" : 230,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P4" : {
-            "anno" : "Uncharacterized lineage-specific P4 protein",
-            "bit_cutoff" : 30,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P4",
-            "kmers" : 1,
-            "max_len" : 39,
-            "min_len" : 28,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P60" : {
-            "anno" : "Uncharacterized lineage-specific P60 protein",
-            "bit_cutoff" : 60,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P60",
-            "kmers" : 1,
-            "max_len" : 525,
-            "min_len" : 513,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P7" : {
-            "anno" : "Uncharacterized lineage-specific P7 protein",
-            "bit_cutoff" : 25,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P7",
-            "kmers" : 1,
-            "max_len" : 62,
-            "min_len" : 62,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P8" : {
-            "anno" : "Uncharacterized lineage-specific P8 protein",
-            "bit_cutoff" : 25,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P8",
-            "kmers" : 1,
-            "max_len" : 71,
-            "min_len" : 68,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "POLY" : {
-            "anno" : "Replicase polyprotein",
-            "bit_cutoff" : 400,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "POLY",
-            "kmers" : 0,
-            "max_len" : 3221,
-            "min_len" : 1952,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "RDRP" : {
-            "anno" : "RNA-dependent RNA polymerase",
-            "bit_cutoff" : 300,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "mat_peptide",
-            "gene_symbol" : "RDRP",
-            "kmers" : 0,
-            "max_len" : 560,
-            "min_len" : 455,
-            "segment" : "Single RNA Segment",
-            "special" : "transcript_edit",
-            "type" : "mat_peptide",
-            "upstream_ext" : 1
-         },
-         "THAU" : {
-            "anno" : "Thaumatin-like protein",
-            "bit_cutoff" : 60,
-            "comment" : "Present in Olivavirus only (1 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "THAU",
-            "kmers" : 1,
-            "max_len" : 265,
-            "min_len" : 189,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "UNC1" : {
-            "anno" : "Uncharacterized lineage-specific UNC1 protein",
-            "bit_cutoff" : 60,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC1",
-            "kmers" : 1,
-            "max_len" : 408,
-            "min_len" : 365,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC10" : {
-            "anno" : "Uncharacterized lineage-specific UNC10 protein",
-            "bit_cutoff" : 30,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC10",
-            "kmers" : 1,
-            "max_len" : 101,
-            "min_len" : 92,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC11" : {
-            "anno" : "Uncharacterized lineage-specific UNC11 protein",
-            "bit_cutoff" : 25,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC11",
-            "kmers" : 1,
-            "max_len" : 55,
-            "min_len" : 51,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC12" : {
-            "anno" : "Uncharacterized lineage-specific UNC12 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC12",
-            "kmers" : 1,
-            "max_len" : 225,
-            "min_len" : 225,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC13" : {
-            "anno" : "Uncharacterized lineage-specific UNC13 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC13",
-            "kmers" : 1,
-            "max_len" : 248,
-            "min_len" : 242,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC15" : {
-            "anno" : "Uncharacterized lineage-specific UNC15 protein",
-            "bit_cutoff" : 30,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC15",
-            "kmers" : 1,
-            "max_len" : 94,
-            "min_len" : 75,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC2" : {
-            "anno" : "Uncharacterized lineage-specific UNC2 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC2",
-            "kmers" : 1,
-            "max_len" : 241,
-            "min_len" : 216,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC3" : {
-            "anno" : "Uncharacterized lineage-specific UNC3 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC3",
-            "kmers" : 1,
-            "max_len" : 231,
-            "min_len" : 181,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC4" : {
-            "anno" : "Uncharacterized lineage-specific UNC4 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC4",
-            "kmers" : 1,
-            "max_len" : 255,
-            "min_len" : 224,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC5" : {
-            "anno" : "Uncharacterized lineage-specific UNC5 protein",
-            "bit_cutoff" : 30,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC5",
-            "kmers" : 1,
-            "max_len" : 131,
-            "min_len" : 112,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC6" : {
-            "anno" : "Uncharacterized lineage-specific UNC6 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC6",
-            "kmers" : 1,
-            "max_len" : 227,
-            "min_len" : 171,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC7" : {
-            "anno" : "Uncharacterized lineage-specific UNC7 protein",
-            "bit_cutoff" : 30,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC7",
-            "kmers" : 1,
-            "max_len" : 92,
-            "min_len" : 65,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "UNC9" : {
-            "anno" : "Uncharacterized lineage-specific UNC9 protein",
-            "bit_cutoff" : 40,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "UNC9",
-            "kmers" : 1,
-            "max_len" : 170,
-            "min_len" : 159,
-            "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         }
-      },
-      "segments" : {
-         "Single RNA Segment" : {
-            "max_len" : 21225,
-            "min_len" : 8499,
-            "replicon_geometry" : "linear"
-         }
-      }
+ "Velarivirus": {
+  "close_genomes": {
+   "Velarivirus.1.dna": {
+    "genome_ids": "MN131067",
+    "genome_name": "Little cherry virus 1 FT12"
+   },
+   "Velarivirus.10.dna": {
+    "genome_ids": "MN901923",
+    "genome_name": "Malus domestica virus A SK"
+   },
+   "Velarivirus.11.dna": {
+    "genome_ids": "MW080812",
+    "genome_name": "Agapanthus velarivirus 19-3007"
+   },
+   "Velarivirus.12.dna": {
+    "genome_ids": "OR887735",
+    "genome_name": "Pyrus virus A 224-BE"
+   },
+   "Velarivirus.13.dna": {
+    "genome_ids": "HM588723",
+    "genome_name": "Cordyline virus 1 Kahaluu-1"
+   },
+   "Velarivirus.14.dna": {
+    "genome_ids": "JQ599282",
+    "genome_name": "Cordyline virus 2 SJ1"
+   },
+   "Velarivirus.15.dna": {
+    "genome_ids": "JQ599283",
+    "genome_name": "Cordyline virus 3 SJ1"
+   },
+   "Velarivirus.16.dna": {
+    "genome_ids": "JQ599284",
+    "genome_name": "Cordyline virus 4 SJ1"
+   },
+   "Velarivirus.17.dna": {
+    "genome_ids": "NC_025967",
+    "genome_name": "Persimmon virus B variant 1"
+   },
+   "Velarivirus.18.dna": {
+    "genome_ids": "KJ572575",
+    "genome_name": "Mint vein banding-associated virus NCGR MEN 454"
+   },
+   "Velarivirus.19.dna": {
+    "genome_ids": "OR346827",
+    "genome_name": "Olive leaf yellowing-associated virus 22-0043_1"
+   },
+   "Velarivirus.2.dna": {
+    "genome_ids": "MW316018",
+    "genome_name": "Areca palm velarivirus 1 BTY"
+   },
+   "Velarivirus.20.dna": {
+    "genome_ids": "AB923925",
+    "genome_name": "Persimmon virus B variant 2"
+   },
+   "Velarivirus.21.dna": {
+    "genome_ids": "AB923927",
+    "genome_name": "Persimmon virus B variant 4"
+   },
+   "Velarivirus.22.dna": {
+    "genome_ids": "MT936300",
+    "genome_name": "Olivavirus actinidiae JX5-c18410"
+   },
+   "Velarivirus.23.dna": {
+    "genome_ids": "OR260412",
+    "genome_name": "Little cherry virus 1 Stepnoe"
+   },
+   "Velarivirus.24.dna": {
+    "genome_ids": "MT533601",
+    "genome_name": "Agapanthus velarivirus 19-3005"
+   },
+   "Velarivirus.25.dna": {
+    "genome_ids": "PP869314",
+    "genome_name": "Olive leaf mottling virus OLMV158"
+   },
+   "Velarivirus.3.dna": {
+    "genome_ids": "MN612756",
+    "genome_name": "Olivavirus actinidiae AcV1-Zhouzhi1"
+   },
+   "Velarivirus.4.dna": {
+    "genome_ids": "OR346830",
+    "genome_name": "Olive leaf yellowing-associated virus 22-0049"
+   },
+   "Velarivirus.5.dna": {
+    "genome_ids": "MT936297",
+    "genome_name": "Olivavirus actinidiae JS27"
+   },
+   "Velarivirus.6.dna": {
+    "genome_ids": "JN383343",
+    "genome_name": "Grapevine leafroll-associated virus 7 GLRaV-7 Swi"
+   },
+   "Velarivirus.7.dna": {
+    "genome_ids": "MW080811",
+    "genome_name": "Agapanthus velarivirus 19-3007"
+   },
+   "Velarivirus.8.dna": {
+    "genome_ids": "KF007212",
+    "genome_name": "Blueberry virus A Elliot"
+   },
+   "Velarivirus.9.dna": {
+    "genome_ids": "MN612757",
+    "genome_name": "Olivavirus actinidiae AcV-1-Zhouzhi2"
    }
+  },
+  "features": {
+   "CP": {
+    "anno": "Nucleocapsid protein",
+    "bit_cutoff": 80,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "N",
+    "kmers": 1,
+    "max_len": 342,
+    "min_len": 215,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "CPM": {
+    "anno": "Minor coat protein",
+    "bit_cutoff": 80,
+    "comment": "Present in Velarivirus only (1 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "CPM",
+    "kmers": 1,
+    "max_len": 701,
+    "min_len": 565,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "HSP70": {
+    "anno": "HSP70 homolog",
+    "bit_cutoff": 150,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "HSP70",
+    "kmers": 1,
+    "max_len": 618,
+    "min_len": 394,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "HSP90": {
+    "anno": "HSP90 homolog",
+    "bit_cutoff": 150,
+    "comment": "Present in Olivavirus, Velarivirus only (2 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "HSP90",
+    "kmers": 1,
+    "max_len": 594,
+    "min_len": 506,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "ORF1A": {
+    "anno": "ORF1a polyprotein",
+    "bit_cutoff": 400,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "ORF1a",
+    "kmers": 0,
+    "max_len": 3198,
+    "min_len": 1952,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P12": {
+    "anno": "Uncharacterized lineage-specific P12 protein",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P12",
+    "kmers": 1,
+    "max_len": 182,
+    "min_len": 48,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P18": {
+    "anno": "Uncharacterized lineage-specific P18 protein",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P18",
+    "kmers": 1,
+    "max_len": 149,
+    "min_len": 148,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P19": {
+    "anno": "Uncharacterized lineage-specific P19 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P19",
+    "kmers": 1,
+    "max_len": 157,
+    "min_len": 157,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P22": {
+    "anno": "Uncharacterized lineage-specific P22 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P22",
+    "kmers": 1,
+    "max_len": 191,
+    "min_len": 121,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P25": {
+    "anno": "Uncharacterized lineage-specific P25 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P25",
+    "kmers": 1,
+    "max_len": 215,
+    "min_len": 169,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P26": {
+    "anno": "Uncharacterized lineage-specific P26 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P26",
+    "kmers": 1,
+    "max_len": 215,
+    "min_len": 215,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P27": {
+    "anno": "Uncharacterized lineage-specific P27 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P27",
+    "kmers": 1,
+    "max_len": 230,
+    "min_len": 230,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P4": {
+    "anno": "Uncharacterized lineage-specific P4 protein",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P4",
+    "kmers": 1,
+    "max_len": 39,
+    "min_len": 28,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P60": {
+    "anno": "Uncharacterized lineage-specific P60 protein",
+    "bit_cutoff": 60,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P60",
+    "kmers": 1,
+    "max_len": 525,
+    "min_len": 513,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P7": {
+    "anno": "Uncharacterized lineage-specific P7 protein",
+    "bit_cutoff": 25,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P7",
+    "kmers": 1,
+    "max_len": 62,
+    "min_len": 62,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P8": {
+    "anno": "Uncharacterized lineage-specific P8 protein",
+    "bit_cutoff": 25,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "P8",
+    "kmers": 1,
+    "max_len": 71,
+    "min_len": 68,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "POLY": {
+    "anno": "Replicase polyprotein",
+    "bit_cutoff": 400,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "POLY",
+    "kmers": 0,
+    "max_len": 3221,
+    "min_len": 1952,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "RDRP": {
+    "anno": "RNA-dependent RNA polymerase",
+    "bit_cutoff": 300,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "L",
+    "kmers": 0,
+    "max_len": 560,
+    "min_len": 455,
+    "segment": "Single RNA Segment",
+    "special": "transcript_edit",
+    "type": "mat_peptide",
+    "upstream_ext": 1
+   },
+   "THAU": {
+    "anno": "Thaumatin-like protein",
+    "bit_cutoff": 60,
+    "comment": "Present in Olivavirus only (1 of 4 genera), therefore NOT essential -- copy_num is deliberately absent.",
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "THAU",
+    "kmers": 1,
+    "max_len": 265,
+    "min_len": 189,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "UNC1": {
+    "anno": "Uncharacterized lineage-specific UNC1 protein",
+    "bit_cutoff": 60,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC1",
+    "kmers": 1,
+    "max_len": 408,
+    "min_len": 365,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC10": {
+    "anno": "Uncharacterized lineage-specific UNC10 protein",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC10",
+    "kmers": 1,
+    "max_len": 101,
+    "min_len": 92,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC11": {
+    "anno": "Uncharacterized lineage-specific UNC11 protein",
+    "bit_cutoff": 25,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC11",
+    "kmers": 1,
+    "max_len": 55,
+    "min_len": 51,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC12": {
+    "anno": "Uncharacterized lineage-specific UNC12 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC12",
+    "kmers": 1,
+    "max_len": 225,
+    "min_len": 225,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC13": {
+    "anno": "Uncharacterized lineage-specific UNC13 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC13",
+    "kmers": 1,
+    "max_len": 248,
+    "min_len": 242,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC15": {
+    "anno": "Uncharacterized lineage-specific UNC15 protein",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC15",
+    "kmers": 1,
+    "max_len": 94,
+    "min_len": 75,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC2": {
+    "anno": "Uncharacterized lineage-specific UNC2 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC2",
+    "kmers": 1,
+    "max_len": 241,
+    "min_len": 216,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC3": {
+    "anno": "Uncharacterized lineage-specific UNC3 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC3",
+    "kmers": 1,
+    "max_len": 231,
+    "min_len": 181,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC4": {
+    "anno": "Uncharacterized lineage-specific UNC4 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC4",
+    "kmers": 1,
+    "max_len": 255,
+    "min_len": 224,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC5": {
+    "anno": "Uncharacterized lineage-specific UNC5 protein",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC5",
+    "kmers": 1,
+    "max_len": 131,
+    "min_len": 112,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC6": {
+    "anno": "Uncharacterized lineage-specific UNC6 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC6",
+    "kmers": 1,
+    "max_len": 227,
+    "min_len": 171,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC7": {
+    "anno": "Uncharacterized lineage-specific UNC7 protein",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC7",
+    "kmers": 1,
+    "max_len": 92,
+    "min_len": 65,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "UNC9": {
+    "anno": "Uncharacterized lineage-specific UNC9 protein",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "UNC9",
+    "kmers": 1,
+    "max_len": 170,
+    "min_len": 159,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   }
+  },
+  "segments": {
+   "Single RNA Segment": {
+    "max_len": 21225,
+    "min_len": 8499,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
 }
