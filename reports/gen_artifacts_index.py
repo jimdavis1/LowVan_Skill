@@ -36,13 +36,19 @@ TAXA_EXTRA = ["Rhabdoviridae"]        # published before the naming convention s
 #  Saturation" is Matonaviridae's own page published under the disease name,
 #  and ALIAS already files it there -- listing "Rubella" as well would show
 #  one page twice under two headings.
-NOT_TAXA = {"BV-BRC", "Rubella"}
+#  "Mammalian Orthoreovirus" is the same taxon as "MammalianOrthoreovirus":
+#  three of its four pages were published without the space and the coverage
+#  audit with it. ALIAS below files the audit under the closed-up spelling, so
+#  listing the spaced one as well would split one module across two headings.
+NOT_TAXA = {"BV-BRC", "Rubella", "Mammalian Orthoreovirus"}
 KINDS = [("Coverage Audit", "coverage audit"),
          ("PSSM Registry", "PSSM registry"),
          ("String Collapse", "string collapse"),
          ("Vocabulary Saturation", "vocabulary saturation")]
 #  Pages whose title does not follow "<taxon> <kind>".
-ALIAS = {("Matonaviridae", "Vocabulary Saturation"): "Rubella Vocabulary Saturation"}
+ALIAS = {("Matonaviridae", "Vocabulary Saturation"): "Rubella Vocabulary Saturation",
+         ("MammalianOrthoreovirus", "Coverage Audit"):
+             "Mammalian Orthoreovirus Coverage Audit"}
 
 
 def load():

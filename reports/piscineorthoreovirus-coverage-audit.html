@@ -1,0 +1,150 @@
+<title>Piscine Orthoreovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; PiscineOrthoreovirus module &middot; 17 October 2026</div><h1>Piscine Orthoreovirus</h1><p class="stand">Ten double-stranded RNA segments and eleven proteins, one segment carrying two in overlapping frames. The most homogeneous taxon built in this family &mdash; fourteen references route every record &mdash; and the one where three mislabelled sequences put a second protein on top of another's gene.</p><div class="tiles"><div class="tile"><div class="v">11</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">17</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">10</div><div class="l">segments</div></div><div class="tile"><div class="v">100%</div><div class="l">of 4,582 segment records routed</div></div><div class="tile"><div class="v">20/20</div><div class="l">panel isolates with all eleven</div></div><div class="tile"><div class="v">8.3&times;</div><div class="l">annotation string collapse</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One taxon, no outgroup, and a salmon farming problem.</p><p class="note">Piscine orthoreovirus is the agent of heart and skeletal muscle inflammation in farmed Atlantic salmon. Every genome record in this dump is PRV; unlike the other orthoreovirus builds there was no sibling clade to separate out. The genome is ten dsRNA segments encoding eleven proteins:</p><pre class="mono">L1  lambda3  ~1,286 aa   RNA polymerase      &lt;- MRV lambda-3   43.2%
+L2  lambda2  ~1,290 aa   capping enzyme      &lt;- MRV lambda-2   26.0%
+L3  lambda1  ~1,282 aa   core shell          &lt;- MRV lambda-1   32.7%
+M1  mu2        ~760 aa   core / cofactor     &lt;- MRV mu-2       22.2%
+M2  mu1        ~687 aa   outer capsid        &lt;- MRV mu-1       26.5%
+M3  muNS       ~741 aa   non-structural      &lt;- MRV mu-NS      22.3%
+S1  sigma3     ~330 aa   outer capsid        BICISTRONIC
+    p13        ~124 aa   non-structural
+S2  sigma2     ~420 aa   core
+S3  sigmaNS    ~354 aa   non-structural      &lt;- MRV sigma-NS   21.5%
+S4  sigma1     ~315 aa   cell attachment</pre><p class="note">The right-hand column is orthology to the shipped Mammalian Orthoreovirus module, used to fix each name to a function rather than trusting the names. They happen to agree here, but the segment numbering does <i>not</i> follow MRV's: the homology rescue placed a bare <code>S4</code> label into <code>sigma1</code>, which is where PRV puts its attachment protein. At 22&ndash;43% identity the four small proteins fall below blastp detection against MRV entirely, and that distance is itself why PRV is its own module.</p><div class="verdict"><b>S1 is bicistronic.</b> 632 genome records carry exactly two proteins and every one of those pairs is p13 with sigma3, so segment S1 encodes both. Unlike Coltivirus segment 9, this is not a read-through: they are two separate ORFs in different frames, and p13 sits <i>entirely inside</i> sigma3's span &mdash; 112&ndash;486 within 33&ndash;1025 on one panel isolate.</div></section><section><h2><span class="num">02</span>Three sequences put sigma1 on sigma3&#x27;s gene</h2><p class="lede">The cross-feature audit saw nothing. The panel saw it on 19 of 20 genomes.</p><div class="verdict warn"><b>On 19 of 20 panel isolates, sigma3 and sigma1 were called at identical coordinates</b> &mdash; 1&ndash;993 on the same contig, scoring <b>691.1</b> and <b>689.5</b> bits. A 1.5-bit margin: no cutoff could have separated them.</div><p class="note">Pooling both collections and clustering found the cause. Three sequences deposited as <code>sigma1</code> are really sigma3 &mdash; the best cross-label hit is <b>99.7% identical over 330 aa</b>, and real sigma1 runs 303&ndash;315 residues against sigma3's flat 330:</p><pre class="mono">n=170   167 &quot;sigma3&quot; + 3 &quot;sigma1&quot;   all exactly 330 aa   -&gt;  sigma3
+n=36     36 &quot;sigma1&quot;               303-315 aa           -&gt;  sigma1</pre><p class="note">Those three were enough to form a cluster of their own, <code>SIGMA1.2.pssm</code>, built entirely from sigma3 sequences &mdash; which then fired on sigma3's locus on every genome that had one. Reassigning them by homology and rebuilding took co-located calls from <b>19 to 0</b>.</p><div class="verdict warn"><b>Worth recording how this was caught, because the obvious check missed it.</b> <code>audit_contamination</code> reported no cross-feature contamination before or after: it reassigns a sequence only when it beats its own feature's canonical by 50 bits, and three contaminants forming their own cluster never trigger that, because true sigma3 sequences score about equally against both canonicals. On Avian Orthoreovirus the same audit caught 215 flags, because there the swap ran in <i>both</i> directions. The signature here was visible only in the panel: two features called at identical coordinates on one contig.</div></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Eleven features, every one separable from the rest of the genus.</p><div class="scroll"><table><thead><tr><th>feature</th><th>segment</th><th>bit</th><th>aa range</th><th>PSSMs</th><th>copy_num</th></tr></thead><tbody><tr><td>LAMBDA3</td><td>lambda3</td><td>1065</td><td>1150&ndash;1363</td><td>1</td><td>yes</td></tr><tr><td>LAMBDA2</td><td>lambda2</td><td>373</td><td>1212&ndash;1368</td><td>1</td><td>yes</td></tr><tr><td>LAMBDA1</td><td>lambda1</td><td>703</td><td>1202&ndash;1358</td><td>1</td><td>yes</td></tr><tr><td>MU2</td><td>mu2</td><td>156</td><td>701&ndash;827</td><td>2</td><td>yes</td></tr><tr><td>MU1</td><td>mu1</td><td>266</td><td>635&ndash;749</td><td>1</td><td>yes</td></tr><tr><td>MUNS</td><td>muNS</td><td>60</td><td>695&ndash;810</td><td>2</td><td>yes</td></tr><tr><td>SIGMA3</td><td>sigma3</td><td>60</td><td>310&ndash;349</td><td>2</td><td>yes</td></tr><tr><td>P13</td><td>sigma3</td><td>30</td><td>112&ndash;135</td><td>3</td><td>yes</td></tr><tr><td>SIGMA2</td><td>sigma2</td><td>76</td><td>389&ndash;445</td><td>1</td><td>yes</td></tr><tr><td>SIGMANS</td><td>sigmaNS</td><td>60</td><td>332&ndash;382</td><td>1</td><td>yes</td></tr><tr><td>SIGMA1</td><td>sigma1</td><td>60</td><td>284&ndash;333</td><td>2</td><td>yes</td></tr></tbody></table></div><p class="note">Cutoffs are the lowest value admitting no foreign protein, measured against the whole of mammalian, avian and pteropine orthoreovirus &mdash; 7,118 foreign sequences against 1,212 members. Every feature clears it with room: lambda3's cutoff is 1,065 against a weakest member of 2,423, and four features draw no foreign hit above the default floor at all.</p><p class="note"><code>SIGMA3</code> and <code>P13</code> both declare the <code>sigma3 Segment</code> because S1 encodes both. <code>copy_num</code> on p13 needed the overlap declared explicitly as real architecture &mdash; its calls are 100% raw but 5% standalone, since the ORF is nested inside sigma3's span.</p></section><section><h2><span class="num">04</span>Does it route, and does it call?</h2><p class="lede">The most homogeneous taxon in this family, and the cleanest panel in it.</p><div class="verdict"><b>14 references route 4,582 of 4,582 segment records &mdash; 100.0%.</b> Nothing is left uncovered, which has not happened in any other module in this family: Coltivirus needed 23 references for the same result on a far smaller population, and Avian Orthoreovirus leaves 191 records unrouted at 25.</div><div class="verdict"><b>All 20 panel isolates receive all eleven features, with no quality flag of any kind</b> and no feature called twice anywhere. Self-recall against each feature's own in-range collection is 100% on all eleven, and cross-feature contamination is nothing above 50 bits across 629 sequences. <code>copy_num</code> is set on all eleven.</div><p class="note">The Met-start gate passes on all 17 alignments, but it took a repair to get there: 227 collection members did not begin with Met. The pattern was a dropped initiator, not a ragged alignment &mdash; sigma2 arrives as 19 copies of <code>ARAIFSGISAFF</code> against 18 of <code>MARAIFSGISAF</code>, and lambda2 as 40 of <code>TLYGLRITRLKN</code> against 39 of <code>MATLYGLRITRL</code>. Those were dropped.</p><div class="verdict warn"><b>The standard N-terminal filter had to be overruled here.</b> Its EXTENDED test wanted to drop <b>93.5% of sigmaNS and 85% of mu1</b>, because in this taxon a minority carries a genuine upstream Met &mdash; 15 copies of <code>MTMGNYQ...</code> extending 50 of <code>MGNYQ...</code>, and for sigmaNS a <i>single</i> longer variant flags 29 of 31. The Met gate never complained about either feature. Only the non-Met members were dropped, which is unambiguous: a collection member that does not start with Met cannot be a CDS start under any reading.</div></section><section><h2><span class="num">05</span>What it cannot do</h2><p class="lede">Three limits.</p><p class="note"><b>sigma1 rests on 36 sequences</b>, the thinnest collection in the module, and it is the feature that was contaminated. It is the cell-attachment protein and therefore the most variable, so it is the one most likely to miss a divergent isolate.</p><p class="note"><b>The panel is reassembled, not deposited.</b> No complete PRV genome exists as a single record; each isolate is rebuilt from its own ten segment records, grouped by deposited strain name. Panel contigs are named for their source record rather than a guessed segment, because the three lambdas differ by 8 residues in length and three of the sigmas by under 40.</p><p class="note"><b>Only 215 source proteins back the vocabulary comparison.</b> PRV is deposited segment by segment and most records carry one protein, so the rarefaction below is measured on a smaller pool than the collapse figure.</p></section><section><h2><span class="num">06</span>What the vocabulary bought</h2><p class="lede">Eleven proteins, 91 ways of saying so.</p><p class="note">91 distinct annotation strings across 5,069 occurrences collapse onto <b>11 controlled annotations</b>, an <b>8.3&times;</b> reduction &mdash; between Coltivirus's 2.5&times; and Avian Orthoreovirus's 22.2&times;. Rarefied over proteins at the depth both curves reach, the source holds <b>41</b> distinct strings against the module's <b>11</b>, a <b>3.7&times;</b> collapse; the source needs 194 proteins to reach 95% of its vocabulary and the module needs 31.</p><p class="note">Two strings had to be left deliberately unbound rather than sent to the not-modelled pile. <code>non-structural protein</code> is deposited in this dump at 124 <i>and</i> 752 residues &mdash; p13 and muNS &mdash; so it identifies neither by name. Marking it not-modelled would have put 189 real proteins beyond the homology rescue's reach; left unassigned, the rescue placed them correctly, 14 into p13 and 5 into muNS.</p></section><p class="src">Measured from the shipped module: PiscineOrthoreovirus_Viral_PSSM.json, 17 PSSMs, 14 reference contigs and 10 declared segments. Protein orthology by blastp with -comp_based_stats 0 against the shipped MammalianOrthoreovirus alignments; self-recall from collect_registry; cross-feature contamination from audit_contamination; cutoffs from foreign_leak against mammalian, avian and pteropine orthoreovirus; string collapse from collect_synmap; rarefaction over 100 replicates against source annotations aggregated per isolate. Call rates from a 20-isolate panel, each isolate reassembled from its own segment records and scored through the full annotator.</p></div>

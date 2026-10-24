@@ -1,0 +1,60 @@
+{
+ "Bavovirus": {
+  "close_genomes": {
+   "Bavovirus.1.dna": {
+    "genome_ids": "1172196.24.con.0001",
+    "genome_name": "Chicken calicivirus RS/BR/15/1R-1"
+   },
+   "Bavovirus.2.dna": {
+    "genome_ids": "1172196.51.con.0001",
+    "genome_name": "Chicken calicivirus WHM05"
+   }
+  },
+  "features": {
+   "POLY": {
+    "PMID_claude_generated": [
+     "22580496",
+     "39264163"
+    ],
+    "anno": "Nonstructural polyprotein",
+    "bit_cutoff": 4075,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "POLY",
+    "kmers": 1,
+    "max_len": 2519,
+    "min_len": 2127,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP2": {
+    "PMID_claude_generated": [
+     "22580496"
+    ],
+    "anno": "Minor structural protein VP2",
+    "bit_cutoff": 360,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "VP2",
+    "kmers": 1,
+    "max_len": 304,
+    "min_len": 202,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "Single RNA Segment": {
+    "max_len": 9413,
+    "min_len": 6553,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

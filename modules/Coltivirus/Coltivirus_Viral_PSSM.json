@@ -1,0 +1,414 @@
+{
+ "Coltivirus": {
+  "close_genomes": {
+   "Coltivirus.1.dna": {
+    "genome_ids": "46839.303.con.0001",
+    "genome_name": "Colorado tick fever virus Florio"
+   },
+   "Coltivirus.10.dna": {
+    "genome_ids": "62352.100.con.0001",
+    "genome_name": "Eyach virus Heverlee"
+   },
+   "Coltivirus.11.dna": {
+    "genome_ids": "62352.101.con.0001",
+    "genome_name": "Eyach virus Heverlee"
+   },
+   "Coltivirus.12.dna": {
+    "genome_ids": "62352.111.con.0001",
+    "genome_name": "Eyach virus S6-14-03"
+   },
+   "Coltivirus.13.dna": {
+    "genome_ids": "62352.13.con.0001",
+    "genome_name": "Eyach virus VRDL5"
+   },
+   "Coltivirus.14.dna": {
+    "genome_ids": "62352.17.con.0001",
+    "genome_name": "Eyach virus VRDL5"
+   },
+   "Coltivirus.15.dna": {
+    "genome_ids": "62352.20.con.0001",
+    "genome_name": "Eyach virus VRDL5"
+   },
+   "Coltivirus.16.dna": {
+    "genome_ids": "62352.7.con.0001",
+    "genome_name": "Eyach virus VRDL5"
+   },
+   "Coltivirus.17.dna": {
+    "genome_ids": "62352.9.con.0001",
+    "genome_name": "Eyach virus VRDL5"
+   },
+   "Coltivirus.18.dna": {
+    "genome_ids": "46839.437.con.0001",
+    "genome_name": "Colorado tick fever virus R102228"
+   },
+   "Coltivirus.19.dna": {
+    "genome_ids": "46839.451.con.0001",
+    "genome_name": "Colorado tick fever virus 83F-8B"
+   },
+   "Coltivirus.2.dna": {
+    "genome_ids": "46839.304.con.0001",
+    "genome_name": "Colorado tick fever virus Florio"
+   },
+   "Coltivirus.20.dna": {
+    "genome_ids": "46839.472.con.0001",
+    "genome_name": "Colorado tick fever virus HL11"
+   },
+   "Coltivirus.21.dna": {
+    "genome_ids": "46839.474.con.0001",
+    "genome_name": "Colorado tick fever virus HL11"
+   },
+   "Coltivirus.22.dna": {
+    "genome_ids": "46839.475.con.0001",
+    "genome_name": "Colorado tick fever virus HL11"
+   },
+   "Coltivirus.23.dna": {
+    "genome_ids": "46839.476.con.0001",
+    "genome_name": "Colorado tick fever virus HL11"
+   },
+   "Coltivirus.3.dna": {
+    "genome_ids": "46839.332.con.0001",
+    "genome_name": "Colorado tick fever virus S6-16-09"
+   },
+   "Coltivirus.4.dna": {
+    "genome_ids": "46839.336.con.0001",
+    "genome_name": "Colorado tick fever virus S6-16-09"
+   },
+   "Coltivirus.5.dna": {
+    "genome_ids": "46839.477.con.0001",
+    "genome_name": "Colorado tick fever virus HL11"
+   },
+   "Coltivirus.6.dna": {
+    "genome_ids": "46839.478.con.0001",
+    "genome_name": "Colorado tick fever virus HL11"
+   },
+   "Coltivirus.7.dna": {
+    "genome_ids": "46839.479.con.0001",
+    "genome_name": "Colorado tick fever virus HL11"
+   },
+   "Coltivirus.8.dna": {
+    "genome_ids": "46839.6.con.0001",
+    "genome_name": "Colorado tick fever virus Florio"
+   },
+   "Coltivirus.9.dna": {
+    "genome_ids": "62352.10.con.0001",
+    "genome_name": "Eyach virus VRDL5"
+   }
+  },
+  "features": {
+   "VP1": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "RNA-dependent RNA polymerase",
+    "bit_cutoff": 1735,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg1",
+    "kmers": 1,
+    "max_len": 1542,
+    "min_len": 1320,
+    "segment": "VP1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP10": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "Kinase/helicase VP10",
+    "bit_cutoff": 465,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg10",
+    "kmers": 1,
+    "max_len": 641,
+    "min_len": 568,
+    "segment": "VP10 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP11": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "Protein VP11",
+    "bit_cutoff": 157,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg11",
+    "kmers": 1,
+    "max_len": 338,
+    "min_len": 285,
+    "segment": "VP11 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP12": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "Replication factor VP12",
+    "bit_cutoff": 100,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg12",
+    "kmers": 1,
+    "max_len": 196,
+    "min_len": 172,
+    "segment": "VP12 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP2": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "Methyltransferase VP2",
+    "bit_cutoff": 998,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg2",
+    "kmers": 1,
+    "max_len": 1363,
+    "min_len": 1136,
+    "segment": "VP2 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP3": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "Guanylyltransferase VP3",
+    "bit_cutoff": 491,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg3",
+    "kmers": 1,
+    "max_len": 1252,
+    "min_len": 1086,
+    "segment": "VP3 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP4": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "Membrane-spanning protein VP4",
+    "bit_cutoff": 716,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg4",
+    "kmers": 1,
+    "max_len": 1089,
+    "min_len": 937,
+    "segment": "VP4 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP5": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "Protein VP5",
+    "bit_cutoff": 235,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg5",
+    "kmers": 1,
+    "max_len": 796,
+    "min_len": 705,
+    "segment": "VP5 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP6": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "NTPase VP6",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg6",
+    "kmers": 1,
+    "max_len": 738,
+    "min_len": 604,
+    "segment": "VP6 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP7": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "Replication factor VP7",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg7",
+    "kmers": 1,
+    "max_len": 742,
+    "min_len": 642,
+    "segment": "VP7 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP8": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030"
+    ],
+    "anno": "Protein VP8",
+    "bit_cutoff": 159,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg8",
+    "kmers": 1,
+    "max_len": 699,
+    "min_len": 616,
+    "segment": "VP8 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP9": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030",
+     "15269364",
+     "22190746"
+    ],
+    "anno": "Termination protein VP9",
+    "bit_cutoff": 253,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg9",
+    "kmers": 1,
+    "max_len": 357,
+    "min_len": 316,
+    "segment": "VP9 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP9RDT": {
+    "PMID_claude_generated": [
+     "10891382",
+     "34940030",
+     "15269364",
+     "22190746"
+    ],
+    "anno": "Read-through protein VP9-prime",
+    "bit_cutoff": 400,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "Seg9rdt",
+    "internal_stop": 1,
+    "kmers": 1,
+    "max_len": 638,
+    "min_len": 565,
+    "segment": "VP9 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "VP1 Segment": {
+    "max_len": 5002,
+    "min_len": 3698,
+    "replicon_geometry": "linear"
+   },
+   "VP10 Segment": {
+    "max_len": 2162,
+    "min_len": 1598,
+    "replicon_geometry": "linear"
+   },
+   "VP11 Segment": {
+    "max_len": 1148,
+    "min_len": 848,
+    "replicon_geometry": "linear"
+   },
+   "VP12 Segment": {
+    "max_len": 776,
+    "min_len": 574,
+    "replicon_geometry": "linear"
+   },
+   "VP2 Segment": {
+    "max_len": 4495,
+    "min_len": 3323,
+    "replicon_geometry": "linear"
+   },
+   "VP3 Segment": {
+    "max_len": 4124,
+    "min_len": 3048,
+    "replicon_geometry": "linear"
+   },
+   "VP4 Segment": {
+    "max_len": 3631,
+    "min_len": 2683,
+    "replicon_geometry": "linear"
+   },
+   "VP5 Segment": {
+    "max_len": 2797,
+    "min_len": 2067,
+    "replicon_geometry": "linear"
+   },
+   "VP6 Segment": {
+    "max_len": 2462,
+    "min_len": 1820,
+    "replicon_geometry": "linear"
+   },
+   "VP7 Segment": {
+    "max_len": 2453,
+    "min_len": 1813,
+    "replicon_geometry": "linear"
+   },
+   "VP8 Segment": {
+    "max_len": 2333,
+    "min_len": 1725,
+    "replicon_geometry": "linear"
+   },
+   "VP9 Segment": {
+    "max_len": 2167,
+    "min_len": 1601,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

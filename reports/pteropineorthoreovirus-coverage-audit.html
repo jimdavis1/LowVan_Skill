@@ -1,0 +1,146 @@
+<title>Pteropine Orthoreovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; PteropineOrthoreovirus module &middot; 17 October 2026</div><h1>Pteropine Orthoreovirus</h1><p class="stand">A bat orthoreovirus that infects people, reads as mammalian on host, and carries the avian genome. The smallest module in this family and the only one whose features were assigned entirely by homology, because its names identify almost nothing.</p><div class="tiles"><div class="tile"><div class="v">12</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">15</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">10</div><div class="l">segments</div></div><div class="tile"><div class="v">100%</div><div class="l">of 243 segment records routed</div></div><div class="tile"><div class="v">20/20</div><div class="l">panel isolates with all twelve</div></div><div class="tile"><div class="v">3.9&times;</div><div class="l">annotation string collapse</div></div></div></header><section><h2><span class="num">01</span>Why this is a module at all</h2><p class="lede">It was found inside Mammalian Orthoreovirus, by its genome rather than its host.</p><p class="note">Pteropine orthoreovirus infects fruit bats and has caused human respiratory illness in Malaysia and Indonesia. It was separated out during the Mammalian Orthoreovirus build: the records read as mammalian on host and sit under mammalian-sounding names, but they carry the <b>avian</b> S1 architecture &mdash; p10, p17 and sigma C &mdash; and are <b>29.5%</b> identical to MRV on the core shell and <b>30.7%</b> on sigma-2. Ten segments, twelve proteins, the same layout as Avian Orthoreovirus.</p><div class="verdict warn"><b>Four names, one species &mdash; and a fifth that is not.</b> On the full-length polymerase over &ge;600 aa, Melaka, Nelson Bay, Pteropine and Kampar are <b>99&ndash;100% identical</b>: one species deposited under four names, all of it in scope here. <b>Broome virus is 51%</b> to all of them and is excluded. At 20 records it is too small to build alone, so it joins Mahlapitsi and Reptilian orthoreovirus as a named gap in this family.</div></section><section><h2><span class="num">02</span>The names identify almost nothing</h2><p class="lede">207 unique proteins under 53 strings, and the strings are descriptions rather than names.</p><p class="note">Several strings in this dump are deposited on more than one protein, and two further pairs cannot be told apart by length either:</p><pre class="mono">&quot;major inner-capsid protein&quot;     416 AND 1,290 residues
+&quot;major outer-capsid protein&quot;     361 AND   675 residues
+&quot;nonstructural protein&quot;          351 AND   631 residues
+&quot;sigma2/B&quot;                       142 residues -- p17&#x27;s length,
+                                 not sigma A&#x27;s 416
+
+sigma B and sigma NS             both ~367
+lambda A and lambda C            both ~1,282-1,290</pre><div class="verdict"><b>So nothing is bound by name.</b> Every protein is assigned by its best blastp hit against the canonical sequences of the <b>Avian Orthoreovirus</b> module &mdash; the nearest relative that is already built and curated &mdash; and the resulting length modes are tight: lambda A 72% at 1,290, lambda B 71% at 1,259, mu B 67% at 675, sigma A 60% at 416, p10 52% at 95, sigma NS 49% at 367. 179 of 195 proteins resolve in that one pass.</div><p class="note"><b>p17 needs a second pass, and it is the reason that pass exists.</b> All of its members lose the best-hit race to some other canonical, because the avian P17 canonical is a poor representative of its own feature. They are nonetheless unambiguous &mdash; 86&ndash;98% identical to one another, and 33&ndash;39% identical to the avian P17 <i>collection</i> at e-values of 1e-13 to 1e-19. Matching against the full collection rather than its canonical places all of them, and takes the module to 195 of 195 assigned.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Twelve features, and three verdicts that were wrong before the map was fixed.</p><div class="scroll"><table><thead><tr><th>feature</th><th>segment</th><th>bit</th><th>aa range</th><th>PSSMs</th><th>copy_num</th></tr></thead><tbody><tr><td>LAMBDAA</td><td>lambda A</td><td>2019</td><td>1142&ndash;1367</td><td>1</td><td>yes</td></tr><tr><td>LAMBDAB</td><td>lambda B</td><td>1932</td><td>1182&ndash;1334</td><td>1</td><td>yes</td></tr><tr><td>LAMBDAC</td><td>lambda C</td><td>1222</td><td>1200&ndash;1358</td><td>1</td><td>yes</td></tr><tr><td>MUA</td><td>mu A</td><td>779</td><td>644&ndash;773</td><td>1</td><td>yes</td></tr><tr><td>MUB</td><td>mu B</td><td>1008</td><td>597&ndash;732</td><td>1</td><td>yes</td></tr><tr><td>MUNS</td><td>mu NS</td><td>590</td><td>565&ndash;668</td><td>1</td><td>yes</td></tr><tr><td>P10</td><td>sigma C</td><td>113</td><td>89&ndash;100</td><td>2</td><td>yes</td></tr><tr><td>P17</td><td>sigma C</td><td>70</td><td>131&ndash;155</td><td>2</td><td>yes</td></tr><tr><td>SIGMAC</td><td>sigma C</td><td>130</td><td>303&ndash;351</td><td>2</td><td>yes</td></tr><tr><td>SIGMAA</td><td>sigma A</td><td>599</td><td>373&ndash;440</td><td>1</td><td>yes</td></tr><tr><td>SIGMAB</td><td>sigma B</td><td>277</td><td>328&ndash;382</td><td>1</td><td>yes</td></tr><tr><td>SIGMANS</td><td>sigma NS</td><td>465</td><td>329&ndash;389</td><td>1</td><td>yes</td></tr></tbody></table></div><div class="verdict warn"><b>Sigma A, sigma B and sigma NS first came back as "cannot be separated from other taxa by score" &mdash; and all three verdicts were an artefact of the foreign set.</b> This taxon is deposited under at least ten aliases, scattered across three dumps: Pteropine, Nelson Bay, Melaka, Kampar, Pulau, Paguyaman, Xi River, Kasama, HK23629 and Lopburi. Scoring those records as foreign puts the bar above the module's own members.</div><div class="scroll"><table><thead><tr><th>feature</th><th>as foreign</th><th>corrected</th><th>weakest member</th></tr></thead><tbody><tr><td>sigma A</td><td>838 &mdash; not separable</td><td>598</td><td>780</td></tr><tr><td>sigma NS</td><td>734 &mdash; not separable</td><td>464</td><td>683</td></tr><tr><td>sigma B</td><td>724 &mdash; not separable</td><td><b>277</b></td><td>696</td></tr></tbody></table></div><p class="note">A name-based exclusion list was not enough: it caught Pulau and Paguyaman but missed <code>Orthoreovirus Lopburi01</code> and <code>Lopburi02</code>, which sit at <b>95&ndash;97% identity</b> to this module's sigma B. Kin is now defined by sequence &mdash; anything &ge;90% identical to a member over &ge;150 aa is the same taxon whatever the record is called &mdash; which found <b>9 such records</b> across the sibling dumps and resolved all three features. <b>No feature in this module is unseparable.</b></p></section><section><h2><span class="num">04</span>Does it route, and does it call?</h2><p class="lede">Thirteen references, and a panel that spans all four aliases.</p><div class="verdict"><b>13 references route 243 of 243 segment records &mdash; 100.0%</b>, and <b>all twelve features are called on all 20 evaluated panel isolates</b>, with no feature called twice anywhere. Self-recall is 100% on all twelve and cross-feature contamination is nothing above 50 bits. The Met-start gate passes on all 15 alignments. <code>copy_num</code> is set on all twelve, measured on the 19 isolates that raise no quality flag.</div><p class="note">The panel covers Kampar, Melaka, Nelson Bay and Pteropine &mdash; all four names the species is deposited under &mdash; across 21 reconstructed isolates. Two did not score cleanly, and both are artefacts of grouping segment records by deposited strain name rather than defects in the module: one <code>Nelson Bay orthoreovirus</code> entry draws two copies of S1 and is flagged <code>Too many contigs for sigma C Segment</code>, and one <code>Melaka orthoreovirus</code> entry merges two genomes into a 46,820 nt pseudo-genome, which the annotator refuses against its 40,000 nt ceiling. The refusal is correct.</p></section><section><h2><span class="num">05</span>What it cannot do</h2><p class="lede">Four limits, and the first is the size of the taxon.</p><div class="verdict warn"><b>Every collection is tiny and the member floor was lowered to build at all.</b> The largest holds 18 sequences and the smallest 10, because BV-BRC carries only 294 Pteropine segment records. <code>-m 2</code> is set on every feature against a documented default of 5, and recorded in <code>BUILD_PARAMS</code>. The identity floor <code>-mi</code> stays at 0.8, so identity still does the quality work and only the member count is relaxed &mdash; but a module built from 10 sequences per protein says far less about divergent isolates than one built from 1,600.</div><p class="note"><b>Nine records of this taxon are not in its collections.</b> They sit in the Mammalian and Avian Orthoreovirus dumps under names the subset did not match &mdash; Pulau, Paguyaman, HK23629, Xi River, Lopburi01 and Lopburi02 &mdash; and were identified only when they turned up as false foreign hits. They are correctly treated as kin for cutoff purposes, but the collections were built without them.</p><p class="note"><b>Broome virus is not covered</b>, and nothing else covers it either. At 51% on the polymerase it is a separate taxon with 20 records.</p><p class="note"><b>Feature identity is inherited, not independent.</b> Every assignment here traces to the Avian Orthoreovirus canonicals. That module's own feature identities were fixed by orthology to Mammalian Orthoreovirus and checked against ICTV, so the chain is sound &mdash; but an error in an avian canonical would propagate here unseen, and sigma C was assigned at only 23% identity.</p></section><section><h2><span class="num">06</span>What the vocabulary bought</h2><p class="lede">Twelve proteins, 47 ways of saying so.</p><p class="note">47 distinct annotation strings across 314 occurrences collapse onto <b>12 controlled annotations</b>, a <b>3.9&times;</b> reduction; rarefied over proteins, 44 source strings against 12, a <b>3.7&times;</b> collapse. Those are small numbers next to Avian Orthoreovirus's 22.2&times;, and for a plain reason: this taxon has few records, so it has few ways of being wrong.</p><div class="verdict warn"><b>The collapse ratio is the wrong measure of what this module did.</b> It counts spelling variation absorbed. The work here was that <code>sigma2/B</code> is deposited on a 142-residue protein, which is p17, and that <code>major inner-capsid protein</code> means two different proteins 874 residues apart &mdash; neither of which a collapse ratio can see. A tidy vocabulary is not an accurate one, and a small one is not an easy one.</div></section><p class="src">Measured from the shipped module: PteropineOrthoreovirus_Viral_PSSM.json, 15 PSSMs, 13 reference contigs and 10 declared segments. Clade boundaries from blastp over full-length polymerases with -comp_based_stats 0; feature assignment by best hit against the shipped AvianOrthoreovirus canonicals, with a second pass against the full collections for p17; self-recall from collect_registry; cross-feature contamination from audit_contamination; cutoffs from foreign_leak against mammalian, avian and piscine orthoreovirus plus Broome virus, with kin identified by sequence rather than by name. Call rates from a 21-isolate panel, each isolate reassembled from its own segment records and scored through the full annotator.</p></div>

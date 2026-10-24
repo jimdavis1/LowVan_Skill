@@ -1,0 +1,392 @@
+{
+ "MammalianOrthoreovirus": {
+  "close_genomes": {
+   "MammalianOrthoreovirus.1.dna": {
+    "genome_ids": "2558258.89.con.0001",
+    "genome_name": "Orthoreovirus sp. GJGZ/14505"
+   },
+   "MammalianOrthoreovirus.10.dna": {
+    "genome_ids": "351073.992.con.0001",
+    "genome_name": "Mammalian orthoreovirus BatMRV2/SNU1/Korea/2021"
+   },
+   "MammalianOrthoreovirus.11.dna": {
+    "genome_ids": "226613.106.con.0001",
+    "genome_name": "Reptilian orthoreovirus KP3"
+   },
+   "MammalianOrthoreovirus.12.dna": {
+    "genome_ids": "253454.13.con.0001",
+    "genome_name": "Pulau reovirus"
+   },
+   "MammalianOrthoreovirus.13.dna": {
+    "genome_ids": "3422298.5.con.0001",
+    "genome_name": "Orthoreovirus mammalis HBJM98/CHN/2022"
+   },
+   "MammalianOrthoreovirus.14.dna": {
+    "genome_ids": "226613.27.con.0001",
+    "genome_name": "Reptilian orthoreovirus 47/02"
+   },
+   "MammalianOrthoreovirus.15.dna": {
+    "genome_ids": "226613.94.con.0001",
+    "genome_name": "Reptilian orthoreovirus IBD26/00"
+   },
+   "MammalianOrthoreovirus.16.dna": {
+    "genome_ids": "253454.11.con.0001",
+    "genome_name": "Pulau reovirus"
+   },
+   "MammalianOrthoreovirus.17.dna": {
+    "genome_ids": "10885.14.con.0001",
+    "genome_name": "Mammalian orthoreovirus 2 D5/Jones"
+   },
+   "MammalianOrthoreovirus.18.dna": {
+    "genome_ids": "75888.14.con.0001",
+    "genome_name": "Baboon orthoreovirus"
+   },
+   "MammalianOrthoreovirus.19.dna": {
+    "genome_ids": "75888.17.con.0001",
+    "genome_name": "Baboon orthoreovirus"
+   },
+   "MammalianOrthoreovirus.2.dna": {
+    "genome_ids": "2558258.87.con.0001",
+    "genome_name": "Orthoreovirus sp. GJGZ/1693"
+   },
+   "MammalianOrthoreovirus.20.dna": {
+    "genome_ids": "75888.18.con.0001",
+    "genome_name": "Baboon orthoreovirus"
+   },
+   "MammalianOrthoreovirus.21.dna": {
+    "genome_ids": "75888.20.con.0001",
+    "genome_name": "Baboon orthoreovirus"
+   },
+   "MammalianOrthoreovirus.22.dna": {
+    "genome_ids": "179877.6.con.0001",
+    "genome_name": "Mammalian orthoreovirus 4 Ndelle"
+   },
+   "MammalianOrthoreovirus.23.dna": {
+    "genome_ids": "226613.110.con.0001",
+    "genome_name": "Reptilian orthoreovirus CH1197/96"
+   },
+   "MammalianOrthoreovirus.24.dna": {
+    "genome_ids": "226613.119.con.0001",
+    "genome_name": "Reptilian orthoreovirus CH1197/96"
+   },
+   "MammalianOrthoreovirus.25.dna": {
+    "genome_ids": "2730540.10.con.0001",
+    "genome_name": "Mammalian orthoreovirus 5 MRV5/Phoca vitulina/USA/2007-2008"
+   },
+   "MammalianOrthoreovirus.26.dna": {
+    "genome_ids": "2730540.5.con.0001",
+    "genome_name": "Mammalian orthoreovirus 5 MRV5/Phoca vitulina/USA/2007-2008"
+   },
+   "MammalianOrthoreovirus.27.dna": {
+    "genome_ids": "2854225.11.con.0001",
+    "genome_name": "Phocid orthoreovirus 1 PhRV1/Enhydra lutris/USA/2015/EL1562"
+   },
+   "MammalianOrthoreovirus.28.dna": {
+    "genome_ids": "2854225.3.con.0001",
+    "genome_name": "Phocid orthoreovirus 1 PhRV1/Enhydra lutris/USA/2015/EL1562"
+   },
+   "MammalianOrthoreovirus.29.dna": {
+    "genome_ids": "2854225.8.con.0001",
+    "genome_name": "Phocid orthoreovirus 1 PhRV1/Enhydra lutris/USA/2015/EL1562"
+   },
+   "MammalianOrthoreovirus.3.dna": {
+    "genome_ids": "2558258.88.con.0001",
+    "genome_name": "Orthoreovirus sp. GJGZ/5865"
+   },
+   "MammalianOrthoreovirus.30.dna": {
+    "genome_ids": "2854225.9.con.0001",
+    "genome_name": "Phocid orthoreovirus 1 PhRV1/Enhydra lutris/USA/2015/EL1562"
+   },
+   "MammalianOrthoreovirus.31.dna": {
+    "genome_ids": "3129300.3.con.0001",
+    "genome_name": "Bat-associated orthoreovirus RAFNS1618/24"
+   },
+   "MammalianOrthoreovirus.32.dna": {
+    "genome_ids": "351073.858.con.0001",
+    "genome_name": "Mammalian orthoreovirus T1E1v10"
+   },
+   "MammalianOrthoreovirus.33.dna": {
+    "genome_ids": "538123.395.con.0001",
+    "genome_name": "Mammalian orthoreovirus 3 SA395"
+   },
+   "MammalianOrthoreovirus.4.dna": {
+    "genome_ids": "2558258.75.con.0001",
+    "genome_name": "Orthoreovirus sp. GZPH/5157"
+   },
+   "MammalianOrthoreovirus.5.dna": {
+    "genome_ids": "351073.452.con.0001",
+    "genome_name": "Mammalian orthoreovirus MRV2/Pig/4560-1/USA/2014"
+   },
+   "MammalianOrthoreovirus.6.dna": {
+    "genome_ids": "538123.354.con.0001",
+    "genome_name": "Mammalian orthoreovirus 3 GXLZ2301"
+   },
+   "MammalianOrthoreovirus.7.dna": {
+    "genome_ids": "351073.749.con.0001",
+    "genome_name": "Mammalian orthoreovirus T2E2"
+   },
+   "MammalianOrthoreovirus.8.dna": {
+    "genome_ids": "538121.8.con.0001",
+    "genome_name": "Mammalian orthoreovirus 2 TRALAU2004"
+   },
+   "MammalianOrthoreovirus.9.dna": {
+    "genome_ids": "351073.482.con.0001",
+    "genome_name": "Mammalian orthoreovirus MRV2/Pig/4560-2/USA/2014"
+   }
+  },
+  "features": {
+   "LAMBDA1": {
+    "PMID_claude_generated": [
+     "36394457"
+    ],
+    "anno": "Core shell protein lambda-1",
+    "bit_cutoff": 2072,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L3",
+    "kmers": 1,
+    "max_len": 1356,
+    "min_len": 1084,
+    "segment": "lambda-1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "LAMBDA2": {
+    "PMID_claude_generated": [
+     "11531411",
+     "36394457"
+    ],
+    "anno": "Capping enzyme lambda-2",
+    "bit_cutoff": 2059,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L2",
+    "kmers": 1,
+    "max_len": 1367,
+    "min_len": 1131,
+    "segment": "lambda-2 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "LAMBDA3": {
+    "PMID_claude_generated": [
+     "36394457"
+    ],
+    "anno": "RNA-dependent RNA polymerase",
+    "bit_cutoff": 2211,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "RDRP",
+    "kmers": 1,
+    "max_len": 1343,
+    "min_len": 1145,
+    "segment": "lambda-3 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "MU1": {
+    "PMID_claude_generated": [
+     "36394457"
+    ],
+    "anno": "Outer capsid protein mu-1",
+    "bit_cutoff": 1122,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M2",
+    "kmers": 1,
+    "max_len": 751,
+    "min_len": 631,
+    "segment": "mu-1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "MU2": {
+    "PMID_claude_generated": [
+     "15507160",
+     "36394457"
+    ],
+    "anno": "Core protein mu-2",
+    "bit_cutoff": 599,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M1",
+    "kmers": 1,
+    "max_len": 791,
+    "min_len": 645,
+    "segment": "mu-2 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "MUNS": {
+    "PMID_claude_generated": [
+     "36394457"
+    ],
+    "anno": "Non-structural protein mu-NS",
+    "bit_cutoff": 1026,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M3",
+    "kmers": 1,
+    "max_len": 840,
+    "min_len": 675,
+    "segment": "mu-NS Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMA1": {
+    "PMID_claude_generated": [
+     "36394457"
+    ],
+    "anno": "Cell attachment protein sigma-1",
+    "bit_cutoff": 393,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S1",
+    "kmers": 1,
+    "max_len": 523,
+    "min_len": 375,
+    "segment": "sigma-1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMA1S": {
+    "PMID_claude_generated": [
+     "36394457"
+    ],
+    "anno": "Non-structural protein sigma-1s",
+    "bit_cutoff": 117,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S1s",
+    "kmers": 1,
+    "max_len": 127,
+    "min_len": 105,
+    "segment": "sigma-1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMA2": {
+    "PMID_claude_generated": [
+     "36394457"
+    ],
+    "anno": "Core protein sigma-2",
+    "bit_cutoff": 547,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S2",
+    "kmers": 1,
+    "max_len": 443,
+    "min_len": 358,
+    "segment": "sigma-2 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMA3": {
+    "PMID_claude_generated": [
+     "36394457"
+    ],
+    "anno": "Outer capsid protein sigma-3",
+    "bit_cutoff": 635,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S4",
+    "kmers": 1,
+    "max_len": 386,
+    "min_len": 335,
+    "segment": "sigma-3 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMANS": {
+    "PMID_claude_generated": [
+     "36394457"
+    ],
+    "anno": "Non-structural protein sigma-NS",
+    "bit_cutoff": 169,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S3",
+    "kmers": 1,
+    "max_len": 392,
+    "min_len": 338,
+    "segment": "sigma-NS Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "lambda-1 Segment": {
+    "max_len": 4310,
+    "min_len": 3445,
+    "replicon_geometry": "linear"
+   },
+   "lambda-2 Segment": {
+    "max_len": 4330,
+    "min_len": 3300,
+    "replicon_geometry": "linear"
+   },
+   "lambda-3 Segment": {
+    "max_len": 4272,
+    "min_len": 3376,
+    "replicon_geometry": "linear"
+   },
+   "mu-1 Segment": {
+    "max_len": 2425,
+    "min_len": 1876,
+    "replicon_geometry": "linear"
+   },
+   "mu-2 Segment": {
+    "max_len": 2550,
+    "min_len": 1989,
+    "replicon_geometry": "linear"
+   },
+   "mu-NS Segment": {
+    "max_len": 2734,
+    "min_len": 1949,
+    "replicon_geometry": "linear"
+   },
+   "sigma-1 Segment": {
+    "max_len": 1621,
+    "min_len": 1089,
+    "replicon_geometry": "linear"
+   },
+   "sigma-2 Segment": {
+    "max_len": 1543,
+    "min_len": 1131,
+    "replicon_geometry": "linear"
+   },
+   "sigma-3 Segment": {
+    "max_len": 1358,
+    "min_len": 988,
+    "replicon_geometry": "linear"
+   },
+   "sigma-NS Segment": {
+    "max_len": 1346,
+    "min_len": 990,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

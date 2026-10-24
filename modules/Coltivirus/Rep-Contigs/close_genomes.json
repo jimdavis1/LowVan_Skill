@@ -1,0 +1,94 @@
+{
+ "Coltivirus.1.dna": {
+  "genome_ids": "46839.303.con.0001",
+  "genome_name": "Colorado tick fever virus Florio"
+ },
+ "Coltivirus.10.dna": {
+  "genome_ids": "62352.100.con.0001",
+  "genome_name": "Eyach virus Heverlee"
+ },
+ "Coltivirus.11.dna": {
+  "genome_ids": "62352.101.con.0001",
+  "genome_name": "Eyach virus Heverlee"
+ },
+ "Coltivirus.12.dna": {
+  "genome_ids": "62352.111.con.0001",
+  "genome_name": "Eyach virus S6-14-03"
+ },
+ "Coltivirus.13.dna": {
+  "genome_ids": "62352.13.con.0001",
+  "genome_name": "Eyach virus VRDL5"
+ },
+ "Coltivirus.14.dna": {
+  "genome_ids": "62352.17.con.0001",
+  "genome_name": "Eyach virus VRDL5"
+ },
+ "Coltivirus.15.dna": {
+  "genome_ids": "62352.20.con.0001",
+  "genome_name": "Eyach virus VRDL5"
+ },
+ "Coltivirus.16.dna": {
+  "genome_ids": "62352.7.con.0001",
+  "genome_name": "Eyach virus VRDL5"
+ },
+ "Coltivirus.17.dna": {
+  "genome_ids": "62352.9.con.0001",
+  "genome_name": "Eyach virus VRDL5"
+ },
+ "Coltivirus.18.dna": {
+  "genome_ids": "46839.437.con.0001",
+  "genome_name": "Colorado tick fever virus R102228"
+ },
+ "Coltivirus.19.dna": {
+  "genome_ids": "46839.451.con.0001",
+  "genome_name": "Colorado tick fever virus 83F-8B"
+ },
+ "Coltivirus.2.dna": {
+  "genome_ids": "46839.304.con.0001",
+  "genome_name": "Colorado tick fever virus Florio"
+ },
+ "Coltivirus.20.dna": {
+  "genome_ids": "46839.472.con.0001",
+  "genome_name": "Colorado tick fever virus HL11"
+ },
+ "Coltivirus.21.dna": {
+  "genome_ids": "46839.474.con.0001",
+  "genome_name": "Colorado tick fever virus HL11"
+ },
+ "Coltivirus.22.dna": {
+  "genome_ids": "46839.475.con.0001",
+  "genome_name": "Colorado tick fever virus HL11"
+ },
+ "Coltivirus.23.dna": {
+  "genome_ids": "46839.476.con.0001",
+  "genome_name": "Colorado tick fever virus HL11"
+ },
+ "Coltivirus.3.dna": {
+  "genome_ids": "46839.332.con.0001",
+  "genome_name": "Colorado tick fever virus S6-16-09"
+ },
+ "Coltivirus.4.dna": {
+  "genome_ids": "46839.336.con.0001",
+  "genome_name": "Colorado tick fever virus S6-16-09"
+ },
+ "Coltivirus.5.dna": {
+  "genome_ids": "46839.477.con.0001",
+  "genome_name": "Colorado tick fever virus HL11"
+ },
+ "Coltivirus.6.dna": {
+  "genome_ids": "46839.478.con.0001",
+  "genome_name": "Colorado tick fever virus HL11"
+ },
+ "Coltivirus.7.dna": {
+  "genome_ids": "46839.479.con.0001",
+  "genome_name": "Colorado tick fever virus HL11"
+ },
+ "Coltivirus.8.dna": {
+  "genome_ids": "46839.6.con.0001",
+  "genome_name": "Colorado tick fever virus Florio"
+ },
+ "Coltivirus.9.dna": {
+  "genome_ids": "62352.10.con.0001",
+  "genome_name": "Eyach virus VRDL5"
+ }
+}

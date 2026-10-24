@@ -1,0 +1,177 @@
+<title>Rotavirus PSSM Registry</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:1120px; margin:0 auto; padding:40px 22px 72px; display:flex; flex-direction:column; gap:30px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  .stand { max-width:70ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .stand b { color:var(--ink); font-weight:600; }
+
+  .figs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-top:1px solid var(--base); border-bottom:1px solid var(--grid); }
+  .fig { padding:13px 16px 13px 0; }
+  .fig+.fig { padding-left:16px; border-left:1px solid var(--grid); }
+  .fig .n { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:23px; font-weight:500; display:block; letter-spacing:-.02em; }
+  .fig .k { font-size:12px; color:var(--ink2); }
+
+  .bar { display:flex; height:10px; border-radius:2px; overflow:hidden; gap:2px; background:transparent; }
+  .bar i,.bar b { display:block; height:10px; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; font-size:12.5px; color:var(--ink2); align-items:center; }
+  .legend span { display:inline-flex; gap:6px; align-items:center; }
+  .sw { width:10px; height:10px; border-radius:2px; }
+
+  .ctrl { display:flex; gap:7px; flex-wrap:wrap; align-items:center; }
+  .ctrl button { font-family:var(--sans); font-size:12.5px; padding:5px 11px; border-radius:3px;
+    border:1px solid var(--hair); background:var(--surface); color:var(--ink2); cursor:pointer; }
+  .ctrl button[aria-pressed="true"] { background:var(--ink); color:var(--plane); border-color:var(--ink); }
+  .ctrl button:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+
+  .tax { display:flex; flex-direction:column; gap:9px; }
+  .taxhd { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; border-bottom:1px solid var(--base); padding-bottom:7px; }
+  .taxhd h2 { font-family:var(--serif); font-weight:600; font-size:20px; margin:0; }
+  .taxmeta { display:flex; gap:14px; font-family:var(--mono); font-size:11.5px; color:var(--muted); flex-wrap:wrap; }
+  .taxmeta b { color:var(--ink2); font-weight:500; }
+  .taxnote { margin:0; font-size:13.5px; color:var(--ink2); max-width:82ch; }
+
+  .tw { overflow-x:auto; border:1px solid var(--hair); border-radius:4px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { padding:7px 11px; text-align:left; border-bottom:1px solid var(--grid); vertical-align:top; }
+  thead th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted);
+    font-weight:500; white-space:nowrap; position:sticky; top:0; background:var(--surface); }
+  tbody tr:last-child td { border-bottom:0; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.anno { min-width:19ch; }
+  td.anno .why { display:block; margin-top:3px; font-size:12.5px;
+                 line-height:1.45; color:var(--muted); max-width:62ch; }
+  td.m { font-family:var(--mono); color:var(--ink2); white-space:nowrap; }
+  td.ty { font-size:11.5px; color:var(--muted); }
+  .num, td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  td.pss code { font-family:var(--mono); font-size:11px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .dash { color:var(--muted); }
+  .nd { color:var(--missed); font-size:13px; }
+
+  .covcell { white-space:nowrap; min-width:110px; }
+  .cov { display:inline-flex; width:74px; height:9px; border-radius:2px; overflow:hidden; gap:2px; vertical-align:middle; }
+  .cov i { background:var(--built); } .cov b { background:var(--missed); }
+  .covn { font-family:var(--mono); font-size:11px; color:var(--ink2); margin-left:7px; font-variant-numeric:tabular-nums; }
+
+  .chip { font-family:var(--mono); font-size:10.5px; padding:2px 7px; border-radius:9px; white-space:nowrap;
+    border:1px solid var(--hair); color:var(--ink2); }
+  .chip.s-built { border-color:var(--built); color:var(--built); }
+  .chip.s-derived { border-color:var(--base); color:var(--ink2); }
+  .chip.s-too-few { border-color:var(--missed); color:var(--missed); }
+  .chip.s-no-collection { color:var(--muted); }
+
+  .gap { border-left:2px solid var(--missed); padding:3px 0 3px 15px; max-width:84ch; }
+  .gap h2 { font-family:var(--serif); font-size:19px; margin:0 0 5px; }
+  .gap p { margin:0 0 10px; font-size:14px; color:var(--ink2); }
+  .gap p:last-of-type { margin-bottom:14px; }
+  .keys code { font-family:var(--mono); font-size:10.5px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .src { font-size:12px; color:var(--muted); border-top:1px solid var(--grid); padding-top:13px; }
+  .src code { font-family:var(--mono); }
+  @media (max-width:760px) { .figs { grid-template-columns:repeat(2,1fr); } h1 { font-size:25px; } }
+</style>
+<div class="wrap">
+ <header>
+  <div class="eyebrow">LowVan &middot; Rotavirus module &middot; 12 October 2026</div>
+  <h1>Rotavirus</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">Annotation strings and the PSSMs that call them</h2>
+  <p class="stand">389 position-specific scoring matrices behind the fourteen declared features of the Rotavirus module. Each row is one feature: the collection it was built from, how many profiles that collection yielded, and why the number is what it is.</p>
+ </header>
+ <div class="figs">
+  <div class="fig"><span class="n">389</span><span class="k">PSSMs built</span></div>
+  <div class="fig"><span class="n">14/14</span><span class="k">features with a profile</span></div>
+  <div class="fig"><span class="n">14</span><span class="k">of 14 annotation strings reachable</span></div>
+  <div class="fig"><span class="n">100%</span><span class="k">median per-feature call rate</span></div>
+  <div class="fig"><span class="n">0</span><span class="k">features unsatisfiable</span></div>
+ </div>
+ <div class="legend">
+  <span><i class="sw" style="background:var(--built)"></i> callable by its own module</span>
+  <span><i class="sw" style="background:var(--missed)"></i> in the collection but not called</span>
+  <span><i class="nd">&#9702;</i> non-default build parameters (0)</span>
+ </div>
+ <div class="ctrl"><span class="eyebrow" style="margin-right:4px">show</span>
+  <button aria-pressed="true" data-f="all">all 14</button>
+  <button aria-pressed="false" data-f="built">built (14)</button>
+  <button aria-pressed="false" data-f="gap">gaps (0)</button>
+  <button aria-pressed="false" data-f="derived">derived (0)</button>
+ </div>
+<section class="tax">
+ <div class="taxhd"><h2>Rotavirus</h2><span class="taxmeta">14 of 14 features built &middot; 389 PSSMs &middot; 99% callable</span></div>
+<p class="taxnote">One module for all ten ICTV species, <i>Rotavirus A</i> through <i>J</i>. They share eleven segments in the same arrangement, so the partitioning rule &mdash; genome organisation, not phylogeny &mdash; keeps them together. Species A is 89% of the dump, which is why every length window in this module is explicit rather than taken from a pooled median.</p>
+ <div class="tw"><table><thead><tr><th>Key</th><th>Annotation string</th><th>Gene</th><th>Type</th><th class="num">Bit</th><th class="num">Length</th><th class="num">Seqs</th><th>PSSMs</th><th>Callable</th><th>Status</th></tr></thead>
+ <tbody><tr data-status="built"><td class="k">NSP1</td><td class="anno">Non-structural protein NSP1, interferon antagonist<span class="why">Interferon antagonist, segment 5. The least conserved rotavirus protein and the widest length window in the module, 254&ndash;656 residues across species; 48 profiles is the price of that spread.</span></td><td class="m">NSP1</td><td class="m ty">CDS</td><td class="m num">219</td><td class="m num">254&ndash;656</td><td class="m num">4078</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>36</code> <code>37</code> <code>38</code> <code>39</code> <code>4</code> <code>42</code> <code>43</code> <code>44</code> <code>45</code> <code>46</code> <code>47</code> <code>48</code> <code>5</code> <code>50</code> <code>51</code> <code>52</code> <code>53</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="3913 of 3922 in-range sequences callable; 4061 of 4078 including length-outliers"><i style="width:99.77%"></i><b style="width:0.23%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NSP2</td><td class="anno">Non-structural protein NSP2, NTPase<span class="why">The NTPase/helicase of the viroplasm, segment 8.</span></td><td class="m">NSP2</td><td class="m ty">CDS</td><td class="m num">143</td><td class="m num">236&ndash;381</td><td class="m num">2657</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="2616 of 2617 in-range sequences callable; 2653 of 2657 including length-outliers"><i style="width:99.96%"></i><b style="width:0.04%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NSP3</td><td class="anno">Non-structural protein NSP3, translation enhancer<span class="why">Translation enhancer, segment 7; binds the 3' consensus of viral mRNA and displaces eIF4G.</span></td><td class="m">NSP3</td><td class="m ty">CDS</td><td class="m num">140</td><td class="m num">218&ndash;486</td><td class="m num">2827</td><td class="pss"><code>1</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code></td><td class="covcell"><div class="cov" title="2786 of 2791 in-range sequences callable; 2815 of 2827 including length-outliers"><i style="width:99.82%"></i><b style="width:0.18%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NSP4</td><td class="anno">Non-structural protein NSP4, enterotoxin<span class="why">The viral enterotoxin, segment 10 &mdash; the first viral enterotoxin described, and the reason the <code>enterotoxin</code> string is a binding rule for this feature.</span></td><td class="m">NSP4</td><td class="m ty">CDS</td><td class="m num">79</td><td class="m num">101&ndash;262</td><td class="m num">3416</td><td class="pss"><code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>30</code> <code>31</code> <code>32</code> <code>34</code> <code>35</code> <code>36</code> <code>37</code> <code>38</code> <code>39</code> <code>40</code> <code>41</code> <code>42</code> <code>43</code> <code>44</code> <code>45</code> <code>46</code> <code>47</code> <code>48</code> <code>49</code> <code>5</code> <code>50</code> <code>6</code> <code>9</code></td><td class="covcell"><div class="cov" title="3404 of 3408 in-range sequences callable; 3411 of 3416 including length-outliers"><i style="width:99.88%"></i><b style="width:0.12%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NSP5</td><td class="anno">Non-structural protein NSP5<span class="why">Viroplasm phosphoprotein, segment 11.</span></td><td class="m">NSP5</td><td class="m ty">CDS</td><td class="m num">89</td><td class="m num">126&ndash;261</td><td class="m num">1886</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>34</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1876 of 1879 in-range sequences callable; 1880 of 1886 including length-outliers"><i style="width:99.84%"></i><b style="width:0.16%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NSP6</td><td class="anno">Non-structural protein NSP6<span class="why">An out-of-frame ORF on segment 11, overlapping NSP5. Species A only: 282 of 297 species A exemplars carry it and none of the 115 exemplars of any other species do. The shortest feature in the module at 73&ndash;110 residues.</span></td><td class="m">NSP6</td><td class="m ty">CDS</td><td class="m num">41</td><td class="m num">73&ndash;110</td><td class="m num">1113</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1099 of 1099 in-range sequences callable; 1113 of 1113 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP1</td><td class="anno">RNA-dependent RNA polymerase<span class="why">The rotavirus RNA-dependent RNA polymerase, carried on segment 1. Declared with the gene symbol RDRP so the symbol means the same thing across the project.</span></td><td class="m">RDRP</td><td class="m ty">CDS</td><td class="m num">490</td><td class="m num">863&ndash;1401</td><td class="m num">3790</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>3</code> <code>4</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="3632 of 3632 in-range sequences callable; 3710 of 3790 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP2</td><td class="anno">Core capsid protein VP2<span class="why">Inner capsid (core shell) protein, segment 2. Six records of VP4 length had been bound here by a conflicting annotation string and were moved to the outliers file.</span></td><td class="m">VP2</td><td class="m ty">CDS</td><td class="m num">400</td><td class="m num">702&ndash;1185</td><td class="m num">3074</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>2</code> <code>3_1</code> <code>3_2</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="2964 of 2964 in-range sequences callable; 3022 of 3074 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP3</td><td class="anno">Capping enzyme VP3<span class="why">The capping enzyme, segment 3: guanylyltransferase and methyltransferase in one chain.</span></td><td class="m">VP3</td><td class="m ty">CDS</td><td class="m num">376</td><td class="m num">543&ndash;1002</td><td class="m num">4055</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>4</code> <code>5</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="3982 of 3982 in-range sequences callable; 4016 of 4055 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP4</td><td class="anno">Outer capsid spike protein VP4<span class="why">Outer capsid spike protein, segment 4, and the P-genotyping target. The largest collection after VP7 and the one most heavily represented by partial deposits in the raw dump.</span></td><td class="m">VP4</td><td class="m ty">CDS</td><td class="m num">349</td><td class="m num">586&ndash;975</td><td class="m num">5689</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19_1</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>33</code> <code>34</code> <code>35</code> <code>36</code> <code>37</code> <code>38</code> <code>39</code> <code>4</code> <code>40</code> <code>41</code> <code>42</code> <code>43</code> <code>44</code> <code>45</code> <code>46</code> <code>47</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="4605 of 4605 in-range sequences callable; 5598 of 5689 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP5STAR</td><td class="anno">Mature C-terminal outer capsid spike protein VP5*<span class="why">Mature C-terminal spike subunit, the complement of the same cut, with the same species A restriction. Three profiles cover it because the C-terminal fragment is far more conserved than the N-terminal one.</span></td><td class="m">VP5*</td><td class="m ty">mat_pep</td><td class="m num">238</td><td class="m num">331&ndash;583</td><td class="m num">3531</td><td class="pss"><code>1</code> <code>2</code> <code>3</code></td><td class="covcell"><div class="cov" title="3531 of 3531 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP6</td><td class="anno">Inner capsid protein VP6<span class="why">Inner capsid protein, segment 6, the antigen on which the species A&ndash;J classification itself rests.</span></td><td class="m">VP6</td><td class="m ty">CDS</td><td class="m num">179</td><td class="m num">312&ndash;477</td><td class="m num">2802</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="2421 of 2421 in-range sequences callable; 2756 of 2802 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP7</td><td class="anno">Outer capsid glycoprotein VP7<span class="why">Outer capsid glycoprotein, segment 9, and the G-genotyping target. The largest collection in the module and the one the partial-record discard changed most: before it, truncated species A records outnumbered full-length ones two to one and pulled the species A median from 326 to 311.</span></td><td class="m">VP7</td><td class="m ty">CDS</td><td class="m num">147</td><td class="m num">195&ndash;398</td><td class="m num">7830</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>14</code> <code>2</code> <code>20</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>35</code> <code>38</code> <code>4</code> <code>40</code> <code>41</code> <code>43</code> <code>44</code> <code>45</code> <code>47</code> <code>49</code> <code>5</code> <code>50</code> <code>51</code> <code>53</code> <code>54</code> <code>55</code> <code>56</code> <code>57</code> <code>58</code> <code>59</code> <code>6</code> <code>60</code> <code>61</code> <code>62</code> <code>63</code> <code>64</code> <code>65</code> <code>66</code> <code>67</code> <code>69</code> <code>7</code> <code>70</code> <code>71</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="7621 of 7625 in-range sequences callable; 7817 of 7830 including length-outliers"><i style="width:99.95%"></i><b style="width:0.05%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP8STAR</td><td class="anno">Mature N-terminal outer capsid spike protein VP8*<span class="why">Mature N-terminal spike subunit. No collection exists in the source; cut out of curated VP4 at the trypsin site R&darr;AQ (Gilbert &amp; Greenberg 1998). The site is a species A observation and finds a unique match in 88% of species A VP4 and in ~0% of every other species, so this feature is species A only.</span></td><td class="m">VP8*</td><td class="m ty">mat_pep</td><td class="m num">111</td><td class="m num">207&ndash;281</td><td class="m num">3531</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="3531 of 3531 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr></tbody></table></div>
+</section>
+ <section class="gap">
+  <h2>What was missed, and why</h2>
+  <p>Nine of the ten species are represented by tens of genomes rather than thousands &mdash; species E contributes 5 to the entire dump and species J contributes 70 &mdash; so their profiles rest on few independent observations and self-recall cannot tell a profile that generalises from one that has memorised its training set. The leftover pass was run on every feature at the same identity floor, with the member floor at 2, so the divergent minority had its own chance to form profiles rather than competing with the species A clusters.</p>
+  <div class="tw"><table><thead><tr><th>Module</th><th class="num">Features</th><th>Keys with no collection</th></tr></thead>
+  <tbody><tr><td colspan="3" class="dash">none</td></tr></tbody></table></div>
+  <p style="margin-top:14px"><b>0 features have a collection too small to profile.</b></p>
+  <div class="tw"><table><thead><tr><th>Module</th><th>Feature</th><th class="num">Seqs</th><th>Why not buildable</th></tr></thead>
+  <tbody><tr><td colspan="4" class="dash">none</td></tr></tbody></table></div>
+  <p style="margin-top:14px">VP8* and VP5* are the only derived features here. They are a coordinate operation on curated VP4, expressed as a motif rather than a column number so they survive a re-clustering, and they are deliberately not projected onto species B through J: species A VP4 is 33% identical to species C VP4 and 19% identical to species B, well below the 80% floor this project requires before a cleavage site may be transferred.</p>
+ </section>
+ <div class="src">Generated from <code>Rotavirus_Viral_PSSM.json</code> and the built
+ <code>Alignments/&lt;Module&gt;/&lt;Feature&gt;/pssms/</code> trees by <code>collect_registry.py</code> and
+ <code>gen_registry.py</code>. Callable measured by running each feature&rsquo;s own PSSMs back against its own
+ collection with <code>psiblast -in_pssm</code> and testing every sequence against that feature&rsquo;s
+ <code>bit_cutoff</code> &mdash; self-recall, a floor rather than a validation. PSSM labels are cluster ids;
+ files are <code>&lt;Module&gt;.&lt;Feature&gt;.&lt;cluster&gt;.pssm</code>.</div>
+</div>
+<script>
+ var btns=[].slice.call(document.querySelectorAll('.ctrl button'));
+ btns.forEach(function(b){
+   b.addEventListener('click',function(){
+     btns.forEach(function(x){x.setAttribute('aria-pressed', x===b ? 'true':'false');});
+     var f=b.getAttribute('data-f');
+     document.querySelectorAll('tbody tr').forEach(function(tr){
+       var s=tr.getAttribute('data-status'), show;
+       if(f==='all') show=true;
+       else if(f==='gap') show=(s==='no-collection'||s==='too-few');
+       else show=(s===f);
+       tr.hidden=!show;
+     });
+     document.querySelectorAll('section.tax').forEach(function(sec){
+       var any=[].slice.call(sec.querySelectorAll('tbody tr')).some(function(t){return !t.hidden;});
+       sec.hidden=!any;
+     });
+   });
+ });
+</script>

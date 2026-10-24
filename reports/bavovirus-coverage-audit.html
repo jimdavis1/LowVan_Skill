@@ -1,0 +1,139 @@
+<title>Bavovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; Bavovirus module &middot; 15 October 2026</div><h1>Bavovirus</h1><p class="stand">Chicken calicivirus: two ORFs, two features, and a taxon that turned out to contain two viruses rather than one. The smallest module in the Caliciviridae series, and the one whose build found the most.</p><div class="tiles"><div class="tile"><div class="v">2</div><div class="l">features, both with profiles</div></div><div class="tile"><div class="v">4</div><div class="l">PSSMs &mdash; two per feature, one per clade</div></div><div class="tile"><div class="v">14/14</div><div class="l">exemplars routed</div></div><div class="tile"><div class="v">27/28</div><div class="l">panel genomes called for ORF1</div></div><div class="tile"><div class="v">0</div><div class="l">mature peptides, by measurement</div></div><div class="tile"><div class="v">2</div><div class="l">distinct viruses under one name</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One genus by name, two viruses by sequence, and a population that had no annotation at all.</p><p class="note">Bavoviruses are caliciviruses of chickens. The genome is 6.9&ndash;9.0 kb with the Sapovirus/Lagovirus/Nebovirus layout: ORF1 carries the non-structural proteins <i>and</i> the capsid in frame, ORF2 carries the minor structural protein VP2. The type strain is <code>Calicivirus chicken/V0021/Bayern/2004</code>.</p><div class="verdict warn"><b>These genomes were annotated with nothing.</b> Run through the five previously shipped Caliciviridae modules, the near-complete Bavovirus genomes produce <b>zero features of any kind</b>. Not a poor annotation &mdash; no annotation. That is what this module is for, and it is why a two-feature module is worth shipping where it otherwise would not be.</div><div class="scroll"><table><thead><tr><th></th><th>count</th></tr></thead><tbody><tr><td>genomes in the BV-BRC protein dump</td><td>51</td></tr><tr><td>protein features</td><td>87</td></tr><tr><td>unique sequences</td><td>68</td></tr><tr><td>distinct annotation strings</td><td>6</td></tr><tr><td>genomes with a contig</td><td>28</td></tr><tr><td>contig length, median</td><td>8,151 nt</td></tr></tbody></table></div><p class="note"><b>The taxon holds two viruses.</b> Every record in the dump is labelled <code>Chicken calicivirus</code> or carries genus <code>Bavovirus</code>, but the polyproteins fall into two groups that are <b>30% identical and only across the C-terminal half</b> &mdash; the N-terminal thousand residues do not align at all. One group contains the Bayern type strain and matches it at 95&ndash;100%. The other's nearest named relatives are unclassified <code>Caliciviridae sp.</code> from Switzerland at 98.8%, with Bird and Duck calicivirus next at about 43%. Both groups share this genome layout, so by the project's partitioning rule they belong in one module, with one profile per clade.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">Two collections, a corrected length window, and an N-terminal filter that removed a fifth of ORF1.</p><div class="scroll"><table><thead><tr><th>feature</th><th>collection</th><th>profiles</th><th>declared length</th></tr></thead><tbody><tr><td>POLY</td><td>16 sequences, 8 per clade</td><td>2</td><td>2,127&ndash;2,519 aa</td></tr><tr><td>VP2</td><td>21 sequences, 15 + 6</td><td>2</td><td>202&ndash;304 aa</td></tr></tbody></table></div><div class="verdict warn"><b>The first VP2 window silently deleted a whole clade.</b> Set to 250&ndash;320 from the modal length of 287, it removed all six of the 215 aa VP2s &mdash; annotated <code>VP2</code> by the source, genus <code>Bavovirus</code>, Met-initiated, none marked partial, and genuine homologs at 25% identity over 192 residues. They left no trace but a number in a counts file. Widening the floor to 202 recovered them and took VP2 from 11 unique sequences to 18, 21 after the homology rescue.</div><p class="note">Four ORF1 sequences were removed by the N-terminal filter, all of them redundant: two begin at an upstream Met (+131 and +56 residues), and two do not begin at Met at all (one truncated by 169 residues, one a 48-residue trim of another). Each is 96&ndash;100% identical to a sequence that was kept, so nothing was lost but jagged alignment ends. What remains is 16 sequences, 8 per clade, every one Met-initiated.</p><p class="note">Both features cite Wolf <i>et al.</i> 2012 (<code>PMID 22580496</code>), the discovery and genome of chicken calicivirus, and ORF1 additionally cites Goraichuk <i>et al.</i> 2024 (<code>PMID 39264163</code>) for the further complete coding sequences. Both are recorded as <code>PMID_claude_generated</code>, the field this project reserves for a model-retrieved reference, rather than as a curator citation.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">One cutoff sits in a measured gap. The other was wrong by a factor of fourteen, and finding out why exposed a defect in the tool that sets them.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit_cutoff</th><th>min_len</th><th>max_len</th></tr></thead><tbody><tr><td>POLY</td><td>4,075</td><td>2,127</td><td>2,519</td></tr><tr><td>VP2</td><td>360</td><td>202</td><td>304</td></tr></tbody></table></div><p class="note"><b>ORF1.</b> Scored against every protein in the Caliciviridae dump, 24 full-length polyproteins land between 4,313 and 4,780 bits and the next one down is 1,817 &mdash; a different virus. The cutoff sits inside that gap. The one sequence between them, at 3,931 bits, is a true clade member that is simply partial at 1,964 of 2,377 residues, and <code>min_len</code> excludes it independently.</p><div class="verdict warn"><b>VP2's cutoff came out at 26 bits, and at 26 bits it called 253 Norovirus VP2s</b>, plus 18 Nebovirus, 11 Recovirus, 2 Nacovirus and 1 Sapovirus &mdash; 285 proteins from other genera against 21 of its own. Only genome routing stood between that and a wrong annotation. The corrected cutoff of 360 admits 24 proteins and <b>zero</b> from any other genus.</div><p class="note">The cause was in the tool, not the taxon. <code>derive_cutoffs.py</code> pooled every profile &times; sequence hit into one bag and took the global minimum as the weakest member the cutoff had to admit. In a feature holding two divergent clades, each profile scores the <i>other</i> clade near zero &mdash; here 29&ndash;34 bits against 401&ndash;568 for its own &mdash; so that cross-clade hit set the floor. The requirement is that every member be callable by <i>some</i> profile, which is the minimum over members of the maximum over profiles: 401, giving 360. The tool now computes it that way.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">Yes, completely, on two references.</p><div class="scroll"><table><thead><tr><th></th><th>count</th></tr></thead><tbody><tr><td>genomes with a contig</td><td>28</td></tr><tr><td>clusters at 95% nucleotide identity</td><td>14</td></tr><tr><td>exemplars routed to Bavovirus</td><td>14 of 14 (100%)</td></tr><tr><td>unrouted</td><td>0</td></tr><tr><td>reference contigs shipped</td><td>2</td></tr></tbody></table></div><p class="note">The budget allows 25 references; two cover every genome, one per clade. Nothing in the taxon is left unrouted, and no genome of another genus routes here.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">27 of 28 genomes get ORF1, 25 get VP2, and every miss is a gene the contig does not carry.</p><div class="scroll"><table><thead><tr><th>genome</th><th>missing</th><th>why</th></tr></thead><tbody><tr><td>1172196.37</td><td>POLY</td><td>ORF1 itself truncated &mdash; 1,891 of 2,313 aa, contig ends mid-gene</td></tr><tr><td>1172196.42</td><td>VP2</td><td>contig 6,898 nt; ORF1 alone needs 6,792</td></tr><tr><td>2809180.5</td><td>VP2</td><td>contig 6,904 nt, shorter than its own deposited ORF1</td></tr><tr><td>1172196.49</td><td>VP2</td><td>VP2 runs off the contig end &mdash; 129 of 215 aa</td></tr></tbody></table></div><div class="verdict"><b>No miss is a failure of the profiles.</b> Each of the four is a gene that is genuinely incomplete on the assembly, and in the last case the corrected cutoff is what <i>stopped</i> the module emitting a 129-residue fragment as though it were a complete VP2.</div><p class="note">Self-recall over the collections is 16 of 16 for ORF1 and 21 of 21 for VP2, both 100% of in-range sequences. Cross-feature contamination: none above 50 bits across 37 sequences and 4 cluster references.</p><p class="note"><b>Both features carry <code>copy_num</code></b>, set from this panel rather than assumed: ORF1 is called on 96.4% of routed genomes and VP2 on 89.3%, both clearing the 85% threshold. A feature marked essential flags every genome that lacks it, so the four incomplete assemblies above are now reported as such instead of passing silently.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">Both features come from the source vocabulary, so the boundaries are the submitters', not ours.</p><p class="note">Neither feature is derived. ORF1 and ORF2 are whole CDSs read from the deposit, with <code>upstream_ext</code> and <code>downstream_ext</code> both set, so each call scans to its own start Met and stop codon. There is no cleavage site to get wrong here, because the module declares none &mdash; which is the subject of &sect;07.</p><p class="note">The two clades are kept honest by the profiles rather than by a length rule: each clade's profile scores its own members 401&ndash;568 bits (VP2) or above 4,300 (ORF1) and the other clade near the floor, so a sequence is called by the profile that matches it and annotated with the same controlled string either way.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">It cannot cut the polyprotein. That is a measurement, not an omission.</p><div class="verdict warn"><b>Nebovirus ships nine features; Bavovirus ships two.</b> The difference is evidence. Nebovirus has a published product map, catalytic anchors that locate three of its proteins, and a cleavage dipeptide at every predicted boundary. Four attempts to find the equivalent here all failed, each in a way that was measured rather than assumed.</div><div class="scroll"><table><thead><tr><th>attempt</th><th>result</th></tr></thead><tbody><tr><td>published cleavage coordinates</td><td>none &mdash; the literature gives the architecture, &quot;at least six mature nonstructural proteins&quot;, and no positions</td></tr><tr><td>catalytic anchors</td><td><code>G..GHGK[ST]</code> and <code>G[YF]CG</code> found in <b>0 of 20</b> polyproteins, where both are present and unique in every Nebovirus sequence</td></tr><tr><td>cleavage dipeptide scan</td><td>31 positions where all ten sequences agree &mdash; the dipeptide is common, not thirty-one cleavage sites</td></tr><tr><td>homology from Nebovirus VP1</td><td>places the capsid near residue 1,730&ndash;1,741 at only 35&ndash;37% identity, with five candidates inside 72 residues at identical support</td></tr></tbody></table></div><p class="note">The project's floor for transferring a boundary across an alignment is 80% identity plus demonstrated conservation at the site. Choosing one of those five candidates would be a guess dressed as evidence, and a wrong boundary is worse than an absent one. So VP1 and the six non-structural products are declared as a gap and not approximated.</p><p class="note"><b>A second limit, from the cutoff.</b> Both clades are tightly sampled, so the ORF1 cutoff of 4,075 bits is high relative to what a novel lineage would score. A genuinely new bavovirus below roughly 90% identity to either clade would not be called. The alternative &mdash; lowering the cutoff into the 1,817&ndash;4,313 gap &mdash; buys headroom that nothing in the present data needs, so it was left where the measurement puts it and recorded here instead.</p><p class="note"><b>And a third, outside this module.</b> The same search turned up 34 full-length avian calicivirus polyproteins &mdash; Bird calicivirus, Avocet calicivirus, unclassified <code>Caliciviridae sp.</code> &mdash; scoring 1,731&ndash;1,817 bits against these profiles. They are not bavoviruses and this module correctly declines them, but nothing else annotates them either. They are a candidate for a module of their own.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Three defects, two of them in shipped work.</p><p class="note"><b>Window-dropped sequences left no trace.</b> The curator's documented check on a length window is to read <code>&lt;FEAT&gt;.outliers.fasta</code> broken down by genus. That file was written only by the homology rescue, so it held the rescued strays and never the sequences the window itself removed &mdash; the one population the check exists to catch was the one it could not see. The collection engine now parks them there and names the file on stdout.</p><p class="note"><b>Cutoffs were derived from a pooled minimum.</b> Described in &sect;03. The same defect depresses the cutoff of every feature that holds more than one divergent clade, which is not confined to this module.</p><p class="note"><b>The vocabulary experiment was gated on the wrong unit.</b> The rarefaction draws proteins but refused on a count of genomes, and refused by exiting without writing anything, so a small taxon lost its fourth artifact and no record of why. It now guards on the protein pool and writes the reason, which is what the saturation page for this module reports.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">Six strings to two, over proteins that previously had no controlled annotation at all.</p><p class="note">The dump carries six distinct annotation strings across 87 protein features: <code>polyprotein</code>, <code>VP2</code>, <code>putative minor capsid protein</code>, <code>capsid protein</code>, <code>small basic protein</code> and <code>RdRp</code>. The module emits two: <code>Nonstructural polyprotein</code> and <code>Minor structural protein VP2</code>, the same strings used by Sapovirus, Lagovirus and Nebovirus for the same two genes.</p><p class="note">The protein pool here is too small for a rarefaction curve to mean anything &mdash; 26 proteins annotated by both source and module &mdash; so the saturation page states the collapse directly instead of drawing one. The more useful comparison for a taxon this size is the string-collapse page, which covers the whole dump rather than the overlap.</p></section><p class="src">Measured from the shipped module: Bavovirus_Viral_PSSM.json, the 4 installed PSSMs, 2 reference contigs, a 28-genome panel and a 14-exemplar routing run. Cross-genus figures come from scoring the installed profiles against all 71,883 unique Caliciviridae proteins in the family dump.</p></div>

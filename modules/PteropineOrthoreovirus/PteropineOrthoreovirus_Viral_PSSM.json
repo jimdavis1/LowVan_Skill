@@ -1,0 +1,337 @@
+{
+ "PteropineOrthoreovirus": {
+  "close_genomes": {
+   "PteropineOrthoreovirus.1.dna": {
+    "genome_ids": "1109732.4.con.0001",
+    "genome_name": "Pteropine orthoreovirus Sikamat/MYS/2010"
+   },
+   "PteropineOrthoreovirus.10.dna": {
+    "genome_ids": "118027.47.con.0001",
+    "genome_name": "Nelson Bay orthoreovirus WDBP1716"
+   },
+   "PteropineOrthoreovirus.11.dna": {
+    "genome_ids": "118027.13.con.0001",
+    "genome_name": "Nelson Bay orthoreovirus"
+   },
+   "PteropineOrthoreovirus.12.dna": {
+    "genome_ids": "419697.10.con.0001",
+    "genome_name": "Melaka orthoreovirus"
+   },
+   "PteropineOrthoreovirus.13.dna": {
+    "genome_ids": "1459003.35.con.0001",
+    "genome_name": "Pteropine orthoreovirus Garut-69"
+   },
+   "PteropineOrthoreovirus.2.dna": {
+    "genome_ids": "1109732.5.con.0001",
+    "genome_name": "Pteropine orthoreovirus Sikamat/MYS/2010"
+   },
+   "PteropineOrthoreovirus.3.dna": {
+    "genome_ids": "118027.11.con.0001",
+    "genome_name": "Nelson Bay orthoreovirus"
+   },
+   "PteropineOrthoreovirus.4.dna": {
+    "genome_ids": "1459003.166.con.0001",
+    "genome_name": "Pteropine orthoreovirus 12MYKLU1034"
+   },
+   "PteropineOrthoreovirus.5.dna": {
+    "genome_ids": "118027.20.con.0001",
+    "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+   },
+   "PteropineOrthoreovirus.6.dna": {
+    "genome_ids": "118027.21.con.0001",
+    "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+   },
+   "PteropineOrthoreovirus.7.dna": {
+    "genome_ids": "118027.22.con.0001",
+    "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+   },
+   "PteropineOrthoreovirus.8.dna": {
+    "genome_ids": "118027.23.con.0001",
+    "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+   },
+   "PteropineOrthoreovirus.9.dna": {
+    "genome_ids": "118027.25.con.0001",
+    "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+   }
+  },
+  "features": {
+   "LAMBDAA": {
+    "PMID_claude_generated": [
+     "36691929",
+     "21849518"
+    ],
+    "anno": "Core shell protein lambda A",
+    "bit_cutoff": 2019,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L1",
+    "kmers": 1,
+    "max_len": 1367,
+    "min_len": 1142,
+    "segment": "lambda A Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "LAMBDAB": {
+    "PMID_claude_generated": [
+     "36691929",
+     "21849518"
+    ],
+    "anno": "RNA-dependent RNA polymerase",
+    "bit_cutoff": 1932,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L2",
+    "kmers": 1,
+    "max_len": 1334,
+    "min_len": 1182,
+    "segment": "lambda B Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "LAMBDAC": {
+    "PMID_claude_generated": [
+     "36691929",
+     "21849518"
+    ],
+    "anno": "Capping enzyme lambda C",
+    "bit_cutoff": 1222,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L3",
+    "kmers": 1,
+    "max_len": 1358,
+    "min_len": 1200,
+    "segment": "lambda C Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "MUA": {
+    "PMID_claude_generated": [
+     "36691929",
+     "21849518"
+    ],
+    "anno": "Core protein mu A",
+    "bit_cutoff": 779,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M1",
+    "kmers": 1,
+    "max_len": 773,
+    "min_len": 644,
+    "segment": "mu A Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "MUB": {
+    "PMID_claude_generated": [
+     "36691929",
+     "21849518"
+    ],
+    "anno": "Outer capsid protein mu B",
+    "bit_cutoff": 1008,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M2",
+    "kmers": 1,
+    "max_len": 732,
+    "min_len": 597,
+    "segment": "mu B Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "MUNS": {
+    "PMID_claude_generated": [
+     "36691929",
+     "21849518"
+    ],
+    "anno": "Non-structural protein mu NS",
+    "bit_cutoff": 590,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M3",
+    "kmers": 1,
+    "max_len": 668,
+    "min_len": 565,
+    "segment": "mu NS Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "P10": {
+    "PMID_claude_generated": [
+     "36691929",
+     "11752152"
+    ],
+    "anno": "Fusion-associated small transmembrane protein p10",
+    "bit_cutoff": 113,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S1p10",
+    "kmers": 1,
+    "max_len": 100,
+    "min_len": 89,
+    "segment": "sigma C Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "P17": {
+    "PMID_claude_generated": [
+     "36691929",
+     "11752152"
+    ],
+    "anno": "Non-structural protein p17",
+    "bit_cutoff": 70,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S1p17",
+    "kmers": 1,
+    "max_len": 155,
+    "min_len": 131,
+    "segment": "sigma C Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMAA": {
+    "PMID_claude_generated": [
+     "36691929"
+    ],
+    "anno": "Core protein sigma A",
+    "bit_cutoff": 599,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S2",
+    "kmers": 1,
+    "max_len": 440,
+    "min_len": 373,
+    "segment": "sigma A Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMAB": {
+    "PMID_claude_generated": [
+     "36691929"
+    ],
+    "anno": "Outer capsid protein sigma B",
+    "bit_cutoff": 277,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S3",
+    "kmers": 1,
+    "max_len": 382,
+    "min_len": 328,
+    "segment": "sigma B Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMAC": {
+    "PMID_claude_generated": [
+     "36691929",
+     "11752152"
+    ],
+    "anno": "Cell attachment protein sigma C",
+    "bit_cutoff": 130,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S1",
+    "kmers": 1,
+    "max_len": 351,
+    "min_len": 303,
+    "segment": "sigma C Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMANS": {
+    "PMID_claude_generated": [
+     "36691929"
+    ],
+    "anno": "Non-structural protein sigma NS",
+    "bit_cutoff": 465,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S4",
+    "kmers": 1,
+    "max_len": 389,
+    "min_len": 329,
+    "segment": "sigma NS Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "lambda A Segment": {
+    "max_len": 4547,
+    "min_len": 3360,
+    "replicon_geometry": "linear"
+   },
+   "lambda B Segment": {
+    "max_len": 4406,
+    "min_len": 3257,
+    "replicon_geometry": "linear"
+   },
+   "lambda C Segment": {
+    "max_len": 4480,
+    "min_len": 3311,
+    "replicon_geometry": "linear"
+   },
+   "mu A Segment": {
+    "max_len": 2639,
+    "min_len": 1950,
+    "replicon_geometry": "linear"
+   },
+   "mu B Segment": {
+    "max_len": 2466,
+    "min_len": 1823,
+    "replicon_geometry": "linear"
+   },
+   "mu NS Segment": {
+    "max_len": 2281,
+    "min_len": 1686,
+    "replicon_geometry": "linear"
+   },
+   "sigma A Segment": {
+    "max_len": 1520,
+    "min_len": 1123,
+    "replicon_geometry": "linear"
+   },
+   "sigma B Segment": {
+    "max_len": 1361,
+    "min_len": 1006,
+    "replicon_geometry": "linear"
+   },
+   "sigma C Segment": {
+    "max_len": 1843,
+    "min_len": 1362,
+    "replicon_geometry": "linear"
+   },
+   "sigma NS Segment": {
+    "max_len": 1370,
+    "min_len": 1013,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

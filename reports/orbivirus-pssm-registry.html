@@ -1,0 +1,175 @@
+<title>Orbivirus PSSM Registry</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926;
+  }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:1120px; margin:0 auto; padding:40px 22px 72px; display:flex; flex-direction:column; gap:30px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  .stand { max-width:70ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .stand b { color:var(--ink); font-weight:600; }
+
+  .figs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-top:1px solid var(--base); border-bottom:1px solid var(--grid); }
+  .fig { padding:13px 16px 13px 0; }
+  .fig+.fig { padding-left:16px; border-left:1px solid var(--grid); }
+  .fig .n { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:23px; font-weight:500; display:block; letter-spacing:-.02em; }
+  .fig .k { font-size:12px; color:var(--ink2); }
+
+  .bar { display:flex; height:10px; border-radius:2px; overflow:hidden; gap:2px; background:transparent; }
+  .bar i,.bar b { display:block; height:10px; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; font-size:12.5px; color:var(--ink2); align-items:center; }
+  .legend span { display:inline-flex; gap:6px; align-items:center; }
+  .sw { width:10px; height:10px; border-radius:2px; }
+
+  .ctrl { display:flex; gap:7px; flex-wrap:wrap; align-items:center; }
+  .ctrl button { font-family:var(--sans); font-size:12.5px; padding:5px 11px; border-radius:3px;
+    border:1px solid var(--hair); background:var(--surface); color:var(--ink2); cursor:pointer; }
+  .ctrl button[aria-pressed="true"] { background:var(--ink); color:var(--plane); border-color:var(--ink); }
+  .ctrl button:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+
+  .tax { display:flex; flex-direction:column; gap:9px; }
+  .taxhd { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; border-bottom:1px solid var(--base); padding-bottom:7px; }
+  .taxhd h2 { font-family:var(--serif); font-weight:600; font-size:20px; margin:0; }
+  .taxmeta { display:flex; gap:14px; font-family:var(--mono); font-size:11.5px; color:var(--muted); flex-wrap:wrap; }
+  .taxmeta b { color:var(--ink2); font-weight:500; }
+  .taxnote { margin:0; font-size:13.5px; color:var(--ink2); max-width:82ch; }
+
+  .tw { overflow-x:auto; border:1px solid var(--hair); border-radius:4px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { padding:7px 11px; text-align:left; border-bottom:1px solid var(--grid); vertical-align:top; }
+  thead th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted);
+    font-weight:500; white-space:nowrap; position:sticky; top:0; background:var(--surface); }
+  tbody tr:last-child td { border-bottom:0; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.anno { min-width:19ch; }
+  td.anno .why { display:block; margin-top:3px; font-size:12.5px;
+                 line-height:1.45; color:var(--muted); max-width:62ch; }
+  td.m { font-family:var(--mono); color:var(--ink2); white-space:nowrap; }
+  td.ty { font-size:11.5px; color:var(--muted); }
+  .num, td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  td.pss code { font-family:var(--mono); font-size:11px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .dash { color:var(--muted); }
+  .nd { color:var(--missed); font-size:13px; }
+
+  .covcell { white-space:nowrap; min-width:110px; }
+  .cov { display:inline-flex; width:74px; height:9px; border-radius:2px; overflow:hidden; gap:2px; vertical-align:middle; }
+  .cov i { background:var(--built); } .cov b { background:var(--missed); }
+  .covn { font-family:var(--mono); font-size:11px; color:var(--ink2); margin-left:7px; font-variant-numeric:tabular-nums; }
+
+  .chip { font-family:var(--mono); font-size:10.5px; padding:2px 7px; border-radius:9px; white-space:nowrap;
+    border:1px solid var(--hair); color:var(--ink2); }
+  .chip.s-built { border-color:var(--built); color:var(--built); }
+  .chip.s-derived { border-color:var(--base); color:var(--ink2); }
+  .chip.s-too-few { border-color:var(--missed); color:var(--missed); }
+  .chip.s-no-collection { color:var(--muted); }
+
+  .gap { border-left:2px solid var(--missed); padding:3px 0 3px 15px; max-width:84ch; }
+  .gap h2 { font-family:var(--serif); font-size:19px; margin:0 0 5px; }
+  .gap p { margin:0 0 10px; font-size:14px; color:var(--ink2); }
+  .gap p:last-of-type { margin-bottom:14px; }
+  .keys code { font-family:var(--mono); font-size:10.5px; background:var(--grid); color:var(--ink2);
+    padding:1px 4px; border-radius:2px; margin:0 2px 2px 0; display:inline-block; }
+  .src { font-size:12px; color:var(--muted); border-top:1px solid var(--grid); padding-top:13px; }
+  .src code { font-family:var(--mono); }
+  @media (max-width:760px) { .figs { grid-template-columns:repeat(2,1fr); } h1 { font-size:25px; } }
+</style>
+<div class="wrap">
+ <header>
+  <div class="eyebrow">LowVan &middot; Orbivirus module &middot; 13 October 2026</div>
+  <h1>Orbivirus</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">Annotation strings and the PSSMs that call them</h2>
+  <p class="stand">399 position-specific scoring matrices behind the twelve declared features of the Orbivirus module. Each row is one feature: the collection it was built from, how many profiles that collection yielded, and why the number is what it is.</p>
+ </header>
+ <div class="figs">
+  <div class="fig"><span class="n">399</span><span class="k">PSSMs built</span></div>
+  <div class="fig"><span class="n">12/12</span><span class="k">features with a profile</span></div>
+  <div class="fig"><span class="n">12</span><span class="k">of 12 annotation strings reachable</span></div>
+  <div class="fig"><span class="n">100%</span><span class="k">median per-feature call rate</span></div>
+  <div class="fig"><span class="n">0</span><span class="k">features unsatisfiable</span></div>
+ </div>
+ <div class="legend">
+  <span><i class="sw" style="background:var(--built)"></i> callable by its own module</span>
+  <span><i class="sw" style="background:var(--missed)"></i> in the collection but not called</span>
+  <span><i class="nd">&#9702;</i> non-default build parameters (0)</span>
+ </div>
+ <div class="ctrl"><span class="eyebrow" style="margin-right:4px">show</span>
+  <button aria-pressed="true" data-f="all">all 12</button>
+  <button aria-pressed="false" data-f="built">built (12)</button>
+  <button aria-pressed="false" data-f="gap">gaps (0)</button>
+  <button aria-pressed="false" data-f="derived">derived (0)</button>
+ </div>
+<section class="tax">
+ <div class="taxhd"><h2>Orbivirus</h2><span class="taxmeta">12 of 12 features built &middot; 399 PSSMs &middot; 99% callable</span></div>
+<p class="taxnote">One module for the whole genus, and it was measured rather than assumed. All eighteen virus groups in this dump &mdash; <i>Culicoides</i>-borne (bluetongue, African horse sickness, epizootic haemorrhagic disease, equine encephalosis, Palyam) and tick-borne (Kemerovo, Tribec, Great Island, Wad Medani, St Croix River) alike &mdash; carry the same ten segments encoding VP1&ndash;VP7 and NS1&ndash;NS3. Bluetongue virus is 64% of the dump, which is why every length window here is explicit rather than taken from a pooled median.</p>
+ <div class="tw"><table><thead><tr><th>Key</th><th>Annotation string</th><th>Gene</th><th>Type</th><th class="num">Bit</th><th class="num">Length</th><th class="num">Seqs</th><th>PSSMs</th><th>Callable</th><th>Status</th></tr></thead>
+ <tbody><tr data-status="built"><td class="k">NS1</td><td class="anno">Non-structural protein NS1, tubule protein<span class="why">Tubule protein, segment 5. Forms the characteristic orbivirus cytoplasmic tubules; the source string <code>tubule protein</code> was adopted by the homology rescue.</span></td><td class="m">NS1</td><td class="m ty">CDS</td><td class="m num">80</td><td class="m num">405&ndash;652</td><td class="m num">1103</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>34</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1002 of 1002 in-range sequences callable; 1103 of 1103 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS2</td><td class="anno">Non-structural protein NS2, inclusion body protein<span class="why">Inclusion body protein, segment 8 &mdash; the ssRNA-binding phosphoprotein that nucleates viral inclusion bodies. <b>This, not VP6, is what the source means by <code>RNA helicase</code></b>, 169 occurrences against VP6's 17.</span></td><td class="m">NS2</td><td class="m ty">CDS</td><td class="m num">60</td><td class="m num">248&ndash;489</td><td class="m num">980</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14_1</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>34</code> <code>35</code> <code>36</code> <code>37</code> <code>38</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="968 of 968 in-range sequences callable; 980 of 980 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS3</td><td class="anno">Non-structural protein NS3, viroporin<span class="why">Viroporin, segment 10, mediating non-lytic egress. The declared profile also covers NS3A, the same ORF translated from its second in-frame AUG and about 13 residues shorter.</span></td><td class="m">NS3</td><td class="m ty">CDS</td><td class="m num">35</td><td class="m num">158&ndash;279</td><td class="m num">1220</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>34</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1145 of 1145 in-range sequences callable; 1220 of 1220 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS4</td><td class="anno">Non-structural protein NS4, interferon antagonist<span class="why">Interferon antagonist, an out-of-frame ORF inside VP6 on segment 9. Length varies three-fold across the genus &mdash; 76 residues in BTV, 154 in AHSV, 238 in the unclassified groups &mdash; which is why its window runs 69&ndash;294. Not declared essential: 78.9% of routed exemplars.</span></td><td class="m">NS4</td><td class="m ty">CDS</td><td class="m num">40</td><td class="m num">69&ndash;294</td><td class="m num">145</td><td class="pss"><code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>1_1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="132 of 142 in-range sequences callable; 134 of 145 including length-outliers"><i style="width:92.96%"></i><b style="width:7.04%"></b></div><span class="covn">93%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">NS5</td><td class="anno">Non-structural protein NS5<span class="why">A +1 overlapping ORF inside NS3 on segment 10, 50&ndash;59 residues, nucleolar. Real but almost entirely a bluetongue observation: 289 BTV records in this dump against 2 EHDV and 1 Kemerovo. Called in 54.6% of routed exemplars and 12.5% of the group-weighted panel, so it is not declared essential.</span></td><td class="m">NS5</td><td class="m ty">CDS</td><td class="m num">40</td><td class="m num">45&ndash;65</td><td class="m num">87</td><td class="pss"><code>1</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code></td><td class="covcell"><div class="cov" title="84 of 87 in-range sequences callable"><i style="width:96.55%"></i><b style="width:3.45%"></b></div><span class="covn">97%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP1</td><td class="anno">RNA-dependent RNA polymerase<span class="why">The RNA-dependent RNA polymerase, segment 1, and the most conserved protein in the genus &mdash; a single 637-member cluster covers half the collection. Declared with the gene symbol RDRP and the same annotation string as the rotavirus polymerase, so the name means one thing across the project.</span></td><td class="m">RDRP</td><td class="m ty">CDS</td><td class="m num">280</td><td class="m num">994&ndash;1410</td><td class="m num">1494</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1279 of 1279 in-range sequences callable; 1413 of 1494 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP2</td><td class="anno">Outer capsid protein VP2<span class="why">Outer capsid protein and the serotype determinant, segment 2. The widest length window in the module (684&ndash;1380) and the most profiles after none: AHSV VP2 is 1,056 residues against BTV's 957 and Changuinola's 1,197. <b>It is also the one feature that is not a single homology group across this genus</b> &mdash; see the derived note below.</span></td><td class="m">VP2</td><td class="m ty">CDS</td><td class="m num">60</td><td class="m num">684&ndash;1283</td><td class="m num">1902</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>34</code> <code>35</code> <code>36</code> <code>37</code> <code>38</code> <code>39</code> <code>4</code> <code>40</code> <code>41</code> <code>42</code> <code>43</code> <code>44</code> <code>45</code> <code>46</code> <code>47</code> <code>48</code> <code>49</code> <code>5</code> <code>50</code> <code>51</code> <code>52</code> <code>53</code> <code>54</code> <code>55</code> <code>56</code> <code>57</code> <code>58</code> <code>59</code> <code>6</code> <code>60</code> <code>61</code> <code>62</code> <code>63</code> <code>64</code> <code>65</code> <code>66</code> <code>67</code> <code>68</code> <code>69</code> <code>7</code> <code>70</code> <code>71</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1494 of 1499 in-range sequences callable; 1879 of 1902 including length-outliers"><i style="width:99.67%"></i><b style="width:0.33%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP3</td><td class="anno">Subcore shell protein VP3<span class="why">Subcore shell protein, segment 3. Shares weak similarity with VP2 and was the target of the contamination audit: 79 sequences carried swapped VP2/VP3 labels at source.</span></td><td class="m">VP3</td><td class="m ty">CDS</td><td class="m num">60</td><td class="m num">682&ndash;1039</td><td class="m num">1129</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>4</code> <code>5</code> <code>6_1</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="980 of 987 in-range sequences callable; 1122 of 1129 including length-outliers"><i style="width:99.29%"></i><b style="width:0.71%"></b></div><span class="covn">99%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP4</td><td class="anno">Capping enzyme VP4<span class="why">The capping enzyme, segment 4 &mdash; guanylyltransferase and methyltransferase in one chain. <code>RNA capping and methylase protein</code> was the only descriptive synonym in the whole dump clean enough to bind by rule, 160 occurrences and not one of them anything else.</span></td><td class="m">VP4</td><td class="m ty">CDS</td><td class="m num">60</td><td class="m num">474&ndash;703</td><td class="m num">1202</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1154 of 1158 in-range sequences callable; 1197 of 1202 including length-outliers"><i style="width:99.65%"></i><b style="width:0.35%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP5</td><td class="anno">Outer capsid protein VP5<span class="why">Outer capsid protein, segment 6; drives membrane penetration after VP2 binds.</span></td><td class="m">VP5</td><td class="m ty">CDS</td><td class="m num">125</td><td class="m num">379&ndash;596</td><td class="m num">1041</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>33</code> <code>34</code> <code>35</code> <code>36</code> <code>37</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1000 of 1000 in-range sequences callable; 1041 of 1041 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP6</td><td class="anno">Helicase VP6<span class="why">The helicase, segment 9, overlapping NS4. Note that <code>RNA helicase</code> in the source does NOT mean this protein &mdash; see the module note.</span></td><td class="m">VP6</td><td class="m ty">CDS</td><td class="m num">60</td><td class="m num">203&ndash;393</td><td class="m num">1360</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>29</code> <code>3</code> <code>30</code> <code>31</code> <code>32</code> <code>34</code> <code>35</code> <code>36</code> <code>37</code> <code>38</code> <code>39</code> <code>4</code> <code>40</code> <code>41</code> <code>42</code> <code>43</code> <code>44</code> <code>45</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="1329 of 1330 in-range sequences callable; 1359 of 1360 including length-outliers"><i style="width:99.92%"></i><b style="width:0.08%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">VP7</td><td class="anno">Core surface protein VP7<span class="why">Core surface protein, segment 7, and the serogroup antigen on which orbivirus classification rests. The smallest collection of the seven structural proteins but the cleanest: 595 of 595 callable.</span></td><td class="m">VP7</td><td class="m ty">CDS</td><td class="m num">75</td><td class="m num">262&ndash;401</td><td class="m num">649</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>18</code> <code>19</code> <code>2</code> <code>20</code> <code>21</code> <code>22</code> <code>23</code> <code>24</code> <code>25</code> <code>26</code> <code>27</code> <code>28</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="595 of 595 in-range sequences callable; 649 of 649 including length-outliers"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr></tbody></table></div>
+</section>
+ <section class="gap">
+  <h2>What was missed, and why</h2>
+  <p>Three features fall short of the 85% threshold that earns <code>copy_num</code>, and none of them is a profile problem. NS5 (54.6%) is a bluetongue protein that other orbiviruses largely do not encode. NS4 (78.9%) is lineage-patchy and three-fold variable in length. VP2 (77.5% on the group-weighted panel, 100% on the BTV-dominated coverage exemplars) is the homology split described above. The gap between those two VP2 numbers is itself the finding: a panel drawn in proportion to the dump would have been almost all bluetongue and would have reported VP2 at 100% while testing nothing.</p>
+  <div class="tw"><table><thead><tr><th>Module</th><th class="num">Features</th><th>Keys with no collection</th></tr></thead>
+  <tbody><tr><td colspan="3" class="dash">none</td></tr></tbody></table></div>
+  <p style="margin-top:14px"><b>0 features have a collection too small to profile.</b></p>
+  <div class="tw"><table><thead><tr><th>Module</th><th>Feature</th><th class="num">Seqs</th><th>Why not buildable</th></tr></thead>
+  <tbody><tr><td colspan="4" class="dash">none</td></tr></tbody></table></div>
+  <p style="margin-top:14px">There are no derived features in this module &mdash; no cleaved precursor, no mature peptide. What there is instead is a feature that is not one homology group. <b>VP2 is called in every <i>Culicoides</i>-borne orbivirus and in none of the tick-borne ones.</b> All nine panel genomes lacking a VP2 call are Kemerovo, Tribec, St Croix River, Wad Medani or Umatilla, and their VP2 records align to the bluetongue canonical at 24&ndash;33% identity over 33&ndash;88 residues, bitscores of 17&ndash;36 &mdash; which is to say not at all. VP2 is a positional label that spans two protein families, exactly the trap the U-number rule warns about, and it is why VP2 carries no <code>copy_num</code>.</p>
+ </section>
+ <div class="src">Generated from <code>Orbivirus_Viral_PSSM.json</code> and the built
+ <code>Alignments/&lt;Module&gt;/&lt;Feature&gt;/pssms/</code> trees by <code>collect_registry.py</code> and
+ <code>gen_registry.py</code>. Callable measured by running each feature&rsquo;s own PSSMs back against its own
+ collection with <code>psiblast -in_pssm</code> and testing every sequence against that feature&rsquo;s
+ <code>bit_cutoff</code> &mdash; self-recall, a floor rather than a validation. PSSM labels are cluster ids;
+ files are <code>&lt;Module&gt;.&lt;Feature&gt;.&lt;cluster&gt;.pssm</code>.</div>
+</div>
+<script>
+ var btns=[].slice.call(document.querySelectorAll('.ctrl button'));
+ btns.forEach(function(b){
+   b.addEventListener('click',function(){
+     btns.forEach(function(x){x.setAttribute('aria-pressed', x===b ? 'true':'false');});
+     var f=b.getAttribute('data-f');
+     document.querySelectorAll('tbody tr').forEach(function(tr){
+       var s=tr.getAttribute('data-status'), show;
+       if(f==='all') show=true;
+       else if(f==='gap') show=(s==='no-collection'||s==='too-few');
+       else show=(s===f);
+       tr.hidden=!show;
+     });
+     document.querySelectorAll('section.tax').forEach(function(sec){
+       var any=[].slice.call(sec.querySelectorAll('tbody tr')).some(function(t){return !t.hidden;});
+       sec.hidden=!any;
+     });
+   });
+ });
+</script>

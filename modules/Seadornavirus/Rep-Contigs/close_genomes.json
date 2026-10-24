@@ -1,0 +1,26 @@
+{
+ "Seadornavirus.1.dna": {
+  "genome_ids": "104580.100",
+  "genome_name": "Kadipiro virus KDV/SD21399"
+ },
+ "Seadornavirus.2.dna": {
+  "genome_ids": "1766829.10",
+  "genome_name": "Mangshi virus DH13M041"
+ },
+ "Seadornavirus.3.dna": {
+  "genome_ids": "246280.10",
+  "genome_name": "Liao ning virus LNSV-NE97-31"
+ },
+ "Seadornavirus.4.dna": {
+  "genome_ids": "77763.131",
+  "genome_name": "Banna virus SC043"
+ },
+ "Seadornavirus.5.dna": {
+  "genome_ids": "1766829.15",
+  "genome_name": "Mangshi virus AH-F1"
+ },
+ "Seadornavirus.6.dna": {
+  "genome_ids": "77763.143",
+  "genome_name": "Banna virus QTM104536"
+ }
+}

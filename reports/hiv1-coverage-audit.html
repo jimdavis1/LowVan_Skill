@@ -1,0 +1,151 @@
+<title>HIV-1 Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; HIV1 module &middot; 22 October 2026</div><h1>HIV-1</h1><p class="stand">Nine genes on one 9.7 kb provirus, all nine of which this module now calls. The largest population any module here is built from, the first whose nearest relative is its own ancestor, and the first where a tenth of the deposited genomes have no genes left to find.</p><div class="tiles"><div class="tile"><div class="v">9</div><div class="l">features, all callable</div></div><div class="tile"><div class="v">763</div><div class="l">PSSMs + 1,064 splice refs</div></div><div class="tile"><div class="v">30,530</div><div class="l">genomes</div></div><div class="tile"><div class="v">99.5%</div><div class="l">of 30,434 genomes routed</div></div><div class="tile"><div class="v">16/24</div><div class="l">panel isolates with all seven profiles</div></div><div class="tile"><div class="v">75% / 71%</div><div class="l">tat / rev exact on held-out genomes</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One module, settled on gene layout rather than distance.</p><p class="note">HIV-1 is a 9.7 kb plus-strand RNA genome, deposited almost entirely as proviral DNA. BV-BRC holds <b>1,212,379</b> Lentivirus records, but 93.5% are under 3 kb &mdash; drug-resistance surveillance amplicons &mdash; against <b>31,854</b> at 8 kb or more. Those whole genomes are the module's material, and 30,530 of them are HIV-1.</p><pre class="mono">gag     498 aa   Gag polyprotein (MA-CA-NC-p6)        CALLED
+pol    1003 aa   Pol polyprotein (PR-RT-RNaseH-IN)    CALLED
+vif     192 aa   virion infectivity factor            CALLED
+vpr      96 aa   viral protein R                      CALLED
+vpu      81 aa   viral protein U                      CALLED
+env     857 aa   gp160 envelope glycoprotein          CALLED
+nef     207 aa   negative factor                      CALLED
+tat     101 aa   transactivator       SPLICED         CALLED  -- see 05
+rev     116 aa   regulator            SPLICED         CALLED  -- see 05</pre><div class="verdict"><b>HIV-1 and HIV-2/SIV are separate modules on gene layout, not on distance.</b> Measured across genomes carrying annotated features, HIV-1 has <b>vpu</b> in 97% and no vpx; HIV-2 has <b>vpx</b> in 96% and no vpu. One accessory gene swapped is a layout difference, which is this project's partitioning rule.</div><p class="note"><b>Groups M, N, O and P hold together as one module.</b> Subtype is not recoverable from the names &mdash; only 17 of 30,530 records carry one &mdash; so this was settled on sequence and on the reference budget: <b>25 references route 30,269 of 30,434 genomes, 99.5%</b>. 165 genomes across 144 clusters do not route and are a documented gap.</p></section><section><h2><span class="num">02</span>Which genes a profile can call</h2><p class="lede">Measured by tblastn against each protein's own genome, not assumed.</p><pre class="mono">pol   ONE HSP   1-1003 -&gt; 1448-4456  frame 2  100%   COLLINEAR
+env   ONE HSP   1- 853 -&gt; 5599-8157  frame 1  100%   COLLINEAR
+gag   ONE HSP   1- 500 -&gt;  153-1652  frame 3  100%   COLLINEAR
+tat   TWO HSPs  1-72 -&gt; 5196-5411 | 72-101 -&gt; 7742-7831   SPLICED
+rev   TWO HSPs  1-26 -&gt; 5335-5412 | 25-116 -&gt; 7740-8015   SPLICED</pre><div class="verdict"><b>Pol is collinear, which is not the obvious guess.</b> Pol is only ever translated as part of a Gag-Pol fusion reached by a &minus;1 ribosomal frameshift, so it has no start codon of its own &mdash; the first residue is phenylalanine, not methionine. But the Pol portion is a clean uninterrupted ORF in its own frame, so an ordinary profile calls it. What it needs is <code>upstream_ext: 0</code>: there is no Met to scan back to, and scanning would wander into gag's overlap in a different frame.</div><p class="note">This is why <b>POL fails the Met-start gate and must not be "fixed"</b>. Both POL alignments begin with <code>FFRENLAFQQ...</code> because Pol starts at the frameshift. Following the gate's generic remedy would discard 9,513 sequences and destroy the feature. The gate is right to flag it; the remedy does not apply.</p><p class="note">The <b>Gag-Pol fusion is deliberately not declared</b>. It is a real product, but the database overwhelmingly represents the two processed units &mdash; 16,250 gag and 16,480 pol against 60 fusions &mdash; and declaring GAG, POL and GAGPOL would nest three features inside one another for no gain. The GAG length window keeps fusions out; the string is recorded in NOT_MODELLED rather than dropped silently.</p></section><section><h2><span class="num">03</span>A tenth of the genomes have no genes to find</h2><p class="lede">The most consequential property of this dataset, and nothing can annotate around it.</p><div class="verdict warn"><b>10.5% of near-full-length HIV-1 deposits carry no open reading frame longer than 400 aa.</b> Measured over a 531-genome sample: 475 intact, 56 with nothing callable. The cause is visible in the base composition &mdash; median A/G is <b>1.90</b> in that group against <b>1.51</b> in the intact one, the signature of APOBEC3G-mediated G&rarr;A hypermutation riddling the provirus with premature stop codons.</div><p class="note">These are genuine records, not corrupt ones: they are proviral DNA sequenced from patients, and defective proviruses are a real and well-documented majority of the integrated HIV-1 reservoir. But the genes are not there to call, and no annotation tool can produce them. It also explains a figure that looks wrong at first sight &mdash; the dump's median genome length is 8,954 nt against HIV-1's 9,719.</p><p class="note">The same effect appears gene by gene as well as genome-wide. <b>Three of the 19 intact panel genomes have a defective pol</b> while the rest of the genome is callable: their longest ORF in the pol region is 575&ndash;599 aa against the ~1,003 required. That is why POL is the one feature without <code>copy_num</code> &mdash; it is called on 84.2% of intact panel genomes, just under the 85% threshold, and the shortfall is the data rather than the profiles.</p></section><section><h2><span class="num">04</span>Where the cutoffs sit, and why none of them separate</h2><p class="lede">The first module here whose nearest relative is the virus it descended from.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit</th><th>aa range</th><th>PSSMs</th><th>copy_num</th></tr></thead><tbody><tr><td>GAG</td><td>834</td><td>432&ndash;571</td><td>20</td><td>yes</td></tr><tr><td>POL</td><td>1500</td><td>894&ndash;1099</td><td>2</td><td>no</td></tr><tr><td>VIF</td><td>340</td><td>161&ndash;222</td><td>21</td><td>yes</td></tr><tr><td>VPR</td><td>141</td><td>78&ndash;118</td><td>3</td><td>yes</td></tr><tr><td>VPU</td><td>106</td><td>61&ndash;98</td><td>305</td><td>yes</td></tr><tr><td>ENV</td><td>1350</td><td>752&ndash;954</td><td>294</td><td>yes</td></tr><tr><td>NEF</td><td>319</td><td>173&ndash;244</td><td>118</td><td>yes</td></tr><tr><td>TAT</td><td>&mdash; (splice)</td><td>82&ndash;115</td><td>495 refs</td><td>no</td></tr><tr><td>REV</td><td>&mdash; (splice)</td><td>90&ndash;130</td><td>569 refs</td><td>no</td></tr></tbody></table></div><div class="verdict warn"><b>No feature separates from the other lentiviruses by score, and that is a statement about the virus.</b> HIV-1 groups M and N descend from SIVcpz and groups O and P from SIVgor; SHIV constructs carry HIV-1 genes by design. Every other module in this project has an outgroup below 60% identity. Here the nearest neighbours are ancestors.</div><div class="scroll"><table><thead><tr><th>feature</th><th>member p05</th><th>max foreign</th><th>set by</th></tr></thead><tbody><tr><td>ENV</td><td>1500</td><td>2043</td><td>SHIV E19.2B08</td></tr><tr><td>GAG</td><td>927</td><td>1039</td><td>SIV</td></tr><tr><td>POL</td><td>1667</td><td>2226</td><td>SIV LB715</td></tr><tr><td>VIF</td><td>378</td><td>464</td><td>SIVcpzMB66</td></tr><tr><td>VPR</td><td>157</td><td>199</td><td>SIVgor-BPID1</td></tr><tr><td>VPU</td><td>118</td><td>181</td><td>SHIV CH0694</td></tr><tr><td>NEF</td><td>354</td><td>462</td><td>HIV, unclassified</td></tr></tbody></table></div><p class="note">Cutoffs are therefore the documented fallback, <b>0.9 &times; the 5th-percentile member score</b> rather than 0.9 &times; the single weakest member. At this scale that distinction matters: VPU's absolute weakest member scores <b>28 bits</b> for an 81-residue protein &mdash; one partial-match artefact among 8,482 sequences &mdash; against a 5th percentile of 118. <b>Routing is the defence</b>, and it is a strong one here: the 25 references cover 99.5% of HIV-1 genomes, so an SIVcpz genome does not reach these profiles.</p></section><section><h2><span class="num">05</span>How tat and rev are called</h2><p class="lede">Two spliced genes, declared after four defects were fixed &mdash; three of them in shared code.</p><p class="note">tat and rev are each spliced from two exons about 2.3 kb apart and share one junction, <b>D4&nbsp;&rarr;&nbsp;A7</b> (HXB2 6045&nbsp;&rarr;&nbsp;8379), so one donor/acceptor vocabulary serves both. The kit calls such features from curated references rather than a profile, matching the influenza convention exactly: an 11&nbsp;nt donor window (3 exonic + GT + 6 intronic) and a 14&nbsp;nt acceptor window (12 intronic + AG + 2 exonic), recorded in the FASTA header as <code>SD:start-end;last_nt</code> and <code>SA:start-end;first_nt</code>.</p><div class="verdict warn"><b>An earlier build declared these uncallable, and that was wrong.</b> The reference set had been chosen by clustering tat at 85% identity and keeping one representative per cluster &mdash; maximally diverse, which is precisely the wrong sampling for an exact-match vocabulary. Measured against the population instead, a single donor motif covers <b>83%</b> of genomes and both vocabularies saturate, exactly as influenza's do.</div><p class="note">Four defects stood between the references and a call. <b>The threshold:</b> <code>get_splice_variant_features.pl</code> required 95% identity, which admits only 41.8% of HIV-1 genomes and cannot be fixed by adding references &mdash; 58% have no 95% partner anywhere in the population, because inter-subtype divergence is genuinely 10&ndash;15%. <code>splice_id</code> and <code>splice_cov</code> are now read per module from the JSON, defaulting to 95/95 so no existing module moves; HIV-1 is set to <b>85/95</b>.</p><p class="note"><b>The real blocker was a coordinate bug.</b> The caller computed <code>$rel_sd_start = $sd_start - $qfrom</code> &mdash; plain arithmetic into the <i>gapped</i> alignment strings. Every gap in the query before a splice site shifted the extracted motif by one column and the lookup failed. On one measured pair, 8 query gaps before the acceptor yielded <code>ACTCACCTTTGTCT</code> where the gap-aware walk gives <code>TTGTCTTTCCAGAC</code>, which is in the vocabulary. The mapping now walks the query; with a gapless alignment it reduces to the old arithmetic, so influenza is untouched.</p><p class="note"><b>Two smaller fixes.</b> A subject carrying an IUPAC ambiguity code inside the window could never match a hash of unambiguous references &mdash; roughly 1.3% of genomes, 92 of 100 with a single ambiguous position; the lookup now accepts any resolution that is a known site. And a feature declared with no reference file used to abort the <i>entire</i> genome, because the failed copy left an empty file that killed the JSON parse; it now warns and skips that feature.</p><div class="verdict"><b>495 tat and 569 rev references ship, one per distinct motif pair.</b> Each is anchored on its genome's own start codon, permits the donor to split a codon (tat exon 1 is 215&nbsp;nt), and was kept only if its spliced translation reproduced the deposited protein exactly. Verified with the real annotator on genomes contributing no reference: <b>tat 75.0% and rev 70.5% exact</b>, 1&ndash;3% disagreeing by an indel at the junction. Influenza M2 regression: 12/12 at 95/95.</div></section><section><h2><span class="num">06</span>Does it call the proteins?</h2><p class="lede">Twenty-four genomes, none of them references.</p><div class="verdict"><b>16 of 24 panel isolates receive all seven profile features and three more receive six</b>, with <b>no feature called twice anywhere</b>. vpu is called on 23 of 24, env, gag, nef and vif on 19, vpr on 20. tat and rev are scored separately in &sect;05, against genomes that contributed no reference.</div><p class="note">The five isolates that receive one or two features are the defective proviruses of &sect;03 &mdash; A/G ratios of 1.82&ndash;2.14 and no ORF above 228 aa. They are not module failures; there is nothing in them to call. Measured against genomes that have intact genes, six of the seven features are called on <b>100%</b> and pol on 84.2%.</p><p class="note">Self-recall against each feature's own in-range collection and cross-feature contamination are reported in the PSSM registry. <code>copy_num</code> is set on six features, measured on the 19 panel genomes with intact genes.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Five limits, each measured.</p><p class="note"><b>About a quarter of genomes still get no tat or rev call</b> &mdash; see &sect;05. The blastn gate passes on 91&ndash;94% of them, so the residue fails the motif lookup, and the vocabulary is <i>saturated</i>: building references from 6,154 genomes grew it only from 47 to 54 donors and 138 to 158 acceptors. More references will not close it; those genomes are using junctions this convention does not describe.</p><p class="note"><b>No feature can be told from SIVcpz, SIVgor or SHIV by score</b> &mdash; see &sect;04. The module depends on routing to keep those genomes away, and 165 genomes in 144 clusters do not route at all.</p><p class="note"><b>Roughly a tenth of the input is uncallable by construction</b> &mdash; see &sect;03.</p><p class="note"><b>The module is group-M centric by weight.</b> 30,530 genomes are dominated by the pandemic group, so the profiles are densest there. Groups N, O and P route (the reference set reaches 99.5%) but are represented in the collections only in proportion to their deposition, which is slight.</p><p class="note"><b>95 records carrying no cytosine were excluded automatically</b>, all described "Modified Microbial Nucleic Acid." The guard that caught them was written for Coltivirus, where 48 such records had captured 10 of 25 reference slots and inflated routing to a false 93.4%.</p></section><section><h2><span class="num">08</span>What the vocabulary bought</h2><p class="lede">Nine proteins, 204 ways of saying so.</p><p class="note"><b>204 distinct annotation strings</b> across <b>159,079</b> protein occurrences collapse onto <b>9 controlled annotations</b> &mdash; a <b>22.7&times;</b> reduction. Adding tat and rev moved 10 strings from the unbound pile into features without adding any new ones, so the distinct count is unchanged and the ratio falls as the annotation count rises. HIV-1 is deposited by thousands of submitters over four decades, and the vocabulary shows it: 84 strings still bind to nothing.</p><div class="verdict warn"><b>BV-BRC spells HIV-1 at least four ways</b>, and that cost real time. <code>Human immunodeficiency virus 1 ...</code> (30,530 records), <code>HIV-1 ...</code> (10), <code>Human immunodeficiency virus type 1 ...</code>, and bare <code>Human immunodeficiency virus</code> under a separate taxon whose pol is 92&ndash;99% identical to HIV-1. A name-keyed subset missed the last two, so HIV-1 protein sat in the foreign set and pushed every cutoff above the module's own members. The lesson is the one Pteropine taught: <b>kin is decided by sequence, never by name</b>.</div></section><p class="src">Measured from the shipped module: HIV1 block of Viral_PSSM.json, 763 PSSMs, 25 reference contigs, and 495 tat / 569 rev splice references. Splice figures are from the real get_splice_variant_features.pl run against GTOs built from genomes that contributed no reference, scored by exact agreement with the deposited protein.</p></div>

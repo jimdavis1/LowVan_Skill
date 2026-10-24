@@ -1,0 +1,134 @@
+{
+ "MammalianOrthoreovirus.1.dna": {
+  "genome_ids": "2558258.89.con.0001",
+  "genome_name": "Orthoreovirus sp. GJGZ/14505"
+ },
+ "MammalianOrthoreovirus.10.dna": {
+  "genome_ids": "351073.992.con.0001",
+  "genome_name": "Mammalian orthoreovirus BatMRV2/SNU1/Korea/2021"
+ },
+ "MammalianOrthoreovirus.11.dna": {
+  "genome_ids": "226613.106.con.0001",
+  "genome_name": "Reptilian orthoreovirus KP3"
+ },
+ "MammalianOrthoreovirus.12.dna": {
+  "genome_ids": "253454.13.con.0001",
+  "genome_name": "Pulau reovirus"
+ },
+ "MammalianOrthoreovirus.13.dna": {
+  "genome_ids": "3422298.5.con.0001",
+  "genome_name": "Orthoreovirus mammalis HBJM98/CHN/2022"
+ },
+ "MammalianOrthoreovirus.14.dna": {
+  "genome_ids": "226613.27.con.0001",
+  "genome_name": "Reptilian orthoreovirus 47/02"
+ },
+ "MammalianOrthoreovirus.15.dna": {
+  "genome_ids": "226613.94.con.0001",
+  "genome_name": "Reptilian orthoreovirus IBD26/00"
+ },
+ "MammalianOrthoreovirus.16.dna": {
+  "genome_ids": "253454.11.con.0001",
+  "genome_name": "Pulau reovirus"
+ },
+ "MammalianOrthoreovirus.17.dna": {
+  "genome_ids": "10885.14.con.0001",
+  "genome_name": "Mammalian orthoreovirus 2 D5/Jones"
+ },
+ "MammalianOrthoreovirus.18.dna": {
+  "genome_ids": "75888.14.con.0001",
+  "genome_name": "Baboon orthoreovirus"
+ },
+ "MammalianOrthoreovirus.19.dna": {
+  "genome_ids": "75888.17.con.0001",
+  "genome_name": "Baboon orthoreovirus"
+ },
+ "MammalianOrthoreovirus.2.dna": {
+  "genome_ids": "2558258.87.con.0001",
+  "genome_name": "Orthoreovirus sp. GJGZ/1693"
+ },
+ "MammalianOrthoreovirus.20.dna": {
+  "genome_ids": "75888.18.con.0001",
+  "genome_name": "Baboon orthoreovirus"
+ },
+ "MammalianOrthoreovirus.21.dna": {
+  "genome_ids": "75888.20.con.0001",
+  "genome_name": "Baboon orthoreovirus"
+ },
+ "MammalianOrthoreovirus.22.dna": {
+  "genome_ids": "179877.6.con.0001",
+  "genome_name": "Mammalian orthoreovirus 4 Ndelle"
+ },
+ "MammalianOrthoreovirus.23.dna": {
+  "genome_ids": "226613.110.con.0001",
+  "genome_name": "Reptilian orthoreovirus CH1197/96"
+ },
+ "MammalianOrthoreovirus.24.dna": {
+  "genome_ids": "226613.119.con.0001",
+  "genome_name": "Reptilian orthoreovirus CH1197/96"
+ },
+ "MammalianOrthoreovirus.25.dna": {
+  "genome_ids": "2730540.10.con.0001",
+  "genome_name": "Mammalian orthoreovirus 5 MRV5/Phoca vitulina/USA/2007-2008"
+ },
+ "MammalianOrthoreovirus.26.dna": {
+  "genome_ids": "2730540.5.con.0001",
+  "genome_name": "Mammalian orthoreovirus 5 MRV5/Phoca vitulina/USA/2007-2008"
+ },
+ "MammalianOrthoreovirus.27.dna": {
+  "genome_ids": "2854225.11.con.0001",
+  "genome_name": "Phocid orthoreovirus 1 PhRV1/Enhydra lutris/USA/2015/EL1562"
+ },
+ "MammalianOrthoreovirus.28.dna": {
+  "genome_ids": "2854225.3.con.0001",
+  "genome_name": "Phocid orthoreovirus 1 PhRV1/Enhydra lutris/USA/2015/EL1562"
+ },
+ "MammalianOrthoreovirus.29.dna": {
+  "genome_ids": "2854225.8.con.0001",
+  "genome_name": "Phocid orthoreovirus 1 PhRV1/Enhydra lutris/USA/2015/EL1562"
+ },
+ "MammalianOrthoreovirus.3.dna": {
+  "genome_ids": "2558258.88.con.0001",
+  "genome_name": "Orthoreovirus sp. GJGZ/5865"
+ },
+ "MammalianOrthoreovirus.30.dna": {
+  "genome_ids": "2854225.9.con.0001",
+  "genome_name": "Phocid orthoreovirus 1 PhRV1/Enhydra lutris/USA/2015/EL1562"
+ },
+ "MammalianOrthoreovirus.31.dna": {
+  "genome_ids": "3129300.3.con.0001",
+  "genome_name": "Bat-associated orthoreovirus RAFNS1618/24"
+ },
+ "MammalianOrthoreovirus.32.dna": {
+  "genome_ids": "351073.858.con.0001",
+  "genome_name": "Mammalian orthoreovirus T1E1v10"
+ },
+ "MammalianOrthoreovirus.33.dna": {
+  "genome_ids": "538123.395.con.0001",
+  "genome_name": "Mammalian orthoreovirus 3 SA395"
+ },
+ "MammalianOrthoreovirus.4.dna": {
+  "genome_ids": "2558258.75.con.0001",
+  "genome_name": "Orthoreovirus sp. GZPH/5157"
+ },
+ "MammalianOrthoreovirus.5.dna": {
+  "genome_ids": "351073.452.con.0001",
+  "genome_name": "Mammalian orthoreovirus MRV2/Pig/4560-1/USA/2014"
+ },
+ "MammalianOrthoreovirus.6.dna": {
+  "genome_ids": "538123.354.con.0001",
+  "genome_name": "Mammalian orthoreovirus 3 GXLZ2301"
+ },
+ "MammalianOrthoreovirus.7.dna": {
+  "genome_ids": "351073.749.con.0001",
+  "genome_name": "Mammalian orthoreovirus T2E2"
+ },
+ "MammalianOrthoreovirus.8.dna": {
+  "genome_ids": "538121.8.con.0001",
+  "genome_name": "Mammalian orthoreovirus 2 TRALAU2004"
+ },
+ "MammalianOrthoreovirus.9.dna": {
+  "genome_ids": "351073.482.con.0001",
+  "genome_name": "Mammalian orthoreovirus MRV2/Pig/4560-2/USA/2014"
+ }
+}

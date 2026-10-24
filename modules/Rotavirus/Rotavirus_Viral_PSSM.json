@@ -1,0 +1,390 @@
+{
+ "Rotavirus": {
+  "close_genomes": {
+   "Rotavirus.1.dna": {
+    "genome_ids": "28875.58294",
+    "genome_name": "Rotavirus A RVA/Human-wt/SOEP703/2021/G9P[4]"
+   },
+   "Rotavirus.10.dna": {
+    "genome_ids": "28875.21807",
+    "genome_name": "Rotavirus A RVA/Human-wt/BRA/rj24598/2015/G26P[19]"
+   },
+   "Rotavirus.11.dna": {
+    "genome_ids": "10941.36198",
+    "genome_name": "Human rotavirus A RVA/Human-wt/JPN/SU17-17/2017/G8P[8]"
+   },
+   "Rotavirus.12.dna": {
+    "genome_ids": "10941.20131",
+    "genome_name": "Human rotavirus A RVA/Human-wt/ZAF/UFS-NGS-MRC- DPRU1002/2006/G1P[8]"
+   },
+   "Rotavirus.13.dna": {
+    "genome_ids": "28875.26361",
+    "genome_name": "Rotavirus A RVA/Human-wt/USA/VU12-13-29/2013/G12P[8] strain RVA/Human-wt/USA/VU12-13-29/2013/G12P[8]"
+   },
+   "Rotavirus.14.dna": {
+    "genome_ids": "28875.28099",
+    "genome_name": "Rotavirus A RVA/Human-wt/USA/CNMC116/2011/G12P[8] strain RVA/Human-wt/USA/CNMC116/2011/G12P[8]"
+   },
+   "Rotavirus.15.dna": {
+    "genome_ids": "10941.17070",
+    "genome_name": "Human rotavirus A RVA/Human-tc/USA/DC3695-60-AG/1989/G1P[8]"
+   },
+   "Rotavirus.16.dna": {
+    "genome_ids": "10941.47398",
+    "genome_name": "Human rotavirus A RVA/Human-wt/CHN/Z2901/2019/G9P[8]"
+   },
+   "Rotavirus.17.dna": {
+    "genome_ids": "28875.105",
+    "genome_name": "Rotavirus A RVA/Human-wt/USA/VU10-11-21/2011/G2P[4]"
+   },
+   "Rotavirus.18.dna": {
+    "genome_ids": "1004863.10",
+    "genome_name": "Rotavirus A human/Vanderbilt/VU06-07-1/2006/G1P[8]"
+   },
+   "Rotavirus.19.dna": {
+    "genome_ids": "10941.30777",
+    "genome_name": "Human rotavirus A RVA/Human-wt/USA/3000526249/2016/G9P[8]"
+   },
+   "Rotavirus.2.dna": {
+    "genome_ids": "10967.3785",
+    "genome_name": "Porcine rotavirus A PoRVA-RC-1-2025"
+   },
+   "Rotavirus.20.dna": {
+    "genome_ids": "28875.10",
+    "genome_name": "Rotavirus A RVA/Human-tc/GBR/A64/1987/G10P11[14]"
+   },
+   "Rotavirus.21.dna": {
+    "genome_ids": "2051936.10",
+    "genome_name": "Rotavirus A Equine-like G3P[8] RVA/Human-wt/USA/3000390639/2015/G3P[8]"
+   },
+   "Rotavirus.22.dna": {
+    "genome_ids": "28875.12889",
+    "genome_name": "Rotavirus A RVA/Human-wt/BGD/Bang-144/2008/G9P[8]"
+   },
+   "Rotavirus.23.dna": {
+    "genome_ids": "10941.4607",
+    "genome_name": "Human rotavirus A NT016"
+   },
+   "Rotavirus.24.dna": {
+    "genome_ids": "10941.30657",
+    "genome_name": "Human rotavirus A RVA/Human-wt/USA/2014741629/2014/G1P[8]"
+   },
+   "Rotavirus.25.dna": {
+    "genome_ids": "3432193.2173",
+    "genome_name": "Rotavirus alphagastroenteritidis 19IRL72242"
+   },
+   "Rotavirus.26.dna": {
+    "genome_ids": "1420855.254",
+    "genome_name": "Porcine rotavirus H OK.5.68"
+   },
+   "Rotavirus.27.dna": {
+    "genome_ids": "28876.817",
+    "genome_name": "Rotavirus B RVB/Pig-wt/ZMB/ZP18-18/2018/G18P[9]"
+   },
+   "Rotavirus.28.dna": {
+    "genome_ids": "449582.478",
+    "genome_name": "Porcine rotavirus B RVB/Pig-wt/CHN/AHLW1/2024"
+   },
+   "Rotavirus.29.dna": {
+    "genome_ids": "1348384.11",
+    "genome_name": "Rotavirus H SP-VC18"
+   },
+   "Rotavirus.3.dna": {
+    "genome_ids": "28875.28975",
+    "genome_name": "Rotavirus A RVA/Human-wt/USA/CNMC22/2011/G1P[8] strain RVA/Human-wt/USA/CNMC22/2011/G1P[8]"
+   },
+   "Rotavirus.30.dna": {
+    "genome_ids": "28876.314",
+    "genome_name": "Rotavirus B RVB/Pig-wt/ESP/P1C/2017/GXP[4]"
+   },
+   "Rotavirus.31.dna": {
+    "genome_ids": "1637496.15",
+    "genome_name": "Rotavirus I KE528/2012"
+   },
+   "Rotavirus.32.dna": {
+    "genome_ids": "183407.10",
+    "genome_name": "Rotavirus G RVG/chicken/ZAF/MRC-DPRU1679/2011/GXP[X] strain RVG/chicken/ZAF/MRC-DPRU1679/2011/GXP[X]"
+   },
+   "Rotavirus.33.dna": {
+    "genome_ids": "449582.467",
+    "genome_name": "Porcine rotavirus B RVB/Pig-wt/CHN/JLCG2/2024"
+   },
+   "Rotavirus.4.dna": {
+    "genome_ids": "10941.30907",
+    "genome_name": "Human rotavirus A RVA/Human-wt/ZAF/UFS-NGS-NICD9659/2012/G2P[4]"
+   },
+   "Rotavirus.5.dna": {
+    "genome_ids": "10941.21264",
+    "genome_name": "Human rotavirus A CAU17L-79"
+   },
+   "Rotavirus.6.dna": {
+    "genome_ids": "28875.14821",
+    "genome_name": "Rotavirus A RVA/Human-tc/PHL/L26/1987/G12P[4]"
+   },
+   "Rotavirus.7.dna": {
+    "genome_ids": "10941.681",
+    "genome_name": "Human rotavirus A RVA/Human-wt/CHN/E2484/2011/G4P[8]"
+   },
+   "Rotavirus.8.dna": {
+    "genome_ids": "10941.37910",
+    "genome_name": "Human rotavirus A RVA/Human-wt/CHN/SZ18442018/2018/G9P[8]"
+   },
+   "Rotavirus.9.dna": {
+    "genome_ids": "10941.4303",
+    "genome_name": "Human rotavirus A RVA/Human-wt/PHI/TGO12-016/2012/G1P[8]"
+   }
+  },
+  "features": {
+   "NSP1": {
+    "anno": "Non-structural protein NSP1, interferon antagonist",
+    "bit_cutoff": 219,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NSP1",
+    "kmers": 1,
+    "max_len": 656,
+    "min_len": 254,
+    "segment": "NSP1 Segment",
+    "upstream_ext": 0
+   },
+   "NSP2": {
+    "anno": "Non-structural protein NSP2, NTPase",
+    "bit_cutoff": 143,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NSP2",
+    "kmers": 1,
+    "max_len": 381,
+    "min_len": 236,
+    "segment": "NSP2 Segment",
+    "upstream_ext": 0
+   },
+   "NSP3": {
+    "anno": "Non-structural protein NSP3, translation enhancer",
+    "bit_cutoff": 140,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NSP3",
+    "kmers": 1,
+    "max_len": 486,
+    "min_len": 218,
+    "segment": "NSP3 Segment",
+    "upstream_ext": 0
+   },
+   "NSP4": {
+    "anno": "Non-structural protein NSP4, enterotoxin",
+    "bit_cutoff": 79,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NSP4",
+    "kmers": 1,
+    "max_len": 262,
+    "min_len": 101,
+    "segment": "NSP4 Segment",
+    "upstream_ext": 0
+   },
+   "NSP5": {
+    "anno": "Non-structural protein NSP5",
+    "bit_cutoff": 89,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NSP5",
+    "kmers": 1,
+    "max_len": 261,
+    "min_len": 126,
+    "segment": "NSP5 Segment",
+    "upstream_ext": 0
+   },
+   "NSP6": {
+    "anno": "Non-structural protein NSP6",
+    "bit_cutoff": 41,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NSP6",
+    "kmers": 0,
+    "max_len": 110,
+    "min_len": 73,
+    "segment": "NSP5 Segment",
+    "upstream_ext": 0
+   },
+   "VP1": {
+    "anno": "RNA-dependent RNA polymerase",
+    "bit_cutoff": 490,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "RDRP",
+    "kmers": 1,
+    "max_len": 1401,
+    "min_len": 863,
+    "segment": "VP1 Segment",
+    "upstream_ext": 0
+   },
+   "VP2": {
+    "anno": "Core capsid protein VP2",
+    "bit_cutoff": 400,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP2",
+    "kmers": 1,
+    "max_len": 1185,
+    "min_len": 702,
+    "segment": "VP2 Segment",
+    "upstream_ext": 0
+   },
+   "VP3": {
+    "anno": "Capping enzyme VP3",
+    "bit_cutoff": 376,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP3",
+    "kmers": 1,
+    "max_len": 1002,
+    "min_len": 543,
+    "segment": "VP3 Segment",
+    "upstream_ext": 0
+   },
+   "VP4": {
+    "anno": "Outer capsid spike protein VP4",
+    "bit_cutoff": 349,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP4",
+    "kmers": 1,
+    "max_len": 975,
+    "min_len": 586,
+    "segment": "VP4 Segment",
+    "upstream_ext": 0
+   },
+   "VP5STAR": {
+    "anno": "Mature C-terminal outer capsid spike protein VP5*",
+    "bit_cutoff": 238,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "VP5*",
+    "kmers": 0,
+    "max_len": 583,
+    "min_len": 331,
+    "segment": "VP4 Segment",
+    "upstream_ext": 0
+   },
+   "VP6": {
+    "anno": "Inner capsid protein VP6",
+    "bit_cutoff": 179,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP6",
+    "kmers": 1,
+    "max_len": 477,
+    "min_len": 312,
+    "segment": "VP6 Segment",
+    "upstream_ext": 0
+   },
+   "VP7": {
+    "anno": "Outer capsid glycoprotein VP7",
+    "bit_cutoff": 147,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP7",
+    "kmers": 1,
+    "max_len": 398,
+    "min_len": 195,
+    "segment": "VP7 Segment",
+    "upstream_ext": 0
+   },
+   "VP8STAR": {
+    "anno": "Mature N-terminal outer capsid spike protein VP8*",
+    "bit_cutoff": 111,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "VP8*",
+    "kmers": 0,
+    "max_len": 281,
+    "min_len": 207,
+    "segment": "VP4 Segment",
+    "upstream_ext": 0
+   }
+  },
+  "segments": {
+   "NSP1 Segment": {
+    "max_len": 1754,
+    "min_len": 1063,
+    "replicon_geometry": "linear"
+   },
+   "NSP2 Segment": {
+    "max_len": 1164,
+    "min_len": 818,
+    "replicon_geometry": "linear"
+   },
+   "NSP3 Segment": {
+    "max_len": 1436,
+    "min_len": 823,
+    "replicon_geometry": "linear"
+   },
+   "NSP4 Segment": {
+    "max_len": 826,
+    "min_len": 407,
+    "replicon_geometry": "linear"
+   },
+   "NSP5 Segment": {
+    "max_len": 986,
+    "min_len": 424,
+    "replicon_geometry": "linear"
+   },
+   "VP1 Segment": {
+    "max_len": 3821,
+    "min_len": 2916,
+    "replicon_geometry": "linear"
+   },
+   "VP2 Segment": {
+    "max_len": 3115,
+    "min_len": 2306,
+    "replicon_geometry": "linear"
+   },
+   "VP3 Segment": {
+    "max_len": 2850,
+    "min_len": 1733,
+    "replicon_geometry": "linear"
+   },
+   "VP4 Segment": {
+    "max_len": 2599,
+    "min_len": 1728,
+    "replicon_geometry": "linear"
+   },
+   "VP6 Segment": {
+    "max_len": 1499,
+    "min_len": 1017,
+    "replicon_geometry": "linear"
+   },
+   "VP7 Segment": {
+    "max_len": 1169,
+    "min_len": 706,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

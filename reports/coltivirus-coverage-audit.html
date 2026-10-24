@@ -1,0 +1,151 @@
+<title>Coltivirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; Coltivirus module &middot; 16 October 2026</div><h1>Coltivirus</h1><p class="stand">Twelve double-stranded RNA segments and thirteen proteins, one segment carrying two by reading through its own stop codon. A small, tidy vocabulary that was wrong about which protein it was naming &mdash; and a reference set that had to be thrown away and rebuilt.</p><div class="tiles"><div class="tile"><div class="v">13</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">24</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">12</div><div class="l">segments</div></div><div class="tile"><div class="v">100%</div><div class="l">of 391 segment records routed</div></div><div class="tile"><div class="v">13/13</div><div class="l">features called where the segment is present</div></div><div class="tile"><div class="v">2.5&times;</div><div class="l">annotation string collapse</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One genus split in two, and this is the half that infects people.</p><p class="note">Colorado tick fever virus is the most common tick-borne viral infection in the western United States, transmitted by <i>Dermacentor andersoni</i>. This module covers it and its three nearest relatives. The genome is twelve dsRNA segments encoding thirteen proteins, and the sizes below are ICTV's table for the type species:</p><pre class="mono">Seg1  4,350 bp   VP1   ~1,435 aa   RNA-dependent RNA polymerase
+Seg2  3,909 bp   VP2   ~1,267 aa   methyltransferase
+Seg3  3,586 bp   VP3   ~1,182 aa   guanylyltransferase
+Seg4  3,157 bp   VP4   ~1,027 aa   membrane-spanning protein
+Seg5  2,432 bp   VP5     ~751 aa
+Seg6  2,141 bp   VP6     ~697 aa   NTPase
+Seg7  2,133 bp   VP7     ~684 aa   replication factor
+Seg8  2,029 bp   VP8     ~660 aa
+Seg9  1,884 bp   VP9     ~334 aa   termination product     (BICISTRONIC)
+                 VP9&#x27;    ~602 aa   read-through product
+Seg10 1,880 bp   VP10    ~605 aa   kinase / helicase
+Seg11   998 bp   VP11    ~304 aa
+Seg12   675 bp   VP12    ~185 aa   replication factor</pre><div class="verdict warn"><b>Coltivirus is two modules, not one.</b> Measured over the full 1,435-aa polymerase across 23 representatives, the New World clade &mdash; Colorado tick fever, Salmon River, Eyach, California hare &mdash; is <b>87&ndash;98%</b> identical within itself, and <b>55&ndash;58%</b> to the Old World clade (Tarumizu, Kundal, Tai Forest, Gierle, Jeddah, <i>Coltivirus sp.</i>). This module is the New World half, 710 segment records. The Old World half is tabled: it is only <b>63%</b> internally consistent, so it is probably more than one module and needs the same measurement again before anyone builds it.</div><p class="note">That partition had to be made on sequence rather than on names. A first pass keyed on species keywords missed Tai Forest reovirus and the unnamed <code>Coltivirus sp.</code> deposits, and those records went on to produce <i>every</i> anomalous length band in the triage &mdash; an 856-aa VP5 against a modal 751, a 717-aa VP8 against 660, and a 613-aa "microtubule-associated protein" that read as a thirteenth gene. All of it was Old World protein measured against New World windows.</p></section><section><h2><span class="num">02</span>The labels name the wrong proteins</h2><p class="lede">48 annotation strings for 13 proteins is a clean vocabulary. It is also, for four of them, wrong.</p><div class="verdict warn"><b>VP6 and VP7 are swapped between submitters.</b> Pool both labels and cluster, and you get exactly two homology groups &mdash; each holding both strings:<br><br><code>group A &nbsp;n=23 &nbsp;17&times;"VP6", 6&times;"VP7" &nbsp;median 697 aa</code><br><code>group B &nbsp;n=21 &nbsp;15&times;"VP7", 6&times;"VP6" &nbsp;median 684 aa</code><br><br>A sequence deposited as VP6 and one deposited as VP7 are <b>100.0% identical</b>. The labels are about 70% reliable, which is worse than useless, because 70% looks like signal.</div><p class="note">The usual cure for a label covering two proteins is a length router. It does not work here: the two proteins are <b>697 and 684 residues</b> and both collections span 613&ndash;700, so length cannot separate what the name has confused. Only homology can. They are assigned by clustering and each group is named for its majority label, which independently reproduces the ICTV mass order (VP6 78 kDa &gt; VP7 76 kDa). The homology rescue then confirmed it a second time, adopting a sequence deposited as <code>VP6</code> into <code>VP7</code> at &ge;80% identity.</p><p class="note">The collapse table shows it directly. <code>VP6</code> is built from <code>"VP6"&times;14, "VP7"&times;4, "VP7 protein"&times;2</code>; <code>VP7</code> from <code>"VP7"&times;12, "VP6"&times;4, "VP6 protein"&times;2</code>.</p></section><section><h2><span class="num">03</span>Segment 9 reads through its own stop</h2><p class="lede">Two proteins, one start codon, one leaky UGA.</p><p class="note">Segment 9 is bicistronic, but not by carrying two ORFs. It carries one, with a leaky UGA part-way along: translation terminating there gives <b>VP9</b> at ~334 aa, and translation reading through gives <b>VP9'</b> at ~602 aa. Both start at the same Met (PMID 15269364, PMID 22190746).</p><p class="note">The nesting is visible in the deposited sequences. On a record carrying both, the short form is a 100% prefix of the long one, and the long one reads <code>... D L G R G C C <b>[X]</b> R C W P G E L F I V N V E ...</code> &mdash; where X is the read-through codon, sitting exactly one position past the short form's last residue. All 17 full-length VP9' records carry it.</p><p class="note">Both are declared, as Tobamovirus declares REP126 and REP183, with <code>internal_stop: 1</code> on the read-through form only. Their length windows do not overlap (282&ndash;357 against 565&ndash;638), which is what keeps the profiles apart, and the termination product takes <code>downstream_ext: 0</code> because its C-terminus <i>is</i> the leaky stop and must not be scanned through.</p><div class="verdict">The annotator reproduces the biology on a real genome: on one panel isolate VP9 is called at <b>41&ndash;1051</b> and VP9' at <b>41&ndash;1849</b> on the same contig &mdash; same start, the longer one extended across the TGA to the next stop.</div></section><section><h2><span class="num">04</span>Three length bands that were not biology</h2><p class="lede">The second mode of a feature is usually its incomplete records, and one of them hides between the two real ones.</p><p class="note">VP9' shows a tight band of 24 records at ~490 aa against a real length of 602. A tight band looks like a real form. It is not: a 489-aa member aligns to a full-length VP9' at <b>99.8% identity over its whole length, at subject positions 99&ndash;587</b>. The records are missing their first 98 residues, and their segments measure 1,446&ndash;1,482 nt against the 1,884 nt that ICTV gives for Seg9 and that the full-length records measure.</p><div class="verdict warn"><b>That artefact sits BETWEEN the two real products</b> &mdash; 334, then 490, then 602 &mdash; so no single collection window can admit both proteins and exclude it. Segment 9 needs a three-way split, and that is the reason the pool cannot be resolved by the length router alone.</div><p class="note">The same story twice more, less subtly: VP10 is deposited at a median of 189 aa against a real 605, and VP12 at 147 against 185. In both cases the short band is the <i>more common</i> one, so a window centred on the median would have been centred on a fragment. VP12's short form proved to be the same ORF annotated from an internal Met &mdash; 95% identical over 146 aa at <code>q:40-185</code> against <code>s:2-147</code> &mdash; and ICTV's 20.4 kDa settles 185 as the real length.</p><p class="note">A further 18 collection members across five features began mid-protein. All were N-terminally truncated records, dropped by <code>filter_nterm</code>; the Met-start gate then passed clean on all 24 alignments.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">Measured on 21 isolates, each reassembled from its own segment records.</p><div class="verdict"><b>Every feature is called on every isolate that carries its segment.</b> For all thirteen, <code>called + reported-missing = 21</code> exactly: VP1, VP2, VP3, VP4, VP5 and VP11 on all 21; VP8 and VP12 on 20 of 21 with the 21st flagged as a missing contig; VP6 and VP10 on 14, VP7, VP9 and VP9' on 15, with every shortfall accounted for by a segment the isolate does not have. <b>Five isolates carry all twelve segments and receive all thirteen features.</b> <code>copy_num</code> is set on all thirteen, measured on those five.</div><div class="scroll"><table><thead><tr><th>feature</th><th>segment</th><th>bit</th><th>aa range</th><th>PSSMs</th></tr></thead><tbody><tr><td>VP1</td><td>VP1</td><td>1735</td><td>1320&ndash;1542</td><td>1</td></tr><tr><td>VP2</td><td>VP2</td><td>998</td><td>1136&ndash;1363</td><td>1</td></tr><tr><td>VP3</td><td>VP3</td><td>491</td><td>1086&ndash;1252</td><td>2</td></tr><tr><td>VP4</td><td>VP4</td><td>716</td><td>937&ndash;1089</td><td>2</td></tr><tr><td>VP5</td><td>VP5</td><td>235</td><td>705&ndash;796</td><td>2</td></tr><tr><td>VP6</td><td>VP6</td><td>60</td><td>604&ndash;738</td><td>2</td></tr><tr><td>VP7</td><td>VP7</td><td>60</td><td>642&ndash;742</td><td>3</td></tr><tr><td>VP8</td><td>VP8</td><td>159</td><td>616&ndash;699</td><td>2</td></tr><tr><td>VP9</td><td>VP9</td><td>253</td><td>316&ndash;357</td><td>1</td></tr><tr><td>VP9RDT &nbsp;<i>rdt</i></td><td>VP9</td><td>400</td><td>565&ndash;638</td><td>1</td></tr><tr><td>VP10</td><td>VP10</td><td>465</td><td>568&ndash;641</td><td>2</td></tr><tr><td>VP11</td><td>VP11</td><td>157</td><td>285&ndash;338</td><td>2</td></tr><tr><td>VP12</td><td>VP12</td><td>100</td><td>172&ndash;196</td><td>3</td></tr></tbody></table></div><p class="note">Self-recall against each feature's own in-range collection is <b>100% on all thirteen</b>. Cross-feature contamination: 206 sequences against 24 cluster references, <b>nothing above 50 bits</b>. That check is worth reading carefully here, because VP9 and VP9' share 337 identical residues by construction &mdash; a VP9 sequence scores 704 bits against its own canonical and 616 against VP9', and a VP9' sequence scores 1,229 against its own and 616 against VP9, so each prefers its own and no misassignment is possible.</p></section><section><h2><span class="num">06</span>Where the cutoffs sit</h2><p class="lede">Set by what leaks, not by what the training data scores.</p><p class="note">Collections here are small and homogeneous &mdash; 12 to 22 sequences, most of them over 95% identical &mdash; so a cutoff derived as a fraction of the weakest training member comes out very high and would reject anything genuinely divergent. VP1 by that route is 2,526 bits.</p><p class="note">They are instead set to the lowest value that excludes the Old World clade, which is the only realistic confusable taxon. VP1's highest foreign score is <b>1,734</b> against a weakest member of <b>2,807</b>, so the cutoff is 1,735 and the headroom is 1.6&times;. Every one of the thirteen separates cleanly; VP6 and VP7 draw no foreign hit at all and keep the default floor of 60.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Four limits, named rather than implied.</p><p class="note"><b>This module covers half its genus.</b> The Old World coltiviruses &mdash; 204 segment records across Tarumizu, Kundal, Tai Forest, Gierle, Jeddah, Zeboroti, Avian associated and the unnamed <i>Coltivirus sp.</i> deposits &mdash; are a real population that this module deliberately does not call, and none of it is built. A genome from any of them will route here only if nothing better exists, and will then be annotated poorly.</p><p class="note"><b>VP5, VP8 and VP11 are annotated without a function.</b> ICTV records none for them, and this project does not invent one; they ship as <code>Protein VP5</code>, <code>Protein VP8</code>, <code>Protein VP11</code>. The functions that <i>are</i> stated &mdash; polymerase, methyltransferase, guanylyltransferase, NTPase, kinase/helicase, replication factor &mdash; come from ICTV's own table.</p><p class="note"><b>Every collection is small.</b> The largest is 22 sequences and the smallest 12. Coltivirus is not deeply sequenced: 710 segment records across four species, most of them Colorado tick fever. Self-recall is perfect, but perfect self-recall on 13 sequences says less than it does on 3,000, and the feature most likely to miss a divergent isolate is whichever one a new species diverges on.</p><p class="note"><b>The panel is reassembled, not deposited.</b> No complete Coltivirus genome exists as a single record; each isolate is rebuilt from its own segment records, and isolates are grouped by deposited strain name. Where a name is shared, the reconstruction is a chimera of real segments rather than one organism.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">A data defect that inflated this module's own coverage figure, and eight more already shipped.</p><div class="verdict warn"><b>48 of 710 segment records are not sequences.</b> Every one contains <b>no cytosine at all</b> &mdash; base composition like <code>T:2034 G:1202 A:1114 C:0</code> on a 4,350 nt record &mdash; and all 48 carry the description <i>"Modified Microbial Nucleic Acid."</i> Six frames of one such record hold no ORF longer than 141 aa where a 1,435-aa polymerase should be.</div><p class="note">They are poison for reference selection specifically, because they cluster happily with <i>each other</i>. The greedy cover spent references on them and then counted the genomes they "covered" as routed. <b>With them in: 25 references, 93.4%, 29 genomes uncovered. With them out: 23 references, 100.0%.</b> Ten of the original 25 references were corrupt records covering other corrupt records. No collection sequence was affected &mdash; the contamination was entirely in the nucleotide pool.</p><div class="verdict warn"><b>Eight references already in the repository have the same defect</b>, across six modules: <code>Hepaciviridae.11</code>, <code>Enterovirus.2</code>, <code>Norovirus.17</code>, <code>Norovirus.18</code>, <code>Parechovirus.8</code>, <code>Parechovirus.15</code>, <code>Aphthovirus.5</code>, <code>Aphthovirus.6</code>. They pair up by length, so they are redundant as well as dead. <code>build_rep_contigs.py</code> now refuses such a record at selection and <code>check_rep_contigs.py</code> lists any already shipped.</div><p class="note">A second finding, in the kit rather than the data: a feature declaring <code>internal_stop</code> whose read-through codon is deposited as an <code>X</code> lost its entire collection, because the clustering pipeline discards any sequence matching <code>/[BJXZ]/</code> unless told otherwise. VP9' lost all 17 of its sequences and the failure surfaced as mmseqs dying on a 0-byte temp file, which names neither the feature nor the cause. Tobamovirus had set the flag by hand; nothing made the next module do the same. It is now derived from the declaration.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">Thirteen proteins, 32 ways of saying so &mdash; and the tidiness was the problem.</p><p class="note">32 distinct annotation strings across 458 occurrences collapse onto <b>13 controlled annotations</b>, a <b>2.5&times;</b> reduction. That is small next to Mammalian Orthoreovirus's 20.1&times;, and it is honest: coltivirus submitters use <code>VPn</code> and <code>VPn protein</code> and little else. Only the polymerase attracts real synonymy, arriving as <code>VP1</code>, <code>VP1 protein</code>, <code>RNA-dependent RNA polymerase</code>, <code>RNA-dependent RNA polymerase VP1</code>, <code>RNA-dependent RNA-polymerase</code>, <code>putative RNA-dependent RNA polymerase VP1</code> and <code>RNA polymerase</code>.</p><div class="verdict warn"><b>A tidy vocabulary is not an accurate one.</b> This taxon's strings are consistent, short and almost synonym-free &mdash; and for VP6 and VP7 they identify the wrong protein about 30% of the time. The collapse ratio measures how much <i>spelling</i> variation a module absorbs; it says nothing about whether the labels were right, and here the cheap-looking vocabulary was the most expensive part of the build.</div></section><p class="src">Measured from the shipped module: Coltivirus_Viral_PSSM.json, 24 PSSMs, 23 reference contigs and 12 declared segments. Protein and segment lengths cross-checked against the ICTV Coltivirus chapter for the type species. Clade partition from blastp over full-length polymerases with -comp_based_stats 0; self-recall from collect_registry; contamination from audit_contamination; cutoffs from foreign_leak against the Old World clade; string collapse from collect_synmap after pool resolution. Call rates from a panel of isolates reassembled from their own segment records and scored through the full annotator.</p></div>

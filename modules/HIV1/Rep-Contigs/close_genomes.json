@@ -1,0 +1,102 @@
+{
+ "HIV1.1.dna": {
+  "genome_ids": "11676.1062854.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 PID9Cn-P18-K2"
+ },
+ "HIV1.10.dna": {
+  "genome_ids": "11676.127044.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 7574103"
+ },
+ "HIV1.11.dna": {
+  "genome_ids": "11676.127049.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 7974623"
+ },
+ "HIV1.12.dna": {
+  "genome_ids": "11676.1084750.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 GB1WS100088"
+ },
+ "HIV1.13.dna": {
+  "genome_ids": "11676.696089.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 DEN02CM062"
+ },
+ "HIV1.14.dna": {
+  "genome_ids": "11676.171005.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 00SP-19804"
+ },
+ "HIV1.15.dna": {
+  "genome_ids": "11676.126884.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 240718"
+ },
+ "HIV1.16.dna": {
+  "genome_ids": "11676.127096.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 9340158"
+ },
+ "HIV1.17.dna": {
+  "genome_ids": "11676.870416.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 PG14-UG000410"
+ },
+ "HIV1.18.dna": {
+  "genome_ids": "11676.1024564.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 2416"
+ },
+ "HIV1.19.dna": {
+  "genome_ids": "11676.1024568.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 2386"
+ },
+ "HIV1.2.dna": {
+  "genome_ids": "11676.121725.con.0001",
+  "genome_name": "Human immunodeficiency virus 1"
+ },
+ "HIV1.20.dna": {
+  "genome_ids": "11676.1052951.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 BC003_proviral_732_Hypermut"
+ },
+ "HIV1.21.dna": {
+  "genome_ids": "11676.683492.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 2115-CM-21"
+ },
+ "HIV1.22.dna": {
+  "genome_ids": "11676.890871.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 9241_MOGPl10_K23"
+ },
+ "HIV1.23.dna": {
+  "genome_ids": "11676.981750.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 5114-WK-2-PL9-H3"
+ },
+ "HIV1.24.dna": {
+  "genome_ids": "11676.981938.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 5117-WK-2-PL14-H20"
+ },
+ "HIV1.25.dna": {
+  "genome_ids": "11676.1024567.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 2379"
+ },
+ "HIV1.3.dna": {
+  "genome_ids": "11676.928226.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 9255_wk-2_8_B15"
+ },
+ "HIV1.4.dna": {
+  "genome_ids": "11676.890448.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 603_Q22_P11"
+ },
+ "HIV1.5.dna": {
+  "genome_ids": "11676.1084844.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 GB1WS100177"
+ },
+ "HIV1.6.dna": {
+  "genome_ids": "11676.926833.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 9242_wk-2_9_C14"
+ },
+ "HIV1.7.dna": {
+  "genome_ids": "11676.869381.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 PG16-UG000836"
+ },
+ "HIV1.8.dna": {
+  "genome_ids": "11676.274504.con.0001",
+  "genome_name": "Human immunodeficiency virus 1"
+ },
+ "HIV1.9.dna": {
+  "genome_ids": "11676.869398.con.0001",
+  "genome_name": "Human immunodeficiency virus 1 PG15-UG000308"
+ }
+}

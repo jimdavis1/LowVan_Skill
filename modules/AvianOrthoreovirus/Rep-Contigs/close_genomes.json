@@ -1,0 +1,102 @@
+{
+ "AvianOrthoreovirus.1.dna": {
+  "genome_ids": "38170.1064.con.0001",
+  "genome_name": "Avian orthoreovirus D1007"
+ },
+ "AvianOrthoreovirus.10.dna": {
+  "genome_ids": "1171667.105.con.0001",
+  "genome_name": "Duck reovirus SY"
+ },
+ "AvianOrthoreovirus.11.dna": {
+  "genome_ids": "1171667.143.con.0001",
+  "genome_name": "Duck reovirus SL"
+ },
+ "AvianOrthoreovirus.12.dna": {
+  "genome_ids": "38170.2180.con.0001",
+  "genome_name": "Avian orthoreovirus V-ARV-SD26"
+ },
+ "AvianOrthoreovirus.13.dna": {
+  "genome_ids": "38170.1499.con.0001",
+  "genome_name": "Avian orthoreovirus D2"
+ },
+ "AvianOrthoreovirus.14.dna": {
+  "genome_ids": "1171667.304.con.0001",
+  "genome_name": "Duck reovirus NDRV-YF10"
+ },
+ "AvianOrthoreovirus.15.dna": {
+  "genome_ids": "38170.1967.con.0001",
+  "genome_name": "Avian orthoreovirus AVS-B"
+ },
+ "AvianOrthoreovirus.16.dna": {
+  "genome_ids": "1171667.348.con.0001",
+  "genome_name": "Duck reovirus SD416"
+ },
+ "AvianOrthoreovirus.17.dna": {
+  "genome_ids": "38170.1280.con.0001",
+  "genome_name": "Avian orthoreovirus 3457-M-11"
+ },
+ "AvianOrthoreovirus.18.dna": {
+  "genome_ids": "38170.5212.con.0001",
+  "genome_name": "Avian orthoreovirus WF"
+ },
+ "AvianOrthoreovirus.19.dna": {
+  "genome_ids": "77153.155.con.0001",
+  "genome_name": "Muscovy duck reovirus GD2021"
+ },
+ "AvianOrthoreovirus.2.dna": {
+  "genome_ids": "38170.1569.con.0001",
+  "genome_name": "Avian orthoreovirus D9"
+ },
+ "AvianOrthoreovirus.20.dna": {
+  "genome_ids": "38170.2765.con.0001",
+  "genome_name": "Avian orthoreovirus Broiler/SDJN/China/2020"
+ },
+ "AvianOrthoreovirus.21.dna": {
+  "genome_ids": "38170.3661.con.0001",
+  "genome_name": "Avian orthoreovirus ARV/ck/Israel/442719/2023"
+ },
+ "AvianOrthoreovirus.22.dna": {
+  "genome_ids": "1171667.101.con.0001",
+  "genome_name": "Duck reovirus SY"
+ },
+ "AvianOrthoreovirus.23.dna": {
+  "genome_ids": "38170.5417.con.0001",
+  "genome_name": "Avian orthoreovirus ARV_127720"
+ },
+ "AvianOrthoreovirus.24.dna": {
+  "genome_ids": "38170.101.con.0001",
+  "genome_name": "Avian orthoreovirus D20/99"
+ },
+ "AvianOrthoreovirus.25.dna": {
+  "genome_ids": "198038.19.con.0001",
+  "genome_name": "Goose reovirus GRV-GD2020"
+ },
+ "AvianOrthoreovirus.3.dna": {
+  "genome_ids": "38170.2107.con.0001",
+  "genome_name": "Avian orthoreovirus A/wild bird/Korea/108/2015"
+ },
+ "AvianOrthoreovirus.4.dna": {
+  "genome_ids": "38170.3892.con.0001",
+  "genome_name": "Avian orthoreovirus HN/WLK/202305"
+ },
+ "AvianOrthoreovirus.5.dna": {
+  "genome_ids": "38170.3902.con.0001",
+  "genome_name": "Avian orthoreovirus GD/SB/202301"
+ },
+ "AvianOrthoreovirus.6.dna": {
+  "genome_ids": "38170.3063.con.0001",
+  "genome_name": "Avian orthoreovirus 2023ARV-GS-SDAU-1"
+ },
+ "AvianOrthoreovirus.7.dna": {
+  "genome_ids": "38170.352.con.0001",
+  "genome_name": "Avian orthoreovirus LN09-1"
+ },
+ "AvianOrthoreovirus.8.dna": {
+  "genome_ids": "1171667.138.con.0001",
+  "genome_name": "Duck reovirus SL"
+ },
+ "AvianOrthoreovirus.9.dna": {
+  "genome_ids": "38170.1096.con.0001",
+  "genome_name": "Avian orthoreovirus"
+ }
+}

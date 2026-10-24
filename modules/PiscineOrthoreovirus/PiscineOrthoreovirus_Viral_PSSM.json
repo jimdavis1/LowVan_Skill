@@ -1,0 +1,336 @@
+{
+ "PiscineOrthoreovirus": {
+  "close_genomes": {
+   "PiscineOrthoreovirus.1.dna": {
+    "genome_ids": "2153377.32.con.0001",
+    "genome_name": "Piscine orthoreovirus 3 ADLPRV3"
+   },
+   "PiscineOrthoreovirus.10.dna": {
+    "genome_ids": "2153377.117.con.0001",
+    "genome_name": "Piscine orthoreovirus 3 DK/PRV315"
+   },
+   "PiscineOrthoreovirus.11.dna": {
+    "genome_ids": "1157337.4381.con.0001",
+    "genome_name": "Piscine orthoreovirus PRV-1_NOR2022_AGD-D6"
+   },
+   "PiscineOrthoreovirus.12.dna": {
+    "genome_ids": "1157337.2431.con.0001",
+    "genome_name": "Piscine orthoreovirus WADDL:2021-1143"
+   },
+   "PiscineOrthoreovirus.13.dna": {
+    "genome_ids": "1157337.2435.con.0001",
+    "genome_name": "Piscine orthoreovirus WADDL:2021-1143"
+   },
+   "PiscineOrthoreovirus.14.dna": {
+    "genome_ids": "1157337.2434.con.0001",
+    "genome_name": "Piscine orthoreovirus WADDL:2021-1143"
+   },
+   "PiscineOrthoreovirus.2.dna": {
+    "genome_ids": "2153377.27.con.0001",
+    "genome_name": "Piscine orthoreovirus 3 ADLPRV3"
+   },
+   "PiscineOrthoreovirus.3.dna": {
+    "genome_ids": "2153377.29.con.0001",
+    "genome_name": "Piscine orthoreovirus 3 ADLPRV3"
+   },
+   "PiscineOrthoreovirus.4.dna": {
+    "genome_ids": "1157337.2439.con.0001",
+    "genome_name": "Piscine orthoreovirus WADDL:2021-1143"
+   },
+   "PiscineOrthoreovirus.5.dna": {
+    "genome_ids": "1157337.2438.con.0001",
+    "genome_name": "Piscine orthoreovirus WADDL:2021-1143"
+   },
+   "PiscineOrthoreovirus.6.dna": {
+    "genome_ids": "2153377.30.con.0001",
+    "genome_name": "Piscine orthoreovirus 3 ADLPRV3"
+   },
+   "PiscineOrthoreovirus.7.dna": {
+    "genome_ids": "2153377.25.con.0001",
+    "genome_name": "Piscine orthoreovirus 3 ADLPRV3"
+   },
+   "PiscineOrthoreovirus.8.dna": {
+    "genome_ids": "1157337.16.con.0001",
+    "genome_name": "Piscine orthoreovirus"
+   },
+   "PiscineOrthoreovirus.9.dna": {
+    "genome_ids": "1157337.2432.con.0001",
+    "genome_name": "Piscine orthoreovirus WADDL:2021-1143"
+   }
+  },
+  "features": {
+   "LAMBDA1": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Core shell protein lambda1",
+    "bit_cutoff": 703,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L3",
+    "kmers": 1,
+    "max_len": 1358,
+    "min_len": 1202,
+    "segment": "lambda1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "LAMBDA2": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Capping enzyme lambda2",
+    "bit_cutoff": 373,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L2",
+    "kmers": 1,
+    "max_len": 1368,
+    "min_len": 1212,
+    "segment": "lambda2 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "LAMBDA3": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "RNA-dependent RNA polymerase",
+    "bit_cutoff": 1065,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L1",
+    "kmers": 1,
+    "max_len": 1363,
+    "min_len": 1150,
+    "segment": "lambda3 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "MU1": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Outer capsid protein mu1",
+    "bit_cutoff": 266,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M2",
+    "kmers": 1,
+    "max_len": 749,
+    "min_len": 635,
+    "segment": "mu1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "MU2": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Core protein mu2",
+    "bit_cutoff": 156,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M1",
+    "kmers": 1,
+    "max_len": 827,
+    "min_len": 701,
+    "segment": "mu2 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "MUNS": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Non-structural protein muNS",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M3",
+    "kmers": 1,
+    "max_len": 810,
+    "min_len": 695,
+    "segment": "muNS Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "P13": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Non-structural protein p13",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S1p13",
+    "kmers": 1,
+    "max_len": 135,
+    "min_len": 112,
+    "segment": "sigma3 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMA1": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Cell attachment protein sigma1",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S4",
+    "kmers": 1,
+    "max_len": 333,
+    "min_len": 284,
+    "segment": "sigma1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMA2": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Core protein sigma2",
+    "bit_cutoff": 76,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S2",
+    "kmers": 1,
+    "max_len": 445,
+    "min_len": 389,
+    "segment": "sigma2 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMA3": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Outer capsid protein sigma3",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S1",
+    "kmers": 1,
+    "max_len": 349,
+    "min_len": 310,
+    "segment": "sigma3 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "SIGMANS": {
+    "PMID_claude_generated": [
+     "27788206",
+     "33381304",
+     "38675898"
+    ],
+    "anno": "Non-structural protein sigmaNS",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S3",
+    "kmers": 1,
+    "max_len": 382,
+    "min_len": 332,
+    "segment": "sigmaNS Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "lambda1 Segment": {
+    "max_len": 4426,
+    "min_len": 3271,
+    "replicon_geometry": "linear"
+   },
+   "lambda2 Segment": {
+    "max_len": 4430,
+    "min_len": 3275,
+    "replicon_geometry": "linear"
+   },
+   "lambda3 Segment": {
+    "max_len": 4440,
+    "min_len": 3281,
+    "replicon_geometry": "linear"
+   },
+   "mu1 Segment": {
+    "max_len": 2380,
+    "min_len": 1759,
+    "replicon_geometry": "linear"
+   },
+   "mu2 Segment": {
+    "max_len": 2625,
+    "min_len": 1940,
+    "replicon_geometry": "linear"
+   },
+   "muNS Segment": {
+    "max_len": 2642,
+    "min_len": 1953,
+    "replicon_geometry": "linear"
+   },
+   "sigma1 Segment": {
+    "max_len": 1090,
+    "min_len": 805,
+    "replicon_geometry": "linear"
+   },
+   "sigma2 Segment": {
+    "max_len": 1432,
+    "min_len": 1059,
+    "replicon_geometry": "linear"
+   },
+   "sigma3 Segment": {
+    "max_len": 1243,
+    "min_len": 918,
+    "replicon_geometry": "linear"
+   },
+   "sigmaNS Segment": {
+    "max_len": 1224,
+    "min_len": 905,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

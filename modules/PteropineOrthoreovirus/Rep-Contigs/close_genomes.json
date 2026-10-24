@@ -1,0 +1,54 @@
+{
+ "PteropineOrthoreovirus.1.dna": {
+  "genome_ids": "1109732.4.con.0001",
+  "genome_name": "Pteropine orthoreovirus Sikamat/MYS/2010"
+ },
+ "PteropineOrthoreovirus.10.dna": {
+  "genome_ids": "118027.47.con.0001",
+  "genome_name": "Nelson Bay orthoreovirus WDBP1716"
+ },
+ "PteropineOrthoreovirus.11.dna": {
+  "genome_ids": "118027.13.con.0001",
+  "genome_name": "Nelson Bay orthoreovirus"
+ },
+ "PteropineOrthoreovirus.12.dna": {
+  "genome_ids": "419697.10.con.0001",
+  "genome_name": "Melaka orthoreovirus"
+ },
+ "PteropineOrthoreovirus.13.dna": {
+  "genome_ids": "1459003.35.con.0001",
+  "genome_name": "Pteropine orthoreovirus Garut-69"
+ },
+ "PteropineOrthoreovirus.2.dna": {
+  "genome_ids": "1109732.5.con.0001",
+  "genome_name": "Pteropine orthoreovirus Sikamat/MYS/2010"
+ },
+ "PteropineOrthoreovirus.3.dna": {
+  "genome_ids": "118027.11.con.0001",
+  "genome_name": "Nelson Bay orthoreovirus"
+ },
+ "PteropineOrthoreovirus.4.dna": {
+  "genome_ids": "1459003.166.con.0001",
+  "genome_name": "Pteropine orthoreovirus 12MYKLU1034"
+ },
+ "PteropineOrthoreovirus.5.dna": {
+  "genome_ids": "118027.20.con.0001",
+  "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+ },
+ "PteropineOrthoreovirus.6.dna": {
+  "genome_ids": "118027.21.con.0001",
+  "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+ },
+ "PteropineOrthoreovirus.7.dna": {
+  "genome_ids": "118027.22.con.0001",
+  "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+ },
+ "PteropineOrthoreovirus.8.dna": {
+  "genome_ids": "118027.23.con.0001",
+  "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+ },
+ "PteropineOrthoreovirus.9.dna": {
+  "genome_ids": "118027.25.con.0001",
+  "genome_name": "Nelson Bay orthoreovirus Nachunsulwe-57"
+ }
+}

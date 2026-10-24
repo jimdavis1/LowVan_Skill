@@ -51,6 +51,14 @@ def main():
     bound_strings = {s[0] for r in agg for s in r["srcs"]}
     ndistinct = len(bound_strings | {u[0] for u in unb})
     ratio = (ndistinct / nanno) if nanno else 0
+    #  The headline tile has to use the same union as the standfirst. It used
+    #  `nbound` -- the SUM of per-feature counts -- under the label "strings that
+    #  bind to a feature", so a taxon with any string bound to two features
+    #  showed a tile and a sentence that disagreed: HIV-1 rendered "159 strings
+    #  that bind" beside "149 of them bind", three generic strings such as
+    #  "undefined CDS" being counted once per feature. The sum is still correct
+    #  for the per-feature cards, and the pair count is reported on stderr.
+    nbound_unique = len(bound_strings)
 
     cards = []
     for r in agg:
@@ -139,7 +147,7 @@ def main():
  times &mdash; that is the number a database user experiences.</div>
 </div>
 """ % {"CSS": css, "TAXON": html.escape(args.taxon), "DATE": html.escape(date),
-       "STAND": stand, "NDISTINCT": ndistinct, "NBOUND": nbound, "NANNO": nanno,
+       "STAND": stand, "NDISTINCT": ndistinct, "NBOUND": nbound_unique, "NANNO": nanno,
        "NOCC": "{:,}".format(nocc), "NUNB": len(unb),
        "CARDS": "\n".join(cards), "TYPOS": typrows, "UNB": unbrows}
 

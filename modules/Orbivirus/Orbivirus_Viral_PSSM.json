@@ -1,0 +1,357 @@
+{
+ "Orbivirus": {
+  "close_genomes": {
+   "Orbivirus.1.dna": {
+    "genome_ids": "104581.34",
+    "genome_name": "St Croix River virus IDE8/SCRV"
+   },
+   "Orbivirus.10.dna": {
+    "genome_ids": "1471048.10",
+    "genome_name": "Okhotskiy virus LEIV-70C"
+   },
+   "Orbivirus.11.dna": {
+    "genome_ids": "1484571.13",
+    "genome_name": "Baku virus LEIV-2275Uz"
+   },
+   "Orbivirus.12.dna": {
+    "genome_ids": "1561066.10",
+    "genome_name": "Mudjinabarry virus AUS1982/03"
+   },
+   "Orbivirus.13.dna": {
+    "genome_ids": "1853202.10",
+    "genome_name": "Parry's Lagoon virus K71551"
+   },
+   "Orbivirus.14.dna": {
+    "genome_ids": "201490.10",
+    "genome_name": "Equine encephalosis virus Potchefstroom"
+   },
+   "Orbivirus.15.dna": {
+    "genome_ids": "2282480.10",
+    "genome_name": "Kammavanpettai virus 66413"
+   },
+   "Orbivirus.16.dna": {
+    "genome_ids": "2306813.24",
+    "genome_name": "Guangxi orbivirus ON-2/E/14"
+   },
+   "Orbivirus.17.dna": {
+    "genome_ids": "2488682.10",
+    "genome_name": "Skunk River virus SkRV-IA07"
+   },
+   "Orbivirus.18.dna": {
+    "genome_ids": "2547355.10",
+    "genome_name": "Bukakata virus UGA432"
+   },
+   "Orbivirus.19.dna": {
+    "genome_ids": "2547357.10",
+    "genome_name": "Ife virus IbAn 57245"
+   },
+   "Orbivirus.2.dna": {
+    "genome_ids": "10897.100",
+    "genome_name": "African horse sickness virus 9 AHSV-9_22S_03"
+   },
+   "Orbivirus.20.dna": {
+    "genome_ids": "2547358.10",
+    "genome_name": "Japanaut virus MK 6357"
+   },
+   "Orbivirus.21.dna": {
+    "genome_ids": "40052.100",
+    "genome_name": "Changuinola virus Xaraira"
+   },
+   "Orbivirus.22.dna": {
+    "genome_ids": "40058.25",
+    "genome_name": "Orungo virus ORUV_264542_SEN"
+   },
+   "Orbivirus.23.dna": {
+    "genome_ids": "40059.100",
+    "genome_name": "Palyam virus Ib Ar 22388"
+   },
+   "Orbivirus.24.dna": {
+    "genome_ids": "40067.44",
+    "genome_name": "Wad Medani virus LEIV-F-57-Nah"
+   },
+   "Orbivirus.25.dna": {
+    "genome_ids": "2841875.10",
+    "genome_name": "Mudumu virus CP67-NA-2018"
+   },
+   "Orbivirus.26.dna": {
+    "genome_ids": "2895619.10",
+    "genome_name": "Wanken orbivirus B14-CI-2004"
+   },
+   "Orbivirus.27.dna": {
+    "genome_ids": "306276.152",
+    "genome_name": "Yunnan orbivirus Zmq45"
+   },
+   "Orbivirus.28.dna": {
+    "genome_ids": "47465.17",
+    "genome_name": "Wongorr virus 205783"
+   },
+   "Orbivirus.29.dna": {
+    "genome_ids": "2720399.10",
+    "genome_name": "Letea virus NN14LEA16"
+   },
+   "Orbivirus.3.dna": {
+    "genome_ids": "10906.10",
+    "genome_name": "Bluetongue virus 10 2627"
+   },
+   "Orbivirus.30.dna": {
+    "genome_ids": "1170506.10",
+    "genome_name": "Pata virus CAF1968/01"
+   },
+   "Orbivirus.4.dna": {
+    "genome_ids": "238101.108",
+    "genome_name": "Epizootic hemorrhagic disease virus 6 white-tailed deer/Minnesota/21-028115/2021"
+   },
+   "Orbivirus.5.dna": {
+    "genome_ids": "1170505.10",
+    "genome_name": "Tilligerry virus AUS1978/03"
+   },
+   "Orbivirus.6.dna": {
+    "genome_ids": "1289939.10",
+    "genome_name": "Sathuvachari virus IAn66411"
+   },
+   "Orbivirus.7.dna": {
+    "genome_ids": "1408137.24",
+    "genome_name": "Mobuck virus OV612"
+   },
+   "Orbivirus.8.dna": {
+    "genome_ids": "1416744.10",
+    "genome_name": "Heramatsu virus KY-663"
+   },
+   "Orbivirus.9.dna": {
+    "genome_ids": "1435294.10",
+    "genome_name": "Koyama Hill virus S7"
+   }
+  },
+  "features": {
+   "NS1": {
+    "anno": "Non-structural protein NS1, tubule protein",
+    "bit_cutoff": 80,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NS1",
+    "kmers": 1,
+    "max_len": 652,
+    "min_len": 405,
+    "segment": "NS1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "NS2": {
+    "anno": "Non-structural protein NS2, inclusion body protein",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NS2",
+    "kmers": 1,
+    "max_len": 489,
+    "min_len": 248,
+    "segment": "NS2 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "NS3": {
+    "anno": "Non-structural protein NS3, viroporin",
+    "bit_cutoff": 35,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NS3",
+    "kmers": 1,
+    "max_len": 279,
+    "min_len": 158,
+    "segment": "NS3 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "NS4": {
+    "anno": "Non-structural protein NS4, interferon antagonist",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NS4",
+    "kmers": 1,
+    "max_len": 294,
+    "min_len": 69,
+    "segment": "VP6 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "NS5": {
+    "anno": "Non-structural protein NS5",
+    "bit_cutoff": 40,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "NS5",
+    "kmers": 1,
+    "max_len": 65,
+    "min_len": 45,
+    "segment": "NS3 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP1": {
+    "anno": "RNA-dependent RNA polymerase",
+    "bit_cutoff": 280,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "RDRP",
+    "kmers": 1,
+    "max_len": 1410,
+    "min_len": 994,
+    "segment": "VP1 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP2": {
+    "anno": "Outer capsid protein VP2",
+    "bit_cutoff": 60,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP2",
+    "kmers": 1,
+    "max_len": 1283,
+    "min_len": 684,
+    "segment": "VP2 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP3": {
+    "anno": "Subcore shell protein VP3",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP3",
+    "kmers": 1,
+    "max_len": 1039,
+    "min_len": 682,
+    "segment": "VP3 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP4": {
+    "anno": "Capping enzyme VP4",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP4",
+    "kmers": 1,
+    "max_len": 703,
+    "min_len": 474,
+    "segment": "VP4 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP5": {
+    "anno": "Outer capsid protein VP5",
+    "bit_cutoff": 125,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP5",
+    "kmers": 1,
+    "max_len": 596,
+    "min_len": 379,
+    "segment": "VP5 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP6": {
+    "anno": "Helicase VP6",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP6",
+    "kmers": 1,
+    "max_len": 393,
+    "min_len": 203,
+    "segment": "VP6 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VP7": {
+    "anno": "Core surface protein VP7",
+    "bit_cutoff": 75,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "CDS",
+    "gene_symbol": "VP7",
+    "kmers": 1,
+    "max_len": 401,
+    "min_len": 262,
+    "segment": "VP7 Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "NS1 Segment": {
+    "max_len": 2156,
+    "min_len": 1326,
+    "replicon_geometry": "linear"
+   },
+   "NS2 Segment": {
+    "max_len": 1699,
+    "min_len": 903,
+    "replicon_geometry": "linear"
+   },
+   "NS3 Segment": {
+    "max_len": 920,
+    "min_len": 559,
+    "replicon_geometry": "linear"
+   },
+   "VP1 Segment": {
+    "max_len": 4411,
+    "min_len": 3380,
+    "replicon_geometry": "linear"
+   },
+   "VP2 Segment": {
+    "max_len": 3551,
+    "min_len": 1594,
+    "replicon_geometry": "linear"
+   },
+   "VP3 Segment": {
+    "max_len": 3136,
+    "min_len": 1983,
+    "replicon_geometry": "linear"
+   },
+   "VP4 Segment": {
+    "max_len": 2223,
+    "min_len": 1675,
+    "replicon_geometry": "linear"
+   },
+   "VP5 Segment": {
+    "max_len": 1852,
+    "min_len": 1375,
+    "replicon_geometry": "linear"
+   },
+   "VP6 Segment": {
+    "max_len": 1285,
+    "min_len": 770,
+    "replicon_geometry": "linear"
+   },
+   "VP7 Segment": {
+    "max_len": 1304,
+    "min_len": 747,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}
