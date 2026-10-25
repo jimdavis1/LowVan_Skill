@@ -423,7 +423,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 | page | live | source | updated |
 |---|---|---|---|
 | Rhabdoviridae Coverage Audit | [open](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) | [source](reports/rhabdoviridae-coverage-audit.html) | 2026-09-12 |
-| Rhabdoviridae PSSM Registry | [open](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | [source](reports/rhabdoviridae-pssm-registry.html) | 2026-09-09 |
+| Rhabdoviridae PSSM Registry | [open](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | [source](reports/rhabdoviridae-pssm-registry.html) | 2026-10-25 |
 
 Not made: string collapse, vocabulary saturation.
 
@@ -495,7 +495,7 @@ Not made: string collapse, vocabulary saturation.
 | page | live | source | updated |
 |---|---|---|---|
 | Togaviridae Coverage Audit | [open](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) | [source](reports/togaviridae-coverage-audit.html) | 2026-09-15 |
-| Togaviridae PSSM Registry | [open](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | [source](reports/togaviridae-pssm-registry.html) | 2026-09-15 |
+| Togaviridae PSSM Registry | [open](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | [source](reports/togaviridae-pssm-registry.html) | 2026-10-25 |
 
 Built but never published, source is here: [string collapse](reports/togaviridae-string-collapse.html).
 Not made: vocabulary saturation.
