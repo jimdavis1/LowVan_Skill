@@ -1,0 +1,124 @@
+{
+ "FIV": {
+  "close_genomes": {
+   "FIV.1.dna": {
+    "genome_ids": "11673.3250|M25381",
+    "genome_name": "Feline immunodeficiency virus Petaluma"
+   },
+   "FIV.2.dna": {
+    "genome_ids": "11673.1697|EF455613",
+    "genome_name": "Feline immunodeficiency virus SR631"
+   },
+   "FIV.3.dna": {
+    "genome_ids": "11673.2375|KF906152",
+    "genome_name": "Feline immunodeficiency virus Lru10"
+   },
+   "FIV.4.dna": {
+    "genome_ids": "32615.3|NC_038669",
+    "genome_name": "Puma lentivirus 14"
+   },
+   "FIV.5.dna": {
+    "genome_ids": "11673.1770|EU117991",
+    "genome_name": "Feline immunodeficiency virus 27B"
+   },
+   "FIV.6.dna": {
+    "genome_ids": "11673.2411|KF906185",
+    "genome_name": "Feline immunodeficiency virus Pco2"
+   }
+  },
+  "features": {
+   "ENV": {
+    "PMID_claude_generated": [
+     "2824606"
+    ],
+    "anno": "Envelope glycoprotein",
+    "bit_cutoff": 700,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "env",
+    "kmers": 1,
+    "max_len": 949,
+    "min_len": 760,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "GAG": {
+    "PMID_claude_generated": [
+     "2824606"
+    ],
+    "anno": "Gag polyprotein",
+    "bit_cutoff": 725,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "gag",
+    "kmers": 1,
+    "max_len": 532,
+    "min_len": 419,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "ORFA": {
+    "PMID_claude_generated": [
+     "2824606"
+    ],
+    "anno": "Protein OrfA",
+    "bit_cutoff": 116,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "orfA",
+    "kmers": 1,
+    "max_len": 118,
+    "min_len": 67,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "POL": {
+    "PMID_claude_generated": [
+     "2824606"
+    ],
+    "anno": "Pol polyprotein",
+    "bit_cutoff": 1581,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "pol",
+    "kmers": 1,
+    "max_len": 1222,
+    "min_len": 936,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "VIF": {
+    "PMID_claude_generated": [
+     "2824606"
+    ],
+    "anno": "Virion infectivity factor Vif",
+    "bit_cutoff": 217,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "vif",
+    "kmers": 1,
+    "max_len": 292,
+    "min_len": 218,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "Single RNA Segment": {
+    "max_len": 10500,
+    "min_len": 8000,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

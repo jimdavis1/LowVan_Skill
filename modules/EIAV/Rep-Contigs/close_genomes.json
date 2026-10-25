@@ -1,0 +1,14 @@
+{
+ "EIAV.1.dna": {
+  "genome_ids": "11665.1526|HM141913",
+  "genome_name": "Equine infectious anemia virus DLV"
+ },
+ "EIAV.2.dna": {
+  "genome_ids": "11665.2928|M16575",
+  "genome_name": "Equine infectious anemia virus"
+ },
+ "EIAV.3.dna": {
+  "genome_ids": "11665.3969|ON615427",
+  "genome_name": "Equine infectious anemia virus 122B_EIAV_DonkeyBrazil"
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "Betarhabdovirinae.1.dna": {
+  "genome_ids": "NC_007642.1",
+  "genome_name": "Lettuce necrotic yellows virus"
+ },
+ "Betarhabdovirinae.2.dna": {
+  "genome_ids": "NC_001615.3",
+  "genome_name": "Sonchus yellow net virus"
+ },
+ "Betarhabdovirinae.3.dna": {
+  "genome_ids": "NC_016136.1",
+  "genome_name": "Potato yellow dwarf virus"
+ },
+ "Betarhabdovirinae.4.dna": {
+  "genome_ids": "NC_005974.1",
+  "genome_name": "Maize fine streak virus"
+ },
+ "Betarhabdovirinae.5.dna": {
+  "genome_ids": "NC_002251.1",
+  "genome_name": "Northern cereal mosaic virus"
+ },
+ "Betarhabdovirinae.6.dna": {
+  "genome_ids": "NC_003746.1",
+  "genome_name": "Rice yellow stunt virus"
+ },
+ "Betarhabdovirinae.7.dna": {
+  "genome_ids": "BK064345",
+  "genome_name": "Argyranthemum gammacytorhabdovirus 1"
+ },
+ "Betarhabdovirinae.8.dna": {
+  "genome_ids": "BK070508",
+  "genome_name": "Artemisia deltanucleorhabdovirus 1"
+ }
+}

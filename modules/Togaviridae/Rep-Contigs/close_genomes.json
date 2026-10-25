@@ -1,0 +1,38 @@
+{
+ "Togaviridae.1.dna": {
+  "genome_ids": "NC_004162.2",
+  "genome_name": "Chikungunya virus S27-African prototype"
+ },
+ "Togaviridae.2.dna": {
+  "genome_ids": "NC_001547",
+  "genome_name": "Sindbis virus"
+ },
+ "Togaviridae.3.dna": {
+  "genome_ids": "NC_003908.1",
+  "genome_name": "Western equine encephalitis virus 71V-1658"
+ },
+ "Togaviridae.4.dna": {
+  "genome_ids": "NC_003899.1",
+  "genome_name": "Eastern equine encephalitis virus"
+ },
+ "Togaviridae.5.dna": {
+  "genome_ids": "NC_001449.1",
+  "genome_name": "Venezuelan equine encephalitis virus"
+ },
+ "Togaviridae.6.dna": {
+  "genome_ids": "NC_001544.1",
+  "genome_name": "Ross River virus NB5092"
+ },
+ "Togaviridae.7.dna": {
+  "genome_ids": "NC_001786.1",
+  "genome_name": "Barmah Forest virus BH2193"
+ },
+ "Togaviridae.8.dna": {
+  "genome_ids": "NC_003930.1",
+  "genome_name": "Salmon pancreas disease virus F93125"
+ },
+ "Togaviridae.9.dna": {
+  "genome_ids": "NC_018615.1",
+  "genome_name": "Eilat virus EO329"
+ }
+}

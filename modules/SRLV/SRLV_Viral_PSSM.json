@@ -1,0 +1,120 @@
+{
+ "SRLV": {
+  "close_genomes": {
+   "SRLV.1.dna": {
+    "genome_ids": "254355.3448|MG554406",
+    "genome_name": "Small ruminant lentivirus SRLV005"
+   },
+   "SRLV.2.dna": {
+    "genome_ids": "11660.600|M33677",
+    "genome_name": "Caprine arthritis encephalitis virus Clements"
+   },
+   "SRLV.3.dna": {
+    "genome_ids": "11660.373|GQ381130",
+    "genome_name": "Caprine arthritis encephalitis virus Seui"
+   },
+   "SRLV.4.dna": {
+    "genome_ids": "11660.436|JF502416",
+    "genome_name": "Caprine arthritis encephalitis virus Fonni"
+   },
+   "SRLV.5.dna": {
+    "genome_ids": "507757.3|EU293537",
+    "genome_name": "Caprine arthritis encephalitis virus Roccaverano"
+   }
+  },
+  "features": {
+   "ENV": {
+    "PMID_claude_generated": [
+     "2990099"
+    ],
+    "anno": "Envelope glycoprotein",
+    "bit_cutoff": 877,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "env",
+    "kmers": 1,
+    "max_len": 1053,
+    "min_len": 798,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "GAG": {
+    "PMID_claude_generated": [
+     "2990099"
+    ],
+    "anno": "Gag polyprotein",
+    "bit_cutoff": 622,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "gag",
+    "kmers": 1,
+    "max_len": 521,
+    "min_len": 406,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "POL": {
+    "PMID_claude_generated": [
+     "2990099"
+    ],
+    "anno": "Pol polyprotein",
+    "bit_cutoff": 1547,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "pol",
+    "kmers": 1,
+    "max_len": 1175,
+    "min_len": 840,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "TAT": {
+    "PMID_claude_generated": [
+     "2990099"
+    ],
+    "anno": "Transactivator protein Tat",
+    "bit_cutoff": 114,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "tat",
+    "kmers": 1,
+    "max_len": 100,
+    "min_len": 78,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "VIF": {
+    "PMID_claude_generated": [
+     "2990099"
+    ],
+    "anno": "Virion infectivity factor Vif",
+    "bit_cutoff": 268,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "vif",
+    "kmers": 1,
+    "max_len": 244,
+    "min_len": 213,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "Single RNA Segment": {
+    "max_len": 10500,
+    "min_len": 7500,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

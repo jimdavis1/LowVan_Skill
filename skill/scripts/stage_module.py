@@ -43,6 +43,7 @@ import shutil
 import sys
 
 PAGE_SUBDIR = "corrected_alis"
+LEFTOVER = "Leftover_Seqs.fa"
 
 
 def copy_verified(src, dst):
@@ -84,7 +85,20 @@ def stage(repo, kit, module, check=False):
         if not os.path.isdir(fd):
             problems.append("%s: no alignments in the repo" % feat)
             continue
-        alis = sorted(f for f in os.listdir(fd) if f.endswith(".fa"))
+        #  Leftover_Seqs.fa holds the sequences that did not cluster. No profile
+        #  is built from it, so it is not an alignment and must not be counted
+        #  as one -- it is provenance, and the kit keeps it beside corrected_alis
+        #  rather than inside it.
+        alis = sorted(f for f in os.listdir(fd)
+                      if f.endswith(".fa") and f != LEFTOVER)
+        #  An empty Leftover_Seqs.fa is a real result -- every sequence in the
+        #  collection clustered and nothing was left over (EIAV GAG and POL).
+        #  It is the one file here allowed to be zero bytes, so it is skipped
+        #  rather than copied; the emptiness guard below must still refuse an
+        #  empty alignment, where zero bytes means Box failed to serve it.
+        lo = os.path.join(fd, LEFTOVER)
+        if os.path.exists(lo) and os.path.getsize(lo) > 0:
+            plan.append((lo, os.path.join(dest, "PSSM-Alignments", feat, LEFTOVER)))
         pd = os.path.join(repo_pssms, feat)
         npr = len([f for f in os.listdir(pd) if f.endswith(".pssm")]) if os.path.isdir(pd) else 0
         if not alis:

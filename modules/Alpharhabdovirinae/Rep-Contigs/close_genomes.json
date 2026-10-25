@@ -1,0 +1,42 @@
+{
+ "Alpharhabdovirinae.1.dna": {
+  "genome_ids": "NC_001542.1",
+  "genome_name": "Rabies lyssavirus Pasteur virus"
+ },
+ "Alpharhabdovirinae.11.dna": {
+  "genome_ids": "BK059423",
+  "genome_name": "San Gabriel mononegavirus San Gabriel Valley"
+ },
+ "Alpharhabdovirinae.2.dna": {
+  "genome_ids": "NC_001560.1",
+  "genome_name": "Vesicular stomatitis Indiana virus"
+ },
+ "Alpharhabdovirinae.3.dna": {
+  "genome_ids": "NC_002526.1",
+  "genome_name": "Bovine ephemeral fever virus BB7721"
+ },
+ "Alpharhabdovirinae.4.dna": {
+  "genome_ids": "NC_038279.1",
+  "genome_name": "Drosophila ananassae sigmavirus Kilifi Kenya"
+ },
+ "Alpharhabdovirinae.5.dna": {
+  "genome_ids": "NC_034447.1",
+  "genome_name": "Hart Park virus"
+ },
+ "Alpharhabdovirinae.6.dna": {
+  "genome_ids": "NC_020804.1",
+  "genome_name": "Tibrogargan virus"
+ },
+ "Alpharhabdovirinae.7.dna": {
+  "genome_ids": "NC_002803.1",
+  "genome_name": "Spring viraemia of carp virus"
+ },
+ "Alpharhabdovirinae.8.dna": {
+  "genome_ids": "NC_025384.1",
+  "genome_name": "Culex tritaeniorhynchus rhabdovirus"
+ },
+ "Alpharhabdovirinae.9.dna": {
+  "genome_ids": "LC270812",
+  "genome_name": "Menghai rhabdovirus kunoichi"
+ }
+}

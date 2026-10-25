@@ -1,0 +1,54 @@
+{
+ "HIV2.1.dna": {
+  "genome_ids": "11709.1475|D00835",
+  "genome_name": "Human immunodeficiency virus 2 CAM 2"
+ },
+ "HIV2.10.dna": {
+  "genome_ids": "11723.39562|M58410",
+  "genome_name": "Simian immunodeficiency virus"
+ },
+ "HIV2.11.dna": {
+  "genome_ids": "11723.35252|KU182919",
+  "genome_name": "Simian immunodeficiency virus SL92b.tf"
+ },
+ "HIV2.12.dna": {
+  "genome_ids": "11723.24585|KC522216",
+  "genome_name": "Simian immunodeficiency virus SIVmac251.CM.p3c22"
+ },
+ "HIV2.13.dna": {
+  "genome_ids": "11723.385|AF328295",
+  "genome_name": "Simian immunodeficiency virus SIVmnd14cg"
+ },
+ "HIV2.2.dna": {
+  "genome_ids": "11723.4057|DQ201172",
+  "genome_name": "Simian immunodeficiency virus"
+ },
+ "HIV2.3.dna": {
+  "genome_ids": "11723.33371|KR862336",
+  "genome_name": "Simian immunodeficiency virus VSAC4004"
+ },
+ "HIV2.4.dna": {
+  "genome_ids": "11723.39526|M29975",
+  "genome_name": "Simian immunodeficiency virus 155"
+ },
+ "HIV2.5.dna": {
+  "genome_ids": "11709.1300|AY530889",
+  "genome_name": "Human immunodeficiency virus 2 96FR12034"
+ },
+ "HIV2.6.dna": {
+  "genome_ids": "11723.1324|AY159321",
+  "genome_name": "Simian immunodeficiency virus SIVdrl1FAO"
+ },
+ "HIV2.7.dna": {
+  "genome_ids": "11723.39528|M30931",
+  "genome_name": "Simian immunodeficiency virus AGM3"
+ },
+ "HIV2.8.dna": {
+  "genome_ids": "11723.17823|HM803689",
+  "genome_name": "Simian immunodeficiency virus SIVrcm"
+ },
+ "HIV2.9.dna": {
+  "genome_ids": "11723.33391|KR862361",
+  "genome_name": "Simian immunodeficiency virus VSAM0019"
+ }
+}
