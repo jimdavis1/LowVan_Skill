@@ -110,7 +110,33 @@ def main():
         return locs[0][2] if locs and len(locs[0]) > 2 else "+"
 
     anno2key = {v["anno"]: k for k, v in feats.items()}
+
+    #  WHICH MODULE DID THIS GENOME ROUTE TO?
+    #
+    #  `anno` is not unique across modules. FIV, SRLV and EIAV all call their
+    #  features "Gag polyprotein", "Pol polyprotein", "Envelope glycoprotein"
+    #  and "Virion infectivity factor Vif", so matching on `anno` alone counts
+    #  every genome in the evaluation directory toward every module -- in both
+    #  the numerator and the denominator. Run against one Quality_GTOs holding
+    #  all three lentivirus genera on 26 Oct, that reported FIV ENV at 99.0%
+    #  (really 100/101 = 51 SRLV + 39 FIV + 10 EIAV), EIAV S2 at 10.9% when it
+    #  is 11/11, and SRLV TAT at 48.5% when it is 49/51. The S2 figure would
+    #  have dropped a copy_num the curator had just decided to keep.
+    #
+    #  family_assignments carries the module: "SRLV.GAG.2" -> ("SRLV", "GAG").
+    #  Fall back to `anno` when a feature has no assignment, which keeps the
+    #  old behaviour for a single-module directory.
+    def mod_and_key(f):
+        fam = (f.get("family_assignments") or [[None, "", "", ""]])[0]
+        key = (fam[1] or "") if len(fam) > 1 else ""
+        if key:
+            bits = key.split(".")
+            if len(bits) >= 2 and bits[0] and bits[1]:
+                return bits[0], bits[1]
+        return None, anno2key.get(f.get("function") or "")
+
     raw = collections.Counter(); alone = collections.Counter(); routed = 0
+    skipped_other = 0
     #  per feature: how many contained calls were out of frame with the
     #  containing feature, and which features did the containing
     oof = collections.Counter(); contained = collections.Counter()
@@ -122,10 +148,15 @@ def main():
             continue
         if not d.get("features"):
             continue
+        parsed = [(mod_and_key(f), span(f), strand_of(f)) for f in d["features"]]
+        seen_mods = collections.Counter(m for (m, _k), _s, _d in parsed if m)
+        gmod = seen_mods.most_common(1)[0][0] if seen_mods else None
+        if gmod and gmod != a.module:
+            skipped_other += 1
+            continue
         routed += 1
-        fs = [(anno2key.get(f.get("function") or ""), span(f), strand_of(f))
-              for f in d["features"]]
-        fs = [x for x in fs if x[0] and x[1]]
+        fs = [(k, sp, sd) for (m, k), sp, sd in parsed
+              if k and sp and (m is None or m == a.module)]
         got, got_alone = set(), set()
         for i, (k, sp, sd) in enumerate(fs):
             got.add(k)
@@ -212,6 +243,9 @@ def main():
         elif has:
             keep.append((k, frac))
 
+    if skipped_other:
+        print("  %d genome(s) routed to another module, not counted"
+              % skipped_other)
     print("  %s: %d routed genome(s), threshold %.0f%%%s"
           % (a.module, routed, 100 * a.threshold,
              ""))

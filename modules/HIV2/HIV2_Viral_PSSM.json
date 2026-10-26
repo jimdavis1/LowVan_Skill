@@ -177,7 +177,6 @@
             ],
             "anno" : "Virion protein R Vpr",
             "bit_cutoff" : 111,
-            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
