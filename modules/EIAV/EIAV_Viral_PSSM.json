@@ -1,112 +1,113 @@
 {
- "EIAV": {
-  "close_genomes": {
-   "EIAV.1.dna": {
-    "genome_ids": "11665.1526|HM141913",
-    "genome_name": "Equine infectious anemia virus DLV"
-   },
-   "EIAV.2.dna": {
-    "genome_ids": "11665.2928|M16575",
-    "genome_name": "Equine infectious anemia virus"
-   },
-   "EIAV.3.dna": {
-    "genome_ids": "11665.3969|ON615427",
-    "genome_name": "Equine infectious anemia virus 122B_EIAV_DonkeyBrazil"
+   "EIAV" : {
+      "close_genomes" : {
+         "EIAV.1.dna" : {
+            "genome_ids" : "11665.1526|HM141913",
+            "genome_name" : "Equine infectious anemia virus DLV"
+         },
+         "EIAV.2.dna" : {
+            "genome_ids" : "11665.2928|M16575",
+            "genome_name" : "Equine infectious anemia virus"
+         },
+         "EIAV.3.dna" : {
+            "genome_ids" : "11665.3969|ON615427",
+            "genome_name" : "Equine infectious anemia virus 122B_EIAV_DonkeyBrazil"
+         }
+      },
+      "features" : {
+         "ENV" : {
+            "PMID_claude_generated" : [
+               "2546031"
+            ],
+            "anno" : "Envelope glycoprotein",
+            "bit_cutoff" : 1035,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "env",
+            "kmers" : 1,
+            "max_len" : 937,
+            "min_len" : 753,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "GAG" : {
+            "PMID_claude_generated" : [
+               "2546031"
+            ],
+            "anno" : "Gag polyprotein",
+            "bit_cutoff" : 682,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "gag",
+            "kmers" : 1,
+            "max_len" : 530,
+            "min_len" : 376,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "POL" : {
+            "PMID_claude_generated" : [
+               "2546031"
+            ],
+            "anno" : "Pol polyprotein",
+            "bit_cutoff" : 1901,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "pol",
+            "kmers" : 1,
+            "max_len" : 1217,
+            "min_len" : 1065,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         },
+         "REV" : {
+            "PMID_claude_generated" : [
+               "2546031"
+            ],
+            "anno" : "Protein Rev",
+            "feature_type" : "CDS",
+            "gene_symbol" : "rev",
+            "max_len" : 180,
+            "min_len" : 130,
+            "segment" : "Single RNA Segment",
+            "special" : "splice"
+         },
+         "S2" : {
+            "PMID_claude_generated" : [
+               "2546031"
+            ],
+            "anno" : "Protein S2",
+            "bit_cutoff" : 58,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S2",
+            "kmers" : 1,
+            "max_len" : 81,
+            "min_len" : 61,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 9500,
+            "min_len" : 7000,
+            "replicon_geometry" : "linear"
+         }
+      },
+      "splice_cov" : 95,
+      "splice_id" : 85
    }
-  },
-  "features": {
-   "ENV": {
-    "PMID_claude_generated": [
-     "2546031"
-    ],
-    "anno": "Envelope glycoprotein",
-    "bit_cutoff": 1035,
-    "copy_num": 1,
-    "coverage_cutoff": 0.65,
-    "downstream_ext": 1,
-    "feature_type": "CDS",
-    "gene_symbol": "env",
-    "kmers": 1,
-    "max_len": 937,
-    "min_len": 753,
-    "segment": "Single RNA Segment",
-    "type": "CDS",
-    "upstream_ext": 1
-   },
-   "GAG": {
-    "PMID_claude_generated": [
-     "2546031"
-    ],
-    "anno": "Gag polyprotein",
-    "bit_cutoff": 682,
-    "copy_num": 1,
-    "coverage_cutoff": 0.65,
-    "downstream_ext": 1,
-    "feature_type": "CDS",
-    "gene_symbol": "gag",
-    "kmers": 1,
-    "max_len": 530,
-    "min_len": 376,
-    "segment": "Single RNA Segment",
-    "type": "CDS",
-    "upstream_ext": 1
-   },
-   "POL": {
-    "PMID_claude_generated": [
-     "2546031"
-    ],
-    "anno": "Pol polyprotein",
-    "bit_cutoff": 1901,
-    "copy_num": 1,
-    "coverage_cutoff": 0.65,
-    "downstream_ext": 1,
-    "feature_type": "CDS",
-    "gene_symbol": "pol",
-    "kmers": 1,
-    "max_len": 1217,
-    "min_len": 1065,
-    "segment": "Single RNA Segment",
-    "type": "CDS",
-    "upstream_ext": 0
-   },
-   "REV": {
-    "PMID_claude_generated": [
-     "2546031"
-    ],
-    "anno": "Protein Rev",
-    "feature_type": "CDS",
-    "gene_symbol": "rev",
-    "max_len": 180,
-    "min_len": 130,
-    "segment": "Single RNA Segment",
-    "special": "splice"
-   },
-   "S2": {
-    "PMID_claude_generated": [
-     "2546031"
-    ],
-    "anno": "Protein S2",
-    "bit_cutoff": 58,
-    "coverage_cutoff": 0.65,
-    "downstream_ext": 1,
-    "feature_type": "CDS",
-    "gene_symbol": "S2",
-    "kmers": 1,
-    "max_len": 81,
-    "min_len": 61,
-    "segment": "Single RNA Segment",
-    "type": "CDS",
-    "upstream_ext": 1
-   }
-  },
-  "segments": {
-   "Single RNA Segment": {
-    "max_len": 9500,
-    "min_len": 7000,
-    "replicon_geometry": "linear"
-   }
-  },
-  "splice_cov": 95,
-  "splice_id": 85
- }
 }

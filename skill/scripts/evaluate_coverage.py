@@ -145,16 +145,29 @@ def cluster(fa, work, pid, cov, threads):
 def annotate_gto(contigs_dir, meta, work, repo, taxon, threads):
     """Annotate via the GTO pipeline and return the Quality_GTOs directory."""
     qdir = os.path.join(work, "Quality_GTOs")
+    #  The output directories MUST be relative and the process MUST run in
+    #  `work`. New-annotate-viral-taxon.pl builds every output path as
+    #  "$base/$dir/..." where $base is getcwd at startup, so an absolute -c
+    #  lands at /work//work/Contig_GTOs. It does not fail on that: the inner
+    #  redirect fails per genome, the pipeline runs to the end, and the script
+    #  exits 0 with three empty directories. The only symptom upstream was
+    #  "0 routed, 2 UNROUTED (100.0%)".
+    os.makedirs(work, exist_ok=True)
+    #  -contigs is prefixed with $base too (line 292: "--contigs
+    #  $base/$contigDir/$item"), so it must be relative to `work` as well.
+    #  -meta and -j are used as given and stay absolute.
     cmd = ["perl", os.path.join(repo, "Other_Scripts", "New-annotate-viral-taxon.pl"),
-           "-contigs", contigs_dir, "-meta", meta, "-t", str(threads),
-           "-c", os.path.join(work, "Contig_GTOs"),
-           "-a", os.path.join(work, "Anno_GTOs"),
-           "-q", qdir, "-j", os.path.join(repo, "Viral_PSSM.json")]
+           "-contigs", os.path.relpath(os.path.abspath(contigs_dir), work),
+           "-meta", os.path.abspath(meta), "-t", str(threads),
+           "-c", "Contig_GTOs", "-a", "Anno_GTOs", "-q", "Quality_GTOs",
+           "-j", os.path.join(repo, "Viral_PSSM.json")]
     if taxon:
         cmd += ["-i", taxon]
-    print("  " + " ".join(cmd))
-    r = subprocess.run(cmd, env=dict(os.environ, LOWVAN_DATA_DIR=repo))
-    if r.returncode != 0 or not os.path.isdir(qdir):
+    print("  (cwd=%s) %s" % (work, " ".join(cmd)))
+    r = subprocess.run(cmd, cwd=work, env=dict(os.environ, LOWVAN_DATA_DIR=repo))
+    #  An empty Quality_GTOs is the failure above wearing a success exit code,
+    #  so emptiness is checked, not just existence.
+    if r.returncode != 0 or not os.path.isdir(qdir) or not os.listdir(qdir):
         raise SystemExit(
             "the GTO pipeline did not produce %s.\n"
             "It needs the BV-BRC dev kit on PERL5LIB/PATH: GenomeTypeObject.pm,\n"
@@ -219,6 +232,128 @@ def annotate(exemplars, seqs, work, repo, threads):
     return outd
 
 
+
+def stage_exemplars(ex, seqs, work):
+    """One FASTA per exemplar plus the metadata New-annotate needs.
+
+    Contig-dir mode wants `file_name TAB genome_name TAB taxon_id`. The taxon
+    id is the part of a BV-BRC genome id before the dot; anything else gets
+    10239, the Viruses node, which is only used to stamp the GTO.
+    """
+    exd = os.path.join(work, "ex_gto")
+    os.makedirs(exd, exist_ok=True)
+    meta = os.path.join(work, "exemplars.metadata")
+    with open(meta, "w") as mh:
+        for g in ex:
+            fa = os.path.join(exd, g + ".fna")
+            if not os.path.exists(fa) or os.path.getsize(fa) == 0:
+                with open(fa, "w") as fh:
+                    for i, c in enumerate(seqs[g], 1):
+                        fh.write(">%s_%d\n%s\n" % (g, i, c))
+            head = g.split(".")[0]
+            tax = head if head.isdigit() else "10239"
+            mh.write("%s\t%s\t%s\n" % (os.path.basename(fa), g, tax))
+    print("  staged %d exemplar(s) -> %s" % (len(ex), exd))
+    return exd, meta
+
+
+def report_gto(ex, seqs, work, out):
+    """Same report as report(), read from the GTOs so specials are included.
+
+    Module and feature come from family_assignments, which both the PSSM pass
+    and the special passes fill in: 'HIV2.NEF.9' from a profile, 'HIV2.REV'
+    from the splice caller. The fourth element names the program, so a feature
+    can be attributed to the pass that called it.
+
+    The flat path read its 'flags' out of column 13, which is the reference
+    contig, not a flag -- every previous coverage.json carries a flags block
+    that is really a tally of which rep contig routed how many genomes. Here
+    the flags are the real feature_quality_flags from the Quality GTOs.
+    """
+    annod = os.path.join(work, "Anno_GTOs")
+    quald = os.path.join(work, "Quality_GTOs")
+    unrouted, per_mod = [], collections.Counter()
+    feats, flags = collections.Counter(), collections.Counter()
+    per_mod_feat = collections.defaultdict(collections.Counter)
+    by_caller = collections.Counter()
+    rows = []
+
+    #  Exact names only. A glob of "<id>*" is wrong twice here: Anno_GTOs also
+    #  holds <id>.stdout.txt and <id>.stderr.txt, which parse as nothing, and
+    #  genome ids are prefixes of each other -- 11665.150* also matches
+    #  11665.1505. Both failures look identical downstream: "UNROUTED".
+    def gto_for(d, g):
+        for pat in (g + ".anno.gto", g + ".qual.gto", g + ".gto", g + ".ann.gto"):
+            p = os.path.join(d, pat)
+            if os.path.exists(p) and os.path.getsize(p) > 0:
+                return p
+        return None
+
+    for g in ex:
+        p = gto_for(annod, g) or gto_for(quald, g)
+        if not p:
+            unrouted.append(g); continue
+        try:
+            d = json.load(open(p))
+        except Exception:
+            unrouted.append(g); continue
+        mod = None; calls = []
+        for f in d.get("features", []) or []:
+            fam = (f.get("family_assignments") or [[None, "", "", ""]])[0]
+            key = (fam[1] or "") if len(fam) > 1 else ""
+            if not key:
+                continue
+            bits = key.split(".")
+            mod = bits[0] or mod
+            gene = dict(f.get("alias_pairs") or []).get("gene")
+            calls.append(gene or (bits[1].lower() if len(bits) > 1 else key))
+            if len(fam) > 3 and fam[3]:
+                by_caller[fam[3]] += 1
+        if not calls:
+            unrouted.append(g); continue
+        per_mod[mod or "(none)"] += 1
+        for c in calls:
+            feats[c] += 1
+            per_mod_feat[mod or "(none)"][c] += 1
+        rows.append({"genome": g, "len": sum(map(len, seqs[g])), "module": mod,
+                     "n_calls": len(calls), "calls": sorted(set(calls))})
+
+    good = poor = 0
+    for q in sorted(glob.glob(os.path.join(quald, "*"))):
+        if os.path.isdir(q):
+            continue
+        try:
+            d = json.load(open(q))
+        except Exception:
+            continue
+        qa = d.get("genome_quality") or (d.get("quality") or {}).get("genome_quality")
+        if str(qa).lower().startswith("good"):
+            good += 1
+        else:
+            poor += 1
+        for f in d.get("features", []) or []:
+            for fl in f.get("feature_quality_flags") or []:
+                flags[fl] += 1
+
+    res = {"exemplars": len(ex), "unrouted": unrouted, "per_module": dict(per_mod),
+           "features": dict(feats),
+           "per_module_features": {k: dict(v) for k, v in per_mod_feat.items()},
+           "flags": dict(flags), "rows": rows,
+           "genome_quality": {"good": good, "poor": poor},
+           "calls_by_program": dict(by_caller),
+           "source": "GTO pipeline -- special features included"}
+    json.dump(res, open(out, "w"), indent=1)
+    print("\n  %d exemplars | %d routed | %d UNROUTED (%.1f%%)"
+          % (len(ex), len(ex) - len(unrouted), len(unrouted),
+             100.0 * len(unrouted) / max(len(ex), 1)))
+    if by_caller:
+        print("  calls by program:")
+        for k, v in sorted(by_caller.items(), key=lambda x: -x[1]):
+            print("    %-40s %d" % (k, v))
+    print("  genome quality: %d good, %d poor" % (good, poor))
+    print("  wrote %s" % out)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--contigs", required=True, help="directory of per-genome contig files")
@@ -235,6 +370,13 @@ def main():
                     help="module JSON, for per-module completeness thresholds")
     ap.add_argument("--threads", type=int, default=6)
     ap.add_argument("--out", default="coverage.json")
+    ap.add_argument("--taxon", default=None,
+                    help="taxon name, passed to New-annotate-viral-taxon.pl")
+    ap.add_argument("--no-special", action="store_true",
+                    help="force the flat feature-table path even when the JSON "
+                         "declares spliced or transcript-edited features. The "
+                         "report then CANNOT contain them -- only use this when "
+                         "the BV-BRC dev kit is unavailable.")
     args = ap.parse_args()
 
     work = os.path.abspath(args.work)
@@ -267,13 +409,32 @@ def main():
     #  above annotate_gto(). If the JSON declares any, say so loudly rather
     #  than silently reporting 0% for them. Togaviridae's TF is called on 293
     #  of 381 genomes by the full pipeline and appears nowhere in this report.
+    #
+    #  THIS USED TO BE A WARNING AND NOTHING ELSE.
+    #
+    #  It printed the list and then ran the flat path anyway, so every coverage
+    #  audit of a module with a special feature reported that feature at zero
+    #  without ever saying zero -- it simply was not a row. The lentivirus
+    #  audit of 25 Oct measured HIV2 and EIAV with REV and TAT missing, and the
+    #  warning scrolled past in a log. A warning that does not change what the
+    #  program does is a comment addressed to no one.
+    #
+    #  So the declaration now decides the route: if any module in scope
+    #  declares a special feature, annotation goes through the GTO pipeline,
+    #  which pipes annotate_by_viral_pssm-GTO.pl into
+    #  get_transcript_edited_features.pl and get_splice_variant_features.pl.
+    #  --no-special restores the old behaviour and says loudly what it costs.
+    use_gto = bool(specials) and not args.no_special
     if specials:
         print()
-        print("  WARNING: the following features are called by an external program and")
-        print("           CANNOT appear in this evaluation. Their coverage here is not")
-        print("           low -- it is absent. Run New-annotate-viral-taxon.pl to see them.")
         for m, sp in sorted(specials.items()):
-            print("             %-24s %s" % (m, ", ".join(sp)))
+            print("    %-24s special: %s" % (m, ", ".join(sp)))
+        if use_gto:
+            print("  -> annotating via the GTO pipeline so these are measured.")
+        else:
+            print("  WARNING: --no-special given. These features are called by an")
+            print("           external program and CANNOT appear in this report.")
+            print("           Their coverage here is not low -- it is absent.")
         print()
     default_floor = args.min_complete or (min(floors.values()) if floors else 10000)
     if floors:
@@ -292,8 +453,14 @@ def main():
     print("  %d exemplar(s); %d cluster(s) below every floor, skipped"
           % (len(ex), partial_only))
 
-    outd = annotate(ex, seqs, work, os.path.abspath(args.repo), args.threads)
-    report(ex, seqs, outd, args.out)
+    repo = os.path.abspath(args.repo)
+    if use_gto:
+        exd, meta = stage_exemplars(ex, seqs, work)
+        annotate_gto(exd, meta, work, repo, args.taxon, args.threads)
+        report_gto(ex, seqs, work, args.out)
+    else:
+        outd = annotate(ex, seqs, work, repo, args.threads)
+        report(ex, seqs, outd, args.out)
 
 
 def report(ex, seqs, outd, out):

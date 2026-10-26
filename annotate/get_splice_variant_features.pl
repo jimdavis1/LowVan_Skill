@@ -101,7 +101,21 @@ foreach (keys %{$json->{$fam}->{features}})
 		my $anno = $json->{$fam}->{features}->{$prot}->{anno};
 		my $symbol = $json->{$fam}->{features}->{$prot}->{gene_symbol};
 		my $feature_type = $json->{$fam}->{features}->{$prot}->{feature_type};
-		push @to_analyze, ([$prot, $anno, $feature_type, $symbol]);
+
+		#  Per-module splice thresholds.  The global defaults (95/95) suit a short
+		#  reference like influenza M2 (~1 kb).  A taxon whose intron forces a long
+		#  reference needs its own value:  HIV-1 TAT/REV span D4->A7 (~3 kb, the
+		#  intron carries the RRE) and at 95% identity only 41.8% of genomes have
+		#  any reference partner -- adding references does not help, because the
+		#  gap is real inter-subtype divergence (10-15%).  At 85% it is 98.0%.
+		#  Feature-level wins over module-level, which wins over the CLI value,
+		#  so an unset module behaves exactly as before.
+		my $f_id  = $json->{$fam}->{features}->{$prot}->{splice_id}
+		         // $json->{$fam}->{splice_id}  // $opt->id;
+		my $f_cov = $json->{$fam}->{features}->{$prot}->{splice_cov}
+		         // $json->{$fam}->{splice_cov} // $opt->cov;
+
+		push @to_analyze, ([$prot, $anno, $feature_type, $symbol, $f_id, $f_cov]);
 	}
 }
 
@@ -140,13 +154,27 @@ if (scalar @to_analyze)
 	for my $i (0..$#to_analyze)
 	{
 		my $name   = $to_analyze[$i][0];
-		my $anno   = $to_analyze[$i][1]; 
+		my $anno   = $to_analyze[$i][1];
 		my $ft     = $to_analyze[$i][2];
 		my $symbol = $to_analyze[$i][3];
-		
-		print STDERR "Analyzing $name\n"; 
-		my $query = "$dir/$fam/$name.fasta"; 
-		run ("cp $query ."); 
+		my $f_id   = $to_analyze[$i][4];
+		my $f_cov  = $to_analyze[$i][5];
+
+		print STDERR "Analyzing $name  (min id = $f_id, min cov = $f_cov)\n";
+		my $query = "$dir/$fam/$name.fasta";
+
+		#  A feature declared in the JSON with no reference file behind it used to
+		#  abort the ENTIRE genome: the cp failed, blastn wrote nothing, and
+		#  decode_json died on the empty file, so every remaining splice feature
+		#  was lost too.  Skip the feature and carry on instead -- one undeclared
+		#  reference set must not cost a genome its other splice calls.
+		unless (-s $query)
+		{
+			warn "No reference file for $fam/$name ($query) -- skipping this feature.\n";
+			next;
+		}
+
+		run ("cp $query .");
 
 		my $make_db2 = run("makeblastdb -dbtype nucl -in $name.fasta >/dev/null");
 
@@ -165,15 +193,26 @@ if (scalar @to_analyze)
 		      "-outfmt",          15,
 		      "-soft_masking",   "false",
 		      "-dust",           "no",
-		      "-perc_identity",  $opt->id,   
-              "-qcov_hsp_perc",  $opt->cov,
+		      "-perc_identity",  $f_id,
+              "-qcov_hsp_perc",  $f_cov,
 		      "-num_threads",    $opt->threads);
 		      
 
 		my $do_blast = run(["blastn", @blast_parms], ">", "$name.json", "2>", "$name.blastn.stderr.txt");
-		open (IN, "<$name.json") or warn "Cannot open JSON BLASTn output file $name.json\n";
-		my $results = decode_json(scalar read_file(\*IN));	
+		unless (-s "$name.json")
+		{
+			warn "BLASTn produced no output for $fam/$name -- skipping this feature.\n";
+			next;
+		}
+		open (IN, "<$name.json") or do { warn "Cannot open JSON BLASTn output file $name.json\n"; next; };
+		my $raw = scalar read_file(\*IN);
 		close IN;
+		my $results = eval { decode_json($raw) };
+		if ($@ || !$results)
+		{
+			warn "Unparseable BLASTn JSON for $fam/$name -- skipping this feature.\n";
+			next;
+		}
 		
 		
 		#Gather in the best match.
@@ -222,7 +261,7 @@ if (scalar @to_analyze)
 				#If all inclusion critreria are met:
 				
 				
-				if ( ($pid >= $opt->id) && ($qcov >= $opt->cov) )
+				if ( ($pid >= $f_id) && ($qcov >= $f_cov) )
 				{
 				
 					# Parse splice site coordinates from query title
@@ -237,11 +276,45 @@ if (scalar @to_analyze)
 
 					# Compute "relative" dna coordinates from the blastn alignment
 					# These will always be in the (+) direction because the references must be in the plus.
-					my $rel_sd_start = $sd_start - $qfrom;
-					my $rel_sd_end   = $sd_end - $qfrom;
-					my $rel_sa_start = $sa_start - $qfrom;
-					my $rel_sa_end   = $sa_end - $qfrom;
-										
+					#
+					# These offsets index the GAPPED alignment strings, so they cannot be
+					# plain arithmetic on query coordinates: every gap in the query before a
+					# splice site shifts the extracted motif by one column and the exact-match
+					# lookup below then fails.  Walk the query to map each query position to
+					# its alignment column instead.  With a gapless alignment this reduces to
+					# the old ($pos - $qfrom), so gapless callers are unaffected.
+					my @qcol;
+					{
+						my $qp = $qfrom - 1;
+						my @qc = split //, $qseq;
+						for my $c (0 .. $#qc)
+						{
+							if ($qc[$c] ne '-') { $qp++; $qcol[$qp] = $c; }
+						}
+					}
+					my $qlo = $qfrom;
+					my $qhi = $#qcol;
+					my $map = sub {
+						my $p = shift;
+						return undef if $p < $qlo || $p > $qhi;
+						return $qcol[$p];
+					};
+
+					my $rel_sd_start = $map->($sd_start);
+					my $rel_sd_end   = $map->($sd_end);
+					my $rel_sa_start = $map->($sa_start);
+					my $rel_sa_end   = $map->($sa_end);
+					my $rel_sd_last  = $map->($sd_last);
+					my $rel_sa_first = $map->($sa_first);
+
+					unless (defined $rel_sd_start && defined $rel_sd_end
+					     && defined $rel_sa_start && defined $rel_sa_end
+					     && defined $rel_sd_last  && defined $rel_sa_first)
+					{
+						print STDERR "Splice site falls outside the aligned region for $name, skipping.\n";
+						next;
+					}
+
 					# Ensure coordinates are within bounds and positive
 					$rel_sd_start = max(0, $rel_sd_start);
 					$rel_sd_end   = min($ali_len - 1, max(0, $rel_sd_end));
@@ -252,11 +325,28 @@ if (scalar @to_analyze)
 					#my $ref_SD = substr($qseq, $rel_sd_start, ($rel_sd_end - $rel_sd_start) + 1);
 					#my $ref_SA = substr($qseq, $rel_sa_start, ($rel_sa_end - $rel_sa_start) + 1);
 					
+					#  Strip alignment gaps so the lookup sees the subject's own bases across
+					#  the window.  A real indel at the splice site leaves a motif of the
+					#  wrong length, which correctly fails the lookup.  Gapless alignments
+					#  are unchanged by this.
 					my $sub_SD = substr($sseq, $rel_sd_start, ($rel_sd_end - $rel_sd_start) + 1);
 					my $sub_SA = substr($sseq, $rel_sa_start, ($rel_sa_end - $rel_sa_start) + 1);
+					$sub_SD =~ s/-//g;
+					$sub_SA =~ s/-//g;
+					$sub_SD = uc($sub_SD);
+					$sub_SA = uc($sub_SA);
 					
+					#  A subject carrying an IUPAC ambiguity code inside the window can never
+					#  match an exact hash of unambiguous references, though the site itself
+					#  may be perfectly ordinary.  An ambiguity code means "one of these
+					#  bases", so the site is accepted when ANY resolution is a known one.
+					#  Affects ~1.3% of HIV-1 genomes, almost all with a single ambiguous
+					#  position; the expansion is capped so a run of codes cannot blow up.
+					if (!exists $SDs{$sub_SD}) { $sub_SD = resolve_iupac($sub_SD, \%SDs) // $sub_SD; }
+					if (!exists $SAs{$sub_SA}) { $sub_SA = resolve_iupac($sub_SA, \%SAs) // $sub_SA; }
+
 					if ((exists $SDs{$sub_SD}) && (exists $SAs{$sub_SA}))
-					#if ((uc($ref_SD) eq uc($sub_SD)) && (uc($ref_SA) eq uc($sub_SA))) 
+					#if ((uc($ref_SD) eq uc($sub_SD)) && (uc($ref_SA) eq uc($sub_SA)))
 					{
 
 						print STDERR  "Match found for SD and SA sites\n";
@@ -266,9 +356,10 @@ if (scalar @to_analyze)
 							print STDERR "SA Match: $sub_SA\n\n";
 						}					
 							
-						# Calculate splice coordinates in the subject sequence
-						my $splice_left_end    = $rel_sd_start + ($sd_last - $sd_start);
-						my $splice_right_start = $rel_sa_start + ($sa_first - $sa_start);
+						# Calculate splice coordinates in the subject sequence.
+						# Mapped through the alignment for the same reason as above.
+						my $splice_left_end    = $rel_sd_last;
+						my $splice_right_start = $rel_sa_first;
 						
 						# Ensure coordinates are valid
 						$splice_left_end    = max(0, min($ali_len - 1, $splice_left_end));
@@ -612,3 +703,44 @@ sub best_blastn_match_by_loc
 
 
 
+
+#-----------------------------------------------------------------------------
+#  Resolve IUPAC ambiguity codes in a motif against a hash of known motifs.
+#  Returns the first resolution present in the hash, or undef.  Sequences with
+#  no ambiguity return immediately, so the common path is untouched.
+#-----------------------------------------------------------------------------
+sub resolve_iupac
+{
+	my ($motif, $known) = @_;
+	return undef unless defined $motif;
+	return undef if $motif =~ /^[ACGT]*$/;
+
+	my %iupac = (R => 'AG',  Y => 'CT',  S => 'GC',  W => 'AT',
+	             K => 'GT',  M => 'AC',  B => 'CGT', D => 'AGT',
+	             H => 'ACT', V => 'ACG', N => 'ACGT');
+
+	my @pos = split //, $motif;
+	my $combos = 1;
+	for my $c (@pos)
+	{
+		$combos *= length($iupac{$c}) if exists $iupac{$c};
+	}
+	return undef if $combos > 256;    # refuse to expand a run of codes
+
+	my @out = ('');
+	for my $c (@pos)
+	{
+		my $choices = exists $iupac{$c} ? $iupac{$c} : $c;
+		my @next;
+		for my $prefix (@out)
+		{
+			push @next, $prefix . $_ for split //, $choices;
+		}
+		@out = @next;
+	}
+	for my $cand (@out)
+	{
+		return $cand if exists $known->{$cand};
+	}
+	return undef;
+}

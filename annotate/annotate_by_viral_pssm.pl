@@ -209,11 +209,31 @@ foreach (@reps)
 	$virus =~ s/\..+//g; 
 	
 	my $rep_file = "$cdir/$rep";
-	open (IN, "blastn -query $rep_file -subject $s_file -evalue 0.5 -reward 2 -penalty -3 -word_size 11 -outfmt 15 -soft_masking false -num_threads $threads 2>/dev/null |") or die "Could not run blastn: $!"; 
-	my $blastn = decode_json(scalar read_file(\*IN));	
+
+	#  Routing reads EVERY reference contig in the directory, so one unreadable
+	#  or empty file used to abort the whole annotation: blastn wrote nothing and
+	#  decode_json died on the empty string, losing the genome rather than that
+	#  one reference. Cloud-synced checkouts make this routine -- a file that has
+	#  not materialised reads as empty with no error. Skip the reference and keep
+	#  routing against the rest.
+	unless (-s $rep_file)
+	{
+		warn "Reference contig $rep is missing or empty -- skipping it.\n";
+		next;
+	}
+
+	open (IN, "blastn -query $rep_file -subject $s_file -evalue 0.5 -reward 2 -penalty -3 -word_size 11 -outfmt 15 -soft_masking false -num_threads $threads 2>/dev/null |") or die "Could not run blastn: $!";
+	my $raw_blastn = scalar read_file(\*IN);
 	close IN;
 
-	my $match_bit = get_blastn_bit($blastn);  
+	my $blastn = eval { decode_json($raw_blastn) };
+	if ($@ || !$blastn)
+	{
+		warn "BLASTn produced no usable output for reference $rep -- skipping it.\n";
+		next;
+	}
+
+	my $match_bit = get_blastn_bit($blastn);
 	unless ($match_bit < $best_contig_bit)
 	{
 		$best_contig_bit = $match_bit;
