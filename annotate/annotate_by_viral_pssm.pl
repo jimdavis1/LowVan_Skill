@@ -1110,11 +1110,32 @@ sub matching_tblastn_hsps_json
 						if (($results->{bit} > $bit_cutoff) && ($cov > $cov_cutoff))
 						{	
 							push @data, $results;
-						}
-					
-						if (($results->{bit} > $best_bit) && ($results->{bit} > $bit_cutoff))
-						{
-							$best_bit = $results->{bit};
+
+							#  SELECT THE PROFILE ON THE SAME HSPs WE RETURN.
+							#
+							#  $best_bit is what the caller ranks profiles by, and
+							#  it used to be set in a second block that tested only
+							#  the bit score -- so an HSP could raise $best_bit and
+							#  then be filtered out of @data by coverage. The profile
+							#  advertised a bit it could not deliver, won the
+							#  comparison in the caller, and handed back a result set
+							#  that no longer held that HSP. A rival profile with a
+							#  genuinely covering HSP at a lower bit lost and was
+							#  never consulted, so the feature went uncalled.
+							#
+							#  This was latent until 26 Oct 2026: coverage was
+							#  computed against the alignment and so never rejected
+							#  anything, which kept @data and $best_bit in agreement
+							#  by accident. Fixing coverage let them disagree.
+							#
+							#  Seen on HIV2 NEF: 11709.3693 (winner 262.3 bits at
+							#  cov 0.62, while NEF.13 covered 0.651 at 235.3) and
+							#  11723.23442 (winner 209.5 at cov 0.47, while NEF.17
+							#  covered 0.676 at 177.5). Both lost nef entirely.
+							if ($results->{bit} > $best_bit)
+							{
+								$best_bit = $results->{bit};
+							}
 						}
 						$results = {};
 					}

@@ -54,7 +54,7 @@ PSSM directory (`Viral-PSSMs/<key>.pssms/`) and the rep-contig filenames
 | `feature_type` | `CDS`, `mat_peptide`, or `RNA` |
 | `segment` | which segment; used by the quality tool |
 | `bit_cutoff` | tBLASTn bitscore floor for calling this feature |
-| `coverage_cutoff` | fraction of the **profile** an HSP must span to be called, typically 0.65. Computed as `(q_to - q_from + 1) / query_len`. Before 26 Oct 2026 the denominator was the aligned query span, making the ratio >= 1.0 by construction, so this gate rejected nothing in any module. |
+| `coverage_cutoff` | fraction of the **profile** an HSP must span to be called, typically 0.65. Computed as `(q_to - q_from + 1) / query_len`. Before 26 Oct 2026 the denominator was the aligned query span, making the ratio >= 1.0 by construction, so this gate rejected nothing in any module. It also governs which **profile** wins a feature's directory: a profile is ranked on its best HSP that clears *both* this and `bit_cutoff`, so raising it can change the calling profile and not merely suppress a call. |
 | `upstream_ext` | may scan upstream for a Met start |
 | `downstream_ext` | may scan downstream for a stop codon |
 | `copy_num` | expected copies; quality tool flags departures |

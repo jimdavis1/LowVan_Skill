@@ -569,6 +569,75 @@ two differ by at most 0.11 on this data and the former needs no gap accounting.
 `$cov` gate and the post-stop-codon `$cov2` check use it, so one cutoff value
 means one thing throughout the file.
 
+### FIXED 26 Oct 2026 — profile selection ignored the coverage it then enforced
+
+Exposed by the fix above, and latent for as long as it has existed.
+`matching_tblastn_hsps_json` returns two things: `@data`, the HSPs that passed
+both `bit_cutoff` and `coverage_cutoff`, and `$best_bit`, which the caller uses
+to rank the profiles in a feature's directory against one another. `$best_bit`
+was set in its own block testing the bit score alone:
+
+    if (($results->{bit} > $bit_cutoff) && ($cov > $cov_cutoff))
+    {   push @data, $results;   }
+
+    if (($results->{bit} > $best_bit) && ($results->{bit} > $bit_cutoff))
+    {   $best_bit = $results->{bit};   }
+
+So an HSP could raise `$best_bit` and then be dropped from `@data` by coverage.
+That profile advertised a bit score it could not deliver, won the comparison in
+the caller, and handed back a result set no longer containing the HSP that won
+it. A rival profile holding a genuinely covering HSP at a lower bit lost the
+comparison and was never consulted, and the feature went uncalled.
+
+This could not fire before 26 Oct because coverage rejected nothing, which kept
+`@data` and `$best_bit` in agreement by accident. Correcting coverage let the
+two criteria disagree for the first time.
+
+Measured on HIV2 NEF over 110 genomes: `11709.3693` lost *nef* to a 262.3-bit
+HSP covering 0.62 while `HIV2.NEF.13` covered 0.651 at 235.3 bits, and
+`11723.23442` to a 209.5-bit HSP at cov 0.47 while `HIV2.NEF.17` covered 0.676
+at 177.5. Re-annotating the same Contig GTOs with the fix recovers `11709.3693`
+(*nef* 100 -> 101 genomes); `11723.23442` stays uncalled because its best
+covering HSP is 156 aa against `min_len` 169.
+
+The fix moves the `$best_bit` update inside the block that already tests both
+cutoffs, so a profile is ranked on the same HSPs it will return.
+
+### Validation of both fixes — 211 lentivirus genomes, 26 Oct 2026
+
+Re-annotated over the existing Contig GTOs from the morning audit rather than
+re-running the pipeline: `rast-create-genome` runs once per genome, so this
+removes the ID server (the only thing that ever answered 403) and makes the
+comparison exact, both passes annotating byte-identical input.
+
+HIV2, genomes carrying the feature, of 110:
+
+| feature | original | +coverage | +coverage & selection |
+|---------|----------|-----------|-----------------------|
+| nef     | 106 (96.4%) | 100 (90.9%) | **101 (91.8%)** |
+| env     | 105 (95.5%) | 104 (94.5%) | 104 (94.5%) |
+| gag, pol, rev, tat, vif, vpr, vpx | — | — | **unchanged** |
+
+Genomes double-calling *nef*: **31 -> 0**. Genome quality **38 good / 72 poor
+-> 92 good / 18 poor**, the duplicate having violated `copy_num 1` in 31 of
+them. FIV, SRLV and EIAV are unchanged in every feature, EIAV S2 included —
+the case most at risk, being a short ORF nested inside *env*.
+
+The five *nef* genomes still lost are not regressions. Four are below the
+declared `min_len` of 169 aa (`11709.6185` 143, `11723.23442` 129, `11723.23448`
+152, `11723.39531` 149) and were already flagged "Feature is too short"; the
+coverage gate now declines to call them at all. `11723.39531` is the instructive
+one: its only full-length HSP carries an internal stop at 35% of the profile, a
+pseudogene, so what the original run annotated as its *nef* was the 5' LTR
+fragment at cov 0.513 — a wrong call replaced by no call. The fifth,
+`11709.1607`, loses both *nef* (171 aa) and *env* (603 aa): its *env* covers
+0.58-0.62 against all ten ENV profiles with no internal stops, which is a real
+~250-residue deletion rather than a profile artifact.
+
+`apply_copy_num.py --eval` against the resulting Quality GTOs moves nothing in
+any of the four modules: HIV2 +0/-0, EIAV +0/-0, FIV +0/-0, SRLV +0/-0. NEF
+holds at 91.8%, so `copy_num 1` is retained.
+
 ### New in `skill/scripts/`
 
 `gen_rarefaction.py` promoted from `example-matonaviridae/` and parameterised
