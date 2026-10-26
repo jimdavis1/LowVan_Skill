@@ -135,9 +135,11 @@ no-op where profiles are adequate) and then **reverted at the curator's
 direction**: the original behaviour stands. The per-feature `upstream_ext`
 settings above are the containment.
 
-**`coverage_cutoff` does not measure coverage.** Computes the alignment
-against its own query span, so it is 1.0 for any gapless alignment and cannot
-reject a partial profile match. Reported, deliberately unpatched.
+**`coverage_cutoff` did not measure coverage — FIXED 26 Oct 2026.** It
+computed the alignment against its own query span, so it was 1.0 for any
+gapless alignment and could not reject a partial profile match. Measured
+over 7,556 HSPs the minimum was exactly 1.0000. Now divides by the profile
+length.
 
 ## Next
 

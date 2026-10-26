@@ -227,6 +227,10 @@ Fix: `glob.glob(os.path.join(os.path.abspath(args.gto_dir), "*.gto"))`.
 
 ## coverage_cutoff does not measure profile coverage, and is effectively inert
 
+**RESOLVED 26 Oct 2026** — denominator changed to `query_len` in
+`annotate_by_viral_pssm.pl` (both the kit and runtime copies). The
+description below is the diagnosis as originally reported.
+
 `annotate_by_viral_pssm.pl`, `matching_tblastn_hsps_json`:
 
 ```perl

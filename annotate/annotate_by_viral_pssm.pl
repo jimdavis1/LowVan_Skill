@@ -504,8 +504,14 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 			# Prior versions divided \$len (whole-genome length) here, so this check
 			# never fired.  Corrected below -- NOTE this can now drop low-coverage
 			# features that previously slipped through (gist #4).
+			#  Same denominator change as in matching_tblastn_hsps_json: the
+			#  question is how much of the PROFILE survives cropping, so that
+			#  one cov_cutoff value means one thing everywhere in this file.
+			#  Falls back to the old denominator if query_len is unavailable.
 			(my $hseq_pre_stop = $hseq) =~ s/\*.+//s;
-			my $cov2 = length($hseq_pre_stop) / (abs(($best_results->[$i]->{q_to} - $best_results->[$i]->{q_from})+1));
+			my $cov2_denom = $best_results->[$i]->{qlen}
+			                 || (abs(($best_results->[$i]->{q_to} - $best_results->[$i]->{q_from})+1));
+			my $cov2 = length($hseq_pre_stop) / $cov2_denom;
 
 			if ($cov2 < $cov_cutoff)
 			{
@@ -1070,7 +1076,35 @@ sub matching_tblastn_hsps_json
 						$results->{e_val}     = $blast->{BlastOutput2}->[$i]->{report}->{results}->{iterations}->[$j]->{search}->{hits}->[$k]->{hsps}->[$l]->{evalue};
 						$results->{hsp_num}   = $blast->{BlastOutput2}->[$i]->{report}->{results}->{iterations}->[$j]->{search}->{hits}->[$k]->{hsps}->[$l]->{num};
 				
-						my $cov = ((length $results->{hseq})/(abs($results->{q_to} - $results->{q_from})+1));	
+						#  COVERAGE IS A FRACTION OF THE PROFILE, NOT OF THE ALIGNMENT.
+						#
+						#  This read:
+						#      length($hseq) / (q_to - q_from + 1)
+						#  $hseq is the aligned HIT STRING INCLUDING GAP CHARACTERS,
+						#  so its length is the alignment column count, while the
+						#  denominator is the number of query residues aligned.
+						#  Columns = query residues + gaps opened in the query, so
+						#  the ratio is >= 1.0 by construction -- exactly 1.0 with
+						#  no gaps and higher with them. It can never fall below a
+						#  cutoff, so `$cov > $cov_cutoff` was always true and the
+						#  coverage gate rejected nothing, in any module, ever.
+						#
+						#  Measured on 26 Oct 2026 over 7,556 HSPs from five HIV2
+						#  features: minimum 1.0000, maximum 1.2963, zero below the
+						#  declared 0.65 cutoff.
+						#
+						#  What the field is for is partial matches, and the case
+						#  that exposed it is real: nef overlaps ~70-80% of U3 of
+						#  the 3' LTR, and a provirus carries two identical LTRs, so
+						#  a full-length proviral contig holds nef's C-terminal half
+						#  a second time at its 5' end. The profile matches that copy
+						#  honestly at up to 296 bits -- it IS nef sequence -- and it
+						#  covers about half the profile. Dividing by query_len says
+						#  so: those copies score 0.42-0.56 against a median of 1.00
+						#  for a real nef.
+						my $qlen = $blast->{BlastOutput2}->[$i]->{report}->{results}->{iterations}->[$j]->{search}->{query_len};
+						$results->{qlen} = $qlen;
+						my $cov = $qlen ? (($results->{q_to} - $results->{q_from} + 1) / $qlen) : 1;
 						$results->{cov} = $cov;
 
 						if (($results->{bit} > $bit_cutoff) && ($cov > $cov_cutoff))

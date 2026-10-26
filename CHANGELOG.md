@@ -517,10 +517,14 @@ paper does not clear the flag — only a curator deleting the registry entry doe
 Also added: never put a flagged id in `annotation-vocabulary.tsv`, which has no
 provenance column.
 
-### Not fixed — `coverage_cutoff` does not measure coverage
+### FIXED 26 Oct 2026 — `coverage_cutoff` did not measure coverage
 
-Reported, deliberately **not** patched, because it changes calling behaviour for
-every installed module and is the project owner's decision.
+Patched at the project owner's direction after the HIV2 nef case below.
+`matching_tblastn_hsps_json` now divides by `query_len` (the profile
+length) rather than the aligned query span, and the post-stop-codon check
+at the `$cov2` site uses the same denominator so one cutoff value means
+one thing in the file. Originally left unpatched because it changes
+calling behaviour for every installed module.
 
 `matching_tblastn_hsps_json` computes
 `length(hseq) / (q_to - q_from + 1)` — the aligned hit length over the aligned
@@ -535,6 +539,35 @@ Found on Endornaviridae: one profile produced three HSPs against a single
 polyprotein became three nested CDS at 521-19342, 7316-19342 and 15617-19342.
 `evaluate_module.py` reports **0 duplicates** for this, because it compares
 exact coordinates. A real test would be `(length(hseq) - gaps) / profile_length`.
+
+**The fix, and the case that forced it.** Measured over 7,556 HSPs from five
+HIV2 features: `$cov` minimum **1.0000**, maximum 1.2963, zero below the
+declared 0.65. `length($hseq)` is the aligned hit string *including gap
+characters*, so it is the alignment column count, while the denominator counts
+query residues aligned — columns = query residues + query gaps, so the ratio
+cannot fall below 1.
+
+HIV2 *nef* exposed it. *nef* overlaps ~70-80% of U3 of the 3' LTR, and a
+provirus carries two identical LTRs, so a full-length proviral contig holds
+*nef*'s C-terminal half a second time at its 5' end. 31 of 110 HIV2 exemplars
+called *nef* twice. The duplicate is real biology, not a sequencing artifact:
+it matches the profile's C-terminal half specifically (residues 130-256 of 256,
+median coverage 0.51) at 95.9-100% nucleotide identity to the 3' copy, and the
+double-calling contigs are ~1.1 kb longer than the single-calling ones — the
+second LTR. Genomes carrying it had *fewer* ambiguous bases, not more.
+
+Score cannot separate it, because the duplicate *is* *nef* sequence and the
+profile scores it honestly: artifacts 211-296 bits against real *nef* 209-564,
+overlapping by 87. A `bit_cutoff` high enough to remove every artifact costs 8
+genuine *nef* calls. Profile coverage separates it cleanly: artifacts 0.42-0.56
+against a median of 1.00.
+
+Implemented as `(q_to - q_from + 1) / query_len`, standard query coverage,
+rather than the `(length(hseq) - gaps) / profile_length` suggested above; the
+two differ by at most 0.11 on this data and the former needs no gap accounting.
+`query_len` is read from `search->{query_len}` in the tBLASTn JSON. Both the
+`$cov` gate and the post-stop-codon `$cov2` check use it, so one cutoff value
+means one thing throughout the file.
 
 ### New in `skill/scripts/`
 
