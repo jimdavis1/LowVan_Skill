@@ -46,6 +46,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 
@@ -233,16 +234,26 @@ def annotate(exemplars, seqs, work, repo, threads):
 
 
 
-def stage_exemplars(ex, seqs, work):
+def gto_ok(work, g):
+    """True when this exemplar actually produced a non-empty annotation."""
+    for d in ("Anno_GTOs", "Quality_GTOs"):
+        for pat in (g + ".anno.gto", g + ".qual.gto"):
+            p = os.path.join(work, d, pat)
+            if os.path.exists(p) and os.path.getsize(p) > 0:
+                return True
+    return False
+
+
+def stage_exemplars(ex, seqs, work, sub="ex_gto", meta_name="exemplars.metadata"):
     """One FASTA per exemplar plus the metadata New-annotate needs.
 
     Contig-dir mode wants `file_name TAB genome_name TAB taxon_id`. The taxon
     id is the part of a BV-BRC genome id before the dot; anything else gets
     10239, the Viruses node, which is only used to stamp the GTO.
     """
-    exd = os.path.join(work, "ex_gto")
+    exd = os.path.join(work, sub)
     os.makedirs(exd, exist_ok=True)
-    meta = os.path.join(work, "exemplars.metadata")
+    meta = os.path.join(work, meta_name)
     with open(meta, "w") as mh:
         for g in ex:
             fa = os.path.join(exd, g + ".fna")
@@ -372,6 +383,9 @@ def main():
     ap.add_argument("--out", default="coverage.json")
     ap.add_argument("--taxon", default=None,
                     help="taxon name, passed to New-annotate-viral-taxon.pl")
+    ap.add_argument("--gto-retries", type=int, default=3,
+                    help="rounds of sequential retry for exemplars whose "
+                         "Contig GTO came back empty (ID-server 403).")
     ap.add_argument("--no-special", action="store_true",
                     help="force the flat feature-table path even when the JSON "
                          "declares spliced or transcript-edited features. The "
@@ -457,6 +471,39 @@ def main():
     if use_gto:
         exd, meta = stage_exemplars(ex, seqs, work)
         annotate_gto(exd, meta, work, repo, args.taxon, args.threads)
+        #  RETRY THE ID-SERVER 403s.
+        #
+        #  rast-create-genome registers a genome id, and the service rate
+        #  limits on concurrency by answering **403 Forbidden**, not 429 --
+        #  so the failure reads like an expired token and is not one.
+        #  New-annotate-viral-taxon.pl has no retry: it leaves a zero-byte
+        #  Contig GTO, the annotation pipeline runs on nothing, and the
+        #  genome surfaces downstream as "UNROUTED". The genus half of the
+        #  26 Oct lentivirus audit lost 23 of 101 exemplars that way, with a
+        #  token good for another 3,315 hours; re-running one of them by hand
+        #  failed once and then succeeded twice.
+        #
+        #  So retry the failures sequentially. --threads 1 is the point: the
+        #  limit is on concurrency, and make_gto.py found that even 4 was
+        #  enough to lose 89 of 120 genomes on Trivirinae.
+        for rnd in range(1, args.gto_retries + 1):
+            bad = [g for g in ex if not gto_ok(work, g)]
+            if not bad:
+                break
+            print("  retry %d/%d: %d exemplar(s) have no annotation"
+                  % (rnd, args.gto_retries, len(bad)), flush=True)
+            time.sleep(min(30 * rnd, 120))
+            rexd, rmeta = stage_exemplars(bad, seqs, work,
+                                          sub="ex_retry%d" % rnd,
+                                          meta_name="retry%d.metadata" % rnd)
+            try:
+                annotate_gto(rexd, rmeta, work, repo, args.taxon, 1)
+            except SystemExit as e:
+                print("  retry %d did not complete: %s" % (rnd, e))
+        still = [g for g in ex if not gto_ok(work, g)]
+        if still:
+            print("  %d exemplar(s) still unannotated after %d retries: %s"
+                  % (len(still), args.gto_retries, ", ".join(still[:10])))
         report_gto(ex, seqs, work, args.out)
     else:
         outd = annotate(ex, seqs, work, repo, args.threads)
