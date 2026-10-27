@@ -1,0 +1,210 @@
+{
+ "title": "FIV Coverage Audit",
+ "eyebrow": "LowVan module audit &middot; 27 October 2026",
+ "h1": "FIV",
+ "subhead": "feline immunodeficiency virus",
+ "standfirst": "<b>FIV</b> is the lentivirus of domestic cats and of wild felids &mdash; bobcat, puma and others, each with its own long-diverged lineage. Five features, all collinear, with <i>rev</i> recognised in the vocabulary but deliberately not declared: it is spliced, and this module calls no spliced feature.",
+ "headline_tiles": [
+  [
+   "5",
+   "features declared"
+  ],
+  [
+   "39",
+   "coverage exemplars"
+  ],
+  [
+   "265",
+   "genomes in holdings"
+  ],
+  [
+   "94.8%",
+   "vocabulary bound by rule"
+  ],
+  [
+   "16 \u2192 6",
+   "annotation strings collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module calls",
+   "lede": "Five features, four of them called on every exemplar.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "gag, pol, env and vif are called on 39 of 39 exemplars. orfA is the only variable one and carries no copy_num."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "product",
+      "called",
+      "rate",
+      "copy_num",
+      "caller"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "39 / 39",
+       "100.0%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "39 / 39",
+       "100.0%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "ORFA",
+       "Protein OrfA",
+       "25 / 39",
+       "64.1%",
+       "\u2014",
+       "PSSM"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "39 / 39",
+       "100.0%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "VIF",
+       "Virion infectivity factor Vif",
+       "39 / 39",
+       "100.0%",
+       "yes",
+       "PSSM"
+      ]
+     ]
+    },
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ENV",
+       "100.0",
+       100.0,
+       "39 of 39"
+      ],
+      [
+       "GAG",
+       "100.0",
+       100.0,
+       "39 of 39"
+      ],
+      [
+       "ORFA",
+       "64.1",
+       64.1,
+       "25 of 39"
+      ],
+      [
+       "POL",
+       "100.0",
+       100.0,
+       "39 of 39"
+      ],
+      [
+       "VIF",
+       "100.0",
+       100.0,
+       "39 of 39"
+      ]
+     ],
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "Where it does not call, and why",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "orfA at 64.1% is a host-lineage split, not a truncation. Domestic-cat genomes call it 21 of 21; bobcat 0 of 10 and puma 3 of 6. Those same genomes call gag, pol, vif and env 39 of 39, so the absence is profile divergence on a small accessory gene rather than incomplete sequence. Widening orfA to reach the wild felids is a build decision, not a defect."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Vocabulary",
+   "lede": "16 annotation strings collapse onto 6 targets.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "target",
+      "product",
+      "strings",
+      "features"
+     ],
+     "rows": [
+      [
+       "POL",
+       "Pol polyprotein",
+       "3",
+       "126"
+      ],
+      [
+       "VIF",
+       "Virion infectivity factor Vif",
+       "2",
+       "121"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "2",
+       "121"
+      ],
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "4",
+       "116"
+      ],
+      [
+       "ORFA",
+       "Protein OrfA",
+       "3",
+       "92"
+      ],
+      [
+       "REV",
+       "not modelled",
+       "2",
+       "62"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "94.8% of the 673 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit."
+    }
+   ]
+  }
+ ],
+ "source_note": "Measured 27 October 2026 from the shipped module: the FIV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 39 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+}

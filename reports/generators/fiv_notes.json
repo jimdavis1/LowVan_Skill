@@ -1,0 +1,7 @@
+{
+ "standfirst": "<b>FIV</b> is the lentivirus of domestic cats and of wild felids &mdash; bobcat, puma and others, each with its own long-diverged lineage. Five features, all collinear, with <i>rev</i> recognised in the vocabulary but deliberately not declared: it is spliced, and this module calls no spliced feature.",
+ "modules": {
+  "FIV": "gag, pol, env and vif are called on 39 of 39 exemplars. orfA is the only variable one and carries no copy_num."
+ },
+ "gaps": "orfA at 64.1% is a host-lineage split, not a truncation. Domestic-cat genomes call it 21 of 21; bobcat 0 of 10 and puma 3 of 6. Those same genomes call gag, pol, vif and env 39 of 39, so the absence is profile divergence on a small accessory gene rather than incomplete sequence. Widening orfA to reach the wild felids is a build decision, not a defect."
+}

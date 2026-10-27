@@ -1,0 +1,210 @@
+{
+ "title": "SRLV Coverage Audit",
+ "eyebrow": "LowVan module audit &middot; 27 October 2026",
+ "h1": "SRLV",
+ "subhead": "the small ruminant lentiviruses",
+ "standfirst": "<b>SRLV</b> holds maedi-visna virus of sheep and caprine arthritis-encephalitis virus of goats, which are one continuum rather than two clean species. Five features, all with profiles &mdash; including <i>tat</i>, which in this genus is not what its name suggests.",
+ "headline_tiles": [
+  [
+   "5",
+   "features declared"
+  ],
+  [
+   "51",
+   "coverage exemplars"
+  ],
+  [
+   "265",
+   "genomes in holdings"
+  ],
+  [
+   "85.5%",
+   "vocabulary bound by rule"
+  ],
+  [
+   "15 \u2192 6",
+   "annotation strings collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module calls",
+   "lede": "Five features, and a tat that is collinear rather than spliced.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "SRLV <i>tat</i> is a single-exon protein, also published as S, and it was MEASURED collinear by tblastn of each deposited protein against its own genome rather than assumed spliced from the HIV-1 layout. It therefore gets a PSSM and a copy_num like any other feature. EIAV <i>tat</i>, in the sister module, is genuinely spliced and gets neither."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "product",
+      "called",
+      "rate",
+      "copy_num",
+      "caller"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "51 / 51",
+       "100.0%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "51 / 51",
+       "100.0%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "50 / 51",
+       "98.0%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "TAT",
+       "Transactivator protein Tat",
+       "49 / 51",
+       "96.1%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "VIF",
+       "Virion infectivity factor Vif",
+       "50 / 51",
+       "98.0%",
+       "yes",
+       "PSSM"
+      ]
+     ]
+    },
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ENV",
+       "100.0",
+       100.0,
+       "51 of 51"
+      ],
+      [
+       "GAG",
+       "100.0",
+       100.0,
+       "51 of 51"
+      ],
+      [
+       "POL",
+       "98.0",
+       98.0,
+       "50 of 51"
+      ],
+      [
+       "TAT",
+       "96.1",
+       96.1,
+       "49 of 51"
+      ],
+      [
+       "VIF",
+       "98.0",
+       98.0,
+       "50 of 51"
+      ]
+     ],
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "Where it does not call, and why",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "No declared feature lacks a profile. <i>rev</i> appears in the vocabulary and bins to its own key, but the module does not declare it: it is spliced, and nothing here calls spliced features."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Vocabulary",
+   "lede": "15 annotation strings collapse onto 6 targets.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "target",
+      "product",
+      "strings",
+      "features"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "7",
+       "81"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "2",
+       "79"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "3",
+       "78"
+      ],
+      [
+       "TAT",
+       "Transactivator protein Tat",
+       "1",
+       "63"
+      ],
+      [
+       "VIF",
+       "Virion infectivity factor Vif",
+       "1",
+       "60"
+      ],
+      [
+       "REV",
+       "not modelled",
+       "1",
+       "45"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "85.5% of the 475 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit."
+    }
+   ]
+  }
+ ],
+ "source_note": "Measured 27 October 2026 from the shipped module: the SRLV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 51 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+}

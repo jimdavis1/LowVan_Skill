@@ -1,0 +1,7 @@
+{
+ "standfirst": "<b>EIAV</b> is the lentivirus of horses and the smallest module in this family &mdash; one virus, little vocabulary, and the clearest example in the set of a tiny accessory gene that is nonetheless essential. Four features carry profiles; <i>rev</i> is declared and called by the splice caller, and <i>tat</i> is recognised but not declared.",
+ "modules": {
+  "EIAV": "S2 is 59&ndash;83 aa and is called on every exemplar. It was marked essential on evidence: 30 of 30 held-out genomes, and out of frame with <i>env</i> in 29 of 29 &mdash; a separate gene, not a cleavage product of the envelope it sits inside."
+ },
+ "gaps": "<i>tat</i> is spliced in EIAV and is not declared; the string is recognised and recorded, which is why the collapse report shows it bound to a target the module JSON does not carry. gag, pol and env are each called on 10 of 11 exemplars; the one miss is a single short record, not a profile failure."
+}

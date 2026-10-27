@@ -1,0 +1,139 @@
+<title>SRLV Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan module audit &middot; 27 October 2026</div><h1>SRLV</h1><h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">the small ruminant lentiviruses</h2><p class="stand"><b>SRLV</b> holds maedi-visna virus of sheep and caprine arthritis-encephalitis virus of goats, which are one continuum rather than two clean species. Five features, all with profiles &mdash; including <i>tat</i>, which in this genus is not what its name suggests.</p><div class="tiles"><div class="tile"><div class="v">5</div><div class="l">features declared</div></div><div class="tile"><div class="v">51</div><div class="l">coverage exemplars</div></div><div class="tile"><div class="v">265</div><div class="l">genomes in holdings</div></div><div class="tile"><div class="v">85.5%</div><div class="l">vocabulary bound by rule</div></div><div class="tile"><div class="v">15 → 6</div><div class="l">annotation strings collapse</div></div></div></header><section><h2><span class="num">01</span>What the module calls</h2><p class="lede">Five features, and a tat that is collinear rather than spliced.</p><p class="note">SRLV <i>tat</i> is a single-exon protein, also published as S, and it was MEASURED collinear by tblastn of each deposited protein against its own genome rather than assumed spliced from the HIV-1 layout. It therefore gets a PSSM and a copy_num like any other feature. EIAV <i>tat</i>, in the sister module, is genuinely spliced and gets neither.</p><div class="scroll"><table><thead><tr><th>feature</th><th>product</th><th>called</th><th>rate</th><th>copy_num</th><th>caller</th></tr></thead><tbody><tr><td>ENV</td><td>Envelope glycoprotein</td><td>51 / 51</td><td>100.0%</td><td>yes</td><td>PSSM</td></tr><tr><td>GAG</td><td>Gag polyprotein</td><td>51 / 51</td><td>100.0%</td><td>yes</td><td>PSSM</td></tr><tr><td>POL</td><td>Pol polyprotein</td><td>50 / 51</td><td>98.0%</td><td>yes</td><td>PSSM</td></tr><tr><td>TAT</td><td>Transactivator protein Tat</td><td>49 / 51</td><td>96.1%</td><td>yes</td><td>PSSM</td></tr><tr><td>VIF</td><td>Virion infectivity factor Vif</td><td>50 / 51</td><td>98.0%</td><td>yes</td><td>PSSM</td></tr></tbody></table></div><div class="bars"><div class="bar"><div class="bl">ENV</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">51 of 51</div></div><div class="bar"><div class="bl">GAG</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">51 of 51</div></div><div class="bar"><div class="bl">POL</div><div class="bt"><i style="width:98.00%"></i></div><div class="bv">98.0%</div><div class="bn">50 of 51</div></div><div class="bar"><div class="bl">TAT</div><div class="bt"><i style="width:96.10%"></i></div><div class="bv">96.1%</div><div class="bn">49 of 51</div></div><div class="bar"><div class="bl">VIF</div><div class="bt"><i style="width:98.00%"></i></div><div class="bv">98.0%</div><div class="bn">50 of 51</div></div></div></section><section><h2><span class="num">02</span>Where it does not call, and why</h2><p class="lede"></p><p class="note">No declared feature lacks a profile. <i>rev</i> appears in the vocabulary and bins to its own key, but the module does not declare it: it is spliced, and nothing here calls spliced features.</p></section><section><h2><span class="num">03</span>Vocabulary</h2><p class="lede">15 annotation strings collapse onto 6 targets.</p><div class="scroll"><table><thead><tr><th>target</th><th>product</th><th>strings</th><th>features</th></tr></thead><tbody><tr><td>ENV</td><td>Envelope glycoprotein</td><td>7</td><td>81</td></tr><tr><td>GAG</td><td>Gag polyprotein</td><td>2</td><td>79</td></tr><tr><td>POL</td><td>Pol polyprotein</td><td>3</td><td>78</td></tr><tr><td>TAT</td><td>Transactivator protein Tat</td><td>1</td><td>63</td></tr><tr><td>VIF</td><td>Virion infectivity factor Vif</td><td>1</td><td>60</td></tr><tr><td>REV</td><td>not modelled</td><td>1</td><td>45</td></tr></tbody></table></div><p class="note">85.5% of the 475 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on.</p></section><section><h2><span class="num">04</span>Method</h2><p class="lede"></p><p class="note">Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit.</p></section><p class="src">Measured 27 October 2026 from the shipped module: the SRLV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 51 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences.</p></div>

@@ -638,6 +638,58 @@ fragment at cov 0.513 — a wrong call replaced by no call. The fifth,
 any of the four modules: HIV2 +0/-0, EIAV +0/-0, FIV +0/-0, SRLV +0/-0. NEF
 holds at 91.8%, so `copy_num 1` is retained.
 
+### `synonyms_table.py` — one schema for synonyms.tsv, 27 Oct 2026
+
+The table was written in three places and read in two, and the copies drifted:
+
+    collection_engine.py        count / annotation / genus / bins_to
+    hiv2/build_collections.py   feature / annotation / count   (3 columns)
+    genus/build_cols.py         computed the mapping, never wrote it
+
+None of that failed loudly. `collect_synmap.py` read the 3-column file and died
+with `KeyError: 'bins_to'`, which names a dict key rather than the problem. The
+genus modules simply had no file, and the first instinct was to reconstruct the
+mapping from the built collections — which measures something else entirely
+("the sequence reached this collection", after the length window) and reported
+EIAV at 61.0% against a true rule-bound 87.0%.
+
+The rules were never missing. Only the emission was. `synonyms_table.py` now
+holds the schema, the writer, the reader and the reserved destinations, and all
+three builders call it. The reader refuses a wrong-schema file with a message
+naming the fix instead of a KeyError three steps later.
+
+Two things the consolidation fixed on the way:
+
+- `DISCARDED` and `NOT_MODELLED` were being counted as collapse *targets*. They
+  are recorded vocabulary, not features, and counting them inflates the target
+  count and understates the collapse — the same error the UNASSIGNED guard was
+  added for. `NON_TARGET` now names all three.
+- There is deliberately no `SPLICE` destination. A spliced feature is a declared
+  feature called by `get_splice_variant_features.pl` rather than a PSSM, so its
+  strings bin to its own key (TAT, REV) and resolve against the module JSON. A
+  generic `SPLICE` bucket rendered on the page as "not modelled", which is
+  wrong: the module models it, just not with a profile.
+
+Rebuilt through the shared writer, all four lentivirus modules reproduce their
+previous per-feature counts exactly (HIV2 ENV 669, GAG 667, NEF 658, POL 664,
+VIF 686, VPR 644, VPX 693) with collections, windows and splice files verified
+byte-identical. Vocabulary bound by rule: HIV2 99.8%, FIV 94.8%, EIAV 87.0%,
+SRLV 85.5%.
+
+### Twelve lentivirus artifact pages, 27 Oct 2026
+
+Coverage audit, PSSM registry and string collapse for HIV2, FIV, SRLV and EIAV
+— the four modules that shipped without pages. Facts are generated from
+measurement by `reports/generators/make_lenti_facts.py`; only prose is written
+by hand, so a rebuild cannot leave a stale number behind a fresh sentence.
+
+Self-recall is 100% on every collection in all four modules. Worth recording
+from the HIV2 page: **the module is majority SIV**, 1,660 of 2,113 collection
+sequences and 65 of 110 coverage exemplars, so "HIV2" is a module name and not
+a taxon. That is also the cleanest explanation of VPR reading 95% on the
+held-out panel (mostly HIV-2) against 72.7% on the coverage set (full SIV
+spread).
+
 ### New in `skill/scripts/`
 
 `gen_rarefaction.py` promoted from `example-matonaviridae/` and parameterised

@@ -1,0 +1,7 @@
+{
+ "standfirst": "<b>SRLV</b> holds maedi-visna virus of sheep and caprine arthritis-encephalitis virus of goats, which are one continuum rather than two clean species. Five features, all with profiles &mdash; including <i>tat</i>, which in this genus is not what its name suggests.",
+ "modules": {
+  "SRLV": "SRLV <i>tat</i> is a single-exon protein, also published as S, and it was MEASURED collinear by tblastn of each deposited protein against its own genome rather than assumed spliced from the HIV-1 layout. It therefore gets a PSSM and a copy_num like any other feature. EIAV <i>tat</i>, in the sister module, is genuinely spliced and gets neither."
+ },
+ "gaps": "No declared feature lacks a profile. <i>rev</i> appears in the vocabulary and bins to its own key, but the module does not declare it: it is spliced, and nothing here calls spliced features."
+}

@@ -44,6 +44,7 @@ def compiled(rules):
 #  the homology rescue and the published-vocabulary guard cannot drift
 #  apart. See that file for the rule and why its anchoring is load-bearing.
 from annotation_rules import PARTIAL, PUTATIVE  # noqa: E402
+import synonyms_table  # noqa: E402
 
 
 def classify(anno, rules, notmod):
@@ -398,10 +399,10 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
     dump("AMBIGUOUS_KEPT.tsv", "feature\ttaxon\tfeature_id\tn_amb\tlength", sorted(xkept))
     dump("JUNCTION_DROPPED.tsv", "feature\tfeature_id\tlength\tfirst\tlast\tbad_end", sorted(jdetail))
     dump("JUNCTION_SUMMARY.tsv", "feature\tdropped", ((k, jdropped[k]) for k in sorted(jdropped)))
-    with open(os.path.join(td, "synonyms.tsv"), "w") as fh:
-        fh.write("count\tannotation\tgenus\tbins_to\n")
-        for (a, g, k), c in sorted(syn.items(), key=lambda x: -x[1]):
-            fh.write("%d\t%s\t%s\t%s\n" % (c, a, g, k))
+    #  One writer, in synonyms_table.py -- this table was being emitted in
+    #  three places with two different schemas. See that file.
+    synonyms_table.write(os.path.join(td, "synonyms.tsv"),
+                         ((c, a, g, k) for (a, g, k), c in syn.items()))
     dump("ACCESSORY_CLUSTERS.tsv", "feature\tmembers\tmin_len\tmed_len\tmax_len\tlabels",
          ((k, len(v), min(len(r[2]) for r in v),
            sorted(len(r[2]) for r in v)[len(v) // 2],

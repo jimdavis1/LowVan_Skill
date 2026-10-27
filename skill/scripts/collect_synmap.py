@@ -8,6 +8,9 @@ unbinned.json and typos.json for gen_collapse.py.
 Run from the working directory that holds synonyms.tsv and the JSON.
 """
 import csv, collections, json, sys, os, glob
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import synonyms_table
 
 
 def _pick_json(W):
@@ -36,7 +39,9 @@ if not os.path.exists(_syn):
 if not os.path.exists(_syn):
     sys.exit("no synonyms.tsv in %s or %s/collections"
              % (os.path.abspath(W), os.path.abspath(W)))
-rows = list(csv.DictReader(open(_syn), delimiter="\t"))
+#  Shared reader: refuses a wrong-schema file with a message naming the fix,
+#  instead of dying on KeyError: 'bins_to' three steps later.
+rows = synonyms_table.read(_syn)
 
 #  Sequences the text rules could not reach come in through
 #  rescue_unassigned.py, which writes RESCUED.tsv and does not touch
@@ -66,12 +71,15 @@ for T, v in J.items():
 #  the 316 bound to nothing. It also divided by one target too many, which
 #  understated the collapse: Tobamovirus read 279 strings into 5 for 55.8x
 #  when the truth is 267 into 4 for 66.8x.
-UNBOUND = ("", "UNASSIGNED")
+UNBOUND = synonyms_table.UNBOUND
 
 agg = collections.defaultdict(lambda: collections.defaultdict(lambda: [0, set()]))
 for r in rows:
     k = r["bins_to"]
-    if k in UNBOUND: continue
+    #  UNASSIGNED goes to the unbound tail below; DISCARDED and NOT_MODELLED
+    #  go to neither -- they are recorded vocabulary, not collapse targets.
+    #  Counting them inflates the target count and understates the collapse.
+    if k in synonyms_table.NON_TARGET: continue
     s = r["annotation"] or "(empty string)"
     agg[k][s][0] += int(r["count"]); agg[k][s][1].add(r["genus"] or "(no genus)")
 out = []

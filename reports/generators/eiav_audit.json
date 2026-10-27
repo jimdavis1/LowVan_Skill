@@ -1,0 +1,210 @@
+{
+ "title": "EIAV Coverage Audit",
+ "eyebrow": "LowVan module audit &middot; 27 October 2026",
+ "h1": "EIAV",
+ "subhead": "equine infectious anaemia virus",
+ "standfirst": "<b>EIAV</b> is the lentivirus of horses and the smallest module in this family &mdash; one virus, little vocabulary, and the clearest example in the set of a tiny accessory gene that is nonetheless essential. Four features carry profiles; <i>rev</i> is declared and called by the splice caller, and <i>tat</i> is recognised but not declared.",
+ "headline_tiles": [
+  [
+   "5",
+   "features declared"
+  ],
+  [
+   "11",
+   "coverage exemplars"
+  ],
+  [
+   "265",
+   "genomes in holdings"
+  ],
+  [
+   "87.0%",
+   "vocabulary bound by rule"
+  ],
+  [
+   "14 \u2192 6",
+   "annotation strings collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module calls",
+   "lede": "Four profiled features, and an 11-of-11 accessory gene smaller than most peptides.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "S2 is 59&ndash;83 aa and is called on every exemplar. It was marked essential on evidence: 30 of 30 held-out genomes, and out of frame with <i>env</i> in 29 of 29 &mdash; a separate gene, not a cleavage product of the envelope it sits inside."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "product",
+      "called",
+      "rate",
+      "copy_num",
+      "caller"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "10 / 11",
+       "90.9%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "10 / 11",
+       "90.9%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "10 / 11",
+       "90.9%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "REV",
+       "Protein Rev",
+       "7 / 11",
+       "63.6%",
+       "\u2014",
+       "splice"
+      ],
+      [
+       "S2",
+       "Protein S2",
+       "11 / 11",
+       "100.0%",
+       "yes",
+       "PSSM"
+      ]
+     ]
+    },
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ENV",
+       "90.9",
+       90.9,
+       "10 of 11"
+      ],
+      [
+       "GAG",
+       "90.9",
+       90.9,
+       "10 of 11"
+      ],
+      [
+       "POL",
+       "90.9",
+       90.9,
+       "10 of 11"
+      ],
+      [
+       "REV",
+       "63.6",
+       63.6,
+       "7 of 11"
+      ],
+      [
+       "S2",
+       "100.0",
+       100.0,
+       "11 of 11"
+      ]
+     ],
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "Where it does not call, and why",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<i>tat</i> is spliced in EIAV and is not declared; the string is recognised and recorded, which is why the collapse report shows it bound to a target the module JSON does not carry. gag, pol and env are each called on 10 of 11 exemplars; the one miss is a single short record, not a profile failure."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Vocabulary",
+   "lede": "14 annotation strings collapse onto 6 targets.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "target",
+      "product",
+      "strings",
+      "features"
+     ],
+     "rows": [
+      [
+       "GAG",
+       "Gag polyprotein",
+       "2",
+       "49"
+      ],
+      [
+       "S2",
+       "Protein S2",
+       "2",
+       "46"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "2",
+       "44"
+      ],
+      [
+       "TAT",
+       "not modelled",
+       "3",
+       "44"
+      ],
+      [
+       "REV",
+       "Protein Rev",
+       "3",
+       "44"
+      ],
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "2",
+       "34"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "87.0% of the 300 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit."
+    }
+   ]
+  }
+ ],
+ "source_note": "Measured 27 October 2026 from the shipped module: the EIAV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 11 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+}

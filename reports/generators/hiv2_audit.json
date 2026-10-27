@@ -1,0 +1,284 @@
+{
+ "title": "HIV2 Coverage Audit",
+ "eyebrow": "LowVan module audit &middot; 27 October 2026",
+ "h1": "HIV2",
+ "subhead": "HIV-2 and the simian immunodeficiency viruses",
+ "standfirst": "<b>HIV2</b> is a module name, not a taxon. It holds HIV-2 and the SIVs together, and it is <i>majority SIV</i>: 1,660 of its 2,113 collection sequences and 65 of its 110 coverage exemplars come from simian immunodeficiency virus, not from HIV-2. The module is separated from HIV-1 on layout rather than distance &mdash; the two differ by one accessory gene, <i>vpx</i> here against <i>vpu</i> there, which is the project's partitioning rule.",
+ "headline_tiles": [
+  [
+   "9",
+   "features declared"
+  ],
+  [
+   "110",
+   "coverage exemplars"
+  ],
+  [
+   "693",
+   "genomes in holdings"
+  ],
+  [
+   "99.8%",
+   "vocabulary bound by rule"
+  ],
+  [
+   "40 \u2192 9",
+   "annotation strings collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module calls",
+   "lede": "Nine features on one 9.8 kb provirus, seven called by profile and two by the splice caller.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Nine features: gag, pol, vif, vpx, vpr, env and nef from PSSMs, tat and rev from get_splice_variant_features.pl. <i>vpx</i> is a gene duplication of <i>vpr</i> and exists only in the HIV-2/SIVsmm/SIVmac lineage; both are declared and neither calls the other."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "product",
+      "called",
+      "rate",
+      "copy_num",
+      "caller"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein gp160",
+       "104 / 110",
+       "94.5%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "105 / 110",
+       "95.5%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "NEF",
+       "Protein Nef",
+       "101 / 110",
+       "91.8%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "98 / 110",
+       "89.1%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "REV",
+       "Protein Rev",
+       "88 / 110",
+       "80.0%",
+       "\u2014",
+       "splice"
+      ],
+      [
+       "TAT",
+       "Transactivator protein Tat",
+       "87 / 110",
+       "79.1%",
+       "\u2014",
+       "splice"
+      ],
+      [
+       "VIF",
+       "Virion infectivity factor Vif",
+       "106 / 110",
+       "96.4%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "VPR",
+       "Virion protein R Vpr",
+       "80 / 110",
+       "72.7%",
+       "\u2014",
+       "PSSM"
+      ],
+      [
+       "VPX",
+       "Virion protein X Vpx",
+       "110 / 110",
+       "100.0%",
+       "yes",
+       "PSSM"
+      ]
+     ]
+    },
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ENV",
+       "94.5",
+       94.5,
+       "104 of 110"
+      ],
+      [
+       "GAG",
+       "95.5",
+       95.5,
+       "105 of 110"
+      ],
+      [
+       "NEF",
+       "91.8",
+       91.8,
+       "101 of 110"
+      ],
+      [
+       "POL",
+       "89.1",
+       89.1,
+       "98 of 110"
+      ],
+      [
+       "REV",
+       "80.0",
+       80.0,
+       "88 of 110"
+      ],
+      [
+       "TAT",
+       "79.1",
+       79.1,
+       "87 of 110"
+      ],
+      [
+       "VIF",
+       "96.4",
+       96.4,
+       "106 of 110"
+      ],
+      [
+       "VPR",
+       "72.7",
+       72.7,
+       "80 of 110"
+      ],
+      [
+       "VPX",
+       "100.0",
+       100.0,
+       "110 of 110"
+      ]
+     ],
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "Where it does not call, and why",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "VPR is called on 72.7% of exemplars and that is biology, not a gap. Thirty of the 110 genomes carry a single accessory gene in a 311 nt window where the rest carry two in 630 nt, and the BV-BRC reference annotation agrees those genomes have no <i>vpr</i>. VPR therefore carries no copy_num. The held-out panel read 95% because it is mostly HIV-2; the coverage set carries the full SIV spread."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Vocabulary",
+   "lede": "40 annotation strings collapse onto 9 targets.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "target",
+      "product",
+      "strings",
+      "features"
+     ],
+     "rows": [
+      [
+       "VPX",
+       "Virion protein X Vpx",
+       "5",
+       "693"
+      ],
+      [
+       "VIF",
+       "Virion infectivity factor Vif",
+       "3",
+       "686"
+      ],
+      [
+       "TAT",
+       "Transactivator protein Tat",
+       "4",
+       "679"
+      ],
+      [
+       "REV",
+       "Protein Rev",
+       "4",
+       "675"
+      ],
+      [
+       "ENV",
+       "Envelope glycoprotein gp160",
+       "8",
+       "669"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "4",
+       "667"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "3",
+       "664"
+      ],
+      [
+       "NEF",
+       "Protein Nef",
+       "5",
+       "658"
+      ],
+      [
+       "VPR",
+       "Virion protein R Vpr",
+       "4",
+       "644"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "99.8% of the 6069 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit."
+    }
+   ]
+  }
+ ],
+ "source_note": "Measured 27 October 2026 from the shipped module: the HIV2 block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 110 exemplars de-replicated from 693 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+}
