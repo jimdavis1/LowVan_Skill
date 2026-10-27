@@ -18,6 +18,39 @@ protein dump and finish with four things the annotator loads at runtime:
 **It is not a discovery tool.** It calls proteins that a curator decided exist.
 Every judgement is yours; the scripts only make judgements cheap to check.
 
+## Where the truth comes from
+
+**The literature is the authority. BV-BRC and RefSeq are evidence.**
+
+Both are databases of submissions. Neither is complete, neither is guaranteed
+correct, and **RefSeq is not more authoritative than BV-BRC** — an `NC_`
+accession means a curator passed over a submission, not that the biology was
+established there. What a protein is, where its boundaries fall, and how it is
+spliced are settled in papers.
+
+So:
+
+- State a finding from a paper with a verified PMID, and cite the database
+  record as corroboration — "one intron in the CDS, per PMID nnnnnnn; the
+  RefSeq annotation agrees".
+- When a database and a paper disagree, **the paper wins**, and the
+  disagreement is written down rather than quietly resolved.
+- When no paper covers the point, say the claim rests on database annotation
+  alone. Do not launder it into a fact.
+- A sequence deposited **by** the paper — the authors' own accession — is that
+  paper's data and is strong evidence. A RefSeq record assembled later is not
+  the same thing.
+
+This is easy to agree with and easy to skip. On 27 Oct 2026 the HTLV-1 *tax*
+and *rex* exon structures were read straight out of a RefSeq `join()`, cited to
+no paper, and reported as settled — in the same session that added the
+literature check at step 2b. A tidy `join(4829..4832,6951..8008)` is a
+submitter's claim with a curation pass over it.
+
+Citations go in `PMID_claude_generated`, never `PMID`, which is the curator's
+field. Verify every one against PubMed before it enters a file: of three
+written from memory that day, **all three** resolved to unrelated papers.
+
 ## The one rule that matters most
 
 **A module is defined by genome organisation, not phylogeny.** One module per
