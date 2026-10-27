@@ -19,6 +19,11 @@ import argparse, datetime
 _ap = argparse.ArgumentParser()
 _ap.add_argument("--rarefaction", default="rarefaction.json")
 _ap.add_argument("--taxon", required=True)
+#  Heading text spells an abbreviated module out; running prose keeps the
+#  short token, because "from 51 SRLV -- small ruminant lentivirus genomes"
+#  does not read. Curator, 27 Oct 2026.
+_ap.add_argument("--display", default=None,
+                 help="heading text, e.g. 'SRLV -- small ruminant lentivirus'")
 _ap.add_argument("--date", default=datetime.date.today().strftime("%-d %B %Y"))
 _ap.add_argument("--out", default="rarefaction.html")
 _a = _ap.parse_args()
@@ -185,7 +190,8 @@ rows = sorted({int(round(CN * f)) for f in (0.002, 0.01, 0.02, 0.05, 0.1, 0.2, 0
 table = ''.join(f"<tr><td>{k:,}</td><td>{at(S,k):.2f}</td><td>{at(M,k):.2f}</td>"
                 f"<td>{at(S,k)/at(M,k):.2f}&times;</td></tr>" for k in rows)
 
-HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
+_disp = _a.display or _a.taxon
+HTML = f'''<title>{_disp} Vocabulary Saturation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   :root {{
@@ -266,8 +272,8 @@ HTML = f'''<title>{_a.taxon} Vocabulary Saturation</title>
 </style>
 <div class="wrap">
  <header>
-  <div class="eyebrow">LowVan &middot; {_a.taxon} module &middot; {_a.date}</div>
-  <h1>{_a.taxon}</h1>
+  <div class="eyebrow">LowVan &middot; {_disp} module &middot; {_a.date}</div>
+  <h1>{_disp}</h1>
   <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">A controlled vocabulary stops growing. Free text does not.</h2>
   <p class="stand">Take every annotated protein from {G:,} {_a.taxon} genomes, shuffle
   them, and draw them one at a time, counting the distinct annotation strings seen so far.

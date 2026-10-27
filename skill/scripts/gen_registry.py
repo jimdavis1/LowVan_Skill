@@ -132,6 +132,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--registry", default="registry.json")
     ap.add_argument("--taxon", required=True, help="family or group name for the title")
+    ap.add_argument("--display", default=None,
+                    help="heading text; spells out an abbreviated module name, "
+                         "e.g. 'SRLV -- small ruminant lentivirus'. Defaults to --taxon.")
     ap.add_argument("--json-name", help="module JSON filename to cite (default <taxon>_Viral_PSSM.json)")
     ap.add_argument("--notes", help="JSON of taxon-specific prose")
     ap.add_argument("--date", help="date shown in the eyebrow (default: today)")
@@ -283,7 +286,7 @@ def main():
 </div>
 %(JS)s
 """ % {
-        "TAXON": html.escape(args.taxon), "DATE": html.escape(date),
+        "TAXON": html.escape(args.display or args.taxon), "DATE": html.escape(date),
         "CSS": css, "JS": js, "STAND": stand, "JNAME": html.escape(jname),
         "NPSSM": npssm, "NWITHP": len(withp), "NALL": nall,
         "REACH": reach, "ANNOS": annos, "PCT": pct, "NGAP": ngap, "NND": nnd,

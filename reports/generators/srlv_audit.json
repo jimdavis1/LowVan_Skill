@@ -1,7 +1,7 @@
 {
- "title": "SRLV Coverage Audit",
+ "title": "SRLV \u2014 small ruminant lentivirus Coverage Audit",
  "eyebrow": "LowVan module audit &middot; 27 October 2026",
- "h1": "SRLV",
+ "h1": "SRLV \u2014 small ruminant lentivirus",
  "subhead": "the small ruminant lentiviruses",
  "standfirst": "<b>SRLV</b> holds maedi-visna virus of sheep and caprine arthritis-encephalitis virus of goats, which are one continuum rather than two clean species. Five features, all with profiles &mdash; including <i>tat</i>, which in this genus is not what its name suggests.",
  "headline_tiles": [
@@ -197,6 +197,21 @@
   },
   {
    "num": "04",
+   "title": "Vocabulary saturation",
+   "lede": "How fast each vocabulary stops growing as genomes are added.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/srlv-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 34.3 distinct source strings correspond to 5.0 controlled annotations, a 6.9-fold collapse. The module reaches 95% of its final vocabulary after 14 proteins against the source's 251."
+    }
+   ]
+  },
+  {
+   "num": "05",
    "title": "Method",
    "blocks": [
     {

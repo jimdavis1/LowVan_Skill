@@ -31,14 +31,17 @@ per-taxon tables below carry the dates and the source paths.
 | **Closterovirus** | [live](https://claude.ai/artifact/R7s4HEWxG7uE5rUVP45bFE) | [live](https://claude.ai/artifact/6ZfGY1KaXuL3cYbY8fuMUN) | [live](https://claude.ai/artifact/8yJX7hSR2qhznPkQYXq4pj) | [live](https://claude.ai/artifact/Ab6k6zYW9YHdrXhhk893kc) |
 | **Coltivirus** | [live](https://claude.ai/artifact/Hin8atCqQSiVD4jULeJpYm) | [live](https://claude.ai/artifact/1CpdzQZ1oXpXoCzP2Nmf8p) | [live](https://claude.ai/artifact/F1uth59wRRvzMvXdY4LAp2) | [live](https://claude.ai/artifact/NkZzioHk36fSX3H8dq1L6j) |
 | **Crinivirus** | [live](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [live](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [live](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [live](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) |
-| **EIAV** | [live](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [live](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | — | [live](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) |
+| **EIAV** | [live](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [live](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | [live](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | [live](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) |
+| **EIAV — equine infectious anaemia virus** | [src only](reports/eiav-string-collapse.html) | [src only](reports/eiav-pssm-registry.html) | [src only](reports/eiav-vocabulary-saturation.html) | [src only](reports/eiav-coverage-audit.html) |
 | **Enterovirus** | [live](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [live](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [live](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [live](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) |
-| **FIV** | [live](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | [live](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | — | [live](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) |
+| **FIV** | [live](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | [live](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | [live](https://claude.ai/artifact/QsKfmM4MTshtERZAeNqZHJ) | [live](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) |
+| **FIV — feline immunodeficiency virus** | [src only](reports/fiv-string-collapse.html) | [src only](reports/fiv-pssm-registry.html) | [src only](reports/fiv-vocabulary-saturation.html) | [src only](reports/fiv-coverage-audit.html) |
 | **Hepaciviridae** | [live](https://claude.ai/artifact/SuSzzD4Lgid5Nqh4wsAUsw) | [live](https://claude.ai/artifact/G2CDRQ1g7bPZQwJCAeVCNR) | [live](https://claude.ai/artifact/PFSG6T5FP4Pdv82KTtpRb3) | [live](https://claude.ai/artifact/8vMTNVAXKjhCEqmbsUBcry) |
 | **Hepatovirus** | [live](https://claude.ai/artifact/93JNSJkTL6tnxWAqqh1Ehj) | [live](https://claude.ai/artifact/HPeVWDKLb1684L7Lksqrug) | [live](https://claude.ai/artifact/BExLQ7zj3sT4KhFebPsmqK) | [live](https://claude.ai/artifact/4EgbaxJcXnos8VjP5o5qwq) |
 | **Hepeviridae** | [src only](reports/hepeviridae-string-collapse.html) | [live](https://claude.ai/artifact/Rv8Qtd6yogBhSxwxN83zUB) | [live](https://claude.ai/artifact/Lhe1p5zfzv6drE9XPXWB9n) | [live](https://claude.ai/artifact/9rab6t9Wg2jyUjpd31FCmz) |
 | **HIV-1** | [live](https://claude.ai/artifact/4MYTtF1b6CK2zVFcffChS2) | [live](https://claude.ai/artifact/1m9N8qBAKsy5kA2E8FXqtS) | [live](https://claude.ai/artifact/1Cix57VHwBNRs6qCbf6Apm) | [live](https://claude.ai/artifact/7bsqucJtLNCMQdZX4Kk8pL) |
-| **HIV2** | [live](https://claude.ai/artifact/KbGvBwhAtTVTCawuggMUx9) | [live](https://claude.ai/artifact/GGGXozTRJwQRXd933xjV82) | — | [live](https://claude.ai/artifact/9tzr7kovzhCR8WzHgBuiQN) |
+| **HIV2** | [live](https://claude.ai/artifact/KbGvBwhAtTVTCawuggMUx9) | [live](https://claude.ai/artifact/GGGXozTRJwQRXd933xjV82) | [live](https://claude.ai/artifact/P7XMfPgbeAKkVBSRsrLNQL) | [live](https://claude.ai/artifact/9tzr7kovzhCR8WzHgBuiQN) |
+| **HIV2 — HIV-2 and simian immunodeficiency virus** | [src only](reports/hiv2-string-collapse.html) | [src only](reports/hiv2-pssm-registry.html) | [src only](reports/hiv2-vocabulary-saturation.html) | [src only](reports/hiv2-coverage-audit.html) |
 | **Kobuvirus** | [live](https://claude.ai/artifact/G5BNV47HTuCKGDHstSCYkD) | [live](https://claude.ai/artifact/HXpLhyF1AdFbSbKPFcLgEp) | [live](https://claude.ai/artifact/JT8vdj6PBbm31asVQdHxGZ) | [live](https://claude.ai/artifact/644ijYfi9wT8E9YRUkxu31) |
 | **Lagovirus** | [live](https://claude.ai/artifact/MaXyiZhw6iYWGgut5PhNJF) | [live](https://claude.ai/artifact/CqYYq1ekytoZf5oVCb5zVK) | [live](https://claude.ai/artifact/HxygdrBS6JjHyAzphnj7eD) | [live](https://claude.ai/artifact/XvhotU5g7M4DcukfBTGGuT) |
 | **MammalianOrthoreovirus** | [live](https://claude.ai/artifact/TxH6j4xiFoJ9CXWxb2Fzcz) | [live](https://claude.ai/artifact/WuUmdRTmfgBPJtNPMgfkrz) | [live](https://claude.ai/artifact/SNWumPj4ohg9avxsTTUGek) | [live](https://claude.ai/artifact/KTXdUNuMK65nqhqmuCT9ze) |
@@ -64,7 +67,8 @@ per-taxon tables below carry the dates and the source paths.
 | **Sapovirus** | [live](https://claude.ai/artifact/UNtWhKpxTqpVARrDf8NuMB) | [live](https://claude.ai/artifact/3GHxASgkwBjDdLYVsJwDiT) | [live](https://claude.ai/artifact/9tuiHSAv4PLNeCiQM4B2h2) | [live](https://claude.ai/artifact/NFom3ZyTgwJgtjrZ2xFTAX) |
 | **Seadornavirus** | [live](https://claude.ai/artifact/Kogtes6gSE36mDPFscFveK) | [live](https://claude.ai/artifact/1VrHtEnoda2Cptd5DJJ8FX) | [live](https://claude.ai/artifact/HGKdASkXhZA7FzjtVdnKc1) | [live](https://claude.ai/artifact/8hZTk7zARMFjxV72DnHehs) |
 | **Senecavirus** | [live](https://claude.ai/artifact/Tbtxi52p4gQ7wdFwbsTPLq) | [live](https://claude.ai/artifact/XJMxY4EvPdae8nU5LNiJfq) | [live](https://claude.ai/artifact/5mSFF5p1EuhXYZo5UgtXYZ) | [live](https://claude.ai/artifact/Xr21mDLyZzcSebbLyeU1T7) |
-| **SRLV** | [live](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | [live](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | — | [live](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) |
+| **SRLV** | [live](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | [live](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | [live](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | [live](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) |
+| **SRLV — small ruminant lentivirus** | [src only](reports/srlv-string-collapse.html) | [src only](reports/srlv-pssm-registry.html) | [src only](reports/srlv-vocabulary-saturation.html) | [src only](reports/srlv-coverage-audit.html) |
 | **Teschovirus** | [live](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [live](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [live](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [live](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) |
 | **Tobamovirus** | [live](https://claude.ai/artifact/4r5eFifqQBs3msQyeTDRkd) | [live](https://claude.ai/artifact/Jaxj3wb1cGkEng25cDoXDz) | [live](https://claude.ai/artifact/GDgyPgzSQr3PoNyBXKF75F) | [live](https://claude.ai/artifact/Lqb3QrZN9vuQT2tHNnxjjf) |
 | **Togaviridae** | [src only](reports/togaviridae-string-collapse.html) | [live](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | — | [live](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) |
@@ -208,11 +212,17 @@ published — the file is in this repo. `—` was not made.
 
 | page | live | source | updated |
 |---|---|---|---|
-| EIAV Coverage Audit | [open](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) | [source](reports/eiav-coverage-audit.html) | 2026-10-27 |
-| EIAV PSSM Registry | [open](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | [source](reports/eiav-pssm-registry.html) | 2026-10-27 |
-| EIAV String Collapse | [open](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [source](reports/eiav-string-collapse.html) | 2026-10-27 |
+| EIAV Coverage Audit | [open](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) | — | 2026-10-27 |
+| EIAV PSSM Registry | [open](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | — | 2026-10-27 |
+| EIAV String Collapse | [open](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | — | 2026-10-27 |
+| EIAV Vocabulary Saturation | [open](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | — | 2026-10-27 |
 
-Not made: vocabulary saturation.
+### EIAV — equine infectious anaemia virus
+
+| page | live | source | updated |
+|---|---|---|---|
+
+Built but never published, source is here: [coverage audit](reports/eiav-coverage-audit.html), [PSSM registry](reports/eiav-pssm-registry.html), [string collapse](reports/eiav-string-collapse.html), [vocabulary saturation](reports/eiav-vocabulary-saturation.html).
 
 ### Enterovirus
 
@@ -227,11 +237,17 @@ Not made: vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| FIV Coverage Audit | [open](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) | [source](reports/fiv-coverage-audit.html) | 2026-10-27 |
-| FIV PSSM Registry | [open](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | [source](reports/fiv-pssm-registry.html) | 2026-10-27 |
-| FIV String Collapse | [open](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | [source](reports/fiv-string-collapse.html) | 2026-10-27 |
+| FIV Coverage Audit | [open](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) | — | 2026-10-27 |
+| FIV PSSM Registry | [open](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | — | 2026-10-27 |
+| FIV String Collapse | [open](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | — | 2026-10-27 |
+| FIV Vocabulary Saturation | [open](https://claude.ai/artifact/QsKfmM4MTshtERZAeNqZHJ) | — | 2026-10-27 |
 
-Not made: vocabulary saturation.
+### FIV — feline immunodeficiency virus
+
+| page | live | source | updated |
+|---|---|---|---|
+
+Built but never published, source is here: [coverage audit](reports/fiv-coverage-audit.html), [PSSM registry](reports/fiv-pssm-registry.html), [string collapse](reports/fiv-string-collapse.html), [vocabulary saturation](reports/fiv-vocabulary-saturation.html).
 
 ### Hepaciviridae
 
@@ -274,11 +290,17 @@ Built but never published, source is here: [string collapse](reports/hepeviridae
 
 | page | live | source | updated |
 |---|---|---|---|
-| HIV2 Coverage Audit | [open](https://claude.ai/artifact/9tzr7kovzhCR8WzHgBuiQN) | [source](reports/hiv2-coverage-audit.html) | 2026-10-27 |
-| HIV2 PSSM Registry | [open](https://claude.ai/artifact/GGGXozTRJwQRXd933xjV82) | [source](reports/hiv2-pssm-registry.html) | 2026-10-27 |
-| HIV2 String Collapse | [open](https://claude.ai/artifact/KbGvBwhAtTVTCawuggMUx9) | [source](reports/hiv2-string-collapse.html) | 2026-10-27 |
+| HIV2 Coverage Audit | [open](https://claude.ai/artifact/9tzr7kovzhCR8WzHgBuiQN) | — | 2026-10-27 |
+| HIV2 PSSM Registry | [open](https://claude.ai/artifact/GGGXozTRJwQRXd933xjV82) | — | 2026-10-27 |
+| HIV2 String Collapse | [open](https://claude.ai/artifact/KbGvBwhAtTVTCawuggMUx9) | — | 2026-10-27 |
+| HIV2 Vocabulary Saturation | [open](https://claude.ai/artifact/P7XMfPgbeAKkVBSRsrLNQL) | — | 2026-10-27 |
 
-Not made: vocabulary saturation.
+### HIV2 — HIV-2 and simian immunodeficiency virus
+
+| page | live | source | updated |
+|---|---|---|---|
+
+Built but never published, source is here: [coverage audit](reports/hiv2-coverage-audit.html), [PSSM registry](reports/hiv2-pssm-registry.html), [string collapse](reports/hiv2-string-collapse.html), [vocabulary saturation](reports/hiv2-vocabulary-saturation.html).
 
 ### Kobuvirus
 
@@ -510,11 +532,17 @@ Not made: string collapse, vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| SRLV Coverage Audit | [open](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) | [source](reports/srlv-coverage-audit.html) | 2026-10-27 |
-| SRLV PSSM Registry | [open](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | [source](reports/srlv-pssm-registry.html) | 2026-10-27 |
-| SRLV String Collapse | [open](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | [source](reports/srlv-string-collapse.html) | 2026-10-27 |
+| SRLV Coverage Audit | [open](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) | — | 2026-10-27 |
+| SRLV PSSM Registry | [open](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | — | 2026-10-27 |
+| SRLV String Collapse | [open](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | — | 2026-10-27 |
+| SRLV Vocabulary Saturation | [open](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | — | 2026-10-27 |
 
-Not made: vocabulary saturation.
+### SRLV — small ruminant lentivirus
+
+| page | live | source | updated |
+|---|---|---|---|
+
+Built but never published, source is here: [coverage audit](reports/srlv-coverage-audit.html), [PSSM registry](reports/srlv-pssm-registry.html), [string collapse](reports/srlv-string-collapse.html), [vocabulary saturation](reports/srlv-vocabulary-saturation.html).
 
 ### Teschovirus
 

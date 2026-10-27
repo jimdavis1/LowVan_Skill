@@ -1,7 +1,7 @@
 {
- "title": "HIV2 Coverage Audit",
+ "title": "HIV2 \u2014 HIV-2 and simian immunodeficiency virus Coverage Audit",
  "eyebrow": "LowVan module audit &middot; 27 October 2026",
- "h1": "HIV2",
+ "h1": "HIV2 \u2014 HIV-2 and simian immunodeficiency virus",
  "subhead": "HIV-2 and the simian immunodeficiency viruses",
  "standfirst": "<b>HIV2</b> is a module name, not a taxon. It holds HIV-2 and the SIVs together, and it is <i>majority SIV</i>: 1,660 of its 2,113 collection sequences and 65 of its 110 coverage exemplars come from simian immunodeficiency virus, not from HIV-2. The module is separated from HIV-1 on layout rather than distance &mdash; the two differ by one accessory gene, <i>vpx</i> here against <i>vpu</i> there, which is the project's partitioning rule.",
  "headline_tiles": [
@@ -271,6 +271,21 @@
   },
   {
    "num": "04",
+   "title": "Vocabulary saturation",
+   "lede": "How fast each vocabulary stops growing as genomes are added.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/hiv2-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 44.6 distinct source strings correspond to 9.0 controlled annotations, a 5.0-fold collapse. The module reaches 95% of its final vocabulary after 27 proteins against the source's 778."
+    }
+   ]
+  },
+  {
+   "num": "05",
    "title": "Method",
    "blocks": [
     {

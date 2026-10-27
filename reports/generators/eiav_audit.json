@@ -1,7 +1,7 @@
 {
- "title": "EIAV Coverage Audit",
+ "title": "EIAV \u2014 equine infectious anaemia virus Coverage Audit",
  "eyebrow": "LowVan module audit &middot; 27 October 2026",
- "h1": "EIAV",
+ "h1": "EIAV \u2014 equine infectious anaemia virus",
  "subhead": "equine infectious anaemia virus",
  "standfirst": "<b>EIAV</b> is the lentivirus of horses and the smallest module in this family &mdash; one virus, little vocabulary, and the clearest example in the set of a tiny accessory gene that is nonetheless essential. Four features carry profiles; <i>rev</i> is declared and called by the splice caller, and <i>tat</i> is recognised but not declared.",
  "headline_tiles": [
@@ -197,6 +197,21 @@
   },
   {
    "num": "04",
+   "title": "Vocabulary saturation",
+   "lede": "How fast each vocabulary stops growing as genomes are added.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/eiav-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 23.7 distinct source strings correspond to 5.0 controlled annotations, a 4.7-fold collapse. The module reaches 95% of its final vocabulary after 12 proteins against the source's 62."
+    }
+   ]
+  },
+  {
+   "num": "05",
    "title": "Method",
    "blocks": [
     {

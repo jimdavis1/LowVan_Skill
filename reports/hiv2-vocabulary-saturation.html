@@ -1,0 +1,195 @@
+<title>HIV2 — HIV-2 and simian immunodeficiency virus Vocabulary Saturation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --src:#eb6834; --mod:#2a78d6;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --src:#d95926; --mod:#3987e5;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --src:#d95926; --mod:#3987e5;
+  }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:900px; margin:0 auto; padding-block:40px 72px; padding-left:22px; padding-right:22px;
+           display:flex; flex-direction:column; gap:28px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  .stand { max-width:68ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .stand b { color:var(--ink); font-weight:600; }
+
+  .figs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+           border-top:1px solid var(--base); border-bottom:1px solid var(--grid); }
+  .fig { padding:13px 16px 13px 0; }
+  .fig+.fig { padding-left:16px; border-left:1px solid var(--grid); }
+  .fig .n { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:23px;
+             font-weight:500; display:block; letter-spacing:-.02em; }
+  .fig .k { font-size:12px; color:var(--ink2); }
+
+  figure { margin:0; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface); padding:6px 4px 2px; position:relative; }
+  svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:9px; max-width:74ch; }
+
+  .legend { display:flex; gap:18px; flex-wrap:wrap; font-size:13px; color:var(--ink2);
+             align-items:center; margin-bottom:10px; }
+  .legend span { display:inline-flex; gap:7px; align-items:center; }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; }
+
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+          background:var(--surface); border:1px solid var(--base); border-radius:4px;
+          padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+          font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+  details { border-top:1px solid var(--grid); padding-top:14px; }
+  summary { cursor:pointer; font-size:13.5px; color:var(--ink2); }
+  summary:focus-visible { outline:2px solid var(--mod); outline-offset:3px; }
+  .tw { overflow-x:auto; margin-top:12px; border:1px solid var(--hair); border-radius:4px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { padding:6px 11px; text-align:right; border-bottom:1px solid var(--grid); }
+  th:first-child, td:first-child { text-align:left; }
+  thead th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase;
+              color:var(--muted); font-weight:500; }
+  tbody td { font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink2); }
+  tbody tr:last-child td { border-bottom:0; }
+  .note { font-size:13.5px; color:var(--ink2); max-width:74ch; }
+  .note b { color:var(--ink); }
+  .src { font-size:12px; color:var(--muted); border-top:1px solid var(--grid); padding-top:13px; }
+  .src code { font-family:var(--mono); }
+  @media (max-width:620px) { .figs { grid-template-columns:repeat(2,1fr); } h1 { font-size:25px; } }
+</style>
+<div class="wrap">
+ <header>
+  <div class="eyebrow">LowVan &middot; HIV2 — HIV-2 and simian immunodeficiency virus module &middot; 27 October 2026</div>
+  <h1>HIV2 — HIV-2 and simian immunodeficiency virus</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">A controlled vocabulary stops growing. Free text does not.</h2>
+  <p class="stand">Take every annotated protein from 110 HIV2 genomes, shuffle
+  them, and draw them one at a time, counting the distinct annotation strings seen so far.
+  A curated vocabulary needs exactly 9 names however many proteins you read, so its
+  curve flattens; free-text product strings have no ceiling, because each submitter spells
+  the same proteins a new way. Over 100 random orderings the module reaches 95% of its
+  vocabulary after <b>27 proteins</b>; the source after
+  <b>778</b> of its 903.</p>
+ </header>
+
+ <div class="figs">
+  <div class="fig"><span class="n" style="color:var(--mod)">9</span><span class="k">strings, controlled vocabulary</span></div>
+  <div class="fig"><span class="n" style="color:var(--src)">45</span><span class="k">strings, BV-BRC free text</span></div>
+  <div class="fig"><span class="n">5.0&times;</span><span class="k">collapse at 879 proteins sampled</span></div>
+  <div class="fig"><span class="n">778</span><span class="k">proteins before free text reaches 95%</span></div>
+ </div>
+
+ <figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to 45 over 903 proteins; the controlled vocabulary flattens at 9.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="270.7" x2="648" y2="270.7" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="103.3" x2="648" y2="103.3" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="274.7" text-anchor="end" class="tick">12</text><text x="47" y="191.0" text-anchor="end" class="tick">25</text><text x="47" y="107.3" text-anchor="end" class="tick">38</text><text x="47" y="30.0" text-anchor="end" class="tick">50</text><text x="58.0" y="369" text-anchor="middle" class="tick">0</text><text x="205.5" y="369" text-anchor="middle" class="tick">250</text><text x="353.0" y="369" text-anchor="middle" class="tick">500</text><text x="500.5" y="369" text-anchor="middle" class="tick">750</text><text x="648.0" y="369" text-anchor="middle" class="tick">1,000</text>
+    <text class="axtitle" x="58" y="392">proteins sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <line x1="576.6" y1="26" x2="576.6" y2="348" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M58.0 348.00 L59.2 335.57 L61.0 320.76 L62.1 312.84 L63.3 306.01 L64.5 300.34 L66.3 293.26 L67.4 289.59 L68.6 286.18 L69.8 283.08 L71.6 279.29 L72.8 277.29 L73.9 274.91 L75.1 273.17 L76.9 270.20 L78.1 267.76 L79.2 266.02 L80.4 264.60 L82.2 262.03 L83.4 260.42 L84.5 259.00 L86.3 257.26 L87.5 255.52 L88.7 254.10 L89.9 253.27 L91.6 251.59 L92.8 250.69 L94.0 249.34 L95.2 248.63 L96.9 247.02 L98.1 246.31 L99.3 245.60 L100.5 244.57 L102.2 243.48 L103.4 242.64 L104.6 241.29 L105.8 240.52 L107.6 239.55 L108.7 238.71 L109.9 237.81 L111.7 236.52 L112.9 235.36 L114.0 234.40 L115.2 233.82 L117.0 232.40 L118.2 231.63 L119.4 230.92 L120.5 230.28 L122.3 228.99 L123.5 228.34 L124.7 227.57 L125.8 226.80 L127.6 225.83 L128.8 224.87 L130.0 224.16 L131.2 223.64 L132.9 222.94 L134.1 222.16 L135.3 221.45 L137.1 220.04 L138.2 219.52 L139.4 218.49 L140.6 217.72 L142.4 216.82 L143.6 216.24 L144.7 215.53 L145.9 214.43 L147.7 213.40 L148.9 212.70 L150.0 212.05 L151.2 211.28 L153.0 210.57 L154.2 209.99 L155.3 209.48 L156.5 208.90 L158.3 208.12 L159.5 207.41 L160.7 206.64 L162.4 205.35 L163.6 204.84 L164.8 204.32 L166.0 203.81 L167.7 202.91 L168.9 202.33 L170.1 201.75 L171.3 201.23 L173.1 200.78 L174.2 200.33 L175.4 199.49 L176.6 198.79 L178.4 197.95 L179.5 197.69 L180.7 197.30 L181.9 196.66 L183.7 195.82 L184.8 195.11 L186.0 194.53 L187.8 193.44 L189.0 192.80 L190.2 192.47 L191.3 191.77 L193.1 191.31 L194.3 190.93 L195.5 190.16 L196.7 189.90 L198.4 189.38 L199.6 188.61 L200.8 187.71 L202.0 187.19 L203.7 185.78 L204.9 185.07 L206.1 184.30 L207.3 183.72 L209.0 182.69 L210.2 182.36 L211.4 181.72 L213.2 180.82 L214.3 180.11 L215.5 179.85 L216.7 179.34 L218.5 178.24 L219.7 177.73 L220.8 177.02 L222.0 176.37 L223.8 175.34 L225.0 174.70 L226.2 174.06 L227.3 173.22 L229.1 172.51 L230.3 171.74 L231.5 171.29 L232.6 170.64 L234.4 169.93 L235.6 169.10 L236.8 168.71 L238.5 168.00 L239.7 167.36 L240.9 166.84 L242.1 166.65 L243.8 165.81 L245.0 165.23 L246.2 164.78 L247.4 164.33 L249.2 163.37 L250.3 162.66 L251.5 162.14 L252.7 161.50 L254.5 160.72 L255.7 160.34 L256.8 159.82 L258.0 159.11 L259.8 158.41 L261.0 158.08 L262.1 157.57 L263.9 156.99 L265.1 156.67 L266.3 156.35 L267.4 155.83 L269.2 154.93 L270.4 154.09 L271.6 153.58 L272.8 152.93 L274.5 152.35 L275.7 151.90 L276.9 151.26 L278.1 150.94 L279.8 149.65 L281.0 148.81 L282.2 148.23 L283.4 147.59 L285.1 146.81 L286.3 146.49 L287.5 146.17 L289.3 145.40 L290.5 145.01 L291.6 144.30 L292.8 143.59 L294.6 142.76 L295.8 142.11 L296.9 141.73 L298.1 141.40 L299.9 140.76 L301.1 140.25 L302.3 139.67 L303.4 139.34 L305.2 138.96 L306.4 138.31 L307.6 137.86 L308.8 137.41 L310.5 137.09 L311.7 136.64 L312.9 136.12 L314.6 135.42 L315.8 135.03 L317.0 134.39 L318.2 133.93 L320.0 133.35 L321.1 133.03 L322.3 132.58 L323.5 132.13 L325.3 131.29 L326.4 130.84 L327.6 130.46 L328.8 129.88 L330.6 128.98 L331.8 128.72 L332.9 128.46 L334.1 128.01 L335.9 127.37 L337.1 126.98 L338.2 126.72 L340.0 126.21 L341.2 125.50 L342.4 124.98 L343.6 124.60 L345.3 123.82 L346.5 123.50 L347.7 123.18 L348.9 122.47 L350.6 121.25 L351.8 120.99 L353.0 120.60 L354.2 120.35 L355.9 119.57 L357.1 118.74 L358.3 118.22 L359.5 117.58 L361.3 116.93 L362.4 116.16 L363.6 115.90 L365.4 115.19 L366.6 114.68 L367.8 113.91 L368.9 113.58 L370.7 112.68 L371.9 112.36 L373.1 111.91 L374.2 111.14 L376.0 110.49 L377.2 109.98 L378.4 109.72 L379.6 109.46 L381.3 108.88 L382.5 108.50 L383.7 108.30 L384.9 108.05 L386.6 106.95 L387.8 106.82 L389.0 106.44 L390.8 105.98 L391.9 105.86 L393.1 105.66 L394.3 105.41 L396.1 104.70 L397.2 104.44 L398.4 104.37 L399.6 103.86 L401.4 103.34 L402.6 102.89 L403.7 102.31 L404.9 101.86 L406.7 101.41 L407.9 101.22 L409.1 100.77 L410.2 100.32 L412.0 99.80 L413.2 99.29 L414.4 99.03 L416.1 98.58 L417.3 98.00 L418.5 97.61 L419.7 97.48 L421.4 96.97 L422.6 96.84 L423.8 96.13 L425.0 95.94 L426.8 95.36 L427.9 95.23 L429.1 94.71 L430.3 94.39 L432.1 93.88 L433.2 93.75 L434.4 93.43 L435.6 92.98 L437.4 92.46 L438.6 91.88 L439.7 91.43 L441.5 91.24 L442.7 90.92 L443.9 90.59 L445.0 89.88 L446.8 89.37 L448.0 89.11 L449.2 88.85 L450.4 88.73 L452.1 88.27 L453.3 87.89 L454.5 87.70 L455.7 87.18 L457.4 86.99 L458.6 86.73 L459.8 86.60 L461.0 86.28 L462.7 85.96 L463.9 85.38 L465.1 84.93 L466.9 84.35 L468.1 84.02 L469.2 83.70 L470.4 83.51 L472.2 82.99 L473.4 82.74 L474.5 82.54 L475.7 82.29 L477.5 82.03 L478.7 81.83 L479.9 81.51 L481.0 81.26 L482.8 80.87 L484.0 80.48 L485.2 80.03 L486.3 79.65 L488.1 79.45 L489.3 79.32 L490.5 79.13 L492.2 78.61 L493.4 78.16 L494.6 78.04 L495.8 77.58 L497.6 77.20 L498.7 76.81 L499.9 76.55 L501.1 76.04 L502.9 75.59 L504.0 75.33 L505.2 74.94 L506.4 74.62 L508.2 74.04 L509.4 73.78 L510.5 73.72 L511.7 73.66 L513.5 73.40 L514.7 73.14 L515.8 72.88 L517.6 72.24 L518.8 71.79 L520.0 71.34 L521.1 71.21 L522.9 70.89 L524.1 70.69 L525.3 70.37 L526.5 69.92 L528.2 69.41 L529.4 69.15 L530.6 68.89 L531.8 68.63 L533.5 68.44 L534.7 68.25 L535.9 67.99 L537.1 67.73 L538.9 67.28 L540.0 67.22 L541.2 66.96 L543.0 66.77 L544.2 66.64 L545.3 66.44 L546.5 66.12 L548.3 65.61 L549.5 65.35 L550.6 65.16 L551.8 64.83 L553.6 64.45 L554.8 64.19 L556.0 64.06 L557.1 63.87 L558.9 63.61 L560.1 63.55 L561.3 63.29 L562.5 63.22 L564.2 62.90 L565.4 62.71 L566.6 62.64 L568.4 62.19 L569.5 61.87 L570.7 61.48 L571.9 61.16 L573.7 60.78 L574.8 60.71 L576.0 60.58 L577.2 60.45 L579.0 60.33 L580.1 60.26 L581.3 60.20 L582.5 59.75 L584.3 59.42 L585.5 59.17 L586.6 58.78 L587.8 58.72 L589.6 58.59 L590.8 58.20" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 348.00 L59.2 335.89 L60.4 325.91 L62.1 316.32 L63.3 310.65 L64.5 306.72 L65.7 303.82 L66.8 300.86 L68.6 296.74 L69.8 295.06 L71.0 294.29 L72.2 293.84 L73.3 293.00 L75.1 291.97 L76.3 291.65 L77.5 291.33 L78.7 291.07 L79.8 290.81 L81.6 290.68 L82.8 290.62 L84.0 290.36 L85.1 290.30 L86.3 290.30 L88.1 290.30 L89.3 290.30 L90.5 290.23 L91.6 290.17 L92.8 290.10 L94.6 290.10 L95.8 290.10 L96.9 290.10 L98.1 290.04 L99.3 290.04 L101.1 290.04 L102.2 290.04 L103.4 290.04 L104.6 290.04 L106.4 290.04 L107.6 290.04 L108.7 290.04 L109.9 290.04 L111.1 290.04 L112.9 290.04 L114.0 290.04 L115.2 290.04 L116.4 290.04 L117.6 290.04 L119.4 290.04 L120.5 290.04 L121.7 290.04 L122.9 290.04 L124.1 290.04 L125.8 290.04 L127.0 290.04 L128.2 290.04 L129.4 290.04 L130.6 290.04 L132.3 290.04 L133.5 290.04 L134.7 290.04 L135.9 290.04 L137.1 290.04 L138.8 290.04 L140.0 290.04 L141.2 290.04 L142.4 290.04 L143.6 290.04 L145.3 290.04 L146.5 290.04 L147.7 290.04 L148.9 290.04 L150.0 290.04 L151.8 290.04 L153.0 290.04 L154.2 290.04 L155.3 290.04 L156.5 290.04 L158.3 290.04 L159.5 290.04 L160.7 290.04 L161.8 290.04 L163.0 290.04 L164.8 290.04 L166.0 290.04 L167.2 290.04 L168.3 290.04 L169.5 290.04 L171.3 290.04 L172.5 290.04 L173.6 290.04 L174.8 290.04 L176.0 290.04 L177.8 290.04 L178.9 290.04 L180.1 290.04 L181.3 290.04 L182.5 290.04 L184.3 290.04 L185.4 290.04 L186.6 290.04 L187.8 290.04 L189.6 290.04 L190.8 290.04 L191.9 290.04 L193.1 290.04 L194.3 290.04 L196.1 290.04 L197.2 290.04 L198.4 290.04 L199.6 290.04 L200.8 290.04 L202.6 290.04 L203.7 290.04 L204.9 290.04 L206.1 290.04 L207.3 290.04 L209.0 290.04 L210.2 290.04 L211.4 290.04 L212.6 290.04 L213.8 290.04 L215.5 290.04 L216.7 290.04 L217.9 290.04 L219.1 290.04 L220.2 290.04 L222.0 290.04 L223.2 290.04 L224.4 290.04 L225.6 290.04 L226.7 290.04 L228.5 290.04 L229.7 290.04 L230.9 290.04 L232.1 290.04 L233.2 290.04 L235.0 290.04 L236.2 290.04 L237.4 290.04 L238.5 290.04 L239.7 290.04 L241.5 290.04 L242.7 290.04 L243.8 290.04 L245.0 290.04 L246.2 290.04 L248.0 290.04 L249.2 290.04 L250.3 290.04 L251.5 290.04 L252.7 290.04 L254.5 290.04 L255.7 290.04 L256.8 290.04 L258.0 290.04 L259.2 290.04 L261.0 290.04 L262.1 290.04 L263.3 290.04 L264.5 290.04 L265.7 290.04 L267.4 290.04 L268.6 290.04 L269.8 290.04 L271.0 290.04 L272.2 290.04 L273.9 290.04 L275.1 290.04 L276.3 290.04 L277.5 290.04 L279.2 290.04 L280.4 290.04 L281.6 290.04 L282.8 290.04 L284.0 290.04 L285.7 290.04 L286.9 290.04 L288.1 290.04 L289.3 290.04 L290.5 290.04 L292.2 290.04 L293.4 290.04 L294.6 290.04 L295.8 290.04 L296.9 290.04 L298.7 290.04 L299.9 290.04 L301.1 290.04 L302.3 290.04 L303.4 290.04 L305.2 290.04 L306.4 290.04 L307.6 290.04 L308.8 290.04 L309.9 290.04 L311.7 290.04 L312.9 290.04 L314.1 290.04 L315.2 290.04 L316.4 290.04 L318.2 290.04 L319.4 290.04 L320.6 290.04 L321.7 290.04 L322.9 290.04 L324.7 290.04 L325.9 290.04 L327.0 290.04 L328.2 290.04 L329.4 290.04 L331.2 290.04 L332.4 290.04 L333.5 290.04 L334.7 290.04 L335.9 290.04 L337.7 290.04 L338.8 290.04 L340.0 290.04 L341.2 290.04 L342.4 290.04 L344.1 290.04 L345.3 290.04 L346.5 290.04 L347.7 290.04 L348.9 290.04 L350.6 290.04 L351.8 290.04 L353.0 290.04 L354.2 290.04 L355.4 290.04 L357.1 290.04 L358.3 290.04 L359.5 290.04 L360.7 290.04 L362.4 290.04 L363.6 290.04 L364.8 290.04 L366.0 290.04 L367.2 290.04 L368.9 290.04 L370.1 290.04 L371.3 290.04 L372.5 290.04 L373.6 290.04 L375.4 290.04 L376.6 290.04 L377.8 290.04 L379.0 290.04 L380.1 290.04 L381.9 290.04 L383.1 290.04 L384.3 290.04 L385.4 290.04 L386.6 290.04 L388.4 290.04 L389.6 290.04 L390.8 290.04 L391.9 290.04 L393.1 290.04 L394.9 290.04 L396.1 290.04 L397.2 290.04 L398.4 290.04 L399.6 290.04 L401.4 290.04 L402.6 290.04 L403.7 290.04 L404.9 290.04 L406.1 290.04 L407.9 290.04 L409.1 290.04 L410.2 290.04 L411.4 290.04 L412.6 290.04 L414.4 290.04 L415.5 290.04 L416.7 290.04 L417.9 290.04 L419.1 290.04 L420.9 290.04 L422.0 290.04 L423.2 290.04 L424.4 290.04 L425.6 290.04 L427.3 290.04 L428.5 290.04 L429.7 290.04 L430.9 290.04 L432.1 290.04 L433.8 290.04 L435.0 290.04 L436.2 290.04 L437.4 290.04 L438.6 290.04 L440.3 290.04 L441.5 290.04 L442.7 290.04 L443.9 290.04 L445.0 290.04 L446.8 290.04 L448.0 290.04 L449.2 290.04 L450.4 290.04 L452.1 290.04 L453.3 290.04 L454.5 290.04 L455.7 290.04 L456.8 290.04 L458.6 290.04 L459.8 290.04 L461.0 290.04 L462.1 290.04 L463.3 290.04 L465.1 290.04 L466.3 290.04 L467.5 290.04 L468.6 290.04 L469.8 290.04 L471.6 290.04 L472.8 290.04 L473.9 290.04 L475.1 290.04 L476.3 290.04 L478.1 290.04 L479.3 290.04 L480.4 290.04 L481.6 290.04 L482.8 290.04 L484.6 290.04 L485.8 290.04 L486.9 290.04 L488.1 290.04 L489.3 290.04 L491.1 290.04 L492.2 290.04 L493.4 290.04 L494.6 290.04 L495.8 290.04 L497.6 290.04 L498.7 290.04 L499.9 290.04 L501.1 290.04 L502.3 290.04 L504.0 290.04 L505.2 290.04 L506.4 290.04 L507.6 290.04 L508.8 290.04 L510.5 290.04 L511.7 290.04 L512.9 290.04 L514.1 290.04 L515.2 290.04 L517.0 290.04 L518.2 290.04 L519.4 290.04 L520.6 290.04 L521.7 290.04 L523.5 290.04 L524.7 290.04 L525.9 290.04 L527.0 290.04 L528.2 290.04 L530.0 290.04 L531.2 290.04 L532.4 290.04 L533.5 290.04 L535.3 290.04 L536.5 290.04 L537.7 290.04 L538.9 290.04 L540.0 290.04 L541.8 290.04 L543.0 290.04 L544.2 290.04 L545.3 290.04 L546.5 290.04 L548.3 290.04 L549.5 290.04 L550.6 290.04 L551.8 290.04 L553.0 290.04 L554.8 290.04 L556.0 290.04 L557.1 290.04 L558.3 290.04 L559.5 290.04 L561.3 290.04 L562.5 290.04 L563.6 290.04 L564.8 290.04 L566.0 290.04 L567.8 290.04 L568.9 290.04 L570.1 290.04 L571.3 290.04 L572.5 290.04 L574.2 290.04 L575.4 290.04 L576.6 290.04" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="590.8" cy="58.20" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="576.6" cy="290.04" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="600.8" y="57.20" fill="var(--src)">free text</text>
+    <text class="endsub" x="600.8" y="70.20">45 strings</text>
+    <text class="endlab" x="586.6" y="293.04" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="586.6" y="306.04">9 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of every
+  annotated protein in the 110 genomes both sources annotate: 903 source
+  product records and 879 module calls. Both curves start at zero. The dashed line
+  marks 879 proteins, the depth both curves reach, where the two are compared.</figcaption>
+ </figure>
+
+ <p class="note">Compared at the same sampling depth, 879 proteins, free text has
+ used <b>44.6 distinct strings</b> and the controlled vocabulary
+ <b>9.0</b> &mdash; a <b>5.0-fold collapse</b>. The
+ source vocabulary reaches 95% of its final size after 778 of its 903 proteins;
+ the module after 27 of 879.</p>
+
+ <details>
+  <summary>Table view &mdash; proteins sampled</summary>
+  <div class="tw"><table>
+   <thead><tr><th>proteins sampled</th><th>free text</th><th>controlled</th><th>ratio</th></tr></thead>
+   <tbody>
+   <tr><td>2</td><td>1.93</td><td>1.88</td><td>1.03&times;</td></tr><tr><td>9</td><td>6.52</td><td>5.80</td><td>1.12&times;</td></tr><tr><td>18</td><td>9.60</td><td>7.96</td><td>1.21&times;</td></tr><tr><td>44</td><td>13.71</td><td>8.95</td><td>1.53&times;</td></tr><tr><td>88</td><td>17.11</td><td>9.00</td><td>1.90&times;</td></tr><tr><td>176</td><td>22.08</td><td>9.00</td><td>2.45&times;</td></tr><tr><td>264</td><td>26.02</td><td>9.00</td><td>2.89&times;</td></tr><tr><td>440</td><td>33.20</td><td>9.00</td><td>3.69&times;</td></tr><tr><td>659</td><td>40.16</td><td>9.00</td><td>4.46&times;</td></tr><tr><td>879</td><td>44.64</td><td>9.00</td><td>4.96&times;</td></tr>
+   </tbody>
+  </table></div>
+ </details>
+
+ <div class="src">Generated by <code>skill/scripts/gen_rarefaction.py</code> from
+ <code>rarefaction.json</code>, written by the kit&rsquo;s
+ <code>annotation_rarefaction.py</code> at 100 replicates. Categorical pair
+ <code>#2a78d6</code>/<code>#eb6834</code> (light) and <code>#3987e5</code>/<code>#d95926</code>
+ (dark), validated by <code>validate_palette.py</code>: worst CVD &Delta;E 24.7,
+ normal-vision &Delta;E 31.8, contrast &ge;3.12:1.</div>
+</div>
+<script>
+ var SX=[0, 2, 5, 7, 9, 11, 14, 16, 18, 20, 23, 25, 27, 29, 32, 34, 36, 38, 41, 43, 45, 48, 50, 52, 54, 57, 59, 61, 63, 66, 68, 70, 72, 75, 77, 79, 81, 84, 86, 88, 91, 93, 95, 97, 100, 102, 104, 106, 109, 111, 113, 115, 118, 120, 122, 124, 127, 129, 131, 134, 136, 138, 140, 143, 145, 147, 149, 152, 154, 156, 158, 161, 163, 165, 167, 170, 172, 174, 177, 179, 181, 183, 186, 188, 190, 192, 195, 197, 199, 201, 204, 206, 208, 210, 213, 215, 217, 220, 222, 224, 226, 229, 231, 233, 235, 238, 240, 242, 244, 247, 249, 251, 253, 256, 258, 260, 263, 265, 267, 269, 272, 274, 276, 278, 281, 283, 285, 287, 290, 292, 294, 296, 299, 301, 303, 306, 308, 310, 312, 315, 317, 319, 321, 324, 326, 328, 330, 333, 335, 337, 339, 342, 344, 346, 349, 351, 353, 355, 358, 360, 362, 364, 367, 369, 371, 373, 376, 378, 380, 382, 385, 387, 389, 392, 394, 396, 398, 401, 403, 405, 407, 410, 412, 414, 416, 419, 421, 423, 425, 428, 430, 432, 435, 437, 439, 441, 444, 446, 448, 450, 453, 455, 457, 459, 462, 464, 466, 468, 471, 473, 475, 478, 480, 482, 484, 487, 489, 491, 493, 496, 498, 500, 502, 505, 507, 509, 511, 514, 516, 518, 521, 523, 525, 527, 530, 532, 534, 536, 539, 541, 543, 545, 548, 550, 552, 554, 557, 559, 561, 564, 566, 568, 570, 573, 575, 577, 579, 582, 584, 586, 588, 591, 593, 595, 597, 600, 602, 604, 607, 609, 611, 613, 616, 618, 620, 622, 625, 627, 629, 631, 634, 636, 638, 640, 643, 645, 647, 650, 652, 654, 656, 659, 661, 663, 665, 668, 670, 672, 674, 677, 679, 681, 683, 686, 688, 690, 693, 695, 697, 699, 702, 704, 706, 708, 711, 713, 715, 717, 720, 722, 724, 726, 729, 731, 733, 736, 738, 740, 742, 745, 747, 749, 751, 754, 756, 758, 760, 763, 765, 767, 769, 772, 774, 776, 779, 781, 783, 785, 788, 790, 792, 794, 797, 799, 801, 803, 806, 808, 810, 812, 815, 817, 819, 822, 824, 826, 828, 831, 833, 835, 837, 840, 842, 844, 846, 849, 851, 853, 855, 858, 860, 862, 865, 867, 869, 871, 874, 876, 878, 880, 883, 885, 887, 889, 892, 894, 896, 898, 901, 903], SY=[0.0, 1.93, 4.23, 5.46, 6.52, 7.4, 8.5, 9.07, 9.6, 10.08, 10.67, 10.98, 11.35, 11.62, 12.08, 12.46, 12.73, 12.95, 13.35, 13.6, 13.82, 14.09, 14.36, 14.58, 14.71, 14.97, 15.11, 15.32, 15.43, 15.68, 15.79, 15.9, 16.06, 16.23, 16.36, 16.57, 16.69, 16.84, 16.97, 17.11, 17.31, 17.49, 17.64, 17.73, 17.95, 18.07, 18.18, 18.28, 18.48, 18.58, 18.7, 18.82, 18.97, 19.12, 19.23, 19.31, 19.42, 19.54, 19.65, 19.87, 19.95, 20.11, 20.23, 20.37, 20.46, 20.57, 20.74, 20.9, 21.01, 21.11, 21.23, 21.34, 21.43, 21.51, 21.6, 21.72, 21.83, 21.95, 22.15, 22.23, 22.31, 22.39, 22.53, 22.62, 22.71, 22.79, 22.86, 22.93, 23.06, 23.17, 23.3, 23.34, 23.4, 23.5, 23.63, 23.74, 23.83, 24.0, 24.1, 24.15, 24.26, 24.33, 24.39, 24.51, 24.55, 24.63, 24.75, 24.89, 24.97, 25.19, 25.3, 25.42, 25.51, 25.67, 25.72, 25.82, 25.96, 26.07, 26.11, 26.19, 26.36, 26.44, 26.55, 26.65, 26.81, 26.91, 27.01, 27.14, 27.25, 27.37, 27.44, 27.54, 27.65, 27.78, 27.84, 27.95, 28.05, 28.13, 28.16, 28.29, 28.38, 28.45, 28.52, 28.67, 28.78, 28.86, 28.96, 29.08, 29.14, 29.22, 29.33, 29.44, 29.49, 29.57, 29.66, 29.71, 29.76, 29.84, 29.98, 30.11, 30.19, 30.29, 30.38, 30.45, 30.55, 30.6, 30.8, 30.93, 31.02, 31.12, 31.24, 31.29, 31.34, 31.46, 31.52, 31.63, 31.74, 31.87, 31.97, 32.03, 32.08, 32.18, 32.26, 32.35, 32.4, 32.46, 32.56, 32.63, 32.7, 32.75, 32.82, 32.9, 33.01, 33.07, 33.17, 33.24, 33.33, 33.38, 33.45, 33.52, 33.65, 33.72, 33.78, 33.87, 34.01, 34.05, 34.09, 34.16, 34.26, 34.32, 34.36, 34.44, 34.55, 34.63, 34.69, 34.81, 34.86, 34.91, 35.02, 35.21, 35.25, 35.31, 35.35, 35.47, 35.6, 35.68, 35.78, 35.88, 36.0, 36.04, 36.15, 36.23, 36.35, 36.4, 36.54, 36.59, 36.66, 36.78, 36.88, 36.96, 37.0, 37.04, 37.13, 37.19, 37.22, 37.26, 37.43, 37.45, 37.51, 37.58, 37.6, 37.63, 37.67, 37.78, 37.82, 37.83, 37.91, 37.99, 38.06, 38.15, 38.22, 38.29, 38.32, 38.39, 38.46, 38.54, 38.62, 38.66, 38.73, 38.82, 38.88, 38.9, 38.98, 39.0, 39.11, 39.14, 39.23, 39.25, 39.33, 39.38, 39.46, 39.48, 39.53, 39.6, 39.68, 39.77, 39.84, 39.87, 39.92, 39.97, 40.08, 40.16, 40.2, 40.24, 40.26, 40.33, 40.39, 40.42, 40.5, 40.53, 40.57, 40.59, 40.64, 40.69, 40.78, 40.85, 40.94, 40.99, 41.04, 41.07, 41.15, 41.19, 41.22, 41.26, 41.3, 41.33, 41.38, 41.42, 41.48, 41.54, 41.61, 41.67, 41.7, 41.72, 41.75, 41.83, 41.9, 41.92, 41.99, 42.05, 42.11, 42.15, 42.23, 42.3, 42.34, 42.4, 42.45, 42.54, 42.58, 42.59, 42.6, 42.64, 42.68, 42.72, 42.82, 42.89, 42.96, 42.98, 43.03, 43.06, 43.11, 43.18, 43.26, 43.3, 43.34, 43.38, 43.41, 43.44, 43.48, 43.52, 43.59, 43.6, 43.64, 43.67, 43.69, 43.72, 43.77, 43.85, 43.89, 43.92, 43.97, 44.03, 44.07, 44.09, 44.12, 44.16, 44.17, 44.21, 44.22, 44.27, 44.3, 44.31, 44.38, 44.43, 44.49, 44.54, 44.6, 44.61, 44.63, 44.65, 44.67, 44.68, 44.69, 44.76, 44.81, 44.85, 44.91, 44.92, 44.94, 45.0], MX=[0, 2, 4, 7, 9, 11, 13, 15, 18, 20, 22, 24, 26, 29, 31, 33, 35, 37, 40, 42, 44, 46, 48, 51, 53, 55, 57, 59, 62, 64, 66, 68, 70, 73, 75, 77, 79, 82, 84, 86, 88, 90, 93, 95, 97, 99, 101, 104, 106, 108, 110, 112, 115, 117, 119, 121, 123, 126, 128, 130, 132, 134, 137, 139, 141, 143, 145, 148, 150, 152, 154, 156, 159, 161, 163, 165, 167, 170, 172, 174, 176, 178, 181, 183, 185, 187, 189, 192, 194, 196, 198, 200, 203, 205, 207, 209, 211, 214, 216, 218, 220, 223, 225, 227, 229, 231, 234, 236, 238, 240, 242, 245, 247, 249, 251, 253, 256, 258, 260, 262, 264, 267, 269, 271, 273, 275, 278, 280, 282, 284, 286, 289, 291, 293, 295, 297, 300, 302, 304, 306, 308, 311, 313, 315, 317, 319, 322, 324, 326, 328, 330, 333, 335, 337, 339, 341, 344, 346, 348, 350, 352, 355, 357, 359, 361, 363, 366, 368, 370, 372, 375, 377, 379, 381, 383, 386, 388, 390, 392, 394, 397, 399, 401, 403, 405, 408, 410, 412, 414, 416, 419, 421, 423, 425, 427, 430, 432, 434, 436, 438, 441, 443, 445, 447, 449, 452, 454, 456, 458, 460, 463, 465, 467, 469, 471, 474, 476, 478, 480, 482, 485, 487, 489, 491, 493, 496, 498, 500, 502, 504, 507, 509, 511, 513, 516, 518, 520, 522, 524, 527, 529, 531, 533, 535, 538, 540, 542, 544, 546, 549, 551, 553, 555, 557, 560, 562, 564, 566, 568, 571, 573, 575, 577, 579, 582, 584, 586, 588, 590, 593, 595, 597, 599, 601, 604, 606, 608, 610, 612, 615, 617, 619, 621, 623, 626, 628, 630, 632, 634, 637, 639, 641, 643, 645, 648, 650, 652, 654, 656, 659, 661, 663, 665, 668, 670, 672, 674, 676, 679, 681, 683, 685, 687, 690, 692, 694, 696, 698, 701, 703, 705, 707, 709, 712, 714, 716, 718, 720, 723, 725, 727, 729, 731, 734, 736, 738, 740, 742, 745, 747, 749, 751, 753, 756, 758, 760, 762, 764, 767, 769, 771, 773, 775, 778, 780, 782, 784, 786, 789, 791, 793, 795, 797, 800, 802, 804, 806, 809, 811, 813, 815, 817, 820, 822, 824, 826, 828, 831, 833, 835, 837, 839, 842, 844, 846, 848, 850, 853, 855, 857, 859, 861, 864, 866, 868, 870, 872, 875, 877, 879], MY=[0.0, 1.88, 3.43, 4.92, 5.8, 6.41, 6.86, 7.32, 7.96, 8.22, 8.34, 8.41, 8.54, 8.7, 8.75, 8.8, 8.84, 8.88, 8.9, 8.91, 8.95, 8.96, 8.96, 8.96, 8.96, 8.97, 8.98, 8.99, 8.99, 8.99, 8.99, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0];
+ var Lm=58, PWm=590, XT=1000, VB=780;
+ var cb=document.getElementById('cb'), hit=document.getElementById('hit'),
+     xh=document.getElementById('xh'), ds=document.getElementById('ds'),
+     dm=document.getElementById('dm'), tip=document.getElementById('tip');
+ var svg=cb.querySelector('svg');
+ function X(x){ return Lm + PWm*x/XT; }
+ function at(xa,ya,x){ if(x>xa[xa.length-1]) return null; var i=0; while(xa[i]<x) i++;
+   if(xa[i]===x||i===0) return ya[i]; return ya[i-1]+(ya[i]-ya[i-1])*(x-xa[i-1])/(xa[i]-xa[i-1]); }
+ function Y(v){ return 26 + 322*(1 - v/50); }
+ function show(e){
+   var r=svg.getBoundingClientRect(), sx=(e.clientX-r.left)*VB/r.width;
+   var k=Math.round((sx-Lm)/PWm*XT); var top=Math.max(SX[SX.length-1],MX[MX.length-1]);
+   if(k<0) k=0; if(k>top) k=top;
+   var x=X(k), s=at(SX,SY,k), m=at(MX,MY,k);
+   xh.setAttribute('x1',x); xh.setAttribute('x2',x); xh.setAttribute('opacity','1');
+   if(s!==null){ ds.setAttribute('cx',x); ds.setAttribute('cy',Y(s)); ds.setAttribute('opacity','1'); } else ds.setAttribute('opacity','0');
+   if(m!==null){ dm.setAttribute('cx',x); dm.setAttribute('cy',Y(m)); dm.setAttribute('opacity','1'); } else dm.setAttribute('opacity','0');
+   tip.innerHTML='<div style="color:var(--muted);margin-bottom:3px">'+k.toLocaleString()+
+     ' protein'+(k===1?'':'s')+' sampled</div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--src)"></i>free text <b>'+(s===null?'&mdash;':s.toFixed(2))+'</b></div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--mod)"></i>controlled <b>'+(m===null?'&mdash;':m.toFixed(2))+'</b></div>';
+   tip.style.opacity='1';
+   var px=x*r.width/VB, tw=tip.offsetWidth;
+   tip.style.left=Math.min(Math.max(px+12,4), r.width-tw-4)+'px';
+   tip.style.top='14px';
+ }
+ function hide(){ xh.setAttribute('opacity','0'); ds.setAttribute('opacity','0');
+                  dm.setAttribute('opacity','0'); tip.style.opacity='0'; }
+ hit.addEventListener('mousemove',show);
+ hit.addEventListener('mouseleave',hide);
+ hit.addEventListener('touchmove',function(e){ if(e.touches[0]) show(e.touches[0]); },{passive:true});
+ hit.addEventListener('touchend',hide);
+</script>

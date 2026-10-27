@@ -1,7 +1,7 @@
 {
- "title": "FIV Coverage Audit",
+ "title": "FIV \u2014 feline immunodeficiency virus Coverage Audit",
  "eyebrow": "LowVan module audit &middot; 27 October 2026",
- "h1": "FIV",
+ "h1": "FIV \u2014 feline immunodeficiency virus",
  "subhead": "feline immunodeficiency virus",
  "standfirst": "<b>FIV</b> is the lentivirus of domestic cats and of wild felids &mdash; bobcat, puma and others, each with its own long-diverged lineage. Five features, all collinear, with <i>rev</i> recognised in the vocabulary but deliberately not declared: it is spliced, and this module calls no spliced feature.",
  "headline_tiles": [
@@ -197,6 +197,21 @@
   },
   {
    "num": "04",
+   "title": "Vocabulary saturation",
+   "lede": "How fast each vocabulary stops growing as genomes are added.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/fiv-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 32.9 distinct source strings correspond to 5.0 controlled annotations, a 6.6-fold collapse. The module reaches 95% of its final vocabulary after 14 proteins against the source's 174."
+    }
+   ]
+  },
+  {
+   "num": "05",
    "title": "Method",
    "blocks": [
     {

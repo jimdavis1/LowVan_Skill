@@ -26,6 +26,9 @@ ASSETS = os.path.join(os.path.dirname(HERE), "assets")
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--taxon", required=True)
+    ap.add_argument("--display", default=None,
+                    help="heading text; spells out an abbreviated module name, "
+                         "e.g. 'SRLV -- small ruminant lentivirus'. Defaults to --taxon.")
     ap.add_argument("--agg", default="agg.json")
     ap.add_argument("--unbinned", default="unbinned.json")
     ap.add_argument("--typos", default="typos.json")
@@ -146,7 +149,7 @@ def main():
  occurrences (features), not unique sequences, so a protein shared by 40 genomes counts 40
  times &mdash; that is the number a database user experiences.</div>
 </div>
-""" % {"CSS": css, "TAXON": html.escape(args.taxon), "DATE": html.escape(date),
+""" % {"CSS": css, "TAXON": html.escape(args.display or args.taxon), "DATE": html.escape(date),
        "STAND": stand, "NDISTINCT": ndistinct, "NBOUND": nbound_unique, "NANNO": nanno,
        "NOCC": "{:,}".format(nocc), "NUNB": len(unb),
        "CARDS": "\n".join(cards), "TYPOS": typrows, "UNB": unbrows}

@@ -15,6 +15,17 @@ E = os.path.join(L, "audit_2026-10-26e")
 VJ = "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/Viral_Annotation/Viral_PSSM.json"
 DATE = "27 October 2026"
 
+#  HEADING NAMES. A module key is internal shorthand; the heading spells it out.
+#  Curator, 27 Oct 2026: "when you have a virus that is an abbreviation like
+#  SRLV, you should define the name in the heading of the artifact." These are
+#  passed to every page type via --display so all four agree.
+DISPLAY = {
+ "HIV2": "HIV2 \u2014 HIV-2 and simian immunodeficiency virus",
+ "FIV":  "FIV \u2014 feline immunodeficiency virus",
+ "SRLV": "SRLV \u2014 small ruminant lentivirus",
+ "EIAV": "EIAV \u2014 equine infectious anaemia virus",
+}
+
 WORK = {"HIV2": os.path.join(L, "hiv2"),
         "FIV":  os.path.join(L, "genus", "FIV"),
         "SRLV": os.path.join(L, "genus", "SRLV"),
@@ -122,6 +133,13 @@ def reg_rows(reg, mod):
 
 def build(mod):
     M = load(mod); P = PROSE[mod]
+    #  Saturation figures come from the module's own rarefaction.json so the
+    #  sentence under the curve cannot drift from the curve.
+    rp = os.path.expanduser("~/lowvan_scratch/lenti/pagegen/rare/%s/rarefaction.json" % mod)
+    rj = json.load(open(rp))
+    RARE = {"source_at": "%.1f" % rj["source_at_common"], "module_at": "%.1f" % rj["module_at_common"],
+            "fold": "%.1f" % (rj["source_at_common"] / rj["module_at_common"]),
+            "module_knee": str(rj["module_knee"]), "source_knee": str(rj["source_knee"])}
     n = len(M["rows"]); feats = M["feats"]
     syn_tot = sum(int(x[0]) for x in M["syn"])
     syn_bound = sum(int(x[0]) for x in M["syn"] if x[3].strip() not in ("UNASSIGNED", "DISCARDED"))
@@ -149,9 +167,9 @@ def build(mod):
     collapse_rows = [[r["key"], r["anno"], str(r["nstrings"]), str(r["total"])] for r in M["agg"]]
 
     facts = {
-      "title": "%s Coverage Audit" % mod,
+      "title": "%s Coverage Audit" % DISPLAY[mod],
       "eyebrow": "LowVan module audit &middot; %s" % DATE,
-      "h1": mod,
+      "h1": DISPLAY[mod],
       "subhead": P["species"],
       "standfirst": P["stand"],
       "headline_tiles": [
@@ -184,7 +202,20 @@ def build(mod):
                "rather than trains on."
                % (100.0*syn_bound/syn_tot if syn_tot else 0, syn_tot))},
         ]},
-        {"num": "04", "title": "Method", "blocks": [
+        {"num": "04", "title": "Vocabulary saturation", "lede":
+            "How fast each vocabulary stops growing as genomes are added.", "blocks": [
+            {"type": "figure",
+             "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/"
+                     "Alsuviricetes/LowVan_Skill/reports/%s-vocabulary-saturation.html" % mod.lower()},
+            {"type": "prose", "html":
+              ("The deposited vocabulary keeps growing; the module's does not. "
+               "At the depth both reach, %s distinct source strings correspond to "
+               "%s controlled annotations, a %s-fold collapse. The module reaches "
+               "95%% of its final vocabulary after %s proteins against the source's %s.")
+              % (RARE["source_at"], RARE["module_at"], RARE["fold"],
+                 RARE["module_knee"], RARE["source_knee"])},
+        ]},
+        {"num": "05", "title": "Method", "blocks": [
             {"type": "prose", "html":
               ("Coverage is measured by annotating de-replicated exemplars through the real GTO "
                "pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit "
