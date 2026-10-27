@@ -117,13 +117,32 @@ def main():
     for key in sorted(feats):
         spec = feats[key]
         fa = os.path.join(cdir, key + ".fasta")
-        if not os.path.exists(fa):
-            missing.append(key); continue
-        L = lens(fa)
-        if not L:
-            missing.append(key); continue
-        lo = int(L[0] * (1 - a.pad)); hi = int(L[-1] * (1 + a.pad))
-        med = L[len(L) // 2]
+        #  A `special` FEATURE HAS NO COLLECTION, BY DESIGN. It is called by
+        #  get_splice_variant_features.pl or the transcript-edit pass from the
+        #  references in Splice-Variants/<Module>/<FEAT>.fasta, and never gets a
+        #  PSSM, so there is nothing in collections/ for it. Requiring a
+        #  collection here silently DROPPED it: Betaretrovirus REM was declared
+        #  in features_all.json, had 7 verified splice references on disk, and
+        #  came out of this script as a 4-feature module with one line of
+        #  "NO COLLECTION (not declared)" among the normal output.
+        #
+        #  Its length range cannot come from a collection either, so the spec
+        #  must carry min_len/max_len and it is an error if it does not.
+        if spec.get("special") and not os.path.exists(fa):
+            if "min_len" not in spec or "max_len" not in spec:
+                sys.exit("feature %s is special:%s with no collection, so it must "
+                         "declare min_len and max_len in the features file"
+                         % (key, spec["special"]))
+            lo, hi = int(spec["min_len"]), int(spec["max_len"])
+            med = (lo + hi) // 2
+        else:
+            if not os.path.exists(fa):
+                missing.append(key); continue
+            L = lens(fa)
+            if not L:
+                missing.append(key); continue
+            lo = int(L[0] * (1 - a.pad)); hi = int(L[-1] * (1 + a.pad))
+            med = L[len(L) // 2]
         seg = spec.get("segment") or (list(segments)[0] if len(segments) == 1 else None)
         if seg is None:
             sys.exit("feature %s has no 'segment' and the module has %d segments"
