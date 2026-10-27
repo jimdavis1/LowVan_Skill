@@ -540,3 +540,37 @@ The engine now deletes any `*.fasta` the current run did not produce and says
 which. That interacts with the rescue, which appends: the order is always
 **build collections, then rescue, then compare every count against the
 previous build** -- never one without the other.
+
+## The strings cannot tell you what is missing
+
+Every rule in this document maps a string that EXISTS to a feature. None of them
+can find a protein that the source never annotated — and that is a different
+failure from an unbound string, because it leaves no trace anywhere in the
+build. `synonyms.tsv` will not list it. `UNASSIGNED_TRACKING.tsv` will not list
+it. The collapse report will look clean. The module simply does not model it.
+
+Betaretrovirus **Rem** is the worked example: a described MMTV Rev-like nuclear
+export factor with **zero** calls across 129 genomes. The only way it surfaced
+was someone asking "what should be here that isn't?"
+
+The defence is a probe list written from the literature, one entry per protein
+the group is known to encode, scored by
+`scripts/check_literature_gaps.py` (SKILL.md step 2b). Probe for:
+
+- accessory and regulatory genes, including ones only some members carry
+- oncogenes and other acquired host genes
+- alternative-start products (CUG-initiated, leaky-scanning)
+- cleavage products that carry their own published names
+- spliced fusions, which also need `check_collinearity.py`
+
+Two things that pass review and should not:
+
+**A protein found only in UNASSIGNED is a rule you are missing, not an absence.**
+Gammaretrovirus glyco-Gag and R-peptide were both sitting in UNASSIGNED, which
+reads as "vocabulary the module failed to reach" rather than "a protein nobody
+classified". Binding them lifted bound-by-rule from 88.6% to 94.6%.
+
+**A remembered PMID is usually wrong.** Of three written from memory on 27 Oct
+2026, two resolved to unrelated papers that looked perfectly plausible as bare
+numbers. Resolve every one with `--verify-pmids` before it enters a file, and
+put it in `PMID_claude_generated`, never `PMID`.

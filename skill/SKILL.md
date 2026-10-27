@@ -163,6 +163,47 @@ The logic lives in `scripts/collection_engine.py`; a taxon's
 Output: `collections/<Module>/<FEAT>.fasta`, plus `synonyms.tsv`,
 `UNASSIGNED_TRACKING.tsv` and `NOT_MODELLED.tsv`.
 
+#### 2b. Check the literature against the calls. This step is not optional.
+
+Everything above is built from deposited annotation strings. **A protein that is
+real biology but was never annotated in the genomes you dumped is invisible to
+this build.** It does not appear as a gap, as UNASSIGNED, or as a low count — it
+simply never appears, and the module ships without it while every number on the
+page looks clean. No amount of staring at `synonyms.tsv` will find it, because
+it is not in `synonyms.tsv`.
+
+So write down what the group is **known** to encode, from the literature, with a
+citation per protein, and score the vocabulary against that list:
+
+```bash
+python3 $LOWVAN_KIT/skill/scripts/check_literature_gaps.py \
+    --module <Module> --probes probes.json --verify-pmids \
+    --write-gaps LITERATURE_GAPS.md
+```
+
+Probe for accessory and regulatory genes, oncogenes, alternative-start products,
+cleavage products that carry their own names, and spliced fusions. Verdicts:
+`PRESENT`, `RECOGNISED` (bound to NOT_MODELLED — a deliberate call), `UNBOUND`
+(deposits exist but your rules missed them), `BELOW_FLOOR`, and `ABSENT`.
+**`ABSENT` and `UNBOUND` fail the run** and need either a rule or a written
+decision; `--allow-absent` records the decision once it is made.
+
+The case that put this in the skill: **Betaretrovirus Rem**, a described MMTV
+Rev-like nuclear export factor, has **zero** calls across the module's 129
+genomes. Nothing in the build would ever have mentioned it. The same pass caught
+glyco-Gag and R-peptide sitting unbound in Gammaretrovirus and lifted
+bound-by-rule from 88.6% to 94.6%.
+
+**Verify every PMID; do not write one from memory.** Of three written from
+memory on 27 Oct 2026, two resolved to unrelated papers — an Italian cardiology
+trial and an SV40 T-antigen study — and both looked entirely plausible as bare
+numbers. `--verify-pmids` resolves each against PubMed and prints the title.
+These go in `PMID_claude_generated`, not `PMID`.
+
+This check is bounded by what you thought to probe for; it cannot find a protein
+that is both unannotated and absent from your own list. Say in
+`LITERATURE_GAPS.md` what you probed, so the next person can see the edge.
+
 **`UNASSIGNED_TRACKING.tsv` is a list of unfinished work, not a resolution.**
 Writing it does not mean nothing vanished — everything in it *did* vanish from
 the module, and the file is the record of that, not the remedy. A string in
