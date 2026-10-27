@@ -185,13 +185,19 @@ Probe for accessory and regulatory genes, oncogenes, alternative-start products,
 cleavage products that carry their own names, and spliced fusions. Verdicts:
 `PRESENT`, `RECOGNISED` (bound to NOT_MODELLED — a deliberate call), `UNBOUND`
 (deposits exist but your rules missed them), `BELOW_FLOOR`, and `ABSENT`.
-**`ABSENT` and `UNBOUND` fail the run** and need either a rule or a written
-decision; `--allow-absent` records the decision once it is made.
+**`ABSENT` and `UNBOUND` stop the run**, but they mean different things.
+`UNBOUND` is a defect in your rules — the deposits are in the dump and triage
+missed them. `ABSENT` is not a defect in anything: **BV-BRC is never complete or
+correct relative to the literature, and is not expected to be.** It is a prompt
+to decide whether the protein belongs in the module and, if it does, to source
+it elsewhere. `--allow-absent` records that decision.
 
 The case that put this in the skill: **Betaretrovirus Rem**, a described MMTV
 Rev-like nuclear export factor, has **zero** calls across the module's 129
-genomes. Nothing in the build would ever have mentioned it. The same pass caught
-glyco-Gag and R-peptide sitting unbound in Gammaretrovirus and lifted
+genomes. Nothing in the build would ever have mentioned it. It is now a declared
+`special: splice` feature with 7 references built from NCBI — so the answer to
+ABSENT was to go and get the sequences, not to record a shortfall. The same pass
+caught glyco-Gag and R-peptide sitting unbound in Gammaretrovirus and lifted
 bound-by-rule from 88.6% to 94.6%.
 
 **Verify every PMID; do not write one from memory.** Of three written from

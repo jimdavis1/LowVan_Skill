@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """What does the literature describe that BV-BRC does not call?
 
+This is a routine difference, not a fault. BV-BRC is a sequence database; it is
+never complete or correct relative to the literature and is not expected to be.
+The point of this check is that the difference is INVISIBLE to a build driven by
+annotation strings, not that the difference is wrong.
+
 Collections are built from deposited annotation strings. A protein that is real
 biology but was never annotated in the genomes you dumped is therefore INVISIBLE
 to the build: it does not show up as a gap, as UNASSIGNED, or as a low count --
@@ -37,10 +42,23 @@ VERDICTS
     BELOW_FLOOR   found, but fewer than --min-seqs, so no profile is possible
     ABSENT        no string anywhere in this module's vocabulary
 
-ABSENT and UNBOUND are failures. ABSENT means the module is shipping without a
-protein the group is known to encode; UNBOUND means your triage rules missed
-vocabulary that is right there in the dump. Both need either a rule or a written
-decision in the gaps file, which --write-gaps emits.
+ABSENT and UNBOUND stop the run, but they are not the same kind of thing.
+
+UNBOUND is a defect in YOUR rules: the deposits are right there in the dump and
+the triage missed them.
+
+ABSENT is not a defect in anything. **BV-BRC is never complete or correct with
+respect to the literature, and is not expected to be** -- it is a sequence
+database, not a curated proteome, and a protein being undescribed there says
+nothing about the module and nothing about the data. So ABSENT is not a gap to
+be closed or a score to be improved. It is a prompt: decide whether the protein
+belongs in the module, and if it does, source it from somewhere else.
+
+Betaretrovirus Rem is the worked case. Zero calls in BV-BRC; built anyway from
+NCBI (DQ223969 mapped onto MMTV genomes) and now a declared feature. It still
+reports ABSENT here forever, because this scores the deposited vocabulary and
+Rem is not in it. That is the tool working, not an unresolved problem --
+--allow-absent records that the decision was made.
 """
 import argparse, collections, json, os, re, sys
 

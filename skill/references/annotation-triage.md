@@ -553,6 +553,13 @@ Betaretrovirus **Rem** is the worked example: a described MMTV Rev-like nuclear
 export factor with **zero** calls across 129 genomes. The only way it surfaced
 was someone asking "what should be here that isn't?"
 
+This is not BV-BRC being deficient. A sequence database is never complete or
+correct with respect to the literature, and expecting otherwise misreads what it
+is for. The problem is only that a string-driven build cannot SEE the
+difference, so it has to be probed for deliberately. When the answer is "yes,
+this protein belongs here", you go and get the sequences — Rem's references came
+from NCBI and it is now a declared feature.
+
 The defence is a probe list written from the literature, one entry per protein
 the group is known to encode, scored by
 `scripts/check_literature_gaps.py` (SKILL.md step 2b). Probe for:
