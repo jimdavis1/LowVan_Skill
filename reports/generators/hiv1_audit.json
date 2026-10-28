@@ -1,0 +1,299 @@
+{
+ "title": "HIV-1 \u2014 human immunodeficiency virus 1 Coverage Audit",
+ "eyebrow": "LowVan module audit &middot; 28 October 2026",
+ "h1": "HIV-1 \u2014 human immunodeficiency virus 1",
+ "subhead": "human immunodeficiency virus 1",
+ "standfirst": "<b>HIV-1</b> is by far the largest module in this project: 30,530 whole genomes, against 1,324 for every other lentivirus combined. It is separated from HIV-2 and the simian immunodeficiency viruses on layout rather than distance &mdash; the two differ by one accessory gene, <i>vpu</i> here against <i>vpx</i> there &mdash; which is this project's partitioning rule.",
+ "headline_tiles": [
+  [
+   "9",
+   "features declared"
+  ],
+  [
+   "500",
+   "coverage exemplars"
+  ],
+  [
+   "30,530",
+   "genomes in holdings"
+  ],
+  [
+   "99.3%",
+   "vocabulary bound by rule"
+  ],
+  [
+   "159 \u2192 9",
+   "annotation strings collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module calls",
+   "lede": "Nine features on one 9.7 kb provirus: seven called by profile, two by the splice caller.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<i>tat</i> and <i>rev</i> are not profiled. Both are assembled from two exons far apart on the genome, so neither is collinear with any genomic ORF and a profile built from the deposited protein would be trained to find something the genome does not contain. They are called instead by <code>get_splice_variant_features.pl</code> from reference sets built at an 85% identity gate: at the 95% gate first tried, the references admitted only 41.8% of genomes, and TAT and REV were being dropped for lack of a reference rather than for lack of a gene."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "product",
+      "called",
+      "rate",
+      "copy_num",
+      "caller"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein gp160",
+       "299 / 465",
+       "64.3%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "375 / 465",
+       "80.6%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "NEF",
+       "Protein Nef",
+       "349 / 465",
+       "75.1%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "350 / 465",
+       "75.3%",
+       "\u2014",
+       "PSSM"
+      ],
+      [
+       "REV",
+       "Rev protein",
+       "326 / 465",
+       "70.1%",
+       "\u2014",
+       "splice"
+      ],
+      [
+       "TAT",
+       "Tat protein",
+       "300 / 465",
+       "64.5%",
+       "\u2014",
+       "splice"
+      ],
+      [
+       "VIF",
+       "Virion infectivity factor Vif",
+       "388 / 465",
+       "83.4%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "VPR",
+       "Virion protein R Vpr",
+       "371 / 465",
+       "79.8%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "VPU",
+       "Viral protein U Vpu",
+       "411 / 465",
+       "88.4%",
+       "yes",
+       "PSSM"
+      ]
+     ]
+    },
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ENV",
+       "64.3",
+       64.3,
+       "299 of 465"
+      ],
+      [
+       "GAG",
+       "80.6",
+       80.6,
+       "375 of 465"
+      ],
+      [
+       "NEF",
+       "75.1",
+       75.1,
+       "349 of 465"
+      ],
+      [
+       "POL",
+       "75.3",
+       75.3,
+       "350 of 465"
+      ],
+      [
+       "REV",
+       "70.1",
+       70.1,
+       "326 of 465"
+      ],
+      [
+       "TAT",
+       "64.5",
+       64.5,
+       "300 of 465"
+      ],
+      [
+       "VIF",
+       "83.4",
+       83.4,
+       "388 of 465"
+      ],
+      [
+       "VPR",
+       "79.8",
+       79.8,
+       "371 of 465"
+      ],
+      [
+       "VPU",
+       "88.4",
+       88.4,
+       "411 of 465"
+      ]
+     ],
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "Where it does not call, and why",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "POL carries no copy_num while the other seven profiled features do. The remaining misses are concentrated in genomes that are incomplete at one end rather than in any one clade. Rates here are per exemplar, not per deposit, which matters more for this module than for any other in the project: 30,530 genomes reduce to 12,985 distinct sequences, so an unweighted rate over raw holdings would largely report how often a sequence was submitted."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Vocabulary",
+   "lede": "159 annotation strings collapse onto 9 targets.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "target",
+      "product",
+      "strings",
+      "features"
+     ],
+     "rows": [
+      [
+       "VIF",
+       "Virion infectivity factor Vif",
+       "12",
+       "18368"
+      ],
+      [
+       "VPR",
+       "Virion protein R Vpr",
+       "12",
+       "18252"
+      ],
+      [
+       "VPU",
+       "Viral protein U Vpu",
+       "11",
+       "18197"
+      ],
+      [
+       "NEF",
+       "Protein Nef",
+       "15",
+       "17876"
+      ],
+      [
+       "ENV",
+       "Envelope glycoprotein gp160",
+       "38",
+       "17834"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "36",
+       "17555"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "25",
+       "17203"
+      ],
+      [
+       "TAT",
+       "Tat protein",
+       "5",
+       "16859"
+      ],
+      [
+       "REV",
+       "Rev protein",
+       "5",
+       "16935"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "99.3% of the 156,721 deposited features are bound by a naming rule. These counts are for the Lentivirus dump as a whole rather than HIV-1 alone, because the naming rules were applied genus-wide; HIV-1 is 30,530 of those 31,854 genomes, so the vocabulary is overwhelmingly but not exclusively its own."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Vocabulary saturation",
+   "lede": "How fast each vocabulary stops growing as genomes are added.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/hiv1-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 49.9 distinct source strings correspond to 9.0 controlled annotations, a 5.5-fold collapse. The module reaches 95% of its final vocabulary after 26 proteins against the source's 3188."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation, so the two spliced features are included. All-vs-all alignment is not tractable at this size (30,530 genomes is 466 million pairs), so exemplars are found by MinHash over 21-mers with LSH banding, clustering at a sketch Jaccard of 0.50 &mdash; roughly 97% nucleotide identity at this genome length. That reduces 30,530 genomes to 12,985 distinct sequences. Annotating all of them would take over a hundred hours, so this audit measures a random sample of 500 of those exemplars, drawn uniformly with a fixed seed so the set is reproducible. Uniform over exemplars means one vote per distinct sequence. Call rates are taken over the 465 of those this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used. At n=465 a rate near 90% carries a 95% confidence interval of about &plusmn;2.6 points."
+    }
+   ]
+  }
+ ],
+ "source_note": "Measured 28 October 2026 from the shipped module: the HIV1 block of Viral_PSSM.json, its profiles, collections and splice references, and the 28 October coverage annotation over 500 exemplars sampled from 12,985 de-replicated from 30,530 genomes."
+}

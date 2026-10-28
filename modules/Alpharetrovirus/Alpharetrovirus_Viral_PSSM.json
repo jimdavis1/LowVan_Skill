@@ -29,6 +29,7 @@
             ],
             "anno" : "Envelope glycoprotein",
             "bit_cutoff" : 620,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",

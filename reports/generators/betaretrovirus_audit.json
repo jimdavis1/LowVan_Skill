@@ -52,7 +52,7 @@
        "Envelope glycoprotein",
        "26 / 52",
        "50.0%",
-       "\u2014",
+       "yes",
        "PSSM"
       ],
       [
@@ -134,6 +134,10 @@
     {
      "type": "prose",
      "html": "REM's overall rate is low and the denominator is the reason. Rem exists in the MMTV clade and nowhere else in the genus, and it fires in every MMTV-group genome of the held-out panel &mdash; 100% inside the clade. Its overlap with ENV is real MMTV architecture, since <i>rem</i> shares the envelope signal-peptide exon, and is declared expected rather than suppressed. REM is also the clearest case in this family of a feature the strings could never have found: zero deposits anywhere in the genus name it."
+    },
+    {
+     "type": "prose",
+     "html": "<b>ENV</b> carries copy_num on biology, not on its rate: every replication-competent retrovirus encodes <i>env</i>, so a genome without one is defective and is flagged as missing an essential feature. That flag is true rather than false only if the genomes it lands on really lack the gene, so each of the 27 exemplars without an ENV call was searched by tblastn against the full ENV collection (a called genome, 1051323.3, scores 1175 bits over 100% of an envelope protein). <b>26 of 27</b> carry no intact <i>env</i>: 25 have one interrupted by stop codons or frameshifts and 1 has no envelope sequence at all. The other one carries an intact <i>env</i> the profiles do not call (3386024.3 at 1419 bits) &mdash; a recall gap in the module, not in the genome, and the quality flag on it is wrong."
     }
    ]
   },

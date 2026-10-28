@@ -651,6 +651,16 @@ python3 scripts/apply_copy_num.py ... --write                 # apply
 A missing `copy_num` costs nothing. A wrong one fails every genome in the
 taxon. Do it in the order where the cheap mistake is the possible one.
 
+**The threshold guards against false flags, not true ones.** When the genomes
+lacking a feature are genuinely defective, flagging them is correct, and the
+curator can hold the feature essential on biology with `--require ENV`: it is
+marked whatever its rate and never dropped by a later `--write`. Retroviridae
+ENV is the standing case (curator, 28 Oct 2026): Betaretrovirus ENV calls on
+50% of exemplars, but 18 of its 26 non-callers are deposits their own
+submitters label "truncated env" or "nonfunctional env". Check the non-callers
+before requiring: a non-caller that carries an intact gene is a profile gap,
+and requiring the feature will flag it poor.
+
 **Bound segment windows robustly.** They are computed from observed contig
 lengths, so one bad record sets them for everybody: a single 16,522 nt
 Crinivirus record — both segments on one contig — pushed RNA2's `max_len` to

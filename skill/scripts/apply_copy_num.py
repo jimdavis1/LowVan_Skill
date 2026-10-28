@@ -39,11 +39,33 @@ def main():
     ap.add_argument("--expected", default="",
                     help="CHILD:PARENT overlaps that are real genome "
                          "architecture, e.g. CP:POLY,MP:POLY. Not discounted.")
+    ap.add_argument("--require", default="",
+                    help="comma-separated features the curator holds essential "
+                         "on biology, e.g. ENV. Marked whatever their rate and "
+                         "never dropped; the rate is still reported.")
     ap.add_argument("--write", action="store_true")
     a = ap.parse_args()
 
     blk = json.load(open(a.json))
     feats = blk[a.module]["features"]
+
+    #  CURATOR-REQUIRED FEATURES BYPASS THE THRESHOLD.
+    #
+    #  The 85% rule guards against FALSE flags: a genus-specific accessory
+    #  marked essential fails good genomes that never had it. It is the wrong
+    #  test when the genomes lacking a feature are genuinely defective. Per the
+    #  curator, 28 Oct 2026: every replication-competent retrovirus encodes
+    #  env, so ENV keeps copy_num 1 in all four retro modules. Betaretrovirus
+    #  ENV calls on 50% of exemplars, but 18 of its 26 non-callers are deposits
+    #  their own submitters label "truncated env" or "nonfunctional env" --
+    #  endogenous proviruses that SHOULD score poor. Without this switch every
+    #  later --write silently dropped it again.
+    required = {x.strip() for x in a.require.split(",") if x.strip()}
+    for k in sorted(required):
+        if k not in feats:
+            sys.exit("--require %s: no such feature in %s" % (k, a.module))
+        if feats[k].get("special") == "splice":
+            sys.exit("--require %s: a spliced feature is never essential" % k)
 
     #  Two rates per feature, per genome:
     #    raw        the feature was called at all
@@ -221,6 +243,9 @@ def main():
         if v.get("special") == "splice":
             spliced.append((k, frac, has))
             continue
+        if k in required:
+            (keep if has else add).append((k, frac) if has else (k, frac, sa))
+            continue
         if frac >= a.threshold and not has:
             if sa >= a.threshold:
                 add.append((k, frac, sa))
@@ -259,6 +284,8 @@ def main():
         frac = called[k] / routed
         sa = alone[k] / routed
         mark = ("splice/never" if feats[k].get("special") == "splice" else
+                ("ADD" if not feats[k].get("copy_num") else "keep") + " (required)"
+                if k in required else
                 "ADD" if any(x[0] == k for x in add) else
                 "DROP" if (k, frac) in drop else
                 "BLOCKED" if any(x[0] == k for x in blocked) else
