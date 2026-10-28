@@ -1,0 +1,85 @@
+{
+ "GAG": {
+  "anno": "Gag polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "gag",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2451755"
+  ],
+  "bit_cutoff": 267,
+  "_note": "copy_num REMOVED after the coverage audit, 27 Oct 2026: called on 84.4% of 45 routed exemplars, just below the 85% threshold. The 8 non-callers were tested individually rather than assumed, and the absence is REAL: every one returns ZERO tblastn HSPs against this feature's own 86-sequence collection, against a positive control of 748-837 bits on genomes where GAG was called. Seven are taxon 11963 -- env-region deposits that call ENV at up to 1947 bits and carry no gag at all -- and the eighth is 3128414.5. So these are partial deposits, not a calling failure, and marking gag essential was flagging incomplete records as defective genomes. gag remains biologically essential to a replication-competent foamy virus; copy_num is a statement about what this exemplar set contains, not about the virus."
+ },
+ "POL": {
+  "anno": "Pol polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "pol",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2451755"
+  ],
+  "bit_cutoff": 1217,
+  "_note": "copy_num REMOVED after the coverage audit, 27 Oct 2026: called on 80.0% of 45 routed exemplars. Of the 10 non-callers, 8 genuinely lack pol -- tblastn against this feature's collection returns either nothing or 16-27 residue noise at 33-51 bits, in the same partial 11963 deposits that lack gag. TWO ARE REAL MISSES and are not explained by absence: 11963.76 carries 336 aa at 688 bits and 3128414.5 carries 987 aa at 1174 bits, neither called. Both survived the leftover-profile pass (6 POL profiles, up from 5), so this is not a coverage gap in the profile set -- it is a cutoff or length-window question and is logged as open. Fixing those two alone would put POL at 84.4%, still under threshold."
+ },
+ "ENV": {
+  "anno": "Envelope glycoprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "env",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2451755"
+  ],
+  "bit_cutoff": 863
+ },
+ "TAS": {
+  "anno": "Transcriptional transactivator Tas",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "tas",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2451755"
+  ],
+  "bit_cutoff": 19,
+  "_note": "copy_num REMOVED after the coverage audit, 27 Oct 2026: called on 68.9% of 45 routed exemplars, the largest gap in this module. Mixed cause, measured rather than assumed. Of the 15 non-callers, 5 (the 3128414/3128416/3128417/3128419 cohort) return no tblastn HSP at all and genuinely have no bel region. At least 4 DO carry a real tas that is not called: 2170139.3 at 549 bits over 277 aa, 11963.76 at 442 over 249, 53182.9 at 235 over 130, and 11642.2960 at 197 over 100. The bit_cutoff is 19, so the cutoff cannot be what rejects them; the length window (min_len 196) would reject the last two on HSP length alone. The 26 unclustered leftovers were profiled in this pass -- TAS went from 7 to 12 profiles and TAS.10/11/12 now win calls -- and the rate did NOT move, which rules out profile coverage as the cause. Remaining hypothesis, untested: TAS and BEL2 overlap on the genome (53182.7: TAS 9227-9853, BEL2 9732-10670) and 53182.7 keeps TAS while dropping BEL2 where 53182.9 does the reverse, which points at overlap resolution in the caller. Must be tested against the real perl caller, not a reimplementation."
+ },
+ "BEL2": {
+  "anno": "Protein Bel2",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "bel2",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2451755"
+  ],
+  "bit_cutoff": 50
+ },
+ "BET": {
+  "anno": "Protein Bet",
+  "params": {},
+  "feature_type": "CDS",
+  "gene_symbol": "bet",
+  "segment": "Single RNA Segment",
+  "special": "splice",
+  "min_len": 348,
+  "max_len": 554,
+  "PMID_claude_generated": [
+   "1846194",
+   "15994766"
+  ],
+  "_note": "Bet is Bel-1 (Tas) residues 1-88 spliced to the last 396 residues of Bel-2 -- ONE intron in the CDS, so the splice caller can reach it. Never called in the BV-BRC dump for this module (30 deposits, all NOT_MODELLED); found by the step-2b literature probe and built from NCBI. 71 references over 17 taxa, from the FFV query O93036 (41 Felispumavirus) and P89873/Q87043 (the rest, Simiispumavirus). Equispumavirus has NO reference and that is a correction to an earlier note here: the builder did at first produce two equine references, but their spliced product aligned to the query at only 20-27% identity while every genuine reference scores 36-100%, and residues 82-410 of it were 100% identical to that genome's own called BEL2. It was Bel-2 with a spurious 5' extension, not Bet, and build_splice_refs.py now rejects it on that identity floor. Bovispumavirus likewise has no reference across all 37 genomes: its curated 'Bet' deposits (J9V7M8, J9V9W7, 335 aa) map contiguously onto the called BEL2 at 97.9% identity, so they too are Bel-2. Taxon 11963 (human spumaretrovirus) contributes none of its 19 genomes because 18 of them have ZERO tblastn HSPs against a 482 aa Bet -- they are gag-pol-env deposits of 10.0-12.5 kb against a 13.2 kb full genome and do not carry the bel region at all. The gap is in the deposits, not the profile."
+ }
+}

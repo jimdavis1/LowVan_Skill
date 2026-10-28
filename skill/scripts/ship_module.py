@@ -70,6 +70,17 @@ def main():
         shutil.copy(f, os.path.join(K, "Rep-Contigs"))
     for f in glob.glob(os.path.join(W, "%s_Viral_PSSM.json" % M)):
         shutil.copy(f, K)
+    #  features_all.json GOES TO THE KIT TOO, because it is the only place the
+    #  curation record lives. Its _note fields carry why each copy_num was set
+    #  or dropped, which non-callers were checked and what tblastn returned on
+    #  them, and why a feature is spliced rather than profiled. The 7b9c6f08
+    #  commit message says the Spumaretrovirinae POL and TAS misses are
+    #  "logged open ... in the feature notes" -- and they are, in this file,
+    #  which until now was copied only into the Box work directory and was
+    #  tracked by nothing. The repo held the profiles and the pages and not
+    #  one line of the reasoning behind them.
+    for f in glob.glob(os.path.join(W, "features_all.json")):
+        shutil.copy(f, K)
     os.makedirs(os.path.join(B, "measurements"), exist_ok=True)
     for sub in ("Alignments", "Rep-Contigs", "collections"):
         if os.path.isdir(os.path.join(W, sub)):

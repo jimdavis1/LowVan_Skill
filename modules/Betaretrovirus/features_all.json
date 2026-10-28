@@ -1,0 +1,68 @@
+{
+ "GAG": {
+  "anno": "Gag polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "gag",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2421920"
+  ],
+  "bit_cutoff": 102
+ },
+ "PRO": {
+  "anno": "Protease",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "pro",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2421920"
+  ],
+  "bit_cutoff": 98
+ },
+ "POL": {
+  "anno": "Pol polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "pol",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2421920"
+  ],
+  "bit_cutoff": 553
+ },
+ "ENV": {
+  "anno": "Envelope glycoprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "env",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2421920"
+  ],
+  "bit_cutoff": 526
+ },
+ "REM": {
+  "anno": "RNA export protein Rem",
+  "params": {},
+  "feature_type": "CDS",
+  "gene_symbol": "rem",
+  "segment": "Single RNA Segment",
+  "special": "splice",
+  "min_len": 271,
+  "max_len": 331,
+  "PMID_claude_generated": [
+   "16282474"
+  ],
+  "_note": "301 aa in all 7 references; Rev-like nuclear export factor. Absent from BV-BRC entirely -- references built from NCBI (DQ223969 mRNA mapped onto MMTV genomes). One intron in the CDS despite a doubly spliced transcript."
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "GAG": {
+  "anno": "Gag polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "gag",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6169994"
+  ],
+  "bit_cutoff": 148
+ },
+ "POL": {
+  "anno": "Pol polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "pol",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6169994"
+  ],
+  "bit_cutoff": 812,
+  "internal_stop": 1,
+  "_note": "Gammaretroviral Pol is made by ribosomal READ-THROUGH of the amber codon that terminates gag, so pol lies in the gag frame and the two are separated by a single UAG. The best POL profile aligns across that codon -- measured on Moloney MLV 11801.9, the top profile's HSP starts 55 residues upstream of the amber and carries exactly one stop, while on feline leukaemia virus 11636.7 it carries none. Without internal_stop the caller treated the MLV match as broken and emitted nothing: POL was called on 63.2% of the panel, and the 16 misses were the murine and porcine genomes -- Moloney, Friend, Graffi, XMRV, PERV -- every one of them a complete virus with an intact pol."
+ },
+ "ENV": {
+  "anno": "Envelope glycoprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "env",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6169994"
+  ],
+  "bit_cutoff": 254
+ }
+}

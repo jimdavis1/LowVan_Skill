@@ -1,0 +1,100 @@
+{
+ "GAG": {
+  "anno": "Gag polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "gag",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2578615"
+  ],
+  "bit_cutoff": 834,
+  "copy_num": 1
+ },
+ "POL": {
+  "anno": "Pol polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 0,
+  "downstream_ext": 1,
+  "gene_symbol": "pol",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2578615",
+   "2447506"
+  ],
+  "bit_cutoff": 1500
+ },
+ "VIF": {
+  "anno": "Virion infectivity factor Vif",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "vif",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2578615"
+  ],
+  "bit_cutoff": 340,
+  "copy_num": 1
+ },
+ "VPR": {
+  "anno": "Virion protein R Vpr",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "vpr",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2578615"
+  ],
+  "bit_cutoff": 141,
+  "copy_num": 1
+ },
+ "VPU": {
+  "anno": "Viral protein U Vpu",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "vpu",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2578615"
+  ],
+  "bit_cutoff": 106,
+  "copy_num": 1
+ },
+ "ENV": {
+  "anno": "Envelope glycoprotein gp160",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "env",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2578615"
+  ],
+  "bit_cutoff": 1350,
+  "copy_num": 1
+ },
+ "NEF": {
+  "anno": "Protein Nef",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "nef",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "2578615"
+  ],
+  "bit_cutoff": 319,
+  "copy_num": 1
+ }
+}

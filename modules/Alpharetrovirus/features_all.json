@@ -1,0 +1,58 @@
+{
+ "GAG": {
+  "anno": "Gag polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "gag",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6299578"
+  ],
+  "bit_cutoff": 930
+ },
+ "POL": {
+  "anno": "Pol polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "pol",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6299578"
+  ],
+  "bit_cutoff": 596
+ },
+ "ENV": {
+  "anno": "Envelope glycoprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "env",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6299578"
+  ],
+  "bit_cutoff": 620,
+  "_note": "copy_num REMOVED after the coverage audit, 27 Oct 2026. On the 41 routed de-replicated exemplars ENV is called on 80.5%, below the 85% threshold, so as an essential feature it was flagging 8 genomes as defective. Those 8 were examined individually by tblastn against the ENV collection rather than assumed: 6 carry only remnants (44-216 aa against a 478-657 aa window) and genuinely lack an intact env -- these are endogenous ALV and defective acutely-transforming sarcoma viruses, which trade env for an oncogene, so their absence is real biology and not a calling failure. The other 2, 11946.11 and 11961.72, carry FULL-LENGTH env (568 and 543 aa) at 100% identity to their own entry in this collection, and are still not called: both sit in Leftover_Seqs.fa, having failed to cluster with anything at -mi 0.8, and build_leftover_pssms.py could not rescue them because each is a singleton and a one-member profile is a lookup table. So 2 of the 41 are a known, bounded coverage gap, not a threshold problem; covering them would put ENV at 85.4%. Recorded here rather than worked around: the honest rate is 80.5% and the two uncovered divergent envs are named so a later pass with more alpharetroviral env diversity can pick them up."
+ },
+ "SRC": {
+  "anno": "Tyrosine-protein kinase transforming protein Src",
+  "params": {
+   "m": 3
+  },
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "src",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6299578"
+  ],
+  "_note": "Fourth gene of non-defective Rous sarcoma virus, 3' of env. Fully collinear: a single tblastn HSP covers residues 1-526 in every genome that carries it, at 93-100% identity. Never called in the deposited vocabulary; found by the SKILL.md step 2b literature probe. Built with -m 3 rather than the default 5 because there are only 5 unique sequences; the identity floor -mi 0.8 is untouched. Cutoff 923 against a genuine minimum of 1026, so nothing is clipped. Length window 493-567 aa. MUST NOT take copy_num: src is present only in non-defective sarcoma viruses, so a low rate across a general panel is correct. Sweeping all 294 holdings with 9 curated Swiss-Prot v-Src queries finds 9 carriers at 937-1102 bits and nothing above 69 -- the carrier set is bounded, and the 40-genome panel (34 of them endogenous ALV ev-1) contains none of them, which is why SRC reads 0% there. VALIDATED against the real caller on 11 carrier genomes, 27 Oct 2026: 7 of 7 intact v-src called, 100%. Of the 4 not called, three (1806567.3/.4/.5, 315-438 aa at 33-37% identity) are a DIFFERENT Src-family oncogene -- the same NCBI query returns Yes and Fps records in that identity range -- and declining them is correct. The fourth, 1806567.9, is a genuine v-src at 96.8% identity truncated to 463 aa, below the 493 aa floor; the project discards truncated records rather than training on them, so excluding it is consistent.",
+  "bit_cutoff": 923
+ }
+}
