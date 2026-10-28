@@ -88,7 +88,21 @@ def _append_special_rows(tbl, ann_gto):
     missing = {k: want[k] - have.get(k, 0) for k in want if want[k] > have.get(k, 0)}
     if not missing:
         return
+    #  Identity columns come from the rows the annotator already wrote, not
+    #  from the GTO. The two disagree: on the HIV-1 coverage set a table
+    #  named for genome 11676.1004069 held a GTO whose id was 11676.1248678
+    #  and annotator rows keyed 11676.2c8645 -- three identities for one
+    #  genome. Appending the GTO's id would leave two different genome ids in
+    #  column 1 of a single table and silently split any consumer that groups
+    #  by it. Fall back to the GTO only for a table with no rows to copy.
     gid = g.get("id", "")
+    sci = g.get("scientific_name", "")
+    for line in rows:
+        c = line.rstrip("\n").split("\t")
+        if len(c) >= 18 and c[17] and c[0]:
+            gid = c[0]
+            if len(c) >= 16 and c[15]: sci = c[15]
+            break
     contig = ""
     for f in g.get("features", []):
         loc = f.get("location") or []
@@ -112,7 +126,7 @@ def _append_special_rows(tbl, ann_gto):
         c[6] = (f.get("gene") or fn.split()[0].lower())
         c[7] = str(loc[0][1])
         c[9] = str(loc[0][2])
-        c[15] = g.get("scientific_name", "")
+        c[15] = sci
         c[17] = fn
         c[19] = f.get("protein_translation", "")
         out.append("\t".join(c))
