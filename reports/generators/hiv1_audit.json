@@ -189,7 +189,7 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "POL carries no copy_num while the other seven profiled features do. The remaining misses are concentrated in genomes that are incomplete at one end rather than in any one clade. Rates here are per exemplar, not per deposit, which matters more for this module than for any other in the project: 30,530 genomes reduce to 12,985 distinct sequences, so an unweighted rate over raw holdings would largely report how often a sequence was submitted."
+     "html": "All 7 profiled features carry copy_num: ENV, GAG, NEF, POL, VIF, VPR and VPU. A genome missing any of them is flagged as missing an essential feature. The remaining misses are concentrated in genomes that are incomplete at one end rather than in any one clade. Rates here are per exemplar, not per deposit, which matters more for this module than for any other in the project: 30,530 genomes reduce to 12,985 distinct sequences, so an unweighted rate over raw holdings would largely report how often a sequence was submitted."
     }
    ]
   },

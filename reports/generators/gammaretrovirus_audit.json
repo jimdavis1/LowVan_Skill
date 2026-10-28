@@ -109,7 +109,7 @@
     },
     {
      "type": "prose",
-     "html": "<b>ENV</b> carries copy_num on biology, not on its rate: every replication-competent retrovirus encodes <i>env</i>, so a genome without one is defective and is flagged as missing an essential feature. That flag is true rather than false only if the genomes it lands on really lack the gene, so each of the 12 exemplars without an ENV call was searched by tblastn against the full ENV collection (a called genome, 114654.3, scores 1319 bits over 100% of an envelope protein). <b>11 of 12</b> carry no intact <i>env</i>: 6 have one interrupted by stop codons or frameshifts, 4 keep under half of it and 1 has no envelope sequence at all. The other one carries an intact <i>env</i> the profiles do not call (3386030.3 at 1134 bits) &mdash; a recall gap in the module, not in the genome, and the quality flag on it is wrong."
+     "html": "<b>GAG, POL and ENV</b> carry copy_num on biology, not on their rates: every replication-competent retrovirus encodes <i>gag</i>, <i>pol</i> and <i>env</i>, so a genome without one is defective and is flagged as missing an essential feature. That flag is true rather than false only if the genomes it lands on really lack the gene, so each of the 12 exemplars without an ENV call was searched by tblastn against the full ENV collection (a called genome, 114654.3, scores 1319 bits over 100% of an envelope protein). <b>11 of 12</b> carry no intact <i>env</i>: 6 have one interrupted by stop codons or frameshifts, 4 keep under half of it and 1 has no envelope sequence at all. The other one carries an intact <i>env</i> the profiles do not call (3386030.3 at 1134 bits) &mdash; a recall gap in the module, not in the genome, and the quality flag on it is wrong."
     }
    ]
   },
