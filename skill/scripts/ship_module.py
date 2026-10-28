@@ -81,6 +81,27 @@ def main():
     #  one line of the reasoning behind them.
     for f in glob.glob(os.path.join(W, "features_all.json")):
         shutil.copy(f, K)
+    #  SPLICE AND TRANSCRIPT-EDIT REFERENCES GO TO THE REPO TOO.
+    #  install_module.py puts them in the runtime and nothing put them in the
+    #  kit, so a module declaring a special feature could not be reinstalled
+    #  from the repository alone -- the profiles and the module JSON were
+    #  there and the references the feature is actually called from were not.
+    #  Betaretrovirus REM.fasta and Spumaretrovirinae BET.fasta are in the
+    #  repo only because they were placed by hand. They are curated artifacts,
+    #  not build output: Rem's were mapped from NCBI because the dump has no
+    #  Rem at all, and Deltaretrovirus REX took five lineage queries and a
+    #  de-duplication pass to assemble.
+    for kind in ("Splice-Variants", "Transcript-Editing"):
+        for cand in (os.path.join(W, kind, M), os.path.join(W, kind)):
+            fs = glob.glob(os.path.join(cand, "*.fasta"))
+            if not fs:
+                continue
+            dd = os.path.join(KIT, kind, M)
+            os.makedirs(dd, exist_ok=True)
+            for f in sorted(fs):
+                shutil.copy2(f, os.path.join(dd, os.path.basename(f)))
+            print("   %-18s %d file(s) -> %s/%s/" % (kind, len(fs), kind, M))
+            break
     os.makedirs(os.path.join(B, "measurements"), exist_ok=True)
     for sub in ("Alignments", "Rep-Contigs", "collections"):
         if os.path.isdir(os.path.join(W, sub)):

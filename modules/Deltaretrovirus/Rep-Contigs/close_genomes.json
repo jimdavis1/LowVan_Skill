@@ -1,0 +1,42 @@
+{
+ "Deltaretrovirus.1.dna": {
+  "genome_ids": "11908.7670.con.0001",
+  "genome_name": "Human T-cell leukemia virus type I CHI-Ara"
+ },
+ "Deltaretrovirus.10.dna": {
+  "genome_ids": "33747.629.con.0001",
+  "genome_name": "Simian T-lymphotropic virus 1 Mra18C9"
+ },
+ "Deltaretrovirus.2.dna": {
+  "genome_ids": "11901.643.con.0001",
+  "genome_name": "Bovine leukemia virus"
+ },
+ "Deltaretrovirus.3.dna": {
+  "genome_ids": "11909.118.con.0001",
+  "genome_name": "Human T-lymphotropic virus 2 RP329"
+ },
+ "Deltaretrovirus.4.dna": {
+  "genome_ids": "28332.8.con.0001",
+  "genome_name": "Human T-lymphotropic virus 3 Lobak18"
+ },
+ "Deltaretrovirus.5.dna": {
+  "genome_ids": "318279.10.con.0001",
+  "genome_name": "Human T-lymphotropic virus 4 GabL14"
+ },
+ "Deltaretrovirus.6.dna": {
+  "genome_ids": "33747.301.con.0001",
+  "genome_name": "Simian T-lymphotropic virus 1 MarB43"
+ },
+ "Deltaretrovirus.7.dna": {
+  "genome_ids": "11901.1910.con.0001",
+  "genome_name": "Bovine leukemia virus pvAK024"
+ },
+ "Deltaretrovirus.8.dna": {
+  "genome_ids": "11908.951.con.0001",
+  "genome_name": "Human T-cell leukemia virus type I"
+ },
+ "Deltaretrovirus.9.dna": {
+  "genome_ids": "2772270.3.con.0001",
+  "genome_name": "Eptesicus fuscus deltaretrovirus 20-6472"
+ }
+}

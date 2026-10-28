@@ -155,7 +155,16 @@ def main():
             d = json.load(open(q))
         except Exception:
             continue
-        fs = [(a2k.get(f.get("function") or ""), span(f), (f.get("location") or [[None]])[0],
+        #  THE EXACT TEST KEYS ON THE WHOLE LOCATION, NOT THE FIRST EXON.
+        #  Two spliced features can share an exon and be different proteins:
+        #  BLV R3 and Rex both begin at the same 51 nt first exon --
+        #  MPKERRSRRRPQPIIRW in both -- and then take different second exons,
+        #  7023..7106 for R3 and 7252..7671 for Rex. Keying on location[0]
+        #  reported them as one feature emitted twice on identical
+        #  coordinates, in 5 of 33 Deltaretrovirus genomes, when the published
+        #  annotation gives them separate accessions.
+        fs = [(a2k.get(f.get("function") or ""), span(f),
+               tuple(tuple(x) for x in (f.get("location") or [[None]])),
                exon_frames(f.get("location")))
               for f in (d.get("features") or [])]
         fs = [x for x in fs if x[0] and x[1]]
@@ -165,7 +174,7 @@ def main():
         byloc = collections.defaultdict(list)
         for k, s, raw, _fr in fs:
             total[k] += 1
-            byloc[tuple(raw)].append(k)
+            byloc[raw].append(k)
         for _loc, ks in byloc.items():
             if len(ks) > 1:
                 #  the same key twice on one locus is a different problem from

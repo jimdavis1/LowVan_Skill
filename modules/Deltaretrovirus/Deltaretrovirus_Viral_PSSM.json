@@ -1,0 +1,280 @@
+{
+   "Deltaretrovirus" : {
+      "close_genomes" : {
+         "Deltaretrovirus.1.dna" : {
+            "genome_ids" : "11908.7670.con.0001",
+            "genome_name" : "Human T-cell leukemia virus type I CHI-Ara"
+         },
+         "Deltaretrovirus.10.dna" : {
+            "genome_ids" : "33747.629.con.0001",
+            "genome_name" : "Simian T-lymphotropic virus 1 Mra18C9"
+         },
+         "Deltaretrovirus.2.dna" : {
+            "genome_ids" : "11901.643.con.0001",
+            "genome_name" : "Bovine leukemia virus"
+         },
+         "Deltaretrovirus.3.dna" : {
+            "genome_ids" : "11909.118.con.0001",
+            "genome_name" : "Human T-lymphotropic virus 2 RP329"
+         },
+         "Deltaretrovirus.4.dna" : {
+            "genome_ids" : "28332.8.con.0001",
+            "genome_name" : "Human T-lymphotropic virus 3 Lobak18"
+         },
+         "Deltaretrovirus.5.dna" : {
+            "genome_ids" : "318279.10.con.0001",
+            "genome_name" : "Human T-lymphotropic virus 4 GabL14"
+         },
+         "Deltaretrovirus.6.dna" : {
+            "genome_ids" : "33747.301.con.0001",
+            "genome_name" : "Simian T-lymphotropic virus 1 MarB43"
+         },
+         "Deltaretrovirus.7.dna" : {
+            "genome_ids" : "11901.1910.con.0001",
+            "genome_name" : "Bovine leukemia virus pvAK024"
+         },
+         "Deltaretrovirus.8.dna" : {
+            "genome_ids" : "11908.951.con.0001",
+            "genome_name" : "Human T-cell leukemia virus type I"
+         },
+         "Deltaretrovirus.9.dna" : {
+            "genome_ids" : "2772270.3.con.0001",
+            "genome_name" : "Eptesicus fuscus deltaretrovirus 20-6472"
+         }
+      },
+      "features" : {
+         "AS1" : {
+            "PMID_claude_generated" : [
+               "27141823"
+            ],
+            "anno" : "Antisense protein AS1",
+            "bit_cutoff" : 156,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "as1",
+            "kmers" : 1,
+            "max_len" : 92,
+            "min_len" : 81,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "ENV" : {
+            "PMID_claude_generated" : [
+               "6304725",
+               "2983308"
+            ],
+            "anno" : "Envelope glycoprotein",
+            "bit_cutoff" : 266,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "env",
+            "kmers" : 1,
+            "max_len" : 549,
+            "min_len" : 429,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "G4" : {
+            "PMID_claude_generated" : [
+               "8380084",
+               "11773414"
+            ],
+            "anno" : "Accessory protein G4",
+            "feature_type" : "CDS",
+            "gene_symbol" : "g4",
+            "max_len" : 116,
+            "min_len" : 94,
+            "segment" : "Single RNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "GAG" : {
+            "PMID_claude_generated" : [
+               "6304725",
+               "2983308"
+            ],
+            "anno" : "Gag polyprotein",
+            "bit_cutoff" : 594,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "gag",
+            "kmers" : 1,
+            "max_len" : 478,
+            "min_len" : 343,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "HBZ" : {
+            "PMID_claude_generated" : [
+               "12438606"
+            ],
+            "anno" : "Basic leucine zipper factor HBZ",
+            "bit_cutoff" : 336,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "hbz",
+            "kmers" : 1,
+            "max_len" : 227,
+            "min_len" : 191,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "P12" : {
+            "PMID_claude_generated" : [
+               "1528897",
+               "8445734"
+            ],
+            "anno" : "Accessory protein p12",
+            "bit_cutoff" : 180,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "p12",
+            "kmers" : 1,
+            "max_len" : 104,
+            "min_len" : 91,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "P13" : {
+            "PMID_claude_generated" : [
+               "1528897",
+               "8445734",
+               "20332002"
+            ],
+            "anno" : "Accessory protein p13",
+            "bit_cutoff" : 159,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "p13",
+            "kmers" : 1,
+            "max_len" : 92,
+            "min_len" : 81,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "P30" : {
+            "PMID_claude_generated" : [
+               "1528897",
+               "8445734"
+            ],
+            "anno" : "Accessory protein p30",
+            "bit_cutoff" : 341,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "p30",
+            "kmers" : 1,
+            "max_len" : 256,
+            "min_len" : 224,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "POL" : {
+            "PMID_claude_generated" : [
+               "6304725",
+               "2983308"
+            ],
+            "anno" : "Pol polyprotein",
+            "bit_cutoff" : 634,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "pol",
+            "kmers" : 1,
+            "max_len" : 1040,
+            "min_len" : 682,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PRO" : {
+            "PMID_claude_generated" : [
+               "6304725",
+               "2983308"
+            ],
+            "anno" : "Protease",
+            "bit_cutoff" : 62,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "pro",
+            "kmers" : 1,
+            "max_len" : 248,
+            "min_len" : 118,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "R3" : {
+            "PMID_claude_generated" : [
+               "8380084"
+            ],
+            "anno" : "Accessory protein R3",
+            "feature_type" : "CDS",
+            "gene_symbol" : "r3",
+            "max_len" : 49,
+            "min_len" : 39,
+            "segment" : "Single RNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "REX" : {
+            "PMID_claude_generated" : [
+               "14675632",
+               "15574380"
+            ],
+            "anno" : "RNA export protein Rex",
+            "feature_type" : "CDS",
+            "gene_symbol" : "rex",
+            "max_len" : 210,
+            "min_len" : 140,
+            "segment" : "Single RNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "TAX" : {
+            "PMID_claude_generated" : [
+               "6304725",
+               "2983308",
+               "32645846"
+            ],
+            "anno" : "Transactivator protein Tax",
+            "bit_cutoff" : 58,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "tax",
+            "kmers" : 1,
+            "max_len" : 397,
+            "min_len" : 290,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 13095,
+            "min_len" : 6035,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

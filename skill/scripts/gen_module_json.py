@@ -69,6 +69,9 @@ def main():
     ap.add_argument("--module", required=True)
     ap.add_argument("--features", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--contigs", default=None,
+                    help="directory of <genome>.fna to measure the segment "
+                         "length range from (default: <workdir>/Contigs)")
     ap.add_argument("--segments", default=None,
                     help='JSON: {"RNA1": {"min_len":.., "max_len":..}, ...}')
     ap.add_argument("--pad", type=float, default=0.06,
@@ -103,10 +106,20 @@ def main():
         segments = json.load(open(a.segments)) if os.path.exists(a.segments) \
                    else json.loads(a.segments)
     else:
+        #  --contigs, because the contigs are not always under the workdir.
+        #  Every Retroviridae module keeps them in a sibling
+        #  Contigs.<Genus>/ instead, and the hard-wired <workdir>/Contigs
+        #  then matched nothing: L stayed empty and the next line raised
+        #  IndexError on L[0], which reads as a corrupt file rather than a
+        #  path that is simply somewhere else.
+        cd = a.contigs or os.path.join(W, "Contigs")
         L = []
-        for f in glob.glob(os.path.join(W, "Contigs", "*.fna")):
+        for f in glob.glob(os.path.join(cd, "*.fna")):
             n = sum(len(x.strip()) for x in open(f) if not x.startswith(">"))
             if n: L.append(n)
+        if not L:
+            sys.exit("no *.fna with sequence under %s -- pass --contigs <dir> "
+                     "or --segments '<json>'" % cd)
         L.sort()
         segments = {"Single RNA Segment": {
             "min_len": int(L[0] * 0.95), "max_len": int(L[-1] * 1.05),

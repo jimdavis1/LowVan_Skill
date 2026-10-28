@@ -1,0 +1,193 @@
+{
+ "GAG": {
+  "anno": "Gag polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "gag",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6304725",
+   "2983308"
+  ],
+  "bit_cutoff": 594
+ },
+ "PRO": {
+  "anno": "Protease",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "pro",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6304725",
+   "2983308"
+  ],
+  "_note": "Its own reading frame between gag and pol, as in Betaretrovirus. 73 unique sequences, median 228 aa; the short tail is the BLV protease alone, the long form the PTLV pro ORF.",
+  "bit_cutoff": 62
+ },
+ "POL": {
+  "anno": "Pol polyprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "pol",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6304725",
+   "2983308"
+  ],
+  "bit_cutoff": 634
+ },
+ "ENV": {
+  "anno": "Envelope glycoprotein",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "env",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6304725",
+   "2983308"
+  ],
+  "bit_cutoff": 266
+ },
+ "TAX": {
+  "anno": "Transactivator protein Tax",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "tax",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "6304725",
+   "2983308",
+   "32645846"
+  ],
+  "_note": "PSSM, not a splice feature. tax has a 4-nt first coding exon, so ~99.7% of the protein sits in one genomic block and the collinearity triage calls it collinear 100% over 851 deposits. PTLV and BLV Tax cross-match at 36-39% identity over 66 aa: one feature, two profile groups.",
+  "bit_cutoff": 58
+ },
+ "HBZ": {
+  "anno": "Basic leucine zipper factor HBZ",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "hbz",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "12438606"
+  ],
+  "_note": "PTLV only; encoded on the complementary strand. Collinear 100%.",
+  "bit_cutoff": 336
+ },
+ "P12": {
+  "anno": "Accessory protein p12",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "p12",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "1528897",
+   "8445734"
+  ],
+  "_note": "PTLV only, pX open reading frame I.",
+  "bit_cutoff": 180
+ },
+ "P13": {
+  "anno": "Accessory protein p13",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "p13",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "1528897",
+   "8445734",
+   "20332002"
+  ],
+  "_note": "PTLV only, pX open reading frame II. Only 7 unique sequences -- the thinnest collection in the module.",
+  "bit_cutoff": 159
+ },
+ "P30": {
+  "anno": "Accessory protein p30",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "p30",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "1528897",
+   "8445734"
+  ],
+  "_note": "PTLV only, pX open reading frame II.",
+  "bit_cutoff": 341
+ },
+ "AS1": {
+  "anno": "Antisense protein AS1",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "as1",
+  "segment": "Single RNA Segment",
+  "PMID_claude_generated": [
+   "27141823"
+  ],
+  "_note": "BLV only; antisense transcript. Collinear 100% over 369 proteins.",
+  "bit_cutoff": 156
+ },
+ "REX": {
+  "anno": "RNA export protein Rex",
+  "params": {},
+  "feature_type": "CDS",
+  "gene_symbol": "rex",
+  "segment": "Single RNA Segment",
+  "special": "splice",
+  "min_len": 140,
+  "max_len": 210,
+  "PMID_claude_generated": [
+   "14675632",
+   "15574380"
+  ],
+  "_note": "Both lineages, and NOT one protein across them: 156 aa in BLV, 189 in PTLV-1, 182 in PTLV-3, 170 in HTLV-2/4 and STLV-2. One query per lineage, each the most abundant sequence in its group, then de-duplicated to one reference per genome by which query's length the product fits -- the queries overlap and 119 duplicate references were dropped. 589 references: BLV 466, PTLV-1 103, PTLV-3 11, PTLV-2 9. Exon A is 51 nt in BLV and 60 in PTLV-1, in the pol/env region rather than the leader, ATG start in both, canonical junctions. The single bat deltaretrovirus genome (2772270.3, Rex 238 aa) builds no reference and is a known gap."
+ },
+ "G4": {
+  "anno": "Accessory protein G4",
+  "params": {},
+  "feature_type": "CDS",
+  "gene_symbol": "g4",
+  "segment": "Single RNA Segment",
+  "special": "splice",
+  "min_len": 94,
+  "max_len": 116,
+  "PMID_claude_generated": [
+   "8380084",
+   "11773414"
+  ],
+  "_note": "BLV only. Published CDS join(431..503, 7071..7315) with a CTG initiator (GenBank BHU32669 on LC927011.1). Two exons, one intron -- an earlier note here claiming it was doubly spliced was wrong and is retracted; see DELTARETROVIRUS_SPLICING.md. 414 references, every spliced product the published 105 aa. Confirmed against the real caller on 11901.112 and 11901.1277: the called protein is identical to the deposited one from residue 2. TWO THINGS TO KNOW. (1) The caller places the junction one nt left of the deposited one, join(431..502, 7070..7315). The base at 503 equals the base at 7070, so both joins give an identical spliced sequence and the CDS span and product are the same; sequence alone cannot separate them. (2) The initiator is CTG, so the called protein begins L where GenBank writes M. Nothing downstream depends on residue 1, but a product string comparison against GenBank will show it."
+ },
+ "R3": {
+  "anno": "Accessory protein R3",
+  "params": {},
+  "feature_type": "CDS",
+  "gene_symbol": "r3",
+  "segment": "Single RNA Segment",
+  "special": "splice",
+  "min_len": 39,
+  "max_len": 49,
+  "PMID_claude_generated": [
+   "8380084"
+  ],
+  "_note": "BLV only. Published CDS join(4826..4876, 7023..7106), ATG start, canonical GT donor and AG acceptor (GenBank BDR32949 on LC728442.1). Its 51 nt first exon is the SAME exon as Rex's -- both begin MPKERRSRRRPQPIIRW. 369 references. The real caller reproduces the published join exactly on 11901.112 and 11901.1277. It built only 4 references at the default --nudge 12: a 17-residue first exon and a 27-residue second put the junction outside that window, and 30 fixes it. Nothing about R3 is unusual."
+ }
+}

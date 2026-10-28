@@ -84,6 +84,34 @@ def main():
     #  feature. EIAV REV read 3.3% standalone by exon 1 and 23.3% by full
     #  extent. Neither verdict changed here, but the figure was wrong and it
     #  was the figure that got reported to the curator.
+    def exons(f):
+        """the feature's exon intervals, which is what overlap must use.
+
+        The SPAN of a spliced feature covers its intron, and the intron is not
+        part of the feature. Deltaretrovirus G4 is join(431..503, 7071..7315),
+        so its span is 6.9 kb of an 8.8 kb provirus and GAG, PRO, POL and ENV
+        all fall inside it -- while sharing not one base with either exon.
+        Scored that way ENV read 12.1% standalone against a 93.9% call rate
+        and was refused copy_num it had plainly earned, and PRO was recorded
+        as a separate gene "inside G4" that it never touches. Measuring by
+        exon, ENV is 93.9% standalone. The earlier fix here, from location[0]
+        to the full extent, was correcting the opposite error on HIV2 REV and
+        went one step too far: neither endpoint pair is the feature, the exons
+        are.
+        """
+        locs = f.get("location") or []
+        ivs = []
+        for l in locs:
+            try:
+                c, st0, strand, d0 = l[0], int(l[1]), l[2], int(l[3])
+            except Exception:
+                continue
+            ivs.append((c, st0 - d0 + 1, st0) if strand == "-"
+                       else (c, st0, st0 + d0 - 1))
+        if not ivs or len({i[0] for i in ivs}) != 1:
+            return None
+        return ivs
+
     def span(f):
         locs = f.get("location") or []
         ivs = []
@@ -131,6 +159,10 @@ def main():
         locs = f.get("location") or []
         return locs[0][2] if locs and len(locs[0]) > 2 else "+"
 
+    def _cod(ivs):
+        """coding length of an exon list -- the feature, not its footprint."""
+        return sum(i[2] - i[1] + 1 for i in ivs) if ivs else 0
+
     anno2key = {v["anno"]: k for k, v in feats.items()}
 
     #  WHICH MODULE DID THIS GENOME ROUTE TO?
@@ -170,26 +202,28 @@ def main():
             continue
         if not d.get("features"):
             continue
-        parsed = [(mod_and_key(f), span(f), strand_of(f)) for f in d["features"]]
-        seen_mods = collections.Counter(m for (m, _k), _s, _d in parsed if m)
+        parsed = [(mod_and_key(f), span(f), strand_of(f), exons(f))
+                  for f in d["features"]]
+        seen_mods = collections.Counter(m for (m, _k), _s, _d, _e in parsed if m)
         gmod = seen_mods.most_common(1)[0][0] if seen_mods else None
         if gmod and gmod != a.module:
             skipped_other += 1
             continue
         routed += 1
-        fs = [(k, sp, sd) for (m, k), sp, sd in parsed
-              if k and sp and (m is None or m == a.module)]
+        fs = [(k, sp, sd, ex) for (m, k), sp, sd, ex in parsed
+              if k and sp and ex and (m is None or m == a.module)]
         got, got_alone = set(), set()
-        for i, (k, sp, sd) in enumerate(fs):
+        for i, (k, sp, sd, ex) in enumerate(fs):
             got.add(k)
             nested = False
-            for j, (k2, sp2, sd2) in enumerate(fs):
+            for j, (k2, sp2, sd2, ex2) in enumerate(fs):
                 if i == j or k2 == k or sp[0] != sp2[0]:
                     continue
-                if (sp2[2] - sp2[1]) <= (sp[2] - sp[1]):
+                if _cod(ex2) <= _cod(ex):
                     continue
-                ov = min(sp[2], sp2[2]) - max(sp[1], sp2[1]) + 1
-                mine = sp[2] - sp[1] + 1
+                ov = sum(max(0, min(u[2], v[2]) - max(u[1], v[1]) + 1)
+                         for u in ex for v in ex2)
+                mine = _cod(ex)
                 if mine > 0 and ov / mine >= a.contain and (k, k2) not in expected:
                     nested = True
                     contained[k] += 1

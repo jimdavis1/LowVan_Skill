@@ -33,6 +33,13 @@ TAB = {a + b + c: AAs[i] for i, (a, b, c) in enumerate(
     (x, y, z) for x in B for y in B for z in B)}
 
 
+#  The near-cognate initiators seen in this genus. ACG, CTG, GTG and TTG all
+#  initiate at reduced efficiency; the submitter writes the product as if it
+#  began at Met, which is why a deposit and its own genome disagree on
+#  residue 1 and on nothing else.
+ALT_STARTS = {"ATG", "CTG", "TTG", "GTG", "ACG"}
+
+
 def tr(s):
     return "".join(TAB.get(s[i:i + 3], 'X') for i in range(0, len(s) - 2, 3))
 
@@ -134,6 +141,20 @@ def main():
     p.add_argument("--min-contig", type=int, default=3000)
     p.add_argument("--len-tol", type=float, default=0.10,
                    help="fractional length window around the query (default 0.10)")
+    p.add_argument("--max-pairs", type=int, default=6,
+                   help="how many HSP pairs to try per genome, best exon B "
+                        "first (default 6). More than one is needed because a "
+                        "spurious short HSP at the query's N-terminus "
+                        "otherwise claims the exon-A slot.")
+    p.add_argument("--alt-start", action="store_true",
+                   help="accept a near-cognate initiator (CTG/TTG/GTG/ACG) as "
+                        "well as ATG. Needed for BLV G4; the product still has "
+                        "to be homologous to the query.")
+    p.add_argument("--noncanonical", action="store_true",
+                   help="if no GT..AG pair sits in the window, choose the "
+                        "boundary by the spliced translation instead. The "
+                        "caller checks the SD/SA windows, never the "
+                        "dinucleotide.")
     p.add_argument("--nudge", type=int, default=12,
                    help="how far, in nt, the exon boundary may be moved to reach "
                         "a canonical GT..AG (default 12). tblastn trims an HSP to "
@@ -157,67 +178,141 @@ def main():
                       key=lambda x: x[0])
         if not plus:
             stats["no2hsp"] += 1; continue
-        pair = None
-        for i in range(len(plus) - 1):
-            x, y = plus[i], plus[i + 1]
-            if x[1] < y[0] + 10 and x[3] < y[2]:
-                pair = (x, y); break
-        if pair is None:
+        #  EVERY PLAUSIBLE HSP PAIR, NOT THE FIRST ONE IN QUERY ORDER.
+        #  `plus` is sorted by query start, so a spurious short HSP that
+        #  happens to open at residue 1 is paired with the real exon B and the
+        #  genuine exon A is never looked at. On HTLV-1 11908.2880 that put
+        #  Rex's first exon at position 1044, inside gag, four kilobases from
+        #  the real one at 5125 which a GT..AG junction and a 20-residue exon
+        #  fit exactly. The reference translated cleanly and passed the
+        #  homology check -- exon B is 163 of its 183 residues, so a wrong
+        #  20-residue N-terminus cannot fail it -- and the caller then
+        #  reproduced the same wrong join on that genome. 14 of 103 PTLV-1
+        #  references carried a mismatched N-terminus, one of them with stop
+        #  codons in it.
+        pairs = [(plus[i], plus[j])
+                 for i in range(len(plus)) for j in range(len(plus))
+                 if i != j and plus[i][1] < plus[j][0] + 10
+                 and plus[i][3] < plus[j][2]]
+        #  best exon B first: it carries most of the protein and is the piece
+        #  the junction is measured against.
+        pairs.sort(key=lambda t: (-t[1][4], -t[0][4]))
+        if not pairs:
             #  one long HSP that does not start at residue 1: the missing
             #  N-terminus is exon A, too short for the genome-wide search.
             y = max(plus, key=lambda v: v[4])
             x = head_hsp(qseq, seq, int(y[0]) - 1, int(y[2]) - 1, tmpd)
             if x is None or not (x[1] < y[0] + 10):
                 stats["no2hsp"] += 1; continue
-            pair = (x, y)
-        x, y = pair
-        exA_s, exA_e, exB_s = int(x[2]), int(x[3]), int(y[2])
+            pairs = [(x, y)]
+        hits, why = [], "stop"
+        for x, y in pairs[:a.max_pairs]:
+            exA_s, exA_e, exB_s = int(x[2]), int(x[3]), int(y[2])
 
-        #  Every GT..AG the window reaches, nearest boundary first, and the
-        #  first one whose SPLICED TRANSLATION is a real protein wins. Taking
-        #  the first canonical dinucleotide instead picks a junction that is
-        #  merely possible over the one that codes.
-        cand = sorted(((d, e) for d in range(-a.nudge, a.nudge + 1)
-                       for e in range(-a.nudge, a.nudge + 1)
-                       if seq[exA_e + d:exA_e + d + 2] == "GT"
-                       and seq[exB_s + e - 3:exB_s + e - 1] == "AG"),
-                      key=lambda t: (abs(t[0]) + abs(t[1]), abs(t[0])))
-        if not cand:
-            stats["nojunction"] += 1; continue
+            #  Every GT..AG the window reaches, nearest boundary first, and the
+            #  first one whose SPLICED TRANSLATION is a real protein wins. Taking
+            #  the first canonical dinucleotide instead picks a junction that is
+            #  merely possible over the one that codes.
+            cand = sorted(((d, e) for d in range(-a.nudge, a.nudge + 1)
+                           for e in range(-a.nudge, a.nudge + 1)
+                           if seq[exA_e + d:exA_e + d + 2] == "GT"
+                           and seq[exB_s + e - 3:exB_s + e - 1] == "AG"),
+                          key=lambda t: (abs(t[0]) + abs(t[1]), abs(t[0])))
+            if not cand and a.noncanonical:
+                #  GT..AG IS THIS SCRIPT'S RULE, NOT THE CALLER'S.
+                #  get_splice_variant_features.pl never looks at the dinucleotide:
+                #  it takes the SD and SA windows from the reference header and
+                #  requires the subject to match them, and that conservation is
+                #  the whole test. So a junction the annotator can use is not
+                #  obliged to be canonical, and demanding it here threw away an
+                #  entire feature. BLV G4 is annotated in GenBank as
+                #  join(431..503, 7071..7315) (BHU32669 on LC927011) -- donor TC,
+                #  acceptor CC -- and no GT..AG pair anywhere in that intron
+                #  reproduces the protein. With this flag the boundary is chosen
+                #  by the SPLICED TRANSLATION instead. product_is_homologous() is
+                #  then the only thing standing between a real junction and an
+                #  artefact, which it already was: a canonical dinucleotide plus a
+                #  clean translation passed 7 artefacts on an earlier feature set,
+                #  and identity to the query was what separated them.
+                cand = sorted(((d, e) for d in range(-a.nudge, a.nudge + 1)
+                               for e in range(-a.nudge, a.nudge + 1)),
+                              key=lambda t: (abs(t[0]) + abs(t[1]), abs(t[0])))
+            if not cand:
+                stats["nojunction"] += 1; continue
 
-        hit, why = None, "stop"
-        for exA_try in exon_a_starts(seq, exA_s):
-          for d, e in cand:
-            ie, ib = exA_e + d, exB_s + e
-            #  THE CDS ENDS AT ITS OWN STOP CODON, not at the query's length.
-            #  Padding exon B out to qlen*3 instead runs the reference past a
-            #  real terminator whenever this genome's copy is a few residues
-            #  shorter than the query, and the genuine junction is then thrown
-            #  out as "internal stop". That lost most of the foamy virus
-            #  genomes for BET, whose Bet runs 482-490 aa across isolates.
-            head = seq[exA_try - 1:ie]
-            tail = seq[ib - 1:]
-            off = (3 - len(head) % 3) % 3          # nt of the split codon in B
-            prot = tr(head + tail)
-            cut = prot.find("*")
-            if cut < 0:
-                why = "len"; continue
-            nt = (cut + 1) * 3 - len(head)         # nt taken from exon B
-            if nt <= off or ib + nt - 1 > len(seq):
-                why = "len"; continue
-            ref = seq[exA_try - 1:ib + nt - 1]
-            sd_last = ie - exA_try + 1
-            sa_first = ib - exA_try + 1
-            prot = prot[:cut]
-            if not prot.startswith("M"):
-                why = "stop"; continue
-            if not ((1 - a.len_tol) * qlen <= len(prot) <= (1 + a.len_tol) * qlen):
-                why = "len"; continue
-            if not product_is_homologous(prot, a.query, qlen, tmpd):
-                why = "nterm"; continue
-            hit = (gid, ref, sd_last, sa_first, len(prot)); break
-          if hit is not None:
-              break
+            #  COLLECT EVERY WORKING COMBINATION AND KEEP THE BEST, instead of
+            #  keeping the first. The start walk offers upstream ATGs as well as
+            #  the HSP start, and with --alt-start the HSP start may itself be a
+            #  near-cognate initiator -- so a genome can satisfy the checks at two
+            #  different starts, giving proteins of different lengths. Taking
+            #  whichever came first put a 113 aa G4 next to the published 105 aa
+            #  one (GenBank BHU32669) in the same reference set. The product
+            #  closest to the query length wins, ties going to an ATG and then to
+            #  the boundary nearest the HSPs.
+            for exA_try in exon_a_starts(seq, exA_s):
+              for d, e in cand:
+                ie, ib = exA_e + d, exB_s + e
+                #  THE CDS ENDS AT ITS OWN STOP CODON, not at the query's length.
+                #  Padding exon B out to qlen*3 instead runs the reference past a
+                #  real terminator whenever this genome's copy is a few residues
+                #  shorter than the query, and the genuine junction is then thrown
+                #  out as "internal stop". That lost most of the foamy virus
+                #  genomes for BET, whose Bet runs 482-490 aa across isolates.
+                head = seq[exA_try - 1:ie]
+                tail = seq[ib - 1:]
+                off = (3 - len(head) % 3) % 3          # nt of the split codon in B
+                prot = tr(head + tail)
+                cut = prot.find("*")
+                if cut < 0:
+                    why = "len"; continue
+                nt = (cut + 1) * 3 - len(head)         # nt taken from exon B
+                if nt <= off or ib + nt - 1 > len(seq):
+                    why = "len"; continue
+                ref = seq[exA_try - 1:ib + nt - 1]
+                sd_last = ie - exA_try + 1
+                sa_first = ib - exA_try + 1
+                prot = prot[:cut]
+                #  A NON-AUG INITIATOR IS NOT A BROKEN REFERENCE.
+                #  Requiring the product to start at M is this script's rule and
+                #  nothing downstream shares it: the annotation code handles an
+                #  alternative start, and get_splice_variant_features.pl never
+                #  inspects the first codon. Near-cognate initiation is described
+                #  in this genus (PMID 10710429, HTLV-1 Rex and p21x), and BLV G4
+                #  uses it: GenBank BHU32669 gives the protein as MACTRVCFL...
+                #  while LC927011 reads CTG at position 431 and translates
+                #  LACTRVCFL... -- identical from residue 2. Rejecting it on
+                #  residue 1 dropped every G4 in the set before the junction was
+                #  even examined. --alt-start admits the near-cognate initiators,
+                #  and the product still has to be homologous to the query.
+                if not (prot.startswith("M") or
+                        (a.alt_start and seq[exA_try - 1:exA_try + 2] in ALT_STARTS)):
+                    why = "stop"; continue
+                if not ((1 - a.len_tol) * qlen <= len(prot) <= (1 + a.len_tol) * qlen):
+                    why = "len"; continue
+                #  EXON A FIRST IN THE RANKING. A wrong HSP pair gets exon
+                #  B right -- it carries most of the protein -- and exon A
+                #  wrong, so product length and overall homology both look
+                #  fine. The only term that separates them is how the
+                #  exon-A residues compare with the query's own N-terminus.
+                nA = sd_last // 3
+                agree = sum(1 for u, v in zip(prot[1:nA], qseq[1:nA]) if u == v)
+                hits.append(((-agree,
+                              abs(len(prot) - qlen),
+                              0 if seq[exA_try - 1:exA_try + 2] == "ATG" else 1,
+                              abs(d) + abs(e)),
+                             (gid, ref, sd_last, sa_first, len(prot)), prot))
+        #  HOMOLOGY LAST, ON THE RANKED LIST. product_is_homologous() shells
+        #  out to blastp, and --noncanonical offers (2*nudge+1)^2 boundaries
+        #  per start instead of the handful that are canonical -- running the
+        #  blast inside that loop turned a 13 minute pass into one that had
+        #  not finished a twentieth of the contigs in two minutes. The cheap
+        #  tests shrink the field first; the blast then confirms the best
+        #  candidate and falls through to the next if it fails.
+        hit = None
+        for _k, cand_hit, prot in sorted(hits, key=lambda t: t[0]):
+            if product_is_homologous(prot, a.query, qlen, tmpd):
+                hit = cand_hit; break
+            why = "nterm"
         if hit is None:
             stats[why] += 1; continue
         refs.append(hit)
@@ -240,7 +335,22 @@ def main():
         print("  query %d aa; spliced product min %d med %d max %d"
               % (qlen, L[0], L[len(L) // 2], L[-1]))
     else:
-        sys.exit("  no references built -- the CDS may cross more than one intron")
+        #  "more than one intron" was the only explanation this offered, and
+        #  it was the wrong one twice in a row. BLV R3 failed on all 20 test
+        #  genomes at the default nudge of 12 and succeeded on all 20 at 30:
+        #  its first exon is 17 residues and its second 27, and tblastn places
+        #  the ends of pieces that short imprecisely, so the real junction sat
+        #  outside the window. BLV G4 failed because of this script's own
+        #  start-at-M and GT..AG rules, neither of which the caller shares.
+        #  Say what to try before blaming the biology.
+        sys.exit("  no references built. Before concluding the CDS has more "
+                 "than one intron, try:\n"
+                 "    --nudge 30      a short exon's HSP ends are imprecise "
+                 "and the junction can fall outside a narrow window\n"
+                 "    --alt-start     the CDS may begin at a near-cognate "
+                 "codon; the deposit still writes it as M\n"
+                 "    --noncanonical  the junction need not be GT..AG -- the "
+                 "caller checks the SD/SA windows, not the dinucleotide")
 
 
 main()
