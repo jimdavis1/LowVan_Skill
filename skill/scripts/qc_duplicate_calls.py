@@ -48,6 +48,50 @@ def span(f):
     return (c, s - d + 1, s) if st == "-" else (c, s, s + d - 1)
 
 
+def exon_frames(loc):
+    """(contig, strand, frame) for each exon, frame measured on the genome.
+
+    The frame an exon is READ in is not its start modulo 3: the codons carry
+    over from the exons before it, so the phase is shifted by their total
+    length. HIV-1 tat and rev share the acceptor that opens their second exon
+    -- the same genomic base -- yet are read in different frames there,
+    because tat's first exon is 215 nt and rev's is 76. Subtracting the
+    carried-over length is what separates two overlapping genes from one gene
+    called twice.
+    """
+    out = []
+    off = 0
+    for l in loc or []:
+        try:
+            c, s, st, d = l[0], int(l[1]), l[2], int(l[3])
+        except Exception:
+            continue
+        lo, hi = (s - d + 1, s) if st == "-" else (s, s + d - 1)
+        out.append((c, st, ((s - off) if st == "+" else (s + off)) % 3, lo, hi))
+        off += d
+    return out
+
+
+def frame_relation(fa, fb):
+    """'same' / 'different' / None, over the exon pairs that actually overlap.
+
+    Compared exon-set against exon-set it reads backwards: HIV-1 rev exon 2
+    happens to fall in the same genomic frame as tat exon 1, which share no
+    bases, and matching those two reported 204 of 283 nested calls as "same
+    frame" when every overlapping pair is in fact different. Only exons that
+    share bases can be read twice, so only those are compared.
+    """
+    seen = set()
+    for c1, s1, f1, lo1, hi1 in fa:
+        for c2, s2, f2, lo2, hi2 in fb:
+            if c1 != c2 or s1 != s2 or hi1 < lo2 or hi2 < lo1:
+                continue
+            seen.add("same" if f1 == f2 else "different")
+    if not seen:
+        return None
+    return "same" if "same" in seen else "different"
+
+
 def relate(a, b):
     """median identity and coverage of collection a against collection b"""
     t = tempfile.mkdtemp()
@@ -103,6 +147,7 @@ def main():
     exact = collections.Counter()
     nested = collections.Counter()
     who = collections.defaultdict(collections.Counter)
+    framerel = collections.defaultdict(lambda: collections.defaultdict(collections.Counter))
     total = collections.Counter()
     n = 0
     for q in sorted(glob.glob(os.path.join(a.eval, "*.qual.gto"))):
@@ -110,14 +155,15 @@ def main():
             d = json.load(open(q))
         except Exception:
             continue
-        fs = [(a2k.get(f.get("function") or ""), span(f), (f.get("location") or [[None]])[0])
+        fs = [(a2k.get(f.get("function") or ""), span(f), (f.get("location") or [[None]])[0],
+               exon_frames(f.get("location")))
               for f in (d.get("features") or [])]
         fs = [x for x in fs if x[0] and x[1]]
         if not fs:
             continue
         n += 1
         byloc = collections.defaultdict(list)
-        for k, s, raw in fs:
+        for k, s, raw, _fr in fs:
             total[k] += 1
             byloc[tuple(raw)].append(k)
         for _loc, ks in byloc.items():
@@ -127,8 +173,8 @@ def main():
                 #  not that two profiles collided.
                 u = sorted(set(ks))
                 exact[tuple(u) if len(u) > 1 else (u[0] + " (x%d, same feature)" % len(ks),)] += 1
-        for i, (k, s, _r) in enumerate(fs):
-            for j, (k2, s2, _r2) in enumerate(fs):
+        for i, (k, s, _r, fr) in enumerate(fs):
+            for j, (k2, s2, _r2, fr2) in enumerate(fs):
                 if i == j or k2 == k:
                     continue
                 if s[0] != s2[0] or (s2[2] - s2[1]) <= (s[2] - s[1]):
@@ -143,6 +189,7 @@ def main():
                 if mine > 0 and ov / mine >= a.contain:
                     nested[k] += 1
                     who[k][k2] += 1
+                    framerel[k][k2][frame_relation(fr, fr2) or "undetermined"] += 1
                     break
 
     print("  %s: %d scored genome(s) carrying features\n" % (a.module, n))
@@ -155,8 +202,30 @@ def main():
 
     hits = [(k, nested[k] / total[k]) for k in sorted(total)
             if total[k] and nested[k] / total[k] >= a.nested_frac]
+    #  A SPLICED feature nested in a PSSM feature is a separate finding, and
+    #  most of the advice below does not apply to it. It has no bit_cutoff to
+    #  raise -- get_splice_variant_features.pl calls it from a donor/acceptor
+    #  reference -- and it is never marked essential, so it cannot "earn
+    #  copy_num". It is also where the overlapping genes actually live: HIV-1
+    #  rev sits inside tat because the two share a donor at the end of exon 1
+    #  and an acceptor at the start of exon 2 and are read in different
+    #  frames (blastp REV vs TAT: id 42%, cov 29% -- different proteins),
+    #  and MMTV rem begins in the env signal peptide. Reported, with the
+    #  frames, for the curator to confirm against the published architecture.
+    spl = [(k, f) for k, f in hits if (blk["features"].get(k) or {}).get("special") == "splice"]
+    hits = [(k, f) for k, f in hits if (blk["features"].get(k) or {}).get("special") != "splice"]
     exp = [(k, f) for k, f in hits if (k, who[k].most_common(1)[0][0]) in expected]
     hits = [(k, f) for k, f in hits if (k, who[k].most_common(1)[0][0]) not in expected]
+    if spl:
+        print("\n  SPLICED inside a PSSM feature -- overlapping genes, not a"
+              " duplicate call\n  unless the two are the same protein:")
+        for k, frac in sorted(spl, key=lambda x: -x[1]):
+            par = who[k].most_common(1)[0][0]
+            c = framerel[k][par]
+            fr = ", ".join("%d %s" % (c[w], w) for w in
+                           ("different", "same", "undetermined") if c[w]) + " frame"
+            print("    %-11s %5.0f%% of %d calls inside %-11s %s"
+                  % (k, 100 * frac, total[k], par, fr))
     if exp:
         print("\n  EXPECTED -- declared genome architecture, not a finding:")
         for k, frac in sorted(exp, key=lambda x: -x[1]):
@@ -171,7 +240,16 @@ def main():
         if a.collections:
             fa = os.path.join(a.collections, k + ".fasta")
             fb = os.path.join(a.collections, par + ".fasta")
-            if os.path.exists(fa) and os.path.exists(fb):
+            #  SAY SO when the fasta is not there. --collections pointed one
+            #  directory too high on the HIV-1 set (the collections live in
+            #  collections/HIV1, not collections/) and the run printed the
+            #  bare nesting line -- identical to a run with no --collections
+            #  at all. The blastp verdict is the whole reason to pass the
+            #  flag, and its absence has to be visible.
+            if not os.path.exists(fa) or not os.path.exists(fb):
+                extra = "   [no collection fasta for %s under %s]" % (
+                    k if not os.path.exists(fa) else par, a.collections)
+            else:
                 r = relate(fa, fb)
                 if r:
                     extra = "   blastp vs %s: id=%.0f%% cov=%.0f%% bits=%.0f" % (par, r[0], r[1], r[2])

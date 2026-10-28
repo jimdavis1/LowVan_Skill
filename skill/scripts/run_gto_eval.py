@@ -219,6 +219,21 @@ def main():
         ann = os.path.join(args.out, b + ".ann.gto")
         qual = os.path.join(args.out, b + ".qual.gto")
         if os.path.exists(qual) and os.path.getsize(qual) > 0:
+            #  A SKIPPED genome still gets its table reconciled against its
+            #  GTO. The skip is what makes a resumed run cheap, but it also
+            #  freezes whatever table the earlier run left behind -- and a
+            #  table written before _append_special_rows existed carries no
+            #  spliced rows at all. Measured on the HIV-1 coverage set after
+            #  the 28 Oct resume: 269 of 500 tables held zero Tat and zero
+            #  Rev rows while their GTOs held 421 of them, and the 231 tables
+            #  this run wrote agreed with their GTOs exactly. Nothing warned.
+            #  The appender reconciles by function COUNT, so it is a no-op on
+            #  a table that is already complete and cannot double-append.
+            if args.tbl_dir:
+                t = os.path.join(args.tbl_dir, b + ".feature.tbl")
+                if os.path.exists(t) and os.path.getsize(t) > 0 \
+                   and os.path.exists(ann) and os.path.getsize(ann) > 0:
+                    _append_special_rows(t, ann)
             return b
         wd = os.path.join(args.out, "_wd", b)
         os.makedirs(wd, exist_ok=True)
