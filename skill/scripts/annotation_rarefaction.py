@@ -101,6 +101,28 @@ def main():
 
     shared = sorted(set(new) & set(old))
     print("  %d genome(s) annotated by both" % len(shared))
+
+    #  The two sides must describe the SAME genomes. Intersecting them is not
+    #  enough on its own: if the source table was built over one genome set
+    #  and the module tables over another, the intersection is a handful of
+    #  accidents and the figure is drawn through them without complaint. That
+    #  shipped -- the Alpharetrovirus page compared 37 panel genomes against
+    #  45 exemplars, which share exactly ONE genome, so its published curves
+    #  were a one-genome sample presented as a vocabulary comparison.
+    #
+    #  A source legitimately covering only part of the set still overlaps it
+    #  heavily; a mismatched set barely overlaps at all. The floor is a
+    #  quarter of the smaller side, which separates those two cases by an
+    #  order of magnitude (the bad run sat at 2.7%). This is an input error,
+    #  not a thin-data condition -- the protein floor below handles thin data
+    #  -- so it fails loudly rather than writing a degraded record.
+    frac = len(shared) / float(min(len(new), len(old))) if new and old else 0.0
+    if frac < 0.25:
+        sys.exit("  the two sides were measured on different genomes: %d module "
+                 "genome(s) and %d source genome(s) share only %d (%.1f%% of the "
+                 "smaller side).\n  Rebuild --old over the same genomes the "
+                 "module tables cover before comparing their vocabularies."
+                 % (len(new), len(old), len(shared), 100.0 * frac))
     npool = [s for g in shared for s in new[g]]
     opool = [s for g in shared for s in old[g]]
 
