@@ -80,7 +80,18 @@ def main():
             #  feature.tbl columns: 6 symbol, 7 start, 8 stop, 9 strand,
             #  11 module, 16 pssm, 17 annotation. The annotation is 17.
             if len(c) >= 18 and c[17].strip():
-                new[g].append(c[17].strip())
+                fn = c[17].strip()
+                #  "Routed to <Module>; no profile above threshold" is the
+                #  annotator's diagnostic for a genome it claimed but could
+                #  not call anything in. It is not a protein name, and
+                #  counting it put a phantom term in EVERY module's
+                #  controlled vocabulary -- Alpharetrovirus read 5 distinct
+                #  strings for a 4-feature module -- which understates the
+                #  collapse the module achieves. Dropped from both curves:
+                #  it is not a deposited string either.
+                if fn.startswith("Routed to ") and "no profile above" in fn:
+                    continue
+                new[g].append(fn)
 
     old = collections.defaultdict(list)
     for line in open(args.old, errors="replace"):

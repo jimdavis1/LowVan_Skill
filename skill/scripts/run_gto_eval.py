@@ -25,6 +25,103 @@ SPECIAL_DIR = {"te": "Transcript-Editing", "sv": "Splice-Variants"}
 from concurrent.futures import ThreadPoolExecutor
 
 
+def _special_functions(repo):
+    """Every `anno` belonging to a feature a special pass calls, any module."""
+    try:
+        j = json.load(open(os.path.join(repo, "Viral_PSSM.json")))
+    except Exception:
+        return set()
+    out = set()
+    for blk in j.values():
+        if not isinstance(blk, dict):
+            continue
+        for f in (blk.get("features") or {}).values():
+            if isinstance(f, dict) and f.get("special") and f.get("anno"):
+                out.add(f["anno"])
+    return out
+
+
+def _has_special(ann_gto, repo):
+    sp = _special_functions(repo)
+    if not sp:
+        return False
+    try:
+        g = json.load(open(ann_gto))
+    except Exception:
+        return False
+    return any(f.get("function") in sp for f in g.get("features", []))
+
+def _append_special_rows(tbl, ann_gto):
+    """Add the spliced / transcript-edited features to the feature table.
+
+    The table is annotate_by_viral_pssm-GTO.pl's own stdout, and that program
+    runs BEFORE get_splice_variant_features.pl -- so the table it writes can
+    never contain a spliced feature, while the .ann.gto beside it does. The
+    two then disagree about the same genome, and every table-driven analysis
+    silently loses the special features: measured on HIV-1, 26 coverage
+    tables carried zero Tat and zero Rev rows while their GTOs carried 22 and
+    24. A vocabulary rarefaction built from those tables would have reported
+    the module's controlled vocabulary as 7 strings instead of 9, and nothing
+    in the output would have looked wrong.
+
+    Reconciles by FUNCTION COUNT rather than by feature id: the table and the
+    GTO number their features independently, but a function the annotator
+    could not produce is missing from the table by exactly the number of
+    times the special pass added it. Columns follow the 20-column layout, with
+    the function in column 18 and the translation in column 20, which is what
+    annotation_rarefaction.py and analyze_feature_gap.py read.
+    """
+    import collections as _c
+    try:
+        g = json.load(open(ann_gto))
+    except Exception:
+        return
+    want = _c.Counter(f.get("function", "") for f in g.get("features", []))
+    want.pop("", None)
+    have = _c.Counter()
+    rows = []
+    for line in open(tbl, errors="replace"):
+        rows.append(line)
+        c = line.rstrip("\n").split("\t")
+        if len(c) >= 18 and c[17]:
+            have[c[17]] += 1
+    missing = {k: want[k] - have.get(k, 0) for k in want if want[k] > have.get(k, 0)}
+    if not missing:
+        return
+    gid = g.get("id", "")
+    contig = ""
+    for f in g.get("features", []):
+        loc = f.get("location") or []
+        if loc:
+            contig = loc[0][0]
+            break
+    out = []
+    for f in g.get("features", []):
+        fn = f.get("function", "")
+        if missing.get(fn, 0) <= 0:
+            continue
+        missing[fn] -= 1
+        loc = f.get("location") or [[contig, "", "+", ""]]
+        c = [""] * 20
+        c[0] = gid
+        c[1] = gid
+        c[2] = loc[0][0]
+        c[3] = "LV"
+        c[4] = "CDS"
+        c[5] = f.get("id", "")
+        c[6] = (f.get("gene") or fn.split()[0].lower())
+        c[7] = str(loc[0][1])
+        c[9] = str(loc[0][2])
+        c[15] = g.get("scientific_name", "")
+        c[17] = fn
+        c[19] = f.get("protein_translation", "")
+        out.append("\t".join(c))
+    if out:
+        with open(tbl, "a") as fh:
+            if rows and not rows[-1].endswith("\n"):
+                fh.write("\n")
+            fh.write("\n".join(out) + "\n")
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--gto-dir", required=True)
@@ -111,7 +208,8 @@ def main():
             return b
         wd = os.path.join(args.out, "_wd", b)
         os.makedirs(wd, exist_ok=True)
-        if not (os.path.exists(ann) and os.path.getsize(ann) > 0):
+        reused = os.path.exists(ann) and os.path.getsize(ann) > 0
+        if not reused:
             r = subprocess.run([args.perl, os.path.join(R, "annotate_by_viral_pssm-GTO.pl"),
                                 "-i", g, "-o", ann, "-t", "1", "-x", b],
                                capture_output=True, text=True, env=env, cwd=wd)
@@ -132,7 +230,23 @@ def main():
         #  module declares nothing of its kind, so running both costs little
         #  on modules without special features. --skip-special opts out.
         src = ann
-        if not args.skip_special:
+        #  A REUSED .ann.gto has already been through the special passes, and
+        #  those passes APPEND -- they do not replace. Re-running them on it
+        #  calls every spliced feature a second time on identical
+        #  coordinates. Measured on Spumaretrovirinae: deleting only the
+        #  *.qual.gto to re-score after a copy_num change (the documented
+        #  cheap path, since copy_num changes scoring and not annotation)
+        #  left 18 of 45 genomes carrying BET twice, same start, same end,
+        #  same 487-residue translation, under two feature ids. The call RATE
+        #  was unaffected, so nothing in the coverage report looked wrong --
+        #  it surfaced only because qc_duplicate_calls.py was run afterwards.
+        #  Skipped only when the reused file already carries one of the
+        #  module's special functions: a genome where none was called still
+        #  gets its chance, and --skip-special on the earlier run is not
+        #  silently inherited by this one.
+        if reused and _has_special(ann, R):
+            pass
+        elif not args.skip_special:
             for prog, kind in (("get_transcript_edited_features.pl", "te"),
                                ("get_splice_variant_features.pl", "sv")):
                 if not os.path.isdir(os.path.join(R, SPECIAL_DIR[kind])):
@@ -162,7 +276,9 @@ def main():
         if args.tbl_dir:
             src_tbl = os.path.join(wd, b + ".stdout.txt")
             if os.path.exists(src_tbl) and os.path.getsize(src_tbl) > 0:
-                shutil.copyfile(src_tbl, os.path.join(args.tbl_dir, b + ".feature.tbl"))
+                dst_tbl = os.path.join(args.tbl_dir, b + ".feature.tbl")
+                shutil.copyfile(src_tbl, dst_tbl)
+                _append_special_rows(dst_tbl, ann)
         os.makedirs(wd, exist_ok=True)   # same reason as above
         r = subprocess.run([args.perl, os.path.join(R, "viral_genome_quality.pl"),
                             "-i", ann, "-o", qual, "-p", b],
