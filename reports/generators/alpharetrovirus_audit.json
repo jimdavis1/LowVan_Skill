@@ -1,0 +1,199 @@
+{
+ "title": "Alpharetrovirus \u2014 avian leukosis and sarcoma viruses Coverage Audit",
+ "eyebrow": "LowVan module audit &middot; 27 October 2026",
+ "h1": "Alpharetrovirus \u2014 avian leukosis and sarcoma viruses",
+ "subhead": "avian leukosis and sarcoma viruses",
+ "standfirst": "<b>Alpharetrovirus</b> is the avian genus &mdash; avian leukosis virus and the sarcoma viruses that carry a transduced oncogene. It is the simplest layout in the family, <i>gag-pol-env</i> with no accessory genes, and the only one of the four retroviral modules whose fourth feature is a captured host kinase rather than a viral regulator.",
+ "headline_tiles": [
+  [
+   "4",
+   "features declared"
+  ],
+  [
+   "44",
+   "coverage exemplars"
+  ],
+  [
+   "294",
+   "genomes in holdings"
+  ],
+  [
+   "99.5%",
+   "vocabulary bound by rule"
+  ],
+  [
+   "36 \u2192 4",
+   "annotation strings collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module calls",
+   "lede": "Three structural features on every genome, and a fourth that only the sarcoma viruses carry.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<i>src</i> is the fourth gene of non-defective Rous sarcoma virus, 3&prime; of <i>env</i> and fully collinear &mdash; a single tblastn HSP covers residues 1&ndash;526 at 93&ndash;100% identity. It was never called in the deposited vocabulary; the literature probe turned it up. It is built from 5 unique sequences with a minimum cluster size of 3 rather than the default 5, and the identity floor is untouched."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "product",
+      "called",
+      "rate",
+      "copy_num",
+      "caller"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "33 / 41",
+       "80.5%",
+       "\u2014",
+       "PSSM"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "37 / 41",
+       "90.2%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "39 / 41",
+       "95.1%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "SRC",
+       "Tyrosine-protein kinase transforming protein Src",
+       "6 / 41",
+       "14.6%",
+       "\u2014",
+       "PSSM"
+      ]
+     ]
+    },
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ENV",
+       "80.5",
+       80.5,
+       "33 of 41"
+      ],
+      [
+       "GAG",
+       "90.2",
+       90.2,
+       "37 of 41"
+      ],
+      [
+       "POL",
+       "95.1",
+       95.1,
+       "39 of 41"
+      ],
+      [
+       "SRC",
+       "14.6",
+       14.6,
+       "6 of 41"
+      ]
+     ],
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "Where it does not call, and why",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "SRC is called on a small minority of exemplars and that is correct biology, not a gap: <i>src</i> is present only in non-defective sarcoma viruses. Sweeping all 294 holdings with nine curated Swiss-Prot v-Src queries finds nine carriers scoring 937&ndash;1102 bits and nothing above 69 &mdash; a clean break, so the carrier set is bounded. SRC therefore does not take copy_num. Its profile is sound independently of its rate: it recalls 5 of 5 of its own collection, and the real caller annotated it on a held-out carrier at the expected position and length."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Vocabulary",
+   "lede": "36 annotation strings collapse onto 4 targets.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "target",
+      "product",
+      "strings",
+      "features"
+     ],
+     "rows": [
+      [
+       "GAG",
+       "Gag polyprotein",
+       "8",
+       "272"
+      ],
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "14",
+       "272"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "9",
+       "258"
+      ],
+      [
+       "SRC",
+       "Tyrosine-protein kinase transforming protein Src",
+       "5",
+       "9"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "99.5% of the 1095 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Vocabulary saturation",
+   "lede": "How fast each vocabulary stops growing as genomes are added.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/alpharetrovirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 22.9 distinct source strings correspond to 3.0 controlled annotations, a 7.6-fold collapse. The module reaches 95% of its final vocabulary after 7 proteins against the source's 111."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 294 genomes reduce to 45 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 41 of 44 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used."
+    }
+   ]
+  }
+ ],
+ "source_note": "Measured 27 October 2026 from the shipped module: the Alpharetrovirus block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 44 exemplars de-replicated from 294 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+}

@@ -1,0 +1,102 @@
+{
+ "Gammaretrovirus.1.dna": {
+  "genome_ids": "11786.12.con.0001",
+  "genome_name": "Murine leukemia virus"
+ },
+ "Gammaretrovirus.10.dna": {
+  "genome_ids": "11768.1171.con.0001",
+  "genome_name": "Feline leukemia virus FeLV-A_ON-T_10"
+ },
+ "Gammaretrovirus.11.dna": {
+  "genome_ids": "11768.444.con.0001",
+  "genome_name": "Feline leukemia virus"
+ },
+ "Gammaretrovirus.12.dna": {
+  "genome_ids": "11768.601.con.0001",
+  "genome_name": "Feline leukemia virus 48"
+ },
+ "Gammaretrovirus.13.dna": {
+  "genome_ids": "11786.235.con.0001",
+  "genome_name": "Murine leukemia virus"
+ },
+ "Gammaretrovirus.14.dna": {
+  "genome_ids": "11786.65.con.0001",
+  "genome_name": "Murine leukemia virus"
+ },
+ "Gammaretrovirus.15.dna": {
+  "genome_ids": "1400255.3.con.0001",
+  "genome_name": "Galidia ERV AMNH-110064"
+ },
+ "Gammaretrovirus.16.dna": {
+  "genome_ids": "1400256.3.con.0001",
+  "genome_name": "Echidna ERV PZ-33382"
+ },
+ "Gammaretrovirus.17.dna": {
+  "genome_ids": "2730660.3.con.0001",
+  "genome_name": "Rhinolophus hipposideros gammaretrovirus RhGRV"
+ },
+ "Gammaretrovirus.18.dna": {
+  "genome_ids": "2809422.3.con.0001",
+  "genome_name": "Gammaretrovirus sp. SimumERV_con"
+ },
+ "Gammaretrovirus.19.dna": {
+  "genome_ids": "2809422.4.con.0001",
+  "genome_name": "Gammaretrovirus sp. ABTC 44487"
+ },
+ "Gammaretrovirus.2.dna": {
+  "genome_ids": "11636.8.con.0001",
+  "genome_name": "Reticuloendotheliosis virus SNV"
+ },
+ "Gammaretrovirus.20.dna": {
+  "genome_ids": "2809422.5.con.0001",
+  "genome_name": "Gammaretrovirus sp. ABTC 24240"
+ },
+ "Gammaretrovirus.21.dna": {
+  "genome_ids": "2809422.8.con.0001",
+  "genome_name": "Gammaretrovirus sp. ABTC 46056"
+ },
+ "Gammaretrovirus.22.dna": {
+  "genome_ids": "31695.3.con.0001",
+  "genome_name": "Rat leukemia virus"
+ },
+ "Gammaretrovirus.23.dna": {
+  "genome_ids": "3386029.3.con.0001",
+  "genome_name": "Marsupial endogenous gammaretrovirus 1"
+ },
+ "Gammaretrovirus.24.dna": {
+  "genome_ids": "3386030.3.con.0001",
+  "genome_name": "Marsupial endogenous gammaretrovirus 2"
+ },
+ "Gammaretrovirus.25.dna": {
+  "genome_ids": "3386031.3.con.0001",
+  "genome_name": "Marsupial endogenous gammaretrovirus 3"
+ },
+ "Gammaretrovirus.3.dna": {
+  "genome_ids": "194958.16.con.0001",
+  "genome_name": "Porcine endogenous retrovirus A"
+ },
+ "Gammaretrovirus.4.dna": {
+  "genome_ids": "11768.443.con.0001",
+  "genome_name": "Feline leukemia virus"
+ },
+ "Gammaretrovirus.5.dna": {
+  "genome_ids": "394239.16.con.0001",
+  "genome_name": "Koala retrovirus Br2-1CETTG"
+ },
+ "Gammaretrovirus.6.dna": {
+  "genome_ids": "11764.10.con.0001",
+  "genome_name": "Baboon endogenous virus strain M7"
+ },
+ "Gammaretrovirus.7.dna": {
+  "genome_ids": "61673.119.con.0001",
+  "genome_name": "Porcine endogenous retrovirus"
+ },
+ "Gammaretrovirus.8.dna": {
+  "genome_ids": "1147756.3.con.0001",
+  "genome_name": "Rhinolophus ferrumequinum retrovirus RfRV"
+ },
+ "Gammaretrovirus.9.dna": {
+  "genome_ids": "11819.16.con.0001",
+  "genome_name": "Spleen focus-forming virus"
+ }
+}

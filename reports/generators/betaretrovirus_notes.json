@@ -1,0 +1,7 @@
+{
+ "standfirst": "<b>Betaretrovirus</b> carries the only separate protease ORF in the family. Where the other three modules fold protease into <i>pol</i>, here <i>pro</i> is its own reading frame between <i>gag</i> and <i>pol</i>, deposited 94 times. The module also carries <b>Rem</b>, an RNA export protein the deposited vocabulary never names once.",
+ "modules": {
+  "Betaretrovirus": "<i>pro</i> is declared on evidence, not convention: testing the module's own naming rules before the generic subunit rule is what kept its 94 deposits together. Treating &ldquo;protease&rdquo; as a <i>pol</i> cleavage product &mdash; which it is in the other three modules &mdash; would have cut the collection to a quarter of its evidence. <b>REM</b> is called by <code>get_splice_variant_features.pl</code> from references whose coding sequence crosses one intron; it never takes copy_num."
+ },
+ "gaps": "REM's overall rate is low and the denominator is the reason. Rem exists in the MMTV clade and nowhere else in the genus, and it fires in every MMTV-group genome of the held-out panel &mdash; 100% inside the clade. Its overlap with ENV is real MMTV architecture, since <i>rem</i> shares the envelope signal-peptide exon, and is declared expected rather than suppressed. REM is also the clearest case in this family of a feature the strings could never have found: zero deposits anywhere in the genus name it."
+}

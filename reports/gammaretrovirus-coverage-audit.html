@@ -1,0 +1,174 @@
+<title>Gammaretrovirus — murine, feline and porcine leukaemia viruses Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan module audit &middot; 27 October 2026</div><h1>Gammaretrovirus — murine, feline and porcine leukaemia viruses</h1><h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">murine, feline and porcine leukaemia viruses</h2><p class="stand"><b>Gammaretrovirus</b> holds the leukaemia viruses of mice, cats and pigs, together with the endogenous retroviruses derived from them. Its <i>pol</i> is the reason this module needed a rule the rest did not: Gag and Pol are in the SAME reading frame, separated by a single amber codon that the ribosome reads through.</p><div class="tiles"><div class="tile"><div class="v">3</div><div class="l">features declared</div></div><div class="tile"><div class="v">76</div><div class="l">coverage exemplars</div></div><div class="tile"><div class="v">262</div><div class="l">genomes in holdings</div></div><div class="tile"><div class="v">94.6%</div><div class="l">vocabulary bound by rule</div></div><div class="tile"><div class="v">41 → 3</div><div class="l">annotation strings collapse</div></div></div></header><section><h2><span class="num">01</span>What the module calls</h2><p class="lede">Three features on a simple genome, one of which the caller could not see until a stop codon was allowed.</p><p class="note">POL carries <code>internal_stop: 1</code>. Gammaretroviral Pol is made by ribosomal read-through of the amber terminating <i>gag</i>, so the best POL profile aligns ACROSS that codon &mdash; on Moloney murine leukaemia virus the top-scoring HSP opens 55 residues upstream of the amber and carries exactly one stop, while on feline leukaemia virus it carries none. Without the flag the caller treated the murine match as broken and emitted nothing.</p><div class="scroll"><table><thead><tr><th>feature</th><th>product</th><th>called</th><th>rate</th><th>copy_num</th><th>caller</th></tr></thead><tbody><tr><td>ENV</td><td>Envelope glycoprotein</td><td>64 / 69</td><td>92.8%</td><td>yes</td><td>PSSM</td></tr><tr><td>GAG</td><td>Gag polyprotein</td><td>63 / 69</td><td>91.3%</td><td>yes</td><td>PSSM</td></tr><tr><td>POL</td><td>Pol polyprotein</td><td>59 / 69</td><td>85.5%</td><td>yes</td><td>PSSM</td></tr></tbody></table></div><div class="bars"><div class="bar"><div class="bl">ENV</div><div class="bt"><i style="width:92.80%"></i></div><div class="bv">92.8%</div><div class="bn">64 of 69</div></div><div class="bar"><div class="bl">GAG</div><div class="bt"><i style="width:91.30%"></i></div><div class="bv">91.3%</div><div class="bn">63 of 69</div></div><div class="bar"><div class="bl">POL</div><div class="bt"><i style="width:85.50%"></i></div><div class="bv">85.5%</div><div class="bn">59 of 69</div></div></div></section><section><h2><span class="num">02</span>Where it does not call, and why</h2><p class="lede"></p><p class="note">Declaring <code>internal_stop</code> lifted POL from 63.2% to 92.1% on the held-out panel, recovering sixteen genomes &mdash; Moloney, Friend, Graffi, XMRV and the porcine endogenous retroviruses, every one a complete virus with an intact <i>pol</i>. Four other explanations were tested and discarded first: degenerate endogenous biology, a high bit cutoff, the length window, and an internal-ATG offset. The duplicate-call audit after the change shows POL does not nest inside GAG. Glyco-Gag is a real distinct protein &mdash; CUG-initiated and N-terminally extended &mdash; but it contains the whole GAG ORF, so declaring it would nest one feature inside another for no gain.</p></section><section><h2><span class="num">03</span>Vocabulary</h2><p class="lede">41 annotation strings collapse onto 3 targets.</p><div class="scroll"><table><thead><tr><th>target</th><th>product</th><th>strings</th><th>features</th></tr></thead><tbody><tr><td>ENV</td><td>Envelope glycoprotein</td><td>19</td><td>213</td></tr><tr><td>GAG</td><td>Gag polyprotein</td><td>13</td><td>173</td></tr><tr><td>POL</td><td>Pol polyprotein</td><td>9</td><td>115</td></tr></tbody></table></div><p class="note">94.6% of the 852 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on.</p></section><section><h2><span class="num">04</span>Vocabulary saturation</h2><p class="lede">How fast each vocabulary stops growing as genomes are added.</p><figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to 63 over 137 proteins; the controlled vocabulary flattens at 3.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="267.5" x2="648" y2="267.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="106.5" x2="648" y2="106.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="271.5" text-anchor="end" class="tick">20</text><text x="47" y="191.0" text-anchor="end" class="tick">40</text><text x="47" y="110.5" text-anchor="end" class="tick">60</text><text x="47" y="30.0" text-anchor="end" class="tick">80</text><text x="58.0" y="369" text-anchor="middle" class="tick">0</text><text x="207.5" y="369" text-anchor="middle" class="tick">38</text><text x="353.0" y="369" text-anchor="middle" class="tick">75</text><text x="498.5" y="369" text-anchor="middle" class="tick">112</text><text x="648.0" y="369" text-anchor="middle" class="tick">150</text>
+    <text class="axtitle" x="58" y="392">proteins sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <line x1="396.3" y1="26" x2="396.3" y2="348" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M58.0 348.00 L61.9 343.98 L65.9 340.07 L69.8 336.25 L73.7 332.38 L77.7 328.88 L81.6 325.22 L85.5 321.68 L89.5 318.05 L93.4 314.43 L97.3 311.41 L101.3 308.19 L105.2 305.13 L109.1 301.83 L113.1 298.53 L117.0 295.43 L120.9 292.33 L124.9 289.28 L128.8 286.54 L132.7 283.60 L136.7 281.10 L140.6 278.37 L144.5 275.59 L148.5 273.01 L152.4 270.40 L156.3 268.10 L160.3 265.13 L164.2 262.71 L168.1 260.50 L172.1 257.92 L176.0 255.47 L179.9 252.93 L183.9 250.88 L187.8 248.42 L191.7 246.33 L195.7 244.11 L199.6 241.94 L203.5 239.57 L207.5 237.27 L211.4 235.06 L215.3 232.80 L219.3 230.79 L223.2 228.62 L227.1 226.69 L231.1 224.19 L235.0 222.26 L238.9 220.13 L242.9 217.83 L246.8 215.70 L250.7 213.73 L254.7 211.79 L258.6 209.94 L262.5 208.13 L266.5 206.08 L270.4 204.55 L274.3 202.70 L278.3 201.09 L282.2 199.07 L286.1 197.34 L290.1 195.81 L294.0 194.53 L297.9 192.76 L301.9 190.86 L305.8 189.25 L309.7 187.76 L313.7 186.03 L317.6 184.22 L321.5 182.41 L325.5 181.24 L329.4 179.51 L333.3 177.54 L337.3 175.73 L341.2 174.20 L345.1 172.91 L349.1 171.34 L353.0 169.61 L356.9 168.16 L360.9 166.31 L364.8 164.62 L368.7 162.89 L372.7 161.48 L376.6 160.11 L380.5 158.87 L384.5 157.54 L388.4 156.05 L392.3 154.68 L396.3 153.07 L400.2 151.50 L404.1 150.05 L408.1 148.72 L412.0 147.47 L415.9 146.47 L419.9 145.22 L423.8 143.89 L427.7 142.36 L431.7 140.83 L435.6 139.55 L439.5 138.02 L443.5 136.89 L447.4 135.76 L451.3 134.39 L455.3 133.06 L459.2 131.86 L463.1 130.61 L467.1 129.40 L471.0 128.48 L474.9 127.55 L478.9 126.02 L482.8 124.93 L486.7 123.73 L490.7 122.80 L494.6 121.59 L498.5 120.59 L502.5 119.46 L506.4 118.13 L510.3 117.13 L514.3 115.84 L518.2 114.79 L522.1 113.54 L526.1 112.82 L530.0 111.73 L533.9 110.69 L537.9 109.48 L541.8 108.43 L545.7 107.31 L549.7 106.14 L553.6 105.17 L557.5 104.04 L561.5 103.16 L565.4 101.87 L569.3 101.15 L573.3 100.06 L577.2 99.13 L581.1 98.13 L585.1 97.12 L589.0 96.12 L592.9 95.11 L596.9 94.43" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 348.00 L61.9 343.98 L65.9 341.12 L69.8 339.23 L73.7 338.26 L77.7 337.45 L81.6 336.73 L85.5 336.29 L89.5 336.21 L93.4 336.09 L97.3 336.01 L101.3 336.01 L105.2 336.01 L109.1 335.97 L113.1 335.93 L117.0 335.93 L120.9 335.93 L124.9 335.93 L128.8 335.93 L132.7 335.93 L136.7 335.93 L140.6 335.93 L144.5 335.93 L148.5 335.93 L152.4 335.93 L156.3 335.93 L160.3 335.93 L164.2 335.93 L168.1 335.93 L172.1 335.93 L176.0 335.93 L179.9 335.93 L183.9 335.93 L187.8 335.93 L191.7 335.93 L195.7 335.93 L199.6 335.93 L203.5 335.93 L207.5 335.93 L211.4 335.93 L215.3 335.93 L219.3 335.93 L223.2 335.93 L227.1 335.93 L231.1 335.93 L235.0 335.93 L238.9 335.93 L242.9 335.93 L246.8 335.93 L250.7 335.93 L254.7 335.93 L258.6 335.93 L262.5 335.93 L266.5 335.93 L270.4 335.93 L274.3 335.93 L278.3 335.93 L282.2 335.93 L286.1 335.93 L290.1 335.93 L294.0 335.93 L297.9 335.93 L301.9 335.93 L305.8 335.93 L309.7 335.93 L313.7 335.93 L317.6 335.93 L321.5 335.93 L325.5 335.93 L329.4 335.93 L333.3 335.93 L337.3 335.93 L341.2 335.93 L345.1 335.93 L349.1 335.93 L353.0 335.93 L356.9 335.93 L360.9 335.93 L364.8 335.93 L368.7 335.93 L372.7 335.93 L376.6 335.93 L380.5 335.93 L384.5 335.93 L388.4 335.93 L392.3 335.93 L396.3 335.93" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="596.9" cy="94.43" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="396.3" cy="335.93" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="606.9" y="93.43" fill="var(--src)">free text</text>
+    <text class="endsub" x="606.9" y="106.43">63 strings</text>
+    <text class="endlab" x="406.3" y="338.93" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="406.3" y="351.93">3 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of every
+  annotated protein in the 31 genomes both sources annotate: 137 source
+  product records and 86 module calls. Both curves start at zero. The dashed line
+  marks 86 proteins, the depth both curves reach, where the two are compared.</figcaption>
+ </figure><p class="note">The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 48.4 distinct source strings correspond to 3.0 controlled annotations, a 16.1-fold collapse. The module reaches 95% of its final vocabulary after 7 proteins against the source's 125.</p></section><section><h2><span class="num">05</span>Method</h2><p class="lede"></p><p class="note">Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 262 genomes reduce to 76 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 69 of 76 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used.</p></section><p class="src">Measured 27 October 2026 from the shipped module: the Gammaretrovirus block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 76 exemplars de-replicated from 262 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences.</p></div>

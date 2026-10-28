@@ -1,0 +1,7 @@
+{
+ "standfirst": "<b>Gammaretrovirus</b> holds the leukaemia viruses of mice, cats and pigs, together with the endogenous retroviruses derived from them. Its <i>pol</i> is the reason this module needed a rule the rest did not: Gag and Pol are in the SAME reading frame, separated by a single amber codon that the ribosome reads through.",
+ "modules": {
+  "Gammaretrovirus": "POL carries <code>internal_stop: 1</code>. Gammaretroviral Pol is made by ribosomal read-through of the amber terminating <i>gag</i>, so the best POL profile aligns ACROSS that codon &mdash; on Moloney murine leukaemia virus the top-scoring HSP opens 55 residues upstream of the amber and carries exactly one stop, while on feline leukaemia virus it carries none. Without the flag the caller treated the murine match as broken and emitted nothing."
+ },
+ "gaps": "Declaring <code>internal_stop</code> lifted POL from 63.2% to 92.1% on the held-out panel, recovering sixteen genomes &mdash; Moloney, Friend, Graffi, XMRV and the porcine endogenous retroviruses, every one a complete virus with an intact <i>pol</i>. Four other explanations were tested and discarded first: degenerate endogenous biology, a high bit cutoff, the length window, and an internal-ATG offset. The duplicate-call audit after the change shows POL does not nest inside GAG. Glyco-Gag is a real distinct protein &mdash; CUG-initiated and N-terminally extended &mdash; but it contains the whole GAG ORF, so declaring it would nest one feature inside another for no gain."
+}

@@ -1,0 +1,195 @@
+{
+   "Spumaretrovirinae" : {
+      "close_genomes" : {
+         "Spumaretrovirinae.1.dna" : {
+            "genome_ids" : "53182.9.con.0001",
+            "genome_name" : "Feline foamy virus"
+         },
+         "Spumaretrovirinae.10.dna" : {
+            "genome_ids" : "11963.60.con.0001",
+            "genome_name" : "Human spumaretrovirus"
+         },
+         "Spumaretrovirinae.11.dna" : {
+            "genome_ids" : "3128414.3.con.0001",
+            "genome_name" : "Bat spumavirus 1 SC2018_004_405207"
+         },
+         "Spumaretrovirinae.12.dna" : {
+            "genome_ids" : "11642.2918.con.0001",
+            "genome_name" : "Simian foamy virus Cy5061"
+         },
+         "Spumaretrovirinae.13.dna" : {
+            "genome_ids" : "2170139.3.con.0001",
+            "genome_name" : "Brown greater galago prosimian foamy virus PSFVgal"
+         },
+         "Spumaretrovirinae.14.dna" : {
+            "genome_ids" : "2170200.3.con.0001",
+            "genome_name" : "Spider monkey simian foamy virus ATCC VR-940"
+         },
+         "Spumaretrovirinae.15.dna" : {
+            "genome_ids" : "2170201.3.con.0001",
+            "genome_name" : "Squirrel monkey simian foamy virus ATCC VR-643"
+         },
+         "Spumaretrovirinae.16.dna" : {
+            "genome_ids" : "221703.3.con.0001",
+            "genome_name" : "Simian foamy virus Pongo pygmaeus pygmaeus SFVora"
+         },
+         "Spumaretrovirinae.17.dna" : {
+            "genome_ids" : "3128416.4.con.0001",
+            "genome_name" : "Bat spumavirus 3 HB2020_304_8018"
+         },
+         "Spumaretrovirinae.18.dna" : {
+            "genome_ids" : "3128417.4.con.0001",
+            "genome_name" : "Bat spumavirus 4 GX2017"
+         },
+         "Spumaretrovirinae.19.dna" : {
+            "genome_ids" : "11642.2961.con.0001",
+            "genome_name" : "Simian foamy virus SAM106"
+         },
+         "Spumaretrovirinae.2.dna" : {
+            "genome_ids" : "207343.30.con.0001",
+            "genome_name" : "Bovine foamy virus Riems"
+         },
+         "Spumaretrovirinae.20.dna" : {
+            "genome_ids" : "3128419.3.con.0001",
+            "genome_name" : "Bat spumavirus 6 YN2016"
+         },
+         "Spumaretrovirinae.3.dna" : {
+            "genome_ids" : "11963.62.con.0001",
+            "genome_name" : "Human spumaretrovirus"
+         },
+         "Spumaretrovirinae.4.dna" : {
+            "genome_ids" : "11642.2964.con.0001",
+            "genome_name" : "Simian foamy virus SFVpanubis"
+         },
+         "Spumaretrovirinae.5.dna" : {
+            "genome_ids" : "11642.888.con.0001",
+            "genome_name" : "Simian foamy virus Gorilla gorilla"
+         },
+         "Spumaretrovirinae.6.dna" : {
+            "genome_ids" : "11641.14.con.0001",
+            "genome_name" : "Human foamy virus"
+         },
+         "Spumaretrovirinae.7.dna" : {
+            "genome_ids" : "11642.2963.con.0001",
+            "genome_name" : "Simian foamy virus SFVbar"
+         },
+         "Spumaretrovirinae.8.dna" : {
+            "genome_ids" : "2170203.3.con.0001",
+            "genome_name" : "Western chimpanzee simian foamy virus"
+         },
+         "Spumaretrovirinae.9.dna" : {
+            "genome_ids" : "109270.30.con.0001",
+            "genome_name" : "Equine foamy virus"
+         }
+      },
+      "features" : {
+         "BEL2" : {
+            "PMID_claude_generated" : [
+               "2451755"
+            ],
+            "anno" : "Protein Bel2",
+            "bit_cutoff" : 50,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "bel2",
+            "kmers" : 1,
+            "max_len" : 527,
+            "min_len" : 251,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "BET" : {
+            "PMID_claude_generated" : [
+               "1846194",
+               "15994766"
+            ],
+            "anno" : "Protein Bet",
+            "feature_type" : "CDS",
+            "gene_symbol" : "bet",
+            "max_len" : 554,
+            "min_len" : 348,
+            "segment" : "Single RNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "ENV" : {
+            "PMID_claude_generated" : [
+               "2451755"
+            ],
+            "anno" : "Envelope glycoprotein",
+            "bit_cutoff" : 863,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "env",
+            "kmers" : 1,
+            "max_len" : 1060,
+            "min_len" : 920,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "GAG" : {
+            "PMID_claude_generated" : [
+               "2451755"
+            ],
+            "anno" : "Gag polyprotein",
+            "bit_cutoff" : 267,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "gag",
+            "kmers" : 1,
+            "max_len" : 697,
+            "min_len" : 482,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "POL" : {
+            "PMID_claude_generated" : [
+               "2451755"
+            ],
+            "anno" : "Pol polyprotein",
+            "bit_cutoff" : 1217,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "pol",
+            "kmers" : 1,
+            "max_len" : 1293,
+            "min_len" : 1065,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "TAS" : {
+            "PMID_claude_generated" : [
+               "2451755"
+            ],
+            "anno" : "Transcriptional transactivator Tas",
+            "bit_cutoff" : 19,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "tas",
+            "kmers" : 1,
+            "max_len" : 354,
+            "min_len" : 196,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 14579,
+            "min_len" : 5772,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

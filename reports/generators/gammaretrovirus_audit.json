@@ -1,0 +1,179 @@
+{
+ "title": "Gammaretrovirus \u2014 murine, feline and porcine leukaemia viruses Coverage Audit",
+ "eyebrow": "LowVan module audit &middot; 27 October 2026",
+ "h1": "Gammaretrovirus \u2014 murine, feline and porcine leukaemia viruses",
+ "subhead": "murine, feline and porcine leukaemia viruses",
+ "standfirst": "<b>Gammaretrovirus</b> holds the leukaemia viruses of mice, cats and pigs, together with the endogenous retroviruses derived from them. Its <i>pol</i> is the reason this module needed a rule the rest did not: Gag and Pol are in the SAME reading frame, separated by a single amber codon that the ribosome reads through.",
+ "headline_tiles": [
+  [
+   "3",
+   "features declared"
+  ],
+  [
+   "76",
+   "coverage exemplars"
+  ],
+  [
+   "262",
+   "genomes in holdings"
+  ],
+  [
+   "94.6%",
+   "vocabulary bound by rule"
+  ],
+  [
+   "41 \u2192 3",
+   "annotation strings collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module calls",
+   "lede": "Three features on a simple genome, one of which the caller could not see until a stop codon was allowed.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "POL carries <code>internal_stop: 1</code>. Gammaretroviral Pol is made by ribosomal read-through of the amber terminating <i>gag</i>, so the best POL profile aligns ACROSS that codon &mdash; on Moloney murine leukaemia virus the top-scoring HSP opens 55 residues upstream of the amber and carries exactly one stop, while on feline leukaemia virus it carries none. Without the flag the caller treated the murine match as broken and emitted nothing."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "product",
+      "called",
+      "rate",
+      "copy_num",
+      "caller"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "64 / 69",
+       "92.8%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "63 / 69",
+       "91.3%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "59 / 69",
+       "85.5%",
+       "yes",
+       "PSSM"
+      ]
+     ]
+    },
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ENV",
+       "92.8",
+       92.8,
+       "64 of 69"
+      ],
+      [
+       "GAG",
+       "91.3",
+       91.3,
+       "63 of 69"
+      ],
+      [
+       "POL",
+       "85.5",
+       85.5,
+       "59 of 69"
+      ]
+     ],
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "Where it does not call, and why",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Declaring <code>internal_stop</code> lifted POL from 63.2% to 92.1% on the held-out panel, recovering sixteen genomes &mdash; Moloney, Friend, Graffi, XMRV and the porcine endogenous retroviruses, every one a complete virus with an intact <i>pol</i>. Four other explanations were tested and discarded first: degenerate endogenous biology, a high bit cutoff, the length window, and an internal-ATG offset. The duplicate-call audit after the change shows POL does not nest inside GAG. Glyco-Gag is a real distinct protein &mdash; CUG-initiated and N-terminally extended &mdash; but it contains the whole GAG ORF, so declaring it would nest one feature inside another for no gain."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Vocabulary",
+   "lede": "41 annotation strings collapse onto 3 targets.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "target",
+      "product",
+      "strings",
+      "features"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "19",
+       "213"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "13",
+       "173"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "9",
+       "115"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "94.6% of the 852 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Vocabulary saturation",
+   "lede": "How fast each vocabulary stops growing as genomes are added.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/gammaretrovirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 48.4 distinct source strings correspond to 3.0 controlled annotations, a 16.1-fold collapse. The module reaches 95% of its final vocabulary after 7 proteins against the source's 125."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 262 genomes reduce to 76 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 69 of 76 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used."
+    }
+   ]
+  }
+ ],
+ "source_note": "Measured 27 October 2026 from the shipped module: the Gammaretrovirus block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 76 exemplars de-replicated from 262 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+}

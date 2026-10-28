@@ -1,0 +1,22 @@
+{
+ "Alpharetrovirus.1.dna": {
+  "genome_ids": "11864.721.con.0001",
+  "genome_name": "Avian leukosis virus ev21"
+ },
+ "Alpharetrovirus.2.dna": {
+  "genome_ids": "1806567.4.con.0001",
+  "genome_name": "Avian leukosis and sarcoma virus Fu-J"
+ },
+ "Alpharetrovirus.3.dna": {
+  "genome_ids": "11886.15.con.0001",
+  "genome_name": "Rous sarcoma virus"
+ },
+ "Alpharetrovirus.4.dna": {
+  "genome_ids": "11886.16.con.0001",
+  "genome_name": "Rous sarcoma virus"
+ },
+ "Alpharetrovirus.5.dna": {
+  "genome_ids": "11961.72.con.0001",
+  "genome_name": "Lymphoproliferative disease virus 12/AR/2009"
+ }
+}

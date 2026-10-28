@@ -1,0 +1,7 @@
+{
+ "standfirst": "<b>Alpharetrovirus</b> is the avian genus &mdash; avian leukosis virus and the sarcoma viruses that carry a transduced oncogene. It is the simplest layout in the family, <i>gag-pol-env</i> with no accessory genes, and the only one of the four retroviral modules whose fourth feature is a captured host kinase rather than a viral regulator.",
+ "modules": {
+  "Alpharetrovirus": "<i>src</i> is the fourth gene of non-defective Rous sarcoma virus, 3&prime; of <i>env</i> and fully collinear &mdash; a single tblastn HSP covers residues 1&ndash;526 at 93&ndash;100% identity. It was never called in the deposited vocabulary; the literature probe turned it up. It is built from 5 unique sequences with a minimum cluster size of 3 rather than the default 5, and the identity floor is untouched."
+ },
+ "gaps": "SRC is called on a small minority of exemplars and that is correct biology, not a gap: <i>src</i> is present only in non-defective sarcoma viruses. Sweeping all 294 holdings with nine curated Swiss-Prot v-Src queries finds nine carriers scoring 937&ndash;1102 bits and nothing above 69 &mdash; a clean break, so the carrier set is bounded. SRC therefore does not take copy_num. Its profile is sound independently of its rate: it recalls 5 of 5 of its own collection, and the real caller annotated it on a held-out carrier at the expected position and length."
+}

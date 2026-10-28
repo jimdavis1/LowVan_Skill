@@ -1,0 +1,58 @@
+{
+ "Betaretrovirus.1.dna": {
+  "genome_ids": "11746.26.con.0001",
+  "genome_name": "Jaagsiekte sheep retrovirus JSRV"
+ },
+ "Betaretrovirus.10.dna": {
+  "genome_ids": "3386024.3.con.0001",
+  "genome_name": "Marsupial endogenous betaretrovirus 1"
+ },
+ "Betaretrovirus.11.dna": {
+  "genome_ids": "3386025.3.con.0001",
+  "genome_name": "Marsupial endogenous betaretrovirus 2"
+ },
+ "Betaretrovirus.12.dna": {
+  "genome_ids": "3386026.3.con.0001",
+  "genome_name": "Marsupial endogenous betaretrovirus 3"
+ },
+ "Betaretrovirus.13.dna": {
+  "genome_ids": "3386027.3.con.0001",
+  "genome_name": "Marsupial endogenous betaretrovirus 4"
+ },
+ "Betaretrovirus.14.dna": {
+  "genome_ids": "3386028.3.con.0001",
+  "genome_name": "Marsupial endogenous betaretrovirus 5"
+ },
+ "Betaretrovirus.2.dna": {
+  "genome_ids": "11855.23.con.0001",
+  "genome_name": "Mason-Pfizer monkey virus"
+ },
+ "Betaretrovirus.3.dna": {
+  "genome_ids": "1622024.12.con.0001",
+  "genome_name": "Desmodus rotundus endogenous retrovirus 824"
+ },
+ "Betaretrovirus.4.dna": {
+  "genome_ids": "1822365.8.con.0001",
+  "genome_name": "Bovine retrovirus CH15 47417"
+ },
+ "Betaretrovirus.5.dna": {
+  "genome_ids": "11757.181.con.0001",
+  "genome_name": "Mouse mammary tumor virus"
+ },
+ "Betaretrovirus.6.dna": {
+  "genome_ids": "11856.6.con.0001",
+  "genome_name": "Squirrel monkey retrovirus"
+ },
+ "Betaretrovirus.7.dna": {
+  "genome_ids": "2926349.10.con.0001",
+  "genome_name": "Cervid endogenous betaretrovirus 1 NSW48"
+ },
+ "Betaretrovirus.8.dna": {
+  "genome_ids": "2594425.3.con.0001",
+  "genome_name": "Black Syrian hamster retrovirus BSHRV/2013/HUN"
+ },
+ "Betaretrovirus.9.dna": {
+  "genome_ids": "2821277.3.con.0001",
+  "genome_name": "Prosimian retrovirus 1"
+ }
+}

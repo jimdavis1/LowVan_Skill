@@ -1,0 +1,7 @@
+{
+ "standfirst": "<b>Spumaretrovirinae</b> is a subfamily rather than a genus, holding five foamy virus genera together. It is the most feature-rich of the four retroviral modules: the structural trio plus two <i>bel</i> regulators, plus <b>Bet</b>, a spliced protein the deposited vocabulary names but no profile can represent.",
+ "modules": {
+  "Spumaretrovirinae": "<b>Bet</b> is Bel-1 (Tas) residues 1&ndash;88 spliced to the last 396 residues of Bel-2 &mdash; one intron in the coding sequence, which is what brings it within reach of the splice caller. Its 30 deposits sat unmodelled because a protein assembled from two genes is not collinear with any genomic ORF, so a profile built from it would be trained to find something the genome does not contain."
+ },
+ "gaps": "BET's rate is bounded by reference coverage, and every gap in it is accounted for. Bovispumavirus and Equispumavirus have no reference because neither has a genuine Bet deposit &mdash; the curated bovine records map contiguously onto the called BEL2 at 97.9% identity, so they are Bel-2. Taxon 11963 contributes none of its nineteen genomes because eighteen have zero tblastn hits against a 482 aa Bet: they are 10.0&ndash;12.5 kb <i>gag-pol-env</i> deposits carrying no <i>bel</i> region at all. The remaining misses are genomes that fail to call TAS or BEL2, and Bet needs both of its parent exons. TAS and BEL2 themselves have a residual recall gap that is NOT a cutoff problem &mdash; the regions score 197&ndash;578 bits against cutoffs of 19 and 50 &mdash; and remains open."
+}

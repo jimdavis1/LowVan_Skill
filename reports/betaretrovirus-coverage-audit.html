@@ -1,0 +1,174 @@
+<title>Betaretrovirus — mouse mammary tumour and type B/D viruses Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan module audit &middot; 27 October 2026</div><h1>Betaretrovirus — mouse mammary tumour and type B/D viruses</h1><h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">mouse mammary tumour virus and the type B/D retroviruses</h2><p class="stand"><b>Betaretrovirus</b> carries the only separate protease ORF in the family. Where the other three modules fold protease into <i>pol</i>, here <i>pro</i> is its own reading frame between <i>gag</i> and <i>pol</i>, deposited 94 times. The module also carries <b>Rem</b>, an RNA export protein the deposited vocabulary never names once.</p><div class="tiles"><div class="tile"><div class="v">5</div><div class="l">features declared</div></div><div class="tile"><div class="v">53</div><div class="l">coverage exemplars</div></div><div class="tile"><div class="v">145</div><div class="l">genomes in holdings</div></div><div class="tile"><div class="v">94.8%</div><div class="l">vocabulary bound by rule</div></div><div class="tile"><div class="v">31 → 4</div><div class="l">annotation strings collapse</div></div></div></header><section><h2><span class="num">01</span>What the module calls</h2><p class="lede">Four profiled features plus a spliced regulator with no deposited vocabulary at all.</p><p class="note"><i>pro</i> is declared on evidence, not convention: testing the module's own naming rules before the generic subunit rule is what kept its 94 deposits together. Treating &ldquo;protease&rdquo; as a <i>pol</i> cleavage product &mdash; which it is in the other three modules &mdash; would have cut the collection to a quarter of its evidence. <b>REM</b> is called by <code>get_splice_variant_features.pl</code> from references whose coding sequence crosses one intron; it never takes copy_num.</p><div class="scroll"><table><thead><tr><th>feature</th><th>product</th><th>called</th><th>rate</th><th>copy_num</th><th>caller</th></tr></thead><tbody><tr><td>ENV</td><td>Envelope glycoprotein</td><td>26 / 52</td><td>50.0%</td><td>—</td><td>PSSM</td></tr><tr><td>GAG</td><td>Gag polyprotein</td><td>48 / 52</td><td>92.3%</td><td>yes</td><td>PSSM</td></tr><tr><td>POL</td><td>Pol polyprotein</td><td>47 / 52</td><td>90.4%</td><td>yes</td><td>PSSM</td></tr><tr><td>PRO</td><td>Protease</td><td>49 / 52</td><td>94.2%</td><td>yes</td><td>PSSM</td></tr><tr><td>REM</td><td>RNA export protein Rem</td><td>3 / 52</td><td>5.8%</td><td>—</td><td>splice</td></tr></tbody></table></div><div class="bars"><div class="bar"><div class="bl">ENV</div><div class="bt"><i style="width:50.00%"></i></div><div class="bv">50.0%</div><div class="bn">26 of 52</div></div><div class="bar"><div class="bl">GAG</div><div class="bt"><i style="width:92.30%"></i></div><div class="bv">92.3%</div><div class="bn">48 of 52</div></div><div class="bar"><div class="bl">POL</div><div class="bt"><i style="width:90.40%"></i></div><div class="bv">90.4%</div><div class="bn">47 of 52</div></div><div class="bar"><div class="bl">PRO</div><div class="bt"><i style="width:94.20%"></i></div><div class="bv">94.2%</div><div class="bn">49 of 52</div></div><div class="bar"><div class="bl">REM</div><div class="bt"><i style="width:5.80%"></i></div><div class="bv">5.8%</div><div class="bn">3 of 52</div></div></div></section><section><h2><span class="num">02</span>Where it does not call, and why</h2><p class="lede"></p><p class="note">REM's overall rate is low and the denominator is the reason. Rem exists in the MMTV clade and nowhere else in the genus, and it fires in every MMTV-group genome of the held-out panel &mdash; 100% inside the clade. Its overlap with ENV is real MMTV architecture, since <i>rem</i> shares the envelope signal-peptide exon, and is declared expected rather than suppressed. REM is also the clearest case in this family of a feature the strings could never have found: zero deposits anywhere in the genus name it.</p></section><section><h2><span class="num">03</span>Vocabulary</h2><p class="lede">31 annotation strings collapse onto 4 targets.</p><div class="scroll"><table><thead><tr><th>target</th><th>product</th><th>strings</th><th>features</th></tr></thead><tbody><tr><td>GAG</td><td>Gag polyprotein</td><td>9</td><td>125</td></tr><tr><td>PRO</td><td>Protease</td><td>7</td><td>94</td></tr><tr><td>ENV</td><td>Envelope glycoprotein</td><td>9</td><td>94</td></tr><tr><td>POL</td><td>Pol polyprotein</td><td>6</td><td>92</td></tr></tbody></table></div><p class="note">94.8% of the 574 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on.</p></section><section><h2><span class="num">04</span>Vocabulary saturation</h2><p class="lede">How fast each vocabulary stops growing as genomes are added.</p><figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to 75 over 184 proteins; the controlled vocabulary flattens at 4.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="267.5" x2="648" y2="267.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="106.5" x2="648" y2="106.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="271.5" text-anchor="end" class="tick">20</text><text x="47" y="191.0" text-anchor="end" class="tick">40</text><text x="47" y="110.5" text-anchor="end" class="tick">60</text><text x="47" y="30.0" text-anchor="end" class="tick">80</text><text x="58.0" y="369" text-anchor="middle" class="tick">0</text><text x="205.5" y="369" text-anchor="middle" class="tick">50</text><text x="353.0" y="369" text-anchor="middle" class="tick">100</text><text x="500.5" y="369" text-anchor="middle" class="tick">150</text><text x="648.0" y="369" text-anchor="middle" class="tick">200</text>
+    <text class="axtitle" x="58" y="392">proteins sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <line x1="465.1" y1="26" x2="465.1" y2="348" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M58.0 348.00 L61.0 343.98 L63.9 339.99 L66.8 336.25 L69.8 332.42 L72.8 328.96 L75.7 325.66 L78.7 322.24 L81.6 319.06 L84.5 315.80 L87.5 312.70 L90.5 309.40 L93.4 306.30 L96.3 303.56 L99.3 300.99 L102.2 298.21 L105.2 295.27 L108.2 292.45 L111.1 289.68 L114.0 287.06 L117.0 284.53 L120.0 281.95 L122.9 279.57 L125.8 277.12 L128.8 274.95 L131.8 272.45 L134.7 270.20 L137.7 267.66 L140.6 265.25 L143.6 262.91 L146.5 260.70 L149.4 258.32 L152.4 256.27 L155.3 254.02 L158.3 251.88 L161.2 249.83 L164.2 247.62 L167.2 245.28 L170.1 243.11 L173.1 240.81 L176.0 238.72 L178.9 236.35 L181.9 234.54 L184.8 232.68 L187.8 230.95 L190.8 229.10 L193.7 226.73 L196.7 225.00 L199.6 223.18 L202.6 221.25 L205.5 219.44 L208.4 217.83 L211.4 215.94 L214.3 213.85 L217.3 211.96 L220.2 210.43 L223.2 208.49 L226.2 206.60 L229.1 204.95 L232.1 203.30 L235.0 201.13 L237.9 199.28 L240.9 197.59 L243.8 195.81 L246.8 194.08 L249.8 192.23 L252.7 190.62 L255.7 189.21 L258.6 187.68 L261.6 186.15 L264.5 184.34 L267.4 182.53 L270.4 181.08 L273.4 179.23 L276.3 177.74 L279.2 175.81 L282.2 174.44 L285.1 172.79 L288.1 171.30 L291.1 169.77 L294.0 168.28 L296.9 166.47 L299.9 164.46 L302.9 163.17 L305.8 161.84 L308.8 160.44 L311.7 158.91 L314.6 157.22 L317.6 155.40 L320.6 153.79 L323.5 152.18 L326.4 150.41 L329.4 149.25 L332.4 147.84 L335.3 146.43 L338.2 144.86 L341.2 143.41 L344.1 141.76 L347.1 139.99 L350.1 138.90 L353.0 137.53 L355.9 135.84 L358.9 134.19 L361.9 132.74 L364.8 131.25 L367.8 130.09 L370.7 128.96 L373.6 127.59 L376.6 126.06 L379.6 125.02 L382.5 123.53 L385.4 122.52 L388.4 121.03 L391.4 119.86 L394.3 118.82 L397.2 117.65 L400.2 116.24 L403.1 115.07 L406.1 113.79 L409.1 112.42 L412.0 111.05 L414.9 110.00 L417.9 108.79 L420.9 107.43 L423.8 106.10 L426.8 105.05 L429.7 104.21 L432.6 102.96 L435.6 101.67 L438.6 100.70 L441.5 99.54 L444.4 98.41 L447.4 97.20 L450.4 96.16 L453.3 94.79 L456.2 94.06 L459.2 92.57 L462.1 91.41 L465.1 90.44 L468.1 89.31 L471.0 88.11 L473.9 87.02 L476.9 85.85 L479.9 84.89 L482.8 83.84 L485.8 82.47 L488.7 81.38 L491.6 80.54 L494.6 79.73 L497.6 78.73 L500.5 77.92 L503.4 77.00 L506.4 75.83 L509.4 74.82 L512.3 73.86 L515.2 73.05 L518.2 72.05 L521.1 71.20 L524.1 70.15 L527.0 69.19 L530.0 68.30 L533.0 67.58 L535.9 66.53 L538.9 65.28 L541.8 64.72 L544.8 63.59 L547.7 62.55 L550.6 61.34 L553.6 60.57 L556.5 59.65 L559.5 58.44 L562.5 57.64 L565.4 56.91 L568.4 56.11 L571.3 55.30 L574.2 54.13 L577.2 53.21 L580.1 52.08 L583.1 50.87 L586.0 50.11 L589.0 49.34 L592.0 48.62 L594.9 47.86 L597.9 46.97 L600.8 46.12" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 348.00 L61.0 343.98 L63.9 341.36 L66.8 338.86 L69.8 337.21 L72.8 335.76 L75.7 334.52 L78.7 333.75 L81.6 333.43 L84.5 332.79 L87.5 332.46 L90.5 332.38 L93.4 332.22 L96.3 332.14 L99.3 332.10 L102.2 332.06 L105.2 332.02 L108.2 332.02 L111.1 331.98 L114.0 331.94 L117.0 331.94 L120.0 331.94 L122.9 331.94 L125.8 331.94 L128.8 331.94 L131.8 331.94 L134.7 331.90 L137.7 331.90 L140.6 331.90 L143.6 331.90 L146.5 331.90 L149.4 331.90 L152.4 331.90 L155.3 331.90 L158.3 331.90 L161.2 331.90 L164.2 331.90 L167.2 331.90 L170.1 331.90 L173.1 331.90 L176.0 331.90 L178.9 331.90 L181.9 331.90 L184.8 331.90 L187.8 331.90 L190.8 331.90 L193.7 331.90 L196.7 331.90 L199.6 331.90 L202.6 331.90 L205.5 331.90 L208.4 331.90 L211.4 331.90 L214.3 331.90 L217.3 331.90 L220.2 331.90 L223.2 331.90 L226.2 331.90 L229.1 331.90 L232.1 331.90 L235.0 331.90 L237.9 331.90 L240.9 331.90 L243.8 331.90 L246.8 331.90 L249.8 331.90 L252.7 331.90 L255.7 331.90 L258.6 331.90 L261.6 331.90 L264.5 331.90 L267.4 331.90 L270.4 331.90 L273.4 331.90 L276.3 331.90 L279.2 331.90 L282.2 331.90 L285.1 331.90 L288.1 331.90 L291.1 331.90 L294.0 331.90 L296.9 331.90 L299.9 331.90 L302.9 331.90 L305.8 331.90 L308.8 331.90 L311.7 331.90 L314.6 331.90 L317.6 331.90 L320.6 331.90 L323.5 331.90 L326.4 331.90 L329.4 331.90 L332.4 331.90 L335.3 331.90 L338.2 331.90 L341.2 331.90 L344.1 331.90 L347.1 331.90 L350.1 331.90 L353.0 331.90 L355.9 331.90 L358.9 331.90 L361.9 331.90 L364.8 331.90 L367.8 331.90 L370.7 331.90 L373.6 331.90 L376.6 331.90 L379.6 331.90 L382.5 331.90 L385.4 331.90 L388.4 331.90 L391.4 331.90 L394.3 331.90 L397.2 331.90 L400.2 331.90 L403.1 331.90 L406.1 331.90 L409.1 331.90 L412.0 331.90 L414.9 331.90 L417.9 331.90 L420.9 331.90 L423.8 331.90 L426.8 331.90 L429.7 331.90 L432.6 331.90 L435.6 331.90 L438.6 331.90 L441.5 331.90 L444.4 331.90 L447.4 331.90 L450.4 331.90 L453.3 331.90 L456.2 331.90 L459.2 331.90 L462.1 331.90 L465.1 331.90" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="600.8" cy="46.12" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="465.1" cy="331.90" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="610.8" y="45.12" fill="var(--src)">free text</text>
+    <text class="endsub" x="610.8" y="58.12">75 strings</text>
+    <text class="endlab" x="475.1" y="334.90" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="475.1" y="347.90">4 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of every
+  annotated protein in the 38 genomes both sources annotate: 184 source
+  product records and 138 module calls. Both curves start at zero. The dashed line
+  marks 138 proteins, the depth both curves reach, where the two are compared.</figcaption>
+ </figure><p class="note">The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 64.0 distinct source strings correspond to 4.0 controlled annotations, a 16.0-fold collapse. The module reaches 95% of its final vocabulary after 10 proteins against the source's 168.</p></section><section><h2><span class="num">05</span>Method</h2><p class="lede"></p><p class="note">Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 145 genomes reduce to 53 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 52 of 53 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used.</p></section><p class="src">Measured 27 October 2026 from the shipped module: the Betaretrovirus block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 53 exemplars de-replicated from 145 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences.</p></div>

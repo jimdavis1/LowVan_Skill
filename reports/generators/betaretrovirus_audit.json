@@ -1,0 +1,213 @@
+{
+ "title": "Betaretrovirus \u2014 mouse mammary tumour and type B/D viruses Coverage Audit",
+ "eyebrow": "LowVan module audit &middot; 27 October 2026",
+ "h1": "Betaretrovirus \u2014 mouse mammary tumour and type B/D viruses",
+ "subhead": "mouse mammary tumour virus and the type B/D retroviruses",
+ "standfirst": "<b>Betaretrovirus</b> carries the only separate protease ORF in the family. Where the other three modules fold protease into <i>pol</i>, here <i>pro</i> is its own reading frame between <i>gag</i> and <i>pol</i>, deposited 94 times. The module also carries <b>Rem</b>, an RNA export protein the deposited vocabulary never names once.",
+ "headline_tiles": [
+  [
+   "5",
+   "features declared"
+  ],
+  [
+   "53",
+   "coverage exemplars"
+  ],
+  [
+   "145",
+   "genomes in holdings"
+  ],
+  [
+   "94.8%",
+   "vocabulary bound by rule"
+  ],
+  [
+   "31 \u2192 4",
+   "annotation strings collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module calls",
+   "lede": "Four profiled features plus a spliced regulator with no deposited vocabulary at all.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<i>pro</i> is declared on evidence, not convention: testing the module's own naming rules before the generic subunit rule is what kept its 94 deposits together. Treating &ldquo;protease&rdquo; as a <i>pol</i> cleavage product &mdash; which it is in the other three modules &mdash; would have cut the collection to a quarter of its evidence. <b>REM</b> is called by <code>get_splice_variant_features.pl</code> from references whose coding sequence crosses one intron; it never takes copy_num."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "product",
+      "called",
+      "rate",
+      "copy_num",
+      "caller"
+     ],
+     "rows": [
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "26 / 52",
+       "50.0%",
+       "\u2014",
+       "PSSM"
+      ],
+      [
+       "GAG",
+       "Gag polyprotein",
+       "48 / 52",
+       "92.3%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "47 / 52",
+       "90.4%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "PRO",
+       "Protease",
+       "49 / 52",
+       "94.2%",
+       "yes",
+       "PSSM"
+      ],
+      [
+       "REM",
+       "RNA export protein Rem",
+       "3 / 52",
+       "5.8%",
+       "\u2014",
+       "splice"
+      ]
+     ]
+    },
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ENV",
+       "50.0",
+       50.0,
+       "26 of 52"
+      ],
+      [
+       "GAG",
+       "92.3",
+       92.3,
+       "48 of 52"
+      ],
+      [
+       "POL",
+       "90.4",
+       90.4,
+       "47 of 52"
+      ],
+      [
+       "PRO",
+       "94.2",
+       94.2,
+       "49 of 52"
+      ],
+      [
+       "REM",
+       "5.8",
+       5.8,
+       "3 of 52"
+      ]
+     ],
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "Where it does not call, and why",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "REM's overall rate is low and the denominator is the reason. Rem exists in the MMTV clade and nowhere else in the genus, and it fires in every MMTV-group genome of the held-out panel &mdash; 100% inside the clade. Its overlap with ENV is real MMTV architecture, since <i>rem</i> shares the envelope signal-peptide exon, and is declared expected rather than suppressed. REM is also the clearest case in this family of a feature the strings could never have found: zero deposits anywhere in the genus name it."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Vocabulary",
+   "lede": "31 annotation strings collapse onto 4 targets.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "target",
+      "product",
+      "strings",
+      "features"
+     ],
+     "rows": [
+      [
+       "GAG",
+       "Gag polyprotein",
+       "9",
+       "125"
+      ],
+      [
+       "PRO",
+       "Protease",
+       "7",
+       "94"
+      ],
+      [
+       "ENV",
+       "Envelope glycoprotein",
+       "9",
+       "94"
+      ],
+      [
+       "POL",
+       "Pol polyprotein",
+       "6",
+       "92"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "94.8% of the 574 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Vocabulary saturation",
+   "lede": "How fast each vocabulary stops growing as genomes are added.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/betaretrovirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 64.0 distinct source strings correspond to 4.0 controlled annotations, a 16.0-fold collapse. The module reaches 95% of its final vocabulary after 10 proteins against the source's 168."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Method",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 145 genomes reduce to 53 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 52 of 53 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used."
+    }
+   ]
+  }
+ ],
+ "source_note": "Measured 27 October 2026 from the shipped module: the Betaretrovirus block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 53 exemplars de-replicated from 145 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+}

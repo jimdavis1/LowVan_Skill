@@ -1,0 +1,105 @@
+{
+   "Alpharetrovirus" : {
+      "close_genomes" : {
+         "Alpharetrovirus.1.dna" : {
+            "genome_ids" : "11864.721.con.0001",
+            "genome_name" : "Avian leukosis virus ev21"
+         },
+         "Alpharetrovirus.2.dna" : {
+            "genome_ids" : "1806567.4.con.0001",
+            "genome_name" : "Avian leukosis and sarcoma virus Fu-J"
+         },
+         "Alpharetrovirus.3.dna" : {
+            "genome_ids" : "11886.15.con.0001",
+            "genome_name" : "Rous sarcoma virus"
+         },
+         "Alpharetrovirus.4.dna" : {
+            "genome_ids" : "11886.16.con.0001",
+            "genome_name" : "Rous sarcoma virus"
+         },
+         "Alpharetrovirus.5.dna" : {
+            "genome_ids" : "11961.72.con.0001",
+            "genome_name" : "Lymphoproliferative disease virus 12/AR/2009"
+         }
+      },
+      "features" : {
+         "ENV" : {
+            "PMID_claude_generated" : [
+               "6299578"
+            ],
+            "anno" : "Envelope glycoprotein",
+            "bit_cutoff" : 620,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "env",
+            "kmers" : 1,
+            "max_len" : 657,
+            "min_len" : 478,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "GAG" : {
+            "PMID_claude_generated" : [
+               "6299578"
+            ],
+            "anno" : "Gag polyprotein",
+            "bit_cutoff" : 930,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "gag",
+            "kmers" : 1,
+            "max_len" : 768,
+            "min_len" : 629,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "POL" : {
+            "PMID_claude_generated" : [
+               "6299578"
+            ],
+            "anno" : "Pol polyprotein",
+            "bit_cutoff" : 596,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "pol",
+            "kmers" : 1,
+            "max_len" : 962,
+            "min_len" : 799,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "SRC" : {
+            "PMID_claude_generated" : [
+               "6299578"
+            ],
+            "anno" : "Tyrosine-protein kinase transforming protein Src",
+            "bit_cutoff" : 923,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "src",
+            "kmers" : 1,
+            "max_len" : 567,
+            "min_len" : 493,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 10162,
+            "min_len" : 5737,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}
