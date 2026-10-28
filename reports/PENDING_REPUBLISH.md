@@ -128,3 +128,23 @@ What would unblock it, in increasing order of effort:
 3. Point this machine at a public resolver for that domain only.
 
 Do not retry publishing from here until one of those is true.
+
+
+## 28 October 2026, later — PUBLISHED
+
+The curator took this machine off the Argonne resolver. The per-artifact
+subdomain resolved immediately:
+
+```
+35757411-....frame.claudeusercontent.com -> 160.79.104.10
+```
+
+All 24 pages are live. The 4 HIV-1 pages were updated at their existing URLs
+(they had been stale since 19-22 October); the 20 retrovirus pages had never
+been published at all and are new artifacts. Every one is recorded in
+published.tsv, which until now held no lentivirus or retrovirus row despite
+16 lentivirus pages being live.
+
+Nothing here is blocked any more. If a future publish fails the same way,
+check the WILDCARD first -- the base record resolving says nothing about
+`*.frame.claudeusercontent.com`.
