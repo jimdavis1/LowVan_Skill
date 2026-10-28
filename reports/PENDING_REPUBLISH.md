@@ -1,4 +1,5 @@
-# 28 pages regenerated but NOT yet live (7 October 2026)
+# Pages regenerated but NOT yet live
+# first written 7 October 2026, re-checked 28 October 2026
 
 The 3D annotation fix (`RNA-directed RNA polymerase 3D` ->
 `RNA-dependent RNA polymerase`) is complete in the repo, the runtime and S1
@@ -87,3 +88,43 @@ originally built:
 
 Re-render them from their own working trees; the module JSONs are already
 correct.
+
+
+## 28 October 2026 — re-checked, still blocked, but the shape has changed
+
+24 pages are ready: the 20 retrovirus pages (Alpha, Beta, Gamma, Spuma,
+Delta — four each) and the 4 HIV-1 pages, all lint clean, all committed
+through 8b109516. 20 of them have never been published at all; the 4 HIV-1
+pages are live but stale since 19–22 October.
+
+The sinkhole CNAME is gone. The base domain now resolves to Anthropic:
+
+```
+frame.claudeusercontent.com  ->  160.79.104.10
+```
+
+What fails is the PER-ARTIFACT subdomain, which is what the tool actually
+fetches:
+
+```
+35757411-680e-43e1-a50d-7fb9288c94ed.frame.claudeusercontent.com
+  ** server can't find ... : NXDOMAIN     (resolver 146.137.64.3, ANL)
+```
+
+So this is no longer a honeypot redirect; the ANL resolver returns NXDOMAIN
+for the wildcard `*.frame.claudeusercontent.com`. The base record was
+un-sinkholed and the wildcard was not. One read was attempted, it failed
+that way, and NOTHING WAS RETRIED — a failed publish registers in the ANL
+security logs as a suspected malware callback, and retrying turns one log
+line into a pattern.
+
+What would unblock it, in increasing order of effort:
+
+1. Ask ANL networking to allow `*.frame.claudeusercontent.com`, naming the
+   base record 160.79.104.10 that is already permitted. This is a wildcard
+   gap, not a reputation decision, so it may simply be an oversight.
+2. Publish from a machine off the ANL resolver (tether, home network). The
+   repo is the source of truth and `reports/*.html` is self-contained.
+3. Point this machine at a public resolver for that domain only.
+
+Do not retry publishing from here until one of those is true.
