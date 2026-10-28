@@ -1,0 +1,174 @@
+<title>Deltaretrovirus — human and simian T-lymphotropic viruses and bovine leukaemia virus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan module audit &middot; 27 October 2026</div><h1>Deltaretrovirus — human and simian T-lymphotropic viruses and bovine leukaemia virus</h1><h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">human and simian T-lymphotropic viruses and bovine leukaemia virus</h2><p class="stand"><b>Deltaretrovirus</b> holds two lineages in one module: the primate T-lymphotropic viruses, 678 genomes, and bovine leukaemia virus, 473. They are together because the project's partitioning rule says they should be, and all three of its clauses were measured rather than assumed &mdash; same <i>gag-pro-pol-env</i> layout plus <i>tax</i> and <i>rex</i>, peripheral proteins that return no blastp hit across the lineages at e&le;1e-3, and one shared splice mechanism claimed under no competing key.</p><div class="tiles"><div class="tile"><div class="v">13</div><div class="l">features declared</div></div><div class="tile"><div class="v">34</div><div class="l">coverage exemplars</div></div><div class="tile"><div class="v">1151</div><div class="l">genomes in holdings</div></div><div class="tile"><div class="v">98.4%</div><div class="l">vocabulary bound by rule</div></div><div class="tile"><div class="v">69 → 13</div><div class="l">annotation strings collapse</div></div></div></header><section><h2><span class="num">01</span>What the module calls</h2><p class="lede">Ten profiled features and three spliced ones, over two lineages that share a layout and no accessory proteins.</p><p class="note"><b>TAX</b> takes a profile and is <i>not</i> a spliced feature, which corrects the planning for this module. Its first coding exon is 4 nt &mdash; the initiator methionine and one base &mdash; so about 99.7% of the protein sits in one genomic block and the collinearity triage calls it collinear on 851 deposits. <b>REX</b> is the opposite: a ~60 nt first exon is roughly 12% of a ~170 aa protein, which is what drops it below the collinearity floor. Rex is also not one protein across the module &mdash; 156 aa in bovine leukaemia virus, 189 in PTLV-1, 182 in PTLV-3, 170 in HTLV-2 and HTLV-4 &mdash; so it is built from one query per lineage and then de-duplicated to one reference per genome.</p><div class="scroll"><table><thead><tr><th>feature</th><th>product</th><th>called</th><th>rate</th><th>copy_num</th><th>caller</th></tr></thead><tbody><tr><td>AS1</td><td>Antisense protein AS1</td><td>6 / 33</td><td>18.2%</td><td>—</td><td>PSSM</td></tr><tr><td>ENV</td><td>Envelope glycoprotein</td><td>31 / 33</td><td>93.9%</td><td>yes</td><td>PSSM</td></tr><tr><td>G4</td><td>Accessory protein G4</td><td>5 / 33</td><td>15.2%</td><td>—</td><td>splice</td></tr><tr><td>GAG</td><td>Gag polyprotein</td><td>30 / 33</td><td>90.9%</td><td>yes</td><td>PSSM</td></tr><tr><td>HBZ</td><td>Basic leucine zipper factor HBZ</td><td>8 / 33</td><td>24.2%</td><td>—</td><td>PSSM</td></tr><tr><td>P12</td><td>Accessory protein p12</td><td>7 / 33</td><td>21.2%</td><td>—</td><td>PSSM</td></tr><tr><td>P13</td><td>Accessory protein p13</td><td>10 / 33</td><td>30.3%</td><td>—</td><td>PSSM</td></tr><tr><td>P30</td><td>Accessory protein p30</td><td>9 / 33</td><td>27.3%</td><td>—</td><td>PSSM</td></tr><tr><td>POL</td><td>Pol polyprotein</td><td>25 / 33</td><td>75.8%</td><td>yes</td><td>PSSM</td></tr><tr><td>PRO</td><td>Protease</td><td>30 / 33</td><td>90.9%</td><td>yes</td><td>PSSM</td></tr><tr><td>R3</td><td>Accessory protein R3</td><td>5 / 33</td><td>15.2%</td><td>—</td><td>splice</td></tr><tr><td>REX</td><td>RNA export protein Rex</td><td>28 / 33</td><td>84.8%</td><td>—</td><td>splice</td></tr><tr><td>TAX</td><td>Transactivator protein Tax</td><td>33 / 33</td><td>100.0%</td><td>yes</td><td>PSSM</td></tr></tbody></table></div><div class="bars"><div class="bar"><div class="bl">AS1</div><div class="bt"><i style="width:18.20%"></i></div><div class="bv">18.2%</div><div class="bn">6 of 33</div></div><div class="bar"><div class="bl">ENV</div><div class="bt"><i style="width:93.90%"></i></div><div class="bv">93.9%</div><div class="bn">31 of 33</div></div><div class="bar"><div class="bl">G4</div><div class="bt"><i style="width:15.20%"></i></div><div class="bv">15.2%</div><div class="bn">5 of 33</div></div><div class="bar"><div class="bl">GAG</div><div class="bt"><i style="width:90.90%"></i></div><div class="bv">90.9%</div><div class="bn">30 of 33</div></div><div class="bar"><div class="bl">HBZ</div><div class="bt"><i style="width:24.20%"></i></div><div class="bv">24.2%</div><div class="bn">8 of 33</div></div><div class="bar"><div class="bl">P12</div><div class="bt"><i style="width:21.20%"></i></div><div class="bv">21.2%</div><div class="bn">7 of 33</div></div><div class="bar"><div class="bl">P13</div><div class="bt"><i style="width:30.30%"></i></div><div class="bv">30.3%</div><div class="bn">10 of 33</div></div><div class="bar"><div class="bl">P30</div><div class="bt"><i style="width:27.30%"></i></div><div class="bv">27.3%</div><div class="bn">9 of 33</div></div><div class="bar"><div class="bl">POL</div><div class="bt"><i style="width:75.80%"></i></div><div class="bv">75.8%</div><div class="bn">25 of 33</div></div><div class="bar"><div class="bl">PRO</div><div class="bt"><i style="width:90.90%"></i></div><div class="bv">90.9%</div><div class="bn">30 of 33</div></div><div class="bar"><div class="bl">R3</div><div class="bt"><i style="width:15.20%"></i></div><div class="bv">15.2%</div><div class="bn">5 of 33</div></div><div class="bar"><div class="bl">REX</div><div class="bt"><i style="width:84.80%"></i></div><div class="bv">84.8%</div><div class="bn">28 of 33</div></div><div class="bar"><div class="bl">TAX</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">33 of 33</div></div></div></section><section><h2><span class="num">02</span>Where it does not call, and why</h2><p class="lede"></p><p class="note">The lineage-specific accessories call on 15&ndash;30% of exemplars and that is the denominator, not a gap: AS1, G4 and R3 exist only in bovine leukaemia virus and HBZ, p12, p13 and p30 only in the primate lineage, so each can fire on at most its own half of the exemplar set. Three things are genuinely open. <b>Rex references cover the two lineages unevenly</b> &mdash; 466 over 473 bovine genomes against 123 over 678 primate ones &mdash; because a 20-residue first exon is below what tblastn will report for a query 85% identical to the subject, and a genome with no near reference can be miscalled: HTLV-1 11908.2880 has its <i>rex</i> spliced from inside <i>gag</i>. The single bat deltaretrovirus genome builds no Rex reference at all. And <b>p13 is 100% identical to residues 155&ndash;241 of p30</b> in all seven collection members, so the two cannot be separated by profile alone; 8 of 10 p13 calls are nonetheless the correct 87 aa.</p><p class="note"><b>GAG, POL and ENV</b> carry copy_num on biology, not on their rates: every replication-competent retrovirus encodes <i>gag</i>, <i>pol</i> and <i>env</i>, so a genome without one is defective and is flagged as missing an essential feature. That flag is true rather than false only if the genomes it lands on really lack the gene, so each of the 3 exemplars without an ENV call was searched by tblastn against the full ENV collection (a called genome, 11901.1718, scores 1046 bits over 100% of an envelope protein). <b>3 of 3</b> carry no intact <i>env</i>: 3 have one interrupted by stop codons or frameshifts.</p></section><section><h2><span class="num">03</span>Vocabulary</h2><p class="lede">69 annotation strings collapse onto 13 targets.</p><div class="scroll"><table><thead><tr><th>target</th><th>product</th><th>strings</th><th>features</th></tr></thead><tbody><tr><td>ENV</td><td>Envelope glycoprotein</td><td>14</td><td>1073</td></tr><tr><td>GAG</td><td>Gag polyprotein</td><td>8</td><td>1020</td></tr><tr><td>TAX</td><td>Transactivator protein Tax</td><td>8</td><td>869</td></tr><tr><td>REX</td><td>RNA export protein Rex</td><td>8</td><td>657</td></tr><tr><td>G4</td><td>Accessory protein G4</td><td>2</td><td>452</td></tr><tr><td>POL</td><td>Pol polyprotein</td><td>7</td><td>433</td></tr><tr><td>P30</td><td>Accessory protein p30</td><td>3</td><td>411</td></tr><tr><td>HBZ</td><td>Basic leucine zipper factor HBZ</td><td>5</td><td>378</td></tr><tr><td>AS1</td><td>Antisense protein AS1</td><td>1</td><td>369</td></tr><tr><td>PRO</td><td>Protease</td><td>6</td><td>227</td></tr><tr><td>R3</td><td>Accessory protein R3</td><td>1</td><td>195</td></tr><tr><td>P13</td><td>Accessory protein p13</td><td>3</td><td>71</td></tr><tr><td>P12</td><td>Accessory protein p12</td><td>3</td><td>67</td></tr></tbody></table></div><p class="note">98.4% of the 8153 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on.</p></section><section><h2><span class="num">04</span>Vocabulary saturation</h2><p class="lede">How fast each vocabulary stops growing as genomes are added.</p><figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to 60 over 189 proteins; the controlled vocabulary flattens at 13.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="267.5" x2="648" y2="267.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="106.5" x2="648" y2="106.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="271.5" text-anchor="end" class="tick">20</text><text x="47" y="191.0" text-anchor="end" class="tick">40</text><text x="47" y="110.5" text-anchor="end" class="tick">60</text><text x="47" y="30.0" text-anchor="end" class="tick">80</text><text x="58.0" y="369" text-anchor="middle" class="tick">0</text><text x="204.3" y="369" text-anchor="middle" class="tick">62</text><text x="353.0" y="369" text-anchor="middle" class="tick">125</text><text x="501.7" y="369" text-anchor="middle" class="tick">188</text><text x="648.0" y="369" text-anchor="middle" class="tick">250</text>
+    <text class="axtitle" x="58" y="392">proteins sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <line x1="504.0" y1="26" x2="504.0" y2="348" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M58.0 348.00 L60.4 343.98 L62.7 340.03 L65.1 336.37 L67.4 332.66 L69.8 329.16 L72.2 325.54 L74.5 322.20 L76.9 318.94 L79.2 316.00 L81.6 312.66 L84.0 309.44 L86.3 306.50 L88.7 303.36 L91.0 300.38 L93.4 297.37 L95.8 294.55 L98.1 291.69 L100.5 289.68 L102.8 286.86 L105.2 284.16 L107.6 281.59 L109.9 279.25 L112.3 276.96 L114.6 275.11 L117.0 272.77 L119.4 270.72 L121.7 268.26 L124.1 266.53 L126.4 264.44 L128.8 262.31 L131.2 260.17 L133.5 257.92 L135.9 255.71 L138.2 253.57 L140.6 251.52 L143.0 249.47 L145.3 247.50 L147.7 246.05 L150.0 243.91 L152.4 242.46 L154.8 240.94 L157.1 238.96 L159.5 237.31 L161.8 235.78 L164.2 233.65 L166.6 232.16 L168.9 230.63 L171.3 228.90 L173.6 227.05 L176.0 225.88 L178.4 224.47 L180.7 222.86 L183.1 221.41 L185.4 219.96 L187.8 218.48 L190.2 216.66 L192.5 215.38 L194.9 214.01 L197.2 212.72 L199.6 211.39 L202.0 210.26 L204.3 209.14 L206.7 207.65 L209.0 206.44 L211.4 205.31 L213.8 203.78 L216.1 202.50 L218.5 201.01 L220.8 199.84 L223.2 198.31 L225.6 197.26 L227.9 196.02 L230.3 194.61 L232.6 193.44 L235.0 192.31 L237.4 190.98 L239.7 190.38 L242.1 189.21 L244.4 187.64 L246.8 186.76 L249.2 185.75 L251.5 184.67 L253.9 183.30 L256.2 182.29 L258.6 181.08 L261.0 179.92 L263.3 178.87 L265.7 178.02 L268.0 176.94 L270.4 175.85 L272.8 174.72 L275.1 173.36 L277.5 172.59 L279.8 171.50 L282.2 170.54 L284.6 169.57 L286.9 168.49 L289.3 167.72 L291.6 166.47 L294.0 165.39 L296.4 164.50 L298.7 163.49 L301.1 162.49 L303.4 161.92 L305.8 160.88 L308.2 160.03 L310.5 159.19 L312.9 158.54 L315.2 157.78 L317.6 156.85 L320.0 156.05 L322.3 155.44 L324.7 154.60 L327.0 153.91 L329.4 153.11 L331.8 152.10 L334.1 151.54 L336.5 150.82 L338.8 149.89 L341.2 149.00 L343.6 148.00 L345.9 147.31 L348.3 146.15 L350.6 145.02 L353.0 144.54 L355.4 143.77 L357.7 142.93 L360.1 142.04 L362.4 141.36 L364.8 140.83 L367.2 139.83 L369.5 139.22 L371.9 138.30 L374.2 137.69 L376.6 136.73 L379.0 136.20 L381.3 135.72 L383.7 135.04 L386.0 134.55 L388.4 134.03 L390.8 133.47 L393.1 132.98 L395.5 132.38 L397.8 131.58 L400.2 130.97 L402.6 130.33 L404.9 129.76 L407.3 129.08 L409.6 128.28 L412.0 127.55 L414.4 126.67 L416.7 126.22 L419.1 125.78 L421.4 125.10 L423.8 124.53 L426.2 123.97 L428.5 123.32 L430.9 122.60 L433.2 122.24 L435.6 121.43 L438.0 120.75 L440.3 120.31 L442.7 119.70 L445.0 119.02 L447.4 118.33 L449.8 117.77 L452.1 117.33 L454.5 116.76 L456.8 116.20 L459.2 115.60 L461.6 114.99 L463.9 114.51 L466.3 113.99 L468.6 113.66 L471.0 113.38 L473.4 112.78 L475.7 112.50 L478.1 112.13 L480.4 111.53 L482.8 111.17 L485.2 110.69 L487.5 110.24 L489.9 109.72 L492.2 109.16 L494.6 108.47 L497.0 107.87 L499.3 107.51 L501.7 107.02 L504.0 106.50" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 348.00 L60.4 343.98 L62.7 340.55 L65.1 337.54 L67.4 334.72 L69.8 331.78 L72.2 329.65 L74.5 327.43 L76.9 325.58 L79.2 323.89 L81.6 322.28 L84.0 320.87 L86.3 319.46 L88.7 318.09 L91.0 317.21 L93.4 316.12 L95.8 315.28 L98.1 314.15 L100.5 313.55 L102.8 312.90 L105.2 312.10 L107.6 311.77 L109.9 311.17 L112.3 310.41 L114.6 310.04 L117.0 309.64 L119.4 308.84 L121.7 308.51 L124.1 307.83 L126.4 307.43 L128.8 307.07 L131.2 306.46 L133.5 306.18 L135.9 305.98 L138.2 305.58 L140.6 305.29 L143.0 304.93 L145.3 304.61 L147.7 304.21 L150.0 303.85 L152.4 303.44 L154.8 303.00 L157.1 302.76 L159.5 302.52 L161.8 302.32 L164.2 302.03 L166.6 301.75 L168.9 301.59 L171.3 301.43 L173.6 301.31 L176.0 301.23 L178.4 300.95 L180.7 300.79 L183.1 300.67 L185.4 300.59 L187.8 300.34 L190.2 300.22 L192.5 300.18 L194.9 300.02 L197.2 299.86 L199.6 299.74 L202.0 299.54 L204.3 299.42 L206.7 299.22 L209.0 299.06 L211.4 298.94 L213.8 298.81 L216.1 298.69 L218.5 298.69 L220.8 298.69 L223.2 298.49 L225.6 298.45 L227.9 298.41 L230.3 298.37 L232.6 298.17 L235.0 298.17 L237.4 298.13 L239.7 298.09 L242.1 298.01 L244.4 297.97 L246.8 297.89 L249.2 297.77 L251.5 297.73 L253.9 297.61 L256.2 297.53 L258.6 297.45 L261.0 297.45 L263.3 297.41 L265.7 297.41 L268.0 297.37 L270.4 297.33 L272.8 297.24 L275.1 297.20 L277.5 297.04 L279.8 296.96 L282.2 296.96 L284.6 296.92 L286.9 296.88 L289.3 296.80 L291.6 296.76 L294.0 296.68 L296.4 296.64 L298.7 296.64 L301.1 296.60 L303.4 296.56 L305.8 296.48 L308.2 296.44 L310.5 296.44 L312.9 296.44 L315.2 296.40 L317.6 296.40 L320.0 296.40 L322.3 296.40 L324.7 296.40 L327.0 296.40 L329.4 296.32 L331.8 296.32 L334.1 296.32 L336.5 296.28 L338.8 296.28 L341.2 296.24 L343.6 296.24 L345.9 296.24 L348.3 296.20 L350.6 296.16 L353.0 296.08 L355.4 296.08 L357.7 296.04 L360.1 296.00 L362.4 296.00 L364.8 295.96 L367.2 295.96 L369.5 295.96 L371.9 295.96 L374.2 295.92 L376.6 295.92 L379.0 295.92 L381.3 295.88 L383.7 295.88 L386.0 295.84 L388.4 295.84 L390.8 295.80 L393.1 295.80 L395.5 295.80 L397.8 295.80 L400.2 295.76 L402.6 295.72 L404.9 295.68 L407.3 295.68 L409.6 295.68 L412.0 295.68 L414.4 295.68 L416.7 295.68 L419.1 295.68 L421.4 295.68 L423.8 295.68 L426.2 295.68 L428.5 295.68 L430.9 295.68 L433.2 295.68 L435.6 295.68 L438.0 295.68 L440.3 295.68 L442.7 295.68 L445.0 295.68 L447.4 295.68 L449.8 295.68 L452.1 295.68 L454.5 295.68 L456.8 295.68 L459.2 295.68 L461.6 295.68 L463.9 295.68 L466.3 295.68 L468.6 295.68 L471.0 295.68 L473.4 295.68 L475.7 295.68 L478.1 295.68 L480.4 295.68 L482.8 295.68 L485.2 295.68 L487.5 295.68 L489.9 295.68 L492.2 295.68 L494.6 295.68 L497.0 295.68 L499.3 295.68 L501.7 295.68 L504.0 295.68 L506.4 295.68 L508.8 295.68 L511.1 295.68 L513.5 295.68 L515.8 295.68 L518.2 295.68 L520.6 295.68 L522.9 295.68 L525.3 295.68 L527.6 295.68 L530.0 295.68 L532.4 295.68 L534.7 295.68 L537.1 295.68 L539.4 295.68 L541.8 295.68 L544.2 295.68 L546.5 295.68 L548.9 295.68 L551.2 295.68 L553.6 295.68 L556.0 295.68 L558.3 295.68 L560.7 295.68 L563.0 295.68 L565.4 295.68 L567.8 295.68 L570.1 295.68 L572.5 295.68 L574.8 295.68" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="504.0" cy="106.50" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="574.8" cy="295.68" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="514.0" y="105.50" fill="var(--src)">free text</text>
+    <text class="endsub" x="514.0" y="118.50">60 strings</text>
+    <text class="endlab" x="584.8" y="298.68" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="584.8" y="311.68">13 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of every
+  annotated protein in the 32 genomes both sources annotate: 189 source
+  product records and 219 module calls. Both curves start at zero. The dashed line
+  marks 189 proteins, the depth both curves reach, where the two are compared.</figcaption>
+ </figure><p class="note">The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 60.0 distinct source strings correspond to 13.0 controlled annotations, a 4.6-fold collapse. The module reaches 95% of its final vocabulary after 74 proteins against the source's 165.</p></section><section><h2><span class="num">05</span>Method</h2><p class="lede"></p><p class="note">Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 1151 genomes reduce to 34 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 33 of 34 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used.</p></section><p class="src">Measured 27 October 2026 from the shipped module: the Deltaretrovirus block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 34 exemplars de-replicated from 1151 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences.</p></div>
