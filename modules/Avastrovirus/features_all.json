@@ -1,0 +1,57 @@
+{
+ "ORF1A": {
+  "anno": "Nonstructural polyprotein nsP1a",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "ORF1a",
+  "bit_cutoff": 349,
+  "PMID_claude_generated": [
+   "11799197",
+   "14557623"
+  ]
+ },
+ "ORF1B": {
+  "anno": "RNA-dependent RNA polymerase",
+  "params": {},
+  "feature_type": "mat_peptide",
+  "upstream_ext": 0,
+  "downstream_ext": 1,
+  "gene_symbol": "RDRP",
+  "kmers": 0,
+  "bit_cutoff": 329,
+  "PMID_claude_generated": [
+   "14557623"
+  ],
+  "copy_num": 1
+ },
+ "ORF2": {
+  "anno": "Capsid polyprotein VP90",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "ORF2",
+  "bit_cutoff": 201,
+  "PMID_claude_generated": [
+   "40505338"
+  ],
+  "copy_num": 1
+ },
+ "ORF1AB": {
+  "anno": "Nonstructural polyprotein nsP1ab",
+  "params": {},
+  "feature_type": "CDS",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "gene_symbol": "ORF1ab",
+  "special": "transcript_edit",
+  "translate": 1,
+  "comment": "Reached by a -1 ribosomal frameshift at the ORF1a/ORF1b overlap, so it is not collinear with the genome and carries no PSSM. Called from a nucleotide reference set by get_transcript_edited_features.pl. Only 24 avastrovirus genomes deposit nsp1ab, so 127 of the 141 references are built from the deposited nsp1a and ORF1b of the same genome instead.",
+  "PMID_claude_generated": [
+   "11799197",
+   "14557623"
+  ]
+ }
+}

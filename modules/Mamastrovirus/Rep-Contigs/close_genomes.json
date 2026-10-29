@@ -1,0 +1,102 @@
+{
+ "Mamastrovirus.1.dna": {
+  "genome_ids": "1239565.627.con.0001",
+  "genome_name": "Mamastrovirus 1 AstV/CHN/XJ/env/2018/ks8-ctg1"
+ },
+ "Mamastrovirus.10.dna": {
+  "genome_ids": "2933226.3.con.0001",
+  "genome_name": "Sichuan mamastrovirus 8 s68-796037"
+ },
+ "Mamastrovirus.11.dna": {
+  "genome_ids": "35740.46.con.0001",
+  "genome_name": "Human astrovirus 3 Rus-Nsc04-H355"
+ },
+ "Mamastrovirus.12.dna": {
+  "genome_ids": "1239577.17.con.0001",
+  "genome_name": "Mamastrovirus 13 MOxAstV-CH18"
+ },
+ "Mamastrovirus.13.dna": {
+  "genome_ids": "1435485.346.con.0001",
+  "genome_name": "Bovine astrovirus BoAstV18/2021/CHN"
+ },
+ "Mamastrovirus.14.dna": {
+  "genome_ids": "1570321.3.con.0001",
+  "genome_name": "Human astrovirus UK1"
+ },
+ "Mamastrovirus.15.dna": {
+  "genome_ids": "1914442.78.con.0001",
+  "genome_name": "Rodent astrovirus CHN/148"
+ },
+ "Mamastrovirus.16.dna": {
+  "genome_ids": "37130.12.con.0001",
+  "genome_name": "Human astrovirus 6 Katano"
+ },
+ "Mamastrovirus.17.dna": {
+  "genome_ids": "1239567.163.con.0001",
+  "genome_name": "Mamastrovirus 3 PAstV-GX1"
+ },
+ "Mamastrovirus.18.dna": {
+  "genome_ids": "1239567.173.con.0001",
+  "genome_name": "Mamastrovirus 3 AstV-LL-2"
+ },
+ "Mamastrovirus.19.dna": {
+  "genome_ids": "1239572.3.con.0001",
+  "genome_name": "Mamastrovirus 8 NI-295"
+ },
+ "Mamastrovirus.2.dna": {
+  "genome_ids": "1105378.188.con.0001",
+  "genome_name": "Porcine astrovirus 2 PF201/con/AstV12"
+ },
+ "Mamastrovirus.20.dna": {
+  "genome_ids": "12701.98.con.0001",
+  "genome_name": "Human astrovirus 2 Hu/US/2014/CA-RGDS-1072"
+ },
+ "Mamastrovirus.21.dna": {
+  "genome_ids": "1435485.215.con.0001",
+  "genome_name": "Bovine astrovirus BoAstV/JPN/KagoshimaSR28-462/2016"
+ },
+ "Mamastrovirus.22.dna": {
+  "genome_ids": "1914442.12.con.0001",
+  "genome_name": "Rodent astrovirus HK-25315A"
+ },
+ "Mamastrovirus.23.dna": {
+  "genome_ids": "2933219.3.con.0001",
+  "genome_name": "Sichuan mamastrovirus 12 R67-15434"
+ },
+ "Mamastrovirus.24.dna": {
+  "genome_ids": "1157338.234.con.0001",
+  "genome_name": "Canine astrovirus AstroviridaeDogfe360C10full"
+ },
+ "Mamastrovirus.25.dna": {
+  "genome_ids": "1239574.15.con.0001",
+  "genome_name": "Mamastrovirus 10 SMS-AstV"
+ },
+ "Mamastrovirus.3.dna": {
+  "genome_ids": "2933218.3.con.0001",
+  "genome_name": "Sichuan mamastrovirus 10 R67-109978"
+ },
+ "Mamastrovirus.4.dna": {
+  "genome_ids": "1157338.248.con.0001",
+  "genome_name": "Canine astrovirus AstroviridaeDogfe346C1full"
+ },
+ "Mamastrovirus.5.dna": {
+  "genome_ids": "1157338.232.con.0001",
+  "genome_name": "Canine astrovirus AstroviridaeDogfe360C3full"
+ },
+ "Mamastrovirus.6.dna": {
+  "genome_ids": "1254425.15.con.0001",
+  "genome_name": "Porcine astrovirus 3 USA/IA/7023/2017"
+ },
+ "Mamastrovirus.7.dna": {
+  "genome_ids": "1157338.243.con.0001",
+  "genome_name": "Canine astrovirus AstroviridaeDogfe338C1full"
+ },
+ "Mamastrovirus.8.dna": {
+  "genome_ids": "1389204.4.con.0001",
+  "genome_name": "Feline astrovirus 2 GU2-27TYT101"
+ },
+ "Mamastrovirus.9.dna": {
+  "genome_ids": "568715.265.con.0001",
+  "genome_name": "Astrovirus MLB1 WYL077032"
+ }
+}

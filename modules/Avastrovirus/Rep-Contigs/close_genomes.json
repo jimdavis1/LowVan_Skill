@@ -1,0 +1,102 @@
+{
+ "Avastrovirus.1.dna": {
+  "genome_ids": "1349999.123.con.0001",
+  "genome_name": "Goose astrovirus HLJ"
+ },
+ "Avastrovirus.10.dna": {
+  "genome_ids": "1239441.16.con.0001",
+  "genome_name": "Duck astrovirus SL2"
+ },
+ "Avastrovirus.11.dna": {
+  "genome_ids": "2161799.3.con.0001",
+  "genome_name": "Marmot astrovirus 3 HT12"
+ },
+ "Avastrovirus.12.dna": {
+  "genome_ids": "1914440.4.con.0001",
+  "genome_name": "Avian astrovirus D11-139/HK"
+ },
+ "Avastrovirus.13.dna": {
+  "genome_ids": "1239437.45.con.0001",
+  "genome_name": "Avastrovirus 1"
+ },
+ "Avastrovirus.14.dna": {
+  "genome_ids": "2161797.3.con.0001",
+  "genome_name": "Marmot astrovirus 1 HT10"
+ },
+ "Avastrovirus.15.dna": {
+  "genome_ids": "2832253.4.con.0001",
+  "genome_name": "Mute swan feces associated avastrovius 1 Abbotsbury/B/2016"
+ },
+ "Avastrovirus.16.dna": {
+  "genome_ids": "1239438.36.con.0001",
+  "genome_name": "Avastrovirus 2 AstV/Red-necked Avocet/MW08/Interior"
+ },
+ "Avastrovirus.17.dna": {
+  "genome_ids": "1239438.37.con.0001",
+  "genome_name": "Avastrovirus 2 AstV/Red-necked Avocet/MW09/Interior"
+ },
+ "Avastrovirus.18.dna": {
+  "genome_ids": "1239441.32.con.0001",
+  "genome_name": "Duck astrovirus JM"
+ },
+ "Avastrovirus.19.dna": {
+  "genome_ids": "1349999.159.con.0001",
+  "genome_name": "Goose astrovirus CHSH01"
+ },
+ "Avastrovirus.2.dna": {
+  "genome_ids": "336959.392.con.0001",
+  "genome_name": "Chicken astrovirus AAstV/Chicken/CHN/2021/HA2101"
+ },
+ "Avastrovirus.20.dna": {
+  "genome_ids": "1914440.11.con.0001",
+  "genome_name": "Avian astrovirus pigeon/China/20/2014"
+ },
+ "Avastrovirus.21.dna": {
+  "genome_ids": "1914440.5.con.0001",
+  "genome_name": "Avian astrovirus D11-148.2/HK"
+ },
+ "Avastrovirus.22.dna": {
+  "genome_ids": "2592512.3.con.0001",
+  "genome_name": "Red-necked stint avastrovirus MW02"
+ },
+ "Avastrovirus.23.dna": {
+  "genome_ids": "2809168.3.con.0001",
+  "genome_name": "Avastrovirus sp. XZN01"
+ },
+ "Avastrovirus.24.dna": {
+  "genome_ids": "2809168.4.con.0001",
+  "genome_name": "Avastrovirus sp. YSN01"
+ },
+ "Avastrovirus.25.dna": {
+  "genome_ids": "2809168.5.con.0001",
+  "genome_name": "Avastrovirus sp. YSN02"
+ },
+ "Avastrovirus.3.dna": {
+  "genome_ids": "1354735.184.con.0001",
+  "genome_name": "Avian nephritis virus It2018"
+ },
+ "Avastrovirus.4.dna": {
+  "genome_ids": "2910303.3.con.0001",
+  "genome_name": "Goose astrovirus 1 JXGZ"
+ },
+ "Avastrovirus.5.dna": {
+  "genome_ids": "707882.22.con.0001",
+  "genome_name": "Duck astrovirus 1 DAstV-SDZZ"
+ },
+ "Avastrovirus.6.dna": {
+  "genome_ids": "1239439.3.con.0001",
+  "genome_name": "Avastrovirus 3"
+ },
+ "Avastrovirus.7.dna": {
+  "genome_ids": "1517684.10.con.0001",
+  "genome_name": "Duck astrovirus CPH SD1001"
+ },
+ "Avastrovirus.8.dna": {
+  "genome_ids": "1239441.44.con.0001",
+  "genome_name": "Duck astrovirus C1388"
+ },
+ "Avastrovirus.9.dna": {
+  "genome_ids": "2920488.3.con.0001",
+  "genome_name": "Zhejiang avastrovirus 5-86563"
+ }
+}

@@ -651,3 +651,61 @@ Seadornavirus	Outer capsid protein VP9	VP9	CDS	VP9 Segment	1
 Seadornavirus	Core protein VP10	VP10	CDS	VP10 Segment	1	
 Seadornavirus	Non-structural protein VP11	VP11	CDS	VP11 Segment	1	
 Seadornavirus	Non-structural dsRNA-binding protein VP12	VP12	CDS	VP12 Segment	1	
+Dependoparvovirus	Assembly-activating protein AAP	AAP	CDS	Single DNA Segment	0	
+Dependoparvovirus	Replication initiator protein Rep78 (HUH endonuclease and SF3 helicase)	NS1	CDS	Single DNA Segment	0	
+Dependoparvovirus	Genome packaging helicase Rep40	REP40	CDS	Single DNA Segment	0	
+Dependoparvovirus	Genome packaging helicase Rep52	REP52	CDS	Single DNA Segment	0	
+Dependoparvovirus	Replication initiator protein Rep68 (HUH endonuclease and SF3 helicase)	REP68	CDS	Single DNA Segment	0	
+Dependoparvovirus	Capsid protein VP1 (phospholipase A2 domain)	VP	CDS	Single DNA Segment	0	
+Dependoparvovirus	Capsid protein VP2	VP2	CDS	Single DNA Segment	0	
+Dependoparvovirus	Major capsid protein VP3	VP3	CDS	Single DNA Segment	0	
+Protoparvovirus	Uncharacterized NP1-like protein	NP1	CDS	Single DNA Segment	0	
+Protoparvovirus	Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)	NS1	CDS	Single DNA Segment	0	
+Protoparvovirus	Nuclear egress protein NS2 (CRM1-dependent)	NS2	CDS	Single DNA Segment	0	
+Protoparvovirus	Uncharacterized lineage specific nonstructural protein NS3	NS3	CDS	Single DNA Segment	0	
+Protoparvovirus	Small alternatively translated protein SAT (endoplasmic reticulum membrane protein)	SAT	CDS	Single DNA Segment	0	
+Protoparvovirus	Capsid protein VP1 (phospholipase A2 domain)	VP	CDS	Single DNA Segment	0	
+Protoparvovirus	Major capsid protein VP2	VP2	CDS	Single DNA Segment	0	
+Bocaparvovirus	Viral RNA processing protein NP1	NP1	CDS	Single DNA Segment	0	
+Bocaparvovirus	Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)	NS1	CDS	Single DNA Segment	0	
+Bocaparvovirus	Uncharacterized lineage specific protein ORFX	ORFX	CDS	Single DNA Segment	0	
+Bocaparvovirus	Capsid protein VP1 (phospholipase A2 domain)	VP	CDS	Single DNA Segment	0	
+Bocaparvovirus	Major capsid protein VP2	VP2	CDS	Single DNA Segment	0	
+Erythroparvovirus	11 kDa proline-rich nonstructural protein (Grb2-binding)	11K	CDS	Single DNA Segment	0	
+Erythroparvovirus	Uncharacterized lineage specific 7.5 kDa protein	7.5K	CDS	Single DNA Segment	0	
+Erythroparvovirus	Uncharacterized lineage specific 9.5 kDa protein	9.5K	CDS	Single DNA Segment	0	
+Erythroparvovirus	Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)	NS1	CDS	Single DNA Segment	0	
+Erythroparvovirus	Capsid protein VP1 (phospholipase A2 domain)	VP	CDS	Single DNA Segment	0	
+Erythroparvovirus	Major capsid protein VP2	VP2	CDS	Single DNA Segment	0	
+Amdoparvovirus	Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)	NS1	CDS	Single DNA Segment	0	
+Amdoparvovirus	Nonstructural protein NS2, viral replication centre associated	NS2	CDS	Single DNA Segment	0	
+Amdoparvovirus	Nonstructural protein NS3 required for infectious virion production	NS3	CDS	Single DNA Segment	0	
+Amdoparvovirus	Capsid protein VP1 (phospholipase A2 domain)	VP	CDS	Single DNA Segment	0	
+Amdoparvovirus	Major capsid protein VP2	VP2	CDS	Single DNA Segment	0	
+TetraCopiparvovirus	Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)	NS1	CDS	Single DNA Segment	0	
+TetraCopiparvovirus	Capsid protein VP1 (phospholipase A2 domain)	VP	CDS	Single DNA Segment	0	
+TetraCopiparvovirus	Major capsid protein VP2	VP2	CDS	Single DNA Segment	0	
+Hamaparvovirinae	Uncharacterized NP1-like protein	NP1	CDS	Single DNA Segment	0	
+Hamaparvovirinae	Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)	NS1	CDS	Single DNA Segment	0	
+Hamaparvovirinae	Uncharacterized lineage specific nonstructural protein NS2	NS2	CDS	Single DNA Segment	0	
+Hamaparvovirinae	Uncharacterized lineage specific nonstructural protein NS3	NS3	CDS	Single DNA Segment	0	
+Hamaparvovirinae	Capsid protein VP1	VP	CDS	Single DNA Segment	0	
+DensovirinaeAmbi	Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)	NS1	CDS	Single DNA Segment	0	
+DensovirinaeAmbi	Uncharacterized nonstructural protein NS2	NS2	CDS	Single DNA Segment	0	
+DensovirinaeAmbi	Nonstructural protein NS3 required for viral DNA replication	NS3	CDS	Single DNA Segment	0	
+DensovirinaeAmbi	Capsid protein VP1 (phospholipase A2 domain)	VP	CDS	Single DNA Segment	0	
+DensovirinaeAmbi	Major capsid protein VP2	VP2	CDS	Single DNA Segment	0	
+DensovirinaeAmbi	Capsid protein VP3	VP3	CDS	Single DNA Segment	0	
+DensovirinaeAmbi	Capsid protein VP4	VP4	CDS	Single DNA Segment	0	
+DensovirinaeMono	Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)	NS1	CDS	Single DNA Segment	0	
+DensovirinaeMono	Uncharacterized nonstructural protein NS2	NS2	CDS	Single DNA Segment	0	
+DensovirinaeMono	Capsid protein VP1 (phospholipase A2 domain)	VP	CDS	Single DNA Segment	0	
+DensovirinaeMono	Major capsid protein VP2	VP2	CDS	Single DNA Segment	0	
+Mamastrovirus	Nonstructural polyprotein nsP1a	ORF1A	CDS	Single RNA Segment	1	
+Mamastrovirus	Nonstructural polyprotein nsP1ab	ORF1AB	CDS	Single RNA Segment	0	
+Mamastrovirus	RNA-dependent RNA polymerase	ORF1B	mat_peptide	Single RNA Segment	1	
+Mamastrovirus	Capsid polyprotein VP90	ORF2	CDS	Single RNA Segment	1	
+Avastrovirus	Nonstructural polyprotein nsP1a	ORF1A	CDS	Single RNA Segment	0	
+Avastrovirus	Nonstructural polyprotein nsP1ab	ORF1AB	CDS	Single RNA Segment	0	
+Avastrovirus	RNA-dependent RNA polymerase	ORF1B	mat_peptide	Single RNA Segment	1	
+Avastrovirus	Capsid polyprotein VP90	ORF2	CDS	Single RNA Segment	1	
