@@ -95,7 +95,11 @@ for k, srcs in agg.items():
                     srcs=sorted(([s, v[0], sorted(v[1])] for s, v in srcs.items()),
                                 key=lambda x: -x[1])))
 out.sort(key=lambda x: -x["total"])
-json.dump(out, open("agg.json", "w"), indent=1)
+#  Write BESIDE the inputs. This read from `workdir` and wrote to the CWD,
+#  so running it for nine modules in a row left one set of files and eight
+#  silent overwrites -- every module after the first reported counts for a
+#  module it had already clobbered.
+json.dump(out, open(os.path.join(W, "agg.json"), "w"), indent=1)
 
 #  The engine records a string as UNASSIGNED in synonyms.tsv BEFORE the
 #  homology rescue runs, and RESCUED.tsv then records what the rescue adopted.
@@ -117,7 +121,7 @@ for r in rows:
     if left <= 0: continue          # the rescue took all of it
     un[s][0] += left; un[s][1].add(r["genus"] or "(no genus)")
 ul = sorted(([s, v[0], sorted(v[1])] for s, v in un.items()), key=lambda x: -x[1])
-json.dump(ul, open("unbinned.json", "w"), indent=1)
+json.dump(ul, open(os.path.join(W, "unbinned.json"), "w"), indent=1)
 
 def ed(a, b):
     if abs(len(a) - len(b)) > 3: return 9
@@ -136,6 +140,6 @@ for r in out:
         d = ed(s.lower(), top.lower())
         if 0 < d <= 2 and c >= 3: typos.append((r["key"], top, s, c, d, g))
 typos.sort(key=lambda x: -x[3])
-json.dump(typos, open("typos.json", "w"), indent=1)
-print("agg.json %d targets, unbinned.json %d strings, typos.json %d variants"
-      % (len(out), len(ul), len(typos)))
+json.dump(typos, open(os.path.join(W, "typos.json"), "w"), indent=1)
+print("%s: agg.json %d targets, unbinned.json %d strings, typos.json %d variants"
+      % (os.path.abspath(W), len(out), len(ul), len(typos)))

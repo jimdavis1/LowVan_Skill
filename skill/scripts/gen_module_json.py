@@ -105,6 +105,16 @@ def main():
     if a.segments:
         segments = json.load(open(a.segments)) if os.path.exists(a.segments) \
                    else json.loads(a.segments)
+        #  The derived path below sets replicon_geometry; this one did not, so
+        #  every module built with --segments shipped a segments block that
+        #  install_module.py reports as incomplete. Measured 29 Oct 2026: 187
+        #  segments in the runtime repo carry "linear" and the only 9 missing
+        #  it were the nine Parvoviridae modules, i.e. every module that took
+        #  this branch. Default it here rather than making each caller
+        #  remember, and let a caller that knows better override it.
+        for _s in segments.values():
+            if isinstance(_s, dict):
+                _s.setdefault("replicon_geometry", "linear")
     else:
         #  --contigs, because the contigs are not always under the workdir.
         #  Every Retroviridae module keeps them in a sibling
