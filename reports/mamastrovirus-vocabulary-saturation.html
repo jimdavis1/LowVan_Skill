@@ -1,0 +1,195 @@
+<title>Mamastrovirus Vocabulary Saturation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --src:#eb6834; --mod:#2a78d6;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --src:#d95926; --mod:#3987e5;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --src:#d95926; --mod:#3987e5;
+  }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:900px; margin:0 auto; padding-block:40px 72px; padding-left:22px; padding-right:22px;
+           display:flex; flex-direction:column; gap:28px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  .stand { max-width:68ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .stand b { color:var(--ink); font-weight:600; }
+
+  .figs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+           border-top:1px solid var(--base); border-bottom:1px solid var(--grid); }
+  .fig { padding:13px 16px 13px 0; }
+  .fig+.fig { padding-left:16px; border-left:1px solid var(--grid); }
+  .fig .n { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:23px;
+             font-weight:500; display:block; letter-spacing:-.02em; }
+  .fig .k { font-size:12px; color:var(--ink2); }
+
+  figure { margin:0; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface); padding:6px 4px 2px; position:relative; }
+  svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:9px; max-width:74ch; }
+
+  .legend { display:flex; gap:18px; flex-wrap:wrap; font-size:13px; color:var(--ink2);
+             align-items:center; margin-bottom:10px; }
+  .legend span { display:inline-flex; gap:7px; align-items:center; }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; }
+
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+          background:var(--surface); border:1px solid var(--base); border-radius:4px;
+          padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+          font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+  details { border-top:1px solid var(--grid); padding-top:14px; }
+  summary { cursor:pointer; font-size:13.5px; color:var(--ink2); }
+  summary:focus-visible { outline:2px solid var(--mod); outline-offset:3px; }
+  .tw { overflow-x:auto; margin-top:12px; border:1px solid var(--hair); border-radius:4px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { padding:6px 11px; text-align:right; border-bottom:1px solid var(--grid); }
+  th:first-child, td:first-child { text-align:left; }
+  thead th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase;
+              color:var(--muted); font-weight:500; }
+  tbody td { font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink2); }
+  tbody tr:last-child td { border-bottom:0; }
+  .note { font-size:13.5px; color:var(--ink2); max-width:74ch; }
+  .note b { color:var(--ink); }
+  .src { font-size:12px; color:var(--muted); border-top:1px solid var(--grid); padding-top:13px; }
+  .src code { font-family:var(--mono); }
+  @media (max-width:620px) { .figs { grid-template-columns:repeat(2,1fr); } h1 { font-size:25px; } }
+</style>
+<div class="wrap">
+ <header>
+  <div class="eyebrow">LowVan &middot; Mamastrovirus module &middot; 15 October 2026</div>
+  <h1>Mamastrovirus</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">A controlled vocabulary stops growing. Free text does not.</h2>
+  <p class="stand">Take every annotated protein from 40 Mamastrovirus genomes, shuffle
+  them, and draw them one at a time, counting the distinct annotation strings seen so far.
+  A curated vocabulary needs exactly 3 names however many proteins you read, so its
+  curve flattens; free-text product strings have no ceiling, because each submitter spells
+  the same proteins a new way. Over 100 random orderings the module reaches 95% of its
+  vocabulary after <b>7 proteins</b>; the source after
+  <b>103</b> of its 115.</p>
+ </header>
+
+ <div class="figs">
+  <div class="fig"><span class="n" style="color:var(--mod)">3</span><span class="k">strings, controlled vocabulary</span></div>
+  <div class="fig"><span class="n" style="color:var(--src)">33</span><span class="k">strings, BV-BRC free text</span></div>
+  <div class="fig"><span class="n">11.0&times;</span><span class="k">collapse at 115 proteins sampled</span></div>
+  <div class="fig"><span class="n">103</span><span class="k">proteins before free text reaches 95%</span></div>
+ </div>
+
+ <figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to 33 over 115 proteins; the controlled vocabulary flattens at 3.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="267.5" x2="648" y2="267.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="106.5" x2="648" y2="106.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="271.5" text-anchor="end" class="tick">10</text><text x="47" y="191.0" text-anchor="end" class="tick">20</text><text x="47" y="110.5" text-anchor="end" class="tick">30</text><text x="47" y="30.0" text-anchor="end" class="tick">40</text><text x="58.0" y="369" text-anchor="middle" class="tick">0</text><text x="207.5" y="369" text-anchor="middle" class="tick">38</text><text x="353.0" y="369" text-anchor="middle" class="tick">75</text><text x="498.5" y="369" text-anchor="middle" class="tick">112</text><text x="648.0" y="369" text-anchor="middle" class="tick">150</text>
+    <text class="axtitle" x="58" y="392">proteins sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <line x1="510.3" y1="26" x2="510.3" y2="348" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M58.0 348.00 L61.9 339.95 L65.9 332.30 L69.8 325.06 L73.7 318.62 L77.7 312.50 L81.6 306.86 L85.5 301.07 L89.5 295.68 L93.4 290.44 L97.3 285.85 L101.3 281.67 L105.2 276.11 L109.1 271.12 L113.1 267.26 L117.0 263.31 L120.9 259.45 L124.9 255.83 L128.8 251.88 L132.7 248.50 L136.7 244.24 L140.6 241.18 L144.5 238.52 L148.5 234.98 L152.4 231.36 L156.3 228.86 L160.3 225.16 L164.2 222.58 L168.1 219.36 L172.1 217.19 L176.0 214.45 L179.9 211.87 L183.9 209.22 L187.8 206.80 L191.7 204.71 L195.7 201.89 L199.6 199.24 L203.5 196.98 L207.5 194.81 L211.4 192.15 L215.3 189.98 L219.3 187.32 L223.2 185.47 L227.1 183.38 L231.1 181.20 L235.0 178.55 L238.9 176.78 L242.9 175.33 L246.8 172.83 L250.7 170.90 L254.7 168.89 L258.6 167.28 L262.5 165.02 L266.5 163.49 L270.4 161.80 L274.3 160.11 L278.3 158.82 L282.2 156.81 L286.1 155.12 L290.1 153.19 L294.0 151.74 L297.9 149.81 L301.9 147.47 L305.8 146.11 L309.7 144.17 L313.7 143.05 L317.6 142.16 L321.5 140.79 L325.5 139.50 L329.4 137.81 L333.3 136.61 L337.3 135.56 L341.2 134.43 L345.1 132.98 L349.1 131.70 L353.0 129.76 L356.9 128.48 L360.9 127.51 L364.8 126.22 L368.7 124.85 L372.7 123.81 L376.6 122.76 L380.5 121.55 L384.5 120.59 L388.4 119.14 L392.3 118.25 L396.3 116.96 L400.2 116.16 L404.1 114.79 L408.1 113.50 L412.0 112.38 L415.9 111.09 L419.9 109.40 L423.8 108.43 L427.7 106.82 L431.7 105.29 L435.6 104.17 L439.5 102.96 L443.5 101.59 L447.4 100.06 L451.3 98.45 L455.3 97.48 L459.2 96.44 L463.1 95.63 L467.1 93.94 L471.0 92.90 L474.9 92.09 L478.9 90.96 L482.8 89.84 L486.7 88.71 L490.7 87.58 L494.6 86.46 L498.5 85.17 L502.5 84.28 L506.4 82.99 L510.3 82.35" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 348.00 L61.9 339.95 L65.9 333.91 L69.8 330.53 L73.7 328.12 L77.7 326.26 L81.6 325.54 L85.5 324.90 L89.5 324.33 L93.4 323.93 L97.3 323.85 L101.3 323.85 L105.2 323.85 L109.1 323.85 L113.1 323.85 L117.0 323.85 L120.9 323.85 L124.9 323.85 L128.8 323.85 L132.7 323.85 L136.7 323.85 L140.6 323.85 L144.5 323.85 L148.5 323.85 L152.4 323.85 L156.3 323.85 L160.3 323.85 L164.2 323.85 L168.1 323.85 L172.1 323.85 L176.0 323.85 L179.9 323.85 L183.9 323.85 L187.8 323.85 L191.7 323.85 L195.7 323.85 L199.6 323.85 L203.5 323.85 L207.5 323.85 L211.4 323.85 L215.3 323.85 L219.3 323.85 L223.2 323.85 L227.1 323.85 L231.1 323.85 L235.0 323.85 L238.9 323.85 L242.9 323.85 L246.8 323.85 L250.7 323.85 L254.7 323.85 L258.6 323.85 L262.5 323.85 L266.5 323.85 L270.4 323.85 L274.3 323.85 L278.3 323.85 L282.2 323.85 L286.1 323.85 L290.1 323.85 L294.0 323.85 L297.9 323.85 L301.9 323.85 L305.8 323.85 L309.7 323.85 L313.7 323.85 L317.6 323.85 L321.5 323.85 L325.5 323.85 L329.4 323.85 L333.3 323.85 L337.3 323.85 L341.2 323.85 L345.1 323.85 L349.1 323.85 L353.0 323.85 L356.9 323.85 L360.9 323.85 L364.8 323.85 L368.7 323.85 L372.7 323.85 L376.6 323.85 L380.5 323.85 L384.5 323.85 L388.4 323.85 L392.3 323.85 L396.3 323.85 L400.2 323.85 L404.1 323.85 L408.1 323.85 L412.0 323.85 L415.9 323.85 L419.9 323.85 L423.8 323.85 L427.7 323.85 L431.7 323.85 L435.6 323.85 L439.5 323.85 L443.5 323.85 L447.4 323.85 L451.3 323.85 L455.3 323.85 L459.2 323.85 L463.1 323.85 L467.1 323.85 L471.0 323.85 L474.9 323.85 L478.9 323.85 L482.8 323.85 L486.7 323.85 L490.7 323.85 L494.6 323.85 L498.5 323.85 L502.5 323.85 L506.4 323.85 L510.3 323.85 L514.3 323.85 L518.2 323.85 L522.1 323.85 L526.1 323.85 L530.0 323.85 L533.9 323.85 L537.9 323.85 L541.8 323.85 L545.7 323.85" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="510.3" cy="82.35" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="545.7" cy="323.85" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="520.3" y="81.35" fill="var(--src)">free text</text>
+    <text class="endsub" x="520.3" y="94.35">33 strings</text>
+    <text class="endlab" x="555.7" y="326.85" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="555.7" y="339.85">3 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of every
+  annotated protein in the 40 genomes both sources annotate: 115 source
+  product records and 124 module calls. Both curves start at zero. The dashed line
+  marks 115 proteins, the depth both curves reach, where the two are compared.</figcaption>
+ </figure>
+
+ <p class="note">Compared at the same sampling depth, 115 proteins, free text has
+ used <b>33.0 distinct strings</b> and the controlled vocabulary
+ <b>3.0</b> &mdash; a <b>11.0-fold collapse</b>. The
+ source vocabulary reaches 95% of its final size after 103 of its 115 proteins;
+ the module after 7 of 124.</p>
+
+ <details>
+  <summary>Table view &mdash; proteins sampled</summary>
+  <div class="tw"><table>
+   <thead><tr><th>proteins sampled</th><th>free text</th><th>controlled</th><th>ratio</th></tr></thead>
+   <tbody>
+   <tr><td>1</td><td>1.00</td><td>1.00</td><td>1.00&times;</td></tr><tr><td>2</td><td>1.95</td><td>1.75</td><td>1.11&times;</td></tr><tr><td>6</td><td>5.11</td><td>2.79</td><td>1.83&times;</td></tr><tr><td>12</td><td>8.93</td><td>3.00</td><td>2.98&times;</td></tr><tr><td>23</td><td>14.04</td><td>3.00</td><td>4.68&times;</td></tr><tr><td>34</td><td>17.80</td><td>3.00</td><td>5.93&times;</td></tr><tr><td>58</td><td>23.96</td><td>3.00</td><td>7.99&times;</td></tr><tr><td>86</td><td>28.70</td><td>3.00</td><td>9.57&times;</td></tr><tr><td>115</td><td>33.00</td><td>3.00</td><td>11.00&times;</td></tr>
+   </tbody>
+  </table></div>
+ </details>
+
+ <div class="src">Generated by <code>skill/scripts/gen_rarefaction.py</code> from
+ <code>rarefaction.json</code>, written by the kit&rsquo;s
+ <code>annotation_rarefaction.py</code> at 100 replicates. Categorical pair
+ <code>#2a78d6</code>/<code>#eb6834</code> (light) and <code>#3987e5</code>/<code>#d95926</code>
+ (dark), validated by <code>validate_palette.py</code>: worst CVD &Delta;E 24.7,
+ normal-vision &Delta;E 31.8, contrast &ge;3.12:1.</div>
+</div>
+<script>
+ var SX=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115], SY=[0.0, 1.0, 1.95, 2.85, 3.65, 4.41, 5.11, 5.83, 6.5, 7.15, 7.72, 8.24, 8.93, 9.55, 10.03, 10.52, 11.0, 11.45, 11.94, 12.36, 12.89, 13.27, 13.6, 14.04, 14.49, 14.8, 15.26, 15.58, 15.98, 16.25, 16.59, 16.91, 17.24, 17.54, 17.8, 18.15, 18.48, 18.76, 19.03, 19.36, 19.63, 19.96, 20.19, 20.45, 20.72, 21.05, 21.27, 21.45, 21.76, 22.0, 22.25, 22.45, 22.73, 22.92, 23.13, 23.34, 23.5, 23.75, 23.96, 24.2, 24.38, 24.62, 24.91, 25.08, 25.32, 25.46, 25.57, 25.74, 25.9, 26.11, 26.26, 26.39, 26.53, 26.71, 26.87, 27.11, 27.27, 27.39, 27.55, 27.72, 27.85, 27.98, 28.13, 28.25, 28.43, 28.54, 28.7, 28.8, 28.97, 29.13, 29.27, 29.43, 29.64, 29.76, 29.96, 30.15, 30.29, 30.44, 30.61, 30.8, 31.0, 31.12, 31.25, 31.35, 31.56, 31.69, 31.79, 31.93, 32.07, 32.21, 32.35, 32.49, 32.65, 32.76, 32.92, 33.0], MX=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124], MY=[0.0, 1.0, 1.75, 2.17, 2.47, 2.7, 2.79, 2.87, 2.94, 2.99, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0];
+ var Lm=58, PWm=590, XT=150.0, VB=780;
+ var cb=document.getElementById('cb'), hit=document.getElementById('hit'),
+     xh=document.getElementById('xh'), ds=document.getElementById('ds'),
+     dm=document.getElementById('dm'), tip=document.getElementById('tip');
+ var svg=cb.querySelector('svg');
+ function X(x){ return Lm + PWm*x/XT; }
+ function at(xa,ya,x){ if(x>xa[xa.length-1]) return null; var i=0; while(xa[i]<x) i++;
+   if(xa[i]===x||i===0) return ya[i]; return ya[i-1]+(ya[i]-ya[i-1])*(x-xa[i-1])/(xa[i]-xa[i-1]); }
+ function Y(v){ return 26 + 322*(1 - v/40); }
+ function show(e){
+   var r=svg.getBoundingClientRect(), sx=(e.clientX-r.left)*VB/r.width;
+   var k=Math.round((sx-Lm)/PWm*XT); var top=Math.max(SX[SX.length-1],MX[MX.length-1]);
+   if(k<0) k=0; if(k>top) k=top;
+   var x=X(k), s=at(SX,SY,k), m=at(MX,MY,k);
+   xh.setAttribute('x1',x); xh.setAttribute('x2',x); xh.setAttribute('opacity','1');
+   if(s!==null){ ds.setAttribute('cx',x); ds.setAttribute('cy',Y(s)); ds.setAttribute('opacity','1'); } else ds.setAttribute('opacity','0');
+   if(m!==null){ dm.setAttribute('cx',x); dm.setAttribute('cy',Y(m)); dm.setAttribute('opacity','1'); } else dm.setAttribute('opacity','0');
+   tip.innerHTML='<div style="color:var(--muted);margin-bottom:3px">'+k.toLocaleString()+
+     ' protein'+(k===1?'':'s')+' sampled</div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--src)"></i>free text <b>'+(s===null?'&mdash;':s.toFixed(2))+'</b></div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--mod)"></i>controlled <b>'+(m===null?'&mdash;':m.toFixed(2))+'</b></div>';
+   tip.style.opacity='1';
+   var px=x*r.width/VB, tw=tip.offsetWidth;
+   tip.style.left=Math.min(Math.max(px+12,4), r.width-tw-4)+'px';
+   tip.style.top='14px';
+ }
+ function hide(){ xh.setAttribute('opacity','0'); ds.setAttribute('opacity','0');
+                  dm.setAttribute('opacity','0'); tip.style.opacity='0'; }
+ hit.addEventListener('mousemove',show);
+ hit.addEventListener('mouseleave',hide);
+ hit.addEventListener('touchmove',function(e){ if(e.touches[0]) show(e.touches[0]); },{passive:true});
+ hit.addEventListener('touchend',hide);
+</script>

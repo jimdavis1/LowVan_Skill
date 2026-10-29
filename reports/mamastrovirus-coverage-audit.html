@@ -1,0 +1,143 @@
+<title>Mamastrovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; Mamastrovirus module &middot; 15 October 2026</div><h1>Mamastrovirus</h1><p class="stand">The mammalian astroviruses, and the first module in this project whose polyprotein cannot be called by a profile at all. ORF1b is reached only by a &minus;1 ribosomal frameshift, so nsp1ab is not collinear with the genome and is called from a nucleotide reference set instead.</p><div class="tiles"><div class="tile"><div class="v">4</div><div class="l">features, three with profiles</div></div><div class="tile"><div class="v">103</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">232</div><div class="l">transcript-edit references</div></div><div class="tile"><div class="v">94.4%</div><div class="l">of 657 genomes routed by 25 references</div></div><div class="tile"><div class="v">100%</div><div class="l">panel call rate, nsp1a and polymerase</div></div><div class="tile"><div class="v">24.2&times;</div><div class="l">annotation string collapse</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One genus, one module, and a genome whose middle protein no profile can reach.</p><p class="note">Mamastroviruses infect mammals and are a common cause of gastroenteritis in children. The genome is a single positive-sense RNA segment of 6.0&ndash;8.3 kb with three reading frames: ORF1a encodes the non-structural polyprotein nsp1a, ORF2 the capsid precursor VP90, and ORF1b the RNA-dependent RNA polymerase &mdash; which is <b>never translated on its own</b>.</p><pre class="mono">5&#x27;--[ ORF1a  nsp1a ]--------------------3&#x27;
+         \___ -1 PRF ___
+                        [ ORF1b ]
+    [-------- ORF1ab  nsp1ab --------]
+                              [ ORF2  capsid VP90 ]</pre><div class="verdict warn"><b>The frameshift was measured, not assumed.</b> tblastn of six deposited nsp1ab proteins against their own genomes returns <b>two HSPs in different frames every time</b>, overlapping by a few residues at the junction, and every transition is &minus;1 (2&rarr;1, 1&rarr;3, 3&rarr;2 &mdash; BLAST numbers plus-strand frames 1/2/3, so &minus;1 reads as a wraparound). The slippery heptamer is <code>AAAAAAC</code>.</div><div class="scroll"><table><thead><tr><th></th><th>count</th></tr></thead><tbody><tr><td>genomes in the BV-BRC protein dump</td><td>7,411</td></tr><tr><td>protein features</td><td>9,772</td></tr><tr><td>unique sequences</td><td>5,768</td></tr><tr><td>genomes with a contig &ge; 6 kb</td><td>657</td></tr><tr><td>distinct annotation strings, family-wide</td><td>179</td></tr></tbody></table></div></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">Four features, and the deposits decided which of them is a CDS.</p><div class="scroll"><table><thead><tr><th>feature</th><th>type</th><th>what it is</th><th>profiles</th></tr></thead><tbody><tr><td>ORF1A</td><td>CDS</td><td>nsp1a, the non-structural polyprotein</td><td>27</td></tr><tr><td>ORF1AB</td><td>CDS, <code>special: transcript_edit</code></td><td>the &minus;1 PRF fusion</td><td><b>none, by construction</b></td></tr><tr><td>ORF1B</td><td>mat_peptide of nsp1ab</td><td>RNA-dependent RNA polymerase</td><td>11</td></tr><tr><td>ORF2</td><td>CDS</td><td>capsid precursor VP90</td><td>65</td></tr></tbody></table></div><div class="verdict"><b>ORF1b is a mature peptide, and the deposits are what settle it.</b> Of 160 Mamastrovirus records annotated <code>ORF1b</code> or <code>RdRp</code> at 400&ndash;600 residues, only <b>12% begin with Met</b>, and the commonest starts &mdash; <code>KKRERGSQGS</code>, <code>GPKKLQRAPE</code>, <code>GSKKLQRAPE</code> &mdash; are the lysines of the slippery site. Submitters are depositing the post-shift region, not an independently initiated ORF, so it is declared a product of nsp1ab rather than a CDS.</div><p class="note">Length windows were set from the full-length mode of each clean population, never from a median. <code>RNA-dependent RNA polymerase</code> has a family-wide median of <b>127</b> residues against a true 515, because the genus is genotyped by sequencing a short polymerase amplicon and depositing it under the full protein's name &mdash; 4,332 occurrences, most of them fragments. ORF1B's window deliberately stops at 570: a handful of records annotated RdRp are 1,331&ndash;1,417 residues, and those are nsp1ab mislabelled.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Three cutoffs, and a fourth feature that has none because it has no profile.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit</th><th>min</th><th>max</th><th>copy_num</th></tr></thead><tbody><tr><td>ORF1A</td><td>189</td><td>694</td><td>991</td><td>yes</td></tr><tr><td>ORF1AB</td><td>&mdash;</td><td>1,160</td><td>1,515</td><td>no &mdash; see &sect;07</td></tr><tr><td>ORF1B</td><td>444</td><td>405</td><td>559</td><td>yes</td></tr><tr><td>ORF2</td><td>142</td><td>642</td><td>910</td><td>yes</td></tr></tbody></table></div><p class="note">A <code>special</code> feature carries no <code>bit_cutoff</code>, <code>coverage_cutoff</code> or <code>kmers</code>, because those describe how a PSSM match is scored and it has no PSSM. 51 of the 54 special features already in the repo omit them; the generator now enforces it rather than leaving it to habit.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">25 references reach 94.4% of the genus.</p><div class="scroll"><table><thead><tr><th></th><th>value</th></tr></thead><tbody><tr><td>genomes with a contig</td><td>657</td></tr><tr><td>clusters at 70% identity</td><td>47</td></tr><tr><td>references shipped</td><td>25</td></tr><tr><td>genomes routed</td><td>620 of 657 (94.4%)</td></tr><tr><td>clusters left uncovered</td><td>22, holding 37 genomes</td></tr></tbody></table></div><div class="verdict warn"><b>A lumped Astroviridae module would not have shipped.</b> Across the whole family, 25 references reach only <b>74.0%</b> of 1,438 genomes in 248 clusters. Split on genus, Mamastrovirus reaches 94.4% and Avastrovirus 99.2%. The sequences agree: between the two genera the capsid is 29.7% identical over 482 of ~800 residues and nsp1a 23.1% over 618, against 70.6% and 35.9% within this genus.</div></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">Measured on a panel of one genome per 70% cluster &mdash; the hardest sample the genus can offer, not the most flattering.</p><div class="scroll"><table><thead><tr><th>feature</th><th>called</th><th>of 40 panel genomes</th></tr></thead><tbody><tr><td>nsp1a (ORF1A)</td><td>40</td><td>100%</td></tr><tr><td>RNA-dependent RNA polymerase (ORF1B)</td><td>40</td><td>100%</td></tr><tr><td>capsid VP90 (ORF2)</td><td>39</td><td>98%</td></tr><tr><td>nsp1ab (ORF1AB), corrected</td><td>17</td><td>42%</td></tr><tr><td>nsp1ab, <code>Uncorrected</code> encoding region</td><td>11</td><td>28%</td></tr></tbody></table></div><div class="verdict"><b>The transcript-edit path works, and the proof is positional.</b> Every one of the 17 corrected nsp1ab calls begins at Met &mdash; 17 of 17 &mdash; which is what a correct reference set looks like. The polymerase, by contrast, begins at Met on only 15% of its calls, and that is also correct: it is a mature peptide whose N-terminus is the frameshift junction, not an initiation codon. Reading that number as a defect would have been the easy mistake.</div><p class="note">Self-recall against each feature's own in-range collection: ORF1A <b>451/451</b>, ORF1B <b>188/188</b>, ORF2 <b>728/729</b>. Cross-feature contamination: 1,368 sequences against 103 cluster references, <b>nothing above 50 bits</b>.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">Two gates caught real defects before installation, and one of them had to be found a new way.</p><div class="verdict warn"><b>An ORF1A cluster was trimmed off its own start.</b> Cluster 13 mixed two N-terminal conventions &mdash; 26 collection sequences begin at an upstream Met (871&ndash;882 aa) and 6 at a downstream one (849 aa), the 27-residue difference being <code>MARKGFTSKVDLAVSSGNYNARLQAGN</code> &mdash; and the aligner trimmed the long form to match the short, costing the profile 27 columns of signal. This is the defect that shipped in Norovirus at 151 residues.</div><p class="note"><code>filter_nterm</code> missed it because its extension test needs an exact 30-mer match and these are different strains. Detecting it by alignment instead found <b>25</b> sequences N-terminally truncated by 26&ndash;27 residues against a &ge;95%-identical longer member; dropping those plus the three short-convention members of the mixed cluster and rebuilding, the gate reports <i>every CDS profile begins at its protein's start</i>.</p><p class="note">The reference set got the same treatment. <b>11 of 243 constructs did not begin at Met</b>, inherited from N-terminally truncated deposits they were anchored on, and the builder now refuses them &mdash; the same rule <code>check_met_start.py</code> applies to profiles, applied to a reference.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">One feature is reference-limited, one evaluation tool is blind to it, and a few short calls slip between two checks.</p><div class="verdict warn"><b>nsp1ab is limited by reference density, not by biology.</b> The correction gate demands 95% identity; this module ships 232 references where Betacoronavirus ships 3,006. On the one-genome-per-cluster panel that gives 42% corrected and 28% degrading to an <code>Uncorrected nonstructural polyprotein nsP1ab encoding region</code>, which is the documented behaviour between 80% and 95%. Densifying from 182 to 232 references moved it from 35% to 42%, so the lever works and has not been exhausted.</div><p class="note">The pool is measured: 327 genomes deposit nsp1a and 145 deposit ORF1b, against the 217 that deposit nsp1ab itself. 48 of the shipped references were built from a genome's own nsp1a and ORF1b rather than its fusion protein, which is what made the increase possible.</p><div class="verdict warn"><b><code>evaluate_coverage.py</code> cannot see this feature at all.</b> It says so itself: a feature called by an external program does not appear in that evaluation, and its coverage there <i>is not low, it is absent</i>. Every nsp1ab figure on this page comes from the panel, which runs the transcript-edit pass. Reading the coverage run alone would report a feature that is working as one that is missing.</div><p class="note"><b>Four genomes get a second, short nsp1a call</b> of 132&ndash;501 residues at a contig edge, against a declared <code>min_len</code> of 694, and still score <i>Good</i> with no flag. <code>qc_duplicate_calls.py</code> reports no exact duplicates and correctly treats ORF1A and ORF1B nesting inside ORF1AB as real architecture, so these fall between the two checks. They are contig-edge fragments of a genome that begins mid-gene, not spurious matches elsewhere, but they should be flagged and are not.</p><p class="note"><b>22 clusters holding 37 genomes sit outside the 25-reference budget</b> and do not route. A long tail of singletons is a documented gap rather than a defect, but it is named here rather than left implicit.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Two defects in the kit, both of the same shape as three found earlier.</p><p class="note"><b><code>gen_module_json</code> dropped <code>special</code> entirely.</b> A feature declared <code>special: transcript_edit</code> in the feature spec arrived in the module JSON as an ordinary PSSM feature, so the annotator looked for a profile that by definition cannot exist and <b>the protein was never called at all</b>. This is the same silent-whitelist defect that was dropping <code>PMID</code> and <code>copy_num</code>; <code>internal_stop</code>, <code>translate</code>, <code>non_pssm_partner</code>, <code>begin</code> and <code>end</code> were going the same way and are now carried too.</p><p class="note"><b>The converse, too:</b> a special feature was being written <i>with</i> <code>bit_cutoff</code>, <code>coverage_cutoff</code> and <code>kmers</code>. A threshold on a feature with no profile reads as a number someone chose and invites a future curator to tune it.</p><p class="note"><b>The kit had no tool for building a transcript-editing reference set</b>, though <code>references/special-features.md</code> describes the construction in detail. <code>build_transcript_edit_refs.py</code> is new, and is self-validating: it scans candidate insertion points and keeps only one whose translation reproduces a protein the genome itself deposits. A genome that cannot reproduce its own protein donates no reference.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">The largest string collapse this project has measured.</p><p class="note">97 distinct annotation strings across 9,066 occurrences collapse onto <b>4 controlled annotations</b> &mdash; a <b>24.2&times;</b> reduction, against 17.6&times; for Norovirus and 12.2&times; for Sapovirus. The polymerase alone is deposited under 23 different spellings, from <code>RdRp</code> and <code>RDRP</code> to <code>RNA dependant RNA polymerase</code> and <code>pol protein</code>.</p><p class="note">Rarefied over proteins rather than genomes: at the depth both curves reach, the source vocabulary holds <b>33</b> distinct strings and the module holds <b>3</b>, an 11&times; collapse. The source needs 103 proteins to reach 95% of its final vocabulary; the module needs 7, because a controlled vocabulary saturates once every protein has been named while free text keeps climbing.</p></section><p class="src">Measured from the shipped module: Mamastrovirus_Viral_PSSM.json, 103 PSSMs, 25 reference contigs and 232 transcript-editing references. Call rates from a 40-genome panel built one genome per 70% nucleotide cluster and scored through the full annotator including the transcript-edit pass; self-recall from collect_registry; contamination from audit_contamination; string collapse from collect_synmap; rarefaction over 100 replicates.</p></div>
