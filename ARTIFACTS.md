@@ -127,6 +127,12 @@ published — the file is in this repo. `—` was not made.
 
 Built but never published, source is here: [coverage audit](reports/alpharetrovirus-coverage-audit.html), [PSSM registry](reports/alpharetrovirus-pssm-registry.html), [string collapse](reports/alpharetrovirus-string-collapse.html), [vocabulary saturation](reports/alpharetrovirus-vocabulary-saturation.html).
 
+### Amdoparvovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Amdoparvovirus String Collapse | [open](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | [source](reports/amdoparvovirus-string-collapse.html) | 2026-10-29 |
+
 ### Ampelovirus
 
 | page | live | source | updated |
@@ -144,6 +150,15 @@ Built but never published, source is here: [coverage audit](reports/alpharetrovi
 | Aphthovirus PSSM Registry | [open](https://claude.ai/artifact/9tbrUrJKKq41HT6MS88stL) | [source](reports/aphthovirus-pssm-registry.html) | 2026-10-05 |
 | Aphthovirus String Collapse | [open](https://claude.ai/artifact/KdaADibFPANEzfuUFHPFKn) | [source](reports/aphthovirus-string-collapse.html) | 2026-10-05 |
 | Aphthovirus Vocabulary Saturation | [open](https://claude.ai/artifact/VG7VGspxEMqfRJvTUNJwzo) | [source](reports/aphthovirus-vocabulary-saturation.html) | 2026-10-05 |
+
+### Avastrovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Avastrovirus Coverage Audit | [open](https://claude.ai/artifact/5RSkHzZqkSbdaRKMzHrNZM) | [source](reports/avastrovirus-coverage-audit.html) | 2026-10-29 |
+| Avastrovirus PSSM Registry | [open](https://claude.ai/artifact/6Jpsu5giVraWnVab27PjS8) | [source](reports/avastrovirus-pssm-registry.html) | 2026-10-29 |
+| Avastrovirus String Collapse | [open](https://claude.ai/artifact/VrWfP1iFNxZT5JCJBgHH5w) | [source](reports/avastrovirus-string-collapse.html) | 2026-10-29 |
+| Avastrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/RcW23Q2inLy9B7bfVVFBK7) | [source](reports/avastrovirus-vocabulary-saturation.html) | 2026-10-29 |
 
 ### Avian Orthoreovirus
 
@@ -187,6 +202,12 @@ Built but never published, source is here: [coverage audit](reports/alpharetrovi
 |---|---|---|---|
 
 Built but never published, source is here: [coverage audit](reports/betaretrovirus-coverage-audit.html), [PSSM registry](reports/betaretrovirus-pssm-registry.html), [string collapse](reports/betaretrovirus-string-collapse.html), [vocabulary saturation](reports/betaretrovirus-vocabulary-saturation.html).
+
+### Bocaparvovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Bocaparvovirus String Collapse | [open](https://claude.ai/artifact/VZJSrH8RoyZhd6DRXLvCSR) | [source](reports/bocaparvovirus-string-collapse.html) | 2026-10-29 |
 
 ### Bromoviridae
 
@@ -267,6 +288,24 @@ Built but never published, source is here: [coverage audit](reports/betaretrovir
 
 Built but never published, source is here: [coverage audit](reports/deltaretrovirus-coverage-audit.html), [PSSM registry](reports/deltaretrovirus-pssm-registry.html), [string collapse](reports/deltaretrovirus-string-collapse.html), [vocabulary saturation](reports/deltaretrovirus-vocabulary-saturation.html).
 
+### DensovirinaeAmbi
+
+| page | live | source | updated |
+|---|---|---|---|
+| DensovirinaeAmbi String Collapse | [open](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | [source](reports/densovirinaeambi-string-collapse.html) | 2026-10-29 |
+
+### DensovirinaeMono
+
+| page | live | source | updated |
+|---|---|---|---|
+| DensovirinaeMono String Collapse | [open](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | [source](reports/densovirinaemono-string-collapse.html) | 2026-10-29 |
+
+### Dependoparvovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Dependoparvovirus String Collapse | [open](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [source](reports/dependoparvovirus-string-collapse.html) | 2026-10-29 |
+
 ### EIAV
 
 | page | live | source | updated |
@@ -291,6 +330,12 @@ Built but never published, source is here: [coverage audit](reports/eiav-coverag
 | Enterovirus PSSM Registry | [open](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [source](reports/enterovirus-pssm-registry.html) | 2026-10-05 |
 | Enterovirus String Collapse | [open](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [source](reports/enterovirus-string-collapse.html) | 2026-10-05 |
 | Enterovirus Vocabulary Saturation | [open](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [source](reports/enterovirus-vocabulary-saturation.html) | 2026-10-05 |
+
+### Erythroparvovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Erythroparvovirus String Collapse | [open](https://claude.ai/artifact/3MvexZCs6HE9mQQpADMAyd) | [source](reports/erythroparvovirus-string-collapse.html) | 2026-10-29 |
 
 ### FIV
 
@@ -323,6 +368,12 @@ Built but never published, source is here: [coverage audit](reports/fiv-coverage
 |---|---|---|---|
 
 Built but never published, source is here: [coverage audit](reports/gammaretrovirus-coverage-audit.html), [PSSM registry](reports/gammaretrovirus-pssm-registry.html), [string collapse](reports/gammaretrovirus-string-collapse.html), [vocabulary saturation](reports/gammaretrovirus-vocabulary-saturation.html).
+
+### Hamaparvovirinae
+
+| page | live | source | updated |
+|---|---|---|---|
+| Hamaparvovirinae String Collapse | [open](https://claude.ai/artifact/5EfjTxcX3VK5VJtJZRHebN) | [source](reports/hamaparvovirinae-string-collapse.html) | 2026-10-29 |
 
 ### Hepaciviridae
 
@@ -401,6 +452,15 @@ Built but never published, source is here: [coverage audit](reports/hiv2-coverag
 | Lagovirus PSSM Registry | [open](https://claude.ai/artifact/CqYYq1ekytoZf5oVCb5zVK) | [source](reports/lagovirus-pssm-registry.html) | 2026-10-14 |
 | Lagovirus String Collapse | [open](https://claude.ai/artifact/MaXyiZhw6iYWGgut5PhNJF) | [source](reports/lagovirus-string-collapse.html) | 2026-10-14 |
 | Lagovirus Vocabulary Saturation | [open](https://claude.ai/artifact/HxygdrBS6JjHyAzphnj7eD) | [source](reports/lagovirus-vocabulary-saturation.html) | 2026-10-14 |
+
+### Mamastrovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Mamastrovirus Coverage Audit | [open](https://claude.ai/artifact/HivykiHqcCeiWMAUczQShN) | [source](reports/mamastrovirus-coverage-audit.html) | 2026-10-29 |
+| Mamastrovirus PSSM Registry | [open](https://claude.ai/artifact/9TiskqqapCz6kKTp3X54dP) | [source](reports/mamastrovirus-pssm-registry.html) | 2026-10-29 |
+| Mamastrovirus String Collapse | [open](https://claude.ai/artifact/QpYi5xQgkJ9DfhLz7Jbjbi) | [source](reports/mamastrovirus-string-collapse.html) | 2026-10-29 |
+| Mamastrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/KK2DD6dqtiU3u7kWUfoWHZ) | [source](reports/mamastrovirus-vocabulary-saturation.html) | 2026-10-29 |
 
 ### MammalianOrthoreovirus
 
@@ -538,6 +598,12 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 | Piscine Orthoreovirus String Collapse | [open](https://claude.ai/artifact/JEnqCvUGt9SN5f6kuCtT15) | [source](reports/piscineorthoreovirus-string-collapse.html) | 2026-10-17 |
 | Piscine Orthoreovirus Vocabulary Saturation | [open](https://claude.ai/artifact/7tqSe2K6VWU6jeLPRuwkKt) | [source](reports/piscineorthoreovirus-vocabulary-saturation.html) | 2026-10-17 |
 
+### Protoparvovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Protoparvovirus String Collapse | [open](https://claude.ai/artifact/KBU1KeEYqBDGco27VKRx1T) | [source](reports/protoparvovirus-string-collapse.html) | 2026-10-29 |
+
 ### Pteropine Orthoreovirus
 
 | page | live | source | updated |
@@ -651,6 +717,12 @@ Built but never published, source is here: [coverage audit](reports/srlv-coverag
 | Teschovirus String Collapse | [open](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [source](reports/teschovirus-string-collapse.html) | 2026-10-04 |
 | Teschovirus Vocabulary Saturation | [open](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [source](reports/teschovirus-vocabulary-saturation.html) | 2026-10-04 |
 
+### TetraCopiparvovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| TetraCopiparvovirus String Collapse | [open](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | [source](reports/tetracopiparvovirus-string-collapse.html) | 2026-10-29 |
+
 ### Tobamovirus
 
 | page | live | source | updated |
@@ -718,14 +790,6 @@ Not made: vocabulary saturation.
 | LowVan Module Handbook | [open](https://claude.ai/artifact/19YxBdyb57P7Ukc71EcjXs) | [source](reports/lowvan-module-handbook.html) | 2026-09-11 |
 | LowVan Build Status | [open](https://claude.ai/artifact/2CHoELvZ74fRA2X83Maqxx) | — | 2026-09-11 |
 | Varicosavirus Protein Census | [open](https://claude.ai/artifact/4Gqf7KTGXU86FCFwDcyzJ2) | — | 2026-09-03 |
-| Avastrovirus Coverage Audit | [open](https://claude.ai/artifact/5RSkHzZqkSbdaRKMzHrNZM) | [source](reports/avastrovirus-coverage-audit.html) | 2026-10-29 |
-| Avastrovirus PSSM Registry | [open](https://claude.ai/artifact/6Jpsu5giVraWnVab27PjS8) | [source](reports/avastrovirus-pssm-registry.html) | 2026-10-29 |
-| Avastrovirus String Collapse | [open](https://claude.ai/artifact/VrWfP1iFNxZT5JCJBgHH5w) | [source](reports/avastrovirus-string-collapse.html) | 2026-10-29 |
-| Avastrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/RcW23Q2inLy9B7bfVVFBK7) | [source](reports/avastrovirus-vocabulary-saturation.html) | 2026-10-29 |
-| Mamastrovirus Coverage Audit | [open](https://claude.ai/artifact/HivykiHqcCeiWMAUczQShN) | [source](reports/mamastrovirus-coverage-audit.html) | 2026-10-29 |
-| Mamastrovirus PSSM Registry | [open](https://claude.ai/artifact/9TiskqqapCz6kKTp3X54dP) | [source](reports/mamastrovirus-pssm-registry.html) | 2026-10-29 |
-| Mamastrovirus String Collapse | [open](https://claude.ai/artifact/QpYi5xQgkJ9DfhLz7Jbjbi) | [source](reports/mamastrovirus-string-collapse.html) | 2026-10-29 |
-| Mamastrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/KK2DD6dqtiU3u7kWUfoWHZ) | [source](reports/mamastrovirus-vocabulary-saturation.html) | 2026-10-29 |
 
 ## Superseded
 
