@@ -437,8 +437,17 @@ def install(workdir, repo, modules, mod_json, dry=False):
     after = canon_dumps(master)
     if not dry:
         shutil.copy2(vp, vp + ".bak")
-        with open(vp, "w", encoding="utf8") as fh:
+        #  Atomic. Opening the master "w" truncates it in place, and this file
+        #  is ~97 modules of JSON that a running annotator re-reads for every
+        #  genome -- installing while a coverage run is in flight would hand
+        #  some perl process a half-written file and fail that genome with no
+        #  trace in the install log. Write a sibling and rename over it.
+        tmp = vp + ".tmp.%d" % os.getpid()
+        with open(tmp, "w", encoding="utf8") as fh:
             fh.write(after)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, vp)
     print("  Viral_PSSM.json: %d module(s) added %s, %d replaced %s (backup .bak)"
           % (len(added), added or "", len(replaced), replaced or ""))
     # The master is shared. Say plainly when a write reformats the whole file,
