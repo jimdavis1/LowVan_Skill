@@ -44,6 +44,14 @@ ap.add_argument("--meta-genus-col", type=int, default=3)
 ap.add_argument("--routing-note", default=None,
                 help="replaces the sentence in 04 describing what routing was measured against; "
                      "%%d rep contigs and %%d used are substituted in that order")
+#  The 06 sentence says the panel is HELD OUT, which is true of the picornavirus
+#  panels and false of a coverage sample that still holds rep-contig genomes
+#  (Parvoviridae, 31 Oct: 4 to 25 per module). Say what the panel actually is.
+ap.add_argument("--panel-note", default=None,
+                help="replaces the sentence in 06 describing how the panel was drawn; "
+                     "%%d is the panel size")
+ap.add_argument("--panel-label", default="held-out genomes",
+                help="what the 06 tiles and the headline tile call the panel")
 a = ap.parse_args()
 G, PROSE, OUT = a.taxon, a.prose, a.out
 S = a.scratch
@@ -202,7 +210,7 @@ facts = {
    [str(len(keys)), "features, all with profiles" if all(k in reg and reg[k]["pssms"] for k in keys) else "features"],
    [str(n_pssm), "PSSMs"],
    ["%d/%d" % (routed, ex), "exemplars routed"],
-   [P(clean, n_p), "held-out genomes genuinely clean"],
+   [P(clean, n_p), a.panel_label + " genuinely clean"],
    ["%.1f\u00d7" % collapse, "string collapse"],
    ["%.1f\u00d7" % fold, "vocabulary collapse at equal proteins sampled"]],
  "sections": [
@@ -223,7 +231,7 @@ facts = {
     [{"type": "prose", "html": h} for h in pr["p03"]] +
     [{"type": "verdict", "kind": "ok", "html":
       "Self-recall against each feature's own in-range collection: <b>%d of %d (%s)</b> &mdash; %s. "
-      "This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06." % (tot_c, tot_n, P(tot_c, tot_n), recall)}]},
+      "This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06." % (tot_c, tot_n, P(tot_c, tot_n), recall)}]},
   {"num": "04", "title": "Does it route?", "lede": pr["lede04"], "blocks": [
      {"type": "table", "headers": ["", "count", "%"], "rows": [
        ["genomes \u2265 5 kb, clustered at 95% nucleotide identity", c(ex), "\u2014"],
@@ -246,12 +254,14 @@ facts = {
            "called by an external program and absent from this table, or a protein part of the genus does not encode"))}] +
      [{"type": "prose", "html": h} for h in pr["p05"]]},
   {"num": "06", "title": "Are the calls right?", "lede": pr["lede06"], "blocks": [
-     {"type": "tiles", "items": [[str(n_p), "held-out genomes"], [str(noflag), "no genome/contig flags"],
+     {"type": "tiles", "items": [[str(n_p), a.panel_label], [str(noflag), "no genome/contig flags"],
         [str(clean), "genuinely clean"], [str(flagged), "flagged"], [str(nothing), "called nothing"],
         [P(clean, n_p), "clean"]]},
-     {"type": "prose", "html": "The panel is %d genomes drawn round-robin across species from this genus's own BV-BRC contigs, "
+     {"type": "prose", "html": (a.panel_note or
+       "The panel is %d genomes drawn round-robin across species from this genus's own BV-BRC contigs, "
        "with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored "
-       "by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all." % n_p}] +
+       "by <code>viral_genome_quality.pl</code>.") % n_p +
+       " <i>Genuinely clean</i> means no genome, contig or feature flag at all."}] +
      ([{"type": "pre", "text": "\n".join("%4d  %s" % (n, f) for f, n in ftally.most_common(12))}] if ftally else []) +
      [{"type": "prose", "html": h} for h in pr["p06"]]},
   {"num": "07", "title": "What it cannot do", "lede": pr["lede07"], "blocks":
