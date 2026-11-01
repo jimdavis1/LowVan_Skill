@@ -186,7 +186,14 @@ def main():
         d = {
             "anno": spec["anno"],
             "bit_cutoff": spec.get("bit_cutoff", cutoff(key, med)),
-            "coverage_cutoff": 0.65,
+            #  0.65 is the default, not the only value. Since the 26 Oct
+            #  caller, coverage is measured against the PROFILE's length
+            #  rather than the HSP's own query span, so this threshold
+            #  finally does something: it is what rejects a profile that
+            #  matches part of an open reading frame and is then extended
+            #  over the whole of it. The value was hardcoded here, so a
+            #  features file that set one was silently ignored.
+            "coverage_cutoff": spec.get("coverage_cutoff", 0.65),
             "downstream_ext": spec.get("downstream_ext", 0),
             "feature_type": ftype,
             #  The key is filename-safe and the symbol is what the annotator
