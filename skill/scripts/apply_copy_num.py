@@ -180,13 +180,23 @@ def main():
     #  family_assignments carries the module: "SRLV.GAG.2" -> ("SRLV", "GAG").
     #  Fall back to `anno` when a feature has no assignment, which keeps the
     #  old behaviour for a single-module directory.
+    #
+    #  The feature is everything between the module and a trailing numeric
+    #  profile id, NOT bits[1]. Erythroparvovirus declares "7.5K" and "9.5K";
+    #  bits[1] read "Erythroparvovirus.7.5K.1" as feature "7", matched nothing,
+    #  and reported both at 0.0% on 298 genomes that called them 283 and 284
+    #  times (30 Oct). Specials carry no profile id ("HIV2.REV"); leftover
+    #  profiles carry a compound one ("Bocaparvovirus.NP1.3_1").
     def mod_and_key(f):
         fam = (f.get("family_assignments") or [[None, "", "", ""]])[0]
         key = (fam[1] or "") if len(fam) > 1 else ""
         if key:
-            bits = key.split(".")
-            if len(bits) >= 2 and bits[0] and bits[1]:
-                return bits[0], bits[1]
+            mod, _, rest = key.partition(".")
+            head, dot, tail = rest.rpartition(".")
+            if dot and tail.replace("_", "").isdigit():
+                rest = head
+            if mod and rest:
+                return mod, rest
         return None, anno2key.get(f.get("function") or "")
 
     raw = collections.Counter(); alone = collections.Counter(); routed = 0

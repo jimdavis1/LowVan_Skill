@@ -190,6 +190,104 @@ rule needs a genus column, why a **bimodal** feature needs an explicit length
 window rather than a median, and how to **discover** accessory features by
 clustering instead of naming them off the source's masses.
 
+**The deposited NAME is a submitter claim, like every other field.** The
+literature-authority rule at the top of this file is usually applied to
+boundaries and splicing. It applies just as hard to which protein a sequence
+*is*. Submitter names are frequently wrong, and a name rule that is right about
+the string can still put the sequence in the wrong collection.
+
+This bites hardest on **nested alternative-start forms** — VP1/VP2/VP3,
+Rep78/68/52/40 — because the forms are ~100% identical where they overlap, so
+nothing downstream can separate them once they are mixed. Get the literature's
+size for each form, then check the collection against it:
+
+```bash
+#  length classes per collection, per species -- a nested form carrying its
+#  parent's length class is the defect, and it is visible nowhere else.
+python3 scripts/capsid_length_audit.py --workdir . --module <Module>
+```
+
+Measured on Parvoviridae, 30 Oct 2026. B19 VP1 is 781 aa and VP2 is 554 aa —
+VP2 is VP1 without the 227-residue VP1u (PMID 11799199; RefSeq NC_000883
+`VP1 2624..4969`, `VP2 3305..4969` agrees). **40 unique deposits named "VP2"
+were 781 aa**: VP1 under the wrong name.
+
+That alone would be survivable. What made it fatal is a build-time
+interaction: `fasta-cluster-pssm` drops any cluster whose consensus is a
+**substring** of another cluster's, and the real 554 aa VP2 *is* a substring of
+VP1. Its log said `1 clusters kept, 2 dropped as truncated (1 within 2, 3
+within 2)` — the two genuine VP2 clusters were discarded and **VP2 shipped as a
+VP1 profile**. The module then called VP2 at VP1's exact coordinates in
+**281 of 295** genomes. Every QC step passed: the profile recalled its own
+training data perfectly, the call rate was 99%, and the annotation string was
+correct. Nothing but the length distribution showed it.
+
+TetraCopiparvovirus had the same defect at larger scale and in both
+directions: **66 of 89** Tetraparvovirus "VP2" members were VP1-length
+(914/925/931/933 aa, one class per species) while 26 VP1-length-named deposits
+were the 555 aa VP2. 117 of 269 genomes called VP2 at VP1's coordinates.
+
+**The test that settles it, and it is structural rather than nominal:** VP2 is
+an exact C-terminal substring of VP1 from the same genome. Where a genome
+deposits both forms, the longer is VP1 and the shorter is VP2 **whatever the
+labels say** — 34 of 34 pairs nested exactly, and in 22 of them the labels were
+inverted.
+
+Two consequences, and both are required:
+
+1. **Re-bin on the literature's size, not the name.** A mislabelled deposit is
+   moved, and the move is logged with its count.
+2. **Rebuild the alignment and the PSSM from pure examples.** A contaminated
+   collection does not become clean by renaming rows in a report — the profile
+   was built from the mixed set and has to be rebuilt once each collection
+   holds one form only.
+
+Compare lengths **per species**, never per module or per genus. Tetraparvovirus
+alone spans VP1 at 914 (human parvovirus 4), 925 (porcine parvovirus 3 and the
+hokoviruses), 931, 933 and 1032 aa (porcine parvovirus 2), so a genus median of
+1032 declares every real VP1 below it a VP2, and a module-wide one is worse.
+
+**Anchor on a measured pair, never on a ratio of the parent's length.** The
+tempting rule — "a VP2 at ≥ 0.85 × its species' VP1 is really a VP1" — was
+simulated before it was written and would have moved **143 genuine
+Amdoparvovirus VP2 deposits**. The VP1→VP2 offset is family-specific: 227 aa
+in Erythroparvovirus, ~370 in Tetraparvovirus, ~42 in Amdoparvovirus
+(689 → 647). No single fraction separates the forms across a family. What does
+work: where one genome deposits two forms, the shorter an exact C-terminal
+substring of the longer **and** the existing labels already agree with that
+order, that pair *measures* both forms for that species. Assign every member of
+the species to the nearest anchor in **relative** distance, so a 42 aa offset
+separates as cleanly as a 370 aa one.
+
+A length-**class** ranking is only the fallback, and it fails quietly when a
+species shows more classes than there are forms. Porcine parvovirus 3 deposits
+VP1 at 925, 883 and 880 aa and "VP2" at 806, 804, 688 and 513 aa; that split
+into four classes, a `2 <= classes <= forms` guard skipped the whole species,
+and a VP1-length VP2 profile called VP2 at VP1's coordinates in 23 genomes.
+The anchor from its one both-forms genome (VP1 = 883, VP2 = 513, nested)
+resolves all seven deposits.
+
+**Then ask which END the member shares with the parent.** A nested form is an
+alternative *start*: it carries the parent's C-terminus and is missing the
+parent's N-terminus. A deposit that begins at the parent's **residue 1** and
+stops short is the opposite — a truncated parent under the wrong name — and no
+length rule can tell the two apart, because both are merely "shorter".
+
+Every "VP2" deposit of porcine parvovirus 2 (606, 654, 713 aa) and of porcine
+parvovirus 4 (394, 427, 485 aa) starts at VP1 residue 1. Neither species has a
+genome depositing both forms, so no anchor reaches them; the six built two VP2
+profiles out of VP1's N-terminus, which then called VP2 at VP1's own
+coordinates in **132 genomes**. Send them back to the parent form, where the
+ordinary truncation QC drops them — `fasta-cluster-pssm` already discards a
+cluster whose consensus is a substring of another's. Never leave them in a
+sub-form.
+
+Both tests are in `capsid_length_audit.py`, which compares a form only against
+the forms it actually **nests with**, as connected components of the nesting
+graph. A flat set is not enough: Bocaparvovirus nests VP/VP2 and, in two
+deposits, NS1/NP1, and with one combined set NS1 and VP1 — both ~685 aa in
+porcine bocavirus 3 and entirely unrelated — reported each other.
+
 The logic lives in `scripts/collection_engine.py`; a taxon's
 `build_collections.py` declares only its own rules and calls `run()`.
 

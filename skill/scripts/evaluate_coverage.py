@@ -314,10 +314,16 @@ def report_gto(ex, seqs, work, out):
             key = (fam[1] or "") if len(fam) > 1 else ""
             if not key:
                 continue
-            bits = key.split(".")
-            mod = bits[0] or mod
+            #  feature = everything between the module and a trailing numeric
+            #  profile id; bits[1] truncated "Erythroparvovirus.7.5K.1" to "7".
+            #  Leftover profile ids are compound: "NP1.3_1".
+            m0, _, rest = key.partition(".")
+            head, dot, tail = rest.rpartition(".")
+            if dot and tail.replace("_", "").isdigit():
+                rest = head
+            mod = m0 or mod
             gene = dict(f.get("alias_pairs") or []).get("gene")
-            calls.append(gene or (bits[1].lower() if len(bits) > 1 else key))
+            calls.append(gene or (rest.lower() if rest else key))
             if len(fam) > 3 and fam[3]:
                 by_caller[fam[3]] += 1
         if not calls:
