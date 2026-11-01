@@ -1,0 +1,102 @@
+{
+ "Hamaparvovirinae.1.dna": {
+  "genome_ids": "1820046.230.con.0001",
+  "genome_name": "Porcine parvovirus 7 PPV7-1"
+ },
+ "Hamaparvovirinae.10.dna": {
+  "genome_ids": "2810801.14.con.0001",
+  "genome_name": "Duck-associated chapparvovirus HeB2201"
+ },
+ "Hamaparvovirinae.11.dna": {
+  "genome_ids": "1885571.3.con.0001",
+  "genome_name": "Rat parvovirus 2 9"
+ },
+ "Hamaparvovirinae.12.dna": {
+  "genome_ids": "2660749.11.con.0001",
+  "genome_name": "Tilapia parvovirus TiPVC20160912"
+ },
+ "Hamaparvovirinae.13.dna": {
+  "genome_ids": "2832241.15.con.0001",
+  "genome_name": "Mute swan feces associated chapparvovirus 3 Abbotsbury/A/2016"
+ },
+ "Hamaparvovirinae.14.dna": {
+  "genome_ids": "2917169.4.con.0001",
+  "genome_name": "Hedgehog chapparvovirus 6 HeN-F2"
+ },
+ "Hamaparvovirinae.15.dna": {
+  "genome_ids": "2448649.18.con.0001",
+  "genome_name": "Chapparvovirus sp. ParvoviridaeGoosefe91V9"
+ },
+ "Hamaparvovirinae.16.dna": {
+  "genome_ids": "2604334.3.con.0001",
+  "genome_name": "Avian chapparvovirus BR_DF10"
+ },
+ "Hamaparvovirinae.17.dna": {
+  "genome_ids": "2529487.3.con.0001",
+  "genome_name": "Tasmanian devil-associated chapparvovirus 6 Tasmania/Sarcophilus_harrisii/2017/frag_4482_SRR8 048117"
+ },
+ "Hamaparvovirinae.18.dna": {
+  "genome_ids": "2759407.3.con.0001",
+  "genome_name": "Pacific black duck chaphamaparvovirus 1 PBDCPaV1/PBD12.16-AU-2016"
+ },
+ "Hamaparvovirinae.19.dna": {
+  "genome_ids": "2794485.5.con.0001",
+  "genome_name": "Cygnus atratus Chaphamaparvovirus bls219par011"
+ },
+ "Hamaparvovirinae.2.dna": {
+  "genome_ids": "2809295.133.con.0001",
+  "genome_name": "Chaphamaparvovirus sp. ChPV/PB24-SII34/x2/Switzerland/2019"
+ },
+ "Hamaparvovirinae.20.dna": {
+  "genome_ids": "2809295.245.con.0001",
+  "genome_name": "Chaphamaparvovirus sp. ParvoviridaeGoosefe91V2"
+ },
+ "Hamaparvovirinae.21.dna": {
+  "genome_ids": "1443909.3.con.0001",
+  "genome_name": "Turkey parvovirus TP1-2012/HUN"
+ },
+ "Hamaparvovirinae.22.dna": {
+  "genome_ids": "2448649.22.con.0001",
+  "genome_name": "Chapparvovirus sp. ParvoviridaeGoosefe91V4"
+ },
+ "Hamaparvovirinae.23.dna": {
+  "genome_ids": "2529482.3.con.0001",
+  "genome_name": "Tasmanian devil-associated chapparvovirus 1 Tasmania/Sarcophilus_harrisii/2017/frag_3871_SRR8 048111"
+ },
+ "Hamaparvovirinae.24.dna": {
+  "genome_ids": "2604335.3.con.0001",
+  "genome_name": "Psittacara leucophthalmus chapparvovirus BR_DF11"
+ },
+ "Hamaparvovirinae.25.dna": {
+  "genome_ids": "2662396.3.con.0001",
+  "genome_name": "Syngnathus scovelli chapparvovirus"
+ },
+ "Hamaparvovirinae.3.dna": {
+  "genome_ids": "1513224.327.con.0001",
+  "genome_name": "Decapod penstyldensovirus 1"
+ },
+ "Hamaparvovirinae.4.dna": {
+  "genome_ids": "2575765.3.con.0001",
+  "genome_name": "Cachavirus-1B IDEXX2"
+ },
+ "Hamaparvovirinae.5.dna": {
+  "genome_ids": "2736647.23.con.0001",
+  "genome_name": "Feline chaphamaparvovirus IDEXX-1"
+ },
+ "Hamaparvovirinae.6.dna": {
+  "genome_ids": "797418.4.con.0001",
+  "genome_name": "Fenneropenaeus chinensis hepandensovirus"
+ },
+ "Hamaparvovirinae.7.dna": {
+  "genome_ids": "1513199.3.con.0001",
+  "genome_name": "Aedes albopictus densovirus 2"
+ },
+ "Hamaparvovirinae.8.dna": {
+  "genome_ids": "2316143.3.con.0001",
+  "genome_name": "Mouse kidney parvovirus Centenary Institute"
+ },
+ "Hamaparvovirinae.9.dna": {
+  "genome_ids": "2832244.15.con.0001",
+  "genome_name": "Mute swan feces associated chapparvovirus 6 Abbotsbury/A/2016"
+ }
+}
