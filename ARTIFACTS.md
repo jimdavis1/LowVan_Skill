@@ -44,7 +44,7 @@ per-taxon tables below carry the dates and the source paths.
 | **DensovirinaeAmbi — ambisense densoviruses** | [src only](reports/densovirinaeambi-string-collapse.html) | — | — | — |
 | **DensovirinaeMono** | [live](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | [live](https://claude.ai/artifact/VGQzYmcXAUzaRhK1FR3oid) | [live](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | [src only](reports/densovirinaemono-coverage-audit.html) |
 | **DensovirinaeMono — monosense densoviruses** | [src only](reports/densovirinaemono-string-collapse.html) | [src only](reports/densovirinaemono-pssm-registry.html) | [src only](reports/densovirinaemono-vocabulary-saturation.html) | — |
-| **Dependoparvovirus** | [live](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [live](https://claude.ai/artifact/FgbPhV6JWJF3vEuGmAzhJV) | [live](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | — |
+| **Dependoparvovirus** | [live](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [live](https://claude.ai/artifact/FgbPhV6JWJF3vEuGmAzhJV) | [live](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | [src only](reports/dependoparvovirus-coverage-audit.html) |
 | **EIAV** | [live](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [live](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | [live](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | [live](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) |
 | **EIAV — equine infectious anaemia virus** | [src only](reports/eiav-string-collapse.html) | [src only](reports/eiav-pssm-registry.html) | [src only](reports/eiav-vocabulary-saturation.html) | [src only](reports/eiav-coverage-audit.html) |
 | **Enterovirus** | [live](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [live](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [live](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [live](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) |
@@ -350,7 +350,7 @@ Not made: coverage audit.
 | Dependoparvovirus String Collapse | [open](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [source](reports/dependoparvovirus-string-collapse.html) | 2026-10-29 |
 | Dependoparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | [source](reports/dependoparvovirus-vocabulary-saturation.html) | 2026-10-31 |
 
-Not made: coverage audit.
+Built but never published, source is here: [coverage audit](reports/dependoparvovirus-coverage-audit.html).
 
 ### EIAV
 
@@ -852,6 +852,7 @@ Not made: vocabulary saturation.
 |---|---|---|---|
 | DensovirinaeMono — coverage audit | [open](https://claude.ai/artifact/Nx6tVfTiXDRPF2LrHdKKgV) | — | 2026-11-01 |
 | Hamaparvovirinae — coverage audit | [open](https://claude.ai/artifact/1UrnLiaRuZqyeyVTvAGmaj) | — | 2026-11-01 |
+| Dependoparvovirus — coverage audit | [open](https://claude.ai/artifact/DQHm1ikoc4QR8R74LLryKB) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
