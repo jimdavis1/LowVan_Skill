@@ -44,7 +44,10 @@ def read_fasta(path):
             out.append(cur)
         elif cur:
             cur[1].append(line.strip())
-    return [(h, "".join(s)) for h, s in out]
+    #  contig fasta from the dump is soft-masked lower case and the
+    #  codon table is upper case; without this every translation is
+    #  a run of X.
+    return [(h, "".join(s).upper()) for h, s in out]
 
 
 def ident(a, b):
@@ -62,7 +65,13 @@ def main():
     ap.add_argument("--from", dest="src", required=True,
                     help="reference fasta that already built, same donor")
     ap.add_argument("--query", required=True, help="protein FASTA, one sequence")
-    ap.add_argument("--contigs", required=True)
+    ap.add_argument("--contigs", required=True,
+                    help="dir of <genome_id>.fna. The source slice stops at "
+                         "ITS product's stop codon, which can be upstream of "
+                         "this product's acceptor -- Protoparvovirus NS2 ends "
+                         "at about 1968 while NS3 accepts at 2095 -- so each "
+                         "slice is re-anchored in its genome and run to the "
+                         "end of the contig.")
     ap.add_argument("--out", required=True)
     ap.add_argument("--name", default="FEAT")
     ap.add_argument("--len-tol", type=float, default=0.10)
@@ -108,6 +117,15 @@ def main():
         seen.add(gid)
         sd0 = int(re.search(r"SD:\d+-\d+;(\d+)", hdr).group(1))
         mine = deposits.get(gid, ())
+
+        fna = os.path.join(a.contigs, gid + ".fna")
+        if os.path.exists(fna):
+            for _, c in read_fasta(fna):
+                c = c.upper()
+                at = c.find(seq[:60])
+                if at >= 0:
+                    seq = c[at:]
+                    break
 
         best = None
         for sd in range(sd0 - a.donor_window, sd0 + a.donor_window + 1):
