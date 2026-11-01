@@ -21,13 +21,16 @@ per-taxon tables below carry the dates and the source paths.
 | **Alphaflexiviridae** | [live](https://claude.ai/artifact/1opeHxTHrAVEx7nsy8DMc1) | [live](https://claude.ai/artifact/TseN29Pu2NS87fMCJRTP1a) | [live](https://claude.ai/artifact/DrNtpzKawMfnQvEFgdvJCP) | [live](https://claude.ai/artifact/MzC77du44ZP2iBnPogQPx1) |
 | **Alpharetrovirus** | [live](https://claude.ai/artifact/CfpgXESRmcejTpMaqkga2H) | [live](https://claude.ai/artifact/79W5AL2FdcGK8mJaEzXVeZ) | [live](https://claude.ai/artifact/2se3RSaF9Cbv1brCHo3uxp) | [live](https://claude.ai/artifact/AnobFFvUDqjQfPHECo2bPp) |
 | **Alpharetrovirus — avian leukosis and sarcoma viruses** | [src only](reports/alpharetrovirus-string-collapse.html) | [src only](reports/alpharetrovirus-pssm-registry.html) | [src only](reports/alpharetrovirus-vocabulary-saturation.html) | [src only](reports/alpharetrovirus-coverage-audit.html) |
+| **Amdoparvovirus** | [live](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | — | — | — |
 | **Ampelovirus** | [live](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [live](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [live](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [live](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) |
 | **Aphthovirus** | [live](https://claude.ai/artifact/KdaADibFPANEzfuUFHPFKn) | [live](https://claude.ai/artifact/9tbrUrJKKq41HT6MS88stL) | [live](https://claude.ai/artifact/VG7VGspxEMqfRJvTUNJwzo) | [live](https://claude.ai/artifact/1ZtduTvq8yXtbpb1CxTyex) |
+| **Avastrovirus** | [live](https://claude.ai/artifact/VrWfP1iFNxZT5JCJBgHH5w) | [live](https://claude.ai/artifact/6Jpsu5giVraWnVab27PjS8) | [live](https://claude.ai/artifact/RcW23Q2inLy9B7bfVVFBK7) | [live](https://claude.ai/artifact/5RSkHzZqkSbdaRKMzHrNZM) |
 | **Avian Orthoreovirus** | [live](https://claude.ai/artifact/2CfEd31Y8bvE6jVxVWBnQ1) | [live](https://claude.ai/artifact/GaQucYQdx9YJ1cPotbhr1V) | [live](https://claude.ai/artifact/AsPEXfHmr2noPAraHssXbS) | [live](https://claude.ai/artifact/2bSDj7BTvk8cuWeLGVdaEi) |
 | **Avihepatovirus** | [live](https://claude.ai/artifact/6RHPEZykKvhFBP9wrrH1qU) | [live](https://claude.ai/artifact/JFVvSbRmU1Fv6nq7Wqi7gC) | [live](https://claude.ai/artifact/P3wF6BgumacJUGYqZ4v7X8) | [live](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) |
 | **Bavovirus** | [live](https://claude.ai/artifact/VRpn8EkqAkz2sMjzYFEDS9) | [live](https://claude.ai/artifact/RqkxTXZnGNWALpiyXz7t9d) | [live](https://claude.ai/artifact/RqWLqqQPpCtJC7ZHpPxPxZ) | [live](https://claude.ai/artifact/88JpWMU5nBSfQXczr3X2ZX) |
 | **Betaretrovirus** | [live](https://claude.ai/artifact/QmBMhMeySeeWx1xSEGB7b2) | [live](https://claude.ai/artifact/NWA1P4R6gtTixbvjjPva4h) | [live](https://claude.ai/artifact/XPJL3x1kDK7NtrULEvg7wi) | [live](https://claude.ai/artifact/WG4UHp5QzR5NqYy5RFvStr) |
 | **Betaretrovirus — mouse mammary tumour and type B/D viruses** | [src only](reports/betaretrovirus-string-collapse.html) | [src only](reports/betaretrovirus-pssm-registry.html) | [src only](reports/betaretrovirus-vocabulary-saturation.html) | [src only](reports/betaretrovirus-coverage-audit.html) |
+| **Bocaparvovirus** | [live](https://claude.ai/artifact/VZJSrH8RoyZhd6DRXLvCSR) | — | — | — |
 | **Bromoviridae** | [live](https://claude.ai/artifact/1wZ4m4Ri6VarEWj6vGB8UT) | [live](https://claude.ai/artifact/VtS14XFKWG1BtzBiX1f193) | [live](https://claude.ai/artifact/LLVpuYZWg7GbRrFbcBMpiK) | [live](https://claude.ai/artifact/MLcThSnPEmReaR28vFsLN5) |
 | **Capillovirus** | [live](https://claude.ai/artifact/UxFYYiPSxUmVHpnfZvttL6) | [live](https://claude.ai/artifact/2MhyYGJDyaiuKpH8dT8DMP) | [live](https://claude.ai/artifact/KRCGhYahtrFrXhC66FMCDG) | [live](https://claude.ai/artifact/72Tkge2qkTd5sc5eumHUtP) |
 | **Cardiovirus** | [live](https://claude.ai/artifact/44d26MFMAYpvzfoKyDjqS7) | [live](https://claude.ai/artifact/WuCYigqaWqd7yeoyQ4PMN5) | [live](https://claude.ai/artifact/SiYcBoWrvoLUSpYcuBk47P) | [live](https://claude.ai/artifact/CWpYjvdg3sbjLaRp68LFti) |
@@ -37,13 +40,20 @@ per-taxon tables below carry the dates and the source paths.
 | **Crinivirus** | [live](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [live](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [live](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [live](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) |
 | **Deltaretrovirus** | [live](https://claude.ai/artifact/Mvm31NpChCPQJmGEM6RNNy) | [live](https://claude.ai/artifact/HjGXwXK9GgvjyZx11y5jtt) | [live](https://claude.ai/artifact/1cZ4bd5xSjkYD11d2R2eJA) | [live](https://claude.ai/artifact/2tWi5E9gm5KWRKspYdJgDA) |
 | **Deltaretrovirus — human and simian T-lymphotropic viruses and bovine leukaemia virus** | [src only](reports/deltaretrovirus-string-collapse.html) | [src only](reports/deltaretrovirus-pssm-registry.html) | [src only](reports/deltaretrovirus-vocabulary-saturation.html) | [src only](reports/deltaretrovirus-coverage-audit.html) |
+| **DensovirinaeAmbi** | [live](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | — | — | — |
+| **DensovirinaeAmbi — ambisense densoviruses** | [src only](reports/densovirinaeambi-string-collapse.html) | — | — | — |
+| **DensovirinaeMono** | [live](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | — | — | — |
+| **DensovirinaeMono — monosense densoviruses** | [src only](reports/densovirinaemono-string-collapse.html) | — | — | — |
+| **Dependoparvovirus** | [live](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [live](https://claude.ai/artifact/FgbPhV6JWJF3vEuGmAzhJV) | [live](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | — |
 | **EIAV** | [live](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [live](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | [live](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | [live](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) |
 | **EIAV — equine infectious anaemia virus** | [src only](reports/eiav-string-collapse.html) | [src only](reports/eiav-pssm-registry.html) | [src only](reports/eiav-vocabulary-saturation.html) | [src only](reports/eiav-coverage-audit.html) |
 | **Enterovirus** | [live](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [live](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [live](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [live](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) |
+| **Erythroparvovirus** | [live](https://claude.ai/artifact/3MvexZCs6HE9mQQpADMAyd) | — | — | — |
 | **FIV** | [live](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | [live](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | [live](https://claude.ai/artifact/QsKfmM4MTshtERZAeNqZHJ) | [live](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) |
 | **FIV — feline immunodeficiency virus** | [src only](reports/fiv-string-collapse.html) | [src only](reports/fiv-pssm-registry.html) | [src only](reports/fiv-vocabulary-saturation.html) | [src only](reports/fiv-coverage-audit.html) |
 | **Gammaretrovirus** | [live](https://claude.ai/artifact/Q8bws2vKjuyKBb4ZAuCCAF) | [live](https://claude.ai/artifact/3WcJXhsNk1fqU74ftQ6Stu) | [live](https://claude.ai/artifact/SnWBfiMoMut4R5Ykff8GEg) | [live](https://claude.ai/artifact/ELrfaFZbTYfUnVupig7Uxq) |
 | **Gammaretrovirus — murine, feline and porcine leukaemia viruses** | [src only](reports/gammaretrovirus-string-collapse.html) | [src only](reports/gammaretrovirus-pssm-registry.html) | [src only](reports/gammaretrovirus-vocabulary-saturation.html) | [src only](reports/gammaretrovirus-coverage-audit.html) |
+| **Hamaparvovirinae** | [live](https://claude.ai/artifact/5EfjTxcX3VK5VJtJZRHebN) | — | — | — |
 | **Hepaciviridae** | [live](https://claude.ai/artifact/SuSzzD4Lgid5Nqh4wsAUsw) | [live](https://claude.ai/artifact/G2CDRQ1g7bPZQwJCAeVCNR) | [live](https://claude.ai/artifact/PFSG6T5FP4Pdv82KTtpRb3) | [live](https://claude.ai/artifact/8vMTNVAXKjhCEqmbsUBcry) |
 | **Hepatovirus** | [live](https://claude.ai/artifact/93JNSJkTL6tnxWAqqh1Ehj) | [live](https://claude.ai/artifact/HPeVWDKLb1684L7Lksqrug) | [live](https://claude.ai/artifact/BExLQ7zj3sT4KhFebPsmqK) | [live](https://claude.ai/artifact/4EgbaxJcXnos8VjP5o5qwq) |
 | **Hepeviridae** | [src only](reports/hepeviridae-string-collapse.html) | [live](https://claude.ai/artifact/Rv8Qtd6yogBhSxwxN83zUB) | [live](https://claude.ai/artifact/Lhe1p5zfzv6drE9XPXWB9n) | [live](https://claude.ai/artifact/9rab6t9Wg2jyUjpd31FCmz) |
@@ -53,6 +63,7 @@ per-taxon tables below carry the dates and the source paths.
 | **HIV2 — HIV-2 and simian immunodeficiency virus** | [src only](reports/hiv2-string-collapse.html) | [src only](reports/hiv2-pssm-registry.html) | [src only](reports/hiv2-vocabulary-saturation.html) | [src only](reports/hiv2-coverage-audit.html) |
 | **Kobuvirus** | [live](https://claude.ai/artifact/G5BNV47HTuCKGDHstSCYkD) | [live](https://claude.ai/artifact/HXpLhyF1AdFbSbKPFcLgEp) | [live](https://claude.ai/artifact/JT8vdj6PBbm31asVQdHxGZ) | [live](https://claude.ai/artifact/644ijYfi9wT8E9YRUkxu31) |
 | **Lagovirus** | [live](https://claude.ai/artifact/MaXyiZhw6iYWGgut5PhNJF) | [live](https://claude.ai/artifact/CqYYq1ekytoZf5oVCb5zVK) | [live](https://claude.ai/artifact/HxygdrBS6JjHyAzphnj7eD) | [live](https://claude.ai/artifact/XvhotU5g7M4DcukfBTGGuT) |
+| **Mamastrovirus** | [live](https://claude.ai/artifact/QpYi5xQgkJ9DfhLz7Jbjbi) | [live](https://claude.ai/artifact/9TiskqqapCz6kKTp3X54dP) | [live](https://claude.ai/artifact/KK2DD6dqtiU3u7kWUfoWHZ) | [live](https://claude.ai/artifact/HivykiHqcCeiWMAUczQShN) |
 | **MammalianOrthoreovirus** | [live](https://claude.ai/artifact/TxH6j4xiFoJ9CXWxb2Fzcz) | [live](https://claude.ai/artifact/WuUmdRTmfgBPJtNPMgfkrz) | [live](https://claude.ai/artifact/SNWumPj4ohg9avxsTTUGek) | [live](https://claude.ai/artifact/KTXdUNuMK65nqhqmuCT9ze) |
 | **Marafivirus** | [live](https://claude.ai/artifact/8hsgb6VBLoWthJQ5fDekmN) | [live](https://claude.ai/artifact/BJLdgUbZv3VZyFmBZwPur2) | [live](https://claude.ai/artifact/UrU49iSx3Qf1vw7QSUTUSD) | [live](https://claude.ai/artifact/WPLVahsQ7EMSvzP2MxnZ4k) |
 | **Matonaviridae** | [src only](reports/matonaviridae-string-collapse.html) | [live](https://claude.ai/artifact/Pg9oPLPEMsSJwVX1cNaZkj) | [live](https://claude.ai/artifact/Py71icixnS8G7aHoRekJ4B) | [live](https://claude.ai/artifact/AxuNuwq21AAiGws5JvQoWo) |
@@ -68,6 +79,7 @@ per-taxon tables below carry the dates and the source paths.
 | **PICO_NOLDR_VP0** | [live](https://claude.ai/artifact/FPxCxJr26eRtF8PJY8wH4p) | [live](https://claude.ai/artifact/Lr9uABqCQZxhBqiw83BJSS) | [live](https://claude.ai/artifact/MQxP6qyN2pCqry717Y5ehK) | [live](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) |
 | **PICO_NOLDR_VP4** | [live](https://claude.ai/artifact/D4ncL6xGyYttgDBcpqDJzF) | [live](https://claude.ai/artifact/CgHakkLnCawRjWZdawJwWB) | [live](https://claude.ai/artifact/4PMpusDUm7dpDGq1Pp2pxL) | [live](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) |
 | **Piscine Orthoreovirus** | [live](https://claude.ai/artifact/JEnqCvUGt9SN5f6kuCtT15) | [live](https://claude.ai/artifact/5fvts36gAWRpgtdQzjiCGX) | [live](https://claude.ai/artifact/7tqSe2K6VWU6jeLPRuwkKt) | [live](https://claude.ai/artifact/6YRXypfQ5DiURLw8vr2Tp9) |
+| **Protoparvovirus** | [live](https://claude.ai/artifact/KBU1KeEYqBDGco27VKRx1T) | — | — | — |
 | **Pteropine Orthoreovirus** | [live](https://claude.ai/artifact/5MK26D2zL5em7CigKff9Fx) | [live](https://claude.ai/artifact/KT8pmXT9wJTehrpq2vPWoz) | [live](https://claude.ai/artifact/GLg3LzpvhMzbiecgUMpWoQ) | [live](https://claude.ai/artifact/V4NNnwaPbfJsdDRhDfyKHw) |
 | **Quinvirinae** | [live](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [live](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [live](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [live](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) |
 | **Rhabdoviridae** | — | [live](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | — | [live](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) |
@@ -81,6 +93,8 @@ per-taxon tables below carry the dates and the source paths.
 | **SRLV** | [live](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | [live](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | [live](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | [live](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) |
 | **SRLV — small ruminant lentivirus** | [src only](reports/srlv-string-collapse.html) | [src only](reports/srlv-pssm-registry.html) | [src only](reports/srlv-vocabulary-saturation.html) | [src only](reports/srlv-coverage-audit.html) |
 | **Teschovirus** | [live](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [live](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [live](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [live](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) |
+| **TetraCopiparvovirus** | [live](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | — | — | — |
+| **TetraCopiparvovirus — Tetraparvovirus and Copiparvovirus** | [src only](reports/tetracopiparvovirus-string-collapse.html) | — | — | — |
 | **Tobamovirus** | [live](https://claude.ai/artifact/4r5eFifqQBs3msQyeTDRkd) | [live](https://claude.ai/artifact/Jaxj3wb1cGkEng25cDoXDz) | [live](https://claude.ai/artifact/GDgyPgzSQr3PoNyBXKF75F) | [live](https://claude.ai/artifact/Lqb3QrZN9vuQT2tHNnxjjf) |
 | **Togaviridae** | [src only](reports/togaviridae-string-collapse.html) | [live](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | — | [live](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) |
 | **Trivirinae** | [live](https://claude.ai/artifact/SSFaUYG921SiiHWL7Psjv3) | [live](https://claude.ai/artifact/QgcHG4Qph1dDCw1pf5my49) | [live](https://claude.ai/artifact/9bYCnLShKySrUS9NecRe7e) | [live](https://claude.ai/artifact/7h9mdYRw6QdqjqrHDwxcP4) |
@@ -132,6 +146,8 @@ Built but never published, source is here: [coverage audit](reports/alpharetrovi
 | page | live | source | updated |
 |---|---|---|---|
 | Amdoparvovirus String Collapse | [open](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | [source](reports/amdoparvovirus-string-collapse.html) | 2026-10-29 |
+
+Not made: coverage audit, PSSM registry, vocabulary saturation.
 
 ### Ampelovirus
 
@@ -208,6 +224,8 @@ Built but never published, source is here: [coverage audit](reports/betaretrovir
 | page | live | source | updated |
 |---|---|---|---|
 | Bocaparvovirus String Collapse | [open](https://claude.ai/artifact/VZJSrH8RoyZhd6DRXLvCSR) | [source](reports/bocaparvovirus-string-collapse.html) | 2026-10-29 |
+
+Not made: coverage audit, PSSM registry, vocabulary saturation.
 
 ### Bromoviridae
 
@@ -292,19 +310,43 @@ Built but never published, source is here: [coverage audit](reports/deltaretrovi
 
 | page | live | source | updated |
 |---|---|---|---|
-| DensovirinaeAmbi String Collapse | [open](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | [source](reports/densovirinaeambi-string-collapse.html) | 2026-10-29 |
+| DensovirinaeAmbi String Collapse | [open](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | — | 2026-10-29 |
+
+Not made: coverage audit, PSSM registry, vocabulary saturation.
+
+### DensovirinaeAmbi — ambisense densoviruses
+
+| page | live | source | updated |
+|---|---|---|---|
+
+Built but never published, source is here: [string collapse](reports/densovirinaeambi-string-collapse.html).
+Not made: coverage audit, PSSM registry, vocabulary saturation.
 
 ### DensovirinaeMono
 
 | page | live | source | updated |
 |---|---|---|---|
-| DensovirinaeMono String Collapse | [open](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | [source](reports/densovirinaemono-string-collapse.html) | 2026-10-29 |
+| DensovirinaeMono String Collapse | [open](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | — | 2026-10-29 |
+
+Not made: coverage audit, PSSM registry, vocabulary saturation.
+
+### DensovirinaeMono — monosense densoviruses
+
+| page | live | source | updated |
+|---|---|---|---|
+
+Built but never published, source is here: [string collapse](reports/densovirinaemono-string-collapse.html).
+Not made: coverage audit, PSSM registry, vocabulary saturation.
 
 ### Dependoparvovirus
 
 | page | live | source | updated |
 |---|---|---|---|
+| Dependoparvovirus PSSM Registry | [open](https://claude.ai/artifact/FgbPhV6JWJF3vEuGmAzhJV) | [source](reports/dependoparvovirus-pssm-registry.html) | 2026-10-31 |
 | Dependoparvovirus String Collapse | [open](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [source](reports/dependoparvovirus-string-collapse.html) | 2026-10-29 |
+| Dependoparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | [source](reports/dependoparvovirus-vocabulary-saturation.html) | 2026-10-31 |
+
+Not made: coverage audit.
 
 ### EIAV
 
@@ -336,6 +378,8 @@ Built but never published, source is here: [coverage audit](reports/eiav-coverag
 | page | live | source | updated |
 |---|---|---|---|
 | Erythroparvovirus String Collapse | [open](https://claude.ai/artifact/3MvexZCs6HE9mQQpADMAyd) | [source](reports/erythroparvovirus-string-collapse.html) | 2026-10-29 |
+
+Not made: coverage audit, PSSM registry, vocabulary saturation.
 
 ### FIV
 
@@ -374,6 +418,8 @@ Built but never published, source is here: [coverage audit](reports/gammaretrovi
 | page | live | source | updated |
 |---|---|---|---|
 | Hamaparvovirinae String Collapse | [open](https://claude.ai/artifact/5EfjTxcX3VK5VJtJZRHebN) | [source](reports/hamaparvovirinae-string-collapse.html) | 2026-10-29 |
+
+Not made: coverage audit, PSSM registry, vocabulary saturation.
 
 ### Hepaciviridae
 
@@ -604,6 +650,8 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 |---|---|---|---|
 | Protoparvovirus String Collapse | [open](https://claude.ai/artifact/KBU1KeEYqBDGco27VKRx1T) | [source](reports/protoparvovirus-string-collapse.html) | 2026-10-29 |
 
+Not made: coverage audit, PSSM registry, vocabulary saturation.
+
 ### Pteropine Orthoreovirus
 
 | page | live | source | updated |
@@ -721,7 +769,17 @@ Built but never published, source is here: [coverage audit](reports/srlv-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| TetraCopiparvovirus String Collapse | [open](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | [source](reports/tetracopiparvovirus-string-collapse.html) | 2026-10-29 |
+| TetraCopiparvovirus String Collapse | [open](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | — | 2026-10-29 |
+
+Not made: coverage audit, PSSM registry, vocabulary saturation.
+
+### TetraCopiparvovirus — Tetraparvovirus and Copiparvovirus
+
+| page | live | source | updated |
+|---|---|---|---|
+
+Built but never published, source is here: [string collapse](reports/tetracopiparvovirus-string-collapse.html).
+Not made: coverage audit, PSSM registry, vocabulary saturation.
 
 ### Tobamovirus
 

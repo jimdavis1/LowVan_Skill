@@ -1,0 +1,102 @@
+{
+ "Dependoparvovirus.1.dna": {
+  "genome_ids": "272636.4452.con.0001",
+  "genome_name": "Adeno-associated virus"
+ },
+ "Dependoparvovirus.10.dna": {
+  "genome_ids": "3128228.25.con.0001",
+  "genome_name": "Bat adeno-associated virus 1 JX2021_367_931486"
+ },
+ "Dependoparvovirus.11.dna": {
+  "genome_ids": "10804.193.con.0001",
+  "genome_name": "Adeno-associated virus - 2"
+ },
+ "Dependoparvovirus.12.dna": {
+  "genome_ids": "3128229.7.con.0001",
+  "genome_name": "Bat adeno-associated virus 2 ZJ2020_169_34993"
+ },
+ "Dependoparvovirus.13.dna": {
+  "genome_ids": "235455.13.con.0001",
+  "genome_name": "Adeno-associated virus 9"
+ },
+ "Dependoparvovirus.14.dna": {
+  "genome_ids": "272636.1539.con.0001",
+  "genome_name": "Adeno-associated virus"
+ },
+ "Dependoparvovirus.15.dna": {
+  "genome_ids": "272636.1630.con.0001",
+  "genome_name": "Adeno-associated virus"
+ },
+ "Dependoparvovirus.16.dna": {
+  "genome_ids": "2052559.14.con.0001",
+  "genome_name": "Dependoparvovirus sp. ltt164par3"
+ },
+ "Dependoparvovirus.17.dna": {
+  "genome_ids": "2052559.49.con.0001",
+  "genome_name": "Dependoparvovirus sp. 21DB27"
+ },
+ "Dependoparvovirus.18.dna": {
+  "genome_ids": "272636.31305.con.0001",
+  "genome_name": "Adeno-associated virus"
+ },
+ "Dependoparvovirus.19.dna": {
+  "genome_ids": "252602.6.con.0001",
+  "genome_name": "Snake adeno-associated virus"
+ },
+ "Dependoparvovirus.2.dna": {
+  "genome_ids": "10804.1514.con.0001",
+  "genome_name": "adeno-associated virus 2"
+ },
+ "Dependoparvovirus.20.dna": {
+  "genome_ids": "272636.1217.con.0001",
+  "genome_name": "Adeno-associated virus"
+ },
+ "Dependoparvovirus.21.dna": {
+  "genome_ids": "272636.1506.con.0001",
+  "genome_name": "Adeno-associated virus MHH-05-2015"
+ },
+ "Dependoparvovirus.22.dna": {
+  "genome_ids": "272636.3761.con.0001",
+  "genome_name": "Adeno-associated virus"
+ },
+ "Dependoparvovirus.23.dna": {
+  "genome_ids": "3128228.7.con.0001",
+  "genome_name": "Bat adeno-associated virus 1 GD2016_095_31253"
+ },
+ "Dependoparvovirus.24.dna": {
+  "genome_ids": "3128229.12.con.0001",
+  "genome_name": "Bat adeno-associated virus 2 GD2017_208_21627"
+ },
+ "Dependoparvovirus.25.dna": {
+  "genome_ids": "1073950.3.con.0001",
+  "genome_name": "California sea lion adeno-associated virus 1 1136"
+ },
+ "Dependoparvovirus.3.dna": {
+  "genome_ids": "38251.383.con.0001",
+  "genome_name": "Goose parvovirus GX202304"
+ },
+ "Dependoparvovirus.4.dna": {
+  "genome_ids": "272636.1436.con.0001",
+  "genome_name": "Adeno-associated virus"
+ },
+ "Dependoparvovirus.5.dna": {
+  "genome_ids": "256548.101.con.0001",
+  "genome_name": "Bovine adeno-associated virus"
+ },
+ "Dependoparvovirus.6.dna": {
+  "genome_ids": "202812.108.con.0001",
+  "genome_name": "adeno-associated virus 7"
+ },
+ "Dependoparvovirus.7.dna": {
+  "genome_ids": "272636.1161.con.0001",
+  "genome_name": "Adeno-associated virus"
+ },
+ "Dependoparvovirus.8.dna": {
+  "genome_ids": "341671.21.con.0001",
+  "genome_name": "Avian adeno-associated virus D2861/2/1/14/RU"
+ },
+ "Dependoparvovirus.9.dna": {
+  "genome_ids": "272636.721.con.0001",
+  "genome_name": "Adeno-associated virus"
+ }
+}

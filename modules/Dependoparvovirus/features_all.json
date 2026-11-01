@@ -1,0 +1,94 @@
+{
+ "AAP": {
+  "PMID_claude_generated": [],
+  "anno": "Assembly-activating protein AAP",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "aap",
+  "params": {},
+  "segment": "Single DNA Segment",
+  "upstream_ext": 1,
+  "bit_cutoff": 120
+ },
+ "NS1": {
+  "PMID_claude_generated": [
+   "8995628"
+  ],
+  "anno": "Replication initiator protein Rep78 (HUH endonuclease and SF3 helicase)",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "rep78",
+  "params": {},
+  "segment": "Single DNA Segment",
+  "upstream_ext": 1,
+  "bit_cutoff": 269
+ },
+ "REP40": {
+  "PMID_claude_generated": [],
+  "anno": "Genome packaging helicase Rep40",
+  "downstream_ext": 0,
+  "feature_type": "CDS",
+  "gene_symbol": "rep40",
+  "params": {},
+  "segment": "Single DNA Segment",
+  "upstream_ext": 0,
+  "bit_cutoff": 530
+ },
+ "REP52": {
+  "PMID_claude_generated": [],
+  "anno": "Genome packaging helicase Rep52",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "rep52",
+  "params": {},
+  "segment": "Single DNA Segment",
+  "upstream_ext": 0,
+  "bit_cutoff": 697
+ },
+ "REP68": {
+  "PMID_claude_generated": [
+   "8995628"
+  ],
+  "anno": "Replication initiator protein Rep68 (HUH endonuclease and SF3 helicase)",
+  "downstream_ext": 0,
+  "feature_type": "CDS",
+  "gene_symbol": "rep68",
+  "params": {},
+  "segment": "Single DNA Segment",
+  "upstream_ext": 1,
+  "bit_cutoff": 919
+ },
+ "VP": {
+  "PMID_claude_generated": [],
+  "anno": "Capsid protein VP1 (phospholipase A2 domain)",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "vp1",
+  "params": {},
+  "segment": "Single DNA Segment",
+  "upstream_ext": 1,
+  "bit_cutoff": 420
+ },
+ "VP2": {
+  "PMID_claude_generated": [],
+  "anno": "Capsid protein VP2",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "vp2",
+  "params": {},
+  "segment": "Single DNA Segment",
+  "upstream_ext": 0,
+  "bit_cutoff": 374
+ },
+ "VP3": {
+  "PMID_claude_generated": [],
+  "anno": "Major capsid protein VP3",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "vp3",
+  "params": {},
+  "segment": "Single DNA Segment",
+  "upstream_ext": 0,
+  "bit_cutoff": 603
+ }
+}
