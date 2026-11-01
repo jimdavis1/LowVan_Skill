@@ -1,0 +1,162 @@
+{
+   "Erythroparvovirus" : {
+      "close_genomes" : {
+         "Erythroparvovirus.1.dna" : {
+            "genome_ids" : "10798.4064.con.0001",
+            "genome_name" : "Human parvovirus B19 962401058882"
+         },
+         "Erythroparvovirus.10.dna" : {
+            "genome_ids" : "31598.10.con.0001",
+            "genome_name" : "Simian parvovirus B20"
+         },
+         "Erythroparvovirus.11.dna" : {
+            "genome_ids" : "10798.3123.con.0001",
+            "genome_name" : "Human parvovirus B19 AA-05"
+         },
+         "Erythroparvovirus.12.dna" : {
+            "genome_ids" : "1511900.136.con.0001",
+            "genome_name" : "Primate erythroparvovirus 1 HSJN240"
+         },
+         "Erythroparvovirus.13.dna" : {
+            "genome_ids" : "3052189.16.con.0001",
+            "genome_name" : "Erythroparvovirus primate1 RNA"
+         },
+         "Erythroparvovirus.14.dna" : {
+            "genome_ids" : "3242858.3.con.0001",
+            "genome_name" : "Equine erythroparvovirus 1 150458-12"
+         },
+         "Erythroparvovirus.2.dna" : {
+            "genome_ids" : "172297.20.con.0001",
+            "genome_name" : "Bovine parvovirus 3 FBS-GW-NA1"
+         },
+         "Erythroparvovirus.3.dna" : {
+            "genome_ids" : "10798.3300.con.0001",
+            "genome_name" : "Human parvovirus B19 B19V-390"
+         },
+         "Erythroparvovirus.4.dna" : {
+            "genome_ids" : "3423203.3.con.0001",
+            "genome_name" : "feline erythroparvovirus ITA/2024/cat/51"
+         },
+         "Erythroparvovirus.5.dna" : {
+            "genome_ids" : "119756.11.con.0001",
+            "genome_name" : "Rhesus macaque parvovirus"
+         },
+         "Erythroparvovirus.6.dna" : {
+            "genome_ids" : "2809396.4.con.0001",
+            "genome_name" : "Erythroparvovirus sp. TSParvoV-HNU1"
+         },
+         "Erythroparvovirus.7.dna" : {
+            "genome_ids" : "56820.10.con.0001",
+            "genome_name" : "Chipmunk parvovirus"
+         },
+         "Erythroparvovirus.8.dna" : {
+            "genome_ids" : "119755.10.con.0001",
+            "genome_name" : "Pig-tailed macaque parvovirus"
+         },
+         "Erythroparvovirus.9.dna" : {
+            "genome_ids" : "1427158.20.con.0001",
+            "genome_name" : "Seal parvovirus"
+         }
+      },
+      "features" : {
+         "11K" : {
+            "PMID_claude_generated" : [
+               "11878897"
+            ],
+            "anno" : "11 kDa proline-rich nonstructural protein (Grb2-binding)",
+            "bit_cutoff" : 149,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "11k",
+            "kmers" : 1,
+            "max_len" : 116,
+            "min_len" : 78,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "7.5K" : {
+            "anno" : "Uncharacterized lineage specific 7.5 kDa protein",
+            "bit_cutoff" : 116,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "7.5k",
+            "kmers" : 1,
+            "max_len" : 78,
+            "min_len" : 67,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "9.5K" : {
+            "anno" : "Uncharacterized lineage specific 9.5 kDa protein",
+            "bit_cutoff" : 102,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "9.5k",
+            "kmers" : 1,
+            "max_len" : 124,
+            "min_len" : 76,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "NS1" : {
+            "anno" : "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+            "bit_cutoff" : 455,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ns1",
+            "kmers" : 1,
+            "max_len" : 816,
+            "min_len" : 537,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP" : {
+            "anno" : "Capsid protein VP1 (phospholipase A2 domain)",
+            "bit_cutoff" : 300,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "vp1",
+            "kmers" : 1,
+            "max_len" : 1003,
+            "min_len" : 565,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP2" : {
+            "anno" : "Major capsid protein VP2",
+            "bit_cutoff" : 359,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "vp2",
+            "kmers" : 1,
+            "max_len" : 601,
+            "min_len" : 352,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single DNA Segment" : {
+            "max_len" : 5933,
+            "min_len" : 3825,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}
