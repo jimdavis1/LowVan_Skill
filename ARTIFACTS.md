@@ -42,8 +42,8 @@ per-taxon tables below carry the dates and the source paths.
 | **Deltaretrovirus — human and simian T-lymphotropic viruses and bovine leukaemia virus** | [src only](reports/deltaretrovirus-string-collapse.html) | [src only](reports/deltaretrovirus-pssm-registry.html) | [src only](reports/deltaretrovirus-vocabulary-saturation.html) | [src only](reports/deltaretrovirus-coverage-audit.html) |
 | **DensovirinaeAmbi** | [live](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | — | — | — |
 | **DensovirinaeAmbi — ambisense densoviruses** | [src only](reports/densovirinaeambi-string-collapse.html) | — | — | — |
-| **DensovirinaeMono** | [live](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | — | — | — |
-| **DensovirinaeMono — monosense densoviruses** | [src only](reports/densovirinaemono-string-collapse.html) | — | — | — |
+| **DensovirinaeMono** | [live](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | [live](https://claude.ai/artifact/VGQzYmcXAUzaRhK1FR3oid) | [live](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | — |
+| **DensovirinaeMono — monosense densoviruses** | [src only](reports/densovirinaemono-string-collapse.html) | [src only](reports/densovirinaemono-pssm-registry.html) | [src only](reports/densovirinaemono-vocabulary-saturation.html) | — |
 | **Dependoparvovirus** | [live](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [live](https://claude.ai/artifact/FgbPhV6JWJF3vEuGmAzhJV) | [live](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | — |
 | **EIAV** | [live](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [live](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | [live](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | [live](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) |
 | **EIAV — equine infectious anaemia virus** | [src only](reports/eiav-string-collapse.html) | [src only](reports/eiav-pssm-registry.html) | [src only](reports/eiav-vocabulary-saturation.html) | [src only](reports/eiav-coverage-audit.html) |
@@ -328,17 +328,19 @@ Not made: coverage audit, PSSM registry, vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
+| DensovirinaeMono PSSM Registry | [open](https://claude.ai/artifact/VGQzYmcXAUzaRhK1FR3oid) | — | 2026-10-31 |
 | DensovirinaeMono String Collapse | [open](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | — | 2026-10-29 |
+| DensovirinaeMono Vocabulary Saturation | [open](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | — | 2026-10-31 |
 
-Not made: coverage audit, PSSM registry, vocabulary saturation.
+Not made: coverage audit.
 
 ### DensovirinaeMono — monosense densoviruses
 
 | page | live | source | updated |
 |---|---|---|---|
 
-Built but never published, source is here: [string collapse](reports/densovirinaemono-string-collapse.html).
-Not made: coverage audit, PSSM registry, vocabulary saturation.
+Built but never published, source is here: [PSSM registry](reports/densovirinaemono-pssm-registry.html), [string collapse](reports/densovirinaemono-string-collapse.html), [vocabulary saturation](reports/densovirinaemono-vocabulary-saturation.html).
+Not made: coverage audit.
 
 ### Dependoparvovirus
 
