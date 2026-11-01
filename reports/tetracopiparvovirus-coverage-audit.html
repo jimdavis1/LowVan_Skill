@@ -1,0 +1,182 @@
+<title>TetraCopiparvovirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; TetraCopiparvovirus module &middot; 1 November 2026</div><h1>TetraCopiparvovirus — Tetraparvovirus and Copiparvovirus</h1><p class="stand">What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.</p><div class="tiles"><div class="tile"><div class="v">4</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">47</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">41/41</div><div class="l">exemplars routed</div></div><div class="tile"><div class="v">89.0%</div><div class="l">sampled genomes genuinely clean</div></div><div class="tile"><div class="v">9.5×</div><div class="l">string collapse</div></div><div class="tile"><div class="v">5.5×</div><div class="l">vocabulary collapse at equal proteins sampled</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">Two genera held in one module because their profiles do not compete.</p><p class="note">The module covers <strong>Tetraparvovirus</strong> and <strong>Copiparvovirus</strong>. They share a genome layout, their peripheral profiles do not cross-match, and neither brings a special feature that the other would contest &mdash; which is the test for whether a set of genera is one module or several.</p><div class="scroll"><table><thead><tr><th></th><th>count</th></tr></thead><tbody><tr><td>genomes in the BV-BRC protein dump</td><td>816</td></tr><tr><td>protein features</td><td>1,924</td></tr><tr><td>unique sequences</td><td>1,331</td></tr><tr><td>genomes with a contig ≥ 5 kb</td><td>300</td></tr><tr><td>species</td><td>36</td></tr></tbody></table></div><p class="note">Four features are declared: <strong>NS1</strong>, the capsid pair <strong>VP1</strong> and <strong>VP2</strong>, and <strong>ORF3</strong>. NS1 and VP1 carry <code>copy_num</code>.</p><p class="note">ORF3 is named <em>uncharacterized lineage specific</em>. Sixteen sequences cluster, they are callable, and what the protein does is not established in the literature — so the module names the slot and not a function.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">Profiles are built from the annotation strings BV-BRC already carries, after the strings are collapsed onto one name per protein.</p><div class="scroll"><table><thead><tr><th>feature</th><th>annotation</th><th>symbol</th><th>collection</th><th>profiles</th><th>departures</th></tr></thead><tbody><tr><td>NS1</td><td>Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)</td><td>ns1</td><td>515</td><td>20</td><td>defaults</td></tr><tr><td>ORF3</td><td>Uncharacterized lineage specific protein ORF3</td><td>orf3</td><td>16</td><td>1</td><td>defaults</td></tr><tr><td>VP</td><td>Capsid protein VP1 (phospholipase A2 domain)</td><td>vp1</td><td>610</td><td>23</td><td>defaults</td></tr><tr><td>VP2</td><td>Major capsid protein VP2</td><td>vp2</td><td>97</td><td>3</td><td>defaults</td></tr></tbody></table></div><p class="note">Thirty-eight distinct annotation strings collapse onto the four feature names, over 1,649 source sequences. NS1 draws on sixteen of them and VP1 on fourteen.</p><p class="note">Eight strings did not collapse, fourteen sequences in all — the largest unassigned residue of any module in this family. They are led by <em>putative capsid protein VP2</em>, <em>putative capsid protein VP1</em> and <em>putative non structural protein NS1</em>. The word <em>putative</em> is doing the damage: those deposits are the same proteins the module already calls, filed under a hedge, and the collapse rules did not reach them.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Each profile carries a bit-score floor and a length window taken from the collection it was built from.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit_cutoff</th><th>coverage_cutoff</th><th>min_len</th><th>max_len</th></tr></thead><tbody><tr><td>NS1</td><td>250</td><td>0.65</td><td>378</td><td>731</td></tr><tr><td>ORF3</td><td>378</td><td>0.65</td><td>191</td><td>216</td></tr><tr><td>VP</td><td>246</td><td>0.65</td><td>560</td><td>1,261</td></tr><tr><td>VP2</td><td>448</td><td>0.65</td><td>141</td><td>588</td></tr></tbody></table></div><p class="note">The floors are VP1 246, NS1 250, ORF3 378 and VP2 448 bits. Forty-seven profiles in all. VP1's length window is 560 to 1,261 residues, the widest in the family — two genera with genuinely different capsid lengths sharing one feature.</p><p class="note">Self-recall is <strong>515 of 515</strong> for NS1, <strong>610 of 610</strong> for VP1, <strong>16 of 16</strong> for ORF3 and <strong>89 of 97</strong> for VP2.</p><div class="verdict">Self-recall against each feature's own in-range collection: <b>1230 of 1238 (99.4%)</b> &mdash; NS1 515/515, ORF3 16/16, VP 610/610, VP2 89/97. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06.</div></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">Routing is a BLASTn of the query against the reference contigs.</p><div class="scroll"><table><thead><tr><th></th><th>count</th><th>%</th></tr></thead><tbody><tr><td>genomes ≥ 5 kb, clustered at 95% nucleotide identity</td><td>41</td><td>—</td></tr><tr><td>routed to TetraCopiparvovirus</td><td>41</td><td>100.0%</td></tr><tr><td>unrouted</td><td>0</td><td>0.0%</td></tr></tbody></table></div><p class="note">Routing was measured against the 25 reference contigs this module ships, of which 20 were used by the exemplar set.</p><p class="note">All 41 exemplars routed, and all 41 routed to this module. Nothing went elsewhere and nothing was left unrouted — the same clean result the two narrow genera give elsewhere in the family, achieved here across two genera at once.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">Calling is measured on the exemplars, feature by feature.</p><div class="bars"><div class="bar"><div class="bl">ns1</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">41 of 41 routed exemplars</div></div><div class="bar"><div class="bl">orf3</div><div class="bt"><i style="width:2.40%"></i></div><div class="bv">2.4%</div><div class="bn">1 of 41 routed exemplars</div></div><div class="bar"><div class="bl">vp1</div><div class="bt"><i style="width:97.60%"></i></div><div class="bv">97.6%</div><div class="bn">40 of 41 routed exemplars</div></div><div class="bar"><div class="bl">vp2</div><div class="bt"><i style="width:9.80%"></i></div><div class="bv">9.8%</div><div class="bn">4 of 41 routed exemplars</div></div></div><p class="note"><b>0 of 41 routed exemplars get every one of the 4 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>orf3, vp2</b>.</p><p class="note">Across the 41 exemplars: <strong>NS1 45</strong>, <strong>VP1 45</strong>, <strong>VP2 4</strong>, <strong>ORF3 1</strong>. NS1 and VP1 above 41 is each called twice in four genomes.</p><p class="note">VP2 at 4 of 41 is the shape of the genus, not a failure. Only 97 VP2 sequences were deposited against 610 VP1, and in most of these genomes the shorter capsid form is not separately annotated and not separately recognisable.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">The panel is 300 genomes drawn from the module's own sample; it is not held out.</p><div class="tiles"><div class="tile"><div class="v">300</div><div class="l">sampled genomes</div></div><div class="tile"><div class="v">276</div><div class="l">no genome/contig flags</div></div><div class="tile"><div class="v">267</div><div class="l">genuinely clean</div></div><div class="tile"><div class="v">33</div><div class="l">flagged</div></div><div class="tile"><div class="v">0</div><div class="l">called nothing</div></div><div class="tile"><div class="v">89.0%</div><div class="l">clean</div></div></div><p class="note">The panel is 300 genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.</p><pre class="mono">   8  Contig is too long
+   7  Genome is missing essential feature: Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)
+   5  Count = 2
+   4  Genome has too many HSPs for: Capsid protein VP1 (phospholipase A2 domain)
+   3  Genome is missing essential feature: Capsid protein VP1 (phospholipase A2 domain)
+   3  Genome has too many HSPs for: Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)
+   1  Contig has too many ambiguous bases, Frac &gt; 0.01
+   1  Count = 3
+   1  Count = 5</pre><p class="note"><strong>276 of 300</strong> carry no genome-level and no contig-level flag, and <strong>267</strong> are genuinely clean once feature-level flags are counted.</p><p class="note">The largest flag is not about proteins at all: <strong>8</strong> genomes have a contig that is too long for the declared replicon geometry. Then NS1 missing in 7, VP1 called twice in 4, VP1 missing in 3, NS1 called twice in 3. At the feature level, VP1 too short in 13 and NS1 too short in 9 — both the signature of partial contigs rather than of mis-calling.</p><p class="note">Read the headline figure for what it is. The panel still contains the genomes the reference contigs were taken from, so it measures internal consistency, not out-of-sample behaviour.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Four limits, each measured rather than supposed.</p><p class="note"><strong>Eight contigs are too long for the declared geometry.</strong> That is a statement about the deposits, not the module: a 300-genome panel of a genus whose members are routinely sequenced as part of larger assemblies will contain entries that are not single parvovirus genomes.</p><p class="note"><strong>VP1's length window spans 560 to 1,261 residues.</strong> One feature covering two genera with different capsid sizes means the window cannot discriminate much, and a too-short or too-long flag on VP1 here carries less information than the same flag in a single-genus module.</p><p class="note"><strong>Fourteen sequences are unassigned, most of them filed as <em>putative</em>.</strong> They are tracked in <code>UNASSIGNED_TRACKING.tsv</code>, which is a list of unfinished work, not a resolution. These are proteins the module does call, under deposits it did not reach.</p><p class="note"><strong>No splice features are declared,</strong> and nothing in the collections showed the two-exon signature that put NS2 and NS3 into the splice caller in Amdoparvovirus and Protoparvovirus.</p><div class="verdict warn">Use this module for tetraparvovirus and copiparvovirus genomes; routing is clean and NS1 and VP1 are reliable. Treat VP1 length flags with suspicion — the window spans two genera — and check whether a flagged contig is a whole genome before blaming the call.</div></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">What the build turned up that was not expected.</p><p class="note">The capsid labels were wrong on a large scale and only applying <code>copy_num</code> exposed it. Before the capsid rebuild, <strong>117 of 300</strong> genomes had VP1 and VP2 called at identical coordinates: the two profiles had been built from deposits that disagreed about which nested form they held, so both landed on the same open reading frame.</p><p class="note">Rebinning the nested forms by size per species rather than by the name on the deposit, and rebuilding the profiles, took that from <strong>117 of 300 to 0</strong>. The deposited name is a claim about which form a submitter thought they had; it is not a measurement.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">What collapsing the vocabulary actually bought.</p><figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to 22 over 286 proteins; the controlled vocabulary flattens at 4.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="270.7" x2="648" y2="270.7" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="193.4" x2="648" y2="193.4" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="103.3" x2="648" y2="103.3" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="274.7" text-anchor="end" class="tick">6</text><text x="47" y="197.4" text-anchor="end" class="tick">12</text><text x="47" y="107.3" text-anchor="end" class="tick">19</text><text x="47" y="30.0" text-anchor="end" class="tick">25</text><text x="58.0" y="369" text-anchor="middle" class="tick">0</text><text x="205.5" y="369" text-anchor="middle" class="tick">100</text><text x="353.0" y="369" text-anchor="middle" class="tick">200</text><text x="500.5" y="369" text-anchor="middle" class="tick">300</text><text x="648.0" y="369" text-anchor="middle" class="tick">400</text>
+    <text class="axtitle" x="58" y="392">proteins sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <line x1="479.9" y1="26" x2="479.9" y2="348" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M58.0 348.00 L59.5 335.12 L61.0 324.56 L62.4 314.13 L63.9 305.75 L65.4 299.44 L66.8 292.62 L68.3 287.46 L69.8 281.28 L71.3 277.29 L72.8 272.39 L74.2 267.24 L75.7 263.64 L77.2 259.51 L78.7 255.78 L80.1 251.92 L81.6 248.05 L83.1 244.19 L84.5 241.22 L86.0 238.39 L87.5 235.56 L89.0 232.98 L90.5 230.53 L91.9 228.34 L93.4 225.25 L94.9 223.06 L96.3 219.07 L97.8 216.62 L99.3 215.08 L100.8 212.63 L102.2 210.57 L103.7 208.90 L105.2 207.87 L106.7 206.06 L108.2 204.13 L109.6 202.71 L111.1 201.17 L112.6 198.98 L114.0 197.56 L115.5 196.27 L117.0 194.86 L118.5 192.02 L120.0 190.48 L121.4 188.93 L122.9 187.39 L124.4 185.33 L125.8 184.17 L127.3 183.65 L128.8 183.01 L130.3 181.46 L131.8 179.53 L133.2 178.50 L134.7 177.47 L136.2 175.67 L137.7 173.73 L139.1 172.06 L140.6 170.51 L142.1 169.23 L143.6 168.20 L145.0 166.52 L146.5 165.62 L148.0 164.46 L149.4 163.30 L150.9 162.53 L152.4 161.50 L153.9 160.47 L155.3 159.05 L156.8 158.02 L158.3 157.50 L159.8 156.73 L161.2 156.35 L162.7 155.44 L164.2 154.93 L165.7 154.28 L167.2 153.51 L168.6 151.97 L170.1 151.58 L171.6 151.32 L173.1 150.42 L174.5 149.91 L176.0 149.65 L177.5 148.88 L178.9 148.36 L180.4 147.33 L181.9 146.69 L183.4 145.91 L184.8 145.53 L186.3 144.62 L187.8 144.37 L189.3 143.47 L190.8 142.44 L192.2 141.53 L193.7 141.15 L195.2 140.37 L196.7 139.60 L198.1 138.96 L199.6 138.44 L201.1 137.41 L202.6 136.64 L204.0 136.51 L205.5 136.12 L207.0 135.74 L208.4 134.96 L209.9 134.32 L211.4 133.93 L212.9 133.68 L214.3 133.03 L215.8 132.52 L217.3 131.62 L218.8 130.97 L220.2 130.20 L221.7 129.81 L223.2 129.43 L224.7 129.04 L226.2 128.52 L227.6 128.01 L229.1 127.37 L230.6 126.59 L232.1 125.82 L233.5 124.92 L235.0 124.27 L236.5 123.63 L237.9 123.12 L239.4 122.47 L240.9 122.21 L242.4 121.57 L243.8 121.05 L245.3 120.54 L246.8 119.90 L248.3 119.25 L249.8 118.48 L251.2 117.58 L252.7 116.93 L254.2 116.29 L255.7 115.77 L257.1 115.39 L258.6 115.13 L260.1 114.49 L261.6 113.97 L263.0 113.58 L264.5 113.33 L266.0 112.55 L267.4 112.04 L268.9 111.52 L270.4 110.88 L271.9 110.62 L273.4 110.49 L274.8 110.11 L276.3 109.85 L277.8 109.46 L279.2 108.95 L280.7 108.56 L282.2 108.43 L283.7 107.92 L285.1 107.53 L286.6 107.14 L288.1 106.76 L289.6 106.11 L291.1 105.47 L292.5 105.34 L294.0 105.08 L295.5 104.05 L296.9 103.41 L298.4 102.89 L299.9 102.76 L301.4 102.64 L302.9 102.25 L304.3 101.86 L305.8 101.22 L307.3 100.96 L308.8 100.45 L310.2 99.93 L311.7 99.42 L313.2 99.03 L314.6 98.77 L316.1 98.26 L317.6 98.00 L319.1 97.74 L320.6 97.10 L322.0 96.71 L323.5 96.58 L325.0 96.45 L326.4 96.07 L327.9 95.81 L329.4 95.29 L330.9 94.65 L332.4 94.26 L333.8 94.01 L335.3 94.01 L336.8 93.75 L338.2 93.49 L339.7 93.36 L341.2 93.23 L342.7 93.23 L344.1 93.23 L345.6 92.46 L347.1 92.20 L348.6 92.20 L350.1 91.82 L351.5 91.17 L353.0 90.79 L354.5 90.27 L355.9 89.63 L357.4 89.37 L358.9 89.11 L360.4 88.73 L361.9 88.47 L363.3 88.21 L364.8 87.57 L366.3 87.05 L367.8 86.79 L369.2 86.54 L370.7 86.28 L372.2 85.89 L373.6 85.76 L375.1 85.38 L376.6 84.99 L378.1 84.60 L379.6 84.35 L381.0 83.96 L382.5 83.44 L384.0 83.06 L385.4 82.67 L386.9 82.29 L388.4 81.38 L389.9 81.00 L391.4 80.48 L392.8 80.48 L394.3 80.35 L395.8 79.97 L397.2 79.32 L398.7 79.07 L400.2 78.81 L401.7 78.68 L403.1 78.55 L404.6 78.04 L406.1 77.91 L407.6 77.39 L409.1 77.13 L410.5 77.00 L412.0 76.75 L413.5 76.62 L414.9 76.36 L416.4 76.10 L417.9 75.85 L419.4 75.46 L420.9 75.07 L422.3 74.69 L423.8 74.56 L425.3 74.30 L426.8 73.91 L428.2 73.14 L429.7 72.50 L431.2 72.24 L432.6 72.24 L434.1 72.11 L435.6 71.85 L437.1 71.60 L438.6 71.34 L440.0 70.95 L441.5 70.56 L443.0 70.44 L444.4 70.31 L445.9 70.18 L447.4 69.79 L448.9 69.66 L450.4 69.66 L451.8 69.28 L453.3 69.15 L454.8 68.63 L456.2 68.50 L457.7 68.25 L459.2 68.25 L460.7 68.25 L462.1 67.99 L463.6 67.86 L465.1 67.73 L466.6 67.47 L468.1 67.09 L469.5 66.96 L471.0 66.57 L472.5 65.80 L473.9 65.54 L475.4 65.16 L476.9 64.90 L478.4 64.64 L479.9 64.64" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 348.00 L59.5 335.12 L61.0 327.65 L62.4 321.72 L63.9 318.25 L65.4 315.54 L66.8 314.13 L68.3 312.45 L69.8 310.65 L71.3 309.36 L72.8 308.33 L74.2 307.69 L75.7 307.04 L77.2 306.40 L78.7 305.62 L80.1 305.11 L81.6 304.72 L83.1 304.47 L84.5 303.69 L86.0 303.18 L87.5 302.40 L89.0 302.15 L90.5 301.63 L91.9 300.99 L93.4 299.96 L94.9 299.96 L96.3 299.44 L97.8 299.18 L99.3 299.06 L100.8 299.06 L102.2 298.67 L103.7 298.41 L105.2 298.41 L106.7 298.41 L108.2 298.28 L109.6 298.28 L111.1 298.15 L112.6 298.03 L114.0 297.77 L115.5 297.77 L117.0 297.51 L118.5 297.51 L120.0 297.51 L121.4 297.38 L122.9 297.38 L124.4 297.25 L125.8 297.25 L127.3 297.12 L128.8 297.12 L130.3 297.00 L131.8 296.87 L133.2 296.74 L134.7 296.61 L136.2 296.61 L137.7 296.61 L139.1 296.61 L140.6 296.48 L142.1 296.48 L143.6 296.48 L145.0 296.48 L146.5 296.48 L148.0 296.48 L149.4 296.48 L150.9 296.48 L152.4 296.48 L153.9 296.48 L155.3 296.48 L156.8 296.48 L158.3 296.48 L159.8 296.48 L161.2 296.48 L162.7 296.48 L164.2 296.48 L165.7 296.48 L167.2 296.48 L168.6 296.48 L170.1 296.48 L171.6 296.48 L173.1 296.48 L174.5 296.48 L176.0 296.48 L177.5 296.48 L178.9 296.48 L180.4 296.48 L181.9 296.48 L183.4 296.48 L184.8 296.48 L186.3 296.48 L187.8 296.48 L189.3 296.48 L190.8 296.48 L192.2 296.48 L193.7 296.48 L195.2 296.48 L196.7 296.48 L198.1 296.48 L199.6 296.48 L201.1 296.48 L202.6 296.48 L204.0 296.48 L205.5 296.48 L207.0 296.48 L208.4 296.48 L209.9 296.48 L211.4 296.48 L212.9 296.48 L214.3 296.48 L215.8 296.48 L217.3 296.48 L218.8 296.48 L220.2 296.48 L221.7 296.48 L223.2 296.48 L224.7 296.48 L226.2 296.48 L227.6 296.48 L229.1 296.48 L230.6 296.48 L232.1 296.48 L233.5 296.48 L235.0 296.48 L236.5 296.48 L237.9 296.48 L239.4 296.48 L240.9 296.48 L242.4 296.48 L243.8 296.48 L245.3 296.48 L246.8 296.48 L248.3 296.48 L249.8 296.48 L251.2 296.48 L252.7 296.48 L254.2 296.48 L255.7 296.48 L257.1 296.48 L258.6 296.48 L260.1 296.48 L261.6 296.48 L263.0 296.48 L264.5 296.48 L266.0 296.48 L267.4 296.48 L268.9 296.48 L270.4 296.48 L271.9 296.48 L273.4 296.48 L274.8 296.48 L276.3 296.48 L277.8 296.48 L279.2 296.48 L280.7 296.48 L282.2 296.48 L283.7 296.48 L285.1 296.48 L286.6 296.48 L288.1 296.48 L289.6 296.48 L291.1 296.48 L292.5 296.48 L294.0 296.48 L295.5 296.48 L296.9 296.48 L298.4 296.48 L299.9 296.48 L301.4 296.48 L302.9 296.48 L304.3 296.48 L305.8 296.48 L307.3 296.48 L308.8 296.48 L310.2 296.48 L311.7 296.48 L313.2 296.48 L314.6 296.48 L316.1 296.48 L317.6 296.48 L319.1 296.48 L320.6 296.48 L322.0 296.48 L323.5 296.48 L325.0 296.48 L326.4 296.48 L327.9 296.48 L329.4 296.48 L330.9 296.48 L332.4 296.48 L333.8 296.48 L335.3 296.48 L336.8 296.48 L338.2 296.48 L339.7 296.48 L341.2 296.48 L342.7 296.48 L344.1 296.48 L345.6 296.48 L347.1 296.48 L348.6 296.48 L350.1 296.48 L351.5 296.48 L353.0 296.48 L354.5 296.48 L355.9 296.48 L357.4 296.48 L358.9 296.48 L360.4 296.48 L361.9 296.48 L363.3 296.48 L364.8 296.48 L366.3 296.48 L367.8 296.48 L369.2 296.48 L370.7 296.48 L372.2 296.48 L373.6 296.48 L375.1 296.48 L376.6 296.48 L378.1 296.48 L379.6 296.48 L381.0 296.48 L382.5 296.48 L384.0 296.48 L385.4 296.48 L386.9 296.48 L388.4 296.48 L389.9 296.48 L391.4 296.48 L392.8 296.48 L394.3 296.48 L395.8 296.48 L397.2 296.48 L398.7 296.48 L400.2 296.48 L401.7 296.48 L403.1 296.48 L404.6 296.48 L406.1 296.48 L407.6 296.48 L409.1 296.48 L410.5 296.48 L412.0 296.48 L413.5 296.48 L414.9 296.48 L416.4 296.48 L417.9 296.48 L419.4 296.48 L420.9 296.48 L422.3 296.48 L423.8 296.48 L425.3 296.48 L426.8 296.48 L428.2 296.48 L429.7 296.48 L431.2 296.48 L432.6 296.48 L434.1 296.48 L435.6 296.48 L437.1 296.48 L438.6 296.48 L440.0 296.48 L441.5 296.48 L443.0 296.48 L444.4 296.48 L445.9 296.48 L447.4 296.48 L448.9 296.48 L450.4 296.48 L451.8 296.48 L453.3 296.48 L454.8 296.48 L456.2 296.48 L457.7 296.48 L459.2 296.48 L460.7 296.48 L462.1 296.48 L463.6 296.48 L465.1 296.48 L466.6 296.48 L468.1 296.48 L469.5 296.48 L471.0 296.48 L472.5 296.48 L473.9 296.48 L475.4 296.48 L476.9 296.48 L478.4 296.48 L479.9 296.48 L481.3 296.48 L482.8 296.48 L484.3 296.48 L485.8 296.48 L487.2 296.48 L488.7 296.48 L490.2 296.48 L491.6 296.48 L493.1 296.48 L494.6 296.48 L496.1 296.48 L497.6 296.48 L499.0 296.48 L500.5 296.48" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="479.9" cy="64.64" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="500.5" cy="296.48" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="489.9" y="63.64" fill="var(--src)">free text</text>
+    <text class="endsub" x="489.9" y="76.64">22 strings</text>
+    <text class="endlab" x="510.5" y="299.48" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="510.5" y="312.48">4 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of every
+  annotated protein in the 128 genomes both sources annotate: 286 source
+  product records and 300 module calls. Both curves start at zero. The dashed line
+  marks 286 proteins, the depth both curves reach, where the two are compared.</figcaption>
+ </figure><div class="scroll"><table><thead><tr><th>feature</th><th>annotation string</th><th>source strings absorbed</th></tr></thead><tbody><tr><td>NS1</td><td>Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)</td><td>16</td></tr><tr><td>VP</td><td>Capsid protein VP1 (phospholipase A2 domain)</td><td>14</td></tr><tr><td>VP2</td><td>Major capsid protein VP2</td><td>6</td></tr><tr><td>ORF3</td><td>Uncharacterized lineage specific protein ORF3</td><td>2</td></tr><tr><td><i>unbound</i></td><td>—</td><td>8</td></tr></tbody></table></div><p class="note">Rarefaction over proteins: every annotated protein in the 128 genomes both sources annotate (286 source product records, 300 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>22</b> distinct strings, the module's <b>4</b>. At the depth both reach, 286 proteins, free text has used <b>22.0 strings against 4.0 &mdash; a 5.5-fold difference.</b> The source reaches 95% of its final size after 232 proteins, the module after 28.</p><p class="note">286 deposited protein strings across 128 genomes reduce to four feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at four.</p><p class="note">Eight strings resisted, fourteen sequences in all. That is the largest residue in the family and most of it is one word: <em>putative</em>.</p></section><p class="src">Generated from <code>tetracopiparvovirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Parvoviridae/work/TetraCopiparvovirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.</p></div>

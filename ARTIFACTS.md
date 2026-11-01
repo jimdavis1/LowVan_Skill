@@ -93,7 +93,7 @@ per-taxon tables below carry the dates and the source paths.
 | **SRLV** | [live](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | [live](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | [live](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | [live](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) |
 | **SRLV — small ruminant lentivirus** | [src only](reports/srlv-string-collapse.html) | [src only](reports/srlv-pssm-registry.html) | [src only](reports/srlv-vocabulary-saturation.html) | [src only](reports/srlv-coverage-audit.html) |
 | **Teschovirus** | [live](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [live](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [live](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [live](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) |
-| **TetraCopiparvovirus** | [live](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | [live](https://claude.ai/artifact/8cma1NsgkTSgH6zD3oJkMv) | [live](https://claude.ai/artifact/B2b8bZqe2en9vgBipMsTDY) | — |
+| **TetraCopiparvovirus** | [live](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | [live](https://claude.ai/artifact/8cma1NsgkTSgH6zD3oJkMv) | [live](https://claude.ai/artifact/B2b8bZqe2en9vgBipMsTDY) | [src only](reports/tetracopiparvovirus-coverage-audit.html) |
 | **TetraCopiparvovirus — Tetraparvovirus and Copiparvovirus** | [src only](reports/tetracopiparvovirus-string-collapse.html) | [src only](reports/tetracopiparvovirus-pssm-registry.html) | [src only](reports/tetracopiparvovirus-vocabulary-saturation.html) | — |
 | **Tobamovirus** | [live](https://claude.ai/artifact/4r5eFifqQBs3msQyeTDRkd) | [live](https://claude.ai/artifact/Jaxj3wb1cGkEng25cDoXDz) | [live](https://claude.ai/artifact/GDgyPgzSQr3PoNyBXKF75F) | [live](https://claude.ai/artifact/Lqb3QrZN9vuQT2tHNnxjjf) |
 | **Togaviridae** | [src only](reports/togaviridae-string-collapse.html) | [live](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | — | [live](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) |
@@ -781,7 +781,7 @@ Built but never published, source is here: [coverage audit](reports/srlv-coverag
 | TetraCopiparvovirus String Collapse | [open](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | — | 2026-10-29 |
 | TetraCopiparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/B2b8bZqe2en9vgBipMsTDY) | — | 2026-10-31 |
 
-Not made: coverage audit.
+Built but never published, source is here: [coverage audit](reports/tetracopiparvovirus-coverage-audit.html).
 
 ### TetraCopiparvovirus — Tetraparvovirus and Copiparvovirus
 
@@ -855,6 +855,7 @@ Not made: vocabulary saturation.
 | Dependoparvovirus — coverage audit | [open](https://claude.ai/artifact/DQHm1ikoc4QR8R74LLryKB) | — | 2026-11-01 |
 | Erythroparvovirus — coverage audit | [open](https://claude.ai/artifact/RZgn2R3Jjfwuk25Utfkbng) | — | 2026-11-01 |
 | Bocaparvovirus — coverage audit | [open](https://claude.ai/artifact/JqUwPr1jeg2Qexh1iGZXEh) | — | 2026-11-01 |
+| TetraCopiparvovirus — coverage audit | [open](https://claude.ai/artifact/AwAe6qNhui1fPRsezQY3Wd) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
