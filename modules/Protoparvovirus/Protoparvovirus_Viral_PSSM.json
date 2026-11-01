@@ -1,0 +1,216 @@
+{
+   "Protoparvovirus" : {
+      "close_genomes" : {
+         "Protoparvovirus.1.dna" : {
+            "genome_ids" : "10788.3843.con.0001",
+            "genome_name" : "Canine parvovirus ParvoviridaeDogfe384C2"
+         },
+         "Protoparvovirus.10.dna" : {
+            "genome_ids" : "2880839.40.con.0001",
+            "genome_name" : "Newlavirus FX25"
+         },
+         "Protoparvovirus.11.dna" : {
+            "genome_ids" : "1987106.116.con.0001",
+            "genome_name" : "Protoparvovirus sp. HCAPV-1"
+         },
+         "Protoparvovirus.12.dna" : {
+            "genome_ids" : "3120489.4.con.0001",
+            "genome_name" : "ovine tusavirus OTV/0215"
+         },
+         "Protoparvovirus.13.dna" : {
+            "genome_ids" : "10788.3852.con.0001",
+            "genome_name" : "Canine parvovirus ParvoviridaeDogfe372C7"
+         },
+         "Protoparvovirus.14.dna" : {
+            "genome_ids" : "10796.274.con.0001",
+            "genome_name" : "Porcine parvovirus"
+         },
+         "Protoparvovirus.15.dna" : {
+            "genome_ids" : "1867125.10.con.0001",
+            "genome_name" : "Cutavirus FR-F"
+         },
+         "Protoparvovirus.16.dna" : {
+            "genome_ids" : "10788.3861.con.0001",
+            "genome_name" : "Canine parvovirus ParvoviridaeDogfe353C12"
+         },
+         "Protoparvovirus.17.dna" : {
+            "genome_ids" : "1763507.8.con.0001",
+            "genome_name" : "Rat bufavirus SY-2015 791102"
+         },
+         "Protoparvovirus.18.dna" : {
+            "genome_ids" : "1987106.125.con.0001",
+            "genome_name" : "Protoparvovirus sp. PACV-28"
+         },
+         "Protoparvovirus.19.dna" : {
+            "genome_ids" : "1987106.129.con.0001",
+            "genome_name" : "Protoparvovirus sp. PACV-18"
+         },
+         "Protoparvovirus.2.dna" : {
+            "genome_ids" : "10796.373.con.0001",
+            "genome_name" : "Porcine parvovirus SDPV2"
+         },
+         "Protoparvovirus.20.dna" : {
+            "genome_ids" : "10788.3906.con.0001",
+            "genome_name" : "Canine parvovirus ParvoviridaeDogfe356C1"
+         },
+         "Protoparvovirus.21.dna" : {
+            "genome_ids" : "1245561.3.con.0001",
+            "genome_name" : "Wuharv parvovirus 1"
+         },
+         "Protoparvovirus.22.dna" : {
+            "genome_ids" : "1987106.122.con.0001",
+            "genome_name" : "Protoparvovirus sp. PACV-34"
+         },
+         "Protoparvovirus.23.dna" : {
+            "genome_ids" : "2860269.4.con.0001",
+            "genome_name" : "Equine protoparvovirus EqPV-P4619"
+         },
+         "Protoparvovirus.24.dna" : {
+            "genome_ids" : "10788.3846.con.0001",
+            "genome_name" : "Canine parvovirus ParvoviridaeDogfe380C5"
+         },
+         "Protoparvovirus.25.dna" : {
+            "genome_ids" : "10788.3851.con.0001",
+            "genome_name" : "Canine parvovirus ParvoviridaeDogfe373C1"
+         },
+         "Protoparvovirus.3.dna" : {
+            "genome_ids" : "1241957.128.con.0001",
+            "genome_name" : "Porcine parvovirus 5 PPV5 P1 OK/USA"
+         },
+         "Protoparvovirus.4.dna" : {
+            "genome_ids" : "2575831.65.con.0001",
+            "genome_name" : "Canine bufavirus"
+         },
+         "Protoparvovirus.5.dna" : {
+            "genome_ids" : "2137545.5.con.0001",
+            "genome_name" : "Rodent protoparvovirus 3 9424"
+         },
+         "Protoparvovirus.6.dna" : {
+            "genome_ids" : "1511907.3.con.0001",
+            "genome_name" : "Primate protoparvovirus 1 BF.86"
+         },
+         "Protoparvovirus.7.dna" : {
+            "genome_ids" : "2976460.9.con.0001",
+            "genome_name" : "Porcine parvovirus 8 PPV8-SDWF-2023"
+         },
+         "Protoparvovirus.8.dna" : {
+            "genome_ids" : "1755694.3.con.0001",
+            "genome_name" : "Protoparvovirus Zsana/2013/HUN"
+         },
+         "Protoparvovirus.9.dna" : {
+            "genome_ids" : "1328105.12.con.0001",
+            "genome_name" : "Fox parvovirus XFM39"
+         }
+      },
+      "features" : {
+         "NP1" : {
+            "anno" : "Uncharacterized NP1-like protein",
+            "bit_cutoff" : 84,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "np1",
+            "kmers" : 1,
+            "max_len" : 307,
+            "min_len" : 130,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "NS1" : {
+            "anno" : "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+            "bit_cutoff" : 148,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ns1",
+            "kmers" : 1,
+            "max_len" : 938,
+            "min_len" : 438,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "NS2" : {
+            "PMID_claude_generated" : [
+               "2942705",
+               "8212598",
+               "9454701",
+               "35395063"
+            ],
+            "anno" : "Nuclear egress protein NS2 (CRM1-dependent)",
+            "feature_type" : "CDS",
+            "gene_symbol" : "ns2",
+            "max_len" : 208,
+            "min_len" : 96,
+            "segment" : "Single DNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "NS3" : {
+            "PMID_claude_generated" : [
+               "8212598"
+            ],
+            "anno" : "Uncharacterized lineage specific nonstructural protein NS3",
+            "feature_type" : "CDS",
+            "gene_symbol" : "ns3",
+            "max_len" : 113,
+            "min_len" : 74,
+            "segment" : "Single DNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "SAT" : {
+            "anno" : "Small alternatively translated protein SAT (endoplasmic reticulum membrane protein)",
+            "bit_cutoff" : 117,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "sat",
+            "kmers" : 1,
+            "max_len" : 72,
+            "min_len" : 59,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP" : {
+            "anno" : "Capsid protein VP1 (phospholipase A2 domain)",
+            "bit_cutoff" : 37,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "vp1",
+            "kmers" : 1,
+            "max_len" : 1093,
+            "min_len" : 420,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP2" : {
+            "anno" : "Major capsid protein VP2",
+            "bit_cutoff" : 88,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "vp2",
+            "kmers" : 1,
+            "max_len" : 628,
+            "min_len" : 428,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single DNA Segment" : {
+            "max_len" : 5919,
+            "min_len" : 3496,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

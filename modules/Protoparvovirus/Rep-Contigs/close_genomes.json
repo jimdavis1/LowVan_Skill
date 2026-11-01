@@ -1,0 +1,102 @@
+{
+ "Protoparvovirus.1.dna": {
+  "genome_ids": "10788.3843.con.0001",
+  "genome_name": "Canine parvovirus ParvoviridaeDogfe384C2"
+ },
+ "Protoparvovirus.10.dna": {
+  "genome_ids": "2880839.40.con.0001",
+  "genome_name": "Newlavirus FX25"
+ },
+ "Protoparvovirus.11.dna": {
+  "genome_ids": "1987106.116.con.0001",
+  "genome_name": "Protoparvovirus sp. HCAPV-1"
+ },
+ "Protoparvovirus.12.dna": {
+  "genome_ids": "3120489.4.con.0001",
+  "genome_name": "ovine tusavirus OTV/0215"
+ },
+ "Protoparvovirus.13.dna": {
+  "genome_ids": "10788.3852.con.0001",
+  "genome_name": "Canine parvovirus ParvoviridaeDogfe372C7"
+ },
+ "Protoparvovirus.14.dna": {
+  "genome_ids": "10796.274.con.0001",
+  "genome_name": "Porcine parvovirus"
+ },
+ "Protoparvovirus.15.dna": {
+  "genome_ids": "1867125.10.con.0001",
+  "genome_name": "Cutavirus FR-F"
+ },
+ "Protoparvovirus.16.dna": {
+  "genome_ids": "10788.3861.con.0001",
+  "genome_name": "Canine parvovirus ParvoviridaeDogfe353C12"
+ },
+ "Protoparvovirus.17.dna": {
+  "genome_ids": "1763507.8.con.0001",
+  "genome_name": "Rat bufavirus SY-2015 791102"
+ },
+ "Protoparvovirus.18.dna": {
+  "genome_ids": "1987106.125.con.0001",
+  "genome_name": "Protoparvovirus sp. PACV-28"
+ },
+ "Protoparvovirus.19.dna": {
+  "genome_ids": "1987106.129.con.0001",
+  "genome_name": "Protoparvovirus sp. PACV-18"
+ },
+ "Protoparvovirus.2.dna": {
+  "genome_ids": "10796.373.con.0001",
+  "genome_name": "Porcine parvovirus SDPV2"
+ },
+ "Protoparvovirus.20.dna": {
+  "genome_ids": "10788.3906.con.0001",
+  "genome_name": "Canine parvovirus ParvoviridaeDogfe356C1"
+ },
+ "Protoparvovirus.21.dna": {
+  "genome_ids": "1245561.3.con.0001",
+  "genome_name": "Wuharv parvovirus 1"
+ },
+ "Protoparvovirus.22.dna": {
+  "genome_ids": "1987106.122.con.0001",
+  "genome_name": "Protoparvovirus sp. PACV-34"
+ },
+ "Protoparvovirus.23.dna": {
+  "genome_ids": "2860269.4.con.0001",
+  "genome_name": "Equine protoparvovirus EqPV-P4619"
+ },
+ "Protoparvovirus.24.dna": {
+  "genome_ids": "10788.3846.con.0001",
+  "genome_name": "Canine parvovirus ParvoviridaeDogfe380C5"
+ },
+ "Protoparvovirus.25.dna": {
+  "genome_ids": "10788.3851.con.0001",
+  "genome_name": "Canine parvovirus ParvoviridaeDogfe373C1"
+ },
+ "Protoparvovirus.3.dna": {
+  "genome_ids": "1241957.128.con.0001",
+  "genome_name": "Porcine parvovirus 5 PPV5 P1 OK/USA"
+ },
+ "Protoparvovirus.4.dna": {
+  "genome_ids": "2575831.65.con.0001",
+  "genome_name": "Canine bufavirus"
+ },
+ "Protoparvovirus.5.dna": {
+  "genome_ids": "2137545.5.con.0001",
+  "genome_name": "Rodent protoparvovirus 3 9424"
+ },
+ "Protoparvovirus.6.dna": {
+  "genome_ids": "1511907.3.con.0001",
+  "genome_name": "Primate protoparvovirus 1 BF.86"
+ },
+ "Protoparvovirus.7.dna": {
+  "genome_ids": "2976460.9.con.0001",
+  "genome_name": "Porcine parvovirus 8 PPV8-SDWF-2023"
+ },
+ "Protoparvovirus.8.dna": {
+  "genome_ids": "1755694.3.con.0001",
+  "genome_name": "Protoparvovirus Zsana/2013/HUN"
+ },
+ "Protoparvovirus.9.dna": {
+  "genome_ids": "1328105.12.con.0001",
+  "genome_name": "Fox parvovirus XFM39"
+ }
+}

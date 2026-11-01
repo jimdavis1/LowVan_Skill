@@ -79,7 +79,7 @@ per-taxon tables below carry the dates and the source paths.
 | **PICO_NOLDR_VP0** | [live](https://claude.ai/artifact/FPxCxJr26eRtF8PJY8wH4p) | [live](https://claude.ai/artifact/Lr9uABqCQZxhBqiw83BJSS) | [live](https://claude.ai/artifact/MQxP6qyN2pCqry717Y5ehK) | [live](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) |
 | **PICO_NOLDR_VP4** | [live](https://claude.ai/artifact/D4ncL6xGyYttgDBcpqDJzF) | [live](https://claude.ai/artifact/CgHakkLnCawRjWZdawJwWB) | [live](https://claude.ai/artifact/4PMpusDUm7dpDGq1Pp2pxL) | [live](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) |
 | **Piscine Orthoreovirus** | [live](https://claude.ai/artifact/JEnqCvUGt9SN5f6kuCtT15) | [live](https://claude.ai/artifact/5fvts36gAWRpgtdQzjiCGX) | [live](https://claude.ai/artifact/7tqSe2K6VWU6jeLPRuwkKt) | [live](https://claude.ai/artifact/6YRXypfQ5DiURLw8vr2Tp9) |
-| **Protoparvovirus** | [live](https://claude.ai/artifact/KBU1KeEYqBDGco27VKRx1T) | — | — | — |
+| **Protoparvovirus** | [live](https://claude.ai/artifact/KBU1KeEYqBDGco27VKRx1T) | [src only](reports/protoparvovirus-pssm-registry.html) | [src only](reports/protoparvovirus-vocabulary-saturation.html) | [src only](reports/protoparvovirus-coverage-audit.html) |
 | **Pteropine Orthoreovirus** | [live](https://claude.ai/artifact/5MK26D2zL5em7CigKff9Fx) | [live](https://claude.ai/artifact/KT8pmXT9wJTehrpq2vPWoz) | [live](https://claude.ai/artifact/GLg3LzpvhMzbiecgUMpWoQ) | [live](https://claude.ai/artifact/V4NNnwaPbfJsdDRhDfyKHw) |
 | **Quinvirinae** | [live](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [live](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [live](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [live](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) |
 | **Rhabdoviridae** | — | [live](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | — | [live](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) |
@@ -658,7 +658,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 |---|---|---|---|
 | Protoparvovirus String Collapse | [open](https://claude.ai/artifact/KBU1KeEYqBDGco27VKRx1T) | [source](reports/protoparvovirus-string-collapse.html) | 2026-10-29 |
 
-Not made: coverage audit, PSSM registry, vocabulary saturation.
+Built but never published, source is here: [coverage audit](reports/protoparvovirus-coverage-audit.html), [PSSM registry](reports/protoparvovirus-pssm-registry.html), [vocabulary saturation](reports/protoparvovirus-vocabulary-saturation.html).
 
 ### Pteropine Orthoreovirus
 
@@ -859,6 +859,9 @@ Not made: vocabulary saturation.
 | Amdoparvovirus — PSSM registry | [open](https://claude.ai/artifact/2MCUvk9r3nh4nkdJyxZHZK) | — | 2026-11-01 |
 | Amdoparvovirus — vocabulary saturation | [open](https://claude.ai/artifact/LX7z2otFsSkqAbif6qbLg1) | — | 2026-11-01 |
 | Amdoparvovirus — coverage audit | [open](https://claude.ai/artifact/DwDcB9syhWAQRbzMP5BB9o) | — | 2026-11-01 |
+| Protoparvovirus — PSSM registry | [open](https://claude.ai/artifact/3CL39bSvHXb77PTA97TQqb) | — | 2026-11-01 |
+| Protoparvovirus — vocabulary saturation | [open](https://claude.ai/artifact/RyZUyegBVzQszWEbScCJFT) | — | 2026-11-01 |
+| Protoparvovirus — coverage audit | [open](https://claude.ai/artifact/Wxh3ffuYKmHzqnFNxzMsfE) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
