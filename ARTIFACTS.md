@@ -48,7 +48,7 @@ per-taxon tables below carry the dates and the source paths.
 | **EIAV** | [live](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [live](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | [live](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | [live](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) |
 | **EIAV — equine infectious anaemia virus** | [src only](reports/eiav-string-collapse.html) | [src only](reports/eiav-pssm-registry.html) | [src only](reports/eiav-vocabulary-saturation.html) | [src only](reports/eiav-coverage-audit.html) |
 | **Enterovirus** | [live](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [live](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [live](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [live](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) |
-| **Erythroparvovirus** | [live](https://claude.ai/artifact/3MvexZCs6HE9mQQpADMAyd) | [live](https://claude.ai/artifact/WDMKiEgje5D3zPZFQnKVkL) | [live](https://claude.ai/artifact/CmWhNFFMrSNrwfu7QLvRUQ) | — |
+| **Erythroparvovirus** | [live](https://claude.ai/artifact/3MvexZCs6HE9mQQpADMAyd) | [live](https://claude.ai/artifact/WDMKiEgje5D3zPZFQnKVkL) | [live](https://claude.ai/artifact/CmWhNFFMrSNrwfu7QLvRUQ) | [src only](reports/erythroparvovirus-coverage-audit.html) |
 | **FIV** | [live](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | [live](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | [live](https://claude.ai/artifact/QsKfmM4MTshtERZAeNqZHJ) | [live](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) |
 | **FIV — feline immunodeficiency virus** | [src only](reports/fiv-string-collapse.html) | [src only](reports/fiv-pssm-registry.html) | [src only](reports/fiv-vocabulary-saturation.html) | [src only](reports/fiv-coverage-audit.html) |
 | **Gammaretrovirus** | [live](https://claude.ai/artifact/Q8bws2vKjuyKBb4ZAuCCAF) | [live](https://claude.ai/artifact/3WcJXhsNk1fqU74ftQ6Stu) | [live](https://claude.ai/artifact/SnWBfiMoMut4R5Ykff8GEg) | [live](https://claude.ai/artifact/ELrfaFZbTYfUnVupig7Uxq) |
@@ -385,7 +385,7 @@ Built but never published, source is here: [coverage audit](reports/eiav-coverag
 | Erythroparvovirus String Collapse | [open](https://claude.ai/artifact/3MvexZCs6HE9mQQpADMAyd) | [source](reports/erythroparvovirus-string-collapse.html) | 2026-10-29 |
 | Erythroparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/CmWhNFFMrSNrwfu7QLvRUQ) | [source](reports/erythroparvovirus-vocabulary-saturation.html) | 2026-10-31 |
 
-Not made: coverage audit.
+Built but never published, source is here: [coverage audit](reports/erythroparvovirus-coverage-audit.html).
 
 ### FIV
 
@@ -853,6 +853,7 @@ Not made: vocabulary saturation.
 | DensovirinaeMono — coverage audit | [open](https://claude.ai/artifact/Nx6tVfTiXDRPF2LrHdKKgV) | — | 2026-11-01 |
 | Hamaparvovirinae — coverage audit | [open](https://claude.ai/artifact/1UrnLiaRuZqyeyVTvAGmaj) | — | 2026-11-01 |
 | Dependoparvovirus — coverage audit | [open](https://claude.ai/artifact/DQHm1ikoc4QR8R74LLryKB) | — | 2026-11-01 |
+| Erythroparvovirus — coverage audit | [open](https://claude.ai/artifact/RZgn2R3Jjfwuk25Utfkbng) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
