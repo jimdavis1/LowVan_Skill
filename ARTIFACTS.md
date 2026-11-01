@@ -53,7 +53,7 @@ per-taxon tables below carry the dates and the source paths.
 | **FIV — feline immunodeficiency virus** | [src only](reports/fiv-string-collapse.html) | [src only](reports/fiv-pssm-registry.html) | [src only](reports/fiv-vocabulary-saturation.html) | [src only](reports/fiv-coverage-audit.html) |
 | **Gammaretrovirus** | [live](https://claude.ai/artifact/Q8bws2vKjuyKBb4ZAuCCAF) | [live](https://claude.ai/artifact/3WcJXhsNk1fqU74ftQ6Stu) | [live](https://claude.ai/artifact/SnWBfiMoMut4R5Ykff8GEg) | [live](https://claude.ai/artifact/ELrfaFZbTYfUnVupig7Uxq) |
 | **Gammaretrovirus — murine, feline and porcine leukaemia viruses** | [src only](reports/gammaretrovirus-string-collapse.html) | [src only](reports/gammaretrovirus-pssm-registry.html) | [src only](reports/gammaretrovirus-vocabulary-saturation.html) | [src only](reports/gammaretrovirus-coverage-audit.html) |
-| **Hamaparvovirinae** | [live](https://claude.ai/artifact/5EfjTxcX3VK5VJtJZRHebN) | [live](https://claude.ai/artifact/CtjGdJYec31tJVRsbtAtEW) | [live](https://claude.ai/artifact/XqSG3kZMFmgbRmsKuGhvGd) | — |
+| **Hamaparvovirinae** | [live](https://claude.ai/artifact/5EfjTxcX3VK5VJtJZRHebN) | [live](https://claude.ai/artifact/CtjGdJYec31tJVRsbtAtEW) | [live](https://claude.ai/artifact/XqSG3kZMFmgbRmsKuGhvGd) | [src only](reports/hamaparvovirinae-coverage-audit.html) |
 | **Hepaciviridae** | [live](https://claude.ai/artifact/SuSzzD4Lgid5Nqh4wsAUsw) | [live](https://claude.ai/artifact/G2CDRQ1g7bPZQwJCAeVCNR) | [live](https://claude.ai/artifact/PFSG6T5FP4Pdv82KTtpRb3) | [live](https://claude.ai/artifact/8vMTNVAXKjhCEqmbsUBcry) |
 | **Hepatovirus** | [live](https://claude.ai/artifact/93JNSJkTL6tnxWAqqh1Ehj) | [live](https://claude.ai/artifact/HPeVWDKLb1684L7Lksqrug) | [live](https://claude.ai/artifact/BExLQ7zj3sT4KhFebPsmqK) | [live](https://claude.ai/artifact/4EgbaxJcXnos8VjP5o5qwq) |
 | **Hepeviridae** | [src only](reports/hepeviridae-string-collapse.html) | [live](https://claude.ai/artifact/Rv8Qtd6yogBhSxwxN83zUB) | [live](https://claude.ai/artifact/Lhe1p5zfzv6drE9XPXWB9n) | [live](https://claude.ai/artifact/9rab6t9Wg2jyUjpd31FCmz) |
@@ -427,7 +427,7 @@ Built but never published, source is here: [coverage audit](reports/gammaretrovi
 | Hamaparvovirinae String Collapse | [open](https://claude.ai/artifact/5EfjTxcX3VK5VJtJZRHebN) | [source](reports/hamaparvovirinae-string-collapse.html) | 2026-10-29 |
 | Hamaparvovirinae Vocabulary Saturation | [open](https://claude.ai/artifact/XqSG3kZMFmgbRmsKuGhvGd) | [source](reports/hamaparvovirinae-vocabulary-saturation.html) | 2026-10-31 |
 
-Not made: coverage audit.
+Built but never published, source is here: [coverage audit](reports/hamaparvovirinae-coverage-audit.html).
 
 ### Hepaciviridae
 
@@ -851,6 +851,7 @@ Not made: vocabulary saturation.
 | page | live | source | updated |
 |---|---|---|---|
 | DensovirinaeMono — coverage audit | [open](https://claude.ai/artifact/Nx6tVfTiXDRPF2LrHdKKgV) | — | 2026-11-01 |
+| Hamaparvovirinae — coverage audit | [open](https://claude.ai/artifact/1UrnLiaRuZqyeyVTvAGmaj) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
