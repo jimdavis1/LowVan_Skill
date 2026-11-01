@@ -21,7 +21,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Alphaflexiviridae** | [live](https://claude.ai/artifact/1opeHxTHrAVEx7nsy8DMc1) | [live](https://claude.ai/artifact/TseN29Pu2NS87fMCJRTP1a) | [live](https://claude.ai/artifact/DrNtpzKawMfnQvEFgdvJCP) | [live](https://claude.ai/artifact/MzC77du44ZP2iBnPogQPx1) |
 | **Alpharetrovirus** | [live](https://claude.ai/artifact/CfpgXESRmcejTpMaqkga2H) | [live](https://claude.ai/artifact/79W5AL2FdcGK8mJaEzXVeZ) | [live](https://claude.ai/artifact/2se3RSaF9Cbv1brCHo3uxp) | [live](https://claude.ai/artifact/AnobFFvUDqjQfPHECo2bPp) |
 | **Alpharetrovirus — avian leukosis and sarcoma viruses** | [src only](reports/alpharetrovirus-string-collapse.html) | [src only](reports/alpharetrovirus-pssm-registry.html) | [src only](reports/alpharetrovirus-vocabulary-saturation.html) | [src only](reports/alpharetrovirus-coverage-audit.html) |
-| **Amdoparvovirus** | [live](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | — | — | — |
+| **Amdoparvovirus** | [live](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | [src only](reports/amdoparvovirus-pssm-registry.html) | [src only](reports/amdoparvovirus-vocabulary-saturation.html) | [src only](reports/amdoparvovirus-coverage-audit.html) |
 | **Ampelovirus** | [live](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [live](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [live](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [live](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) |
 | **Aphthovirus** | [live](https://claude.ai/artifact/KdaADibFPANEzfuUFHPFKn) | [live](https://claude.ai/artifact/9tbrUrJKKq41HT6MS88stL) | [live](https://claude.ai/artifact/VG7VGspxEMqfRJvTUNJwzo) | [live](https://claude.ai/artifact/1ZtduTvq8yXtbpb1CxTyex) |
 | **Avastrovirus** | [live](https://claude.ai/artifact/VrWfP1iFNxZT5JCJBgHH5w) | [live](https://claude.ai/artifact/6Jpsu5giVraWnVab27PjS8) | [live](https://claude.ai/artifact/RcW23Q2inLy9B7bfVVFBK7) | [live](https://claude.ai/artifact/5RSkHzZqkSbdaRKMzHrNZM) |
@@ -147,7 +147,7 @@ Built but never published, source is here: [coverage audit](reports/alpharetrovi
 |---|---|---|---|
 | Amdoparvovirus String Collapse | [open](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | [source](reports/amdoparvovirus-string-collapse.html) | 2026-10-29 |
 
-Not made: coverage audit, PSSM registry, vocabulary saturation.
+Built but never published, source is here: [coverage audit](reports/amdoparvovirus-coverage-audit.html), [PSSM registry](reports/amdoparvovirus-pssm-registry.html), [vocabulary saturation](reports/amdoparvovirus-vocabulary-saturation.html).
 
 ### Ampelovirus
 
@@ -856,6 +856,9 @@ Not made: vocabulary saturation.
 | Erythroparvovirus — coverage audit | [open](https://claude.ai/artifact/RZgn2R3Jjfwuk25Utfkbng) | — | 2026-11-01 |
 | Bocaparvovirus — coverage audit | [open](https://claude.ai/artifact/JqUwPr1jeg2Qexh1iGZXEh) | — | 2026-11-01 |
 | TetraCopiparvovirus — coverage audit | [open](https://claude.ai/artifact/AwAe6qNhui1fPRsezQY3Wd) | — | 2026-11-01 |
+| Amdoparvovirus — PSSM registry | [open](https://claude.ai/artifact/2MCUvk9r3nh4nkdJyxZHZK) | — | 2026-11-01 |
+| Amdoparvovirus — vocabulary saturation | [open](https://claude.ai/artifact/LX7z2otFsSkqAbif6qbLg1) | — | 2026-11-01 |
+| Amdoparvovirus — coverage audit | [open](https://claude.ai/artifact/DwDcB9syhWAQRbzMP5BB9o) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
