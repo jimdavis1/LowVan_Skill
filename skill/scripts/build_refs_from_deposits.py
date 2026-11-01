@@ -34,6 +34,13 @@ def tr(s):
     return "".join(TAB.get(s[i:i + 3], 'X') for i in range(0, len(s) - 2, 3))
 
 
+COMP = str.maketrans("ACGTRYKMBVDHNacgtrykmbvdhn", "TGCAYRMKVBHDNtgcayrmkvbhdn")
+
+
+def rc(s):
+    return s.translate(COMP)[::-1]
+
+
 def read_fasta(path):
     out, cur = [], None
     for line in open(path):
@@ -90,11 +97,21 @@ def main():
         rows = [l.split("\t") for l in r.stdout.strip().split("\n") if l]
         hsps = [(int(x[0]), int(x[1]), int(x[2]), int(x[3]), x[4],
                  float(x[5])) for x in rows]
-        #  plus strand only: a spliced CDS does not change strand between its
-        #  exons, and a minus-strand HSP here is a hit on the other gene.
-        hsps = [h for h in hsps if h[3] > h[2]]
+        #  One strand only: a spliced CDS does not change strand between its
+        #  exons, so a hit on the other strand belongs to another gene. An
+        #  ambisense genome puts half its genes on the minus strand -- the
+        #  Scindoambidensovirus capsid among them -- so when the minus-strand
+        #  hits win, flip the contig and work in its coordinates throughout.
+        plus = [h for h in hsps if h[3] > h[2]]
+        minus = [h for h in hsps if h[3] < h[2]]
+        if sum(h[5] for h in minus) > sum(h[5] for h in plus):
+            contigs = {k: rc(v) for k, v in contigs.items()}
+            hsps = [(h[0], h[1], len(contigs[h[4]]) - h[2] + 1,
+                     len(contigs[h[4]]) - h[3] + 1, h[4], h[5]) for h in minus]
+        else:
+            hsps = plus
         if len(hsps) < 2:
-            drops["fewer than two plus-strand HSPs"] += 1
+            drops["fewer than two HSPs on one strand"] += 1
             continue
 
         hit = None
