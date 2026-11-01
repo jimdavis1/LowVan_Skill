@@ -30,7 +30,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Bavovirus** | [live](https://claude.ai/artifact/VRpn8EkqAkz2sMjzYFEDS9) | [live](https://claude.ai/artifact/RqkxTXZnGNWALpiyXz7t9d) | [live](https://claude.ai/artifact/RqWLqqQPpCtJC7ZHpPxPxZ) | [live](https://claude.ai/artifact/88JpWMU5nBSfQXczr3X2ZX) |
 | **Betaretrovirus** | [live](https://claude.ai/artifact/QmBMhMeySeeWx1xSEGB7b2) | [live](https://claude.ai/artifact/NWA1P4R6gtTixbvjjPva4h) | [live](https://claude.ai/artifact/XPJL3x1kDK7NtrULEvg7wi) | [live](https://claude.ai/artifact/WG4UHp5QzR5NqYy5RFvStr) |
 | **Betaretrovirus — mouse mammary tumour and type B/D viruses** | [src only](reports/betaretrovirus-string-collapse.html) | [src only](reports/betaretrovirus-pssm-registry.html) | [src only](reports/betaretrovirus-vocabulary-saturation.html) | [src only](reports/betaretrovirus-coverage-audit.html) |
-| **Bocaparvovirus** | [live](https://claude.ai/artifact/VZJSrH8RoyZhd6DRXLvCSR) | [live](https://claude.ai/artifact/Gu41kvU6WiQRrQQGfQS2iq) | [live](https://claude.ai/artifact/RRhZe9QT2uziPZDKQSqcZP) | — |
+| **Bocaparvovirus** | [live](https://claude.ai/artifact/VZJSrH8RoyZhd6DRXLvCSR) | [live](https://claude.ai/artifact/Gu41kvU6WiQRrQQGfQS2iq) | [live](https://claude.ai/artifact/RRhZe9QT2uziPZDKQSqcZP) | [src only](reports/bocaparvovirus-coverage-audit.html) |
 | **Bromoviridae** | [live](https://claude.ai/artifact/1wZ4m4Ri6VarEWj6vGB8UT) | [live](https://claude.ai/artifact/VtS14XFKWG1BtzBiX1f193) | [live](https://claude.ai/artifact/LLVpuYZWg7GbRrFbcBMpiK) | [live](https://claude.ai/artifact/MLcThSnPEmReaR28vFsLN5) |
 | **Capillovirus** | [live](https://claude.ai/artifact/UxFYYiPSxUmVHpnfZvttL6) | [live](https://claude.ai/artifact/2MhyYGJDyaiuKpH8dT8DMP) | [live](https://claude.ai/artifact/KRCGhYahtrFrXhC66FMCDG) | [live](https://claude.ai/artifact/72Tkge2qkTd5sc5eumHUtP) |
 | **Cardiovirus** | [live](https://claude.ai/artifact/44d26MFMAYpvzfoKyDjqS7) | [live](https://claude.ai/artifact/WuCYigqaWqd7yeoyQ4PMN5) | [live](https://claude.ai/artifact/SiYcBoWrvoLUSpYcuBk47P) | [live](https://claude.ai/artifact/CWpYjvdg3sbjLaRp68LFti) |
@@ -227,7 +227,7 @@ Built but never published, source is here: [coverage audit](reports/betaretrovir
 | Bocaparvovirus String Collapse | [open](https://claude.ai/artifact/VZJSrH8RoyZhd6DRXLvCSR) | [source](reports/bocaparvovirus-string-collapse.html) | 2026-10-29 |
 | Bocaparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/RRhZe9QT2uziPZDKQSqcZP) | [source](reports/bocaparvovirus-vocabulary-saturation.html) | 2026-10-31 |
 
-Not made: coverage audit.
+Built but never published, source is here: [coverage audit](reports/bocaparvovirus-coverage-audit.html).
 
 ### Bromoviridae
 
@@ -854,6 +854,7 @@ Not made: vocabulary saturation.
 | Hamaparvovirinae — coverage audit | [open](https://claude.ai/artifact/1UrnLiaRuZqyeyVTvAGmaj) | — | 2026-11-01 |
 | Dependoparvovirus — coverage audit | [open](https://claude.ai/artifact/DQHm1ikoc4QR8R74LLryKB) | — | 2026-11-01 |
 | Erythroparvovirus — coverage audit | [open](https://claude.ai/artifact/RZgn2R3Jjfwuk25Utfkbng) | — | 2026-11-01 |
+| Bocaparvovirus — coverage audit | [open](https://claude.ai/artifact/JqUwPr1jeg2Qexh1iGZXEh) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |
