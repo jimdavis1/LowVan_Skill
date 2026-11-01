@@ -1,0 +1,102 @@
+{
+ "TetraCopiparvovirus.1.dna": {
+  "genome_ids": "1472911.160.con.0001",
+  "genome_name": "Porcine parvovirus 6 AH-PPV620178-4"
+ },
+ "TetraCopiparvovirus.10.dna": {
+  "genome_ids": "2913392.34.con.0001",
+  "genome_name": "Sika deer copiparvovirus SDCopiPV-MZ12-1435"
+ },
+ "TetraCopiparvovirus.11.dna": {
+  "genome_ids": "2340908.9.con.0001",
+  "genome_name": "Bosavirus sp. FBS-GW-NA"
+ },
+ "TetraCopiparvovirus.12.dna": {
+  "genome_ids": "2937005.15.con.0001",
+  "genome_name": "Copiparvovirus P220T/pangolin/2018"
+ },
+ "TetraCopiparvovirus.13.dna": {
+  "genome_ids": "2839030.17.con.0001",
+  "genome_name": "Ovine copiparvovirus GSYX6/6963"
+ },
+ "TetraCopiparvovirus.14.dna": {
+  "genome_ids": "172296.8.con.0001",
+  "genome_name": "Bovine parvovirus - 2 ujs2665"
+ },
+ "TetraCopiparvovirus.15.dna": {
+  "genome_ids": "2653508.3.con.0001",
+  "genome_name": "Eqcopivirus EqCoPV_8"
+ },
+ "TetraCopiparvovirus.16.dna": {
+  "genome_ids": "2731271.5.con.0001",
+  "genome_name": "Bovine copiparvovirus 3 BJ1907"
+ },
+ "TetraCopiparvovirus.17.dna": {
+  "genome_ids": "2734317.3.con.0001",
+  "genome_name": "Ungulate copiparvovirus 6 EqPV-H_N204"
+ },
+ "TetraCopiparvovirus.18.dna": {
+  "genome_ids": "1908804.3.con.0001",
+  "genome_name": "Tetraparvovirus sp. tetra-CA1"
+ },
+ "TetraCopiparvovirus.19.dna": {
+  "genome_ids": "2137540.3.con.0001",
+  "genome_name": "Opossum tetraparvovirus 4113"
+ },
+ "TetraCopiparvovirus.2.dna": {
+  "genome_ids": "1126383.359.con.0001",
+  "genome_name": "Porcine parvovirus 2 AH-PPV220178-5"
+ },
+ "TetraCopiparvovirus.20.dna": {
+  "genome_ids": "2137541.3.con.0001",
+  "genome_name": "Rodent tetraparvovirus 1135"
+ },
+ "TetraCopiparvovirus.21.dna": {
+  "genome_ids": "2809313.5.con.0001",
+  "genome_name": "Copiparvovirus sp. NXYX/5934"
+ },
+ "TetraCopiparvovirus.22.dna": {
+  "genome_ids": "2839030.18.con.0001",
+  "genome_name": "Ovine copiparvovirus GSYX11/7193"
+ },
+ "TetraCopiparvovirus.23.dna": {
+  "genome_ids": "1131483.3.con.0001",
+  "genome_name": "Eidolon helvum (bat) parvovirus"
+ },
+ "TetraCopiparvovirus.24.dna": {
+  "genome_ids": "2555547.3.con.0001",
+  "genome_name": "Roe deer copiparvovirus BE1801"
+ },
+ "TetraCopiparvovirus.25.dna": {
+  "genome_ids": "2839030.10.con.0001",
+  "genome_name": "Ovine copiparvovirus SXO335parvoV1"
+ },
+ "TetraCopiparvovirus.3.dna": {
+  "genome_ids": "1126384.280.con.0001",
+  "genome_name": "Porcine parvovirus 3 Volta/Ghana/2023"
+ },
+ "TetraCopiparvovirus.4.dna": {
+  "genome_ids": "707546.145.con.0001",
+  "genome_name": "Porcine parvovirus 4 SERUM-SMU"
+ },
+ "TetraCopiparvovirus.5.dna": {
+  "genome_ids": "289365.379.con.0001",
+  "genome_name": "Human parvovirus 4 Nepal/N0001019/2021"
+ },
+ "TetraCopiparvovirus.6.dna": {
+  "genome_ids": "1096141.9.con.0001",
+  "genome_name": "Bovine hokovirus 2 PMSJ3_UTPV1"
+ },
+ "TetraCopiparvovirus.7.dna": {
+  "genome_ids": "3052774.3.con.0001",
+  "genome_name": "Tetraparvovirus ungulate4 GSYG3/5284"
+ },
+ "TetraCopiparvovirus.8.dna": {
+  "genome_ids": "1511889.3.con.0001",
+  "genome_name": "Ungulate copiparvovirus 1 QQHE16"
+ },
+ "TetraCopiparvovirus.9.dna": {
+  "genome_ids": "3059902.3.con.0001",
+  "genome_name": "Copiparvovirus ungulate8 E2"
+ }
+}
