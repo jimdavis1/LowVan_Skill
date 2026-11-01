@@ -66,7 +66,11 @@ def main():
                     help="how far, in nt, each HSP end may be moved to put the "
                          "junction where the deposit says it is. tblastn trims "
                          "to the last well-matching codon, so the reported "
-                         "boundary is a few codons short of the real one.")
+                         "boundary is a few codons short of the real one. Raise "
+                         "it when the two HSPs OVERLAP in the query: the "
+                         "Scindoambidensovirus VP1 exons overlap by 26 "
+                         "residues, putting the junction 78 nt outside this "
+                         "window, and nothing built until --slack 90.")
     a = ap.parse_args()
 
     kept, drops = [], collections.Counter()
