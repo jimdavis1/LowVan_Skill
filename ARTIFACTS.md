@@ -40,8 +40,8 @@ per-taxon tables below carry the dates and the source paths.
 | **Crinivirus** | [live](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [live](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [live](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [live](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) |
 | **Deltaretrovirus** | [live](https://claude.ai/artifact/Mvm31NpChCPQJmGEM6RNNy) | [live](https://claude.ai/artifact/HjGXwXK9GgvjyZx11y5jtt) | [live](https://claude.ai/artifact/1cZ4bd5xSjkYD11d2R2eJA) | [live](https://claude.ai/artifact/2tWi5E9gm5KWRKspYdJgDA) |
 | **Deltaretrovirus — human and simian T-lymphotropic viruses and bovine leukaemia virus** | [src only](reports/deltaretrovirus-string-collapse.html) | [src only](reports/deltaretrovirus-pssm-registry.html) | [src only](reports/deltaretrovirus-vocabulary-saturation.html) | [src only](reports/deltaretrovirus-coverage-audit.html) |
-| **DensovirinaeAmbi** | [live](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | — | — | — |
-| **DensovirinaeAmbi — ambisense densoviruses** | [src only](reports/densovirinaeambi-string-collapse.html) | — | — | — |
+| **DensovirinaeAmbi** | [live](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | — | — | [src only](reports/densovirinaeambi-coverage-audit.html) |
+| **DensovirinaeAmbi — ambisense densoviruses** | [src only](reports/densovirinaeambi-string-collapse.html) | [src only](reports/densovirinaeambi-pssm-registry.html) | [src only](reports/densovirinaeambi-vocabulary-saturation.html) | — |
 | **DensovirinaeMono** | [live](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | [live](https://claude.ai/artifact/VGQzYmcXAUzaRhK1FR3oid) | [live](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | [src only](reports/densovirinaemono-coverage-audit.html) |
 | **DensovirinaeMono — monosense densoviruses** | [src only](reports/densovirinaemono-string-collapse.html) | [src only](reports/densovirinaemono-pssm-registry.html) | [src only](reports/densovirinaemono-vocabulary-saturation.html) | — |
 | **Dependoparvovirus** | [live](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [live](https://claude.ai/artifact/FgbPhV6JWJF3vEuGmAzhJV) | [live](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | [src only](reports/dependoparvovirus-coverage-audit.html) |
@@ -314,15 +314,16 @@ Built but never published, source is here: [coverage audit](reports/deltaretrovi
 |---|---|---|---|
 | DensovirinaeAmbi String Collapse | [open](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | — | 2026-10-29 |
 
-Not made: coverage audit, PSSM registry, vocabulary saturation.
+Built but never published, source is here: [coverage audit](reports/densovirinaeambi-coverage-audit.html).
+Not made: PSSM registry, vocabulary saturation.
 
 ### DensovirinaeAmbi — ambisense densoviruses
 
 | page | live | source | updated |
 |---|---|---|---|
 
-Built but never published, source is here: [string collapse](reports/densovirinaeambi-string-collapse.html).
-Not made: coverage audit, PSSM registry, vocabulary saturation.
+Built but never published, source is here: [PSSM registry](reports/densovirinaeambi-pssm-registry.html), [string collapse](reports/densovirinaeambi-string-collapse.html), [vocabulary saturation](reports/densovirinaeambi-vocabulary-saturation.html).
+Not made: coverage audit.
 
 ### DensovirinaeMono
 
@@ -862,6 +863,9 @@ Not made: vocabulary saturation.
 | Protoparvovirus — PSSM registry | [open](https://claude.ai/artifact/3CL39bSvHXb77PTA97TQqb) | — | 2026-11-01 |
 | Protoparvovirus — vocabulary saturation | [open](https://claude.ai/artifact/RyZUyegBVzQszWEbScCJFT) | — | 2026-11-01 |
 | Protoparvovirus — coverage audit | [open](https://claude.ai/artifact/Wxh3ffuYKmHzqnFNxzMsfE) | — | 2026-11-01 |
+| DensovirinaeAmbi — PSSM registry | [open](https://claude.ai/artifact/7z5fcPPzDvUYKbweXHPbpM) | — | 2026-11-01 |
+| DensovirinaeAmbi — vocabulary saturation | [open](https://claude.ai/artifact/PxZVQJDvFiYqKpZcAqrrBq) | — | 2026-11-01 |
+| DensovirinaeAmbi — coverage audit | [open](https://claude.ai/artifact/KwEMFuhTs1Q1CDnbfgHr8G) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |

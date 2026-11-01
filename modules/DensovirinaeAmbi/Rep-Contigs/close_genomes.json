@@ -1,0 +1,102 @@
+{
+ "DensovirinaeAmbi.1.dna": {
+  "genome_ids": "3052744.3.con.0001",
+  "genome_name": "Scindoambidensovirus orthopteran1 SpinColumn14"
+ },
+ "DensovirinaeAmbi.10.dna": {
+  "genome_ids": "1404345.3.con.0001",
+  "genome_name": "Acheta domestica mini ambidensovirus Kalamazoo"
+ },
+ "DensovirinaeAmbi.11.dna": {
+  "genome_ids": "159153.4.con.0001",
+  "genome_name": "Planococcus citri densovirus"
+ },
+ "DensovirinaeAmbi.12.dna": {
+  "genome_ids": "2030127.6.con.0001",
+  "genome_name": "Densovirinae sp. MosAro-Densov-CQL14"
+ },
+ "DensovirinaeAmbi.13.dna": {
+  "genome_ids": "2050976.14.con.0001",
+  "genome_name": "Ambidensovirus sp. SAfia-601D2"
+ },
+ "DensovirinaeAmbi.14.dna": {
+  "genome_ids": "2050976.28.con.0001",
+  "genome_name": "Ambidensovirus sp. 088_17211"
+ },
+ "DensovirinaeAmbi.15.dna": {
+  "genome_ids": "2767029.3.con.0001",
+  "genome_name": "Clinch densovirus 1 CDnsV1/C47/2018"
+ },
+ "DensovirinaeAmbi.16.dna": {
+  "genome_ids": "2810799.13.con.0001",
+  "genome_name": "Duck-associated ambidensovirus 1 s1564"
+ },
+ "DensovirinaeAmbi.17.dna": {
+  "genome_ids": "3118306.3.con.0001",
+  "genome_name": "Burswood densovirus mosComB"
+ },
+ "DensovirinaeAmbi.18.dna": {
+  "genome_ids": "551224.4.con.0001",
+  "genome_name": "Dysaphis plantaginea densovirus 2-11-2002"
+ },
+ "DensovirinaeAmbi.19.dna": {
+  "genome_ids": "97344.4.con.0001",
+  "genome_name": "Periplaneta fuliginosa densovirus"
+ },
+ "DensovirinaeAmbi.2.dna": {
+  "genome_ids": "2030127.13.con.0001",
+  "genome_name": "Densovirinae sp. gct065den1"
+ },
+ "DensovirinaeAmbi.20.dna": {
+  "genome_ids": "1414671.3.con.0001",
+  "genome_name": "Solenopsis invicta densovirus SiDNV-Arg"
+ },
+ "DensovirinaeAmbi.21.dna": {
+  "genome_ids": "1642018.3.con.0001",
+  "genome_name": "Cherax quadricarinatus densovirus 1"
+ },
+ "DensovirinaeAmbi.22.dna": {
+  "genome_ids": "1776153.5.con.0001",
+  "genome_name": "Diaphorina citri densovirus"
+ },
+ "DensovirinaeAmbi.23.dna": {
+  "genome_ids": "1979755.5.con.0001",
+  "genome_name": "Sea star-associated densovirus"
+ },
+ "DensovirinaeAmbi.24.dna": {
+  "genome_ids": "2017716.3.con.0001",
+  "genome_name": "Lupine feces-associated densovirus 2 South Douro"
+ },
+ "DensovirinaeAmbi.25.dna": {
+  "genome_ids": "2030127.52.con.0001",
+  "genome_name": "Densovirinae sp. Cameroon/U172471/2017"
+ },
+ "DensovirinaeAmbi.3.dna": {
+  "genome_ids": "37138.7.con.0001",
+  "genome_name": "Galleria mellonella densovirus GmDNV"
+ },
+ "DensovirinaeAmbi.4.dna": {
+  "genome_ids": "2050976.143.con.0001",
+  "genome_name": "Ambidensovirus sp. Br"
+ },
+ "DensovirinaeAmbi.5.dna": {
+  "genome_ids": "2050976.21.con.0001",
+  "genome_name": "Ambidensovirus sp. 078_7994"
+ },
+ "DensovirinaeAmbi.6.dna": {
+  "genome_ids": "2030127.62.con.0001",
+  "genome_name": "Densovirinae sp. 230_2449"
+ },
+ "DensovirinaeAmbi.7.dna": {
+  "genome_ids": "185638.188.con.0001",
+  "genome_name": "Culex pipiens densovirus"
+ },
+ "DensovirinaeAmbi.8.dna": {
+  "genome_ids": "2030127.20.con.0001",
+  "genome_name": "Densovirinae sp. rob180par1"
+ },
+ "DensovirinaeAmbi.9.dna": {
+  "genome_ids": "210016.6.con.0001",
+  "genome_name": "Myzus persicae densovirus Colmar"
+ }
+}
