@@ -42,7 +42,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Deltaretrovirus — human and simian T-lymphotropic viruses and bovine leukaemia virus** | [src only](reports/deltaretrovirus-string-collapse.html) | [src only](reports/deltaretrovirus-pssm-registry.html) | [src only](reports/deltaretrovirus-vocabulary-saturation.html) | [src only](reports/deltaretrovirus-coverage-audit.html) |
 | **DensovirinaeAmbi** | [live](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | — | — | — |
 | **DensovirinaeAmbi — ambisense densoviruses** | [src only](reports/densovirinaeambi-string-collapse.html) | — | — | — |
-| **DensovirinaeMono** | [live](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | [live](https://claude.ai/artifact/VGQzYmcXAUzaRhK1FR3oid) | [live](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | — |
+| **DensovirinaeMono** | [live](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | [live](https://claude.ai/artifact/VGQzYmcXAUzaRhK1FR3oid) | [live](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | [src only](reports/densovirinaemono-coverage-audit.html) |
 | **DensovirinaeMono — monosense densoviruses** | [src only](reports/densovirinaemono-string-collapse.html) | [src only](reports/densovirinaemono-pssm-registry.html) | [src only](reports/densovirinaemono-vocabulary-saturation.html) | — |
 | **Dependoparvovirus** | [live](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [live](https://claude.ai/artifact/FgbPhV6JWJF3vEuGmAzhJV) | [live](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | — |
 | **EIAV** | [live](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [live](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | [live](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | [live](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) |
@@ -332,7 +332,7 @@ Not made: coverage audit, PSSM registry, vocabulary saturation.
 | DensovirinaeMono String Collapse | [open](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | — | 2026-10-29 |
 | DensovirinaeMono Vocabulary Saturation | [open](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | — | 2026-10-31 |
 
-Not made: coverage audit.
+Built but never published, source is here: [coverage audit](reports/densovirinaemono-coverage-audit.html).
 
 ### DensovirinaeMono — monosense densoviruses
 
@@ -850,6 +850,7 @@ Not made: vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
+| DensovirinaeMono — coverage audit | [open](https://claude.ai/artifact/Nx6tVfTiXDRPF2LrHdKKgV) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |

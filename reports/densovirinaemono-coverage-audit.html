@@ -1,0 +1,174 @@
+<title>DensovirinaeMono Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan &middot; DensovirinaeMono module &middot; 1 November 2026</div><h1>DensovirinaeMono — monosense densoviruses</h1><p class="stand">What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.</p><div class="tiles"><div class="tile"><div class="v">4</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">15</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">24/24</div><div class="l">exemplars routed</div></div><div class="tile"><div class="v">95.0%</div><div class="l">sampled genomes genuinely clean</div></div><div class="tile"><div class="v">7.8×</div><div class="l">string collapse</div></div><div class="tile"><div class="v">8.0×</div><div class="l">vocabulary collapse at equal proteins sampled</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One module for the four monosense densovirus genera, whose coding strand carries both the nonstructural and the structural genes.</p><p class="note">The module covers <strong>Iteradensovirus</strong>, <strong>Brevidensovirus</strong>, <strong>Hepandensovirus</strong> and <strong>Muscodensovirus</strong>. These are the <em>Densovirinae</em> whose genes all read from one strand, which is what separates them from the ambisense genera held in the sister module. The layout is the same across the four: a nonstructural cassette at the 5&prime; end and a nested capsid set at the 3&prime; end.</p><div class="scroll"><table><thead><tr><th></th><th>count</th></tr></thead><tbody><tr><td>genomes in the BV-BRC protein dump</td><td>40</td></tr><tr><td>protein features</td><td>184</td></tr><tr><td>unique sequences</td><td>87</td></tr><tr><td>genomes with a contig ≥ 5 kb</td><td>40</td></tr><tr><td>species</td><td>21</td></tr></tbody></table></div><p class="note">Four features are declared: <strong>NS1</strong>, <strong>NS2</strong>, <strong>VP1</strong> and <strong>VP2</strong>. Only NS1 carries <code>copy_num</code>, so only NS1 is treated as essential when a genome is scored for quality. VP1 and VP2 are nested alternative-start forms of one capsid gene and are exempt from the consolidation rule that would otherwise merge them.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">Profiles are built from the annotation strings that BV-BRC already carries, after the strings are collapsed onto one name per protein.</p><div class="scroll"><table><thead><tr><th>feature</th><th>annotation</th><th>symbol</th><th>collection</th><th>profiles</th><th>departures</th></tr></thead><tbody><tr><td>NS1</td><td>Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)</td><td>ns1</td><td>26</td><td>6</td><td>defaults</td></tr><tr><td>NS2</td><td>Uncharacterized nonstructural protein NS2</td><td>ns2</td><td>15</td><td>3</td><td>defaults</td></tr><tr><td>VP</td><td>Capsid protein VP1 (phospholipase A2 domain)</td><td>vp1</td><td>19</td><td>3</td><td>-m 2, -mi 0.6</td></tr><tr><td>VP2</td><td>Major capsid protein VP2</td><td>vp2</td><td>10</td><td>3</td><td>-m 2, -mi 0.6</td></tr></tbody></table></div><p class="note">Thirty-one distinct annotation strings collapse onto the four feature names. NS1 draws on nine of them — <em>nonstructural protein 1</em>, <em>non-structural protein 1</em>, <em>nonstructural protein NS1</em>, <em>NS1</em>, <em>helicase NS1</em> and four more — and VP1 on eight. The collapse is what makes a profile possible at all: a cluster built from one spelling would be built from a fraction of the available sequence.</p><p class="note">Three sequences did not collapse and are not modelled: two <em>putative nonstructural protein NS1</em> and two <em>viral protein</em> in Iteradensovirus, and one <em>non-structure protein 2</em> in Brevidensovirus. They are recorded in <code>UNASSIGNED_TRACKING.tsv</code>. That file is a list of unfinished work, not a resolution — these five sequences did leave the module.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Each profile carries a bit-score floor and a length window taken from the collection it was built from.</p><div class="scroll"><table><thead><tr><th>feature</th><th>bit_cutoff</th><th>coverage_cutoff</th><th>min_len</th><th>max_len</th></tr></thead><tbody><tr><td>NS1</td><td>131</td><td>0.65</td><td>512</td><td>899</td></tr><tr><td>NS2</td><td>175</td><td>0.65</td><td>258</td><td>482</td></tr><tr><td>VP</td><td>152</td><td>0.65</td><td>595</td><td>890</td></tr><tr><td>VP2</td><td>288</td><td>0.65</td><td>334</td><td>709</td></tr></tbody></table></div><p class="note">The cutoffs are NS1 131, NS2 175, VP1 152 and VP2 288 bits, with length windows of 512&ndash;899, 258&ndash;482, 595&ndash;890 and 334&ndash;709 residues. All four features use the default coverage cutoff of 0.65, measured against the profile's own length.</p><p class="note">Self-recall — how many of the sequences a profile was built from that profile calls back — is <strong>26 of 26</strong> for NS1, <strong>10 of 10</strong> for VP2, <strong>16 of 19</strong> for VP1 and <strong>13 of 15</strong> for NS2. The five misses are all sequences at the edge of their length window.</p><div class="verdict">Self-recall against each feature's own in-range collection: <b>65 of 70 (92.9%)</b> &mdash; NS1 26/26, NS2 13/15, VP 16/19, VP2 10/10. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06.</div></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">Routing is a BLASTn of the query against the reference contigs, so a genome with no close relative among them is invisible to the module.</p><div class="scroll"><table><thead><tr><th></th><th>count</th><th>%</th></tr></thead><tbody><tr><td>genomes ≥ 5 kb, clustered at 95% nucleotide identity</td><td>24</td><td>—</td></tr><tr><td>routed to DensovirinaeMono</td><td>24</td><td>100.0%</td></tr><tr><td>unrouted</td><td>0</td><td>0.0%</td></tr></tbody></table></div><p class="note">Routing was measured against the 11 reference contigs this module ships, of which 11 were used by the exemplar set.</p><p class="note">Eleven reference contigs stand for the four genera. All twenty-four exemplar genomes routed, and all twenty-four routed to this module rather than to a neighbouring one. Nothing was unrouted.</p><p class="note">That result is bounded by the sample, not a guarantee. Routing depends on nucleotide identity to a reference, and a divergent isolate with no close relative in the eleven will not route no matter how recognisable its proteins are.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">Calling is measured on the exemplars that routed, feature by feature.</p><div class="bars"><div class="bar"><div class="bl">ns1</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">100.0%</div><div class="bn">24 of 24 routed exemplars</div></div><div class="bar"><div class="bl">ns2</div><div class="bt"><i style="width:66.70%"></i></div><div class="bv">66.7%</div><div class="bn">16 of 24 routed exemplars</div></div><div class="bar"><div class="bl">vp1</div><div class="bt"><i style="width:66.70%"></i></div><div class="bv">66.7%</div><div class="bn">16 of 24 routed exemplars</div></div><div class="bar"><div class="bl">vp2</div><div class="bt"><i style="width:75.00%"></i></div><div class="bv">75.0%</div><div class="bn">18 of 24 routed exemplars</div></div></div><p class="note"><b>10 of 24 routed exemplars get every one of the 4 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>ns2, vp1, vp2</b>.</p><p class="note">Across the twenty-four exemplars: <strong>NS1 in 24</strong>, <strong>VP2 in 18</strong>, <strong>NS2 in 16</strong> and <strong>VP1 in 16</strong>. NS1 is the only feature called in every genome, which is why it is the only one marked essential.</p><p class="note">The gaps are not all failures. Several exemplars are partial genomes whose 3&prime; end is simply absent, and a capsid form that is not in the contig cannot be called from it.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">The panel is forty genomes drawn from the module's own sample; it is not held out.</p><div class="tiles"><div class="tile"><div class="v">40</div><div class="l">sampled genomes</div></div><div class="tile"><div class="v">40</div><div class="l">no genome/contig flags</div></div><div class="tile"><div class="v">38</div><div class="l">genuinely clean</div></div><div class="tile"><div class="v">2</div><div class="l">flagged</div></div><div class="tile"><div class="v">0</div><div class="l">called nothing</div></div><div class="tile"><div class="v">95.0%</div><div class="l">clean</div></div></div><p class="note">The panel is 40 genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.</p><p class="note">All <strong>forty of forty</strong> genomes come through with no genome-level and no contig-level quality flag. Two carry a feature-level flag, both the same one: NS1 called at <strong>472</strong> and <strong>431</strong> residues against a window that starts at 512, on contigs of 6,039 and 4,277 nt. Both are short genomes with a truncated NS1, not a profile failure &mdash; which is why the page separates "no genome/contig flags" from "genuinely clean".</p><p class="note">Read the headline figure for what it is. The panel still contains the genomes the reference contigs were taken from, so it measures whether the module is internally consistent, not how it behaves on something it has never seen.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Three limits, each measured rather than supposed.</p><p class="note"><strong>No splice features are declared.</strong> The monosense genera express their nonstructural proteins from the one coding strand, and nothing in the collections showed the two-exon signature that put NS2 and NS3 into the splice caller in Amdoparvovirus and Protoparvovirus. If a spliced product exists here, this module does not call it and would not report its absence.</p><p class="note"><strong>Only NS1 is essential.</strong> A genome missing its capsid entirely still scores clean. That is deliberate — VP1 and VP2 are called in 16 and 18 of 24 exemplars, well under the 0.85 that would justify <code>copy_num</code> — but it means the quality score is a weaker statement here than in a module where the capsid is required.</p><p class="note"><strong>The module is bounded by what BV-BRC annotated.</strong> A protein these genera encode but that nobody deposited under any of the thirty-one strings is not a gap in this page; it is absent from it.</p><div class="verdict warn">Use this module for monosense densovirus genomes that route. Do not read the forty-of-forty panel figure as an out-of-sample result, and do not read a clean score as evidence that the capsid was called.</div></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">What the build turned up that was not expected.</p><p class="note">The capsid names in the deposits are unreliable. Within VP2's thirteen source strings sit <em>major capsid protein VP3</em>, <em>structural protein VP3</em> and <em>structural protein VP4</em> — three different nested forms deposited under one slot. The deposited name is a claim about which form a submitter thought they had, not a measurement, and the profiles were rebuilt after binning the nested forms on size rather than on name.</p><p class="note">After that rebuild, the number of genomes in which two capsid features were called at identical coordinates fell from <strong>16 of 40</strong> to <strong>0 of 40</strong>.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">What collapsing the vocabulary actually bought.</p><figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to 32 over 92 proteins; the controlled vocabulary flattens at 4.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="267.5" x2="648" y2="267.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="106.5" x2="648" y2="106.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="271.5" text-anchor="end" class="tick">10</text><text x="47" y="191.0" text-anchor="end" class="tick">20</text><text x="47" y="110.5" text-anchor="end" class="tick">30</text><text x="47" y="30.0" text-anchor="end" class="tick">40</text><text x="58.0" y="369" text-anchor="middle" class="tick">0</text><text x="205.5" y="369" text-anchor="middle" class="tick">25</text><text x="353.0" y="369" text-anchor="middle" class="tick">50</text><text x="500.5" y="369" text-anchor="middle" class="tick">75</text><text x="648.0" y="369" text-anchor="middle" class="tick">100</text>
+    <text class="axtitle" x="58" y="392">proteins sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <line x1="600.8" y1="26" x2="600.8" y2="348" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M58.0 348.00 L63.9 339.95 L69.8 332.06 L75.7 324.82 L81.6 317.73 L87.5 310.81 L93.4 304.85 L99.3 298.89 L105.2 292.94 L111.1 286.66 L117.0 281.10 L122.9 275.95 L128.8 271.04 L134.7 266.61 L140.6 261.78 L146.5 257.36 L152.4 253.09 L158.3 248.42 L164.2 243.91 L170.1 239.57 L176.0 236.02 L181.9 232.48 L187.8 229.26 L193.7 225.40 L199.6 221.53 L205.5 218.88 L211.4 215.58 L217.3 212.28 L223.2 209.46 L229.1 205.60 L235.0 202.13 L240.9 199.40 L246.8 197.22 L252.7 193.44 L258.6 190.78 L264.5 188.61 L270.4 186.19 L276.3 183.46 L282.2 181.20 L288.1 179.19 L294.0 176.86 L299.9 174.12 L305.8 171.71 L311.7 169.45 L317.6 167.60 L323.5 165.43 L329.4 163.25 L335.3 161.72 L341.2 160.27 L347.1 158.50 L353.0 156.73 L358.9 154.96 L364.8 152.87 L370.7 150.61 L376.6 148.52 L382.5 145.78 L388.4 143.69 L394.3 141.68 L400.2 139.75 L406.1 137.49 L412.0 136.04 L417.9 133.63 L423.8 131.94 L429.7 130.25 L435.6 129.04 L441.5 127.11 L447.4 125.50 L453.3 123.00 L459.2 121.55 L465.1 119.38 L471.0 118.09 L476.9 116.96 L482.8 114.95 L488.7 113.66 L494.6 112.70 L500.5 111.73 L506.4 110.04 L512.3 109.16 L518.2 107.87 L524.1 106.42 L530.0 105.05 L535.9 103.68 L541.8 101.99 L547.7 100.95 L553.6 99.66 L559.5 98.69 L565.4 97.40 L571.3 96.12 L577.2 95.39 L583.1 94.10 L589.0 92.73 L594.9 91.85 L600.8 90.40" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 348.00 L63.9 339.95 L69.8 334.31 L75.7 329.65 L81.6 326.67 L87.5 324.09 L93.4 321.52 L99.3 320.07 L105.2 319.50 L111.1 318.46 L117.0 317.65 L122.9 317.41 L128.8 316.77 L134.7 316.61 L140.6 316.52 L146.5 316.44 L152.4 316.28 L158.3 316.20 L164.2 316.04 L170.1 315.96 L176.0 315.80 L181.9 315.80 L187.8 315.80 L193.7 315.80 L199.6 315.80 L205.5 315.80 L211.4 315.80 L217.3 315.80 L223.2 315.80 L229.1 315.80 L235.0 315.80 L240.9 315.80 L246.8 315.80 L252.7 315.80 L258.6 315.80 L264.5 315.80 L270.4 315.80 L276.3 315.80 L282.2 315.80 L288.1 315.80 L294.0 315.80 L299.9 315.80 L305.8 315.80 L311.7 315.80 L317.6 315.80 L323.5 315.80 L329.4 315.80 L335.3 315.80 L341.2 315.80 L347.1 315.80 L353.0 315.80 L358.9 315.80 L364.8 315.80 L370.7 315.80 L376.6 315.80 L382.5 315.80 L388.4 315.80 L394.3 315.80 L400.2 315.80 L406.1 315.80 L412.0 315.80 L417.9 315.80 L423.8 315.80 L429.7 315.80 L435.6 315.80 L441.5 315.80 L447.4 315.80 L453.3 315.80 L459.2 315.80 L465.1 315.80 L471.0 315.80 L476.9 315.80 L482.8 315.80 L488.7 315.80 L494.6 315.80 L500.5 315.80 L506.4 315.80 L512.3 315.80 L518.2 315.80 L524.1 315.80 L530.0 315.80 L535.9 315.80 L541.8 315.80 L547.7 315.80 L553.6 315.80 L559.5 315.80 L565.4 315.80 L571.3 315.80 L577.2 315.80 L583.1 315.80 L589.0 315.80 L594.9 315.80 L600.8 315.80 L606.7 315.80 L612.6 315.80 L618.5 315.80" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="600.8" cy="90.40" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="618.5" cy="315.80" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="610.8" y="89.40" fill="var(--src)">free text</text>
+    <text class="endsub" x="610.8" y="102.40">32 strings</text>
+    <text class="endlab" x="628.5" y="318.80" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="628.5" y="331.80">4 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of every
+  annotated protein in the 28 genomes both sources annotate: 92 source
+  product records and 95 module calls. Both curves start at zero. The dashed line
+  marks 92 proteins, the depth both curves reach, where the two are compared.</figcaption>
+ </figure><div class="scroll"><table><thead><tr><th>feature</th><th>annotation string</th><th>source strings absorbed</th></tr></thead><tbody><tr><td>NS1</td><td>Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)</td><td>9</td></tr><tr><td>VP</td><td>Capsid protein VP1 (phospholipase A2 domain)</td><td>8</td></tr><tr><td>VP2</td><td>Major capsid protein VP2</td><td>8</td></tr><tr><td>NS2</td><td>Uncharacterized nonstructural protein NS2</td><td>6</td></tr><tr><td><i>unbound</i></td><td>—</td><td>3</td></tr></tbody></table></div><p class="note">Rarefaction over proteins: every annotated protein in the 28 genomes both sources annotate (92 source product records, 95 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>32</b> distinct strings, the module's <b>4</b>. At the depth both reach, 92 proteins, free text has used <b>32.0 strings against 4.0 &mdash; a 8.0-fold difference.</b> The source reaches 95% of its final size after 82 proteins, the module after 11.</p><p class="note">Ninety-two deposited protein strings across twenty-eight genomes reduce to four feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at four — which is the point of the exercise: the module's output does not inherit the deposits' spelling drift.</p><p class="note">Three strings resisted and are tracked as unassigned. At two, two and one occurrences they are below the member floor for declaring a lineage-specific feature.</p></section><p class="src">Generated from <code>densovirinaemono_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Parvoviridae/work/DensovirinaeMono/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.</p></div>
