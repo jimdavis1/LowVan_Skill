@@ -331,6 +331,33 @@ ABSENT was to go and get the sequences, not to record a shortfall. The same pass
 caught glyco-Gag and R-peptide sitting unbound in Gammaretrovirus and lifted
 bound-by-rule from 88.6% to 94.6%.
 
+**Building the references: raise `--nudge` before you conclude anything.**
+`build_splice_refs.py` defaults to 12 nt, and that default decided the answer
+for Parvoviridae: Amdoparvovirus NS2 gave **14** references at 12 and **227** at
+24; Protoparvovirus NS2 gave **1** and **162**. A build that returns a handful
+of references is usually this, not biology.
+
+**Then check the product against the deposit, not just the junction.** A
+canonical GT..AG with a clean translation is not proof — see
+`splice-ref-junction-is-not-proof`. Protoparvovirus NS2 splices at a **GC..AG**
+donor at intron 1472 nt, and `build_splice_refs.py` can never find it, because a
+GT sits inside the same window and wins; `--noncanonical` does not help, since
+it only fires when no GT..AG is there at all. Every canonical build came out 10
+to 11 residues short and looked perfectly healthy. What found it was comparing
+the spliced product to **that genome's own deposited protein**: 22 of the 24
+genomes that have one reproduce it byte-for-byte at that junction.
+
+`build_second_acceptor.py` is for the other half of the problem — a second
+product sharing one donor, whose exon B is too short for tblastn to place.
+Amdoparvovirus NS3 is 71 aa with a ~61 aa first exon, so exon B is about ten
+residues and the two-HSP build found 7 references where NS2 found 227. It scans
+acceptors from a reference set that already built, and it scores **exon B
+only**: exon A is shared, so whole-protein identity is ~0.77 for almost any
+acceptor that yields the right length, and scoring on it picked a 428 nt intron
+in 135 of 173 genomes against the 1333 nt the two-HSP build had measured. Pass
+`--deposits` and `--intron`, and take the intron from references that built
+from two HSPs or that reproduce a deposit — never from the scan's own output.
+
 **Verify every PMID; do not write one from memory.** Of three written from
 memory on 27 Oct 2026, two resolved to unrelated papers — an Italian cardiology
 trial and an SV40 T-antigen study — and both looked entirely plausible as bare
