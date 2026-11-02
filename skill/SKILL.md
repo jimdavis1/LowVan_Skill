@@ -129,6 +129,45 @@ them independently.
 python3 scripts/check_dump.py --workdir .
 ```
 
+#### Unclassified viruses are out of scope — drop them here, at intake
+
+**Curator's rule. A genome whose organism name is `<taxon> sp.` has no assigned
+species and LowVan does not build modules for it.** Drop it before the
+collections are built, not later as a fix. The test is the organism name in
+`<T>.id_name_gs`, not the species label:
+
+```bash
+# out of scope -- every one of these
+awk -F'\t' '$2 ~ /\<sp\.($|[[:space:]])/' <T>.id_name_gs
+```
+
+| | |
+|---|---|
+| `Ambidensovirus sp. 203_98688` | **out** — no species was assigned |
+| `Densovirinae sp. gct065den1` | **out** — not even a genus |
+| `Parus major densovirus PmDNV-JL` | **in** — a named virus, even though its species label reads `Blattambidensovirus incertum1` |
+
+**Keep a named virus whose species label is `incertum`.** That label means the
+species assignment is unsettled, which is normal and is not the same thing as
+an unclassified isolate. Testing the species label instead of the organism name
+drops real viruses and keeps the `sp.` ones — exactly backwards.
+
+**Why this is an intake rule and not a cleanup.** An `sp.` bin is a catch-all:
+BV-BRC files unrelated environmental assemblies under one taxon id, so the
+"taxon" is not a virus and its deposits are not homologous. Measured in
+DensovirinaeAmbi, taxon 2050976 (`Ambidensovirus sp.`, 50 genomes) holds capsid
+deposits of 536–942 aa in classes that share **27–38% identity between classes
+and 78–86% within** — far below the 80% this project requires before anything
+shares an alignment, and with **zero of 29** shorter deposits sharing a
+C-terminus with the longest, so they are not nested alternative starts either.
+One profile built from such a bin, `VP.12`, then matched other genomes' VP2
+frame and produced 36 of that module's 40 VP1/VP2 coordinate collisions.
+
+That module took in **88 of 184 genomes** from three `sp.` taxa. None of them
+should have been there, and no amount of re-binning downstream fixes a bin
+whose members are not the same virus. See `lowvan-out-of-scope-taxa` for the
+other descoping decisions already made.
+
 **Fetch the dump with `fetch_bvbrc.py`, not a per-line loop.**
 `query_PATRIC_bob.pl` opens a new `P3DataAPI` object and issues one `eq` query
 for every input line: 268 keys/min, which put the Hepacivirus dump at 4h17m for
