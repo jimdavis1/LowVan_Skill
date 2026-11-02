@@ -1,98 +1,98 @@
 {
-  "Amdoparvovirus": {
-    "close_genomes": {
-      "Amdoparvovirus.1.dna": {
-        "genome_ids": "28314.724.con.0001",
-        "genome_name": "Aleutian mink disease virus AMDV_mink-f_NL_75_2010-04-17"
+   "Amdoparvovirus" : {
+      "close_genomes" : {
+         "Amdoparvovirus.1.dna" : {
+            "genome_ids" : "28314.724.con.0001",
+            "genome_name" : "Aleutian mink disease virus AMDV_mink-f_NL_75_2010-04-17"
+         }
+      },
+      "features" : {
+         "NS1" : {
+            "anno" : "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+            "bit_cutoff" : 709,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ns1",
+            "kmers" : 1,
+            "max_len" : 693,
+            "min_len" : 383,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "NS2" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "16378968",
+                  "17428872"
+               ],
+               "function" : [
+                  "24606679"
+               ]
+            },
+            "anno" : "Nonstructural protein NS2, viral replication centre associated",
+            "feature_type" : "CDS",
+            "gene_symbol" : "ns2",
+            "max_len" : 126,
+            "min_len" : 102,
+            "segment" : "Single DNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "NS3" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "16378968",
+                  "24606679"
+               ]
+            },
+            "anno" : "Uncharacterized lineage specific nonstructural protein NS3",
+            "feature_type" : "CDS",
+            "gene_symbol" : "ns3",
+            "max_len" : 80,
+            "min_len" : 60,
+            "segment" : "Single DNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "VP" : {
+            "anno" : "Capsid protein VP1 (phospholipase A2 domain)",
+            "bit_cutoff" : 1028,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "vp1",
+            "kmers" : 1,
+            "max_len" : 744,
+            "min_len" : 587,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP2" : {
+            "anno" : "Major capsid protein VP2",
+            "bit_cutoff" : 1056,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "vp2",
+            "kmers" : 1,
+            "max_len" : 685,
+            "min_len" : 547,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single DNA Segment" : {
+            "max_len" : 5099,
+            "min_len" : 3904,
+            "replicon_geometry" : "linear"
+         }
       }
-    },
-    "features": {
-      "NS1": {
-        "anno": "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
-        "bit_cutoff": 709,
-        "copy_num": 1,
-        "coverage_cutoff": 0.65,
-        "downstream_ext": 1,
-        "feature_type": "CDS",
-        "gene_symbol": "ns1",
-        "kmers": 1,
-        "max_len": 693,
-        "min_len": 383,
-        "segment": "Single DNA Segment",
-        "type": "CDS",
-        "upstream_ext": 1
-      },
-      "NS2": {
-        "PMID_claude_generated": {
-          "coordinates": [
-            "16378968",
-            "17428872"
-          ],
-          "function": [
-            "24606679"
-          ]
-        },
-        "anno": "Nonstructural protein NS2, viral replication centre associated",
-        "feature_type": "CDS",
-        "gene_symbol": "ns2",
-        "max_len": 126,
-        "min_len": 102,
-        "segment": "Single DNA Segment",
-        "special": "splice",
-        "type": "CDS"
-      },
-      "NS3": {
-        "PMID_claude_generated": {
-          "coordinates": [
-            "16378968",
-            "24606679"
-          ]
-        },
-        "anno": "Uncharacterized lineage specific nonstructural protein NS3",
-        "feature_type": "CDS",
-        "gene_symbol": "ns3",
-        "max_len": 80,
-        "min_len": 60,
-        "segment": "Single DNA Segment",
-        "special": "splice",
-        "type": "CDS"
-      },
-      "VP": {
-        "anno": "Capsid protein VP1 (phospholipase A2 domain)",
-        "bit_cutoff": 1028,
-        "copy_num": 1,
-        "coverage_cutoff": 0.65,
-        "downstream_ext": 1,
-        "feature_type": "CDS",
-        "gene_symbol": "vp1",
-        "kmers": 1,
-        "max_len": 744,
-        "min_len": 587,
-        "segment": "Single DNA Segment",
-        "type": "CDS",
-        "upstream_ext": 1
-      },
-      "VP2": {
-        "anno": "Major capsid protein VP2",
-        "bit_cutoff": 1056,
-        "coverage_cutoff": 0.65,
-        "downstream_ext": 1,
-        "feature_type": "CDS",
-        "gene_symbol": "vp2",
-        "kmers": 1,
-        "max_len": 685,
-        "min_len": 547,
-        "segment": "Single DNA Segment",
-        "type": "CDS",
-        "upstream_ext": 0
-      }
-    },
-    "segments": {
-      "Single DNA Segment": {
-        "max_len": 5099,
-        "min_len": 3904,
-        "replicon_geometry": "linear"
-      }
-    }
-  }
+   }
 }
