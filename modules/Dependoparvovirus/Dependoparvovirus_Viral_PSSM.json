@@ -124,6 +124,7 @@
             "max_len" : 216,
             "min_len" : 125,
             "segment" : "Single DNA Segment",
+            "start_to_met" : 1,
             "type" : "CDS",
             "upstream_ext" : 0
          },
