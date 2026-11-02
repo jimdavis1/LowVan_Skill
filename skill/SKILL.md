@@ -1001,6 +1001,55 @@ python3 scripts/evaluate_coverage.py --contigs Contigs \
         --repo $LOWVAN_DATA_DIR --min-complete 10000 --out coverage.json
 ```
 
+#### Route against the FAMILY's rep contigs — not the whole repository, and not one module
+
+**Curator's rule.** `--repo` must point at a repository whose
+`Viral-Rep-Contigs/` holds the rep contigs of **the taxon's family**, and
+nothing wider or narrower. For Parvoviridae that is `VA_parvo_route`: **176
+files**, against the repository's full 1,271. Build one with
+`make_module_repo.sh <Module>[,<Module>...] <dest>`, naming every module in the
+family.
+
+This is the single dial that decides whether a long run survives, because
+**routing is one `blastn` per reference file per genome** and it is the
+dominant cost of the whole pipeline.
+
+| references | vouchers per genome | 300 genomes |
+|---|---|---|
+| 1,271 — the whole repository | ~2,600 process launches | panics |
+| **176 — the family** | **~450** | **~135,000** |
+| 27 — one module | ~80 | ~24,000 |
+
+**Do not narrow to one module.** The cheapest column is a trap for any run
+whose routing numbers get published. You cannot know in advance which genomes
+misroute — that is what the run measures — and a module-only repository has
+nowhere else to send them, so a misrouting genome is absorbed into the module
+under test and the routing table comes out better than the truth. Reading
+`logs/route_screen.tsv` for "the winners" does not rescue this: that file only
+records where the already-correctly-routed genomes land.
+
+`make_module_repo.sh` narrowed to a single module is for a re-run where routing
+is **not** the question — a prose fix, a page regeneration — never for the run
+behind a published routing figure.
+
+**The vouchers are not a leak and a reboot is not required.** They are held for
+the life of a run and released once annotation stops; measured 2 November 2026,
+165,701 fell to 746 within minutes of the last run exiting. They do *not* fall
+between back-to-back runs. So budget each run against **~245,000 counting from
+whatever the counter reads at launch**, and give the machine a quiet minute
+between runs rather than restarting it:
+
+```bash
+zprint | awk '/^ipc.vouchers /{print $7}'     # before launching, and while running
+pgrep -fl blastn | grep -o 'Viral-Rep-Contigs/[A-Za-z]*' | sort | uniq -c
+```
+
+The second command prints the reference file in each live `blastn` command
+line: it is the only honest check that a run is routing against what you think
+it is. Run it in the first minute of any long job. Three kernel panics
+(`Cannot grow ipc space beyond IVAC_ENTRIES_MAX`) came from getting this wrong,
+and one wasted half-run came from assuming it rather than looking.
+
 **Merge segmented genomes first.** A segmented virus is stored one record per
 segment, so every genome counts as several and a fully annotated one looks like
 a handful of partials. 56 Dichorhavirus records are 28 genomes; scoring them as
@@ -1472,6 +1521,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `synmap_from_collections.py` | reconstruct `synonyms.tsv` for a module built before the engine wrote it |
 | `build_rep_contigs.py` | write the rep contigs that budget implies, largest cluster first |
 | `check_rep_contigs.py` | check that rep contigs route the taxon's genomes |
+| `make_module_repo.sh` | build the FAMILY routing repo a coverage run blasts against — the one dial that keeps a long run under the voucher ceiling (§11) |
 | `install_module.py` | validate and install into a Viral_Annotation checkout |
 | `validate_calls.py` | is one genome's output internally sound? no reference needed |
 | `evaluate_module.py` | score against **GenBank** CDS via NCBI eutils — slow, rate-limited; use the GTO path unless the submitter comparison is the point |
