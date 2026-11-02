@@ -185,10 +185,36 @@ frame — and a different profile then won at full coverage. That profile,
 deposits run 536–942 aa in clusters near 577, 645, 759 and 823: a nested set
 filed under one name.
 
-The fix is to re-bin that taxon's capsid deposits **by size per species** using
-`P.species.tsv` (which covers 9,409 of 9,432 genomes), rebuild the VP profiles,
-and re-run the 171-genome panel against `~/lowvan_scratch/VA_only_DensovirinaeAmbi`
-(35 refs, ~21,000 vouchers). **The species-level size assignment across nine
+**The "bin by size per species" recipe cannot be done — measured 2 November.**
+The only two taxa with any capsid spread are the two whose species label is
+*incertum*, meaning uncertain, so there is no species structure inside them to
+bin on:
+
+| taxon | n | range | spread | species label |
+|---|---|---|---|---|
+| 2050976 | 30 | 536–942 | **406** | *Protoambidensovirus* **incertum3** |
+| 2030127 | 21 | 508–1168 | **660** | *Protoambidensovirus* **incertum5** |
+| every other taxon | 1–14 | — | **0–110** | properly classified |
+
+All 50 genomes of taxon 2050976 carry the single label *Protoambidensovirus
+incertum3*. The two together are **51 of 86 VP deposits** and **45 of the 71
+exemplars that carry features**, so excluding them shrinks the module rather
+than fixing it.
+
+Three real options, and the choice is a taxonomy call for the curator:
+
+1. **Bin by size within the taxon** and name by size rank — clusters sit near
+   577, 645, 759 and 823. This assigns capsid names on an assumption, which is
+   the same move that [[deposited-name-is-a-claim]] warns about, in the other
+   direction.
+2. **Collapse them into one uncharacterized capsid bin**, claiming no VP1/VP2
+   distinction where the data does not support one.
+3. **Exclude the two incertum taxa** from the VP profiles and accept a much
+   smaller, better-grounded module.
+
+The superseded recipe was: re-bin by size per species using `P.species.tsv`,
+rebuild the VP profiles, re-run the 171-genome panel against
+`~/lowvan_scratch/VA_only_DensovirinaeAmbi` (35 refs, ~21,000 vouchers). **The
 ambisense genera is a curation call and wants the curator's eye.**
 
 ### 3. Dependoparvovirus AAP N-termini — cause recorded, caller unchanged
@@ -209,11 +235,25 @@ under `PMID_claude_generated`, categorised (commit `0e111472`):
 - **function** — **21917944** (Sonntag et al., *J Virol* 2011): AAP promotes
   capsid assembly across AAV1, 2, 5, 8 and 9.
 
-The decision is still open: teach the caller the CUG initiator, change
-`upstream_ext`, or take AAP's coordinates from the cap ORF instead of a
-start-codon search. **Widening the window hides the symptom rather than fixing
-it** — the "too long" flag on 77 of 176 is `upstream_ext` walking on looking
-for a start codon that is not there.
+**Decided and applied, 2 November, on the curator's instruction: turn the
+scan-to-Met-start off.** AAP is now `upstream_ext: 0`. That flag gates exactly
+one thing and nothing else — the caller's own comment says so:
+
+```perl
+# When the pssm match doesn't start with an M, it will search to the left until it finds the first one.
+# This must be turned off if there is a non-AUG start.
+if (($hseq !~ /^M/i) && ($upstream_ext))
+```
+
+339 features across the repo already set it to 0, so this is well-trodden. The
+"too long" flag on 77 of 176 was `upstream_ext` walking on looking for a start
+codon that is not there; widening the window would have hidden that rather than
+fixed it.
+
+**Not** also set: `start_to_met`, which rewrites the first residue to M and is
+arguably right for a CUG initiator, since a CUG used as a start is decoded as
+Met and all 34 deposits begin with M. No feature anywhere in the repo uses it.
+Measure the re-run first, then decide.
 
 ### 4. Smaller, undiagnosed
 
