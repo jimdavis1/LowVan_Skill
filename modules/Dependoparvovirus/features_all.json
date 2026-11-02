@@ -15,8 +15,9 @@
     "gene_symbol": "aap",
     "params": {},
     "segment": "Single DNA Segment",
-    "upstream_ext": 1,
-    "bit_cutoff": 120
+    "upstream_ext": 0,
+    "bit_cutoff": 120,
+    "start_to_met": 1
   },
   "NS1": {
     "PMID_claude_generated": [

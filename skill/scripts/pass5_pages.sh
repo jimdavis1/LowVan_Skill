@@ -119,8 +119,13 @@ for m in $MODS; do
             --panel "$c/report.tsv" --family Parvoviridae \
             --meta "$P/$m/G.meta.tsv" \
             > "$P/logs/$m.facts.log" 2>&1 \
-      && python3 "$S/gen_coverage_audit.py" --facts "$A/generators/${s}_audit.json" \
-            --out "$A/$s-coverage-audit.html" > "$P/logs/$m.auditpage.log" 2>&1
+      && (cd "$A" && python3 "$S/gen_coverage_audit.py" \
+            --facts "$A/generators/${s}_audit.json" \
+            --out "$A/$s-coverage-audit.html") > "$P/logs/$m.auditpage.log" 2>&1
+    #  The cd is load-bearing. gen_coverage_audit resolves the embedded
+    #  rarefaction figure by a RELATIVE path, so from anywhere else it exits 1
+    #  with "figure source not found" -- and the loop carries on, so the module
+    #  reports success with no audit page.
     echo "  coverage audit exit=$?"
   else
     echo "  coverage audit SKIPPED -- no $A/generators/${s}_prose.json"

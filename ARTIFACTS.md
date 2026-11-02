@@ -349,7 +349,7 @@ Not made: coverage audit.
 |---|---|---|---|
 | Dependoparvovirus PSSM Registry | [open](https://claude.ai/artifact/FgbPhV6JWJF3vEuGmAzhJV) | [source](reports/dependoparvovirus-pssm-registry.html) | 2026-10-31 |
 | Dependoparvovirus String Collapse | [open](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [source](reports/dependoparvovirus-string-collapse.html) | 2026-10-29 |
-| Dependoparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | [source](reports/dependoparvovirus-vocabulary-saturation.html) | 2026-10-31 |
+| Dependoparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | [source](reports/dependoparvovirus-vocabulary-saturation.html) | 2026-11-02 |
 
 Built but never published, source is here: [coverage audit](reports/dependoparvovirus-coverage-audit.html).
 
