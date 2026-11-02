@@ -51,8 +51,8 @@
             "anno" : "Uncharacterized lineage specific nonstructural protein NS3",
             "feature_type" : "CDS",
             "gene_symbol" : "ns3",
-            "max_len" : 80,
-            "min_len" : 60,
+            "max_len" : 95,
+            "min_len" : 59,
             "segment" : "Single DNA Segment",
             "special" : "splice",
             "type" : "CDS"

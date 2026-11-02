@@ -125,7 +125,7 @@
             "min_len" : 125,
             "segment" : "Single DNA Segment",
             "type" : "CDS",
-            "upstream_ext" : 1
+            "upstream_ext" : 0
          },
          "NS1" : {
             "PMID_claude_generated" : [
