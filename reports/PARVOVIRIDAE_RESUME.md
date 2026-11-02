@@ -81,11 +81,28 @@ zprint | awk '/^ipc.vouchers /{print $7}'
 Non-Apple binaries (blastn, the perl caller) leak vouchers that are **not**
 reclaimed while the run is in flight. Three panics before this was understood.
 
-**New, 1 November: they do reclaim once the runs end.** The counter peaked at
-235,000 during the three-module day, settled to 198,925, and was back to
-**416** — baseline — the next morning **without a reboot**. So a re-run no
-longer requires a restart first; it requires the previous run to have finished.
-Budget roughly 120 vouchers per genome against a 245,000 stop.
+**They are reclaimed when the runs stop — confirmed 2 November.** The counter
+is not a one-way ratchet and a reboot is never required between runs:
+
+| point | ipc.vouchers |
+|---|---|
+| start of a 300-genome run | 632 |
+| end of that run | 126,828 |
+| after pass 5 and two 30-genome tests | 165,701 |
+| **minutes later, nothing running** | **746** |
+
+The day before, 235,000 fell to 416 overnight. Both drops followed *all*
+annotation work stopping. The count does **not** fall between back-to-back
+runs — it held near 126,000 from the end of one run straight into pass 5 — so
+what matters is a quiet gap, not the exit of any single process. The mechanism
+was not established beyond that.
+
+**The ceiling therefore applies within a run, not across a boot.** Budget the
+run you are about to start against ~245,000, counting from whatever `zprint`
+reads at launch: roughly 450 vouchers per genome against the 176-reference
+`VA_parvo_route`, or about 120 against a module-only repo. The precondition
+for a big run is that the previous one has finished and the machine has been
+quiet for a few minutes.
 
 ## Open, in priority order
 
