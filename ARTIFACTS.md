@@ -145,7 +145,7 @@ Built but never published, source is here: [coverage audit](reports/alpharetrovi
 
 | page | live | source | updated |
 |---|---|---|---|
-| Amdoparvovirus String Collapse | [open](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | [source](reports/amdoparvovirus-string-collapse.html) | 2026-10-29 |
+| Amdoparvovirus String Collapse | [open](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | [source](reports/amdoparvovirus-string-collapse.html) | 2026-11-02 |
 
 Built but never published, source is here: [coverage audit](reports/amdoparvovirus-coverage-audit.html), [PSSM registry](reports/amdoparvovirus-pssm-registry.html), [vocabulary saturation](reports/amdoparvovirus-vocabulary-saturation.html).
 
@@ -857,11 +857,11 @@ Not made: vocabulary saturation.
 | Erythroparvovirus — coverage audit | [open](https://claude.ai/artifact/RZgn2R3Jjfwuk25Utfkbng) | — | 2026-11-02 |
 | Bocaparvovirus — coverage audit | [open](https://claude.ai/artifact/JqUwPr1jeg2Qexh1iGZXEh) | — | 2026-11-02 |
 | TetraCopiparvovirus — coverage audit | [open](https://claude.ai/artifact/AwAe6qNhui1fPRsezQY3Wd) | — | 2026-11-02 |
+| Amdoparvovirus — PSSM registry | [open](https://claude.ai/artifact/2MCUvk9r3nh4nkdJyxZHZK) | — | 2026-11-02 |
+| Amdoparvovirus — vocabulary saturation | [open](https://claude.ai/artifact/LX7z2otFsSkqAbif6qbLg1) | — | 2026-11-02 |
 | Amdoparvovirus — coverage audit | [open](https://claude.ai/artifact/DwDcB9syhWAQRbzMP5BB9o) | — | 2026-11-02 |
 | Protoparvovirus — coverage audit | [open](https://claude.ai/artifact/Wxh3ffuYKmHzqnFNxzMsfE) | — | 2026-11-02 |
 | DensovirinaeAmbi — coverage audit | [open](https://claude.ai/artifact/KwEMFuhTs1Q1CDnbfgHr8G) | — | 2026-11-02 |
-| Amdoparvovirus — PSSM registry | [open](https://claude.ai/artifact/2MCUvk9r3nh4nkdJyxZHZK) | — | 2026-11-01 |
-| Amdoparvovirus — vocabulary saturation | [open](https://claude.ai/artifact/LX7z2otFsSkqAbif6qbLg1) | — | 2026-11-01 |
 | Protoparvovirus — PSSM registry | [open](https://claude.ai/artifact/3CL39bSvHXb77PTA97TQqb) | — | 2026-11-01 |
 | Protoparvovirus — vocabulary saturation | [open](https://claude.ai/artifact/RyZUyegBVzQszWEbScCJFT) | — | 2026-11-01 |
 | DensovirinaeAmbi — PSSM registry | [open](https://claude.ai/artifact/7z5fcPPzDvUYKbweXHPbpM) | — | 2026-11-01 |

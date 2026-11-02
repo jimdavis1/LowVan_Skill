@@ -403,8 +403,16 @@ def report_gto(ex, seqs, work, out):
            "features": dict(feats),
            "per_module_features": {k: dict(v) for k, v in per_mod_feat.items()},
            "flags": dict(flags), "rows": rows,
-           "refs_used": scan_refs([os.path.join(work, "tbl"),
-                                   os.path.join(work, "anno")]),
+           #  The feature tables land in a different subdirectory depending on
+           #  which runner produced them: "ann" for the exemplar work dir that
+           #  evaluate_coverage builds itself, "tbl"/"anno" for a full coverage
+           #  run. Naming only two of the three silently returned zero
+           #  references used, and the page then printed "of which 0 were used
+           #  by the exemplar set" -- the exact wrong number this field was
+           #  added to fix. Look in all of them; a missing one globs to
+           #  nothing and costs nothing.
+           "refs_used": scan_refs([os.path.join(work, d)
+                                   for d in ("ann", "tbl", "anno")]),
            "genome_quality": {"good": good, "poor": poor},
            "calls_by_program": dict(by_caller),
            "source": "GTO pipeline -- special features included"}
