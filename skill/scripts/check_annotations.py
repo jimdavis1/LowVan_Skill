@@ -54,6 +54,25 @@ def squash(s):
     return re.sub(r"[^a-z0-9]", "", s.lower())
 
 
+#  The vocabulary is US English and was consistent until "viral replication
+#  centre associated" went in: one "centre" against 274 page files using
+#  "center", and no other British variant anywhere in the table. A one-word
+#  split like that is invisible to a reader and splits the vocabulary in two
+#  for any tool that matches strings, which is the whole thing LowVan exists
+#  to prevent. The source paper writes "replication centers".
+BRITISH_FIX = {
+    "centre": "center", "centres": "centers", "centred": "centered",
+    "fibre": "fiber", "fibres": "fibers",
+    "tumour": "tumor", "tumours": "tumors",
+    "colour": "color", "behaviour": "behavior",
+    "defence": "defense", "signalling": "signaling",
+    "haem": "hem", "haemagglutinin": "hemagglutinin",
+    "organisation": "organization", "localisation": "localization",
+    "polymerise": "polymerize", "utilise": "utilize", "catalyse": "catalyze",
+}
+BRITISH = re.compile(r"\b(%s)\b" % "|".join(BRITISH_FIX), re.I)
+
+
 def style_notes(anno, ftypes, symbols):
     out = []
     if not anno:
@@ -83,6 +102,10 @@ def style_notes(anno, ftypes, symbols):
             out.append('the annotation is just the symbol "%s"; give a functional '
                        "description and keep the symbol in gene_symbol" % sym)
             break
+    m = BRITISH.search(anno)
+    if m:
+        out.append('"%s" is the British spelling; the vocabulary is US English '
+                   "throughout -- use \"%s\"" % (m.group(0), BRITISH_FIX[m.group(0).lower()]))
     if len(anno) > 90:
         out.append("very long (%d chars)" % len(anno))
     return out

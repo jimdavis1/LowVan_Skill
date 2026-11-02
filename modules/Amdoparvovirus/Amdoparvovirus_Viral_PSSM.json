@@ -32,7 +32,7 @@
                   "24606679"
                ]
             },
-            "anno" : "Nonstructural protein NS2, viral replication centre associated",
+            "anno" : "Nonstructural protein NS2, viral replication center associated",
             "feature_type" : "CDS",
             "gene_symbol" : "ns2",
             "max_len" : 126,
