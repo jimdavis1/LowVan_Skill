@@ -1,236 +1,245 @@
 {
-   "Dependoparvovirus" : {
-      "close_genomes" : {
-         "Dependoparvovirus.1.dna" : {
-            "genome_ids" : "272636.4452.con.0001",
-            "genome_name" : "Adeno-associated virus"
-         },
-         "Dependoparvovirus.10.dna" : {
-            "genome_ids" : "3128228.25.con.0001",
-            "genome_name" : "Bat adeno-associated virus 1 JX2021_367_931486"
-         },
-         "Dependoparvovirus.11.dna" : {
-            "genome_ids" : "10804.193.con.0001",
-            "genome_name" : "Adeno-associated virus - 2"
-         },
-         "Dependoparvovirus.12.dna" : {
-            "genome_ids" : "3128229.7.con.0001",
-            "genome_name" : "Bat adeno-associated virus 2 ZJ2020_169_34993"
-         },
-         "Dependoparvovirus.13.dna" : {
-            "genome_ids" : "235455.13.con.0001",
-            "genome_name" : "Adeno-associated virus 9"
-         },
-         "Dependoparvovirus.14.dna" : {
-            "genome_ids" : "272636.1539.con.0001",
-            "genome_name" : "Adeno-associated virus"
-         },
-         "Dependoparvovirus.15.dna" : {
-            "genome_ids" : "272636.1630.con.0001",
-            "genome_name" : "Adeno-associated virus"
-         },
-         "Dependoparvovirus.16.dna" : {
-            "genome_ids" : "2052559.14.con.0001",
-            "genome_name" : "Dependoparvovirus sp. ltt164par3"
-         },
-         "Dependoparvovirus.17.dna" : {
-            "genome_ids" : "2052559.49.con.0001",
-            "genome_name" : "Dependoparvovirus sp. 21DB27"
-         },
-         "Dependoparvovirus.18.dna" : {
-            "genome_ids" : "272636.31305.con.0001",
-            "genome_name" : "Adeno-associated virus"
-         },
-         "Dependoparvovirus.19.dna" : {
-            "genome_ids" : "252602.6.con.0001",
-            "genome_name" : "Snake adeno-associated virus"
-         },
-         "Dependoparvovirus.2.dna" : {
-            "genome_ids" : "10804.1514.con.0001",
-            "genome_name" : "adeno-associated virus 2"
-         },
-         "Dependoparvovirus.20.dna" : {
-            "genome_ids" : "272636.1217.con.0001",
-            "genome_name" : "Adeno-associated virus"
-         },
-         "Dependoparvovirus.21.dna" : {
-            "genome_ids" : "272636.1506.con.0001",
-            "genome_name" : "Adeno-associated virus MHH-05-2015"
-         },
-         "Dependoparvovirus.22.dna" : {
-            "genome_ids" : "272636.3761.con.0001",
-            "genome_name" : "Adeno-associated virus"
-         },
-         "Dependoparvovirus.23.dna" : {
-            "genome_ids" : "3128228.7.con.0001",
-            "genome_name" : "Bat adeno-associated virus 1 GD2016_095_31253"
-         },
-         "Dependoparvovirus.24.dna" : {
-            "genome_ids" : "3128229.12.con.0001",
-            "genome_name" : "Bat adeno-associated virus 2 GD2017_208_21627"
-         },
-         "Dependoparvovirus.25.dna" : {
-            "genome_ids" : "1073950.3.con.0001",
-            "genome_name" : "California sea lion adeno-associated virus 1 1136"
-         },
-         "Dependoparvovirus.3.dna" : {
-            "genome_ids" : "38251.383.con.0001",
-            "genome_name" : "Goose parvovirus GX202304"
-         },
-         "Dependoparvovirus.4.dna" : {
-            "genome_ids" : "272636.1436.con.0001",
-            "genome_name" : "Adeno-associated virus"
-         },
-         "Dependoparvovirus.5.dna" : {
-            "genome_ids" : "256548.101.con.0001",
-            "genome_name" : "Bovine adeno-associated virus"
-         },
-         "Dependoparvovirus.6.dna" : {
-            "genome_ids" : "202812.108.con.0001",
-            "genome_name" : "adeno-associated virus 7"
-         },
-         "Dependoparvovirus.7.dna" : {
-            "genome_ids" : "272636.1161.con.0001",
-            "genome_name" : "Adeno-associated virus"
-         },
-         "Dependoparvovirus.8.dna" : {
-            "genome_ids" : "341671.21.con.0001",
-            "genome_name" : "Avian adeno-associated virus D2861/2/1/14/RU"
-         },
-         "Dependoparvovirus.9.dna" : {
-            "genome_ids" : "272636.721.con.0001",
-            "genome_name" : "Adeno-associated virus"
-         }
+  "Dependoparvovirus": {
+    "close_genomes": {
+      "Dependoparvovirus.1.dna": {
+        "genome_ids": "272636.4452.con.0001",
+        "genome_name": "Adeno-associated virus"
       },
-      "features" : {
-         "AAP" : {
-            "anno" : "Assembly-activating protein AAP",
-            "bit_cutoff" : 120,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "aap",
-            "kmers" : 1,
-            "max_len" : 216,
-            "min_len" : 125,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "NS1" : {
-            "PMID_claude_generated" : [
-               "8995628"
-            ],
-            "anno" : "Replication initiator protein Rep78 (HUH endonuclease and SF3 helicase)",
-            "bit_cutoff" : 269,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "rep78",
-            "kmers" : 1,
-            "max_len" : 760,
-            "min_len" : 356,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "REP40" : {
-            "anno" : "Genome packaging helicase Rep40",
-            "bit_cutoff" : 530,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "rep40",
-            "kmers" : 1,
-            "max_len" : 331,
-            "min_len" : 288,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "REP52" : {
-            "anno" : "Genome packaging helicase Rep52",
-            "bit_cutoff" : 697,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "rep52",
-            "kmers" : 1,
-            "max_len" : 422,
-            "min_len" : 372,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "REP68" : {
-            "PMID_claude_generated" : [
-               "8995628"
-            ],
-            "anno" : "Replication initiator protein Rep68 (HUH endonuclease and SF3 helicase)",
-            "bit_cutoff" : 919,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 0,
-            "feature_type" : "CDS",
-            "gene_symbol" : "rep68",
-            "kmers" : 1,
-            "max_len" : 569,
-            "min_len" : 499,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "VP" : {
-            "anno" : "Capsid protein VP1 (phospholipase A2 domain)",
-            "bit_cutoff" : 420,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "vp1",
-            "kmers" : 1,
-            "max_len" : 805,
-            "min_len" : 452,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "VP2" : {
-            "anno" : "Capsid protein VP2",
-            "bit_cutoff" : 374,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "vp2",
-            "kmers" : 1,
-            "max_len" : 634,
-            "min_len" : 433,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "VP3" : {
-            "anno" : "Major capsid protein VP3",
-            "bit_cutoff" : 603,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "vp3",
-            "kmers" : 1,
-            "max_len" : 567,
-            "min_len" : 471,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         }
+      "Dependoparvovirus.10.dna": {
+        "genome_ids": "3128228.25.con.0001",
+        "genome_name": "Bat adeno-associated virus 1 JX2021_367_931486"
       },
-      "segments" : {
-         "Single DNA Segment" : {
-            "max_len" : 9127,
-            "min_len" : 3847,
-            "replicon_geometry" : "linear"
-         }
+      "Dependoparvovirus.11.dna": {
+        "genome_ids": "10804.193.con.0001",
+        "genome_name": "Adeno-associated virus - 2"
+      },
+      "Dependoparvovirus.12.dna": {
+        "genome_ids": "3128229.7.con.0001",
+        "genome_name": "Bat adeno-associated virus 2 ZJ2020_169_34993"
+      },
+      "Dependoparvovirus.13.dna": {
+        "genome_ids": "235455.13.con.0001",
+        "genome_name": "Adeno-associated virus 9"
+      },
+      "Dependoparvovirus.14.dna": {
+        "genome_ids": "272636.1539.con.0001",
+        "genome_name": "Adeno-associated virus"
+      },
+      "Dependoparvovirus.15.dna": {
+        "genome_ids": "272636.1630.con.0001",
+        "genome_name": "Adeno-associated virus"
+      },
+      "Dependoparvovirus.16.dna": {
+        "genome_ids": "2052559.14.con.0001",
+        "genome_name": "Dependoparvovirus sp. ltt164par3"
+      },
+      "Dependoparvovirus.17.dna": {
+        "genome_ids": "2052559.49.con.0001",
+        "genome_name": "Dependoparvovirus sp. 21DB27"
+      },
+      "Dependoparvovirus.18.dna": {
+        "genome_ids": "272636.31305.con.0001",
+        "genome_name": "Adeno-associated virus"
+      },
+      "Dependoparvovirus.19.dna": {
+        "genome_ids": "252602.6.con.0001",
+        "genome_name": "Snake adeno-associated virus"
+      },
+      "Dependoparvovirus.2.dna": {
+        "genome_ids": "10804.1514.con.0001",
+        "genome_name": "adeno-associated virus 2"
+      },
+      "Dependoparvovirus.20.dna": {
+        "genome_ids": "272636.1217.con.0001",
+        "genome_name": "Adeno-associated virus"
+      },
+      "Dependoparvovirus.21.dna": {
+        "genome_ids": "272636.1506.con.0001",
+        "genome_name": "Adeno-associated virus MHH-05-2015"
+      },
+      "Dependoparvovirus.22.dna": {
+        "genome_ids": "272636.3761.con.0001",
+        "genome_name": "Adeno-associated virus"
+      },
+      "Dependoparvovirus.23.dna": {
+        "genome_ids": "3128228.7.con.0001",
+        "genome_name": "Bat adeno-associated virus 1 GD2016_095_31253"
+      },
+      "Dependoparvovirus.24.dna": {
+        "genome_ids": "3128229.12.con.0001",
+        "genome_name": "Bat adeno-associated virus 2 GD2017_208_21627"
+      },
+      "Dependoparvovirus.25.dna": {
+        "genome_ids": "1073950.3.con.0001",
+        "genome_name": "California sea lion adeno-associated virus 1 1136"
+      },
+      "Dependoparvovirus.3.dna": {
+        "genome_ids": "38251.383.con.0001",
+        "genome_name": "Goose parvovirus GX202304"
+      },
+      "Dependoparvovirus.4.dna": {
+        "genome_ids": "272636.1436.con.0001",
+        "genome_name": "Adeno-associated virus"
+      },
+      "Dependoparvovirus.5.dna": {
+        "genome_ids": "256548.101.con.0001",
+        "genome_name": "Bovine adeno-associated virus"
+      },
+      "Dependoparvovirus.6.dna": {
+        "genome_ids": "202812.108.con.0001",
+        "genome_name": "adeno-associated virus 7"
+      },
+      "Dependoparvovirus.7.dna": {
+        "genome_ids": "272636.1161.con.0001",
+        "genome_name": "Adeno-associated virus"
+      },
+      "Dependoparvovirus.8.dna": {
+        "genome_ids": "341671.21.con.0001",
+        "genome_name": "Avian adeno-associated virus D2861/2/1/14/RU"
+      },
+      "Dependoparvovirus.9.dna": {
+        "genome_ids": "272636.721.con.0001",
+        "genome_name": "Adeno-associated virus"
       }
-   }
+    },
+    "features": {
+      "AAP": {
+        "anno": "Assembly-activating protein AAP",
+        "bit_cutoff": 120,
+        "copy_num": 1,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "CDS",
+        "gene_symbol": "aap",
+        "kmers": 1,
+        "max_len": 216,
+        "min_len": 125,
+        "segment": "Single DNA Segment",
+        "type": "CDS",
+        "upstream_ext": 1,
+        "PMID_claude_generated": {
+          "coordinates": [
+            "20479244",
+            "39205189"
+          ],
+          "function": [
+            "21917944"
+          ]
+        }
+      },
+      "NS1": {
+        "PMID_claude_generated": [
+          "8995628"
+        ],
+        "anno": "Replication initiator protein Rep78 (HUH endonuclease and SF3 helicase)",
+        "bit_cutoff": 269,
+        "copy_num": 1,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "CDS",
+        "gene_symbol": "rep78",
+        "kmers": 1,
+        "max_len": 760,
+        "min_len": 356,
+        "segment": "Single DNA Segment",
+        "type": "CDS",
+        "upstream_ext": 1
+      },
+      "REP40": {
+        "anno": "Genome packaging helicase Rep40",
+        "bit_cutoff": 530,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 0,
+        "feature_type": "CDS",
+        "gene_symbol": "rep40",
+        "kmers": 1,
+        "max_len": 331,
+        "min_len": 288,
+        "segment": "Single DNA Segment",
+        "type": "CDS",
+        "upstream_ext": 0
+      },
+      "REP52": {
+        "anno": "Genome packaging helicase Rep52",
+        "bit_cutoff": 697,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "CDS",
+        "gene_symbol": "rep52",
+        "kmers": 1,
+        "max_len": 422,
+        "min_len": 372,
+        "segment": "Single DNA Segment",
+        "type": "CDS",
+        "upstream_ext": 0
+      },
+      "REP68": {
+        "PMID_claude_generated": [
+          "8995628"
+        ],
+        "anno": "Replication initiator protein Rep68 (HUH endonuclease and SF3 helicase)",
+        "bit_cutoff": 919,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 0,
+        "feature_type": "CDS",
+        "gene_symbol": "rep68",
+        "kmers": 1,
+        "max_len": 569,
+        "min_len": 499,
+        "segment": "Single DNA Segment",
+        "type": "CDS",
+        "upstream_ext": 1
+      },
+      "VP": {
+        "anno": "Capsid protein VP1 (phospholipase A2 domain)",
+        "bit_cutoff": 420,
+        "copy_num": 1,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "CDS",
+        "gene_symbol": "vp1",
+        "kmers": 1,
+        "max_len": 805,
+        "min_len": 452,
+        "segment": "Single DNA Segment",
+        "type": "CDS",
+        "upstream_ext": 1
+      },
+      "VP2": {
+        "anno": "Capsid protein VP2",
+        "bit_cutoff": 374,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "CDS",
+        "gene_symbol": "vp2",
+        "kmers": 1,
+        "max_len": 634,
+        "min_len": 433,
+        "segment": "Single DNA Segment",
+        "type": "CDS",
+        "upstream_ext": 0
+      },
+      "VP3": {
+        "anno": "Major capsid protein VP3",
+        "bit_cutoff": 603,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "CDS",
+        "gene_symbol": "vp3",
+        "kmers": 1,
+        "max_len": 567,
+        "min_len": 471,
+        "segment": "Single DNA Segment",
+        "type": "CDS",
+        "upstream_ext": 0
+      }
+    },
+    "segments": {
+      "Single DNA Segment": {
+        "max_len": 9127,
+        "min_len": 3847,
+        "replicon_geometry": "linear"
+      }
+    }
+  }
 }
