@@ -69,7 +69,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Matonaviridae** | [src only](reports/matonaviridae-string-collapse.html) | [live](https://claude.ai/artifact/Pg9oPLPEMsSJwVX1cNaZkj) | [live](https://claude.ai/artifact/Py71icixnS8G7aHoRekJ4B) | [live](https://claude.ai/artifact/AxuNuwq21AAiGws5JvQoWo) |
 | **Nebovirus** | [live](https://claude.ai/artifact/UM2uLTVXGZJimoJhruyBsz) | [live](https://claude.ai/artifact/1bdXnM1rCLsXkbtxWZggJ5) | [live](https://claude.ai/artifact/FFj8ghLrhRcUrA6StNwJXA) | [live](https://claude.ai/artifact/DFYiHRbbnEhBn5ASPREF4Z) |
 | **Norovirus** | [live](https://claude.ai/artifact/644emf4jt3fEr5S4zeSbjX) | [live](https://claude.ai/artifact/8JJCLLLQTgcKBBZLu1ebYT) | [live](https://claude.ai/artifact/RedVLm5rXTmTJ3aRyrnbJy) | [live](https://claude.ai/artifact/DE433uyrZxsw1yNkeyCE3H) |
-| **Orbivirus** | [live](https://claude.ai/artifact/9nzf4UVDgZbLaGG6JHAbmy) | [live](https://claude.ai/artifact/LFgehfnnk7LAVmPsi3YFFL) | [live](https://claude.ai/artifact/2YqPhZurQTMYVv9oFWUfMP) | [live](https://claude.ai/artifact/XSpre3FqemKickbNVaqf4H) |
+| **Orbivirus** | [live](https://claude.ai/artifact/9nzf4UVDgZbLaGG6JHAbmy) | [live](https://claude.ai/artifact/LFgehfnnk7LAVmPsi3YFFL) | [live](https://claude.ai/artifact/2YqPhZurQTMYVv9oFWUfMP) | [live](https://claude.ai/artifact/VDx2X7pCFMv8azLSUjsnqW) |
 | **Orthoflavivirus** | [live](https://claude.ai/artifact/MFXjT53roYWz1ymQkrh1ur) | [live](https://claude.ai/artifact/AkjDvmo28d4bVZCndjymXP) | [live](https://claude.ai/artifact/9c5gUBxFf4jHNfYizWHw7m) | [live](https://claude.ai/artifact/RokLyf9pujJnw37CAri2DR) |
 | **Parechovirus** | [live](https://claude.ai/artifact/EUx6FLSssTPNRWJ7FcDyL6) | [live](https://claude.ai/artifact/GYiXCX6ammFZUqqK7MbNWs) | [live](https://claude.ai/artifact/6xMJKTWE3i5FXH8yFXBUBf) | [live](https://claude.ai/artifact/V6xRs6ePghUPkaTX1SyuBL) |
 | **Pegivirus** | [live](https://claude.ai/artifact/K2iJfd8E9rtDErhCeDHWix) | [live](https://claude.ai/artifact/GhMTLt7Rd19Ek3mJL7JFWr) | [live](https://claude.ai/artifact/1KUB1A9tKmxJaEHKZbWzYM) | [live](https://claude.ai/artifact/Gy9STnMecUF9MaByUNmugx) |
@@ -83,10 +83,10 @@ per-taxon tables below carry the dates and the source paths.
 | **Pteropine Orthoreovirus** | [live](https://claude.ai/artifact/5MK26D2zL5em7CigKff9Fx) | [live](https://claude.ai/artifact/KT8pmXT9wJTehrpq2vPWoz) | [live](https://claude.ai/artifact/GLg3LzpvhMzbiecgUMpWoQ) | [live](https://claude.ai/artifact/V4NNnwaPbfJsdDRhDfyKHw) |
 | **Quinvirinae** | [live](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [live](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [live](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [live](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) |
 | **Rhabdoviridae** | — | [live](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | — | [live](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) |
-| **Rotavirus** | [live](https://claude.ai/artifact/FdTKR7uwQR5XcGrCfxEzR6) | [live](https://claude.ai/artifact/EtkrQXYZs7E7vhcMmXLjmk) | [live](https://claude.ai/artifact/9cUHtecmAb91ck6yPe2Z86) | [live](https://claude.ai/artifact/XJbVUDqqNKWCVA98vfpo3J) |
+| **Rotavirus** | [live](https://claude.ai/artifact/FdTKR7uwQR5XcGrCfxEzR6) | [live](https://claude.ai/artifact/EtkrQXYZs7E7vhcMmXLjmk) | [live](https://claude.ai/artifact/9cUHtecmAb91ck6yPe2Z86) | [live](https://claude.ai/artifact/WT969iLo1sBDk7HTbAYc7D) |
 | **Sapelovirus** | [live](https://claude.ai/artifact/57VNf18a2R6sdpqC3k3JAR) | [live](https://claude.ai/artifact/R3NPTkzAW38A1af9UtGrT1) | [live](https://claude.ai/artifact/5pNjSX9oLvh83MCHYMoC6z) | [live](https://claude.ai/artifact/88yMxbSKFycQvTt6m6NvZ2) |
 | **Sapovirus** | [live](https://claude.ai/artifact/UNtWhKpxTqpVARrDf8NuMB) | [live](https://claude.ai/artifact/3GHxASgkwBjDdLYVsJwDiT) | [live](https://claude.ai/artifact/9tuiHSAv4PLNeCiQM4B2h2) | [live](https://claude.ai/artifact/NFom3ZyTgwJgtjrZ2xFTAX) |
-| **Seadornavirus** | [live](https://claude.ai/artifact/Kogtes6gSE36mDPFscFveK) | [live](https://claude.ai/artifact/1VrHtEnoda2Cptd5DJJ8FX) | [live](https://claude.ai/artifact/HGKdASkXhZA7FzjtVdnKc1) | [live](https://claude.ai/artifact/8hZTk7zARMFjxV72DnHehs) |
+| **Seadornavirus** | [live](https://claude.ai/artifact/Kogtes6gSE36mDPFscFveK) | [live](https://claude.ai/artifact/1VrHtEnoda2Cptd5DJJ8FX) | [live](https://claude.ai/artifact/HGKdASkXhZA7FzjtVdnKc1) | [live](https://claude.ai/artifact/NFQf5bFCAtFttHYWVSSgpH) |
 | **Senecavirus** | [live](https://claude.ai/artifact/Tbtxi52p4gQ7wdFwbsTPLq) | [live](https://claude.ai/artifact/XJMxY4EvPdae8nU5LNiJfq) | [live](https://claude.ai/artifact/5mSFF5p1EuhXYZo5UgtXYZ) | [live](https://claude.ai/artifact/Xr21mDLyZzcSebbLyeU1T7) |
 | **Spumaretrovirinae** | [live](https://claude.ai/artifact/PY1Bk6CcSTSjPRPeamnCRE) | [live](https://claude.ai/artifact/GGyut8ufvAFnzHX1reqtji) | [live](https://claude.ai/artifact/85pk6ypS9YZ9Gy3iQXidRM) | [live](https://claude.ai/artifact/SsPLLYtdqDgPaDo6ZrstiU) |
 | **Spumaretrovirinae — the foamy viruses** | [src only](reports/spumaretrovirinae-string-collapse.html) | [src only](reports/spumaretrovirinae-pssm-registry.html) | [src only](reports/spumaretrovirinae-vocabulary-saturation.html) | [src only](reports/spumaretrovirinae-coverage-audit.html) |
@@ -111,7 +111,7 @@ published — the file is in this repo. `—` was not made.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Allexivirus Coverage Audit | [open](https://claude.ai/artifact/KAyMy13QTKUsFASLRsoTwo) | [source](reports/allexivirus-coverage-audit.html) | 2026-09-21 |
+| Allexivirus Coverage Audit | [open](https://claude.ai/artifact/KAyMy13QTKUsFASLRsoTwo) | [source](reports/allexivirus-coverage-audit.html) | 2026-11-02 |
 | Allexivirus PSSM Registry | [open](https://claude.ai/artifact/PR148JCFeHCx5rsiqSPe8d) | [source](reports/allexivirus-pssm-registry.html) | 2026-09-21 |
 | Allexivirus String Collapse | [open](https://claude.ai/artifact/Nod4NnVCU3arrmBqiTPh1J) | [source](reports/allexivirus-string-collapse.html) | 2026-09-21 |
 | Allexivirus Vocabulary Saturation | [open](https://claude.ai/artifact/S5H57Gg1N2DECvutD8JBTS) | [source](reports/allexivirus-vocabulary-saturation.html) | 2026-09-21 |
@@ -120,7 +120,7 @@ published — the file is in this repo. `—` was not made.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Alphaflexiviridae Coverage Audit | [open](https://claude.ai/artifact/MzC77du44ZP2iBnPogQPx1) | [source](reports/alphaflexiviridae-coverage-audit.html) | 2026-09-22 |
+| Alphaflexiviridae Coverage Audit | [open](https://claude.ai/artifact/MzC77du44ZP2iBnPogQPx1) | [source](reports/alphaflexiviridae-coverage-audit.html) | 2026-11-02 |
 | Alphaflexiviridae PSSM Registry | [open](https://claude.ai/artifact/TseN29Pu2NS87fMCJRTP1a) | [source](reports/alphaflexiviridae-pssm-registry.html) | 2026-09-21 |
 | Alphaflexiviridae String Collapse | [open](https://claude.ai/artifact/1opeHxTHrAVEx7nsy8DMc1) | [source](reports/alphaflexiviridae-string-collapse.html) | 2026-09-21 |
 | Alphaflexiviridae Vocabulary Saturation | [open](https://claude.ai/artifact/DrNtpzKawMfnQvEFgdvJCP) | [source](reports/alphaflexiviridae-vocabulary-saturation.html) | 2026-09-21 |
@@ -129,7 +129,7 @@ published — the file is in this repo. `—` was not made.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Alpharetrovirus Coverage Audit | [open](https://claude.ai/artifact/AnobFFvUDqjQfPHECo2bPp) | — | 2026-10-28 |
+| Alpharetrovirus Coverage Audit | [open](https://claude.ai/artifact/AnobFFvUDqjQfPHECo2bPp) | — | 2026-11-02 |
 | Alpharetrovirus PSSM Registry | [open](https://claude.ai/artifact/79W5AL2FdcGK8mJaEzXVeZ) | — | 2026-10-28 |
 | Alpharetrovirus String Collapse | [open](https://claude.ai/artifact/CfpgXESRmcejTpMaqkga2H) | — | 2026-10-28 |
 | Alpharetrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/2se3RSaF9Cbv1brCHo3uxp) | — | 2026-10-28 |
@@ -153,7 +153,7 @@ Built but never published, source is here: [coverage audit](reports/amdoparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Ampelovirus Coverage Audit | [open](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) | [source](reports/ampelovirus-coverage-audit.html) | 2026-09-29 |
+| Ampelovirus Coverage Audit | [open](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) | [source](reports/ampelovirus-coverage-audit.html) | 2026-11-02 |
 | Ampelovirus PSSM Registry | [open](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [source](reports/ampelovirus-pssm-registry.html) | 2026-09-29 |
 | Ampelovirus String Collapse | [open](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [source](reports/ampelovirus-string-collapse.html) | 2026-09-29 |
 | Ampelovirus Vocabulary Saturation | [open](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [source](reports/ampelovirus-vocabulary-saturation.html) | 2026-09-29 |
@@ -162,7 +162,7 @@ Built but never published, source is here: [coverage audit](reports/amdoparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Aphthovirus Coverage Audit | [open](https://claude.ai/artifact/1ZtduTvq8yXtbpb1CxTyex) | [source](reports/aphthovirus-coverage-audit.html) | 2026-10-05 |
+| Aphthovirus Coverage Audit | [open](https://claude.ai/artifact/1ZtduTvq8yXtbpb1CxTyex) | [source](reports/aphthovirus-coverage-audit.html) | 2026-11-02 |
 | Aphthovirus PSSM Registry | [open](https://claude.ai/artifact/9tbrUrJKKq41HT6MS88stL) | [source](reports/aphthovirus-pssm-registry.html) | 2026-10-05 |
 | Aphthovirus String Collapse | [open](https://claude.ai/artifact/KdaADibFPANEzfuUFHPFKn) | [source](reports/aphthovirus-string-collapse.html) | 2026-10-05 |
 | Aphthovirus Vocabulary Saturation | [open](https://claude.ai/artifact/VG7VGspxEMqfRJvTUNJwzo) | [source](reports/aphthovirus-vocabulary-saturation.html) | 2026-10-05 |
@@ -171,7 +171,7 @@ Built but never published, source is here: [coverage audit](reports/amdoparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Avastrovirus Coverage Audit | [open](https://claude.ai/artifact/5RSkHzZqkSbdaRKMzHrNZM) | [source](reports/avastrovirus-coverage-audit.html) | 2026-10-29 |
+| Avastrovirus Coverage Audit | [open](https://claude.ai/artifact/5RSkHzZqkSbdaRKMzHrNZM) | [source](reports/avastrovirus-coverage-audit.html) | 2026-11-02 |
 | Avastrovirus PSSM Registry | [open](https://claude.ai/artifact/6Jpsu5giVraWnVab27PjS8) | [source](reports/avastrovirus-pssm-registry.html) | 2026-10-29 |
 | Avastrovirus String Collapse | [open](https://claude.ai/artifact/VrWfP1iFNxZT5JCJBgHH5w) | [source](reports/avastrovirus-string-collapse.html) | 2026-10-29 |
 | Avastrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/RcW23Q2inLy9B7bfVVFBK7) | [source](reports/avastrovirus-vocabulary-saturation.html) | 2026-10-29 |
@@ -180,7 +180,7 @@ Built but never published, source is here: [coverage audit](reports/amdoparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Avian Orthoreovirus Coverage Audit | [open](https://claude.ai/artifact/2bSDj7BTvk8cuWeLGVdaEi) | [source](reports/avianorthoreovirus-coverage-audit.html) | 2026-10-17 |
+| Avian Orthoreovirus Coverage Audit | [open](https://claude.ai/artifact/2bSDj7BTvk8cuWeLGVdaEi) | [source](reports/avianorthoreovirus-coverage-audit.html) | 2026-11-02 |
 | Avian Orthoreovirus PSSM Registry | [open](https://claude.ai/artifact/GaQucYQdx9YJ1cPotbhr1V) | [source](reports/avianorthoreovirus-pssm-registry.html) | 2026-10-17 |
 | Avian Orthoreovirus String Collapse | [open](https://claude.ai/artifact/2CfEd31Y8bvE6jVxVWBnQ1) | [source](reports/avianorthoreovirus-string-collapse.html) | 2026-10-17 |
 | Avian Orthoreovirus Vocabulary Saturation | [open](https://claude.ai/artifact/AsPEXfHmr2noPAraHssXbS) | [source](reports/avianorthoreovirus-vocabulary-saturation.html) | 2026-10-17 |
@@ -189,7 +189,7 @@ Built but never published, source is here: [coverage audit](reports/amdoparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Avihepatovirus Coverage Audit | [open](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) | [source](reports/avihepatovirus-coverage-audit.html) | 2026-10-04 |
+| Avihepatovirus Coverage Audit | [open](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) | [source](reports/avihepatovirus-coverage-audit.html) | 2026-11-02 |
 | Avihepatovirus PSSM Registry | [open](https://claude.ai/artifact/JFVvSbRmU1Fv6nq7Wqi7gC) | [source](reports/avihepatovirus-pssm-registry.html) | 2026-10-04 |
 | Avihepatovirus String Collapse | [open](https://claude.ai/artifact/6RHPEZykKvhFBP9wrrH1qU) | [source](reports/avihepatovirus-string-collapse.html) | 2026-10-04 |
 | Avihepatovirus Vocabulary Saturation | [open](https://claude.ai/artifact/P3wF6BgumacJUGYqZ4v7X8) | [source](reports/avihepatovirus-vocabulary-saturation.html) | 2026-10-04 |
@@ -198,7 +198,7 @@ Built but never published, source is here: [coverage audit](reports/amdoparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Bavovirus Coverage Audit | [open](https://claude.ai/artifact/88JpWMU5nBSfQXczr3X2ZX) | [source](reports/bavovirus-coverage-audit.html) | 2026-10-15 |
+| Bavovirus Coverage Audit | [open](https://claude.ai/artifact/88JpWMU5nBSfQXczr3X2ZX) | [source](reports/bavovirus-coverage-audit.html) | 2026-11-02 |
 | Bavovirus PSSM Registry | [open](https://claude.ai/artifact/RqkxTXZnGNWALpiyXz7t9d) | [source](reports/bavovirus-pssm-registry.html) | 2026-10-15 |
 | Bavovirus String Collapse | [open](https://claude.ai/artifact/VRpn8EkqAkz2sMjzYFEDS9) | [source](reports/bavovirus-string-collapse.html) | 2026-10-15 |
 | Bavovirus Vocabulary Saturation | [open](https://claude.ai/artifact/RqWLqqQPpCtJC7ZHpPxPxZ) | [source](reports/bavovirus-vocabulary-saturation.html) | 2026-10-15 |
@@ -207,7 +207,7 @@ Built but never published, source is here: [coverage audit](reports/amdoparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Betaretrovirus Coverage Audit | [open](https://claude.ai/artifact/WG4UHp5QzR5NqYy5RFvStr) | — | 2026-10-28 |
+| Betaretrovirus Coverage Audit | [open](https://claude.ai/artifact/WG4UHp5QzR5NqYy5RFvStr) | — | 2026-11-02 |
 | Betaretrovirus PSSM Registry | [open](https://claude.ai/artifact/NWA1P4R6gtTixbvjjPva4h) | — | 2026-10-28 |
 | Betaretrovirus String Collapse | [open](https://claude.ai/artifact/QmBMhMeySeeWx1xSEGB7b2) | — | 2026-10-28 |
 | Betaretrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/XPJL3x1kDK7NtrULEvg7wi) | — | 2026-10-28 |
@@ -233,7 +233,7 @@ Built but never published, source is here: [coverage audit](reports/bocaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Bromoviridae Coverage Audit | [open](https://claude.ai/artifact/MLcThSnPEmReaR28vFsLN5) | [source](reports/bromoviridae-coverage-audit.html) | 2026-09-29 |
+| Bromoviridae Coverage Audit | [open](https://claude.ai/artifact/MLcThSnPEmReaR28vFsLN5) | [source](reports/bromoviridae-coverage-audit.html) | 2026-11-02 |
 | Bromoviridae PSSM Registry | [open](https://claude.ai/artifact/VtS14XFKWG1BtzBiX1f193) | [source](reports/bromoviridae-pssm-registry.html) | 2026-09-29 |
 | Bromoviridae String Collapse | [open](https://claude.ai/artifact/1wZ4m4Ri6VarEWj6vGB8UT) | [source](reports/bromoviridae-string-collapse.html) | 2026-09-29 |
 | Bromoviridae Vocabulary Saturation | [open](https://claude.ai/artifact/LLVpuYZWg7GbRrFbcBMpiK) | [source](reports/bromoviridae-vocabulary-saturation.html) | 2026-09-29 |
@@ -242,7 +242,7 @@ Built but never published, source is here: [coverage audit](reports/bocaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Capillovirus Coverage Audit | [open](https://claude.ai/artifact/72Tkge2qkTd5sc5eumHUtP) | [source](reports/capillovirus-coverage-audit.html) | 2026-09-29 |
+| Capillovirus Coverage Audit | [open](https://claude.ai/artifact/72Tkge2qkTd5sc5eumHUtP) | [source](reports/capillovirus-coverage-audit.html) | 2026-11-02 |
 | Capillovirus PSSM Registry | [open](https://claude.ai/artifact/2MhyYGJDyaiuKpH8dT8DMP) | [source](reports/capillovirus-pssm-registry.html) | 2026-09-29 |
 | Capillovirus String Collapse | [open](https://claude.ai/artifact/UxFYYiPSxUmVHpnfZvttL6) | [source](reports/capillovirus-string-collapse.html) | 2026-09-29 |
 | Capillovirus Vocabulary Saturation | [open](https://claude.ai/artifact/KRCGhYahtrFrXhC66FMCDG) | [source](reports/capillovirus-vocabulary-saturation.html) | 2026-09-29 |
@@ -251,7 +251,7 @@ Built but never published, source is here: [coverage audit](reports/bocaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Cardiovirus Coverage Audit | [open](https://claude.ai/artifact/CWpYjvdg3sbjLaRp68LFti) | [source](reports/cardiovirus-coverage-audit.html) | 2026-10-04 |
+| Cardiovirus Coverage Audit | [open](https://claude.ai/artifact/CWpYjvdg3sbjLaRp68LFti) | [source](reports/cardiovirus-coverage-audit.html) | 2026-11-02 |
 | Cardiovirus PSSM Registry | [open](https://claude.ai/artifact/WuCYigqaWqd7yeoyQ4PMN5) | [source](reports/cardiovirus-pssm-registry.html) | 2026-10-04 |
 | Cardiovirus String Collapse | [open](https://claude.ai/artifact/44d26MFMAYpvzfoKyDjqS7) | [source](reports/cardiovirus-string-collapse.html) | 2026-10-04 |
 | Cardiovirus Vocabulary Saturation | [open](https://claude.ai/artifact/SiYcBoWrvoLUSpYcuBk47P) | [source](reports/cardiovirus-vocabulary-saturation.html) | 2026-10-04 |
@@ -260,7 +260,7 @@ Built but never published, source is here: [coverage audit](reports/bocaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Carlavirus Coverage Audit | [open](https://claude.ai/artifact/NmFkgdqungA9QQqwo4vnxk) | [source](reports/carlavirus-coverage-audit.html) | 2026-09-29 |
+| Carlavirus Coverage Audit | [open](https://claude.ai/artifact/NmFkgdqungA9QQqwo4vnxk) | [source](reports/carlavirus-coverage-audit.html) | 2026-11-02 |
 | Carlavirus PSSM Registry | [open](https://claude.ai/artifact/8X8vzYkkKzKaGhL5Z35kgd) | [source](reports/carlavirus-pssm-registry.html) | 2026-09-29 |
 | Carlavirus String Collapse | [open](https://claude.ai/artifact/DMcy8JVZfFPimPkWsXTMQ1) | [source](reports/carlavirus-string-collapse.html) | 2026-09-29 |
 | Carlavirus Vocabulary Saturation | [open](https://claude.ai/artifact/CanGWVzZ16524CDkMgP3P3) | [source](reports/carlavirus-vocabulary-saturation.html) | 2026-09-29 |
@@ -269,7 +269,7 @@ Built but never published, source is here: [coverage audit](reports/bocaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Closterovirus Coverage Audit | [open](https://claude.ai/artifact/Ab6k6zYW9YHdrXhhk893kc) | [source](reports/closterovirus-coverage-audit.html) | 2026-09-29 |
+| Closterovirus Coverage Audit | [open](https://claude.ai/artifact/Ab6k6zYW9YHdrXhhk893kc) | [source](reports/closterovirus-coverage-audit.html) | 2026-11-02 |
 | Closterovirus PSSM Registry | [open](https://claude.ai/artifact/6ZfGY1KaXuL3cYbY8fuMUN) | [source](reports/closterovirus-pssm-registry.html) | 2026-09-29 |
 | Closterovirus String Collapse | [open](https://claude.ai/artifact/R7s4HEWxG7uE5rUVP45bFE) | [source](reports/closterovirus-string-collapse.html) | 2026-09-29 |
 | Closterovirus Vocabulary Saturation | [open](https://claude.ai/artifact/8yJX7hSR2qhznPkQYXq4pj) | [source](reports/closterovirus-vocabulary-saturation.html) | 2026-09-29 |
@@ -278,7 +278,7 @@ Built but never published, source is here: [coverage audit](reports/bocaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Coltivirus Coverage Audit | [open](https://claude.ai/artifact/NkZzioHk36fSX3H8dq1L6j) | [source](reports/coltivirus-coverage-audit.html) | 2026-10-17 |
+| Coltivirus Coverage Audit | [open](https://claude.ai/artifact/NkZzioHk36fSX3H8dq1L6j) | [source](reports/coltivirus-coverage-audit.html) | 2026-11-02 |
 | Coltivirus PSSM Registry | [open](https://claude.ai/artifact/1CpdzQZ1oXpXoCzP2Nmf8p) | [source](reports/coltivirus-pssm-registry.html) | 2026-10-17 |
 | Coltivirus String Collapse | [open](https://claude.ai/artifact/Hin8atCqQSiVD4jULeJpYm) | [source](reports/coltivirus-string-collapse.html) | 2026-10-17 |
 | Coltivirus Vocabulary Saturation | [open](https://claude.ai/artifact/F1uth59wRRvzMvXdY4LAp2) | [source](reports/coltivirus-vocabulary-saturation.html) | 2026-10-17 |
@@ -287,7 +287,7 @@ Built but never published, source is here: [coverage audit](reports/bocaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Crinivirus Coverage Audit | [open](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) | [source](reports/crinivirus-coverage-audit.html) | 2026-09-29 |
+| Crinivirus Coverage Audit | [open](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) | [source](reports/crinivirus-coverage-audit.html) | 2026-11-02 |
 | Crinivirus PSSM Registry | [open](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [source](reports/crinivirus-pssm-registry.html) | 2026-09-29 |
 | Crinivirus String Collapse | [open](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [source](reports/crinivirus-string-collapse.html) | 2026-09-29 |
 | Crinivirus Vocabulary Saturation | [open](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [source](reports/crinivirus-vocabulary-saturation.html) | 2026-09-29 |
@@ -296,7 +296,7 @@ Built but never published, source is here: [coverage audit](reports/bocaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Deltaretrovirus Coverage Audit | [open](https://claude.ai/artifact/2tWi5E9gm5KWRKspYdJgDA) | — | 2026-10-28 |
+| Deltaretrovirus Coverage Audit | [open](https://claude.ai/artifact/2tWi5E9gm5KWRKspYdJgDA) | — | 2026-11-02 |
 | Deltaretrovirus PSSM Registry | [open](https://claude.ai/artifact/HjGXwXK9GgvjyZx11y5jtt) | — | 2026-10-28 |
 | Deltaretrovirus String Collapse | [open](https://claude.ai/artifact/Mvm31NpChCPQJmGEM6RNNy) | — | 2026-10-28 |
 | Deltaretrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/1cZ4bd5xSjkYD11d2R2eJA) | — | 2026-10-28 |
@@ -357,7 +357,7 @@ Built but never published, source is here: [coverage audit](reports/dependoparvo
 
 | page | live | source | updated |
 |---|---|---|---|
-| EIAV Coverage Audit | [open](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) | — | 2026-10-27 |
+| EIAV Coverage Audit | [open](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) | — | 2026-11-02 |
 | EIAV PSSM Registry | [open](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | — | 2026-10-27 |
 | EIAV String Collapse | [open](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | — | 2026-10-27 |
 | EIAV Vocabulary Saturation | [open](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | — | 2026-10-27 |
@@ -373,7 +373,7 @@ Built but never published, source is here: [coverage audit](reports/eiav-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| Enterovirus Coverage Audit | [open](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) | [source](reports/enterovirus-coverage-audit.html) | 2026-10-05 |
+| Enterovirus Coverage Audit | [open](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) | [source](reports/enterovirus-coverage-audit.html) | 2026-11-02 |
 | Enterovirus PSSM Registry | [open](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [source](reports/enterovirus-pssm-registry.html) | 2026-10-05 |
 | Enterovirus String Collapse | [open](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [source](reports/enterovirus-string-collapse.html) | 2026-10-05 |
 | Enterovirus Vocabulary Saturation | [open](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [source](reports/enterovirus-vocabulary-saturation.html) | 2026-10-05 |
@@ -392,7 +392,7 @@ Built but never published, source is here: [coverage audit](reports/erythroparvo
 
 | page | live | source | updated |
 |---|---|---|---|
-| FIV Coverage Audit | [open](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) | — | 2026-10-27 |
+| FIV Coverage Audit | [open](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) | — | 2026-11-02 |
 | FIV PSSM Registry | [open](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | — | 2026-10-27 |
 | FIV String Collapse | [open](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | — | 2026-10-27 |
 | FIV Vocabulary Saturation | [open](https://claude.ai/artifact/QsKfmM4MTshtERZAeNqZHJ) | — | 2026-10-27 |
@@ -408,7 +408,7 @@ Built but never published, source is here: [coverage audit](reports/fiv-coverage
 
 | page | live | source | updated |
 |---|---|---|---|
-| Gammaretrovirus Coverage Audit | [open](https://claude.ai/artifact/ELrfaFZbTYfUnVupig7Uxq) | — | 2026-10-28 |
+| Gammaretrovirus Coverage Audit | [open](https://claude.ai/artifact/ELrfaFZbTYfUnVupig7Uxq) | — | 2026-11-02 |
 | Gammaretrovirus PSSM Registry | [open](https://claude.ai/artifact/3WcJXhsNk1fqU74ftQ6Stu) | — | 2026-10-28 |
 | Gammaretrovirus String Collapse | [open](https://claude.ai/artifact/Q8bws2vKjuyKBb4ZAuCCAF) | — | 2026-10-28 |
 | Gammaretrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/SnWBfiMoMut4R5Ykff8GEg) | — | 2026-10-28 |
@@ -434,7 +434,7 @@ Built but never published, source is here: [coverage audit](reports/hamaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Hepaciviridae Coverage Audit | [open](https://claude.ai/artifact/8vMTNVAXKjhCEqmbsUBcry) | [source](reports/hepaciviridae-coverage-audit.html) | 2026-09-23 |
+| Hepaciviridae Coverage Audit | [open](https://claude.ai/artifact/8vMTNVAXKjhCEqmbsUBcry) | [source](reports/hepaciviridae-coverage-audit.html) | 2026-11-02 |
 | Hepaciviridae PSSM Registry | [open](https://claude.ai/artifact/G2CDRQ1g7bPZQwJCAeVCNR) | [source](reports/hepaciviridae-pssm-registry.html) | 2026-09-23 |
 | Hepaciviridae String Collapse | [open](https://claude.ai/artifact/SuSzzD4Lgid5Nqh4wsAUsw) | [source](reports/hepaciviridae-string-collapse.html) | 2026-09-23 |
 | Hepaciviridae Vocabulary Saturation | [open](https://claude.ai/artifact/PFSG6T5FP4Pdv82KTtpRb3) | [source](reports/hepaciviridae-vocabulary-saturation.html) | 2026-09-23 |
@@ -443,7 +443,7 @@ Built but never published, source is here: [coverage audit](reports/hamaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Hepatovirus Coverage Audit | [open](https://claude.ai/artifact/4EgbaxJcXnos8VjP5o5qwq) | [source](reports/hepatovirus-coverage-audit.html) | 2026-10-05 |
+| Hepatovirus Coverage Audit | [open](https://claude.ai/artifact/4EgbaxJcXnos8VjP5o5qwq) | [source](reports/hepatovirus-coverage-audit.html) | 2026-11-02 |
 | Hepatovirus PSSM Registry | [open](https://claude.ai/artifact/HPeVWDKLb1684L7Lksqrug) | [source](reports/hepatovirus-pssm-registry.html) | 2026-10-05 |
 | Hepatovirus String Collapse | [open](https://claude.ai/artifact/93JNSJkTL6tnxWAqqh1Ehj) | [source](reports/hepatovirus-string-collapse.html) | 2026-10-05 |
 | Hepatovirus Vocabulary Saturation | [open](https://claude.ai/artifact/BExLQ7zj3sT4KhFebPsmqK) | [source](reports/hepatovirus-vocabulary-saturation.html) | 2026-10-05 |
@@ -452,7 +452,7 @@ Built but never published, source is here: [coverage audit](reports/hamaparvovir
 
 | page | live | source | updated |
 |---|---|---|---|
-| Hepeviridae Coverage Audit | [open](https://claude.ai/artifact/9rab6t9Wg2jyUjpd31FCmz) | [source](reports/hepeviridae-coverage-audit.html) | 2026-09-17 |
+| Hepeviridae Coverage Audit | [open](https://claude.ai/artifact/9rab6t9Wg2jyUjpd31FCmz) | [source](reports/hepeviridae-coverage-audit.html) | 2026-11-02 |
 | Hepeviridae PSSM Registry | [open](https://claude.ai/artifact/Rv8Qtd6yogBhSxwxN83zUB) | [source](reports/hepeviridae-pssm-registry.html) | 2026-09-17 |
 | Hepeviridae Vocabulary Saturation | [open](https://claude.ai/artifact/Lhe1p5zfzv6drE9XPXWB9n) | [source](reports/hepeviridae-vocabulary-saturation.html) | 2026-09-17 |
 
@@ -462,7 +462,7 @@ Built but never published, source is here: [string collapse](reports/hepeviridae
 
 | page | live | source | updated |
 |---|---|---|---|
-| HIV-1 Coverage Audit | [open](https://claude.ai/artifact/7bsqucJtLNCMQdZX4Kk8pL) | — | 2026-10-28 |
+| HIV-1 Coverage Audit | [open](https://claude.ai/artifact/7bsqucJtLNCMQdZX4Kk8pL) | — | 2026-11-02 |
 | HIV-1 PSSM Registry | [open](https://claude.ai/artifact/1m9N8qBAKsy5kA2E8FXqtS) | — | 2026-10-28 |
 | HIV-1 String Collapse | [open](https://claude.ai/artifact/4MYTtF1b6CK2zVFcffChS2) | — | 2026-10-28 |
 | HIV-1 Vocabulary Saturation | [open](https://claude.ai/artifact/1Cix57VHwBNRs6qCbf6Apm) | — | 2026-10-28 |
@@ -478,7 +478,7 @@ Built but never published, source is here: [coverage audit](reports/hiv1-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| HIV2 Coverage Audit | [open](https://claude.ai/artifact/9tzr7kovzhCR8WzHgBuiQN) | — | 2026-10-27 |
+| HIV2 Coverage Audit | [open](https://claude.ai/artifact/9tzr7kovzhCR8WzHgBuiQN) | — | 2026-11-02 |
 | HIV2 PSSM Registry | [open](https://claude.ai/artifact/GGGXozTRJwQRXd933xjV82) | — | 2026-10-27 |
 | HIV2 String Collapse | [open](https://claude.ai/artifact/KbGvBwhAtTVTCawuggMUx9) | — | 2026-10-27 |
 | HIV2 Vocabulary Saturation | [open](https://claude.ai/artifact/P7XMfPgbeAKkVBSRsrLNQL) | — | 2026-10-27 |
@@ -494,7 +494,7 @@ Built but never published, source is here: [coverage audit](reports/hiv2-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| Kobuvirus Coverage Audit | [open](https://claude.ai/artifact/644ijYfi9wT8E9YRUkxu31) | [source](reports/kobuvirus-coverage-audit.html) | 2026-10-05 |
+| Kobuvirus Coverage Audit | [open](https://claude.ai/artifact/644ijYfi9wT8E9YRUkxu31) | [source](reports/kobuvirus-coverage-audit.html) | 2026-11-02 |
 | Kobuvirus PSSM Registry | [open](https://claude.ai/artifact/HXpLhyF1AdFbSbKPFcLgEp) | [source](reports/kobuvirus-pssm-registry.html) | 2026-10-05 |
 | Kobuvirus String Collapse | [open](https://claude.ai/artifact/G5BNV47HTuCKGDHstSCYkD) | [source](reports/kobuvirus-string-collapse.html) | 2026-10-05 |
 | Kobuvirus Vocabulary Saturation | [open](https://claude.ai/artifact/JT8vdj6PBbm31asVQdHxGZ) | [source](reports/kobuvirus-vocabulary-saturation.html) | 2026-10-05 |
@@ -503,7 +503,7 @@ Built but never published, source is here: [coverage audit](reports/hiv2-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| Lagovirus Coverage Audit | [open](https://claude.ai/artifact/XvhotU5g7M4DcukfBTGGuT) | [source](reports/lagovirus-coverage-audit.html) | 2026-10-14 |
+| Lagovirus Coverage Audit | [open](https://claude.ai/artifact/XvhotU5g7M4DcukfBTGGuT) | [source](reports/lagovirus-coverage-audit.html) | 2026-11-02 |
 | Lagovirus PSSM Registry | [open](https://claude.ai/artifact/CqYYq1ekytoZf5oVCb5zVK) | [source](reports/lagovirus-pssm-registry.html) | 2026-10-14 |
 | Lagovirus String Collapse | [open](https://claude.ai/artifact/MaXyiZhw6iYWGgut5PhNJF) | [source](reports/lagovirus-string-collapse.html) | 2026-10-14 |
 | Lagovirus Vocabulary Saturation | [open](https://claude.ai/artifact/HxygdrBS6JjHyAzphnj7eD) | [source](reports/lagovirus-vocabulary-saturation.html) | 2026-10-14 |
@@ -512,7 +512,7 @@ Built but never published, source is here: [coverage audit](reports/hiv2-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| Mamastrovirus Coverage Audit | [open](https://claude.ai/artifact/HivykiHqcCeiWMAUczQShN) | [source](reports/mamastrovirus-coverage-audit.html) | 2026-10-29 |
+| Mamastrovirus Coverage Audit | [open](https://claude.ai/artifact/HivykiHqcCeiWMAUczQShN) | [source](reports/mamastrovirus-coverage-audit.html) | 2026-11-02 |
 | Mamastrovirus PSSM Registry | [open](https://claude.ai/artifact/9TiskqqapCz6kKTp3X54dP) | [source](reports/mamastrovirus-pssm-registry.html) | 2026-10-29 |
 | Mamastrovirus String Collapse | [open](https://claude.ai/artifact/QpYi5xQgkJ9DfhLz7Jbjbi) | [source](reports/mamastrovirus-string-collapse.html) | 2026-10-29 |
 | Mamastrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/KK2DD6dqtiU3u7kWUfoWHZ) | [source](reports/mamastrovirus-vocabulary-saturation.html) | 2026-10-29 |
@@ -521,7 +521,7 @@ Built but never published, source is here: [coverage audit](reports/hiv2-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| Mammalian Orthoreovirus Coverage Audit | [open](https://claude.ai/artifact/KTXdUNuMK65nqhqmuCT9ze) | [source](reports/mammalianorthoreovirus-coverage-audit.html) | 2026-10-15 |
+| Mammalian Orthoreovirus Coverage Audit | [open](https://claude.ai/artifact/KTXdUNuMK65nqhqmuCT9ze) | [source](reports/mammalianorthoreovirus-coverage-audit.html) | 2026-11-02 |
 | MammalianOrthoreovirus PSSM Registry | [open](https://claude.ai/artifact/WuUmdRTmfgBPJtNPMgfkrz) | [source](reports/mammalianorthoreovirus-pssm-registry.html) | 2026-10-15 |
 | MammalianOrthoreovirus String Collapse | [open](https://claude.ai/artifact/TxH6j4xiFoJ9CXWxb2Fzcz) | [source](reports/mammalianorthoreovirus-string-collapse.html) | 2026-10-15 |
 | MammalianOrthoreovirus Vocabulary Saturation | [open](https://claude.ai/artifact/SNWumPj4ohg9avxsTTUGek) | [source](reports/mammalianorthoreovirus-vocabulary-saturation.html) | 2026-10-15 |
@@ -530,7 +530,7 @@ Built but never published, source is here: [coverage audit](reports/hiv2-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| Marafivirus Coverage Audit | [open](https://claude.ai/artifact/WPLVahsQ7EMSvzP2MxnZ4k) | [source](reports/marafivirus-coverage-audit.html) | 2026-09-29 |
+| Marafivirus Coverage Audit | [open](https://claude.ai/artifact/WPLVahsQ7EMSvzP2MxnZ4k) | [source](reports/marafivirus-coverage-audit.html) | 2026-11-02 |
 | Marafivirus PSSM Registry | [open](https://claude.ai/artifact/BJLdgUbZv3VZyFmBZwPur2) | [source](reports/marafivirus-pssm-registry.html) | 2026-09-29 |
 | Marafivirus String Collapse | [open](https://claude.ai/artifact/8hsgb6VBLoWthJQ5fDekmN) | [source](reports/marafivirus-string-collapse.html) | 2026-09-29 |
 | Marafivirus Vocabulary Saturation | [open](https://claude.ai/artifact/UrU49iSx3Qf1vw7QSUTUSD) | [source](reports/marafivirus-vocabulary-saturation.html) | 2026-09-29 |
@@ -539,7 +539,7 @@ Built but never published, source is here: [coverage audit](reports/hiv2-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| Matonaviridae Coverage Audit | [open](https://claude.ai/artifact/AxuNuwq21AAiGws5JvQoWo) | [source](reports/0-coverage-audit.html) | 2026-09-17 |
+| Matonaviridae Coverage Audit | [open](https://claude.ai/artifact/AxuNuwq21AAiGws5JvQoWo) | [source](reports/0-coverage-audit.html) | 2026-11-02 |
 | Matonaviridae PSSM Registry | [open](https://claude.ai/artifact/Pg9oPLPEMsSJwVX1cNaZkj) | [source](reports/matonaviridae-pssm-registry.html) | 2026-09-16 |
 | Rubella Vocabulary Saturation | [open](https://claude.ai/artifact/Py71icixnS8G7aHoRekJ4B) | [source](reports/matonaviridae-vocabulary-saturation.html) | 2026-09-17 |
 
@@ -549,7 +549,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| Nebovirus Coverage Audit | [open](https://claude.ai/artifact/DFYiHRbbnEhBn5ASPREF4Z) | [source](reports/nebovirus-coverage-audit.html) | 2026-10-15 |
+| Nebovirus Coverage Audit | [open](https://claude.ai/artifact/DFYiHRbbnEhBn5ASPREF4Z) | [source](reports/nebovirus-coverage-audit.html) | 2026-11-02 |
 | Nebovirus PSSM Registry | [open](https://claude.ai/artifact/1bdXnM1rCLsXkbtxWZggJ5) | [source](reports/nebovirus-pssm-registry.html) | 2026-10-15 |
 | Nebovirus String Collapse | [open](https://claude.ai/artifact/UM2uLTVXGZJimoJhruyBsz) | [source](reports/nebovirus-string-collapse.html) | 2026-10-15 |
 | Nebovirus Vocabulary Saturation | [open](https://claude.ai/artifact/FFj8ghLrhRcUrA6StNwJXA) | [source](reports/nebovirus-vocabulary-saturation.html) | 2026-10-15 |
@@ -558,7 +558,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| Norovirus Coverage Audit | [open](https://claude.ai/artifact/DE433uyrZxsw1yNkeyCE3H) | [source](reports/norovirus-coverage-audit.html) | 2026-10-14 |
+| Norovirus Coverage Audit | [open](https://claude.ai/artifact/DE433uyrZxsw1yNkeyCE3H) | [source](reports/norovirus-coverage-audit.html) | 2026-11-02 |
 | Norovirus PSSM Registry | [open](https://claude.ai/artifact/8JJCLLLQTgcKBBZLu1ebYT) | [source](reports/norovirus-pssm-registry.html) | 2026-10-14 |
 | Norovirus String Collapse | [open](https://claude.ai/artifact/644emf4jt3fEr5S4zeSbjX) | [source](reports/norovirus-string-collapse.html) | 2026-10-14 |
 | Norovirus Vocabulary Saturation | [open](https://claude.ai/artifact/RedVLm5rXTmTJ3aRyrnbJy) | [source](reports/norovirus-vocabulary-saturation.html) | 2026-10-14 |
@@ -567,7 +567,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| Orbivirus Coverage Audit | [open](https://claude.ai/artifact/XSpre3FqemKickbNVaqf4H) | [source](reports/orbivirus-coverage-audit.html) | 2026-10-17 |
+| Orbivirus Coverage Audit | [open](https://claude.ai/artifact/VDx2X7pCFMv8azLSUjsnqW) | [source](reports/orbivirus-coverage-audit.html) | 2026-11-02 |
 | Orbivirus PSSM Registry | [open](https://claude.ai/artifact/LFgehfnnk7LAVmPsi3YFFL) | [source](reports/orbivirus-pssm-registry.html) | 2026-10-17 |
 | Orbivirus String Collapse | [open](https://claude.ai/artifact/9nzf4UVDgZbLaGG6JHAbmy) | [source](reports/orbivirus-string-collapse.html) | 2026-10-17 |
 | Orbivirus Vocabulary Saturation | [open](https://claude.ai/artifact/2YqPhZurQTMYVv9oFWUfMP) | [source](reports/orbivirus-vocabulary-saturation.html) | 2026-10-17 |
@@ -576,7 +576,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| Orthoflavivirus Coverage Audit | [open](https://claude.ai/artifact/RokLyf9pujJnw37CAri2DR) | [source](reports/orthoflavivirus-coverage-audit.html) | 2026-09-23 |
+| Orthoflavivirus Coverage Audit | [open](https://claude.ai/artifact/RokLyf9pujJnw37CAri2DR) | [source](reports/orthoflavivirus-coverage-audit.html) | 2026-11-02 |
 | Orthoflavivirus PSSM Registry | [open](https://claude.ai/artifact/AkjDvmo28d4bVZCndjymXP) | [source](reports/orthoflavivirus-pssm-registry.html) | 2026-09-22 |
 | Orthoflavivirus String Collapse | [open](https://claude.ai/artifact/MFXjT53roYWz1ymQkrh1ur) | [source](reports/orthoflavivirus-string-collapse.html) | 2026-09-22 |
 | Orthoflavivirus Vocabulary Saturation | [open](https://claude.ai/artifact/9c5gUBxFf4jHNfYizWHw7m) | [source](reports/orthoflavivirus-vocabulary-saturation.html) | 2026-09-22 |
@@ -585,7 +585,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| Parechovirus Coverage Audit | [open](https://claude.ai/artifact/V6xRs6ePghUPkaTX1SyuBL) | [source](reports/parechovirus-coverage-audit.html) | 2026-10-05 |
+| Parechovirus Coverage Audit | [open](https://claude.ai/artifact/V6xRs6ePghUPkaTX1SyuBL) | [source](reports/parechovirus-coverage-audit.html) | 2026-11-02 |
 | Parechovirus PSSM Registry | [open](https://claude.ai/artifact/GYiXCX6ammFZUqqK7MbNWs) | [source](reports/parechovirus-pssm-registry.html) | 2026-10-05 |
 | Parechovirus String Collapse | [open](https://claude.ai/artifact/EUx6FLSssTPNRWJ7FcDyL6) | [source](reports/parechovirus-string-collapse.html) | 2026-10-05 |
 | Parechovirus Vocabulary Saturation | [open](https://claude.ai/artifact/6xMJKTWE3i5FXH8yFXBUBf) | [source](reports/parechovirus-vocabulary-saturation.html) | 2026-10-05 |
@@ -594,7 +594,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| Pegivirus Coverage Audit | [open](https://claude.ai/artifact/Gy9STnMecUF9MaByUNmugx) | [source](reports/pegivirus-coverage-audit.html) | 2026-09-24 |
+| Pegivirus Coverage Audit | [open](https://claude.ai/artifact/Gy9STnMecUF9MaByUNmugx) | [source](reports/pegivirus-coverage-audit.html) | 2026-11-02 |
 | Pegivirus PSSM Registry | [open](https://claude.ai/artifact/GhMTLt7Rd19Ek3mJL7JFWr) | [source](reports/pegivirus-pssm-registry.html) | 2026-09-24 |
 | Pegivirus String Collapse | [open](https://claude.ai/artifact/K2iJfd8E9rtDErhCeDHWix) | [source](reports/pegivirus-string-collapse.html) | 2026-09-24 |
 | Pegivirus Vocabulary Saturation | [open](https://claude.ai/artifact/1KUB1A9tKmxJaEHKZbWzYM) | [source](reports/pegivirus-vocabulary-saturation.html) | 2026-09-24 |
@@ -603,7 +603,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| Pestiviridae Coverage Audit | [open](https://claude.ai/artifact/LEF7bVuNmTvA8vs94ptF26) | [source](reports/pestiviridae-coverage-audit.html) | 2026-09-24 |
+| Pestiviridae Coverage Audit | [open](https://claude.ai/artifact/LEF7bVuNmTvA8vs94ptF26) | [source](reports/pestiviridae-coverage-audit.html) | 2026-11-02 |
 | Pestiviridae PSSM Registry | [open](https://claude.ai/artifact/9UrwQLi5mBSkVmB4UrtLJm) | [source](reports/pestiviridae-pssm-registry.html) | 2026-09-24 |
 | Pestiviridae String Collapse | [open](https://claude.ai/artifact/2wDv9SfmPrtHWSch4gek5c) | [source](reports/pestiviridae-string-collapse.html) | 2026-09-24 |
 | Pestiviridae Vocabulary Saturation | [open](https://claude.ai/artifact/KcbRvV3YqDZWutCDNEWkxh) | [source](reports/pestiviridae-vocabulary-saturation.html) | 2026-09-24 |
@@ -612,7 +612,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| PICO_LDR_VP0 Coverage Audit | [open](https://claude.ai/artifact/RYMzkjW5JdUu8pHae7eBUz) | [source](reports/pico_ldr_vp0-coverage-audit.html) | 2026-10-06 |
+| PICO_LDR_VP0 Coverage Audit | [open](https://claude.ai/artifact/RYMzkjW5JdUu8pHae7eBUz) | [source](reports/pico_ldr_vp0-coverage-audit.html) | 2026-11-02 |
 | PICO_LDR_VP0 PSSM Registry | [open](https://claude.ai/artifact/D3DZs4rxzkWXYR8PgSi7Lf) | [source](reports/pico_ldr_vp0-pssm-registry.html) | 2026-10-06 |
 | PICO_LDR_VP0 String Collapse | [open](https://claude.ai/artifact/DsaQvYVYzTqnmZvFZ93BUc) | [source](reports/pico_ldr_vp0-string-collapse.html) | 2026-10-06 |
 | PICO_LDR_VP0 Vocabulary Saturation | [open](https://claude.ai/artifact/X1n5W5t98hjUZTriS1tFdk) | [source](reports/pico_ldr_vp0-vocabulary-saturation.html) | 2026-10-06 |
@@ -621,7 +621,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| PICO_LDR_VP4 Coverage Audit | [open](https://claude.ai/artifact/B2Hy5H5UF7VbawdnjMMQCU) | [source](reports/pico_ldr_vp4-coverage-audit.html) | 2026-10-06 |
+| PICO_LDR_VP4 Coverage Audit | [open](https://claude.ai/artifact/B2Hy5H5UF7VbawdnjMMQCU) | [source](reports/pico_ldr_vp4-coverage-audit.html) | 2026-11-02 |
 | PICO_LDR_VP4 PSSM Registry | [open](https://claude.ai/artifact/Pfmpmk7RFRSj9pYXsL4qPZ) | [source](reports/pico_ldr_vp4-pssm-registry.html) | 2026-10-06 |
 | PICO_LDR_VP4 String Collapse | [open](https://claude.ai/artifact/LVc4VEW9iCpooM6ou4iyu7) | [source](reports/pico_ldr_vp4-string-collapse.html) | 2026-10-06 |
 | PICO_LDR_VP4 Vocabulary Saturation | [open](https://claude.ai/artifact/DsoiNuENyGrBgh1tb7TUuy) | [source](reports/pico_ldr_vp4-vocabulary-saturation.html) | 2026-10-06 |
@@ -630,7 +630,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| PICO_NOLDR_VP0 Coverage Audit | [open](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) | [source](reports/pico_noldr_vp0-coverage-audit.html) | 2026-10-05 |
+| PICO_NOLDR_VP0 Coverage Audit | [open](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) | [source](reports/pico_noldr_vp0-coverage-audit.html) | 2026-11-02 |
 | PICO_NOLDR_VP0 PSSM Registry | [open](https://claude.ai/artifact/Lr9uABqCQZxhBqiw83BJSS) | [source](reports/pico_noldr_vp0-pssm-registry.html) | 2026-10-06 |
 | PICO_NOLDR_VP0 String Collapse | [open](https://claude.ai/artifact/FPxCxJr26eRtF8PJY8wH4p) | [source](reports/pico_noldr_vp0-string-collapse.html) | 2026-10-06 |
 | PICO_NOLDR_VP0 Vocabulary Saturation | [open](https://claude.ai/artifact/MQxP6qyN2pCqry717Y5ehK) | [source](reports/pico_noldr_vp0-vocabulary-saturation.html) | 2026-10-06 |
@@ -639,7 +639,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| PICO_NOLDR_VP4 Coverage Audit | [open](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) | [source](reports/pico_noldr_vp4-coverage-audit.html) | 2026-10-05 |
+| PICO_NOLDR_VP4 Coverage Audit | [open](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) | [source](reports/pico_noldr_vp4-coverage-audit.html) | 2026-11-02 |
 | PICO_NOLDR_VP4 PSSM Registry | [open](https://claude.ai/artifact/CgHakkLnCawRjWZdawJwWB) | [source](reports/pico_noldr_vp4-pssm-registry.html) | 2026-10-06 |
 | PICO_NOLDR_VP4 String Collapse | [open](https://claude.ai/artifact/D4ncL6xGyYttgDBcpqDJzF) | [source](reports/pico_noldr_vp4-string-collapse.html) | 2026-10-06 |
 | PICO_NOLDR_VP4 Vocabulary Saturation | [open](https://claude.ai/artifact/4PMpusDUm7dpDGq1Pp2pxL) | [source](reports/pico_noldr_vp4-vocabulary-saturation.html) | 2026-10-06 |
@@ -648,7 +648,7 @@ Built but never published, source is here: [string collapse](reports/matonavirid
 
 | page | live | source | updated |
 |---|---|---|---|
-| Piscine Orthoreovirus Coverage Audit | [open](https://claude.ai/artifact/6YRXypfQ5DiURLw8vr2Tp9) | [source](reports/piscineorthoreovirus-coverage-audit.html) | 2026-10-17 |
+| Piscine Orthoreovirus Coverage Audit | [open](https://claude.ai/artifact/6YRXypfQ5DiURLw8vr2Tp9) | [source](reports/piscineorthoreovirus-coverage-audit.html) | 2026-11-02 |
 | Piscine Orthoreovirus PSSM Registry | [open](https://claude.ai/artifact/5fvts36gAWRpgtdQzjiCGX) | [source](reports/piscineorthoreovirus-pssm-registry.html) | 2026-10-17 |
 | Piscine Orthoreovirus String Collapse | [open](https://claude.ai/artifact/JEnqCvUGt9SN5f6kuCtT15) | [source](reports/piscineorthoreovirus-string-collapse.html) | 2026-10-17 |
 | Piscine Orthoreovirus Vocabulary Saturation | [open](https://claude.ai/artifact/7tqSe2K6VWU6jeLPRuwkKt) | [source](reports/piscineorthoreovirus-vocabulary-saturation.html) | 2026-10-17 |
@@ -665,7 +665,7 @@ Built but never published, source is here: [coverage audit](reports/protoparvovi
 
 | page | live | source | updated |
 |---|---|---|---|
-| Pteropine Orthoreovirus Coverage Audit | [open](https://claude.ai/artifact/V4NNnwaPbfJsdDRhDfyKHw) | [source](reports/pteropineorthoreovirus-coverage-audit.html) | 2026-10-17 |
+| Pteropine Orthoreovirus Coverage Audit | [open](https://claude.ai/artifact/V4NNnwaPbfJsdDRhDfyKHw) | [source](reports/pteropineorthoreovirus-coverage-audit.html) | 2026-11-02 |
 | Pteropine Orthoreovirus PSSM Registry | [open](https://claude.ai/artifact/KT8pmXT9wJTehrpq2vPWoz) | [source](reports/pteropineorthoreovirus-pssm-registry.html) | 2026-10-17 |
 | Pteropine Orthoreovirus String Collapse | [open](https://claude.ai/artifact/5MK26D2zL5em7CigKff9Fx) | [source](reports/pteropineorthoreovirus-string-collapse.html) | 2026-10-17 |
 | Pteropine Orthoreovirus Vocabulary Saturation | [open](https://claude.ai/artifact/GLg3LzpvhMzbiecgUMpWoQ) | [source](reports/pteropineorthoreovirus-vocabulary-saturation.html) | 2026-10-17 |
@@ -674,7 +674,7 @@ Built but never published, source is here: [coverage audit](reports/protoparvovi
 
 | page | live | source | updated |
 |---|---|---|---|
-| Quinvirinae Coverage Audit | [open](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) | [source](reports/quinvirinae-coverage-audit.html) | 2026-09-29 |
+| Quinvirinae Coverage Audit | [open](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) | [source](reports/quinvirinae-coverage-audit.html) | 2026-11-02 |
 | Quinvirinae PSSM Registry | [open](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [source](reports/quinvirinae-pssm-registry.html) | 2026-09-29 |
 | Quinvirinae String Collapse | [open](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [source](reports/quinvirinae-string-collapse.html) | 2026-09-29 |
 | Quinvirinae Vocabulary Saturation | [open](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [source](reports/quinvirinae-vocabulary-saturation.html) | 2026-09-29 |
@@ -683,7 +683,7 @@ Built but never published, source is here: [coverage audit](reports/protoparvovi
 
 | page | live | source | updated |
 |---|---|---|---|
-| Rhabdoviridae Coverage Audit | [open](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) | [source](reports/rhabdoviridae-coverage-audit.html) | 2026-09-12 |
+| Rhabdoviridae Coverage Audit | [open](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) | [source](reports/rhabdoviridae-coverage-audit.html) | 2026-11-02 |
 | Rhabdoviridae PSSM Registry | [open](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | [source](reports/rhabdoviridae-pssm-registry.html) | 2026-10-25 |
 
 Not made: string collapse, vocabulary saturation.
@@ -692,7 +692,7 @@ Not made: string collapse, vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Rotavirus Coverage Audit | [open](https://claude.ai/artifact/XJbVUDqqNKWCVA98vfpo3J) | [source](reports/rotavirus-coverage-audit.html) | 2026-10-17 |
+| Rotavirus Coverage Audit | [open](https://claude.ai/artifact/WT969iLo1sBDk7HTbAYc7D) | [source](reports/rotavirus-coverage-audit.html) | 2026-11-02 |
 | Rotavirus PSSM Registry | [open](https://claude.ai/artifact/EtkrQXYZs7E7vhcMmXLjmk) | [source](reports/rotavirus-pssm-registry.html) | 2026-10-17 |
 | Rotavirus String Collapse | [open](https://claude.ai/artifact/FdTKR7uwQR5XcGrCfxEzR6) | [source](reports/rotavirus-string-collapse.html) | 2026-10-17 |
 | Rotavirus Vocabulary Saturation | [open](https://claude.ai/artifact/9cUHtecmAb91ck6yPe2Z86) | [source](reports/rotavirus-vocabulary-saturation.html) | 2026-10-17 |
@@ -701,7 +701,7 @@ Not made: string collapse, vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Sapelovirus Coverage Audit | [open](https://claude.ai/artifact/88yMxbSKFycQvTt6m6NvZ2) | [source](reports/sapelovirus-coverage-audit.html) | 2026-10-05 |
+| Sapelovirus Coverage Audit | [open](https://claude.ai/artifact/88yMxbSKFycQvTt6m6NvZ2) | [source](reports/sapelovirus-coverage-audit.html) | 2026-11-02 |
 | Sapelovirus PSSM Registry | [open](https://claude.ai/artifact/R3NPTkzAW38A1af9UtGrT1) | [source](reports/sapelovirus-pssm-registry.html) | 2026-10-05 |
 | Sapelovirus String Collapse | [open](https://claude.ai/artifact/57VNf18a2R6sdpqC3k3JAR) | [source](reports/sapelovirus-string-collapse.html) | 2026-10-05 |
 | Sapelovirus Vocabulary Saturation | [open](https://claude.ai/artifact/5pNjSX9oLvh83MCHYMoC6z) | [source](reports/sapelovirus-vocabulary-saturation.html) | 2026-10-05 |
@@ -710,7 +710,7 @@ Not made: string collapse, vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Sapovirus Coverage Audit | [open](https://claude.ai/artifact/NFom3ZyTgwJgtjrZ2xFTAX) | [source](reports/sapovirus-coverage-audit.html) | 2026-10-14 |
+| Sapovirus Coverage Audit | [open](https://claude.ai/artifact/NFom3ZyTgwJgtjrZ2xFTAX) | [source](reports/sapovirus-coverage-audit.html) | 2026-11-02 |
 | Sapovirus PSSM Registry | [open](https://claude.ai/artifact/3GHxASgkwBjDdLYVsJwDiT) | [source](reports/sapovirus-pssm-registry.html) | 2026-10-14 |
 | Sapovirus String Collapse | [open](https://claude.ai/artifact/UNtWhKpxTqpVARrDf8NuMB) | [source](reports/sapovirus-string-collapse.html) | 2026-10-14 |
 | Sapovirus Vocabulary Saturation | [open](https://claude.ai/artifact/9tuiHSAv4PLNeCiQM4B2h2) | [source](reports/sapovirus-vocabulary-saturation.html) | 2026-10-14 |
@@ -719,7 +719,7 @@ Not made: string collapse, vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Seadornavirus Coverage Audit | [open](https://claude.ai/artifact/8hZTk7zARMFjxV72DnHehs) | [source](reports/seadornavirus-coverage-audit.html) | 2026-10-17 |
+| Seadornavirus Coverage Audit | [open](https://claude.ai/artifact/NFQf5bFCAtFttHYWVSSgpH) | [source](reports/seadornavirus-coverage-audit.html) | 2026-11-02 |
 | Seadornavirus PSSM Registry | [open](https://claude.ai/artifact/1VrHtEnoda2Cptd5DJJ8FX) | [source](reports/seadornavirus-pssm-registry.html) | 2026-10-17 |
 | Seadornavirus String Collapse | [open](https://claude.ai/artifact/Kogtes6gSE36mDPFscFveK) | [source](reports/seadornavirus-string-collapse.html) | 2026-10-17 |
 | Seadornavirus Vocabulary Saturation | [open](https://claude.ai/artifact/HGKdASkXhZA7FzjtVdnKc1) | [source](reports/seadornavirus-vocabulary-saturation.html) | 2026-10-17 |
@@ -728,7 +728,7 @@ Not made: string collapse, vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Senecavirus Coverage Audit | [open](https://claude.ai/artifact/Xr21mDLyZzcSebbLyeU1T7) | [source](reports/senecavirus-coverage-audit.html) | 2026-10-05 |
+| Senecavirus Coverage Audit | [open](https://claude.ai/artifact/Xr21mDLyZzcSebbLyeU1T7) | [source](reports/senecavirus-coverage-audit.html) | 2026-11-02 |
 | Senecavirus PSSM Registry | [open](https://claude.ai/artifact/XJMxY4EvPdae8nU5LNiJfq) | [source](reports/senecavirus-pssm-registry.html) | 2026-10-05 |
 | Senecavirus String Collapse | [open](https://claude.ai/artifact/Tbtxi52p4gQ7wdFwbsTPLq) | [source](reports/senecavirus-string-collapse.html) | 2026-10-05 |
 | Senecavirus Vocabulary Saturation | [open](https://claude.ai/artifact/5mSFF5p1EuhXYZo5UgtXYZ) | [source](reports/senecavirus-vocabulary-saturation.html) | 2026-10-05 |
@@ -737,7 +737,7 @@ Not made: string collapse, vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Spumaretrovirinae Coverage Audit | [open](https://claude.ai/artifact/SsPLLYtdqDgPaDo6ZrstiU) | — | 2026-10-28 |
+| Spumaretrovirinae Coverage Audit | [open](https://claude.ai/artifact/SsPLLYtdqDgPaDo6ZrstiU) | — | 2026-11-02 |
 | Spumaretrovirinae PSSM Registry | [open](https://claude.ai/artifact/GGyut8ufvAFnzHX1reqtji) | — | 2026-10-28 |
 | Spumaretrovirinae String Collapse | [open](https://claude.ai/artifact/PY1Bk6CcSTSjPRPeamnCRE) | — | 2026-10-28 |
 | Spumaretrovirinae Vocabulary Saturation | [open](https://claude.ai/artifact/85pk6ypS9YZ9Gy3iQXidRM) | — | 2026-10-28 |
@@ -753,7 +753,7 @@ Built but never published, source is here: [coverage audit](reports/spumaretrovi
 
 | page | live | source | updated |
 |---|---|---|---|
-| SRLV Coverage Audit | [open](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) | — | 2026-10-27 |
+| SRLV Coverage Audit | [open](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) | — | 2026-11-02 |
 | SRLV PSSM Registry | [open](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | — | 2026-10-27 |
 | SRLV String Collapse | [open](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | — | 2026-10-27 |
 | SRLV Vocabulary Saturation | [open](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | — | 2026-10-27 |
@@ -769,7 +769,7 @@ Built but never published, source is here: [coverage audit](reports/srlv-coverag
 
 | page | live | source | updated |
 |---|---|---|---|
-| Teschovirus Coverage Audit | [open](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) | [source](reports/teschovirus-coverage-audit.html) | 2026-10-04 |
+| Teschovirus Coverage Audit | [open](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) | [source](reports/teschovirus-coverage-audit.html) | 2026-11-02 |
 | Teschovirus PSSM Registry | [open](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [source](reports/teschovirus-pssm-registry.html) | 2026-10-04 |
 | Teschovirus String Collapse | [open](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [source](reports/teschovirus-string-collapse.html) | 2026-10-04 |
 | Teschovirus Vocabulary Saturation | [open](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [source](reports/teschovirus-vocabulary-saturation.html) | 2026-10-04 |
@@ -796,7 +796,7 @@ Not made: coverage audit.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Tobamovirus Coverage Audit | [open](https://claude.ai/artifact/Lqb3QrZN9vuQT2tHNnxjjf) | [source](reports/tobamovirus-coverage-audit.html) | 2026-09-18 |
+| Tobamovirus Coverage Audit | [open](https://claude.ai/artifact/Lqb3QrZN9vuQT2tHNnxjjf) | [source](reports/tobamovirus-coverage-audit.html) | 2026-11-02 |
 | Tobamovirus PSSM Registry | [open](https://claude.ai/artifact/Jaxj3wb1cGkEng25cDoXDz) | [source](reports/tobamovirus-pssm-registry.html) | 2026-09-18 |
 | Tobamovirus String Collapse | [open](https://claude.ai/artifact/4r5eFifqQBs3msQyeTDRkd) | [source](reports/tobamovirus-string-collapse.html) | 2026-09-18 |
 | Tobamovirus Vocabulary Saturation | [open](https://claude.ai/artifact/GDgyPgzSQr3PoNyBXKF75F) | [source](reports/tobamovirus-vocabulary-saturation.html) | 2026-09-18 |
@@ -805,7 +805,7 @@ Not made: coverage audit.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Togaviridae Coverage Audit | [open](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) | [source](reports/togaviridae-coverage-audit.html) | 2026-09-15 |
+| Togaviridae Coverage Audit | [open](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) | [source](reports/togaviridae-coverage-audit.html) | 2026-11-02 |
 | Togaviridae PSSM Registry | [open](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | [source](reports/togaviridae-pssm-registry.html) | 2026-10-25 |
 
 Built but never published, source is here: [string collapse](reports/togaviridae-string-collapse.html).
@@ -815,7 +815,7 @@ Not made: vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Trivirinae Coverage Audit | [open](https://claude.ai/artifact/7h9mdYRw6QdqjqrHDwxcP4) | [source](reports/trivirinae-coverage-audit.html) | 2026-09-18 |
+| Trivirinae Coverage Audit | [open](https://claude.ai/artifact/7h9mdYRw6QdqjqrHDwxcP4) | [source](reports/trivirinae-coverage-audit.html) | 2026-11-02 |
 | Trivirinae PSSM Registry | [open](https://claude.ai/artifact/QgcHG4Qph1dDCw1pf5my49) | [source](reports/trivirinae-pssm-registry.html) | 2026-09-18 |
 | Trivirinae String Collapse | [open](https://claude.ai/artifact/SSFaUYG921SiiHWL7Psjv3) | [source](reports/trivirinae-string-collapse.html) | 2026-09-18 |
 | Trivirinae Vocabulary Saturation | [open](https://claude.ai/artifact/9bYCnLShKySrUS9NecRe7e) | [source](reports/trivirinae-vocabulary-saturation.html) | 2026-09-18 |
@@ -824,7 +824,7 @@ Not made: vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Tymovirus Coverage Audit | [open](https://claude.ai/artifact/BcR2cenCdnFyLZGus2S5up) | [source](reports/tymovirus-coverage-audit.html) | 2026-09-29 |
+| Tymovirus Coverage Audit | [open](https://claude.ai/artifact/BcR2cenCdnFyLZGus2S5up) | [source](reports/tymovirus-coverage-audit.html) | 2026-11-02 |
 | Tymovirus PSSM Registry | [open](https://claude.ai/artifact/Rthyn6HHDwXe4VGhrgvXvt) | [source](reports/tymovirus-pssm-registry.html) | 2026-09-29 |
 | Tymovirus String Collapse | [open](https://claude.ai/artifact/FWqWHTDrJDVku9KhJLAtm1) | [source](reports/tymovirus-string-collapse.html) | 2026-09-29 |
 | Tymovirus Vocabulary Saturation | [open](https://claude.ai/artifact/DBakDPHuHADrHWkDRadqUK) | [source](reports/tymovirus-vocabulary-saturation.html) | 2026-09-29 |
@@ -833,7 +833,7 @@ Not made: vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Velarivirus Coverage Audit | [open](https://claude.ai/artifact/DXSmF1X2SUerSi537MGndv) | [source](reports/velarivirus-coverage-audit.html) | 2026-09-29 |
+| Velarivirus Coverage Audit | [open](https://claude.ai/artifact/DXSmF1X2SUerSi537MGndv) | [source](reports/velarivirus-coverage-audit.html) | 2026-11-02 |
 | Velarivirus PSSM Registry | [open](https://claude.ai/artifact/L4rADg3VE6QWsMG2XuTizY) | [source](reports/velarivirus-pssm-registry.html) | 2026-09-29 |
 | Velarivirus String Collapse | [open](https://claude.ai/artifact/964Y7kzdrnjiBkAg74b8oz) | [source](reports/velarivirus-string-collapse.html) | 2026-09-29 |
 | Velarivirus Vocabulary Saturation | [open](https://claude.ai/artifact/4SxhURLD9u5EiKDKZvvWKa) | [source](reports/velarivirus-vocabulary-saturation.html) | 2026-09-29 |
@@ -842,7 +842,7 @@ Not made: vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Vesivirus Coverage Audit | [open](https://claude.ai/artifact/VnGVMe8s4EPSnsgk7N7VrF) | [source](reports/vesivirus-coverage-audit.html) | 2026-10-14 |
+| Vesivirus Coverage Audit | [open](https://claude.ai/artifact/VnGVMe8s4EPSnsgk7N7VrF) | [source](reports/vesivirus-coverage-audit.html) | 2026-11-02 |
 | Vesivirus PSSM Registry | [open](https://claude.ai/artifact/PwDCV1ByYufaPJQDRkoSsx) | [source](reports/vesivirus-pssm-registry.html) | 2026-10-14 |
 | Vesivirus String Collapse | [open](https://claude.ai/artifact/BVU3qYyhrsL4NTn5bRwp9g) | [source](reports/vesivirus-string-collapse.html) | 2026-10-14 |
 | Vesivirus Vocabulary Saturation | [open](https://claude.ai/artifact/DP6HyiHndjbyUJJKoPeLJT) | [source](reports/vesivirus-vocabulary-saturation.html) | 2026-10-14 |
@@ -889,16 +889,16 @@ circulated.
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/8CJBDk21x2ctt5GW35TkxT) | 2026-09-15 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/N54oU5jenFw8M7yE2c5kFt) | 2026-09-16 |
 | LowVan Module Handbook | [open](https://claude.ai/artifact/CvQR6F2zqED4rGGHe2MBHe) | 2026-09-08 |
-| Orbivirus Coverage Audit | [open](https://claude.ai/artifact/VDx2X7pCFMv8azLSUjsnqW) | 2026-10-13 |
+| Orbivirus Coverage Audit | [open](https://claude.ai/artifact/XSpre3FqemKickbNVaqf4H) | 2026-11-02 |
 | Orbivirus PSSM Registry | [open](https://claude.ai/artifact/NJJ2fD3LTrC6akFTj3zuPN) | 2026-10-13 |
 | Orbivirus String Collapse | [open](https://claude.ai/artifact/2YmqcDogufaiu9hsPhLkLf) | 2026-10-13 |
 | Orbivirus Vocabulary Saturation | [open](https://claude.ai/artifact/8EieJjYmqikaVDqNUU28Qz) | 2026-10-13 |
 | Rhabdoviridae PSSM Registry | [open](https://claude.ai/artifact/ERwqZ5eyxv7XUPLR5gyNch) | 2026-09-03 |
-| Rotavirus Coverage Audit | [open](https://claude.ai/artifact/WT969iLo1sBDk7HTbAYc7D) | 2026-10-13 |
+| Rotavirus Coverage Audit | [open](https://claude.ai/artifact/XJbVUDqqNKWCVA98vfpo3J) | 2026-11-02 |
 | Rotavirus PSSM Registry | [open](https://claude.ai/artifact/8VVSDrvXgwpcr1eiGQCrV5) | 2026-10-13 |
 | Rotavirus String Collapse | [open](https://claude.ai/artifact/Pw9V5bVBF1W3DVrDVvEQsu) | 2026-10-13 |
 | Rotavirus Vocabulary Saturation | [open](https://claude.ai/artifact/N1Th5HLSAJK3ET9p3ifUWG) | 2026-10-13 |
-| Seadornavirus Coverage Audit | [open](https://claude.ai/artifact/NFQf5bFCAtFttHYWVSSgpH) | 2026-10-13 |
+| Seadornavirus Coverage Audit | [open](https://claude.ai/artifact/8hZTk7zARMFjxV72DnHehs) | 2026-11-02 |
 | Seadornavirus PSSM Registry | [open](https://claude.ai/artifact/X1Pne7MhPNeUx72cBjEJUv) | 2026-10-13 |
 | Seadornavirus String Collapse | [open](https://claude.ai/artifact/52fff24NkGTbfcBcd8rsG2) | 2026-10-13 |
 | Seadornavirus Vocabulary Saturation | [open](https://claude.ai/artifact/52taRuxu181X3RiTr2Kq7F) | 2026-10-13 |

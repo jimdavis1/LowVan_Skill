@@ -243,7 +243,13 @@ collapse = nstr / float(nanno) if nanno else 0
 if rar.get("unit") != "proteins": sys.exit("rarefaction.json is genome-level; re-run annotation_rarefaction.py")
 n_r = rar["n_genomes"]
 fold = rar["source_at_common"] / rar["module_at_common"] if rar["module_at_common"] else 0
-agg_rows = [[a["key"], a["anno"], str(a["nstrings"])] for a in sorted(bound, key=lambda a: -a["nstrings"])]
+#  agg["anno"] is frozen into the collapse measurement when it is written, so
+#  it goes stale the moment a feature's annotation string is edited -- section
+#  02 showed the corrected Amdoparvovirus NS3 string while section 09 still
+#  showed the retired one, on the same page. The module JSON is the live truth.
+_live = {k: (v.get("anno") or "") for k, v in feats.items()} if isinstance(feats, dict) else {}
+agg_rows = [[a["key"], _live.get(a["key"]) or a["anno"], str(a["nstrings"])]
+            for a in sorted(bound, key=lambda a: -a["nstrings"])]
 others = [a for a in agg if a["key"] not in feats]
 for a in others:
     agg_rows.append(["<i>%s</i>" % a["key"].lower(), "not modelled", str(a["nstrings"])])
@@ -310,7 +316,11 @@ facts = {
        "The panel is %d genomes drawn round-robin across species from this genus's own BV-BRC contigs, "
        "with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored "
        "by <code>viral_genome_quality.pl</code>.") % n_p +
-       " <i>Genuinely clean</i> means no genome, contig or feature flag at all."}] +
+       #  A panel_note supplied from the prose JSON may already end with this
+       #  definition; appending it unconditionally printed it twice in the same
+       #  paragraph on the Amdoparvovirus page.
+       ("" if "Genuinely clean" in (panel_note or "")
+        else " <i>Genuinely clean</i> means no genome, contig or feature flag at all.")}] +
      ([{"type": "pre", "text": "\n".join("%4d  %s" % (n, f) for f, n in ftally.most_common(12))}] if ftally else []) +
      [{"type": "prose", "html": h} for h in pr["p06"]]},
   {"num": "07", "title": "What it cannot do", "lede": pr["lede07"], "blocks":

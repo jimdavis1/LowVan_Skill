@@ -51,7 +51,7 @@
   "lede09": "What collapsing the vocabulary actually bought.",
   "p09": [
     "513 deposited protein strings across 120 genomes reduce to five feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at five.",
-    "One string resisted, two sequences: <em>putative nonstructural protein</em>. The 87/92 residue splice product is the larger unfinished item, and it is a naming question rather than a sequence one."
+    "One string resisted, two sequences: <em>putative nonstructural protein</em>. The 87/92 residue splice product that this page once listed as the larger unfinished item is no longer one: it is AMDV's own NS3 at the length the literature gives, and &sect;07 says so."
   ],
   "routing_note": "Routing was measured against the %(ships)d %(contigs)s this module ships, of which %(used)d %(was)s used by the exemplar set.",
   "panel_note": "The panel is %d genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
