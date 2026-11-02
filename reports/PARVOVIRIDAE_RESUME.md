@@ -193,7 +193,37 @@ the annotation string in column 18. `evaluate_coverage.py` keys on the symbol,
 which is why `cov/Amdoparvovirus` shows 290 calls named `nonstructural` and no
 `ns2` or `ns3` at all.
 
-### 2. DensovirinaeAmbi VP1 and VP2 at identical coordinates, 40 of 171
+### 2. ~~DensovirinaeAmbi VP1 and VP2 at identical coordinates~~ — CLOSED by curator decision, 2 Nov 2026
+
+**Do not re-raise this.** The curator's call, after the cause was measured:
+*"i don't want to be building a module for the 'sp.' viruses … the
+unclassified viruses were never in scope"*, and then, on whether to rebuild the
+module from the 96 in-scope genomes: **"no its good enough."**
+
+The module ships as it is, with the 40 collisions and with 88 of its 184
+genomes out of scope. Anyone reading its pages should know the cause, recorded
+below; nobody should start the rebuild without the curator asking for it.
+
+**The cause, measured.** 36 of the 40 collisions are one profile pair, `VP.12`
++ `VP2.1`. `VP.12` is built from the ~577 aa class of taxon 2050976,
+`Ambidensovirus sp.` — an unclassified catch-all bin, now out of scope under
+the rule added to SKILL.md §1. Inside that one "taxon" the capsid size classes
+share **27–38% identity between classes and 78–86% within**, and **0 of 29**
+shorter deposits share a C-terminus with the longest, so they are neither one
+protein nor nested alternative starts. A profile trained on that bin matches
+other genomes' VP2 frame, which is what the collision is.
+
+**Three re-binning options were proposed before any of this was measured, and
+all three were answers to the wrong question** — the bin could not be repaired
+because its members are not the same virus. The fix was never re-binning; it
+was that those genomes do not belong in a module. That rule is now in
+SKILL.md §1 so the next family drops them at intake.
+
+If the curator ever reverses this, the work is a full rebuild from the 96
+in-scope genomes — collections, profiles, rep contigs, coverage, four pages —
+not a patch.
+
+### 2b. The superseded account, kept for the record
 
 Down from 46, not solved. Raising VP1's coverage cutoff to 0.80 did what it was
 meant to — it rejected the partial match that was being extended over the cap2
