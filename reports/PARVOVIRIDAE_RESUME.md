@@ -126,7 +126,17 @@ Consequences in the shipped module (`3030543f`, `47f8800d`):
 
 1. `NS3` declares `min_len 60, max_len 80`, so the real protein is **outside
    the window and uncallable** — and unlike a PSSM call, min/max *is* enforced
-   on a splice feature. NS3 fires in only 10 of 41 Amdoparvovirus exemplars.
+   on a splice feature. Measured on the shipped 300-genome run: NS3 is called
+   46 times and **every single call is 59–72 aa** — the longest anywhere in the
+   module is 72, and not one is 87–92. In AMDV itself it fires in **10 of 242
+   genomes (4%)**, against 19 of 25 for taxon 2169703 and 11 of 12 for 1513315.
+   NS2 by contrast is healthy: 225 of its calls are 114 aa, the published
+   length.
+   *(An earlier revision of this file said "10 of 41 exemplars". That came from
+   `coverage/Amdoparvovirus.json`, which is built from the 42-exemplar
+   **pre-splice** run of 31 Oct and does not describe the shipped module. The
+   figures above come from `cov/Amdoparvovirus/tbl`, the post-splice run the
+   module shipped on. Check which run a number came from before quoting it.)*
 2. All 11 AMDV references in `Splice-Variants/Amdoparvovirus/NS3.fasta`
    translate to **66 or 68 aa** — they encode the truncated acceptor. Verified
    by translating every reference: `28314 {66: 1, 68: 10}` against
@@ -147,8 +157,24 @@ Consequences in the shipped module (`3030543f`, `47f8800d`):
    canonical donor/acceptor search is what picked the short acceptor in the
    first place.
 4. Re-run coverage against `VA_parvo_route`, re-run pass 5, republish the four
-   Amdoparvovirus pages, re-commit. Expect the audit page's NS3 rate and its
-   §07 limits paragraph both to change.
+   Amdoparvovirus pages, re-commit.
+
+**The page's explanation matters more than its figure.** The published audit
+currently reads the low NS3 rate as biology: "NS3's 15.9% is the honest figure.
+It is expressed at much lower levels than NS2, it is deposited by only a
+minority of submitters… Where NS3 is called, the junction was found; where it
+is not, nothing was invented." The expression claim is true of the protein and
+false as an explanation of *this number*. The rate is low because AMDV's NS3 is
+87 aa and the feature declares `max_len 80`. **A measurement artefact is
+currently published as a finding about the virus**, and that paragraph has to be
+rewritten along with the bar.
+
+**Related defect, same run:** the splice caller writes gene symbol
+`nonstructural` for both NS2 and NS3 rather than `ns2`/`ns3`, so the two are
+indistinguishable by symbol in the feature table and can be told apart only by
+the annotation string in column 18. `evaluate_coverage.py` keys on the symbol,
+which is why `cov/Amdoparvovirus` shows 290 calls named `nonstructural` and no
+`ns2` or `ns3` at all.
 
 ### 2. DensovirinaeAmbi VP1 and VP2 at identical coordinates, 40 of 171
 
