@@ -191,10 +191,28 @@ for a start codon that is not there.
 
 ### 4. Smaller, undiagnosed
 
-- **Two Erythroparvovirus genomes make a call with an empty feature name** —
-  `10798.2563` and `1511900.137`, one call each, name `""`. Noticed 2 November,
-  not investigated. Six features are declared and all six are named, so this is
-  in the caller or the GTO, not the JSON.
+- ~~Two Erythroparvovirus genomes make a call with an empty feature name~~ —
+  **diagnosed and fixed in the tool, 2 November, commit `e519511d`.** Not a
+  caller bug: the annotator correctly wrote a `no_features_called` sentinel row
+  for `10798.2563` and `1511900.137` ("Routed to Erythroparvovirus; no profile
+  above threshold") and `evaluate_coverage.py` counted it as a call. Chasing it
+  turned up two more defects in the same few lines — `routed_no_calls` was not
+  a category, and `refs_used` was `len(flags)` reading the wrong column.
+  **Five published pages state a wrong routing number as a result** and have
+  not yet been republished:
+
+  | module | page says ships/used | measured |
+  |---|---|---|
+  | Amdoparvovirus | 1 / 0 | 1 / **1** |
+  | DensovirinaeAmbi | 25 / 1 | 25 / **24** |
+  | Dependoparvovirus | 25 / 15 | 25 / **13** |
+  | Hamaparvovirinae | 25 / 28 | 25 / **24** |
+  | Protoparvovirus | 25 / 0 | 25 / **20** |
+
+  Hamaparvovirinae published more references used than it ships, which cannot
+  be true of anything. The nine coverage JSONs are already backfilled from the
+  surviving feature tables, so regenerating these pages needs **no
+  re-annotation** — just `pass5_pages.sh` and a republish.
 - **Residual capsid tails**: Bocaparvovirus VP1+VP2 at identical coordinates in
   14 of 299, Protoparvovirus 7 of 299.
 - **Two Dependoparvovirus exemplars misroute**, one to Hamaparvovirinae and one
