@@ -1,0 +1,59 @@
+{
+  "date": "1 November 2026",
+  "h1": "Hamaparvovirinae",
+  "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+  "lede01": "One module for a whole subfamily — seven genera that share a genome layout but not much else.",
+  "p01": [
+    "The module covers <strong>Chaphamaparvovirus</strong>, <strong>Chapparvovirus</strong>, <strong>Brevihamaparvovirus</strong>, <strong>Hepanhamaparvovirus</strong>, <strong>Penstylhamaparvovirus</strong>, <strong>Ichthamaparvovirus</strong> and <strong>Ichtchaphamaparvovirus</strong>. They are held together because the layout is the same and their peripheral profiles do not cross-match, which is the test for whether a set of genera is one module or several.",
+    "Five features are declared: <strong>NS1</strong>, <strong>NS2</strong>, <strong>NS3</strong>, <strong>NP1</strong> and <strong>VP1</strong>. NS1 and VP1 carry <code>copy_num</code> and are the two the quality score requires. NS2, NS3 and NP1 are present in some genera and absent in others, which is why none of them is marked essential."
+  ],
+  "lede02": "Profiles are built from the annotation strings BV-BRC already carries, after the strings are collapsed onto one name per protein.",
+  "p02": [
+    "Sixty distinct annotation strings collapse onto the five feature names. VP1 draws on twenty of them and NS1 on fifteen. Some of the collapses are not spelling at all but naming: NP1 is assembled from <em>nonstructural protein 2</em>, <em>NP protein</em>, <em>NP</em> and <em>nucleoprotein</em> among others, and NS3 from <em>nonstructural protein 3</em>, <em>accessory protein p15</em> and <em>nonstructural protein p15</em>.",
+    "That NP1 list is worth pausing on. <em>NP1</em> and <em>NS2</em> are slots in a genome layout, not names of proteins, and different submitters put different proteins in them. The binning here is by sequence, not by the slot a deposit was filed under."
+  ],
+  "lede03": "Each profile carries a bit-score floor and a length window taken from the collection it was built from.",
+  "p03": [
+    "The floors are NS1 40, NP1 63, NS3 85, VP1 86 and NS2 468 bits. The spread is the subfamily showing through: NS1 is recognisable across all seven genera at a low floor, while NS2 exists in only one clade and its profiles score high against it and against nothing else.",
+    "Self-recall is <strong>489 of 489</strong> for NS1, <strong>432 of 434</strong> for VP1, <strong>64 of 64</strong> for NP1, <strong>35 of 35</strong> for NS3 and <strong>54 of 55</strong> for NS2. Sixty-three profiles were built in all, the largest set of any module in this family."
+  ],
+  "lede04": "Routing is a BLASTn of the query against the reference contigs, so a genome with no close relative among them is invisible to the module — and a genome whose closest relative sits in another module routes there instead.",
+  "p04": [
+    "Of 108 exemplars, <strong>95 routed to this module, 10 routed to another, and 3 did not route at all</strong>. Eight of the ten went to DensovirinaeMono and two to Protoparvovirus.",
+    "Those eight are not a surprise once you read their names: <em>Aedes aegypti densovirus 1</em>, <em>Aedes albopictus C6/36 cell densovirus</em>, <em>Anopheles gambiae densovirus</em> and four <em>Penaeus monodon hepandensovirus</em> isolates. They are Brevihamaparvovirus and Hepanhamaparvovirus by current taxonomy, but they sit beside Brevidensovirus and Hepandensovirus on the tree, and routing is nucleotide identity, not taxonomy. The two that went to Protoparvovirus are chaphamaparvoviruses from waterfowl and matched there on NP1 alone.",
+    "On the 297-genome panel the same split holds: <strong>280</strong> routed here, <strong>15</strong> to DensovirinaeMono, <strong>2</strong> to Protoparvovirus."
+  ],
+  "lede05": "Calling is measured on the exemplars, feature by feature.",
+  "p05": [
+    "Across the 108 exemplars: <strong>NS1 in 108</strong>, <strong>VP1 in 102</strong>, <strong>NP1 in 89</strong>, <strong>NS3 in 80</strong>, <strong>NS2 in 11</strong>. NS1 in every one is what justifies its <code>copy_num</code>; VP1 at 102 of 108 clears the same bar.",
+    "NS2 at 11 is not a failure. It is declared because one clade encodes it and 55 sequences were deposited for it; the other six genera do not have the gene, and a feature that does not exist cannot be called."
+  ],
+  "lede06": "The panel is 297 genomes drawn from the module's own sample; it is not held out.",
+  "p06": [
+    "<strong>279 of 297</strong> come through with no genome-level and no contig-level quality flag. The flags that do appear are concentrated: NS1 called twice in <strong>11</strong> genomes, VP1 twice in <strong>3</strong>, a contig with more than 1% ambiguous bases in <strong>3</strong>, and a missing essential capsid in <strong>4</strong>.",
+    "A feature called twice is the module finding two acceptable matches in one genome and keeping both. In this subfamily that usually means a genome assembled with a duplicated terminal region, not a second gene — but the audit does not distinguish those two cases, so the count is reported rather than explained away.",
+    "Read the headline figure for what it is. The panel still contains the genomes the reference contigs were taken from, so it measures internal consistency, not out-of-sample behaviour."
+  ],
+  "lede07": "Four limits, each measured rather than supposed.",
+  "p07": [
+    "<strong>Routing is the weakest link, and it is weakest exactly where the taxonomy is newest.</strong> Thirteen of 108 exemplars either misrouted or did not route. The subfamily was carved out of the densoviruses recently, and the reference contigs of the neighbouring modules still sit closer to some of its members than its own do.",
+    "<strong>No splice features are declared.</strong> Nothing in the collections showed the two-exon signature that put NS2 and NS3 into the splice caller in Amdoparvovirus and Protoparvovirus. If a spliced product exists in these genera, this module does not call it and would not report its absence.",
+    "<strong>NS2, NS3 and NP1 are clade-specific and are named as such.</strong> Two of them carry the word <em>uncharacterized</em> in their function, which is the honest state: the sequences cluster and are callable, and what they do is not established in the literature for most of these genera.",
+    "<strong>The module is bounded by what BV-BRC annotated.</strong> Eight strings, 18 sequences in all, did not collapse onto any feature and are tracked in <code>UNASSIGNED_TRACKING.tsv</code>, among them <em>nonstructural protein p10</em> and <em>accessory protein p10</em> in Chaphamaparvovirus. At three and two occurrences they are below the member floor for declaring a feature, but they are not nothing."
+  ],
+  "verdict07": "Use this module for hamaparvovirus genomes that route to it. Check the routing first: one exemplar in eight went somewhere else or nowhere, and a genome that routes to DensovirinaeMono will be annotated with that module's features, not these.",
+  "lede08": "What the build turned up that was not expected.",
+  "p08": [
+    "The <em>densovirus</em> names are the finding. Eight exemplars whose deposited names say densovirus or hepandensovirus are hamaparvoviruses under current taxonomy, and they route to the densovirus module anyway. The names are not wrong so much as older than the subfamily, and nothing in a build that trusts the deposit would catch it.",
+    "The practical consequence is in the sample, not the module: a Brevihamaparvovirus genome used as training data here is also the nearest neighbour of a DensovirinaeMono reference contig, so the two modules compete for it at routing time."
+  ],
+  "lede09": "What collapsing the vocabulary actually bought.",
+  "p09": [
+    "132 deposited protein strings across 56 genomes reduce to five feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at five.",
+    "Eight strings, 18 sequences, resisted and are tracked as unassigned. The largest group is three occurrences, which is below the floor for declaring a lineage-specific feature &mdash; but <code>UNASSIGNED_TRACKING.tsv</code> is a list of unfinished work, not a resolution. Those sequences did leave the module."
+  ],
+  "routing_note": "Routing was measured against the %(ships)d %(contigs)s this module ships, of which %(used)d %(was)s used by the exemplar set.",
+  "panel_note": "The panel is %d genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+  "panel_label": "sampled genomes",
+  "feature_order": "NS1,NS2,NS3,NP1,VP"
+}

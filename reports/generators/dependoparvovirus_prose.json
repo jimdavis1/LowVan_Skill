@@ -1,0 +1,59 @@
+{
+  "date": "1 November 2026",
+  "h1": "Dependoparvovirus",
+  "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+  "lede01": "One genus, two nested protein sets, and the most heavily deposited taxon in the family.",
+  "p01": [
+    "Dependoparvovirus is the adeno-associated viruses and their relatives. The genome carries two genes and eight declared features, because both genes are read from more than one start.",
+    "The replication gene gives <strong>Rep78</strong>, <strong>Rep68</strong>, <strong>Rep52</strong> and <strong>Rep40</strong>; the capsid gene gives <strong>VP1</strong>, <strong>VP2</strong> and <strong>VP3</strong>. <strong>AAP</strong>, the assembly-activating protein, is read from a third frame inside the capsid gene. Rep78, VP1 and AAP carry <code>copy_num</code> and are the three the quality score requires.",
+    "The nested forms are exempt from the consolidation rule that would otherwise merge a profile whose consensus is a substring of another's. Applied globally that rule emptied REP68 entirely; it is now applied per module, with the nested sets named and excluded."
+  ],
+  "lede02": "Profiles are built from the annotation strings BV-BRC already carries, after the strings are collapsed onto one name per protein.",
+  "p02": [
+    "Seventy distinct annotation strings collapse onto the eight feature names. Rep78 alone draws on thirty of them and VP1 on nineteen. At the other end, Rep68, Rep52 and Rep40 each come from exactly <strong>one</strong> string — the shorter Rep forms are named consistently because they are named rarely, by people who knew which one they had.",
+    "Only three strings did not collapse, four sequences in all: <em>non-structural replication protein</em>, <em>X protein</em> and <em>assembly activation protein</em>. They are tracked in <code>UNASSIGNED_TRACKING.tsv</code>."
+  ],
+  "lede03": "Each profile carries a bit-score floor and a length window taken from the collection it was built from.",
+  "p03": [
+    "The floors run from 120 bits for AAP to 919 for Rep68. The high floors are a consequence of the nesting, not of stringency: Rep68 is a 499&ndash;569 residue window cut out of the middle of Rep78's range, and only a high floor keeps a Rep78 match from claiming it.",
+    "Self-recall is <strong>34 of 34</strong> for AAP, <strong>35 of 35</strong> for Rep40, <strong>47 of 47</strong> for Rep52 and for Rep68, <strong>85 of 85</strong> for VP3, <strong>333 of 335</strong> for VP1, <strong>312 of 318</strong> for Rep78 and <strong>102 of 107</strong> for VP2. Forty profiles in all.",
+    "AAP's two profiles are built from 34 sequences, which is the thinnest evidence base of any feature in the module. That matters below."
+  ],
+  "lede04": "Routing is a BLASTn of the query against the reference contigs.",
+  "p04": [
+    "All 54 exemplars routed. Fifty-two routed to this module, one to Hamaparvovirinae and one to Protoparvovirus. The two that went elsewhere are divergent isolates with no close relative among the 25 reference contigs; routing is nucleotide identity, so a genome whose nearest neighbour sits in another module goes there.",
+    "Nothing was left unrouted, which is the better of the two failure modes: a misrouted genome is annotated with the wrong module's features and that is visible, while an unrouted one simply produces nothing."
+  ],
+  "lede05": "Calling is measured on the exemplars, feature by feature.",
+  "p05": [
+    "Across the 54 exemplars: <strong>VP1 57</strong>, <strong>VP2 53</strong>, <strong>Rep78 50</strong>, <strong>AAP 50</strong>, <strong>VP3 49</strong>, <strong>Rep40 20</strong>, <strong>Rep68 19</strong>, <strong>Rep52 18</strong>. VP1's 57 against 54 genomes is not an error in the arithmetic — it is VP1 called more than once in three of them.",
+    "The short Rep forms at 18 to 20 are expected. Rep68, Rep52 and Rep40 are spliced or alternatively initiated products that only some serotypes deposit and only some genomes carry recognisably; none of them is marked essential."
+  ],
+  "lede06": "The panel is 176 genomes drawn from the module's own sample; it is not held out.",
+  "p06": [
+    "<strong>158 of 176</strong> carry no genome-level and no contig-level flag. But only <strong>87</strong> are genuinely clean once feature-level flags are counted, and the gap between those two numbers is almost entirely one thing.",
+    "<strong>AAP is flagged \"Feature is too long\" in 77 genomes.</strong> The calls land at 221 to 245 residues — 232 in 26 genomes, 227 in 13, 228 and 231 in 11 each — against a declared window of 125 to 216. The genome-level flags are smaller and more ordinary: Rep78 missing in 10, VP1 called twice in 5, AAP missing in 4, AAP called twice in 3, one contig too short."
+  ],
+  "lede07": "Four limits, each measured rather than supposed.",
+  "p07": [
+    "<strong>Every AAP call has an unreliable N-terminus, and the length flag is the symptom rather than the disease.</strong> All <strong>34 of 34</strong> deposited AAP sequences begin with methionine. Of <strong>169</strong> AAP calls across the panel, <strong>1</strong> does; the rest begin at isoleucine (55), serine (52), leucine (30), arginine (12) and seven other residues. AAP initiates at a non-canonical CTG inside the capsid gene, in a third reading frame, and the upstream extension is not finding a start codon &mdash; it is stopping where the profile match stops. The modal call is 209 residues in 57 genomes against a modal deposit of 204 in 29, so the body of the protein is right and the beginning is not. Widening the length window would silence the 77 flags without fixing anything.",
+    "<strong>AAP is nonetheless marked essential.</strong> It cleared the 0.85 called-over-routed bar on the measurement that set <code>copy_num</code>, so the four genomes without it are flagged. Given the previous paragraph, an AAP call should be read as \"a protein of about the right size is here\", not as a coding sequence whose start is known.",
+    "<strong>No splice features are declared.</strong> Rep68 and Rep40 are handled as PSSM features built from their own deposits, not through the splice caller. That works because they are deposited often enough to cluster, and it means the module calls the protein without modelling the junction that makes it.",
+    "<strong>The genus is dominated by engineered genomes.</strong> Recombinant AAV vector constructs are deposited under Dependoparvovirus in large numbers. They route and then call nothing, because the vector keeps the inverted terminal repeats and replaces everything between them. They inflate the denominator of any call-rate figure computed over the whole dump rather than over the sampled panel."
+  ],
+  "verdict07": "Use this module for AAV genomes. Do not read an AAP length flag as a defect in the genome until the AAP window is settled, and do not compute call rates over the whole deposited genus without first removing the vector constructs.",
+  "lede08": "What the build turned up that was not expected.",
+  "p08": [
+    "The consolidation rule nearly deleted the module's most interesting features. <code>fasta-cluster-pssm</code> drops a cluster whose consensus is a substring of another's, which is exactly what Rep68 is relative to Rep78 and what VP3 is relative to VP1. Applied as a global rule it emptied REP68. The rule is now scoped per module with the nested sets declared, and all four Rep forms and all three VP forms survive.",
+    "The three Rep forms that come from a single annotation string each are a reminder that a feature's evidence base and its importance are unrelated. Rep52 has 93 deposits under one spelling and recalls 47 of 47; Rep78 has 487 deposits under thirty spellings and recalls 312 of 318."
+  ],
+  "lede09": "What collapsing the vocabulary actually bought.",
+  "p09": [
+    "153 deposited protein strings across 44 genomes reduce to eight feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at eight.",
+    "Three strings resisted, four sequences in all — the smallest unassigned residue of any module in this family, which follows from Rep and VP being the only two genes there are."
+  ],
+  "routing_note": "Routing was measured against the %(ships)d %(contigs)s this module ships, of which %(used)d %(was)s used by the exemplar set.",
+  "panel_note": "The panel is %d genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+  "panel_label": "sampled genomes",
+  "feature_order": "NS1,REP68,REP52,REP40,AAP,VP,VP2,VP3"
+}

@@ -1,0 +1,62 @@
+{
+  "date": "1 November 2026",
+  "h1": "DensovirinaeAmbi — ambisense densoviruses",
+  "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+  "lede01": "Nine genera, one coding strand each way, and a capsid gene that in one of them is split in two.",
+  "p01": [
+    "The module covers the nine ambisense densovirus genera: <strong>Protoambidensovirus</strong>, <strong>Scindoambidensovirus</strong>, <strong>Blattambidensovirus</strong>, <strong>Hemiambidensovirus</strong>, <strong>Pefuambidensovirus</strong>, <strong>Diciambidensovirus</strong>, <strong>Aquambidensovirus</strong>, <strong>Miniambidensovirus</strong> and <strong>Tetuambidensovirus</strong>. Ambisense means the nonstructural genes read from one strand and the structural genes from the other.",
+    "Eight features are declared: <strong>NS1</strong>, <strong>NS2</strong>, <strong>NS3</strong>, the capsid set <strong>VP1</strong>, <strong>VP2</strong>, <strong>VP3</strong> and <strong>VP4</strong>, and <strong>VP1_SPLICED</strong>.",
+    "That last one is new in this build. In <em>Scindoambidensovirus</em> — the name means <em>split</em> — VP1 is not a longer reading of the capsid gene. It is made by joining two separate open reading frames, cap1 and cap2, through a splice that removes VP2's N terminus, and the phospholipase A2 domain that VP1 needs for cell entry is encoded in the upstream frame (<span class=\"mono\">PMID 21775445</span>). No profile can place that, because the protein does not exist as a contiguous stretch of genome."
+  ],
+  "lede02": "Profiles are built from the annotation strings BV-BRC already carries; the splice references are built from the genomes themselves.",
+  "p02": [
+    "Fifty-two distinct annotation strings collapse onto the feature names, over 454 source sequences — the smallest collection in the family, spread over the most genera. NS1 draws on seventeen strings, VP1 on nine.",
+    "Thirteen strings did not collapse, twenty-three sequences in all. That is the second largest unassigned residue in the family and it is a consequence of the spread: nine genera, few deposits each, and no shared vocabulary. Two of the thirteen — <em>Non-structural ORFs</em> and <em>Structural ORFs</em> — are category labels rather than protein names.",
+    "VP1_SPLICED has no collection and no profile. It is called from <strong>13</strong> nucleotide references, each a genomic slice with its donor and acceptor marked, every one of them reproducing its own genome's deposited 816-residue VP1 exactly, at an intron of 175 nucleotides."
+  ],
+  "lede03": "Each profile carries a bit-score floor and a length window; the splice feature carries a length window and nothing else.",
+  "p03": [
+    "The floors are low across the board — NS3 30, NS1 68, VP1 40 — because the genera are divergent and a high floor would exclude most of them. That is the module's central tension: the profiles have to be permissive enough to span nine genera, and permissive profiles cross-match.",
+    "<strong>VP1's coverage cutoff is raised to 0.80</strong>, against the 0.65 every other feature uses. That is the lever for the cross-match: a VP1 profile matching 0.71 of its own length inside the cap2 reading frame is now rejected rather than extended over the whole of it.",
+    "Self-recall is <strong>89 of 96</strong> for NS1, <strong>83 of 86</strong> for VP1, <strong>32 of 38</strong> for VP2, <strong>22 of 25</strong> for NS3, <strong>18 of 20</strong> for NS2, and 4 of 4 for both VP3 and VP4. These are the lowest self-recall figures in the family, for the same reason the floors are low."
+  ],
+  "lede04": "Routing is a BLASTn of the query against the reference contigs, and this module's panel does not all land here.",
+  "p04": [
+    "Measured against all 1,271 reference contigs in the repository, the 184 genomes of this panel win on: <strong>152</strong> a DensovirinaeAmbi contig, <strong>25</strong> a DensovirinaeMono contig, <strong>2</strong> Hamaparvovirinae, <strong>2</strong> Protoparvovirus, <strong>2</strong> Gammacoronavirus and <strong>1</strong> Trivirinae.",
+    "The 25 that go to DensovirinaeMono are the honest finding. Ambisense and monosense densoviruses were one subfamily until recently, and nucleotide identity has not caught up with the split. The genomes that win on a Gammacoronavirus or Trivirinae contig are winning on weak similarity and would be better described as unrouted."
+  ],
+  "lede05": "Two measurements, two denominators: the tiles are the exemplar set, the paragraphs below are the 145 panel genomes that routed to this module.",
+  "p05": [
+    "Across the 145 genomes that routed here: <strong>VP1 91.7%</strong>, <strong>NS1 88.3%</strong>, <strong>VP2 87.6%</strong>, <strong>VP4 79.3%</strong>, <strong>VP3 75.2%</strong>, <strong>NS2 62.8%</strong>, <strong>NS3 50.3%</strong>, <strong>VP1_SPLICED 23.4%</strong>. Only NS1 is marked essential: VP1 and VP2 both clear the 0.85 bar on their raw rate but stand alone in 64.8% and 15.9% of genomes, so neither can be required.",
+    "VP1_SPLICED's 23.4% is 34 genomes, all <em>Scindoambidensovirus</em>. Before this build none of them had a correct VP1 call at all."
+  ],
+  "lede06": "The panel is drawn from the module's own sample; it is not held out.",
+  "p06": [
+    "<strong>148 of 171</strong> genomes carry no genome-level and no contig-level flag; <strong>140</strong> are genuinely clean once feature-level flags are counted. 22 flags are a missing essential NS1, 8 are a feature too short, and 2 genomes have no contig at all. No genome failed to annotate.",
+    "The honest headline is the one below, in section 07: <strong>40 genomes still have VP1 and VP2 called at identical coordinates</strong>, 24% of those that carry features. The NS side is fixed &mdash; NS1 and NS2 shared coordinates in 11 genomes before this build and in none now &mdash; and the capsid side is improved but not solved."
+  ],
+  "lede07": "Four limits, each measured rather than supposed.",
+  "p07": [
+    "<strong>The capsid collision is reduced, not removed.</strong> VP1 and VP2 are called at identical coordinates in <strong>40</strong> genomes, down from 46, plus VP2 with VP3 in 5 and VP3 with VP4 in 2. Raising VP1's coverage cutoff to 0.80 did what it was meant to: it rejected the partial match that was being extended over the cap2 frame. A different VP1 profile then took over at full coverage. That profile, <code>VP.12</code>, is built from two 578-residue deposits of one taxon whose VP deposits run from 536 to 942 residues &mdash; a nested set filed under one name. Fixing this means re-binning that taxon's capsid deposits by size per species, as was done for the rest of the family, and it is the one piece of work this module still needs.",
+    "<strong>Nine genera in one module is the module at its limit.</strong> The rule for holding genera together is that their peripheral profiles must not cross-match. Here they do, and the paragraph above is what that looks like in practice.",
+    "<strong>VP1_SPLICED is built from one genus.</strong> Thirteen references, all <em>Scindoambidensovirus</em>, all 816 residues. If another ambisense genus splices its capsid the same way, this module will not call it and will not say so.",
+    "<strong>Twenty-four of the panel's genomes route to another module</strong> and are annotated with that module's features, not these. That is visible in the routing column of any output and is not something this module can fix from inside.",
+    "<strong>Thirteen strings, 23 sequences, are unassigned</strong> and tracked in <code>UNASSIGNED_TRACKING.tsv</code>. That file is a list of unfinished work, not a resolution."
+  ],
+  "verdict07": "Use this module for ambisense densovirus genomes, and check two columns before trusting anything: the routing column, because one genome in seven of this panel is annotated by a different module, and the VP1 and VP2 coordinates, because in 40 genomes they are the same. VP1_SPLICED is a Scindoambidensovirus-only feature and is reliable where it fires.",
+  "lede08": "What the build turned up that was not expected.",
+  "p08": [
+    "VP1 and VP2 were called at identical coordinates in <strong>46 of 171</strong> genomes, and 36 of those were one taxon: <em>Scindoambidensovirus orthopteran1</em>. The cause was not the capsid mislabelling that affected the rest of the family. Its VP1 profile, built from 816-residue deposits, matched the genome in two pieces &mdash; one at 5285&ndash;4488 and one at 4384&ndash;2663, with 0.71 coverage on the larger &mdash; and the extension then walked the call out over VP2's reading frame. Those two pieces are cap1 and cap2, and the gap between them is a 175-nucleotide intron.",
+    "Declaring VP1_SPLICED made the real protein callable for the first time, in 34 genomes. Raising the coverage cutoff removed the partial-match path. Neither removed the collision, because a 578-residue VP1 profile from another taxon matches the cap2 frame at full coverage and simply took over &mdash; which is how a cross-match problem behaves when you close one route into it.",
+    "The NS side came out clean: NS1 and NS2 shared coordinates in 11 genomes before this build and in none after."
+  ],
+  "lede09": "What collapsing the vocabulary actually bought.",
+  "p09": [
+    "300 deposited protein strings across 65 genomes reduce to eight feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat.",
+    "Thirteen strings resisted, 23 sequences in all — the price of nine genera with no shared naming convention between them."
+  ],
+  "routing_note": "Routing was measured against the %(ships)d %(contigs)s this module ships, of which %(used)d %(was)s used by the exemplar set.",
+  "panel_note": "The panel is %d genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+  "panel_label": "sampled genomes",
+  "feature_order": "NS1,NS2,NS3,VP,VP1_SPLICED,VP2,VP3,VP4"
+}

@@ -1,0 +1,60 @@
+{
+  "date": "1 November 2026",
+  "h1": "Protoparvovirus",
+  "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+  "lede01": "One genus — canine, feline and porcine parvovirus, minute virus of mice and their relatives — with seven features and two of them spliced.",
+  "p01": [
+    "Protoparvovirus is the only genus in the module. Seven features are declared: <strong>NS1</strong>, <strong>NS2</strong>, <strong>NS3</strong>, <strong>NP1</strong>, <strong>SAT</strong>, and the capsid pair <strong>VP1</strong> and <strong>VP2</strong>.",
+    "<strong>NS2 and NS3 are declared <code>special: splice</code></strong> and are called from curated nucleotide references by <code>get_splice_variant_features.pl</code> rather than by a profile. A spliced feature is never treated as essential.",
+    "The literature settles NS2. The splice junctions of minute virus of mice were mapped in 1986 (<span class=\"mono\">PMID 2942705</span>); NS2 shares its first exon with NS1 and then reads in a different frame. The transcription and translation map of the NADL-2 strain of porcine parvovirus (<span class=\"mono\">PMID 8212598</span>) predicted a third product, NS3, from a 2.9 kb transcript, and that is the source this module cites for it — a prediction, not a confirmed protein.",
+    "SAT is the other oddity: a small alternatively translated protein read from a second frame inside the capsid gene, which ends up in the endoplasmic reticulum membrane. It is not spliced and is called from a profile."
+  ],
+  "lede02": "Profiles are built from the annotation strings BV-BRC already carries; the splice references are built from the genomes themselves.",
+  "p02": [
+    "A hundred and seventeen distinct annotation strings collapse onto the seven feature names, over 6,366 source sequences. NS1 draws on thirty-two of them, VP1 on twenty-four, NS2 on twenty-four, VP2 on twenty-three.",
+    "Nine strings did not collapse, twelve sequences in all. One of them names a real thing the module does not model: <em>nonstructural protein NS2P</em>. NS2 exists as two isoforms, NS2P and NS2Y, differing at the C-terminus by a small second intron — and the splice caller models one intron, so the module calls one NS2 and does not distinguish them.",
+    "NS2's 187 and NS3's 8 nucleotide references replace what used to be their profiles. Each is a genomic slice with its splice donor and acceptor marked."
+  ],
+  "lede03": "Each profile carries a bit-score floor and a length window; each splice feature carries a length window and nothing else.",
+  "p03": [
+    "The PSSM floors are VP1 37, NP1 84, VP2 88, SAT 117 and NS1 148 bits. NS2 and NS3 carry no bit cutoff, no coverage cutoff and no extension flags, because none of those describes how a splice feature is called.",
+    "The splice references were not guessed, and getting them was the hard part of this build. <strong>Protoparvovirus NS2 splices at a GC&ndash;AG donor</strong>, not the canonical GT&ndash;AG, at an intron of 1,472 nucleotides. A brute-force search over every donor and acceptor pair in the 24 genomes that have an NS2 deposit reproduced the deposited protein byte-for-byte in <strong>22</strong> of them, all at that junction. NS3's 8 references come from its own deposits, at an intron of 1,839 nucleotides, every one reproducing its genome's deposit exactly."
+  ],
+  "lede04": "Routing is a BLASTn of the query against the reference contigs.",
+  "p04": [
+    "The module ships 25 reference contigs for a genus whose members are economically important and heavily sequenced, so routing has more redundancy here than anywhere else in the family."
+  ],
+  "lede05": "Calling is measured on the panel, feature by feature.",
+  "p05": [
+    "Across the 297 genomes that routed: <strong>NS1 99.0%</strong>, <strong>VP1 98.7%</strong>, <strong>VP2 90.2%</strong>, <strong>SAT 72.1%</strong>, <strong>NS2 70.7%</strong>, <strong>NS3 9.1%</strong>, <strong>NP1 1.0%</strong>. NS1 and VP1 carry <code>copy_num</code>; VP2 clears the bar on the raw rate but stands alone in only 2.4% of genomes &mdash; the rest of its calls sit inside a VP1 call, which is what a nested alternative start looks like &mdash; so it is blocked from being marked essential.",
+    "NS3 at 9.1% and NP1 at 1.0% are the shape of the evidence, not failures. NS3 is a predicted protein deposited by three taxa out of the genus; NP1 is declared on 26 deposits. Where NS3 is called, the junction was found against sequence; where it is not, nothing was invented."
+  ],
+  "lede06": "The panel is 299 genomes drawn from the module's own sample; it is not held out.",
+  "p06": [
+    "<strong>285 of 297</strong> genomes carry no genome-level and no contig-level flag &mdash; 96.0%. The flags are few: a contig with more than 1% ambiguous bases in 7, a missing essential feature in 7, one contig too long. No genome failed to annotate.",
+    "The figure that matters most on this page is not in the tiles: NS1 and NS3 were called at identical coordinates in <strong>210 of 299</strong> genomes before this rebuild, with NS3 printed at 669 residues against a declared maximum of 113. That count is now <strong>zero</strong>. The only same-coordinate calls left anywhere in the panel are VP1 and VP2 in 7 genomes, which is the capsid tail, not this defect.",
+    "Read the headline percentage for what it is, though &mdash; the panel still contains the genomes the reference contigs were taken from."
+  ],
+  "lede07": "Four limits, each measured rather than supposed.",
+  "p07": [
+    "<strong>NS2P and NS2Y are not distinguished.</strong> The two isoforms differ by a small second intron near the C-terminus, and <code>get_splice_variant_features.pl</code> models one intron. The module calls an NS2; which isoform it is, it does not say.",
+    "<strong>NS3 is a prediction.</strong> Its only literature source reports a 2.9 kb transcript that <em>would</em> encode a 12.4 kDa protein, and notes that no such protein had been described. Twenty-six deposits exist, from three taxa. The module calls it where the junction can be placed and is silent elsewhere; neither a call nor its absence should be read as evidence about the protein's existence.",
+    "<strong>VP1's bit floor is 37.</strong> That is the lowest in the family and it is what the collection supports, but it means VP1 will fire on weak similarity. Check a VP1 call's length against the 420&ndash;1,093 window before trusting it.",
+    "<strong>NP1 is declared on 26 deposits under three strings, one of which is <em>nonstructural protein 2</em>.</strong> NP1 and NS2 are slots in a genome layout, not names of proteins. The binning is by sequence, but the evidence base is thin and the feature is named <em>uncharacterized NP1-like protein</em> for that reason."
+  ],
+  "verdict07": "Use this module for protoparvovirus genomes; NS1, VP1, VP2 and NS2 are reliable. Treat NS3 as a prediction the module will confirm or stay silent about, and do not read an NS2 call as identifying NS2P or NS2Y.",
+  "lede08": "What the build turned up that was not expected.",
+  "p08": [
+    "NS3 was being called at <strong>669 residues</strong> against a declared maximum of 113, on exactly NS1's coordinates, in 210 of 299 genomes. The collection was clean — NS3 runs 79 to 107 residues across 26 deposits — so this was not the capsid mislabelling that affected other modules in this family. NS2 and NS3 share their first exon with NS1, so a short profile necessarily matches inside the NS1 open reading frame, and the start and stop extension then walked the call out to NS1's own boundaries.",
+    "Finding the real junction took three attempts and the first two looked healthy. The default nudge window of 12 nucleotides gave <strong>1</strong> reference; widening it to 24 gave 162, with a product 10 residues short of the deposit; widening to 48 gave 177, one residue short. All of them had a canonical GT&ndash;AG junction, a clean translation and the right length class. None of them was right. Only comparing the spliced product to that genome's own deposited protein separated the GC&ndash;AG donor from the GT that sits beside it."
+  ],
+  "lede09": "What collapsing the vocabulary actually bought.",
+  "p09": [
+    "371 deposited protein strings across 100 genomes reduce to seven feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at seven.",
+    "Nine strings resisted, twelve sequences in all, and they are tracked in <code>UNASSIGNED_TRACKING.tsv</code>. That file is a list of unfinished work, not a resolution."
+  ],
+  "routing_note": "Routing was measured against the %(ships)d %(contigs)s this module ships, of which %(used)d %(was)s used by the exemplar set.",
+  "panel_note": "The panel is %d genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+  "panel_label": "sampled genomes",
+  "feature_order": "NS1,NS2,NS3,NP1,SAT,VP,VP2"
+}

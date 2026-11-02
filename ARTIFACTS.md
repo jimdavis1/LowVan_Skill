@@ -851,21 +851,21 @@ Not made: vocabulary saturation.
 
 | page | live | source | updated |
 |---|---|---|---|
-| DensovirinaeMono — coverage audit | [open](https://claude.ai/artifact/Nx6tVfTiXDRPF2LrHdKKgV) | — | 2026-11-01 |
-| Hamaparvovirinae — coverage audit | [open](https://claude.ai/artifact/1UrnLiaRuZqyeyVTvAGmaj) | — | 2026-11-01 |
-| Dependoparvovirus — coverage audit | [open](https://claude.ai/artifact/DQHm1ikoc4QR8R74LLryKB) | — | 2026-11-01 |
-| Erythroparvovirus — coverage audit | [open](https://claude.ai/artifact/RZgn2R3Jjfwuk25Utfkbng) | — | 2026-11-01 |
-| Bocaparvovirus — coverage audit | [open](https://claude.ai/artifact/JqUwPr1jeg2Qexh1iGZXEh) | — | 2026-11-01 |
-| TetraCopiparvovirus — coverage audit | [open](https://claude.ai/artifact/AwAe6qNhui1fPRsezQY3Wd) | — | 2026-11-01 |
+| DensovirinaeMono — coverage audit | [open](https://claude.ai/artifact/Nx6tVfTiXDRPF2LrHdKKgV) | — | 2026-11-02 |
+| Hamaparvovirinae — coverage audit | [open](https://claude.ai/artifact/1UrnLiaRuZqyeyVTvAGmaj) | — | 2026-11-02 |
+| Dependoparvovirus — coverage audit | [open](https://claude.ai/artifact/DQHm1ikoc4QR8R74LLryKB) | — | 2026-11-02 |
+| Erythroparvovirus — coverage audit | [open](https://claude.ai/artifact/RZgn2R3Jjfwuk25Utfkbng) | — | 2026-11-02 |
+| Bocaparvovirus — coverage audit | [open](https://claude.ai/artifact/JqUwPr1jeg2Qexh1iGZXEh) | — | 2026-11-02 |
+| TetraCopiparvovirus — coverage audit | [open](https://claude.ai/artifact/AwAe6qNhui1fPRsezQY3Wd) | — | 2026-11-02 |
+| Amdoparvovirus — coverage audit | [open](https://claude.ai/artifact/DwDcB9syhWAQRbzMP5BB9o) | — | 2026-11-02 |
+| Protoparvovirus — coverage audit | [open](https://claude.ai/artifact/Wxh3ffuYKmHzqnFNxzMsfE) | — | 2026-11-02 |
+| DensovirinaeAmbi — coverage audit | [open](https://claude.ai/artifact/KwEMFuhTs1Q1CDnbfgHr8G) | — | 2026-11-02 |
 | Amdoparvovirus — PSSM registry | [open](https://claude.ai/artifact/2MCUvk9r3nh4nkdJyxZHZK) | — | 2026-11-01 |
 | Amdoparvovirus — vocabulary saturation | [open](https://claude.ai/artifact/LX7z2otFsSkqAbif6qbLg1) | — | 2026-11-01 |
-| Amdoparvovirus — coverage audit | [open](https://claude.ai/artifact/DwDcB9syhWAQRbzMP5BB9o) | — | 2026-11-01 |
 | Protoparvovirus — PSSM registry | [open](https://claude.ai/artifact/3CL39bSvHXb77PTA97TQqb) | — | 2026-11-01 |
 | Protoparvovirus — vocabulary saturation | [open](https://claude.ai/artifact/RyZUyegBVzQszWEbScCJFT) | — | 2026-11-01 |
-| Protoparvovirus — coverage audit | [open](https://claude.ai/artifact/Wxh3ffuYKmHzqnFNxzMsfE) | — | 2026-11-01 |
 | DensovirinaeAmbi — PSSM registry | [open](https://claude.ai/artifact/7z5fcPPzDvUYKbweXHPbpM) | — | 2026-11-01 |
 | DensovirinaeAmbi — vocabulary saturation | [open](https://claude.ai/artifact/PxZVQJDvFiYqKpZcAqrrBq) | — | 2026-11-01 |
-| DensovirinaeAmbi — coverage audit | [open](https://claude.ai/artifact/KwEMFuhTs1Q1CDnbfgHr8G) | — | 2026-11-01 |
 | Viral_Annotation Repair Docket | [open](https://claude.ai/artifact/CGS3iqj85aeUi3TWUS86bd) | — | 2026-10-14 |
 | Alsuviricetes Module Coverage | [open](https://claude.ai/artifact/NMZcwHNR7xQRB8TAfJck8T) | — | 2026-09-18 |
 | BV-BRC String Collapse | [open](https://claude.ai/artifact/M28Cagwm9zThGVqmCUYNhw) | [source](reports/bvbrc-string-collapse.html) | 2026-09-17 |

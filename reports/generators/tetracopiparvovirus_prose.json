@@ -1,0 +1,58 @@
+{
+  "date": "1 November 2026",
+  "h1": "TetraCopiparvovirus — Tetraparvovirus and Copiparvovirus",
+  "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+  "lede01": "Two genera held in one module because their profiles do not compete.",
+  "p01": [
+    "The module covers <strong>Tetraparvovirus</strong> and <strong>Copiparvovirus</strong>. They share a genome layout, their peripheral profiles do not cross-match, and neither brings a special feature that the other would contest &mdash; which is the test for whether a set of genera is one module or several.",
+    "Four features are declared: <strong>NS1</strong>, the capsid pair <strong>VP1</strong> and <strong>VP2</strong>, and <strong>ORF3</strong>. NS1 and VP1 carry <code>copy_num</code>.",
+    "ORF3 is named <em>uncharacterized lineage specific</em>. Sixteen sequences cluster, they are callable, and what the protein does is not established in the literature — so the module names the slot and not a function."
+  ],
+  "lede02": "Profiles are built from the annotation strings BV-BRC already carries, after the strings are collapsed onto one name per protein.",
+  "p02": [
+    "Thirty-eight distinct annotation strings collapse onto the four feature names, over 1,649 source sequences. NS1 draws on sixteen of them and VP1 on fourteen.",
+    "Eight strings did not collapse, fourteen sequences in all — the largest unassigned residue of any module in this family. They are led by <em>putative capsid protein VP2</em>, <em>putative capsid protein VP1</em> and <em>putative non structural protein NS1</em>. The word <em>putative</em> is doing the damage: those deposits are the same proteins the module already calls, filed under a hedge, and the collapse rules did not reach them."
+  ],
+  "lede03": "Each profile carries a bit-score floor and a length window taken from the collection it was built from.",
+  "p03": [
+    "The floors are VP1 246, NS1 250, ORF3 378 and VP2 448 bits. Forty-seven profiles in all. VP1's length window is 560 to 1,261 residues, the widest in the family — two genera with genuinely different capsid lengths sharing one feature.",
+    "Self-recall is <strong>515 of 515</strong> for NS1, <strong>610 of 610</strong> for VP1, <strong>16 of 16</strong> for ORF3 and <strong>89 of 97</strong> for VP2."
+  ],
+  "lede04": "Routing is a BLASTn of the query against the reference contigs.",
+  "p04": [
+    "All 41 exemplars routed, and all 41 routed to this module. Nothing went elsewhere and nothing was left unrouted — the same clean result the two narrow genera give elsewhere in the family, achieved here across two genera at once."
+  ],
+  "lede05": "Calling is measured on the exemplars, feature by feature.",
+  "p05": [
+    "Across the 41 exemplars: <strong>NS1 45</strong>, <strong>VP1 45</strong>, <strong>VP2 4</strong>, <strong>ORF3 1</strong>. NS1 and VP1 above 41 is each called twice in four genomes.",
+    "VP2 at 4 of 41 is the shape of the genus, not a failure. Only 97 VP2 sequences were deposited against 610 VP1, and in most of these genomes the shorter capsid form is not separately annotated and not separately recognisable."
+  ],
+  "lede06": "The panel is 300 genomes drawn from the module's own sample; it is not held out.",
+  "p06": [
+    "<strong>276 of 300</strong> carry no genome-level and no contig-level flag, and <strong>267</strong> are genuinely clean once feature-level flags are counted.",
+    "The largest flag is not about proteins at all: <strong>8</strong> genomes have a contig that is too long for the declared replicon geometry. Then NS1 missing in 7, VP1 called twice in 4, VP1 missing in 3, NS1 called twice in 3. At the feature level, VP1 too short in 13 and NS1 too short in 9 — both the signature of partial contigs rather than of mis-calling.",
+    "Read the headline figure for what it is. The panel still contains the genomes the reference contigs were taken from, so it measures internal consistency, not out-of-sample behaviour."
+  ],
+  "lede07": "Four limits, each measured rather than supposed.",
+  "p07": [
+    "<strong>Eight contigs are too long for the declared geometry.</strong> That is a statement about the deposits, not the module: a 300-genome panel of a genus whose members are routinely sequenced as part of larger assemblies will contain entries that are not single parvovirus genomes.",
+    "<strong>VP1's length window spans 560 to 1,261 residues.</strong> One feature covering two genera with different capsid sizes means the window cannot discriminate much, and a too-short or too-long flag on VP1 here carries less information than the same flag in a single-genus module.",
+    "<strong>Fourteen sequences are unassigned, most of them filed as <em>putative</em>.</strong> They are tracked in <code>UNASSIGNED_TRACKING.tsv</code>, which is a list of unfinished work, not a resolution. These are proteins the module does call, under deposits it did not reach.",
+    "<strong>No splice features are declared,</strong> and nothing in the collections showed the two-exon signature that put NS2 and NS3 into the splice caller in Amdoparvovirus and Protoparvovirus."
+  ],
+  "verdict07": "Use this module for tetraparvovirus and copiparvovirus genomes; routing is clean and NS1 and VP1 are reliable. Treat VP1 length flags with suspicion — the window spans two genera — and check whether a flagged contig is a whole genome before blaming the call.",
+  "lede08": "What the build turned up that was not expected.",
+  "p08": [
+    "The capsid labels were wrong on a large scale and only applying <code>copy_num</code> exposed it. Before the capsid rebuild, <strong>117 of 300</strong> genomes had VP1 and VP2 called at identical coordinates: the two profiles had been built from deposits that disagreed about which nested form they held, so both landed on the same open reading frame.",
+    "Rebinning the nested forms by size per species rather than by the name on the deposit, and rebuilding the profiles, took that from <strong>117 of 300 to 0</strong>. The deposited name is a claim about which form a submitter thought they had; it is not a measurement."
+  ],
+  "lede09": "What collapsing the vocabulary actually bought.",
+  "p09": [
+    "286 deposited protein strings across 128 genomes reduce to four feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at four.",
+    "Eight strings resisted, fourteen sequences in all. That is the largest residue in the family and most of it is one word: <em>putative</em>."
+  ],
+  "routing_note": "Routing was measured against the %(ships)d %(contigs)s this module ships, of which %(used)d %(was)s used by the exemplar set.",
+  "panel_note": "The panel is %d genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+  "panel_label": "sampled genomes",
+  "feature_order": "NS1,ORF3,VP,VP2"
+}

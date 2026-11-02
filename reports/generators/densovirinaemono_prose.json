@@ -1,0 +1,56 @@
+{
+  "date": "1 November 2026",
+  "h1": "DensovirinaeMono — monosense densoviruses",
+  "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+  "lede01": "One module for the four monosense densovirus genera, whose coding strand carries both the nonstructural and the structural genes.",
+  "p01": [
+    "The module covers <strong>Iteradensovirus</strong>, <strong>Brevidensovirus</strong>, <strong>Hepandensovirus</strong> and <strong>Muscodensovirus</strong>. These are the <em>Densovirinae</em> whose genes all read from one strand, which is what separates them from the ambisense genera held in the sister module. The layout is the same across the four: a nonstructural cassette at the 5&prime; end and a nested capsid set at the 3&prime; end.",
+    "Four features are declared: <strong>NS1</strong>, <strong>NS2</strong>, <strong>VP1</strong> and <strong>VP2</strong>. Only NS1 carries <code>copy_num</code>, so only NS1 is treated as essential when a genome is scored for quality. VP1 and VP2 are nested alternative-start forms of one capsid gene and are exempt from the consolidation rule that would otherwise merge them."
+  ],
+  "lede02": "Profiles are built from the annotation strings that BV-BRC already carries, after the strings are collapsed onto one name per protein.",
+  "p02": [
+    "Thirty-one distinct annotation strings collapse onto the four feature names. NS1 draws on nine of them — <em>nonstructural protein 1</em>, <em>non-structural protein 1</em>, <em>nonstructural protein NS1</em>, <em>NS1</em>, <em>helicase NS1</em> and four more — and VP1 on eight. The collapse is what makes a profile possible at all: a cluster built from one spelling would be built from a fraction of the available sequence.",
+    "Three sequences did not collapse and are not modelled: two <em>putative nonstructural protein NS1</em> and two <em>viral protein</em> in Iteradensovirus, and one <em>non-structure protein 2</em> in Brevidensovirus. They are recorded in <code>UNASSIGNED_TRACKING.tsv</code>. That file is a list of unfinished work, not a resolution — these five sequences did leave the module."
+  ],
+  "lede03": "Each profile carries a bit-score floor and a length window taken from the collection it was built from.",
+  "p03": [
+    "The cutoffs are NS1 131, NS2 175, VP1 152 and VP2 288 bits, with length windows of 512&ndash;899, 258&ndash;482, 595&ndash;890 and 334&ndash;709 residues. All four features use the default coverage cutoff of 0.65, measured against the profile's own length.",
+    "Self-recall — how many of the sequences a profile was built from that profile calls back — is <strong>26 of 26</strong> for NS1, <strong>10 of 10</strong> for VP2, <strong>16 of 19</strong> for VP1 and <strong>13 of 15</strong> for NS2. The five misses are all sequences at the edge of their length window."
+  ],
+  "lede04": "Routing is a BLASTn of the query against the reference contigs, so a genome with no close relative among them is invisible to the module.",
+  "p04": [
+    "Eleven reference contigs stand for the four genera. All twenty-four exemplar genomes routed, and all twenty-four routed to this module rather than to a neighbouring one. Nothing was unrouted.",
+    "That result is bounded by the sample, not a guarantee. Routing depends on nucleotide identity to a reference, and a divergent isolate with no close relative in the eleven will not route no matter how recognisable its proteins are."
+  ],
+  "lede05": "Calling is measured on the exemplars that routed, feature by feature.",
+  "p05": [
+    "Across the twenty-four exemplars: <strong>NS1 in 24</strong>, <strong>VP2 in 18</strong>, <strong>NS2 in 16</strong> and <strong>VP1 in 16</strong>. NS1 is the only feature called in every genome, which is why it is the only one marked essential.",
+    "The gaps are not all failures. Several exemplars are partial genomes whose 3&prime; end is simply absent, and a capsid form that is not in the contig cannot be called from it."
+  ],
+  "lede06": "The panel is forty genomes drawn from the module's own sample; it is not held out.",
+  "p06": [
+    "All <strong>forty of forty</strong> genomes come through with no genome-level and no contig-level quality flag. Two carry a feature-level flag, both the same one: NS1 called at <strong>472</strong> and <strong>431</strong> residues against a window that starts at 512, on contigs of 6,039 and 4,277 nt. Both are short genomes with a truncated NS1, not a profile failure &mdash; which is why the page separates \"no genome/contig flags\" from \"genuinely clean\".",
+    "Read the headline figure for what it is. The panel still contains the genomes the reference contigs were taken from, so it measures whether the module is internally consistent, not how it behaves on something it has never seen."
+  ],
+  "lede07": "Three limits, each measured rather than supposed.",
+  "p07": [
+    "<strong>No splice features are declared.</strong> The monosense genera express their nonstructural proteins from the one coding strand, and nothing in the collections showed the two-exon signature that put NS2 and NS3 into the splice caller in Amdoparvovirus and Protoparvovirus. If a spliced product exists here, this module does not call it and would not report its absence.",
+    "<strong>Only NS1 is essential.</strong> A genome missing its capsid entirely still scores clean. That is deliberate — VP1 and VP2 are called in 16 and 18 of 24 exemplars, well under the 0.85 that would justify <code>copy_num</code> — but it means the quality score is a weaker statement here than in a module where the capsid is required.",
+    "<strong>The module is bounded by what BV-BRC annotated.</strong> A protein these genera encode but that nobody deposited under any of the thirty-one strings is not a gap in this page; it is absent from it."
+  ],
+  "verdict07": "Use this module for monosense densovirus genomes that route. Do not read the forty-of-forty panel figure as an out-of-sample result, and do not read a clean score as evidence that the capsid was called.",
+  "lede08": "What the build turned up that was not expected.",
+  "p08": [
+    "The capsid names in the deposits are unreliable. Within VP2's thirteen source strings sit <em>major capsid protein VP3</em>, <em>structural protein VP3</em> and <em>structural protein VP4</em> — three different nested forms deposited under one slot. The deposited name is a claim about which form a submitter thought they had, not a measurement, and the profiles were rebuilt after binning the nested forms on size rather than on name.",
+    "After that rebuild, the number of genomes in which two capsid features were called at identical coordinates fell from <strong>16 of 40</strong> to <strong>0 of 40</strong>."
+  ],
+  "lede09": "What collapsing the vocabulary actually bought.",
+  "p09": [
+    "Ninety-two deposited protein strings across twenty-eight genomes reduce to four feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at four — which is the point of the exercise: the module's output does not inherit the deposits' spelling drift.",
+    "Three strings resisted and are tracked as unassigned. At two, two and one occurrences they are below the member floor for declaring a lineage-specific feature."
+  ],
+  "routing_note": "Routing was measured against the %(ships)d %(contigs)s this module ships, of which %(used)d %(was)s used by the exemplar set.",
+  "panel_note": "The panel is %d genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+  "panel_label": "sampled genomes",
+  "feature_order": "NS1,NS2,VP,VP2"
+}

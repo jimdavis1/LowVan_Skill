@@ -54,9 +54,37 @@ ap.add_argument("--panel-label", default="held-out genomes",
                 help="what the 06 tiles and the headline tile call the panel")
 a = ap.parse_args()
 G, PROSE, OUT = a.taxon, a.prose, a.out
+
+
+def fill_note(note, ships, used):
+    """Substitute the routing counts, with grammar that follows the numbers.
+
+    The old form was `note % (ships, used)` with the plural frozen into the
+    sentence, which published "of which 1 were used by the exemplar set" and
+    "of which 0 was used". A note may now instead use named fields --
+    %(ships)d, %(used)d, %(contigs)s, %(was)s -- and get "1 reference contig
+    ... of which 1 was used" without the author having to guess the count.
+
+    Positional notes still work, so nothing written against the old form
+    changes. Prefer putting the note in the prose JSON over passing
+    --routing-note: the CLI flag is not recorded anywhere, so a page
+    regenerated without it silently falls back to the default, which names
+    the ten Picornaviridae modules whatever family you are building.
+    """
+    if "%(" in note:
+        return note % {"ships": ships, "used": used,
+                       "contigs": "reference contig" + ("" if ships == 1 else "s"),
+                       "was": "was" if used == 1 else "were"}
+    return note % (ships, used)
 S = a.scratch
 F = a.workdir or os.path.join(S, "fin", G)
 pr = json.load(open(PROSE))
+
+#  The 04 and 06 notes and the panel label describe how THIS module was built,
+#  so they belong beside its prose rather than on a command line nobody records.
+#  A CLI flag still wins, for a one-off.
+panel_label = a.panel_label if a.panel_label != "held-out genomes" else pr.get("panel_label", a.panel_label)
+panel_note = a.panel_note or pr.get("panel_note")
 mod = json.load(open(os.path.join(F, "%s_Viral_PSSM.json" % G)))[G]
 feats = mod["features"]
 reg = {f["key"]: f for f in json.load(open(os.path.join(F, "registry.json")))[G]["features"]}
@@ -73,9 +101,17 @@ def P(x, y): return "%.1f%%" % (100.0 * x / y) if y else "\u2014"
 #  Prose blocks are inserted raw and keep entities. Mixing the two produced a
 #  headline tile reading "10.8&times;".
 #  order features as the genome is laid out, POLY first
-ORDER = (a.order.split(",") if a.order else
-         ["POLY", "Ldr", "VP0", "VP4", "VP2", "VP3", "VP1", "2A", "2A1", "2A2", "2A3",
-          "2B", "2C", "3A", "VPG", "3C", "3D"])
+#  Genome order for the tables and bars. Like the notes above, this used to be
+#  CLI-only, so regenerating a page without --order silently fell back to the
+#  PICORNAVIRUS order below -- which contains VP2, VP3 and VP1, so a parvovirus
+#  page came back with its capsid rows shuffled to the top and nothing looked
+#  broken enough to notice. Keep it in the prose JSON beside the module's text.
+_order = a.order or pr.get("feature_order")
+if isinstance(_order, str):
+    _order = _order.split(",")
+ORDER = [k.strip() for k in _order] if _order else \
+        ["POLY", "Ldr", "VP0", "VP4", "VP2", "VP3", "VP1", "2A", "2A1", "2A2", "2A3",
+         "2B", "2C", "3A", "VPG", "3C", "3D"]
 keys = sorted(feats, key=lambda k: (ORDER.index(k) if k in ORDER else 99, k))
 
 # 01 -- the dump
@@ -223,7 +259,7 @@ facts = {
    [str(len(keys)), "features, all with profiles" if all(k in reg and reg[k]["pssms"] for k in keys) else "features"],
    [str(n_pssm), "PSSMs"],
    ["%d/%d" % (routed, ex), "exemplars routed"],
-   [P(clean, n_p), a.panel_label + " genuinely clean"],
+   [P(clean, n_p), panel_label + " genuinely clean"],
    ["%.1f\u00d7" % collapse, "string collapse"],
    ["%.1f\u00d7" % fold, "vocabulary collapse at equal proteins sampled"]],
  "sections": [
@@ -251,11 +287,11 @@ facts = {
        ["routed to %s" % G, c(routed), P(routed, ex)]] +
        [["routed to %s" % m, c(n), P(n, ex)] for m, n in other.most_common()] +
        [["unrouted", c(len(unr)), P(len(unr), ex)]]},
-     {"type": "prose", "html": (a.routing_note or
+     {"type": "prose", "html": fill_note(a.routing_note or pr.get("routing_note") or
        "%d rep contigs ship with the module; %d of them are the best BLASTn hit for at least one exemplar. "
        "Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing "
-       "threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold.") %
-       (len(mod.get("close_genomes", {})), refs_used)}] + [{"type": "prose", "html": h} for h in pr["p04"]]},
+       "threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold.",
+       len(mod.get("close_genomes", {})), refs_used)}] + [{"type": "prose", "html": h} for h in pr["p04"]]},
   {"num": "05", "title": "Does it call the proteins?", "lede": pr["lede05"], "blocks": [
      {"type": "bars", "rows": bars, "unit": "%"},
      {"type": "prose", "html": "<b>%d of %d routed exemplars get every one of the %d core features.</b> %s" % (full, routed, len(core),
@@ -267,10 +303,10 @@ facts = {
            "called by an external program and absent from this table, or a protein part of the genus does not encode"))}] +
      [{"type": "prose", "html": h} for h in pr["p05"]]},
   {"num": "06", "title": "Are the calls right?", "lede": pr["lede06"], "blocks": [
-     {"type": "tiles", "items": [[str(n_p), a.panel_label], [str(noflag), "no genome/contig flags"],
+     {"type": "tiles", "items": [[str(n_p), panel_label], [str(noflag), "no genome/contig flags"],
         [str(clean), "genuinely clean"], [str(flagged), "flagged"], [str(nothing), "called nothing"],
         [P(clean, n_p), "clean"]]},
-     {"type": "prose", "html": (a.panel_note or
+     {"type": "prose", "html": (panel_note or
        "The panel is %d genomes drawn round-robin across species from this genus's own BV-BRC contigs, "
        "with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored "
        "by <code>viral_genome_quality.pl</code>.") % n_p +
