@@ -133,7 +133,20 @@ for r in rows: r["calls"] = [k for k in r["calls"] if k]
 other = collections.Counter(r.get("module") for r in cov["rows"]
                             if r.get("module") not in (G, None, "", "UNROUTED"))
 routed = len(rows)
-refs_used = len(cov.get("flags", {}))
+#  How many of the module's own rep contigs were the best BLASTn hit for at
+#  least one exemplar. This used to be len(cov["flags"]), which worked only
+#  because the flat path mistakenly filled 'flags' with rep contig names. The
+#  GTO path fills it with real feature_quality_flags, so the same expression
+#  silently became "how many distinct quality flags fired" -- and published
+#  "of which 0 were used" for Protoparvovirus and "of which 1" for
+#  DensovirinaeAmbi. evaluate_coverage.py now measures it directly.
+_ru = cov.get("refs_used")
+refs_used = _ru.get("own") if isinstance(_ru, dict) else _ru
+if refs_used is None:
+    raise SystemExit(
+        "coverage json has no 'refs_used': regenerate it with the current "
+        "evaluate_coverage.py. Do not fall back to len(flags) -- it is right "
+        "only for the flat path and wrong by construction for the GTO path.")
 
 # 05 -- per-feature presence in routed exemplars.
 #  The feature table reports the GENE SYMBOL, not the JSON feature key, and the

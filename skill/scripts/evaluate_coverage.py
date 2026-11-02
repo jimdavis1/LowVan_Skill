@@ -268,6 +268,42 @@ def stage_exemplars(ex, seqs, work, sub="ex_gto", meta_name="exemplars.metadata"
     return exd, meta
 
 
+def scan_refs(tbldirs):
+    """Which reference contigs actually won, split own-module vs all.
+
+    Column 13 of the feature table is `$best_rep` -- the reference contig file
+    whose BLASTn hit routed the genome. It is NOT a flag, though the flat path
+    read it as one for a long time; `gen_facts.py` then used len(flags) as
+    "references used" and the accident held together. Count it on purpose.
+
+    Own and all are kept apart because they answer different questions. A rep
+    contig belonging to ANOTHER module winning is a routing fact about the
+    panel, not a reference this module used -- and conflating them is how
+    Hamaparvovirinae came to publish "25 reference contigs ship, of which 28
+    were used", which cannot be true of anything.
+    """
+    reps, mods = set(), collections.Counter()
+    for d in tbldirs:
+        for t in glob.glob(os.path.join(d, "*.feature.tbl")):
+            for line in open(t, errors="replace"):
+                f = line.rstrip("\n").split("\t")
+                if len(f) < 13 or f[4] != "CDS":
+                    continue
+                rep, mod = f[12].strip(), (f[11] or "").strip()
+                if not rep:
+                    continue
+                reps.add(rep)
+                if mod:
+                    mods[mod] += 1
+    #  "Own" means this module's rep contigs, so it has to be measured against
+    #  the module under evaluation -- not against each row's own module, which
+    #  is self-consistent by construction and would call every rep "own".
+    #  The module under evaluation is the one most rows routed to.
+    me = mods.most_common(1)[0][0] if mods else None
+    own = {r for r in reps if me and r.split(".")[0] == me}
+    return {"module": me, "own": len(own), "all": len(reps)}
+
+
 def report_gto(ex, seqs, work, out):
     """Same report as report(), read from the GTOs so specials are included.
 
@@ -283,7 +319,8 @@ def report_gto(ex, seqs, work, out):
     """
     annod = os.path.join(work, "Anno_GTOs")
     quald = os.path.join(work, "Quality_GTOs")
-    unrouted, per_mod = [], collections.Counter()
+    unrouted, no_calls = [], []
+    per_mod = collections.Counter()
     feats, flags = collections.Counter(), collections.Counter()
     per_mod_feat = collections.defaultdict(collections.Counter)
     by_caller = collections.Counter()
@@ -326,8 +363,17 @@ def report_gto(ex, seqs, work, out):
             calls.append(gene or (rest.lower() if rest else key))
             if len(fam) > 3 and fam[3]:
                 by_caller[fam[3]] += 1
+        #  A GTO that exists and parses means the genome WAS routed and
+        #  annotated; it just came out with nothing above threshold. That is
+        #  not the same as unrouted, where no rep contig matched at all, and
+        #  merging the two hides a profile problem inside a routing number.
+        #  Only gto_for() returning nothing is unrouted -- see the flat path.
         if not calls:
-            unrouted.append(g); continue
+            no_calls.append(g)
+            per_mod[mod or "(none)"] += 1
+            rows.append({"genome": g, "len": sum(map(len, seqs[g])),
+                         "module": mod, "n_calls": 0, "calls": []})
+            continue
         per_mod[mod or "(none)"] += 1
         for c in calls:
             feats[c] += 1
@@ -352,10 +398,13 @@ def report_gto(ex, seqs, work, out):
             for fl in f.get("feature_quality_flags") or []:
                 flags[fl] += 1
 
-    res = {"exemplars": len(ex), "unrouted": unrouted, "per_module": dict(per_mod),
+    res = {"exemplars": len(ex), "unrouted": unrouted,
+           "routed_no_calls": no_calls, "per_module": dict(per_mod),
            "features": dict(feats),
            "per_module_features": {k: dict(v) for k, v in per_mod_feat.items()},
            "flags": dict(flags), "rows": rows,
+           "refs_used": scan_refs([os.path.join(work, "tbl"),
+                                   os.path.join(work, "anno")]),
            "genome_quality": {"good": good, "poor": poor},
            "calls_by_program": dict(by_caller),
            "source": "GTO pipeline -- special features included"}
@@ -363,6 +412,10 @@ def report_gto(ex, seqs, work, out):
     print("\n  %d exemplars | %d routed | %d UNROUTED (%.1f%%)"
           % (len(ex), len(ex) - len(unrouted), len(unrouted),
              100.0 * len(unrouted) / max(len(ex), 1)))
+    if no_calls:
+        print("  %d routed but called NOTHING: %s"
+              % (len(no_calls), ", ".join(no_calls[:8])
+                 + (" ..." if len(no_calls) > 8 else "")))
     if by_caller:
         print("  calls by program:")
         for k, v in sorted(by_caller.items(), key=lambda x: -x[1]):
@@ -517,7 +570,8 @@ def main():
 
 
 def report(ex, seqs, outd, out):
-    unrouted, per_mod, feats, flags = [], collections.Counter(), collections.Counter(), collections.Counter()
+    unrouted, no_calls = [], []
+    per_mod, feats, flags = collections.Counter(), collections.Counter(), collections.Counter()
     per_mod_feat = collections.defaultdict(collections.Counter)
     quality = collections.Counter()
     rows = []
@@ -525,33 +579,61 @@ def report(ex, seqs, outd, out):
         tbl = os.path.join(outd, g + ".feature.tbl")
         if not os.path.exists(tbl):
             unrouted.append(g); continue
-        mod = None; calls = []
+        mod = None; calls = []; sentinel = False
         for line in open(tbl, errors="replace"):
             f = line.rstrip("\n").split("\t")
             if len(f) < 12:
                 continue
-            calls.append(f[6])
+            #  Column 5 is the feature type. The annotator writes one sentinel
+            #  row per genome it routed but could call nothing in: type
+            #  "no_features_called", an empty feature name in column 7, length
+            #  0, and the reason in the last column. Appending column 7 from it
+            #  gives the genome a phantom call named "" AND keeps it out of the
+            #  `if not calls` branch below, so a genome with nothing called
+            #  reads as a genome with one call. Two Erythroparvovirus exemplars
+            #  did exactly that, and the only visible trace was a feature named
+            #  "" in the histogram.
             mod = f[11] or mod
-            if len(f) > 12 and f[12].strip():
-                for fl in f[12].split(";"):
-                    if fl.strip():
-                        flags[fl.strip()] += 1
+            if f[4] != "CDS":
+                if f[4] == "no_features_called":
+                    sentinel = True
+                continue
+            calls.append(f[6])
+        #  Three outcomes, not two. A genome that no rep contig matched is
+        #  UNROUTED. A genome that routed but whose every profile fell below
+        #  threshold is a different animal -- the module reached it and had
+        #  nothing to say -- and calling that "unrouted" hides a profile
+        #  problem behind a routing one. The annotator distinguishes them with
+        #  the no_features_called sentinel, so keep the distinction.
         if not calls:
-            unrouted.append(g); continue
+            if sentinel:
+                no_calls.append(g)
+                per_mod[mod or "(none)"] += 1
+                rows.append({"genome": g, "len": sum(map(len, seqs[g])),
+                             "module": mod, "n_calls": 0, "calls": []})
+            else:
+                unrouted.append(g)
+            continue
         per_mod[mod or "(none)"] += 1
         for c in calls:
             feats[c] += 1
             per_mod_feat[mod or "(none)"][c] += 1
         rows.append({"genome": g, "len": sum(map(len, seqs[g])), "module": mod, "n_calls": len(calls),
                      "calls": sorted(set(calls))})
-    res = {"exemplars": len(ex), "unrouted": unrouted, "per_module": dict(per_mod),
+    res = {"exemplars": len(ex), "unrouted": unrouted,
+           "routed_no_calls": no_calls, "per_module": dict(per_mod),
            "features": dict(feats),
            "per_module_features": {k: dict(v) for k, v in per_mod_feat.items()},
-           "flags": dict(flags), "rows": rows}
+           "flags": dict(flags), "rows": rows,
+           "refs_used": scan_refs([outd])}
     json.dump(res, open(out, "w"), indent=1)
     print("\n  %d exemplars | %d routed | %d UNROUTED (%.1f%%)"
           % (len(ex), len(ex) - len(unrouted), len(unrouted),
              100.0 * len(unrouted) / max(len(ex), 1)))
+    if no_calls:
+        print("  %d routed but called NOTHING: %s"
+              % (len(no_calls), ", ".join(no_calls[:8])
+                 + (" ..." if len(no_calls) > 8 else "")))
     print("  wrote %s" % out)
 
 
