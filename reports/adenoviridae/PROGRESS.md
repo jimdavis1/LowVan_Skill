@@ -240,3 +240,138 @@ in the data separates the two. None is being built.
   Penton lacks the RGD motif human adenoviruses use to engage integrins.
   Proteins V and IX are absent from the genome -- confirms the pIX correction.
   Authors' own section accessions: U40839, U31557, U40837, U18755, U40838.
+
+## 2026-11-03 -- curator corrections 1-3 applied; two silent defects found
+
+CURATOR: "1. split them and be clear about what is the precursor and the mat
+peptide. 2. Don't build them unless you can find literature, or base them on
+reasonable homology. 3. go ahead with barthadenovirus."
+
+### 1. PRECURSOR / MATURE SPLIT -- DONE
+P32K -> P32K_MAT (274 of 286 aa, 12 removed). The test needs TWO signals and
+both must hold: the shorter sequence is an EXACT C-terminal substring of a
+longer deposit FROM THE SAME GENOME, and it does NOT start with Met, because a
+cleaved N-terminus cannot. Nesting alone also matches a submitter annotating a
+downstream start codon, which still begins with Met; the Met test alone also
+matches a partial deposit. Naming follows the kit: P32K is the CDS precursor,
+P32K_MAT the mat_peptide with upstream_ext 0.
+
+### 2. MATURE PEPTIDES -- ONE TRANSFERS, THE REST DO NOT
+pVII's first cleavage is MEASURED IN TWO GENERA INDEPENDENTLY. Table 1 of
+PMID_claude_generated 8659111 sequenced peptide II from purified virions of
+BOTH OAV287 (GIGTSSMRA) and human Ad5 (GLRFPSKMF), and both sit immediately
+after .GW|G. The paper also states pVII's N-terminal 16 residues are "highly
+conserved between viruses of human, animal, and avian origin".
+MEASURED IN OUR OWN COLLECTIONS, all four modules:
+  Mastadenovirus  MSILISPSNNTGWG  cut after 13   281/302
+  Aviadenovirus   MSILISPNDNRGWG  cut after 13    38/38
+  Barthadenovirus MSILVSPSDNTGWG  cut after 13    15/16
+  Siadenovirus    MHSVVYSPGDSRGWG cut after 14    11/11
+So pVII is built everywhere. NOT transferred: the MRAT|G second cut (the paper
+says it does not conform to human specificity, and it is essentially absent
+outside Barthadenovirus), p32K (genus-specific), pVIII and pVI (no TAdV-3
+evidence). Decisions per candidate in MATURE_PEPTIDE_DECISIONS.md.
+
+### 3. BARTHADENOVIRUS -- building as one module, routing measured later.
+
+### DEFECT: 143 STALE COLLECTIONS FROM EARLIER PASSES
+build_cols.py wrote collections but never REMOVED ones it no longer produces.
+Pass 1 declared 152 Mastadenovirus UNC clusters, pass 11 declares 55, and
+UNC56..UNC152 were still on disk holding 1-2 sequences each -- below the
+floor, belonging to a clustering that no longer exists, and absent from every
+summary the script prints. SHUTOFF was still there too, two passes after it
+was deleted as a duplicate of K100. The next workflow step globs *.fasta and
+would have built PSSMs from all of them. Nothing would have errored.
+Removed 97 + 29 + 8 + 9 = 143. The removal is scoped: .fasta only, inside the
+module's own collections directory, nothing recursive, synonyms.tsv untouched.
+
+### DEFECT: find_misfiled ACCUSED THE WRONG GENOME, AND I ALMOST BELIEVED IT
+First run reported `Penguin siadenovirus A` (2005055.4) belonged in
+Mastadenovirus on the strength of three >=98% HEXON partners. A >=90%
+cross-genus hexon identity is extraordinary, so it was checked instead of
+applied. The three partners are 10535.510/511/512, all "unidentified
+adenovirus" -- BV-BRC taxon 10535, a single bucket of 111 genomes of every
+genus, filed under Mastadenovirus by default. THE DIRECTION WAS BACKWARDS:
+those three are siadenoviruses in the wrong module, and the one NAMED genome
+in the clade was accused by the three unnamed ones.
+
+Two fixes to the tool, not the output:
+  - an unnamed genome ("unidentified", "unclassified", "untyped", " sp.") is
+    never a VOUCHER, only ever a query. It carries no taxonomic claim.
+  - a single >=95% full-length HEXON match is conclusive. The two-voucher rule
+    assumes the right clade has more than one named member in the dump;
+    here it has exactly one, so own=0 foreign=1 and all three were missed.
+The bad entry was deleted from misfiled.json by hand -- the file merges rather
+than replaces, which is right for preserving applied fixes but wrong for an
+artefact.
+RESULT: 10535.510, 10535.511, 10535.512  Mastadenovirus -> Siadenovirus.
+
+### ALL FOUR MODULES NOW PASS THE LITERATURE CHECK
+Mastadenovirus and Aviadenovirus had NO probe patterns, so their check could
+not run at all. Both lists completed; 13 new PMIDs resolved against PubMed and
+each title read. Added probes for the ten CELO ORFs now named as features.
+  Mastadenovirus  29/30 PRESENT. ABSENT: VA RNA I/II -- correct, they are
+                  non-coding RNAs and cannot appear in a protein dump.
+  Aviadenovirus   17/19 PRESENT. ABSENT: E1 region and protein IX -- both
+                  real biology, aviadenoviruses have neither.
+  Siadenovirus     9/9,  Barthadenovirus 16/16, except the decided pIX ABSENT.
+
+## 2026-11-03 -- PSSMs built for all four modules, in parallel
+
+PARALLELISM USED: 4 concurrent PSSM builds, then 4 concurrent retries, then 4
+concurrent leftover passes, plus rep contigs alongside. NOT parallelised:
+build_cols.py (one process writes all four modules, two copies would race) and
+coverage runs (three kernel panics on Parvoviridae at ~515 vouchers/genome
+against a ~245,000 ceiling; Mastadenovirus is 3,353 genomes).
+
+MODULE JSONs: 292 features, every one with an annotation string. The
+manuscript rule is that the annotation says what the protein DOES and the
+symbolic name goes in gene_symbol -- "Major capsid protein hexon" + symbol
+"hexon", never "hexon protein". Adenoviridae contributes nothing to the
+controlled vocabulary yet (all 35 taxa in it are RNA viruses), so these are
+coined in house style. Discovered clusters get "Uncharacterized
+lineage-specific protein N", the canonical string.
+NUMBERS KEPT ON PURPOSE, because no paper supports a function: Avia
+ORF9/10/11/14/17/20, Sia ORF7/ORF8, Bartha RH0/RH3/RH5/LH1/E4.1.
+P32K_MAT carries upstream_ext 0 -- with the default of 1 the annotator scans
+upstream from the cleaved N-terminus, finds the PRECURSOR's start codon and
+emits the mature peptide on the precursor's own coordinates. That shipped on
+rabies G and on six norovirus products at once.
+
+### BARTHADENOVIRUS: 17 of 43 FEATURES BUILT NOTHING, INCLUDING CORE GENES
+DBP, IVa2, 52K, IIIa, protease, pVI, pX and UXP all produced no profile. Not a
+count problem -- they have 12-22 sequences each. TRACED ONE INSTEAD OF
+GUESSING: E4_1 has 13 input sequences and ALL 13 went to Leftover_Seqs.aa.
+Zero clusters formed, because at -mi 0.8 -mc 0.8 no two of the thirteen are
+80% identical over 80% coverage. The genus spans ruminant, avian and
+reptilian hosts and 0.8 is the wrong identity floor for it. This is the
+documented Betarhabdovirinae case in references/pipeline.md.
+
+-mi is NOT a coverage dial -- it is the identity at which two sequences are
+declared the same protein. So the retry climbs DOWN one step at a time
+(0.6, 0.5, 0.4, 0.3) and stops at the FIRST setting that yields a profile, so
+nothing is clustered looser than it needs. Every rescue recorded in
+BUILD_PARAMS with the setting that did it.
+RESULT: all 10 core-gene failures rescued at mi=0.6 mc=0.7. Siadenovirus UXP
+rescued at 0.6. Mastadenovirus UNC14 rescued.
+
+THIS IS ALSO EVIDENCE ON THE PARTITIONING QUESTION: a genus that needs
+mi ~0.6 on its CORE genes is one whose members barely cluster together.
+Routing numbers to follow before any split is proposed.
+
+### STILL WITHOUT A PROFILE AFTER THE LADDER
+Bartha  LH1 (n=11), RH4 (n=8), UNC3 (n=7), RH6 (n=3), RH0 (n=2), RH3 (n=1),
+        P32K_MAT (n=1)
+Mast    UNC45 (n=4), UNC50 (n=3), UNC51 (n=3)
+Avia    UNC81 (n=3), UNC85 (n=3)
+Three or four sequences too divergent to cluster even at 30% identity probably
+are not one homology group. The leftover pass (build_leftover_pssms.py) is the
+designed route for sub-threshold sequences and is running now. Anything still
+unprofiled will be REPORTED as declared-but-unprofiled, not quietly dropped: a
+feature declared with nothing behind it makes the annotator report it missing
+on every genome.
+
+### REP CONTIGS
+Siadenovirus      8 references cover 64/64 genomes = 100.0%
+Barthadenovirus  14 references cover 55/55 genomes = 100.0%
+Mastadenovirus and Aviadenovirus running.

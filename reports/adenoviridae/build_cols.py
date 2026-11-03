@@ -405,6 +405,36 @@ if os.path.exists(os.path.join(W, "dbcoords.json")):
             REFLEN[_m] = {k: v for k, v in _f.items()
                           if not k.startswith("_") and isinstance(v, int)}
 
+# --------------------------------------------------------------------------
+#  PRECURSOR vs MATURE PEPTIDE: they must not share a collection
+# --------------------------------------------------------------------------
+#  A cleaved protein is deposited BOTH ways. Barthadenovirus genome 114430
+#  deposits p32K at 286 aa (precursor) and at 274 aa (mature) and both landed
+#  in P32K, so one profile would have been trained on two forms. That is the
+#  Parvoviridae VP1/VP2 defect exactly, and there it caused the real VP2
+#  clusters to be dropped as substrings of VP1 and VP2 to ship as a VP1
+#  profile, called at VP1's coordinates in 281 of 295 genomes.
+#
+#  THE TEST IS STRUCTURAL, NOT NOMINAL, and it needs two signals:
+#    1. the shorter sequence is an EXACT C-terminal substring of a longer
+#       deposit FROM THE SAME GENOME -- a cleaved product always is, and
+#       nothing else reliably is; and
+#    2. the shorter sequence does NOT start with Met -- a cleaved N-terminus
+#       cannot, because the cut is made by the proteinase, not the ribosome.
+#
+#  Both are required. (1) alone also matches a submitter annotating a
+#  downstream start codon, which still begins with Met. (2) alone matches a
+#  partial deposit.
+#
+#  Only features whose cleavage is ESTABLISHED IN THE LITERATURE are listed.
+#  Barthadenovirus p32K: measured by N-terminal sequencing of the mature
+#  virion protein, AYRKRKKKFQRPKPR, cleaved at the type I site LAGG|AYR
+#  (PMID_claude_generated 8659111, Vrati 1996, Table 1). Nothing is split on
+#  a site this project inferred.
+MATURE = {
+ "Barthadenovirus": {"P32K": "P32K_MAT"},
+}
+
 PARALOG = {
  "Mastadenovirus":  [{"FIBER", "FIBER1", "FIBER2"}, {"E1A", "E1A_243R"}],
  "Aviadenovirus":   [{"FIBER", "FIBER1", "FIBER2"}],
@@ -914,6 +944,31 @@ def main():
                         par["%s -> %s (%daa, ref %d vs %d)"
                             % (k, j, L, own, refs[j])] += 1
 
+        #  ---- split precursor from mature peptide (see MATURE above) ----
+        mat = collections.Counter()
+        for src, dst in MATURE.get(mod, {}).items():
+            rows = hits.get(src) or []
+            bygen = collections.defaultdict(list)
+            for e in rows:
+                bygen[e[0]].append(e)
+            for g, rs in bygen.items():
+                if len(rs) < 2:
+                    continue
+                for a in rs:
+                    for b in rs:
+                        if a is b or len(b[1]) <= len(a[1]):
+                            continue
+                        #  a is shorter; cleaved product, or a downstream
+                        #  start codon? Met says which.
+                        if b[1].endswith(a[1]) and not a[1].startswith("M"):
+                            if a in hits[src]:
+                                hits[src].remove(a)
+                                hits[dst].append(a)
+                                mat["%s -> %s (%d of %d aa, %d removed)"
+                                    % (src, dst, len(a[1]), len(b[1]),
+                                       len(b[1]) - len(a[1]))] += 1
+                            break
+
         #  ---- accessory discovery on whatever homology could not place ----
         #  The floor is TWO numbers, not one. Pass 1 used features alone and
         #  declared 152 UNC features in Mastadenovirus, 28 of which were a
@@ -1041,6 +1096,26 @@ def main():
         od = os.path.join(W, mod, "collections")
         if not nowrite:
             os.makedirs(od, exist_ok=True)
+            #  REMOVE COLLECTIONS THIS RUN NO LONGER PRODUCES. Writing is not
+            #  the same as replacing: pass 1 declared 152 Mastadenovirus UNC
+            #  clusters and pass 11 declares 55, but UNC56..UNC152 were still
+            #  sitting on disk from the earlier run, holding 1-2 sequences
+            #  each -- below the floor, belonging to a clustering that no
+            #  longer exists, and invisible in every summary this script
+            #  prints. The next step in the workflow globs *.fasta and would
+            #  have built profiles from all of them.
+            #
+            #  Only .fasta files are touched, and only in this module's own
+            #  collections directory, which this script owns outright. Nothing
+            #  recursive, nothing outside `od`, and synonyms.tsv is left alone.
+            stale = sorted(f for f in os.listdir(od)
+                           if f.endswith(".fasta") and f[:-6] not in hits)
+            for f in stale:
+                os.remove(os.path.join(od, f))
+            if stale:
+                print("  removed %d stale collection(s) from a previous run: %s"
+                      % (len(stale), ", ".join(s[:-6] for s in stale[:12])
+                         + (" ..." if len(stale) > 12 else "")))
             for k, rows in hits.items():
                 with open(os.path.join(od, "%s.fasta" % k), "w") as fh:
                     seen = set()
@@ -1100,6 +1175,9 @@ def main():
             print("  fiber routed by genome %d  (%s)"
                   % (sum(fib.values()),
                      ", ".join("%s %d" % (k, n) for k, n in fib.most_common())))
+        if mat:
+            print("  precursor/mature split %d  (%s)"
+                  % (sum(mat.values()), "; ".join(sorted(mat))))
         if par:
             print("  paralogue audit moved %d  (%s)"
                   % (sum(par.values()), "; ".join(sorted(par))))

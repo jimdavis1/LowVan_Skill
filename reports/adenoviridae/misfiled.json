@@ -1,0 +1,26 @@
+{
+ "10535.510": {
+  "foreign": 1,
+  "from": "Mastadenovirus",
+  "genus": "Siadenovirus",
+  "name": "unidentified adenovirus",
+  "own": 0,
+  "to": "Siadenovirus"
+ },
+ "10535.511": {
+  "foreign": 1,
+  "from": "Mastadenovirus",
+  "genus": "Siadenovirus",
+  "name": "unidentified adenovirus",
+  "own": 0,
+  "to": "Siadenovirus"
+ },
+ "10535.512": {
+  "foreign": 1,
+  "from": "Mastadenovirus",
+  "genus": "Siadenovirus",
+  "name": "unidentified adenovirus",
+  "own": 0,
+  "to": "Siadenovirus"
+ }
+}

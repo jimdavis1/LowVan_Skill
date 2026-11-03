@@ -45,7 +45,8 @@
      "function": [
       1833268
      ]
-    }
+    },
+    "pattern": "\\be1a\\b"
    },
    {
     "name": "E1A 243R",
@@ -55,7 +56,8 @@
      "coordinates": [
       1833268
      ]
-    }
+    },
+    "pattern": "243\\s*r|e1a.*243"
    },
    {
     "name": "E1B 19K",
@@ -65,7 +67,8 @@
      "function": [
       15302210
      ]
-    }
+    },
+    "pattern": "e1b.*19|19\\s*k.*e1b"
    },
    {
     "name": "E1B 55K",
@@ -76,7 +79,8 @@
       20861261,
       17079297
      ]
-    }
+    },
+    "pattern": "e1b.*55|55\\s*k.*e1b"
    },
    {
     "name": "protein IX",
@@ -87,7 +91,8 @@
       2583109,
       33789897
      ]
-    }
+    },
+    "pattern": "protein ix|\\bpix\\b|\\bix\\b"
    },
    {
     "name": "core protein V",
@@ -97,12 +102,18 @@
      "function": [
       33252742
      ]
-    }
+    },
+    "pattern": "\\bpv\\b|protein v\\b|core protein v"
    },
    {
     "name": "E3 12.5K",
     "key": "E3_12_5K",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      11022786
+     ]
+    },
+    "pattern": "12\\.?5\\s*k"
    },
    {
     "name": "E3 gp19K",
@@ -113,27 +124,50 @@
       8350398,
       8249282
      ]
-    }
+    },
+    "pattern": "gp ?19|19\\s*k.*glyco|e3.*19"
    },
    {
     "name": "E3 CR1-alpha",
     "key": "E3_CR1A",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      11022786,
+      8627757
+     ]
+    },
+    "pattern": "cr1-?alpha|cr1a\\b"
    },
    {
     "name": "E3 CR1-beta",
     "key": "E3_CR1B",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      11752165,
+      11022786
+     ]
+    },
+    "pattern": "cr1-?beta|cr1b\\b|49\\s*k"
    },
    {
     "name": "E3 CR1-gamma",
     "key": "E3_CR1G",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      11022786
+     ]
+    },
+    "pattern": "cr1-?gamma|cr1g\\b"
    },
    {
     "name": "E3 CR1-delta",
     "key": "E3_CR1D",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      11022786
+     ]
+    },
+    "pattern": "cr1-?delta|cr1d\\b"
    },
    {
     "name": "E3 6.7K",
@@ -143,7 +177,8 @@
      "function": [
       15507617
      ]
-    }
+    },
+    "pattern": "6\\.?7\\s*k"
    },
    {
     "name": "E3 RID-alpha",
@@ -154,7 +189,8 @@
       14557654,
       16227281
      ]
-    }
+    },
+    "pattern": "rid-?alpha|10\\.?4\\s*k"
    },
    {
     "name": "E3 RID-beta",
@@ -164,12 +200,18 @@
      "function": [
       16227281
      ]
-    }
+    },
+    "pattern": "rid-?beta|14\\.?5\\s*k"
    },
    {
     "name": "E3 14.7K",
     "key": "E3_14_7K",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      17024246
+     ]
+    },
+    "pattern": "14\\.?7\\s*k"
    },
    {
     "name": "adenovirus death protein",
@@ -179,7 +221,8 @@
      "function": [
       15302210
      ]
-    }
+    },
+    "pattern": "death protein|\\badp\\b|11\\.?6\\s*k"
    },
    {
     "name": "E4orf1",
@@ -189,12 +232,18 @@
      "function": [
       38451084
      ]
-    }
+    },
+    "pattern": "e4 ?orf ?1\\b"
    },
    {
     "name": "E4orf2",
     "key": "E4ORF2",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      11134268
+     ]
+    },
+    "pattern": "e4 ?orf ?2\\b"
    },
    {
     "name": "E4orf3",
@@ -205,18 +254,29 @@
       16103189,
       16254336
      ]
-    }
+    },
+    "pattern": "e4 ?orf ?3\\b"
    },
    {
     "name": "E4orf4",
     "key": "E4ORF4",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      31792953
+     ]
+    },
+    "pattern": "e4 ?orf ?4\\b"
    },
    {
     "name": "E4orf5",
     "key": "E4ORF5",
     "note": "Found as accessory cluster UNC1 in triage pass 1 (59 sequences, median 151 aa, labelled 'Orf5' and 'E4 17 kDa protein'); promoted to a declared feature in pass 2.",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      11134268
+     ]
+    },
+    "pattern": "e4 ?orf ?5\\b"
    },
    {
     "name": "E4orf6",
@@ -227,15 +287,21 @@
       17079297,
       20566845
      ]
-    }
+    },
+    "pattern": "e4 ?orf ?6\\b"
    },
    {
     "name": "E4orf6/7",
     "key": "E4ORF67",
     "note": "A SPLICED product: exon 1 of orf6 joined to orf7. Two exons, one intron.",
     "pmids": {
-     "coordinates": []
-    }
+     "coordinates": [],
+     "function": [
+      8035503,
+      1836562
+     ]
+    },
+    "pattern": "e4 ?orf ?6/7|orf6/7"
    },
    {
     "name": "long fiber",
@@ -245,7 +311,8 @@
      "function": [
       7975882
      ]
-    }
+    },
+    "pattern": "long fib(er|re)"
    },
    {
     "name": "short fiber",
@@ -254,7 +321,8 @@
      "function": [
       7975882
      ]
-    }
+    },
+    "pattern": "short fib(er|re)"
    },
    {
     "name": "U exon protein",
@@ -265,23 +333,39 @@
       17881437,
       20739525
      ]
-    }
+    },
+    "pattern": "u ?exon|uxp"
    },
    {
     "name": "i-leader protein",
     "key": "I_LEADER",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      16439556
+     ]
+    },
+    "pattern": "i-?leader"
    },
    {
     "name": "L1 13.6K",
     "key": "L1_13_6K",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      3238923
+     ]
+    },
+    "pattern": "13\\.?6\\s*k"
    },
    {
     "name": "VA RNA I/II",
     "key": null,
     "note": "NOT MODELLED AND NOT A GAP: the VA RNAs are non-coding Pol III transcripts. They have no protein product and cannot carry a PSSM. Recorded here so the absence is a decision rather than an oversight.",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      37434327
+     ]
+    },
+    "pattern": "\\bva ?rna|virus-?associated rna"
    }
   ]
  },
@@ -314,7 +398,8 @@
       17698649,
       16682773
      ]
-    }
+    },
+    "pattern": "long fib(re|er)|fib(er|re)-?1"
    },
    {
     "name": "short fibre",
@@ -323,7 +408,8 @@
      "function": [
       18561970
      ]
-    }
+    },
+    "pattern": "short fib(re|er)|fib(er|re)-?2"
    },
    {
     "name": "GAM-1",
@@ -334,22 +420,39 @@
       9060680,
       11186452
      ]
-    }
+    },
+    "pattern": "gam-?1"
    },
    {
     "name": "dUTPase",
     "key": "DUTPASE",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      14604445,
+      8627769
+     ]
+    },
+    "pattern": "dutp|deoxyuridine"
    },
    {
     "name": "parvovirus Rep-like protein",
     "key": "REPLIKE",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    },
+    "pattern": "rep-?like|\\brep\\b|ns1"
    },
    {
     "name": "lipase",
     "key": "LIPASE",
-    "pmids": {}
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    },
+    "pattern": "lipase"
    },
    {
     "name": "U exon protein",
@@ -358,7 +461,8 @@
      "function": [
       17881437
      ]
-    }
+    },
+    "pattern": "u ?exon|uxp"
    },
    {
     "name": "E1 region",
@@ -368,7 +472,8 @@
      "function": [
       36016389
      ]
-    }
+    },
+    "pattern": "\\be1[ab]?\\b"
    },
    {
     "name": "protein IX",
@@ -377,6 +482,118 @@
     "pmids": {
      "function": [
       33789897
+     ]
+    },
+    "pattern": "protein ix|\\bpix\\b"
+   },
+   {
+    "name": "ORF22 (pRb-binding)",
+    "key": "ORF22",
+    "pattern": "\\borf ?22\\b",
+    "note": "Binds the retinoblastoma protein and activates E2F; the pRb-binding region maps to roughly residues 97-114. CELO 32429-31812, 205 aa. The only CELO accessory ORF with experimentally supported function.",
+    "pmids": {
+     "function": [
+      10400747,
+      14604445
+     ]
+    }
+   },
+   {
+    "name": "ORF16 (ADP-ribosyltransferase)",
+    "key": "ART",
+    "pattern": "\\borf ?16\\b|ribosyltransferase",
+    "note": "Homology to vertebrate mono-ADP-ribosyltransferases, Pfam PF01129, by CD-Search. CELO 39705-39286, 139 aa. COMPUTATIONAL assignment.",
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    }
+   },
+   {
+    "name": "ORF12",
+    "key": "ORF12",
+    "pattern": "\\borf ?12\\b",
+    "note": "Distantly related to parvovirus NS1/Rep (Pfam PF01057) with an INACTIVE ATPase/helicase domain. CELO 5412-4462, 315 aa. Function in an adenoviral context unresolved -- number kept.",
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    }
+   },
+   {
+    "name": "ORF13",
+    "key": "ORF13",
+    "pattern": "\\borf ?13\\b",
+    "note": "Same inactive NS1/Rep-like family as ORF2 and ORF12. CELO 4568-3549, 339 aa. Number kept.",
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    }
+   },
+   {
+    "name": "ORF9",
+    "key": "ORF9",
+    "pattern": "\\borf ?9\\b",
+    "note": "CELO 40037-41002, 321 aa; transcript shown to be spliced up to 40133, so the amino terminus is unclear. Function unknown -- number kept.",
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    }
+   },
+   {
+    "name": "ORF10",
+    "key": "ORF10",
+    "pattern": "\\borf ?10\\b",
+    "note": "CELO 41002-41853, 283 aa, NO homologues. Translation start likely at 41113. Number kept.",
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    }
+   },
+   {
+    "name": "ORF11",
+    "key": "ORF11",
+    "pattern": "\\borf ?11\\b",
+    "note": "CELO 41958-42365, 135 aa. Function unknown -- number kept.",
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    }
+   },
+   {
+    "name": "ORF14",
+    "key": "ORF14",
+    "pattern": "\\borf ?14\\b",
+    "note": "CELO 3503-2892, 203 aa; amino terminus extended by 43 residues in the reannotation. Number kept.",
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    }
+   },
+   {
+    "name": "ORF17",
+    "key": "ORF17",
+    "pattern": "\\borf ?17\\b",
+    "note": "CELO 39256-38717, 179 aa. Function unknown -- number kept.",
+    "pmids": {
+     "function": [
+      14604445
+     ]
+    }
+   },
+   {
+    "name": "ORF20",
+    "key": "ORF20",
+    "pattern": "\\borf ?20\\b",
+    "note": "CELO 33832-32892, 313 aa; amino terminus extended by 42 residues. Highly conserved across FAdV species but low protein-coding potential by one analysis. Number kept.",
+    "pmids": {
+     "function": [
+      14604445
      ]
     }
    }
