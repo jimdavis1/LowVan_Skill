@@ -54,11 +54,23 @@ for line in open(a.metadata):
                   "accession": f[6] if len(f) > 6 else ""}
 if not meta: sys.exit("no rows read from %s" % a.metadata)
 
+#  build_rep_contigs.py records the CONTIG it took, not the genome: the value
+#  is "130329.74.con.0001", while the metadata and the contig filenames carry
+#  the bare genome id "130329.74". Comparing the two as written never matches,
+#  so --close-genomes excluded NOTHING and every panel silently contained the
+#  reference genomes -- measured on Adenoviridae, 3 Nov 2026: 0 excluded on all
+#  four modules. Strip the suffix, and keep the full string too in case a
+#  future writer stores the bare id.
+def _gid(s):
+    i = s.find(".con.")
+    return s[:i] if i > 0 else s
+
 refacc, refgid = set(), set()
 if a.close_genomes:
     for v in json.load(open(a.close_genomes)).values():
         g = v.get("genome_ids")
-        if g: refacc.add(g); refgid.add(g)
+        if g:
+            refacc.add(g); refgid.add(g); refgid.add(_gid(g))
 
 pool = collections.defaultdict(list)
 skipped_ref = 0
@@ -88,6 +100,17 @@ open(a.tsv, "w").write("\n".join(rows) + "\n")
 print("panel: %d genome(s) across %d species, drawn from %d available"
       % (len(picked), len({meta[g]["species"] for g in picked}), sum(map(len, pool.values()))))
 if a.close_genomes:
+    #  A zero here is never good news. It means the join failed, not that the
+    #  references happen to be absent -- the references were CHOSEN from this
+    #  contig directory, so at least one of them is always in it. Reporting it
+    #  as a count let a non-held-out panel pass for a held-out one.
+    if not skipped_ref:
+        sys.exit("ERROR: --close-genomes was given and 0 genomes were "
+                 "excluded.\n  The references are drawn from --contigs, so "
+                 "some of them are always present;\n  0 means the ids did not "
+                 "join. The panel would NOT be held out. Check the id\n  shape "
+                 "in %s against the .fna names in %s/."
+                 % (a.close_genomes, a.contigs))
     print("       %d reference genome(s) excluded -- the panel is held out" % skipped_ref)
 else:
     print("       NO --close-genomes given: the panel may contain the genomes the\n"

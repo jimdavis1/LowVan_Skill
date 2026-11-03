@@ -1,5 +1,107 @@
 {
    "Aviadenovirus": {
+      "close_genomes": {
+         "Aviadenovirus.1.dna": {
+            "genome_ids": "130663.753.con.0001",
+            "genome_name": "Fowl aviadenovirus 4 FJ09"
+         },
+         "Aviadenovirus.10.dna": {
+            "genome_ids": "2169709.3.con.0001",
+            "genome_name": "Psittacine aviadenovirus B"
+         },
+         "Aviadenovirus.11.dna": {
+            "genome_ids": "1408258.18.con.0001",
+            "genome_name": "Turkey aviadenovirus 5"
+         },
+         "Aviadenovirus.12.dna": {
+            "genome_ids": "1520006.8.con.0001",
+            "genome_name": "Duck adenovirus 2 GD"
+         },
+         "Aviadenovirus.13.dna": {
+            "genome_ids": "1907767.3.con.0001",
+            "genome_name": "Pigeon adenovirus 2"
+         },
+         "Aviadenovirus.14.dna": {
+            "genome_ids": "586029.1616.con.0001",
+            "genome_name": "Fowl adenovirus 8b BLRI_IBH_R1"
+         },
+         "Aviadenovirus.15.dna": {
+            "genome_ids": "764030.5.con.0001",
+            "genome_name": "Pigeon adenovirus 1 IDA4"
+         },
+         "Aviadenovirus.16.dna": {
+            "genome_ids": "1408257.3.con.0001",
+            "genome_name": "Turkey aviadenovirus 4"
+         },
+         "Aviadenovirus.17.dna": {
+            "genome_ids": "2604330.3.con.0001",
+            "genome_name": "Southern Psittacara leucophthalmus aviadenovirus"
+         },
+         "Aviadenovirus.18.dna": {
+            "genome_ids": "2726020.15.con.0001",
+            "genome_name": "Duck adenovirus 4 GD-2019"
+         },
+         "Aviadenovirus.19.dna": {
+            "genome_ids": "2853431.4.con.0001",
+            "genome_name": "Owl adenovirus"
+         },
+         "Aviadenovirus.2.dna": {
+            "genome_ids": "190064.175.con.0001",
+            "genome_name": "Fowl aviadenovirus D"
+         },
+         "Aviadenovirus.20.dna": {
+            "genome_ids": "586029.99.con.0001",
+            "genome_name": "Fowl adenovirus 8b UPM T27"
+         },
+         "Aviadenovirus.21.dna": {
+            "genome_ids": "692069.4.con.0001",
+            "genome_name": "Falcon aviadenovirus A CDVUM_2557971"
+         },
+         "Aviadenovirus.22.dna": {
+            "genome_ids": "764030.20.con.0001",
+            "genome_name": "Pigeon adenovirus 1 CH/BJ/1/2022"
+         },
+         "Aviadenovirus.23.dna": {
+            "genome_ids": "878329.4.con.0001",
+            "genome_name": "Turkey adenovirus 1 D90/2"
+         },
+         "Aviadenovirus.24.dna": {
+            "genome_ids": "172859.66.con.0001",
+            "genome_name": "Fowl aviadenovirus 2 GL-D2"
+         },
+         "Aviadenovirus.25.dna": {
+            "genome_ids": "190063.267.con.0001",
+            "genome_name": "Fowl aviadenovirus C HBL_IBH4"
+         },
+         "Aviadenovirus.3.dna": {
+            "genome_ids": "190065.984.con.0001",
+            "genome_name": "Fowl aviadenovirus E TR/FADV02_Balikesir_Broiler"
+         },
+         "Aviadenovirus.4.dna": {
+            "genome_ids": "190061.193.con.0001",
+            "genome_name": "Fowl aviadenovirus A D4182/18/MY"
+         },
+         "Aviadenovirus.5.dna": {
+            "genome_ids": "2233538.7.con.0001",
+            "genome_name": "Duck adenovirus 3"
+         },
+         "Aviadenovirus.6.dna": {
+            "genome_ids": "190062.27.con.0001",
+            "genome_name": "Fowl aviadenovirus B 15/4616"
+         },
+         "Aviadenovirus.7.dna": {
+            "genome_ids": "3134257.10.con.0001",
+            "genome_name": "Psittacine adenovirus 12 LBF_55a"
+         },
+         "Aviadenovirus.8.dna": {
+            "genome_ids": "1193422.6.con.0001",
+            "genome_name": "Goose adenovirus 4 CH-FJZZ-202201"
+         },
+         "Aviadenovirus.9.dna": {
+            "genome_ids": "1907767.35.con.0001",
+            "genome_name": "Pigeon adenovirus 2 PL_pigeon_4a/2023"
+         }
+      },
       "features": {
          "ART": {
             "anno": "Mono-ADP-ribosyltransferase-like protein ORF16",
@@ -1681,21 +1783,6 @@
             "type": "CDS",
             "upstream_ext": 1
          },
-         "UNC81": {
-            "anno": "Uncharacterized lineage-specific protein 81",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "UNC81",
-            "kmers": 1,
-            "max_len": 83,
-            "median_aa": 61,
-            "min_len": 45,
-            "n_seqs": 3,
-            "segment": "Single DNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
-         },
          "UNC82": {
             "anno": "Uncharacterized lineage-specific protein 82",
             "coverage_cutoff": 0.6,
@@ -1736,21 +1823,6 @@
             "max_len": 157,
             "median_aa": 132,
             "min_len": 111,
-            "n_seqs": 3,
-            "segment": "Single DNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
-         },
-         "UNC85": {
-            "anno": "Uncharacterized lineage-specific protein 85",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "UNC85",
-            "kmers": 1,
-            "max_len": 133,
-            "median_aa": 93,
-            "min_len": 67,
             "n_seqs": 3,
             "segment": "Single DNA Segment",
             "type": "CDS",
@@ -1865,7 +1937,8 @@
       "segments": {
          "Single DNA Segment": {
             "max_len": 48000,
-            "min_len": 38000
+            "min_len": 38000,
+            "replicon_geometry": "linear"
          }
       }
    }

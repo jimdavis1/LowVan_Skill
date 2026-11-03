@@ -1,5 +1,107 @@
 {
    "Mastadenovirus": {
+      "close_genomes": {
+         "Mastadenovirus.1.dna": {
+            "genome_ids": "10535.479.con.0001",
+            "genome_name": "unidentified adenovirus"
+         },
+         "Mastadenovirus.10.dna": {
+            "genome_ids": "32608.127.con.0001",
+            "genome_name": "Human adenovirus 21 Shenzhen-2024-5-ILI-1109"
+         },
+         "Mastadenovirus.11.dna": {
+            "genome_ids": "1123958.3.con.0001",
+            "genome_name": "Chimpanzee adenovirus Y25"
+         },
+         "Mastadenovirus.12.dna": {
+            "genome_ids": "130309.412.con.0001",
+            "genome_name": "Human mastadenovirus F SA14320"
+         },
+         "Mastadenovirus.13.dna": {
+            "genome_ids": "413684.15.con.0001",
+            "genome_name": "unclassified Simian adenoviruses"
+         },
+         "Mastadenovirus.14.dna": {
+            "genome_ids": "2064741.3.con.0001",
+            "genome_name": "Rhesus adenovirus 65"
+         },
+         "Mastadenovirus.15.dna": {
+            "genome_ids": "130309.455.con.0001",
+            "genome_name": "Human mastadenovirus F"
+         },
+         "Mastadenovirus.16.dna": {
+            "genome_ids": "38418.6.con.0001",
+            "genome_name": "Simian adenovirus 2 SV11"
+         },
+         "Mastadenovirus.17.dna": {
+            "genome_ids": "129951.1351.con.0001",
+            "genome_name": "Human mastadenovirus C"
+         },
+         "Mastadenovirus.18.dna": {
+            "genome_ids": "585090.3.con.0001",
+            "genome_name": "Simian adenovirus 35.2"
+         },
+         "Mastadenovirus.19.dna": {
+            "genome_ids": "585096.3.con.0001",
+            "genome_name": "Simian adenovirus 41.2"
+         },
+         "Mastadenovirus.2.dna": {
+            "genome_ids": "10535.475.con.0001",
+            "genome_name": "unidentified adenovirus"
+         },
+         "Mastadenovirus.20.dna": {
+            "genome_ids": "52275.284.con.0001",
+            "genome_name": "Human adenovirus D37"
+         },
+         "Mastadenovirus.21.dna": {
+            "genome_ids": "651580.34.con.0001",
+            "genome_name": "Human adenovirus 54 HAdVD_54_Sapporo2005"
+         },
+         "Mastadenovirus.22.dna": {
+            "genome_ids": "1159188.3.con.0001",
+            "genome_name": "Simian adenovirus A1173"
+         },
+         "Mastadenovirus.23.dna": {
+            "genome_ids": "38420.4.con.0001",
+            "genome_name": "Simian adenovirus 3 ATCC VR-1449"
+         },
+         "Mastadenovirus.24.dna": {
+            "genome_ids": "10514.179.con.0001",
+            "genome_name": "Canine adenovirus 2 G1"
+         },
+         "Mastadenovirus.25.dna": {
+            "genome_ids": "2064736.3.con.0001",
+            "genome_name": "Rhesus adenovirus 60"
+         },
+         "Mastadenovirus.3.dna": {
+            "genome_ids": "108098.427.con.0001",
+            "genome_name": "Human mastadenovirus B HAdV-B/ARG/18017/2000/[P11H11F7]"
+         },
+         "Mastadenovirus.4.dna": {
+            "genome_ids": "130310.255.con.0001",
+            "genome_name": "Human mastadenovirus D"
+         },
+         "Mastadenovirus.5.dna": {
+            "genome_ids": "130309.444.con.0001",
+            "genome_name": "Human mastadenovirus F"
+         },
+         "Mastadenovirus.6.dna": {
+            "genome_ids": "35263.7.con.0001",
+            "genome_name": "Human adenovirus 4a NHRC-22650"
+         },
+         "Mastadenovirus.7.dna": {
+            "genome_ids": "10529.230.con.0001",
+            "genome_name": "Human adenovirus 31 HAdV-A31/USA/16G2/2018"
+         },
+         "Mastadenovirus.8.dna": {
+            "genome_ids": "10519.36.con.0001",
+            "genome_name": "Human adenovirus 7"
+         },
+         "Mastadenovirus.9.dna": {
+            "genome_ids": "28282.92.con.0001",
+            "genome_name": "Human adenovirus 12 HAdV-A12/USA/8B8/2011"
+         }
+      },
       "features": {
          "AGNO": {
             "anno": "Agnoprotein",
@@ -1021,21 +1123,6 @@
             "type": "CDS",
             "upstream_ext": 1
          },
-         "UNC31": {
-            "anno": "Uncharacterized lineage-specific protein 31",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "UNC31",
-            "kmers": 1,
-            "max_len": 237,
-            "median_aa": 193,
-            "min_len": 148,
-            "n_seqs": 6,
-            "segment": "Single DNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
-         },
          "UNC32": {
             "anno": "Uncharacterized lineage-specific protein 32",
             "coverage_cutoff": 0.6,
@@ -1246,21 +1333,6 @@
             "type": "CDS",
             "upstream_ext": 1
          },
-         "UNC45": {
-            "anno": "Uncharacterized lineage-specific protein 45",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "UNC45",
-            "kmers": 1,
-            "max_len": 519,
-            "median_aa": 446,
-            "min_len": 342,
-            "n_seqs": 4,
-            "segment": "Single DNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
-         },
          "UNC46": {
             "anno": "Uncharacterized lineage-specific protein 46",
             "coverage_cutoff": 0.6,
@@ -1332,36 +1404,6 @@
             "median_aa": 177,
             "min_len": 148,
             "n_seqs": 24,
-            "segment": "Single DNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
-         },
-         "UNC50": {
-            "anno": "Uncharacterized lineage-specific protein 50",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "UNC50",
-            "kmers": 1,
-            "max_len": 141,
-            "median_aa": 118,
-            "min_len": 97,
-            "n_seqs": 3,
-            "segment": "Single DNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
-         },
-         "UNC51": {
-            "anno": "Uncharacterized lineage-specific protein 51",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "UNC51",
-            "kmers": 1,
-            "max_len": 164,
-            "median_aa": 134,
-            "min_len": 84,
-            "n_seqs": 3,
             "segment": "Single DNA Segment",
             "type": "CDS",
             "upstream_ext": 1
@@ -1505,7 +1547,8 @@
       "segments": {
          "Single DNA Segment": {
             "max_len": 40000,
-            "min_len": 24000
+            "min_len": 24000,
+            "replicon_geometry": "linear"
          }
       }
    }

@@ -1,5 +1,63 @@
 {
    "Barthadenovirus": {
+      "close_genomes": {
+         "Barthadenovirus.1.dna": {
+            "genome_ids": "130329.74.con.0001",
+            "genome_name": "Duck adenovirus 1 127"
+         },
+         "Barthadenovirus.10.dna": {
+            "genome_ids": "1580497.4.con.0001",
+            "genome_name": "Psittacine adenovirus 3"
+         },
+         "Barthadenovirus.11.dna": {
+            "genome_ids": "2779174.3.con.0001",
+            "genome_name": "Passerine adenovirus 1"
+         },
+         "Barthadenovirus.12.dna": {
+            "genome_ids": "2913659.5.con.0001",
+            "genome_name": "Tern atadenovirus 1 SIB_81"
+         },
+         "Barthadenovirus.13.dna": {
+            "genome_ids": "3043889.3.con.0001",
+            "genome_name": "Agile wallaby atadenovirus 1 GOP3/1"
+         },
+         "Barthadenovirus.14.dna": {
+            "genome_ids": "3068774.3.con.0001",
+            "genome_name": "Grey warbler atadenovirus GEIG"
+         },
+         "Barthadenovirus.2.dna": {
+            "genome_ids": "78522.11.con.0001",
+            "genome_name": "Odocoileus adenovirus 1"
+         },
+         "Barthadenovirus.3.dna": {
+            "genome_ids": "10511.10.con.0001",
+            "genome_name": "Bovine adenovirus 7 TS-GT"
+         },
+         "Barthadenovirus.4.dna": {
+            "genome_ids": "130499.16.con.0001",
+            "genome_name": "Bovine atadenovirus D THT/62"
+         },
+         "Barthadenovirus.5.dna": {
+            "genome_ids": "114430.14.con.0001",
+            "genome_name": "Ovine adenovirus 7 OAV287"
+         },
+         "Barthadenovirus.6.dna": {
+            "genome_ids": "2729647.3.con.0001",
+            "genome_name": "Bearded dragon adenovirus 1 BD5H2"
+         },
+         "Barthadenovirus.7.dna": {
+            "genome_ids": "1580497.3.con.0001",
+            "genome_name": "Psittacine adenovirus 3"
+         },
+         "Barthadenovirus.8.dna": {
+            "genome_ids": "189830.3.con.0001",
+            "genome_name": "Snake adenovirus 1 145/88"
+         },
+         "Barthadenovirus.9.dna": {
+            "genome_ids": "874272.10.con.0001",
+            "genome_name": "Lizard adenovirus 2"
+         }
+      },
       "features": {
          "DBP": {
             "anno": "Single-stranded DNA-binding protein",
@@ -226,21 +284,6 @@
             "type": "CDS",
             "upstream_ext": 1
          },
-         "P32K_MAT": {
-            "anno": "Mature structural protein p32K",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "mat_peptide",
-            "gene_symbol": "p32K",
-            "kmers": 1,
-            "max_len": 320,
-            "median_aa": 274,
-            "min_len": 232,
-            "n_seqs": 1,
-            "segment": "Single DNA Segment",
-            "type": "mat_peptide",
-            "upstream_ext": 0
-         },
          "PENTON": {
             "anno": "Penton base protein",
             "coverage_cutoff": 0.6,
@@ -376,21 +419,6 @@
             "type": "CDS",
             "upstream_ext": 1
          },
-         "RH0": {
-            "anno": "RH0 protein",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "RH0",
-            "kmers": 1,
-            "max_len": 240,
-            "median_aa": 205,
-            "min_len": 158,
-            "n_seqs": 2,
-            "segment": "Single DNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
-         },
          "RH1": {
             "anno": "F-box protein RH1",
             "coverage_cutoff": 0.6,
@@ -413,25 +441,10 @@
             "feature_type": "CDS",
             "gene_symbol": "RH2",
             "kmers": 1,
-            "max_len": 218,
-            "median_aa": 124,
+            "max_len": 220,
+            "median_aa": 158,
             "min_len": 87,
-            "n_seqs": 7,
-            "segment": "Single DNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
-         },
-         "RH3": {
-            "anno": "RH3 protein",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "RH3",
-            "kmers": 1,
-            "max_len": 189,
-            "median_aa": 160,
-            "min_len": 136,
-            "n_seqs": 1,
+            "n_seqs": 9,
             "segment": "Single DNA Segment",
             "type": "CDS",
             "upstream_ext": 1
@@ -526,21 +539,6 @@
             "type": "CDS",
             "upstream_ext": 1
          },
-         "UNC3": {
-            "anno": "Uncharacterized lineage-specific protein 3",
-            "coverage_cutoff": 0.6,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "UNC3",
-            "kmers": 1,
-            "max_len": 307,
-            "median_aa": 240,
-            "min_len": 180,
-            "n_seqs": 7,
-            "segment": "Single DNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
-         },
          "UNC4": {
             "anno": "Uncharacterized lineage-specific protein 4",
             "coverage_cutoff": 0.6,
@@ -608,9 +606,9 @@
             "feature_type": "CDS",
             "gene_symbol": "UNC8",
             "kmers": 1,
-            "max_len": 402,
-            "median_aa": 346,
-            "min_len": 294,
+            "max_len": 124,
+            "median_aa": 104,
+            "min_len": 80,
             "n_seqs": 4,
             "segment": "Single DNA Segment",
             "type": "CDS",
@@ -623,9 +621,9 @@
             "feature_type": "CDS",
             "gene_symbol": "UNC9",
             "kmers": 1,
-            "max_len": 124,
-            "median_aa": 104,
-            "min_len": 80,
+            "max_len": 402,
+            "median_aa": 346,
+            "min_len": 294,
             "n_seqs": 4,
             "segment": "Single DNA Segment",
             "type": "CDS",
@@ -650,7 +648,8 @@
       "segments": {
          "Single DNA Segment": {
             "max_len": 36000,
-            "min_len": 26000
+            "min_len": 26000,
+            "replicon_geometry": "linear"
          }
       }
    }

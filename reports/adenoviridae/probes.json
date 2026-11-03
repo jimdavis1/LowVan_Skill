@@ -791,17 +791,6 @@
     }
    },
    {
-    "name": "RH0",
-    "key": "RH0",
-    "pattern": "\\brh ?0\\b|right-?hand orf 0",
-    "note": "MISSING from the feature set until now. Not in either reference genome; 3 deposits in the dump, one as 'F-box related protein RH0' which fits the RH family. No paper covers it -- keeping the number.",
-    "pmids": {
-     "function": [
-      12504581
-     ]
-    }
-   },
-   {
     "name": "RH1",
     "key": "RH1",
     "pattern": "\\brh ?1\\b|right-?hand orf 1",
@@ -817,17 +806,6 @@
     "key": "RH2",
     "pattern": "\\brh ?2\\b|right-?hand orf 2",
     "note": "F-BOX PROTEIN. NC_004037 complement(28486..29016), 176 aa. 7 of its 22 deposits had been consolidated away into RH4.",
-    "pmids": {
-     "function": [
-      12504581
-     ]
-    }
-   },
-   {
-    "name": "RH3",
-    "key": "RH3",
-    "pattern": "\\brh ?3\\b|right-?hand orf 3",
-    "note": "Not in OAdV-7 and not an F-box member. 4 deposits (160 aa) in the dump, ALL of which consolidation had moved into RH4, leaving RH3 empty. Not an absent gene -- a paralogue wrongly merged.",
     "pmids": {
      "function": [
       12504581

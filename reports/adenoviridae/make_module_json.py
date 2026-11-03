@@ -21,7 +21,7 @@ LENGTH WINDOWS are read from each collection's own distribution, padded, and
 floored -- never from a reference genome, which is a database record and can
 be wrong about a boundary (see dbcoords.json).
 """
-import collections, json, os, sys
+import collections, glob, json, os, sys
 
 W = os.path.dirname(os.path.abspath(__file__)) or "."
 
@@ -178,7 +178,7 @@ def window(L):
 def main():
     for mod, anno in ANNO.items():
         cd = os.path.join(W, mod, "collections")
-        feats, unc, missing = {}, 0, []
+        feats, unc, missing, unprofiled = {}, 0, [], []
         for f in sorted(os.listdir(cd)):
             if not f.endswith(".fasta"):
                 continue
@@ -194,6 +194,15 @@ def main():
             else:
                 missing.append(k)
                 continue
+            #  A FEATURE WITH NO PROFILE MUST NOT BE DECLARED. The annotator
+            #  would report it missing on every genome, and install_module.py
+            #  calls it FATAL for that reason. These are not dropped silently:
+            #  each one is written to DECLARED_UNPROFILED.tsv with its counts,
+            #  so the gap is a record rather than an omission.
+            if not glob.glob(os.path.join(W, "build", mod, "Alignments", mod,
+                                          k, "pssms", "*.pssm")):
+                unprofiled.append((k, a, len(L), L[len(L) // 2]))
+                continue
             lo, hi = window(L)
             d = {"anno": a, "gene_symbol": sym,
                  "feature_type": "mat_peptide" if k in MATPEP else "CDS",
@@ -206,13 +215,33 @@ def main():
                  "n_seqs": len(L), "median_aa": L[len(L) // 2]}
             feats[k] = d
         lo, hi = SEGMENT[mod]
-        out = {mod: {"segments": {"Single DNA Segment":
-                                  {"min_len": lo, "max_len": hi}},
-                     "features": feats}}
+        #  Adenovirus is a single LINEAR double-stranded DNA replicon.
+        #  install_module.py requires replicon_geometry on every segment.
+        seg = {"Single DNA Segment": {"min_len": lo, "max_len": hi,
+                                      "replicon_geometry": "linear"}}
+        #  close_genomes names the rep contigs this module routes with. Rep
+        #  contigs sitting on disk but absent from the JSON are reported as
+        #  "PRESENT BUT UNDECLARED" -- they would be shipped and never used.
+        cg = os.path.join(W, "build", mod, "Rep-Contigs", "close_genomes.json")
+        out = {mod: {"segments": seg, "features": feats}}
+        if os.path.exists(cg):
+            out[mod]["close_genomes"] = json.load(open(cg))
+        with open(os.path.join(W, mod, "DECLARED_UNPROFILED.tsv"), "w") as fh:
+            fh.write("feature\tannotation\tn_seqs\tmedian_aa\treason\n")
+            for k, a, n, med in unprofiled:
+                why = ("derived mature peptide -- cleavage measured only in "
+                       "OAdV-7, no genus-wide anchor yet"
+                       if k.endswith("_MAT") else
+                       "no cluster reaches a profile at the settled mi 0.8; "
+                       "members are near-identical duplicates that collapse "
+                       "to one sequence, and psiblast needs two")
+                fh.write("%s\t%s\t%d\t%d\t%s\n" % (k, a, n, med, why))
         p = os.path.join(W, "%s_Viral_PSSM.json" % mod)
         json.dump(out, open(p, "w"), indent=3, sort_keys=True)
-        print("%-18s %3d features (%d uncharacterized)%s"
+        print("%-18s %3d features (%d uncharacterized)%s%s"
               % (mod, len(feats), unc,
+                 ("  withheld unprofiled: " + ", ".join(k for k, _a, _n, _m in unprofiled))
+                 if unprofiled else "",
                  ("  NO ANNOTATION: " + ", ".join(missing)) if missing else ""))
 
 

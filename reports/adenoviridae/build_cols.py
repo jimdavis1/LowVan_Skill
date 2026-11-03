@@ -295,18 +295,28 @@ BARTHA = dict(CORE, **{
  "LH1": r"^(lh1|lh1 protein|left-?hand orf 1)$",
  "LH2": r"^(lh2|lh2 protein|left-?hand orf 2)$",
  "LH3": r"^(lh3|lh3 protein|left-?hand orf 3)$",
- #  RH0, RH1 and RH6 were MISSING from the feature set entirely. The dump
- #  deposits all three -- RH1 x10, RH6 x7, RH0 x3, one of them as "F-box
- #  related protein RH0" -- and with no key to bind to, 7 RH1 went to
- #  UNASSIGNED and the rest were clustered together into a single UNC that
- #  mixed three different genes. The right-hand region is numbered RH0..RH6
- #  and the module has to declare the whole span, not the middle of it.
- "RH0": r"^(rh0|rh0 protein|right-?hand orf 0|f-?box related protein rh0|"
-        r"f-?box protein rh0)$",
+ #  RH1 and RH6 were MISSING from the feature set entirely -- 7 RH1 deposits
+ #  went to UNASSIGNED and the rest were swept into one accessory cluster
+ #  that mixed RH6, RH1 and RH0, three different genes in one would-be
+ #  profile.
+ #
+ #  RH0 AND RH3 ARE NOT DECLARED, on the primary literature
+ #  (PMID_claude_generated 12504581, Both 2002, the right-end transcription
+ #  map of OAdV-7):
+ #    RH0  exists in BAdV-4 and is related to the F-box family, but the paper
+ #         says it was overlooked precisely because "it lacks an initiating
+ #         methionine". An ORF with no start codon is not an independent
+ #         protein.
+ #    RH3  "the short ORF RH3 is not conserved in BAdV-4" and "No ORF
+ #         RH3-specific transcript was identified". The paper set out to ask
+ #         "whether each of the ORFs could actually code for a protein" and
+ #         its answer lists the products as RH1, 2, 4, 5 and 6. RH3 is not
+ #         among them.
+ #  That both failed to build was the data agreeing with the paper, not a
+ #  pipeline problem. Curator's call, 3 Nov 2026: get rid of them.
  "RH1": r"^(rh1|rh1 protein|right-?hand orf 1)$",
  "RH6": r"^(rh6|rh6 protein|right-?hand orf 6)$",
  "RH2": r"^(rh2|rh2 protein|right-?hand orf 2)$",
- "RH3": r"^(rh3|rh3 protein|right-?hand orf 3)$",
  "RH4": r"^(rh4|rh4 protein|right-?hand orf 4)$",
  "RH5": r"^(rh5|rh5 protein|right-?hand orf 5)$",
  "E4_1": r"^(e4\.1|e4\.1 protein)$",
@@ -445,7 +455,7 @@ PARALOG = {
  #  RH3 shipped with ZERO sequences while 4 real RH3 deposits sat inside RH4,
  #  and RH2 lost 7 of its 22. The same risk applies to LH1/LH2/LH3 and to
  #  E4.1/E4.2/E4.3, which are likewise neighbouring paralogues.
- "Barthadenovirus": [{"RH0", "RH1", "RH2", "RH3", "RH4", "RH5", "RH6"},
+ "Barthadenovirus": [{"RH1", "RH2", "RH4", "RH5", "RH6"},
                      {"LH1", "LH2", "LH3"},
                      {"E4_1", "E4_2", "E4_3"}],
 }

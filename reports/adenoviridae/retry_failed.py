@@ -21,10 +21,72 @@ import glob, json, os, subprocess, sys
 
 W = os.path.dirname(os.path.abspath(__file__)) or "."
 KIT = os.environ["LOWVAN_KIT"]
-LADDER = [{"m": 2, "mi": 0.6, "mc": 0.7},
-          {"m": 2, "mi": 0.5, "mc": 0.6},
-          {"m": 2, "mi": 0.4, "mc": 0.5},
-          {"m": 1, "mi": 0.3, "mc": 0.4}]
+
+#  ---------------------------------------------------------------------
+#  ENFORCED: -mi and -mc are not tuneable from this script.
+#
+#  pipeline.md states it plainly -- "-mi is not a tuning dial for coverage;
+#  it is the threshold at which you declare two sequences to be the same
+#  protein. The documented default is 0.8." That file was READ during this
+#  build and the value was lowered anyway, to 0.6, for 136 features across
+#  four modules. A note in a doc did not stop it, so this is a check.
+#
+#  If a module's core genes will not build at 0.8, that is the module asking
+#  to be split. Ask the curator; do not reach for the dial.
+#  ---------------------------------------------------------------------
+SETTLED = {"mi": "0.8", "mc": "0.8"}
+
+
+def check_params(key, p):
+    bad = {k: v for k, v in p.items()
+           if k in SETTLED and str(v) != SETTLED[k]}
+    if bad:
+        raise SystemExit(
+            "REFUSED: %s would be built with %s.\n"
+            "  Minimum identity/coverage are settled at 0.8 and are not tuned\n"
+            "  to make a build succeed. Tune -m instead, or split the module.\n"
+            "  If the curator has agreed to a lower value, set it explicitly in\n"
+            "  the module JSON and record the reason in BUILD_PARAMS."
+            % (key, bad))
+
+#  Two dials, and they are not equivalent. -mi is the identity at which two
+#  sequences are declared THE SAME PROTEIN, so it is lowered reluctantly.
+#  -m is only the minimum cluster size, so lowering it costs much less --
+#  but it costs something, because a one- or two-member profile is a lookup
+#  table rather than a generalisation.
+#
+#  So at each identity level, try -m 2 first and -m 1 second, and only then
+#  drop the identity. THE FIRST VERSION OF THIS LADDER lowered -m only on the
+#  bottom rung, paired with mi 0.3, where everything over-merges -- and
+#  Barthadenovirus LH1 "failed at every setting" while -m 1 at mi 0.5 gives it
+#  5 clusters and 5 profiles. LH1 is 11 sequences in five same-species pairs
+#  at 96-99% identity with under 50% between pairs: the pairs are real
+#  clusters and only the size floor was rejecting them.
+#
+#  -mc MATTERS INDEPENDENTLY, and the second version of this ladder still
+#  missed it. Barthadenovirus RH4 "failed at every setting" while mi 0.5 with
+#  mc 0.5 gives it 2 profiles -- the ladder had only ever paired mi 0.5 with
+#  mc 0.6. RH4's eight sequences are duplicate pairs across same-species
+#  genomes: each tight cluster holds two IDENTICAL sequences which collapse to
+#  one, and psiblast -in_msa cannot build a profile from a single sequence.
+#  Loosening coverage merges the pairs into alignments that carry real
+#  diversity. So the ladder walks coverage as well as identity.
+#  ONLY -m MOVES. The curator settled minimum identity at 0.80, and -mi is
+#  the identity at which two sequences are declared THE SAME PROTEIN -- not a
+#  dial for making a build succeed. An earlier ladder here walked mi down to
+#  0.6/0.5/0.4 and reported rescues; the kit silently clamped every value
+#  below MI_FLOOR = 0.6 back up, so the log overstated what had been tried,
+#  and the rescues that were real had redefined "same protein" to get there.
+#
+#  -m is a different kind of number: a minimum cluster size, which the
+#  reference says outright is "a target, not a rule". Lowering it costs
+#  generalisation -- a one- or two-member profile is closer to a lookup table
+#  -- but it does not change what the profile claims to be.
+#
+#  A feature that cannot be profiled at mi 0.8 is REPORTED as unprofiled. If a
+#  whole module needs a lower identity to build its CORE genes, that is not a
+#  parameter problem; it is the module telling you it should be split.
+LADDER = [{"m": 2}, {"m": 1}]
 
 
 def built(mod, key):
@@ -41,6 +103,7 @@ def main():
     rescued, failed = [], []
     for k in miss:
         for p in LADDER:
+            check_params(k, p)
             spec[k] = {"anno": J[k]["anno"], "params": p}
             json.dump(spec, open("%s/features.json" % B, "w"), indent=1)
             subprocess.run([sys.executable,
@@ -51,8 +114,8 @@ def main():
             if built(mod, k):
                 n = len(built(mod, k))
                 rescued.append((k, p, n))
-                print("  %-14s rescued at mi=%.1f mc=%.1f m=%d -> %d PSSM(s)"
-                      % (k, p["mi"], p["mc"], p["m"], n))
+                print("  %-14s rescued at m=%d (mi stays 0.8) -> %d PSSM(s)"
+                      % (k, p["m"], n))
                 break
         else:
             failed.append(k)
