@@ -277,9 +277,17 @@ SIA = dict(CORE, **{
  "UXP": UXP,
  "SIALIDASE": r"^(sialidase|neuraminidase|sialidase protein|putative sialidase)$",
  "E3": r"^(e3|e3 protein|siadenovirus e3)$",
- "HYD": r"^(hyd|hyd protein)$",
- "SHUTOFF": r"^(shutoff protein|host shutoff protein|shut-?off protein)$",
+ "HYD": r"^(hyd|hyd protein|hydrophobic protein)$",
+ #  SHUTOFF WAS A FEATURE HERE AND IT WAS WRONG. The 8 "shutoff protein"
+ #  deposits are 703 aa and consolidation put every one of them into K100
+ #  -- correctly. The late 100K protein IS the host shut-off protein; the
+ #  string is a synonym for a feature already declared, not a gene of its
+ #  own, and declaring it twice would have had two profiles firing on one
+ #  locus. It is listed under K100 below instead.
 })
+assert SIA["K100"].endswith(")$"), SIA["K100"][-10:]
+SIA["K100"] = (SIA["K100"][:-2] + r"|shutoff protein|host shutoff protein|"
+               r"shut-?off protein)$")
 
 BARTHA = dict(CORE, **{
  "UXP": UXP,
@@ -287,6 +295,16 @@ BARTHA = dict(CORE, **{
  "LH1": r"^(lh1|lh1 protein|left-?hand orf 1)$",
  "LH2": r"^(lh2|lh2 protein|left-?hand orf 2)$",
  "LH3": r"^(lh3|lh3 protein|left-?hand orf 3)$",
+ #  RH0, RH1 and RH6 were MISSING from the feature set entirely. The dump
+ #  deposits all three -- RH1 x10, RH6 x7, RH0 x3, one of them as "F-box
+ #  related protein RH0" -- and with no key to bind to, 7 RH1 went to
+ #  UNASSIGNED and the rest were clustered together into a single UNC that
+ #  mixed three different genes. The right-hand region is numbered RH0..RH6
+ #  and the module has to declare the whole span, not the middle of it.
+ "RH0": r"^(rh0|rh0 protein|right-?hand orf 0|f-?box related protein rh0|"
+        r"f-?box protein rh0)$",
+ "RH1": r"^(rh1|rh1 protein|right-?hand orf 1)$",
+ "RH6": r"^(rh6|rh6 protein|right-?hand orf 6)$",
  "RH2": r"^(rh2|rh2 protein|right-?hand orf 2)$",
  "RH3": r"^(rh3|rh3 protein|right-?hand orf 3)$",
  "RH4": r"^(rh4|rh4 protein|right-?hand orf 4)$",
@@ -330,11 +348,63 @@ PSSM = {"Mastadenovirus": MAST, "Aviadenovirus": AVI,
 #  parvo build had to carve out. A move BETWEEN two members of a set is
 #  refused; a move INTO or OUT OF the set from elsewhere is still allowed,
 #  which is what catches a foreign protein sitting in a fiber collection.
+#  ---- NAMING A CLUSTER THE LITERATURE HAS ALREADY DESCRIBED ----
+#  An accessory cluster is a homology group the build discovered. UNCn says
+#  only "group number n", and a module full of UNCs is a module that calls
+#  proteins without saying what they are.
+#
+#  Where the literature describes a gene AND the cluster's own dominant
+#  deposited label names it, the cluster is named for that gene instead of
+#  UNCn. This does NOT reintroduce the U-number trap: the trap is binding
+#  sequences together BECAUSE they share an ORF number. Here the clustering
+#  already decided the group by homology, independently of the label, and
+#  the label is only being read off afterwards to name what was found. The
+#  evidence for each name is in the module's LITERATURE_INVENTORY.md.
+#
+#  A name is listed here only when a paper describes the gene. Where the
+#  literature is silent the number is KEPT -- a functional string the
+#  literature does not support is worse than a position label.
+CLUSTER_NAME = {
+ "Siadenovirus": {
+   #  Two of the FIVE genus-defining genes were sitting in UNC1 and UNC2.
+   #  TAdV-3 NC_001958: ORF7 24509..25165 = 218 aa, ORF8 complement(
+   #  25201..25698) = 165 aa; the clusters' median lengths are 225 and 174.
+   "orf7": "ORF7",
+   "orf8": "ORF8",
+ },
+ "Aviadenovirus": {
+   #  CELO reannotation, PMID_claude_generated 14604445, Table 1.
+   "orf2":  "REPLIKE",      # parvovirus NS1/Rep homologue, inactive helicase
+   "orf12": "ORF12",        # same family as ORF2/ORF13, function unresolved
+   "orf13": "ORF13",
+   "orf16": "ART",          # mono-ADP-ribosyltransferase, Pfam PF01129
+   "orf22": "ORF22",        # binds pRb and activates E2F
+   "orf9":  "ORF9", "orf10": "ORF10", "orf11": "ORF11",
+   "orf14": "ORF14", "orf17": "ORF17", "orf20": "ORF20",
+ },
+}
+
+#  Reference lengths, read from the annotated reference genome of each genus
+#  -- NOT from the collections, which cannot check themselves. Used by the
+#  paralogue audit below and by scripts/check_coords.py.
+REFLEN = {}
+if os.path.exists(os.path.join(W, "refcoords.json")):
+    for _m, _f in json.load(open(os.path.join(W, "refcoords.json"))).items():
+        REFLEN[_m] = {k: v for k, v in _f.items() if not k.startswith("_")}
+
 PARALOG = {
  "Mastadenovirus":  [{"FIBER", "FIBER1", "FIBER2"}, {"E1A", "E1A_243R"}],
  "Aviadenovirus":   [{"FIBER", "FIBER1", "FIBER2"}],
  "Siadenovirus":    [],
- "Barthadenovirus": [],
+ #  The atadenovirus left-hand and right-hand genes are FAMILIES of related
+ #  paralogues, not one gene under several names. Without this, consolidation
+ #  measured RH3 and RH2 as homologous to RH4 and emptied both into it --
+ #  RH3 shipped with ZERO sequences while 4 real RH3 deposits sat inside RH4,
+ #  and RH2 lost 7 of its 22. The same risk applies to LH1/LH2/LH3 and to
+ #  E4.1/E4.2/E4.3, which are likewise neighbouring paralogues.
+ "Barthadenovirus": [{"RH0", "RH1", "RH2", "RH3", "RH4", "RH5", "RH6"},
+                     {"LH1", "LH2", "LH3"},
+                     {"E4_1", "E4_2", "E4_3"}],
 }
 
 # --------------------------------------------------------------------------
@@ -725,49 +795,111 @@ def main():
 
         moved = consolidate(hits, mod)
 
-        #  ---- FIBER: route by what the GENOME carries, not by the name ----
+        #  ---- FIBER: the explicit labels are POSITIONAL. Trust them. ----
         #  Most adenoviruses have one fiber gene. The enteric mastadeno-
-        #  viruses (HAdV-F40/41, PMID_claude_generated 7975882) and several
+        #  viruses (HAdV-F40/41, PMID_claude_generated 7975882) and many
         #  fowl adenoviruses (FAdV-1 CELO, PMID_claude_generated 17698649 /
-        #  18561970) have TWO, a long and a short, side by side.
+        #  18561970) have TWO, side by side.
         #
-        #  A generic "fiber" deposit says nothing about which. Routing every
-        #  generic deposit by a module-wide length threshold would be wrong
-        #  in the common case, because a species with ONE fiber has no long
-        #  or short -- it just has the fiber, and half of them would be
-        #  declared "short" by an arbitrary cut.
+        #  A FIRST ATTEMPT ROUTED THEM BY LENGTH -- longest is fiber-1 --
+        #  AND IT WAS WRONG, in a way only measurement showed. Of the 215
+        #  Aviadenovirus genomes depositing both, fiber-1 is the longer in
+        #  just 39: Fowl aviadenovirus 4 deposits f1=431 and f2=479 in 99
+        #  genomes, and only CELO (f1=793, f2=410) matches the intuition.
+        #  "fiber-1" and "fiber-2" name the FIRST and SECOND gene along the
+        #  genome, not the long and the short one. The length rule swapped
+        #  181 deposits each way and would have trained both profiles on a
+        #  mixture of the two genes.
         #
-        #  So the test is structural, the same shape as the same-genome
-        #  nesting test the parvo build needed: look at how many fiber-family
-        #  features THIS GENOME deposits. One means FIBER. Two or more means
-        #  the longest is FIBER1 and the shortest FIBER2.
+        #  "long fibre" and "short fibre" DO mean what they say -- long is
+        #  longer in 247 of the 252 mastadenovirus genomes depositing both.
+        #  Those bind by name already.
+        #
+        #  So an explicitly labelled deposit is left exactly where its label
+        #  put it, and only a GENERIC "fiber" is routed -- by homology to
+        #  the two labelled collections, which are 35-50% identical over the
+        #  shaft and so separate cleanly. A genome carrying only one fiber
+        #  deposit has neither a long nor a short one; it just has the
+        #  fiber, and it goes to FIBER.
         fib = collections.Counter()
         if "FIBER1" in PSSM[mod]:
             bygen = collections.defaultdict(list)
             for k in ("FIBER", "FIBER1", "FIBER2"):
                 for e in hits.get(k, []):
                     bygen[e[0]].append((k, e))
-            for g, rows in bygen.items():
-                if len(rows) < 2:
-                    continue
-                rows.sort(key=lambda r: len(r[1][1]), reverse=True)
-                want = ["FIBER1"] + ["FIBER2"] * (len(rows) - 1)
-                for (k, e), w in zip(rows, want):
-                    if k == w:
+            generic = [(g, e) for g, rows in bygen.items() if len(rows) > 1
+                       for k, e in rows if k == "FIBER"]
+            if generic and hits.get("FIBER1") and hits.get("FIBER2"):
+                sub = {"FIBER1": hits["FIBER1"], "FIBER2": hits["FIBER2"]}
+                got = rescue({e[1]: None for _g, e in generic}, sub,
+                             min_id=55.0, min_qcov=0.60)
+                for g, e in generic:
+                    k = got.get(e[1])
+                    if not k:
                         continue
-                    hits[k].remove(e)
-                    hits[w].append(e)
-                    fib["%s -> %s" % (k, w)] += 1
-            #  A genome with ONE fiber must not sit in FIBER1/FIBER2 either.
+                    hits["FIBER"].remove(e)
+                    hits[k].append(e)
+                    fib["generic -> %s" % k] += 1
+            #  A genome with ONE fiber-family deposit must not sit in
+            #  FIBER1/FIBER2 -- there is no second gene to be first or
+            #  second of.
             for g, rows in bygen.items():
                 if len(rows) != 1:
                     continue
                 k, e = rows[0]
-                if k == "FIBER":
+                if k == "FIBER" or e not in hits[k]:
                     continue
                 hits[k].remove(e)
                 hits["FIBER"].append(e)
                 fib["%s -> FIBER (single)" % k] += 1
+
+        #  ---- PARALOGUE AUDIT: a name rule can file into the wrong sibling --
+        #  Consolidation is forbidden between members of a PARALOG set, which
+        #  stops homology merging two real genes. It does nothing about the
+        #  opposite error: a deposit whose NAME puts it in the wrong sibling.
+        #
+        #  MEASURED, Barthadenovirus: genome 2913659.5 deposits a 382 aa
+        #  protein called "LH1". OAdV-7 LH1 is 120 aa and LH3 is 382 aa, and
+        #  the sequence hits LH3 at 41-47% identity over 368 of its 382
+        #  residues. It is LH3. The name rule bound it on the string.
+        #
+        #  A move needs BOTH signals to agree, because either alone is weak:
+        #  homology inside a paralogue family is exactly what cannot separate
+        #  the members, and length alone cannot tell a short paralogue from a
+        #  truncated one. So: the best cross-collection hit must beat the best
+        #  within-collection hit, AND the length must sit near the sibling's
+        #  reference and away from its own. Silence here is not success --
+        #  every move is printed.
+        par = collections.Counter()
+        refs = REFLEN.get(mod, {})
+        for group in PARALOG.get(mod, []):
+            grp = [k for k in group if k in refs and hits.get(k)]
+            if len(grp) < 2:
+                continue
+            for k in list(grp):
+                for e in list(hits[k]):
+                    L = len(e[1])
+                    own = refs[k]
+                    near = [j for j in grp
+                            if j != k and abs(L - refs[j]) < 0.20 * refs[j]]
+                    if not near or abs(L - own) <= 0.20 * own:
+                        continue
+                    #  The query is STILL A MEMBER of hits[k], so leaving it
+                    #  in the subject set makes it match itself at 100% and
+                    #  no move can ever happen -- which is why the first run
+                    #  of this audit reported nothing at all while the 382 aa
+                    #  "LH1" sat in plain sight. Drop the query sequence from
+                    #  every collection before asking.
+                    sub = {j: [r for r in hits[j] if r[1] != e[1]]
+                           for j in grp}
+                    sub = {j: r for j, r in sub.items() if r}
+                    got = rescue({e[1]: None}, sub, min_id=35.0, min_qcov=0.70)
+                    j = got.get(e[1])
+                    if j and j != k and j in near:
+                        hits[k].remove(e)
+                        hits[j].append(e)
+                        par["%s -> %s (%daa, ref %d vs %d)"
+                            % (k, j, L, own, refs[j])] += 1
 
         #  ---- accessory discovery on whatever homology could not place ----
         #  The floor is TWO numbers, not one. Pass 1 used features alone and
@@ -778,17 +910,105 @@ def main():
         #  reports it missing on every genome. So a cluster must carry
         #  ACC_SEQ_FLOOR distinct sequences AND ACC_FLOOR features.
         clusters = cluster([s for s in pool])
+
+        #  ---- CLUSTER ADOPTION: a cluster may BE a feature already named ----
+        #  The per-sequence rescue above asks each unplaced sequence on its own
+        #  at >=80% identity, which a divergent genus never reaches. A whole
+        #  cluster is far better evidence than any one of its members: if most
+        #  of a coherent group hits one declared feature, the group is that
+        #  feature, whatever the deposits called it.
+        #
+        #  MEASURED, Barthadenovirus: 13 sequences deposited as "E1B 55K",
+        #  "E1B-2" and "E1B protein, large T-antigen" clustered together at
+        #  370-393 aa and every one of them hits LH3 at 42-77% identity over
+        #  the full length. They ARE LH3 -- atadenoviruses have no E1B at all,
+        #  and the capsid structure paper (PMID_claude_generated 33789897)
+        #  says mastadenovirus E1B-55K was exapted FROM the atadenovirus LH3,
+        #  which is exactly why a submitter reaching for a familiar name
+        #  reached for that one. Without this pass LH3 shipped a profile built
+        #  from 4 sequences while 13 more sat in an unnamed cluster.
+        #
+        #  Also caught here: 4 Barthadenovirus DNA polymerases, two of them
+        #  spelled "DNA polyermase", which no name rule will ever match.
+        #
+        #  The threshold is deliberately far below the per-sequence rescue,
+        #  because the agreement requirement does the work instead: a simple
+        #  majority of the cluster must land on the SAME feature.
+        #  ONE blastp for the whole pool, then votes are tallied per cluster.
+        #  Calling rescue() per cluster rebuilt the named-sequence BLAST
+        #  database every time -- 365 rebuilds against 81,000 Mastadenovirus
+        #  sequences -- and the pass did not finish in 25 minutes. The
+        #  information is identical either way.
+        adopt = collections.Counter()
+        kept = []
+        votes = rescue({s: None for s in pool}, hits,
+                       min_id=40.0, min_qcov=0.75) if pool else {}
+        for cl in clusters:
+            got = {s: votes[s] for s in cl if s in votes}
+            if len(got) * 2 <= len(cl):
+                kept.append(cl)
+                continue
+            vote = collections.Counter(got.values())
+            key, n = vote.most_common(1)[0]
+            if n * 2 <= len(cl):
+                kept.append(cl)
+                continue
+            lab = collections.Counter(pool[s][1] for s in cl).most_common(2)
+            adopt["%s <- %s" % (key, "/".join(a for a, _ in lab))] += len(cl)
+            for s in cl:
+                g, a, _s, nfeat = pool.pop(s)
+                gen = g2gen.get(g, "") or ""
+                hits[key].append((g, s, a, gen))
+                for ctr in (pooled, unass):
+                    if ctr.get((a, gen)):
+                        ctr[(a, gen)] -= nfeat
+                        if ctr[(a, gen)] <= 0:
+                            del ctr[(a, gen)]
+        clusters = kept
+
         unc = {}
         n_unc = 0
         thin = []
+        named_cl = {}
         for cl in clusters:
             nf = sum(pool[s][3] for s in cl)
             if len(cl) < ACC_SEQ_FLOOR or nf < ACC_FLOOR:
                 thin.append((cl, nf))
                 continue
-            n_unc += 1
-            name = "UNC%d" % n_unc
             lab = collections.Counter(pool[s][1] for s in cl)
+            #  Name the cluster for the gene the literature describes, where
+            #  its own dominant deposit label names one. See CLUSTER_NAME.
+            name = None
+            #  Ignore the contentless labels when asking what a cluster is
+            #  called. Siadenovirus ORF7 and ORF8 are two of the five
+            #  genus-defining genes and BOTH failed to be named, because
+            #  "hypothetical protein" outnumbered "ORF7" 7 to 4 inside the
+            #  cluster. "hypothetical protein" is not a competing claim about
+            #  identity; it is the absence of one.
+            #  Vote on the NORMALISED label, not the raw string. "ORF7" x4 and
+            #  "ORF7 protein" x2 are the same claim, and counted apart they
+            #  split the vote and neither reaches a majority -- which is why
+            #  ORF7 failed to be named while ORF8 succeeded.
+            inf = collections.Counter()
+            for a, n in lab.items():
+                key = re.sub(r"^(protein|hypothetical protein)\s+", "",
+                             normalise(a.lower().strip()))
+                if re.match(r"^(hypothetical|unknown|unnamed|undefined|"
+                            r"uncharacteri[sz]ed|putative)\b", key) \
+                        or key in ("protein", "cds", "orf", ""):
+                    continue
+                inf[key] += n
+            if inf:
+                key, ntop = inf.most_common(1)[0]
+                cand = (CLUSTER_NAME.get(mod, {}).get(key)
+                        if ntop * 2 > sum(inf.values()) else None)
+                top = key
+                if cand and cand not in hits:
+                    name = cand
+                    named_cl[cand] = top
+            if name is None:
+                n_unc += 1
+                name = "UNC%d" % n_unc
             unc[name] = (cl, nf, lab.most_common(3))
             for s in cl:
                 g, a, _s, nfeat = pool.pop(s)
@@ -816,6 +1036,24 @@ def main():
                             continue
                         seen.add(s)
                         fh.write(">%s %s\n%s\n" % (g, a, s))
+            #  synonyms.tsv is the join between the deposited vocabulary and
+            #  the feature each string ended up in. check_literature_gaps.py
+            #  scores a probe list against THIS file, so a module without one
+            #  cannot be literature-checked at all -- which is exactly how a
+            #  protein the literature describes stays invisible. The schema
+            #  is fixed by that script: count, annotation, genus, bins_to.
+            syn = collections.Counter()
+            for k, rows in hits.items():
+                for _g, _s, a, gen in rows:
+                    syn[(a, gen, k)] += 1
+            for src, dest in ((unass, "UNASSIGNED"), (pooled, "UNASSIGNED"),
+                              (nmc, "NOT_MODELLED"), (disc, "DISCARDED")):
+                for (a, gen), n in src.items():
+                    syn[(a, gen, dest)] += n
+            with open(os.path.join(od, "synonyms.tsv"), "w") as fh:
+                fh.write("count\tannotation\tgenus\tbins_to\n")
+                for (a, gen, k), n in syn.most_common():
+                    fh.write("%d\t%s\t%s\t%s\n" % (n, a, gen, k))
             with open(os.path.join(W, mod, "UNASSIGNED_TRACKING.tsv"), "w") as fh:
                 fh.write("n_features\tgenus\tannotation\n")
                 for (a, gen), n in (unass + pooled).most_common():
@@ -849,6 +1087,17 @@ def main():
             print("  fiber routed by genome %d  (%s)"
                   % (sum(fib.values()),
                      ", ".join("%s %d" % (k, n) for k, n in fib.most_common())))
+        if par:
+            print("  paralogue audit moved %d  (%s)"
+                  % (sum(par.values()), "; ".join(sorted(par))))
+        if adopt:
+            print("  adopted whole clusters %d seqs  (%s)"
+                  % (sum(adopt.values()),
+                     ", ".join("%s %d" % (k, n) for k, n in adopt.most_common(8))))
+        if named_cl:
+            print("  clusters named from literature %d  (%s)"
+                  % (len(named_cl),
+                     ", ".join("%s<-%s" % (k, v) for k, v in sorted(named_cl.items()))))
         print("  declared as UNC    %d clusters, %d seqs"
               % (n_unc, sum(len(v[0]) for v in unc.values())))
         print("  below the floor    %d clusters, %d seqs, %d features"

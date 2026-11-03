@@ -1,0 +1,18 @@
+{
+ "Siadenovirus": {
+  "_reference": "TAdV-3 NC_001958, 26263 bp",
+  "IVA2": 367, "POL": 1112, "PTP": 597, "K52": 300, "PIIIA": 505,
+  "PENTON": 448, "PVII": 120, "PX": 58, "PVI": 231, "HEXON": 906,
+  "PROTEASE": 214, "DBP": 346, "K100": 680, "PVIII": 200, "E3": 300,
+  "FIBER": 454, "ORF7": 218, "ORF8": 165, "SIALIDASE": 517
+ },
+ "Barthadenovirus": {
+  "_reference": "OAdV-7 NC_004037, 29576 bp",
+  "P32K": 286, "LH1": 120, "LH2": 127, "LH3": 382, "IVA2": 327,
+  "POL": 1071, "PTP": 595, "K52": 335, "PIIIA": 568, "PENTON": 452,
+  "PVII": 111, "PX": 71, "PVI": 221, "HEXON": 911, "PROTEASE": 201,
+  "DBP": 382, "K100": 625, "K33": 133, "K22": 59, "PVIII": 217,
+  "UXP": 54, "FIBER": 543, "E4_3": 237, "E4_2": 220, "E4_1": 142,
+  "RH6": 157, "RH5": 198, "RH4": 157, "RH2": 176, "RH1": 109
+ }
+}

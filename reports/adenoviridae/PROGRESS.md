@@ -28,3 +28,93 @@ Scope settled by the curator 3 Nov: build **Mastadenovirus** and
 - 02:10Z Wrote RESUME_HERE.md (checklist + the 5 fixed defects) and MATURE_PEPTIDES.md.
 - 02:10Z MATURE PEPTIDES: measured, not assumed -- ZERO mat_peptide features in all four reference genomes and ZERO mature-peptide deposits among the 21,947 distinct sequences (every 'protein VIII' deposit is 227 aa, the precursor length). They must be built from published adenain cleavage sites, not binned. The one signal peptide in the family is E3 gp19K (Mastadenovirus); SignalP 6.0 is not installed and the published site is the authority anyway.
 - 02:10Z Wrote probes.json: 4 modules, every PMID resolved against PubMed first. Probe pass already paid for itself -- it found E3 6.7K (PMID 15507617), which no annotation string in the dump would have surfaced.
+- 02:20Z PUSHED 345d0dfc to jimdavis1/LowVan_Skill: reports/adenoviridae/ with the resume doc, MATURE_PEPTIDES.md, probes.json, build_cols.py, dump.sh and the four vocabulary tables.
+- 02:20Z PASS 3 -> PASS 4 fixes: (1) normalise() orphaned 40 rule alternatives written in deposit form ('maturation protein' -> 'maturation'); I_LEADER and SHUTOFF both shipped EMPTY because of it. Fixed structurally with expand(), which adds each literal alternative's normalised form at compile time, plus check_rules() which now ABORTS the run if any alternative can never match. (2) 909 Mastadenovirus features were going to NOT_MODELLED on bare region labels ('E3','E4','L2') and 302 on 'splicing factor' (which is 33K's activity, not a locus) -- all now go to the homology pool instead. (3) FIBER routed by what the GENOME carries: one fiber-family deposit -> FIBER, two or more -> longest FIBER1, rest FIBER2.
+- 02:25Z PASS 4 EXPOSED AN ERROR I INTRODUCED. The fiber length rule ('longest = fiber-1') is wrong. MEASURED: of 215 Aviadenovirus genomes depositing both, fiber-1 is the longer in only 39 (18%) -- Fowl aviadenovirus 4 deposits f1=431/f2=479 across 99 genomes and only CELO (793/410) matches the intuition. 'fiber-1'/'fiber-2' are POSITIONAL (gene order), not length. The rule swapped 181 deposits each way. 'long'/'short' fibre DO mean length (247 of 252 Mastadenovirus genomes). Pass 5: explicit labels are trusted as deposited; only GENERIC 'fiber' is routed, by homology to the two labelled collections.
+
+## 2026-11-03 13:2x UTC -- Siadenovirus and Barthadenovirus taken up; literature check
+
+CURATOR DECISION: build Siadenovirus and Atadenovirus too. All four modules
+are in scope. Curator also asked for the groups to be literature-checked for
+(1) completeness, (2) coordinates, (3) FUNCTIONS -- "there are a lot without
+functions here", meaning the 224 UNC clusters.
+
+GENUS NAME: ICTV renamed Atadenovirus -> Barthadenovirus in the 2024
+ratification (proposal 2023.008D). BV-BRC uses the new name; all the cited
+literature predates it and says Atadenovirus. Module keeps Barthadenovirus.
+
+Coordinates taken from annotated reference genomes, not assumed:
+  TAdV-3  NC_001958  26,263 bp   Siadenovirus
+  OAdV-7  NC_004037  29,576 bp   Barthadenovirus prototype
+  SnAdV-1 NC_009989  27,751 bp   Barthadenovirus, reptilian branch
+  CELO    reannotation PMID_claude_generated 14604445, Table 1  Aviadenovirus
+
+DEFECTS FOUND AND FIXED THIS PASS
+
+1. LH3 SHIPPED WITH 4 SEQUENCES WHILE 13 MORE SAT UNNAMED. Both atadenovirus
+   reference genomes annotate the LH3 locus as "E1B 55K" -- NC_004037
+   1916..3064 382 aa, NC_009989 2169..3290 373 aa -- and atadenoviruses have
+   NO E1B region. All 13 deposits named E1B 55K / E1B-2 / "E1B protein, large
+   T-antigen" hit LH3 at 42-77% identity over full length at 370-393 aa. The
+   structure paper predicts exactly this: mastadenovirus E1B-55K was EXAPTED
+   from atadenovirus LH3 (PMID_claude_generated 33789897, 28943338).
+
+2. RH3 SHIPPED EMPTY AND IT IS NOT AN ABSENT GENE. Consolidation moved all 4
+   RH3 deposits into RH4, plus 7 of RH2's 22. RH1/RH2/RH4/RH6 are a related
+   PARALOGUE family -- they are F-box proteins and the paper says they are
+   related (PMID_claude_generated 12504581). Added as a PARALOG set, with
+   LH1/LH2/LH3 and E4.1/E4.2/E4.3.
+
+3. RH0, RH1 AND RH6 WERE MISSING FROM THE FEATURE SET. The right-hand region
+   is numbered RH0..RH6; the module declared RH2..RH5. 7 RH1 deposits went to
+   UNASSIGNED and the rest were swept into ONE accessory cluster that mixed
+   RH6 + RH1 + RH0 -- three genes, one would-be profile.
+
+4. SHUTOFF SHOULD NEVER HAVE BEEN A FEATURE. Its 8 deposits are 703 aa and
+   consolidation put every one into K100, correctly: the late 100K protein IS
+   the host shut-off protein. A synonym, not a gene. Two profiles would have
+   fired on one locus. Removed; strings moved to K100.
+
+   3 and 4 TOGETHER ARE THE LESSON: an empty collection can be a real protein
+   hiding under a wrong name OR a duplicate of a feature already declared.
+   Both occurred here, in the same family, in the same pass. Neither can be
+   assumed; each has to be chased.
+
+5. I CLAIMED BARTHADENOVIRUS HAS pIX. IT DOES NOT. The old probe note said
+   "the atadenovirus capsid structure resolved it together with p32K". The
+   structure resolves the GENUS-SPECIFIC proteins LH2, p32K and LH3, and its
+   point is that LH3 occupies pIX's STRUCTURAL ROLE. Neither reference genome
+   annotates a pIX. Corrected to ABSENT.
+
+6. PERFORMANCE BUG I INTRODUCED: the cluster-adoption pass called rescue()
+   once per cluster, rebuilding the named-sequence BLAST database each time --
+   365 rebuilds against 81,000 Mastadenovirus sequences. Killed at 25 min.
+   Now ONE blastp over the whole pool with votes tallied per cluster.
+
+FUNCTIONS ESTABLISHED (the curator's point 3)
+  RH1, RH2, RH4, RH6  F-box proteins; drive degradation of cellular
+                      regulatory proteins via SCF ubiquitin-ligase complexes.
+                      Rare among viruses. PMID_claude_generated 12504581.
+  LH3                 capsid cementing protein, trimeric beta-helix phage
+                      tailspike fold, pIX-like triskelion. 33789897/28943338.
+  p32K, LH2           genus-specific minor coat / structural proteins. same.
+  SIALIDASE (ORF1)    genus-defining; bacterial-sialidase-like domain,
+                      virion component; catalytic activity OPEN. 36016389.
+  FIBER (Sia)         binds sialic acid on N-linked glycoproteins of B cells,
+                      required for infection. 32459612.
+  Avia ORF2/12/13     parvovirus NS1/Rep homologues with an INACTIVE
+                      ATPase/helicase domain. 14604445.
+  Avia ORF16          mono-ADP-ribosyltransferase (Pfam PF01129). 14604445.
+  Avia ORF18/19       lipase domain (PF00151) + O-glycosylated S/T region.
+  Avia ORF22          binds pRb, activates E2F. 14604445 / 10400747.
+  Avia ORF1           functional dUTPase. 14604445.
+
+STILL WITHOUT A FUNCTION, AND THE NUMBER IS KEPT ON PURPOSE: Sia ORF7, ORF8,
+hyd, E3; Bartha RH0, RH3, RH5, LH1, E4.1; Avia ORF9/10/11/14/17/20. A
+functional string the literature does not support is worse than a number.
+
+PARTITIONING QUESTION OPEN FOR BARTHADENOVIRUS: 55 genomes split 24 ruminant
+/ 23 bird / 7 reptile / 1 marsupial. SnAdV-1 carries a DIFFERENT right-hand
+set -- ORF1 (112 aa) and 105R (178 aa) in place of most RH genes, only RH1
+shared. Building as one module and measuring routing before deciding; a
+3-way split would leave the reptilian module at 7 genomes.

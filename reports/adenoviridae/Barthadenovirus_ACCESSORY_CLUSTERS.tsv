@@ -1,0 +1,11 @@
+feature	n_seqs	n_features	median_aa	top_labels
+UNC1	9	16	146	hypothetical protein x8; ORF5 x1
+UNC2	8	33	170	hypothetical protein x6; ORF8 x1; ORF9 x1
+UNC3	7	9	240	hypothetical protein x7
+UNC4	7	21	152	hypothetical protein x5; protein ORF1 x1; ORF1 x1
+UNC5	5	18	242	hypothetical protein x3; 34K-1 x2
+UNC6	5	16	153	hypothetical protein x5
+UNC7	5	16	192	hypothetical protein x5
+UNC8	4	17	104	hypothetical protein x4
+UNC9	4	16	346	hypothetical protein x4
+UNC10	3	16	125	hypothetical protein x3
