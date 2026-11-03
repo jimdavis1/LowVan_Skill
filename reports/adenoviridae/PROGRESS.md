@@ -175,3 +175,68 @@ BLOCKED ON PAYWALL -- NOT OPEN ACCESS, ABSTRACTS ONLY
   18166240 SnAdV-1 genome completion
   These are the authoritative boundaries for Barthadenovirus and they are NOT
   in the module. Named gap, not a silent one. Ask the curator for PDFs.
+
+## 2026-11-03 -- THE FOUR PAPERS ARE IN. Boundaries now from the literature.
+
+Curator supplied all four PDFs. Read in full (two-column extraction by line
+x-position; block-level extraction interleaved the columns and WOULD have
+produced misread cleavage sites).
+
+PMID_claude_generated 8659111 Vrati 1996 -- OAdV-7 genome + MEASURED cleavage
+PMID_claude_generated 9614874 Khatri & Both 1998 -- transcripts and promoters
+PMID_claude_generated 12504581 Both 2002 -- right end transcripts, F-box
+PMID_claude_generated 18166240 Farkas 2008 -- SnAdV-1
+
+### THE "E1B 55K" NAME IS SETTLED, FROM THE SOURCE
+Khatri & Both 1998 Table 1 lists the lefthand ORFs as LH1 9.7 kDa, LH2 14.7
+kDa, LH3 42.8 kDa, p32 32.1 kDa, IVa2 37.5 kDa. "(E1B 19 kDa)" and "(E1B 55
+kDa)" appear in that table in PARENTHESES with footnote e: "Shows homology
+with the Ad5 protein". They are homology NOTES, not identities. The database
+turned a parenthetical note into a /product=. LH3 42.8 kDa ~ 382 aa and the
+module's LH3 collection has median 382. Settled.
+
+### MATURE PEPTIDES -- NOW MEASURED, NOT ASSUMED
+My earlier plan applied the HUMAN adenain consensus family-wide. The paper
+shows that would have been wrong FOUR separate ways, each measured:
+  - pX is NOT cleaved in OAV. Ad2 res32 / Ad12 res27 sites absent; Ad12 res42
+    site not used (P1' is Phe). Table 2 lists no mature size for X.
+  - pVI N-terminal type I site is MASKED -- Phe not Ala at P1', residue 29.
+  - pVII uses TWO NON-CONFORMING sites, NTGW|G and MRAT|G. Its ORF does not
+    even predict a precursor, and there is no site at residue 25 where Ad12
+    uses MYGG|A.
+  - p32K has no human counterpart at all.
+The paper gives the extension: OAV also recognises (N/M/L/I).X.G.X|G and
+(M/L/I).X.A.X|G. N at P4 and A at P2 are outside human specificity.
+
+CONFIRMED AGAINST OUR OWN COLLECTIONS, EXACTLY:
+  p32K  LAGG|AYR at res 12; mature N-term AYRKRKKKFQRPKPRK == Table 1 peak 7.
+        286 -> 274 aa. Genome 114430 deposits BOTH forms, the shorter an exact
+        C-terminal substring of the longer -- one collection, two forms, the
+        Parvoviridae VP1/VP2 defect again.
+  pVII  NTGW at position 9 in 16 of 16 deposits. OAdV-7 111 aa splits
+        1-13 / 14-23 / 24-111. Fragment 14-23 is GIGTSSMRAT -- character for
+        character the paper's measured peptide II. Mature VII starts
+        GLKFSKKQPVRVRPYYR -- character for character Table 1 peak 9. 88 aa.
+  pVIII measured peptide GSNRLTSYPDIPPILK starts at residue 118, preceded by
+        SELNGW, so the site is LNGW|G. Fragments 117 aa and 100 aa against the
+        paper's predicted 13.2 and 11.4 kDa.
+  pVI   C-terminal type II site gives the 11-residue proteinase cofactor
+        GVNFNTRRYCY; active consensus G.XXXXX.R.R.[yr].C.[fy].
+
+DO NOT MODEL, on the paper's own words: pX (not cleaved), pVI N-terminus
+(masked), pIIIa (a type I site LIGH|G sits 20 res from the C-terminus but no
+peptide was isolated -- "unclear whether or not the site is used").
+
+### A STRUCTURAL SCAN, REPORTED BUT NOT MODELLED
+Searching every Barthadenovirus collection for a shorter deposit that is an
+exact C-terminal substring of a longer one FROM THE SAME GENOME found six
+pairs: P32K 286->274 (confirmed), PIIIA 573->516, DBP 381->363, RH2 186->103,
+RH4 157->144, E4_3 225->217. Only P32K has literature behind it. The other
+five are recorded as OBSERVATIONS. A nested shorter deposit is equally
+consistent with a submitter annotating a downstream start codon, and nothing
+in the data separates the two. None is being built.
+
+### ALSO FROM THE 1996 PAPER
+  Penton lacks the RGD motif human adenoviruses use to engage integrins.
+  Proteins V and IX are absent from the genome -- confirms the pIX correction.
+  Authors' own section accessions: U40839, U31557, U40837, U18755, U40838.
