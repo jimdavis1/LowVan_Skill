@@ -1,0 +1,202 @@
+{
+  "_comment": [
+    "What the literature says Adenoviridae encodes, scored against the module",
+    "vocabulary by check_literature_gaps.py. Step 2b of the skill: a protein",
+    "that is real biology but was never annotated in the genomes we dumped is",
+    "INVISIBLE to a build driven by annotation strings. It does not appear as",
+    "a gap, as UNASSIGNED, or as a low count -- it simply never appears.",
+    "",
+    "Every PMID here was resolved against PubMed by scripts/pm.py and the",
+    "title read before it was written down. None was recalled from memory.",
+    "They belong in PMID_claude_generated, never in PMID.",
+    "",
+    "The core 17 are deliberately NOT given citations for their existence --",
+    "hexon, penton and fiber are not propositions anyone needs a paper for.",
+    "Citations are attached where the probe makes a CLAIM the build acts on:",
+    "that a protein exists at all, that a genus has two copies of a gene,",
+    "that a precursor is cleaved, or that a product is spliced."
+  ],
+
+  "Mastadenovirus": {
+    "core": [
+      "hexon", "penton base", "fiber", "protease", "DNA polymerase",
+      "pTP", "DBP", "IVa2", "52K", "100K", "33K", "22K",
+      "pIIIa", "pVI", "pVII", "pVIII", "pX"
+    ],
+    "probes": [
+      {"name": "E1A", "key": "E1A",
+       "note": "The first gene expressed; 13S and 12S mRNAs give the 289R and 243R products by alternative 5' splice site within one transcription unit.",
+       "pmids": {"function": [1833268]}},
+      {"name": "E1A 243R", "key": "E1A_243R",
+       "note": "The 12S product. 243R is 289R minus an internal 46-residue block (conserved region 3), so the two are ~100% identical outside it. Declared as a SPLICE feature, not a second PSSM, because no profile can separate them.",
+       "pmids": {"coordinates": [1833268]}},
+      {"name": "E1B 19K", "key": "E1B19K",
+       "note": "Bcl-2 homologue; blocks E1A-induced apoptosis.",
+       "pmids": {"function": [15302210]}},
+      {"name": "E1B 55K", "key": "E1B55K",
+       "note": "p53-SUMO1 E3 ligase; with E4orf6 forms the cullin-based ubiquitin ligase that degrades p53.",
+       "pmids": {"function": [20861261, 17079297]}},
+      {"name": "protein IX", "key": "PIX",
+       "note": "Minor capsid protein, the capsid cement sitting in the hexon facets. Present in Mastadenovirus, Aviadenovirus and Atadenovirus; ABSENT in Siadenovirus.",
+       "pmids": {"function": [2583109, 33789897]}},
+      {"name": "core protein V", "key": "PV",
+       "note": "Mastadenovirus-specific core protein; bridges the DNA-pVII core to the capsid. Not present in the other genera.",
+       "pmids": {"function": [33252742]}},
+      {"name": "E3 12.5K", "key": "E3_12_5K", "pmids": {}},
+      {"name": "E3 gp19K", "key": "E3_GP19K",
+       "note": "ER-resident type I membrane glycoprotein that binds MHC class I and retains it in the ER. CARRIES A CLEAVED N-TERMINAL SIGNAL PEPTIDE -- the only signal peptide in the mastadenovirus proteome -- plus a C-terminal ER-retention signal.",
+       "pmids": {"function": [8350398, 8249282]}},
+      {"name": "E3 CR1-alpha", "key": "E3_CR1A", "pmids": {}},
+      {"name": "E3 CR1-beta", "key": "E3_CR1B", "pmids": {}},
+      {"name": "E3 CR1-gamma", "key": "E3_CR1G", "pmids": {}},
+      {"name": "E3 CR1-delta", "key": "E3_CR1D", "pmids": {}},
+      {"name": "E3 6.7K", "key": "E3_6_7K",
+       "note": "Required WITH the RID complex for internalisation and degradation of TRAIL receptor 2. Found by this probe pass, not by the annotation strings.",
+       "pmids": {"function": [15507617]}},
+      {"name": "E3 RID-alpha", "key": "E3_RIDA",
+       "note": "E3 10.4K. With RID-beta removes Fas, EGFR and TNFR1 from the cell surface.",
+       "pmids": {"function": [14557654, 16227281]}},
+      {"name": "E3 RID-beta", "key": "E3_RIDB",
+       "note": "E3 14.5K, the other half of the RID complex.",
+       "pmids": {"function": [16227281]}},
+      {"name": "E3 14.7K", "key": "E3_14_7K", "pmids": {}},
+      {"name": "adenovirus death protein", "key": "E3_ADP",
+       "note": "E3 11.6K. Required for efficient lysis and release at the end of infection.",
+       "pmids": {"function": [15302210]}},
+      {"name": "E4orf1", "key": "E4ORF1",
+       "note": "PI3K-Akt activator; targeted by p53.",
+       "pmids": {"function": [38451084]}},
+      {"name": "E4orf2", "key": "E4ORF2", "pmids": {}},
+      {"name": "E4orf3", "key": "E4ORF3",
+       "note": "Disrupts PML nuclear bodies and drives the MRN complex into cytoplasmic aggresomes.",
+       "pmids": {"function": [16103189, 16254336]}},
+      {"name": "E4orf4", "key": "E4ORF4", "pmids": {}},
+      {"name": "E4orf5", "key": "E4ORF5",
+       "note": "Found as accessory cluster UNC1 in triage pass 1 (59 sequences, median 151 aa, labelled 'Orf5' and 'E4 17 kDa protein'); promoted to a declared feature in pass 2.",
+       "pmids": {}},
+      {"name": "E4orf6", "key": "E4ORF6",
+       "note": "E4 34K. With E1B 55K forms the p53 ubiquitin ligase and stimulates late mRNA nuclear export.",
+       "pmids": {"function": [17079297, 20566845]}},
+      {"name": "E4orf6/7", "key": "E4ORF67",
+       "note": "A SPLICED product: exon 1 of orf6 joined to orf7. Two exons, one intron.",
+       "pmids": {"coordinates": []}},
+      {"name": "long fiber", "key": "FIBER1",
+       "note": "The enteric species HAdV-F40 and F41 carry TWO fiber genes, a long and a short. This is the claim that put FIBER1/FIBER2 in the Mastadenovirus module; triage pass 1 had left them in the accessory pool as UNC2 (median 555 aa) and UNC5 (median 368 aa).",
+       "pmids": {"function": [7975882]}},
+      {"name": "short fiber", "key": "FIBER2",
+       "pmids": {"function": [7975882]}},
+      {"name": "U exon protein", "key": "UXP",
+       "note": "A late l-strand product overlapping E3 antisense; unrecognised until 2007, which is exactly the shape of protein this probe pass exists to catch.",
+       "pmids": {"function": [17881437, 20739525]}},
+      {"name": "i-leader protein", "key": "I_LEADER", "pmids": {}},
+      {"name": "L1 13.6K", "key": "L1_13_6K", "pmids": {}},
+      {"name": "VA RNA I/II", "key": null,
+       "note": "NOT MODELLED AND NOT A GAP: the VA RNAs are non-coding Pol III transcripts. They have no protein product and cannot carry a PSSM. Recorded here so the absence is a decision rather than an oversight.",
+       "pmids": {}}
+    ]
+  },
+
+  "Aviadenovirus": {
+    "core": [
+      "hexon", "penton base", "protease", "DNA polymerase", "pTP", "DBP",
+      "IVa2", "52K", "100K", "33K", "22K", "pIIIa", "pVI", "pVII", "pVIII", "pX"
+    ],
+    "probes": [
+      {"name": "long fibre", "key": "FIBER1",
+       "note": "FAdV-1 (CELO) carries two fibre genes at one locus; the long and short fibre head domains were solved separately. Not alternative starts -- separate genes.",
+       "pmids": {"function": [17698649, 16682773]}},
+      {"name": "short fibre", "key": "FIBER2",
+       "pmids": {"function": [18561970]}},
+      {"name": "GAM-1", "key": "GAM1",
+       "note": "CELO anti-apoptotic protein; no mastadenovirus homologue.",
+       "pmids": {"function": [9060680, 11186452]}},
+      {"name": "dUTPase", "key": "DUTPASE", "pmids": {}},
+      {"name": "parvovirus Rep-like protein", "key": "REPLIKE", "pmids": {}},
+      {"name": "lipase", "key": "LIPASE", "pmids": {}},
+      {"name": "U exon protein", "key": "UXP", "pmids": {"function": [17881437]}},
+      {"name": "E1 region", "key": null,
+       "note": "ABSENT BY BIOLOGY, NOT BY OVERSIGHT. Aviadenovirus has no E1, no E3 and no E4 region and no protein V. The genus-specific ORFs at both genome ends take their place. Declaring E1A here would make the annotator report it missing on all 447 genomes.",
+       "pmids": {"function": [36016389]}},
+      {"name": "protein IX", "key": "PIX",
+       "note": "Present in Aviadenovirus per the cement-protein comparison, but deposited rarely. Measure before declaring.",
+       "pmids": {"function": [33789897]}}
+    ]
+  },
+
+  "Siadenovirus": {
+    "core": [
+      "hexon", "penton base", "fiber", "protease", "DNA polymerase", "pTP",
+      "DBP", "IVa2", "52K", "100K", "33K", "22K", "pIIIa", "pVI", "pVII",
+      "pVIII", "pX"
+    ],
+    "probes": [
+      {"name": "sialidase", "key": "SIALIDASE",
+       "note": "The genus-defining gene; 'sia' in Siadenovirus.",
+       "pmids": {"function": [36016389]}},
+      {"name": "E3", "key": "E3",
+       "note": "A single E3 of its own, not the mastadenovirus cassette.",
+       "pmids": {}},
+      {"name": "U exon protein", "key": "UXP", "pmids": {"function": [17881437]}},
+      {"name": "protein IX", "key": null,
+       "note": "ABSENT. Siadenovirus is the one genus with no pIX; the capsid cement comparison across genera says so directly. Not a gap.",
+       "pmids": {"function": [33789897]}}
+    ]
+  },
+
+  "Barthadenovirus": {
+    "_comment": "BV-BRC's label for ICTV Atadenovirus: duck, ovine and bovine atadenovirus, snake, lizard and bearded dragon adenoviruses.",
+    "core": [
+      "hexon", "penton base", "fiber", "protease", "DNA polymerase", "pTP",
+      "DBP", "IVa2", "52K", "100K", "33K", "22K", "pIIIa", "pVI", "pVII",
+      "pVIII", "pX"
+    ],
+    "probes": [
+      {"name": "p32K", "key": "P32K",
+       "note": "Genus-specific structural protein with no counterpart in the other genera.",
+       "pmids": {"function": [33789897]}},
+      {"name": "LH1", "key": "LH1", "pmids": {}},
+      {"name": "LH2", "key": "LH2", "pmids": {}},
+      {"name": "LH3", "key": "LH3", "pmids": {}},
+      {"name": "RH2", "key": "RH2", "pmids": {}},
+      {"name": "RH3", "key": "RH3", "pmids": {}},
+      {"name": "RH4", "key": "RH4", "pmids": {}},
+      {"name": "RH5", "key": "RH5", "pmids": {}},
+      {"name": "E4.1", "key": "E4_1", "pmids": {}},
+      {"name": "E4.2", "key": "E4_2", "pmids": {}},
+      {"name": "E4.3", "key": "E4_3", "pmids": {}},
+      {"name": "U exon protein", "key": "UXP", "pmids": {"function": [17881437]}},
+      {"name": "protein IX", "key": "PIX",
+       "note": "Present; the atadenovirus capsid structure resolved it together with p32K.",
+       "pmids": {"function": [33789897]}}
+    ]
+  },
+
+  "mature_peptides": {
+    "_comment": [
+      "NOT BUILDABLE FROM THIS DUMP, and that is a measurement, not an",
+      "assumption: there are ZERO mat_peptide features in the four reference",
+      "genomes and zero mature-peptide deposits among the 21,947 distinct",
+      "sequences. Every deposit named 'protein VIII' is 227 aa, the same as",
+      "every deposit named 'pVIII' -- the full-length precursor.",
+      "",
+      "They are built in build_mature.py by applying published adenain",
+      "cleavage sites to the precursor collections. The protease cuts at",
+      "(M/I/L)XGX-G and (M/I/L)XGG-X."
+    ],
+    "protease_specificity_pmids": {"function": [12367749, 11683632]},
+    "precursors": [
+      {"precursor": "PIIIA", "product": "IIIa", "note": "N-terminal cleavage"},
+      {"precursor": "PVI", "products": ["pVIn", "VI", "pVIc"],
+       "note": "Cut at BOTH ends. The 11-residue C-terminal pVIc is the protease's own cofactor, which is why this one is not optional."},
+      {"precursor": "PVII", "product": "VII"},
+      {"precursor": "PVIII", "product": "VIII"},
+      {"precursor": "PX", "product": "mu", "note": "pX yields the mu peptide"},
+      {"precursor": "PTP", "products": ["iTP", "TP"]}
+    ],
+    "signal_peptides": [
+      {"feature": "E3_GP19K", "module": "Mastadenovirus",
+       "note": "Cleaved N-terminal signal sequence directing the protein into the ER. The only one in the family. SignalP 6.0 is not installed here; the published cleavage site is the authority anyway.",
+       "pmids": {"coordinates": [8350398]}}
+    ]
+  }
+}
