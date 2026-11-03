@@ -8,6 +8,8 @@ use Getopt::Long::Descriptive;
 use File::Copy;
 use IPC::Run qw(run);
 use Cwd;
+use JSON::XS;
+use File::Slurp;
 
 # Try to load version module; fall back to "dev" if not available
 my $tool_version;
@@ -55,6 +57,50 @@ my $here = getcwd;
 my $genome_in = GenomeTypeObject->create_from_file($opt->input);
 $genome_in or die "Error reading and parsing input";
 
+#
+#  WIDEN the contig-length gate to whatever the JSON actually declares.
+#
+#  annotate_by_viral_pssm.pl dies if the genome falls outside -min/-max, and
+#  that check runs BEFORE routing, so a genome rejected here is never offered
+#  to any module. The default used to be a bare 40000 with no relation to the
+#  installed modules. Measured on Adenoviridae, 3 Nov 2026: Aviadenovirus
+#  genomes are 43-45 kb and the module declares max_len 48000, so 76 of an
+#  89-genome held-out panel died at this line. The harness reported "0
+#  annotation failure(s)" and scored the module on the 13 survivors -- a call
+#  rate computed over a seventh of the panel, with nothing in the output
+#  saying so.
+#
+#  Only ever WIDENS. A taxon whose declared max_len is below 40000 keeps the
+#  40000 default, so no genome that used to be annotated stops being
+#  annotated. Each module's own segment bounds still flag "Contig is too
+#  short/long" during quality scoring -- that is where a length judgement
+#  belongs, per module, after routing.
+#
+my ($min_len, $max_len) = ($opt->min, $opt->max);
+if (-s $opt->json)
+{
+	my $txt = read_file($opt->json);
+	my $o   = eval { JSON::XS->new->decode($txt) };
+	if ($o)
+	{
+		for my $v (values %$o)
+		{
+			next unless ref $v eq 'HASH' && ref $v->{segments} eq 'HASH';
+			for my $s (values %{$v->{segments}})
+			{
+				next unless ref $s eq 'HASH';
+				$max_len = $s->{max_len} if $s->{max_len} && $s->{max_len} > $max_len;
+				$min_len = $s->{min_len} if $s->{min_len} && $s->{min_len} < $min_len;
+			}
+		}
+	}
+	else
+	{
+		print STDERR "WARNING: could not parse ", $opt->json,
+		             "; keeping the default contig-length gate $min_len-$max_len\n";
+	}
+}
+
 
 
 #
@@ -82,8 +128,8 @@ my @params = ("-i",    $sequences_file,
 		      "-c",    $opt->cdir,
 		      "-pssm", $opt->pdir,
 		      "-j",    $opt->json,
-		      "-min",  $opt->min,
-		      "-max",  $opt->max,
+		      "-min",  $min_len,
+		      "-max",  $max_len,
 		      "-s",
 		      "-no",
 		      "-tbl",
