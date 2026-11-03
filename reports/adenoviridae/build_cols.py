@@ -384,13 +384,26 @@ CLUSTER_NAME = {
  },
 }
 
-#  Reference lengths, read from the annotated reference genome of each genus
-#  -- NOT from the collections, which cannot check themselves. Used by the
-#  paralogue audit below and by scripts/check_coords.py.
+#  Lengths of each gene as the reference genome's DATABASE RECORD annotates
+#  it. These are NOT literature boundaries and must never be used as one: a
+#  GenBank /product= or join() is a submitter's claim with at most a curation
+#  pass over it, and carries the same kind of error BV-BRC does. NC_004037
+#  calls the LH3 locus "E1B 55K" and atadenoviruses have no E1B at all.
+#
+#  What they ARE good for is a CONSISTENCY check that a collection cannot
+#  perform on itself: a profile trained on two mixed genes has a perfectly
+#  self-consistent length distribution, and only an outside number exposes
+#  it. Used that way by the paralogue audit, which additionally requires
+#  homology to agree before it moves anything, and by check_coords.py.
+#
+#  Where the literature establishes a boundary, the literature wins and the
+#  disagreement is written down. See each module's LITERATURE_INVENTORY.md.
 REFLEN = {}
-if os.path.exists(os.path.join(W, "refcoords.json")):
-    for _m, _f in json.load(open(os.path.join(W, "refcoords.json"))).items():
-        REFLEN[_m] = {k: v for k, v in _f.items() if not k.startswith("_")}
+if os.path.exists(os.path.join(W, "dbcoords.json")):
+    for _m, _f in json.load(open(os.path.join(W, "dbcoords.json"))).items():
+        if isinstance(_f, dict):
+            REFLEN[_m] = {k: v for k, v in _f.items()
+                          if not k.startswith("_") and isinstance(v, int)}
 
 PARALOG = {
  "Mastadenovirus":  [{"FIBER", "FIBER1", "FIBER2"}, {"E1A", "E1A_243R"}],

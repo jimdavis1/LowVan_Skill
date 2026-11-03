@@ -53,3 +53,37 @@ it cannot be installed unattended. That does not block anything: the skill's
 own decision table says a documented cleavage site beats a prediction, and
 gp19K has one. If the curator wants SignalP for corroboration they have to
 request the download themselves.
+
+---
+
+## CORRECTION, 3 Nov 2026 — the human consensus does not travel
+
+Everything above derives mature peptides from the published **human**
+adenovirus adenain specificity, `(M/I/L)XGX↓G` / `(M/I/L)XGG↓X`
+(PMID_claude_generated 12367749, 11683632). Applying that to the whole family
+is an assumption, and for Barthadenovirus it is contradicted by the primary
+literature.
+
+Vrati *et al.* 1996 (PMID_claude_generated 8659111) analysed proteins and
+peptides from **purified OAV287 virions** and identified the cleavage sites
+the adenovirus proteinase actually uses in that virus. Some matched sites
+known from human adenovirus proteins. Others were new, and the paper states
+explicitly that some of them **did not conform to the known specificity of the
+human Ad proteinase**.
+
+So for Barthadenovirus:
+
+1. The human consensus **cannot** be used to predict cleavage sites, and any
+   mature peptide generated that way would be a fabricated boundary wearing a
+   citation that does not support it.
+2. The authoritative sites are the measured ones in 8659111, which is **not
+   open access** — only the abstract has been read. The sites themselves are
+   not yet in hand.
+3. The same paper reports a **processed 28 kDa virion polypeptide** from the
+   left-hand end, i.e. p32K is itself a precursor (32K → 28K). That is a
+   mature peptide this module does not currently model.
+
+**Mature peptides for Barthadenovirus are therefore BLOCKED on obtaining
+PMID 8659111**, not merely unbuilt. Siadenovirus has no equivalent
+virion-proteomics paper found so far, so its cleaved products rest on the
+human consensus alone and must be labelled as the inference they are.

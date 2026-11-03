@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Compare each collection's length distribution against the REFERENCE genome.
+"""Compare each collection's length distribution against the reference RECORD.
+
+NOT A BOUNDARY AUTHORITY. The numbers this reads come from a GenBank/RefSeq
+feature table, which carries the same kind of error BV-BRC does -- NC_004037
+annotates the LH3 locus as "E1B 55K" and atadenoviruses have no E1B region at
+all. The literature is the authority for a boundary; this is a consistency
+check, and a disagreement here is a question to take TO the literature, not an
+answer from it.
 
 The curator's question is whether the features have proper coordinates. A
 collection cannot be checked against itself: a profile built from a mixture
@@ -37,6 +44,10 @@ def lens(p):
 def main():
     ref = json.load(open(sys.argv[1]))
     for mod, feats in ref.items():
+        if not isinstance(feats, dict):
+            continue
+        feats = {k: v for k, v in feats.items()
+                 if not k.startswith("_") or k == "_reference"}
         print("=" * 70)
         print("%s   reference %s" % (mod, feats.pop("_reference", "?")))
         print("%-12s %7s %7s %7s %7s  %s" %

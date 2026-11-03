@@ -4,7 +4,8 @@ A per-protein check of the three things the curator asked for: (1) is every
 protein the literature describes present, (2) are its coordinates right,
 (3) does it have a real function rather than a position label.
 
-Coordinates are read from the annotated reference genome, not assumed:
+**Coordinates below are DATABASE annotations, not literature boundaries.**
+See §0 for what that means and how far each one can be trusted.
 
 | Reference | Accession | Length |
 |---|---|---|
@@ -14,6 +15,44 @@ Citations are in `PMID_claude_generated`, never `PMID`. Every PMID below was
 resolved against PubMed and its title read before it was written here.
 
 ---
+
+
+## 0. Where these coordinates come from, and how far they can be trusted
+
+**GenBank and RefSeq records carry the same kind of error BV-BRC does.** A
+`/product=` or a `join()` is a submitter's claim with at most a curation pass
+over it. This family proves it twice over:
+
+- `NC_004037` annotates the LH3 locus as **"E1B 55K"**, and atadenoviruses
+  have no E1B region at all.
+- `NC_001958` is a **PROVISIONAL RefSeq** — its own header says it "has not
+  yet been subject to final NCBI review".
+
+So the tables in this file are a **consistency check**, not an authority. They
+answer "does this collection hold one gene or two mixed together", which a
+collection cannot answer about itself. Where the literature establishes a
+boundary, the literature wins and any disagreement is written down.
+
+### Evidence grade, per source
+
+| Grade | What it is | Sources for this genus |
+|---|---|---|
+| **Experimental** | transcript mapping, structures, proteomics of real virions | see table below |
+| **Computational** | genes called by homology to other adenoviruses | the genome papers' own gene tables |
+| **Database only** | a feature table with no paper behind the specific boundary | RefSeq re-annotation, BV-BRC |
+
+| Source | PMID | Grade | What it actually establishes |
+|---|---|---|---|
+| Pitcovski *et al.* 1998, the TAdV-3 genome paper | 9791022 | **Computational** | The paper states plainly that "genes were identified by **comparison of the DNA and predicted amino acid sequences with published sequences of other Ads**". Every gene boundary in `NC_001958` is a homology prediction, not a measurement. It also reports only "**very low similarity to ovine E3 region**" — which is where the weakly-supported E3 call comes from. |
+| Aboezz *et al.* 2026, RACE transcriptional map | 41960683 | **Experimental** | Full-length annotation of 14 of 23 predicted transcripts; transcription start sites, splice junctions, a conserved tripartite leader across late transcripts, a bipartite leader on DBP mRNA, shared polyadenylation between ORF1 and Hyd. **This is the only experimental boundary evidence for the genus** and it should be the basis of the module's splice models. |
+| Marabini *et al.* 2021, cross-genus capsid cement | 33789897 | **Experimental** | pIX genuinely absent. |
+
+**Consequence to be honest about:** apart from the 14 transcripts in the 2026
+RACE map, every Siadenovirus boundary in this module rests on a 1998
+homology prediction in an unreviewed record. The collections are internally
+consistent and consistent with that record — that is all the length table
+below demonstrates.
+
 
 ## 1. Completeness — the genus-specific set
 

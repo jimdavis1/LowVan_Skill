@@ -118,3 +118,60 @@ PARTITIONING QUESTION OPEN FOR BARTHADENOVIRUS: 55 genomes split 24 ruminant
 set -- ORF1 (112 aa) and 105R (178 aa) in place of most RH genes, only RH1
 shared. Building as one module and measuring routing before deciding; a
 3-way split would leave the reptilian module at 7 genomes.
+
+## 2026-11-03 -- CURATOR CORRECTION: the database is not the boundary authority
+
+Curator: "The genbank and bvbrc genomes are the same in that they could have
+errors in their gene names and boundaries. Making sure our calls are
+consistent is okay, but the literature is authoritative if you can find the
+actual gene boundaries."
+
+I had used the RefSeq feature tables of NC_001958, NC_004037 and NC_009989 as
+the coordinate authority and said so in both inventories. That was wrong, and
+I had the counter-example in hand in the same session: NC_004037 annotates the
+LH3 locus as "E1B 55K" and atadenoviruses have no E1B region at all. I caught
+that error by homology and literature and then went on treating the same
+record as ground truth for every other boundary.
+
+WHAT CHANGED
+  refcoords.json -> dbcoords.json, with a _WARNING and a _provenance note per
+  module. build_cols.py and check_coords.py both restate that these are
+  CONSISTENCY checks and never a boundary authority. Both inventories gained a
+  section 0 grading every source as Experimental / Computational / Database.
+
+WHAT THE PROVENANCE TURNED OUT TO BE
+  TAdV-3 NC_001958 is a PROVISIONAL RefSeq -- "has not yet been subject to
+  final NCBI review" -- identical to AF074946. Its genes were called by
+  "comparison of the DNA and predicted amino acid sequences with published
+  sequences of other Ads" (PMID_claude_generated 9791022). Every Siadenovirus
+  boundary in this module is a 1998 homology PREDICTION in an unreviewed
+  record, except the 14 transcripts in the 2026 RACE map (41960683).
+  The weak E3 call traces to that paper's "very low similarity to ovine E3".
+
+  OAdV-7 has real experimental boundary work: transcription start sites and
+  SPLICE JUNCTIONS for the lefthand end, IVa2, E2, P32K and E4 regions
+  (PMID_claude_generated 9614874), the right-end RH transcripts (12504581),
+  and proteinase cleavage sites measured on purified virions (8659111).
+
+  PROVENANCE OF THE "E1B 55K" ERROR, TRACED: the 1996 genome paper proposed
+  only TENTATIVELY that the lefthand group "probably represents the E1A/E1B
+  regions". That hardened into /product="E1B 55K" in the database. The 2017
+  and 2021 structure papers identified the same protein as LH3, a capsid
+  cementing protein. The literature corrected itself; the database did not.
+
+MATURE PEPTIDES -- AN ASSUMPTION I HAD TO WITHDRAW
+  MATURE_PEPTIDES.md derived cleavage from the HUMAN adenain consensus
+  (M/I/L)XGX/G for the whole family. 8659111 measured the sites on purified
+  OAV287 virions and reports that some "did not conform to the known
+  specificity of the human Ad proteinase". So that consensus cannot be used
+  for Barthadenovirus. Also: p32K is itself a precursor -- the paper reports a
+  processed 28 kDa virion polypeptide -- which this module does not model.
+  Barthadenovirus mature peptides are BLOCKED on 8659111, not merely unbuilt.
+
+BLOCKED ON PAYWALL -- NOT OPEN ACCESS, ABSTRACTS ONLY
+  8659111  OAdV-7 genome + measured proteinase cleavage sites
+  9614874  OAdV-7 transcription start sites and splice junctions
+  12504581 OAdV-7 right-end transcript map + F-box identification
+  18166240 SnAdV-1 genome completion
+  These are the authoritative boundaries for Barthadenovirus and they are NOT
+  in the module. Named gap, not a silent one. Ask the curator for PDFs.

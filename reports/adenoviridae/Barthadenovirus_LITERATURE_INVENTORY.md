@@ -9,8 +9,10 @@ recorded here as the synonym a reader will meet in the literature.
 **What this file is.** A per-protein check of three things the curator asked
 for, in this order: (1) is every protein the literature describes present in
 the module, (2) are its coordinates right, (3) does it have a real function
-rather than a position label. Coordinates are read from the two annotated
-reference genomes, not assumed:
+rather than a position label.
+
+**Coordinates below are DATABASE annotations, not literature boundaries.**
+See §0 for what that means and how far each one can be trusted.
 
 | Reference | Accession | Length | Role here |
 |---|---|---|---|
@@ -21,6 +23,53 @@ Citations are in `PMID_claude_generated`, never `PMID`. Every one below was
 resolved against PubMed and its title read before it was written here.
 
 ---
+
+
+## 0. Where these coordinates come from, and how far they can be trusted
+
+**GenBank and RefSeq records carry the same kind of error BV-BRC does.** A
+`/product=` or a `join()` is a submitter's claim with at most a curation pass
+over it. This family proves it twice over:
+
+- `NC_004037` annotates the LH3 locus as **"E1B 55K"**, and atadenoviruses
+  have no E1B region at all.
+- `NC_001958` is a **PROVISIONAL RefSeq** — its own header says it "has not
+  yet been subject to final NCBI review".
+
+So the tables in this file are a **consistency check**, not an authority. They
+answer "does this collection hold one gene or two mixed together", which a
+collection cannot answer about itself. Where the literature establishes a
+boundary, the literature wins and any disagreement is written down.
+
+### Evidence grade, per source
+
+| Grade | What it is | Sources for this genus |
+|---|---|---|
+| **Experimental** | transcript mapping, structures, proteomics of real virions | see table below |
+| **Computational** | genes called by homology to other adenoviruses | the genome papers' own gene tables |
+| **Database only** | a feature table with no paper behind the specific boundary | RefSeq re-annotation, BV-BRC |
+
+| Source | PMID | Grade | What it actually establishes |
+|---|---|---|---|
+| Vrati *et al.* 1996, the OAdV-7 genome paper | 8659111 | **Experimental (proteomics)** + computational | The primary genome description. Reports **proteinase cleavage sites measured on purified virions**, and notes that some "**did not conform to the known specificity of the human Ad proteinase**". Also states that structural proteins **V and IX are absent** from the genome, that a **new processed 28 kDa virion polypeptide** is encoded opposite the proposed E1A region, that two structural coding sequences were then **unidentified**, and that the OAV penton **lacks the RGD motif** human adenoviruses use to engage integrins. |
+| Khatri & Both 1998, transcripts and promoters | 9614874 | **Experimental** | Transcription start sites and **RNA splice junctions** mapped for the left-hand end, IVa2, E2, P32K and E4 regions. Left-hand end has three temporally distinct promoters, E4 two; E2 has a single promoter, unlike mastadenoviruses; p32K and IVa2 each have their own. **This is the real boundary authority for those regions.** |
+| Both 2002, right-end transcription map + F-box | 12504581 | **Experimental** | Eight transcripts from a terminal-repeat promoter, five potentially bicistronic, covering RH1/RH2/RH4/RH6; and the F-box motif itself. |
+| Marabini 2021 / Menéndez-Conejero 2017 | 33789897, 28943338 | **Experimental** | LH3, p32K and LH2 as virion components; LH3's fold and capsid-binding motif. These **supersede the 1996 paper's tentative "E1A/E1B" reading of the left-hand end**, which is the origin of the "E1B 55K" name still in the database. |
+
+**The provenance of the "E1B 55K" error, traced:** the 1996 paper proposed
+only *tentatively* that the left-hand group "probably represents the E1A/E1B
+regions". That tentative reading hardened into a `/product="E1B 55K"` in the
+database, and the 2017/2021 structural work identified the same protein as
+LH3, a capsid cementing protein. The literature corrected itself; the database
+did not follow.
+
+**Not yet obtained.** PMIDs 8659111, 9614874, 12504581 and 18166240 are **not
+open access** and only their abstracts were read. The cleavage sites in
+8659111 and the splice junctions in 9614874 are the authoritative boundaries
+for this genus and they are **not yet in this module** — the figures here
+still come from the database record. This is a known, named gap, not a
+silently accepted one.
+
 
 ## 1. Completeness — what the module was missing
 
