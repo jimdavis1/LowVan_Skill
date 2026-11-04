@@ -100,6 +100,10 @@ unless ($contig_file ){die "must declare an input subject file with -i \n\n$usag
 # Name the Temp file:
 # generates a random 20 digit string of 0-9a-f
 unless ($tmp){$tmp .= sprintf("%x", rand 16) for 1..20;}
+#  Remember whether the caller named these before the defaults land on them,
+#  so the JSON-derived widening below can leave an explicit -min/-max alone.
+my $min_given = defined $min_len;
+my $max_given = defined $max_len;
 unless ($min_len){$min_len = 300; }
 unless ($max_len){$max_len = 35000; }
 unless ($min_contig_bit){$min_contig_bit = 150;}
@@ -130,6 +134,40 @@ unless ($threads){$threads = 8}
 open (IN, "<$opt_file"), or die "Cant find JSON options file, use -opt\n"; 
 my $options = decode_json(scalar read_file(\*IN));
 close IN;
+
+#
+#  WIDEN the contig-length gate to what the JSON actually declares.
+#
+#  The length check below runs BEFORE routing, so a genome outside these
+#  bounds is never offered to any module -- it is not "unrouted", it was
+#  never looked at. The defaults above (300 / 35000) are constants with no
+#  relation to the installed modules.
+#
+#  Measured on Adenoviridae, 3 Nov 2026: the family-wide coverage sweep
+#  reported "587 exemplars | 290 routed | 297 UNROUTED (50.6%)". Every one of
+#  the 297 had died here at 35000. Among them was 10535.479 -- the genome
+#  Mastadenovirus.1.dna was BUILT FROM, which cannot fail to route. That is
+#  what gave it away; a plain 50% miss rate reads as a routing problem and
+#  would have been chased in the rep contigs for a long time.
+#
+#  Only ever WIDENS, and never overrides an explicit -min/-max. A taxon whose
+#  declared bounds sit inside the defaults keeps the defaults, so nothing that
+#  used to be annotated stops being annotated. Per-module length judgements
+#  belong in viral_genome_quality.pl, after routing, where they surface as
+#  "Contig is too short/long" against that module's own segment bounds.
+#
+for my $mod (values %$options)
+{
+	next unless ref $mod eq 'HASH' && ref $mod->{segments} eq 'HASH';
+	for my $seg (values %{$mod->{segments}})
+	{
+		next unless ref $seg eq 'HASH';
+		if (!$max_given && $seg->{max_len} && $seg->{max_len} > $max_len)
+			{$max_len = $seg->{max_len};}
+		if (!$min_given && $seg->{min_len} && $seg->{min_len} < $min_len)
+			{$min_len = $seg->{min_len};}
+	}
+}
 
 
 # Version the Genome (another random alpha numeric)

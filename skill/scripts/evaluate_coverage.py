@@ -222,7 +222,14 @@ def annotate(exemplars, seqs, work, repo, threads):
         r = subprocess.run(["perl", os.path.join(repo, "annotate_by_viral_pssm.pl"),
                             "-i", fa, "-p", pre, "-threads", "1"],
                            capture_output=True, text=True, env=env)
-        if not os.path.exists(pre + ".feature.tbl"):
+        #  A ZERO-BYTE table counts as no table. The annotator opens its output
+        #  files before it decides it has nothing to say, so a genome that dies
+        #  in the length gate or finds no reference contig leaves an empty
+        #  .feature.tbl behind rather than no file at all. Testing only for
+        #  existence threw that stderr away -- and the stderr is the ONLY thing
+        #  that separates the two causes, which report() has to tell apart.
+        tbl = pre + ".feature.tbl"
+        if not os.path.exists(tbl) or os.path.getsize(tbl) == 0:
             with open(pre + ".NOCALL", "w") as fh:
                 fh.write((r.stderr or r.stdout or "")[-3000:])
 
@@ -578,15 +585,43 @@ def main():
 
 
 def report(ex, seqs, outd, out):
-    unrouted, no_calls = [], []
+    unrouted, no_calls, not_annotated = [], [], []
     per_mod, feats, flags = collections.Counter(), collections.Counter(), collections.Counter()
     per_mod_feat = collections.defaultdict(collections.Counter)
     quality = collections.Counter()
     rows = []
     for g in ex:
         tbl = os.path.join(outd, g + ".feature.tbl")
-        if not os.path.exists(tbl):
-            unrouted.append(g); continue
+        #  FOUR outcomes, not three. A table that is absent or ZERO BYTES
+        #  means the annotator produced nothing at all for this genome -- it
+        #  never got as far as routing, so it is not "unrouted", and the
+        #  reason is in its stderr rather than in the rep contigs.
+        #
+        #  Measured on Adenoviridae, 3 Nov 2026: the sweep reported "297
+        #  UNROUTED (50.6%)" and every one of the 297 had an empty table,
+        #  because annotate_by_viral_pssm.pl had refused them on a hard-coded
+        #  35000 contig-length ceiling before routing. The list included
+        #  10535.479 -- the genome Mastadenovirus.1.dna was BUILT FROM, which
+        #  cannot fail to route. Folded into the routing number it reads as a
+        #  rep-contig problem and sends you looking in the wrong place.
+        #
+        #  An empty table has TWO causes and they belong in different columns.
+        #  "No matching reference contigs with bit score greater than N" is a
+        #  real routing miss -- the genome was offered to the rep contigs and
+        #  none matched -- and must stay in `unrouted`, where it is actionable.
+        #  Anything else (the length gate, a crash) never reached routing.
+        #  annotate() writes that stderr to <id>.NOCALL; it is the only thing
+        #  that separates them, so a missing NOCALL is NOT assumed benign.
+        if not os.path.exists(tbl) or os.path.getsize(tbl) == 0:
+            why = ""
+            nc = os.path.join(outd, g + ".NOCALL")
+            if os.path.exists(nc):
+                why = open(nc, errors="replace").read()
+            if "No matching reference contigs" in why:
+                unrouted.append(g)
+            else:
+                not_annotated.append((g, why.strip().splitlines()[-1] if why.strip() else "no stderr captured"))
+            continue
         mod = None; calls = []; sentinel = False
         for line in open(tbl, errors="replace"):
             f = line.rstrip("\n").split("\t")
@@ -629,15 +664,27 @@ def report(ex, seqs, outd, out):
         rows.append({"genome": g, "len": sum(map(len, seqs[g])), "module": mod, "n_calls": len(calls),
                      "calls": sorted(set(calls))})
     res = {"exemplars": len(ex), "unrouted": unrouted,
+           "not_annotated": [{"genome": g, "stderr": w} for g, w in not_annotated],
            "routed_no_calls": no_calls, "per_module": dict(per_mod),
            "features": dict(feats),
            "per_module_features": {k: dict(v) for k, v in per_mod_feat.items()},
            "flags": dict(flags), "rows": rows,
            "refs_used": scan_refs([outd])}
     json.dump(res, open(out, "w"), indent=1)
-    print("\n  %d exemplars | %d routed | %d UNROUTED (%.1f%%)"
-          % (len(ex), len(ex) - len(unrouted), len(unrouted),
-             100.0 * len(unrouted) / max(len(ex), 1)))
+    scored = len(ex) - len(not_annotated)
+    print("\n  %d exemplars | %d routed | %d UNROUTED (%.1f%% of %d scored)"
+          % (len(ex), scored - len(unrouted), len(unrouted),
+             100.0 * len(unrouted) / max(scored, 1), scored))
+    if not_annotated:
+        print("  %d NOT ANNOTATED -- empty feature table, the annotator "
+              "produced nothing.\n"
+              "     This is NOT a routing result and is excluded from the "
+              "percentage above.\n"
+              "     It is a defect in the annotator or its inputs, not in the "
+              "rep contigs.\n     %s"
+              % (len(not_annotated),
+                 "\n     ".join("%s: %s" % (g, w) for g, w in not_annotated[:6])
+                 + ("\n     ..." if len(not_annotated) > 6 else "")))
     if no_calls:
         print("  %d routed but called NOTHING: %s"
               % (len(no_calls), ", ".join(no_calls[:8])
