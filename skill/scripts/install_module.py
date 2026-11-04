@@ -248,8 +248,29 @@ def validate(workdir, mod_json):
             except OSError:
                 continue
             n = txt.count("alignment_to_pssm: psiblast failed")
-            if n:
-                lost.append("%s (%d)" % (feat, n))
+            if not n:
+                continue
+            #  Lost_Clusters is authoritative when the builder wrote one: it
+            #  records the clusters that actually ended with no profile. A
+            #  raw stderr count also catches the LEFTOVER pass trying a group
+            #  that is too small to profile, which loses no cluster and is
+            #  not a defect -- Barthadenovirus K22 and Mastadenovirus UNC22
+            #  both report failures of that kind while holding every profile
+            #  their clusters earned. Counting those cries wolf, and a check
+            #  that cries wolf is one people learn to skip.
+            lc = os.path.join(abase, feat, "Lost_Clusters")
+            if os.path.exists(lc):
+                try:
+                    rows = [l for l in open(lc, errors="replace").read()
+                            .splitlines()[1:] if l.strip()]
+                except OSError:
+                    rows = None
+                if rows is not None:
+                    if rows:
+                        lost.append("%s (%d)" % (feat, len(rows)))
+                    continue
+            lost.append("%s (%d, no Lost_Clusters: counted from stderr)"
+                        % (feat, n))
         if lost:
             print("       %2d feature(s) LOST PROFILES to psiblast failures -> "
                   "the feature is built but thinner than its clusters:" % len(lost))
