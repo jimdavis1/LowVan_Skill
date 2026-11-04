@@ -540,7 +540,15 @@ sub process_alignment
     my $forced_keep = 0;
     if (@ali6 == 1 && @ali5 >= 2)
     {
-        push @ali6, ([$ali5[1][0], $ali5[1][1], uc $ali5[1][2]]);
+        #  The retained copy needs a DISTINCT id. psiblast refuses an MSA
+        #  with a repeated identifier --
+        #      BlastInterface::psiblast_in_msa: Duplicate input id '130499.16'
+        #  -- so pushing $ali5[1] back under its own name made this rescue
+        #  fail every time it fired, which is the whole reason the separate
+        #  build_duplicate_pssms.py workaround had to be written. Caught on
+        #  Barthadenovirus E4_3 cluster 3, Adenoviridae, 4 Nov 2026.
+        my $dup_id = $ali5[1][0] . "_dup";
+        push @ali6, ([$dup_id, $ali5[1][1], uc $ali5[1][2]]);
         $identical_collapsed--;
         $forced_keep = 1;
         print STDERR "  Collapse left a single sequence; retained a second member so a PSSM can be built\n";
