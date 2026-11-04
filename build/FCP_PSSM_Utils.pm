@@ -21,8 +21,25 @@ sub create_pssm
     my %pssm_opts = (outPSSM => $out_file);
     my $pssm = BlastInterface::alignment_to_pssm($alignment, \%pssm_opts);
     
+    #  A psiblast failure must not be fatal. alignment_to_pssm warns and
+    #  returns undef, leaving no file -- and process_pssm_file below then
+    #  died on the open, which killed the whole feature: every cluster after
+    #  the failing one was never attempted. Barthadenovirus RH5 lost its
+    #  3rd AND 4th profiles to a single collapsed 3rd cluster that way,
+    #  Adenoviridae, 3 Nov 2026. Report it loudly and let the remaining
+    #  clusters build; the caller's run.stderr is what install_module.py
+    #  reads to count these.
+    if (!$pssm || !-s $out_file)
+    {
+        print STDERR "  WARNING: no PSSM produced for $out_file -- psiblast "
+                   . "failed or wrote nothing. Continuing with the remaining "
+                   . "clusters; this feature will be thinner than its "
+                   . "cluster count suggests.\n";
+        return undef;
+    }
+
     # Process the PSSM file to fix titles if necessary
-    if ($options->{process_titles}) 
+    if ($options->{process_titles})
     {
         my $final_file = $options->{final_file} || "final_pssm.out";
         process_pssm_file($out_file, $final_file);

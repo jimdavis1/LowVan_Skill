@@ -27,11 +27,18 @@ sub process_cluster_alignments
 
     # Create report file
     open(my $report_fh, ">Curation_Report") or die "Cannot open Curation_Report for writing: $!\n";
+
+    #  Start Lost_Clusters fresh each run and give it a header, so a stale
+    #  file from an earlier build cannot be read as this build's result.
+    unlink("Lost_Clusters");
+    open(my $lost_hdr, ">Lost_Clusters") or die "Cannot open Lost_Clusters for writing: $!\n";
+    print $lost_hdr "Alignment\tOriginal_Seqs\tFinal_Seqs\tReason\tMembers\n";
+    close($lost_hdr);
     #  NB the last two labels used to be swapped relative to the values the
     #  writer emits: it prints end_dash_removed first and the cut-column
     #  list second. Labels corrected here rather than reordering the data,
     #  so existing Curation_Report files stay readable.
-    print $report_fh "Alignment\tAli_Len\tFirst_AA\tOriginal Seqs\tFinal Seqs\tLow_Occ_Cols_Cut\tN_Term_Cut\tC_Term_Cut\tDash_Starts_Removed\tSeq_w_End_Dashes_Removed\tCut_Cols\tIdentical_Collapsed\tNterm_Stop_Col\tNterm_Stop_Res\tNterm_Flag\n";
+    print $report_fh "Alignment\tAli_Len\tFirst_AA\tOriginal Seqs\tFinal Seqs\tLow_Occ_Cols_Cut\tN_Term_Cut\tC_Term_Cut\tDash_Starts_Removed\tSeq_w_End_Dashes_Removed\tCut_Cols\tIdentical_Collapsed\tNterm_Stop_Col\tNterm_Stop_Res\tNterm_Flag\tForced_Keep\tSeq_w_Internal_Dashes_Removed\n";
 
     #---------------------------------------------------------------------------
     #  PASS 1 -- align every cluster with MAFFT and keep the alignment.
@@ -92,7 +99,8 @@ sub process_cluster_alignments
 
         # Process the alignment
         my $ali_data = process_alignment(\@ali, $options);
-        
+
+
         #  A translated protein starts at Met. If the trim stopped somewhere
         #  else the alignment is FLAGGED for review, not trimmed further --
         #  non-Met starts are rare but real, and hunting onward for a
@@ -123,14 +131,57 @@ sub process_cluster_alignments
         #  alignment and lost coverage for the sake of one sequence.
         my $keep_floor = defined($options->{min_keep}) ? $options->{min_keep} : 2;
         $keep_floor = $options->{min_seqs} if $options->{min_seqs} < $keep_floor;
-        if ($ali_data->{n_seqs_final} >= $keep_floor) 
+        #  A cluster that ends up with no profile must leave a NOTE behind.
+        #  Curator, 4 Nov 2026: a collapse like this is where you go to NCBI
+        #  for a match or a close relative to thicken the collection -- but
+        #  only if you know it happened. Until now the only trace was a line
+        #  in run.stderr and a corrected_alis entry with no matching .pssm,
+        #  and the cost showed up months later as a low call rate.
+        #
+        #  Lost_Clusters names the members, so the NCBI search has something
+        #  to start from rather than a cluster number.
+        my $lost_reason;
+        if ($ali_data->{n_seqs_final} >= $keep_floor)
         {
-            create_pssm_for_alignment($ali_file, $ali_data, $options, $tmp);
+            my $ok = create_pssm_for_alignment($ali_file, $ali_data, $options, $tmp);
+            $lost_reason = "psiblast produced no profile" unless $ok;
         }
         else
         {
             print STDERR "  $ali_file: $ali_data->{n_seqs_final} sequence(s) after ",
                          "curation, below the keep floor of $keep_floor; no profile\n";
+            $lost_reason = sprintf("%d of %d sequence(s) survived curation, "
+                                 . "below the keep floor of %d",
+                                   $ali_data->{n_seqs_final},
+                                   $ali_data->{n_seqs_orig}, $keep_floor);
+            $lost_reason .= sprintf("; %d dropped on internal gaps",
+                                    $ali_data->{internal_dash_removed})
+                if $ali_data->{internal_dash_removed};
+        }
+        #  Say WHY the alignment was thin, in the same line as the failure.
+        #  psiblast only reports that it could not build; the useful fact is
+        #  which members went and on what grounds, because that is what a
+        #  search for a close relative has to start from.
+        if ($lost_reason && $ali_data->{internal_dash_removed}
+            && $lost_reason !~ /internal gaps/)
+        {
+            $lost_reason .= sprintf("; %d of %d member(s) dropped on internal "
+                                  . "gaps before alignment",
+                                    $ali_data->{internal_dash_removed},
+                                    $ali_data->{n_seqs_orig});
+        }
+        if ($lost_reason)
+        {
+            open(my $lost_fh, ">>Lost_Clusters")
+                or die "Cannot open Lost_Clusters for writing: $!\n";
+            print $lost_fh join("\t", $ali_file, $ali_data->{n_seqs_orig},
+                                $ali_data->{n_seqs_final}, $lost_reason,
+                                join(",", map { $_->[0] } @ali)), "\n";
+            close($lost_fh);
+            print STDERR "  $ali_file: NO PROFILE -- $lost_reason\n",
+                         "     members: ", join(", ", map { $_->[0] } @ali), "\n",
+                         "     recorded in Lost_Clusters; consider NCBI for a close\n",
+                         "     relative to thicken this collection.\n";
         }
     }
     
@@ -477,10 +528,21 @@ sub process_alignment
     #  to profile. If the collapse leaves exactly one member, put a second
     #  back so a PSSM can still be produced. The two are identical by
     #  definition, which is fine: the profile is then simply that sequence.
-    if (@ali6 == 1 && @ali5 >= 2) 
+    #  This is the ONLY sanctioned way down to two sequences, per the curator,
+    #  4 Nov 2026: force a keep when the collapse happened because similarity
+    #  was too high, and only then. A member lost for any other reason --
+    #  gappiness, a ragged C-terminus -- is a member that should go, and
+    #  restoring it would build a profile out of a pair that does not agree.
+    #  Barthadenovirus RH5 cluster 3 is the worked example of what NOT to
+    #  force: its two members are 74.2% identical over their ungapped overlap
+    #  and align across 260 columns for 207 and 216 aa, so one is dropped on
+    #  gappiness. That cluster is correctly lost.
+    my $forced_keep = 0;
+    if (@ali6 == 1 && @ali5 >= 2)
     {
         push @ali6, ([$ali5[1][0], $ali5[1][1], uc $ali5[1][2]]);
         $identical_collapsed--;
+        $forced_keep = 1;
         print STDERR "  Collapse left a single sequence; retained a second member so a PSSM can be built\n";
     }
 
@@ -561,6 +623,8 @@ sub process_alignment
         n_seqs_final => $n_seqs_final,
         nterm_stop => $nterm_stop,
         identical_collapsed => $identical_collapsed,
+        forced_keep => $forced_keep,
+        internal_dash_removed => (scalar @$ali) - $n_seqs_internal_dash,
         ali_len => $final_ali_len,
         start_char => $start_char,
         low_occ => $low_occ,
@@ -594,7 +658,9 @@ sub write_alignment_report
         ($ali_data->{nterm_stop} ? $ali_data->{nterm_stop}{col} : "-"),
         ($ali_data->{nterm_stop} ? $ali_data->{nterm_stop}{res} : "-"),
         ($ali_data->{nterm_stop} && $ali_data->{nterm_stop}{res} ne "M"
-             ? "REVIEW-nonMet" : "ok")
+             ? "REVIEW-nonMet" : "ok"),
+        ($ali_data->{forced_keep} ? "FORCED" : ""),
+        $ali_data->{internal_dash_removed}
     ), "\n";
     
     return 1;
@@ -621,10 +687,10 @@ sub create_pssm_for_alignment
         pssm_prefix => $options->{pssm_prefix}
     };
     
-    # Create the PSSM using PSSMUtils
-    create_pssm($ali_data->{final_ali}, $pssm_options);
-    
-    return 1;
+    #  Propagate the result. This used to return a bare 1 whatever happened,
+    #  so a failed profile was indistinguishable from a built one.
+    my $made = create_pssm($ali_data->{final_ali}, $pssm_options);
+    return $made ? 1 : 0;
 }
 
 1; # End of module
