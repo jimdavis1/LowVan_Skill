@@ -217,6 +217,46 @@ def validate(workdir, mod_json):
             print("       %2d DECLARED BUT UNBUILT -> would never be called:" % len(missing))
             print("          %s" % ", ".join(sorted(missing)))
             problems.append((module, "unbuilt", sorted(missing)))
+        #  A feature having SOME PSSMs is not the same as its build having
+        #  succeeded. fasta-cluster-pssm keeps a cluster, writes its alignment,
+        #  then calls psiblast -in_msa to turn it into a profile -- and when
+        #  that call fails the builder prints the rc to run.stderr, carries on
+        #  to the next cluster and exits 0. The feature still has profiles, so
+        #  the `unbuilt` check above is satisfied and nothing else looks.
+        #
+        #  Measured on Adenoviridae, 3 Nov 2026: six features across the four
+        #  modules lost profiles this way. Barthadenovirus RH5 kept 4 of 4
+        #  clusters per its own Truncation_Report and shipped with 2 profiles;
+        #  it calls in 8 of 23 exemplars (34.8%). The trigger is visible in the
+        #  stderr -- "Original_Seqs = 2, Final_Seqs = 1" -- an alignment
+        #  trimmed down to a single sequence, which psiblast cannot build from.
+        #
+        #  Reconcile the kept clusters against the profiles, and read the
+        #  stderr rather than inferring: a cluster may legitimately produce
+        #  several profiles, so a bare count comparison is not the test.
+        #  Walk the build directories rather than the JSON keys: a feature
+        #  whose directory is named differently from its key would otherwise
+        #  be skipped in silence, which is the failure mode being fixed.
+        lost = []
+        abase = os.path.join(workdir, "Alignments", module)
+        for feat in sorted(os.listdir(abase) if os.path.isdir(abase) else []):
+            err = os.path.join(abase, feat, "run.stderr")
+            if not os.path.exists(err):
+                continue
+            try:
+                txt = open(err, errors="replace").read()
+            except OSError:
+                continue
+            n = txt.count("alignment_to_pssm: psiblast failed")
+            if n:
+                lost.append("%s (%d)" % (feat, n))
+        if lost:
+            print("       %2d feature(s) LOST PROFILES to psiblast failures -> "
+                  "the feature is built but thinner than its clusters:" % len(lost))
+            print("          %s" % ", ".join(lost))
+            print("          These exit 0 and leave the feature callable, so they "
+                  "show up only as a low call rate.")
+            problems.append((module, "pssm-build-failed", lost))
         if orphan:
             print("       %2d PSSMs WITH NO JSON ENTRY -> would never be loaded:" % len(orphan))
             print("          %s" % ", ".join(sorted(orphan)))
