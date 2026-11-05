@@ -333,6 +333,56 @@ The logic lives in `scripts/collection_engine.py`; a taxon's
 Output: `collections/<Module>/<FEAT>.fasta`, plus `synonyms.tsv`,
 `UNASSIGNED_TRACKING.tsv` and `NOT_MODELLED.tsv`.
 
+#### 2a. Length-audit EVERY collection, now — not after a coverage run.
+
+The nested-capsid audit above is the same test narrowed to the place it was
+first needed. **Any** collection can hold two genes, and nothing downstream
+can see it: the profile recalls its own training data perfectly, the call
+rate is unaffected or improves, and the annotation string is correct. The
+only symptom is duplicate calls, which look exactly like a cutoff problem and
+get "fixed" by spending a coverage run on cutoffs.
+
+```bash
+python3 scripts/audit_collection_lengths.py --workdir . --module <Module> \
+        --refs length_refs_<Module>.json --accept accept_<Module>.tsv \
+        --write-md <Module>/LENGTH_AUDIT.md
+```
+
+`install_module.py` **refuses** a module whose report is missing, stale, or
+has unresolved findings, so this is a precondition for shipping rather than a
+diagnostic to reach for when something looks odd. Resolve each finding by
+re-binning, or sign it off with a reason via `--accept`; a signed-off finding
+stays visible in the report with its reason beside it.
+
+Every range in `--refs` needs a PMID and the tool refuses one without it. The
+curator put it plainly on 5 Nov 2026, after the *second* contaminated bin in
+one family: *"The lengths, etc. need to be cross checked with the literature
+before binning or at the time you are checking the alignments, not after you
+have done successive coverage runs."*
+
+Three traps, each of which cost a rebuild in Adenoviridae:
+
+- **Key species on the taxon id**, which is the genome id's prefix —
+  `10524.1311` → `10524`. Not on the genome NAME: "Human adenovirus 41
+  Hannover_2022" and "Human adenovirus 41 DOM03186" are one species under two
+  strings, and the name key reported 53 within-species matches as
+  cross-species *while this very defect was being diagnosed*.
+- **A label is a claim about a gene, and two schemes can disagree.**
+  "fiber-1" is positional, "long fiber" descriptive. They agree in
+  Aviadenovirus and are INVERTED in Mastadenovirus, where `NC_001454` puts
+  the 387 aa SHORT fiber first. One regex shared between the two genera put
+  two proteins across three bins, at 95-99% identity to each other.
+- **Short is not the same as partial.** A filter at 60% of the species median
+  deleted 578 sequences, most of them real — 197 `E4ORF67` deposits at
+  exactly 83 aa. A length repeated across unrelated genomes is a FORM; an
+  unmarked fragment is a ragged singleton. Judge on multiplicity, not size.
+
+What it finds is not always a fragment. Mastadenovirus `UXP` held **1,206
+copies of a 55 aa exon beside 65 copies of the real 217 aa spliced protein**
+(PMID 17881437), so the profile was trained on the exon. The giveaway was
+structural, not numeric: 17 of 25 long members begin with a short member's
+exact sequence, which is what "initiating in the U exon" predicts.
+
 #### 2b. Check the literature against the calls. This step is not optional.
 
 Everything above is built from deposited annotation strings. **A protein that is

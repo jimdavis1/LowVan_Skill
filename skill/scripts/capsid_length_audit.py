@@ -48,14 +48,27 @@ def genome_of(fid):
     return fid.split("|")[0]
 
 
-def species_of(name):
-    """Coarse species key from a genome name.
+def species_of(name, gid=None):
+    """Species key: the taxon id when there is one, else the genome name.
 
-    Deliberately crude -- the point is to group deposits that share a VP1
-    length, not to do taxonomy. A per-GENUS comparison is not good enough:
-    Tetraparvovirus alone holds VP1 at 914, 925, 931, 933 and 1032 aa, so its
-    genus median declares every real VP1 below 1032 a VP2.
+    The point is to group deposits that share a VP1 length, not to do
+    taxonomy. A per-GENUS comparison is not good enough: Tetraparvovirus
+    alone holds VP1 at 914, 925, 931, 933 and 1032 aa, so its genus median
+    declares every real VP1 below 1032 a VP2.
+
+    PREFER THE TAXON ID. The genome id's prefix IS the NCBI taxon id --
+    `10524.1311` -> `10524` -- so it is exact and free, where the name is a
+    string that submitters vary. The first-three-words heuristic below holds
+    for "Human adenovirus 41 Hannover_2022" but gives a DIFFERENT key for
+    every isolate of "unidentified adenovirus MCAdV/XJ11C", and a per-isolate
+    key means a median computed over one member, which clears every finding
+    it should raise. The name remains the fallback for callers that have a
+    name and no id.
     """
+    if gid:
+        tax = str(gid).split("|")[0].split(".")[0]
+        if tax:
+            return tax
     n = re.sub(r"\s+(isolate|strain|clone)\b.*", "", name or "")
     bits = n.split()
     return " ".join(bits[:3]) if bits else "(unknown)"
@@ -183,7 +196,7 @@ def main():
         if not grp:
             continue
         for g, s in rows:
-            cls[(grp[0], species_of(names.get(g, "")), len(s))][k] += 1
+            cls[(grp[0], species_of(names.get(g, ""), g), len(s))][k] += 1
     for key, q in cls.items():
         owner[key] = q.most_common(1)[0][0]
 
@@ -209,7 +222,7 @@ def main():
         for k in forms:
             per = collections.defaultdict(list)
             for g, s in feats.get(k, []):
-                per[species_of(names.get(g, ""))].append(len(s))
+                per[species_of(names.get(g, ""), g)].append(len(s))
             for sp, L in per.items():
                 L.sort()
                 med[(k, sp)] = L[len(L) // 2]
@@ -218,7 +231,7 @@ def main():
             if idx == 0:
                 continue
             for g, s in feats.get(k, []):
-                sp = species_of(names.get(g, ""))
+                sp = species_of(names.get(g, ""), g)
                 parent = med.get((forms[0], sp))
                 if parent and len(s) >= a.tolerance * parent:
                     carry[(sp, k, len(s), parent)] += 1
@@ -253,11 +266,11 @@ def main():
         #  start at the 728 aa form.
         ref = collections.defaultdict(list)
         for g, s in feats.get(par, []):
-            ref[species_of(names.get(g, ""))].append(s)
+            ref[species_of(names.get(g, ""), g)].append(s)
         nanch = collections.Counter()
         for k in order[1:]:
             for g, s in feats.get(k, []):
-                sp = species_of(names.get(g, ""))
+                sp = species_of(names.get(g, ""), g)
                 #  By IDENTITY over the first 25 residues, not an exact
                 #  prefix. Two B19 deposits of 602 and 603 aa carry VP1's own
                 #  MSKESGKWWES... start but differ from the 781 aa VP1 at
