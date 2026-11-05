@@ -213,6 +213,29 @@ def validate(workdir, mod_json):
                         print("          %s: %s anchors on %s, but %s does not list it "
                               "in non_pssm_partner" % (f, side, anc, anc))
                         problems.append((module, "anchor-unlisted", [f, side, anc]))
+        #  A module with no bit_cutoff ANYWHERE is a generator that forgot the
+        #  field, not a curation choice. All four Adenoviridae modules shipped
+        #  that way -- Aviadenovirus 0/122, Mastadenovirus 0/96 -- while every
+        #  other module in Viral_PSSM.json sets it on essentially all of them.
+        #  Nothing reported it. The profiles recalled their own collections,
+        #  the call rates looked excellent, and it surfaced only as duplicate
+        #  calls: 2,182 co-located loci on one panel against 0 on another.
+        pssm_feats = [f for f, v in block["features"].items()
+                      if isinstance(v, dict) and not v.get("special")
+                      and not (v.get("begin") or v.get("end"))]
+        nocut = [f for f in pssm_feats if "bit_cutoff" not in block["features"][f]]
+        if pssm_feats and len(nocut) == len(pssm_feats):
+            print("       %2d PSSM feature(s) and NOT ONE bit_cutoff -- every profile"
+                  " calls at the" % len(pssm_feats))
+            print("          annotator's floor, which duplicates calls on overlapping"
+                  " loci. Run")
+            print("          derive_cutoffs_separation.py --workdir <build> --module %s."
+                  % module)
+            problems.append((module, "no-bit-cutoff", sorted(nocut)[:12]))
+        elif nocut:
+            print("       %2d PSSM feature(s) without a bit_cutoff: %s"
+                  % (len(nocut), ", ".join(sorted(nocut)[:12])))
+            problems.append((module, "bit-cutoff-missing", sorted(nocut)[:12]))
         if missing:
             print("       %2d DECLARED BUT UNBUILT -> would never be called:" % len(missing))
             print("          %s" % ", ".join(sorted(missing)))
@@ -324,7 +347,7 @@ def validate(workdir, mod_json):
 #  peptides that will not cluster at -mi 0.8), and the four grouped
 #  Picornaviridae modules all shipped POLY the same way. In both cases the
 #  warning was on screen and scrolled past.
-FATAL = {"unbuilt", "special-has-pssms", "segments-missing"}
+FATAL = {"unbuilt", "special-has-pssms", "segments-missing", "no-bit-cutoff"}
 
 
 
