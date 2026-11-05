@@ -85,8 +85,14 @@ for it.** Zero quality failures does not mean the features were called.
 
 ## Workflow
 
-Work through these in order. Do not skip 7 or 9 — they catch defects the earlier
-steps cannot see.
+Work through these in order. Do not skip 2a, 7 or 9 — they catch defects the
+earlier steps cannot see.
+
+**2a is the cheapest step in this file and skipping it is the most expensive
+mistake in it.** Contamination that reaches a PSSM is invisible to every
+later check and surfaces only as duplicate calls in a coverage run, by which
+point everything downstream has to be rebuilt. `build_features.py` refuses to
+run without it.
 
 ### 0. Prerequisites
 
@@ -333,32 +339,58 @@ The logic lives in `scripts/collection_engine.py`; a taxon's
 Output: `collections/<Module>/<FEAT>.fasta`, plus `synonyms.tsv`,
 `UNASSIGNED_TRACKING.tsv` and `NOT_MODELLED.tsv`.
 
-#### 2a. Length-audit EVERY collection, now — not after a coverage run.
+#### 2a. DECONTAMINATE THE COLLECTIONS AGAINST THE LITERATURE, BEFORE ANY PROFILE EXISTS.
 
-The nested-capsid audit above is the same test narrowed to the place it was
-first needed. **Any** collection can hold two genes, and nothing downstream
-can see it: the profile recalls its own training data perfectly, the call
-rate is unaffected or improves, and the annotation string is correct. The
-only symptom is duplicate calls, which look exactly like a cutoff problem and
-get "fixed" by spending a coverage run on cutoffs.
+**This step is not optional and it does not move later in the pipeline.**
+
+> *"You need to decontaminate the pssms using the literature as your guide
+> earlier in the pipeline before we start evaluating coverage etc. This is
+> costing too much time."* — the curator, 5 Nov 2026, after the second
+> contaminated bin in one family.
+>
+> *"The lengths, etc. need to be cross checked with the literature before
+> binning or at the time you are checking the alignments, not after you have
+> done successive coverage runs."* — same day.
+
+**The profile is where contamination becomes permanent.** Once a mixed
+collection is a PSSM, every later check agrees with it — the profile recalls
+its own training data, the call rate is unaffected or better, and the
+annotation string is correct. The only symptom is duplicate calls, which look
+exactly like a cutoff problem. Chasing it there means a coverage run to find
+it and a rebuild of everything downstream to fix it, which is the most
+expensive possible place to learn that two genes shared a bin.
+
+So: **write down what the literature says each named feature measures, with a
+PMID, before you build anything.**
 
 ```bash
+#  1. one entry per NAMED feature; every range needs a pmid, and the tool
+#     refuses an entry without one.
+#     {"FIBER_SHORT": {"min": 250, "max": 460, "pmid": "8263936",
+#                      "note": "HAdV-40 NC_001454 28751..29914 = 387 aa"}}
+$EDITOR length_refs_<Module>.json
+
+#  2. audit, with --require-refs once the vocabulary is settled: a named
+#     feature with no literature range is then a finding in its own right.
 python3 scripts/audit_collection_lengths.py --workdir . --module <Module> \
         --refs length_refs_<Module>.json --accept accept_<Module>.tsv \
-        --write-md <Module>/LENGTH_AUDIT.md
+        --require-refs --write-md <Module>/LENGTH_AUDIT.md
 ```
 
-`install_module.py` **refuses** a module whose report is missing, stale, or
-has unresolved findings, so this is a precondition for shipping rather than a
-diagnostic to reach for when something looks odd. Resolve each finding by
-re-binning, or sign it off with a reason via `--accept`; a signed-off finding
-stays visible in the report with its reason beside it.
+Resolve every finding by re-binning, or sign it off with a reason via
+`--accept`. A signed-off finding **stays in the report** with its reason
+beside it — grade it honestly, `PROVISIONAL` or `UNEXPLAINED` where that is
+the truth, because an exception list that hides its own entries is the same
+failure this step exists to prevent.
 
-Every range in `--refs` needs a PMID and the tool refuses one without it. The
-curator put it plainly on 5 Nov 2026, after the *second* contaminated bin in
-one family: *"The lengths, etc. need to be cross checked with the literature
-before binning or at the time you are checking the alignments, not after you
-have done successive coverage runs."*
+**Two gates enforce it, and the first is at the build:**
+
+- `build_features.py` **refuses to build profiles** without a current report
+  saying `Unresolved: 0`. `--force-uncurated` overrides, for an experiment.
+- `install_module.py` refuses to install on the same condition.
+
+A clean report that is older than the collections is treated as missing, so
+re-run the audit after every re-bin.
 
 Three traps, each of which cost a rebuild in Adenoviridae:
 
@@ -521,6 +553,11 @@ afterwards with the same windows, and compare every collection's count
 against the previous build before moving on.**
 
 ### 3. Build the alignments and PSSMs
+
+**Step 2a must be clean first.** `build_features.py` checks for a current
+`LENGTH_AUDIT` reporting `Unresolved: 0` and refuses otherwise, because a
+profile built from a mixed collection cannot be detected afterwards by
+anything except a coverage run.
 
 ```bash
 cat collections/<Module>/<FEAT>.fasta \

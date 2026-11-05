@@ -187,6 +187,84 @@ def run_one(workdir, module, key, anno, params, extra_flags):
              "  [" + ",".join("%s=%s" % kv for kv in sorted(departures.items())) + "]" if departures else ""))
     return dict(key=key, n=nin, alis=nclu, pssms=npssm, leftover=nleft)
 
+def require_length_audit(workdir, module, force=False):
+    """Refuse to build profiles over collections nobody has length-audited.
+
+    THE PROFILE IS WHERE CONTAMINATION BECOMES PERMANENT. Once a mixed
+    collection has been turned into a PSSM, every later check agrees with
+    it: the profile recalls its own training data, the call rate is fine or
+    better, and the annotation string is correct. The defect surfaces only as
+    duplicate calls, which look like a cutoff problem -- so it gets chased
+    with coverage runs, which is the most expensive place in the pipeline to
+    discover it and the least likely place to understand it.
+
+    Adenoviridae paid that twice. Mastadenovirus FIBER/FIBER1/FIBER2 came out
+    95-99% identical to each other because "fiber-1" is positional and "long
+    fiber" descriptive and the two schemes are INVERTED between the genera;
+    UXP held 1,206 copies of a 55 aa exon beside 65 copies of the real 217 aa
+    spliced protein (PMID 17881437). Neither was visible until panels had
+    been run, and the curator's instruction, 5 Nov 2026, was to stop finding
+    them there:
+
+        "You need to decontaminate the pssms using the literature as your
+         guide earlier in the pipeline before we start evaluating coverage
+         etc. This is costing too much time."
+
+    So the gate is here, at the build, not only at install. Run
+
+        audit_collection_lengths.py --workdir <build> --module <M> \\
+            --refs length_refs_<M>.json --accept accept_<M>.tsv \\
+            --write-md <build>/LENGTH_AUDIT.<M>.md
+
+    and resolve or sign off every finding first.
+    """
+    cands = [os.path.join(workdir, "LENGTH_AUDIT.%s.md" % module),
+             os.path.join(workdir, module, "LENGTH_AUDIT.md"),
+             os.path.join(workdir, "LENGTH_AUDIT.md")]
+    path = next((p for p in cands if os.path.exists(p)), None)
+    why = None
+    if path is None:
+        why = ("no length audit found. Looked for:\n     %s"
+               % "\n     ".join(cands))
+    else:
+        import re as _re
+        text = open(path, errors="replace").read()
+        m = _re.search(r"\*\*Unresolved:\s*(\d+)", text)
+        if not m:
+            why = "%s does not state an unresolved count" % path
+        elif int(m.group(1)) != 0:
+            why = "%s reports %s unresolved finding(s)" % (path, m.group(1))
+        else:
+            #  A clean report that predates the collections describes
+            #  something else. Staleness is the failure mode a gate like this
+            #  invites, so it is checked rather than assumed.
+            newest = 0
+            for d in (os.path.join(workdir, "collections", module),
+                      os.path.join(workdir, module, "collections")):
+                for f in glob.glob(os.path.join(d, "*.fasta")):
+                    newest = max(newest, os.path.getmtime(f))
+            if newest and os.path.getmtime(path) < newest:
+                why = ("%s is OLDER than the collections it describes"
+                       % path)
+    if why is None:
+        print("length audit: clean (%s)" % path)
+        return
+    if force:
+        print("WARNING: building over an uncurated collection set -- %s" % why)
+        return
+    sys.exit(
+        "REFUSED: %s\n"
+        "  A PSSM built from a mixed collection passes every later check --\n"
+        "  it recalls its own training data, the call rate looks right, and\n"
+        "  the annotation string is correct. The only symptom is duplicate\n"
+        "  calls, and finding that in a coverage run costs a rebuild of\n"
+        "  everything downstream.\n"
+        "  Run audit_collection_lengths.py with --refs (literature ranges,\n"
+        "  each with a PMID) and resolve or --accept every finding, then\n"
+        "  build. --force-uncurated overrides, for an experiment only."
+        % why)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workdir", default=".")
@@ -194,7 +272,11 @@ def main():
     ap.add_argument("--features", required=True,
                     help='JSON file: {"KEY": {"anno": "...", "params": {...}, "flags": [...]}, ...}')
     ap.add_argument("--only", default="", help="comma-separated subset")
+    ap.add_argument("--force-uncurated", action="store_true",
+                    help="build profiles although the length audit is missing "
+                         "or unresolved. For a deliberate experiment only.")
     a = ap.parse_args()
+    require_length_audit(a.workdir, a.module, a.force_uncurated)
     spec = json.load(open(a.features))
     only = set(x for x in a.only.split(",") if x)
     print("building %s" % a.module)

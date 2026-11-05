@@ -135,6 +135,15 @@ def main():
                     help="species with fewer members than this are judged "
                          "against the whole collection instead, since a "
                          "median of one or two says nothing")
+    ap.add_argument("--require-refs", action="store_true",
+                    help="a NAMED feature with no literature range is an "
+                         "unresolved finding. UNC features are exempt -- they "
+                         "are uncharacterized by definition, so there is no "
+                         "paper to cite. Use this once a module's vocabulary "
+                         "is settled: it is the difference between 'checked "
+                         "against the literature' and 'has not failed yet'.")
+    ap.add_argument("--unc-prefix", default="UNC",
+                    help="feature-name prefix that --require-refs exempts")
     ap.add_argument("--accept",
                     help="TSV of findings a curator has signed off, one per "
                          "line: KIND <tab> FEATURE <tab> WHO <tab> REASON. "
@@ -204,6 +213,14 @@ def main():
         ref = refs.get(feat)
         if ref is None:
             unverified.append(feat)
+            #  A named feature with no literature range has not been checked
+            #  against anything; it has merely not failed. Under
+            #  --require-refs that is a finding, because the whole point of
+            #  this step is that the literature is the guide. UNC features
+            #  are exempt: uncharacterized means there is no paper.
+            if a.require_refs and not feat.startswith(a.unc_prefix):
+                report("NO-LITERATURE", feat, feat,
+                       "no length range with a PMID for this feature")
 
         #  A length that several unrelated members share is a FORM of the
         #  protein, not a defect in one deposit -- the same rule the binner
@@ -297,7 +314,7 @@ def main():
         bykind = collections.defaultdict(list)
         for kind, feat, who, detail, _why in findings:
             bykind[kind].append((feat, who, detail))
-        for kind in ("SPLIT", "LITERATURE", "FRAGMENT", "GIANT"):
+        for kind in ("NO-LITERATURE", "SPLIT", "LITERATURE", "FRAGMENT", "GIANT"):
             if not bykind[kind]:
                 continue
             w("### %s (%d)" % (kind, len(bykind[kind])))
