@@ -29,8 +29,26 @@ Both directions of edit are handled, and neither needs a flag -- the direction i
 curated reference and is read off the alignment.  A reference carrying an EXTRA base relative to the
 genome (a -1 ribosomal slip, or a non-templated insertion as in the paramyxovirus V/W proteins) gaps
 the subject, and that base is inserted.  A reference that is one base SHORTER (a +1 slip, as in the
-hepatitis C F/ARFP protein) gaps the query, and the corresponding genome base is dropped.  --gaps
-counts both sides together.  --id, --gaps, and --cov refer 
+hepatitis C F/ARFP protein) gaps the query, and the corresponding genome base is dropped.
+
+EXACTLY ONE GAP IS ALLOWED, AND --gaps IS ITS LENGTH, NOT HOW MANY OF THEM THERE MAY BE.
+The two are separate tests and only the length is settable:
+
+    --gaps N   the maximum LENGTH of that one gap, in NUCLEOTIDES, counting the subject and
+               the query sides together (default 2).
+    [fixed]    the number of separate gaps may not exceed ONE. That limit is hard-coded and
+               there is no option for it.
+
+So --gaps 3 permits a SINGLE gap of up to 3 nt.  It does NOT permit three gaps: three 1 nt
+gaps, or a 2 nt and a 1 nt gap, are each rejected for being more than one gap even though
+they total 3.  Raising --gaps buys a longer edit, never an extra one.
+
+A single frameshift is one event, so one gap is what a genuine transcript edit looks like;
+a reference asking for an insertion AND a deletion is describing two events and is rejected
+outright as a mis-curated reference or a spurious alignment.  In practice the real work is
+the 1 nt case -- a -1 slip or a non-templated insertion -- and the default 2 is headroom.
+
+--id, --gaps, and --cov refer
 to the strict inclusion criteria for enabling the mapping the nucleotides from the closest hand-curated transcript
 onto the subject sequence.  When we enoucnter a blast match that is good, [defined by --lower_pid, --lower_pcov, and --eval], 
 but not good enough to carry over the transcript-edited seqeunce, we call a partial_cds feature and the annotation becomes:
@@ -49,7 +67,7 @@ my($opt, $usage) = describe_options(
 				    ["output|o=s"           => "Output GTO"],
 				    ["cov|c=i"              => "Minimum BLASTn percent query coverage (D = 95)", { default => 95 }],
 				    ["id|p=i"               => "Minimum BLASTn percent identity  (D = 95)", { default => 95 }],
-				    ["gaps|g=i"             => "Maximum number of allowable gaps (D = 2)", { default => 2 }],
+				    ["gaps|g=i"             => "Maximum LENGTH in nt of the ONE allowed gap, both sides counted; NOT a count of gaps -- only one gap is ever permitted (D = 2)", { default => 2 }],
 				    ["e_val|e=f"            => "Maximum BLASTn evalue for considering any HSP (D = 0.5)", { default => 0.5 }],
 				    ["lower_pid|lpi=i"      => "Lower percent identity threshold for a feature call without transcript editing correction (D = 80)", {default => 80}],
 				    ["lower_pcov|lpc=i"     => "Lower percent query coverage for for a feature call without transcript editing correction (D = 80)", {default => 80}],
