@@ -43,9 +43,22 @@ import re
 #  would silently remove a declared feature from every module carrying one.
 #  `check_annotations.guard_partial_vs_subunit` asserts exactly that, against
 #  the published vocabulary, using this same object.
+#  A DOMAIN is a part of a protein, exactly like a fragment, and the
+#  submitter does not mark it as one. Five Siadenovirus deposits annotated
+#  "fiber knob domain" -- 165 aa, the knob of a 454 aa fiber -- passed every
+#  partial test, bound no feature rule, and then clustered together into an
+#  UNCHARACTERIZED feature. The module declared a domain of FIBER as its own
+#  protein, built a profile for it, and ran two profiles over one locus.
+#
+#  Anchored at the END of the string, so "fiber knob domain" is caught and a
+#  genuine "DUF1234 domain-containing protein" is not. Known gap, left open
+#  deliberately: "fiber knob domain protein" escapes, because widening this
+#  to swallow a trailing " protein" would start catching whole proteins whose
+#  name happens to end that way, and this rule runs over every family.
 PARTIAL = re.compile(
     r",\s*(fragment|partial|incomplete|truncated|[NC]-?terminal)\s*$"
-    r"|^\s*(truncated|partial|incomplete)\b", re.I)
+    r"|^\s*(truncated|partial|incomplete)\b"
+    r"|\b(domain|knob|shaft|ectodomain|repeat region)\s*$", re.I)
 
 #  `putative` is NOT a partiality claim -- it is the submitter saying they are
 #  unsure WHICH protein this is. So it is kept, but it has to be EARNED: the
