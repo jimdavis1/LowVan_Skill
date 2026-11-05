@@ -236,6 +236,54 @@ def validate(workdir, mod_json):
             print("       %2d PSSM feature(s) without a bit_cutoff: %s"
                   % (len(nocut), ", ".join(sorted(nocut)[:12])))
             problems.append((module, "bit-cutoff-missing", sorted(nocut)[:12]))
+        #  A module whose collections were never length-audited can ship two
+        #  genes in one bin, and nothing downstream will say so: the profile
+        #  recalls its own training data perfectly, the call rate is fine and
+        #  the annotation string is correct. Adenoviridae did it twice -- the
+        #  second time, Mastadenovirus FIBER/FIBER1/FIBER2 came out 95-99%
+        #  identical to each other because "fiber-1" (positional) and "long
+        #  fiber" (descriptive) name OPPOSITE genes in that genus, and the
+        #  only symptom was duplicate calls, which cost two full coverage
+        #  panels to chase as a cutoff problem.
+        #
+        #  So the audit is a precondition for installing, not a diagnostic.
+        #  The report has to exist, say nothing is unresolved, and be NEWER
+        #  than the collections it describes -- a stale clean report is the
+        #  failure mode this is here to prevent.
+        audit = None
+        for cand in (os.path.join(workdir, module, "LENGTH_AUDIT.md"),
+                     os.path.join(workdir, "LENGTH_AUDIT.%s.md" % module)):
+            if os.path.exists(cand):
+                audit = cand
+                break
+        cols = None
+        for cand in (os.path.join(workdir, module, "collections"),
+                     os.path.join(workdir, "collections", module)):
+            if os.path.isdir(cand):
+                cols = cand
+                break
+        if audit is None:
+            print("       NO LENGTH AUDIT. Run audit_collection_lengths.py"
+                  " --workdir <build>")
+            print("          --module %s --write-md <build>/%s/LENGTH_AUDIT.md"
+                  % (module, module))
+            problems.append((module, "no-length-audit", []))
+        else:
+            text = open(audit, errors="replace").read()
+            m = re.search(r"\*\*Unresolved:\s*(\d+)", text)
+            n = int(m.group(1)) if m else -1
+            newest = 0
+            if cols:
+                for f in glob.glob(os.path.join(cols, "*.fasta")):
+                    newest = max(newest, os.path.getmtime(f))
+            if n != 0:
+                print("       LENGTH AUDIT reports %s unresolved finding(s): %s"
+                      % ("an unparseable number of" if n < 0 else n, audit))
+                problems.append((module, "length-audit-unresolved", [audit]))
+            elif newest and os.path.getmtime(audit) < newest:
+                print("       LENGTH AUDIT is OLDER than the collections it"
+                      " describes -- re-run it: %s" % audit)
+                problems.append((module, "length-audit-stale", [audit]))
         if missing:
             print("       %2d DECLARED BUT UNBUILT -> would never be called:" % len(missing))
             print("          %s" % ", ".join(sorted(missing)))
@@ -347,7 +395,8 @@ def validate(workdir, mod_json):
 #  peptides that will not cluster at -mi 0.8), and the four grouped
 #  Picornaviridae modules all shipped POLY the same way. In both cases the
 #  warning was on screen and scrolled past.
-FATAL = {"unbuilt", "special-has-pssms", "segments-missing", "no-bit-cutoff"}
+FATAL = {"unbuilt", "special-has-pssms", "segments-missing", "no-bit-cutoff",
+         "no-length-audit", "length-audit-unresolved", "length-audit-stale"}
 
 
 
