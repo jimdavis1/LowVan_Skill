@@ -400,6 +400,62 @@ FATAL = {"unbuilt", "special-has-pssms", "segments-missing", "no-bit-cutoff",
 
 
 
+def sync_callers(repo, dry=False, sync=True):
+    """Bring the repo's annotator perl up to the kit's, and say what moved.
+
+    `run_gto_eval.py` builds the child environment as PATH = <repo> + ":" +
+    PATH, so the *repo's* copy of annotate_by_viral_pssm.pl is the one that
+    runs -- the --repo argument is the annotator selector, not just a data
+    directory. This function used not to exist, and installing a module
+    therefore updated the data a repo serves while leaving the program that
+    reads it at whatever version the directory was created with.
+
+    Measured on Adenoviridae, 5 Nov 2026. Two adeno repos existed: VA_adeno,
+    synced by hand on 3 Nov, and VA_spina, never synced. The 3 Nov fix derives
+    the contig-length gate from the JSON instead of a 40000 constant. Panels
+    run against VA_adeno scored 89/89; the same modules installed into
+    VA_spina and re-run scored 13/89, because 76 of the 89 Aviadenovirus
+    contigs are 43-45 kb and died on the constant BEFORE routing. The log said
+    `0 annotation failure(s)`: a genome that is never offered to any module is
+    not a failure, it is a genome that called nothing. Nothing in the install
+    mentioned the annotator at all.
+
+    Copying is the default because the alternative -- warn and continue -- is
+    what the old behaviour already amounted to.
+    """
+    kit = os.environ.get("LOWVAN_KIT") or os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    src = os.path.join(kit, "annotate")
+    if not os.path.isdir(src):
+        print("  callers: no %s -- cannot check the repo's annotator" % src)
+        return []
+    drift = []
+    for f in sorted(glob.glob(os.path.join(src, "*.pl"))):
+        b = os.path.basename(f)
+        dst = os.path.join(repo, b)
+        #  Only files the repo already carries. The kit holds build-side perl
+        #  too, and an install has no business adding programs to a checkout.
+        if not os.path.exists(dst):
+            continue
+        import filecmp
+        if filecmp.cmp(f, dst, shallow=False):
+            continue
+        drift.append(b)
+        if sync and not dry:
+            shutil.copy2(dst, dst + ".bak")
+            shutil.copy2(f, dst)
+            print("  callers: updated %s from the kit (backup .bak)" % b)
+        else:
+            print("  callers: STALE %s -- repo differs from the kit" % b)
+    if not drift:
+        print("  callers: repo annotator matches the kit")
+    elif not sync:
+        print("  callers: %d stale, NOT synced (--no-sync-callers). The repo's\n"
+              "           copy is what runs: PATH puts --repo ahead of the kit."
+              % len(drift))
+    return drift
+
+
 def _retire(parent, keep, what, module, dry):
     """Remove feature subdirectories under parent that are not in keep."""
     if not os.path.isdir(parent):
@@ -600,6 +656,11 @@ def main():
                     help="install despite a FATAL problem. Only for a module you are "
                          "deliberately shipping incomplete, and say so in the build notes.")
     ap.add_argument("--check", action="store_true", help="validate only, write nothing")
+    ap.add_argument("--no-sync-callers", action="store_true",
+                    help="do not copy the kit's annotate/*.pl over the repo's. "
+                         "The repo's copy is what actually runs -- run_gto_eval "
+                         "puts --repo ahead of the kit on PATH -- so this leaves "
+                         "a known-stale annotator in place. Report only.")
     ap.add_argument("--only", help="comma-separated module names to install")
     ap.add_argument("--archived-to", default=None,
                     help="where this module's build tree is preserved. Pass it "
@@ -621,7 +682,12 @@ def main():
         modules = {k: v for k, v in modules.items() if k in keep}
 
     fatal = [] if args.force_known_bad else [p for p in problems if p[1] in FATAL and (not args.only or p[0] in set(args.only.split(",")))]
+    print("\nannotator:")
+    stale = sync_callers(repo, dry=args.check, sync=not args.no_sync_callers)
+
     if args.check:
+        if stale:
+            print("   %d stale caller(s): %s" % (len(stale), ", ".join(stale)))
         print("\n--check: nothing written. %d installable, %d problem(s)%s."
               % (len(modules), len(problems),
                  ", %d FATAL" % len(fatal) if fatal else ""))

@@ -1013,6 +1013,29 @@ python3 scripts/install_module.py --workdir . --repo $LOWVAN_DATA_DIR
 declared with no PSSM is never called; a PSSM with no JSON entry is never
 loaded. Both are silent at runtime.
 
+**`--repo` selects the annotator, not just the data.** `run_gto_eval.py` builds
+its child environment as `PATH = <repo> + ":" + PATH`, so the perl that runs is
+the **repo's** copy of `annotate_by_viral_pssm.pl`, not the kit's — whatever
+version that directory happened to be created with. The install now copies the
+kit's `annotate/*.pl` over the repo's and names every file it updated;
+`--no-sync-callers` reports the drift without fixing it.
+
+This is worth a paragraph because the failure is invisible from the log.
+Adenoviridae, 5 Nov 2026: two repos existed, one synced by hand on 3 Nov and one
+never synced. The 3 Nov fix derives the contig-length gate from the JSON's
+`segments` instead of a 40000 constant. Panels against the synced repo scored
+**89/89**; the same modules installed into the unsynced one and re-run scored
+**13/89** — 76 of the 89 Aviadenovirus contigs are 43–45 kb and died on the
+constant *before routing*. The log reported `0 annotation failure(s)`, which was
+true: a genome never offered to any module has not failed, it has called
+nothing. Nothing in the install mentioned the annotator, so a stale caller and a
+fresh module looked exactly like a module that does not work.
+
+**So do not keep more than one checkout per taxon.** The second repo is what
+makes this reachable: `$LOWVAN_TESTREPO` points at one of them, and the panel
+inherits whichever that is. If a stale repo must be kept, delete its `*.pl`
+rather than leaving an older annotator where `--repo` can find it.
+
 #### Then preserve the build tree. It is not in the module.
 
 Build in scratch — Box sync turns many-small-file I/O into load average with
