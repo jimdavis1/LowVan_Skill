@@ -265,6 +265,79 @@ def require_length_audit(workdir, module, force=False):
         % why)
 
 
+def require_bin_audit(workdir, module, force=False):
+    """Refuse to build profiles until somebody has asked whether each
+    collection is ONE protein, and its OWN protein.
+
+    The length audit asks whether a collection's members are the right size;
+    audit_contamination.py moves individual mislabelled sequences between
+    collections. Neither can see a collection that should not exist. The
+    accessory-discovery pass declares every unassigned cluster that reaches
+    the member floor as a feature, and it cannot tell a pile of partials, or a
+    second copy of a named protein, from a new one.
+
+    Mastadenovirus, 5 Nov 2026: of 115 collections, 3 were a protein that
+    already had a bin (UNC16 was POL at 99.8% identity), 15 were partials
+    (UNC23 was 100% identical to E1B55K over 17% of it; E3_CR1D, a NAMED
+    feature, was a 46 aa fragment of E3_CR1B), and 7 matched a named feature
+    at 29-37% across their whole length. 293 sequences, and they caused most
+    of the module's 458 duplicate calls.
+
+    This cannot be fixed downstream. A cutoff separates a profile's true loci
+    from its false ones; these profiles score HIGHER on the foreign locus than
+    on their own, because the foreign protein is what they were built from.
+    UNC34 scored 80 bits on E1B19K's locus and 33 on its own. The symptom --
+    duplicate calls -- looks exactly like a cutoff problem, so it gets chased
+    through coverage runs instead.
+
+        audit_bins.py --workdir <build> --module <M> \\
+            --protect K22:K33 --protect UXP:U_EXON \\
+            --accept accept_bins_<M>.tsv --write-md <build>/BIN_AUDIT.<M>.md
+    """
+    cands = [os.path.join(workdir, "BIN_AUDIT.%s.md" % module),
+             os.path.join(workdir, module, "BIN_AUDIT.md"),
+             os.path.join(workdir, "BIN_AUDIT.md")]
+    path = next((p for p in cands if os.path.exists(p)), None)
+    why = None
+    if path is None:
+        why = ("no bin audit found. Looked for:\n     %s"
+               % "\n     ".join(cands))
+    else:
+        import re as _re
+        text = open(path, errors="replace").read()
+        m = _re.search(r"\*\*Unresolved:\s*(\d+)", text)
+        if not m:
+            why = "%s does not state an unresolved count" % path
+        elif int(m.group(1)) != 0:
+            why = "%s reports %s unresolved finding(s)" % (path, m.group(1))
+        else:
+            #  Same staleness trap as the length audit: a clean report that
+            #  predates the collections describes a different set of bins.
+            newest = 0
+            for d in (os.path.join(workdir, "collections", module),
+                      os.path.join(workdir, module, "collections")):
+                for f in glob.glob(os.path.join(d, "*.fasta")):
+                    newest = max(newest, os.path.getmtime(f))
+            if newest and os.path.getmtime(path) < newest:
+                why = "%s is OLDER than the collections it describes" % path
+    if why is None:
+        print("bin audit: clean (%s)" % path)
+        return
+    if force:
+        print("WARNING: building over unaudited bins -- %s" % why)
+        return
+    sys.exit(
+        "REFUSED: %s\n"
+        "  A bin that is a pile of partials, or a second copy of a protein\n"
+        "  that already has a name, becomes a profile that calls somebody\n"
+        "  else's locus BETTER than its own. No cutoff separates that, and\n"
+        "  the only symptom is duplicate calls -- which look like a cutoff\n"
+        "  problem and get chased through coverage runs.\n"
+        "  Run audit_bins.py, resolve or --accept every finding, then build.\n"
+        "  --force-uncurated overrides, for an experiment only."
+        % why)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workdir", default=".")
@@ -273,10 +346,12 @@ def main():
                     help='JSON file: {"KEY": {"anno": "...", "params": {...}, "flags": [...]}, ...}')
     ap.add_argument("--only", default="", help="comma-separated subset")
     ap.add_argument("--force-uncurated", action="store_true",
-                    help="build profiles although the length audit is missing "
-                         "or unresolved. For a deliberate experiment only.")
+                    help="build profiles although the length or bin audit is "
+                         "missing or unresolved. For a deliberate experiment "
+                         "only.")
     a = ap.parse_args()
     require_length_audit(a.workdir, a.module, a.force_uncurated)
+    require_bin_audit(a.workdir, a.module, a.force_uncurated)
     spec = json.load(open(a.features))
     only = set(x for x in a.only.split(",") if x)
     print("building %s" % a.module)

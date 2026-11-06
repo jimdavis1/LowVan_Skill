@@ -415,6 +415,72 @@ copies of a 55 aa exon beside 65 copies of the real 217 aa spliced protein**
 structural, not numeric: 17 of 25 long members begin with a short member's
 exact sequence, which is what "initiating in the U exon" predicts.
 
+#### 2a-ii. Then ask whether each bin should exist at all.
+
+The length audit asks whether a collection's **members** are the right size.
+`audit_contamination.py` moves individual mislabelled sequences **between**
+collections. Neither can see a collection that **should not exist**, and that
+is a third defect with the same invisible signature.
+
+The accessory-discovery pass declares every unassigned cluster that reaches
+the member floor as `UNC1..UNCn`. It cannot tell a pile of partials, or a
+second copy of a protein that already has a name, from a new protein. Each of
+those becomes a feature, gets a PSSM, and then calls real loci belonging to
+somebody else.
+
+```bash
+python3 scripts/audit_bins.py --workdir . --module <Module> \
+        --protect K22:K33 --protect UXP:U_EXON \
+        --accept accept_bins_<Module>.tsv --write-md <Module>/BIN_AUDIT.md
+```
+
+Measured on Mastadenovirus, 5 Nov 2026 — **25 of 115 collections, 293
+sequences**:
+
+| verdict | n | example |
+|---|---|---|
+| DUPLICATE | 3 | `UNC16` was `POL` at 99.8% identity, 1187 aa against POL's 1190 |
+| FRAGMENT | 15 | `UNC23` was 100% identical to `E1B55K` over 95% of itself and **17%** of E1B55K |
+| INCOHERENT | 7 | `UNC34`'s seven members fall into three groups sharing 23–32% |
+
+`E3_CR1D` is the one to remember: a **named** feature, 29 members, median
+**46 aa**, 96.6% identical to `E3_CR1B`. A fragment wearing a feature name.
+Partials are discarded at triage, and **a partial that became its own feature
+is still a partial**.
+
+**This cannot be fixed with a cutoff, which is the trap.** A cutoff separates
+a profile's true loci from its false ones. These profiles score *higher* on
+the foreign locus than on their own, because the foreign protein is what they
+were built from — `UNC34` reached **80 bits on E1B19K's locus against 33 on
+its own** and produced 90 false E1B19K calls. Across three modules only
+**8 of 53** contested cutoffs could safely be raised at all. The symptom is
+duplicate calls, which look exactly like a cutoff problem, so it gets chased
+through coverage runs: the most expensive place in the pipeline to find this
+and the least likely place to understand it.
+
+**Measure the bin against itself before you judge it against anything else.**
+The first version of this test asked only "does this bin match a named feature
+at 25–55% across its full length". That is *symmetric*, so it flagged both
+halves of every divergent paralogue pair — Aviadenovirus `ORF12`/`UNC8` at
+44–46%, `ORF20`/`UNC47`, `ORF9`/`UNC4`, Barthadenovirus `RH4` and `RH6`
+against `RH2` — and proposed retiring `ORF20`, a named feature with 99
+members. Divergent paralogues are *supposed* to sit at 30–45%; that is what
+makes them paralogues. What separates `UNC34` from `ORF20` is not its distance
+to `E1B19K` but its distance to **itself**. So the tool measures within-bin
+identity first and reports a coherent divergent bin as `PARALOGUE` —
+information, never retired.
+
+Declare nested and spliced forms with `--protect`: `K22`/`K33`,
+`UXP`/`U_EXON`, `E1A`/`E1A_243R`, `E4ORF67`/`E4ORF6` and the nested capsid
+forms all trip FRAGMENT by construction. Nothing is protected by default,
+because getting that list wrong deletes real biology — the curator names them.
+
+`build_features.py` **refuses to build profiles** until this report exists and
+reads `Unresolved: 0`, on the same terms as the length audit, and a report
+older than the collections counts as missing. `--write` **moves** a retired
+bin to `collections/retired/` with its verdict in `RETIRED.tsv`; it is never
+deleted, so the decision can be read back and reversed.
+
 #### 2b. Check the literature against the calls. This step is not optional.
 
 Everything above is built from deposited annotation strings. **A protein that is
@@ -554,10 +620,12 @@ against the previous build before moving on.**
 
 ### 3. Build the alignments and PSSMs
 
-**Step 2a must be clean first.** `build_features.py` checks for a current
-`LENGTH_AUDIT` reporting `Unresolved: 0` and refuses otherwise, because a
-profile built from a mixed collection cannot be detected afterwards by
-anything except a coverage run.
+**Steps 2a and 2a-ii must both be clean first.** `build_features.py` checks
+for a current `LENGTH_AUDIT` **and** a current `BIN_AUDIT`, each reporting
+`Unresolved: 0`, and refuses otherwise. A profile built from a mixed
+collection cannot be detected afterwards by anything except a coverage run,
+and a profile built from a bin that should not exist cannot be fixed by a
+cutoff even once you have found it.
 
 ```bash
 cat collections/<Module>/<FEAT>.fasta \
