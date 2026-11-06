@@ -131,6 +131,16 @@ def main():
                          "is a fragment (default 0.60)")
     ap.add_argument("--giant", type=float, default=1.60,
                     help="member above this multiple of it is a giant")
+    #  DO NOT TUNE --giant DOWN TO CATCH A FUSED GENE MODEL. Mastadenovirus
+    #  HEXON, 6 Nov 2026: genome 3115880.8 deposited a 1122 aa "Hexain"
+    #  holding the 204 aa adenain verbatim inside it, against a HEXON median
+    #  of 942 over 570 members. That is a whole second protein fused on and
+    #  it is still only +19%, far under 1.60 -- and 1.19 would flag the
+    #  genuine spread of every large structural gene across a family. A ratio
+    #  cannot separate "fused" from "long"; containment can. The detector is
+    #  the same-genome nesting test in audit_bins.py, read in the other
+    #  direction: when a small minority of bin B nests inside bin A, it is A
+    #  that holds a fused deposit (ODD-DEPOSIT), not B that is a fragment.
     ap.add_argument("--min-species", type=int, default=3,
                     help="species with fewer members than this are judged "
                          "against the whole collection instead, since a "

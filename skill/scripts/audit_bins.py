@@ -128,6 +128,68 @@ def load_protected(cdir, extra):
     return pairs
 
 
+def nesting(cdir, feats):
+    """Which bins are an exact substring of another bin, IN THE SAME GENOME.
+
+    This is the test the capsid audit already applies to VP1/VP2, and it
+    answers in one pass what a literature search answers slowly and often not
+    at all. A nested form is an alternative START: it carries the parent's
+    C-terminus and is missing the parent's N-terminus. A deposit that begins
+    at the parent's residue 1 and stops short is the opposite -- a truncated
+    parent under another name -- and no identity or length rule separates the
+    two, because both are merely "shorter".
+
+    Aviadenovirus UNC81, 5 Nov 2026: three deposits named `Lip-3`, 187 aa,
+    each an exact C-terminal substring of ITS OWN genome's 560 aa `ORF19`.
+    Fowl aviadenovirus C really does carry a second right-end lipase gene,
+    ORF19A, so the question was fair -- but ORF19A is a distinct homolog with
+    its own sequence, not a verbatim copy of ORF19's tail, and no paper uses
+    `Lip-3`. Same genome plus exact substring means ONE LOCUS annotated
+    twice, whatever the labels say.
+
+    Returns {bin: (parent, n_nested, n_tested, end)} where end is "C" for a
+    shared C-terminus (alternative start), "N" for a shared N-terminus
+    (truncated parent), or "mid".
+    """
+    by_feat = {}
+    for f in feats:
+        d = {}
+        for h, sq in read_fasta(os.path.join(cdir, f + ".fasta")).items():
+            d.setdefault(h.split()[0], []).append(sq)
+        by_feat[f] = d
+    out = {}
+    for f in feats:
+        per = {}
+        for g in feats:
+            if g == f:
+                continue
+            nested = tested = 0
+            ends = collections.Counter()
+            example = None
+            for gid, seqs in by_feat[f].items():
+                others = by_feat[g].get(gid)
+                if not others:
+                    continue
+                tested += 1
+                for sq in seqs:
+                    hit = next((o for o in others
+                                if len(o) > len(sq) and sq in o), None)
+                    if hit:
+                        nested += 1
+                        ends["C" if hit.endswith(sq) else
+                             "N" if hit.startswith(sq) else "mid"] += 1
+                        if example is None:
+                            example = (gid, len(sq), len(hit))
+                        break
+            if tested:
+                per[g] = (nested, tested,
+                          ends.most_common(1)[0][0] if ends else "mid",
+                          example)
+        if per:
+            out[f] = per
+    return out
+
+
 def measure(cdir, feats, link_id=40.0, link_cov=0.5):
     """Best FOREIGN feature for every member of every collection."""
     tmp = tempfile.mkdtemp(prefix="binaudit_")
@@ -238,6 +300,58 @@ def measure(cdir, feats, link_id=40.0, link_cov=0.5):
 
 
 def verdict(f, rec, medlens, protected, coherence, min_component):
+    #  SAME-GENOME EXACT NESTING FIRST. It is structural rather than
+    #  statistical: one genome deposited the same locus twice, so no identity
+    #  threshold has to be argued about. It outranks the blast verdicts
+    #  because it is the only one that cannot be a coincidence of similarity.
+    #  BUT IT MUST BE THE RULE IN THAT BIN, NOT ONE DEPOSIT. A form that is
+    #  really an alternative start of its parent nests in essentially every
+    #  genome depositing both -- UNC81 was 2 of 2, UNC17 is 1 of 1. A single
+    #  nesting out of many co-deposits is the opposite finding: one bad
+    #  deposit, and usually in the PARENT.
+    #
+    #  Mastadenovirus PROTEASE, 6 Nov 2026, caught in pre-flight. Flagged as
+    #  an exact substring of HEXON in 1 of 138 shared genomes, which would
+    #  have retired the 252-member adenain bin (median 205 aa, and the
+    #  literature's 23K adenain is 204-206). The nesting is real and the
+    #  conclusion is backwards: genome 3115880.8 deposited a 1122 aa protein
+    #  called "Hexain" with the 204 aa adenain verbatim inside it, and its
+    #  sibling 3115874.8 deposited another at 1124 aa, against a HEXON median
+    #  of 942 over 570 members. Two fused gene models in HEXON accused
+    #  PROTEASE. Barthadenovirus RH1 was the same shape at 1 of 4.
+    per = rec.get("nest") or {}
+    best = max(((g, v) for g, v in per.items()
+                if v[0] and (v[0] >= 2 or v[1] == 1)
+                and v[0] / float(v[1]) >= 0.5),
+               key=lambda kv: kv[1][0], default=None)
+    if best and (f, best[0]) not in protected:
+        parent = best[0]
+        n, tested, end = best[1][:3]
+        shape = {"C": "shares %s's C-terminus and is missing its N-terminus "
+                      "-- shaped like an alternative start, so it needs a "
+                      "literature name before it can be its own feature",
+                 "N": "begins at %s residue 1 and stops short -- a truncated "
+                      "%s under another name",
+                 "mid": "sits inside %s"}[end]
+        return ("NESTED",
+                "exact substring of %s in %d of %d shared genome(s); %s"
+                % (parent, n, tested,
+                   shape % ((parent, parent) if end == "N" else parent)))
+
+    #  A minority nesting is still a defect -- it is just not THIS bin's.
+    #  Name the deposit so it reaches the length and contamination audits
+    #  instead of disappearing with the retracted verdict.
+    odd = max(((g, v) for g, v in per.items()
+               if v[0] and v[1] > 1 and v[0] / float(v[1]) < 0.5),
+              key=lambda kv: kv[1][0], default=None)
+    if odd and (f, odd[0]) not in protected:
+        n, tested, _end, ex = odd[1]
+        return ("ODD-DEPOSIT",
+                "nests inside %s in only %d of %d shared genomes -- not an "
+                "alternative start. Genome %s deposited %s at %d aa inside a "
+                "%s of %d aa; check that deposit, not this bin"
+                % (odd[0], n, tested, ex[0] if ex else "?", f,
+                   ex[1] if ex else 0, odd[0], ex[2] if ex else 0))
     tgt = rec["tgt"]
     if tgt == "-" or rec["frac"] < 0.5 or (f, tgt) in protected:
         #  A bin can be several proteins without resembling any NAMED one.
@@ -254,12 +368,38 @@ def verdict(f, rec, medlens, protected, coherence, min_component):
     same_len = bool(tl) and 0.80 <= rec["medlen"] / float(tl) <= 1.25
     if pid >= 95 and (same_len or (qc >= 0.85 and sc >= 0.85)):
         return ("DUPLICATE", "same protein as %s (%.1f%% id)" % (tgt, pid))
-    if pid >= 90 and qc >= 0.85 and sc <= 0.75:
-        return ("FRAGMENT", "partial of %s (%.1f%% id over %.0f%% of %s)"
-                % (tgt, pid, sc * 100, tgt))
-    if pid >= 84 and qc < 0.85 and sc <= 0.35:
-        return ("FRAGMENT", "partial of %s (%.1f%% id, %.0f%% of %s)"
-                % (tgt, pid, sc * 100, tgt))
+    #  A FRAGMENT VERDICT NEEDS STRUCTURAL SUPPORT, OR AT LEAST NO STRUCTURAL
+    #  CONTRADICTION. Cross-genome identity alone cannot tell "a piece of that
+    #  protein" from "a relative that shares a conserved region", and for a
+    #  conserved-domain family it reliably says the wrong thing.
+    #
+    #  Mastadenovirus E3_CR1D, 5 Nov 2026: 29 deposits, median 46 aa, 96.6%
+    #  identical to E3_CR1B over 7% of it -- a textbook FRAGMENT by identity.
+    #  But NOT ONE of the 29 is a substring of a CR1B from its own genome, and
+    #  nine of them had a same-genome CR1B available to be a substring of. CR1
+    #  stands for conserved region 1: the CR1-alpha/beta/gamma/delta proteins
+    #  share a conserved region BY DEFINITION, so the rule was measuring the
+    #  very thing that makes them a family and calling it contamination.
+    #  Retiring it would have deleted a real protein.
+    tnest = (rec.get("nest") or {}).get(tgt)
+    contradicted = bool(tnest) and tnest[1] >= 3 and tnest[0] == 0
+    if not contradicted:
+        if pid >= 90 and qc >= 0.85 and sc <= 0.75:
+            return ("FRAGMENT", "partial of %s (%.1f%% id over %.0f%% of %s)%s"
+                    % (tgt, pid, sc * 100, tgt,
+                       "" if tnest and tnest[0] else
+                       " -- identity only, no co-deposit to confirm it"))
+        if pid >= 84 and qc < 0.85 and sc <= 0.35:
+            return ("FRAGMENT", "partial of %s (%.1f%% id, %.0f%% of %s)%s"
+                    % (tgt, pid, sc * 100, tgt,
+                       "" if tnest and tnest[0] else
+                       " -- identity only, no co-deposit to confirm it"))
+    elif pid >= 84:
+        return ("CONSERVED-REGION",
+                "%.1f%% to %s over %.0f%% of it, but 0 of %d same-genome "
+                "co-deposits nest inside %s -- a shared conserved region, "
+                "not a piece of it"
+                % (pid, tgt, sc * 100, tnest[1], tgt))
     if 25 <= pid <= 55 and qc >= 0.85 and sc >= 0.80 and rec["frac"] >= 0.85:
         #  Divergent from tgt. Only a defect if it is equally divergent from
         #  ITSELF -- otherwise it is tgt's paralogue, which is a fact about
@@ -322,6 +462,9 @@ def main():
                 accepted[k.strip()] = why.strip() or "signed off"
 
     recs = measure(cdir, feats, a.link_id, a.link_cov)
+    for f, nst in nesting(cdir, feats).items():
+        if f in recs:
+            recs[f]["nest"] = nst
     medlens = {f: r["medlen"] for f, r in recs.items()}
 
     findings = []
@@ -360,7 +503,8 @@ def main():
     #  flags Barthadenovirus FIBER, K22, LH1 and LH2, all of them real. So it
     #  goes to the curator as a question, not to the build as a refusal.
     defects = [x for x in findings
-               if x[1] not in ("PARALOGUE", "SPLIT", "KEPT")]
+               if x[1] not in ("PARALOGUE", "SPLIT", "KEPT",
+                               "CONSERVED-REGION", "ODD-DEPOSIT")]
     unresolved = [x for x in defects if x[0] not in accepted]
     lines = ["# Bin audit -- %s" % a.module, "",
              "Does every collection hold ONE protein, and its OWN protein?",
@@ -371,15 +515,16 @@ def main():
     if protected:
         lines += ["Protected pairs (not judged): %s" % ", ".join(
             sorted("%s/%s" % p for p in protected if p[0] < p[1])), ""]
-    for cls in ("DUPLICATE", "FRAGMENT", "INCOHERENT", "KEPT", "SPLIT",
-                "PARALOGUE"):
+    for cls in ("NESTED", "DUPLICATE", "FRAGMENT", "INCOHERENT", "KEPT",
+                "ODD-DEPOSIT", "CONSERVED-REGION", "SPLIT", "PARALOGUE"):
         sel = [x for x in findings if x[1] == cls]
         if not sel:
             continue
         lines += ["## %s -- %d bin(s), %d sequence(s)%s"
                   % (cls, len(sel), sum(x[3]["n"] for x in sel),
                      "  (reported, not retired)"
-                     if cls in ("PARALOGUE", "SPLIT", "KEPT") else ""),
+                     if cls in ("PARALOGUE", "SPLIT", "KEPT",
+                                "CONSERVED-REGION", "ODD-DEPOSIT") else ""),
                   "",
                   "| bin | n | median aa | finding | signed off |",
                   "|---|---|---|---|---|"]

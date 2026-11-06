@@ -201,6 +201,7 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
     out = collections.defaultdict(list)
     syn = collections.Counter()          # (annotation, genus, bins_to) -> features
     unassigned = collections.Counter()
+    unassigned_seqs = collections.defaultdict(set)
     notmodelled = collections.Counter()
     feat_counts = collections.Counter()
     acc_pool = []
@@ -220,6 +221,7 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
             notmodelled[(a, why)] += nfeat
         else:
             unassigned[a] += nfeat
+            unassigned_seqs[a].add(s)
             if ACCESSORY and re.search(ACCESSORY["pool"], " ".join(a.split()), re.I):
                 acc_pool.append((ann[i][0] if ann[i] else md5s[i], " ".join(a.split()), s, nfeat))
 
@@ -410,8 +412,43 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
            "; ".join("%s x%d" % (a, c) for a, c in
                      collections.Counter(r[1] for r in v).most_common(4)))
           for k, v in sorted(acc_named.items())))
-    dump("UNASSIGNED_TRACKING.tsv", "features\tannotation",
-         ((c, a) for a, c in unassigned.most_common()))
+    #  COUNT UNIQUE SEQUENCES THAT ARE NOT ALREADY CALLED, NOT DEPOSITS.
+    #  This gate used to read the feature count and announce it as "proteins
+    #  this taxon encodes and this module does not call". Two things inflate
+    #  that, and both were found in Adenoviridae pre-flight on 6 Nov 2026,
+    #  after the inflated figures had been reported to the curator as a
+    #  vocabulary gap:
+    #
+    #    - one sequence, many deposits. Barthadenovirus `core protein 2`
+    #      read 16 and is ONE unique 67 aa sequence -- a singleton, which
+    #      this skill explicitly allows to be left out, reported as a bin
+    #      three times the size of the PX collection it supposedly belonged
+    #      to.
+    #    - the string is unbound while the SEQUENCE is already called under
+    #      another name. Mastadenovirus `E3 19.4K` read 23, is 21 unique
+    #      sequences, and 16 of those are byte-identical to members already
+    #      sitting in `E3_CR1A`. Nothing is missing from the module at all.
+    #
+    #  The second one is the dangerous direction: it invites building a new
+    #  feature for a protein the module already calls, which is how a bin
+    #  ends up scoring on its neighbour's locus -- the exact defect
+    #  audit_bins.py exists to find.
+    ACCESSORY_FLOOR = 5
+    called = set()
+    for _k, _rows in out.items():
+        for _r in _rows:
+            called.add(_r[2])
+    big = []
+    for a, c in unassigned.most_common():
+        uniq = unassigned_seqs.get(a) or set()
+        novel = uniq - called
+        if len(novel) >= ACCESSORY_FLOOR:
+            big.append((c, a, len(uniq), len(novel)))
+    dump("UNASSIGNED_TRACKING.tsv",
+         "features\tuniq_seqs\tnot_already_called\tannotation",
+         ((c, len(unassigned_seqs.get(a) or set()),
+           len((unassigned_seqs.get(a) or set()) - called), a)
+          for a, c in unassigned.most_common()))
     dump("NOT_MODELLED.tsv", "features\tannotation\treason",
          ((c, a, w) for (a, w), c in notmodelled.most_common()))
 
@@ -424,18 +461,20 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
     #  leaves the same evidence as an empty one: no ACCESSORY_CLUSTERS.tsv.
     #
     #  Say it here, at the point the file is written, with the command.
-    ACCESSORY_FLOOR = 5
-    big = [(c, a) for a, c in unassigned.most_common() if c >= ACCESSORY_FLOOR]
     if big:
         print("\n  *** %d UNASSIGNED STRING(S) REACH THE MEMBER FLOOR ***\n"
+              "  Counted as UNIQUE SEQUENCES NOT ALREADY CALLED under another\n"
+              "  name -- a deposit count is not a protein count, and a string\n"
+              "  can be unbound while its sequence is already in a collection.\n"
               "  These are proteins this taxon encodes and this module does not\n"
               "  call. They are NOT singletons and must not be left orphaned.\n"
               "  Cluster them by identity and declare each group that reaches\n"
               "  the floor as an uncharacterized lineage-specific feature:\n"
               "      python3 scripts/filter_unchar.py --workdir . --module %s --write\n"
-              "  Largest, with their occurrence counts:" % (len(big), MODULE))
-        for c, a in big[:10]:
-            print("      %-5d %s" % (c, a[:62]))
+              "  Largest:" % (len(big), MODULE))
+        for c, a, nu, nn in big[:10]:
+            print("      %-5d deposits  %3d uniq  %3d not already called  %s"
+                  % (c, nu, nn, a[:46]))
         print("  %d more at >= %d occurrences." % (max(0, len(big) - 10), ACCESSORY_FLOOR)
               if len(big) > 10 else "  (that is all of them)")
 

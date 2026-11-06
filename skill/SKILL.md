@@ -487,11 +487,111 @@ detects a mixed bin: at 40% it flagged Barthadenovirus `FIBER`, `K22`, `LH1`
 and `LH2`, every one of them real. Discarding such a bin would throw away
 novel proteins; splitting it is a curator's call.
 
+#### The order these checks run in, and it is not negotiable
+
+**Nothing is retired until steps 1–3 have been done on it.** Each step can
+only *clear* a bin for the next one; none of them can skip ahead. Written out
+because the first draft of this section put step 4 at the top, where it reads
+as a shortcut past the two checks that protect real proteins:
+
+1. **Drop members below the 0.80 identity floor.** They violate the binning
+   rule and should never have clustered together, so no genome or literature
+   check is owed to them. If nothing survives, the bin dies here.
+2. **Locate the survivors in a genome.** Viruses rarely carry blank sequence.
+   Unoccupied space → keep. Overlapping another ORF → step 3.
+3. **Check the literature for the overlapping case.** An overlap can be real
+   biology or an errant submitter's ORF call, and only a paper separates them.
+4. **Only then may region coverage retire what is left as chaff.**
+
+Skipping 2 and 3 is how a real protein gets deleted: `UNC58` would have looked
+like chaff in a complete E1B region, and locating it showed it *was* E1B 19K
+at its canonical locus.
+
+**When a region's bins already match the taxon's genome organisation, the
+leftovers in that region are chaff — discard them and move on**, once steps
+1–3 above have cleared them. This is a budget rule as much as a correctness
+one, and it is the curator's, 5 Nov 2026:
+
+> "It is often more expedient to throw away proteins that are odd if you have
+> a good clean verified set of bins that match the genome organization of the
+> taxon. Scrutinizing the chaff — and what an errant researcher may have named
+> these incorrect ORFs — is not worth our time if the bins for regions like E4
+> are already clean, in place, and match the adenovirus genome structure."
+
+Worked example. Mapping one Mastadenovirus genome's E4 region onto the
+features showed only `E4 34K` binding correctly, because "34K" is a known
+synonym for E4orf6; `E4 ORF A`–`ORF F` and `E4 17K` had scattered into
+`UNC29`, `UNC19`, `UNC43`, `UNC51` and two unbound strings, with **`UNC19`
+holding two different E4 ORFs** — which is why it produced 31 false `E4ORF6`
+calls. About 64 deposits across the dump use that lettering.
+
+The tempting move is to establish which letter is which E4orf number and
+re-bin them. Don't, unless the region is actually short of something. Check
+coverage first:
+
+```
+E4ORF1  251 seqs / 112 taxa      E4ORF5   68 /  31
+E4ORF2  275 / 122                E4ORF6  370 / 148
+E4ORF3  161 /  86                E4ORF67 233 / 100
+E4ORF4  217 / 101                union: 188 taxa
+```
+
+Every canonical E4 ORF is present and deeply sampled, so the letters add no
+protein the module lacks — only the risk of putting four proteins in the wrong
+four bins, which is how the fiber problem began.
+
+So the letters are not worth a literature pass **as a naming question**. They
+are still worth steps 1–3 **as ORFs**: locate each surviving bin in a genome
+first, because a complete region tells you the chaff adds no protein, not that
+a particular bin is chaff. Retire what those steps clear, and nothing else.
+
+**The test is coverage against the known organisation, not bin count.** Run it
+before spending a literature pass on an odd bin: if the region is complete,
+the odd bin is chaff; if the region is *missing* a protein the taxon is known
+to encode, the odd bin may be it, and then step 2b applies.
+
 **A mutual duplicate must not retire both halves.** Aviadenovirus `UNC11` (15
 members) and `UNC15` (13) are the same protein at 98.9%, so each is the
 other's duplicate and each earns a DUPLICATE verdict — retiring the pair
 deletes the protein from the module. The larger bin is reported as `KEPT` and
 only the smaller is retired.
+
+**A FRAGMENT verdict needs structural support, or at least no structural
+contradiction.** Cross-genome identity cannot tell *a piece of that protein*
+from *a relative that shares a conserved region*, and for a conserved-domain
+family it reliably says the wrong thing. `E3_CR1D` — 29 deposits, median 46 aa,
+96.6% identical to `E3_CR1B` over 7% of it — is a textbook fragment by
+identity, and **not one of the 29 is a substring of a `CR1B` from its own
+genome**, with nine of them having a same-genome `CR1B` available to be a
+substring of. CR1 stands for *conserved region 1*: the CR1-α/β/γ/δ proteins
+share a conserved region by definition, so the rule was measuring the very
+thing that makes them a family. Retiring it would have deleted a real protein.
+The tool now reports that case as `CONSERVED-REGION` and never retires it.
+
+What `E3_CR1D` did need was a re-bin, not a retirement: 12 of its 29 members
+match the masses its own submitters gave (66–109 aa for "7.7 kDa"/"11 kDa")
+and 17 are a ragged 29–57 aa spread, almost all from one taxon — unmarked
+fragments by the multiplicity rule. Drop those and the profile rests on 12
+sequences that are certainly the same protein.
+
+**Members below the 0.80 identity floor are discarded before anything else is
+asked.** They violate the binning rule and should never have clustered
+together; no genome or literature check is owed to them. Applied to four
+flagged bins this resolved one outright — Barthadenovirus `RH6`'s three
+members have best siblings at 74%, 74% and 40%, so the bin dies on the floor
+alone — and it shrank the rest to a conserved core worth asking about:
+`UNC58` 4 → 3, `UNC29` 9 → 4, `UNC5` 5 → 2.
+
+**Then ask where the surviving ORF sits in the genome, because viruses rarely
+carry blank sequence.** If it occupies unoccupied space, keep it. If it
+overlaps another ORF, the literature decides. `UNC5` sits with a 53 bp
+abutment on one side and an **893 bp gap** on the other — its own space, so it
+stays. `UNC58` turned out to be `fig|47680.6.CDS.2`, product **"small E1B"**,
+immediately downstream of `E1A` and overlapping the 5′ end of "large E1B" by
+61 bp: that is the textbook E1B arrangement, 19K and 55K sharing a promoter
+and overlapping in different frames. So it is real — and real *as E1B 19K*,
+38% identity being a divergent species. It merges into `E1B19K` rather than
+surviving as a feature of its own.
 
 Declare nested and spliced forms with `--protect`: `K22`/`K33`,
 `UXP`/`U_EXON`, `E1A`/`E1A_243R`, `E4ORF67`/`E4ORF6` and the nested capsid

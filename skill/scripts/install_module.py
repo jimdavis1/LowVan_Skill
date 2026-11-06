@@ -79,30 +79,41 @@ def unassigned_pool(workdir, floor=5):
     p = os.path.join(workdir, "collections", "UNASSIGNED_TRACKING.tsv")
     if not os.path.exists(p):
         return None
-    big = []
+    #  GATE ON UNIQUE UNCALLED SEQUENCES WHEN THE FILE REPORTS THEM. The
+    #  old two-column file carried a deposit count only, and gating on it
+    #  overstates the pool in both of the ways found in Adenoviridae
+    #  pre-flight: 16 deposits of Barthadenovirus `core protein 2` are ONE
+    #  sequence, and 16 of the 21 `E3 19.4K` sequences are byte-identical to
+    #  members already in `E3_CR1A`. Fall back to the deposit count for a
+    #  file written by an older engine, and say which column was used.
+    big, col = [], "deposits"
     with open(p) as fh:
-        fh.readline()
+        hdr = fh.readline().rstrip("\n").split("\t")
+        idx = (hdr.index("not_already_called")
+               if "not_already_called" in hdr else 0)
+        if idx:
+            col = "uncalled sequences"
         for line in fh:
             f = line.rstrip("\n").split("\t")
-            if len(f) < 2:
+            if len(f) <= idx:
                 continue
             try:
-                n = int(f[0])
+                n = int(f[idx])
             except ValueError:
                 continue
             if n >= floor:
-                big.append((n, f[1]))
-    return sorted(big, reverse=True)
+                big.append((n, f[-1]))
+    return sorted(big, reverse=True), col
 
 
 def validate(workdir, mod_json):
     """Return {module: pssms} for installable modules, printing every problem."""
     ok, problems = {}, []
 
-    pool = unassigned_pool(workdir)
+    pool, poolcol = unassigned_pool(workdir) or ([], "deposits")
     if pool:
-        print("  UNASSIGNED POOL: %d string(s) at >= 5 occurrences were never "
-              "clustered" % len(pool))
+        print("  UNASSIGNED POOL: %d string(s) at >= 5 %s were never "
+              "clustered" % (len(pool), poolcol))
         for n, a in pool[:6]:
             print("      %-5d %s" % (n, a[:58]))
         if len(pool) > 6:
