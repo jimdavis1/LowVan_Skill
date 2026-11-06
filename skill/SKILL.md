@@ -441,7 +441,10 @@ sequences**:
 |---|---|---|
 | DUPLICATE | 3 | `UNC16` was `POL` at 99.8% identity, 1187 aa against POL's 1190 |
 | FRAGMENT | 15 | `UNC23` was 100% identical to `E1B55K` over 95% of itself and **17%** of E1B55K |
-| INCOHERENT | 7 | `UNC34`'s seven members fall into three groups sharing 23–32% |
+| INCOHERENT | 3 | `UNC34`'s seven members fall into three groups sharing 23–32% |
+
+Aviadenovirus adds 14 more (2 + 9 + 3), Siadenovirus one, Barthadenovirus
+none.
 
 `E3_CR1D` is the one to remember: a **named** feature, 29 members, median
 **46 aa**, 96.6% identical to `E3_CR1B`. A fragment wearing a feature name.
@@ -469,6 +472,26 @@ makes them paralogues. What separates `UNC34` from `ORF20` is not its distance
 to `E1B19K` but its distance to **itself**. So the tool measures within-bin
 identity first and reports a coherent divergent bin as `PARALOGUE` —
 information, never retired.
+
+**Measure that coherence by connectivity, not by an average.** The first fix
+used median within-bin identity, and `UNC34` passed it as "coherent at 50%":
+three near-identical sequences pulled the median above the margin while the
+bin was still three groups. Single-linkage answers the actual question — at
+least `--min-component` (default 70%) of the bin in one component at 40%
+identity over half the query. `UNC34`'s largest component holds 3 of 7.
+
+**A bin can be several proteins without resembling any named one, and that is
+a question, not a defect.** `SPLIT` reports it and never blocks, because no
+linkage threshold both holds a real family together across host species and
+detects a mixed bin: at 40% it flagged Barthadenovirus `FIBER`, `K22`, `LH1`
+and `LH2`, every one of them real. Discarding such a bin would throw away
+novel proteins; splitting it is a curator's call.
+
+**A mutual duplicate must not retire both halves.** Aviadenovirus `UNC11` (15
+members) and `UNC15` (13) are the same protein at 98.9%, so each is the
+other's duplicate and each earns a DUPLICATE verdict — retiring the pair
+deletes the protein from the module. The larger bin is reported as `KEPT` and
+only the smaller is retired.
 
 Declare nested and spliced forms with `--protect`: `K22`/`K33`,
 `UXP`/`U_EXON`, `E1A`/`E1A_243R`, `E4ORF67`/`E4ORF6` and the nested capsid

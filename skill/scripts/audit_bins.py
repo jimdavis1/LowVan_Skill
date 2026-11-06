@@ -128,7 +128,7 @@ def load_protected(cdir, extra):
     return pairs
 
 
-def measure(cdir, feats):
+def measure(cdir, feats, link_id=40.0, link_cov=0.5):
     """Best FOREIGN feature for every member of every collection."""
     tmp = tempfile.mkdtemp(prefix="binaudit_")
     try:
@@ -168,7 +168,7 @@ def measure(cdir, feats):
             #  OTHER member of the same bin; the bin's score is the median of
             #  those. A member with no within-bin hit at all scores 0, which
             #  is the correct answer -- it belongs to nothing here.
-            selfid = 0.0
+            selfid, biggest, ncomp = 0.0, 1.0, 1
             if len(seqs) > 1:
                 sr = subprocess.run(
                     ["blastp", "-query", fa, "-subject", fa,
@@ -190,9 +190,39 @@ def measure(cdir, feats):
                         bestself[q] = pid
                 vals = [bestself.get(k.split()[0], 0.0) for k in order]
                 selfid = statistics.median(vals) if vals else 0.0
+                #  CONNECTIVITY, because the median cannot see a SPLIT bin.
+                #  UNC34 is three groups -- one trio at 95-99%, a second at
+                #  39-48%, one sequence alone -- sharing 23-32% ACROSS the
+                #  groups. Its median within-bin identity is 48.5%, which
+                #  clears any margin over its 34% to E1B19K, so the median
+                #  calls it coherent and it is not. Single-linkage at a
+                #  modest threshold answers the real question: is this bin
+                #  ONE thing?
+                parent = {k: k for k in order}
+                def find(x):
+                    while parent[x] != x:
+                        parent[x] = parent[parent[x]]; x = parent[x]
+                    return x
+                idx = {}
+                for k in order:
+                    idx.setdefault(k.split()[0], k)
+                for line in sr.stdout.splitlines():
+                    q, s, pid, aln, qlen = line.split("\t")
+                    if q == s or float(pid) < link_id:
+                        continue
+                    if int(aln) < link_cov * int(qlen):
+                        continue
+                    qq, ss = idx.get(q), idx.get(s)
+                    if qq and ss:
+                        a, b = find(qq), find(ss)
+                        if a != b:
+                            parent[a] = b
+                comp = collections.Counter(find(k) for k in order)
+                biggest = comp.most_common(1)[0][1] / float(len(order))
+                ncomp = len(comp)
             rec = dict(n=len(seqs), medlen=int(statistics.median(lens)),
                        tgt="-", pid=0.0, qcov=0.0, scov=0.0, frac=0.0,
-                       selfid=selfid)
+                       selfid=selfid, biggest=biggest, ncomp=ncomp)
             if best:
                 votes = collections.Counter(v[1] for v in best.values())
                 tgt, nv = votes.most_common(1)[0]
@@ -207,9 +237,17 @@ def measure(cdir, feats):
         shutil.rmtree(tmp, ignore_errors=True)
 
 
-def verdict(f, rec, medlens, protected, coherence):
+def verdict(f, rec, medlens, protected, coherence, min_component):
     tgt = rec["tgt"]
     if tgt == "-" or rec["frac"] < 0.5 or (f, tgt) in protected:
+        #  A bin can be several proteins without resembling any NAMED one.
+        #  Discarding it would throw away novel proteins, so it is reported
+        #  as a split to be made, not as something to retire.
+        if rec["n"] >= 4 and rec["biggest"] < min_component:
+            return ("SPLIT",
+                    "%d groups, largest holds %.0f%% of the bin -- this is "
+                    "more than one protein and resembles no named feature"
+                    % (rec["ncomp"], rec["biggest"] * 100))
         return None
     pid, qc, sc = rec["pid"], rec["qcov"], rec["scov"]
     tl = medlens.get(tgt, 0)
@@ -226,13 +264,18 @@ def verdict(f, rec, medlens, protected, coherence):
         #  Divergent from tgt. Only a defect if it is equally divergent from
         #  ITSELF -- otherwise it is tgt's paralogue, which is a fact about
         #  the taxon rather than a fault in the bin.
+        if rec["biggest"] < min_component:
+            return ("INCOHERENT",
+                    "not one protein -- %d groups, largest holds %.0f%% of "
+                    "the bin; best foreign match %s at %.0f%%"
+                    % (rec["ncomp"], rec["biggest"] * 100, tgt, pid))
         if rec["selfid"] < pid + coherence:
             return ("INCOHERENT",
                     "members agree with each other no better (%.0f%%) than "
                     "with %s (%.0f%%)" % (rec["selfid"], tgt, pid))
         return ("PARALOGUE",
-                "%.0f%% to %s full length, but internally coherent at %.0f%%"
-                % (pid, tgt, rec["selfid"]))
+                "%.0f%% to %s full length, but one group, internally "
+                "coherent at %.0f%%" % (pid, tgt, rec["selfid"]))
     return None
 
 
@@ -245,6 +288,15 @@ def main():
                     help="pair that is near-identical by design and must not "
                          "be judged (K22:K33). Repeatable; also read from "
                          "protected_pairs.json beside the collections.")
+    ap.add_argument("--link-id", type=float, default=40.0,
+                    help="percent identity at which two members of a bin are "
+                         "linked when testing whether the bin is ONE thing "
+                         "(default 40)")
+    ap.add_argument("--link-cov", type=float, default=0.5,
+                    help="fraction of the query a link must span (default 0.5)")
+    ap.add_argument("--min-component", type=float, default=0.70,
+                    help="fraction of a bin that must fall in its largest "
+                         "connected component (default 0.70)")
     ap.add_argument("--coherence", type=float, default=10.0,
                     help="points by which within-bin identity must exceed the "
                          "identity to the foreign feature for the bin to "
@@ -269,17 +321,46 @@ def main():
                 k, _, why = line.rstrip("\n").partition("\t")
                 accepted[k.strip()] = why.strip() or "signed off"
 
-    recs = measure(cdir, feats)
+    recs = measure(cdir, feats, a.link_id, a.link_cov)
     medlens = {f: r["medlen"] for f, r in recs.items()}
 
     findings = []
     for f in feats:
-        v = (verdict(f, recs[f], medlens, protected, a.coherence)
-             if f in recs else None)
+        v = (verdict(f, recs[f], medlens, protected, a.coherence,
+                     a.min_component) if f in recs else None)
         if v:
             findings.append((f, v[0], v[1], recs[f]))
 
-    defects = [x for x in findings if x[1] != "PARALOGUE"]
+    #  A MUTUAL DUPLICATE MUST NOT RETIRE BOTH HALVES, which is how this
+    #  tool would delete a protein outright. Aviadenovirus UNC11 (15
+    #  members) and UNC15 (13) are the same thing at 98.9%, so each is the
+    #  other's duplicate and each earns a DUPLICATE verdict. Retiring the
+    #  pair removes the protein from the module. The survivor is the bin
+    #  with more members -- more evidence, better profile -- and ties go to
+    #  the name that sorts first, so the choice is at least reproducible.
+    dup = {f: rec["tgt"] for f, cls, _, rec in findings if cls == "DUPLICATE"}
+    keep = set()
+    for f, tgt in dup.items():
+        if dup.get(tgt) == f:
+            winner = max((f, tgt), key=lambda x: (recs[x]["n"], x == min(f, tgt)))
+            keep.add(winner)
+    if keep:
+        findings = [(f, cls, why, rec) for f, cls, why, rec in findings
+                    if f not in keep]
+        for f in sorted(keep):
+            findings.append((f, "KEPT", "survivor of a mutual-duplicate pair "
+                             "with %s -- retiring both would delete the "
+                             "protein" % dup[f], recs[f]))
+
+    #  PARALOGUE and SPLIT are reported, never blocking. A coherent
+    #  divergent bin is a fact about the taxon. A bin that splits without
+    #  resembling any named feature may be several NOVEL proteins -- and at
+    #  any linkage threshold loose enough to hold a real family together
+    #  across host species, the test stops finding anything, while at 40% it
+    #  flags Barthadenovirus FIBER, K22, LH1 and LH2, all of them real. So it
+    #  goes to the curator as a question, not to the build as a refusal.
+    defects = [x for x in findings
+               if x[1] not in ("PARALOGUE", "SPLIT", "KEPT")]
     unresolved = [x for x in defects if x[0] not in accepted]
     lines = ["# Bin audit -- %s" % a.module, "",
              "Does every collection hold ONE protein, and its OWN protein?",
@@ -290,13 +371,15 @@ def main():
     if protected:
         lines += ["Protected pairs (not judged): %s" % ", ".join(
             sorted("%s/%s" % p for p in protected if p[0] < p[1])), ""]
-    for cls in ("DUPLICATE", "FRAGMENT", "INCOHERENT", "PARALOGUE"):
+    for cls in ("DUPLICATE", "FRAGMENT", "INCOHERENT", "KEPT", "SPLIT",
+                "PARALOGUE"):
         sel = [x for x in findings if x[1] == cls]
         if not sel:
             continue
         lines += ["## %s -- %d bin(s), %d sequence(s)%s"
                   % (cls, len(sel), sum(x[3]["n"] for x in sel),
-                     "  (reported, not retired)" if cls == "PARALOGUE" else ""),
+                     "  (reported, not retired)"
+                     if cls in ("PARALOGUE", "SPLIT", "KEPT") else ""),
                   "",
                   "| bin | n | median aa | finding | signed off |",
                   "|---|---|---|---|---|"]
