@@ -51,6 +51,53 @@ def _has_special(ann_gto, repo):
         return False
     return any(f.get("function") in sp for f in g.get("features", []))
 
+def _gene_symbol(f, fn):
+    """The gene symbol for column 7, from the GTO rather than from the prose.
+
+    The annotator carries it as an alias_pair, which is where the PSSM path
+    gets the symbol it writes. Falling back to the first word of the function
+    string is how every Adenoviridae spliced row came out reading
+    `alternative` -- the first word of "Alternative splicing factor 33K" --
+    while the GTO beside it said `33K`. A feature table is grouped by that
+    column, so the symbol has to be the real one or the spliced calls form
+    their own phantom gene.
+    """
+    for k, v in (f.get("alias_pairs") or []):
+        if k == "gene" and v:
+            return v
+    g = f.get("gene")
+    if g:
+        return g
+    #  No alias and no gene: the function's LAST word is the symbol far more
+    #  often than its first ("Alternative splicing factor 33K"), but either
+    #  guess is a guess, so say so rather than inventing a plausible symbol.
+    return ""
+
+def _span(loc):
+    """(start, end, nucleotide length) over every exon of a GTO location.
+
+    A GTO location entry is [contig, start, strand, LENGTH] -- not an end
+    coordinate. The end has to be computed, and for a spliced feature it is
+    the far end of the LAST exon, not of the first. Leaving it out wrote
+    Adenoviridae K33 rows with an empty column 9 and an empty length in
+    column 11, so a spliced CDS had a start and nothing else: any consumer
+    computing a span got a zero-length or negative feature.
+    """
+    tot = 0
+    for e in loc:
+        try:
+            tot += int(e[3])
+        except (IndexError, TypeError, ValueError):
+            pass
+    try:
+        last = loc[-1]
+        n = int(last[3])
+        s = int(last[1])
+        end = s + n - 1 if last[2] == "+" else s - n + 1
+        return str(loc[0][1]), str(end), str(tot)
+    except (IndexError, TypeError, ValueError):
+        return str(loc[0][1]), "", (str(tot) if tot else "")
+
 def _append_special_rows(tbl, ann_gto):
     """Add the spliced / transcript-edited features to the feature table.
 
@@ -95,13 +142,24 @@ def _append_special_rows(tbl, ann_gto):
     #  genome. Appending the GTO's id would leave two different genome ids in
     #  column 1 of a single table and silently split any consumer that groups
     #  by it. Fall back to the GTO only for a table with no rows to copy.
-    gid = g.get("id", "")
-    sci = g.get("scientific_name", "")
+    #  Columns 1-2 and 12-16 describe the GENOME, not the feature -- genome id,
+    #  genome name, module, rep contig, routing bit score, rep ids, rep name --
+    #  and are identical on every row the annotator wrote. Copy a whole row and
+    #  keep them, rather than filling two of the seven and leaving five blank:
+    #  the first version of this put the genome ID in the NAME column and left
+    #  the module and the routing evidence empty, so a spliced row could not be
+    #  grouped by module or traced to the contig that routed it, and a consumer
+    #  grouping by genome name saw a name that appeared on no other row.
+    GENOME_COLS = (0, 1, 11, 12, 13, 14, 15)
+    tmpl = [""] * 20
+    tmpl[0] = tmpl[1] = g.get("id", "")
+    tmpl[15] = g.get("scientific_name", "")
     for line in rows:
         c = line.rstrip("\n").split("\t")
         if len(c) >= 18 and c[17] and c[0]:
-            gid = c[0]
-            if len(c) >= 16 and c[15]: sci = c[15]
+            for i in GENOME_COLS:
+                if i < len(c):
+                    tmpl[i] = c[i]
             break
     contig = ""
     for f in g.get("features", []):
@@ -116,17 +174,14 @@ def _append_special_rows(tbl, ann_gto):
             continue
         missing[fn] -= 1
         loc = f.get("location") or [[contig, "", "+", ""]]
-        c = [""] * 20
-        c[0] = gid
-        c[1] = gid
+        c = list(tmpl)
         c[2] = loc[0][0]
         c[3] = "LV"
         c[4] = "CDS"
         c[5] = f.get("id", "")
-        c[6] = (f.get("gene") or fn.split()[0].lower())
-        c[7] = str(loc[0][1])
+        c[6] = _gene_symbol(f, fn)
+        c[7], c[8], c[10] = _span(loc)
         c[9] = str(loc[0][2])
-        c[15] = sci
         c[17] = fn
         c[19] = f.get("protein_translation", "")
         out.append("\t".join(c))
