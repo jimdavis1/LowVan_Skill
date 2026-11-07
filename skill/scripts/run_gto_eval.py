@@ -152,6 +152,10 @@ def main():
                          "annotation_rarefaction.py and analyze_feature_gap.py both "
                          "need it, and hand-synthesising one is how a gap analysis "
                          "came back '0 genomes' from an empty gene-symbol column.")
+    ap.add_argument("--reuse-stale", action="store_true",
+                    help="resume even though cached annotations predate the "
+                         "installed Viral_PSSM.json. Only when you mean to "
+                         "report on the OLD module.")
     ap.add_argument("--skip-special", action="store_true",
                     help="do not call transcript-edited or spliced features. "
                          "The default is to call them: a coverage audit that "
@@ -213,6 +217,42 @@ def main():
         os.makedirs(args.tbl_dir, exist_ok=True)
     gtos = sorted(glob.glob(os.path.join(os.path.abspath(args.gto_dir), "*.gto")))
     print("  %d GTO(s)" % len(gtos))
+
+    #  A RESUME MUST NOT REUSE ANNOTATIONS MADE BY A DIFFERENT MODULE.
+    #
+    #  The skip below keys on "<genome>.qual.gto exists and is non-empty",
+    #  which is right for continuing an interrupted run and wrong for a run
+    #  after a reinstall. Nothing in the output records WHICH Viral_PSSM.json
+    #  produced it, so a rebuilt-and-reinstalled module re-reads yesterday's
+    #  annotations and the report is rewritten from them: every genome is
+    #  "done", the exit code is 0, the call rates are plausible, and not one
+    #  of them describes the module that is now installed.
+    #
+    #  Adenoviridae hit exactly that on 6 Nov 2026 -- four panels, 272
+    #  genomes, reported complete in ONE SECOND after a full rebuild. The
+    #  tell was the wall-clock, which nothing checks.
+    #
+    #  So compare the repo JSON against the cached outputs and say so. This
+    #  warns rather than exits: a deliberate resume onto an unchanged repo is
+    #  the normal case, and the operator may have reasons the tool cannot see.
+    rj = os.path.join(R, "Viral_PSSM.json")
+    if os.path.exists(rj):
+        jt = os.path.getmtime(rj)
+        cached = [q for q in glob.glob(os.path.join(args.out, "*.qual.gto"))
+                  if os.path.getsize(q) > 0]
+        older = [q for q in cached if os.path.getmtime(q) < jt]
+        if older:
+            print("  WARNING: %d of %d cached annotation(s) PREDATE %s"
+                  % (len(older), len(cached), rj))
+            print("           They were made by a different installed module "
+                  "and will be reused as-is.")
+            print("           The report would then describe the OLD module. "
+                  "Delete or move %s" % args.out)
+            print("           to re-annotate, or pass --reuse-stale to accept "
+                  "them deliberately.")
+            if not args.reuse_stale:
+                sys.exit("refusing to resume onto annotations older than the "
+                         "installed module")
 
     def one(g):
         b = os.path.splitext(os.path.basename(g))[0]

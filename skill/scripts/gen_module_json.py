@@ -74,6 +74,10 @@ def main():
                          "length range from (default: <workdir>/Contigs)")
     ap.add_argument("--segments", default=None,
                     help='JSON: {"RNA1": {"min_len":.., "max_len":..}, ...}')
+    ap.add_argument("--allow-dropped", action="store_true",
+                    help="permit a feature declared `special` in the existing "
+                         "--out JSON to disappear from it. Use only when that "
+                         "feature is genuinely being retired.")
     ap.add_argument("--pad", type=float, default=0.06,
                     help="fractional slack on the collection length range")
     a = ap.parse_args()
@@ -263,6 +267,42 @@ def main():
         if spec.get("copy_num") is not None:
             d["copy_num"] = spec["copy_num"]
         out[key] = d
+
+    #  A FEATURE THIS SCRIPT ALREADY SHIPPED MUST NOT VANISH WITHOUT SAYING SO.
+    #
+    #  This JSON is regenerated from the features file, so anything the
+    #  features file does not list is deleted from the module -- silently,
+    #  because a feature that is gone produces no output of any kind. The way
+    #  it happens is specific and it has happened: `special` is a curation
+    #  decision that lived ONLY in this JSON, the per-taxon setup script read
+    #  it from here to EXCLUDE the feature from the features file (correctly --
+    #  a special must not get profiles), and the next regeneration then had no
+    #  record of it. All four Adenoviridae modules lost K33 (33K, spliced,
+    #  PMID 25636034) that way on 5 Nov 2026, with 578/180/38/40 validated
+    #  splice references still on disk. Nothing reported a gap: there is no
+    #  profile to be stale, no collection to be empty and no call rate to
+    #  fall, because the feature simply stopped being asked for.
+    #
+    #  So diff against what is already there. A retirement is a real decision
+    #  and is allowed -- it just has to be stated, not discovered later.
+    if os.path.exists(a.out):
+        try:
+            prev = (json.load(open(a.out)).get(M) or {}).get("features") or {}
+        except Exception:
+            prev = {}
+        gone = sorted(set(prev) - set(out))
+        if gone:
+            lost = [k for k in gone if prev[k].get("special")]
+            print("  DROPPED from the previous JSON: %s" % ", ".join(gone))
+            if lost and not a.allow_dropped:
+                sys.exit(
+                    "REFUSED: %d feature(s) declared `special` in %s are not in\n"
+                    "  %s, so this would delete them:\n    %s\n"
+                    "  A special has no collection and no profile, so nothing\n"
+                    "  downstream will notice it is gone. Declare it in the\n"
+                    "  features file (carrying its `special` flag), or pass\n"
+                    "  --allow-dropped if the feature is genuinely retired."
+                    % (len(lost), a.out, a.features, ", ".join(lost)))
 
     block = {M: {"close_genomes": close, "features": out, "segments": segments}}
     #  Canonical on the way out. json.dump(indent=1) is not the project

@@ -358,6 +358,23 @@ def main():
     res = []
     for key, d in spec.items():
         if only and key not in only: continue
+        #  A `special` feature is called by its own pass -- the splice or
+        #  transcript-edit path -- from references in Splice-Variants/, not
+        #  by a profile. install_module.py treats a special that HAS profiles
+        #  as fatal, because the profile and the special pass would both fire
+        #  on the locus. So the declaration has to survive as far as the spec
+        #  and then be skipped HERE, rather than being filtered out upstream:
+        #  setup_build.py used to drop specials from features.json entirely to
+        #  keep them away from this loop, and because gen_module_json.py
+        #  builds the module JSON from features.json, one regeneration then
+        #  deleted the feature from the JSON. Adenoviridae lost K33 (33K,
+        #  spliced -- PMID 25636034) from all four modules that way, with its
+        #  splice references still sitting on disk and nothing reporting a
+        #  gap. The flag now travels in the spec and the skip lives here.
+        if d.get("special"):
+            print("  %-14s special:%s -- no profile, called by its own pass"
+                  % (key, d["special"]))
+            continue
         params = dict(DEFAULTS); params.update(_normalise(d.get("params")))
         flags = list(d.get("flags", []))
         #  A read-through feature carries the read-through codon as an X in
