@@ -254,6 +254,7 @@
          "E1B55K" : {
             "anno" : "p53 degradation and mRNA export factor E1B 55K",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -603,6 +604,7 @@
          "IVA2" : {
             "anno" : "Genome packaging ATPase IVa2",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -635,6 +637,7 @@
          "K100" : {
             "anno" : "Hexon assembly chaperone and host shutoff protein 100K",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -678,6 +681,7 @@
          "K52" : {
             "anno" : "Genome packaging protein 52/55K",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -692,6 +696,7 @@
          "PENTON" : {
             "anno" : "Penton base protein",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -734,6 +739,7 @@
          "POL" : {
             "anno" : "DNA polymerase",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -748,6 +754,7 @@
          "PROTEASE" : {
             "anno" : "Adenain cysteine protease",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -762,6 +769,7 @@
          "PTP" : {
             "anno" : "Terminal protein precursor",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -818,6 +826,7 @@
          "PVIII" : {
             "anno" : "Capsid cement protein VIII precursor",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -850,6 +859,7 @@
             "anno" : "Terminal protein",
             "bit_cutoff" : 60,
             "comment" : "HAdV-5 pTP residues 350-671: cut after 349 (MTGG^VF) gives mature TP; the iTP intermediate (175/183) is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 638/647 precursors of this module cut.",
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "mat_peptide",
@@ -904,6 +914,7 @@
             "anno" : "Capsid cement protein VIII, N-terminal fragment",
             "bit_cutoff" : 30,
             "comment" : "HAdV-5 pVIII residues 1-111 (12.1K): cut after 111 (LAGG^FR). Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 248/252 precursors of this module cut.",
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",

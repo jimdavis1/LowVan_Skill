@@ -1,0 +1,7 @@
+{
+ "standfirst": "Human adenovirus F and its simian relatives carry two or more fiber genes and are kept apart from the one-fiber mastadenoviruses. Core calling is high; most poor genomes here are partial or carry interrupted genes, which the checked examples confirm is the sequence and not the profile.",
+ "modules": {
+  "Mastadenovirus_MultiFiber": "Mastadenoviruses that carry more than one fiber gene: human adenovirus F (types 40 and 41) and the simian and rhesus adenoviruses whose fiber census places them here."
+ },
+ "gaps": "Features not modelled and known limits are listed in section 07 of the coverage audit and in BUILD_NOTES.md."
+}

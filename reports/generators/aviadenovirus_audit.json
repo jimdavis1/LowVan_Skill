@@ -1,0 +1,514 @@
+{
+ "title": "Aviadenovirus Coverage Audit",
+ "eyebrow": "LowVan &middot; Adenoviridae &middot; Aviadenovirus module &middot; 16 November 2026",
+ "h1": "Does the Aviadenovirus module work?",
+ "standfirst": "Aviadenoviruses have the largest adenovirus genomes, about 44 kb, with dozens of lineage-specific ORFs at both ends. The core is called in essentially every near-complete genome; the open work is the avian ORFs the module does not yet declare.",
+ "headline_tiles": [
+  [
+   "55",
+   "features declared"
+  ],
+  [
+   "319",
+   "PSSMs"
+  ],
+  [
+   "452/452",
+   "genomes routed to this module"
+  ],
+  [
+   "89.1%",
+   "subset genomes good quality"
+  ],
+  [
+   "17",
+   "essential features"
+  ],
+  [
+   "17.9&times;",
+   "fewer distinct strings at equal depth"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Aviadenoviruses of poultry and wild birds, including fowl adenoviruses A&ndash;E with one or two fiber genes.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "measure",
+      "value"
+     ],
+     "rows": [
+      [
+       "genomes assigned (by sequence)",
+       "452"
+      ],
+      [
+       "70% nucleotide clusters",
+       "41"
+      ],
+      [
+       "near-complete genomes (&ge;90% of median length)",
+       "435"
+      ],
+      [
+       "median genome length",
+       "43,725 nt"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Genomes were assigned to modules from sequence alone: the genus by best hexon match, and one-fiber versus multi-fiber mastadenoviruses by a census of intact fiber genes classed by literature orthology (Podgorski 2023, PMID 36610683). Deposited names were never used to assign a genome."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Membership by homology to curated seed collections; the deposited name is recorded but never decides.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "step",
+      "effect"
+     ],
+     "rows": [
+      [
+       "homology assignment",
+       "2,567 unique proteins assigned (&ge;80% coverage both ways, best feature &ge;1.2&times; the runner-up)"
+      ],
+      [
+       "left out",
+       "979 no hit, 59 ambiguous, 408 low coverage, 1 submitter-marked partial"
+      ],
+      [
+       "profiles",
+       "319 PSSMs over 54 profile features"
+      ],
+      [
+       "special features",
+       "K33"
+      ],
+      [
+       "mature peptides",
+       "IIIA_MAT, VIII_N, VI_MAT"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Paralogue families were split into orthogroup features by genome position, and each is called by sequence, never by location. Features with no literature function are named &ldquo;Uncharacterized lineage-specific protein&rdquo;. Splice junctions come from the literature and were extended to other lineages by aligning donor and acceptor sites; every spliced product was translated and checked in frame."
+    },
+    {
+     "type": "prose",
+     "html": "Self-recall (each feature&rsquo;s profiles searched against its own collection) is 100% for nearly every feature; the registry page lists every feature."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Cutoffs left at the default are not listed; every one below was set from a measurement.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "how it was set"
+     ],
+     "rows": [
+      [
+       "ART",
+       "100",
+       "stacks.py 11 Nov 2026 (452-genome panel): own min 160 (n=181) vs stacked max 40.7 (on ORF17 x2); midpoint."
+      ],
+      [
+       "DUTPASE",
+       "52",
+       "stacks.py 11 Nov 2026 (452-genome panel): own min 71.2 (n=442) vs stacked max 32.7 (on K100 x1); midpoint."
+      ],
+      [
+       "FIBER_A1",
+       "380",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A10",
+       "506",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A11",
+       "713",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A17",
+       "476",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A19",
+       "492",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A2",
+       "251",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A21",
+       "814",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A22",
+       "458",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A24",
+       "748",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A25",
+       "624",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A26",
+       "551",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_A29",
+       "741",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every CDS scans to its stop codon (<code>downstream_ext 1</code>); mature peptides set both extension flags from their own termini. In the 916-genome check, every unspliced CDS call ends on a stop codon except calls that stop at an N gap or an IUPAC base in the assembly."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "A genome no rep contig claims is never annotated at all.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "rep contigs"
+      ],
+      [
+       "452/452",
+       "routed to this module"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "All genomes assigned to this module route to it."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Calls per near-complete routed genome, full panel (435 genomes).",
+   "blocks": [
+    {
+     "type": "bars",
+     "unit": "%",
+     "rows": [
+      [
+       "DBP",
+       "100.0",
+       100.0,
+       "essential"
+      ],
+      [
+       "HEXON",
+       "99.8",
+       99.8,
+       "essential"
+      ],
+      [
+       "IVA2",
+       "99.8",
+       99.8,
+       "essential"
+      ],
+      [
+       "K100",
+       "100.0",
+       100.0,
+       "essential"
+      ],
+      [
+       "K22",
+       "98.9",
+       98.9,
+       "essential"
+      ],
+      [
+       "K52",
+       "99.5",
+       99.5,
+       "essential"
+      ],
+      [
+       "ORF22",
+       "100.0",
+       100.0,
+       "essential"
+      ],
+      [
+       "PENTON",
+       "100.0",
+       100.0,
+       "essential"
+      ],
+      [
+       "PIIIA",
+       "99.3",
+       99.3,
+       "essential"
+      ],
+      [
+       "POL",
+       "99.8",
+       99.8,
+       "essential"
+      ],
+      [
+       "PROTEASE",
+       "100.0",
+       100.0,
+       "essential"
+      ],
+      [
+       "PTP",
+       "99.8",
+       99.8,
+       "essential"
+      ],
+      [
+       "PVI",
+       "100.0",
+       100.0,
+       "essential"
+      ],
+      [
+       "PVIII",
+       "100.0",
+       100.0,
+       "essential"
+      ],
+      [
+       "UXP",
+       "99.8",
+       99.8,
+       "essential"
+      ],
+      [
+       "VIII_N",
+       "100.0",
+       100.0,
+       "essential"
+      ],
+      [
+       "VI_MAT",
+       "100.0",
+       100.0,
+       "essential"
+      ],
+      [
+       "PVII",
+       "100.0",
+       100.0,
+       ""
+      ],
+      [
+       "PX",
+       "100.0",
+       100.0,
+       ""
+      ]
+     ]
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "<b>Lowest essential feature: 98.9%.</b> Every essential feature is called in at least 85% of near-complete genomes."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "Duplicates, stop codons and cleavage sites, measured on every call.",
+   "blocks": [
+    {
+     "type": "pre",
+     "text": "Features with extra calls in one genome (full panel):\n  ORF17        genomes  366 extra calls   1  cur_cut 30  INSEPARABLE extras up to 348, real down to 148"
+    },
+    {
+     "type": "pre",
+     "text": "Mature-peptide ends (916-genome subset): product inside its own precursor, cut ends on the AVP motif\n  Aviadenovirus                VI_MAT    {'ok': 121, 'N@cut': 126, 'C@cut': 126, 'off_motif': 5}\n  Aviadenovirus                VIII_N    {'ok': 117, 'N@1': 117, 'C@cut': 128, 'off_motif': 11, 'N@cut': 11}\n  Aviadenovirus                IIIA_MAT  {'ok': 72, 'N@1': 124, 'C@cut': 126, 'off_motif': 54, 'N@cut': 2}"
+    },
+    {
+     "type": "prose",
+     "html": "Extra calls listed as INSEPARABLE are documented multi-copy cases or single broken genomes; none is a second feature stacked on another feature&rsquo;s locus. Same-frame overlaps between different features are limited to single genomes."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Named as prominently as what works.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "gap",
+      "evidence",
+      "why tuning will not close it"
+     ],
+     "rows": [
+      [
+       "Unmodelled avian ORFs",
+       "ORF0 (280), ORF1B (261), ORF20A (257), ORF19 (157), ORF1C (142), ORF29 (127) deposits are unassigned",
+       "Features not yet declared; needs orthogroup curation, not tuning"
+      ],
+      [
+       "IIIa ends",
+       "72% of calls end on the AVP site (57% in the subset)",
+       "HSP-bound cleaved end"
+      ],
+      [
+       "Rare fiber classes",
+       "FIBER_A17&ndash;A33 are each called in 0&ndash;3% of genomes",
+       "Real but rare classes; never essential"
+      ],
+      [
+       "Cleaved mature-peptide ends",
+       "A cleaved end lands where the tBLASTn HSP lands; nothing moves it onto the AVP motif",
+       "No setting does this: it needs an annotator step that snaps the end to the motif"
+      ],
+      [
+       "UXP three-exon product",
+       "get_splice_variant_features.pl supports one junction; UXP is called as the U-exon ORF only",
+       "Needs multi-junction support in the splice caller"
+      ],
+      [
+       "Unspliced calls of spliced genes start off-Met",
+       "pol, pTP and IVa2 are called on the body exon",
+       "Expected for body-exon calls; the leader exons are not modelled"
+      ],
+      [
+       "Products not modelled",
+       "pVIc, mu, pVIIn, the propeptides, iTP and the 52K products",
+       "11&ndash;19 aa peptides are too short for a profile"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Genome quality from the GTO pipeline on the 916-genome subset, with the essential genes set by the curator&rsquo;s rules.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "115",
+       "good (89.1%)"
+      ],
+      [
+       "14",
+       "poor (10.9%)"
+      ],
+      [
+       "17",
+       "essential features"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "headers": [
+      "flag",
+      "n"
+     ],
+     "rows": [
+      [
+       "genome is missing essential feature",
+       "28"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Essential genes (copy_num) follow the curator&rsquo;s rules: never on uncharacterized proteins, special features or lineage-specific genes, and excluded wherever a cutoff, copy-number or coverage problem is on record. Essential here: DBP, HEXON, IVA2, K100, K22, K52, ORF22, PENTON, PIIIA, POL, PROTEASE, PTP, PVI, PVIII, UXP, VIII_N, VI_MAT."
+    },
+    {
+     "type": "prose",
+     "html": "The subset deliberately over-samples unusual genomes, so its quality rate is a floor for the module, not an estimate of it. Poor genomes are dominated by sequence problems: deposits with no cytosine, N gaps, partial genomes and genes interrupted by stop codons."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "The point of LowVan is a controlled vocabulary. This is what it cost the free text.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "470",
+       "BV-BRC strings bound"
+      ],
+      [
+       "49",
+       "annotation targets"
+      ],
+      [
+       "17.9&times;",
+       "fewer distinct strings at equal depth"
+      ],
+      [
+       "4,621",
+       "deposited features unbound"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "aviadenovirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "Unbound deposits are mostly &ldquo;hypothetical protein&rdquo; and deposits whose sequence was ambiguous between two features; several name proteins the module does call (for example 22K and E4 ORF1 in the one-fiber mastadenoviruses), so the unbound count is not a count of missed proteins."
+    }
+   ]
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code> (modules/Aviadenovirus). Every figure comes from a measurement file in the build; the known-issues log is in BUILD_NOTES.md."
+}

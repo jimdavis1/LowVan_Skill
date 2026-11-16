@@ -800,3 +800,18 @@ calls, but Barthadenovirus VIII_C in 7/73 (it starts 5-8 aa past a site that is
 present) and Aviadenovirus IIIa in 72%. Check every product against its own
 genome's precursor: an exact substring, each cut end on the motif. A wrong
 boundary does not change the annotation string, so no other audit sees it.
+
+## Essential genes keyed by annotation string
+
+`viral_genome_quality.pl` builds its essential set keyed by the feature's
+**annotation string**, not its key. Features that share a string collapse into one
+entry: the last one read sets the length window and copy number for all of them,
+and every call carrying that string is counted together. Under the naming rule,
+many paralogue features share "Uncharacterized lineage-specific protein", so marking
+any of them essential flags every genome "too many HSPs" and misreports lengths.
+Adenoviridae, 16 Nov 2026: applying `apply_copy_num.py`'s list as is scored **every
+genome in all five modules Poor**. The same tool's 85%-of-genomes rule also made
+primate-only E3/E4 genes essential in a module that is 85% human genomes.
+Filter its output: never on uncharacterized or shared-string features, special
+features or lineage-specific genes, and exclude features with a cutoff,
+copy-number or coverage struggle on record.

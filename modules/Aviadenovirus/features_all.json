@@ -18,7 +18,8 @@
   "anno": "Single-stranded DNA-binding protein",
   "params": {},
   "gene_symbol": "DBP",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "DUTPASE": {
   "anno": "Deoxyuridine triphosphate nucleotidohydrolase",
@@ -129,19 +130,22 @@
   "anno": "Major capsid protein hexon",
   "params": {},
   "gene_symbol": "HEXON",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "IVA2": {
   "anno": "Genome packaging ATPase IVa2",
   "params": {},
   "gene_symbol": "IVA2",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "K100": {
   "anno": "Hexon assembly chaperone and host shutoff protein 100K",
   "params": {},
   "gene_symbol": "K100",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "K22": {
   "anno": "Late transcription regulator 22K",
@@ -149,13 +153,15 @@
    "m": 1
   },
   "gene_symbol": "K22",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "K52": {
   "anno": "Genome packaging protein 52/55K",
   "params": {},
   "gene_symbol": "K52",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "LIPASE": {
   "anno": "Uncharacterized lineage-specific protein",
@@ -270,7 +276,8 @@
    "10400747"
   ],
   "gene_symbol": "ORF22",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "ORF9": {
   "anno": "Uncharacterized lineage-specific protein",
@@ -288,19 +295,22 @@
   "anno": "Penton base protein",
   "params": {},
   "gene_symbol": "PENTON",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "PIIIA": {
   "anno": "Capsid vertex protein IIIa precursor",
   "params": {},
   "gene_symbol": "PIIIA",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "POL": {
   "anno": "DNA polymerase",
   "params": {},
   "gene_symbol": "POL",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "PROTEASE": {
   "anno": "Adenain cysteine protease",
@@ -308,13 +318,15 @@
    "m": 1
   },
   "gene_symbol": "PROTEASE",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "PTP": {
   "anno": "Terminal protein precursor",
   "params": {},
   "gene_symbol": "PTP",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "PVI": {
   "anno": "Capsid cement protein VI precursor",
@@ -322,7 +334,8 @@
    "m": 1
   },
   "gene_symbol": "PVI",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "PVII": {
   "anno": "Core protein VII precursor",
@@ -338,7 +351,8 @@
   "anno": "Capsid cement protein VIII precursor",
   "params": {},
   "gene_symbol": "PVIII",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "PX": {
   "anno": "Core protein X precursor",
@@ -372,7 +386,8 @@
    "17881437"
   ],
   "gene_symbol": "UXP",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "copy_num": 1
  },
  "K33": {
   "special": "splice",
@@ -562,7 +577,8 @@
   "params": {
    "m": 1
   },
-  "comment": "HAdV-5 pVI residues 34-239: cut after 33 (MSGG^AF) and 239 (IVGL^GV); removes pVIn and the 11-aa protease cofactor pVIc. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 45/46 precursors of this module cut."
+  "comment": "HAdV-5 pVI residues 34-239: cut after 33 (MSGG^AF) and 239 (IVGL^GV); removes pVIn and the 11-aa protease cofactor pVIc. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 45/46 precursors of this module cut.",
+  "copy_num": 1
  },
  "VIII_N": {
   "anno": "Capsid cement protein VIII, N-terminal fragment",
@@ -574,7 +590,8 @@
   ],
   "feature_type": "mat_peptide",
   "params": {},
-  "comment": "HAdV-5 pVIII residues 1-111 (12.1K): cut after 111 (LAGG^FR). Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 74/81 precursors of this module cut."
+  "comment": "HAdV-5 pVIII residues 1-111 (12.1K): cut after 111 (LAGG^FR). Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 74/81 precursors of this module cut.",
+  "copy_num": 1
  },
  "IIIA_MAT": {
   "anno": "Capsid vertex protein IIIa",

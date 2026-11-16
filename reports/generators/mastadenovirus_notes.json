@@ -1,0 +1,7 @@
+{
+ "standfirst": "The largest module: 3,821 genomes, about 85% of them human adenoviruses by deposited name, plus every one-fiber mammalian lineage. Core genes are called in 98&ndash;99% of near-complete genomes; the routing fix moved 36 divergent genomes back from the multi-fiber module.",
+ "modules": {
+  "Mastadenovirus": "Mastadenoviruses with one fiber gene: human adenovirus species A&ndash;E, the great-ape and Old World monkey adenoviruses, and the canine, bovine, porcine, bat, rodent and other mammalian lineages."
+ },
+ "gaps": "Features not modelled and known limits are listed in section 07 of the coverage audit and in BUILD_NOTES.md."
+}

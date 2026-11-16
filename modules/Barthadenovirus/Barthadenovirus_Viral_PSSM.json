@@ -94,6 +94,7 @@
          "DBP" : {
             "anno" : "Single-stranded DNA-binding protein",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -145,6 +146,7 @@
             ],
             "anno" : "E2F-dependent E2 promoter activator E4.3",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -173,6 +175,7 @@
          "HEXON" : {
             "anno" : "Major capsid protein hexon",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -205,6 +208,7 @@
          "IVA2" : {
             "anno" : "Genome packaging ATPase IVa2",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -219,6 +223,7 @@
          "K100" : {
             "anno" : "Hexon assembly chaperone and host shutoff protein 100K",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -248,6 +253,7 @@
          "K52" : {
             "anno" : "Genome packaging protein 52/55K",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -332,6 +338,7 @@
          "PENTON" : {
             "anno" : "Penton base protein",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -346,6 +353,7 @@
          "PIIIA" : {
             "anno" : "Capsid vertex protein IIIa precursor",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -360,6 +368,7 @@
          "POL" : {
             "anno" : "DNA polymerase",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -374,6 +383,7 @@
          "PROTEASE" : {
             "anno" : "Adenain cysteine protease",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -388,6 +398,7 @@
          "PTP" : {
             "anno" : "Terminal protein precursor",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -402,6 +413,7 @@
          "PVI" : {
             "anno" : "Capsid cement protein VI precursor",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -416,6 +428,7 @@
          "PVII" : {
             "anno" : "Core protein VII precursor",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -430,6 +443,7 @@
          "PVIII" : {
             "anno" : "Capsid cement protein VIII precursor",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -792,6 +806,7 @@
             "anno" : "Capsid cement protein VI",
             "bit_cutoff" : 30,
             "comment" : "HAdV-5 pVI residues 34-239: cut after 33 (MSGG^AF) and 239 (IVGL^GV); removes pVIn and the 11-aa protease cofactor pVIc. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 20/20 precursors of this module cut.",
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",

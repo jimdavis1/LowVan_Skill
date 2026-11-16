@@ -86,3 +86,21 @@ A site is installed only where at least 60% of the module's precursors carry it.
    - The mature products whose site is in fewer than 60% of precursors:
      Avi VII/VIII-C/TP; Barth VII/VIII-N/TP; Sia VIII-N/VIII-C/TP/IIIa.
    - Anywhere: pVIc, mu, pVIIn, the propeptides, iTP, and the 52K products.
+
+## Essential genes and pages (added 16 Nov 2026)
+
+**Essential (copy_num 1), set by the curator's rules:** FIBER, HEXON, IVA2, K100, K22, K52, PENTON, PIIIA, POL, PROTEASE, PTP, PVI, PVII, PVIII, UXP, VII_MAT, VI_MAT.
+Never essential: uncharacterized proteins, special (spliced) features, lineage-specific
+genes, and any feature with a cutoff, copy-number or coverage struggle on record.
+apply_copy_num.py's genome-count list was not used as is: the quality tool keys essential
+features by annotation string, so features sharing "Uncharacterized lineage-specific
+protein" collide, and genome-count rates made primate-only genes essential in Mastadenovirus.
+
+**Quality on the 916-genome audit subset:** 59 good / 10 poor
+(85.5% good). The subset over-samples unusual genomes. Poor genomes are
+mostly explained by the sequence: C-less deposits, N gaps, partial genomes and genes
+interrupted by stop codons.
+
+**Pages** (in reports/): siadenovirus-coverage-audit.html, siadenovirus-pssm-registry.html,
+siadenovirus-string-collapse.html, siadenovirus-vocabulary-saturation.html; facts in
+reports/generators/siadenovirus_audit.json.

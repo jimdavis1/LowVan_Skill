@@ -137,6 +137,7 @@
          "DBP" : {
             "anno" : "Single-stranded DNA-binding protein",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -202,6 +203,7 @@
          "E1B55K" : {
             "anno" : "p53 degradation and mRNA export factor E1B 55K",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -233,6 +235,7 @@
          "E3_14_7K" : {
             "anno" : "Tumor necrosis factor antagonist E3 14.7K",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -306,6 +309,7 @@
          "E4ORF3" : {
             "anno" : "Promyelocytic leukemia body disrupting protein E4orf3",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -469,6 +473,7 @@
          "IVA2" : {
             "anno" : "Genome packaging ATPase IVa2",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -487,6 +492,7 @@
             ],
             "anno" : "i-leader protein",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -515,6 +521,7 @@
          "K22" : {
             "anno" : "Late transcription regulator 22K",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -586,6 +593,7 @@
          "PIX" : {
             "anno" : "Capsid cement protein IX",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -614,6 +622,7 @@
          "PROTEASE" : {
             "anno" : "Adenain cysteine protease",
             "bit_cutoff" : 30,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -642,6 +651,7 @@
          "PV" : {
             "anno" : "Core protein V",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -656,6 +666,7 @@
          "PVI" : {
             "anno" : "Capsid cement protein VI precursor",
             "bit_cutoff" : 60,
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -716,6 +727,7 @@
             "anno" : "Terminal protein",
             "bit_cutoff" : 60,
             "comment" : "HAdV-5 pTP residues 350-671: cut after 349 (MTGG^VF) gives mature TP; the iTP intermediate (175/183) is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 99/101 precursors of this module cut.",
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "mat_peptide",
@@ -752,6 +764,7 @@
             "anno" : "Capsid cement protein VIII, C-terminal fragment",
             "bit_cutoff" : 25,
             "comment" : "HAdV-5 pVIII residues 158-227 (7.6K): cut after 157 (IGGA^GR); the internal propeptide 112-157 is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 46/46 precursors of this module cut.",
+            "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "mat_peptide",

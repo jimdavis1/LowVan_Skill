@@ -1,0 +1,528 @@
+{
+ "title": "Mastadenovirus Coverage Audit",
+ "eyebrow": "LowVan &middot; Adenoviridae &middot; Mastadenovirus module &middot; 16 November 2026",
+ "h1": "Does the Mastadenovirus, one-fiber genomes module work?",
+ "standfirst": "The largest module: 3,821 genomes, about 85% of them human adenoviruses by deposited name, plus every one-fiber mammalian lineage. Core genes are called in 98&ndash;99% of near-complete genomes; the routing fix moved 36 divergent genomes back from the multi-fiber module.",
+ "headline_tiles": [
+  [
+   "54",
+   "features declared"
+  ],
+  [
+   "761",
+   "PSSMs"
+  ],
+  [
+   "3810/3821",
+   "genomes routed to this module"
+  ],
+  [
+   "75.7%",
+   "subset genomes good quality"
+  ],
+  [
+   "11",
+   "essential features"
+  ],
+  [
+   "26.1&times;",
+   "fewer distinct strings at equal depth"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Mastadenoviruses with one fiber gene: human adenovirus species A&ndash;E, the great-ape and Old World monkey adenoviruses, and the canine, bovine, porcine, bat, rodent and other mammalian lineages.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "measure",
+      "value"
+     ],
+     "rows": [
+      [
+       "genomes assigned (by sequence)",
+       "3,821"
+      ],
+      [
+       "70% nucleotide clusters",
+       "196"
+      ],
+      [
+       "near-complete genomes (&ge;90% of median length)",
+       "3,702"
+      ],
+      [
+       "median genome length",
+       "35,253 nt"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Genomes were assigned to modules from sequence alone: the genus by best hexon match, and one-fiber versus multi-fiber mastadenoviruses by a census of intact fiber genes classed by literature orthology (Podgorski 2023, PMID 36610683). Deposited names were never used to assign a genome."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Membership by homology to curated seed collections; the deposited name is recorded but never decides.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "step",
+      "effect"
+     ],
+     "rows": [
+      [
+       "homology assignment",
+       "12,036 unique proteins assigned (&ge;80% coverage both ways, best feature &ge;1.2&times; the runner-up)"
+      ],
+      [
+       "left out",
+       "1,284 no hit, 275 ambiguous, 702 low coverage, 9 submitter-marked partial"
+      ],
+      [
+       "profiles",
+       "761 PSSMs over 50 profile features"
+      ],
+      [
+       "special features",
+       "E1A_12S, E1A_13S, E4ORF67, K33"
+      ],
+      [
+       "mature peptides",
+       "IIIA_MAT, TP_MAT, VIII_C, VIII_N, VII_MAT, VI_MAT"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Paralogue families were split into orthogroup features by genome position, and each is called by sequence, never by location. Features with no literature function are named &ldquo;Uncharacterized lineage-specific protein&rdquo;. Splice junctions come from the literature and were extended to other lineages by aligning donor and acceptor sites; every spliced product was translated and checked in frame."
+    },
+    {
+     "type": "prose",
+     "html": "Self-recall (each feature&rsquo;s profiles searched against its own collection) is 100% for nearly every feature; the registry page lists every feature."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Cutoffs left at the default are not listed; every one below was set from a measurement.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "how it was set"
+     ],
+     "rows": [
+      [
+       "ADP",
+       "180",
+       "sep.py 11 Nov 2026: own min 214 (n=29) vs foreign max 145 (census E16, 61-aa ADP fragment); after training 4 gorilla-type ADP loci; midpoint."
+      ],
+      [
+       "CR1A",
+       "137",
+       "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 225 (n=111) vs foreign max 48.5 (CR1B locus); midpoint."
+      ],
+      [
+       "CR1B",
+       "264",
+       "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 341 (n=99) vs foreign max 186 (census E24 ORF); midpoint."
+      ],
+      [
+       "CR1B_E2",
+       "258",
+       "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 385 (n=15) vs foreign max 131 (CR1B locus); midpoint."
+      ],
+      [
+       "CR1G_B",
+       "227",
+       "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 309 (n=40) vs foreign max 145 (CR1B locus); midpoint."
+      ],
+      [
+       "E3_14_7K",
+       "42",
+       "12 Nov 2026 panel: real best min 45.4 (10535.1011) vs stacked-on-E3_12_5K max 34.6 (porcine AdV-3) and an opposite-strand extra at the PIIIA locus 38.0 (46921.19); cut between."
+      ],
+      [
+       "E3_49K",
+       "236",
+       "selfcover 12 Nov 2026: own min 379 over all 156 collection members + 29 census loci (HAdV-D 49K deposits named CR1-beta, 385-435 aa, score 379-411) vs foreign max 92 (CR1B locus 108098.610); midpoint. Replaces 462, whose foreign max 363 was 130310.221 OTHER_E19 -- that genome's own 49K split by a frameshift (40 + 206 aa), not a foreign protein; the 206-aa piece will be called (single copy, at the 49K locus)."
+      ],
+      [
+       "E3_6_7K",
+       "53",
+       "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 68.4 (n=42) vs foreign max 36.8 (CR1A locus). Also removes 18 HAdV-B 47-aa calls at 27.9 bits that start in-frame inside CR1-gamma (internal-Met C-terminal fragments) and CR1G_B cross-calls at 26.8-27.6; midpoint."
+      ],
+      [
+       "E3_ADPL",
+       "327",
+       "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 523 (n=11) vs foreign max 131 (ADP locus); midpoint."
+      ],
+      [
+       "E3_CR1D",
+       "98",
+       "selfcover 12 Nov 2026: own min 110 over collection (HAdV-B 7.7K 10519.1940 66 aa, HAdV-66 6.6K 1337398.3 57 aa; size variants per PMID 20739542) vs foreign max 85.5 (E3_CR1G locus 108098.612); midpoint. Was 119 from panel loci only."
+      ],
+      [
+       "E3_CR1G",
+       "376",
+       "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 465 (n=69) vs foreign max 288 (census E27 ORF); midpoint."
+      ],
+      [
+       "E3_GP19K",
+       "66",
+       "12 Nov 2026: own min 86.9 (n=217 collection + papio32916 154mem; after 3 duplicate-row lookup profiles for single-member lineages papio32916, squirrel monkey AdV, SAdV GZ2-7) vs panel stacked-on-CR1B max 46.1 (SAdV-48 995021.3); midpoint."
+      ],
+      [
+       "E4ORF2",
+       "44",
+       "selfcover + panel 12 Nov 2026: collection min 56.1 (2666326.3, after leftover + dup-row profiles) vs panel stacked-on-POL max 31.0 (x3); midpoint."
+      ],
+      [
+       "E4ORF6",
+       "196",
+       "sep.py 12 Nov 2026 after leftover pass (37 profiles) + 14 targeted duplicate-row lookup profiles for single-member lineages: own min 212 (n=307, 3115880.x) vs E4ORF6L slot-2 max 167 (130371.16) and E4ORF6/7 shared-exon max 181; midpoint of 181/212. Dropped 181-aa fragment 108098.2185 still scores 280 and is called (single-copy E4ORF6 piece)."
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every CDS scans to its stop codon (<code>downstream_ext 1</code>); mature peptides set both extension flags from their own termini. In the 916-genome check, every unspliced CDS call ends on a stop codon except calls that stop at an N gap or an IUPAC base in the assembly."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "A genome no rep contig claims is never annotated at all.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "rep contigs"
+      ],
+      [
+       "3810/3821",
+       "routed to this module"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Before the fix 3,776 of 3,821 routed here. Rep contigs 12&ndash;14, which were the best match for 0, 2 and 0 genomes, were replaced with Lemur mastadenovirus 204, SAdV GZ2-7 and Murine adenovirus 3; a simulation with the annotator&rsquo;s BLASTn settings moved none of 1,188 correctly routed genomes (smallest margin 837 bits). 3,810 now route here; the 11 that do not are 7 HAdV-F genomes with broken fibers (correctly multi-fiber), one HAdV-F-like genome and 3 divergent genomes the 25-reference budget does not reach."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Calls per near-complete routed genome, full panel (3,702 genomes).",
+   "blocks": [
+    {
+     "type": "bars",
+     "unit": "%",
+     "rows": [
+      [
+       "E1B55K",
+       "98.0",
+       98.0,
+       "essential"
+      ],
+      [
+       "IVA2",
+       "99.2",
+       99.2,
+       "essential"
+      ],
+      [
+       "K100",
+       "98.9",
+       98.9,
+       "essential"
+      ],
+      [
+       "K52",
+       "98.9",
+       98.9,
+       "essential"
+      ],
+      [
+       "PENTON",
+       "99.1",
+       99.1,
+       "essential"
+      ],
+      [
+       "POL",
+       "98.8",
+       98.8,
+       "essential"
+      ],
+      [
+       "PROTEASE",
+       "99.2",
+       99.2,
+       "essential"
+      ],
+      [
+       "PTP",
+       "99.0",
+       99.0,
+       "essential"
+      ],
+      [
+       "PVIII",
+       "99.0",
+       99.0,
+       "essential"
+      ],
+      [
+       "TP_MAT",
+       "99.2",
+       99.2,
+       "essential"
+      ],
+      [
+       "VIII_N",
+       "99.3",
+       99.3,
+       "essential"
+      ],
+      [
+       "HEXON",
+       "98.7",
+       98.7,
+       ""
+      ],
+      [
+       "PVII",
+       "98.5",
+       98.5,
+       ""
+      ],
+      [
+       "FIBER",
+       "98.3",
+       98.3,
+       ""
+      ],
+      [
+       "DBP",
+       "99.1",
+       99.1,
+       ""
+      ],
+      [
+       "PX",
+       "99.3",
+       99.3,
+       ""
+      ],
+      [
+       "PVI",
+       "98.9",
+       98.9,
+       ""
+      ],
+      [
+       "E1B19K",
+       "98.1",
+       98.1,
+       ""
+      ],
+      [
+       "E4ORF6",
+       "96.7",
+       96.7,
+       ""
+      ]
+     ]
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "<b>Lowest essential feature: 98.0%.</b> Every essential feature is called in at least 85% of near-complete genomes."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "Duplicates, stop codons and cleavage sites, measured on every call.",
+   "blocks": [
+    {
+     "type": "pre",
+     "text": "Features with extra calls in one genome (full panel):\n  DBP          genomes 3730 extra calls   1  cur_cut 60  SEPARABLE extras<= 165 < real>= 252  -> propose 208\n  E4ORF1       genomes 3578 extra calls   1  cur_cut 30  INSEPARABLE extras up to 54, real down to 30\n  E4ORF5       genomes 1874 extra calls   1  cur_cut 30  INSEPARABLE extras up to 269, real down to 31\n  FIBER        genomes 3676 extra calls  17  cur_cut 60  INSEPARABLE extras up to 181, real down to 60\n  I_LEADER     genomes 3544 extra calls   1  cur_cut 30  INSEPARABLE extras up to 254, real down to 46\n  K22          genomes 3736 extra calls   3  cur_cut 30  SEPARABLE extras<= 30 < real>= 35  -> propose 33\n  PIX          genomes 3730 extra calls   2  cur_cut 30  INSEPARABLE extras up to 203, real down to 31\n  PV           genomes 3728 extra calls   6  cur_cut 60  INSEPARABLE extras up to 163, real down to 60\n  PVI          genomes 3728 extra calls   1  cur_cut 60  INSEPARABLE extras up to 195, real down to 150\n  UXP          genomes 3707 extra calls 115  cur_cut 25  INSEPARABLE extras up to 42, real down to 26\n  VIII_C       genomes 3731 extra calls   2  cur_cut 25  SEPARABLE extras<= 26 < real>= 45  -> propose 36\n  VII_MAT      genomes 3681 extra calls 137  cur_cut 30  SEPARABLE extras<= 40 < real>= 45  -> propose 43\n  VI_MAT       genomes 3732 extra calls   2  cur_cut 30  SEPARABLE extras<= 31 < real>= 91  -> propose 61"
+    },
+    {
+     "type": "pre",
+     "text": "Mature-peptide ends (916-genome subset): product inside its own precursor, cut ends on the AVP motif\n  Mastadenovirus               VI_MAT    {'off_motif': 33, 'N@cut': 346, 'C@cut': 343, 'ok': 314, 'C@end': 4, 'N@1': 1, 'precursor_only': 1}\n  Mastadenovirus               VII_MAT   {'ok': 304, 'N@cut': 311, 'C@end': 311, 'precursor_only': 34, 'off_motif': 7}\n  Mastadenovirus               VIII_N    {'ok': 331, 'N@1': 338, 'C@cut': 338, 'precursor_only': 5, 'NOT_substring': 1, 'off_motif': 7}\n  Mastadenovirus               VIII_C    {'ok': 264, 'N@cut': 333, 'C@end': 333, 'off_motif': 69, 'precursor_only': 8, 'NOT_substring': 3}\n  Mastadenovirus               TP_MAT    {'ok': 318, 'N@cut': 342, 'C@end': 342, 'off_motif': 24, 'precursor_only': 4}\n  Mastadenovirus               IIIA_MAT  {'off_motif': 159, 'N@1': 293, 'C@cut': 330, 'ok': 174, 'N@cut': 40, 'C@end': 3, 'NOT_substring': 1}"
+    },
+    {
+     "type": "prose",
+     "html": "Extra calls listed as INSEPARABLE are documented multi-copy cases or single broken genomes; none is a second feature stacked on another feature&rsquo;s locus. Same-frame overlaps between different features are limited to single genomes."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Named as prominently as what works.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "gap",
+      "evidence",
+      "why tuning will not close it"
+     ],
+     "rows": [
+      [
+       "HAdV-D IIIa start",
+       "In 316 genomes the pIIIa precursor starts ~29 aa upstream of the IIIa product, which starts at the Met homologous to HAdV-5 MQR",
+       "Precursor and product disagree; unresolved"
+      ],
+      [
+       "VII in divergent one-fiber lineages",
+       "8 lemur/bat/tree-shrew genomes: the VII profile scores 73.6 bits but no stop-free HSP",
+       "Lineages not represented in the VII profiles"
+      ],
+      [
+       "3 genomes still route to MultiFiber",
+       "47680.6, 3075435.12, 2050578.14 after the rep-contig swap",
+       "25-reference budget is used"
+      ],
+      [
+       "14 genomes have no cytosine",
+       "e.g. HAdV-E 130308.18&ndash;21 (0.0% C)",
+       "Not a module problem; flagged poor correctly"
+      ],
+      [
+       "Lineage-specific E3/E4 genes",
+       "gp19K 87%, RID-&alpha;/&beta; 94&ndash;95%, E4orf2&ndash;4 94&ndash;96% of genomes but 59&ndash;72% of lineages",
+       "Primate-lineage genes; deliberately not essential"
+      ],
+      [
+       "Cleaved mature-peptide ends",
+       "A cleaved end lands where the tBLASTn HSP lands; nothing moves it onto the AVP motif",
+       "No setting does this: it needs an annotator step that snaps the end to the motif"
+      ],
+      [
+       "UXP three-exon product",
+       "get_splice_variant_features.pl supports one junction; UXP is called as the U-exon ORF only",
+       "Needs multi-junction support in the splice caller"
+      ],
+      [
+       "Unspliced calls of spliced genes start off-Met",
+       "pol, pTP and IVa2 are called on the body exon",
+       "Expected for body-exon calls; the leader exons are not modelled"
+      ],
+      [
+       "Products not modelled",
+       "pVIc, mu, pVIIn, the propeptides, iTP and the 52K products",
+       "11&ndash;19 aa peptides are too short for a profile"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Genome quality from the GTO pipeline on the 916-genome subset, with the essential genes set by the curator&rsquo;s rules.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "290",
+       "good (75.7%)"
+      ],
+      [
+       "93",
+       "poor (24.3%)"
+      ],
+      [
+       "11",
+       "essential features"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "headers": [
+      "flag",
+      "n"
+     ],
+     "rows": [
+      [
+       "genome is missing essential feature",
+       "410"
+      ],
+      [
+       "Genome has too many HSPs for",
+       "2"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Essential genes (copy_num) follow the curator&rsquo;s rules: never on uncharacterized proteins, special features or lineage-specific genes, and excluded wherever a cutoff, copy-number or coverage problem is on record. Essential here: E1B55K, IVA2, K100, K52, PENTON, POL, PROTEASE, PTP, PVIII, TP_MAT, VIII_N."
+    },
+    {
+     "type": "prose",
+     "html": "The subset deliberately over-samples unusual genomes, so its quality rate is a floor for the module, not an estimate of it. Poor genomes are dominated by sequence problems: deposits with no cytosine, N gaps, partial genomes and genes interrupted by stop codons."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "The point of LowVan is a controlled vocabulary. This is what it cost the free text.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "2,432",
+       "BV-BRC strings bound"
+      ],
+      [
+       "45",
+       "annotation targets"
+      ],
+      [
+       "26.1&times;",
+       "fewer distinct strings at equal depth"
+      ],
+      [
+       "11,269",
+       "deposited features unbound"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "mastadenovirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "Unbound deposits are mostly &ldquo;hypothetical protein&rdquo; and deposits whose sequence was ambiguous between two features; several name proteins the module does call (for example 22K and E4 ORF1 in the one-fiber mastadenoviruses), so the unbound count is not a count of missed proteins."
+    }
+   ]
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code> (modules/Mastadenovirus). Every figure comes from a measurement file in the build; the known-issues log is in BUILD_NOTES.md."
+}

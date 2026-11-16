@@ -1,0 +1,7 @@
+{
+ "standfirst": "Barthadenoviruses add two lineage-specific gene families, RH and LH, to the conserved core. The module calls the core in every near-complete genome and splits the RH family into positional orthogroups; the audit also found that 22K was never declared.",
+ "modules": {
+  "Barthadenovirus": "Barthadenoviruses of ruminants, reptiles, birds and marsupials, with their lineage-specific RH and LH gene families."
+ },
+ "gaps": "Features not modelled and known limits are listed in section 07 of the coverage audit and in BUILD_NOTES.md."
+}

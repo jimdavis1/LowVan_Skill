@@ -1,0 +1,498 @@
+{
+ "title": "Mastadenovirus MultiFiber Coverage Audit",
+ "eyebrow": "LowVan &middot; Adenoviridae &middot; Mastadenovirus_MultiFiber module &middot; 16 November 2026",
+ "h1": "Does the Mastadenovirus, multi-fiber genomes module work?",
+ "standfirst": "Human adenovirus F and its simian relatives carry two or more fiber genes and are kept apart from the one-fiber mastadenoviruses. Core calling is high; most poor genomes here are partial or carry interrupted genes, which the checked examples confirm is the sequence and not the profile.",
+ "headline_tiles": [
+  [
+   "47",
+   "features declared"
+  ],
+  [
+   "150",
+   "PSSMs"
+  ],
+  [
+   "591/591",
+   "genomes routed to this module"
+  ],
+  [
+   "54.0%",
+   "subset genomes good quality"
+  ],
+  [
+   "13",
+   "essential features"
+  ],
+  [
+   "9.0&times;",
+   "fewer distinct strings at equal depth"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Mastadenoviruses that carry more than one fiber gene: human adenovirus F (types 40 and 41) and the simian and rhesus adenoviruses whose fiber census places them here.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "measure",
+      "value"
+     ],
+     "rows": [
+      [
+       "genomes assigned (by sequence)",
+       "591"
+      ],
+      [
+       "70% nucleotide clusters",
+       "61"
+      ],
+      [
+       "near-complete genomes (&ge;90% of median length)",
+       "585"
+      ],
+      [
+       "median genome length",
+       "34,165 nt"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Genomes were assigned to modules from sequence alone: the genus by best hexon match, and one-fiber versus multi-fiber mastadenoviruses by a census of intact fiber genes classed by literature orthology (Podgorski 2023, PMID 36610683). Deposited names were never used to assign a genome."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Membership by homology to curated seed collections; the deposited name is recorded but never decides.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "step",
+      "effect"
+     ],
+     "rows": [
+      [
+       "homology assignment",
+       "1,946 unique proteins assigned (&ge;80% coverage both ways, best feature &ge;1.2&times; the runner-up)"
+      ],
+      [
+       "left out",
+       "224 no hit, 11 ambiguous, 94 low coverage, 4 submitter-marked partial"
+      ],
+      [
+       "profiles",
+       "150 PSSMs over 43 profile features"
+      ],
+      [
+       "special features",
+       "E1A_12S, E1A_13S, E4ORF67, K33"
+      ],
+      [
+       "mature peptides",
+       "IIIA_MAT, TP_MAT, VIII_C, VIII_N, VII_MAT, VI_MAT"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Paralogue families were split into orthogroup features by genome position, and each is called by sequence, never by location. Features with no literature function are named &ldquo;Uncharacterized lineage-specific protein&rdquo;. Splice junctions come from the literature and were extended to other lineages by aligning donor and acceptor sites; every spliced product was translated and checked in frame."
+    },
+    {
+     "type": "prose",
+     "html": "Self-recall (each feature&rsquo;s profiles searched against its own collection) is 100% for nearly every feature; the registry page lists every feature."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Cutoffs left at the default are not listed; every one below was set from a measurement.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "how it was set"
+     ],
+     "rows": [
+      [
+       "CR1A",
+       "260",
+       "para/sep.py 11 Nov on E3 census: own>=339 (excl. 91 aa fragment), other features<=46.5; 260 sits above the alpha+beta fused ORF (F7, <=180) so F7 is not double-called"
+      ],
+      [
+       "CR1B",
+       "288",
+       "para/sep.py 11 Nov on E3 census: own>=550, other features<=27; below the fused F7 ORF (517) so the 13 F7 genomes (9 simian taxa: SAdV-49/50, cynomolgus AdV-1, SAdV A1139-A1335, SAdV-B) get one CR1B call on the fused alpha+beta ORF"
+      ],
+      [
+       "E3_RIDB",
+       "101",
+       "audit/calls_audit.py 11 Nov: midpoint, extra calls below every best call"
+      ],
+      [
+       "FIBER_ANC",
+       "377",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_CL1B",
+       "486",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_CL1F",
+       "288",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_CL2",
+       "430",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "FIBER_CL34",
+       "316",
+       "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max"
+      ],
+      [
+       "PVII",
+       "122",
+       "audit/calls_audit.py 11 Nov: midpoint, extra calls below every best call"
+      ],
+      [
+       "PVIII",
+       "100",
+       "audit/calls_audit.py 11 Nov: midpoint, extra calls below every best call"
+      ],
+      [
+       "PX",
+       "45",
+       "audit/calls_audit.py 11 Nov: midpoint, extra calls below every best call"
+      ],
+      [
+       "VII_MAT",
+       "91",
+       "calls_audit full panel 15 Nov: extras below, real above (midpoint)"
+      ],
+      [
+       "VI_MAT",
+       "129",
+       "calls_audit full panel 15 Nov: extras below, real above (midpoint)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every CDS scans to its stop codon (<code>downstream_ext 1</code>); mature peptides set both extension flags from their own termini. In the 916-genome check, every unspliced CDS call ends on a stop codon except calls that stop at an N gap or an IUPAC base in the assembly."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "A genome no rep contig claims is never annotated at all.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "25",
+       "rep contigs"
+      ],
+      [
+       "591/591",
+       "routed to this module"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "All genomes assigned to this module route to it."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Calls per near-complete routed genome, full panel (585 genomes).",
+   "blocks": [
+    {
+     "type": "bars",
+     "unit": "%",
+     "rows": [
+      [
+       "DBP",
+       "89.2",
+       89.2,
+       "essential"
+      ],
+      [
+       "E1B55K",
+       "93.3",
+       93.3,
+       "essential"
+      ],
+      [
+       "E3_14_7K",
+       "95.7",
+       95.7,
+       "essential"
+      ],
+      [
+       "E4ORF3",
+       "98.5",
+       98.5,
+       "essential"
+      ],
+      [
+       "IVA2",
+       "95.4",
+       95.4,
+       "essential"
+      ],
+      [
+       "I_LEADER",
+       "96.4",
+       96.4,
+       "essential"
+      ],
+      [
+       "K22",
+       "97.3",
+       97.3,
+       "essential"
+      ],
+      [
+       "PIX",
+       "99.0",
+       99.0,
+       "essential"
+      ],
+      [
+       "PROTEASE",
+       "95.9",
+       95.9,
+       "essential"
+      ],
+      [
+       "PV",
+       "98.1",
+       98.1,
+       "essential"
+      ],
+      [
+       "PVI",
+       "96.8",
+       96.8,
+       "essential"
+      ],
+      [
+       "TP_MAT",
+       "97.6",
+       97.6,
+       "essential"
+      ],
+      [
+       "VIII_C",
+       "98.6",
+       98.6,
+       "essential"
+      ],
+      [
+       "HEXON",
+       "85.3",
+       85.3,
+       ""
+      ],
+      [
+       "PVII",
+       "94.4",
+       94.4,
+       ""
+      ],
+      [
+       "PX",
+       "98.6",
+       98.6,
+       ""
+      ],
+      [
+       "E1B19K",
+       "92.5",
+       92.5,
+       ""
+      ],
+      [
+       "E4ORF6",
+       "95.4",
+       95.4,
+       ""
+      ]
+     ]
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "<b>Lowest essential feature: 89.2%.</b> Every essential feature is called in at least 85% of near-complete genomes."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "Duplicates, stop codons and cleavage sites, measured on every call.",
+   "blocks": [
+    {
+     "type": "pre",
+     "text": "Features with extra calls in one genome (full panel):\n  E4ORF1       genomes  158 extra calls   1  cur_cut 30  INSEPARABLE extras up to 265, real down to 251\n  E4ORF6       genomes  559 extra calls   2  cur_cut 60  INSEPARABLE extras up to 419, real down to 277\n  VII_MAT      genomes  559 extra calls  21  cur_cut 30  SEPARABLE extras<= 41 < real>= 141  -> propose 91\n  VI_MAT       genomes  572 extra calls   5  cur_cut 30  SEPARABLE extras<= 31 < real>= 227  -> propose 129"
+    },
+    {
+     "type": "pre",
+     "text": "Mature-peptide ends (916-genome subset): product inside its own precursor, cut ends on the AVP motif\n  Mastadenovirus_MultiFiber    VI_MAT    {'ok': 230, 'N@cut': 240, 'C@cut': 238, 'off_motif': 11, 'N@1': 1, 'C@end': 3}\n  Mastadenovirus_MultiFiber    VII_MAT   {'ok': 234, 'N@cut': 235, 'C@end': 235, 'precursor_only': 1, 'off_motif': 1}\n  Mastadenovirus_MultiFiber    VIII_N    {'ok': 221, 'N@1': 223, 'C@cut': 223, 'off_motif': 2, 'precursor_only': 10}\n  Mastadenovirus_MultiFiber    VIII_C    {'ok': 232, 'N@cut': 233, 'C@end': 233, 'off_motif': 1}\n  Mastadenovirus_MultiFiber    TP_MAT    {'ok': 190, 'N@cut': 201, 'C@end': 201, 'off_motif': 11}\n  Mastadenovirus_MultiFiber    IIIA_MAT  {'ok': 209, 'N@1': 218, 'C@cut': 205, 'off_motif': 9, 'C@end': 13}"
+    },
+    {
+     "type": "prose",
+     "html": "Extra calls listed as INSEPARABLE are documented multi-copy cases or single broken genomes; none is a second feature stacked on another feature&rsquo;s locus. Same-frame overlaps between different features are limited to single genomes."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Named as prominently as what works.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "gap",
+      "evidence",
+      "why tuning will not close it"
+     ],
+     "rows": [
+      [
+       "Partial and interrupted genomes",
+       "Hexon is called in 85% and pol in 84% of near-complete genomes; checked genomes carry internal stops (e.g. 130309.457: DBP 775 bits and E1B 55K 954 bits, both with stops)",
+       "The sequence, not the profile; such genomes are scored poor"
+      ],
+      [
+       "FIBER_CL2, CL34, CL1B",
+       "Called in 5&ndash;13% of genomes",
+       "Real but lineage-restricted classes; never essential"
+      ],
+      [
+       "Cleaved mature-peptide ends",
+       "A cleaved end lands where the tBLASTn HSP lands; nothing moves it onto the AVP motif",
+       "No setting does this: it needs an annotator step that snaps the end to the motif"
+      ],
+      [
+       "UXP three-exon product",
+       "get_splice_variant_features.pl supports one junction; UXP is called as the U-exon ORF only",
+       "Needs multi-junction support in the splice caller"
+      ],
+      [
+       "Unspliced calls of spliced genes start off-Met",
+       "pol, pTP and IVa2 are called on the body exon",
+       "Expected for body-exon calls; the leader exons are not modelled"
+      ],
+      [
+       "Products not modelled",
+       "pVIc, mu, pVIIn, the propeptides, iTP and the 52K products",
+       "11&ndash;19 aa peptides are too short for a profile"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Genome quality from the GTO pipeline on the 916-genome subset, with the essential genes set by the curator&rsquo;s rules.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "141",
+       "good (54.0%)"
+      ],
+      [
+       "120",
+       "poor (46.0%)"
+      ],
+      [
+       "13",
+       "essential features"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "headers": [
+      "flag",
+      "n"
+     ],
+     "rows": [
+      [
+       "genome is missing essential feature",
+       "262"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Essential genes (copy_num) follow the curator&rsquo;s rules: never on uncharacterized proteins, special features or lineage-specific genes, and excluded wherever a cutoff, copy-number or coverage problem is on record. Essential here: DBP, E1B55K, E3_14_7K, E4ORF3, IVA2, I_LEADER, K22, PIX, PROTEASE, PV, PVI, TP_MAT, VIII_C."
+    },
+    {
+     "type": "prose",
+     "html": "The subset deliberately over-samples unusual genomes, so its quality rate is a floor for the module, not an estimate of it. Poor genomes are dominated by sequence problems: deposits with no cytosine, N gaps, partial genomes and genes interrupted by stop codons."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "The point of LowVan is a controlled vocabulary. This is what it cost the free text.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "499",
+       "BV-BRC strings bound"
+      ],
+      [
+       "39",
+       "annotation targets"
+      ],
+      [
+       "9.0&times;",
+       "fewer distinct strings at equal depth"
+      ],
+      [
+       "391",
+       "deposited features unbound"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "mastadenovirus-multifiber-vocabulary-saturation.html"
+    },
+    {
+     "type": "prose",
+     "html": "Unbound deposits are mostly &ldquo;hypothetical protein&rdquo; and deposits whose sequence was ambiguous between two features; several name proteins the module does call (for example 22K and E4 ORF1 in the one-fiber mastadenoviruses), so the unbound count is not a count of missed proteins."
+    }
+   ]
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code> (modules/Mastadenovirus_MultiFiber). Every figure comes from a measurement file in the build; the known-issues log is in BUILD_NOTES.md."
+}

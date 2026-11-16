@@ -1,0 +1,7 @@
+{
+ "standfirst": "Aviadenoviruses have the largest adenovirus genomes, about 44 kb, with dozens of lineage-specific ORFs at both ends. The core is called in essentially every near-complete genome; the open work is the avian ORFs the module does not yet declare.",
+ "modules": {
+  "Aviadenovirus": "Aviadenoviruses of poultry and wild birds, including fowl adenoviruses A&ndash;E with one or two fiber genes."
+ },
+ "gaps": "Features not modelled and known limits are listed in section 07 of the coverage audit and in BUILD_NOTES.md."
+}

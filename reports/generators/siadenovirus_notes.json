@@ -1,0 +1,7 @@
+{
+ "standfirst": "Siadenoviruses carry the smallest adenovirus genomes, about 26 kb, and the core gene set with very few extras. The module calls every core gene in every genome that has sequence to call; the 10 poor genomes are deposits with no cytosine at all.",
+ "modules": {
+  "Siadenovirus": "Siadenoviruses of birds, reptiles and amphibians (turkey adenovirus 3, frog adenovirus 1, penguin and raptor siadenoviruses)."
+ },
+ "gaps": "Features not modelled and known limits are listed in section 07 of the coverage audit and in BUILD_NOTES.md."
+}
