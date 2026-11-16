@@ -96,8 +96,8 @@ apply_copy_num.py's genome-count list was not used as is: the quality tool keys 
 features by annotation string, so features sharing "Uncharacterized lineage-specific
 protein" collide, and genome-count rates made primate-only genes essential in Mastadenovirus.
 
-**Quality on the 916-genome audit subset:** 141 good / 120 poor
-(54.0% good). The subset over-samples unusual genomes. Poor genomes are
+**Quality on the 916-genome audit subset:** 126 good / 135 poor
+(48.3% good). The subset over-samples unusual genomes. Poor genomes are
 mostly explained by the sequence: C-less deposits, N gaps, partial genomes and genes
 interrupted by stop codons.
 

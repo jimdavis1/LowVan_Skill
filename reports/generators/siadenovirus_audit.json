@@ -379,6 +379,10 @@
       [
        "genome is missing essential feature",
        "170"
+      ],
+      [
+       "contig has too many ambiguous bases",
+       "10"
       ]
      ]
     },

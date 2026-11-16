@@ -17,7 +17,7 @@
    "genomes routed to this module"
   ],
   [
-   "75.7%",
+   "74.4%",
    "subset genomes good quality"
   ],
   [
@@ -447,12 +447,12 @@
      "type": "tiles",
      "items": [
       [
-       "290",
-       "good (75.7%)"
+       "285",
+       "good (74.4%)"
       ],
       [
-       "93",
-       "poor (24.3%)"
+       "98",
+       "poor (25.6%)"
       ],
       [
        "11",
@@ -470,6 +470,10 @@
       [
        "genome is missing essential feature",
        "410"
+      ],
+      [
+       "contig has too many ambiguous bases",
+       "23"
       ],
       [
        "Genome has too many HSPs for",
