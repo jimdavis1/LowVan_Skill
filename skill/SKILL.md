@@ -1820,6 +1820,7 @@ built.
 | `references/json-schema.md` | writing the JSON block |
 | `references/special-features.md` | a protein is short by a constant amount, or is not collinear with the genome |
 | `references/install-and-test.md` | installing, running, scoring |
+| `references/annotator-regression.md` | **before committing any change to `annotate_by_viral_pssm.pl`** — old vs new over a fixed cross-family genome set |
 | `references/artifacts.md` | writing the two reports |
 
 ## Scripts

@@ -174,6 +174,20 @@ def main():
     #  is a backstop for fragments that slipped through rather than the
     #  primary filter, and it is reported rather than applied in silence.
     all_rows = list(read_fasta(lo))
+    #  Leftover_Seqs.aa is written by the build and goes stale the moment the
+    #  collection is edited afterwards. Adenoviridae E4ORF5, 12 Nov 2026: eight
+    #  E4ORF6-family sequences were removed from the collection after the
+    #  build, the stale pool still held five of them, and they came back as a
+    #  leftover profile that would have called E4ORF6 loci as E4ORF5. Only
+    #  sequences still in the collection may enter the leftover pass.
+    cf = os.path.join(W, "collections", args.module, args.key + ".fasta")
+    if os.path.exists(cf):
+        cur = {s.upper().replace("*", "") for _, s in read_fasta(cf)}
+        stale = [h for h, s in all_rows if s.upper().replace("*", "") not in cur]
+        if stale:
+            print("  %d leftover sequence(s) no longer in the collection -- "
+                  "dropped (stale Leftover_Seqs.aa): %s" % (len(stale), ", ".join(h.split()[0] for h in stale[:5])))
+        all_rows = [(h, s) for h, s in all_rows if s.upper().replace("*", "") in cur]
     floor = length_floor(W, args.module, args.key, args.min_len_frac)
     rows = [(h, s) for h, s in all_rows if len(s) >= floor]
     dropped = len(all_rows) - len(rows)

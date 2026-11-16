@@ -348,6 +348,7 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 
 	my ($best_pssm, $best_results, $pssm_name);
 	my $best_bit = 0;
+	my $best_clean_bit = 0;
 
 	foreach (@pssm_files)  ##  <---- This is where I would need to lookup the rules for each protein
 	{		
@@ -357,8 +358,9 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 		my $pssm_blast = decode_json(scalar read_file(\*IN));		
 		close IN; 	
 		
-		my  ($results, $hsp_best_bit) = matching_tblastn_hsps_json($pssm_blast, $bit_cutoff, $cov_cutoff);
-		print STDERR "\t$name\t$hsp_best_bit\n"; 
+		my  ($results, $hsp_best_bit, $hsp_clean_bit) = matching_tblastn_hsps_json($pssm_blast, $bit_cutoff, $cov_cutoff,
+		                                                                           ($keep_stop || $internal_stop) ? 1 : 0);
+		print STDERR "\t$name\t$hsp_best_bit\tstop-free $hsp_clean_bit\n"; 
 
 		#  Strictly greater, and never accept a zero.
 		#
@@ -372,8 +374,15 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 		#  Seen on 11292.18743 (Alpharhabdovirinae): UNC5 through UNC9 each
 		#  scored 0, each was "Chosen", and the run produced no output at all
 		#  -- one genome in 1356. UNC9 was blamed only for being last.
-		if ($hsp_best_bit > $best_bit)   #evaulate each pssm blast based on the bit score, and pick the best one
+		#  Rank on the best STOP-FREE bit first, then on the overall bit, so a
+		#  profile whose top HSP runs through a stop (and would be cropped
+		#  away) cannot displace one that delivers an intact call. See
+		#  matching_tblastn_hsps_json. Strictly greater, never a zero.
+		if ($hsp_best_bit > 0
+		    && (($hsp_clean_bit > $best_clean_bit)
+		        || ($hsp_clean_bit == $best_clean_bit && $hsp_best_bit > $best_bit)))
 		{
+			$best_clean_bit = $hsp_clean_bit;
 			$best_bit = $hsp_best_bit;
 			$best_pssm = $name;
 			$best_results = $results;
@@ -1071,10 +1080,11 @@ sub scan_to_met_start
 #----------------------------------------------------------
 sub matching_tblastn_hsps_json
 {
-	my ($blast, $bit_cutoff, $cov_cutoff) = @_;
+	my ($blast, $bit_cutoff, $cov_cutoff, $stops_ok) = @_;
 	my $results = {};
 	my @data;
 	my $best_bit = 0;
+	my $clean_bit = 0;    # best qualifying bit among HSPs with no stop (see below)
 	
 	my @output = @{$blast->{BlastOutput2}};   # deref: was a 1-elem list (gist #12)
 	for my $i (0..$#output)
@@ -1174,6 +1184,43 @@ sub matching_tblastn_hsps_json
 							{
 								$best_bit = $results->{bit};
 							}
+							#  The same disagreement, through stop codons. An HSP
+							#  that aligns through a stop is cropped at its first
+							#  stop downstream (unless the feature declares
+							#  internal_stop or -ks is on), and the call is DROPPED
+							#  when the pre-stop part covers less of the profile
+							#  than cov_cutoff. Such an HSP advertises a bit it
+							#  cannot deliver. Track the best DELIVERABLE bit --
+							#  no stop, or a pre-stop part that survives that same
+							#  test -- and the caller ranks profiles on it first.
+							#
+							#  Seen 12 Nov 2026, Adenoviridae: E4ORF1.10 won on
+							#  3141913.4 at 56.5 bits with an HSP starting 23 codons
+							#  upstream of the Met, through a stop; E4ORF1.6 had the
+							#  stop-free 50.3. The call was cropped away and E4ORF1
+							#  went uncalled. Same on PVII (740971.702) and PV
+							#  (3386054.3).
+							#
+							#  Do NOT test for "any stop": a first version did, and
+							#  an HSP that runs through the protein's own TERMINAL
+							#  stop is the normal way a full CDS is called when
+							#  downstream_ext is off -- the crop keeps everything up
+							#  to and including that stop. Counting it as broken
+							#  demoted the full-length profile: CR1A on 130310.191
+							#  lost its stop codon, E4ORF5 on 130310.410 fell from
+							#  137 aa to 79. The test must be the crop's own.
+							my $deliverable = 1;
+							if (! $stops_ok && $results->{hseq} =~ /\*/)
+							{
+								(my $pre_stop = $results->{hseq}) =~ s/\-//g;   # gaps stripped, as the caller does
+								$pre_stop =~ s/\*.+//s;
+								my $cov_kept = $qlen ? (length($pre_stop) / $qlen) : 1;
+								$deliverable = 0 if $cov_kept < $cov_cutoff;   # same test as the crop
+							}
+							if ($deliverable)
+							{
+								$clean_bit = $results->{bit} if $results->{bit} > $clean_bit;
+							}
 						}
 						$results = {};
 					}
@@ -1181,7 +1228,7 @@ sub matching_tblastn_hsps_json
 			}
 		}
 	}
-	return (\@data, $best_bit);
+	return (\@data, $best_bit, $clean_bit);
 }
 ###########################################################
 

@@ -198,7 +198,12 @@ def main():
             #  over the whole of it. The value was hardcoded here, so a
             #  features file that set one was silently ignored.
             "coverage_cutoff": spec.get("coverage_cutoff", 0.65),
-            "downstream_ext": spec.get("downstream_ext", 0),
+            #  Scan to the stop unless the curator says otherwise. Defaulting
+            #  this to 0 made every adenovirus CDS end where its tBLASTn HSP
+            #  ended (15 Nov 2026: protease short in 2,447/3,777 genomes). A
+            #  mat_peptide still states both flags from its own termini.
+            "downstream_ext": spec.get("downstream_ext",
+                                       0 if ftype == "mat_peptide" else 1),
             "feature_type": ftype,
             #  The key is filename-safe and the symbol is what the annotator
             #  and the genome-quality tool report, so they are not always the

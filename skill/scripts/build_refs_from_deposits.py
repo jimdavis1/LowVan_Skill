@@ -76,7 +76,10 @@ def main():
     kept, drops = [], collections.Counter()
     seen = set()
     for hdr, prot in read_fasta(a.deposits):
-        gid = hdr.split("|")[0]
+        #  "<genome_id>|<FEAT>_<n>" or "<genome_id> <annotation>": both shapes
+        #  occur, and taking the whole "101029.17 E4 ORF6/7" as the id dropped
+        #  every deposit as "no contig file" (Adenoviridae E4ORF67, 12 Nov 2026).
+        gid = hdr.split()[0].split("|")[0]
         prot = prot.rstrip("*")
         if (gid, prot) in seen:
             continue
@@ -138,14 +141,28 @@ def main():
                 #  86 across the intron -- tblastn reports q86 as the last
                 #  residue of exon A and the first of exon B -- and a step of
                 #  3 could never place it.
+                #  Cost matters: --slack 90 is 181 x 181 junctions per HSP pair,
+                #  and translating exon B to the END OF THE CONTIG (~35 kb in an
+                #  adenovirus) for each one ran Adenoviridae E1A (528 deposits)
+                #  for 5.5 h without finishing one module. So (1) reject an exon
+                #  A whose whole codons already disagree with the deposit before
+                #  trying any exon B, and (2) translate exon B only as far as the
+                #  deposit's own length plus its stop codon.
+                need = 3 * len(prot) + 3
                 for da in range(-a.slack, a.slack + 1):
+                    ea = A[3] + da              # last nt of exon A
+                    if ea < start:
+                        continue
+                    exA = seq[start - 1:ea]
+                    full = len(exA) // 3
+                    if full > len(prot) or tr(exA[:3 * full]) != prot[:full]:
+                        continue
                     for db in range(-a.slack, a.slack + 1):
-                        ea = A[3] + da          # last nt of exon A
                         sb = Bb[2] + db         # first nt of exon B
                         if not (start <= ea < sb <= len(seq)):
                             continue
-                        exonA = seq[start - 1:ea]
-                        exonB = seq[sb - 1:]
+                        exonA = exA
+                        exonB = seq[sb - 1:sb - 1 + need - len(exonA)]
                         p = tr(exonA + exonB)
                         stop = p.find("*")
                         if stop < 0:

@@ -91,7 +91,9 @@ export LOWVAN_DATA_DIR=/path/to/Viral_Annotation
 perl $LOWVAN_DATA_DIR/annotate_by_viral_pssm.pl -i contigs.fasta -p out -threads 4
 ```
 
-Produces `out.faa`, `out.ffn`, `out.feature.tbl`. Useful debugging flags:
+Produces `out.faa`, `out.ffn`, `out.feature.tbl`. Changed the annotator itself?
+Run `skill/scripts/annotator_regression.py` before committing; see
+`annotator-regression.md`. Useful debugging flags:
 
 ```
 -no -tbl     feature table to stdout, no files

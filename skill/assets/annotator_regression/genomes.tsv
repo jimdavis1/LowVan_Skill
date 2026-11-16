@@ -1,0 +1,46 @@
+# id	module	source	why
+Alphacoronavirus	Alphacoronavirus	contigs/Alphacoronavirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Alphacoronavirus.dna, 14 Nov 2026
+Alphainfluenzavirus.1	Alphainfluenzavirus	contigs/Alphainfluenzavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Alphainfluenzavirus.1.dna, 14 Nov 2026
+Aquaparamyxovirus	Aquaparamyxovirus	contigs/Aquaparamyxovirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Aquaparamyxovirus.dna, 14 Nov 2026
+Arenaviridae.1	Arenaviridae	contigs/Arenaviridae.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Arenaviridae.1.dna, 14 Nov 2026
+Betacoronavirus.1	Betacoronavirus	contigs/Betacoronavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Betacoronavirus.1.dna, 14 Nov 2026
+Betainfluenzavirus.1	Betainfluenzavirus	contigs/Betainfluenzavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Betainfluenzavirus.1.dna, 14 Nov 2026
+Deltacoronavirus	Deltacoronavirus	contigs/Deltacoronavirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Deltacoronavirus.dna, 14 Nov 2026
+Deltainfluenzavirus.1	Deltainfluenzavirus	contigs/Deltainfluenzavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Deltainfluenzavirus.1.dna, 14 Nov 2026
+Ferlavirus	Ferlavirus	contigs/Ferlavirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Ferlavirus.dna, 14 Nov 2026
+Fimoviridae.1	Fimoviridae	contigs/Fimoviridae.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Fimoviridae.1.dna, 14 Nov 2026
+Gammacoronavirus.1	Gammacoronavirus	contigs/Gammacoronavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Gammacoronavirus.1.dna, 14 Nov 2026
+Gammainfluenzavirus.1	Gammainfluenzavirus	contigs/Gammainfluenzavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Gammainfluenzavirus.1.dna, 14 Nov 2026
+Hantaviridae.1	Hantaviridae	contigs/Hantaviridae.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Hantaviridae.1.dna, 14 Nov 2026
+Henipavirus	Henipavirus	contigs/Henipavirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Henipavirus.dna, 14 Nov 2026
+Isavirus.1	Isavirus	contigs/Isavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Isavirus.1.dna, 14 Nov 2026
+Jeilongvirus	Jeilongvirus	contigs/Jeilongvirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Jeilongvirus.dna, 14 Nov 2026
+Metaavulavirus.1	Metaavulavirus	contigs/Metaavulavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Metaavulavirus.1.dna, 14 Nov 2026
+Metapneumovirus	Metapneumovirus	contigs/Metapneumovirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Metapneumovirus.dna, 14 Nov 2026
+Morbillivirus	Morbillivirus	contigs/Morbillivirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Morbillivirus.dna, 14 Nov 2026
+Nairoviridae.1	Nairoviridae	contigs/Nairoviridae.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Nairoviridae.1.dna, 14 Nov 2026
+Narmovirus.1	Narmovirus	contigs/Narmovirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Narmovirus.1.dna, 14 Nov 2026
+Orthoavulavirus.1	Orthoavulavirus	contigs/Orthoavulavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Orthoavulavirus.1.dna, 14 Nov 2026
+Orthoebolavirus.1	Orthoebolavirus	contigs/Orthoebolavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Orthoebolavirus.1.dna, 14 Nov 2026
+Orthomarburgvirus.1	Orthomarburgvirus	contigs/Orthomarburgvirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Orthomarburgvirus.1.dna, 14 Nov 2026
+Orthopneumovirus_muris	Orthopneumovirus_muris	contigs/Orthopneumovirus_muris.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Orthopneumovirus_muris.dna, 14 Nov 2026
+Orthopneumovirus	Orthopneumovirus	contigs/Orthopneumovirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Orthopneumovirus.dna, 14 Nov 2026
+Orthorubulavirus	Orthorubulavirus	contigs/Orthorubulavirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Orthorubulavirus.dna, 14 Nov 2026
+Paraavulavirus.1	Paraavulavirus	contigs/Paraavulavirus.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Paraavulavirus.1.dna, 14 Nov 2026
+Pararubulavirus	Pararubulavirus	contigs/Pararubulavirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Pararubulavirus.dna, 14 Nov 2026
+Peribunyaviridae.1	Peribunyaviridae	contigs/Peribunyaviridae.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Peribunyaviridae.1.dna, 14 Nov 2026
+Phasmaviridae.1	Phasmaviridae	contigs/Phasmaviridae.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Phasmaviridae.1.dna, 14 Nov 2026
+Phenuiviridae.1	Phenuiviridae	contigs/Phenuiviridae.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Phenuiviridae.1.dna, 14 Nov 2026
+Respirovirus	Respirovirus	contigs/Respirovirus.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Respirovirus.dna, 14 Nov 2026
+Tospoviridae.1	Tospoviridae	contigs/Tospoviridae.1.fna	one rep contig per non-adeno module (complete genome; all segments); copied from Viral-Rep-Contigs/Tospoviridae.1.dna, 14 Nov 2026
+130310.191	adeno	contigs/130310.191.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+130310.410	adeno	contigs/130310.410.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+130370.4	adeno	contigs/130370.4.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+130310.200	adeno	contigs/130310.200.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+1091198.3	adeno	contigs/1091198.3.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+2250215.3	adeno	contigs/2250215.3.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+2601527.3	adeno	contigs/2601527.3.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+10515.329	adeno	contigs/10515.329.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+3141913.4	adeno	contigs/3141913.4.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+740971.702	adeno	contigs/740971.702.fna	changed or fixed by the stop-free ranking (12 Nov 2026)
+3386054.3	adeno	contigs/3386054.3.fna	changed or fixed by the stop-free ranking (12 Nov 2026)

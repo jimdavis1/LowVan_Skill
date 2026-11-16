@@ -109,7 +109,8 @@ def read_fasta(path):
 def collections_dir(workdir, module):
     for d in (os.path.join(workdir, module, "collections"),
               os.path.join(workdir, "collections", module)):
-        if os.path.isdir(d):
+        #  must hold collections, not merely exist (see audit_collection_lengths.py)
+        if os.path.isdir(d) and glob.glob(os.path.join(d, "*.fasta")):
             return d
     sys.exit("no collections directory for %s under %s" % (module, workdir))
 

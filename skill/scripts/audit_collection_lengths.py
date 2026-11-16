@@ -171,10 +171,17 @@ def main():
                  os.path.join(W, "collections", M)):
         if cdir:
             break
-        if os.path.isdir(cand):
+        #  A candidate must actually HOLD collections. With --workdir one level
+        #  too high, <W>/<M>/collections exists but holds only the <M>/ subdir;
+        #  taking it audited zero collections and reported "Unresolved: 0"
+        #  (adeno, 14 Nov 2026) -- a clean report about nothing.
+        if os.path.isdir(cand) and glob.glob(os.path.join(cand, "*.fasta")):
             cdir = cand
     if not cdir or not os.path.isdir(cdir):
         sys.exit("no collections dir for %s under %s" % (M, W))
+    if not glob.glob(os.path.join(cdir, "*.fasta")):
+        sys.exit("no collections (*.fasta) in %s -- refusing to report a clean audit "
+                 "of nothing. Is --workdir the module's build directory?" % cdir)
 
     refs = {}
     if a.refs and os.path.exists(a.refs):

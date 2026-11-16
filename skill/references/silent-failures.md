@@ -764,3 +764,39 @@ Four features across Avihepatovirus and Senecavirus were in exactly that
 state. `-m 1` built all four. The leftover pass would also have reached them,
 but only if the main pass had created the feature directory first — and it had
 not, because it "failed".
+
+## A clean audit of zero collections
+
+Adenoviridae, 14 Nov 2026. `audit_collection_lengths.py` was run with
+`--workdir build/` instead of `build/<Module>/`. It took
+`build/<Module>/collections` — a directory that exists but holds only the
+`<Module>/` subdirectory — audited **no** collections, and wrote
+`LENGTH_AUDIT.<Module>.md` reading **Unresolved: 0**. That report would have
+unblocked `build_features.py`. The bin audit, given the same path, at least
+crashed (`makeblastdb` on an empty file).
+
+Both audits now accept a collections directory only if it holds `*.fasta`, and
+the length audit refuses outright when there is nothing to audit. The general
+point stands for any checker: **a pass over an empty input is not a pass.**
+Read the row count of the report, not just its verdict.
+
+## CDS calls that end where the profile ends
+
+`gen_module_json.py` takes `downstream_ext` from `features.json` and defaults it to
+0. The five adenovirus modules never set it, so every CDS ended where the tBLASTn
+HSP ended rather than at the stop codon, through a full 5,007-genome panel: Masta
+protease short in 2,447/3,777 genomes, pVII 1,047, IVa2 1,091. Nothing failed. The
+calls passed the length audit, called at 99%, and looked right in a table. **The
+default is to scan to stop**; turn it off only with a biological reason (a
+mat_peptide whose C-terminus is a cleavage site). Check: for every CDS call, the
+last codon or the next codon is a stop, else it is a gap/IUPAC base in the assembly.
+
+## Cleaved ends land where the HSP lands
+
+A mat_peptide end that is a cleavage site has nothing to scan to, so it sits
+wherever the alignment stopped, and nothing moves it onto the protease motif.
+Adenovirus, 15 Nov 2026: MultiFiber products land on the AVP site in 95-100% of
+calls, but Barthadenovirus VIII_C in 7/73 (it starts 5-8 aa past a site that is
+present) and Aviadenovirus IIIa in 72%. Check every product against its own
+genome's precursor: an exact substring, each cut end on the motif. A wrong
+boundary does not change the annotation string, so no other audit sees it.
