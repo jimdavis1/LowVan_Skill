@@ -105,10 +105,11 @@ interrupted by stop codons.
 barthadenovirus-string-collapse.html, barthadenovirus-vocabulary-saturation.html; facts in
 reports/generators/barthadenovirus_audit.json.
 
-**Gap found by the audit: no 22K feature.** 22K is a conserved central gene, but this
-module declares none; 21 deposits named "22K" and 12 "Pac22k" are unassigned.
+**22K (16 Nov 2026).** Barthadenovirus 22K is the short unspliced L4 product: 33K's first exon read on past the splice donor to the next stop, 59-66 aa (BAdV-4 70333.3, 20,944-21,135), the same structure as HAdV 22K (207 aa there). Its function in barthadenoviruses is not established. It was missing because the build dropped it as unbuildable (2 sequences; UNBUILDABLE.tsv) and nothing reported that. The one "Pac22k" deposit (215 aa) lies inside 33K exon 2 and is not 22K.
 
 **Under-calling vs. deposits (16 Nov 2026).** Near-complete genomes: 29 deposited proteins
-per genome (median) against 24 module calls. Besides 22K, recurring deposits never
-declared: Pac22k 12, MucoreX 12, Slatt 12, HistinVII 12, "core protein 2" 12, and 148
+per genome (median) against 24 module calls. Recurring deposits
+never declared: Pac22k 12, MucoreX 12, Slatt 12, HistinVII 12, "core protein 2" 12, and 148
 "hypothetical protein". Candidates for uncharacterized lineage-specific orthogroups.
+
+**22K rebuilt (16 Nov 2026).** The old 33K collection was still a homology seed although 33K is a splice special with no PSSM, so 22K deposits (which share 33K exon 1) went AMBIGUOUS or to 33K, and the K22 collections picked up spliced 33K proteins. Rebuilt structurally: each candidate tblastn'd onto its own genome (one HSP over >=90% = unspliced), and 22K = unspliced, starting inside that genome's 100K call in another frame. Tested with the plain annotator on a lineage-diverse set: no genome has more than one K22 call. K22: 8 sequences, 2 PSSMs, bit_cutoff 25; 41 test genomes, 15 gain a K22 call.

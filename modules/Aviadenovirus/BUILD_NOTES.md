@@ -109,3 +109,5 @@ reports/generators/aviadenovirus_audit.json.
 per genome (median) against 29 module calls. Recurring ORFs never declared: ORF0 280,
 ORF1B 261, ORF20A 257, ORF19 157, ORF1C 142, ORF29 127 deposited features (and 772
 "hypothetical protein"). Candidates for uncharacterized lineage-specific orthogroups.
+
+**22K rebuilt (16 Nov 2026).** The old 33K collection was still a homology seed although 33K is a splice special with no PSSM, so 22K deposits (which share 33K exon 1) went AMBIGUOUS or to 33K, and the K22 collections picked up spliced 33K proteins. Rebuilt structurally: each candidate tblastn'd onto its own genome (one HSP over >=90% = unspliced), and 22K = unspliced, starting inside that genome's 100K call in another frame. Tested with the plain annotator on a lineage-diverse set: no genome has more than one K22 call. K22: 90 sequences, 8 PSSMs, bit_cutoff 30 (was 7 sequences). 46 test genomes: 22 starts move 200-400 nt downstream onto the deposited 22K starts. K22 and K100 share a frame and stop in 172859.66 and 130663.266/.267 (pre-existing): the 100K call reads through into the 22K frame.

@@ -815,3 +815,38 @@ primate-only E3/E4 genes essential in a module that is 85% human genomes.
 Filter its output: never on uncharacterized or shared-string features, special
 features or lineage-specific genes, and exclude features with a cutoff,
 copy-number or coverage struggle on record.
+
+## A special feature still competing for deposits
+
+A `special: splice` feature has no PSSM, but its old collection can stay in the
+homology-assignment pool. Its unspliced sibling's deposits then match it at
+near-identity over the shared exon and come out AMBIGUOUS or are binned to the
+special. Adenoviridae, 16 Nov 2026: 33K's collection absorbed the 22K
+deposits, which shares exon 1 with 33K. That left Barthadenovirus with 2 K22
+sequences, and the feature was dropped as unbuildable. The K22 collections that
+did ship held spliced 33K proteins: 18 in Mastadenovirus, 2 each in
+Siadenovirus and MultiFiber. Every check passed. Keep special features out of
+homology assignment, and test unspliced/spliced siblings structurally: tblastn
+each member onto its own genome, so one HSP means unspliced, and check
+position, so 22K starts inside 100K in another frame.
+
+## UNBUILDABLE.tsv is written and never read
+
+When the build deletes a feature it cannot cluster, it records the deletion in
+`UNBUILDABLE.tsv` and says nothing else. No later step reads that file. The
+module installs and runs, and the feature is simply absent. Barthadenovirus K22
+was missing for five days that way ("2 no two unique members cluster at mi/mc
+0.8"), and it was only found when a coverage audit asked why a conserved gene
+had no row. Read UNBUILDABLE.tsv before installing. A conserved gene in it is a
+defect to fix (rescue with duplicate rows, or fix the collection), not a
+footnote.
+
+## The stray-directory sweep deletes your backups
+
+`build_features.py` clears any directory under `Alignments/<M>/` whose PSSM
+file names carry the feature key, because an old hash directory would otherwise
+kill `fasta-cluster-pssm-2.pl` at its mkdir. A backup made by renaming the old
+output directory (`K22` → `K22.pre_fix_dir`) matches, and it is removed with
+only a "clearing stray output directory" line. Adenoviridae, 16 Nov 2026: all
+the K22 backups were deleted that way. They were recoverable only because the
+previous profiles were committed. Back up outside `Alignments/`, or rely on git.

@@ -2,7 +2,7 @@
  "title": "Barthadenovirus Coverage Audit",
  "eyebrow": "LowVan &middot; Adenoviridae &middot; Barthadenovirus module &middot; 16 November 2026",
  "h1": "Does the Barthadenovirus (formerly Atadenovirus) module work?",
- "standfirst": "Barthadenoviruses add two lineage-specific gene families, RH and LH, to the conserved core. The module calls the core in every near-complete genome and splits the RH family into positional orthogroups; the audit also found that 22K was never declared.",
+ "standfirst": "Barthadenoviruses add two lineage-specific gene families, RH and LH, to the conserved core. The module calls the core in every near-complete genome and splits the RH family into positional orthogroups; the short unspliced 22K product was added after the panel run (16 Nov 2026).",
  "headline_tiles": [
   [
    "48",
@@ -66,7 +66,7 @@
     },
     {
      "type": "prose",
-     "html": "The map shows the 22K gap: 33K is called after 100K, and no 22K is called, because the module never declared it (section 07). The RH genes at the right end are the positional orthogroups."
+     "html": "33K is called after 100K. 22K in this genus is a short (59&ndash;66 aa) unspliced read-on of 33K&rsquo;s first exon; it was added after this map was drawn and is called at 20,944&ndash;21,144 in this genome (section 07). The RH genes at the right end are the positional orthogroups."
     },
     {
      "type": "prose",
@@ -386,9 +386,9 @@
      ],
      "rows": [
       [
-       "No 22K feature",
-       "21 deposits named &ldquo;22K&rdquo; and 12 &ldquo;Pac22k&rdquo; are unassigned; 22K is a conserved central gene",
-       "A missing declaration, found by this audit; a build fix, not a cutoff"
+       "22K added after the panel run",
+       "The short unspliced L4 product (59&ndash;66 aa, 33K&rsquo;s first exon read on past the splice donor) was dropped by the build as unbuildable; rebuilt 16 Nov 2026 (8 sequences, 2 PSSMs) and now called, e.g. BAdV-4 20,944&ndash;21,144. The coverage numbers here predate it",
+       "Function in this genus not established"
       ],
       [
        "VIII-C ends",
@@ -404,6 +404,11 @@
        "RH family",
        "RH_A&ndash;RH_R and UNC_RHP_1&ndash;3 are positional orthogroups present in 0&ndash;36% of genomes",
        "Lineage-specific by nature; never essential"
+      ],
+      [
+       "Spliced genes in divergent lineages",
+       "33K, E1A and E4ORF6/7 are called only where the genome is &ge;95% identical (nt) to a curated reference transcript; e.g. 30 of 48 species C subset genomes have no 33K call",
+       "By design of the splice caller; left as is by the curator"
       ],
       [
        "Cleaved mature-peptide ends",

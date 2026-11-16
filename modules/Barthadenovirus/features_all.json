@@ -569,5 +569,14 @@
    "m": 1
   },
   "comment": "HAdV-2 pIIIa residues 1-570: cut after 570 (LGGS^GN) removes the 15-aa C-terminal propeptide. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 17/25 precursors of this module cut."
+ },
+ "K22": {
+  "anno": "Late transcription regulator 22K",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "K22",
+  "downstream_ext": 1,
+  "comment": "Unspliced partner of 33K: starts at the shared exon-1 Met inside the 3' end of 100K, other frame (structural assignment 16 Nov 2026). In barthadenoviruses most deposits are 59-66 aa (exon 1 read on to an early stop); function in this genus not established. Function from HAdV-5 (PMID 22811519)."
  }
 }

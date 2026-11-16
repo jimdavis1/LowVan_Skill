@@ -397,6 +397,11 @@
        "Real but lineage-restricted classes; never essential"
       ],
       [
+       "Spliced genes in divergent lineages",
+       "33K, E1A and E4ORF6/7 are called only where the genome is &ge;95% identical (nt) to a curated reference transcript; e.g. 30 of 48 species C subset genomes have no 33K call",
+       "By design of the splice caller; left as is by the curator"
+      ],
+      [
        "Cleaved mature-peptide ends",
        "A cleaved end lands where the tBLASTn HSP lands; nothing moves it onto the AVP motif",
        "No setting does this: it needs an annotator step that snaps the end to the motif"

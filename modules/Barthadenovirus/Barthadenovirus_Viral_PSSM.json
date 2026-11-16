@@ -235,6 +235,21 @@
             "type" : "CDS",
             "upstream_ext" : 1
          },
+         "K22" : {
+            "anno" : "Late transcription regulator 22K",
+            "bit_cutoff" : 25,
+            "comment" : "Unspliced partner of 33K: starts at the shared exon-1 Met inside the 3' end of 100K, other frame (structural assignment 16 Nov 2026). In barthadenoviruses most deposits are 59-66 aa (exon 1 read on to an early stop); function in this genus not established. Function from HAdV-5 (PMID 22811519).",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "K22",
+            "kmers" : 1,
+            "max_len" : 110,
+            "min_len" : 55,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
          "K33" : {
             "PMID_claude_generated" : [
                "25636034",

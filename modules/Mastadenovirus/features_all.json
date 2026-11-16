@@ -203,7 +203,9 @@
    "m": 1
   },
   "gene_symbol": "K22",
-  "downstream_ext": 1
+  "downstream_ext": 1,
+  "bit_cutoff": 50,
+  "comment": "bit_cutoff 50 (16 Nov 2026): profile K22.7 hit protein VI in 1123958.3-.5 at 30.46, over the default 30, and the hit extended to a second, same-frame K22 call on PVI; the lowest real 22K in the 50-genome test set scored 72.87."
  },
  "K52": {
   "anno": "Genome packaging protein 52/55K",

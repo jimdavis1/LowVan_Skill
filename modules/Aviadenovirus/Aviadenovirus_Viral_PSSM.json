@@ -495,8 +495,8 @@
             "feature_type" : "CDS",
             "gene_symbol" : "K22",
             "kmers" : 1,
-            "max_len" : 258,
-            "min_len" : 133,
+            "max_len" : 244,
+            "min_len" : 161,
             "segment" : "Single DNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1

@@ -107,3 +107,5 @@ reports/generators/siadenovirus_audit.json.
 
 **Features per genome (16 Nov 2026).** 23 deposited proteins per near-complete genome
 (median) against 22 module calls: the small count is the genus's small genome (26 kb).
+
+**22K rebuilt (16 Nov 2026).** The old 33K collection was still a homology seed although 33K is a splice special with no PSSM, so 22K deposits (which share 33K exon 1) went AMBIGUOUS or to 33K, and the K22 collections picked up spliced 33K proteins. Rebuilt structurally: each candidate tblastn'd onto its own genome (one HSP over >=90% = unspliced), and 22K = unspliced, starting inside that genome's 100K call in another frame. Tested with the plain annotator on a lineage-diverse set: no genome has more than one K22 call. K22: 12 sequences, 3 PSSMs, bit_cutoff 30; 40 test genomes, calls unchanged.

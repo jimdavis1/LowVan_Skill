@@ -104,3 +104,13 @@ interrupted by stop codons.
 **Pages** (in reports/): mastadenovirus-coverage-audit.html, mastadenovirus-pssm-registry.html,
 mastadenovirus-string-collapse.html, mastadenovirus-vocabulary-saturation.html; facts in
 reports/generators/mastadenovirus_audit.json.
+
+**Spliced features need a >=95% nucleotide reference (curator: leave as is, 16 Nov 2026).**
+33K, E1A 12S/13S and E4ORF6/7 are called by the splice caller only where the genome matches a
+curated reference transcript at >=95% nt identity over >=95% of its length. Divergent lineages
+get no call although the gene is present: 30 of 48 species C subset genomes lack 33K (e.g.
+129951.1438, 80.7% to the nearest HAdV-2 reference). 33K is called in 92.6% of near-complete
+genomes module-wide. A literature search (16 Nov 2026) found no paper mapping exact 33K junctions
+in any uncovered lineage, so no references were added (literature only, not GenBank/RefSeq joins).
+
+**22K rebuilt (16 Nov 2026).** The old 33K collection was still a homology seed although 33K is a splice special with no PSSM, so 22K deposits (which share 33K exon 1) went AMBIGUOUS or to 33K, and the K22 collections picked up spliced 33K proteins. Rebuilt structurally: each candidate tblastn'd onto its own genome (one HSP over >=90% = unspliced), and 22K = unspliced, starting inside that genome's 100K call in another frame. Tested with the plain annotator on a lineage-diverse set: no genome has more than one K22 call. K22: 331 sequences (18 spliced 33K removed), 20 PSSMs, bit_cutoff 50: profile K22.7 hit protein VI at 30.46 in 1123958.3-.5 and made a second, same-frame call; the lowest real 22K scored 72.87. 50 test genomes: 5 starts moved; 1907210.3299/.3356 lose K22 (the 22K frame has an internal stop).

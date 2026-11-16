@@ -104,3 +104,5 @@ interrupted by stop codons.
 **Pages** (in reports/): mastadenovirus-multifiber-coverage-audit.html, mastadenovirus-multifiber-pssm-registry.html,
 mastadenovirus-multifiber-string-collapse.html, mastadenovirus-multifiber-vocabulary-saturation.html; facts in
 reports/generators/mastadenovirus-multifiber_audit.json.
+
+**22K rebuilt (16 Nov 2026).** The old 33K collection was still a homology seed although 33K is a splice special with no PSSM, so 22K deposits (which share 33K exon 1) went AMBIGUOUS or to 33K, and the K22 collections picked up spliced 33K proteins. Rebuilt structurally: each candidate tblastn'd onto its own genome (one HSP over >=90% = unspliced), and 22K = unspliced, starting inside that genome's 100K call in another frame. Tested with the plain annotator on a lineage-diverse set: no genome has more than one K22 call. K22: 36 sequences, 5 PSSMs, bit_cutoff 30; 41 test genomes, 2 gained, 1 end moved at an ambiguous base.
