@@ -107,3 +107,8 @@ reports/generators/barthadenovirus_audit.json.
 
 **Gap found by the audit: no 22K feature.** 22K is a conserved central gene, but this
 module declares none; 21 deposits named "22K" and 12 "Pac22k" are unassigned.
+
+**Under-calling vs. deposits (16 Nov 2026).** Near-complete genomes: 29 deposited proteins
+per genome (median) against 24 module calls. Besides 22K, recurring deposits never
+declared: Pac22k 12, MucoreX 12, Slatt 12, HistinVII 12, "core protein 2" 12, and 148
+"hypothetical protein". Candidates for uncharacterized lineage-specific orthogroups.

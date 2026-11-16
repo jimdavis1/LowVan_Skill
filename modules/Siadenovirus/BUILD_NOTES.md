@@ -104,3 +104,6 @@ interrupted by stop codons.
 **Pages** (in reports/): siadenovirus-coverage-audit.html, siadenovirus-pssm-registry.html,
 siadenovirus-string-collapse.html, siadenovirus-vocabulary-saturation.html; facts in
 reports/generators/siadenovirus_audit.json.
+
+**Features per genome (16 Nov 2026).** 23 deposited proteins per near-complete genome
+(median) against 22 module calls: the small count is the genus's small genome (26 kb).

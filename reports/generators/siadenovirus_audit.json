@@ -61,6 +61,14 @@
      ]
     },
     {
+     "type": "figure",
+     "from": "siadenovirus-genome-map.html"
+    },
+    {
+     "type": "prose",
+     "html": "Turkey adenovirus 3 carries the siadenovirus core and its few genus genes (sialidase, E3, hydrophobic protein, ORF7, ORF8)."
+    },
+    {
      "type": "prose",
      "html": "Genomes were assigned to modules from sequence alone: the genus by best hexon match, and one-fiber versus multi-fiber mastadenoviruses by a census of intact fiber genes classed by literature orthology (Podgorski 2023, PMID 36610683). Deposited names were never used to assign a genome."
     }

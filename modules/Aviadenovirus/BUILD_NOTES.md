@@ -104,3 +104,8 @@ interrupted by stop codons.
 **Pages** (in reports/): aviadenovirus-coverage-audit.html, aviadenovirus-pssm-registry.html,
 aviadenovirus-string-collapse.html, aviadenovirus-vocabulary-saturation.html; facts in
 reports/generators/aviadenovirus_audit.json.
+
+**Under-calling vs. deposits (16 Nov 2026).** Near-complete genomes: 37 deposited proteins
+per genome (median) against 29 module calls. Recurring ORFs never declared: ORF0 280,
+ORF1B 261, ORF20A 257, ORF19 157, ORF1C 142, ORF29 127 deposited features (and 772
+"hypothetical protein"). Candidates for uncharacterized lineage-specific orthogroups.

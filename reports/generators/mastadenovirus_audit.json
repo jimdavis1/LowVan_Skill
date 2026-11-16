@@ -61,6 +61,14 @@
      ]
     },
     {
+     "type": "figure",
+     "from": "mastadenovirus-genome-map.html"
+    },
+    {
+     "type": "prose",
+     "html": "A species C human adenovirus: E1 at the left end, the conserved core in the middle, E3 and E4 at the right end."
+    },
+    {
      "type": "prose",
      "html": "Genomes were assigned to modules from sequence alone: the genus by best hexon match, and one-fiber versus multi-fiber mastadenoviruses by a census of intact fiber genes classed by literature orthology (Podgorski 2023, PMID 36610683). Deposited names were never used to assign a genome."
     }

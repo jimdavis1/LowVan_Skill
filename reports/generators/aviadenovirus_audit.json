@@ -61,6 +61,14 @@
      ]
     },
     {
+     "type": "figure",
+     "from": "aviadenovirus-genome-map.html"
+    },
+    {
+     "type": "prose",
+     "html": "Fowl adenovirus 1 (Phelps) carries two fiber genes and lineage-specific ORFs at both ends; several deposited ORFs at the ends are not yet declared (section 07)."
+    },
+    {
      "type": "prose",
      "html": "Genomes were assigned to modules from sequence alone: the genus by best hexon match, and one-fiber versus multi-fiber mastadenoviruses by a census of intact fiber genes classed by literature orthology (Podgorski 2023, PMID 36610683). Deposited names were never used to assign a genome."
     }
