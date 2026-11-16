@@ -1,0 +1,831 @@
+{
+   "Mastadenovirus_MultiFiber" : {
+      "close_genomes" : {
+         "Mastadenovirus_MultiFiber.1.dna" : {
+            "genome_ids" : "130309.444.con.0001",
+            "genome_name" : "Human mastadenovirus F"
+         },
+         "Mastadenovirus_MultiFiber.10.dna" : {
+            "genome_ids" : "2064740.3.con.0001",
+            "genome_name" : "Rhesus adenovirus 64"
+         },
+         "Mastadenovirus_MultiFiber.11.dna" : {
+            "genome_ids" : "3414537.3.con.0001",
+            "genome_name" : "simian adenovirus 64 RNL_03NOV17_0357_DAS"
+         },
+         "Mastadenovirus_MultiFiber.12.dna" : {
+            "genome_ids" : "10535.446.con.0001",
+            "genome_name" : "unidentified adenovirus"
+         },
+         "Mastadenovirus_MultiFiber.13.dna" : {
+            "genome_ids" : "130309.443.con.0001",
+            "genome_name" : "Human mastadenovirus F"
+         },
+         "Mastadenovirus_MultiFiber.14.dna" : {
+            "genome_ids" : "1715779.3.con.0001",
+            "genome_name" : "Simian adenovirus 17 B-105"
+         },
+         "Mastadenovirus_MultiFiber.15.dna" : {
+            "genome_ids" : "3414534.3.con.0001",
+            "genome_name" : "simian adenovirus 65 RNL_2018_0955_JEM"
+         },
+         "Mastadenovirus_MultiFiber.16.dna" : {
+            "genome_ids" : "130309.455.con.0001",
+            "genome_name" : "Human mastadenovirus F"
+         },
+         "Mastadenovirus_MultiFiber.17.dna" : {
+            "genome_ids" : "3414532.3.con.0001",
+            "genome_name" : "simian adenovirus 60 RNL_2018_0502_VEA"
+         },
+         "Mastadenovirus_MultiFiber.18.dna" : {
+            "genome_ids" : "10524.1442.con.0001",
+            "genome_name" : "Human adenovirus 41 HAdV_F41/KENKLF_HFK18/2016"
+         },
+         "Mastadenovirus_MultiFiber.19.dna" : {
+            "genome_ids" : "10524.1449.con.0001",
+            "genome_name" : "Human adenovirus 41 HAdV_F41/KENKLF_HFK26/2019"
+         },
+         "Mastadenovirus_MultiFiber.2.dna" : {
+            "genome_ids" : "130309.412.con.0001",
+            "genome_name" : "Human mastadenovirus F SA14320"
+         },
+         "Mastadenovirus_MultiFiber.20.dna" : {
+            "genome_ids" : "130309.1784.con.0001",
+            "genome_name" : "Human mastadenovirus F YT1405"
+         },
+         "Mastadenovirus_MultiFiber.21.dna" : {
+            "genome_ids" : "130309.1786.con.0001",
+            "genome_name" : "Human mastadenovirus F YT1400"
+         },
+         "Mastadenovirus_MultiFiber.22.dna" : {
+            "genome_ids" : "130309.1789.con.0001",
+            "genome_name" : "Human mastadenovirus F YT1167"
+         },
+         "Mastadenovirus_MultiFiber.23.dna" : {
+            "genome_ids" : "130309.1791.con.0001",
+            "genome_name" : "Human mastadenovirus F YT1019"
+         },
+         "Mastadenovirus_MultiFiber.24.dna" : {
+            "genome_ids" : "130309.1797.con.0001",
+            "genome_name" : "Human mastadenovirus F YT586"
+         },
+         "Mastadenovirus_MultiFiber.25.dna" : {
+            "genome_ids" : "130309.427.con.0001",
+            "genome_name" : "Human mastadenovirus F"
+         },
+         "Mastadenovirus_MultiFiber.3.dna" : {
+            "genome_ids" : "2064741.3.con.0001",
+            "genome_name" : "Rhesus adenovirus 65"
+         },
+         "Mastadenovirus_MultiFiber.4.dna" : {
+            "genome_ids" : "38418.6.con.0001",
+            "genome_name" : "Simian adenovirus 2 SV11"
+         },
+         "Mastadenovirus_MultiFiber.5.dna" : {
+            "genome_ids" : "1159188.3.con.0001",
+            "genome_name" : "Simian adenovirus A1173"
+         },
+         "Mastadenovirus_MultiFiber.6.dna" : {
+            "genome_ids" : "2064736.3.con.0001",
+            "genome_name" : "Rhesus adenovirus 60"
+         },
+         "Mastadenovirus_MultiFiber.7.dna" : {
+            "genome_ids" : "3414533.11.con.0001",
+            "genome_name" : "simian adenovirus 61 RNL_2017_0167_MER"
+         },
+         "Mastadenovirus_MultiFiber.8.dna" : {
+            "genome_ids" : "3414536.10.con.0001",
+            "genome_name" : "simian adenovirus 63 RNL_2016_0212_DUC"
+         },
+         "Mastadenovirus_MultiFiber.9.dna" : {
+            "genome_ids" : "130309.454.con.0001",
+            "genome_name" : "Human mastadenovirus F"
+         }
+      },
+      "features" : {
+         "CR1A" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 260,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CR1-alpha",
+            "kmers" : 1,
+            "max_len" : 200,
+            "min_len" : 141,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "CR1B" : {
+            "PMID_claude_generated" : [
+               "32452418"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 288,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CR1-beta",
+            "kmers" : 1,
+            "max_len" : 327,
+            "min_len" : 221,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "DBP" : {
+            "anno" : "Single-stranded DNA-binding protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "DBP",
+            "kmers" : 1,
+            "max_len" : 537,
+            "min_len" : 427,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E1A_12S" : {
+            "PMID_claude_generated" : [
+               "2958276",
+               "33239457",
+               "2947381",
+               "2968533",
+               "15068396"
+            ],
+            "anno" : "Retinoblastoma protein binding E1A, 12S mRNA product (243R in HAdV-5)",
+            "comment" : "12S product (distal 5' splice site); lacks the internal 46-aa segment of the 289R protein (PMID 2968533). Junctions come from the literature: HAdV-5 13S 560..1112,1229.. / 12S 560..974,1229.. (PMID 2958276; verified on AC_000008); HAdV-2 559..1111/973,1226.. (PMID 33239457); HAdV-4 576..1140/1047,1233.. (PMID 2947381, reconstructed from the stated 257/226 aa); BAdV-3 606..1215,1323.. (13S only; the authors' own deposit AF030154, PMID 9918888). Extended to other genomes by aligning the donor and acceptor regions to the nearest anchor (two passes, multiple and pairwise; a genome is kept only where the passes agree); start = the in-frame ATG closest to the protein-aligned start; GT/GC..AG required unless the flanks are conserved in context (>=0.8). The 12S product takes the 13S acceptor (shared exon 2, PMID 15068396) and must reproduce the 13S C-terminus exactly. Every distinct product was translated and aligned with the anchor products: exon 2 must align in frame, the product must end in the E1A exon-2 CtBP motif (PxDLS and variants) or match an anchor's own end (the BAdV-3 211R form lacks it), and products with ambiguity codes were removed. References built from deposits were NOT used: 16/26 HAdV-C 12S deposits gave the right protein with the junction 3 nt early (AG..AA). No paper gives HAdV-F (40/41) E1A junctions; this module's references are extensions from the HAdV-2/4/5 anchors, checked as above (cf. the NC_001454 HAdV-40 annotation, 249 aa, a database record only). 132 unique references, products 180-250 aa. min_len = 0.95 x the shortest reference product.",
+            "feature_type" : "CDS",
+            "gene_symbol" : "E1A",
+            "max_len" : 275,
+            "min_len" : 171,
+            "segment" : "Single DNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "E1A_13S" : {
+            "PMID_claude_generated" : [
+               "2958276",
+               "33239457",
+               "2947381",
+               "2968533",
+               "15068396",
+               "18385237"
+            ],
+            "anno" : "Transcriptional activator and retinoblastoma protein binding E1A, 13S mRNA product (289R in HAdV-5)",
+            "comment" : "13S product (proximal 5' splice site); differs from the 12S product only by an internal 46-aa segment (PMID 2968533). Junctions come from the literature: HAdV-5 13S 560..1112,1229.. / 12S 560..974,1229.. (PMID 2958276; verified on AC_000008); HAdV-2 559..1111/973,1226.. (PMID 33239457); HAdV-4 576..1140/1047,1233.. (PMID 2947381, reconstructed from the stated 257/226 aa); BAdV-3 606..1215,1323.. (13S only; the authors' own deposit AF030154, PMID 9918888). Extended to other genomes by aligning the donor and acceptor regions to the nearest anchor (two passes, multiple and pairwise; a genome is kept only where the passes agree); start = the in-frame ATG closest to the protein-aligned start; GT/GC..AG required unless the flanks are conserved in context (>=0.8). The 12S product takes the 13S acceptor (shared exon 2, PMID 15068396) and must reproduce the 13S C-terminus exactly. Every distinct product was translated and aligned with the anchor products: exon 2 must align in frame, the product must end in the E1A exon-2 CtBP motif (PxDLS and variants) or match an anchor's own end (the BAdV-3 211R form lacks it), and products with ambiguity codes were removed. References built from deposits were NOT used: 16/26 HAdV-C 12S deposits gave the right protein with the junction 3 nt early (AG..AA). No paper gives HAdV-F (40/41) E1A junctions; this module's references are extensions from the HAdV-2/4/5 anchors, checked as above (cf. the NC_001454 HAdV-40 annotation, 249 aa, a database record only). 149 unique references, products 211-281 aa. min_len = 0.95 x the shortest reference product (at 0.9 a simian adenovirus A1335 genome with no reference of its own was called through a relative at 200/169 aa, exon 2 only 8 residues).",
+            "feature_type" : "CDS",
+            "gene_symbol" : "E1A",
+            "max_len" : 309,
+            "min_len" : 200,
+            "segment" : "Single DNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "E1B19K" : {
+            "anno" : "Apoptosis inhibitor and Bcl-2 homolog E1B 19K",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E1B19K",
+            "kmers" : 1,
+            "max_len" : 230,
+            "min_len" : 148,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E1B55K" : {
+            "anno" : "p53 degradation and mRNA export factor E1B 55K",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E1B55K",
+            "kmers" : 1,
+            "max_len" : 523,
+            "min_len" : 424,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E3_12_5K" : {
+            "PMID_claude_generated" : [
+               "1585632"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E3-12.5K",
+            "kmers" : 1,
+            "max_len" : 114,
+            "min_len" : 95,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E3_14_7K" : {
+            "anno" : "Tumor necrosis factor antagonist E3 14.7K",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E3_14_7K",
+            "kmers" : 1,
+            "max_len" : 137,
+            "min_len" : 113,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E3_RIDA" : {
+            "anno" : "Receptor internalization and degradation complex subunit alpha",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E3_RIDA",
+            "kmers" : 1,
+            "max_len" : 102,
+            "min_len" : 83,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E3_RIDB" : {
+            "anno" : "Receptor internalization and degradation complex subunit beta",
+            "bit_cutoff" : 101,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E3_RIDB",
+            "kmers" : 1,
+            "max_len" : 166,
+            "min_len" : 94,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E4ORF1" : {
+            "anno" : "PDZ-binding transforming protein E4orf1",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E4ORF1",
+            "kmers" : 1,
+            "max_len" : 136,
+            "min_len" : 117,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E4ORF2" : {
+            "PMID_claude_generated" : [
+               "11134268"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E4orf2",
+            "kmers" : 1,
+            "max_len" : 150,
+            "min_len" : 120,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E4ORF3" : {
+            "anno" : "Promyelocytic leukemia body disrupting protein E4orf3",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E4ORF3",
+            "kmers" : 1,
+            "max_len" : 122,
+            "min_len" : 103,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E4ORF4" : {
+            "anno" : "Protein phosphatase 2A regulatory subunit E4orf4",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E4ORF4",
+            "kmers" : 1,
+            "max_len" : 128,
+            "min_len" : 104,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E4ORF6" : {
+            "anno" : "p53 degradation and mRNA export factor E4orf6",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E4ORF6",
+            "kmers" : 1,
+            "max_len" : 308,
+            "min_len" : 218,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E4ORF67" : {
+            "PMID_claude_generated" : [
+               "2949089",
+               "1836562",
+               "1832724",
+               "8289811",
+               "33239457",
+               "36095031"
+            ],
+            "anno" : "E2F dimerization partner E4orf6/7",
+            "comment" : "E4-ORF6/7 is the product of an mRNA spliced from the N-terminus of E4 ORF6 onto ORF7 (PMID 2949089); the HAdV-5 protein is 150 aa and its C-terminal 70 aa form the E2F complex (PMID 1836562); it binds E2F and transactivates the E2 promoter (PMID 1832724), inducing E2F dimerization (PMID 8289811). Literature junction: HAdV-2/HAdV-5 CDS complement(join(..33192,33904..34077)), intron 33193..33903 (PMID 33239457; HAdV-5 numbering from the long-read re-annotation OP218818 of PMID 36095031); verified on AC_000008. No paper gives the junction for other species, so DATABASE-ONLY anchors were also used, each verified on sequence (ATG, GT..AG, clean ORF): HAdV-3 NC_011203, HAdV-12 NC_001460, HAdV-40 NC_001454. Extended to other genomes by pairwise alignment of the donor and acceptor regions to the nearest anchor; where the acceptor region did not align, the unique AG keeping the exon-2 protein in frame; donor rescue likewise. Every distinct product was translated and aligned with the anchors: exon 2 in frame, the conserved C-terminal motif W.[GE]G[GS] present (all four anchors; HAdV-31 reads WEEGS), no ambiguity codes. 471 of 487 references rest on a database-only anchor for the donor or acceptor. MultiFiber: HAdV-F rests on the HAdV-40 database anchor. 136 unique references, products 116-140 aa; min_len = 0.95 x shortest. Replaces the deposit-built references (kept as E4ORF67.fasta.deposit_built), 29/165 of which sat off canonical sites.",
+            "feature_type" : "CDS",
+            "gene_symbol" : "E4ORF67",
+            "max_len" : 136,
+            "min_len" : 99,
+            "segment" : "Single DNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "FIBER_ANC" : {
+            "anno" : "Fiber protein",
+            "bit_cutoff" : 377,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "FIBER",
+            "kmers" : 1,
+            "max_len" : 676,
+            "min_len" : 289,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "FIBER_CL1B" : {
+            "anno" : "Fiber protein",
+            "bit_cutoff" : 486,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "FIBER",
+            "kmers" : 1,
+            "max_len" : 584,
+            "min_len" : 489,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "FIBER_CL1F" : {
+            "anno" : "Fiber protein",
+            "bit_cutoff" : 288,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "FIBER",
+            "kmers" : 1,
+            "max_len" : 478,
+            "min_len" : 250,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "FIBER_CL2" : {
+            "anno" : "Fiber protein",
+            "bit_cutoff" : 430,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "FIBER",
+            "kmers" : 1,
+            "max_len" : 385,
+            "min_len" : 275,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "FIBER_CL34" : {
+            "anno" : "Fiber protein",
+            "bit_cutoff" : 316,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "FIBER",
+            "kmers" : 1,
+            "max_len" : 340,
+            "min_len" : 243,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "HEXON" : {
+            "anno" : "Major capsid protein hexon",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "HEXON",
+            "kmers" : 1,
+            "max_len" : 993,
+            "min_len" : 847,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "IIIA_MAT" : {
+            "PMID_claude_generated" : [
+               "2691633"
+            ],
+            "anno" : "Capsid vertex protein IIIa",
+            "bit_cutoff" : 60,
+            "comment" : "HAdV-2 pIIIa residues 1-570: cut after 570 (LGGS^GN) removes the 15-aa C-terminal propeptide. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 73/74 precursors of this module cut.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "IIIa",
+            "kmers" : 1,
+            "max_len" : 633,
+            "min_len" : 513,
+            "segment" : "Single DNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "IVA2" : {
+            "anno" : "Genome packaging ATPase IVa2",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "IVA2",
+            "kmers" : 1,
+            "max_len" : 521,
+            "min_len" : 326,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "I_LEADER" : {
+            "PMID_claude_generated" : [
+               "3005631",
+               "21477385"
+            ],
+            "anno" : "i-leader protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "I_LEADER",
+            "kmers" : 1,
+            "max_len" : 200,
+            "min_len" : 128,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "K100" : {
+            "anno" : "Hexon assembly chaperone and host shutoff protein 100K",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "K100",
+            "kmers" : 1,
+            "max_len" : 862,
+            "min_len" : 712,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "K22" : {
+            "anno" : "Late transcription regulator 22K",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "K22",
+            "kmers" : 1,
+            "max_len" : 283,
+            "min_len" : 167,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "K33" : {
+            "PMID_claude_generated" : [
+               "25636034",
+               "7778275"
+            ],
+            "anno" : "Alternative splicing factor 33K",
+            "comment" : "L4-33K is translated from a spliced mRNA whose intron interrupts the protein coding sequence; L4-22K is the unspliced form and shares exon 1 (PMID 25636034). Splice junctions mapped by cDNA in ovine adenovirus (PMID 7778275). Exon A lengths measured here are not multiples of 3, confirming the mid-codon intron. Called from Splice-Variants/K33.fasta, never from a profile.",
+            "feature_type" : "CDS",
+            "gene_symbol" : "33K",
+            "max_len" : 304,
+            "min_len" : 109,
+            "segment" : "Single DNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "K52" : {
+            "anno" : "Genome packaging protein 52/55K",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "K52",
+            "kmers" : 1,
+            "max_len" : 455,
+            "min_len" : 313,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PENTON" : {
+            "anno" : "Penton base protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PENTON",
+            "kmers" : 1,
+            "max_len" : 567,
+            "min_len" : 454,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PIIIA" : {
+            "anno" : "Capsid vertex protein IIIa precursor",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PIIIA",
+            "kmers" : 1,
+            "max_len" : 655,
+            "min_len" : 530,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PIX" : {
+            "anno" : "Capsid cement protein IX",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PIX",
+            "kmers" : 1,
+            "max_len" : 182,
+            "min_len" : 121,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "POL" : {
+            "anno" : "DNA polymerase",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POL",
+            "kmers" : 1,
+            "max_len" : 1283,
+            "min_len" : 852,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PROTEASE" : {
+            "anno" : "Adenain cysteine protease",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PROTEASE",
+            "kmers" : 1,
+            "max_len" : 266,
+            "min_len" : 190,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PTP" : {
+            "anno" : "Terminal protein precursor",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PTP",
+            "kmers" : 1,
+            "max_len" : 703,
+            "min_len" : 583,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PV" : {
+            "anno" : "Core protein V",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PV",
+            "kmers" : 1,
+            "max_len" : 398,
+            "min_len" : 320,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PVI" : {
+            "anno" : "Capsid cement protein VI precursor",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PVI",
+            "kmers" : 1,
+            "max_len" : 307,
+            "min_len" : 233,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PVII" : {
+            "anno" : "Core protein VII precursor",
+            "bit_cutoff" : 122,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PVII",
+            "kmers" : 1,
+            "max_len" : 204,
+            "min_len" : 170,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PVIII" : {
+            "anno" : "Capsid cement protein VIII precursor",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PVIII",
+            "kmers" : 1,
+            "max_len" : 250,
+            "min_len" : 216,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PX" : {
+            "anno" : "Core protein X precursor",
+            "bit_cutoff" : 45,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PX",
+            "kmers" : 1,
+            "max_len" : 78,
+            "min_len" : 63,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "TP_MAT" : {
+            "PMID_claude_generated" : [
+               "25421887"
+            ],
+            "anno" : "Terminal protein",
+            "bit_cutoff" : 60,
+            "comment" : "HAdV-5 pTP residues 350-671: cut after 349 (MTGG^VF) gives mature TP; the iTP intermediate (175/183) is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 99/101 precursors of this module cut.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "TP",
+            "kmers" : 1,
+            "max_len" : 354,
+            "min_len" : 297,
+            "segment" : "Single DNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "UXP" : {
+            "PMID_claude_generated" : [
+               "17881437"
+            ],
+            "anno" : "U exon protein",
+            "bit_cutoff" : 30,
+            "comment" : "Calls the U-exon ORF (exon 1 of UXP) only. The full UXP is a 3-exon product (HAdV-5 CDS 31031..30868, 24744..24668, 24041..23629, 217 aa; PMID 17881437; equals the authors' deposit EU202643). It cannot be called until get_splice_variant_features.pl supports more than one junction per reference (see adeno_v3/UXP_SET_ASIDE.md).",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "UXP",
+            "kmers" : 1,
+            "max_len" : 241,
+            "min_len" : 48,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VIII_C" : {
+            "PMID_claude_generated" : [
+               "34774568"
+            ],
+            "anno" : "Capsid cement protein VIII, C-terminal fragment",
+            "bit_cutoff" : 25,
+            "comment" : "HAdV-5 pVIII residues 158-227 (7.6K): cut after 157 (IGGA^GR); the internal propeptide 112-157 is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 46/46 precursors of this module cut.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VIII",
+            "kmers" : 1,
+            "max_len" : 74,
+            "min_len" : 65,
+            "segment" : "Single DNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VIII_N" : {
+            "PMID_claude_generated" : [
+               "34774568"
+            ],
+            "anno" : "Capsid cement protein VIII, N-terminal fragment",
+            "bit_cutoff" : 30,
+            "comment" : "HAdV-5 pVIII residues 1-111 (12.1K): cut after 111 (LAGG^FR). Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 46/46 precursors of this module cut.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VIII",
+            "kmers" : 1,
+            "max_len" : 117,
+            "min_len" : 104,
+            "segment" : "Single DNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "VII_MAT" : {
+            "PMID_claude_generated" : [
+               "6336325",
+               "28978703"
+            ],
+            "anno" : "Core protein VII",
+            "bit_cutoff" : 91,
+            "comment" : "HAdV-2/5 pVII residues 25-198: cut after 24 (MFGG^AK). The non-consensus pVIIn site at 13 is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 48/48 precursors of this module cut.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VII",
+            "kmers" : 1,
+            "max_len" : 180,
+            "min_len" : 148,
+            "segment" : "Single DNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VI_MAT" : {
+            "PMID_claude_generated" : [
+               "28978703",
+               "25421887"
+            ],
+            "anno" : "Capsid cement protein VI",
+            "bit_cutoff" : 129,
+            "comment" : "HAdV-5 pVI residues 34-239: cut after 33 (MSGG^AF) and 239 (IVGL^GV); removes pVIn and the 11-aa protease cofactor pVIc. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 73/73 precursors of this module cut.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VI",
+            "kmers" : 1,
+            "max_len" : 260,
+            "min_len" : 202,
+            "segment" : "Single DNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single DNA Segment" : {
+            "max_len" : 50814,
+            "min_len" : 19060,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

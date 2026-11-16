@@ -1,0 +1,558 @@
+{
+ "DBP": {
+  "anno": "Single-stranded DNA-binding protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "DBP",
+  "downstream_ext": 1
+ },
+ "E4_1": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "E4.1",
+  "non_essential": true,
+  "note": "region mapping only",
+  "PMID_claude_generated": [
+   "9614874"
+  ],
+  "downstream_ext": 1
+ },
+ "E4_2": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "E4.2",
+  "non_essential": true,
+  "note": "region mapping only",
+  "PMID_claude_generated": [
+   "9614874"
+  ],
+  "bit_cutoff": 92,
+  "cutoff_source": "panel calls_audit 11 Nov",
+  "downstream_ext": 1
+ },
+ "E4_3": {
+  "anno": "E2F-dependent E2 promoter activator E4.3",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "E4.3",
+  "PMID_claude_generated": [
+   "14972537"
+  ],
+  "downstream_ext": 1
+ },
+ "FIBER": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "multi_copy_note": "2-fiber genomes in this genus (literature; census)",
+  "downstream_ext": 1
+ },
+ "HEXON": {
+  "anno": "Major capsid protein hexon",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "HEXON",
+  "downstream_ext": 1
+ },
+ "IVA2": {
+  "anno": "Genome packaging ATPase IVa2",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "IVA2",
+  "downstream_ext": 1
+ },
+ "K100": {
+  "anno": "Hexon assembly chaperone and host shutoff protein 100K",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "K100",
+  "downstream_ext": 1
+ },
+ "K52": {
+  "anno": "Genome packaging protein 52/55K",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "K52",
+  "downstream_ext": 1
+ },
+ "LH1": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "LH1",
+  "non_essential": true,
+  "note": "no function shown",
+  "PMID_claude_generated": [
+   "8659111"
+  ],
+  "downstream_ext": 1
+ },
+ "LH2": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "LH2",
+  "non_essential": true,
+  "note": "cryo-EM assignment \"likely\" only (PMID 33789897)",
+  "PMID_claude_generated": [
+   "33789897"
+  ],
+  "downstream_ext": 1
+ },
+ "LH3": {
+  "anno": "Capsid cementing protein LH3",
+  "params": {
+   "m": 1
+  },
+  "PMID_claude_generated": [
+   "16112161",
+   "18508893"
+  ],
+  "gene_symbol": "LH3",
+  "multi_copy_note": "extra LH3 paralogue at left end in deer/OdAdV",
+  "downstream_ext": 1
+ },
+ "P32K": {
+  "anno": "Structural protein p32K precursor",
+  "params": {
+   "m": 1
+  },
+  "PMID_claude_generated": [
+   "9614874",
+   "18508893"
+  ],
+  "gene_symbol": "P32K",
+  "downstream_ext": 1
+ },
+ "PENTON": {
+  "anno": "Penton base protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PENTON",
+  "downstream_ext": 1
+ },
+ "PIIIA": {
+  "anno": "Capsid vertex protein IIIa precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PIIIA",
+  "downstream_ext": 1
+ },
+ "POL": {
+  "anno": "DNA polymerase",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "POL",
+  "downstream_ext": 1
+ },
+ "PROTEASE": {
+  "anno": "Adenain cysteine protease",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PROTEASE",
+  "downstream_ext": 1
+ },
+ "PTP": {
+  "anno": "Terminal protein precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PTP",
+  "downstream_ext": 1
+ },
+ "PVI": {
+  "anno": "Capsid cement protein VI precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PVI",
+  "downstream_ext": 1
+ },
+ "PVII": {
+  "anno": "Core protein VII precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PVII",
+  "downstream_ext": 1
+ },
+ "PVIII": {
+  "anno": "Capsid cement protein VIII precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PVIII",
+  "downstream_ext": 1
+ },
+ "PX": {
+  "anno": "Core protein X precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PX",
+  "bit_cutoff": 34,
+  "cutoff_source": "panel calls_audit 11 Nov",
+  "downstream_ext": 1
+ },
+ "UXP": {
+  "anno": "U exon protein",
+  "params": {
+   "m": 1
+  },
+  "PMID_claude_generated": [
+   "17881437"
+  ],
+  "gene_symbol": "UXP",
+  "downstream_ext": 1
+ },
+ "K33": {
+  "special": "splice",
+  "anno": "Alternative splicing factor 33K",
+  "gene_symbol": "33K",
+  "feature_type": "CDS",
+  "segment": "Single DNA Segment",
+  "PMID_claude_generated": [
+   "25636034",
+   "7778275"
+  ],
+  "comment": "L4-33K is translated from a spliced mRNA whose intron interrupts the protein coding sequence; L4-22K is the unspliced form and shares exon 1 (PMID 25636034). Splice junctions mapped by cDNA in ovine adenovirus (PMID 7778275). Exon A lengths measured here are not multiples of 3, confirming the mid-codon intron. Called from Splice-Variants/K33.fasta, never from a profile.",
+  "min_len": 125,
+  "max_len": 217
+ },
+ "RH_H": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group DUCK_A; 3 unique seqs from 17 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 270,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_I": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group DUCK_B; 2 unique seqs from 17 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 272,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_J": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group L_BDA; 2 unique seqs from 3 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 332,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_K": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group L_LA2; 1 unique seqs from 2 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 328,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_L": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group L_SA1; 1 unique seqs from 2 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 104,
+  "coverage_cutoff": 0.8,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_A": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group RH4; 6 unique seqs from 24 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 240,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_B": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group RH5; 9 unique seqs from 25 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 222,
+  "coverage_cutoff": 0.65,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_C": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group RH6; 4 unique seqs from 8 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 196,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_D": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group RHR1; 5 unique seqs from 22 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 218,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_E": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group RHR2; 5 unique seqs from 9 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 155,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_F": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group RHR3; 4 unique seqs from 6 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 297,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_G": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "note": "positional group RHX; 1 unique seqs from 2 loci; -m 0 only because every singleton cluster is an identity collapse Every 0.8 cluster built; singletons as duplicate rows (curator rule 10 Nov 2026).",
+  "gene_symbol": "RH",
+  "duplicate_row": true,
+  "bit_cutoff": 231,
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "UNC_RHP_1": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "duplicate_row": true,
+  "bit_cutoff": 320,
+  "note": "psittacine/tern right-end family, positional group RHP_1 (one copy per genome; rhlh/sepRHP). Not RH-homologous: no symbol.",
+  "cutoff_source": "rhlh/sepRHP separability (11 Nov)",
+  "downstream_ext": 1
+ },
+ "UNC_RHP_2": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "duplicate_row": true,
+  "bit_cutoff": 294,
+  "note": "psittacine/tern right-end family, positional group RHP_2 (one copy per genome; rhlh/sepRHP). Not RH-homologous: no symbol.",
+  "cutoff_source": "rhlh/sepRHP separability (11 Nov)",
+  "downstream_ext": 1
+ },
+ "UNC_RHP_3": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "duplicate_row": true,
+  "bit_cutoff": 310,
+  "note": "psittacine/tern right-end family, positional group RHP_3 (one copy per genome; rhlh/sepRHP). Not RH-homologous: no symbol.",
+  "cutoff_source": "rhlh/sepRHP separability (11 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_M": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "RH",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "duplicate_row": true,
+  "bit_cutoff": 140,
+  "note": "single-genome RH-family gene (L_AS); duplicate-row profile per curator rule 10 Nov 2026 (no homologs from nr search).",
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "coverage_cutoff": 0.65,
+  "downstream_ext": 1
+ },
+ "RH_N": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "RH",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "duplicate_row": true,
+  "bit_cutoff": 162,
+  "note": "single-genome RH-family gene (L_GWA); duplicate-row profile per curator rule 10 Nov 2026 (no homologs from nr search).",
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_O": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "RH",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "duplicate_row": true,
+  "bit_cutoff": 228,
+  "note": "single-genome RH-family gene (L_PA1); duplicate-row profile per curator rule 10 Nov 2026 (no homologs from nr search).",
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "coverage_cutoff": 0.8,
+  "downstream_ext": 1
+ },
+ "RH_P": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "RH",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "duplicate_row": true,
+  "bit_cutoff": 195,
+  "note": "single-genome RH-family gene (L_TERN); duplicate-row profile per curator rule 10 Nov 2026 (no homologs from nr search).",
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_Q": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "RH",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "duplicate_row": true,
+  "bit_cutoff": 194,
+  "note": "single-genome RH-family gene (L_UAK); duplicate-row profile per curator rule 10 Nov 2026 (no homologs from nr search).",
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "downstream_ext": 1
+ },
+ "RH_R": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "RH",
+  "params": {
+   "m": 1
+  },
+  "non_essential": true,
+  "duplicate_row": true,
+  "bit_cutoff": 334,
+  "note": "single-genome RH-family gene (L_ZDA); duplicate-row profile per curator rule 10 Nov 2026 (no homologs from nr search).",
+  "cutoff_source": "rhlh/sepRH3 separability (10 Nov)",
+  "coverage_cutoff": 0.8,
+  "downstream_ext": 1
+ },
+ "VI_MAT": {
+  "anno": "Capsid cement protein VI",
+  "gene_symbol": "VI",
+  "upstream_ext": 0,
+  "downstream_ext": 0,
+  "PMID_claude_generated": [
+   "28978703",
+   "25421887"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {
+   "m": 1
+  },
+  "comment": "HAdV-5 pVI residues 34-239: cut after 33 (MSGG^AF) and 239 (IVGL^GV); removes pVIn and the 11-aa protease cofactor pVIc. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 20/20 precursors of this module cut."
+ },
+ "VIII_C": {
+  "anno": "Capsid cement protein VIII, C-terminal fragment",
+  "gene_symbol": "VIII",
+  "upstream_ext": 0,
+  "downstream_ext": 1,
+  "PMID_claude_generated": [
+   "34774568"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {
+   "m": 1
+  },
+  "comment": "HAdV-5 pVIII residues 158-227 (7.6K): cut after 157 (IGGA^GR); the internal propeptide 112-157 is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 20/23 precursors of this module cut."
+ },
+ "IIIA_MAT": {
+  "anno": "Capsid vertex protein IIIa",
+  "gene_symbol": "IIIa",
+  "upstream_ext": 1,
+  "downstream_ext": 0,
+  "PMID_claude_generated": [
+   "2691633"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {
+   "m": 1
+  },
+  "comment": "HAdV-2 pIIIa residues 1-570: cut after 570 (LGGS^GN) removes the 15-aa C-terminal propeptide. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 17/25 precursors of this module cut."
+ }
+}

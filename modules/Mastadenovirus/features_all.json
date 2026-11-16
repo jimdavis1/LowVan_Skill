@@ -1,0 +1,555 @@
+{
+ "DBP": {
+  "anno": "Single-stranded DNA-binding protein",
+  "params": {},
+  "gene_symbol": "DBP",
+  "downstream_ext": 1
+ },
+ "E1B19K": {
+  "anno": "Apoptosis inhibitor and Bcl-2 homolog E1B 19K",
+  "params": {},
+  "gene_symbol": "E1B19K",
+  "downstream_ext": 1
+ },
+ "E1B55K": {
+  "anno": "p53 degradation and mRNA export factor E1B 55K",
+  "params": {},
+  "gene_symbol": "E1B55K",
+  "downstream_ext": 1
+ },
+ "E3_12_5K": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {},
+  "gene_symbol": "E3-12.5K",
+  "non_essential": true,
+  "note": "\"The function of 12.5K is unknown\" (PMID 1585632)",
+  "PMID_claude_generated": [
+   "1585632"
+  ],
+  "downstream_ext": 1
+ },
+ "E3_14_7K": {
+  "anno": "Tumor necrosis factor antagonist E3 14.7K",
+  "params": {},
+  "gene_symbol": "E3_14_7K",
+  "bit_cutoff": 42,
+  "cutoff_source": "12 Nov 2026 panel: real best min 45.4 (10535.1011) vs stacked-on-E3_12_5K max 34.6 (porcine AdV-3) and an opposite-strand extra at the PIIIA locus 38.0 (46921.19); cut between.",
+  "downstream_ext": 1
+ },
+ "E3_CR1D": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "E3-10.9K",
+  "non_essential": true,
+  "note": "Last E3 ORF before RID-alpha. In HAdV-B1 this slot is the polymorphic E3-10.9K ORF (variants 10.9K/9K/7.7K/4.8K, 0-94 aa; membrane-localized, expressed late, function unknown; PMIDs 20739542, 15567028), so annotation stays uncharacterized. Symbol kept from the prior build. 11 Nov 2026: 2 untrained census loci (HAdV-B 115/120 aa) added; a third (1907210.3284, 125 aa) was a truncated HAdV-E CR1-gamma, 100% identical to 35263.17, and was removed to training. 12 Nov 2026 (curator): gene symbol E3-10.9K, the literature name (PMID 20739542); \"CR1-delta\" had no literature use (0 PubMed hits) and is retired. Function searched: membrane localisation and late expression only (20739542); HAdV-3 E3-9K knockout showed no effect on growth, death or release (22882760) -- no demonstrated function, so the annotation stays Uncharacterized lineage-specific protein.",
+  "PMID_claude_generated": [
+   "20739542",
+   "15567028",
+   "22882760"
+  ],
+  "bit_cutoff": 98,
+  "cutoff_source": "selfcover 12 Nov 2026: own min 110 over collection (HAdV-B 7.7K 10519.1940 66 aa, HAdV-66 6.6K 1337398.3 57 aa; size variants per PMID 20739542) vs foreign max 85.5 (E3_CR1G locus 108098.612); midpoint. Was 119 from panel loci only.",
+  "downstream_ext": 1
+ },
+ "E3_CR1G": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "CR1-gamma",
+  "non_essential": true,
+  "PMID_claude_generated": [
+   "32452418",
+   "21683743"
+  ],
+  "note": "D/E E3 ORF in the last CR1 slot before RID-alpha (HAdV-D after E3/49K; species E slot 3). NOT the HAdV-B CR1-gamma (that is CR1G_B). Symbol kept from the prior build. Function unknown. Re-curated by position 11 Nov (para/recur_e3.py, E3 ORF census between E3-12.5K and RID-alpha); every 0.8 cluster built, singletons as duplicate rows. 12 Nov 2026 function search: CR1-gamma: \"unknown function\", dispensable (32452418); 21683743 (HAdV-D37 31.6K) gives predicted motifs only. Annotation stays Uncharacterized lineage-specific protein.",
+  "duplicate_row": true,
+  "bit_cutoff": 376,
+  "cutoff_source": "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 465 (n=69) vs foreign max 288 (census E27 ORF); midpoint.",
+  "downstream_ext": 1
+ },
+ "E3_GP19K": {
+  "anno": "Major histocompatibility complex class I retention glycoprotein E3 gp19K",
+  "params": {},
+  "gene_symbol": "E3_GP19K",
+  "bit_cutoff": 66,
+  "cutoff_source": "12 Nov 2026: own min 86.9 (n=217 collection + papio32916 154mem; after 3 duplicate-row lookup profiles for single-member lineages papio32916, squirrel monkey AdV, SAdV GZ2-7) vs panel stacked-on-CR1B max 46.1 (SAdV-48 995021.3); midpoint.",
+  "note": "12 Nov 2026: species A (HAdV-12/18/31/61) and several simian AdVs have no gp19K -- RefSeq NC_001460 (HAdV-12) lists E3 = 12.5K, CR1-alpha, CR1-beta, RID-alpha, RID-beta, 14.7K, and the HAdV-31 deposits from the genome paper (PMID 19939241) match (database evidence; no paper states the absence directly). The 33-46 bit GP19K calls there were CR1-beta loci and cut 66 removes them. Lookup profiles added for papio32916, squirrel monkey AdV, SAdV GZ2-7.",
+  "downstream_ext": 1
+ },
+ "E3_RIDA": {
+  "anno": "Receptor internalization and degradation complex subunit alpha",
+  "params": {},
+  "gene_symbol": "E3_RIDA",
+  "downstream_ext": 1
+ },
+ "E3_RIDB": {
+  "anno": "Receptor internalization and degradation complex subunit beta",
+  "params": {},
+  "gene_symbol": "E3_RIDB",
+  "downstream_ext": 1
+ },
+ "E4ORF1": {
+  "anno": "PDZ-binding transforming protein E4orf1",
+  "params": {},
+  "gene_symbol": "E4ORF1",
+  "downstream_ext": 1
+ },
+ "E4ORF2": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {},
+  "gene_symbol": "E4orf2",
+  "non_essential": true,
+  "note": "E4-ORF2 protein shown not required (PMID 11134268)",
+  "PMID_claude_generated": [
+   "11134268"
+  ],
+  "bit_cutoff": 44,
+  "cutoff_source": "selfcover + panel 12 Nov 2026: collection min 56.1 (2666326.3, after leftover + dup-row profiles) vs panel stacked-on-POL max 31.0 (x3); midpoint.",
+  "downstream_ext": 1
+ },
+ "E4ORF3": {
+  "anno": "Promyelocytic leukemia body disrupting protein E4orf3",
+  "params": {},
+  "gene_symbol": "E4ORF3",
+  "downstream_ext": 1
+ },
+ "E4ORF4": {
+  "anno": "Protein phosphatase 2A regulatory subunit E4orf4",
+  "params": {},
+  "gene_symbol": "E4ORF4",
+  "downstream_ext": 1
+ },
+ "E4ORF5": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {},
+  "gene_symbol": "E4orf5",
+  "non_essential": true,
+  "note": "only a modest growth effect in BAdV-3 (PMID 11883000)",
+  "PMID_claude_generated": [
+   "11883000"
+  ],
+  "downstream_ext": 1
+ },
+ "E4ORF6": {
+  "anno": "p53 degradation and mRNA export factor E4orf6",
+  "params": {},
+  "gene_symbol": "E4ORF6",
+  "note": " 12 Nov 2026: cutoff 196 now separates E4ORF6 from both the E4ORF6/7 shared first exon (<=181) and the E4ORF6L slot-2 paralogue (<=167), after leftover and targeted duplicate-row profiles lifted divergent single-member lineages (bats, porcine AdV-3, desmodus, polar bear, Eliomys) from 76-167 to >=212. Before that the cutoff was left at default (own loci down to 75). The E4ORF67 splice special is still needed to call ORF6/7 itself. HAdV-D37 52275.274/.283/.288 carry a premature stop (184 of ~300 aa, cov 0.52) and are correctly uncalled under coverage 0.65. BAdV-2-like 114424.4/114429.14 slot-1 copy is broken across frames, so it is uncalled; slot 2 is E4ORF6L.",
+  "bit_cutoff": 196,
+  "cutoff_source": "sep.py 12 Nov 2026 after leftover pass (37 profiles) + 14 targeted duplicate-row lookup profiles for single-member lineages: own min 212 (n=307, 3115880.x) vs E4ORF6L slot-2 max 167 (130371.16) and E4ORF6/7 shared-exon max 181; midpoint of 181/212. Dropped 181-aa fragment 108098.2185 still scores 280 and is called (single-copy E4ORF6 piece).",
+  "downstream_ext": 1
+ },
+ "E4ORF67": {
+  "special": "splice",
+  "anno": "E2F dimerization partner E4orf6/7",
+  "gene_symbol": "E4ORF67",
+  "feature_type": "CDS",
+  "segment": "Single DNA Segment",
+  "PMID_claude_generated": [
+   "2949089",
+   "1836562",
+   "1832724",
+   "8289811",
+   "33239457",
+   "36095031"
+  ],
+  "min_len": 113,
+  "max_len": 165,
+  "comment": "E4-ORF6/7 is the product of an mRNA spliced from the N-terminus of E4 ORF6 onto ORF7 (PMID 2949089); the HAdV-5 protein is 150 aa and its C-terminal 70 aa form the E2F complex (PMID 1836562); it binds E2F and transactivates the E2 promoter (PMID 1832724), inducing E2F dimerization (PMID 8289811). Literature junction: HAdV-2/HAdV-5 CDS complement(join(..33192,33904..34077)), intron 33193..33903 (PMID 33239457; HAdV-5 numbering from the long-read re-annotation OP218818 of PMID 36095031); verified on AC_000008. No paper gives the junction for other species, so DATABASE-ONLY anchors were also used, each verified on sequence (ATG, GT..AG, clean ORF): HAdV-3 NC_011203, HAdV-12 NC_001460, HAdV-40 NC_001454. Extended to other genomes by pairwise alignment of the donor and acceptor regions to the nearest anchor; where the acceptor region did not align, the unique AG keeping the exon-2 protein in frame; donor rescue likewise. Every distinct product was translated and aligned with the anchors: exon 2 in frame, the conserved C-terminal motif W.[GE]G[GS] present (all four anchors; HAdV-31 reads WEEGS), no ambiguity codes. 2366 of 3199 references rest on a database-only anchor for the donor or acceptor. Mastadenovirus. 616 unique references, products 119-150 aa; min_len = 0.95 x shortest. Replaces the deposit-built references (kept as E4ORF67.fasta.deposit_built), 29/165 of which sat off canonical sites."
+ },
+ "FIBER": {
+  "anno": "Fiber protein",
+  "params": {},
+  "gene_symbol": "FIBER",
+  "downstream_ext": 1
+ },
+ "HEXON": {
+  "anno": "Major capsid protein hexon",
+  "params": {},
+  "gene_symbol": "HEXON",
+  "downstream_ext": 1
+ },
+ "IVA2": {
+  "anno": "Genome packaging ATPase IVa2",
+  "params": {},
+  "gene_symbol": "IVA2",
+  "downstream_ext": 1
+ },
+ "I_LEADER": {
+  "anno": "i-leader protein",
+  "params": {},
+  "PMID_claude_generated": [
+   "3005631",
+   "21477385"
+  ],
+  "gene_symbol": "I_LEADER",
+  "downstream_ext": 1
+ },
+ "K100": {
+  "anno": "Hexon assembly chaperone and host shutoff protein 100K",
+  "params": {},
+  "gene_symbol": "K100",
+  "downstream_ext": 1
+ },
+ "K22": {
+  "anno": "Late transcription regulator 22K",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "K22",
+  "downstream_ext": 1
+ },
+ "K52": {
+  "anno": "Genome packaging protein 52/55K",
+  "params": {},
+  "gene_symbol": "K52",
+  "downstream_ext": 1
+ },
+ "PENTON": {
+  "anno": "Penton base protein",
+  "params": {},
+  "gene_symbol": "PENTON",
+  "downstream_ext": 1
+ },
+ "PIIIA": {
+  "anno": "Capsid vertex protein IIIa precursor",
+  "params": {},
+  "gene_symbol": "PIIIA",
+  "downstream_ext": 1
+ },
+ "PIX": {
+  "anno": "Capsid cement protein IX",
+  "params": {},
+  "gene_symbol": "PIX",
+  "downstream_ext": 1
+ },
+ "POL": {
+  "anno": "DNA polymerase",
+  "params": {},
+  "gene_symbol": "POL",
+  "downstream_ext": 1
+ },
+ "PROTEASE": {
+  "anno": "Adenain cysteine protease",
+  "params": {},
+  "gene_symbol": "PROTEASE",
+  "downstream_ext": 1
+ },
+ "PTP": {
+  "anno": "Terminal protein precursor",
+  "params": {},
+  "gene_symbol": "PTP",
+  "downstream_ext": 1
+ },
+ "PV": {
+  "anno": "Core protein V",
+  "params": {},
+  "gene_symbol": "PV",
+  "downstream_ext": 1
+ },
+ "PVI": {
+  "anno": "Capsid cement protein VI precursor",
+  "params": {},
+  "gene_symbol": "PVI",
+  "downstream_ext": 1
+ },
+ "PVII": {
+  "anno": "Core protein VII precursor",
+  "params": {},
+  "gene_symbol": "PVII",
+  "bit_cutoff": 51,
+  "cutoff_source": "calls_audit 11 Nov: extras<=34.3; real>=67.8 except 130310.410 172 aa @31.2 in a HAdV-D genome (real HAdV-D pVII scores ~300: junk)",
+  "downstream_ext": 1
+ },
+ "PVIII": {
+  "anno": "Capsid cement protein VIII precursor",
+  "params": {},
+  "gene_symbol": "PVIII",
+  "downstream_ext": 1
+ },
+ "PX": {
+  "anno": "Core protein X precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PX",
+  "bit_cutoff": 50,
+  "cutoff_source": "12 Nov 2026 panel: lowest real PX best call 62.6 (130308.19); every call <=38.4 is spurious -- 47 extras plus 6 \"best\" calls at 6-9 kb minus strand in the PTP/POL region (130310.217/.221, 1907210.2987/.2988/.3373/.3406), not the pX locus; midpoint.",
+  "downstream_ext": 1
+ },
+ "UXP": {
+  "anno": "U exon protein",
+  "params": {
+   "m": 1
+  },
+  "PMID_claude_generated": [
+   "17881437"
+  ],
+  "gene_symbol": "UXP",
+  "comment": "Calls the U-exon ORF (exon 1 of UXP) only. The full UXP is a 3-exon product (HAdV-5 CDS 31031..30868, 24744..24668, 24041..23629, 217 aa; PMID 17881437; equals the authors' deposit EU202643). It cannot be called until get_splice_variant_features.pl supports more than one junction per reference (see adeno_v3/UXP_SET_ASIDE.md).",
+  "downstream_ext": 1
+ },
+ "K33": {
+  "special": "splice",
+  "anno": "Alternative splicing factor 33K",
+  "gene_symbol": "33K",
+  "feature_type": "CDS",
+  "segment": "Single DNA Segment",
+  "PMID_claude_generated": [
+   "25636034",
+   "7778275"
+  ],
+  "comment": "L4-33K is translated from a spliced mRNA whose intron interrupts the protein coding sequence; L4-22K is the unspliced form and shares exon 1 (PMID 25636034). Splice junctions mapped by cDNA in ovine adenovirus (PMID 7778275). Exon A lengths measured here are not multiples of 3, confirming the mid-codon intron. Called from Splice-Variants/K33.fasta, never from a profile.",
+  "min_len": 109,
+  "max_len": 304
+ },
+ "E3_49K": {
+  "anno": "E3/49K protein",
+  "gene_symbol": "E3-49K",
+  "PMID_claude_generated": [
+   "11752165",
+   "24218549"
+  ],
+  "note": "Species D; secreted, binds CD45 on leukocytes (PMID 24218549). C-terminal half homologous to CR1-beta.",
+  "params": {},
+  "bit_cutoff": 236,
+  "cutoff_source": "selfcover 12 Nov 2026: own min 379 over all 156 collection members + 29 census loci (HAdV-D 49K deposits named CR1-beta, 385-435 aa, score 379-411) vs foreign max 92 (CR1B locus 108098.610); midpoint. Replaces 462, whose foreign max 363 was 130310.221 OTHER_E19 -- that genome's own 49K split by a frameshift (40 + 206 aa), not a foreign protein; the 206-aa piece will be called (single copy, at the 49K locus).",
+  "downstream_ext": 1
+ },
+ "ADP": {
+  "anno": "Adenovirus death protein",
+  "gene_symbol": "ADP",
+  "PMID_claude_generated": [
+   "8642656"
+  ],
+  "note": "HAdV-C E3-11.6K; required for efficient cell lysis and virus release (PMID 8642656). Not homologous to CR1-beta beyond a ~29 aa segment.",
+  "params": {},
+  "bit_cutoff": 180,
+  "cutoff_source": "sep.py 11 Nov 2026: own min 214 (n=29) vs foreign max 145 (census E16, 61-aa ADP fragment); after training 4 gorilla-type ADP loci; midpoint.",
+  "downstream_ext": 1
+ },
+ "E3_6_7K": {
+  "anno": "E3-6.7K protein",
+  "gene_symbol": "E3-6.7K",
+  "PMID_claude_generated": [
+   "15507617",
+   "17538121"
+  ],
+  "note": "HAdV-C CR1-alpha; with RID required for TRAIL-R2 internalization/degradation (PMID 15507617); binds CAML (PMID 17538121).",
+  "params": {},
+  "bit_cutoff": 53,
+  "cutoff_source": "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 68.4 (n=42) vs foreign max 36.8 (CR1A locus). Also removes 18 HAdV-B 47-aa calls at 27.9 bits that start in-frame inside CR1-gamma (internal-Met C-terminal fragments) and CR1G_B cross-calls at 26.8-27.6; midpoint.",
+  "downstream_ext": 1
+ },
+ "CR1G_B": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "CR1-gamma",
+  "non_essential": true,
+  "PMID_claude_generated": [
+   "32452418",
+   "21683743"
+  ],
+  "params": {
+   "m": 1
+  },
+  "duplicate_row": true,
+  "note": "HAdV-B-specific E3 CR1-gamma, slot 2 after gp19K (HAdV-B 20.5K-class; SAdV-28/29); interacts with CR1-beta, function unknown (PMID 32452418). Was inside CR1B_B and E3_CR1G training. Re-curated by position 11 Nov (para/recur_e3.py, E3 ORF census between E3-12.5K and RID-alpha); every 0.8 cluster built, singletons as duplicate rows. 12 Nov 2026 function search: CR1-gamma: \"unknown function\", dispensable (32452418); 21683743 gives predicted motifs only. Annotation stays Uncharacterized lineage-specific protein.",
+  "bit_cutoff": 227,
+  "cutoff_source": "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 309 (n=40) vs foreign max 145 (CR1B locus); midpoint.",
+  "downstream_ext": 1
+ },
+ "CR1B_E2": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "CR1-beta",
+  "non_essential": true,
+  "PMID_claude_generated": [
+   "32452418"
+  ],
+  "params": {
+   "m": 1
+  },
+  "duplicate_row": true,
+  "note": "Species-E/chimpanzee E3 slot-2 ORF of the CR1-beta/gamma family (203 aa); no literature function; family label CR1-beta. Was inside CR1B_B training. Re-curated by position 11 Nov (para/recur_e3.py, E3 ORF census between E3-12.5K and RID-alpha); every 0.8 cluster built, singletons as duplicate rows. 12 Nov 2026 function search: Same literature as CR1B (32452418): no demonstrated function. Annotation stays Uncharacterized lineage-specific protein.",
+  "bit_cutoff": 258,
+  "cutoff_source": "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 385 (n=15) vs foreign max 131 (CR1B locus); midpoint.",
+  "downstream_ext": 1
+ },
+ "E3_ADPL": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "ADP-like",
+  "non_essential": true,
+  "PMID_claude_generated": [
+   "8642656"
+  ],
+  "params": {
+   "m": 1
+  },
+  "duplicate_row": true,
+  "note": "C-like simian/gorilla E3 slot-2 ORF of the ADP family (~280 aa; HAdV-C ADP is 101 aa). ADP function (PMID 8642656) shown only for HAdV-C ADP, so annotated uncharacterized. Previously untrained. Re-curated by position 11 Nov (para/recur_e3.py, E3 ORF census between E3-12.5K and RID-alpha); every 0.8 cluster built, singletons as duplicate rows.",
+  "bit_cutoff": 327,
+  "cutoff_source": "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 523 (n=11) vs foreign max 131 (ADP locus); midpoint.",
+  "downstream_ext": 1
+ },
+ "CR1A": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "CR1-alpha",
+  "non_essential": true,
+  "note": "Merged 11 Nov from orthologous clade groups CR1A_DE,CR1A_B,CR1A_A,CR1A_S1,CR1A_S2,CR1A_WIV19,CR1A_NWM (same E3 slot, same annotation/symbol): as separate features each called every genome's locus (audit/stacks.py); one feature lets the annotator pick one best profile per genome. E3 slot before gp19K (CR1-alpha); HAdV-C 6.7K kept separate as E3_6_7K (literature name). 12 Nov 2026 function search: CR1-alpha: no paper found on its function or by this name beyond genome reports (26002300); symbol from RefSeq product names (e.g. NC_001460). Annotation stays Uncharacterized lineage-specific protein.",
+  "params": {
+   "m": 1
+  },
+  "duplicate_row": true,
+  "bit_cutoff": 137,
+  "cutoff_source": "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 225 (n=111) vs foreign max 48.5 (CR1B locus); midpoint.",
+  "downstream_ext": 1
+ },
+ "CR1B": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "CR1-beta",
+  "non_essential": true,
+  "PMID_claude_generated": [
+   "32452418"
+  ],
+  "note": "Merged 11 Nov from orthologous clade groups CR1B_B,CR1B_E,CR1B_GC,CR1B_AF,CR1B_SQ (same E3 slot, same annotation/symbol): as separate features each called every genome's locus (audit/stacks.py); one feature lets the annotator pick one best profile per genome. E3 slot 1 after gp19K (CR1-beta) in species A, B, E, C-like simians; HAdV-D slot 1 kept separate as E3_49K, HAdV-C as ADP. Slot-2/3 paralogues are separate features (CR1G_B, CR1B_E2, E3_ADPL, E3_CR1G, E3_CR1D). 12 Nov 2026 function search: HAdV-B E3-CR1beta: \"unknown function\", dispensable for growth (32452418). Annotation stays Uncharacterized lineage-specific protein.",
+  "params": {
+   "m": 1
+  },
+  "duplicate_row": true,
+  "bit_cutoff": 264,
+  "cutoff_source": "para/Mastadenovirus.E3.sep.out, 11 Nov 2026 (196-genome positional E3 census): own min 341 (n=99) vs foreign max 186 (census E24 ORF); midpoint.",
+  "downstream_ext": 1
+ },
+ "E4ORF6L": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 2
+  },
+  "gene_symbol": "E4ORF6-like",
+  "PMID_claude_generated": [
+   "9778793"
+  ],
+  "duplicate_row": true,
+  "note": "Ruminant/porcine E4 tandem paralogue of E4orf6 (34K): the upstream copy (further from ORF6/7) in BAdV-1/2/3, PAdV-5, OAdV-8, goat, deer, reindeer and roe-deer AdVs. BAdV-3 E4 ORF3 and ORF5 are both partial homologues of HAdV-2 E4 34K (PMID 9778793); no function is shown for either, so the upstream copy is uncharacterized and the downstream copy keeps E4ORF6. Split by position (para/E4ORF6.classmap.tsv, clusters C2+C5 = slot 2), 11 Nov 2026. Was calling as a second E4ORF6 in 23 genomes.",
+  "bit_cutoff": 306,
+  "cutoff_source": "sep.py 11 Nov 2026: own min 437 (n=25) vs foreign max 174 (E4ORF6 locus); midpoint.",
+  "downstream_ext": 1
+ },
+ "E1A_13S": {
+  "special": "splice",
+  "gene_symbol": "E1A",
+  "feature_type": "CDS",
+  "segment": "Single DNA Segment",
+  "anno": "Transcriptional activator and retinoblastoma protein binding E1A, 13S mRNA product (289R in HAdV-5)",
+  "PMID_claude_generated": [
+   "2958276",
+   "33239457",
+   "2947381",
+   "2968533",
+   "15068396",
+   "18385237"
+  ],
+  "min_len": 200,
+  "max_len": 321,
+  "comment": "13S product (proximal 5' splice site); differs from the 12S product only by an internal 46-aa segment (PMID 2968533). Junctions come from the literature: HAdV-5 13S 560..1112,1229.. / 12S 560..974,1229.. (PMID 2958276; verified on AC_000008); HAdV-2 559..1111/973,1226.. (PMID 33239457); HAdV-4 576..1140/1047,1233.. (PMID 2947381, reconstructed from the stated 257/226 aa); BAdV-3 606..1215,1323.. (13S only; the authors' own deposit AF030154, PMID 9918888). Extended to other genomes by aligning the donor and acceptor regions to the nearest anchor (two passes, multiple and pairwise; a genome is kept only where the passes agree); start = the in-frame ATG closest to the protein-aligned start; GT/GC..AG required unless the flanks are conserved in context (>=0.8). The 12S product takes the 13S acceptor (shared exon 2, PMID 15068396) and must reproduce the 13S C-terminus exactly. Every distinct product was translated and aligned with the anchor products: exon 2 must align in frame, the product must end in the E1A exon-2 CtBP motif (PxDLS and variants) or match an anchor's own end (the BAdV-3 211R form lacks it), and products with ambiguity codes were removed. References built from deposits were NOT used: 16/26 HAdV-C 12S deposits gave the right protein with the junction 3 nt early (AG..AA). Mastadenovirus: anchors HAdV-2/4/5 cover species C and E directly; other species and animal lineages are site-alignment extensions, each checked as above. 785 unique references, products 211-292 aa. min_len = 0.95 x the shortest reference product (at 0.9 a simian adenovirus A1335 genome with no reference of its own was called through a relative at 200/169 aa, exon 2 only 8 residues)."
+ },
+ "E1A_12S": {
+  "special": "splice",
+  "gene_symbol": "E1A",
+  "feature_type": "CDS",
+  "segment": "Single DNA Segment",
+  "anno": "Retinoblastoma protein binding E1A, 12S mRNA product (243R in HAdV-5)",
+  "PMID_claude_generated": [
+   "2958276",
+   "33239457",
+   "2947381",
+   "2968533",
+   "15068396"
+  ],
+  "min_len": 204,
+  "max_len": 270,
+  "comment": "12S product (distal 5' splice site); lacks the internal 46-aa segment of the 289R protein (PMID 2968533). Junctions come from the literature: HAdV-5 13S 560..1112,1229.. / 12S 560..974,1229.. (PMID 2958276; verified on AC_000008); HAdV-2 559..1111/973,1226.. (PMID 33239457); HAdV-4 576..1140/1047,1233.. (PMID 2947381, reconstructed from the stated 257/226 aa); BAdV-3 606..1215,1323.. (13S only; the authors' own deposit AF030154, PMID 9918888). Extended to other genomes by aligning the donor and acceptor regions to the nearest anchor (two passes, multiple and pairwise; a genome is kept only where the passes agree); start = the in-frame ATG closest to the protein-aligned start; GT/GC..AG required unless the flanks are conserved in context (>=0.8). The 12S product takes the 13S acceptor (shared exon 2, PMID 15068396) and must reproduce the 13S C-terminus exactly. Every distinct product was translated and aligned with the anchor products: exon 2 must align in frame, the product must end in the E1A exon-2 CtBP motif (PxDLS and variants) or match an anchor's own end (the BAdV-3 211R form lacks it), and products with ambiguity codes were removed. References built from deposits were NOT used: 16/26 HAdV-C 12S deposits gave the right protein with the junction 3 nt early (AG..AA). Mastadenovirus: anchors HAdV-2/4/5 cover species C and E directly; other species and animal lineages are site-alignment extensions, each checked as above. 735 unique references, products 215-246 aa. min_len = 0.95 x the shortest reference product."
+ },
+ "VI_MAT": {
+  "anno": "Capsid cement protein VI",
+  "gene_symbol": "VI",
+  "upstream_ext": 0,
+  "downstream_ext": 0,
+  "PMID_claude_generated": [
+   "28978703",
+   "25421887"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {},
+  "comment": "HAdV-5 pVI residues 34-239: cut after 33 (MSGG^AF) and 239 (IVGL^GV); removes pVIn and the 11-aa protease cofactor pVIc. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 337/339 precursors of this module cut.",
+  "bit_cutoff": 61,
+  "cutoff_source": "calls_audit full panel 15 Nov: extras below, real above (midpoint)"
+ },
+ "VII_MAT": {
+  "anno": "Core protein VII",
+  "gene_symbol": "VII",
+  "upstream_ext": 0,
+  "downstream_ext": 1,
+  "PMID_claude_generated": [
+   "6336325",
+   "28978703"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {},
+  "comment": "HAdV-2/5 pVII residues 25-198: cut after 24 (MFGG^AK). The non-consensus pVIIn site at 13 is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 233/233 precursors of this module cut.",
+  "bit_cutoff": 43,
+  "cutoff_source": "calls_audit full panel 15 Nov: extras below, real above (midpoint)"
+ },
+ "VIII_N": {
+  "anno": "Capsid cement protein VIII, N-terminal fragment",
+  "gene_symbol": "VIII",
+  "upstream_ext": 1,
+  "downstream_ext": 0,
+  "PMID_claude_generated": [
+   "34774568"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {},
+  "comment": "HAdV-5 pVIII residues 1-111 (12.1K): cut after 111 (LAGG^FR). Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 248/252 precursors of this module cut."
+ },
+ "VIII_C": {
+  "anno": "Capsid cement protein VIII, C-terminal fragment",
+  "gene_symbol": "VIII",
+  "upstream_ext": 0,
+  "downstream_ext": 1,
+  "PMID_claude_generated": [
+   "34774568"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {},
+  "comment": "HAdV-5 pVIII residues 158-227 (7.6K): cut after 157 (IGGA^GR); the internal propeptide 112-157 is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 247/252 precursors of this module cut.",
+  "bit_cutoff": 36,
+  "cutoff_source": "calls_audit full panel 15 Nov: extras below, real above (midpoint)"
+ },
+ "TP_MAT": {
+  "anno": "Terminal protein",
+  "gene_symbol": "TP",
+  "upstream_ext": 0,
+  "downstream_ext": 1,
+  "PMID_claude_generated": [
+   "25421887"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {},
+  "comment": "HAdV-5 pTP residues 350-671: cut after 349 (MTGG^VF) gives mature TP; the iTP intermediate (175/183) is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 638/647 precursors of this module cut."
+ },
+ "IIIA_MAT": {
+  "anno": "Capsid vertex protein IIIa",
+  "gene_symbol": "IIIa",
+  "upstream_ext": 1,
+  "downstream_ext": 0,
+  "PMID_claude_generated": [
+   "2691633"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {},
+  "comment": "HAdV-2 pIIIa residues 1-570: cut after 570 (LGGS^GN) removes the 15-aa C-terminal propeptide. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 395/452 precursors of this module cut."
+ }
+}

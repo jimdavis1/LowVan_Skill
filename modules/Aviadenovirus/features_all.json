@@ -1,0 +1,591 @@
+{
+ "ART": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 2
+  },
+  "gene_symbol": "ORF16",
+  "non_essential": true,
+  "note": "distant homology to mono-ADP-ribosyltransferases only",
+  "PMID_claude_generated": [
+   "14604445"
+  ],
+  "bit_cutoff": 100,
+  "cutoff_source": "stacks.py 11 Nov 2026 (452-genome panel): own min 160 (n=181) vs stacked max 40.7 (on ORF17 x2); midpoint.",
+  "downstream_ext": 1
+ },
+ "DBP": {
+  "anno": "Single-stranded DNA-binding protein",
+  "params": {},
+  "gene_symbol": "DBP",
+  "downstream_ext": 1
+ },
+ "DUTPASE": {
+  "anno": "Deoxyuridine triphosphate nucleotidohydrolase",
+  "params": {
+   "m": 1
+  },
+  "note": "dUTPase by motif; knockout alters type I IFN (PMID 27498408); enzyme activity not verified at abstract level",
+  "PMID_claude_generated": [
+   "27498408",
+   "28945170"
+  ],
+  "gene_symbol": "DUTPASE",
+  "bit_cutoff": 52,
+  "cutoff_source": "stacks.py 11 Nov 2026 (452-genome panel): own min 71.2 (n=442) vs stacked max 32.7 (on K100 x1); midpoint.",
+  "downstream_ext": 1
+ },
+ "FIBER_A1": {
+  "anno": "Fiber protein",
+  "params": {},
+  "gene_symbol": "FIBER",
+  "bit_cutoff": 380,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A17": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "bit_cutoff": 476,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A19": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "bit_cutoff": 492,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A2": {
+  "anno": "Fiber protein",
+  "params": {},
+  "gene_symbol": "FIBER",
+  "bit_cutoff": 251,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A21": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "bit_cutoff": 814,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A3": {
+  "anno": "Fiber protein",
+  "params": {},
+  "gene_symbol": "FIBER",
+  "bit_cutoff": 417,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A4": {
+  "anno": "Fiber protein",
+  "params": {},
+  "gene_symbol": "FIBER",
+  "bit_cutoff": 310,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A5": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "bit_cutoff": 364,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A6": {
+  "anno": "Fiber protein",
+  "params": {},
+  "gene_symbol": "FIBER",
+  "bit_cutoff": 488,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "GAM1": {
+  "anno": "Anti-apoptotic and heat shock response inducer GAM-1",
+  "params": {},
+  "PMID_claude_generated": [
+   "17392274",
+   "10400747"
+  ],
+  "gene_symbol": "GAM1",
+  "downstream_ext": 1
+ },
+ "HEXON": {
+  "anno": "Major capsid protein hexon",
+  "params": {},
+  "gene_symbol": "HEXON",
+  "downstream_ext": 1
+ },
+ "IVA2": {
+  "anno": "Genome packaging ATPase IVa2",
+  "params": {},
+  "gene_symbol": "IVA2",
+  "downstream_ext": 1
+ },
+ "K100": {
+  "anno": "Hexon assembly chaperone and host shutoff protein 100K",
+  "params": {},
+  "gene_symbol": "K100",
+  "downstream_ext": 1
+ },
+ "K22": {
+  "anno": "Late transcription regulator 22K",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "K22",
+  "downstream_ext": 1
+ },
+ "K52": {
+  "anno": "Genome packaging protein 52/55K",
+  "params": {},
+  "gene_symbol": "K52",
+  "downstream_ext": 1
+ },
+ "LIPASE": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "ORF19",
+  "non_essential": true,
+  "note": "ORF19-family lipase, FAdV-C/D/E type (also FAdV-B slot 2, pigeon AdV slot 1, psittacine). Split 11 Nov from the CELO type (LIPASE2). lipase homolog; no activity measured; role unknown (PMID 30529235).",
+  "PMID_claude_generated": [
+   "30529235"
+  ],
+  "duplicate_row": true,
+  "bit_cutoff": 613,
+  "cutoff_source": "sep.py 11 Nov 2026: own min 1037 (n=331 slot loci) vs foreign max 189 (LIPASE2 locus); midpoint",
+  "downstream_ext": 1
+ },
+ "ORF10": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 2
+  },
+  "gene_symbol": "Ig-like",
+  "non_essential": true,
+  "note": "as ORF9",
+  "PMID_claude_generated": [
+   "14604445",
+   "15958681"
+  ],
+  "downstream_ext": 1
+ },
+ "ORF11": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {},
+  "gene_symbol": "Ig-like",
+  "non_essential": true,
+  "note": "as ORF9",
+  "PMID_claude_generated": [
+   "14604445",
+   "15958681"
+  ],
+  "downstream_ext": 1
+ },
+ "ORF12": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {},
+  "gene_symbol": "Rep-like",
+  "non_essential": true,
+  "note": "\"None of these ORFs appear to have retained ATPase/helicase function\" (PMID 14604445)",
+  "PMID_claude_generated": [
+   "14604445"
+  ],
+  "downstream_ext": 1
+ },
+ "ORF13": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {},
+  "gene_symbol": "Rep-like",
+  "non_essential": true,
+  "note": "as ORF12",
+  "PMID_claude_generated": [
+   "14604445"
+  ],
+  "downstream_ext": 1
+ },
+ "ORF14": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "Rep-like",
+  "non_essential": true,
+  "note": "Rep-like orthogroup ORF14: single-copy lineages + FAdV-C slot-2 copy (para/ORF14.classmap.tsv). Split by position 11 Nov (curator rule: position curates, sequence calls); every 0.8 cluster built, singletons as duplicate rows. GAP: pigeon AdV-1 (764030) ORF14 homology lies in the C-terminal 183 aa of a 513 aa ORF with no internal start (likely spliced, cf. FAdV-9 ORF14 spliced, PMID 14573794); not trained, uncalled at this cutoff.",
+  "PMID_claude_generated": [
+   "14604445"
+  ],
+  "duplicate_row": true,
+  "bit_cutoff": 268,
+  "cutoff_source": "para/sep.py 11 Nov: midpoint own-orthogroup loci min vs foreign (other ORF14 orthogroups + ORF12/ORF13/REPLIKE loci) max",
+  "downstream_ext": 1
+ },
+ "ORF17": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {},
+  "gene_symbol": "ORF17",
+  "non_essential": true,
+  "note": "dispensable; no gene-specific function 11 Nov 2026 panel: one genome (172859.18, FAdV-2 685) carries an identical second copy 3 kb away (348 bits both); left as a genome-level duplication.",
+  "PMID_claude_generated": [
+   "35638786"
+  ],
+  "downstream_ext": 1
+ },
+ "ORF20": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {},
+  "gene_symbol": "ORF20",
+  "non_essential": true,
+  "note": "dispensable; no gene-specific function",
+  "PMID_claude_generated": [
+   "35638786"
+  ],
+  "bit_cutoff": 102,
+  "cutoff_source": "audit/calls_audit.py 11 Nov: midpoint, extra calls below every best call",
+  "downstream_ext": 1
+ },
+ "ORF22": {
+  "anno": "Retinoblastoma protein binding and E2F activating protein ORF22",
+  "params": {
+   "m": 1
+  },
+  "PMID_claude_generated": [
+   "10400747"
+  ],
+  "gene_symbol": "ORF22",
+  "downstream_ext": 1
+ },
+ "ORF9": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {},
+  "gene_symbol": "Ig-like",
+  "non_essential": true,
+  "note": "Ig-like type-1 TM glycoprotein, function predicted only",
+  "PMID_claude_generated": [
+   "14604445",
+   "15958681"
+  ],
+  "downstream_ext": 1
+ },
+ "PENTON": {
+  "anno": "Penton base protein",
+  "params": {},
+  "gene_symbol": "PENTON",
+  "downstream_ext": 1
+ },
+ "PIIIA": {
+  "anno": "Capsid vertex protein IIIa precursor",
+  "params": {},
+  "gene_symbol": "PIIIA",
+  "downstream_ext": 1
+ },
+ "POL": {
+  "anno": "DNA polymerase",
+  "params": {},
+  "gene_symbol": "POL",
+  "downstream_ext": 1
+ },
+ "PROTEASE": {
+  "anno": "Adenain cysteine protease",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PROTEASE",
+  "downstream_ext": 1
+ },
+ "PTP": {
+  "anno": "Terminal protein precursor",
+  "params": {},
+  "gene_symbol": "PTP",
+  "downstream_ext": 1
+ },
+ "PVI": {
+  "anno": "Capsid cement protein VI precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PVI",
+  "downstream_ext": 1
+ },
+ "PVII": {
+  "anno": "Core protein VII precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PVII",
+  "bit_cutoff": 68,
+  "cutoff_source": "calls_audit 11 Nov: extras<=38 (stacked on PTP/PVI/PX/POL); real>=97.8 except 190064.283 86 aa @32.5 (rotated assembly, not PVII-like)",
+  "downstream_ext": 1
+ },
+ "PVIII": {
+  "anno": "Capsid cement protein VIII precursor",
+  "params": {},
+  "gene_symbol": "PVIII",
+  "downstream_ext": 1
+ },
+ "PX": {
+  "anno": "Core protein X precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PX",
+  "bit_cutoff": 102,
+  "cutoff_source": "audit/calls_audit.py 11 Nov: midpoint, extra calls below every best call",
+  "downstream_ext": 1
+ },
+ "REPLIKE": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "Rep-like",
+  "non_essential": true,
+  "note": "as ORF12 (CELO ORF2)",
+  "PMID_claude_generated": [
+   "14604445"
+  ],
+  "downstream_ext": 1
+ },
+ "UXP": {
+  "anno": "U exon protein",
+  "params": {
+   "m": 1
+  },
+  "PMID_claude_generated": [
+   "17881437"
+  ],
+  "gene_symbol": "UXP",
+  "downstream_ext": 1
+ },
+ "K33": {
+  "special": "splice",
+  "anno": "Alternative splicing factor 33K",
+  "gene_symbol": "33K",
+  "feature_type": "CDS",
+  "segment": "Single DNA Segment",
+  "PMID_claude_generated": [
+   "25636034",
+   "7778275"
+  ],
+  "comment": "L4-33K is translated from a spliced mRNA whose intron interrupts the protein coding sequence; L4-22K is the unspliced form and shares exon 1 (PMID 25636034). Splice junctions mapped by cDNA in ovine adenovirus (PMID 7778275). Exon A lengths measured here are not multiples of 3, confirming the mid-codon intron. Called from Splice-Variants/K33.fasta, never from a profile.",
+  "min_len": 140,
+  "max_len": 295
+ },
+ "FIBER_A10": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "duplicate_row": true,
+  "note": "fiber homology class A10 (fclass/a40, recip-cleaned); 11 loci, 4 unique; no two cluster at mi/mc 0.8, so one duplicate-row profile per distinct sequence (curator rule 10 Nov 2026; RH-group precedent).",
+  "bit_cutoff": 506,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A11": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "duplicate_row": true,
+  "note": "fiber homology class A11 (fclass/a40, recip-cleaned); 11 loci, 4 unique; no two cluster at mi/mc 0.8, so one duplicate-row profile per distinct sequence (curator rule 10 Nov 2026; RH-group precedent).",
+  "bit_cutoff": 713,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A22": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "duplicate_row": true,
+  "note": "fiber homology class A22 (fclass/a40, recip-cleaned); 4 loci, 3 unique; no two cluster at mi/mc 0.8, so one duplicate-row profile per distinct sequence (curator rule 10 Nov 2026; RH-group precedent).",
+  "bit_cutoff": 458,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A24": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "duplicate_row": true,
+  "note": "fiber homology class A24 (fclass/a40, recip-cleaned); 2 loci, 1 unique; no two cluster at mi/mc 0.8, so one duplicate-row profile per distinct sequence (curator rule 10 Nov 2026; RH-group precedent).",
+  "bit_cutoff": 748,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A25": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "duplicate_row": true,
+  "note": "fiber homology class A25 (fclass/a40, recip-cleaned); 2 loci, 1 unique; no two cluster at mi/mc 0.8, so one duplicate-row profile per distinct sequence (curator rule 10 Nov 2026; RH-group precedent).",
+  "bit_cutoff": 624,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A26": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "duplicate_row": true,
+  "note": "fiber homology class A26 (fclass/a40, recip-cleaned); 2 loci, 1 unique; no two cluster at mi/mc 0.8, so one duplicate-row profile per distinct sequence (curator rule 10 Nov 2026; RH-group precedent).",
+  "bit_cutoff": 551,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A29": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "duplicate_row": true,
+  "note": "fiber homology class A29 (fclass/a40, recip-cleaned); 2 loci, 1 unique; no two cluster at mi/mc 0.8, so one duplicate-row profile per distinct sequence (curator rule 10 Nov 2026; RH-group precedent).",
+  "bit_cutoff": 741,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A32": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "duplicate_row": true,
+  "note": "fiber homology class A32 (fclass/a40, recip-cleaned); 2 loci, 1 unique; no two cluster at mi/mc 0.8, so one duplicate-row profile per distinct sequence (curator rule 10 Nov 2026; RH-group precedent).",
+  "bit_cutoff": 690,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "FIBER_A33": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "duplicate_row": true,
+  "note": "fiber homology class A33 (fclass/a40, recip-cleaned); 2 loci, 1 unique; no two cluster at mi/mc 0.8, so one duplicate-row profile per distinct sequence (curator rule 10 Nov 2026; RH-group precedent).",
+  "bit_cutoff": 577,
+  "cutoff_source": "audit/fiber_offline.py 11 Nov: midpoint of own-class census loci min vs foreign-class max",
+  "downstream_ext": 1
+ },
+ "ORF14A": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "Rep-like",
+  "non_essential": true,
+  "note": "Rep-like orthogroup ORF14A: slot-1 copy of multi-copy genomes (FAdV-C, pigeon AdV-2/Otus scops, psittacine AdV-1); ORF14A per PMID 16791424/36851744 (FAdV-4/10 \"duplicates of ORF14\"). Split by position 11 Nov (curator rule: position curates, sequence calls); every 0.8 cluster built, singletons as duplicate rows.",
+  "PMID_claude_generated": [
+   "14604445",
+   "16791424",
+   "36851744"
+  ],
+  "duplicate_row": true,
+  "bit_cutoff": 292,
+  "cutoff_source": "para/sep.py 11 Nov: midpoint own-orthogroup loci min vs foreign (other ORF14 orthogroups + ORF12/ORF13/REPLIKE loci) max",
+  "downstream_ext": 1
+ },
+ "ORF14B": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "Rep-like",
+  "non_essential": true,
+  "note": "Rep-like orthogroup ORF14B: FAdV-C slot-3 copy, 209 aa = published ORF14B (PMID 16791424/36851744). Split by position 11 Nov (curator rule: position curates, sequence calls); every 0.8 cluster built, singletons as duplicate rows.",
+  "PMID_claude_generated": [
+   "14604445",
+   "16791424",
+   "36851744"
+  ],
+  "duplicate_row": true,
+  "bit_cutoff": 256,
+  "cutoff_source": "para/sep.py 11 Nov: midpoint own-orthogroup loci min vs foreign (other ORF14 orthogroups + ORF12/ORF13/REPLIKE loci) max",
+  "downstream_ext": 1
+ },
+ "LIPASE2": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "ORF19",
+  "non_essential": true,
+  "note": "ORF19-family lipase paralogue, CELO/FAdV-A type (FAdV-A, FAdV-B slot 1, pigeon AdV slot 2, turkey AdV-1, cormorant); split 11 Nov from LIPASE by orthogroup (para/LIPASE.classmap.tsv): FAdV-B and pigeon AdVs carry both types. lipase homolog; no activity measured; role unknown.",
+  "PMID_claude_generated": [
+   "14604445",
+   "30529235"
+  ],
+  "duplicate_row": true,
+  "bit_cutoff": 676,
+  "cutoff_source": "sep.py 11 Nov 2026: own min 1166 (n=80) vs foreign max 186 (LIPASE locus); midpoint. Excluded C11/C13 pieces (FAdV-A Phelps 453 aa, pigeon AdV-2 slot-2 430 aa) score 957/856 at cov 0.66/0.67 and WILL be called LIPASE2 -- each is the truncated LIPASE2-slot ORF of its own genome, so the call is single-copy and orthologous, not contamination.",
+  "downstream_ext": 1
+ },
+ "VI_MAT": {
+  "anno": "Capsid cement protein VI",
+  "gene_symbol": "VI",
+  "upstream_ext": 0,
+  "downstream_ext": 0,
+  "PMID_claude_generated": [
+   "28978703",
+   "25421887"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {
+   "m": 1
+  },
+  "comment": "HAdV-5 pVI residues 34-239: cut after 33 (MSGG^AF) and 239 (IVGL^GV); removes pVIn and the 11-aa protease cofactor pVIc. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 45/46 precursors of this module cut."
+ },
+ "VIII_N": {
+  "anno": "Capsid cement protein VIII, N-terminal fragment",
+  "gene_symbol": "VIII",
+  "upstream_ext": 1,
+  "downstream_ext": 0,
+  "PMID_claude_generated": [
+   "34774568"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {},
+  "comment": "HAdV-5 pVIII residues 1-111 (12.1K): cut after 111 (LAGG^FR). Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 74/81 precursors of this module cut."
+ },
+ "IIIA_MAT": {
+  "anno": "Capsid vertex protein IIIa",
+  "gene_symbol": "IIIa",
+  "upstream_ext": 1,
+  "downstream_ext": 0,
+  "PMID_claude_generated": [
+   "2691633"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {},
+  "comment": "HAdV-2 pIIIa residues 1-570: cut after 570 (LGGS^GN) removes the 15-aa C-terminal propeptide. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 61/94 precursors of this module cut."
+ }
+}

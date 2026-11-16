@@ -1,0 +1,815 @@
+{
+   "Barthadenovirus" : {
+      "close_genomes" : {
+         "Barthadenovirus.1.dna" : {
+            "genome_ids" : "130329.74.con.0001",
+            "genome_name" : "Duck adenovirus 1 127"
+         },
+         "Barthadenovirus.10.dna" : {
+            "genome_ids" : "189830.3.con.0001",
+            "genome_name" : "Snake adenovirus 1 145/88"
+         },
+         "Barthadenovirus.11.dna" : {
+            "genome_ids" : "2913659.5.con.0001",
+            "genome_name" : "Tern atadenovirus 1 SIB_81"
+         },
+         "Barthadenovirus.12.dna" : {
+            "genome_ids" : "874272.10.con.0001",
+            "genome_name" : "Lizard adenovirus 2"
+         },
+         "Barthadenovirus.13.dna" : {
+            "genome_ids" : "10535.1374.con.0001",
+            "genome_name" : "unidentified adenovirus k141_167389"
+         },
+         "Barthadenovirus.14.dna" : {
+            "genome_ids" : "1580497.4.con.0001",
+            "genome_name" : "Psittacine adenovirus 3"
+         },
+         "Barthadenovirus.15.dna" : {
+            "genome_ids" : "2558248.4.con.0001",
+            "genome_name" : "Adenoviridae sp."
+         },
+         "Barthadenovirus.16.dna" : {
+            "genome_ids" : "2558248.5.con.0001",
+            "genome_name" : "Adenoviridae sp."
+         },
+         "Barthadenovirus.17.dna" : {
+            "genome_ids" : "2558248.8.con.0001",
+            "genome_name" : "Adenoviridae sp."
+         },
+         "Barthadenovirus.18.dna" : {
+            "genome_ids" : "2558248.9.con.0001",
+            "genome_name" : "Adenoviridae sp."
+         },
+         "Barthadenovirus.19.dna" : {
+            "genome_ids" : "2779174.3.con.0001",
+            "genome_name" : "Passerine adenovirus 1"
+         },
+         "Barthadenovirus.2.dna" : {
+            "genome_ids" : "78522.11.con.0001",
+            "genome_name" : "Odocoileus adenovirus 1"
+         },
+         "Barthadenovirus.20.dna" : {
+            "genome_ids" : "3043889.3.con.0001",
+            "genome_name" : "Agile wallaby atadenovirus 1 GOP3/1"
+         },
+         "Barthadenovirus.21.dna" : {
+            "genome_ids" : "3068774.3.con.0001",
+            "genome_name" : "Grey warbler atadenovirus GEIG"
+         },
+         "Barthadenovirus.22.dna" : {
+            "genome_ids" : "3073259.3.con.0001",
+            "genome_name" : "Zoothera dauma adenovirus cd_2020_s1"
+         },
+         "Barthadenovirus.3.dna" : {
+            "genome_ids" : "3115883.3.con.0001",
+            "genome_name" : "Adenovirus varanus37597 Adeno37597"
+         },
+         "Barthadenovirus.4.dna" : {
+            "genome_ids" : "3115884.3.con.0001",
+            "genome_name" : "Adenovirus zootoca35082 Adeno35082"
+         },
+         "Barthadenovirus.5.dna" : {
+            "genome_ids" : "10511.10.con.0001",
+            "genome_name" : "Bovine adenovirus 7 TS-GT"
+         },
+         "Barthadenovirus.6.dna" : {
+            "genome_ids" : "130499.16.con.0001",
+            "genome_name" : "Bovine atadenovirus D THT/62"
+         },
+         "Barthadenovirus.7.dna" : {
+            "genome_ids" : "114430.14.con.0001",
+            "genome_name" : "Ovine adenovirus 7 OAV287"
+         },
+         "Barthadenovirus.8.dna" : {
+            "genome_ids" : "2729647.3.con.0001",
+            "genome_name" : "Bearded dragon adenovirus 1 BD5H2"
+         },
+         "Barthadenovirus.9.dna" : {
+            "genome_ids" : "1580497.3.con.0001",
+            "genome_name" : "Psittacine adenovirus 3"
+         }
+      },
+      "features" : {
+         "DBP" : {
+            "anno" : "Single-stranded DNA-binding protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "DBP",
+            "kmers" : 1,
+            "max_len" : 524,
+            "min_len" : 341,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E4_1" : {
+            "PMID_claude_generated" : [
+               "9614874"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E4.1",
+            "kmers" : 1,
+            "max_len" : 246,
+            "min_len" : 58,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E4_2" : {
+            "PMID_claude_generated" : [
+               "9614874"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 92,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E4.2",
+            "kmers" : 1,
+            "max_len" : 284,
+            "min_len" : 172,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "E4_3" : {
+            "PMID_claude_generated" : [
+               "14972537"
+            ],
+            "anno" : "E2F-dependent E2 promoter activator E4.3",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "E4.3",
+            "kmers" : 1,
+            "max_len" : 323,
+            "min_len" : 165,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "FIBER" : {
+            "anno" : "Fiber protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "FIBER",
+            "kmers" : 1,
+            "max_len" : 1767,
+            "min_len" : 311,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "HEXON" : {
+            "anno" : "Major capsid protein hexon",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "HEXON",
+            "kmers" : 1,
+            "max_len" : 990,
+            "min_len" : 844,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "IIIA_MAT" : {
+            "PMID_claude_generated" : [
+               "2691633"
+            ],
+            "anno" : "Capsid vertex protein IIIa",
+            "bit_cutoff" : 60,
+            "comment" : "HAdV-2 pIIIa residues 1-570: cut after 570 (LGGS^GN) removes the 15-aa C-terminal propeptide. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 17/25 precursors of this module cut.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "IIIa",
+            "kmers" : 1,
+            "max_len" : 642,
+            "min_len" : 465,
+            "segment" : "Single DNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "IVA2" : {
+            "anno" : "Genome packaging ATPase IVa2",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "IVA2",
+            "kmers" : 1,
+            "max_len" : 489,
+            "min_len" : 278,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "K100" : {
+            "anno" : "Hexon assembly chaperone and host shutoff protein 100K",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "K100",
+            "kmers" : 1,
+            "max_len" : 751,
+            "min_len" : 577,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "K33" : {
+            "PMID_claude_generated" : [
+               "25636034",
+               "7778275"
+            ],
+            "anno" : "Alternative splicing factor 33K",
+            "comment" : "L4-33K is translated from a spliced mRNA whose intron interrupts the protein coding sequence; L4-22K is the unspliced form and shares exon 1 (PMID 25636034). Splice junctions mapped by cDNA in ovine adenovirus (PMID 7778275). Exon A lengths measured here are not multiples of 3, confirming the mid-codon intron. Called from Splice-Variants/K33.fasta, never from a profile.",
+            "feature_type" : "CDS",
+            "gene_symbol" : "33K",
+            "max_len" : 217,
+            "min_len" : 125,
+            "segment" : "Single DNA Segment",
+            "special" : "splice",
+            "type" : "CDS"
+         },
+         "K52" : {
+            "anno" : "Genome packaging protein 52/55K",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "K52",
+            "kmers" : 1,
+            "max_len" : 386,
+            "min_len" : 302,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "LH1" : {
+            "PMID_claude_generated" : [
+               "8659111"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "LH1",
+            "kmers" : 1,
+            "max_len" : 138,
+            "min_len" : 109,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "LH2" : {
+            "PMID_claude_generated" : [
+               "33789897"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "LH2",
+            "kmers" : 1,
+            "max_len" : 253,
+            "min_len" : 114,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "LH3" : {
+            "PMID_claude_generated" : [
+               "16112161",
+               "18508893"
+            ],
+            "anno" : "Capsid cementing protein LH3",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "LH3",
+            "kmers" : 1,
+            "max_len" : 754,
+            "min_len" : 339,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "P32K" : {
+            "PMID_claude_generated" : [
+               "9614874",
+               "18508893"
+            ],
+            "anno" : "Structural protein p32K precursor",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "P32K",
+            "kmers" : 1,
+            "max_len" : 376,
+            "min_len" : 255,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PENTON" : {
+            "anno" : "Penton base protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PENTON",
+            "kmers" : 1,
+            "max_len" : 533,
+            "min_len" : 422,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PIIIA" : {
+            "anno" : "Capsid vertex protein IIIa precursor",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PIIIA",
+            "kmers" : 1,
+            "max_len" : 660,
+            "min_len" : 485,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "POL" : {
+            "anno" : "DNA polymerase",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "POL",
+            "kmers" : 1,
+            "max_len" : 1225,
+            "min_len" : 1000,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PROTEASE" : {
+            "anno" : "Adenain cysteine protease",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PROTEASE",
+            "kmers" : 1,
+            "max_len" : 239,
+            "min_len" : 188,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PTP" : {
+            "anno" : "Terminal protein precursor",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PTP",
+            "kmers" : 1,
+            "max_len" : 677,
+            "min_len" : 485,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PVI" : {
+            "anno" : "Capsid cement protein VI precursor",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PVI",
+            "kmers" : 1,
+            "max_len" : 265,
+            "min_len" : 188,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PVII" : {
+            "anno" : "Core protein VII precursor",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PVII",
+            "kmers" : 1,
+            "max_len" : 169,
+            "min_len" : 104,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PVIII" : {
+            "anno" : "Capsid cement protein VIII precursor",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PVIII",
+            "kmers" : 1,
+            "max_len" : 294,
+            "min_len" : 203,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PX" : {
+            "anno" : "Core protein X precursor",
+            "bit_cutoff" : 34,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PX",
+            "kmers" : 1,
+            "max_len" : 93,
+            "min_len" : 60,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_A" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 240,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 168,
+            "min_len" : 135,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_B" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 222,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 228,
+            "min_len" : 186,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_C" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 196,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 181,
+            "min_len" : 94,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_D" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 218,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 186,
+            "min_len" : 96,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_E" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 155,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 131,
+            "min_len" : 73,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_F" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 297,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 209,
+            "min_len" : 170,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_G" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 231,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 139,
+            "min_len" : 124,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_H" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 270,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 177,
+            "min_len" : 156,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_I" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 272,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 180,
+            "min_len" : 159,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_J" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 332,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 260,
+            "min_len" : 231,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_K" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 328,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 257,
+            "min_len" : 228,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_L" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 104,
+            "coverage_cutoff" : 0.8,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 72,
+            "min_len" : 63,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_M" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 140,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 130,
+            "min_len" : 115,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_N" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 162,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 103,
+            "min_len" : 92,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_O" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 228,
+            "coverage_cutoff" : 0.8,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 217,
+            "min_len" : 192,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_P" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 195,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 198,
+            "min_len" : 102,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_Q" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 194,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 143,
+            "min_len" : 126,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RH_R" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 334,
+            "coverage_cutoff" : 0.8,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RH",
+            "kmers" : 1,
+            "max_len" : 285,
+            "min_len" : 252,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "UNC_RHP_1" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 320,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "UNC_RHP_1",
+            "kmers" : 1,
+            "max_len" : 257,
+            "min_len" : 225,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "UNC_RHP_2" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 294,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "UNC_RHP_2",
+            "kmers" : 1,
+            "max_len" : 260,
+            "min_len" : 199,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "UNC_RHP_3" : {
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 310,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "UNC_RHP_3",
+            "kmers" : 1,
+            "max_len" : 241,
+            "min_len" : 214,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "UXP" : {
+            "PMID_claude_generated" : [
+               "17881437"
+            ],
+            "anno" : "U exon protein",
+            "bit_cutoff" : 25,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "UXP",
+            "kmers" : 1,
+            "max_len" : 135,
+            "min_len" : 49,
+            "segment" : "Single DNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VIII_C" : {
+            "PMID_claude_generated" : [
+               "34774568"
+            ],
+            "anno" : "Capsid cement protein VIII, C-terminal fragment",
+            "bit_cutoff" : 25,
+            "comment" : "HAdV-5 pVIII residues 158-227 (7.6K): cut after 157 (IGGA^GR); the internal propeptide 112-157 is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 20/23 precursors of this module cut.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VIII",
+            "kmers" : 1,
+            "max_len" : 108,
+            "min_len" : 66,
+            "segment" : "Single DNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "VI_MAT" : {
+            "PMID_claude_generated" : [
+               "28978703",
+               "25421887"
+            ],
+            "anno" : "Capsid cement protein VI",
+            "bit_cutoff" : 30,
+            "comment" : "HAdV-5 pVI residues 34-239: cut after 33 (MSGG^AF) and 239 (IVGL^GV); removes pVIn and the 11-aa protease cofactor pVIc. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 20/20 precursors of this module cut.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "VI",
+            "kmers" : 1,
+            "max_len" : 221,
+            "min_len" : 151,
+            "segment" : "Single DNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single DNA Segment" : {
+            "max_len" : 50814,
+            "min_len" : 19060,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

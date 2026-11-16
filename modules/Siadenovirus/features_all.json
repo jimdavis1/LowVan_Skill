@@ -1,0 +1,258 @@
+{
+ "DBP": {
+  "special": "splice",
+  "anno": "Single-stranded DNA-binding protein",
+  "gene_symbol": "DBP",
+  "feature_type": "CDS",
+  "segment": "Single DNA Segment",
+  "PMID_claude_generated": [
+   "39107824"
+  ],
+  "min_len": 349,
+  "max_len": 420,
+  "comment": "Siadenovirus DBP is spliced: turkey hemorrhagic enteritis virus (THEV, Virginia avirulent strain) CDS starts at 18186 with a 10-residue exon 1, donor 18159, a 72-nt intron, acceptor 18087, giving a 380-aa protein (PMID 39107824, Tables 2 and S3; verified on AY849321: ATG, GT..AG, 380 aa). The previous PSSM called only the exon-2 portion (336-350 aa). Extended to other siadenoviruses by aligning the donor and acceptor regions to the THEV anchor; because exon 1 is too short to align as protein it was located from the acceptor side and, where needed, by searching for the ATG..GT exon 1 that keeps exon 2 in frame and best matches the THEV exon-1 peptide (unique best only). Every distinct product was translated and aligned with the anchor product to confirm exon 2 is in frame. Covers 42 of 69 module genomes; 10 of the misses are partial THEV assemblies (23.8 kb) lacking the region. 17 unique references, products 368-382 aa; min_len = 0.95 x shortest. Jim chose splice over the exon-2 PSSM (13 Nov 2026)."
+ },
+ "E3": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "E3",
+  "non_essential": true,
+  "note": "transcription only",
+  "PMID_claude_generated": [
+   "30639467"
+  ],
+  "downstream_ext": 1
+ },
+ "FIBER": {
+  "anno": "Fiber protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "FIBER",
+  "downstream_ext": 1
+ },
+ "HEXON": {
+  "anno": "Major capsid protein hexon",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "HEXON",
+  "downstream_ext": 1
+ },
+ "HYD": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "HYD",
+  "non_essential": true,
+  "note": "transcription only",
+  "PMID_claude_generated": [
+   "30639467"
+  ],
+  "bit_cutoff": 35,
+  "downstream_ext": 1
+ },
+ "IVA2": {
+  "anno": "Genome packaging ATPase IVa2",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "IVA2",
+  "downstream_ext": 1
+ },
+ "K100": {
+  "anno": "Hexon assembly chaperone and host shutoff protein 100K",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "K100",
+  "downstream_ext": 1
+ },
+ "K22": {
+  "anno": "Late transcription regulator 22K",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "K22",
+  "downstream_ext": 1
+ },
+ "K52": {
+  "anno": "Genome packaging protein 52/55K",
+  "params": {
+   "m": 2
+  },
+  "gene_symbol": "K52",
+  "downstream_ext": 1
+ },
+ "ORF7": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "ORF7",
+  "non_essential": true,
+  "note": "transcription only",
+  "PMID_claude_generated": [
+   "30639467"
+  ],
+  "downstream_ext": 1
+ },
+ "ORF8": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "ORF8",
+  "non_essential": true,
+  "note": "transcription only Untrained singleton members (e.g. 1520004 lineage) get duplicate-row profiles: panel showed the gene present and uncalled (curator rule 10 Nov 2026).",
+  "PMID_claude_generated": [
+   "30639467"
+  ],
+  "duplicate_row": true,
+  "downstream_ext": 1
+ },
+ "PENTON": {
+  "anno": "Penton base protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PENTON",
+  "downstream_ext": 1
+ },
+ "PIIIA": {
+  "anno": "Capsid vertex protein IIIa precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PIIIA",
+  "downstream_ext": 1
+ },
+ "POL": {
+  "anno": "DNA polymerase",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "POL",
+  "downstream_ext": 1
+ },
+ "PROTEASE": {
+  "anno": "Adenain cysteine protease",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PROTEASE",
+  "downstream_ext": 1
+ },
+ "PTP": {
+  "anno": "Terminal protein precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PTP",
+  "downstream_ext": 1
+ },
+ "PVI": {
+  "anno": "Capsid cement protein VI precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PVI",
+  "downstream_ext": 1
+ },
+ "PVII": {
+  "anno": "Core protein VII precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PVII",
+  "downstream_ext": 1
+ },
+ "PVIII": {
+  "anno": "Capsid cement protein VIII precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PVIII",
+  "downstream_ext": 1
+ },
+ "PX": {
+  "anno": "Core protein X precursor",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "PX",
+  "bit_cutoff": 55,
+  "downstream_ext": 1
+ },
+ "SIALIDASE": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "params": {
+   "m": 1
+  },
+  "gene_symbol": "ORF1",
+  "non_essential": true,
+  "note": "sialidase-like by homology; no sialidase activity ever measured",
+  "PMID_claude_generated": [
+   "30639467"
+  ],
+  "downstream_ext": 1
+ },
+ "UXP": {
+  "anno": "U exon protein",
+  "params": {
+   "m": 1
+  },
+  "PMID_claude_generated": [
+   "17881437"
+  ],
+  "gene_symbol": "UXP",
+  "downstream_ext": 1
+ },
+ "K33": {
+  "special": "splice",
+  "anno": "Alternative splicing factor 33K",
+  "gene_symbol": "33K",
+  "feature_type": "CDS",
+  "segment": "Single DNA Segment",
+  "PMID_claude_generated": [
+   "25636034",
+   "7778275"
+  ],
+  "comment": "L4-33K is translated from a spliced mRNA whose intron interrupts the protein coding sequence; L4-22K is the unspliced form and shares exon 1 (PMID 25636034). Splice junctions mapped by cDNA in ovine adenovirus (PMID 7778275). Exon A lengths measured here are not multiples of 3, confirming the mid-codon intron. Called from Splice-Variants/K33.fasta, never from a profile.",
+  "min_len": 87,
+  "max_len": 139
+ },
+ "VI_MAT": {
+  "anno": "Capsid cement protein VI",
+  "gene_symbol": "VI",
+  "upstream_ext": 0,
+  "downstream_ext": 0,
+  "PMID_claude_generated": [
+   "28978703",
+   "25421887"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {
+   "m": 1
+  },
+  "comment": "HAdV-5 pVI residues 34-239: cut after 33 (MSGG^AF) and 239 (IVGL^GV); removes pVIn and the 11-aa protease cofactor pVIc. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 19/19 precursors of this module cut."
+ },
+ "VII_MAT": {
+  "anno": "Core protein VII",
+  "gene_symbol": "VII",
+  "upstream_ext": 0,
+  "downstream_ext": 1,
+  "PMID_claude_generated": [
+   "6336325",
+   "28978703"
+  ],
+  "feature_type": "mat_peptide",
+  "params": {
+   "m": 1
+  },
+  "comment": "HAdV-2/5 pVII residues 25-198: cut after 24 (MFGG^AK). The non-consensus pVIIn site at 13 is not modelled. Cut sites are the HAdV-2/5 adenovirus protease (AVP) sites from the literature, carried to every precursor in the collection by pairwise alignment to the HAdV-5 protein; a site is accepted only where the member carries the AVP consensus (M/I/L/V)XGX^G or (M/I/L/V)XGG^X (PMID 2691633) at the aligned residue or uniquely within 2 residues. The product is installed in a module only where >=60% of its precursors carry the site. 15/15 precursors of this module cut."
+ }
+}
