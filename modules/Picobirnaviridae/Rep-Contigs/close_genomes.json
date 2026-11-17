@@ -1,0 +1,177 @@
+{
+ "Picobirnaviridae.1.dna": {
+  "genome_ids": "2933228.3,2933228.4",
+  "genome_name": "Hubei picobirnavirus 53 87-k141_310399",
+  "contigs": 2,
+  "unit": "merged genome",
+  "accessions": "MZ556530,MZ556531"
+ },
+ "Picobirnaviridae.2.dna": {
+  "genome_ids": "1907787.865",
+  "genome_name": "Picobirnavirus sp. 32-k141_285143",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "ON050065"
+ },
+ "Picobirnaviridae.3.dna": {
+  "genome_ids": "1907787.1328",
+  "genome_name": "Picobirnavirus sp. 339R-k141_331406",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "ON050646"
+ },
+ "Picobirnaviridae.4.dna": {
+  "genome_ids": "1574421.45,1574421.48",
+  "genome_name": "Dromedary picobirnavirus 101C/GpII",
+  "contigs": 2,
+  "unit": "merged genome",
+  "accessions": "LC338001,LC338008"
+ },
+ "Picobirnaviridae.5.dna": {
+  "genome_ids": "442302.282",
+  "genome_name": "Porcine picobirnavirus 15214_NODE_786_len_1629_cov_16.255400",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW977168"
+ },
+ "Picobirnaviridae.6.dna": {
+  "genome_ids": "145856.138,145856.139",
+  "genome_name": "Human picobirnavirus CDC23",
+  "contigs": 2,
+  "unit": "merged genome",
+  "accessions": "KJ663814,KJ663813"
+ },
+ "Picobirnaviridae.7.dna": {
+  "genome_ids": "442302.1203",
+  "genome_name": "Porcine picobirnavirus 15213_NODE_117_len_2679_cov_42.287729",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW978080"
+ },
+ "Picobirnaviridae.8.dna": {
+  "genome_ids": "1525176.3,1525176.4",
+  "genome_name": "Human picobirnavirus VS6600008",
+  "contigs": 2,
+  "unit": "merged genome",
+  "accessions": "KJ206569,KJ206568"
+ },
+ "Picobirnaviridae.9.dna": {
+  "genome_ids": "442302.614",
+  "genome_name": "Porcine picobirnavirus 15216_NODE_285_len_1667_cov_18.147643",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW977489"
+ },
+ "Picobirnaviridae.10.dna": {
+  "genome_ids": "442302.1011",
+  "genome_name": "Porcine picobirnavirus 15211_NODE_153_len_2449_cov_383.544695",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW977891"
+ },
+ "Picobirnaviridae.11.dna": {
+  "genome_ids": "1907787.1183",
+  "genome_name": "Picobirnavirus sp. 285bR-k141_28780",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "ON050488"
+ },
+ "Picobirnaviridae.12.dna": {
+  "genome_ids": "1907787.681,1907787.682",
+  "genome_name": "Picobirnavirus sp. 87-k141_376649",
+  "contigs": 2,
+  "unit": "merged genome",
+  "accessions": "MZ556546,MZ556545"
+ },
+ "Picobirnaviridae.13.dna": {
+  "genome_ids": "442302.1017",
+  "genome_name": "Porcine picobirnavirus 15211_NODE_184_len_2360_cov_25.948373",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW977911"
+ },
+ "Picobirnaviridae.14.dna": {
+  "genome_ids": "145856.214,145856.218",
+  "genome_name": "Human picobirnavirus MRN015AB",
+  "contigs": 2,
+  "unit": "merged genome",
+  "accessions": "OL875315,OL875332"
+ },
+ "Picobirnaviridae.15.dna": {
+  "genome_ids": "2809674.58,2809674.59",
+  "genome_name": "Picobirnaviridae sp. 67-k141_263400",
+  "contigs": 2,
+  "unit": "merged genome",
+  "accessions": "MZ556518,MZ556517"
+ },
+ "Picobirnaviridae.16.dna": {
+  "genome_ids": "1907787.941",
+  "genome_name": "Picobirnavirus sp. 75-k141_143823",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "ON050160"
+ },
+ "Picobirnaviridae.17.dna": {
+  "genome_ids": "442302.1097",
+  "genome_name": "Porcine picobirnavirus 15212_NODE_131_len_2497_cov_28.397215",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW977982"
+ },
+ "Picobirnaviridae.18.dna": {
+  "genome_ids": "1187973.10,1187973.20,1187973.9",
+  "genome_name": "Otarine picobirnavirus PF090203",
+  "contigs": 3,
+  "unit": "merged genome",
+  "accessions": "KU729752,KU729761,KU729750"
+ },
+ "Picobirnaviridae.19.dna": {
+  "genome_ids": "442302.1249",
+  "genome_name": "Porcine picobirnavirus 15213_NODE_208_len_2341_cov_53.867017",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW978130"
+ },
+ "Picobirnaviridae.20.dna": {
+  "genome_ids": "2161795.201",
+  "genome_name": "Marmot picobirnavirus",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "KY928880"
+ },
+ "Picobirnaviridae.21.dna": {
+  "genome_ids": "442302.1451",
+  "genome_name": "Porcine picobirnavirus 15215_NODE_207_len_2625_cov_414.465370",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW978333"
+ },
+ "Picobirnaviridae.22.dna": {
+  "genome_ids": "442302.1504",
+  "genome_name": "Porcine picobirnavirus 15215_NODE_295_len_2421_cov_51.245562",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW978384"
+ },
+ "Picobirnaviridae.23.dna": {
+  "genome_ids": "442302.791",
+  "genome_name": "Porcine picobirnavirus 15209_NODE_200_len_2585_cov_103.059684",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "MW977671"
+ },
+ "Picobirnaviridae.24.dna": {
+  "genome_ids": "1907787.1056",
+  "genome_name": "Picobirnavirus sp. 205-k141_3053",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "ON050310"
+ },
+ "Picobirnaviridae.25.dna": {
+  "genome_ids": "2161795.117",
+  "genome_name": "Marmot picobirnavirus",
+  "contigs": 1,
+  "unit": "single record",
+  "accessions": "KY928801"
+ }
+}

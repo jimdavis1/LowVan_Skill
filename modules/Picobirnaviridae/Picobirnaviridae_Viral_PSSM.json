@@ -1,0 +1,306 @@
+{
+   "Picobirnaviridae" : {
+      "close_genomes" : {
+         "Picobirnaviridae.1.dna" : {
+            "accessions" : "MZ556530,MZ556531",
+            "contigs" : 2,
+            "genome_ids" : "2933228.3,2933228.4",
+            "genome_name" : "Hubei picobirnavirus 53 87-k141_310399",
+            "unit" : "merged genome"
+         },
+         "Picobirnaviridae.10.dna" : {
+            "accessions" : "MW977891",
+            "contigs" : 1,
+            "genome_ids" : "442302.1011",
+            "genome_name" : "Porcine picobirnavirus 15211_NODE_153_len_2449_cov_383.544695",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.11.dna" : {
+            "accessions" : "ON050488",
+            "contigs" : 1,
+            "genome_ids" : "1907787.1183",
+            "genome_name" : "Picobirnavirus sp. 285bR-k141_28780",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.12.dna" : {
+            "accessions" : "MZ556546,MZ556545",
+            "contigs" : 2,
+            "genome_ids" : "1907787.681,1907787.682",
+            "genome_name" : "Picobirnavirus sp. 87-k141_376649",
+            "unit" : "merged genome"
+         },
+         "Picobirnaviridae.13.dna" : {
+            "accessions" : "MW977911",
+            "contigs" : 1,
+            "genome_ids" : "442302.1017",
+            "genome_name" : "Porcine picobirnavirus 15211_NODE_184_len_2360_cov_25.948373",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.14.dna" : {
+            "accessions" : "OL875315,OL875332",
+            "contigs" : 2,
+            "genome_ids" : "145856.214,145856.218",
+            "genome_name" : "Human picobirnavirus MRN015AB",
+            "unit" : "merged genome"
+         },
+         "Picobirnaviridae.15.dna" : {
+            "accessions" : "MZ556518,MZ556517",
+            "contigs" : 2,
+            "genome_ids" : "2809674.58,2809674.59",
+            "genome_name" : "Picobirnaviridae sp. 67-k141_263400",
+            "unit" : "merged genome"
+         },
+         "Picobirnaviridae.16.dna" : {
+            "accessions" : "ON050160",
+            "contigs" : 1,
+            "genome_ids" : "1907787.941",
+            "genome_name" : "Picobirnavirus sp. 75-k141_143823",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.17.dna" : {
+            "accessions" : "MW977982",
+            "contigs" : 1,
+            "genome_ids" : "442302.1097",
+            "genome_name" : "Porcine picobirnavirus 15212_NODE_131_len_2497_cov_28.397215",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.18.dna" : {
+            "accessions" : "KU729752,KU729761,KU729750",
+            "contigs" : 3,
+            "genome_ids" : "1187973.10,1187973.20,1187973.9",
+            "genome_name" : "Otarine picobirnavirus PF090203",
+            "unit" : "merged genome"
+         },
+         "Picobirnaviridae.19.dna" : {
+            "accessions" : "MW978130",
+            "contigs" : 1,
+            "genome_ids" : "442302.1249",
+            "genome_name" : "Porcine picobirnavirus 15213_NODE_208_len_2341_cov_53.867017",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.2.dna" : {
+            "accessions" : "ON050065",
+            "contigs" : 1,
+            "genome_ids" : "1907787.865",
+            "genome_name" : "Picobirnavirus sp. 32-k141_285143",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.20.dna" : {
+            "accessions" : "KY928880",
+            "contigs" : 1,
+            "genome_ids" : "2161795.201",
+            "genome_name" : "Marmot picobirnavirus",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.21.dna" : {
+            "accessions" : "MW978333",
+            "contigs" : 1,
+            "genome_ids" : "442302.1451",
+            "genome_name" : "Porcine picobirnavirus 15215_NODE_207_len_2625_cov_414.465370",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.22.dna" : {
+            "accessions" : "MW978384",
+            "contigs" : 1,
+            "genome_ids" : "442302.1504",
+            "genome_name" : "Porcine picobirnavirus 15215_NODE_295_len_2421_cov_51.245562",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.23.dna" : {
+            "accessions" : "MW977671",
+            "contigs" : 1,
+            "genome_ids" : "442302.791",
+            "genome_name" : "Porcine picobirnavirus 15209_NODE_200_len_2585_cov_103.059684",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.24.dna" : {
+            "accessions" : "ON050310",
+            "contigs" : 1,
+            "genome_ids" : "1907787.1056",
+            "genome_name" : "Picobirnavirus sp. 205-k141_3053",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.25.dna" : {
+            "accessions" : "KY928801",
+            "contigs" : 1,
+            "genome_ids" : "2161795.117",
+            "genome_name" : "Marmot picobirnavirus",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.3.dna" : {
+            "accessions" : "ON050646",
+            "contigs" : 1,
+            "genome_ids" : "1907787.1328",
+            "genome_name" : "Picobirnavirus sp. 339R-k141_331406",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.4.dna" : {
+            "accessions" : "LC338001,LC338008",
+            "contigs" : 2,
+            "genome_ids" : "1574421.45,1574421.48",
+            "genome_name" : "Dromedary picobirnavirus 101C/GpII",
+            "unit" : "merged genome"
+         },
+         "Picobirnaviridae.5.dna" : {
+            "accessions" : "MW977168",
+            "contigs" : 1,
+            "genome_ids" : "442302.282",
+            "genome_name" : "Porcine picobirnavirus 15214_NODE_786_len_1629_cov_16.255400",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.6.dna" : {
+            "accessions" : "KJ663814,KJ663813",
+            "contigs" : 2,
+            "genome_ids" : "145856.138,145856.139",
+            "genome_name" : "Human picobirnavirus CDC23",
+            "unit" : "merged genome"
+         },
+         "Picobirnaviridae.7.dna" : {
+            "accessions" : "MW978080",
+            "contigs" : 1,
+            "genome_ids" : "442302.1203",
+            "genome_name" : "Porcine picobirnavirus 15213_NODE_117_len_2679_cov_42.287729",
+            "unit" : "single record"
+         },
+         "Picobirnaviridae.8.dna" : {
+            "accessions" : "KJ206569,KJ206568",
+            "contigs" : 2,
+            "genome_ids" : "1525176.3,1525176.4",
+            "genome_name" : "Human picobirnavirus VS6600008",
+            "unit" : "merged genome"
+         },
+         "Picobirnaviridae.9.dna" : {
+            "accessions" : "MW977489",
+            "contigs" : 1,
+            "genome_ids" : "442302.614",
+            "genome_name" : "Porcine picobirnavirus 15216_NODE_285_len_1667_cov_18.147643",
+            "unit" : "single record"
+         }
+      },
+      "features" : {
+         "CP" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "19407816",
+                  "32938763"
+               ]
+            },
+            "anno" : "Capsid protein precursor",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CP",
+            "kmers" : 1,
+            "max_len" : 707,
+            "min_len" : 423,
+            "non_pssm_partner" : [
+               "CP_NP"
+            ],
+            "segment" : "Segment 1",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "CP_MAT" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "19407816"
+               ]
+            },
+            "anno" : "Mature capsid protein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "CP_mature",
+            "kmers" : 1,
+            "max_len" : 657,
+            "min_len" : 354,
+            "non_pssm_partner" : [
+               "CP_NP"
+            ],
+            "segment" : "Segment 1",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "CP_NP" : {
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "19407816"
+               ]
+            },
+            "anno" : "Mature N-terminal capsid peptide",
+            "begin" : {
+               "begin_offset" : 0,
+               "begin_pssm" : "CP",
+               "begin_pssm_loc" : "START"
+            },
+            "comment" : "No PSSM, by measurement. The peptide is 20-130 residues of low-complexity basic sequence and clusters at -mi 0.35 into 358 groups of which one reaches 5 members: a profile set built from it would cover 6 of 418 derived peptides. It is called instead from the precursor's own start to the residue before the mature capsid's start. Duquerroy 2009 (PMID 19407816) calls it 'the 7 kD peptide', residues 1-65 of rabbit PBV; no gene symbol is used for it in the literature, so CP_Npep is a descriptor, not a designation.",
+            "end" : {
+               "end_offset" : 1,
+               "end_pssm" : "CP_MAT",
+               "end_pssm_loc" : "START"
+            },
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "CP_Npep",
+            "max_len" : 400,
+            "min_len" : 54,
+            "segment" : "Segment 1",
+            "translate" : 1,
+            "type" : "mat_peptide"
+         },
+         "ORF1" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "21376090"
+               ]
+            },
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ORF1",
+            "kmers" : 1,
+            "max_len" : 339,
+            "min_len" : 95,
+            "segment" : "Segment 1",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "RDRP" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "27078841"
+               ]
+            },
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 300,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "RdRp",
+            "kmers" : 1,
+            "max_len" : 675,
+            "min_len" : 423,
+            "segment" : "Segment 2",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Segment 1" : {
+            "max_len" : 3010,
+            "min_len" : 1800,
+            "replicon_geometry" : "linear"
+         },
+         "Segment 2" : {
+            "max_len" : 2200,
+            "min_len" : 1100,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}
