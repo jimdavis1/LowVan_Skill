@@ -1543,6 +1543,25 @@ because it has no single input file and reads numbers from steps 10, 11 and 12
 at once. Rhabdoviridae and Togaviridae each shipped one and Matonaviridae did
 not, purely because this list used to stop at three.
 
+**And every coverage audit carries a genome map.** This is not optional and it
+is not a nice-to-have: it is the only thing on any page that shows what the
+module actually *does* to a genome — where the features sit, which are
+essential, which are cleavage products of which precursor, and, on a segmented
+taxon, which segment carries what. A reader cannot get that from a table of
+bit cutoffs.
+
+It was missing for ten families in a row because the only generator that
+existed was written for adenoviruses, against that build's own directory
+layout and palette, and nothing in this list said to make one. Jim asked for
+the diagram across several sessions before it was finally written in. The
+generator is now `gen_genome_map.py`, it takes paths on the command line, and
+it handles multi-contig genomes.
+
+Pick the panel genome for the map deliberately: one where **every declared
+feature is called exactly once**, and prefer a well-known isolate over a
+metagenomic contig. On a segmented taxon the genome must be a **merged whole
+genome**, not a lone segment.
+
 ```bash
 python3 scripts/collect_synmap.py .                       # then gen the collapse page
 python3 scripts/collect_registry.py --workdir . --out registry.json
@@ -1552,11 +1571,23 @@ python3 scripts/annotation_rarefaction.py --new coverage_eval/ann \
     --old bvbrc_products.tsv --out rarefaction.json --replicates 100
 python3 scripts/gen_rarefaction.py --rarefaction rarefaction.json \
     --taxon <Family> --out rarefaction.html
+
+#  the genome map, FIRST -- the audit embeds it as a figure block
+python3 scripts/gen_genome_map.py --gto panel/<best_genome>.qual.gto \
+    --module-json <Module>_Viral_PSSM.json --module <Module> \
+    --out <taxon>-genome-map.html
+#  then in the audit facts file, in the first section, after the feature table:
+#      {"type": "figure", "from": "<taxon>-genome-map.html"}
 python3 scripts/gen_coverage_audit.py --facts <taxon>_audit.json \
     --out coverage-audit.html          # <- write the facts file by hand
 
 python3 scripts/check_artifact_html.py *.html    # <- REQUIRED before publishing
 ```
+
+A `figure` block resolves `from` **relative to the current directory**, so run
+the audit generator from the directory holding the pages. The gate: the
+finished coverage audit must contain **two** `<svg>` elements, the genome map
+and the rarefaction curve. One means the map silently did not make it in.
 
 ### Lint every page before publishing it
 
@@ -1868,6 +1899,7 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `evaluate_module.py` | score against **GenBank** CDS via NCBI eutils — slow, rate-limited; use the GTO path unless the submitter comparison is the point |
 | `collect_registry.py` | measure per-feature self-recall |
 | `gen_registry.py` | render the PSSM registry artifact |
+| `gen_genome_map.py` | to-scale genome map of one annotated panel genome, as a `<figure>` for the coverage audit — REQUIRED on every module |
 | `collect_synmap.py` | gather data for the string-collapse artifact |
 | `build_leftover_pssms.py` | second-pass profiles from `Leftover_Seqs.aa` at a member floor of 2 |
 | `filter_unchar.py` | split uncharacterized proteins into `UNC1..UNCn` by homology |
