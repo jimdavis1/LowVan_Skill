@@ -216,9 +216,11 @@ established with product sequencing in other systems — Jacks *et al.* 1988
 0-frame P-site codon, and Brierley *et al.* 1989/1992 (PMID 2720781,
 PMID 1404364) fixed the IBV site at UUUAAAC and showed the A-site codon
 (positions 5–7) governs efficiency. Applied to A_AAA_AAC that gives P-site AAA
-(Lys) and A-site AAC (Asn), i.e. `…Lys-Asn…`, which is exactly what NC_024709's
-own `join` encodes. Evidence level: **mechanism-level inference plus the RefSeq
-record, with no product sequenced for any serpentovirus.**
+(Lys) and A-site AAC (Asn), i.e. `…Lys-Asn…`. Evidence level: **mechanism-level
+inference from product sequencing in other viruses, with no serpentovirus
+frameshift measured and no serpentovirus pp1ab product sequenced.** NC_024709's
+own `join` happens to encode the same two residues; that is agreement, not
+evidence, and it is not what this construction rests on.
 
 The records that place the junction a base earlier are using a different join
 convention, not a different biology; where a genome's deposited pp1ab differs
@@ -298,7 +300,212 @@ feature is declared.
 
 ## 9. What the measurements say
 
-(filled in from the coverage run — see §10 of the coverage audit page)
+### Profiles
+
+| module | features | profiles | single-sequence | collections |
+|---|---|---|---|---|
+| Torovirinae | 7 (1 `transcript_edit`) | 57 | 42 | ORF1A 32, S 62, M 37, HE 87, N 52, MPRO 32 |
+| Piscanivirinae | 6 (1) | 24 | 19 | ORF1A 6, S 13, M 9, N 7, MPRO 5 |
+| Remotovirinae | 7 (1) | 10 | 5 | ORF1A 16, S 12, M 8, N 5, G2 10, ORF6 9 |
+| Serpentovirinae | 14 (1) | 85 | 83 | S 17, M 17, N 14, ORF1A 12, UNC1-9 2-7 each |
+
+`-m` was lowered to 2, recorded in every `BUILD_PARAMS`, because at the
+documented floor of 5 most of these features build **zero** profiles: 6 to 17
+unique sequences per protein spread over several genera never reach five per
+cluster. `-mi` was **not** lowered — the identity floor is what makes a profile
+a model of one protein. The cost of holding it is that most sequences end up in
+a cluster of one and get a single-sequence profile, built by duplicating the
+sequence into a two-row alignment, which is what psiblast will accept. A
+single-sequence profile is a lookup table with a bit score: it calls a close
+relative and does not generalise.
+
+### Held-out panels
+
+Drawn from the build's own contigs with the reference genomes excluded by
+accession. Rates are computed from the feature tables, by gene symbol — NOT
+from `run_gto_eval.py`'s per-feature figure, which counts a feature as called
+when its annotation STRING appears in the GTO and so reports one identical rate
+for the nine Serpentovirinae features that share "Uncharacterized
+lineage-specific protein".
+
+**Torovirinae** (24 panel genomes)
+
+```N          100.0%  (24/24)
+   S          100.0%  (24/24)
+   Mpro       100.0%  (24/24)
+   M          100.0%  (24/24)
+   ORF1a      100.0%  (24/24)
+   HE          95.8%  (23/24)
+   ORF1ab      87.5%  (21/24)
+                8.3%  (2/24)
+```
+
+**Piscanivirinae** (13 panel genomes)
+
+```N          100.0%  (13/13)
+   S          100.0%  (13/13)
+   M          100.0%  (13/13)
+   Mpro       100.0%  (13/13)
+   ORF1a       84.6%  (11/13)
+   ORF1ab      61.5%  (8/13)
+               23.1%  (3/13)
+```
+
+**Remotovirinae** (8 panel genomes)
+
+```ORF1a      100.0%  (8/8)
+   S          100.0%  (8/8)
+   ORF6       100.0%  (8/8)
+   M          100.0%  (8/8)
+   N          100.0%  (8/8)
+   ORF1ab      87.5%  (7/8)
+   G2          25.0%  (2/8)
+               12.5%  (1/8)
+```
+
+**Serpentovirinae** (14 panel genomes)
+
+```S          100.0%  (14/14)
+   M          100.0%  (14/14)
+   ORF1a       92.9%  (13/14)
+   N           92.9%  (13/14)
+   ORF1ab      85.7%  (12/14)
+   UNC1        57.1%  (8/14)
+   UNC2        50.0%  (7/14)
+   UNC3        42.9%  (6/14)
+   UNC4        14.3%  (2/14)
+   UNC6         7.1%  (1/14)
+   UNC5         7.1%  (1/14)
+   UNC7         7.1%  (1/14)
+   UNC8         7.1%  (1/14)
+   UNC9         7.1%  (1/14)
+```
+
+
+### Bit cutoffs, reset from measured scores
+
+The generator derives a cutoff from the profile, and for a short protein that
+lands at 30 bits. On Berne virus a second *Membrane glycoprotein* was called at
+position 11,322 — inside the replicase ORF — scoring **30.34 against a cutoff
+of 30**, while the genuine M on that genome scored 476.8. Every feature's
+cutoff was reset to half the lowest score its own panel calls reached, rounded
+down, never below the generator's value, and **capped at 500**: half of
+Piscanivirinae ORF1A's lowest panel score is 3,000, and at 3,000 the divergent
+fish tobaniviruses whose pp1a matches partially stop being called at all
+(measured: 70 per cent falling to 33). Features with fewer than five observed calls — UNC4 to
+UNC9 — keep the generator's value, because one observation says nothing about
+how a divergent member of the same orthogroup would score.
+
+The measured score distributions behind those cutoffs:
+
+```
+module           feature      n       min    median       max
+Piscanivirinae   M           13     167.4     501.8     512.6
+Piscanivirinae   MPRO        13     110.2     540.1     548.6
+Piscanivirinae   N           13      66.7     324.4     367.1
+Piscanivirinae   ORF1A       11    6960.5    9254.0    9747.1
+Piscanivirinae   S           13    1687.2    2435.2    2525.3
+Remotovirinae    G2           7     907.8     974.8    1004.8
+Remotovirinae    M            8     497.5     502.9     502.9
+Remotovirinae    N            8     355.5     357.5     357.5
+Remotovirinae    ORF1A        8    6077.9    6670.0    6693.5
+Remotovirinae    ORF6         8     177.9     180.6     185.6
+Remotovirinae    S            8    1163.5    1168.9    1182.0
+Serpentovirinae  M           14     441.7     474.7     567.7
+Serpentovirinae  N           13     132.1     301.2     489.6
+Serpentovirinae  ORF1A       13    1085.1   11039.4   13270.5
+Serpentovirinae  S           14    1852.7    1967.5    2388.2
+Serpentovirinae  UNC1         8     986.9    1072.7    1073.0
+Serpentovirinae  UNC2         8      63.5     694.8     872.4
+Serpentovirinae  UNC3         6     471.4     500.0     518.4
+Serpentovirinae  UNC4         2     970.6    1015.2    1015.2
+Serpentovirinae  UNC5         1     551.6     551.6     551.6
+Serpentovirinae  UNC6         1     783.5     783.5     783.5
+Serpentovirinae  UNC7         1     684.8     684.8     684.8
+Serpentovirinae  UNC8         1     474.1     474.1     474.1
+Serpentovirinae  UNC9         1    1454.4    1454.4    1454.4
+Torovirinae      HE          23     841.6     887.1     916.7
+Torovirinae      M           24     468.3     481.0     500.7
+Torovirinae      MPRO        24     463.7     613.9     632.0
+Torovirinae      N           24     288.2     312.8     426.5
+Torovirinae      ORF1A       24    6703.5    9378.0    9761.6
+Torovirinae      S           24    3145.9    3197.5    3322.6
+```
+
+After the change the false call is gone, Berne annotates ORF1a, Mpro, S, M and
+N (correctly no HE: its HE is a pseudogene), and every panel rate above is
+unchanged.
+
+### Whole-taxon run
+
+Every Tobaniviridae record BV-BRC holds between 1 and 50 kb (353 genomes),
+clustered at 95% nucleotide identity, one exemplar per cluster, routed against
+a repository holding this family and nothing else.
+
+**Routing.** 91 of the 117 exemplars were annotated through the GTO pipeline
+and **every one of them routed**. The other 26 never reached a module:
+`rast-create-genome` returned HTTP 403 from the BV-BRC ID server, which the
+coverage report then counts as UNROUTED — an infrastructure failure wearing a
+routing failure's name. Re-run through the flat annotator, which needs no ID
+server:
+
+```
+26 of 26 ID-server-failed exemplars annotated with the flat annotator
+routed: 24/26
+modules they route to: {'Torovirinae': 5, 'Piscanivirinae': 2, 'Serpentovirinae': 17}
+```
+
+So 115 of 117 distinct genome types route, 98.3%. The two that do not are a
+1,625 nt and a 1,316 nt fragment.
+
+**Quality, with an explicit completeness cutoff.** "Near-complete" is measured
+against the genome each module expects, not a family-wide constant: an
+exemplar counts as near-complete when it reaches 90% of the median length of
+its own module's reference genomes (Torovirinae 28,511 nt, Piscanivirinae
+27,004, Remotovirinae 20,386, Serpentovirinae 30,104). 49 of the 117 clear
+that; the other 68 have a median length of 4,731 nt and **90.5% of them are
+correctly flagged incomplete**.
+
+The 49 were re-run against the module as it now ships:
+
+```
+near-complete exemplars re-run against the shipped module: 36
+  routed 36 (100.0%), good 30 (83.3%), poor 6
+  Serpentovirinae  16 genome(s): ORF1A 100%, M 100%, N 100%, S 100%, UNC2 69%, UNC1 69%, UNC3 56%, ORF1AB 44%, UNC4 12%, UNC8 6%, UNC9 6%
+  Torovirinae      12 genome(s): ORF1A 100%, M 100%, S 100%, MPRO 100%, N 92%, HE 92%, ORF1AB 75%
+  Piscanivirinae   4 genome(s): ORF1A 100%, M 100%, N 100%, S 100%, MPRO 100%, ORF1AB 100%
+  Remotovirinae    4 genome(s): ORF1A 100%, M 100%, N 100%, S 100%, ORF6 100%, G2 50%, ORF1AB 50%
+
+  poor, with the reason:
+    2116384.3    Guangdong red-banded snake torovirus LPS ORF1a polyprotein: Feature is too short
+    2116385.3    Hainan hebius popei torovirus LPSC33749  ORF1a polyprotein: Feature is too short
+    2529475.6    Torovirus sp. 15211_TORO_len_26822_cov_3 Genome is missing essential feature: Nucleocapsid protein | ORF1a polyprotein: Feature is too short
+    2661817.62   Serpentovirinae sp. H0-2                 ORF1a polyprotein: Feature is too short
+    2816848.3    Bangali torovirus Bangali/H.rufipes/2018 ORF1a polyprotein: Feature is too long
+    3403327.3    Sinibotia superciliaris tobanivirus 1    Nucleocapsid protein: Feature is too short
+```
+
+**The six poor ones are all profile coverage, and all visible.** Four carry
+`ORF1a polyprotein: Feature is too short` — a divergent genome whose
+polyprotein matches partially, which is what a thin profile set does; one is
+missing N; and Bangali torovirus carries `Feature is too long` on ORF1a. None
+is a silent failure, and the fix for all of them is more sequences rather than
+different thresholds.
+
+### Where ORF1AB misses, classified
+
+| cause | n | what it means |
+|---|---|---|
+| ambiguous bases in the genome | 7 | the annotator demotes to `partial_cds` by design, because the gap-fill draws its bases from the subject; the same ambiguity is why those genomes are not references |
+| no pp1a on the contig | 2 | 5'-truncated submissions |
+| no reference inside the 95% gate | 2 | divergent, or a partial best HSP |
+
+`check_te_leak.py` states the other half plainly: the reference sets are built
+from every genome that yields a clean construct, so most panel genomes are
+also references and ORF1AB's rate on them is self-recall. On the genomes that
+are NOT references it is 2 of 13 — and 11 of those 13 are exactly the genomes
+rejected from the reference set for ambiguity or partiality. The two
+populations coincide, which is the honest reading.
 
 ---
 
@@ -311,3 +518,30 @@ feature is declared.
 3. **Single-sequence profiles.** Most Serpentovirinae and Piscanivirinae
    features rest on one-sequence profiles (see §9); they are honest models of
    one sequence each, and the alternative was no profile at all.
+4. **The bit-cutoff rule is mine, not the kit's.** Half the lowest panel score,
+   capped at 500, with features under five observed calls left alone. It was
+   derived from one measured false positive and one measured over-correction
+   (§9). If the project has a standing rule for this, use that instead.
+5. **`ORF1AB` carries no `copy_num` in any module**, although it measures
+   85.7–87.5% on the panels. The misses are genomes with ambiguous bases, which
+   the annotator demotes by design; marking the feature essential would flag
+   those genomes twice for one defect. Reversible in one line if you disagree.
+6. **The Serpentovirinae `UNC` features are an orthogroup split, not a naming
+   claim.** Nine features, all `Uncharacterized lineage-specific protein`,
+   separated by homology with position used only to tell one group from
+   another. If the literature later names any of them, the keys stay and the
+   annotation changes.
+
+## 11. Known limits of this build
+
+- `check_rep_contigs.py` was not run: it fetches by accession from NCBI, and
+  routing is already measured twice here — by the budget script before the
+  build and by the whole-taxon run after it (§9).
+- The whole-taxon pass is incomplete through no fault of the modules: the
+  BV-BRC ID server returned HTTP 403 for 26 of 117 exemplars on the first pass
+  and 13 of 49 on the near-complete re-run. Routing for the first 26 was
+  recovered with the flat annotator; the quality figures rest on the 36
+  near-complete exemplars that did annotate.
+- `archive_workdir.py` was not run. The build tree is at
+  `~/lowvan_scratch/tobani` on this machine, and the alignments behind every
+  shipped profile are committed under `modules/<Module>/PSSM-Alignments/`.

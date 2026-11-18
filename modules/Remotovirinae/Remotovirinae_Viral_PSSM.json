@@ -1,137 +1,151 @@
 {
-   "Remotovirinae": {
-      "close_genomes": {
-         "Remotovirinae.1.dna": {
-            "genome_ids": "ON330461",
-            "genome_name": "Bovine nidovirus 1 NSWL3"
+   "Remotovirinae" : {
+      "close_genomes" : {
+         "Remotovirinae.1.dna" : {
+            "genome_ids" : "ON330461",
+            "genome_name" : "Bovine nidovirus 1 NSWL3"
          }
       },
-      "features": {
-         "G2": {
-            "PMID_claude_generated": [
-               "{'function': ['25918239']}"
-            ],
-            "anno": "Uncharacterized lineage-specific protein",
-            "bit_cutoff": 60,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "G2",
-            "kmers": 1,
-            "max_len": 482,
-            "min_len": 409,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+      "features" : {
+         "G2" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "25918239"
+               ]
+            },
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 250,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "G2",
+            "kmers" : 1,
+            "max_len" : 482,
+            "min_len" : 409,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "M": {
-            "PMID_claude_generated": [
-               "{'function': ['25918239']}"
-            ],
-            "anno": "Membrane glycoprotein",
-            "bit_cutoff": 30,
-            "copy_num": 1,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "M",
-            "kmers": 1,
-            "max_len": 244,
-            "min_len": 217,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "M" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "25918239"
+               ]
+            },
+            "anno" : "Membrane glycoprotein",
+            "bit_cutoff" : 200,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "M",
+            "kmers" : 1,
+            "max_len" : 244,
+            "min_len" : 217,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "N": {
-            "PMID_claude_generated": [
-               "{'function': ['25918239']}"
-            ],
-            "anno": "Nucleocapsid protein",
-            "bit_cutoff": 30,
-            "copy_num": 1,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "N",
-            "kmers": 1,
-            "max_len": 188,
-            "min_len": 166,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "N" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "25918239"
+               ]
+            },
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 188,
+            "min_len" : 166,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "ORF1A": {
-            "PMID_claude_generated": [
-               "{'function': ['25918239']}"
-            ],
-            "anno": "ORF1a polyprotein",
-            "bit_cutoff": 60,
-            "copy_num": 1,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "ORF1a",
-            "kmers": 1,
-            "max_len": 3300,
-            "min_len": 2926,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "ORF1A" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "25918239"
+               ]
+            },
+            "anno" : "ORF1a polyprotein",
+            "bit_cutoff" : 500,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ORF1a",
+            "kmers" : 1,
+            "max_len" : 3300,
+            "min_len" : 2926,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "ORF1AB": {
-            "PMID_claude_generated": [
-               "{'function': ['25918239']}"
-            ],
-            "anno": "ORF1ab polyprotein",
-            "feature_type": "CDS",
-            "gene_symbol": "ORF1ab",
-            "max_len": 5621,
-            "min_len": 4598,
-            "segment": "Single RNA Segment",
-            "special": "transcript_edit",
-            "type": "CDS"
+         "ORF1AB" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "25918239"
+               ]
+            },
+            "anno" : "ORF1ab polyprotein",
+            "feature_type" : "CDS",
+            "gene_symbol" : "ORF1ab",
+            "max_len" : 5621,
+            "min_len" : 4598,
+            "segment" : "Single RNA Segment",
+            "special" : "transcript_edit",
+            "type" : "CDS"
          },
-         "ORF6": {
-            "PMID_claude_generated": [
-               "{'function': ['25918239']}"
-            ],
-            "anno": "Uncharacterized lineage-specific protein",
-            "bit_cutoff": 30,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "ORF6",
-            "kmers": 1,
-            "max_len": 93,
-            "min_len": 82,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "ORF6" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "25918239"
+               ]
+            },
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 50,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ORF6",
+            "kmers" : 1,
+            "max_len" : 93,
+            "min_len" : 82,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          },
-         "S": {
-            "PMID_claude_generated": [
-               "{'function': ['25918239']}"
-            ],
-            "anno": "Spike protein",
-            "bit_cutoff": 60,
-            "copy_num": 1,
-            "coverage_cutoff": 0.65,
-            "downstream_ext": 1,
-            "feature_type": "CDS",
-            "gene_symbol": "S",
-            "kmers": 1,
-            "max_len": 595,
-            "min_len": 527,
-            "segment": "Single RNA Segment",
-            "type": "CDS",
-            "upstream_ext": 1
+         "S" : {
+            "PMID_claude_generated" : {
+               "function" : [
+                  "25918239"
+               ]
+            },
+            "anno" : "Spike protein",
+            "bit_cutoff" : 500,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S",
+            "kmers" : 1,
+            "max_len" : 595,
+            "min_len" : 527,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
          }
       },
-      "segments": {
-         "Single RNA Segment": {
-            "max_len": 37951,
-            "min_len": 950,
-            "replicon_geometry": "linear"
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 37951,
+            "min_len" : 950,
+            "replicon_geometry" : "linear"
          }
       }
    }

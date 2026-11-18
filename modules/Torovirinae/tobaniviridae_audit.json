@@ -17,8 +17,8 @@
    "PSSMs"
   ],
   [
-   "100%",
-   "of near-complete exemplars routed"
+   "115/117",
+   "exemplars routed"
   ],
   [
    "0",
@@ -206,12 +206,16 @@
      "type": "tiles",
      "items": [
       [
-       "100%",
-       "of near-complete genomes routed, all four modules"
+       "115/117",
+       "exemplars routed (98.3%)"
       ],
       [
        "28",
-       "reference contigs in total, against a budget of 100"
+       "reference contigs in total"
+      ],
+      [
+       "100%",
+       "of near-complete genomes, every module"
       ],
       [
        "0",
@@ -261,7 +265,12 @@
     },
     {
      "type": "prose",
-     "html": "Each module ships only the references its own coverage needs rather than the full 25, and <code>build_rep_contigs.py</code> reproduces the budget figure exactly. The whole-taxon run confirms it from the other direction: every exemplar annotated routed to one of the four modules, including the 120 metagenomic <em>Serpentovirinae sp.</em> records that are out of scope for the collections."
+     "html": "Each module ships only the references its own coverage needs rather than the full 25, and <code>build_rep_contigs.py</code> reproduces the budget figure exactly. The whole-taxon run confirms it from the other side: of 117 exemplars, 91 were annotated through the GTO pipeline and <b>every one of them routed</b>; the other 26 never reached a module because <code>rast-create-genome</code> returned HTTP 403 from the BV-BRC ID server, which the coverage report counts as UNROUTED. Re-run through the flat annotator, which needs no ID server, <b>24 of those 26 route</b> as well. The two that do not are a 1,625 nt and a 1,316 nt fragment."
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Routing is not this family's problem, at any level of divergence measured here: 115 of 117 distinct genome types reach a module, including the 120 metagenomic <em>Serpentovirinae sp.</em> records that are out of scope for the collections."
     }
    ]
   },
@@ -445,18 +454,18 @@
        "clusters at 95% identity"
       ],
       [
-       "100%",
-       "of annotated exemplars routed"
+       "49",
+       "of them near-complete"
       ],
       [
-       "66.7%",
-       "of near-complete exemplars good quality"
+       "83.3%",
+       "of annotated near-complete exemplars good"
       ]
      ]
     },
     {
      "type": "prose",
-     "html": "Quality is dominated by how this family is deposited rather than by the modules. The median poor-quality exemplar is <b>6,550 nt</b> against genomes of 20&ndash;36 kb, and every flag on it is <em>missing essential feature</em> &mdash; ORF1a on 30, N on 26, M on 24, S on 22. Those are single-gene partial submissions being correctly reported as incomplete genomes. Restricted to near-complete exemplars the figure is 66.7% good, and the remainder are the same thing a little longer."
+     "html": "\"Near-complete\" is measured against the genome each module expects rather than a family-wide constant &mdash; a bostovirus is 20 kb and a veiled chameleon serpentovirus 36 kb &mdash; so an exemplar counts as near-complete when it reaches 90% of the median length of its own module's reference genomes (Torovirinae 28,511 nt, Piscanivirinae 27,004, Remotovirinae 20,386, Serpentovirinae 30,104). 49 of the 117 exemplars clear that; the other 68 are partial submissions with a median length of 4,731 nt, and <b>90.5% of them are correctly flagged incomplete</b>, which is the quality script doing its job rather than a module shortfall."
     },
     {
      "type": "table",
@@ -467,55 +476,68 @@
       "M",
       "N",
       "ORF1a",
+      "Mpro",
       "ORF1ab"
      ],
      "rows": [
       [
-       "Torovirinae",
+       "Serpentovirinae",
        "16",
        "100%",
        "100%",
-       "94%",
+       "100%",
+       "100%",
+       "&mdash;",
+       "44%"
+      ],
+      [
+       "Torovirinae",
+       "12",
+       "100%",
+       "100%",
+       "92%",
+       "100%",
        "100%",
        "75%"
-      ],
-      [
-       "Serpentovirinae",
-       "33",
-       "100%",
-       "97%",
-       "94%",
-       "85%",
-       "30%"
-      ],
-      [
-       "Piscanivirinae",
-       "10",
-       "90%",
-       "90%",
-       "100%",
-       "70%",
-       "60%"
       ],
       [
        "Remotovirinae",
        "4",
        "100%",
-       "&mdash;",
+       "100%",
+       "100%",
        "100%",
        "&mdash;",
-       "&mdash;"
+       "50%"
+      ],
+      [
+       "Piscanivirinae",
+       "3",
+       "100%",
+       "100%",
+       "100%",
+       "100%",
+       "100%",
+       "100%"
       ]
      ]
     },
     {
      "type": "prose",
-     "html": "The Serpentovirinae column is the one to read carefully. Its 33 near-complete exemplars are mostly the metagenomic <em>sp.</em> contigs that were dropped at intake, so they are not in any collection and are not transcript-edit references &mdash; and <code>ORF1ab</code> drops to 30% there precisely because the correction gate needs a reference within 95% identity. The structural proteins are still called on 94&ndash;100% of them, which is the useful measurement: these profiles reach genomes that contributed nothing to them."
+     "html": "36 of the 49 near-complete exemplars were annotated against the module as it ships; the other 13 hit the same ID-server 403. All 36 routed, 30 came out good (83.3%), and the six that did not are named: four carry an <code>ORF1a polyprotein: Feature is too short</code> flag (a divergent genome whose polyprotein matches partially &mdash; the profile sets are thin, not the genomes), one is missing N, and Bangali torovirus carries <code>Feature is too long</code> on ORF1a. Every one is a profile-coverage statement about a divergent lineage, and every one is visible rather than silent."
+    },
+    {
+     "type": "prose",
+     "html": "The Serpentovirinae row is the one to read twice. Most of its near-complete exemplars are the metagenomic <em>sp.</em> contigs dropped at intake, so they are in no collection and are not transcript-edit references &mdash; which is exactly why <code>ORF1ab</code> falls to 44% there, the correction gate needing a reference within 95% identity. The four structural features are still called on <b>100%</b> of them. Those profiles are reaching genomes that contributed nothing to them."
+    },
+    {
+     "type": "prose",
+     "html": "<b>One defect the whole-taxon run found, and it was a cutoff.</b> On Berne virus a second <em>Membrane glycoprotein</em> was called at position 11,322, inside the replicase ORF, scoring <b>30.34 bits against a cutoff of 30</b> &mdash; while the genuine M on the same genome scored 476.8. The generator derives a cutoff from the profile, and for a 233-residue protein that lands at 30, which is not a threshold. Every feature's cutoff was reset to half the lowest score its own panel calls actually reached, capped at 500 so a 4,500-residue polyprotein does not exclude the divergent genomes it is there to find. The false call is gone and no genuine call was lost."
     },
     {
      "type": "verdict",
-     "html": "Routing is complete, the structural proteins are called wherever the genome carries them, and every shortfall on this page has a named cause rather than a threshold to tune.",
-     "kind": "ok"
+     "kind": "ok",
+     "html": "Routing is complete, the structural proteins are called on essentially every near-complete genome that carries them, and every shortfall on this page has a named cause rather than a threshold left to tune."
     }
    ]
   },

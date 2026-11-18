@@ -1,10 +1,8 @@
 {
  "G2": {
-  "PMID_claude_generated": {
-   "function": [
-    "25918239"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25918239"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "downstream_ext": 1,
   "gene_symbol": "G2",
@@ -12,11 +10,9 @@
   "segment": "Single RNA Segment"
  },
  "M": {
-  "PMID_claude_generated": {
-   "function": [
-    "25918239"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25918239"
+  ],
   "anno": "Membrane glycoprotein",
   "downstream_ext": 1,
   "gene_symbol": "M",
@@ -24,11 +20,9 @@
   "segment": "Single RNA Segment"
  },
  "N": {
-  "PMID_claude_generated": {
-   "function": [
-    "25918239"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25918239"
+  ],
   "anno": "Nucleocapsid protein",
   "downstream_ext": 1,
   "gene_symbol": "N",
@@ -36,11 +30,9 @@
   "segment": "Single RNA Segment"
  },
  "ORF1A": {
-  "PMID_claude_generated": {
-   "function": [
-    "25918239"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25918239"
+  ],
   "anno": "ORF1a polyprotein",
   "downstream_ext": 1,
   "gene_symbol": "ORF1a",
@@ -48,11 +40,9 @@
   "segment": "Single RNA Segment"
  },
  "ORF1AB": {
-  "PMID_claude_generated": {
-   "function": [
-    "25918239"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25918239"
+  ],
   "anno": "ORF1ab polyprotein",
   "build_note": "min_len/max_len in amino acids, from the 15 transcript_edit references this build wrote: observed 5109-5110 aa, with 10% slack either side.",
   "feature_type": "CDS",
@@ -64,11 +54,9 @@
   "special": "transcript_edit"
  },
  "ORF6": {
-  "PMID_claude_generated": {
-   "function": [
-    "25918239"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25918239"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "downstream_ext": 1,
   "gene_symbol": "ORF6",
@@ -76,11 +64,9 @@
   "segment": "Single RNA Segment"
  },
  "S": {
-  "PMID_claude_generated": {
-   "function": [
-    "25918239"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25918239"
+  ],
   "anno": "Spike protein",
   "downstream_ext": 1,
   "gene_symbol": "S",

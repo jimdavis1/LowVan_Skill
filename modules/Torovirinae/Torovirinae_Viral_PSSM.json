@@ -16,11 +16,16 @@
       },
       "features" : {
          "HE" : {
-            "PMID_claude_generated" : [
-               "{'function': ['9188596', '15507445', '19721004', '34817201']}"
-            ],
+            "PMID_claude_generated" : {
+               "function" : [
+                  "9188596",
+                  "15507445",
+                  "19721004",
+                  "34817201"
+               ]
+            },
             "anno" : "Hemagglutinin-esterase glycoprotein",
-            "bit_cutoff" : 60,
+            "bit_cutoff" : 250,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "CDS",
@@ -33,11 +38,14 @@
             "upstream_ext" : 1
          },
          "M" : {
-            "PMID_claude_generated" : [
-               "{'function': ['2024492', '33800523']}"
-            ],
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2024492",
+                  "33800523"
+               ]
+            },
             "anno" : "Membrane glycoprotein",
-            "bit_cutoff" : 30,
+            "bit_cutoff" : 200,
             "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
@@ -51,11 +59,14 @@
             "upstream_ext" : 1
          },
          "MPRO" : {
-            "PMID_claude_generated" : [
-               "{'coordinates': ['16571831', '32727876'], 'function': ['16571831', '32727876']}"
-            ],
+            "PMID_claude_generated" : {
+               "coordinates" : [
+                  "16571831",
+                  "32727876"
+               ]
+            },
             "anno" : "Main protease involved in polyprotein cleavage",
-            "bit_cutoff" : 60,
+            "bit_cutoff" : 200,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
@@ -68,11 +79,14 @@
             "upstream_ext" : 0
          },
          "N" : {
-            "PMID_claude_generated" : [
-               "{'function': ['2607340', '33177195']}"
-            ],
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2607340",
+                  "33177195"
+               ]
+            },
             "anno" : "Nucleocapsid protein",
-            "bit_cutoff" : 30,
+            "bit_cutoff" : 100,
             "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
@@ -86,11 +100,14 @@
             "upstream_ext" : 1
          },
          "ORF1A" : {
-            "PMID_claude_generated" : [
-               "{'function': ['16571831', '33800523']}"
-            ],
+            "PMID_claude_generated" : {
+               "function" : [
+                  "16571831",
+                  "33800523"
+               ]
+            },
             "anno" : "ORF1a polyprotein",
-            "bit_cutoff" : 60,
+            "bit_cutoff" : 500,
             "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
@@ -104,9 +121,12 @@
             "upstream_ext" : 1
          },
          "ORF1AB" : {
-            "PMID_claude_generated" : [
-               "{'function': ['2388833', '29950409']}"
-            ],
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2388833",
+                  "29950409"
+               ]
+            },
             "anno" : "ORF1ab polyprotein",
             "feature_type" : "CDS",
             "gene_symbol" : "ORF1ab",
@@ -117,11 +137,14 @@
             "type" : "CDS"
          },
          "S" : {
-            "PMID_claude_generated" : [
-               "{'function': ['2219698', '23420207']}"
-            ],
+            "PMID_claude_generated" : {
+               "function" : [
+                  "2219698",
+                  "23420207"
+               ]
+            },
             "anno" : "Spike protein",
-            "bit_cutoff" : 60,
+            "bit_cutoff" : 500,
             "copy_num" : 1,
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,

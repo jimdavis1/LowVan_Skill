@@ -1,11 +1,9 @@
 {
  "M": {
-  "PMID_claude_generated": {
-   "function": [
-    "16987966",
-    "22422065"
-   ]
-  },
+  "PMID_claude_generated": [
+   "16987966",
+   "22422065"
+  ],
   "anno": "Membrane glycoprotein",
   "build_note": "-m 2: this collection holds 9 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -17,14 +15,9 @@
   "segment": "Single RNA Segment"
  },
  "MPRO": {
-  "PMID_claude_generated": {
-   "coordinates": [
-    "21068254"
-   ],
-   "function": [
-    "21068254"
-   ]
-  },
+  "PMID_claude_generated": [
+   "21068254"
+  ],
   "anno": "Main protease involved in polyprotein cleavage",
   "downstream_ext": 0,
   "feature_type": "mat_peptide",
@@ -37,13 +30,11 @@
   "upstream_ext": 0
  },
  "N": {
-  "PMID_claude_generated": {
-   "function": [
-    "16987966",
-    "22422065",
-    "42128078"
-   ]
-  },
+  "PMID_claude_generated": [
+   "16987966",
+   "22422065",
+   "42128078"
+  ],
   "anno": "Nucleocapsid protein",
   "build_note": "-m 2: this collection holds 7 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -55,11 +46,9 @@
   "segment": "Single RNA Segment"
  },
  "ORF1A": {
-  "PMID_claude_generated": {
-   "function": [
-    "16987966"
-   ]
-  },
+  "PMID_claude_generated": [
+   "16987966"
+  ],
   "anno": "ORF1a polyprotein",
   "build_note": "-m 2: this collection holds 6 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -71,11 +60,9 @@
   "segment": "Single RNA Segment"
  },
  "ORF1AB": {
-  "PMID_claude_generated": {
-   "function": [
-    "16987966"
-   ]
-  },
+  "PMID_claude_generated": [
+   "16987966"
+  ],
   "anno": "ORF1ab polyprotein",
   "build_note": "min_len/max_len in amino acids, from the 11 transcript_edit references this build wrote: observed 6643-7174 aa, with 10% slack either side.",
   "feature_type": "CDS",
@@ -87,12 +74,10 @@
   "special": "transcript_edit"
  },
  "S": {
-  "PMID_claude_generated": {
-   "function": [
-    "16987966",
-    "22422065"
-   ]
-  },
+  "PMID_claude_generated": [
+   "16987966",
+   "22422065"
+  ],
   "anno": "Spike protein",
   "build_note": "-m 2: this collection holds 13 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,

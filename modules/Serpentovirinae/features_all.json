@@ -1,10 +1,8 @@
 {
  "M": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Membrane glycoprotein",
   "build_note": "-m 2: this collection holds 17 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -16,12 +14,10 @@
   "segment": "Single RNA Segment"
  },
  "N": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093",
-    "28794044"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093",
+   "28794044"
+  ],
   "anno": "Nucleocapsid protein",
   "build_note": "-m 2: this collection holds 14 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -33,11 +29,9 @@
   "segment": "Single RNA Segment"
  },
  "ORF1A": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "ORF1a polyprotein",
   "build_note": "-m 2: this collection holds 12 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -49,12 +43,10 @@
   "segment": "Single RNA Segment"
  },
  "ORF1AB": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093",
-    "25063552"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093",
+   "25063552"
+  ],
   "anno": "ORF1ab polyprotein",
   "build_note": "min_len/max_len in amino acids, from the 20 transcript_edit references this build wrote: observed 5114-8927 aa, with 10% slack either side.",
   "feature_type": "CDS",
@@ -66,11 +58,9 @@
   "special": "transcript_edit"
  },
  "S": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Spike protein",
   "build_note": "-m 2: this collection holds 17 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -82,12 +72,10 @@
   "segment": "Single RNA Segment"
  },
  "UNC1": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093",
-    "25063552"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093",
+   "25063552"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "build_note": "-m 2: this collection holds 7 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -99,11 +87,9 @@
   "segment": "Single RNA Segment"
  },
  "UNC2": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "build_note": "-m 2: this collection holds 5 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -115,11 +101,9 @@
   "segment": "Single RNA Segment"
  },
  "UNC3": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "build_note": "-m 2: this collection holds 4 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -131,11 +115,9 @@
   "segment": "Single RNA Segment"
  },
  "UNC4": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "build_note": "-m 2: this collection holds 3 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -147,11 +129,9 @@
   "segment": "Single RNA Segment"
  },
  "UNC5": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "build_note": "-m 2: this collection holds 2 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -163,11 +143,9 @@
   "segment": "Single RNA Segment"
  },
  "UNC6": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "build_note": "-m 2: this collection holds 2 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -179,11 +157,9 @@
   "segment": "Single RNA Segment"
  },
  "UNC7": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "build_note": "-m 2: this collection holds 2 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -195,11 +171,9 @@
   "segment": "Single RNA Segment"
  },
  "UNC8": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "build_note": "-m 2: this collection holds 2 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
@@ -211,11 +185,9 @@
   "segment": "Single RNA Segment"
  },
  "UNC9": {
-  "PMID_claude_generated": {
-   "function": [
-    "25205093"
-   ]
-  },
+  "PMID_claude_generated": [
+   "25205093"
+  ],
   "anno": "Uncharacterized lineage-specific protein",
   "build_note": "-m 2: this collection holds 2 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
   "downstream_ext": 1,
