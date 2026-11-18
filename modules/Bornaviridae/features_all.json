@@ -1,0 +1,132 @@
+{
+ "N": {
+  "anno": "Nucleocapsid protein",
+  "gene_symbol": "N",
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "note": "Bornaviral nucleocapsid protein (called the nucleoprotein, N, in this family), the 38/39 kDa doublet that is the most abundant protein in infected cells and >=50% of virion protein; the 39 kDa form carries an N-terminal PKRR nuclear localization signal (PMID 9188580) and assembles the polymerase complex with P and L (PMID 15992626). The 38 kDa alternative-initiation isoform is not modelled -- see notes/LITERATURE.md.",
+  "PMID_claude_generated": [
+   "9188580",
+   "15221540",
+   "15992626"
+  ]
+ },
+ "X": {
+  "anno": "X protein",
+  "gene_symbol": "X",
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "note": "Non-structural X protein (p10), encoded by an ORF overlapping the 5' end of P. A negative regulator of polymerase activity (PMID 15992626); carries an unusual importin-alpha binding motif directing nuclear import (PMID 11796712); interferes with type I interferon signalling (PMID 23100370) and is controlled by Hsc70 (PMID 19397879).",
+  "PMID_claude_generated": [
+   "11796712",
+   "15992626",
+   "19397879",
+   "23100370"
+  ]
+ },
+ "P": {
+  "anno": "Phosphoprotein",
+  "gene_symbol": "P",
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "note": "Phosphoprotein p24, the polymerase cofactor and the central regulatory element directing assembly of the polymerase complex (PMID 15992626); phosphorylated by protein kinase C epsilon and casein kinase II (PMID 9268312).",
+  "PMID_claude_generated": [
+   "9268312",
+   "15992626"
+  ]
+ },
+ "M": {
+  "anno": "Matrix protein",
+  "gene_symbol": "M",
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "note": "Matrix protein; the crystal structure shows a tetramer with single-stranded RNA binding properties (PMID 19237566).",
+  "PMID_claude_generated": [
+   "19237566"
+  ]
+ },
+ "G": {
+  "anno": "Envelope glycoprotein precursor",
+  "gene_symbol": "G",
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "note": "Envelope glycoprotein precursor p57, N-glycosylated to gp94, cleaved by furin into an N-terminal and a C-terminal subunit (PMID 9557754). Required for entry (PMID 9420287), for dissemination in neurons (PMID 14581559) and for cell-to-cell spread (PMID 26332529).",
+  "PMID_claude_generated": [
+   "9420287",
+   "9557754",
+   "14581559",
+   "26332529"
+  ]
+ },
+ "G_N": {
+  "anno": "Mature glycoprotein N-terminal subunit",
+  "gene_symbol": "G_N",
+  "segment": "Single RNA Segment",
+  "feature_type": "mat_peptide",
+  "upstream_ext": 1,
+  "downstream_ext": 0,
+  "note": "N-terminal furin cleavage product of the glycoprotein precursor, residues 1-249 of the 503 aa BoDV-1 protein: Richt 1998 places the cut after Arg249 (PMID 9557754). Derived here by locating the single R-X-[K/R]-R site in the 40-62% window and extending through the basic run: P1=Arg in 150/150 members, P1'=Asp in 149/150, and the BoDV-1 form cuts at exactly 249. It retains the signal peptide, whose cleavage site has never been measured in this family -- so this is the N-terminal furin fragment, not the fully matured ectodomain.",
+  "PMID_claude_generated": [
+   "9557754"
+  ]
+ },
+ "G_C": {
+  "anno": "Mature glycoprotein C-terminal subunit",
+  "gene_symbol": "G_C",
+  "segment": "Single RNA Segment",
+  "feature_type": "mat_peptide",
+  "upstream_ext": 0,
+  "downstream_ext": 1,
+  "note": "C-terminal furin cleavage product of the glycoprotein precursor, residues 250-503 of the 503 aa BoDV-1 protein (PMID 9557754); it carries the transmembrane anchor and runs to the precursor's own stop codon, so downstream_ext is 1 and only the N-terminus is a cleaved end.",
+  "PMID_claude_generated": [
+   "9557754"
+  ]
+ },
+ "L": {
+  "anno": "RNA-dependent RNA polymerase",
+  "gene_symbol": "L",
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "note": "The 190 kDa polymerase, nuclear, phosphorylated and bound to P (PMID 10756058). In Orthobornavirus the product depends on a splicing event that fuses a short upstream ORF in frame with the long downstream ORF (PMID 10756058); measured here, that first exon contributes only 5-6 residues (MSFHA/MSFHAR) and L is collinear in Carbovirus, Cultervirus and Cartilovirus. See notes/LITERATURE.md.",
+  "PMID_claude_generated": [
+   "7831966",
+   "8035500",
+   "10756058",
+   "11070091"
+  ]
+ },
+ "VP1": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "Vp1",
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "params": {
+   "m": 1
+  },
+  "note": "Cartilovirus only. Little skate bornavirus Vp1, an ancient duplication of the glycoprotein gene sharing G's N-terminus but lacking its transmembrane domain, with a predicted furin cleavage site (PMID 38028148). No function has been demonstrated, so the uncharacterized annotation is used and the designation is kept in the gene symbol. The symbol is written Vp1, as the describing paper writes it, to keep it distinct from the picornavirus and parvovirus capsid proteins called VP1.",
+  "PMID_claude_generated": [
+   "38028148"
+  ]
+ },
+ "VP2": {
+  "anno": "Uncharacterized lineage-specific protein",
+  "gene_symbol": "Vp2",
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1,
+  "downstream_ext": 1,
+  "params": {
+   "m": 1
+  },
+  "note": "Cartilovirus only. Little skate bornavirus Vp2, a second duplication sharing only the central region of the glycoprotein, 44% identical to Vp1 (PMID 38028148). No function demonstrated. The symbol is written Vp2, as the describing paper writes it, to keep it distinct from the parvovirus capsid protein called VP2.",
+  "PMID_claude_generated": [
+   "38028148"
+  ]
+ }
+}

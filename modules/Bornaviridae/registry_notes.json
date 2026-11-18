@@ -1,0 +1,25 @@
+{
+ "standfirst": "Every feature the <strong>Bornaviridae</strong> module declares, the profiles behind it, and what fraction of its own collection each one recovers. The family is six proteins &mdash; N, X, P, M, G and L &mdash; plus the two furin products of the glycoprotein and two glycoprotein-derived ORFs that only one genus carries. Built 17&ndash;18 November 2026; every citation on this page is model-proposed and awaits a curator.",
+ "modules": {
+  "Bornaviridae": "One module for the whole family. Gene content is identical in Orthobornavirus, Carbovirus, Cultervirus and Cartilovirus; only the order differs (M and G are transposed outside Orthobornavirus, and Cartilovirus inserts two extra ORFs), and order does not enter a profile. 16 reference contigs route 100% of the 218 near-complete genomes."
+ },
+ "why": {
+  "N": "The 38/39 kDa nucleocapsid doublet, the most abundant protein in infected cells (PMID 9188580). The 38 kDa alternative-initiation isoform is deliberately not a feature: it is an exact C-terminal substring of the 39 kDa form, nothing in BV-BRC deposits it, and the second in-frame Met sits at residue 14 in only 69 of 129 collection members, so no fixed offset is derivable.",
+  "X": "The non-structural X protein (p10), encoded by an ORF overlapping the 5' end of P and a negative regulator of polymerase activity (PMID 15992626). Nine of its eighteen profiles exist only because the coverage run found X uncalled in every non-Orthobornavirus genus; a tenth was recovered by ORF-calling a genome that deposits no X at all.",
+  "P": "The polymerase cofactor p24 (PMID 9268312). Four truncated deposits that begin 19-40 residues inside the protein were dropped before the profiles were built, after check_met_start flagged a cluster whose members start with Gly.",
+  "M": "Matrix protein; the crystal structure shows a tetramer that binds single-stranded RNA (PMID 19237566).",
+  "G": "The envelope glycoprotein precursor p57, glycosylated to gp94 and cleaved by furin (PMID 9557754).",
+  "G_N": "The N-terminal furin product. It retains the signal peptide, because no mature N-terminus has ever been determined for a bornavirus glycoprotein and this build will not ship a prediction as if it were a measurement.",
+  "G_C": "The C-terminal furin product, residues 250-503 of the BoDV-1 precursor. It carries the membrane anchor and runs to the precursor's own stop, so only its N-terminus is a cleaved end.",
+  "L": "The 190 kDa polymerase (PMID 10756058). In Orthobornavirus it is a two-exon protein whose first exon contributes five or six residues, and it is collinear in the other three genera; the limit that follows is stated in the coverage audit rather than hidden.",
+  "VP1": "Cartilovirus only: an ancient duplication of the glycoprotein gene (PMID 38028148). One genome exists in the whole of BV-BRC, so this is a single-sequence profile and its bit cutoff was measured, not defaulted.",
+  "VP2": "Cartilovirus only: a second duplication, 44% identical to Vp1 (PMID 38028148). Also a single-sequence profile."
+ },
+ "derived": [
+  "<strong>G_N and G_C have no collection of their own.</strong> Nothing in BV-BRC is annotated as a mature bornavirus glycoprotein, so both products were cut out of the G collection at the furin site rather than collected. Richt 1998 (PMID 9557754) places that site after the arginine at position 249 of the 503 aa BoDV-1 precursor; the derivation here finds the single R-X-[K/R]-R match in the 40-62% window and extends it through the basic run, which reproduces residue 249 exactly and generalises to every genus."
+ ],
+ "gaps": [
+  "The one protein this module cannot reproduce exactly is the orthobornavirus <strong>L</strong> N-terminus, and the reason is biological rather than a tuning failure: five or six of its residues come from a separate exon.",
+  "<strong>Vp1 and Vp2 rest on one genome each</strong>, which is every Cartilovirus genome that exists in BV-BRC. Their profiles recall that genome and nothing else is available to test them on."
+ ]
+}

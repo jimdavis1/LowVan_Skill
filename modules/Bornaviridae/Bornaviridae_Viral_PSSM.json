@@ -1,0 +1,348 @@
+{
+   "Bornaviridae" : {
+      "close_genomes" : {
+         "Bornaviridae.1.dna" : {
+            "accessions" : "MH190827",
+            "contigs" : 1,
+            "genome_ids" : "1714619.3",
+            "genome_name" : "Orthobornavirus bornaense 112-16",
+            "genus" : "Orthobornavirus",
+            "species" : "Orthobornavirus bornaense",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.10.dna" : {
+            "accessions" : "MF135780",
+            "contigs" : 1,
+            "genome_ids" : "2016401.3",
+            "genome_name" : "Jungle carpet python virus 1",
+            "genus" : "Carbovirus",
+            "species" : "Carbovirus queenslandense",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.11.dna" : {
+            "accessions" : "BK063518",
+            "contigs" : 1,
+            "genome_ids" : "3055759.3",
+            "genome_name" : "little skate bornavirus AoL",
+            "genus" : "Cartilovirus",
+            "species" : "Cartilovirus plani",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.12.dna" : {
+            "accessions" : "BK063517",
+            "contigs" : 1,
+            "genome_ids" : "3055758.3",
+            "genome_name" : "finepatterned puffer bornavirus QD_6",
+            "genus" : "Cultervirus",
+            "species" : "Cultervirus inflati",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.13.dna" : {
+            "accessions" : "BK063657",
+            "contigs" : 1,
+            "genome_ids" : "3067900.3",
+            "genome_name" : "Para molly bornavirus SRS11708040",
+            "genus" : "Cultervirus",
+            "species" : "Cultervirus poeciliae",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.14.dna" : {
+            "accessions" : "BK063519",
+            "contigs" : 1,
+            "genome_ids" : "3055757.3",
+            "genome_name" : "electric eel bornavirus SRS620428",
+            "genus" : "Cultervirus",
+            "species" : "Cultervirus electrophori",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.15.dna" : {
+            "accessions" : "BK063658",
+            "contigs" : 1,
+            "genome_ids" : "3067899.3",
+            "genome_name" : "Bombay duck fish bornavirus LG1",
+            "genus" : "Cultervirus",
+            "species" : "Cultervirus harpadoni",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.16.dna" : {
+            "accessions" : "PP711183",
+            "contigs" : 1,
+            "genome_ids" : "3141953.4",
+            "genome_name" : "Carlia munda bornavirus Cmun-M_545183",
+            "genus" : "Orthobornavirus",
+            "species" : "Orthobornavirus iridiscincum",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.2.dna" : {
+            "accessions" : "GU249596",
+            "contigs" : 1,
+            "genome_ids" : "1548718.81",
+            "genome_name" : "Parrot bornavirus 4 AG5",
+            "genus" : "Orthobornavirus",
+            "species" : "Orthobornavirus alphapsittaciforme",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.3.dna" : {
+            "accessions" : "MW234349",
+            "contigs" : 1,
+            "genome_ids" : "1885248.32",
+            "genome_name" : "Variegated squirrel bornavirus 1 20_011",
+            "genus" : "Orthobornavirus",
+            "species" : "Orthobornavirus sciuri",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.4.dna" : {
+            "accessions" : "KF578398",
+            "contigs" : 1,
+            "genome_ids" : "1715293.44",
+            "genome_name" : "Aquatic bird bornavirus 1 062-CG",
+            "genus" : "Orthobornavirus",
+            "species" : "Orthobornavirus avisaquaticae",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.5.dna" : {
+            "accessions" : "KR612223",
+            "contigs" : 1,
+            "genome_ids" : "1884879.11",
+            "genome_name" : "Parrot bornavirus 5 2014-A",
+            "genus" : "Orthobornavirus",
+            "species" : "Orthobornavirus betapsittaciforme",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.6.dna" : {
+            "accessions" : "MG599939",
+            "contigs" : 1,
+            "genome_ids" : "2116489.4",
+            "genome_name" : "Wuhan sharpbelly bornavirus DSYS4497",
+            "genus" : "Cultervirus",
+            "species" : "Cultervirus hemicultri",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.7.dna" : {
+            "accessions" : "BK014572",
+            "contigs" : 1,
+            "genome_ids" : "2817571.3",
+            "genome_name" : "Mexican black-tailed rattlesnake bornavirus ADTM-12",
+            "genus" : "Orthobornavirus",
+            "species" : "Orthobornavirus caenophidiae",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.8.dna" : {
+            "accessions" : "KM114265",
+            "contigs" : 1,
+            "genome_ids" : "1881951.3",
+            "genome_name" : "Loveridge's garter snake virus 1 251327",
+            "genus" : "Orthobornavirus",
+            "species" : "Orthobornavirus elapsoideae",
+            "unit" : "whole genome"
+         },
+         "Bornaviridae.9.dna" : {
+            "accessions" : "MF135781",
+            "contigs" : 1,
+            "genome_ids" : "2016402.3",
+            "genome_name" : "Southwest carpet python virus 1",
+            "genus" : "Carbovirus",
+            "species" : "Carbovirus tapeti",
+            "unit" : "whole genome"
+         }
+      },
+      "features" : {
+         "G" : {
+            "PMID_claude_generated" : [
+               "9420287",
+               "9557754",
+               "14581559",
+               "26332529"
+            ],
+            "anno" : "Envelope glycoprotein precursor",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "G",
+            "kmers" : 1,
+            "max_len" : 560,
+            "min_len" : 469,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "G_C" : {
+            "PMID_claude_generated" : [
+               "9557754"
+            ],
+            "anno" : "Mature glycoprotein C-terminal subunit",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "G_C",
+            "kmers" : 1,
+            "max_len" : 285,
+            "min_len" : 234,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "G_N" : {
+            "PMID_claude_generated" : [
+               "9557754"
+            ],
+            "anno" : "Mature glycoprotein N-terminal subunit",
+            "bit_cutoff" : 85,
+            "comment" : "N-terminal furin product of the glycoprotein precursor: Richt 1998 (PMID 9557754) places the cut after Arg249 of the 503 aa BoDV-1 protein. Its bit cutoff is 85 by MEASUREMENT, not by default. On the one Cartilovirus genome the G_N profiles also fire inside Vp1, an ancient duplication of the glycoprotein that carries its own furin site (PMID 38028148), giving a second G_N call; that false call peaks at 69 bits while true G_N calls score 103-527 across all four genera, so 85 sits in the gap. The non_pssm_partner construction was tried first and is worse: call_non_pssm_features pairs every G and G_C HSP, which put 6-16 spurious G_N calls on every exemplar. It retains the signal peptide -- no mature N-terminus has been determined for any bornavirus glycoprotein.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "G_N",
+            "kmers" : 1,
+            "max_len" : 290,
+            "min_len" : 226,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "L" : {
+            "PMID_claude_generated" : [
+               "7831966",
+               "8035500",
+               "10756058",
+               "11070091"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "L",
+            "kmers" : 1,
+            "max_len" : 1841,
+            "min_len" : 1582,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "M" : {
+            "PMID_claude_generated" : [
+               "19237566"
+            ],
+            "anno" : "Matrix protein",
+            "bit_cutoff" : 30,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "M",
+            "kmers" : 1,
+            "max_len" : 209,
+            "min_len" : 117,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "N" : {
+            "PMID_claude_generated" : [
+               "9188580",
+               "15221540",
+               "15992626"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 405,
+            "min_len" : 326,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "P" : {
+            "PMID_claude_generated" : [
+               "9268312",
+               "15992626"
+            ],
+            "anno" : "Phosphoprotein",
+            "bit_cutoff" : 30,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "P",
+            "kmers" : 1,
+            "max_len" : 220,
+            "min_len" : 156,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP1" : {
+            "PMID_claude_generated" : [
+               "38028148"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 200,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Vp1",
+            "kmers" : 1,
+            "max_len" : 440,
+            "min_len" : 391,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "VP2" : {
+            "PMID_claude_generated" : [
+               "38028148"
+            ],
+            "anno" : "Uncharacterized lineage-specific protein",
+            "bit_cutoff" : 200,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "Vp2",
+            "kmers" : 1,
+            "max_len" : 233,
+            "min_len" : 206,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "X" : {
+            "PMID_claude_generated" : [
+               "11796712",
+               "15992626",
+               "19397879",
+               "23100370"
+            ],
+            "anno" : "X protein",
+            "bit_cutoff" : 30,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "X",
+            "kmers" : 1,
+            "max_len" : 165,
+            "min_len" : 73,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 11600,
+            "min_len" : 6000,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

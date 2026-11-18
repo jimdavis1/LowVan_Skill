@@ -1,0 +1,146 @@
+{
+ "Bornaviridae.1.dna": {
+  "genome_ids": "1714619.3",
+  "genome_name": "Orthobornavirus bornaense 112-16",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "MH190827",
+  "genus": "Orthobornavirus",
+  "species": "Orthobornavirus bornaense"
+ },
+ "Bornaviridae.2.dna": {
+  "genome_ids": "1548718.81",
+  "genome_name": "Parrot bornavirus 4 AG5",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "GU249596",
+  "genus": "Orthobornavirus",
+  "species": "Orthobornavirus alphapsittaciforme"
+ },
+ "Bornaviridae.3.dna": {
+  "genome_ids": "1885248.32",
+  "genome_name": "Variegated squirrel bornavirus 1 20_011",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "MW234349",
+  "genus": "Orthobornavirus",
+  "species": "Orthobornavirus sciuri"
+ },
+ "Bornaviridae.4.dna": {
+  "genome_ids": "1715293.44",
+  "genome_name": "Aquatic bird bornavirus 1 062-CG",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "KF578398",
+  "genus": "Orthobornavirus",
+  "species": "Orthobornavirus avisaquaticae"
+ },
+ "Bornaviridae.5.dna": {
+  "genome_ids": "1884879.11",
+  "genome_name": "Parrot bornavirus 5 2014-A",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "KR612223",
+  "genus": "Orthobornavirus",
+  "species": "Orthobornavirus betapsittaciforme"
+ },
+ "Bornaviridae.6.dna": {
+  "genome_ids": "2116489.4",
+  "genome_name": "Wuhan sharpbelly bornavirus DSYS4497",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "MG599939",
+  "genus": "Cultervirus",
+  "species": "Cultervirus hemicultri"
+ },
+ "Bornaviridae.7.dna": {
+  "genome_ids": "2817571.3",
+  "genome_name": "Mexican black-tailed rattlesnake bornavirus ADTM-12",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "BK014572",
+  "genus": "Orthobornavirus",
+  "species": "Orthobornavirus caenophidiae"
+ },
+ "Bornaviridae.8.dna": {
+  "genome_ids": "1881951.3",
+  "genome_name": "Loveridge's garter snake virus 1 251327",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "KM114265",
+  "genus": "Orthobornavirus",
+  "species": "Orthobornavirus elapsoideae"
+ },
+ "Bornaviridae.9.dna": {
+  "genome_ids": "2016402.3",
+  "genome_name": "Southwest carpet python virus 1",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "MF135781",
+  "genus": "Carbovirus",
+  "species": "Carbovirus tapeti"
+ },
+ "Bornaviridae.10.dna": {
+  "genome_ids": "2016401.3",
+  "genome_name": "Jungle carpet python virus 1",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "MF135780",
+  "genus": "Carbovirus",
+  "species": "Carbovirus queenslandense"
+ },
+ "Bornaviridae.11.dna": {
+  "genome_ids": "3055759.3",
+  "genome_name": "little skate bornavirus AoL",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "BK063518",
+  "genus": "Cartilovirus",
+  "species": "Cartilovirus plani"
+ },
+ "Bornaviridae.12.dna": {
+  "genome_ids": "3055758.3",
+  "genome_name": "finepatterned puffer bornavirus QD_6",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "BK063517",
+  "genus": "Cultervirus",
+  "species": "Cultervirus inflati"
+ },
+ "Bornaviridae.13.dna": {
+  "genome_ids": "3067900.3",
+  "genome_name": "Para molly bornavirus SRS11708040",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "BK063657",
+  "genus": "Cultervirus",
+  "species": "Cultervirus poeciliae"
+ },
+ "Bornaviridae.14.dna": {
+  "genome_ids": "3055757.3",
+  "genome_name": "electric eel bornavirus SRS620428",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "BK063519",
+  "genus": "Cultervirus",
+  "species": "Cultervirus electrophori"
+ },
+ "Bornaviridae.15.dna": {
+  "genome_ids": "3067899.3",
+  "genome_name": "Bombay duck fish bornavirus LG1",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "BK063658",
+  "genus": "Cultervirus",
+  "species": "Cultervirus harpadoni"
+ },
+ "Bornaviridae.16.dna": {
+  "genome_ids": "3141953.4",
+  "genome_name": "Carlia munda bornavirus Cmun-M_545183",
+  "contigs": 1,
+  "unit": "whole genome",
+  "accessions": "PP711183",
+  "genus": "Orthobornavirus",
+  "species": "Orthobornavirus iridiscincum"
+ }
+}

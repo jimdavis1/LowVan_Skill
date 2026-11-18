@@ -1,0 +1,636 @@
+{
+ "title": "Bornaviridae -- LowVan coverage audit",
+ "eyebrow": "LowVan &middot; Bornaviridae module &middot; 18 November 2026",
+ "h1": "Bornaviridae",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is inferred and nothing is rounded in its favour. Every citation is model-proposed and awaits a curator.",
+ "headline_tiles": [
+  [
+   "10",
+   "features"
+  ],
+  [
+   "71",
+   "PSSMs"
+  ],
+  [
+   "36/37",
+   "exemplars routed"
+  ],
+  [
+   "100%",
+   "core proteins called on routed genomes"
+  ],
+  [
+   "97.2%",
+   "near-complete genomes clean"
+  ],
+  [
+   "12.8&times;",
+   "string collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "title": "What the module covers",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The module covers the whole family <strong>Bornaviridae</strong> &mdash; non-segmented negative-strand RNA viruses of about 8.9&nbsp;kb that are unique among the <i>Mononegavirales</i> in replicating and transcribing in the <strong>nucleus</strong>, and in using the host splicing machinery to do it (PMID&nbsp;8035500, PMID&nbsp;7831966). Hosts run from horses and humans through parrots and snakes to bony and cartilaginous fish."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "1,372"
+      ],
+      [
+       "protein features",
+       "3,424"
+      ],
+      [
+       "unique protein sequences",
+       "1,199"
+      ],
+      [
+       "genomes with a contig &ge; 6&nbsp;kb",
+       "218"
+      ],
+      [
+       "those, clustered at 95% nucleotide identity",
+       "37 exemplars"
+      ],
+      [
+       "genera represented",
+       "Orthobornavirus, Carbovirus, Cultervirus, Cartilovirus"
+      ],
+      [
+       "features declared",
+       "10"
+      ],
+      [
+       "PSSMs",
+       "71"
+      ],
+      [
+       "reference contigs",
+       "16"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "bornaviridae-genome-map.html"
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Six proteins, one module, two gene orders.</strong> Every genus encodes the same six proteins &mdash; nucleocapsid (N), X, phosphoprotein (P), matrix (M), glycoprotein (G) and polymerase (L) &mdash; but M and G are transposed outside Orthobornavirus: <code>3'-N-X/P-M-G-L-5'</code> in Orthobornavirus against <code>3'-N-X/P-G-M-L-5'</code> in Carbovirus and Cultervirus (PMID&nbsp;42358456, PMID&nbsp;29462190). Gene order does not enter a profile, so the partitioning question was settled by measurement rather than by taxonomy: 16 reference contigs route <strong>100% of the 218 near-complete genomes</strong> of all four genera, so there is no routing gap a split could close, and a Cartilovirus module would hold exactly one genome."
+    },
+    {
+     "type": "prose",
+     "html": "The other four features are products rather than genes. <strong>G_N</strong> and <strong>G_C</strong> are the two halves of the glycoprotein, cut by furin (PMID&nbsp;9557754). <strong>Vp1</strong> and <strong>Vp2</strong> are two extra open reading frames that only <i>Cartilovirus</i> carries &mdash; ancient duplications of the glycoprotein gene, 28% and 21% identical to G and 44% to each other (PMID&nbsp;38028148)."
+    }
+   ],
+   "num": "01",
+   "lede": "Six proteins, four genera, two gene orders &mdash; and one glycoprotein that furin cuts in half."
+  },
+  {
+   "title": "How it was built",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "collection",
+      "in window",
+      "PSSMs",
+      "what it is"
+     ],
+     "rows": [
+      [
+       "N",
+       "269",
+       "129",
+       "6",
+       "nucleocapsid, the 38/39 kDa doublet"
+      ],
+      [
+       "X",
+       "140",
+       "135",
+       "18",
+       "non-structural X (p10), overlapping P"
+      ],
+      [
+       "P",
+       "170",
+       "124",
+       "10",
+       "phosphoprotein p24, the polymerase cofactor"
+      ],
+      [
+       "M",
+       "185",
+       "62",
+       "4",
+       "matrix"
+      ],
+      [
+       "G",
+       "188",
+       "154",
+       "8",
+       "envelope glycoprotein precursor p57/gp94"
+      ],
+      [
+       "G_N",
+       "&mdash;",
+       "150",
+       "8",
+       "N-terminal furin product, derived"
+      ],
+      [
+       "G_C",
+       "&mdash;",
+       "150",
+       "7",
+       "C-terminal furin product, derived"
+      ],
+      [
+       "L",
+       "235",
+       "158",
+       "8",
+       "the 190 kDa polymerase"
+      ],
+      [
+       "Vp1",
+       "1",
+       "1",
+       "1",
+       "Cartilovirus glycoprotein duplicate"
+      ],
+      [
+       "Vp2",
+       "1",
+       "1",
+       "1",
+       "Cartilovirus glycoprotein duplicate"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<strong>97.7% of the dump's protein features were bound by rule</strong> (3,055 of 3,128), and the homology rescue adopted 27 of the 35 unique sequences left over. The family names its proteins by mass &mdash; p40&nbsp;=&nbsp;N, p10&nbsp;=&nbsp;X, p24/p23&nbsp;=&nbsp;P, p16/gp18&nbsp;=&nbsp;M, p57/gp94&nbsp;=&nbsp;G &mdash; so those strings carry real information and are bound, but <em>only inside an explicit length window</em>. That is what makes it safe: a deposit labelled <code>p24 ORF</code> at 147&nbsp;aa is not the 201&nbsp;aa phosphoprotein and never reaches the collection."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Eight of the ten features were built at the documented defaults</strong>, <code>-m 5 -mi 0.8 -mc 0.8</code>, with no departure. That was measured rather than assumed: cluster coverage at five or more members runs 79&ndash;89% at <code>-mi 0.8</code> for all six genes, so lowering the identity floor was never necessary and the leftover pass picked up the divergent members at the same floor instead. Twenty-nine of the 71 profiles come from that second pass."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The glycoprotein's two products have no collection of their own.</strong> Nothing in BV-BRC is annotated as a mature bornavirus glycoprotein, so both were cut out of the G collection at the furin site rather than collected. Richt 1998 (PMID&nbsp;9557754) places that site after the arginine at <strong>position 249</strong> of the 503&nbsp;aa BoDV-1 precursor. The derivation finds the single <code>R-X-[K/R]-R</code> match in the 40&ndash;62% window and extends it through the basic run, which reproduces residue 249 exactly and generalises across genera: of 154 collection members, <strong>150 carry exactly one such site</strong>, with <strong>P1&nbsp;=&nbsp;Arg in 150/150, P4&nbsp;=&nbsp;Arg in 150/150 and P1&prime;&nbsp;=&nbsp;Asp in 149/150</strong>. The site is enzyme-determined, so it re-locates itself instead of being a column number."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Four truncated phosphoprotein deposits were dropped before any profile existed.</strong> <code>check_met_start.py</code> flagged a P cluster whose members begin with Gly; four deposits of 160&ndash;182&nbsp;aa turned out to start 19&ndash;40 residues inside the protein, all from one BoDV-1 strain series whose other deposits sit in the unassigned pool as <code>p24 ORF</code> fragments. They passed the length window because they are long enough to. P was rebuilt from 124 members and the check is now clean."
+    }
+   ],
+   "num": "02",
+   "lede": "Profiles come from the annotation strings BV-BRC already carries; the two glycoprotein products are cut at the literature's own site."
+  },
+  {
+   "title": "Where the cutoffs sit",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "type",
+      "bit",
+      "min_len",
+      "max_len",
+      "up",
+      "down",
+      "essential"
+     ],
+     "rows": [
+      [
+       "N",
+       "CDS",
+       "60",
+       "326",
+       "405",
+       "1",
+       "1",
+       "yes"
+      ],
+      [
+       "X",
+       "CDS",
+       "30",
+       "73",
+       "165",
+       "1",
+       "1",
+       "yes"
+      ],
+      [
+       "P",
+       "CDS",
+       "30",
+       "156",
+       "220",
+       "1",
+       "1",
+       "yes"
+      ],
+      [
+       "M",
+       "CDS",
+       "30",
+       "117",
+       "209",
+       "1",
+       "1",
+       "yes"
+      ],
+      [
+       "G",
+       "CDS",
+       "60",
+       "469",
+       "560",
+       "1",
+       "1",
+       "yes"
+      ],
+      [
+       "G_N",
+       "mat_peptide",
+       "85",
+       "226",
+       "290",
+       "1",
+       "0",
+       "no"
+      ],
+      [
+       "G_C",
+       "mat_peptide",
+       "60",
+       "234",
+       "285",
+       "0",
+       "1",
+       "no"
+      ],
+      [
+       "L",
+       "CDS",
+       "60",
+       "1582",
+       "1841",
+       "1",
+       "1",
+       "yes"
+      ],
+      [
+       "Vp1",
+       "CDS",
+       "200",
+       "391",
+       "440",
+       "1",
+       "1",
+       "no"
+      ],
+      [
+       "Vp2",
+       "CDS",
+       "200",
+       "206",
+       "233",
+       "1",
+       "1",
+       "no"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Three cutoffs are measurements, not defaults, and each one was set because a false call appeared.</strong> At the generated floors of 60 and 30, the single-sequence <strong>Vp1</strong> profile fired on the <em>glycoprotein</em> locus of 14 panel genomes &mdash; the predictable failure for a profile built from a G paralogue. Measured: Vp1 scores <strong>887 bits</strong> on its own Cartilovirus genome and 41&ndash;109 on everything else; Vp2 scores <strong>448</strong> against 17&ndash;35. Both were set to <strong>200</strong>, which is 1.8&times; above the worst foreign score and 2.2&times; below the true one, and the false calls went to zero."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>G_N needed the same treatment for the same reason.</strong> On the one Cartilovirus genome its profiles also fire inside Vp1, which carries its own furin site, giving two G_N calls on one genome. True G_N calls score <strong>103&ndash;527 bits</strong> across all four genera and that false call peaks at <strong>69</strong>, so the floor was set to 85, in the gap. The <code>non_pssm_partner</code> construction was tried first and is <em>worse</em>: <code>call_non_pssm_features</code> pairs every G and G_C HSP, which put 6&ndash;16 spurious G_N calls on every exemplar. Tying a product to its precursor is the elegant fix and it is not the one the measurement supports here."
+    },
+    {
+     "type": "prose",
+     "html": "<code>copy_num</code> was set after the module had been run, never before, and on <strong>near-complete genomes</strong> rather than on the mixed panel &mdash; a panel dominated by single-gene amplicons would have marked only M essential, which is an artifact of which partial contigs happen to carry which gene. The six genes clear the 85% bar at 100% (L at 97.2%). The two mature peptides and the two Cartilovirus ORFs deliberately carry no <code>copy_num</code>: mature peptides are not used for genome quality anywhere in LowVan, and a genus-specific accessory marked essential would flag every genome of the other three genera."
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>1,064 of 1,064 (100%)</b>. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06."
+    }
+   ],
+   "num": "03",
+   "lede": "Three of the ten bit-score floors were set by measuring a false call, not by taking a default."
+  },
+  {
+   "title": "Does it route?",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "n",
+      "routed"
+     ],
+     "rows": [
+      [
+       "near-complete genomes (&ge; 6 kb)",
+       "218",
+       "&mdash;"
+      ],
+      [
+       "exemplars after 95% clustering",
+       "37",
+       "36 (97.3%)"
+      ],
+      [
+       "Orthobornavirus exemplars",
+       "26",
+       "26"
+      ],
+      [
+       "Cultervirus exemplars",
+       "7",
+       "7"
+      ],
+      [
+       "Carbovirus exemplars",
+       "2",
+       "2"
+      ],
+      [
+       "Cartilovirus exemplars",
+       "1",
+       "1"
+      ],
+      [
+       "unrouted",
+       "1",
+       "Bactrocera dorsalis borna-like virus"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Routing is not the constraint in this family, and the reference budget is barely touched.</strong> Greedy selection at the annotator's own BLASTn settings reaches every one of the 218 near-complete genomes with <strong>four</strong> references. Sixteen were shipped rather than four, against a budget of 25: four reach every genome but leave the divergent genera hanging on one marginal hit each, and spreading the selection one reference per species group costs nothing."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The one unrouted genome should stay unrouted.</strong> <i>Bactrocera dorsalis borna-like virus</i> is an insect virus of 12,450&nbsp;nt filed under this family by BV-BRC with no ICTV genus. Scored against the module's profiles directly, only L clears a cutoff (161 bits); N, X, P, M and G all land at 19&ndash;24 bits, far below every floor. Adding a seventeenth reference for it would route a genome the module cannot annotate, which converts a visible gap into a silent one."
+    }
+   ],
+   "num": "04",
+   "lede": "Routing is not the constraint here: four references reach every near-complete genome in the family."
+  },
+  {
+   "title": "Does it call the proteins?",
+   "blocks": [
+    {
+     "type": "bars",
+     "unit": "%",
+     "rows": [
+      [
+       "N",
+       "100.0",
+       100.0,
+       "36 of 36 routed exemplars"
+      ],
+      [
+       "X",
+       "100.0",
+       100.0,
+       "36 of 36 routed exemplars"
+      ],
+      [
+       "P",
+       "100.0",
+       100.0,
+       "36 of 36 routed exemplars"
+      ],
+      [
+       "M",
+       "100.0",
+       100.0,
+       "36 of 36 routed exemplars"
+      ],
+      [
+       "G",
+       "100.0",
+       100.0,
+       "36 of 36 routed exemplars"
+      ],
+      [
+       "G_N",
+       "100.0",
+       100.0,
+       "36 of 36 routed exemplars"
+      ],
+      [
+       "G_C",
+       "100.0",
+       100.0,
+       "36 of 36 routed exemplars"
+      ],
+      [
+       "L",
+       "97.2",
+       97.2,
+       "35 of 36 routed exemplars"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Every core protein is called on every routed near-complete genome</strong>, in all four genera, and the single L miss is a 6,115&nbsp;nt contig that cannot physically hold a 5.1&nbsp;kb polymerase gene. Vp1 and Vp2 are called on the one Cartilovirus genome and nowhere else, which is exactly their scope."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>That did not come for free, and the gap analysis is the reason it is 100% rather than 69%.</strong> The first coverage run put X at <strong>25 of 36</strong> and P at 31 &mdash; and the misses were not scattered, they were <em>every</em> Cultervirus, Carbovirus and Cartilovirus genome. Scoring each collection member against the installed profiles settled which of the two possible causes it was: the best profile scored <strong>0&ndash;26 bits</strong> on those deposits against a floor of 30, so it was a coverage hole and not a threshold, and lowering the floor would have bought noise rather than calls. Nine X members and two P members were clustered among themselves at the <code>-mi</code> floor of 0.6 and given their own profiles; three more divergent P deposits followed. X went 69%&nbsp;&rarr;&nbsp;100%, P 86%&nbsp;&rarr;&nbsp;100%."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>One protein in this module was recovered by ORF-calling rather than deposited.</strong> <i>Carlia munda</i> bornavirus annotates N, P, M, G and L but no X at all. ORF-calling its N&rarr;P interval in six frames returned one 78&nbsp;aa Met-initiated ORF that blasts to the X collection at <code>e&nbsp;=&nbsp;1.2e-4</code> and carries the family's <code>VEL[IA]RRL</code> motif. It is kept in <code>Extracted/</code> so it survives a rebuild."
+    }
+   ],
+   "num": "05",
+   "lede": "Every core protein on every routed genome &mdash; after a gap analysis that found eleven genomes with no X."
+  },
+  {
+   "title": "Are the calls right?",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "46/46",
+       "M identical to the deposit"
+      ],
+      [
+       "46/46",
+       "P identical"
+      ],
+      [
+       "43/43",
+       "X identical"
+      ],
+      [
+       "43/46",
+       "N identical"
+      ],
+      [
+       "21/33",
+       "G identical"
+      ],
+      [
+       "0",
+       "duplicate calls"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "A held-out panel of 70 genomes was drawn with the 16 reference genomes <strong>excluded by accession</strong>, and every call was compared not to a reference annotation but to <em>that genome's own deposited protein</em>. M, P and X reproduce the submitter's sequence exactly on every genome that has one; N on 43 of 46."
+    },
+    {
+     "type": "pre",
+     "text": "BoDV-1 reference genome vs RefSeq NC_001607\n\n  N      54..1166      RefSeq  54..1166     identical\n  X    1223..1486      RefSeq 1223..1486    identical\n  P    1272..1877      RefSeq 1272..1877    identical\n  M    1893..2321      RefSeq 1893..2321    identical\n  G    2236..3747      RefSeq 2236..3747    identical\n  G_N  2236..2982      = 249 codons, the Richt 1998 product to the residue\n  G_C  2983..3747      runs to the precursor's own stop"
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The cleaved ends are crisp.</strong> Checked on all 36 exemplars, G_C starts exactly one base after G_N ends and G_C ends exactly where G ends in <strong>35 of 36</strong>; the single exception is one canary bornavirus where <em>G's own start</em> is over-extended by 87&nbsp;nt and the two products remain internally consistent with each other. <code>qc_duplicate_calls.py</code> reports <strong>no exact and no unexpected nested calls</strong>; X inside P is the virus's own architecture, since the X open reading frame overlaps the 5&prime; end of P in a different frame."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>97.2% of near-complete genomes come back clean</strong> &mdash; 35 of 36, with no genome or contig flags at all. The one flagged genome is the truncated 6.1&nbsp;kb contig, flagged for missing an essential feature, which is the right answer for a genome that is missing it."
+    }
+   ],
+   "num": "06",
+   "lede": "Scored against each genome's own deposited protein, and against RefSeq on the reference strain."
+  },
+  {
+   "title": "What it cannot do",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>The orthobornavirus L N-terminus is not reproduced exactly, and the reason is biological rather than a tuning failure.</strong> Walker 2000 (PMID&nbsp;10756058) showed the polymerase depends on a splicing event that fuses a short upstream open reading frame in frame with the long downstream one. Measured here by exact-matching every deposited L against its own genome: in <strong>121 of 140 orthobornavirus deposits the first exon contributes just five or six residues</strong> (MSFHA / MSFHAR), while L is <strong>collinear in all 11 Carbovirus, Cultervirus and Cartilovirus deposits</strong>. One feature cannot be both a spliced feature and a PSSM CDS, and declaring it spliced would leave three genera with no polymerase at all, so it ships as a CDS. Both N-terminal settings were built and scored on the same panel: <code>upstream_ext:&nbsp;1</code> gives 8 of 30 calls identical to the deposit with the rest Met-initiated but carrying up to 46 extra residues; <code>upstream_ext:&nbsp;0</code> gives 6 of 30, most of them the exactly right length but reading the genomic frame (<code>LCFLTS&hellip;</code>) where the protein reads <code>MSFHAS&hellip;</code>, and therefore not starting with Met. The first was kept. <strong>Up to ~46 spurious N-terminal residues on a 1,711-residue protein is the standing limit.</strong>"
+    },
+    {
+     "type": "prose",
+     "html": "<strong>A trap worth recording, because it produced a confident wrong answer.</strong> A tblastn collinearity screen of all 745 collection members against their own genomes reported <em>every one</em> as a single collinear HSP, L included &mdash; and the first conclusion drawn from it was that nothing in this family is spliced. It is wrong because the genomic frame upstream of the splice acceptor happens to read <code>LCFLTS</code> where the protein reads <code>MSFHAS</code>: five residues out of 1,711, invisible at a 95% identity threshold. The junction was only found by requiring an <strong>exact</strong> match."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The glycoprotein signal peptide is not modelled, so G_N is not the fully matured ectodomain.</strong> No mature N-terminus has been determined by sequencing for any bornavirus glycoprotein, this build has no SignalP licence, and RefSeq NC_001607 carries no <code>sig_peptide</code> or <code>mat_peptide</code> to read one off. G_N therefore runs from the precursor's own initiator Met and retains the roughly 20-residue signal peptide. Shipping a predicted <code>_SP</code> feature would have been a prediction wearing a measurement's clothes."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Five described products are deliberately not features</strong>, each for a stated reason. The <strong>38 kDa N isoform</strong> is real and well characterised (PMID&nbsp;9188580, PMID&nbsp;15221540) but is an alternative <em>translation-initiation</em> product that is an exact C-terminal substring of the 39 kDa form, is not separately deposited anywhere in this dump, and admits no fixed offset &mdash; the second in-frame Met sits at residue 14 in 69 collection members, 16 in 23 and 8 in 12. A nested profile would call it on N's own coordinates. The <strong>spliced N isoforms</strong> of PMID&nbsp;30541858 fail on the same grounds. The intron-III products <strong>p8.4 and p165</strong> (PMID&nbsp;11172106) were identified as mRNA; no protein was demonstrated and none is deposited. Cartilovirus <strong>Vp3</strong> and the reptilian cultervirus <strong>P&ndash;G hybrids</strong> are explicitly predictions in their own papers. A prediction is not a product."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Vp1 and Vp2 rest on one genome each</strong>, which is every Cartilovirus genome BV-BRC holds. Their profiles are single-sequence, their cutoffs were set by measuring the one true score against the foreign ones, and nothing else exists to test them on. The avian 'delgebornaviruses' that lack G, X and/or M (PMID&nbsp;42358456) are not in this dump at all, so the module declares no feature it cannot see."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Use this module on near-complete bornavirus genomes of any genus: routing is 97%, all six proteins and both glycoprotein products are called on every routed genome, and 97% come back clean. Treat the <strong>first five or six residues of an orthobornavirus L call</strong> as unreliable, and read <strong>G_N</strong> as the N-terminal furin fragment including its signal peptide rather than as a mature ectodomain."
+    }
+   ],
+   "num": "07",
+   "lede": "One protein's N-terminus cannot be reproduced by a profile, and five described products are deliberately absent."
+  },
+  {
+   "title": "What the run found",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The step-11 pass annotated <strong>37 exemplars</strong>, drawn by clustering the 218 near-complete genomes at 95% nucleotide identity, against a routing repository holding only this family and its <i>Mononegavirales</i> neighbours &mdash; 67 reference files rather than the repository's full 1,368, which is what keeps a run of this kind inside the voucher ceiling."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Two defects were found by running the module rather than by reading it</strong>, and both were invisible to every earlier check. The first was the X and P coverage hole in the non-orthobornavirus genera: self-recall was 100%, the length audits were clean, and the bin audit said every collection was one protein and its own protein. Only annotating real genomes showed that eleven of 36 had no X. The second was the Vp1 false calls on the glycoprotein locus, which no collection-level check can see because the collection is correct &mdash; it is the profile that is promiscuous."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The unassigned pool was checked rather than waved through.</strong> Two strings reach the member floor, <code>unnamed protein product; p24 ORF</code> and <code>p10 ORF</code>, and neither is a protein this module fails to call: the 147&nbsp;aa <code>p24 ORF</code> entries begin <code>LPKDLRKNPSMISDPDQRTGREQLSNDELIKKLVTELAEN</code> and the 26&nbsp;aa <code>p10 ORF</code> entries begin <code>LPKDLRKNPSMISDPDQRTGREQLSN</code> &mdash; the same sequence, with no initiator Met, deposited twice under two names. They are fragments of P, and the full-length P of those same strains is already in the collection."
+    }
+   ],
+   "num": "08",
+   "lede": "Two defects that only showed up when the module was run on real genomes."
+  },
+  {
+   "title": "What the vocabulary bought",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "bornaviridae-vocabulary-rarefaction.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "source",
+      "module"
+     ],
+     "rows": [
+      [
+       "distinct annotation strings, all proteins pooled",
+       "29",
+       "9"
+      ],
+      [
+       "proteins needed to reach 95% of the final vocabulary",
+       "175",
+       "92"
+      ],
+      [
+       "distinct strings at equal depth (211 proteins)",
+       "29.0",
+       "8.9"
+      ],
+      [
+       "ratio at equal depth",
+       "&mdash;",
+       "3.3&times;"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Across the whole dump, <strong>77 distinct BV-BRC annotation strings collapse to the six controlled strings</strong> the module emits for the six genes, a 12.8&times; collapse. The spread is what a mass-naming tradition produces: the nucleocapsid alone arrives as <code>nucleoprotein</code>, <code>N protein</code>, <code>N</code>, <code>p40</code>, <code>P40</code>, <code>p40 protein</code>, <code>p40 nucleoprotein</code>, <code>nucleocapsid protein</code>, <code>helical nucleoside protein</code> and <code>phosphoprotein P40</code> &mdash; the last of which names the wrong protein entirely."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Five of the nine strings this module emits were already in the controlled vocabulary</strong> and were reused rather than reinvented: <i>Nucleocapsid protein</i>, <i>Phosphoprotein</i>, <i>Matrix protein</i>, <i>RNA-dependent RNA polymerase</i> and <i>Uncharacterized lineage-specific protein</i>. <i>X protein</i> follows the existing <i>C protein</i> / <i>V protein</i> / <i>W protein</i> convention. The two mature-peptide strings are new and follow the influenza hemagglutinin pattern for a furin-cleaved envelope precursor."
+    },
+    {
+     "type": "prose",
+     "html": "The curve is the more convincing form of the claim, and it is rarefied over <strong>proteins</strong> rather than genomes, so both curves start at the origin. The module's vocabulary saturates at nine strings after about 92 proteins; the source vocabulary is still climbing at 211 and has reached 29."
+    }
+   ],
+   "num": "09",
+   "lede": "Seventy-seven source strings for six proteins, and what the controlled set replaces them with."
+  }
+ ],
+ "source_note": "Every figure on this page is reproducible from the build directory: coverage.json (routing and per-feature calls), exeval.tsv (quality and copy_num), registry.json (profiles and self-recall), agg.json and rarefaction.json (vocabulary), gap/uncovered.tsv (the coverage-hole analysis), collections/G_CUT.tsv (the furin derivation), notes/LITERATURE.md (every PMID, each verified against PubMed in this build) and BUILD_NOTES.md (the narrative). All citations are PMID_claude_generated; no curator has read them yet."
+}
