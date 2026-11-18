@@ -106,44 +106,44 @@ and `BlastInterface.pm` from <https://github.com/TheSEED/seed_gjo/> on
 `PERL5LIB`; and `blastn tblastn psiblast makeblastdb mmseqs mafft` on `PATH`.
 Full check and install notes: `references/install-and-test.md`.
 
-**SignalP 6.0 is already installed on this project's machine**, in its own conda
-environment: `conda run -n signalp signalp6`. It was installed alongside the rest
-of the software at the start of this project precisely so that signal peptides
-could be predicted, so **a taxon with a cleaved precursor gets a predicted signal
-peptide by default** — do not record "no SignalP licence" as a reason for
-dropping an `_SP` feature without checking the environment first.
-
-**It is NOT on `PATH`** — not even with the project's `env.sh` sourced, which
-adds the `lowvan` env and not this one. Call it as
-`conda run -n signalp signalp6`, which is what `apply_signalp.py` expects.
-
-**Check the weights before trusting it, because the licensed package installs
-them separately and the Python package alone is silent about it.** On 18 Nov 2026
-the `signalp` env ran `--help` perfectly and then failed on every prediction with
-`FileNotFoundError: Fast mode requires model to be installed at
-.../model_weights/distilled_model_signalp6.pt`, because
-`site-packages/signalp/model_weights/` held nothing but its README. One command
-settles it before any work is planned around the result:
+**SignalP 6.0 is installed on this project's machine and is on `PATH` as
+`signalp6`.** Just run it:
 
 ```bash
-ls ~/anaconda3/envs/signalp/lib/python3.10/site-packages/signalp/model_weights/
-#  a bare README.md means the weights were never converted in.
+signalp6 -ff Alignments/<M>/G_SIGNALP_QUERIES.faa -od out \
+         --organism eukarya --mode fast --format none
 ```
 
-**The licensed tarball is already on this machine**, so that is a five-minute
-fix and not a blocker — do not re-download it and do not ask the user to:
+So **a taxon with a cleaved precursor gets a predicted signal peptide by
+default.** Never record "no SignalP licence", or "SignalP is unavailable", as a
+reason for dropping an `_SP` feature — run `command -v signalp6` first. Two
+Bornaviridae builds in a row skipped signal-peptide prediction on that
+assumption and both were wrong.
+
+`/Users/Shared/bin/signalp6` is a wrapper, installed 18 Nov 2026, that execs the
+`signalp` conda env's own interpreter, so it needs no `conda activate` and works
+from any shell or subprocess. It is also what made SignalP findable at all: the
+package lives in `~/anaconda3/envs/signalp`, which is on nobody's `PATH`, and
+the project's `env.sh` adds the `lowvan` env and not that one. Point
+`SIGNALP_ENV` elsewhere if the env ever moves.
+
+**Only `--mode fast` works here.** The licensed tarball on this machine is the
+*fast* distribution and carries `distilled_model_signalp6.pt` but not
+`ensemble_model_signalp6.pt`, so `--mode slow` fails by design, not by accident.
+
+**If it ever stops predicting**, the model weights are the thing to check: pip
+installs the code and not the weights, and the failure is a `FileNotFoundError`
+naming a missing `.pt`. The wrapper detects that case and prints the fix. The
+licensed tarball is already on this machine, so it is a five-minute repair and
+nothing needs re-downloading:
 
 ```bash
 #  signalp-6.0i.fast.tar.gz, downloaded 10 Sep 2026, lives under
 #  LowVan_Skill_Development/Rhabdoviridae/box_folder/Claude/
-tar -xzf <that tarball> -C ~/lowvan_scratch/signalp_pkg
-cp ~/lowvan_scratch/signalp_pkg/signalp6_fast/signalp-6-package/models/*.pt \
+tar -xzf <that tarball> -C /tmp/sp
+cp /tmp/sp/signalp6_fast/signalp-6-package/models/*.pt \
    ~/anaconda3/envs/signalp/lib/python3.10/site-packages/signalp/model_weights/
 ```
-
-Restored exactly that way for Bornaviridae; `--mode fast` then works. (`--mode
-slow` needs `ensemble_model_signalp6.pt`, which the *fast* tarball does not
-carry.)
 
 **Then gate what the prediction produces, because a verified cut is not yet a
 good feature.** Bornaviridae G needed three gates in series and ended up calling
@@ -931,7 +931,7 @@ module.** Work down this list and stop at the first one that applies:
 |---|---|
 | the mature N-terminus is documented for a reference protein | use `--motif`. No predictor needed, and this is the *better* answer even when SignalP is available — see below |
 | RefSeq carries a `mat_peptide` on a reference genome of this taxon | read the cut site off it, turn it into a motif, use `--motif` |
-| neither, and SignalP is unavailable *or its weights are missing* | **drop the `_SP` / `_MAT` features** from the JSON, say so in the build notes, and say WHICH of the two it was — "not licensed" and "installed but unusable" lead to different fixes |
+| neither, and SignalP genuinely cannot run | **drop the `_SP` / `_MAT` features** from the JSON and say so in the build notes. On this machine that should never happen: `signalp6` is on `PATH`. Check `command -v signalp6` before writing that sentence |
 | neither, and SignalP is available | run it, then apply it with the checks below |
 
 If the user does not have SignalP, do not stall the build waiting for it. Ask
@@ -943,11 +943,12 @@ every other step, and record the omission so it can be revisited.
 no profiles behind it is worse than no feature at all — the annotator will report
 it as missing on every genome.
 
-**Getting SignalP, if it is not already there.** Check for the `signalp` conda
-env first — on this project's machine it exists. It is academic-licensed: the
-tarball is behind a form the user submits themselves (name, institution,
-acceptance of the terms). **Do not attempt to download it for them and do not
-accept a licence on anyone's behalf** — walk them through the form and wait.
+**Getting SignalP on a machine that does not have it.** On *this* machine it is
+already installed and on `PATH` — `command -v signalp6` — so this section is for
+a new machine only. It is academic-licensed: the tarball is behind a form the
+user submits themselves (name, institution, acceptance of the terms). **Do not
+attempt to download it for them and do not accept a licence on anyone's
+behalf** — walk them through the form and wait.
 `scripts/apply_signalp.py --help-install` prints the steps. Once they have it:
 
 ```bash
@@ -958,6 +959,11 @@ conda run -n signalp signalp6 -ff Alignments/G_SIGNALP_QUERIES.faa -od out \
      --organism eukarya --mode fast --format none \
      --model_dir signalp-6-package/models
 ```
+
+Then put it on `PATH` rather than leaving it buried in the env, which is the
+mistake that cost this project two builds. A three-line wrapper in a directory
+the user already has on `PATH` is enough; `/Users/Shared/bin/signalp6` on this
+machine is the worked example.
 
 `--model_dir` avoids copying 1.5 GB of weights into the working tree. Without the
 numpy pin every prediction dies with `RuntimeError: Numpy is not available`.

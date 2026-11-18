@@ -50,6 +50,27 @@ import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 INSTALL = """
+FIRST: check whether it is already there.  `command -v signalp6`
+
+On this project's machine SignalP 6.0 IS installed and IS on PATH, as
+/Users/Shared/bin/signalp6 -- a wrapper that execs the `signalp` conda env, so
+it needs no `conda activate`.  Run it directly:
+
+  signalp6 -ff Alignments/<Module>/G_SIGNALP_QUERIES.faa -od out \
+           --organism eukarya --mode fast --format none
+
+Only --mode fast works here; the licensed tarball on this machine is the fast
+distribution and does not carry the slow model's weights.
+
+If it is on PATH but every prediction dies with a FileNotFoundError naming a
+missing .pt, the model weights were never installed (pip installs the code,
+not the weights).  The wrapper detects that and prints the repair; the
+licensed tarball is already on this machine under
+LowVan_Skill_Development/Rhabdoviridae/box_folder/Claude/, so nothing needs
+re-downloading.
+
+Everything below is for a machine that genuinely does not have it.
+
 SignalP 6.0 is academic-licensed: the download is behind a form you have to
 submit yourself (name, institution, and acceptance of the licence terms).
 
@@ -58,6 +79,11 @@ submit yourself (name, institution, and acceptance of the licence terms).
   3. tar -xzf signalp-6.0h.fast.tar.gz
      pip install signalp-6-package/
      python -c "import signalp; print(signalp.__file__)"
+
+  4. put it on PATH.  Leaving signalp6 inside the conda env is what cost this
+     project two builds -- nothing on PATH meant nothing found it.  A small
+     wrapper in a directory already on PATH is enough; see
+     /Users/Shared/bin/signalp6 on this machine for the pattern.
 
 The web server at the same address accepts pasted FASTA and reports the same
 cleavage sites, which is enough for 20 sequences if you would rather not install.
