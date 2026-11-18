@@ -40,7 +40,12 @@ TAXA_EXTRA = ["Rhabdoviridae"]        # published before the naming convention s
 #  three of its four pages were published without the space and the coverage
 #  audit with it. ALIAS below files the audit under the closed-up spelling, so
 #  listing the spaced one as well would split one module across two headings.
-NOT_TAXA = {"BV-BRC", "Rubella", "Mammalian Orthoreovirus"}
+NOT_TAXA = {"BV-BRC", "Rubella", "Mammalian Orthoreovirus",
+            #  one page went out with a space where the module, and its
+            #  other three pages, use an underscore; ALIAS files it under
+            #  the underscore, so listing the spaced form too would split
+            #  one module across two rows.
+            "Mastadenovirus MultiFiber"}
 #  "Genome Map" was added 18 Nov 2026. Every module is supposed to ship a
 #  genome map (SKILL.md step 12), but until Bornaviridae they were only ever
 #  EMBEDDED in the coverage audit, never published as pages of their own, so
@@ -54,7 +59,26 @@ KINDS = [("Coverage Audit", "coverage audit"),
 #  Pages whose title does not follow "<taxon> <kind>".
 ALIAS = {("Matonaviridae", "Vocabulary Saturation"): "Rubella Vocabulary Saturation",
          ("MammalianOrthoreovirus", "Coverage Audit"):
-             "Mammalian Orthoreovirus Coverage Audit"}
+             "Mammalian Orthoreovirus Coverage Audit",
+         #  same module, two spellings: three pages went out with the
+         #  underscore the module directory uses and the audit with a space.
+         ("Mastadenovirus_MultiFiber", "Coverage Audit"):
+             "Mastadenovirus MultiFiber Coverage Audit"}
+
+#  Many pages are titled "<taxon> — <plain-English gloss> <Kind>", because
+#  gen_registry.py and friends take a --display string and put it in the
+#  <title>. Left alone that splits one module across two matrix rows, each
+#  holding a different half of its pages: Picobirnaviridae showed a coverage
+#  audit and three dashes while its collapse, registry and saturation sat
+#  under "Picobirnaviridae -- picobirnaviruses". Fourteen modules were split
+#  this way on 18 Nov 2026. The gloss is display text, not identity, so the
+#  taxon is canonicalised to what precedes it and the full title is kept for
+#  the lookup.
+GLOSS = re.compile(r"\s+(?:—|--)\s+")
+
+
+def canonical(taxon):
+    return GLOSS.split(taxon, 1)[0].strip()
 
 
 def load():
@@ -80,16 +104,49 @@ def sources():
     return by
 
 
+def slug(taxon):
+    return re.sub(r"[^a-z0-9]+", "", taxon.lower())
+
+
+def map_source(taxon):
+    """Genome maps are written by gen_genome_map.py as <figure> FRAGMENTS for
+    embedding in the coverage audit, so they carry no <title> and sources()
+    cannot see them -- 25 of the 26 in this repo were invisible to the index.
+    Match them on the filename the generator uses instead, so the map column
+    says "src only" (the file is here, it was never published as its own page)
+    rather than "—" (never made)."""
+    s = slug(taxon)
+    for f in os.listdir(HERE):
+        if f.endswith("-genome-map.html") and slug(f[: -len("-genome-map.html")]) == s:
+            return f
+    return None
+
+
 def derive_taxa(titles):
-    """Every leading token set that precedes one of the four kind names."""
+    """Every leading token set that precedes one of the kind names, with any
+    plain-English gloss stripped so one module is one row."""
     found = set()
     for t in titles:
         for kind, _label in KINDS:
             if t.endswith(" " + kind):
-                found.add(t[: -len(kind) - 1].strip())
+                found.add(canonical(t[: -len(kind) - 1]))
     for tax, kind in ALIAS:
         found.add(tax)
     return sorted((found | set(TAXA_EXTRA)) - NOT_TAXA, key=str.lower)
+
+
+def title_index(titles):
+    """(canonical taxon, kind) -> the title actually published, gloss and all."""
+    idx = {}
+    for t in titles:
+        for kind, _label in KINDS:
+            if t.endswith(" " + kind):
+                key = (canonical(t[: -len(kind) - 1]), kind)
+                #  a glossed title is the fuller one; prefer it only if the
+                #  plain form was never published
+                if key not in idx or len(t) > len(idx[key]):
+                    idx[key] = t
+    return idx
 
 
 def main():
@@ -103,8 +160,15 @@ def main():
             best[t] = (u, d)
     superseded = [(t, u, d) for t, u, d in rows if best[t][0] != u]
 
+    TIDX = title_index(set(best) | set(src))
+
     def title_for(tax, kind):
-        return ALIAS.get((tax, kind), "%s %s" % (tax, kind))
+        if (tax, kind) in ALIAS:
+            return ALIAS[(tax, kind)]
+        plain = "%s %s" % (tax, kind)
+        if plain in best or plain in src:
+            return plain
+        return TIDX.get((tax, kind), plain)
 
     TAXA = derive_taxa(set(best) | set(src))
 
@@ -134,6 +198,10 @@ def main():
             return "[live](https://claude.ai/artifact/%s)" % best[t][0]
         if t in src:
             return "[src only](reports/%s)" % src[t]
+        if kind == "Genome Map":
+            f = map_source(tax)
+            if f:
+                return "[src only](reports/%s)" % f
         return "—"
 
     TAXA_M = derive_taxa(set(best) | set(src))
@@ -147,6 +215,13 @@ def main():
     o += ["",
           "`live` is published and current. `src only` was built and never",
           "published — the file is in this repo. `—` was not made.", "",
+          "One row is one module. A page titled `<taxon> — <gloss> <Kind>` is",
+          "filed under the taxon, not under the gloss; before 18 Nov 2026 the",
+          "gloss made a second row, and fourteen modules were split across two",
+          "rows each holding half their pages.", "",
+          "Most `map` cells read `src only` because genome maps are written as",
+          "`<figure>` fragments to embed in the coverage audit, so they sit in",
+          "this repo without ever being published as pages of their own.", "",
           "## Per taxon", ""]
 
     used = set()
