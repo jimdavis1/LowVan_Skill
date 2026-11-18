@@ -37,6 +37,10 @@ NOTES = {
     "Coltivirus": "segment 9 bicistronic by stop-codon read-through",
     "Rotavirus": "VP8*/VP5* cut from VP4 by motif; species A only",
     "PiscineOrthoreovirus": "S1 bicistronic, p13 nested inside sigma3",
+    "Torovirinae": "Tobaniviridae; ORF1ab `transcript_edit` (-1, UUUAAAC); Mpro cut at Edman-mapped sites",
+    "Piscanivirinae": "Tobaniviridae (Bafinivirus + Oncotshavirus); ORF1ab `transcript_edit`; Mpro cut at Edman-mapped sites",
+    "Remotovirinae": "Tobaniviridae (Bostovirus); ORF1ab `transcript_edit`; no published cleavage sites",
+    "Serpentovirinae": "Tobaniviridae; ORF1ab `transcript_edit` (-1, AAAAAAC); UNC1-9 binned by homology, not names",
 }
 
 
@@ -49,7 +53,15 @@ def inventory(root):
             continue
         block = json.load(open(j))[d]
         nf = len(block.get("features", {}))
-        na = len(glob.glob(os.path.join(p, "PSSM-Alignments", "*", "corrected_alis", "*.fa")))
+        #  Both of these yield profiles -- install_module.py copies
+        #  corrected_alis/ AND reclustered_alis/ into the flat tree, and
+        #  audit_alignment_parity.py checks the pair against the profiles.
+        #  Counting only corrected_alis under-reported any module whose
+        #  n-terminal re-split produced most of its clusters: Torovirinae
+        #  read 13 against 57 profiles.  alis/ is the uncurated pre-
+        #  correction set and is still excluded.
+        na = sum(len(glob.glob(os.path.join(p, "PSSM-Alignments", "*", d, "*.fa")))
+                 for d in ("corrected_alis", "reclustered_alis"))
         nr = len(glob.glob(os.path.join(p, "Rep-Contigs", "*.dna")))
         special = []
         if glob.glob(os.path.join(p, "Splice-Variants", "*.fasta")):
