@@ -136,10 +136,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Alpharetrovirus Coverage Audit | [open](https://claude.ai/artifact/AnobFFvUDqjQfPHECo2bPp) | — | 2026-11-02 |
-| Alpharetrovirus PSSM Registry | [open](https://claude.ai/artifact/79W5AL2FdcGK8mJaEzXVeZ) | — | 2026-10-28 |
-| Alpharetrovirus String Collapse | [open](https://claude.ai/artifact/CfpgXESRmcejTpMaqkga2H) | — | 2026-10-28 |
-| Alpharetrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/2se3RSaF9Cbv1brCHo3uxp) | — | 2026-10-28 |
+| Alpharetrovirus Coverage Audit | [open](https://claude.ai/artifact/AnobFFvUDqjQfPHECo2bPp) | [source](reports/alpharetrovirus-coverage-audit.html) | 2026-11-02 |
+| Alpharetrovirus PSSM Registry | [open](https://claude.ai/artifact/79W5AL2FdcGK8mJaEzXVeZ) | [source](reports/alpharetrovirus-pssm-registry.html) | 2026-10-28 |
+| Alpharetrovirus String Collapse | [open](https://claude.ai/artifact/CfpgXESRmcejTpMaqkga2H) | [source](reports/alpharetrovirus-string-collapse.html) | 2026-10-28 |
+| Alpharetrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/2se3RSaF9Cbv1brCHo3uxp) | [source](reports/alpharetrovirus-vocabulary-saturation.html) | 2026-10-28 |
 
 Not made: genome map.
 
@@ -241,10 +241,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Betaretrovirus Coverage Audit | [open](https://claude.ai/artifact/WG4UHp5QzR5NqYy5RFvStr) | — | 2026-11-02 |
-| Betaretrovirus PSSM Registry | [open](https://claude.ai/artifact/NWA1P4R6gtTixbvjjPva4h) | — | 2026-10-28 |
-| Betaretrovirus String Collapse | [open](https://claude.ai/artifact/QmBMhMeySeeWx1xSEGB7b2) | — | 2026-10-28 |
-| Betaretrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/XPJL3x1kDK7NtrULEvg7wi) | — | 2026-10-28 |
+| Betaretrovirus Coverage Audit | [open](https://claude.ai/artifact/WG4UHp5QzR5NqYy5RFvStr) | [source](reports/betaretrovirus-coverage-audit.html) | 2026-11-02 |
+| Betaretrovirus PSSM Registry | [open](https://claude.ai/artifact/NWA1P4R6gtTixbvjjPva4h) | [source](reports/betaretrovirus-pssm-registry.html) | 2026-10-28 |
+| Betaretrovirus String Collapse | [open](https://claude.ai/artifact/QmBMhMeySeeWx1xSEGB7b2) | [source](reports/betaretrovirus-string-collapse.html) | 2026-10-28 |
+| Betaretrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/XPJL3x1kDK7NtrULEvg7wi) | [source](reports/betaretrovirus-vocabulary-saturation.html) | 2026-10-28 |
 
 Not made: genome map.
 
@@ -350,10 +350,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Deltaretrovirus Coverage Audit | [open](https://claude.ai/artifact/2tWi5E9gm5KWRKspYdJgDA) | — | 2026-11-02 |
-| Deltaretrovirus PSSM Registry | [open](https://claude.ai/artifact/HjGXwXK9GgvjyZx11y5jtt) | — | 2026-10-28 |
-| Deltaretrovirus String Collapse | [open](https://claude.ai/artifact/Mvm31NpChCPQJmGEM6RNNy) | — | 2026-10-28 |
-| Deltaretrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/1cZ4bd5xSjkYD11d2R2eJA) | — | 2026-10-28 |
+| Deltaretrovirus Coverage Audit | [open](https://claude.ai/artifact/2tWi5E9gm5KWRKspYdJgDA) | [source](reports/deltaretrovirus-coverage-audit.html) | 2026-11-02 |
+| Deltaretrovirus PSSM Registry | [open](https://claude.ai/artifact/HjGXwXK9GgvjyZx11y5jtt) | [source](reports/deltaretrovirus-pssm-registry.html) | 2026-10-28 |
+| Deltaretrovirus String Collapse | [open](https://claude.ai/artifact/Mvm31NpChCPQJmGEM6RNNy) | [source](reports/deltaretrovirus-string-collapse.html) | 2026-10-28 |
+| Deltaretrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/1cZ4bd5xSjkYD11d2R2eJA) | [source](reports/deltaretrovirus-vocabulary-saturation.html) | 2026-10-28 |
 
 Not made: genome map.
 
@@ -362,7 +362,7 @@ Not made: genome map.
 | page | live | source | updated |
 |---|---|---|---|
 | DensovirinaeAmbi Coverage Audit | [open](https://claude.ai/artifact/KwEMFuhTs1Q1CDnbfgHr8G) | [source](reports/densovirinaeambi-coverage-audit.html) | 2026-11-17 |
-| DensovirinaeAmbi String Collapse | [open](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | — | 2026-10-29 |
+| DensovirinaeAmbi String Collapse | [open](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | [source](reports/densovirinaeambi-string-collapse.html) | 2026-10-29 |
 
 Built but never published, source is here: [PSSM registry](reports/densovirinaeambi-pssm-registry.html), [vocabulary saturation](reports/densovirinaeambi-vocabulary-saturation.html).
 Not made: genome map.
@@ -372,9 +372,9 @@ Not made: genome map.
 | page | live | source | updated |
 |---|---|---|---|
 | DensovirinaeMono Coverage Audit | [open](https://claude.ai/artifact/Nx6tVfTiXDRPF2LrHdKKgV) | [source](reports/densovirinaemono-coverage-audit.html) | 2026-11-17 |
-| DensovirinaeMono PSSM Registry | [open](https://claude.ai/artifact/VGQzYmcXAUzaRhK1FR3oid) | — | 2026-10-31 |
-| DensovirinaeMono String Collapse | [open](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | — | 2026-10-29 |
-| DensovirinaeMono Vocabulary Saturation | [open](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | — | 2026-10-31 |
+| DensovirinaeMono PSSM Registry | [open](https://claude.ai/artifact/VGQzYmcXAUzaRhK1FR3oid) | [source](reports/densovirinaemono-pssm-registry.html) | 2026-10-31 |
+| DensovirinaeMono String Collapse | [open](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | [source](reports/densovirinaemono-string-collapse.html) | 2026-10-29 |
+| DensovirinaeMono Vocabulary Saturation | [open](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | [source](reports/densovirinaemono-vocabulary-saturation.html) | 2026-10-31 |
 
 Not made: genome map.
 
@@ -393,10 +393,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| EIAV Coverage Audit | [open](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) | — | 2026-11-02 |
-| EIAV PSSM Registry | [open](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | — | 2026-10-27 |
-| EIAV String Collapse | [open](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | — | 2026-10-27 |
-| EIAV Vocabulary Saturation | [open](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | — | 2026-10-27 |
+| EIAV Coverage Audit | [open](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) | [source](reports/eiav-coverage-audit.html) | 2026-11-02 |
+| EIAV PSSM Registry | [open](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | [source](reports/eiav-pssm-registry.html) | 2026-10-27 |
+| EIAV String Collapse | [open](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [source](reports/eiav-string-collapse.html) | 2026-10-27 |
+| EIAV Vocabulary Saturation | [open](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | [source](reports/eiav-vocabulary-saturation.html) | 2026-10-27 |
 
 Not made: genome map.
 
@@ -426,10 +426,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| FIV Coverage Audit | [open](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) | — | 2026-11-02 |
-| FIV PSSM Registry | [open](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | — | 2026-10-27 |
-| FIV String Collapse | [open](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | — | 2026-10-27 |
-| FIV Vocabulary Saturation | [open](https://claude.ai/artifact/QsKfmM4MTshtERZAeNqZHJ) | — | 2026-10-27 |
+| FIV Coverage Audit | [open](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) | [source](reports/fiv-coverage-audit.html) | 2026-11-02 |
+| FIV PSSM Registry | [open](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | [source](reports/fiv-pssm-registry.html) | 2026-10-27 |
+| FIV String Collapse | [open](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | [source](reports/fiv-string-collapse.html) | 2026-10-27 |
+| FIV Vocabulary Saturation | [open](https://claude.ai/artifact/QsKfmM4MTshtERZAeNqZHJ) | [source](reports/fiv-vocabulary-saturation.html) | 2026-10-27 |
 
 Not made: genome map.
 
@@ -437,10 +437,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Gammaretrovirus Coverage Audit | [open](https://claude.ai/artifact/ELrfaFZbTYfUnVupig7Uxq) | — | 2026-11-02 |
-| Gammaretrovirus PSSM Registry | [open](https://claude.ai/artifact/3WcJXhsNk1fqU74ftQ6Stu) | — | 2026-10-28 |
-| Gammaretrovirus String Collapse | [open](https://claude.ai/artifact/Q8bws2vKjuyKBb4ZAuCCAF) | — | 2026-10-28 |
-| Gammaretrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/SnWBfiMoMut4R5Ykff8GEg) | — | 2026-10-28 |
+| Gammaretrovirus Coverage Audit | [open](https://claude.ai/artifact/ELrfaFZbTYfUnVupig7Uxq) | [source](reports/gammaretrovirus-coverage-audit.html) | 2026-11-02 |
+| Gammaretrovirus PSSM Registry | [open](https://claude.ai/artifact/3WcJXhsNk1fqU74ftQ6Stu) | [source](reports/gammaretrovirus-pssm-registry.html) | 2026-10-28 |
+| Gammaretrovirus String Collapse | [open](https://claude.ai/artifact/Q8bws2vKjuyKBb4ZAuCCAF) | [source](reports/gammaretrovirus-string-collapse.html) | 2026-10-28 |
+| Gammaretrovirus Vocabulary Saturation | [open](https://claude.ai/artifact/SnWBfiMoMut4R5Ykff8GEg) | [source](reports/gammaretrovirus-vocabulary-saturation.html) | 2026-10-28 |
 
 Not made: genome map.
 
@@ -492,10 +492,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| HIV-1 Coverage Audit | [open](https://claude.ai/artifact/7bsqucJtLNCMQdZX4Kk8pL) | — | 2026-11-02 |
-| HIV-1 PSSM Registry | [open](https://claude.ai/artifact/1m9N8qBAKsy5kA2E8FXqtS) | — | 2026-10-28 |
-| HIV-1 String Collapse | [open](https://claude.ai/artifact/4MYTtF1b6CK2zVFcffChS2) | — | 2026-10-28 |
-| HIV-1 Vocabulary Saturation | [open](https://claude.ai/artifact/1Cix57VHwBNRs6qCbf6Apm) | — | 2026-10-28 |
+| HIV-1 Coverage Audit | [open](https://claude.ai/artifact/7bsqucJtLNCMQdZX4Kk8pL) | [source](reports/hiv1-coverage-audit.html) | 2026-11-02 |
+| HIV-1 PSSM Registry | [open](https://claude.ai/artifact/1m9N8qBAKsy5kA2E8FXqtS) | [source](reports/hiv1-pssm-registry.html) | 2026-10-28 |
+| HIV-1 String Collapse | [open](https://claude.ai/artifact/4MYTtF1b6CK2zVFcffChS2) | [source](reports/hiv1-string-collapse.html) | 2026-10-28 |
+| HIV-1 Vocabulary Saturation | [open](https://claude.ai/artifact/1Cix57VHwBNRs6qCbf6Apm) | [source](reports/hiv1-vocabulary-saturation.html) | 2026-10-28 |
 
 Not made: genome map.
 
@@ -503,10 +503,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| HIV2 Coverage Audit | [open](https://claude.ai/artifact/9tzr7kovzhCR8WzHgBuiQN) | — | 2026-11-02 |
-| HIV2 PSSM Registry | [open](https://claude.ai/artifact/GGGXozTRJwQRXd933xjV82) | — | 2026-10-27 |
-| HIV2 String Collapse | [open](https://claude.ai/artifact/KbGvBwhAtTVTCawuggMUx9) | — | 2026-10-27 |
-| HIV2 Vocabulary Saturation | [open](https://claude.ai/artifact/P7XMfPgbeAKkVBSRsrLNQL) | — | 2026-10-27 |
+| HIV2 Coverage Audit | [open](https://claude.ai/artifact/9tzr7kovzhCR8WzHgBuiQN) | [source](reports/hiv2-coverage-audit.html) | 2026-11-02 |
+| HIV2 PSSM Registry | [open](https://claude.ai/artifact/GGGXozTRJwQRXd933xjV82) | [source](reports/hiv2-pssm-registry.html) | 2026-10-27 |
+| HIV2 String Collapse | [open](https://claude.ai/artifact/KbGvBwhAtTVTCawuggMUx9) | [source](reports/hiv2-string-collapse.html) | 2026-10-27 |
+| HIV2 Vocabulary Saturation | [open](https://claude.ai/artifact/P7XMfPgbeAKkVBSRsrLNQL) | [source](reports/hiv2-vocabulary-saturation.html) | 2026-10-27 |
 
 Not made: genome map.
 
@@ -846,10 +846,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Spumaretrovirinae Coverage Audit | [open](https://claude.ai/artifact/SsPLLYtdqDgPaDo6ZrstiU) | — | 2026-11-02 |
-| Spumaretrovirinae PSSM Registry | [open](https://claude.ai/artifact/GGyut8ufvAFnzHX1reqtji) | — | 2026-10-28 |
-| Spumaretrovirinae String Collapse | [open](https://claude.ai/artifact/PY1Bk6CcSTSjPRPeamnCRE) | — | 2026-10-28 |
-| Spumaretrovirinae Vocabulary Saturation | [open](https://claude.ai/artifact/85pk6ypS9YZ9Gy3iQXidRM) | — | 2026-10-28 |
+| Spumaretrovirinae Coverage Audit | [open](https://claude.ai/artifact/SsPLLYtdqDgPaDo6ZrstiU) | [source](reports/spumaretrovirinae-coverage-audit.html) | 2026-11-02 |
+| Spumaretrovirinae PSSM Registry | [open](https://claude.ai/artifact/GGyut8ufvAFnzHX1reqtji) | [source](reports/spumaretrovirinae-pssm-registry.html) | 2026-10-28 |
+| Spumaretrovirinae String Collapse | [open](https://claude.ai/artifact/PY1Bk6CcSTSjPRPeamnCRE) | [source](reports/spumaretrovirinae-string-collapse.html) | 2026-10-28 |
+| Spumaretrovirinae Vocabulary Saturation | [open](https://claude.ai/artifact/85pk6ypS9YZ9Gy3iQXidRM) | [source](reports/spumaretrovirinae-vocabulary-saturation.html) | 2026-10-28 |
 
 Not made: genome map.
 
@@ -857,10 +857,10 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| SRLV Coverage Audit | [open](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) | — | 2026-11-02 |
-| SRLV PSSM Registry | [open](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | — | 2026-10-27 |
-| SRLV String Collapse | [open](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | — | 2026-10-27 |
-| SRLV Vocabulary Saturation | [open](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | — | 2026-10-27 |
+| SRLV Coverage Audit | [open](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) | [source](reports/srlv-coverage-audit.html) | 2026-11-02 |
+| SRLV PSSM Registry | [open](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | [source](reports/srlv-pssm-registry.html) | 2026-10-27 |
+| SRLV String Collapse | [open](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | [source](reports/srlv-string-collapse.html) | 2026-10-27 |
+| SRLV Vocabulary Saturation | [open](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | [source](reports/srlv-vocabulary-saturation.html) | 2026-10-27 |
 
 Not made: genome map.
 
@@ -880,9 +880,9 @@ Not made: genome map.
 | page | live | source | updated |
 |---|---|---|---|
 | TetraCopiparvovirus Coverage Audit | [open](https://claude.ai/artifact/AwAe6qNhui1fPRsezQY3Wd) | [source](reports/tetracopiparvovirus-coverage-audit.html) | 2026-11-17 |
-| TetraCopiparvovirus PSSM Registry | [open](https://claude.ai/artifact/8cma1NsgkTSgH6zD3oJkMv) | — | 2026-10-31 |
-| TetraCopiparvovirus String Collapse | [open](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | — | 2026-10-29 |
-| TetraCopiparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/B2b8bZqe2en9vgBipMsTDY) | — | 2026-10-31 |
+| TetraCopiparvovirus PSSM Registry | [open](https://claude.ai/artifact/8cma1NsgkTSgH6zD3oJkMv) | [source](reports/tetracopiparvovirus-pssm-registry.html) | 2026-10-31 |
+| TetraCopiparvovirus String Collapse | [open](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | [source](reports/tetracopiparvovirus-string-collapse.html) | 2026-10-29 |
+| TetraCopiparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/B2b8bZqe2en9vgBipMsTDY) | [source](reports/tetracopiparvovirus-vocabulary-saturation.html) | 2026-10-31 |
 
 Not made: genome map.
 

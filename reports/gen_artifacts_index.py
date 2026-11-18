@@ -172,9 +172,32 @@ def main():
 
     TAXA = derive_taxa(set(best) | set(src))
 
+    SIDX = title_index(set(src))
+
+    def source_of(t):
+        """The FILE for a published page, which is often titled differently.
+
+        The gloss was added to <title> by gen_registry.py AFTER many of these
+        pages went out, so "Alpharetrovirus String Collapse" is what is live
+        while the file on disk calls itself "Alpharetrovirus — avian leukosis
+        and sarcoma viruses String Collapse". Matching the title exactly loses
+        the source path for 47 pages and prints "—", which in this table means
+        the file does not exist -- so four finished Alpharetrovirus pages read
+        as sourceless, and three Densovirinae ones as never published.
+        """
+        if t in src:
+            return src[t]
+        for kind, _l in KINDS:
+            if t.endswith(" " + kind):
+                alt = SIDX.get((canonical(t[: -len(kind) - 1]), kind))
+                if alt and alt != t:
+                    return src[alt]
+        return None
+
     def row(t):
         u, d = best[t]
-        s = "[source](reports/%s)" % src[t] if t in src else "—"
+        f = source_of(t)
+        s = "[source](reports/%s)" % f if f else "—"
         return "| %s | [open](https://claude.ai/artifact/%s) | %s | %s |" % (t, u, s, d)
 
     o = ["# Published artifacts", "",
@@ -196,8 +219,9 @@ def main():
         t = title_for(tax, kind)
         if t in best:
             return "[live](https://claude.ai/artifact/%s)" % best[t][0]
-        if t in src:
-            return "[src only](reports/%s)" % src[t]
+        f = source_of(t)
+        if f:
+            return "[src only](reports/%s)" % f
         if kind == "Genome Map":
             f = map_source(tax)
             if f:
@@ -232,10 +256,9 @@ def main():
             used.add(t)
             if t in best:
                 live.append(t)
-            elif t in src:
-                built.append((label, src[t]))
             else:
-                never.append(label)
+                f = source_of(t)
+                (built.append((label, f)) if f else never.append(label))
         if not (live or built):
             continue
         o += ["### %s" % tax, "", "| page | live | source | updated |", "|---|---|---|---|"]
@@ -264,7 +287,7 @@ def main():
     open(os.path.join(ROOT, "ARTIFACTS.md"), "w").write("\n".join(o) + "\n")
     print("ARTIFACTS.md: %d published, %d current, %d superseded"
           % (len(rows), len(best), len(superseded)))
-    nosrc = sorted(t for t in best if t not in src)
+    nosrc = sorted(t for t in best if not source_of(t))
     if nosrc:
         print("no source file in reports/ for %d:" % len(nosrc))
         for t in nosrc:
