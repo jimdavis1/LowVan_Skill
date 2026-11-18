@@ -1,9 +1,6 @@
 {
- "title": "Spumaretrovirinae \u2014 the foamy viruses Coverage Audit",
  "eyebrow": "LowVan module audit &middot; 27 October 2026",
  "h1": "Spumaretrovirinae \u2014 the foamy viruses",
- "subhead": "the foamy viruses of primates, cats, cattle and horses",
- "standfirst": "<b>Spumaretrovirinae</b> is a subfamily rather than a genus, holding five foamy virus genera together. It is the most feature-rich of the four retroviral modules: the structural trio plus two <i>bel</i> regulators, plus <b>Bet</b>, a spliced protein the deposited vocabulary names but no profile can represent.",
  "headline_tiles": [
   [
    "6",
@@ -28,16 +25,12 @@
  ],
  "sections": [
   {
-   "num": "01",
-   "title": "What the module calls",
-   "lede": "Five profiled features and a spliced sixth assembled from two separate genes.",
    "blocks": [
     {
-     "type": "prose",
-     "html": "<b>Bet</b> is Bel-1 (Tas) residues 1&ndash;88 spliced to the last 396 residues of Bel-2 &mdash; one intron in the coding sequence, which is what brings it within reach of the splice caller. Its 30 deposits sat unmodelled because a protein assembled from two genes is not collinear with any genomic ORF, so a profile built from it would be trained to find something the genome does not contain."
+     "html": "<b>Bet</b> is Bel-1 (Tas) residues 1&ndash;88 spliced to the last 396 residues of Bel-2 &mdash; one intron in the coding sequence, which is what brings it within reach of the splice caller. Its 30 deposits sat unmodelled because a protein assembled from two genes is not collinear with any genomic ORF, so a profile built from it would be trained to find something the genome does not contain.",
+     "type": "prose"
     },
     {
-     "type": "table",
      "headers": [
       "feature",
       "product",
@@ -95,10 +88,14 @@
        "\u2014",
        "PSSM"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "bars",
+     "from": "spumaretrovirinae-genome-map.html",
+     "type": "figure"
+    },
+    {
      "rows": [
       [
        "BEL2",
@@ -137,31 +134,31 @@
        "31 of 45"
       ]
      ],
+     "type": "bars",
      "unit": "%"
     }
-   ]
+   ],
+   "lede": "Five profiled features and a spliced sixth assembled from two separate genes.",
+   "num": "01",
+   "title": "What the module calls"
   },
   {
-   "num": "02",
-   "title": "Where it does not call, and why",
    "blocks": [
     {
-     "type": "prose",
-     "html": "BET's rate is bounded by reference coverage, and every gap in it is accounted for. Bovispumavirus and Equispumavirus have no reference because neither has a genuine Bet deposit &mdash; the curated bovine records map contiguously onto the called BEL2 at 97.9% identity, so they are Bel-2. Taxon 11963 contributes none of its nineteen genomes because eighteen have zero tblastn hits against a 482 aa Bet: they are 10.0&ndash;12.5 kb <i>gag-pol-env</i> deposits carrying no <i>bel</i> region at all. The remaining misses are genomes that fail to call TAS or BEL2, and Bet needs both of its parent exons. TAS and BEL2 themselves have a residual recall gap that is NOT a cutoff problem &mdash; the regions score 197&ndash;578 bits against cutoffs of 19 and 50 &mdash; and remains open."
+     "html": "BET's rate is bounded by reference coverage, and every gap in it is accounted for. Bovispumavirus and Equispumavirus have no reference because neither has a genuine Bet deposit &mdash; the curated bovine records map contiguously onto the called BEL2 at 97.9% identity, so they are Bel-2. Taxon 11963 contributes none of its nineteen genomes because eighteen have zero tblastn hits against a 482 aa Bet: they are 10.0&ndash;12.5 kb <i>gag-pol-env</i> deposits carrying no <i>bel</i> region at all. The remaining misses are genomes that fail to call TAS or BEL2, and Bet needs both of its parent exons. TAS and BEL2 themselves have a residual recall gap that is NOT a cutoff problem &mdash; the regions score 197&ndash;578 bits against cutoffs of 19 and 50 &mdash; and remains open.",
+     "type": "prose"
     },
     {
-     "type": "prose",
-     "html": "<b>GAG, POL and ENV</b> carry copy_num on biology, not on their rates: every replication-competent retrovirus encodes <i>gag</i>, <i>pol</i> and <i>env</i>, so a genome without one is defective and is flagged as missing an essential feature. That flag is true rather than false only if the genomes it lands on really lack the gene, so each of the 6 exemplars without an ENV call was searched by tblastn against the full ENV collection (a called genome, 109270.30, scores 2048 bits over 100% of an envelope protein). <b>2 of 6</b> carry no intact <i>env</i>: 2 have one interrupted by stop codons or frameshifts. The other four carry an intact <i>env</i> the profiles do not call (3128414.5 at 668 bits, 3128416.4 at 709 bits, 3128417.3 at 704 bits, 3128417.4 at 727 bits) &mdash; a recall gap in the module, not in the genome, and the quality flag on them is wrong."
+     "html": "<b>GAG, POL and ENV</b> carry copy_num on biology, not on their rates: every replication-competent retrovirus encodes <i>gag</i>, <i>pol</i> and <i>env</i>, so a genome without one is defective and is flagged as missing an essential feature. That flag is true rather than false only if the genomes it lands on really lack the gene, so each of the 6 exemplars without an ENV call was searched by tblastn against the full ENV collection (a called genome, 109270.30, scores 2048 bits over 100% of an envelope protein). <b>2 of 6</b> carry no intact <i>env</i>: 2 have one interrupted by stop codons or frameshifts. The other four carry an intact <i>env</i> the profiles do not call (3128414.5 at 668 bits, 3128416.4 at 709 bits, 3128417.3 at 704 bits, 3128417.4 at 727 bits) &mdash; a recall gap in the module, not in the genome, and the quality flag on them is wrong.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "02",
+   "title": "Where it does not call, and why"
   },
   {
-   "num": "03",
-   "title": "Vocabulary",
-   "lede": "37 annotation strings collapse onto 6 targets.",
    "blocks": [
     {
-     "type": "table",
      "headers": [
       "target",
       "product",
@@ -205,39 +202,46 @@
        "3",
        "29"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "prose",
-     "html": "99.8% of the 575 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+     "html": "99.8% of the 575 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on.",
+     "type": "prose"
     }
-   ]
+   ],
+   "lede": "37 annotation strings collapse onto 6 targets.",
+   "num": "03",
+   "title": "Vocabulary"
   },
   {
-   "num": "04",
-   "title": "Vocabulary saturation",
+   "blocks": [
+    {
+     "from": "spumaretrovirinae-vocabulary-saturation.html",
+     "type": "figure"
+    },
+    {
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 35.0 distinct source strings correspond to 6.0 controlled annotations, a 5.8-fold collapse. The module reaches 95% of its final vocabulary after 17 proteins against the source's 198.",
+     "type": "prose"
+    }
+   ],
    "lede": "How fast each vocabulary stops growing as genomes are added.",
-   "blocks": [
-    {
-     "type": "figure",
-     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/spumaretrovirinae-vocabulary-saturation.html"
-    },
-    {
-     "type": "prose",
-     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 35.0 distinct source strings correspond to 6.0 controlled annotations, a 5.8-fold collapse. The module reaches 95% of its final vocabulary after 17 proteins against the source's 198."
-    }
-   ]
+   "num": "04",
+   "title": "Vocabulary saturation"
   },
   {
-   "num": "05",
-   "title": "Method",
    "blocks": [
     {
-     "type": "prose",
-     "html": "Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 156 genomes reduce to 46 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 45 of 46 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used."
+     "html": "Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 156 genomes reduce to 46 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 45 of 46 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "05",
+   "title": "Method"
   }
  ],
- "source_note": "Measured 27 October 2026 from the shipped module: the Spumaretrovirinae block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 46 exemplars de-replicated from 156 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+ "source_note": "Measured 27 October 2026 from the shipped module: the Spumaretrovirinae block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 46 exemplars de-replicated from 156 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences.",
+ "standfirst": "<b>Spumaretrovirinae</b> is a subfamily rather than a genus, holding five foamy virus genera together. It is the most feature-rich of the four retroviral modules: the structural trio plus two <i>bel</i> regulators, plus <b>Bet</b>, a spliced protein the deposited vocabulary names but no profile can represent.",
+ "subhead": "the foamy viruses of primates, cats, cattle and horses",
+ "title": "Spumaretrovirinae \u2014 the foamy viruses Coverage Audit"
 }

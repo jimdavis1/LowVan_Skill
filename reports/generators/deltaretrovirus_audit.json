@@ -1,9 +1,6 @@
 {
- "title": "Deltaretrovirus \u2014 human and simian T-lymphotropic viruses and bovine leukaemia virus Coverage Audit",
  "eyebrow": "LowVan module audit &middot; 27 October 2026",
  "h1": "Deltaretrovirus \u2014 human and simian T-lymphotropic viruses and bovine leukaemia virus",
- "subhead": "human and simian T-lymphotropic viruses and bovine leukaemia virus",
- "standfirst": "<b>Deltaretrovirus</b> holds two lineages in one module: the primate T-lymphotropic viruses, 678 genomes, and bovine leukaemia virus, 473. They are together because the project's partitioning rule says they should be, and all three of its clauses were measured rather than assumed &mdash; same <i>gag-pro-pol-env</i> layout plus <i>tax</i> and <i>rex</i>, peripheral proteins that return no blastp hit across the lineages at e&le;1e-3, and one shared splice mechanism claimed under no competing key.",
  "headline_tiles": [
   [
    "13",
@@ -28,16 +25,12 @@
  ],
  "sections": [
   {
-   "num": "01",
-   "title": "What the module calls",
-   "lede": "Ten profiled features and three spliced ones, over two lineages that share a layout and no accessory proteins.",
    "blocks": [
     {
-     "type": "prose",
-     "html": "<b>TAX</b> takes a profile and is <i>not</i> a spliced feature, which corrects the planning for this module. Its first coding exon is 4 nt &mdash; the initiator methionine and one base &mdash; so about 99.7% of the protein sits in one genomic block and the collinearity triage calls it collinear on 851 deposits. <b>REX</b> is the opposite: a ~60 nt first exon is roughly 12% of a ~170 aa protein, which is what drops it below the collinearity floor. Rex is also not one protein across the module &mdash; 156 aa in bovine leukaemia virus, 189 in PTLV-1, 182 in PTLV-3, 170 in HTLV-2 and HTLV-4 &mdash; so it is built from one query per lineage and then de-duplicated to one reference per genome."
+     "html": "<b>TAX</b> takes a profile and is <i>not</i> a spliced feature, which corrects the planning for this module. Its first coding exon is 4 nt &mdash; the initiator methionine and one base &mdash; so about 99.7% of the protein sits in one genomic block and the collinearity triage calls it collinear on 851 deposits. <b>REX</b> is the opposite: a ~60 nt first exon is roughly 12% of a ~170 aa protein, which is what drops it below the collinearity floor. Rex is also not one protein across the module &mdash; 156 aa in bovine leukaemia virus, 189 in PTLV-1, 182 in PTLV-3, 170 in HTLV-2 and HTLV-4 &mdash; so it is built from one query per lineage and then de-duplicated to one reference per genome.",
+     "type": "prose"
     },
     {
-     "type": "table",
      "headers": [
       "feature",
       "product",
@@ -151,10 +144,14 @@
        "yes",
        "PSSM"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "bars",
+     "from": "deltaretrovirus-genome-map.html",
+     "type": "figure"
+    },
+    {
      "rows": [
       [
        "AS1",
@@ -235,31 +232,31 @@
        "33 of 33"
       ]
      ],
+     "type": "bars",
      "unit": "%"
     }
-   ]
+   ],
+   "lede": "Ten profiled features and three spliced ones, over two lineages that share a layout and no accessory proteins.",
+   "num": "01",
+   "title": "What the module calls"
   },
   {
-   "num": "02",
-   "title": "Where it does not call, and why",
    "blocks": [
     {
-     "type": "prose",
-     "html": "The lineage-specific accessories call on 15&ndash;30% of exemplars and that is the denominator, not a gap: AS1, G4 and R3 exist only in bovine leukaemia virus and HBZ, p12, p13 and p30 only in the primate lineage, so each can fire on at most its own half of the exemplar set. Three things are genuinely open. <b>Rex references cover the two lineages unevenly</b> &mdash; 466 over 473 bovine genomes against 123 over 678 primate ones &mdash; because a 20-residue first exon is below what tblastn will report for a query 85% identical to the subject, and a genome with no near reference can be miscalled: HTLV-1 11908.2880 has its <i>rex</i> spliced from inside <i>gag</i>. The single bat deltaretrovirus genome builds no Rex reference at all. And <b>p13 is 100% identical to residues 155&ndash;241 of p30</b> in all seven collection members, so the two cannot be separated by profile alone; 8 of 10 p13 calls are nonetheless the correct 87 aa."
+     "html": "The lineage-specific accessories call on 15&ndash;30% of exemplars and that is the denominator, not a gap: AS1, G4 and R3 exist only in bovine leukaemia virus and HBZ, p12, p13 and p30 only in the primate lineage, so each can fire on at most its own half of the exemplar set. Three things are genuinely open. <b>Rex references cover the two lineages unevenly</b> &mdash; 466 over 473 bovine genomes against 123 over 678 primate ones &mdash; because a 20-residue first exon is below what tblastn will report for a query 85% identical to the subject, and a genome with no near reference can be miscalled: HTLV-1 11908.2880 has its <i>rex</i> spliced from inside <i>gag</i>. The single bat deltaretrovirus genome builds no Rex reference at all. And <b>p13 is 100% identical to residues 155&ndash;241 of p30</b> in all seven collection members, so the two cannot be separated by profile alone; 8 of 10 p13 calls are nonetheless the correct 87 aa.",
+     "type": "prose"
     },
     {
-     "type": "prose",
-     "html": "<b>GAG, POL and ENV</b> carry copy_num on biology, not on their rates: every replication-competent retrovirus encodes <i>gag</i>, <i>pol</i> and <i>env</i>, so a genome without one is defective and is flagged as missing an essential feature. That flag is true rather than false only if the genomes it lands on really lack the gene, so each of the 3 exemplars without an ENV call was searched by tblastn against the full ENV collection (a called genome, 11901.1718, scores 1046 bits over 100% of an envelope protein). <b>3 of 3</b> carry no intact <i>env</i>: 3 have one interrupted by stop codons or frameshifts."
+     "html": "<b>GAG, POL and ENV</b> carry copy_num on biology, not on their rates: every replication-competent retrovirus encodes <i>gag</i>, <i>pol</i> and <i>env</i>, so a genome without one is defective and is flagged as missing an essential feature. That flag is true rather than false only if the genomes it lands on really lack the gene, so each of the 3 exemplars without an ENV call was searched by tblastn against the full ENV collection (a called genome, 11901.1718, scores 1046 bits over 100% of an envelope protein). <b>3 of 3</b> carry no intact <i>env</i>: 3 have one interrupted by stop codons or frameshifts.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "02",
+   "title": "Where it does not call, and why"
   },
   {
-   "num": "03",
-   "title": "Vocabulary",
-   "lede": "69 annotation strings collapse onto 13 targets.",
    "blocks": [
     {
-     "type": "table",
      "headers": [
       "target",
       "product",
@@ -345,39 +342,46 @@
        "3",
        "67"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "prose",
-     "html": "98.4% of the 8153 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+     "html": "98.4% of the 8153 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on.",
+     "type": "prose"
     }
-   ]
+   ],
+   "lede": "69 annotation strings collapse onto 13 targets.",
+   "num": "03",
+   "title": "Vocabulary"
   },
   {
-   "num": "04",
-   "title": "Vocabulary saturation",
+   "blocks": [
+    {
+     "from": "deltaretrovirus-vocabulary-saturation.html",
+     "type": "figure"
+    },
+    {
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 60.0 distinct source strings correspond to 13.0 controlled annotations, a 4.6-fold collapse. The module reaches 95% of its final vocabulary after 74 proteins against the source's 165.",
+     "type": "prose"
+    }
+   ],
    "lede": "How fast each vocabulary stops growing as genomes are added.",
-   "blocks": [
-    {
-     "type": "figure",
-     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/deltaretrovirus-vocabulary-saturation.html"
-    },
-    {
-     "type": "prose",
-     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 60.0 distinct source strings correspond to 13.0 controlled annotations, a 4.6-fold collapse. The module reaches 95% of its final vocabulary after 74 proteins against the source's 165."
-    }
-   ]
+   "num": "04",
+   "title": "Vocabulary saturation"
   },
   {
-   "num": "05",
-   "title": "Method",
    "blocks": [
     {
-     "type": "prose",
-     "html": "Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 1151 genomes reduce to 34 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 33 of 34 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used."
+     "html": "Coverage is measured by annotating genomes through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Exemplars are clustered at 95% nucleotide identity over 90% of length, so one row is one distinct sequence rather than one deposit: this module's 1151 genomes reduce to 34 exemplars, and without that step a rate would report how often a sequence was deposited rather than how often the module calls it. Call rates are taken over the 33 of 34 exemplars this module actually claimed; an unrouted genome contributes no features and counting it would understate every rate, and this is the same denominator the evaluation and the copy_num decisions used.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "05",
+   "title": "Method"
   }
  ],
- "source_note": "Measured 27 October 2026 from the shipped module: the Deltaretrovirus block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 34 exemplars de-replicated from 1151 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+ "source_note": "Measured 27 October 2026 from the shipped module: the Deltaretrovirus block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage annotation over 34 exemplars de-replicated from 1151 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences.",
+ "standfirst": "<b>Deltaretrovirus</b> holds two lineages in one module: the primate T-lymphotropic viruses, 678 genomes, and bovine leukaemia virus, 473. They are together because the project's partitioning rule says they should be, and all three of its clauses were measured rather than assumed &mdash; same <i>gag-pro-pol-env</i> layout plus <i>tax</i> and <i>rex</i>, peripheral proteins that return no blastp hit across the lineages at e&le;1e-3, and one shared splice mechanism claimed under no competing key.",
+ "subhead": "human and simian T-lymphotropic viruses and bovine leukaemia virus",
+ "title": "Deltaretrovirus \u2014 human and simian T-lymphotropic viruses and bovine leukaemia virus Coverage Audit"
 }

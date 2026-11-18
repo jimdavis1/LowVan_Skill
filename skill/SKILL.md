@@ -1576,6 +1576,17 @@ python3 scripts/gen_rarefaction.py --rarefaction rarefaction.json \
 python3 scripts/gen_genome_map.py --gto panel/<best_genome>.qual.gto \
     --module-json <Module>_Viral_PSSM.json --module <Module> \
     --out <taxon>-genome-map.html
+
+#  no panel GTO to hand? annotate a rep contig and feed the feature table.
+#  This needs no ID server -- make_gto.py registers a new genome id for every
+#  genome it builds, which is the wrong trade for a picture. Route against the
+#  module's own references only, or you pay 1,400 blastn calls for one genome.
+mkdir -p refs && cp $LOWVAN_DATA_DIR/Viral-Rep-Contigs/<Module>.*.dna refs/
+perl $LOWVAN_DATA_DIR/annotate_by_viral_pssm.pl -i <Module>.1.dna -p m \
+    -c refs -max 500000 -min 200
+python3 scripts/gen_genome_map.py --tbl m.feature.tbl --fasta <Module>.1.dna \
+    --module-json $LOWVAN_DATA_DIR/Viral_PSSM.json --module <Module> \
+    --out <taxon>-genome-map.html
 #  then in the audit facts file, in the first section, after the feature table:
 #      {"type": "figure", "from": "<taxon>-genome-map.html"}
 python3 scripts/gen_coverage_audit.py --facts <taxon>_audit.json \
@@ -1585,9 +1596,19 @@ python3 scripts/check_artifact_html.py *.html    # <- REQUIRED before publishing
 ```
 
 A `figure` block resolves `from` **relative to the current directory**, so run
-the audit generator from the directory holding the pages. The gate: the
-finished coverage audit must contain **two** `<svg>` elements, the genome map
-and the rarefaction curve. One means the map silently did not make it in.
+the audit generator from the directory holding the pages.
+
+**The gate is in `check_artifact_html.py`, not in your memory of this
+paragraph.** It fails any `*-coverage-audit.html` that does not carry a genome
+map, and the skill already requires that linter before publishing. Writing the
+step down was not enough the first time: the map was asked for across several
+sessions, agreed to, and still not produced, because nothing *checked*. If you
+find yourself about to publish an audit the linter rejects, generate the map —
+do not reach for `--quiet` or publish around it.
+
+A map drawn from a feature table shows each feature as the span the PSSM
+matched. For a module with spliced features, draw it from a GTO produced by
+the full pass instead, so the exon structure is real.
 
 ### Lint every page before publishing it
 

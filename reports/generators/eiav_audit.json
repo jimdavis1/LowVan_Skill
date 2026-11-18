@@ -1,9 +1,6 @@
 {
- "title": "EIAV \u2014 equine infectious anaemia virus Coverage Audit",
  "eyebrow": "LowVan module audit &middot; 27 October 2026",
  "h1": "EIAV \u2014 equine infectious anaemia virus",
- "subhead": "equine infectious anaemia virus",
- "standfirst": "<b>EIAV</b> is the lentivirus of horses and the smallest module in this family &mdash; one virus, little vocabulary, and the clearest example in the set of a tiny accessory gene that is nonetheless essential. Four features carry profiles; <i>rev</i> is declared and called by the splice caller, and <i>tat</i> is recognised but not declared.",
  "headline_tiles": [
   [
    "5",
@@ -28,16 +25,12 @@
  ],
  "sections": [
   {
-   "num": "01",
-   "title": "What the module calls",
-   "lede": "Four profiled features, and an 11-of-11 accessory gene smaller than most peptides.",
    "blocks": [
     {
-     "type": "prose",
-     "html": "S2 is 59&ndash;83 aa and is called on every exemplar. It was marked essential on evidence: 30 of 30 held-out genomes, and out of frame with <i>env</i> in 29 of 29 &mdash; a separate gene, not a cleavage product of the envelope it sits inside."
+     "html": "S2 is 59&ndash;83 aa and is called on every exemplar. It was marked essential on evidence: 30 of 30 held-out genomes, and out of frame with <i>env</i> in 29 of 29 &mdash; a separate gene, not a cleavage product of the envelope it sits inside.",
+     "type": "prose"
     },
     {
-     "type": "table",
      "headers": [
       "feature",
       "product",
@@ -87,10 +80,14 @@
        "yes",
        "PSSM"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "bars",
+     "from": "eiav-genome-map.html",
+     "type": "figure"
+    },
+    {
      "rows": [
       [
        "ENV",
@@ -123,27 +120,27 @@
        "11 of 11"
       ]
      ],
+     "type": "bars",
      "unit": "%"
     }
-   ]
+   ],
+   "lede": "Four profiled features, and an 11-of-11 accessory gene smaller than most peptides.",
+   "num": "01",
+   "title": "What the module calls"
   },
   {
-   "num": "02",
-   "title": "Where it does not call, and why",
    "blocks": [
     {
-     "type": "prose",
-     "html": "<i>tat</i> is spliced in EIAV and is not declared; the string is recognised and recorded, which is why the collapse report shows it bound to a target the module JSON does not carry. gag, pol and env are each called on 10 of 11 exemplars; the one miss is a single short record, not a profile failure."
+     "html": "<i>tat</i> is spliced in EIAV and is not declared; the string is recognised and recorded, which is why the collapse report shows it bound to a target the module JSON does not carry. gag, pol and env are each called on 10 of 11 exemplars; the one miss is a single short record, not a profile failure.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "02",
+   "title": "Where it does not call, and why"
   },
   {
-   "num": "03",
-   "title": "Vocabulary",
-   "lede": "14 annotation strings collapse onto 6 targets.",
    "blocks": [
     {
-     "type": "table",
      "headers": [
       "target",
       "product",
@@ -187,39 +184,46 @@
        "2",
        "34"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "prose",
-     "html": "87.0% of the 300 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+     "html": "87.0% of the 300 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on.",
+     "type": "prose"
     }
-   ]
+   ],
+   "lede": "14 annotation strings collapse onto 6 targets.",
+   "num": "03",
+   "title": "Vocabulary"
   },
   {
-   "num": "04",
-   "title": "Vocabulary saturation",
+   "blocks": [
+    {
+     "from": "eiav-vocabulary-saturation.html",
+     "type": "figure"
+    },
+    {
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 23.7 distinct source strings correspond to 5.0 controlled annotations, a 4.7-fold collapse. The module reaches 95% of its final vocabulary after 12 proteins against the source's 62.",
+     "type": "prose"
+    }
+   ],
    "lede": "How fast each vocabulary stops growing as genomes are added.",
-   "blocks": [
-    {
-     "type": "figure",
-     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/eiav-vocabulary-saturation.html"
-    },
-    {
-     "type": "prose",
-     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 23.7 distinct source strings correspond to 5.0 controlled annotations, a 4.7-fold collapse. The module reaches 95% of its final vocabulary after 12 proteins against the source's 62."
-    }
-   ]
+   "num": "04",
+   "title": "Vocabulary saturation"
   },
   {
-   "num": "05",
-   "title": "Method",
    "blocks": [
     {
-     "type": "prose",
-     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit."
+     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "05",
+   "title": "Method"
   }
  ],
- "source_note": "Measured 27 October 2026 from the shipped module: the EIAV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 11 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+ "source_note": "Measured 27 October 2026 from the shipped module: the EIAV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 11 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences.",
+ "standfirst": "<b>EIAV</b> is the lentivirus of horses and the smallest module in this family &mdash; one virus, little vocabulary, and the clearest example in the set of a tiny accessory gene that is nonetheless essential. Four features carry profiles; <i>rev</i> is declared and called by the splice caller, and <i>tat</i> is recognised but not declared.",
+ "subhead": "equine infectious anaemia virus",
+ "title": "EIAV \u2014 equine infectious anaemia virus Coverage Audit"
 }

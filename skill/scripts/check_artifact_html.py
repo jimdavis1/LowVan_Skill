@@ -129,6 +129,20 @@ def check(path):
             empty.append(m.start())
     if empty:
         out.append(("empty section", ["%d of them" % len(empty)]))
+
+    #  6. A COVERAGE AUDIT WITH NO GENOME MAP. The map is the only figure on
+    #  any page that shows what the module does to a genome -- where the
+    #  features sit, which are essential, which are cleavage products of
+    #  which precursor, and which segment carries what. 72 of 78 coverage
+    #  audits shipped without one, because the only generator that existed
+    #  was adenovirus-specific and nothing in the workflow said to make one.
+    #  Documenting the step was not enough the first time; this is the gate.
+    #  The marker is gen_genome_map.py's own claim string, which no other
+    #  figure emits.
+    if os.path.basename(path).endswith("-coverage-audit.html"):
+        if "annotates it:" not in body:
+            out.append(("coverage audit has no genome map",
+                        ["run gen_genome_map.py and add a figure block"]))
     return out, notes
 
 

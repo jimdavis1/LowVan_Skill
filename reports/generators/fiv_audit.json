@@ -1,9 +1,6 @@
 {
- "title": "FIV \u2014 feline immunodeficiency virus Coverage Audit",
  "eyebrow": "LowVan module audit &middot; 27 October 2026",
  "h1": "FIV \u2014 feline immunodeficiency virus",
- "subhead": "feline immunodeficiency virus",
- "standfirst": "<b>FIV</b> is the lentivirus of domestic cats and of wild felids &mdash; bobcat, puma and others, each with its own long-diverged lineage. Five features, all collinear, with <i>rev</i> recognised in the vocabulary but deliberately not declared: it is spliced, and this module calls no spliced feature.",
  "headline_tiles": [
   [
    "5",
@@ -28,16 +25,12 @@
  ],
  "sections": [
   {
-   "num": "01",
-   "title": "What the module calls",
-   "lede": "Five features, four of them called on every exemplar.",
    "blocks": [
     {
-     "type": "prose",
-     "html": "gag, pol, env and vif are called on 39 of 39 exemplars. orfA is the only variable one and carries no copy_num."
+     "html": "gag, pol, env and vif are called on 39 of 39 exemplars. orfA is the only variable one and carries no copy_num.",
+     "type": "prose"
     },
     {
-     "type": "table",
      "headers": [
       "feature",
       "product",
@@ -87,10 +80,14 @@
        "yes",
        "PSSM"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "bars",
+     "from": "fiv-genome-map.html",
+     "type": "figure"
+    },
+    {
      "rows": [
       [
        "ENV",
@@ -123,27 +120,27 @@
        "39 of 39"
       ]
      ],
+     "type": "bars",
      "unit": "%"
     }
-   ]
+   ],
+   "lede": "Five features, four of them called on every exemplar.",
+   "num": "01",
+   "title": "What the module calls"
   },
   {
-   "num": "02",
-   "title": "Where it does not call, and why",
    "blocks": [
     {
-     "type": "prose",
-     "html": "orfA at 64.1% is a host-lineage split, not a truncation. Domestic-cat genomes call it 21 of 21; bobcat 0 of 10 and puma 3 of 6. Those same genomes call gag, pol, vif and env 39 of 39, so the absence is profile divergence on a small accessory gene rather than incomplete sequence. Widening orfA to reach the wild felids is a build decision, not a defect."
+     "html": "orfA at 64.1% is a host-lineage split, not a truncation. Domestic-cat genomes call it 21 of 21; bobcat 0 of 10 and puma 3 of 6. Those same genomes call gag, pol, vif and env 39 of 39, so the absence is profile divergence on a small accessory gene rather than incomplete sequence. Widening orfA to reach the wild felids is a build decision, not a defect.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "02",
+   "title": "Where it does not call, and why"
   },
   {
-   "num": "03",
-   "title": "Vocabulary",
-   "lede": "16 annotation strings collapse onto 6 targets.",
    "blocks": [
     {
-     "type": "table",
      "headers": [
       "target",
       "product",
@@ -187,39 +184,46 @@
        "2",
        "62"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "prose",
-     "html": "94.8% of the 673 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+     "html": "94.8% of the 673 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on.",
+     "type": "prose"
     }
-   ]
+   ],
+   "lede": "16 annotation strings collapse onto 6 targets.",
+   "num": "03",
+   "title": "Vocabulary"
   },
   {
-   "num": "04",
-   "title": "Vocabulary saturation",
+   "blocks": [
+    {
+     "from": "fiv-vocabulary-saturation.html",
+     "type": "figure"
+    },
+    {
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 32.9 distinct source strings correspond to 5.0 controlled annotations, a 6.6-fold collapse. The module reaches 95% of its final vocabulary after 14 proteins against the source's 174.",
+     "type": "prose"
+    }
+   ],
    "lede": "How fast each vocabulary stops growing as genomes are added.",
-   "blocks": [
-    {
-     "type": "figure",
-     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/fiv-vocabulary-saturation.html"
-    },
-    {
-     "type": "prose",
-     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 32.9 distinct source strings correspond to 5.0 controlled annotations, a 6.6-fold collapse. The module reaches 95% of its final vocabulary after 14 proteins against the source's 174."
-    }
-   ]
+   "num": "04",
+   "title": "Vocabulary saturation"
   },
   {
-   "num": "05",
-   "title": "Method",
    "blocks": [
     {
-     "type": "prose",
-     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit."
+     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "05",
+   "title": "Method"
   }
  ],
- "source_note": "Measured 27 October 2026 from the shipped module: the FIV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 39 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+ "source_note": "Measured 27 October 2026 from the shipped module: the FIV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 39 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences.",
+ "standfirst": "<b>FIV</b> is the lentivirus of domestic cats and of wild felids &mdash; bobcat, puma and others, each with its own long-diverged lineage. Five features, all collinear, with <i>rev</i> recognised in the vocabulary but deliberately not declared: it is spliced, and this module calls no spliced feature.",
+ "subhead": "feline immunodeficiency virus",
+ "title": "FIV \u2014 feline immunodeficiency virus Coverage Audit"
 }

@@ -1,9 +1,6 @@
 {
- "title": "SRLV \u2014 small ruminant lentivirus Coverage Audit",
  "eyebrow": "LowVan module audit &middot; 27 October 2026",
  "h1": "SRLV \u2014 small ruminant lentivirus",
- "subhead": "the small ruminant lentiviruses",
- "standfirst": "<b>SRLV</b> holds maedi-visna virus of sheep and caprine arthritis-encephalitis virus of goats, which are one continuum rather than two clean species. Five features, all with profiles &mdash; including <i>tat</i>, which in this genus is not what its name suggests.",
  "headline_tiles": [
   [
    "5",
@@ -28,16 +25,12 @@
  ],
  "sections": [
   {
-   "num": "01",
-   "title": "What the module calls",
-   "lede": "Five features, and a tat that is collinear rather than spliced.",
    "blocks": [
     {
-     "type": "prose",
-     "html": "SRLV <i>tat</i> is a single-exon protein, also published as S, and it was MEASURED collinear by tblastn of each deposited protein against its own genome rather than assumed spliced from the HIV-1 layout. It therefore gets a PSSM and a copy_num like any other feature. EIAV <i>tat</i>, in the sister module, is genuinely spliced and gets neither."
+     "html": "SRLV <i>tat</i> is a single-exon protein, also published as S, and it was MEASURED collinear by tblastn of each deposited protein against its own genome rather than assumed spliced from the HIV-1 layout. It therefore gets a PSSM and a copy_num like any other feature. EIAV <i>tat</i>, in the sister module, is genuinely spliced and gets neither.",
+     "type": "prose"
     },
     {
-     "type": "table",
      "headers": [
       "feature",
       "product",
@@ -87,10 +80,14 @@
        "yes",
        "PSSM"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "bars",
+     "from": "srlv-genome-map.html",
+     "type": "figure"
+    },
+    {
      "rows": [
       [
        "ENV",
@@ -123,27 +120,27 @@
        "50 of 51"
       ]
      ],
+     "type": "bars",
      "unit": "%"
     }
-   ]
+   ],
+   "lede": "Five features, and a tat that is collinear rather than spliced.",
+   "num": "01",
+   "title": "What the module calls"
   },
   {
-   "num": "02",
-   "title": "Where it does not call, and why",
    "blocks": [
     {
-     "type": "prose",
-     "html": "No declared feature lacks a profile. <i>rev</i> appears in the vocabulary and bins to its own key, but the module does not declare it: it is spliced, and nothing here calls spliced features."
+     "html": "No declared feature lacks a profile. <i>rev</i> appears in the vocabulary and bins to its own key, but the module does not declare it: it is spliced, and nothing here calls spliced features.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "02",
+   "title": "Where it does not call, and why"
   },
   {
-   "num": "03",
-   "title": "Vocabulary",
-   "lede": "15 annotation strings collapse onto 6 targets.",
    "blocks": [
     {
-     "type": "table",
      "headers": [
       "target",
       "product",
@@ -187,39 +184,46 @@
        "1",
        "45"
       ]
-     ]
+     ],
+     "type": "table"
     },
     {
-     "type": "prose",
-     "html": "85.5% of the 475 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on."
+     "html": "85.5% of the 475 deposited features from this module's taxa are bound by a naming rule. The remainder are recorded in <code>UNASSIGNED</code> and <code>DISCARDED</code>: the first is vocabulary no rule reached, the second is records the source itself calls partial or truncated, which the project discards rather than trains on.",
+     "type": "prose"
     }
-   ]
+   ],
+   "lede": "15 annotation strings collapse onto 6 targets.",
+   "num": "03",
+   "title": "Vocabulary"
   },
   {
-   "num": "04",
-   "title": "Vocabulary saturation",
+   "blocks": [
+    {
+     "from": "srlv-vocabulary-saturation.html",
+     "type": "figure"
+    },
+    {
+     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 34.3 distinct source strings correspond to 5.0 controlled annotations, a 6.9-fold collapse. The module reaches 95% of its final vocabulary after 14 proteins against the source's 251.",
+     "type": "prose"
+    }
+   ],
    "lede": "How fast each vocabulary stops growing as genomes are added.",
-   "blocks": [
-    {
-     "type": "figure",
-     "from": "/Users/jdavis/Library/CloudStorage/Box-Box/1_Projects/CEPI/Alsuviricetes/LowVan_Skill/reports/srlv-vocabulary-saturation.html"
-    },
-    {
-     "type": "prose",
-     "html": "The deposited vocabulary keeps growing; the module's does not. At the depth both reach, 34.3 distinct source strings correspond to 5.0 controlled annotations, a 6.9-fold collapse. The module reaches 95% of its final vocabulary after 14 proteins against the source's 251."
-    }
-   ]
+   "num": "04",
+   "title": "Vocabulary saturation"
   },
   {
-   "num": "05",
-   "title": "Method",
    "blocks": [
     {
-     "type": "prose",
-     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit."
+     "html": "Coverage is measured by annotating de-replicated exemplars through the real GTO pipeline &mdash; <code>annotate_by_viral_pssm-GTO.pl</code>, then the transcript-edit and splice passes, then <code>viral_genome_quality.pl</code> &mdash; not by a reimplementation. Spliced features are included, which the flat feature-table path cannot represent. Rates are per exemplar, and exemplars are clustered at 95% nucleotide identity, so one row is one distinct sequence rather than one deposit.",
+     "type": "prose"
     }
-   ]
+   ],
+   "num": "05",
+   "title": "Method"
   }
  ],
- "source_note": "Measured 27 October 2026 from the shipped module: the SRLV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 51 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences."
+ "source_note": "Measured 27 October 2026 from the shipped module: the SRLV block of Viral_PSSM.json, its profiles and collections, and the 27 October coverage re-annotation over 51 exemplars de-replicated from 265 genomes. Vocabulary figures come from <code>collections/synonyms.tsv</code>, written by the module's own builder from the naming rules, and count deposited features rather than unique sequences.",
+ "standfirst": "<b>SRLV</b> holds maedi-visna virus of sheep and caprine arthritis-encephalitis virus of goats, which are one continuum rather than two clean species. Five features, all with profiles &mdash; including <i>tat</i>, which in this genus is not what its name suggests.",
+ "subhead": "the small ruminant lentiviruses",
+ "title": "SRLV \u2014 small ruminant lentivirus Coverage Audit"
 }

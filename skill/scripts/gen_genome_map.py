@@ -56,6 +56,69 @@ def feature_key(fa, module):
     return tag.split(".")[0]
 
 
+def load_gto(path):
+    return json.load(open(path))
+
+
+def read_fasta(path):
+    seqs, cid, buf = [], None, []
+    for line in open(path):
+        line = line.strip()
+        if line.startswith(">"):
+            if cid:
+                seqs.append((cid, "".join(buf)))
+            cid, buf = line[1:].split()[0], []
+        elif line:
+            buf.append(line)
+    if cid:
+        seqs.append((cid, "".join(buf)))
+    return seqs
+
+
+def gto_from_tbl(tbl, fasta):
+    """A GTO-shaped dict from annotate_by_viral_pssm.pl's .feature.tbl.
+
+    The feature table is the cheap path: it comes straight out of the
+    annotator with no network round trip, where make_gto.py registers a new
+    genome id with the ID server for every genome it builds. For a figure
+    that is the wrong trade -- 70-odd registrations to draw 70 pictures.
+
+    What the table cannot carry is exon structure: a spliced feature appears
+    as the single span the PSSM matched, because the splice pass is a
+    separate script that writes its own output. A module with spliced
+    features should be mapped from a GTO produced by that full pass; for
+    everything else the table and the GTO agree exactly.
+
+    Columns (0-based): 0 genome id, 1 domain, 2 contig, 3 src, 4 type,
+    5 feature id, 6 gene symbol, 7 begin, 8 end, 9 strand, 10 length,
+    11 module, 12 rep contig, 13 bits, 14 genome ids, 15 genome name,
+    16 pssm, 17 function.
+    """
+    contigs = [{"id": cid, "dna": seq} for cid, seq in read_fasta(fasta)]
+    feats, gname, gid = [], "", ""
+    for line in open(tbl):
+        p = line.rstrip("\n").split("\t")
+        if len(p) < 18:
+            continue
+        gid, gname = p[0], p[15]
+        b, e, strand = int(p[7]), int(p[8]), p[9]
+        lo, hi = min(b, e), max(b, e)
+        #  pssm column -> feature key: Picobirnaviridae.CP_MAT.2_1.pssm, or a
+        #  bare CP_NP for a non_pssm_partner that has no profile at all.
+        tag = p[16][:-5] if p[16].endswith(".pssm") else p[16]
+        feats.append({
+            "type": p[4],
+            "function": p[17],
+            #  GTO convention: the coordinate is the feature's 5' end and the
+            #  length runs 3'-ward, so a minus-strand feature starts at hi.
+            "location": [[p[2], str(lo if strand == "+" else hi), strand,
+                          hi - lo + 1]],
+            "family_assignments": [["LOWVAN", tag, p[17], "tbl"]],
+        })
+    return {"id": gid, "scientific_name": gname,
+            "contigs": contigs, "features": feats}
+
+
 def tick_step(n):
     for s in (100, 200, 500, 1000, 2000, 5000, 10000, 20000):
         if n / s <= 12:
@@ -65,7 +128,10 @@ def tick_step(n):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--gto", required=True, help="annotated .gto for ONE genome")
+    ap.add_argument("--gto", help="annotated .gto for ONE genome")
+    ap.add_argument("--tbl", help="annotate_by_viral_pssm.pl .feature.tbl instead "
+                                  "of a GTO; needs --fasta for contig lengths")
+    ap.add_argument("--fasta", help="the contigs that --tbl was called on")
     ap.add_argument("--module-json", required=True)
     ap.add_argument("--module", required=True)
     ap.add_argument("--out", required=True)
@@ -74,7 +140,11 @@ def main():
                     help="extra sentence appended to the figcaption")
     a = ap.parse_args()
 
-    G = json.load(open(a.gto))
+    if not a.gto and not a.tbl:
+        ap.error("one of --gto or --tbl is required")
+    if a.tbl and not a.fasta:
+        ap.error("--tbl needs --fasta for the contig lengths")
+    G = load_gto(a.gto) if a.gto else gto_from_tbl(a.tbl, a.fasta)
     F = json.load(open(a.module_json))[a.module]["features"]
     SEG = json.load(open(a.module_json))[a.module].get("segments") or {}
 
@@ -208,7 +278,7 @@ def main():
                    % (lx + 24, label))
         lx += 24 + len(label) * 6.6 + 26
 
-    name = G.get("scientific_name", a.gto)
+    name = G.get("scientific_name") or (a.gto or a.tbl)
     gid = G.get("id", "")
     nf = sum(len(per[c][0]) for c, _ in contigs)
     ne = sum(1 for c, _ in contigs for f in per[c][0] if f["kind"] == "ess")
