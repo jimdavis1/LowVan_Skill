@@ -56,6 +56,25 @@ def feature_types(workdir, module):
     return {k: (v.get("feature_type") or "CDS") for k, v in f.items()}
 
 
+def isoform_parents(workdir, module):
+    """key -> the CDS it is an alternative-start isoform of, from `isoform_of`.
+
+    An isoform is a piece of its parent in exactly the way a mature peptide is
+    -- the same ORF read from a later AUG -- so "move N' into N" is not a
+    finding, it is the definition of N'. Bornaviridae reported 28 of them, and
+    --write would have deleted the isoform's whole collection into its parent.
+    """
+    p = os.path.join(workdir, "%s_Viral_PSSM.json" % module)
+    if not os.path.exists(p):
+        return {}
+    try:
+        d = json.load(open(p))
+    except ValueError:
+        return {}
+    f = (d.get(module) or {}).get("features") or {}
+    return {k: v["isoform_of"] for k, v in f.items() if v.get("isoform_of")}
+
+
 #  A mature peptide IS a piece of its parent CDS and matches it at 100% by
 #  construction, so "move VP8* into VP4" is not a finding -- it is the
 #  definition of VP8*. Rotavirus reported 5 of them. qc_cross_feature learned
@@ -63,6 +82,7 @@ def feature_types(workdir, module):
 #  because --write would delete the derived feature's collection into its
 #  parent.
 FTYPE = feature_types(a.workdir, a.module)
+ISO = isoform_parents(a.workdir, a.module)
 
 
 def readfa(p):
@@ -143,6 +163,7 @@ for l in r.stdout.splitlines():
     if b > best[qid].get(feat, 0): best[qid][feat] = b
 
 move = collections.Counter(); blocked = collections.Counter()
+isoform = collections.Counter()
 parent = collections.Counter(); nohit = 0
 plan = collections.defaultdict(dict)
 for qid, d in best.items():
@@ -153,6 +174,8 @@ for qid, d in best.items():
     #  the destination has to be able to hold a sequence this long
     if FTYPE.get(k) == "mat_peptide" and FTYPE.get(top[0], "CDS") != "mat_peptide":
         parent[(k, top[0])] += 1; continue
+    if ISO.get(k) == top[0] or ISO.get(top[0]) == k:
+        isoform[(k, top[0])] += 1; continue
     lo, hi = span.get(top[0], (0, 10 ** 9))
     if not (lo <= qlen[k][i] <= hi):
         blocked[(k, top[0])] += 1; continue
@@ -164,6 +187,10 @@ if not move:
 print("  %-6s -> %-6s %s" % ("from", "to", "sequences"))
 for (f, t), n in move.most_common(): print("  %-6s -> %-6s %6d" % (f, t, n))
 print("  %d sequences in total" % sum(move.values()))
+if isoform:
+    print("  %d sequence(s) matched the CDS they are an isoform of, as they must: %s"
+          % (sum(isoform.values()),
+             ", ".join("%s->%s %d" % (a_, b_, n) for (a_, b_), n in isoform.most_common(6))))
 if parent:
     print("  %d mature-peptide sequence(s) matched their parent CDS, as they must: %s"
           % (sum(parent.values()),

@@ -142,6 +142,7 @@ def run_module(workdir, module, pident, cov, tmp):
     #  report whose value is that it is short. A mat_peptide colliding with a
     #  CDS is the parent relationship and is reported separately.
     ftype = feature_types(workdir, module)
+    iso = isoform_parents(workdir, module)
 
     flags = []
     for feat, num, ident, seq in reps:
@@ -166,10 +167,37 @@ def run_module(workdir, module, pident, cov, tmp):
             if (ftype.get(feat) == "mat_peptide"
                     and ftype.get(of, "CDS") != "mat_peptide"):
                 kind = "PARENT"
+            #  An alternative-START isoform is a piece of its parent in exactly
+            #  the same way a mature peptide is -- it is the same ORF read from
+            #  a later AUG -- but it is a CDS, so the mat_peptide exemption
+            #  above does not reach it. Bornaviridae N' (p38) is N minus its
+            #  first 13 residues and produced 10 MISLABEL rows against N, none
+            #  of them real. The relationship is declared in the module JSON as
+            #  "isoform_of", so it travels with the module instead of living in
+            #  a reviewer's head.
+            elif iso.get(feat) == of or iso.get(of) == feat:
+                kind = "ISOFORM"
             else:
                 kind = "UNCHAR" if "UNCHAR" in (feat, of) else "MISLABEL"
             flags.append((kind, module, feat, num, ident, len(seq), of, pid, alen, sid))
     return flags
+
+
+def isoform_parents(workdir, module):
+    """{feature: parent} from the module JSON's `isoform_of`."""
+    out = {}
+    for j in glob.glob(os.path.join(workdir, "*_Viral_PSSM.json")):
+        try:
+            blk = json.load(open(j))
+        except Exception:
+            continue
+        for mod, m in blk.items():
+            if module and mod != module:
+                continue
+            for k, v in (m.get("features") or {}).items():
+                if isinstance(v, dict) and v.get("isoform_of"):
+                    out[k] = v["isoform_of"]
+    return out
 
 
 def main():
@@ -195,12 +223,14 @@ def main():
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
-    if not [f for f in allflags if f[0] != "PARENT"]:
+    BENIGN = ("PARENT", "ISOFORM")
+    if not [f for f in allflags if f[0] not in BENIGN]:
         print("\nNo cross-feature contamination found.")
-        allflags = [f for f in allflags if f[0] == "PARENT"]
+        allflags = [f for f in allflags if f[0] in BENIGN]
     hard = [f for f in allflags if f[0] == "MISLABEL"]
     soft = [f for f in allflags if f[0] == "UNCHAR"]
     par = [f for f in allflags if f[0] == "PARENT"]
+    isof = [f for f in allflags if f[0] == "ISOFORM"]
 
     def show(rows, title):
         if not rows:
@@ -218,6 +248,10 @@ def main():
         print("  mislabelled will call its feature on the other protein's locus.")
         print("  Decide from length and gene order, then drop or move that cluster.")
     if par:
+        if isof:
+            print("\n%d cluster(s) collide with the CDS they are an isoform of, "
+                  "as they must by construction; not a finding." % len(isof))
+            print("  " + ", ".join(sorted({"%s<-%s" % (f[6], f[2]) for f in isof})))
         print("\n%d mature-peptide cluster(s) match their parent CDS, as they must "
               "by construction; not a finding." % len(par))
         print("  %s" % ", ".join(sorted({"%s->%s" % (f[2], f[6]) for f in par})))

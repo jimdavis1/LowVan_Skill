@@ -297,6 +297,7 @@
             "downstream_ext" : 1,
             "feature_type" : "CDS",
             "gene_symbol" : "N_prime",
+            "isoform_of" : "N",
             "kmers" : 1,
             "max_len" : 392,
             "min_len" : 318,
