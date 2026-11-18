@@ -73,7 +73,7 @@ per-taxon tables below carry the dates and the source paths.
 | **PICO_LDR_VP4** | [live](https://claude.ai/artifact/LVc4VEW9iCpooM6ou4iyu7) | [live](https://claude.ai/artifact/Pfmpmk7RFRSj9pYXsL4qPZ) | [live](https://claude.ai/artifact/DsoiNuENyGrBgh1tb7TUuy) | [live](https://claude.ai/artifact/B2Hy5H5UF7VbawdnjMMQCU) | — |
 | **PICO_NOLDR_VP0** | [live](https://claude.ai/artifact/FPxCxJr26eRtF8PJY8wH4p) | [live](https://claude.ai/artifact/Lr9uABqCQZxhBqiw83BJSS) | [live](https://claude.ai/artifact/MQxP6qyN2pCqry717Y5ehK) | [live](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) | — |
 | **PICO_NOLDR_VP4** | [live](https://claude.ai/artifact/D4ncL6xGyYttgDBcpqDJzF) | [live](https://claude.ai/artifact/CgHakkLnCawRjWZdawJwWB) | [live](https://claude.ai/artifact/4PMpusDUm7dpDGq1Pp2pxL) | [live](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) | — |
-| **Picobirnaviridae** | [live](https://claude.ai/artifact/TjLjMkHCf1Lodub3LWzYKq) | [live](https://claude.ai/artifact/KSMyiocg9iYnm6s6LS3LpY) | [live](https://claude.ai/artifact/MA8nCTqMGGp2Loy4W4LNHM) | [live](https://claude.ai/artifact/FCnZ2syzgodd8eXE1cpW3g) | [src only](reports/picobirnaviridae-genome-map.html) |
+| **Picobirnaviridae** | [live](https://claude.ai/artifact/TjLjMkHCf1Lodub3LWzYKq) | [live](https://claude.ai/artifact/KSMyiocg9iYnm6s6LS3LpY) | [live](https://claude.ai/artifact/MA8nCTqMGGp2Loy4W4LNHM) | [live](https://claude.ai/artifact/FCnZ2syzgodd8eXE1cpW3g) | [live](https://claude.ai/artifact/2sMCcX1C1gnjUmdFyLzute) |
 | **Piscine Orthoreovirus** | [live](https://claude.ai/artifact/JEnqCvUGt9SN5f6kuCtT15) | [live](https://claude.ai/artifact/5fvts36gAWRpgtdQzjiCGX) | [live](https://claude.ai/artifact/7tqSe2K6VWU6jeLPRuwkKt) | [live](https://claude.ai/artifact/6YRXypfQ5DiURLw8vr2Tp9) | — |
 | **Protoparvovirus** | [live](https://claude.ai/artifact/KBU1KeEYqBDGco27VKRx1T) | [src only](reports/protoparvovirus-pssm-registry.html) | [src only](reports/protoparvovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/Wxh3ffuYKmHzqnFNxzMsfE) | [src only](reports/protoparvovirus-genome-map.html) |
 | **Pteropine Orthoreovirus** | [live](https://claude.ai/artifact/5MK26D2zL5em7CigKff9Fx) | [live](https://claude.ai/artifact/KT8pmXT9wJTehrpq2vPWoz) | [live](https://claude.ai/artifact/GLg3LzpvhMzbiecgUMpWoQ) | [live](https://claude.ai/artifact/V4NNnwaPbfJsdDRhDfyKHw) | — |
@@ -723,8 +723,7 @@ Not made: genome map.
 | Picobirnaviridae -- picobirnaviruses PSSM Registry | [open](https://claude.ai/artifact/KSMyiocg9iYnm6s6LS3LpY) | [source](reports/picobirnaviridae-pssm-registry.html) | 2026-11-17 |
 | Picobirnaviridae -- picobirnaviruses String Collapse | [open](https://claude.ai/artifact/TjLjMkHCf1Lodub3LWzYKq) | [source](reports/picobirnaviridae-string-collapse.html) | 2026-11-17 |
 | Picobirnaviridae -- picobirnaviruses Vocabulary Saturation | [open](https://claude.ai/artifact/MA8nCTqMGGp2Loy4W4LNHM) | [source](reports/picobirnaviridae-vocabulary-saturation.html) | 2026-11-17 |
-
-Not made: genome map.
+| Picobirnaviridae Genome Map | [open](https://claude.ai/artifact/2sMCcX1C1gnjUmdFyLzute) | [source](reports/picobirnaviridae-genome-map.html) | 2026-11-18 |
 
 ### Piscine Orthoreovirus
 
