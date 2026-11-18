@@ -5,7 +5,7 @@
  "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is inferred and nothing is rounded in its favour. Every citation is model-proposed and awaits a curator.",
  "headline_tiles": [
   [
-   "11",
+   "12",
    "features"
   ],
   [
@@ -70,7 +70,7 @@
       ],
       [
        "features declared",
-       "11"
+       "12"
       ],
       [
        "PSSMs",
@@ -96,7 +96,7 @@
     },
     {
      "type": "prose",
-     "html": "The other five features are products and isoforms rather than genes. <strong>N'</strong> is the p38 isoform of the nucleocapsid, translated from the second initiation codon (PMID&nbsp;30541858). <strong>G_N</strong> and <strong>G_C</strong> are the two halves of the glycoprotein, cut by furin (PMID&nbsp;9557754) and known in the literature as GP-N/GP1 and GP-C/GP2. <strong>Vp1</strong> and <strong>Vp2</strong> are two extra open reading frames that only <i>Cartilovirus</i> carries &mdash; ancient duplications of the glycoprotein gene (PMID&nbsp;38028148)."
+     "html": "The other six features are products and isoforms rather than genes. <strong>N'</strong> is the p38 isoform of the nucleocapsid, translated from the second initiation codon (PMID&nbsp;30541858). <strong>G_SP</strong>, <strong>GP_N</strong> and <strong>GP_C</strong> are the glycoprotein's predicted signal peptide and its two furin subunits (PMID&nbsp;9557754, PMID&nbsp;12417322), which together tile the precursor exactly. <strong>Vp1</strong> and <strong>Vp2</strong> are two extra open reading frames that only <i>Cartilovirus</i> carries (PMID&nbsp;38028148)."
     }
    ],
    "num": "01",
@@ -160,9 +160,16 @@
       [
        "G_N",
        "&mdash;",
-       "150",
-       "8",
-       "N-terminal furin product (GP-N / GP1), derived"
+       "133",
+       "3",
+       "mature N-terminal furin subunit (GP-N / GP1), SP removed"
+      ],
+      [
+       "G_SP",
+       "&mdash;",
+       "133",
+       "3",
+       "signal peptide, predicted with SignalP 6.0"
       ],
       [
        "G_C",
@@ -302,8 +309,18 @@
        "G_N",
        "mat_peptide",
        "<b>85</b>",
-       "226",
-       "290",
+       "207",
+       "243",
+       "0",
+       "0",
+       "no"
+      ],
+      [
+       "G_SP",
+       "mat_peptide",
+       "<b>36</b>",
+       "17",
+       "34",
        "1",
        "0",
        "no"
@@ -365,6 +382,10 @@
     {
      "type": "prose",
      "html": "<strong>L carries no bit cutoff</strong> because it carries no profile. It is matched by BLASTn against its 120 references at <code>splice_id</code> / <code>splice_cov</code> of <strong>90/90</strong>, also measured: at the shipped defaults of 95/95 the references reach 94.1% of orthobornavirus genomes, at 90/90 they reach 95.1%, and the splice donor and acceptor windows must still match a reference's exactly."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>G_SP is the third measured cutoff, and the feature it produces is deliberately small.</strong> SignalP 6.0 predicted a signal peptide on six of seven G clusters at p&nbsp;=&nbsp;0.80&ndash;0.97, and <code>apply_signalp.py</code> verified every cut against its cluster's own members. Three gates then cut it back: one cluster withheld for recalling its own training sequences at only 20.5 bits; two withheld for disagreeing with GP_N about the mature start and calling signal peptides of up to 52&nbsp;aa; and <code>bit_cutoff: 36</code>, from the measurement that calls scoring 39.6&ndash;56.2 bits tile the precursor exactly while calls at 25.7&ndash;31.5 bits drift by 3&ndash;15&nbsp;nt. It calls on 11 of 36 exemplars and is exact on every one."
     },
     {
      "type": "prose",
@@ -483,13 +504,19 @@
        "36 of 36 routed exemplars"
       ],
       [
-       "G_N",
+       "G_SP",
+       "30.6",
+       30.6,
+       "11 of 36 routed exemplars"
+      ],
+      [
+       "GP_N",
        "100.0",
        100.0,
        "36 of 36 routed exemplars"
       ],
       [
-       "G_C",
+       "GP_C",
        "100.0",
        100.0,
        "36 of 36 routed exemplars"
@@ -504,7 +531,7 @@
     },
     {
      "type": "prose",
-     "html": "<strong>Every one of the six proteins and both glycoprotein products is called on every routed near-complete genome</strong>, in all four genera. <strong>L</strong> is called on 33 of 36: the three misses are a 6,115 nt contig that cannot physically hold a 5.1 kb gene, Canary bornavirus 1 (whose only L deposit does not match its own contig cleanly, so no junction round-trips) and Carlia munda bornavirus, whose L begins at a near-cognate <strong>TTG</strong> codon with residues 2&ndash;1730 collinear &mdash; a non-AUG start this module does not model. <strong>N'</strong> is called on 25: the 11 genomes without it are the Cultervirus, Carbovirus, Cartilovirus and Carlia munda genomes that genuinely lack a second AUG in the right place."
+     "html": "<strong>Every one of the six proteins and both furin subunits is called on every routed near-complete genome</strong>, in all four genera. <strong>L</strong> is called on 33 of 36: the three misses are a 6,115 nt contig that cannot physically hold a 5.1 kb gene, Canary bornavirus 1 (whose only L deposit does not match its own contig cleanly, so no junction round-trips) and Carlia munda bornavirus, whose L begins at a near-cognate <strong>TTG</strong> codon with residues 2&ndash;1730 collinear &mdash; a non-AUG start this module does not model. <strong>N'</strong> is called on 25: the 11 genomes without it are the Cultervirus, Carbovirus, Cartilovirus and Carlia munda genomes that genuinely lack a second AUG in the right place."
     },
     {
      "type": "prose",
@@ -513,6 +540,10 @@
     {
      "type": "prose",
      "html": "<strong>One protein in this module was recovered by ORF-calling rather than deposited.</strong> <i>Carlia munda</i> bornavirus annotates N, P, M, G and L but no X at all. ORF-calling its N&rarr;P interval in six frames returned one 78&nbsp;aa Met-initiated ORF that blasts to the X collection at <code>e&nbsp;=&nbsp;1.2e-4</code> and carries the family's <code>VEL[IA]RRL</code> motif. It is kept in <code>Extracted/</code> so it survives a rebuild."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>G_SP is the one feature that deliberately does not try for full coverage.</strong> It is a prediction, and it is carried only where it agrees exactly with the mature subunit beside it: 11 of 36 genomes, on each of which <code>G_SP + GP_N + GP_C</code> sum to <code>G</code> with no gap and no overlap."
     }
    ],
    "num": "05",
@@ -556,7 +587,7 @@
     },
     {
      "type": "pre",
-     "text": "BoDV-1 reference genome vs RefSeq NC_001607\n\n  N      54..1166      RefSeq  54..1166     identical\n  N'     93..1166      second in-frame AUG = Met14 (PMID 30541858)\n  X    1223..1486      RefSeq 1223..1486    identical\n  P    1272..1877      RefSeq 1272..1877    identical\n  M    1893..2321      RefSeq 1893..2321    identical\n  G    2236..3747      RefSeq 2236..3747    identical\n  GP_N 2236..2982      = 249 codons, the Richt 1998 furin product\n  GP_C 2983..3747      runs to the precursor's own stop\n  L    2393..8822      the AUG Walker 2000 names, spliced across\n                       intron II (2410..3703) -- 1,711 aa"
+     "text": "BoDV-1 reference genome vs RefSeq NC_001607\n\n  N      54..1166      RefSeq  54..1166     identical\n  N'     93..1166      second in-frame AUG = Met14 (PMID 30541858)\n  X    1223..1486      RefSeq 1223..1486    identical\n  P    1272..1877      RefSeq 1272..1877    identical\n  M    1893..2321      RefSeq 1893..2321    identical\n  G    2236..3747      RefSeq 2236..3747    identical\n  G_SP 2236..2292      = 19 codons, the SignalP 6.0 cut\n  GP_N 2293..2982      = 230 codons, the mature furin subunit\n  GP_C 2983..3747      = 254 codons, to the precursor's own stop\n                       19 + 230 + 254 = 503: the products tile G exactly\n  L    2393..8822      the AUG Walker 2000 names, spliced across\n                       intron II (2410..3703) -- 1,711 aa"
     },
     {
      "type": "prose",
@@ -569,6 +600,10 @@
     {
      "type": "prose",
      "html": "<strong>Every N&prime; call was checked against the biological definition</strong>, not just against a length: is the called protein Met-initiated, an exact C-terminal substring of the N called on the same genome, and cut 12&ndash;17 residues in? <strong>25 of 25 pass, and none fail.</strong> The 11 genomes with no N&prime; call are the Cultervirus, Carbovirus, Cartilovirus and Carlia munda genomes that genuinely lack a second AUG there."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The glycoprotein's three products tile their precursor exactly on every genome that calls all three.</strong> That is the &sect;14 gate, and it passes with zero drift because the signal peptide's cutoff was set from the boundary measurement itself rather than from its own score distribution. The mature subunit's 230&nbsp;aa is also an independent check on the layout: about 27&nbsp;kDa deglycosylated, which is what Kiermayer 2002 measured for GP-N (PMID&nbsp;12417322), and nothing in the derivation used that number."
     }
    ],
    "num": "06",
@@ -587,7 +622,7 @@
     },
     {
      "type": "prose",
-     "html": "<strong>The glycoprotein signal peptide is not modelled, so G_N is not the fully matured ectodomain.</strong> SignalP 6.0 <em>is</em> installed on this machine and answers <code>--help</code>, but its <code>model_weights/</code> directory contains nothing but a README, so every prediction dies with <code>FileNotFoundError: Fast mode requires model to be installed at .../distilled_model_signalp6.pt</code>. The weights ship inside the licensed tarball and are installed separately by <code>signalp6_convert_models</code>. Until that is done G_N runs from the precursor's own initiator Met and retains the ~20-residue signal peptide. The queries are already staged, so this is one command from being finished."
+     "html": "<strong>The glycoprotein signal peptide is a prediction, and is carried only where it is tight.</strong> SignalP 6.0 is installed on this machine and now works &mdash; the first build wrongly recorded it as unlicensed, and it then failed because its model weights had never been converted in; they were restored from the licensed tarball already on disk. No bornavirus signal peptide has ever been determined experimentally, so what ships is a prediction that has been gated three times and calls on about a third of genomes. Read a genome with no <code>G_SP</code> call as one where the prediction was not trustworthy enough to carry, not as one whose glycoprotein lacks a leader."
     },
     {
      "type": "prose",
@@ -651,7 +686,7 @@
       [
        "distinct annotation strings, all proteins pooled",
        "29",
-       "10"
+       "11"
       ],
       [
        "proteins needed to reach 95% of the final vocabulary",
@@ -661,12 +696,12 @@
       [
        "distinct strings at equal depth (211 proteins)",
        "29.0",
-       "9.9"
+       "10.9"
       ],
       [
        "ratio at equal depth",
        "&mdash;",
-       "2.9&times;"
+       "2.7&times;"
       ]
      ]
     },

@@ -113,6 +113,10 @@ could be predicted, so **a taxon with a cleaved precursor gets a predicted signa
 peptide by default** — do not record "no SignalP licence" as a reason for
 dropping an `_SP` feature without checking the environment first.
 
+**It is NOT on `PATH`** — not even with the project's `env.sh` sourced, which
+adds the `lowvan` env and not this one. Call it as
+`conda run -n signalp signalp6`, which is what `apply_signalp.py` expects.
+
 **Check the weights before trusting it, because the licensed package installs
 them separately and the Python package alone is silent about it.** On 18 Nov 2026
 the `signalp` env ran `--help` perfectly and then failed on every prediction with
@@ -123,9 +127,35 @@ settles it before any work is planned around the result:
 
 ```bash
 ls ~/anaconda3/envs/signalp/lib/python3.10/site-packages/signalp/model_weights/
-#  a bare README.md means the weights were never converted in; the licensed
-#  tarball is needed, and `signalp6_convert_models` writes them from it.
+#  a bare README.md means the weights were never converted in.
 ```
+
+**The licensed tarball is already on this machine**, so that is a five-minute
+fix and not a blocker — do not re-download it and do not ask the user to:
+
+```bash
+#  signalp-6.0i.fast.tar.gz, downloaded 10 Sep 2026, lives under
+#  LowVan_Skill_Development/Rhabdoviridae/box_folder/Claude/
+tar -xzf <that tarball> -C ~/lowvan_scratch/signalp_pkg
+cp ~/lowvan_scratch/signalp_pkg/signalp6_fast/signalp-6-package/models/*.pt \
+   ~/anaconda3/envs/signalp/lib/python3.10/site-packages/signalp/model_weights/
+```
+
+Restored exactly that way for Bornaviridae; `--mode fast` then works. (`--mode
+slow` needs `ensemble_model_signalp6.pt`, which the *fast* tarball does not
+carry.)
+
+**Then gate what the prediction produces, because a verified cut is not yet a
+good feature.** Bornaviridae G needed three gates in series and ended up calling
+on a third of genomes rather than all of them: `apply_signalp.py` withheld one
+cluster whose profile could not recall its own training sequences above the
+caller's floor; two more were withheld because their profiles disagreed with the
+*mature* feature about where the protein starts and called signal peptides of up
+to 52 aa; and a bit cutoff was then set from the measurement that calls scoring
+39.6-56.2 bits tile the precursor exactly while calls at 25.7-31.5 bits drift by
+3-15 nt. **Check the signal peptide against its mature neighbour on every panel
+genome** — `_SP` + `_MAT` must sum to the precursor — and keep only the part of
+the prediction that passes.
 
 **Never block the build on it.** Step 6 has a decision table for the case where
 the user does not have SignalP and cannot easily get it: a documented cleavage

@@ -1,0 +1,29 @@
+feature: G_SP
+built by: skill/scripts/apply_signalp.py, not fasta-cluster-pssm-2.pl
+departures: not applicable -- this feature has no collection to cluster. The
+  signal peptide is a coordinate operation on the curated G alignments: SignalP
+  6.0 (fast mode, --organism eukarya) was run on one consensus N-terminus per G
+  cluster, and apply_signalp.py cut each cluster's members at the predicted site
+  after verifying it against them.
+SignalP: 6.0, conda env `signalp`, invoked as `conda run -n signalp signalp6`.
+  The env's model_weights/ directory was EMPTY on 18 Nov 2026 and every
+  prediction failed; distilled_model_signalp6.pt was restored from the licensed
+  tarball already on this machine (Rhabdoviridae/box_folder/Claude/
+  signalp-6.0i.fast.tar.gz, downloaded 10 Sep 2026). Nothing was re-downloaded.
+predictions: 6 of 7 clusters carry a signal peptide at p = 0.80-0.97, cleaving
+  after residue 19-25; the first mature residue is the modal residue in 98-100%
+  of each cluster's members.
+withheld:
+  cluster 7 -- by apply_signalp.py: self-recall 20.5 bits, below the 30-bit
+    cutoff a caller needs.
+  clusters 4 and 5 -- by hand, see PROVENANCE and withheld/: their profiles
+    disagree with GP_N about where the mature protein starts and called signal
+    peptides of up to 52 aa.
+bit_cutoff: 36, measured. Calls scoring 39.6-56.2 bits put the GP_N start
+  exactly one base after the G_SP end on every exemplar; calls at 25.7-31.5
+  bits drift by 3-15 nt. The feature calls on 11 of 36 exemplars and tiles the
+  precursor exactly on all 11.
+note: this is a PREDICTION. No bornavirus signal peptide has been determined
+  experimentally. Its only corroboration is that removing it leaves a 230 aa
+  mature N-terminal subunit, about 27 kDa deglycosylated, which is what
+  Kiermayer 2002 measured for GP-N (PMID 12417322).

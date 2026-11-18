@@ -68,9 +68,9 @@
   "gene_symbol": "GP_N",
   "segment": "Single RNA Segment",
   "feature_type": "mat_peptide",
-  "upstream_ext": 1,
+  "upstream_ext": 0,
   "downstream_ext": 0,
-  "note": "N-terminal furin cleavage product of the glycoprotein precursor, residues 1-249 of the 503 aa BoDV-1 protein: Richt 1998 places the cut after Arg249 (PMID 9557754). Derived here by locating the single R-X-[K/R]-R site in the 40-62% window and extending through the basic run: P1=Arg in 150/150 members, P1'=Asp in 149/150, and the BoDV-1 form cuts at exactly 249. It retains the signal peptide, whose cleavage site has never been measured in this family -- so this is the N-terminal furin fragment, not the fully matured ectodomain.",
+  "note": "Mature N-terminal subunit of the glycoprotein, GP-N or GP1: the furin product with its signal peptide removed, residues 20-249 of the 503 aa BoDV-1 precursor. Richt 1998 places the furin cut after Arg249 (PMID 9557754) and the signal peptide is predicted here with SignalP 6.0; the resulting 230 aa agrees with the 27 kDa deglycosylated GP-N that Kiermayer 2002 finally detected in infected cells (PMID 12417322). Derived by locating the single R-X-[K/R]-R site in the window and extending through the basic run: P1=Arg in 150/150 members of the precursor collection, P1'=Asp in 149/150.",
   "PMID_claude_generated": [
    "9557754",
    "12417322",
@@ -144,6 +144,19 @@
    "9188580",
    "15221540",
    "30541858"
+  ]
+ },
+ "G_SP": {
+  "anno": "Signal peptide of G",
+  "gene_symbol": "G_SP",
+  "segment": "Single RNA Segment",
+  "feature_type": "mat_peptide",
+  "upstream_ext": 1,
+  "downstream_ext": 0,
+  "note": "The glycoprotein's N-terminal signal peptide, predicted with SignalP 6.0 (fast mode, eukarya) on one consensus N-terminus per G cluster and applied to the cluster's members. Six of seven clusters predict a signal peptide at probability 0.80-0.97 with cleavage after residue 19-25; the first mature residue is the modal residue in 98-100% of each cluster's members. A seventh cluster was withheld because its profile recalls its own training sequences at only 20.5 bits, below the 30-bit floor a caller would need. Removing it leaves the mature N-terminal subunit at 221-230 aa, and 230 for BoDV-1 -- about 27 kDa deglycosylated, which is what Kiermayer 2002 measured for GP-N (PMID 12417322).",
+  "PMID_claude_generated": [
+   "12417322",
+   "9557754"
   ]
  }
 }

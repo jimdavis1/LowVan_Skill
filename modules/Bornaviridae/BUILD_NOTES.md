@@ -1,6 +1,6 @@
 # Bornaviridae — build notes
 
-Built 17–18 Nov 2026. **One module, `Bornaviridae`, eleven features, one segment.**
+Built 17–18 Nov 2026. **One module, `Bornaviridae`, twelve features, one segment.**
 
 > **Revised 18 Nov 2026 after curator review.** Four changes: **L is now a
 > `special: splice` feature** built from literature-anchored junctions instead
@@ -8,9 +8,10 @@ Built 17–18 Nov 2026. **One module, `Bornaviridae`, eleven features, one segme
 > N-terminus, which the curator ruled never acceptable); **N′ (p38) is now
 > modelled** as `N_PRIME`, separated from N by a measured bit cutoff; the
 > question of a "G′" and of a G/L fusion was settled from the literature (there
-> is no G′; the G/L fusion is mRNA-only); and the SignalP installation was
-> checked and found to be missing its model weights, which is recorded in
-> SKILL.md and leaves the glycoprotein signal peptide unmodelled for now.
+> is no G′; the G/L fusion is mRNA-only); and **the glycoprotein signal
+> peptide is now predicted with SignalP**, which turned out to be installed here
+> all along — its model weights were simply missing and were restored from the
+> licensed tarball already on disk.
 Local build tree: `~/lowvan_scratch/borna/work`. Runtime test repo:
 `~/lowvan_scratch/borna/VA_borna`.
 
@@ -360,23 +361,70 @@ FLAG-tagged, in transfected COS-7 cells, and intron III splices at ~10%), and
 major acceptors are highly conserved across BoDV isolates *"whereas a minor
 alternative splice acceptor site is not"*, and that minor site is SA3.
 
-## The glycoprotein signal peptide: SignalP is installed but cannot run
+## The glycoprotein signal peptide IS predicted, after a false start
 
-SignalP 6.0 is installed on this machine in its own conda environment and
-answers `--help`, so the earlier note that no licence was available was wrong.
-It still cannot predict: `site-packages/signalp/model_weights/` contains
-nothing but its README, and every prediction dies with
+The first build recorded "no SignalP licence". That was wrong, and the curator
+said so: SignalP 6.0 was installed on this machine at the start of the project,
+in its own conda environment. Two things had hidden it.
 
-    FileNotFoundError: Fast mode requires model to be installed at
-    .../model_weights/distilled_model_signalp6.pt
+1. **It is not on `PATH`** — not even with the project's `env.sh` sourced, which
+   adds the `lowvan` env and not this one. It is reachable only as
+   `conda run -n signalp signalp6`.
+2. **Its model weights were missing.** The env answered `--help` perfectly and
+   then failed every prediction with `FileNotFoundError: Fast mode requires
+   model to be installed at .../distilled_model_signalp6.pt`, because
+   `site-packages/signalp/model_weights/` held nothing but its README.
 
-The weights ship inside the licensed tarball and are installed separately by
-`signalp6_convert_models`. Until that is done the signal peptide stays
-unmodelled and `G_N` remains the N-terminal furin fragment *including* its
-signal peptide. The queries are already staged at
-`Alignments/Bornaviridae/G_SIGNALP_QUERIES.faa` (7 consensus N-termini), so
-this is one command away from being finished. SKILL.md now tells the next
-build to check the weights directory before planning around SignalP.
+**The licensed tarball was already on disk** — `signalp-6.0i.fast.tar.gz`,
+1.5 GB, downloaded 10 Sep 2026, under
+`LowVan_Skill_Development/Rhabdoviridae/box_folder/Claude/`. Unpacking it and
+copying `models/distilled_model_signalp6.pt` into the env made SignalP work in
+one step. Nothing was re-downloaded and no licence was accepted on anyone's
+behalf.
+
+### What it predicted, and the three gates applied to it
+
+SignalP 6.0 (fast mode, eukarya) on one consensus N-terminus per G cluster:
+**six of seven clusters carry a signal peptide at p = 0.80-0.97**, cleaving
+after residue 19-25. `apply_signalp.py` verified every cut against its own
+cluster's members — the first mature residue is the **modal residue in 98-100%**
+of each cluster.
+
+A verified cut is still not automatically a good feature, and three gates in
+series cut this one back to what is trustworthy:
+
+| gate | effect |
+|---|---|
+| `apply_signalp.py` self-recall floor | cluster 7 withheld: its profile recalls its own training sequences at **20.5 bits**, below the 30 a caller needs |
+| agreement with the mature subunit | clusters 4 and 5 withheld: their profiles disagree with GP_N about where the mature protein starts, and called signal peptides of up to **52 aa** |
+| measured bit cutoff | **36**, from the observation that calls at 39.6-56.2 bits tile the precursor exactly while calls at 25.7-31.5 bits drift by 3-15 nt |
+
+**The result is a feature that calls on 11 of 36 exemplars and is exact wherever
+it calls**: `G_SP + GP_N + GP_C` sum to `G` on every one, with **zero drift**.
+The withheld profiles are kept in `Alignments/Bornaviridae/G_SP/withheld/` with
+the reason, not deleted.
+
+### What that did to the glycoprotein's layout
+
+The furin products are now cut from the **mature** protein rather than the
+precursor, which is the biologically correct boundary:
+
+    G      1-503   precursor CDS
+    G_SP   1-19    signal peptide        (predicted)
+    GP_N  20-249   mature N-terminal furin subunit
+    GP_C 250-503   mature C-terminal furin subunit
+
+On BoDV-1 the module now calls `G_SP` 2236..2292, `GP_N` 2293..2982 and
+`GP_C` 2983..3747 — 19 + 230 + 254 residues, summing exactly to G's 503.
+
+**And the new GP_N length is an independent corroboration.** Removing a 19
+residue leader from the 249 residue furin product leaves **230 aa**, about
+27 kDa deglycosylated — which is exactly what Kiermayer 2002 measured for GP-N
+when they finally detected it in infected cells (**PMID 12417322**). Nothing in
+the derivation used that number.
+
+It remains a **prediction**: no bornavirus signal peptide has been determined
+experimentally, and §07 says so.
 
 ## What is deliberately not modelled
 
@@ -388,8 +436,7 @@ and PMID 11070091 (mRNA only, ~10% splicing, non-conserved acceptor),
 **Cartilovirus Vp3** and the reptilian cultervirus **P–G hybrids**
 (predictions in their own papers), the **1,608 aa and 1,558 aa internal-start
 forms of L** (Walker 2000 looked for the 170 kDa one in infected cells and did
-not find it), the **glycoprotein signal peptide** (SignalP installed but
-weightless, above), and the avian carboviruses that lack G/X/M, which are not
+not find it), and the avian carboviruses that lack G/X/M, which are not
 in this dump.
 
 N p38 was on this list in the first build and is no longer: it is modelled, as
