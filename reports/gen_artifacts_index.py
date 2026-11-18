@@ -41,10 +41,16 @@ TAXA_EXTRA = ["Rhabdoviridae"]        # published before the naming convention s
 #  audit with it. ALIAS below files the audit under the closed-up spelling, so
 #  listing the spaced one as well would split one module across two headings.
 NOT_TAXA = {"BV-BRC", "Rubella", "Mammalian Orthoreovirus"}
+#  "Genome Map" was added 18 Nov 2026. Every module is supposed to ship a
+#  genome map (SKILL.md step 12), but until Bornaviridae they were only ever
+#  EMBEDDED in the coverage audit, never published as pages of their own, so
+#  the column is empty for every earlier taxon. That is accurate rather than
+#  missing data: those maps exist, inside their audits.
 KINDS = [("Coverage Audit", "coverage audit"),
          ("PSSM Registry", "PSSM registry"),
          ("String Collapse", "string collapse"),
-         ("Vocabulary Saturation", "vocabulary saturation")]
+         ("Vocabulary Saturation", "vocabulary saturation"),
+         ("Genome Map", "genome map")]
 #  Pages whose title does not follow "<taxon> <kind>".
 ALIAS = {("Matonaviridae", "Vocabulary Saturation"): "Rubella Vocabulary Saturation",
          ("MammalianOrthoreovirus", "Coverage Audit"):
@@ -119,8 +125,8 @@ def main():
          "Taxa are listed alphabetically. The matrix is the fast way in; the",
          "per-taxon tables below carry the dates and the source paths.", "",
          "## At a glance", "",
-         "| taxon | collapse | registry | saturation | audit |",
-         "|---|---|---|---|---|"]
+         "| taxon | collapse | registry | saturation | audit | map |",
+         "|---|---|---|---|---|---|"]
 
     def cell(tax, kind):
         t = title_for(tax, kind)
@@ -132,9 +138,9 @@ def main():
 
     TAXA_M = derive_taxa(set(best) | set(src))
     for tax in TAXA_M:
-        cells = [cell(tax, k) for k, _l in
-                 [("String Collapse", ""), ("PSSM Registry", ""),
-                  ("Vocabulary Saturation", ""), ("Coverage Audit", "")]]
+        cells = [cell(tax, k) for k in
+                 ("String Collapse", "PSSM Registry",
+                  "Vocabulary Saturation", "Coverage Audit", "Genome Map")]
         if all(c == "—" for c in cells):
             continue
         o.append("| **%s** | %s |" % (tax, " | ".join(cells)))
