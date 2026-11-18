@@ -74,23 +74,28 @@ per-taxon tables below carry the dates and the source paths.
 | **PICO_NOLDR_VP0** | [live](https://claude.ai/artifact/FPxCxJr26eRtF8PJY8wH4p) | [live](https://claude.ai/artifact/Lr9uABqCQZxhBqiw83BJSS) | [live](https://claude.ai/artifact/MQxP6qyN2pCqry717Y5ehK) | [live](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) | — |
 | **PICO_NOLDR_VP4** | [live](https://claude.ai/artifact/D4ncL6xGyYttgDBcpqDJzF) | [live](https://claude.ai/artifact/CgHakkLnCawRjWZdawJwWB) | [live](https://claude.ai/artifact/4PMpusDUm7dpDGq1Pp2pxL) | [live](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) | — |
 | **Picobirnaviridae** | [live](https://claude.ai/artifact/TjLjMkHCf1Lodub3LWzYKq) | [live](https://claude.ai/artifact/KSMyiocg9iYnm6s6LS3LpY) | [live](https://claude.ai/artifact/MA8nCTqMGGp2Loy4W4LNHM) | [live](https://claude.ai/artifact/FCnZ2syzgodd8eXE1cpW3g) | [live](https://claude.ai/artifact/2sMCcX1C1gnjUmdFyLzute) |
+| **Piscanivirinae** | — | — | — | — | [live](https://claude.ai/artifact/EnFm97JEm5cJTjX9cLyPiJ) |
 | **Piscine Orthoreovirus** | [live](https://claude.ai/artifact/JEnqCvUGt9SN5f6kuCtT15) | [live](https://claude.ai/artifact/5fvts36gAWRpgtdQzjiCGX) | [live](https://claude.ai/artifact/7tqSe2K6VWU6jeLPRuwkKt) | [live](https://claude.ai/artifact/6YRXypfQ5DiURLw8vr2Tp9) | — |
 | **Protoparvovirus** | [live](https://claude.ai/artifact/KBU1KeEYqBDGco27VKRx1T) | [src only](reports/protoparvovirus-pssm-registry.html) | [src only](reports/protoparvovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/Wxh3ffuYKmHzqnFNxzMsfE) | [src only](reports/protoparvovirus-genome-map.html) |
 | **Pteropine Orthoreovirus** | [live](https://claude.ai/artifact/5MK26D2zL5em7CigKff9Fx) | [live](https://claude.ai/artifact/KT8pmXT9wJTehrpq2vPWoz) | [live](https://claude.ai/artifact/GLg3LzpvhMzbiecgUMpWoQ) | [live](https://claude.ai/artifact/V4NNnwaPbfJsdDRhDfyKHw) | — |
 | **Quinvirinae** | [live](https://claude.ai/artifact/3GYxPLmVMGeYv2WAb6zcr5) | [live](https://claude.ai/artifact/R2vquKmsHW3TWas4nusqCA) | [live](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [live](https://claude.ai/artifact/HxQ2k5YorrH6NJ6kuAKW9p) | — |
+| **Remotovirinae** | — | — | — | — | [live](https://claude.ai/artifact/BxGL4sNd3mnU6vAPDv5nmS) |
 | **Rhabdoviridae** | — | [live](https://claude.ai/artifact/8NDdLrfq9Bbx4NV5rYLqzH) | — | [live](https://claude.ai/artifact/8VrGZtr14bqGFkqhJTPaY8) | — |
 | **Rotavirus** | [live](https://claude.ai/artifact/FdTKR7uwQR5XcGrCfxEzR6) | [live](https://claude.ai/artifact/EtkrQXYZs7E7vhcMmXLjmk) | [live](https://claude.ai/artifact/9cUHtecmAb91ck6yPe2Z86) | [live](https://claude.ai/artifact/WT969iLo1sBDk7HTbAYc7D) | — |
 | **Sapelovirus** | [live](https://claude.ai/artifact/57VNf18a2R6sdpqC3k3JAR) | [live](https://claude.ai/artifact/R3NPTkzAW38A1af9UtGrT1) | [live](https://claude.ai/artifact/5pNjSX9oLvh83MCHYMoC6z) | [live](https://claude.ai/artifact/88yMxbSKFycQvTt6m6NvZ2) | — |
 | **Sapovirus** | [live](https://claude.ai/artifact/UNtWhKpxTqpVARrDf8NuMB) | [live](https://claude.ai/artifact/3GHxASgkwBjDdLYVsJwDiT) | [live](https://claude.ai/artifact/9tuiHSAv4PLNeCiQM4B2h2) | [live](https://claude.ai/artifact/NFom3ZyTgwJgtjrZ2xFTAX) | — |
 | **Seadornavirus** | [live](https://claude.ai/artifact/Kogtes6gSE36mDPFscFveK) | [live](https://claude.ai/artifact/1VrHtEnoda2Cptd5DJJ8FX) | [live](https://claude.ai/artifact/HGKdASkXhZA7FzjtVdnKc1) | [live](https://claude.ai/artifact/NFQf5bFCAtFttHYWVSSgpH) | — |
 | **Senecavirus** | [live](https://claude.ai/artifact/Tbtxi52p4gQ7wdFwbsTPLq) | [live](https://claude.ai/artifact/XJMxY4EvPdae8nU5LNiJfq) | [live](https://claude.ai/artifact/5mSFF5p1EuhXYZo5UgtXYZ) | [live](https://claude.ai/artifact/Xr21mDLyZzcSebbLyeU1T7) | — |
+| **Serpentovirinae** | — | — | — | — | [live](https://claude.ai/artifact/Tia2iCcyFrJ4Xzhp7VE2Mi) |
 | **Siadenovirus** | [src only](reports/siadenovirus-string-collapse.html) | [src only](reports/siadenovirus-pssm-registry.html) | [src only](reports/siadenovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/UTYPduDXNR14X5MbdYzww4) | [src only](reports/siadenovirus-genome-map.html) |
 | **Spumaretrovirinae** | [live](https://claude.ai/artifact/PY1Bk6CcSTSjPRPeamnCRE) | [live](https://claude.ai/artifact/GGyut8ufvAFnzHX1reqtji) | [live](https://claude.ai/artifact/85pk6ypS9YZ9Gy3iQXidRM) | [live](https://claude.ai/artifact/SsPLLYtdqDgPaDo6ZrstiU) | [src only](reports/spumaretrovirinae-genome-map.html) |
 | **SRLV** | [live](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | [live](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | [live](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | [live](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) | [src only](reports/srlv-genome-map.html) |
 | **Teschovirus** | [live](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [live](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [live](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [live](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) | — |
 | **TetraCopiparvovirus** | [live](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | [live](https://claude.ai/artifact/8cma1NsgkTSgH6zD3oJkMv) | [live](https://claude.ai/artifact/B2b8bZqe2en9vgBipMsTDY) | [live](https://claude.ai/artifact/AwAe6qNhui1fPRsezQY3Wd) | [src only](reports/tetracopiparvovirus-genome-map.html) |
 | **Tobamovirus** | [live](https://claude.ai/artifact/4r5eFifqQBs3msQyeTDRkd) | [live](https://claude.ai/artifact/Jaxj3wb1cGkEng25cDoXDz) | [live](https://claude.ai/artifact/GDgyPgzSQr3PoNyBXKF75F) | [live](https://claude.ai/artifact/Lqb3QrZN9vuQT2tHNnxjjf) | — |
+| **Tobaniviridae** | [live](https://claude.ai/artifact/5c59k9HJW3ddeWxwpqf8Nw) | [live](https://claude.ai/artifact/4XJ6KBJKBeoyUzg9FGBfbv) | [live](https://claude.ai/artifact/7VP8cuFrcbcQmsRjAWs44J) | [live](https://claude.ai/artifact/TBBDh2MVkXhoupg6PTsqvo) | — |
 | **Togaviridae** | [src only](reports/togaviridae-string-collapse.html) | [live](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | — | [live](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) | — |
+| **Torovirinae** | — | — | — | — | [live](https://claude.ai/artifact/9a1D8paA4udcgh1rxypBb9) |
 | **Trivirinae** | [live](https://claude.ai/artifact/SSFaUYG921SiiHWL7Psjv3) | [live](https://claude.ai/artifact/QgcHG4Qph1dDCw1pf5my49) | [live](https://claude.ai/artifact/9bYCnLShKySrUS9NecRe7e) | [live](https://claude.ai/artifact/7h9mdYRw6QdqjqrHDwxcP4) | — |
 | **Tymovirus** | [live](https://claude.ai/artifact/FWqWHTDrJDVku9KhJLAtm1) | [live](https://claude.ai/artifact/Rthyn6HHDwXe4VGhrgvXvt) | [live](https://claude.ai/artifact/DBakDPHuHADrHWkDRadqUK) | [live](https://claude.ai/artifact/BcR2cenCdnFyLZGus2S5up) | — |
 | **Velarivirus** | [live](https://claude.ai/artifact/964Y7kzdrnjiBkAg74b8oz) | [live](https://claude.ai/artifact/L4rADg3VE6QWsMG2XuTizY) | [live](https://claude.ai/artifact/4SxhURLD9u5EiKDKZvvWKa) | [live](https://claude.ai/artifact/DXSmF1X2SUerSi537MGndv) | — |
@@ -725,6 +730,14 @@ Not made: genome map.
 | Picobirnaviridae -- picobirnaviruses Vocabulary Saturation | [open](https://claude.ai/artifact/MA8nCTqMGGp2Loy4W4LNHM) | [source](reports/picobirnaviridae-vocabulary-saturation.html) | 2026-11-17 |
 | Picobirnaviridae Genome Map | [open](https://claude.ai/artifact/2sMCcX1C1gnjUmdFyLzute) | [source](reports/picobirnaviridae-genome-map.html) | 2026-11-18 |
 
+### Piscanivirinae
+
+| page | live | source | updated |
+|---|---|---|---|
+| Piscanivirinae Genome Map | [open](https://claude.ai/artifact/EnFm97JEm5cJTjX9cLyPiJ) | [source](reports/tobaniviridae-genome-map-Piscanivirinae.html) | 2026-11-18 |
+
+Not made: coverage audit, PSSM registry, string collapse, vocabulary saturation.
+
 ### Piscine Orthoreovirus
 
 | page | live | source | updated |
@@ -767,6 +780,14 @@ Not made: genome map.
 | Quinvirinae Vocabulary Saturation | [open](https://claude.ai/artifact/1FanUaaNSbUPHjMJxhoEwg) | [source](reports/quinvirinae-vocabulary-saturation.html) | 2026-09-29 |
 
 Not made: genome map.
+
+### Remotovirinae
+
+| page | live | source | updated |
+|---|---|---|---|
+| Remotovirinae Genome Map | [open](https://claude.ai/artifact/BxGL4sNd3mnU6vAPDv5nmS) | [source](reports/tobaniviridae-genome-map-Remotovirinae.html) | 2026-11-18 |
+
+Not made: coverage audit, PSSM registry, string collapse, vocabulary saturation.
 
 ### Rhabdoviridae
 
@@ -832,6 +853,14 @@ Not made: genome map.
 
 Not made: genome map.
 
+### Serpentovirinae
+
+| page | live | source | updated |
+|---|---|---|---|
+| Serpentovirinae Genome Map | [open](https://claude.ai/artifact/Tia2iCcyFrJ4Xzhp7VE2Mi) | [source](reports/tobaniviridae-genome-map-Serpentovirinae.html) | 2026-11-18 |
+
+Not made: coverage audit, PSSM registry, string collapse, vocabulary saturation.
+
 ### Siadenovirus
 
 | page | live | source | updated |
@@ -896,6 +925,17 @@ Not made: genome map.
 
 Not made: genome map.
 
+### Tobaniviridae
+
+| page | live | source | updated |
+|---|---|---|---|
+| Tobaniviridae Coverage Audit | [open](https://claude.ai/artifact/TBBDh2MVkXhoupg6PTsqvo) | [source](reports/tobaniviridae-coverage-audit.html) | 2026-11-18 |
+| Tobaniviridae PSSM Registry | [open](https://claude.ai/artifact/4XJ6KBJKBeoyUzg9FGBfbv) | [source](reports/tobaniviridae-pssm-registry.html) | 2026-11-18 |
+| Tobaniviridae String Collapse | [open](https://claude.ai/artifact/5c59k9HJW3ddeWxwpqf8Nw) | [source](reports/tobaniviridae-string-collapse.html) | 2026-11-18 |
+| Tobaniviridae Vocabulary Saturation | [open](https://claude.ai/artifact/7VP8cuFrcbcQmsRjAWs44J) | [source](reports/tobaniviridae-vocabulary-saturation.html) | 2026-11-18 |
+
+Not made: genome map.
+
 ### Togaviridae
 
 | page | live | source | updated |
@@ -905,6 +945,14 @@ Not made: genome map.
 
 Built but never published, source is here: [string collapse](reports/togaviridae-string-collapse.html).
 Not made: vocabulary saturation, genome map.
+
+### Torovirinae
+
+| page | live | source | updated |
+|---|---|---|---|
+| Torovirinae Genome Map | [open](https://claude.ai/artifact/9a1D8paA4udcgh1rxypBb9) | [source](reports/tobaniviridae-genome-map-Torovirinae.html) | 2026-11-18 |
+
+Not made: coverage audit, PSSM registry, string collapse, vocabulary saturation.
 
 ### Trivirinae
 
