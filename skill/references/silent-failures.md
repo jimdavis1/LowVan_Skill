@@ -850,3 +850,36 @@ output directory (`K22` → `K22.pre_fix_dir`) matches, and it is removed with
 only a "clearing stray output directory" line. Adenoviridae, 16 Nov 2026: all
 the K22 backups were deleted that way. They were recoverable only because the
 previous profiles were committed. Back up outside `Alignments/`, or rely on git.
+
+## A profile id that is not a number splits one feature into many
+
+`apply_copy_num.py` resolves a feature from the GTO's `family_assignments` by
+stripping a **trailing numeric** profile id: `Bocaparvovirus.NP1.3_1` → `NP1`.
+Anything else is kept as part of the key, so a profile named
+`<Module>.<FEAT>.ssN` resolves to the feature `FEAT.ssN` — and every profile
+becomes a feature of its own.
+
+Tobaniviridae, 18 Nov 2026. Most features in three of its four modules rest on
+single-sequence profiles, which were numbered `ss1, ss2, …` to mark them as
+such. `apply_copy_num` then reported **Torovirinae M at 33.3%** on a panel
+where M is called on 24 of 24 genomes, because 33.3% is the share held by the
+largest single profile. Nothing errors, every rate is internally consistent,
+and the only symptom is a core protein that looks too rare to be essential —
+which is an argument for dropping a `copy_num` that should have been added, or
+for chasing a coverage gap that does not exist.
+
+The same parse feeds `qc_duplicate_calls.py` and the registry page, so the
+error propagates into the artifacts.
+
+**Number every profile.** Leftover and single-sequence passes should continue
+the feature's existing numbering (`4`, `5`, `6` …) rather than inventing a
+suffix; the N-terminal re-clustering already does this with its `1_1` form,
+which parses correctly. If a build has already shipped `ss`-style names, rename
+the files and their alignments together and re-install — the GTOs carry the
+profile name, so the rates are wrong until the module is re-run.
+
+**And read the rate against the feature tables before trusting it.** The
+tables carry the gene symbol per call, so a per-feature rate computed from
+them is independent of this parse — and of the annotation-string collision
+described above, which bites any module declaring several uncharacterized
+features.
