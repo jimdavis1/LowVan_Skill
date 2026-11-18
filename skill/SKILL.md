@@ -1653,6 +1653,12 @@ python3 scripts/gen_coverage_audit.py --facts <taxon>_audit.json \
     --out coverage-audit.html          # <- write the facts file by hand
 
 python3 scripts/check_artifact_html.py *.html    # <- REQUIRED before publishing
+
+#  to publish the map as its own page too, give the fragment the audit's own
+#  styles first. Published bare it draws every feature in black: the fills are
+#  var(--built) and an undefined custom property invalidates the declaration.
+python3 scripts/wrap_figure_page.py --figure <taxon>-genome-map.html \
+    --audit <taxon>-coverage-audit.html --title "<Taxon> Genome Map" --write
 ```
 
 A `figure` block resolves `from` **relative to the current directory**, so run
@@ -1996,6 +2002,12 @@ All take `--workdir` pointing at the module working directory, which looks like:
 | `make_panel.py` | draw a held-out panel from the build's own contigs, excluding the reference genomes |
 | `make_gto.py` | contig FASTAs -> GTOs, with genome ids issued by the ID server |
 | `run_gto_eval.py` | annotate and quality-score GTOs; the good-vs-poor breakdown |
+| `verify_rep_contigs.py` | does every reference belong where its NAME filed it? all-vs-all blastn at the annotator's own settings; a reference whose nearest neighbour sits in another module captures that module's genomes at routing time |
+| `wrap_figure_page.py` | make a `<figure>` fragment publishable on its own by prepending the audit's own `<style>`; a fragment published bare loses every fill to an undefined custom property and draws in black |
+| `facts_from_html.py` | recover a lost facts file by inverting `gen_coverage_audit.py` |
+| `recover_facts.py` | keep a recovered facts file only when the page regenerates **byte-identically** |
+| `sync_runtime.py` | build a local copy of the runtime, merging the upstream repo with whatever Box will serve; resumable, judged on file count |
+| `make_genome_maps.py` | run `gen_genome_map.py` across every module whose runtime is readable |
 
 ## What "done" looks like
 
