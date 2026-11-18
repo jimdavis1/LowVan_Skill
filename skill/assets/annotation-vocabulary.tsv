@@ -714,3 +714,15 @@ Velarivirus	Nucleocapsid protein	N	CDS		0
 Velarivirus	RNA-dependent RNA polymerase	RDRP	CDS		0	
 Velarivirus	Replicase polyprotein	POLY	CDS		0	
 Velarivirus	Thaumatin-like protein	THAU	CDS		0	
+Bornaviridae	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
+Bornaviridae	Nucleocapsid protein isoform p38	N_prime	CDS	Single RNA Segment	0	
+Bornaviridae	X protein	X	CDS	Single RNA Segment	1	
+Bornaviridae	Phosphoprotein	P	CDS	Single RNA Segment	1	
+Bornaviridae	Matrix protein	M	CDS	Single RNA Segment	1	
+Bornaviridae	Envelope glycoprotein precursor	G	CDS	Single RNA Segment	1	
+Bornaviridae	Signal peptide of G	G_SP	mat_peptide	Single RNA Segment	0	
+Bornaviridae	Mature glycoprotein N-terminal subunit	GP_N	mat_peptide	Single RNA Segment	0	
+Bornaviridae	Mature glycoprotein C-terminal subunit	GP_C	mat_peptide	Single RNA Segment	0	
+Bornaviridae	RNA-dependent RNA polymerase	L	CDS	Single RNA Segment	0	
+Bornaviridae	Uncharacterized lineage-specific protein	Vp1	CDS	Single RNA Segment	0	
+Bornaviridae	Uncharacterized lineage-specific protein	Vp2	CDS	Single RNA Segment	0	
