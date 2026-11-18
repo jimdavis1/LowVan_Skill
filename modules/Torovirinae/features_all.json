@@ -1,0 +1,108 @@
+{
+ "HE": {
+  "PMID_claude_generated": {
+   "function": [
+    "9188596",
+    "15507445",
+    "19721004",
+    "34817201"
+   ]
+  },
+  "anno": "Hemagglutinin-esterase glycoprotein",
+  "downstream_ext": 1,
+  "gene_symbol": "HE",
+  "note": "Class I membrane protein with sialate-9-O-acetylesterase (receptor-destroying) and lectin activity, forming the short 6 nm surface projections (PMID 9188596); substrate preference differs between bovine and porcine torovirus (PMID 15507445) and both ectodomains have been crystallised (PMID 19721004). Not essential in culture (PMID 34817201), and absent as a functional gene from equine torovirus, where it is a deleted pseudogene (PMID 29950409) -- hence no copy_num.",
+  "segment": "Single RNA Segment"
+ },
+ "M": {
+  "PMID_claude_generated": {
+   "function": [
+    "2024492",
+    "33800523"
+   ]
+  },
+  "anno": "Membrane glycoprotein",
+  "downstream_ext": 1,
+  "gene_symbol": "M",
+  "note": "Triple-spanning envelope protein, 233 aa, described as the torovirus E protein in PMID 2024492 and called M since. Toroviruses have no coronavirus-like small envelope protein (PMID 33800523).",
+  "segment": "Single RNA Segment"
+ },
+ "MPRO": {
+  "PMID_claude_generated": {
+   "coordinates": [
+    "16571831",
+    "32727876"
+   ],
+   "function": [
+    "16571831",
+    "32727876"
+   ]
+  },
+  "anno": "Main protease involved in polyprotein cleavage",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "Mpro",
+  "note": "The torovirus main proteinase, cut from pp1a at its own two published cleavage sites rather than modelled from deposits -- nothing in BV-BRC is annotated as a torovirus mature peptide. Both sites were mapped by Edman degradation of the cleavage products: equine torovirus Gln3251|Ser3252 in SNFSFQ|SVFSKA and Gln3543|Ser3544 in QPFKKQ|SVSNNV, mature protein 292 aa (PMID 16571831, GenBank DQ310701); porcine torovirus Gln3095|Ser3096 and Gln3382|Ser3383, mature protein 287 aa (PMID 32727876, GenBank MH603532). Measured over all 32 pp1a sequences in this module's collection, P1 is Gln and P1' is Ser at 100% at BOTH ends, and the derived products are 287-292 aa. It is a chymotrypsin-like SERINE protease (nucleophile Ser, mature numbering Ser165) that nevertheless cleaves after Gln, consensus FxxQ|(S,A).",
+  "params": {
+   "m": 2
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "N": {
+  "PMID_claude_generated": {
+   "function": [
+    "2607340",
+    "33177195"
+   ]
+  },
+  "anno": "Nucleocapsid protein",
+  "downstream_ext": 1,
+  "gene_symbol": "N",
+  "note": "160-163 aa phosphoprotein, far smaller than the coronavirus N (PMID 2607340); carries nuclear and nucleolar localisation and export signals that matter for virus growth (PMID 33177195).",
+  "segment": "Single RNA Segment"
+ },
+ "ORF1A": {
+  "PMID_claude_generated": {
+   "function": [
+    "16571831",
+    "33800523"
+   ]
+  },
+  "anno": "ORF1a polyprotein",
+  "downstream_ext": 1,
+  "gene_symbol": "ORF1a",
+  "note": "pp1a, 4,417-4,569 aa. Processed by the virus's own main proteinase and a papain-like protease; 13 nsps are described for Torovirus (PMID 33800523). Only the main proteinase's own boundaries are experimentally mapped, so it is the only mature peptide this module declares.",
+  "segment": "Single RNA Segment"
+ },
+ "ORF1AB": {
+  "PMID_claude_generated": {
+   "function": [
+    "2388833",
+    "29950409"
+   ]
+  },
+  "anno": "ORF1ab polyprotein",
+  "build_note": "min_len/max_len in amino acids, from the 44 transcript_edit references this build wrote: observed 6505-6857 aa, with 10% slack either side.",
+  "feature_type": "CDS",
+  "gene_symbol": "ORF1ab",
+  "max_len": 7542,
+  "min_len": 5854,
+  "note": "Expressed by -1 ribosomal frameshifting at the slippery heptamer U_UUA_AAC with a 3' pseudoknot; ORF1a and ORF1b overlap by 12 nt and frameshift efficiency is 20-30%, measured at 27.5-29.9% by ribosome profiling in infected cells (PMID 2388833, PMID 29950409). No PSSM: the product is not collinear with the genome.",
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit"
+ },
+ "S": {
+  "PMID_claude_generated": {
+   "function": [
+    "2219698",
+    "23420207"
+   ]
+  },
+  "anno": "Spike protein",
+  "downstream_ext": 1,
+  "gene_symbol": "S",
+  "note": "Type I fusion glycoprotein, 1,562-1,587 aa, 18 N-glycosylation sites, two heptad repeats; mediates haemagglutination in cell-adapted bovine torovirus (PMID 2219698, PMID 23420207). The mature protein is two subunits, but the scissile bond has never been mapped, so S1/S2 are not declared here.",
+  "segment": "Single RNA Segment"
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "Piscanivirinae.1.dna": {
+  "genome_ids": "KJ681496",
+  "genome_name": "Chinook salmon bafinivirus NIDO"
+ },
+ "Piscanivirinae.2.dna": {
+  "genome_ids": "BK070284",
+  "genome_name": "Eptatretus burgeri tobanivirus"
+ },
+ "Piscanivirinae.3.dna": {
+  "genome_ids": "BK070277",
+  "genome_name": "Amphiprion percula tobanivirus"
+ },
+ "Piscanivirinae.4.dna": {
+  "genome_ids": "DQ898157",
+  "genome_name": "White bream virus DF24/00"
+ },
+ "Piscanivirinae.5.dna": {
+  "genome_ids": "NC_038295",
+  "genome_name": "Fathead minnow nidovirus"
+ },
+ "Piscanivirinae.6.dna": {
+  "genome_ids": "BK070305",
+  "genome_name": "Schizothorax waltoni tobanivirus"
+ },
+ "Piscanivirinae.7.dna": {
+  "genome_ids": "BK070291",
+  "genome_name": "Misgurnus anguillicaudatus tobanivirus"
+ },
+ "Piscanivirinae.8.dna": {
+  "genome_ids": "BK070308",
+  "genome_name": "Sinibotia superciliaris tobanivirus 1"
+ }
+}

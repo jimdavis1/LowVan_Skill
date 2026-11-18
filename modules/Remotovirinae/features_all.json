@@ -1,0 +1,90 @@
+{
+ "G2": {
+  "PMID_claude_generated": {
+   "function": [
+    "25918239"
+   ]
+  },
+  "anno": "Uncharacterized lineage-specific protein",
+  "downstream_ext": 1,
+  "gene_symbol": "G2",
+  "note": "ORF5, 436-455 aa, named G2 by its describing paper: a putative accessory glycoprotein with a transmembrane segment at residues 429-448 and several glycosylation sites (PMID 25918239). No function has been shown, so the uncharacterized string is used and the published symbol is kept.",
+  "segment": "Single RNA Segment"
+ },
+ "M": {
+  "PMID_claude_generated": {
+   "function": [
+    "25918239"
+   ]
+  },
+  "anno": "Membrane glycoprotein",
+  "downstream_ext": 1,
+  "gene_symbol": "M",
+  "note": "ORF3, 231 aa, multiple transmembrane segments, with no detectable similarity to other nidovirus M proteins (PMID 25918239).",
+  "segment": "Single RNA Segment"
+ },
+ "N": {
+  "PMID_claude_generated": {
+   "function": [
+    "25918239"
+   ]
+  },
+  "anno": "Nucleocapsid protein",
+  "downstream_ext": 1,
+  "gene_symbol": "N",
+  "note": "ORF4, 177-178 aa, predicted pI 12.0 (PMID 25918239).",
+  "segment": "Single RNA Segment"
+ },
+ "ORF1A": {
+  "PMID_claude_generated": {
+   "function": [
+    "25918239"
+   ]
+  },
+  "anno": "ORF1a polyprotein",
+  "downstream_ext": 1,
+  "gene_symbol": "ORF1a",
+  "note": "pp1a, 3,111-3,114 aa; carries a Ser/Thr protein kinase domain, three transmembrane regions and a main-protease domain between TM2 and TM3, all assigned by sequence analysis (PMID 25918239). No protease from this genus has been expressed or assayed, so no mature peptide is declared.",
+  "segment": "Single RNA Segment"
+ },
+ "ORF1AB": {
+  "PMID_claude_generated": {
+   "function": [
+    "25918239"
+   ]
+  },
+  "anno": "ORF1ab polyprotein",
+  "build_note": "min_len/max_len in amino acids, from the 15 transcript_edit references this build wrote: observed 5109-5110 aa, with 10% slack either side.",
+  "feature_type": "CDS",
+  "gene_symbol": "ORF1ab",
+  "max_len": 5621,
+  "min_len": 4598,
+  "note": "Expressed by -1 ribosomal frameshifting at UUUAAAC (PMID 25918239; KM589359 CDS join(487..9825,9825..15818)). ORF1b carries the RdRp, helicase and exoribonuclease; this is the only nidovirus known to lack both NendoU and the O-methyltransferase. No PSSM.",
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit"
+ },
+ "ORF6": {
+  "PMID_claude_generated": {
+   "function": [
+    "25918239"
+   ]
+  },
+  "anno": "Uncharacterized lineage-specific protein",
+  "downstream_ext": 1,
+  "gene_symbol": "ORF6",
+  "note": "The unnamed 267 nt / 88 aa ORF near the 3' end of the genome, with no similarity to any known protein (PMID 25918239). ORF6 is this module's own key for it; the paper gives it no name.",
+  "segment": "Single RNA Segment"
+ },
+ "S": {
+  "PMID_claude_generated": {
+   "function": [
+    "25918239"
+   ]
+  },
+  "anno": "Spike protein",
+  "downstream_ext": 1,
+  "gene_symbol": "S",
+  "note": "ORF2, 562 aa -- the shortest nidovirus spike reported, with a predicted signal peptide and a C-terminal transmembrane anchor, and 17% identity to the python serpentovirus spike (PMID 25918239). The signal-peptide cleavage site is predicted only, so no mature product is declared.",
+  "segment": "Single RNA Segment"
+ }
+}

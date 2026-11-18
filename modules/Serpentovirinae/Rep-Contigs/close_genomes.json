@@ -1,0 +1,66 @@
+{
+ "Serpentovirinae.1.dna": {
+  "genome_ids": "MG752895",
+  "genome_name": "Ball python nidovirus 1 148"
+ },
+ "Serpentovirinae.10.dna": {
+  "genome_ids": "MT997159",
+  "genome_name": "Veiled chameleon serpentovirus B"
+ },
+ "Serpentovirinae.11.dna": {
+  "genome_ids": "MG600031",
+  "genome_name": "Guangdong mandarin rat snake torovirus LPSF32319"
+ },
+ "Serpentovirinae.12.dna": {
+  "genome_ids": "MG600029",
+  "genome_name": "Guangdong chinese water snake torovirus LPSF20552"
+ },
+ "Serpentovirinae.13.dna": {
+  "genome_ids": "BK070281",
+  "genome_name": "Crotalus viridis tobanivirus"
+ },
+ "Serpentovirinae.14.dna": {
+  "genome_ids": "MN161561",
+  "genome_name": "Serpentovirinae sp. isolate C18"
+ },
+ "Serpentovirinae.15.dna": {
+  "genome_ids": "MN161566",
+  "genome_name": "Serpentovirinae sp. isolate K48"
+ },
+ "Serpentovirinae.16.dna": {
+  "genome_ids": "MN161572",
+  "genome_name": "Serpentovirinae sp. isolate L25"
+ },
+ "Serpentovirinae.2.dna": {
+  "genome_ids": "MK182566",
+  "genome_name": "Morelia viridis nidovirus BH128/14-12"
+ },
+ "Serpentovirinae.3.dna": {
+  "genome_ids": "KX184715",
+  "genome_name": "Shingleback nidovirus 1"
+ },
+ "Serpentovirinae.4.dna": {
+  "genome_ids": "KX883637",
+  "genome_name": "Xinzhou nematode virus 6 XZSJSC61041"
+ },
+ "Serpentovirinae.5.dna": {
+  "genome_ids": "KX883638",
+  "genome_name": "Xinzhou toro-like virus XZSJSC65757"
+ },
+ "Serpentovirinae.6.dna": {
+  "genome_ids": "NC_046963",
+  "genome_name": "Guangdong red-banded snake torovirus LPSF30546"
+ },
+ "Serpentovirinae.7.dna": {
+  "genome_ids": "MG600028",
+  "genome_name": "Hainan hebius popei torovirus LPSC33749"
+ },
+ "Serpentovirinae.8.dna": {
+  "genome_ids": "MF685025",
+  "genome_name": "Bellinger River virus J248"
+ },
+ "Serpentovirinae.9.dna": {
+  "genome_ids": "MT997160",
+  "genome_name": "Veiled chameleon serpentovirus A"
+ }
+}

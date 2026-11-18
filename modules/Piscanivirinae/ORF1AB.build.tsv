@@ -1,0 +1,22 @@
+genome	name	verdict	start	heptamer	hept_pos	pp1a_aa	pp1ab_aa
+1611837.3	Chinook salmon bafinivirus NIDO	ambiguous_base	845	TTTAAAC	14878	4685	7011
+1611837.4	Chinook salmon bafinivirus WHQSR4345	ambiguous_base	845	TTTAAAC	14335	4504	6830
+1611837.5	Chinook salmon bafinivirus HB93	orf1b_short_162	2137	TTTAAAC	13851	3912	4069
+1611837.6	Chinook salmon bafinivirus CefasW054	ambiguous_base	845	TTTAAAC	13843	4340	6666
+1611837.7	Chinook salmon bafinivirus NIDO	ambiguous_base	845	TTTAAAC	14878	4685	7011
+1611837.8	Chinook salmon bafinivirus BcesPo19	OK	960	TTTAAAC	14450	4504	6830
+1611837.9	Chinook salmon bafinivirus BcesSm22	OK	1006	TTTAAAC	14496	4504	6830
+2059795.3	Atlantic salmon bafinivirus VT01292015-09	ambiguous_base	851	TTTAAAC	14341	4504	6830
+2568001.3	Yellow catfish bafinivirus shaoxing	OK	846	TTTAAAC	14861	4679	7005
+2844401.3	Pelteobagrus fulvidraco oncotshavirus-1 ZJLH18531	OK	847	TTTAAAC	14862	4675	7005
+2916851.3	Eptatretus burgeri tobanivirus	no_long_orf				2353	
+2916854.3	Schizothorax waltoni tobanivirus	ambiguous_base	377	TTTAAAC	14131	4592	6907
+3110222.3	Inshore hagfish bafinivirus	no_long_orf				1681	
+3403315.3	Amphiprion percula tobanivirus	OK	1319	TTTAAAC	15709	4804	7119
+3403321.3	Misgurnus anguillicaudatus tobanivirus	OK	696	TTTAAAC	14573	4633	6946
+3403326.3	Scophthalmus maximus tobanivirus	no_long_orf				2339	
+3403327.3	Sinibotia superciliaris tobanivirus 1	OK	507	TTTAAAC	13526	4347	6643
+405554.4	White bream virus DF24/00	OK	906	TTTAAAC	14549	4555	6872
+405554.5	White bream virus DF24/00	OK	906	TTTAAAC	14549	4555	6872
+889873.11	Fathead minnow nidovirus	OK	760	TTTAAAC	15318	4860	7174
+889873.3	Fathead minnow nidovirus	OK	760	TTTAAAC	15318	4860	7174

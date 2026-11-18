@@ -1,0 +1,146 @@
+{
+   "Torovirinae" : {
+      "close_genomes" : {
+         "Torovirinae.1.dna" : {
+            "genome_ids" : "KR527150",
+            "genome_name" : "Goat torovirus SZ"
+         },
+         "Torovirinae.2.dna" : {
+            "genome_ids" : "MN754001",
+            "genome_name" : "Porcine torovirus QF17"
+         },
+         "Torovirinae.3.dna" : {
+            "genome_ids" : "MW561977",
+            "genome_name" : "Bangali torovirus Bangali/H.rufipes/2018"
+         }
+      },
+      "features" : {
+         "HE" : {
+            "PMID_claude_generated" : [
+               "{'function': ['9188596', '15507445', '19721004', '34817201']}"
+            ],
+            "anno" : "Hemagglutinin-esterase glycoprotein",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "HE",
+            "kmers" : 1,
+            "max_len" : 455,
+            "min_len" : 390,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "M" : {
+            "PMID_claude_generated" : [
+               "{'function': ['2024492', '33800523']}"
+            ],
+            "anno" : "Membrane glycoprotein",
+            "bit_cutoff" : 30,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "M",
+            "kmers" : 1,
+            "max_len" : 248,
+            "min_len" : 219,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "MPRO" : {
+            "PMID_claude_generated" : [
+               "{'coordinates': ['16571831', '32727876'], 'function': ['16571831', '32727876']}"
+            ],
+            "anno" : "Main protease involved in polyprotein cleavage",
+            "bit_cutoff" : 60,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "Mpro",
+            "kmers" : 1,
+            "max_len" : 309,
+            "min_len" : 269,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "N" : {
+            "PMID_claude_generated" : [
+               "{'function': ['2607340', '33177195']}"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 30,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 223,
+            "min_len" : 150,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "ORF1A" : {
+            "PMID_claude_generated" : [
+               "{'function': ['16571831', '33800523']}"
+            ],
+            "anno" : "ORF1a polyprotein",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ORF1a",
+            "kmers" : 1,
+            "max_len" : 4843,
+            "min_len" : 4142,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "ORF1AB" : {
+            "PMID_claude_generated" : [
+               "{'function': ['2388833', '29950409']}"
+            ],
+            "anno" : "ORF1ab polyprotein",
+            "feature_type" : "CDS",
+            "gene_symbol" : "ORF1ab",
+            "max_len" : 7542,
+            "min_len" : 5854,
+            "segment" : "Single RNA Segment",
+            "special" : "transcript_edit",
+            "type" : "CDS"
+         },
+         "S" : {
+            "PMID_claude_generated" : [
+               "{'function': ['2219698', '23420207']}"
+            ],
+            "anno" : "Spike protein",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S",
+            "kmers" : 1,
+            "max_len" : 1682,
+            "min_len" : 1468,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 37951,
+            "min_len" : 950,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

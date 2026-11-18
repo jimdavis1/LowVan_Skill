@@ -1,0 +1,10 @@
+{
+ "ORF1A": {"min": 3800, "max": 6700, "pmid": "25205093",
+   "note": "ball python nidovirus ORF1a 17,412 nt / 5,803 aa (Stenglein 2014); the subfamily spans 3,840 aa (shingleback nidovirus) to 6,570 aa (veiled chameleon serpentovirus B)"},
+ "S":     {"min": 800, "max": 1200, "pmid": "25205093",
+   "note": "BPNV ORF2 S, 959 aa; subfamily range 821-1,141 aa"},
+ "M":     {"min": 200, "max": 270, "pmid": "25205093",
+   "note": "BPNV ORF4 M, 215 aa, three N-terminal TMs, 21% identity over 116 aa to white bream virus M"},
+ "N":     {"min": 125, "max": 250, "pmid": "25205093",
+   "note": "BPNV ORF5a N, 152 aa, Arteri_nucleo Pfam hit, pI 10.6; divergent genera reach 129-246 aa and are bound to this protein by homology, never by length"}
+}

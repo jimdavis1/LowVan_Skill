@@ -1,0 +1,32 @@
+{
+ "M": {
+  "max": 250,
+  "min": 215,
+  "note": "WBV M 227 aa; FHMNV M 225 aa; CSBV M 245 aa",
+  "pmid": "16987966"
+ },
+ "MPRO": {
+  "max": 285,
+  "min": 255,
+  "note": "mature main protease: white bream virus pp1a 3443-3709 = 267 aa",
+  "pmid": "21068254"
+ },
+ "N": {
+  "max": 200,
+  "min": 155,
+  "note": "WBV N 161 aa; FHMNV N 165 aa (PMID 22422065); CSBV N 177-178 aa",
+  "pmid": "16987966"
+ },
+ "ORF1A": {
+  "max": 5000,
+  "min": 4400,
+  "note": "white bream virus pp1a 4,555 aa (Schuetze 2006; NC_008516 ORF1a 906..14573); fathead minnow nidovirus 4,860 aa",
+  "pmid": "16987966"
+ },
+ "S": {
+  "max": 1250,
+  "min": 1150,
+  "note": "WBV S 1,220 aa (NC_008516 21525..25187); FHMNV S 1,190 aa (Batts 2012, PMID 22422065); CSBV 1,205 aa",
+  "pmid": "16987966"
+ }
+}

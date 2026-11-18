@@ -1,0 +1,148 @@
+{
+ "Remotovirinae": {
+  "features": [
+   {
+    "key": "G2",
+    "anno": "Uncharacterized lineage-specific protein",
+    "gene": "G2",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 60,
+    "minl": 409,
+    "maxl": 482,
+    "pmid": null,
+    "n": 10,
+    "called": 10,
+    "n_inrange": 10,
+    "called_inrange": 10,
+    "pssms": [
+     "Remotovirinae.G2.1.pssm"
+    ],
+    "nondefault": false,
+    "status": "built"
+   },
+   {
+    "key": "M",
+    "anno": "Membrane glycoprotein",
+    "gene": "M",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 30,
+    "minl": 217,
+    "maxl": 244,
+    "pmid": null,
+    "n": 8,
+    "called": 8,
+    "n_inrange": 8,
+    "called_inrange": 8,
+    "pssms": [
+     "Remotovirinae.M.1.pssm"
+    ],
+    "nondefault": false,
+    "status": "built"
+   },
+   {
+    "key": "N",
+    "anno": "Nucleocapsid protein",
+    "gene": "N",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 30,
+    "minl": 166,
+    "maxl": 188,
+    "pmid": null,
+    "n": 5,
+    "called": 5,
+    "n_inrange": 5,
+    "called_inrange": 5,
+    "pssms": [
+     "Remotovirinae.N.1.pssm",
+     "Remotovirinae.N.2.pssm",
+     "Remotovirinae.N.3.pssm",
+     "Remotovirinae.N.4.pssm",
+     "Remotovirinae.N.5.pssm"
+    ],
+    "nondefault": false,
+    "status": "built"
+   },
+   {
+    "key": "ORF1A",
+    "anno": "ORF1a polyprotein",
+    "gene": "ORF1a",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 60,
+    "minl": 2926,
+    "maxl": 3300,
+    "pmid": null,
+    "n": 16,
+    "called": 16,
+    "n_inrange": 16,
+    "called_inrange": 16,
+    "pssms": [
+     "Remotovirinae.ORF1A.1.pssm"
+    ],
+    "nondefault": false,
+    "status": "built"
+   },
+   {
+    "key": "ORF1AB",
+    "anno": "ORF1ab polyprotein",
+    "gene": "ORF1ab",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": null,
+    "minl": 4598,
+    "maxl": 5621,
+    "pmid": null,
+    "n": 0,
+    "called": null,
+    "n_inrange": null,
+    "called_inrange": null,
+    "pssms": [],
+    "nondefault": false,
+    "status": "special"
+   },
+   {
+    "key": "ORF6",
+    "anno": "Uncharacterized lineage-specific protein",
+    "gene": "ORF6",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 30,
+    "minl": 82,
+    "maxl": 93,
+    "pmid": null,
+    "n": 9,
+    "called": 9,
+    "n_inrange": 9,
+    "called_inrange": 9,
+    "pssms": [
+     "Remotovirinae.ORF6.1.pssm"
+    ],
+    "nondefault": false,
+    "status": "built"
+   },
+   {
+    "key": "S",
+    "anno": "Spike protein",
+    "gene": "S",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 60,
+    "minl": 527,
+    "maxl": 595,
+    "pmid": null,
+    "n": 12,
+    "called": 12,
+    "n_inrange": 12,
+    "called_inrange": 12,
+    "pssms": [
+     "Remotovirinae.S.1.pssm"
+    ],
+    "nondefault": false,
+    "status": "built"
+   }
+  ]
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "HE": {
+  "max": 440,
+  "min": 400,
+  "note": "BToV hemagglutinin-esterase, 65 kDa glycoprotein with sialate-O-acetylesterase activity (Cornelissen 1997); RefSeq NC_007447 HE 26477..27736 = 419 aa",
+  "pmid": "9188596"
+ },
+ "M": {
+  "max": 245,
+  "min": 220,
+  "note": "torovirus triple-spanning envelope protein, now called M, 233 aa in Berne virus (den Boon 1991)",
+  "pmid": "2024492"
+ },
+ "MPRO": {
+  "max": 300,
+  "min": 280,
+  "note": "mature main protease: 292 aa in equine torovirus and 287 aa in porcine torovirus",
+  "pmid": "16571831"
+ },
+ "N": {
+  "max": 175,
+  "min": 155,
+  "note": "Berne virus nucleocapsid protein 160 aa (Snijder 1989)",
+  "pmid": "2607340"
+ },
+ "ORF1A": {
+  "max": 4700,
+  "min": 4300,
+  "note": "EToV Berne pp1a 4,569 aa (Smits 2006; GenBank DQ310701 ORF1a 822..14531); BToV/PToV pp1a 4,417-4,418 aa",
+  "pmid": "16571831"
+ },
+ "S": {
+  "max": 1650,
+  "min": 1500,
+  "note": "Berne virus peplomer apoprotein 1,581 aa (Snijder 1990); RefSeq NC_007447 S 20975..25729 = 1,584 aa",
+  "pmid": "2219698"
+ }
+}

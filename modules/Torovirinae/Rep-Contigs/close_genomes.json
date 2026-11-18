@@ -1,0 +1,14 @@
+{
+ "Torovirinae.1.dna": {
+  "genome_ids": "KR527150",
+  "genome_name": "Goat torovirus SZ"
+ },
+ "Torovirinae.2.dna": {
+  "genome_ids": "MN754001",
+  "genome_name": "Porcine torovirus QF17"
+ },
+ "Torovirinae.3.dna": {
+  "genome_ids": "MW561977",
+  "genome_name": "Bangali torovirus Bangali/H.rufipes/2018"
+ }
+}

@@ -1,0 +1,106 @@
+{
+ "M": {
+  "PMID_claude_generated": {
+   "function": [
+    "16987966",
+    "22422065"
+   ]
+  },
+  "anno": "Membrane glycoprotein",
+  "build_note": "-m 2: this collection holds 9 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
+  "downstream_ext": 1,
+  "gene_symbol": "M",
+  "note": "ORF3 membrane protein, triple-transmembrane, 225-245 aa (PMID 16987966, PMID 22422065).",
+  "params": {
+   "m": 2
+  },
+  "segment": "Single RNA Segment"
+ },
+ "MPRO": {
+  "PMID_claude_generated": {
+   "coordinates": [
+    "21068254"
+   ],
+   "function": [
+    "21068254"
+   ]
+  },
+  "anno": "Main protease involved in polyprotein cleavage",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "Mpro",
+  "note": "The bafinivirus main protease, cut from pp1a by anchoring on the protein whose ends were sequenced -- white bream virus pp1a 3443-3709, the N1-C1 marker of PMID 21068254 -- and snapping each boundary to the nearest Gln|(Ala,Thr,Ser), that protease's published consensus. All four of its autoprocessing sites were mapped by Edman degradation: N1 Gln3442|Ala3443 (ITRQ|ALQR, predominant), N2 Gln3449|Ala3450, C1 Gln3709|Thr3710 (VTQQ|TSVT) and C2 Gln3716|Thr3717; catalytic triad Ser3589-His3492-Asp3518. Measured here over the collection: 5 of 6 pp1a sequences yield a product, P1 is Gln at 100% at both ends, products 267-275 aa. The sixth is refused rather than guessed -- no Gln|(Ala,Thr,Ser) within 12 residues of the projected boundary.",
+  "params": {
+   "m": 2
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "N": {
+  "PMID_claude_generated": {
+   "function": [
+    "16987966",
+    "22422065",
+    "42128078"
+   ]
+  },
+  "anno": "Nucleocapsid protein",
+  "build_note": "-m 2: this collection holds 7 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
+  "downstream_ext": 1,
+  "gene_symbol": "N",
+  "note": "ORF4 nucleocapsid, 161-178 aa (PMID 16987966, PMID 22422065). The Chinook salmon bafinivirus N is the one Oncotshavirus protein with a paper of its own, as a vaccine antigen (PMID 42128078).",
+  "params": {
+   "m": 2
+  },
+  "segment": "Single RNA Segment"
+ },
+ "ORF1A": {
+  "PMID_claude_generated": {
+   "function": [
+    "16987966"
+   ]
+  },
+  "anno": "ORF1a polyprotein",
+  "build_note": "-m 2: this collection holds 6 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
+  "downstream_ext": 1,
+  "gene_symbol": "ORF1a",
+  "note": "pp1a, 4,504-4,860 aa; carries membrane domains, a putative ADP-ribose-1''-phosphatase and the 3C-like main protease (PMID 16987966).",
+  "params": {
+   "m": 2
+  },
+  "segment": "Single RNA Segment"
+ },
+ "ORF1AB": {
+  "PMID_claude_generated": {
+   "function": [
+    "16987966"
+   ]
+  },
+  "anno": "ORF1ab polyprotein",
+  "build_note": "min_len/max_len in amino acids, from the 11 transcript_edit references this build wrote: observed 6643-7174 aa, with 10% slack either side.",
+  "feature_type": "CDS",
+  "gene_symbol": "ORF1ab",
+  "max_len": 7891,
+  "min_len": 5978,
+  "note": "Expressed by -1 ribosomal frameshifting; ORF1b carries the RdRp, helicase, ribose-methyltransferase, exoribonuclease and NendoU (PMID 16987966). The slippery heptamer is UUUAAAC: NC_008516 misc_feature 14549..14555, CDS join(906..14555,14555..21523). No PSSM.",
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit"
+ },
+ "S": {
+  "PMID_claude_generated": {
+   "function": [
+    "16987966",
+    "22422065"
+   ]
+  },
+  "anno": "Spike protein",
+  "build_note": "-m 2: this collection holds 13 unique sequences spread over several genera, so no cluster reaches the documented floor of 5 and the feature builds zero profiles at it. The identity floor -mi 0.8 is unchanged, so a profile still rests on sequences that are 80% identical.",
+  "downstream_ext": 1,
+  "gene_symbol": "S",
+  "note": "ORF2 spike glycoprotein, 1,190-1,220 aa in white bream virus and fathead minnow nidovirus (PMID 16987966, PMID 22422065); 1,205 aa in Chinook salmon bafinivirus. No cleavage into subunits is reported for this subfamily.",
+  "params": {
+   "m": 2
+  },
+  "segment": "Single RNA Segment"
+ }
+}

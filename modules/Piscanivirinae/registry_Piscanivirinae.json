@@ -1,0 +1,143 @@
+{
+ "Piscanivirinae": {
+  "features": [
+   {
+    "key": "M",
+    "anno": "Membrane glycoprotein",
+    "gene": "M",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 30,
+    "minl": 211,
+    "maxl": 259,
+    "pmid": null,
+    "n": 9,
+    "called": 9,
+    "n_inrange": 9,
+    "called_inrange": 9,
+    "pssms": [
+     "Piscanivirinae.M.1.pssm",
+     "Piscanivirinae.M.2.pssm",
+     "Piscanivirinae.M.3.pssm",
+     "Piscanivirinae.M.4.pssm",
+     "Piscanivirinae.M.5.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "MPRO",
+    "anno": "Main protease involved in polyprotein cleavage",
+    "gene": "Mpro",
+    "ftype": "mat_peptide",
+    "segment": "Single RNA Segment",
+    "bit": 60,
+    "minl": 250,
+    "maxl": 291,
+    "pmid": null,
+    "n": 5,
+    "called": 5,
+    "n_inrange": 5,
+    "called_inrange": 5,
+    "pssms": [
+     "Piscanivirinae.MPRO.1.pssm",
+     "Piscanivirinae.MPRO.2.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "N",
+    "anno": "Nucleocapsid protein",
+    "gene": "N",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 30,
+    "minl": 155,
+    "maxl": 203,
+    "pmid": null,
+    "n": 7,
+    "called": 7,
+    "n_inrange": 7,
+    "called_inrange": 7,
+    "pssms": [
+     "Piscanivirinae.N.1.pssm",
+     "Piscanivirinae.N.2.pssm",
+     "Piscanivirinae.N.3.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "ORF1A",
+    "anno": "ORF1a polyprotein",
+    "gene": "ORF1a",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 60,
+    "minl": 4233,
+    "maxl": 5151,
+    "pmid": null,
+    "n": 6,
+    "called": 6,
+    "n_inrange": 6,
+    "called_inrange": 6,
+    "pssms": [
+     "Piscanivirinae.ORF1A.1.pssm",
+     "Piscanivirinae.ORF1A.2.pssm",
+     "Piscanivirinae.ORF1A.3.pssm",
+     "Piscanivirinae.ORF1A.4.pssm",
+     "Piscanivirinae.ORF1A.5.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "ORF1AB",
+    "anno": "ORF1ab polyprotein",
+    "gene": "ORF1ab",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": null,
+    "minl": 5978,
+    "maxl": 7891,
+    "pmid": null,
+    "n": 0,
+    "called": null,
+    "n_inrange": null,
+    "called_inrange": null,
+    "pssms": [],
+    "nondefault": false,
+    "status": "special"
+   },
+   {
+    "key": "S",
+    "anno": "Spike protein",
+    "gene": "S",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 60,
+    "minl": 1101,
+    "maxl": 1296,
+    "pmid": null,
+    "n": 13,
+    "called": 13,
+    "n_inrange": 13,
+    "called_inrange": 13,
+    "pssms": [
+     "Piscanivirinae.S.1.pssm",
+     "Piscanivirinae.S.2.pssm",
+     "Piscanivirinae.S.3.pssm",
+     "Piscanivirinae.S.4.pssm",
+     "Piscanivirinae.S.5.pssm",
+     "Piscanivirinae.S.6.pssm",
+     "Piscanivirinae.S.7.pssm",
+     "Piscanivirinae.S.8.pssm",
+     "Piscanivirinae.S.9.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   }
+  ]
+ }
+}

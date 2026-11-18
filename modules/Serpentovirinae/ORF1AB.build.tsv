@@ -1,0 +1,31 @@
+genome	name	verdict	start	heptamer	hept_pos	pp1a_aa	pp1ab_aa
+1912590.3	Shingleback nidovirus 1	OK	411	AAAAAAC	11921	3840	6171
+1912590.4	Shingleback nidovirus 1	OK	411	AAAAAAC	11921	3840	6171
+1923774.3	Xinzhou nematode virus 6 XZSJSC61041	OK	1299	AAAAAAC	9692	2800	5114
+1923774.4	Xinzhou nematode virus 6 XZSJSC61041	OK	1299	AAAAAAC	9692	2800	5114
+1923777.3	Xinzhou toro-like virus XZSJSC65757	OK	1471	AAAAAAC	16896	5144	7421
+1923777.4	Xinzhou toro-like virus XZSJSC65757	OK	1471	AAAAAAC	16896	5144	7421
+1986118.12	Ball python nidovirus 1 07-53	OK	1018	AAAAAAC	18405	5803	8108
+1986118.3	Ball python nidovirus 1 07-53	OK	1018	AAAAAAC	18405	5803	8108
+1986118.5	Ball python nidovirus 1 148	ambiguous_base	1015	AAAAAAC	18588	5865	8170
+2016400.11	Morelia viridis nidovirus BH128/14-12	OK	1032	AAAAAAC	17726	5572	7878
+2016400.15	Morelia viridis nidovirus S14-1323_MVNV	OK	856	AAAAAAC	17499	5555	7861
+2016400.16	Morelia viridis nidovirus BH171/14-7	OK	1032	AAAAAAC	17642	5544	7850
+2016400.3	Morelia viridis nidovirus S14-1323_MVNV	OK	856	AAAAAAC	17499	5555	7861
+2016400.8	Morelia viridis nidovirus BH171/14-7	OK	1032	AAAAAAC	17642	5544	7850
+2116382.3	Guangdong mandarin rat snake torovirus LPSF32319	OK	401	AAAAAAC	9760	3122	5436
+2116383.3	Guangdong chinese water snake torovirus LPSF20552	no_slip_site	2			2938	
+2116384.3	Guangdong red-banded snake torovirus LPSF30546	OK	621	AAAAAAC	16166	5184	7490
+2116385.3	Hainan hebius popei torovirus LPSC33749	ambiguous_base	982	AAAAAAC	16356	5128	7408
+2116385.4	Hainan hebius popei torovirus LPSC33749	ambiguous_base	982	AAAAAAC	16356	5128	7408
+2301728.3	Bellinger River virus J248	OK	821	AAAAAAC	16264	5155	7459
+2301728.4	Bellinger River virus J248	OK	821	AAAAAAC	16264	5155	7459
+2806429.3	Veiled chameleon serpentovirus A	ambiguous_base	410	AAAAAAC	17563	5721	8043
+2806429.4	Veiled chameleon serpentovirus A	ambiguous_base	410	AAAAAAC	17563	5721	8043
+2806430.3	Veiled chameleon serpentovirus B	OK	400	AAAAAAC	20100	6570	8927
+2806430.4	Veiled chameleon serpentovirus B	OK	400	AAAAAAC	20100	6570	8927
+2847099.3	Guangdong red-banded snake-Lycodon rufozonatus-torovirus LPSF30546	OK	621	AAAAAAC	16166	5184	7490
+2916856.3	Crotalus viridis tobanivirus	ambiguous_base	968	AAAAAAC	15757	4933	7195
+3071291.3	Serpentovirinae sp. isolate C18	ambiguous_base	398	AAAAAAC	13906	4509	6765
+3071292.3	Serpentovirinae sp. isolate K48	no_slip_site	1288			4574	
+3071293.3	Serpentovirinae sp. isolate L25	ambiguous_base	2015	AAAAAAC	16636	4876	7154

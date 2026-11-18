@@ -1,0 +1,12 @@
+{
+ "ORF1A": {"min": 3000, "max": 3200, "pmid": "25918239",
+   "note": "bovine nidovirus TCH5; KM589359 CDS join(487..9825,9825..15818), pp1a 3,113 aa (Tokarz 2015)"},
+ "S":     {"min": 540, "max": 580, "pmid": "25918239",
+   "note": "ORF2 spike, 1,689 nt / 562 aa, the shortest nidovirus spike reported"},
+ "M":     {"min": 225, "max": 240, "pmid": "25918239", "note": "ORF3 membrane protein, 231 aa, multiple TMs"},
+ "N":     {"min": 170, "max": 185, "pmid": "25918239", "note": "ORF4 nucleocapsid, 178 aa, predicted pI 12.0"},
+ "G2":    {"min": 420, "max": 470, "pmid": "25918239",
+   "note": "ORF5 'G2', 455 aa putative accessory glycoprotein, TM 429-448, several glycosylation sites"},
+ "ORF6":  {"min": 80, "max": 95, "pmid": "25918239",
+   "note": "the unnamed 267 nt / 88 aa ORF near the 3' end; no similarity to any known protein"}
+}
