@@ -65,26 +65,30 @@
  },
  "G_N": {
   "anno": "Mature glycoprotein N-terminal subunit",
-  "gene_symbol": "G_N",
+  "gene_symbol": "GP_N",
   "segment": "Single RNA Segment",
   "feature_type": "mat_peptide",
   "upstream_ext": 1,
   "downstream_ext": 0,
   "note": "N-terminal furin cleavage product of the glycoprotein precursor, residues 1-249 of the 503 aa BoDV-1 protein: Richt 1998 places the cut after Arg249 (PMID 9557754). Derived here by locating the single R-X-[K/R]-R site in the 40-62% window and extending through the basic run: P1=Arg in 150/150 members, P1'=Asp in 149/150, and the BoDV-1 form cuts at exactly 249. It retains the signal peptide, whose cleavage site has never been measured in this family -- so this is the N-terminal furin fragment, not the fully matured ectodomain.",
   "PMID_claude_generated": [
-   "9557754"
+   "9557754",
+   "12417322",
+   "16098520"
   ]
  },
  "G_C": {
   "anno": "Mature glycoprotein C-terminal subunit",
-  "gene_symbol": "G_C",
+  "gene_symbol": "GP_C",
   "segment": "Single RNA Segment",
   "feature_type": "mat_peptide",
   "upstream_ext": 0,
   "downstream_ext": 1,
   "note": "C-terminal furin cleavage product of the glycoprotein precursor, residues 250-503 of the 503 aa BoDV-1 protein (PMID 9557754); it carries the transmembrane anchor and runs to the precursor's own stop codon, so downstream_ext is 1 and only the N-terminus is a cleaved end.",
   "PMID_claude_generated": [
-   "9557754"
+   "9557754",
+   "9060684",
+   "16098520"
   ]
  },
  "L": {
@@ -127,6 +131,19 @@
   "note": "Cartilovirus only. Little skate bornavirus Vp2, a second duplication sharing only the central region of the glycoprotein, 44% identical to Vp1 (PMID 38028148). No function demonstrated. The symbol is written Vp2, as the describing paper writes it, to keep it distinct from the parvovirus capsid protein called VP2.",
   "PMID_claude_generated": [
    "38028148"
+  ]
+ },
+ "N_PRIME": {
+  "anno": "Nucleocapsid protein isoform p38",
+  "gene_symbol": "N_prime",
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0,
+  "downstream_ext": 1,
+  "note": "The p38 isoform of the nucleocapsid protein, called N' in the literature. It is translated from the second in-frame AUG, 13 residues into p40, and therefore lacks the PKRR nuclear localization signal that keeps p40 in the nucleus; p40 is nuclear and p38 is nuclear and cytoplasmic (PMID 9188580), and p38 is almost inactive in the polymerase complex, buffering the N:P ratio (PMID 15221540). Kojima 2019 uses the N / N' names explicitly and locates the second initiation codon at Met14 (PMID 30541858). Derived here by cutting each N collection member at its own second in-frame Met where that Met lies within the first 25 residues: 114 of 129 members qualify, at residue 14 in 69, 16 in 23 and 8 in 12. upstream_ext is 0 because scanning to a Met would walk back to p40's own start.",
+  "PMID_claude_generated": [
+   "9188580",
+   "15221540",
+   "30541858"
   ]
  }
 }

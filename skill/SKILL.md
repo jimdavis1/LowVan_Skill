@@ -106,10 +106,26 @@ and `BlastInterface.pm` from <https://github.com/TheSEED/seed_gjo/> on
 `PERL5LIB`; and `blastn tblastn psiblast makeblastdb mmseqs mafft` on `PATH`.
 Full check and install notes: `references/install-and-test.md`.
 
-Optional, and only if the taxon has a cleaved precursor: **SignalP 6.0**, for
-step 6. It is academic-licensed and cannot be installed unattended — the user
-downloads it themselves through a form. Raise it early if the taxon looks like it
-will need one, because the download is not instant.
+**SignalP 6.0 is already installed on this project's machine**, in its own conda
+environment: `conda run -n signalp signalp6`. It was installed alongside the rest
+of the software at the start of this project precisely so that signal peptides
+could be predicted, so **a taxon with a cleaved precursor gets a predicted signal
+peptide by default** — do not record "no SignalP licence" as a reason for
+dropping an `_SP` feature without checking the environment first.
+
+**Check the weights before trusting it, because the licensed package installs
+them separately and the Python package alone is silent about it.** On 18 Nov 2026
+the `signalp` env ran `--help` perfectly and then failed on every prediction with
+`FileNotFoundError: Fast mode requires model to be installed at
+.../model_weights/distilled_model_signalp6.pt`, because
+`site-packages/signalp/model_weights/` held nothing but its README. One command
+settles it before any work is planned around the result:
+
+```bash
+ls ~/anaconda3/envs/signalp/lib/python3.10/site-packages/signalp/model_weights/
+#  a bare README.md means the weights were never converted in; the licensed
+#  tarball is needed, and `signalp6_convert_models` writes them from it.
+```
 
 **Never block the build on it.** Step 6 has a decision table for the case where
 the user does not have SignalP and cannot easily get it: a documented cleavage
@@ -885,7 +901,7 @@ module.** Work down this list and stop at the first one that applies:
 |---|---|
 | the mature N-terminus is documented for a reference protein | use `--motif`. No predictor needed, and this is the *better* answer even when SignalP is available — see below |
 | RefSeq carries a `mat_peptide` on a reference genome of this taxon | read the cut site off it, turn it into a motif, use `--motif` |
-| neither, and SignalP is unavailable | **drop the `_SP` / `_MAT` features** from the JSON and say so in the build notes. The parent CDS is still called correctly; you lose two derived features, not the module |
+| neither, and SignalP is unavailable *or its weights are missing* | **drop the `_SP` / `_MAT` features** from the JSON, say so in the build notes, and say WHICH of the two it was — "not licensed" and "installed but unusable" lead to different fixes |
 | neither, and SignalP is available | run it, then apply it with the checks below |
 
 If the user does not have SignalP, do not stall the build waiting for it. Ask
@@ -897,10 +913,11 @@ every other step, and record the omission so it can be revisited.
 no profiles behind it is worse than no feature at all — the annotator will report
 it as missing on every genome.
 
-**Getting SignalP, if you go that way.** It is academic-licensed: the tarball is
-behind a form the user submits themselves (name, institution, acceptance of the
-terms). **Do not attempt to download it for them and do not accept a licence on
-anyone's behalf** — walk them through the form and wait.
+**Getting SignalP, if it is not already there.** Check for the `signalp` conda
+env first — on this project's machine it exists. It is academic-licensed: the
+tarball is behind a form the user submits themselves (name, institution,
+acceptance of the terms). **Do not attempt to download it for them and do not
+accept a licence on anyone's behalf** — walk them through the form and wait.
 `scripts/apply_signalp.py --help-install` prints the steps. Once they have it:
 
 ```bash
@@ -914,6 +931,13 @@ conda run -n signalp signalp6 -ff Alignments/G_SIGNALP_QUERIES.faa -od out \
 
 `--model_dir` avoids copying 1.5 GB of weights into the working tree. Without the
 numpy pin every prediction dies with `RuntimeError: Numpy is not available`.
+
+**The weights are a separate step from the package, and skipping it fails late.**
+`pip install signalp-6-package/` installs the code and leaves
+`model_weights/` empty; `signalp6_convert_models` (or `--model_dir` pointing at
+the tarball's own `models/`) is what puts the weights in place. A SignalP that
+answers `--help` is not a SignalP that can predict, so run one real sequence
+through it before building a `_SP` feature into a module's plan.
 
 **Applying it is where the judgement lives.** A prediction is made from one
 consensus sequence; the cut is then applied to every member of the cluster, so it

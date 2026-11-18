@@ -1,6 +1,16 @@
 # Bornaviridae — build notes
 
-Built 17–18 Nov 2026. **One module, `Bornaviridae`, ten features, one segment.**
+Built 17–18 Nov 2026. **One module, `Bornaviridae`, eleven features, one segment.**
+
+> **Revised 18 Nov 2026 after curator review.** Four changes: **L is now a
+> `special: splice` feature** built from literature-anchored junctions instead
+> of a PSSM CDS (the PSSM put up to 46 spurious residues on the orthobornavirus
+> N-terminus, which the curator ruled never acceptable); **N′ (p38) is now
+> modelled** as `N_PRIME`, separated from N by a measured bit cutoff; the
+> question of a "G′" and of a G/L fusion was settled from the literature (there
+> is no G′; the G/L fusion is mRNA-only); and the SignalP installation was
+> checked and found to be missing its model weights, which is recorded in
+> SKILL.md and leaves the glycoprotein signal peptide unmodelled for now.
 Local build tree: `~/lowvan_scratch/borna/work`. Runtime test repo:
 `~/lowvan_scratch/borna/VA_borna`.
 
@@ -233,51 +243,157 @@ the residue — with `GP_C` 2983..3747 running to the precursor's own stop.
     GP_C start vs GP_N end         +0 nt in 39/40 (98%)   <- the furin cut
     GP_C end   vs G end            +0 nt in 41/41 (100%)
 
-## L: the one feature with a stated limit
+## L is a spliced feature, and the junction is the literature's
 
-Walker 2000 (**PMID 10756058**) shows the L product depends on splicing.
-Measured here by exact-matching every deposited L against its own genome:
+Walker 2000 (**PMID 10756058**) states it for strain V / NC_001607 verbatim:
+transcription unit III initiates at nt 1889, **intron II spans nt 2410–3703**,
+and its removal *"results in fusion of 17 nt to the 5′ end of the conserved
+sequence at nt 3704 and provides an in-frame AUG (nt 2393)"*, giving the
+1,711 aa, 190 kDa protein that the same paper precipitates from infected cells.
 
-    Orthobornavirus   exon 1 = 5 aa (MSFHA)   97 deposits
-                              6 aa (MSFHAR)   24
-                              collinear        19   (the 1,608 aa internal-AUG form)
-    Cultervirus / Carbovirus / Cartilovirus    collinear, all 11
+**Measured independently here, and it reproduces the paper.** Every deposited L
+was required to match its own genome EXACTLY; 107 orthobornavirus junctions
+round-trip with:
 
-So **L is spliced in Orthobornavirus with a first exon of five or six residues,
-and collinear in the other three genera.** One feature cannot be both
-`special: splice` and a PSSM CDS, and declaring it spliced would leave the
-three collinear genera with no polymerase at all, so it ships as a PSSM CDS.
+    canonical GT..AG donor/acceptor      107 / 107
+    first exon                           17-18 nt   (published: 17)
+    intron                            1,282-1,294 nt (published: 1,294)
+    donor context    TCATGCGAG|GT  in 77 of 107, 16 variants in all
+    acceptor context TTTCCTTACCAG|CC in 73 of 107, 22 variants in all
 
-Both N-terminal settings were built and scored on the same panel:
+The product begins **MSFHAS** in strain V — exon 1 gives M-S-F-H-A plus two
+bases, and the first base of exon 2 completes the sixth codon — and MSFHAR in
+lineages where that base differs.
 
-    upstream_ext: 1   8/30 identical to the deposit; the rest Met-initiated
-                      but carrying 11-46 extra residues upstream
-    upstream_ext: 0   6/30 identical; most calls the exactly right LENGTH but
-                      reading the genomic frame (LCFLTS...) where the protein
-                      reads MSFHAS..., i.e. not Met-initiated
+**L is collinear in the other three genera**, 11 of 11 Carbovirus, Cultervirus
+and Cartilovirus deposits. One feature cannot be both spliced and collinear, so
+those genera are given references with a **zero-length intron** (donor last nt
+= *n*, acceptor first nt = *n*+1), which makes `get_splice_variant_features.pl`
+return the collinear ORF unchanged. That keeps the family on one feature with
+no duplicate calls.
 
-`upstream_ext: 1` was kept: it scores better and every call begins with Met,
-which `validate_calls.py` requires. The residual limit — up to ~46 spurious
-N-terminal residues on an orthobornavirus L of ~1,711 — is **stated in §07**,
-not smoothed over.
+**120 references ship**, every one round-tripped before writing: cut at its own
+declared coordinates, translated, and required to reproduce a clean
+Met-initiated ORF of the expected length. Four candidates failed that check and
+were dropped rather than shipped. `splice_id` / `splice_cov` are **90/90**,
+measured: at the default 95/95 the references reach 94.1% of orthobornavirus
+genomes and at 90/90, 95.1%.
+
+### What this bought, measured on the same panel
+
+| | PSSM CDS (rejected) | spliced feature (shipped) |
+|---|---|---|
+| calls identical to the genome's own deposit | **8 / 30** | **29 / 31** |
+| worst N-terminal error | **+46 residues** | none |
+| call rate on routed near-complete exemplars | 97.2% | 91.7% |
+
+The rate falls by two genomes and the accuracy stops being approximate. Three
+lineages have no usable reference: Parrot bornavirus 3 1367 (a 6,115 nt contig
+that cannot hold a 5.1 kb gene), **Canary bornavirus 1** (its only L deposit
+does not match its own contig cleanly, so no junction round-trips) and
+**Carlia munda bornavirus**, whose L begins at a near-cognate **TTG** codon with
+residues 2–1730 collinear — a non-AUG start this module does not model.
 
 **A trap worth recording.** A tblastn collinearity screen of all 745 collection
 members against their own genomes reported *every one* as a single collinear
-HSP, L included, because the genomic frame upstream of the acceptor happens to
-read `LCFLTS` where the protein reads `MSFHAS` — five residues out of 1,711,
-invisible at a 95% identity threshold. The splice was only found by requiring
-an **exact** match, and the first conclusion drawn from that screen ("nothing
-in this family is spliced") was wrong.
+HSP, L included, and the first conclusion drawn from it — "nothing in this
+family is spliced" — was wrong. The genomic frame upstream of the acceptor
+reads `LCFLTS` where the protein reads `MSFHAS`: five residues out of 1,711,
+invisible at a 95% identity threshold. Only an exact match found it.
+
+## N′ (p38) is modelled, and separated from N by a measured cutoff
+
+Kojima 2019 (**PMID 30541858**) uses the names plainly: *"full-length isoform N
+(p40) and N-terminally truncated isoform N′ (p38), which is translated from the
+second initiation codon downstream of the NLS"*, and their second-AUG knockouts
+are named **M14A**. In NC_001607 the N CDS is 54..1166 and the second in-frame
+AUG is nt 93–95 = **Met14**, so p38 is 357 aa and lacks the 13 residues
+MPPKRRLVDDADA that carry the PKRR nuclear localization signal of
+**PMID 9188580**.
+
+**Derived by homology to that measured position, not by a "second Met" rule.**
+The first attempt cut each N member at its own second in-frame Met; that
+disagreed with the profiles on six genomes whose N carries an extra Met at
+residue 8, and `check_met_start.py` caught it as two alignments trimmed 6
+residues into their members. The collection is now built by aligning all 129 N
+members with MAFFT, locating the column of BoDV's Met14 and cutting at the Met
+in that column: **112 of 129 qualify**, at residue 14 in 81, 16 in 23, 18 in 4,
+17 in 2, 15 in 1 and 13 in 1.
+
+**The cutoff is the separation, and it was measured.** N′ is an exact
+C-terminal substring of N, so its profiles also match the body of an N that has
+no second AUG. At the generated cutoff of 60 that produced three Met-less
+calls — two carboviruses and Carlia munda. Best N′ score per exemplar:
+
+    25 genuine Met-initiated calls      510 - 727 bits
+    3 false calls                       380, 117, 108
+    genera lacking the isoform           65 - 79
+
+`bit_cutoff: 440` sits in that gap, 1.16× above the worst false call and 1.16×
+below the weakest true one. After it: **25 calls, every one Met-initiated and an
+exact C-terminal substring of its own N, cut 12–17 residues in; zero false
+calls**; and the 11 genomes with no call are the Cultervirus, Carbovirus,
+Cartilovirus and Carlia munda genomes that genuinely lack the isoform.
+`upstream_ext` is 0 — scanning to a Met would walk back to p40's own start.
+
+**That 1.16× margin is the narrowest in this module** and is stated in §07.
+
+## There is no G′, and the G/L fusion is an mRNA
+
+Both were asked about by the curator and checked against PubMed and PMC.
+
+**No "G′" exists.** The only G-derived proteins in the literature are the
+precursor and its two furin subunits, under two naming conventions: **GP-N**
+(= GP1) and **GP-C** (= GP2 = gp43). Both are experimentally real — GP-N went
+undetected until **PMID 12417322** found it in infected cells at 45–50 kDa
+glycosylated, 27 kDa deglycosylated — and both are already shipped here as
+`G_N` and `G_C`, whose gene symbols are now `GP_N` and `GP_C` to match.
+
+**A G/L fusion is described, as an mRNA only.** Intron III shares intron II's
+donor at nt 2410 and uses an acceptor **SA3 at nt 4559**; frame 1 of that
+spliced RNA encodes *"the first 58 amino acids of G protein fused to L protein
+lacking one-quarter of the N terminus"* (**PMID 11070091**), which is Cubitt's
+**p165** (**PMID 11172106**). It is not modelled, for two reasons: the fusion
+was **never detected as a protein** (only the small 75 aa S1 ORF was expressed,
+FLAG-tagged, in transfected COS-7 cells, and intron III splices at ~10%), and
+**its acceptor is not conserved** — PMID 11602780 reports both donors and both
+major acceptors are highly conserved across BoDV isolates *"whereas a minor
+alternative splice acceptor site is not"*, and that minor site is SA3.
+
+## The glycoprotein signal peptide: SignalP is installed but cannot run
+
+SignalP 6.0 is installed on this machine in its own conda environment and
+answers `--help`, so the earlier note that no licence was available was wrong.
+It still cannot predict: `site-packages/signalp/model_weights/` contains
+nothing but its README, and every prediction dies with
+
+    FileNotFoundError: Fast mode requires model to be installed at
+    .../model_weights/distilled_model_signalp6.pt
+
+The weights ship inside the licensed tarball and are installed separately by
+`signalp6_convert_models`. Until that is done the signal peptide stays
+unmodelled and `G_N` remains the N-terminal furin fragment *including* its
+signal peptide. The queries are already staged at
+`Alignments/Bornaviridae/G_SIGNALP_QUERIES.faa` (7 consensus N-termini), so
+this is one command away from being finished. SKILL.md now tells the next
+build to check the weights directory before planning around SignalP.
 
 ## What is deliberately not modelled
 
-Listed with its reason in `notes/LITERATURE.md`: N p38 (alternative
-initiation, no deposits, no derivable fixed offset — the second in-frame Met
-sits at residue 14 in 69 members, 16 in 23 and 8 in 12), the spliced N
-isoforms of PMID 30541858, the intron-III products p8.4 and p165 of
-PMID 11172106 (mRNA only), Cartilovirus Vp3 and the reptilian cultervirus P–G
-hybrids (predictions), and the avian carboviruses that lack G/X/M, which are
-not in this dump.
+Listed with its reason in `notes/LITERATURE.md`: the **spliced N isoforms**
+N2/N2'/N3/N3'/N3C of PMID 30541858 (N2 and N2' were not detectable in infected
+cells by their own authors; N3/N3C only in a fractionated ER preparation of a
+recombinant virus), the **intron-III products p8.4 and p165** of PMID 11172106
+and PMID 11070091 (mRNA only, ~10% splicing, non-conserved acceptor),
+**Cartilovirus Vp3** and the reptilian cultervirus **P–G hybrids**
+(predictions in their own papers), the **1,608 aa and 1,558 aa internal-start
+forms of L** (Walker 2000 looked for the 170 kDa one in infected cells and did
+not find it), the **glycoprotein signal peptide** (SignalP installed but
+weightless, above), and the avian carboviruses that lack G/X/M, which are not
+in this dump.
+
+N p38 was on this list in the first build and is no longer: it is modelled, as
+`N_PRIME`.
 
 ## Vocabulary
 

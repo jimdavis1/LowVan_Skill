@@ -134,17 +134,106 @@ genome hits the G locus at 31 % and Vp2 hits the Vp1 locus at 42 %.
 calls it *"potential"* and *"tentatively named"*: no protein was observed and no
 deposit exists. A prediction is not a product.
 
+## Is there a "G-prime"? No. Is there a G/L fusion? Yes, as an mRNA only.
+
+Both were checked explicitly, against PubMed and PMC full text, because a
+curator asked.
+
+**There is no G'.** Searching for truncated, soluble, secreted or alternative
+bornavirus glycoproteins returns nothing beyond the precursor and its two furin
+subunits. What the literature does have is two parallel naming conventions for
+those two subunits, which is probably what a "G'" would be mistaken for:
+
+| | Marburg/Giessen | Tokyo/Tulane | earlier Scripps |
+|---|---|---|---|
+| precursor | p57 / gp94 | G | p56 / gp84 |
+| N-terminal subunit | **GP-N** | GP1 | — |
+| C-terminal subunit | **GP-C** (gp43) | GP2 | GP-43 |
+
+- **9557754** Richt 1998 — furin cleaves the unglycosylated p57 into p27 + p29,
+  *"the cleavage site is most likely located at arginine 249"*; two other furin
+  motifs (Arg364, Arg386) were tested and are not used.
+- **12417322** — *Identification of the amino terminal subunit of the
+  glycoprotein of Borna disease virus* (Kiermayer 2002). GP-N had gone
+  undetected until this paper found it in infected cells by lectin
+  precipitation and an N-terminal antiserum: **45-50 kDa glycosylated, 27 kDa
+  deglycosylated**. Both subunits are therefore experimentally real.
+- **16098520** — *Maturation of Borna disease virus glycoprotein* (Eickmann
+  2005): GP already exists as cleaved GP-N + GP-C in the ER and is incorporated
+  into particles *exclusively* in the cleaved form.
+- **9060684** Gonzalez-Dunia 1997 (GP-84/GP-43), **11435588** Perez 2001 (the
+  N-terminal 244 residues suffice for receptor recognition and entry).
+
+**The G/L fusion is real as an mRNA and has never been seen as a protein.**
+**11070091** (Tomonaga 2000, PNAS; full text read) gives the structure: intron
+III shares intron II's donor at **nt 2410** and uses a downstream acceptor
+**SA3 at nt 4559**, and *"Frame 1 generated the largest ORF, which encodes the
+first 58 amino acids of G protein fused to L protein lacking one-quarter of the
+N terminus."* That fusion is Cubitt 2001's **p165** (**11172106**) and it
+carries a signal peptide because its first 58 residues are G's, signal peptide
+included. Two things keep it out of this module:
+
+1. **It was never detected.** Tomonaga expressed and blotted only the small
+   75 aa S1 ORF, FLAG-tagged, in transfected COS-7 cells. The fusion itself is
+   predicted from mRNA. Intron III splicing runs at about **10%** efficiency.
+2. **Its acceptor is not conserved.** **11602780** (Pleschka 2001) reports that
+   both donors and both major acceptors are highly conserved across BoDV
+   isolates *"whereas a minor alternative splice acceptor site is not"* -- that
+   minor site is SA3.
+
+So p165 is recorded here and deliberately not built. If a curator wants it, the
+honest form is a `special: splice` feature carrying both caveats in its note.
+
+## The L junction, as published
+
+**10756058** (Walker 2000, J Virol; full text read) states it for strain V /
+NC_001607 verbatim: transcription unit III initiates at **nt 1889**, intron II
+spans **nt 2410-3703**, and splicing *"results in fusion of 17 nt to the 5' end
+of the conserved sequence at nt 3704 and provides an in-frame AUG (nt 2393)"*,
+giving a protein *"predicted to be 190 kDa"* -- which that paper then
+precipitates from infected COS-7 cells with an anti-L antiserum.
+
+Exon 1 is therefore **nt 2393-2409, 17 nt**: five complete codons ATG TCA TTT
+CAT GCG = **M S F H A**, then two leftover bases that pair with the first base
+of exon 2 to make the sixth codon. In strain V that base gives **Ser**, so the
+product begins **MSFHAS**; some lineages carry a different base there and read
+MSFHAR. The measurement in this build reproduces the paper independently: 107
+junctions round-trip with a canonical GT..AG, a 17-18 nt first exon and an
+intron of 1,282-1,294 nt against the published 1,294.
+
+Walker also settles what NOT to model: the 170 kDa internal-start form
+(nt 4146) *"was not precipitated from infected cell lysates"*, and RefSeq's own
+CDS choice for L (nt 3996, 1,608 aa) is the other internal start. Neither is a
+demonstrated protein.
+
+## N' is the literature's own name for p38
+
+**30541858** (Kojima 2019, J Virol; full text read) writes it plainly: *"N
+transcripts encode two isoforms, namely, full-length isoform N (p40) and
+N-terminally truncated isoform N' (p38), which is translated from the second
+initiation codon downstream of the NLS."* Their second-AUG knockout mutants are
+named **M14A**, which fixes the codon: in NC_001607 the N CDS is 54..1166 and
+the second in-frame AUG is **nt 93-95 = Met14**, giving a 357 aa p38. The 13
+residues p38 lacks are MPPKRRLVDDADA, carrying the PKRR nuclear localization
+signal of **9188580**.
+
+Kojima also describes four further N isoforms from two short introns, NI-I
+(nt 191-307) and NI-II (nt 590-709), spliced at 1.6% and 6.8%. N2/N2' were
+**not** detectable in infected cells; N3 and its cleavage product N3C were, but
+only in a fractionated ER preparation of a recombinant virus. They are recorded
+and not modelled.
+
 ## What is deliberately NOT modelled, and why
 
-1. **N p38 (the 38-kDa isoform).** Real and well characterised (9188580,
-   15221540), but it is an alternative *translation-initiation* product that is
-   an exact C-terminal substring of p40, it is **not separately deposited**
-   anywhere in this dump (no 357 aa orthobornavirus N), and no fixed offset is
-   derivable: measured over the N collection the second in-frame Met sits at
-   residue 14 in 69 members, 16 in 23 and 8 in 12. A nested profile would
-   collide with N on N's own coordinates — the failure the skill records for
-   parvovirus VP1/VP2.
-2. **The spliced N isoforms of 30541858** — same reasons, plus no deposits.
+1. ~~N p38~~ **N' (p38) IS modelled**, as the feature `N_PRIME`. It is derived
+   by cutting each N collection member at its own second in-frame Met where that
+   Met lies within the first 25 residues (114 of 129 members qualify), and it is
+   separated from N by a measured bit cutoff of 440 rather than by a length rule.
+2. **The spliced N isoforms of 30541858 (N2, N2', N3, N3', N3C)** — N2 and N2'
+   were not detectable in infected cells even by their own authors, and N3/N3C
+   only in a fractionated ER preparation of a recombinant virus. No deposits.
+3. **The G/L fusion p165** — mRNA only, ~10% splicing, non-conserved acceptor
+   (above).
 3. **Intron III products p8.4 and p165 (11172106)** — predicted from mRNA; no
    protein demonstrated and no deposits.
 4. **Cartilovirus Vp3, and the P–G hybrids predicted for reptilian

@@ -170,14 +170,17 @@
          },
          "G_C" : {
             "PMID_claude_generated" : [
-               "9557754"
+               "9557754",
+               "9060684",
+               "16098520"
             ],
             "anno" : "Mature glycoprotein C-terminal subunit",
             "bit_cutoff" : 60,
+            "comment" : "C-terminal furin product of the glycoprotein precursor, residues 250-503 of the 503 aa BoDV-1 protein (PMID 9557754). Called GP-C or gp43 by the Marburg group and GP2 by others; it is the membrane-anchored subunit and the one detected first (PMID 9060684). It carries the transmembrane anchor and runs to the precursor's own stop codon, so downstream_ext is 1 and only its N-terminus is a cleaved end.",
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 1,
             "feature_type" : "mat_peptide",
-            "gene_symbol" : "G_C",
+            "gene_symbol" : "GP_C",
             "kmers" : 1,
             "max_len" : 285,
             "min_len" : 234,
@@ -187,15 +190,17 @@
          },
          "G_N" : {
             "PMID_claude_generated" : [
-               "9557754"
+               "9557754",
+               "12417322",
+               "16098520"
             ],
             "anno" : "Mature glycoprotein N-terminal subunit",
             "bit_cutoff" : 85,
-            "comment" : "N-terminal furin product of the glycoprotein precursor: Richt 1998 (PMID 9557754) places the cut after Arg249 of the 503 aa BoDV-1 protein. Its bit cutoff is 85 by MEASUREMENT, not by default. On the one Cartilovirus genome the G_N profiles also fire inside Vp1, an ancient duplication of the glycoprotein that carries its own furin site (PMID 38028148), giving a second G_N call; that false call peaks at 69 bits while true G_N calls score 103-527 across all four genera, so 85 sits in the gap. The non_pssm_partner construction was tried first and is worse: call_non_pssm_features pairs every G and G_C HSP, which put 6-16 spurious G_N calls on every exemplar. It retains the signal peptide -- no mature N-terminus has been determined for any bornavirus glycoprotein.",
+            "comment" : "N-terminal furin product of the glycoprotein precursor: Richt 1998 (PMID 9557754) places the cut after Arg249 of the 503 aa BoDV-1 protein. Its bit cutoff is 85 by MEASUREMENT, not by default. On the one Cartilovirus genome the G_N profiles also fire inside Vp1, an ancient duplication of the glycoprotein that carries its own furin site (PMID 38028148), giving a second G_N call; that false call peaks at 69 bits while true G_N calls score 103-527 across all four genera, so 85 sits in the gap. The non_pssm_partner construction was tried first and is worse: call_non_pssm_features pairs every G and G_C HSP, which put 6-16 spurious G_N calls on every exemplar. The subunit is called GP-N by the Marburg group and GP1 by others; it was finally detected in infected cells by lectin precipitation and an N-terminus-specific antiserum, at 45-50 kDa glycosylated and 27 kDa deglycosylated (PMID 12417322). It retains the signal peptide -- no mature N-terminus has been determined for any bornavirus glycoprotein.",
             "coverage_cutoff" : 0.65,
             "downstream_ext" : 0,
             "feature_type" : "mat_peptide",
-            "gene_symbol" : "G_N",
+            "gene_symbol" : "GP_N",
             "kmers" : 1,
             "max_len" : 290,
             "min_len" : 226,
@@ -211,18 +216,16 @@
                "11070091"
             ],
             "anno" : "RNA-dependent RNA polymerase",
-            "bit_cutoff" : 60,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
+            "comment" : "L is a SPLICED feature, and the junction is the literature's. Walker 2000 (PMID 10756058) states it for strain V / NC_001607 verbatim: transcription unit III initiates at nt 1889, intron II spans nt 2410-3703, and its removal 'results in fusion of 17 nt to the 5' end of the conserved sequence at nt 3704 and provides an in-frame AUG (nt 2393)', giving the 1,711 aa, 190 kDa protein that paper precipitates from infected cells. Measured independently here by requiring an EXACT match of each deposited L to its own genome: 107 orthobornavirus junctions round-trip with a canonical GT..AG donor/acceptor, a 17-18 nt first exon and an intron of 1,282-1,294 nt -- the published intron II is 1,294 nt, so the measurement reproduces the paper. The spliced product begins MSFHAS in strain V (exon 1 gives M-S-F-H-A plus two nucleotides, and the hybrid sixth codon is completed by the first base of exon 2); some lineages read MSFHAR because that base differs. L is COLLINEAR in Carbovirus, Cultervirus and Cartilovirus (11 of 11 deposits), so those genera get references with a zero-length intron, which makes the spliced caller return the collinear ORF and keeps the family on one feature. A PSSM CDS was tried first and rejected: it put up to 46 spurious residues on the orthobornavirus N-terminus. The 1,608 aa (nt 3996) and 1,558 aa (nt 4146) internal-start forms are NOT modelled -- Walker 2000 looked for the 170 kDa one in infected cells and did not find it.",
             "feature_type" : "CDS",
             "gene_symbol" : "L",
-            "kmers" : 1,
             "max_len" : 1841,
             "min_len" : 1582,
             "segment" : "Single RNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
+            "special" : "splice",
+            "splice_cov" : 90,
+            "splice_id" : 90,
+            "type" : "CDS"
          },
          "M" : {
             "PMID_claude_generated" : [
@@ -261,6 +264,26 @@
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 1
+         },
+         "N_PRIME" : {
+            "PMID_claude_generated" : [
+               "9188580",
+               "15221540",
+               "30541858"
+            ],
+            "anno" : "Nucleocapsid protein isoform p38",
+            "bit_cutoff" : 440,
+            "comment" : "Bit cutoff 440 by MEASUREMENT. N' is an exact C-terminal substring of N, so its profiles also match the body of an N that has no second AUG, and at the generated cutoff of 60 that produced three Met-less calls: two carboviruses and Carlia munda bornavirus, none of which encode the isoform. Measured best N' score per exemplar: 25 genuine Met-initiated calls score 510-727 bits, the three false ones 380, 117 and 108, and the genera that lack the isoform entirely (Cultervirus, Cartilovirus) 65-79. 440 sits in the gap, 1.16x above the worst false call and 1.16x below the weakest true one. That margin is narrower than this module's other cutoffs and is stated in the coverage audit. upstream_ext is 0: scanning to a Met would walk back to p40's own start and make N' a duplicate of N.",
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N_prime",
+            "kmers" : 1,
+            "max_len" : 392,
+            "min_len" : 318,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
          },
          "P" : {
             "PMID_claude_generated" : [

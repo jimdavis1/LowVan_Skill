@@ -5,23 +5,23 @@
  "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is inferred and nothing is rounded in its favour. Every citation is model-proposed and awaits a curator.",
  "headline_tiles": [
   [
-   "10",
+   "11",
    "features"
   ],
   [
-   "71",
-   "PSSMs"
+   "68",
+   "PSSMs + 120 splice refs"
   ],
   [
    "36/37",
    "exemplars routed"
   ],
   [
-   "100%",
-   "core proteins called on routed genomes"
+   "29/31",
+   "L calls identical to the deposit"
   ],
   [
-   "97.2%",
+   "100%",
    "near-complete genomes clean"
   ],
   [
@@ -70,11 +70,15 @@
       ],
       [
        "features declared",
-       "10"
+       "11"
       ],
       [
        "PSSMs",
-       "71"
+       "68"
+      ],
+      [
+       "splice references (for L)",
+       "120"
       ],
       [
        "reference contigs",
@@ -92,7 +96,7 @@
     },
     {
      "type": "prose",
-     "html": "The other four features are products rather than genes. <strong>G_N</strong> and <strong>G_C</strong> are the two halves of the glycoprotein, cut by furin (PMID&nbsp;9557754). <strong>Vp1</strong> and <strong>Vp2</strong> are two extra open reading frames that only <i>Cartilovirus</i> carries &mdash; ancient duplications of the glycoprotein gene, 28% and 21% identical to G and 44% to each other (PMID&nbsp;38028148)."
+     "html": "The other five features are products and isoforms rather than genes. <strong>N'</strong> is the p38 isoform of the nucleocapsid, translated from the second initiation codon (PMID&nbsp;30541858). <strong>G_N</strong> and <strong>G_C</strong> are the two halves of the glycoprotein, cut by furin (PMID&nbsp;9557754) and known in the literature as GP-N/GP1 and GP-C/GP2. <strong>Vp1</strong> and <strong>Vp2</strong> are two extra open reading frames that only <i>Cartilovirus</i> carries &mdash; ancient duplications of the glycoprotein gene (PMID&nbsp;38028148)."
     }
    ],
    "num": "01",
@@ -117,6 +121,13 @@
        "129",
        "6",
        "nucleocapsid, the 38/39 kDa doublet"
+      ],
+      [
+       "N'",
+       "&mdash;",
+       "112",
+       "4",
+       "the p38 isoform, derived by homology to BoDV Met14"
       ],
       [
        "X",
@@ -151,21 +162,21 @@
        "&mdash;",
        "150",
        "8",
-       "N-terminal furin product, derived"
+       "N-terminal furin product (GP-N / GP1), derived"
       ],
       [
        "G_C",
        "&mdash;",
        "150",
        "7",
-       "C-terminal furin product, derived"
+       "C-terminal furin product (GP-C / gp43 / GP2), derived"
       ],
       [
        "L",
        "235",
-       "158",
-       "8",
-       "the 190 kDa polymerase"
+       "&mdash;",
+       "0 + 120 refs",
+       "the 190 kDa polymerase &mdash; spliced, no profiles"
       ],
       [
        "Vp1",
@@ -198,6 +209,14 @@
     {
      "type": "prose",
      "html": "<strong>Four truncated phosphoprotein deposits were dropped before any profile existed.</strong> <code>check_met_start.py</code> flagged a P cluster whose members begin with Gly; four deposits of 160&ndash;182&nbsp;aa turned out to start 19&ndash;40 residues inside the protein, all from one BoDV-1 strain series whose other deposits sit in the unassigned pool as <code>p24 ORF</code> fragments. They passed the length window because they are long enough to. P was rebuilt from 124 members and the check is now clean."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>L has no profiles at all.</strong> Walker 2000 (PMID&nbsp;10756058) showed the polymerase depends on splicing, and states the junction for strain V: intron II at nt&nbsp;2410&ndash;3703, initiator AUG at nt&nbsp;2393, a <strong>17 nt first exon</strong>. Measured independently here by requiring every deposited L to match its own genome exactly, 107 orthobornavirus junctions round-trip with a canonical GT..AG, a 17&ndash;18 nt first exon and an intron of <strong>1,282&ndash;1,294 nt</strong> against the published 1,294. The donor and acceptor contexts are strongly conserved &mdash; <code>TCATGCGAG|GT</code> in 77 of 107 and <code>TTTCCTTACCAG|CC</code> in 73 &mdash; which is what carries the junction to genomes with no deposit. L is <em>collinear</em> in Carbovirus, Cultervirus and Cartilovirus (11 of 11 deposits), so those genera get references with a zero-length intron, which makes the spliced caller return the collinear ORF and keeps the family on one feature. Every reference was round-tripped before shipping; four failed and were dropped."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>N' is derived by homology, not by a rule about Met positions.</strong> The first attempt cut each N at its own second in-frame Met and disagreed with the profiles on six genomes whose N carries an extra Met at residue&nbsp;8 &mdash; <code>check_met_start.py</code> caught it as two alignments trimmed six residues into their members. The collection is now built by aligning all 129 N sequences, locating the column of BoDV's measured Met14 and cutting at the Met in that column: 112 of 129 qualify, at residue 14 in 81, 16 in 23, 18 in 4, 17 in 2, 15 in 1 and 13 in 1."
     }
    ],
    "num": "02",
@@ -228,6 +247,16 @@
        "1",
        "1",
        "yes"
+      ],
+      [
+       "N'",
+       "CDS",
+       "<b>440</b>",
+       "318",
+       "392",
+       "0",
+       "1",
+       "no"
       ],
       [
        "X",
@@ -272,7 +301,7 @@
       [
        "G_N",
        "mat_peptide",
-       "85",
+       "<b>85</b>",
        "226",
        "290",
        "1",
@@ -291,18 +320,18 @@
       ],
       [
        "L",
-       "CDS",
-       "60",
+       "CDS (spliced)",
+       "&mdash;",
        "1582",
        "1841",
-       "1",
-       "1",
-       "yes"
+       "&mdash;",
+       "&mdash;",
+       "no"
       ],
       [
        "Vp1",
        "CDS",
-       "200",
+       "<b>200</b>",
        "391",
        "440",
        "1",
@@ -312,7 +341,7 @@
       [
        "Vp2",
        "CDS",
-       "200",
+       "<b>200</b>",
        "206",
        "233",
        "1",
@@ -331,12 +360,20 @@
     },
     {
      "type": "prose",
+     "html": "<strong>N' needed the most careful cutoff in the module, and it is the narrowest margin here.</strong> N' is an exact C-terminal substring of N, so its profiles also match the body of an N that has no second AUG; at the generated cutoff of 60 that produced three calls which did not begin with Met &mdash; two carboviruses and Carlia munda bornavirus, none of which encode the isoform. Measured best N' score per exemplar: <strong>25 genuine Met-initiated calls score 510&ndash;727 bits, the three false ones 380, 117 and 108</strong>, and the genera that lack the isoform entirely score 65&ndash;79. <code>bit_cutoff: 440</code> sits in that gap, 1.16&times; above the worst false call and 1.16&times; below the weakest true one. After it: 25 calls, every one Met-initiated and an exact C-terminal substring of its own N, and zero false calls."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>L carries no bit cutoff</strong> because it carries no profile. It is matched by BLASTn against its 120 references at <code>splice_id</code> / <code>splice_cov</code> of <strong>90/90</strong>, also measured: at the shipped defaults of 95/95 the references reach 94.1% of orthobornavirus genomes, at 90/90 they reach 95.1%, and the splice donor and acceptor windows must still match a reference's exactly."
+    },
+    {
+     "type": "prose",
      "html": "<code>copy_num</code> was set after the module had been run, never before, and on <strong>near-complete genomes</strong> rather than on the mixed panel &mdash; a panel dominated by single-gene amplicons would have marked only M essential, which is an artifact of which partial contigs happen to carry which gene. The six genes clear the 85% bar at 100% (L at 97.2%). The two mature peptides and the two Cartilovirus ORFs deliberately carry no <code>copy_num</code>: mature peptides are not used for genome quality anywhere in LowVan, and a genus-specific accessory marked essential would flag every genome of the other three genera."
     },
     {
      "type": "verdict",
      "kind": "ok",
-     "html": "Self-recall against each feature's own in-range collection: <b>1,064 of 1,064 (100%)</b>. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06."
+     "html": "Self-recall against each feature's own in-range collection: <b>1,064 of 1,064 (100%)</b> for the profile features. L is excluded: it has no profiles, and its equivalent check is the round trip every one of its 120 references passed. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06."
     }
    ],
    "num": "03",
@@ -416,6 +453,12 @@
        "36 of 36 routed exemplars"
       ],
       [
+       "N'",
+       "69.4",
+       69.4,
+       "25 of 36 routed exemplars"
+      ],
+      [
        "X",
        "100.0",
        100.0,
@@ -453,15 +496,15 @@
       ],
       [
        "L",
-       "97.2",
-       97.2,
-       "35 of 36 routed exemplars"
+       "91.7",
+       91.7,
+       "33 of 36 routed exemplars"
       ]
      ]
     },
     {
      "type": "prose",
-     "html": "<strong>Every core protein is called on every routed near-complete genome</strong>, in all four genera, and the single L miss is a 6,115&nbsp;nt contig that cannot physically hold a 5.1&nbsp;kb polymerase gene. Vp1 and Vp2 are called on the one Cartilovirus genome and nowhere else, which is exactly their scope."
+     "html": "<strong>Every one of the six proteins and both glycoprotein products is called on every routed near-complete genome</strong>, in all four genera. <strong>L</strong> is called on 33 of 36: the three misses are a 6,115 nt contig that cannot physically hold a 5.1 kb gene, Canary bornavirus 1 (whose only L deposit does not match its own contig cleanly, so no junction round-trips) and Carlia munda bornavirus, whose L begins at a near-cognate <strong>TTG</strong> codon with residues 2&ndash;1730 collinear &mdash; a non-AUG start this module does not model. <strong>N'</strong> is called on 25: the 11 genomes without it are the Cultervirus, Carbovirus, Cartilovirus and Carlia munda genomes that genuinely lack a second AUG in the right place."
     },
     {
      "type": "prose",
@@ -482,8 +525,16 @@
      "type": "tiles",
      "items": [
       [
+       "29/31",
+       "L calls identical to the deposit"
+      ],
+      [
+       "25/25",
+       "N&prime; calls correct"
+      ],
+      [
        "46/46",
-       "M identical to the deposit"
+       "M identical"
       ],
       [
        "46/46",
@@ -494,14 +545,6 @@
        "X identical"
       ],
       [
-       "43/46",
-       "N identical"
-      ],
-      [
-       "21/33",
-       "G identical"
-      ],
-      [
        "0",
        "duplicate calls"
       ]
@@ -509,11 +552,11 @@
     },
     {
      "type": "prose",
-     "html": "A held-out panel of 70 genomes was drawn with the 16 reference genomes <strong>excluded by accession</strong>, and every call was compared not to a reference annotation but to <em>that genome's own deposited protein</em>. M, P and X reproduce the submitter's sequence exactly on every genome that has one; N on 43 of 46."
+     "html": "A held-out panel of 70 genomes was drawn with the 16 reference genomes <strong>excluded by accession</strong>, and every call was compared not to a reference annotation but to <em>that genome's own deposited protein</em>. M, P and X reproduce the submitter's sequence exactly on every genome that has one; N on 43 of 46. <strong>L reproduces it on 29 of 31</strong> &mdash; as a PSSM CDS it managed 8 of 30, with up to 46 spurious N-terminal residues."
     },
     {
      "type": "pre",
-     "text": "BoDV-1 reference genome vs RefSeq NC_001607\n\n  N      54..1166      RefSeq  54..1166     identical\n  X    1223..1486      RefSeq 1223..1486    identical\n  P    1272..1877      RefSeq 1272..1877    identical\n  M    1893..2321      RefSeq 1893..2321    identical\n  G    2236..3747      RefSeq 2236..3747    identical\n  G_N  2236..2982      = 249 codons, the Richt 1998 product to the residue\n  G_C  2983..3747      runs to the precursor's own stop"
+     "text": "BoDV-1 reference genome vs RefSeq NC_001607\n\n  N      54..1166      RefSeq  54..1166     identical\n  N'     93..1166      second in-frame AUG = Met14 (PMID 30541858)\n  X    1223..1486      RefSeq 1223..1486    identical\n  P    1272..1877      RefSeq 1272..1877    identical\n  M    1893..2321      RefSeq 1893..2321    identical\n  G    2236..3747      RefSeq 2236..3747    identical\n  GP_N 2236..2982      = 249 codons, the Richt 1998 furin product\n  GP_C 2983..3747      runs to the precursor's own stop\n  L    2393..8822      the AUG Walker 2000 names, spliced across\n                       intron II (2410..3703) -- 1,711 aa"
     },
     {
      "type": "prose",
@@ -522,6 +565,10 @@
     {
      "type": "prose",
      "html": "<strong>97.2% of near-complete genomes come back clean</strong> &mdash; 35 of 36, with no genome or contig flags at all. The one flagged genome is the truncated 6.1&nbsp;kb contig, flagged for missing an essential feature, which is the right answer for a genome that is missing it."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Every N&prime; call was checked against the biological definition</strong>, not just against a length: is the called protein Met-initiated, an exact C-terminal substring of the N called on the same genome, and cut 12&ndash;17 residues in? <strong>25 of 25 pass, and none fail.</strong> The 11 genomes with no N&prime; call are the Cultervirus, Carbovirus, Cartilovirus and Carlia munda genomes that genuinely lack a second AUG there."
     }
    ],
    "num": "06",
@@ -532,19 +579,23 @@
    "blocks": [
     {
      "type": "prose",
-     "html": "<strong>The orthobornavirus L N-terminus is not reproduced exactly, and the reason is biological rather than a tuning failure.</strong> Walker 2000 (PMID&nbsp;10756058) showed the polymerase depends on a splicing event that fuses a short upstream open reading frame in frame with the long downstream one. Measured here by exact-matching every deposited L against its own genome: in <strong>121 of 140 orthobornavirus deposits the first exon contributes just five or six residues</strong> (MSFHA / MSFHAR), while L is <strong>collinear in all 11 Carbovirus, Cultervirus and Cartilovirus deposits</strong>. One feature cannot be both a spliced feature and a PSSM CDS, and declaring it spliced would leave three genera with no polymerase at all, so it ships as a CDS. Both N-terminal settings were built and scored on the same panel: <code>upstream_ext:&nbsp;1</code> gives 8 of 30 calls identical to the deposit with the rest Met-initiated but carrying up to 46 extra residues; <code>upstream_ext:&nbsp;0</code> gives 6 of 30, most of them the exactly right length but reading the genomic frame (<code>LCFLTS&hellip;</code>) where the protein reads <code>MSFHAS&hellip;</code>, and therefore not starting with Met. The first was kept. <strong>Up to ~46 spurious N-terminal residues on a 1,711-residue protein is the standing limit.</strong>"
+     "html": "<strong>Three lineages get no polymerase call</strong>, and the reason is different in each. Parrot bornavirus 3 1367 is a 6,115 nt contig that cannot physically hold a 5.1 kb gene. Canary bornavirus 1's only L deposit does not match its own contig cleanly, so no junction round-trips and it has no reference. Carlia munda bornavirus begins its L at a near-cognate <strong>TTG</strong> codon with residues 2&ndash;1730 collinear &mdash; a non-AUG start this module does not model. That is the price of making L a spliced feature: the call rate falls from 97.2% to 91.7% and the accuracy stops being approximate."
     },
     {
      "type": "prose",
-     "html": "<strong>A trap worth recording, because it produced a confident wrong answer.</strong> A tblastn collinearity screen of all 745 collection members against their own genomes reported <em>every one</em> as a single collinear HSP, L included &mdash; and the first conclusion drawn from it was that nothing in this family is spliced. It is wrong because the genomic frame upstream of the splice acceptor happens to read <code>LCFLTS</code> where the protein reads <code>MSFHAS</code>: five residues out of 1,711, invisible at a 95% identity threshold. The junction was only found by requiring an <strong>exact</strong> match."
+     "html": "<strong>A trap worth recording, because it produced a confident wrong answer.</strong> A tblastn collinearity screen of all 745 collection members against their own genomes reported <em>every one</em> as a single collinear HSP, L included, and the first conclusion drawn from it was that nothing in this family is spliced. It is wrong because the genomic frame upstream of the splice acceptor happens to read <code>LCFLTS</code> where the protein reads <code>MSFHAS</code>: five residues out of 1,711, invisible at a 95% identity threshold. The junction was only found by requiring an <strong>exact</strong> match &mdash; and it then reproduced Walker 2000's published coordinates independently."
     },
     {
      "type": "prose",
-     "html": "<strong>The glycoprotein signal peptide is not modelled, so G_N is not the fully matured ectodomain.</strong> No mature N-terminus has been determined by sequencing for any bornavirus glycoprotein, this build has no SignalP licence, and RefSeq NC_001607 carries no <code>sig_peptide</code> or <code>mat_peptide</code> to read one off. G_N therefore runs from the precursor's own initiator Met and retains the roughly 20-residue signal peptide. Shipping a predicted <code>_SP</code> feature would have been a prediction wearing a measurement's clothes."
+     "html": "<strong>The glycoprotein signal peptide is not modelled, so G_N is not the fully matured ectodomain.</strong> SignalP 6.0 <em>is</em> installed on this machine and answers <code>--help</code>, but its <code>model_weights/</code> directory contains nothing but a README, so every prediction dies with <code>FileNotFoundError: Fast mode requires model to be installed at .../distilled_model_signalp6.pt</code>. The weights ship inside the licensed tarball and are installed separately by <code>signalp6_convert_models</code>. Until that is done G_N runs from the precursor's own initiator Met and retains the ~20-residue signal peptide. The queries are already staged, so this is one command from being finished."
     },
     {
      "type": "prose",
-     "html": "<strong>Five described products are deliberately not features</strong>, each for a stated reason. The <strong>38 kDa N isoform</strong> is real and well characterised (PMID&nbsp;9188580, PMID&nbsp;15221540) but is an alternative <em>translation-initiation</em> product that is an exact C-terminal substring of the 39 kDa form, is not separately deposited anywhere in this dump, and admits no fixed offset &mdash; the second in-frame Met sits at residue 14 in 69 collection members, 16 in 23 and 8 in 12. A nested profile would call it on N's own coordinates. The <strong>spliced N isoforms</strong> of PMID&nbsp;30541858 fail on the same grounds. The intron-III products <strong>p8.4 and p165</strong> (PMID&nbsp;11172106) were identified as mRNA; no protein was demonstrated and none is deposited. Cartilovirus <strong>Vp3</strong> and the reptilian cultervirus <strong>P&ndash;G hybrids</strong> are explicitly predictions in their own papers. A prediction is not a product."
+     "html": "<strong>Five described products are deliberately not features</strong>, each for a stated reason. The <strong>G/L fusion p165</strong> is real as an mRNA &mdash; intron III shares intron II's donor and uses an acceptor at nt 4559, fusing G's first 58 residues to the L frame (PMID&nbsp;11070091, PMID&nbsp;11172106) &mdash; but it was never detected as a protein, it splices at about 10%, and PMID&nbsp;11602780 reports that this minor acceptor is <em>not conserved</em> across BoDV isolates. The <strong>spliced N isoforms</strong> N2/N2&prime;/N3/N3&prime;/N3C of PMID&nbsp;30541858 were not detectable in infected cells by their own authors, except N3/N3C in a fractionated ER preparation of a recombinant virus. The <strong>1,608 aa and 1,558 aa internal-start forms of L</strong> are not modelled: Walker 2000 looked for the 170 kDa one in infected cells and did not find it. Cartilovirus <strong>Vp3</strong> and the reptilian cultervirus <strong>P&ndash;G hybrids</strong> are explicitly predictions in their own papers. <strong>There is no &lsquo;G&prime;&rsquo;</strong>: the only G-derived proteins in the literature are the precursor and its two furin subunits, both of which are shipped here."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>N&prime; rests on the narrowest cutoff margin in this module.</strong> It is an exact C-terminal substring of N, so nothing but a bit score separates them: true calls score 510&ndash;727 and the worst false one 380, and the cutoff sits at 440 &mdash; 1.16&times; either way. A divergent orthobornavirus that encodes the isoform but scores below 440 would be missed, and one that lacks it but scores above would be called. That is a real exposure and it is why the figure is reported here rather than buried."
     },
     {
      "type": "prose",
@@ -553,7 +604,7 @@
     {
      "type": "verdict",
      "kind": "warn",
-     "html": "Use this module on near-complete bornavirus genomes of any genus: routing is 97%, all six proteins and both glycoprotein products are called on every routed genome, and 97% come back clean. Treat the <strong>first five or six residues of an orthobornavirus L call</strong> as unreliable, and read <strong>G_N</strong> as the N-terminal furin fragment including its signal peptide rather than as a mature ectodomain."
+     "html": "Use this module on near-complete bornavirus genomes of any genus: routing is 97%, all six proteins, both glycoprotein products and the p38 isoform are called wherever they exist, and every genome comes back clean. Read <strong>G_N</strong> as the N-terminal furin fragment including its signal peptide rather than as a mature ectodomain, and treat an <strong>N&prime;</strong> call on a divergent lineage as resting on a 1.16&times; margin."
     }
    ],
    "num": "07",
@@ -568,11 +619,15 @@
     },
     {
      "type": "prose",
-     "html": "<strong>Two defects were found by running the module rather than by reading it</strong>, and both were invisible to every earlier check. The first was the X and P coverage hole in the non-orthobornavirus genera: self-recall was 100%, the length audits were clean, and the bin audit said every collection was one protein and its own protein. Only annotating real genomes showed that eleven of 36 had no X. The second was the Vp1 false calls on the glycoprotein locus, which no collection-level check can see because the collection is correct &mdash; it is the profile that is promiscuous."
+     "html": "<strong>Three defects were found by running the module rather than by reading it</strong>, and all three were invisible to every collection-level check. The X and P coverage hole in the non-orthobornavirus genera: self-recall was 100%, the length and bin audits were clean, and only annotating real genomes showed that eleven of 36 had no X. The Vp1 false calls on the glycoprotein locus, which no collection check can see because the collection is correct &mdash; it is the profile that is promiscuous. And the three Met-less N&prime; calls, which only appeared when every call was tested against the definition of the isoform rather than against a length window."
     },
     {
      "type": "prose",
      "html": "<strong>The unassigned pool was checked rather than waved through.</strong> Two strings reach the member floor, <code>unnamed protein product; p24 ORF</code> and <code>p10 ORF</code>, and neither is a protein this module fails to call: the 147&nbsp;aa <code>p24 ORF</code> entries begin <code>LPKDLRKNPSMISDPDQRTGREQLSNDELIKKLVTELAEN</code> and the 26&nbsp;aa <code>p10 ORF</code> entries begin <code>LPKDLRKNPSMISDPDQRTGREQLSN</code> &mdash; the same sequence, with no initiator Met, deposited twice under two names. They are fragments of P, and the full-length P of those same strains is already in the collection."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>A fourth was found by a tool and not by a person.</strong> <code>check_met_start.py</code> reported two N&prime; alignments that began six residues inside their members; chasing it showed the first N&prime; derivation &mdash; cut each N at its own second in-frame Met &mdash; disagreed with the profiles on six genomes whose N carries an extra Met at residue 8. The collection was rebuilt by homology to BoDV's measured Met14 instead, and the check is now clean."
     }
    ],
    "num": "08",
@@ -596,22 +651,22 @@
       [
        "distinct annotation strings, all proteins pooled",
        "29",
-       "9"
+       "10"
       ],
       [
        "proteins needed to reach 95% of the final vocabulary",
        "175",
-       "92"
+       "90"
       ],
       [
        "distinct strings at equal depth (211 proteins)",
        "29.0",
-       "8.9"
+       "9.9"
       ],
       [
        "ratio at equal depth",
        "&mdash;",
-       "3.3&times;"
+       "2.9&times;"
       ]
      ]
     },
@@ -621,7 +676,7 @@
     },
     {
      "type": "prose",
-     "html": "<strong>Five of the nine strings this module emits were already in the controlled vocabulary</strong> and were reused rather than reinvented: <i>Nucleocapsid protein</i>, <i>Phosphoprotein</i>, <i>Matrix protein</i>, <i>RNA-dependent RNA polymerase</i> and <i>Uncharacterized lineage-specific protein</i>. <i>X protein</i> follows the existing <i>C protein</i> / <i>V protein</i> / <i>W protein</i> convention. The two mature-peptide strings are new and follow the influenza hemagglutinin pattern for a furin-cleaved envelope precursor."
+     "html": "<strong>Five of the ten strings this module emits were already in the controlled vocabulary</strong> and were reused rather than reinvented: <i>Nucleocapsid protein</i>, <i>Phosphoprotein</i>, <i>Matrix protein</i>, <i>RNA-dependent RNA polymerase</i> and <i>Uncharacterized lineage-specific protein</i>. <i>X protein</i> follows the existing <i>C protein</i> / <i>V protein</i> / <i>W protein</i> convention. The two mature-peptide strings follow the influenza hemagglutinin pattern for a furin-cleaved envelope precursor, and <i>Nucleocapsid protein isoform p38</i> is new because the isoform is new to this module."
     },
     {
      "type": "prose",
@@ -632,5 +687,5 @@
    "lede": "Seventy-seven source strings for six proteins, and what the controlled set replaces them with."
   }
  ],
- "source_note": "Every figure on this page is reproducible from the build directory: coverage.json (routing and per-feature calls), exeval.tsv (quality and copy_num), registry.json (profiles and self-recall), agg.json and rarefaction.json (vocabulary), gap/uncovered.tsv (the coverage-hole analysis), collections/G_CUT.tsv (the furin derivation), notes/LITERATURE.md (every PMID, each verified against PubMed in this build) and BUILD_NOTES.md (the narrative). All citations are PMID_claude_generated; no curator has read them yet."
+ "source_note": "Every figure on this page is reproducible from the build directory: coverage.json and extbl/ (routing and per-feature calls), exeval.tsv (quality and copy_num), registry.json (profiles and self-recall), agg.json and rarefaction.json (vocabulary), gap/uncovered.tsv (the coverage-hole analysis), collections/G_CUT.tsv (the furin derivation), splice2/junctions.tsv and Splice-Variants/Bornaviridae/L.fasta (the 120 round-tripped splice references), np_scores.tsv (the N' cutoff), notes/LITERATURE.md (every PMID, each verified against PubMed in this build) and BUILD_NOTES.md (the narrative). All citations are PMID_claude_generated; no curator has read them yet."
 }
