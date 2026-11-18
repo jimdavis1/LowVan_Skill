@@ -1,0 +1,713 @@
+{
+ "eyebrow": "LowVan &middot; Orbivirus module &middot; 12 October 2026",
+ "h1": "Orbivirus",
+ "headline_tiles": [
+  [
+   "12",
+   "features, all with profiles"
+  ],
+  [
+   "399",
+   "PSSMs"
+  ],
+  [
+   "152/152",
+   "exemplars routed"
+  ],
+  [
+   "67.5%",
+   "held-out genomes genuinely clean"
+  ],
+  [
+   "29.2\u00d7",
+   "string collapse"
+  ],
+  [
+   "10.8\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Orbiviruses are arthropod-borne and matter mostly to livestock: bluetongue virus and African horse sickness virus are notifiable diseases with substantial economic weight, and epizootic haemorrhagic disease virus is expanding its range in Europe. A minority are tick-borne and some of those &mdash; Kemerovo, Tribec, Orungo &mdash; have been associated with human febrile illness.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "25,238"
+      ],
+      [
+       "protein features",
+       "26,699"
+      ],
+      [
+       "unique sequences",
+       "12,629"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "1,671"
+      ],
+      [
+       "species",
+       "28"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The partitioning decision was measured, not assumed. Counting features per virus group under each key gives a non-zero cell for all eighteen groups under all ten of VP1&ndash;VP7 and NS1&ndash;NS3, <i>Culicoides</i>-borne and tick-borne alike. That is what the rule asks, so they stay together. The one place the genus is <i>not</i> uniform is VP2, and that is a homology question rather than an organisation one &mdash; &sect;07 has it.",
+     "type": "prose"
+    },
+    {
+     "html": "Every record in this family's BV-BRC dump is a single segment; nothing arrives as an assembled genome. The routing and coverage figures below are measured on reassembled genomes: records sharing a strain name and contributing exactly ten segments were merged, which recovers 1,671 genomes.",
+     "type": "prose"
+    },
+    {
+     "html": "Bluetongue virus is 64% of the dump. That imbalance shapes almost every number here and is the reason the held-out panel in &sect;06 is drawn round-robin across groups rather than in proportion.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Orbivirus is one genus and one module. The partitioning rule asks about genome organisation rather than phylogeny, and every virus group here carries the same ten segments in the same arrangement.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "VP1",
+       "RNA-dependent RNA polymerase",
+       "RDRP",
+       "1,494",
+       "31",
+       "defaults"
+      ],
+      [
+       "VP2",
+       "Outer capsid protein VP2",
+       "VP2",
+       "1,902",
+       "71",
+       "defaults"
+      ],
+      [
+       "VP3",
+       "Subcore shell protein VP3",
+       "VP3",
+       "1,129",
+       "30",
+       "defaults"
+      ],
+      [
+       "VP4",
+       "Capping enzyme VP4",
+       "VP4",
+       "1,202",
+       "33",
+       "defaults"
+      ],
+      [
+       "VP5",
+       "Outer capsid protein VP5",
+       "VP5",
+       "1,041",
+       "37",
+       "defaults"
+      ],
+      [
+       "VP6",
+       "Helicase VP6",
+       "VP6",
+       "1,360",
+       "44",
+       "defaults"
+      ],
+      [
+       "VP7",
+       "Core surface protein VP7",
+       "VP7",
+       "649",
+       "28",
+       "defaults"
+      ],
+      [
+       "NS1",
+       "Non-structural protein NS1, tubule protein",
+       "NS1",
+       "1,103",
+       "34",
+       "defaults"
+      ],
+      [
+       "NS2",
+       "Non-structural protein NS2, inclusion body protein",
+       "NS2",
+       "980",
+       "38",
+       "defaults"
+      ],
+      [
+       "NS3",
+       "Non-structural protein NS3, viroporin",
+       "NS3",
+       "1,220",
+       "34",
+       "defaults"
+      ],
+      [
+       "NS4",
+       "Non-structural protein NS4, interferon antagonist",
+       "NS4",
+       "145",
+       "14",
+       "defaults"
+      ],
+      [
+       "NS5",
+       "Non-structural protein NS5",
+       "NS5",
+       "87",
+       "5",
+       "defaults"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The rule list binds only the explicit <code>VP1</code>&ndash;<code>VP7</code> and <code>NS1</code>&ndash;<code>NS5</code> forms, plus one descriptive string. That is deliberate. Every other descriptive synonym in the dump was tested against the length distribution of the sequences carrying it, and all but one turned out to cover more than one protein: <code>outer capsid protein</code> sits on VP5 206 times, VP2 77, NS3 27 and NS1 19; <code>undefined CDS</code> on NS3 137, NS2 70 and VP1 69. Those strings are left unmatched and arbitrated per sequence by the homology rescue, which is the only thing that can split a mixed population.",
+     "type": "prose"
+    },
+    {
+     "html": "<b><code>RNA helicase</code> is the one that would have cost us.</b> Orbivirus VP6 <i>is</i> the helicase, so the obvious rule is <code>RNA helicase &rarr; VP6</code>. The data says the string sits on NS2 ten times out of eleven &mdash; 169 against 17. NS2 is the inclusion-body ssRNA-binding protein and has NTPase activity, and depositors have used the term for it. A rule written from the biology would have moved 169 NS2 sequences into VP6 and nothing would have reported it. This is the U-number trap arriving through a <i>functional</i> label rather than a positional one.",
+     "type": "prose"
+    },
+    {
+     "html": "The one synonym clean enough to bind is <code>RNA capping and methylase protein</code>: 160 occurrences, every one of them VP4.",
+     "type": "prose"
+    },
+    {
+     "html": "Every length window is explicit, for the same reason as in the Rotavirus module. Bluetongue virus is 64% of the dump, so the pooled median <i>is</i> the BTV median, and the other groups are genuinely different sizes &mdash; AHSV VP2 is 1,056 residues against BTV's 957 and Changuinola's 1,197, and NS4 runs from 76 to 238. Each window spans the range of per-group full lengths.",
+     "type": "prose"
+    },
+    {
+     "html": "NS5 is real and was checked against the literature before being declared: S10-ORF2, a +1 overlapping ORF inside NS3, 50&ndash;59 residues, conserved across 27 BTV serotypes and expressed in BTV, EHDV, AHSV and Kemerovo virus. The dump's 292 records run 34&ndash;62 aa with a median of 59. Being out of frame costs nothing &mdash; tblastn reads six frames.",
+     "type": "prose"
+    },
+    {
+     "html": "NS3A is <i>not</i> declared. It is the same ORF as NS3 translated from the second in-frame AUG, about 13 residues shorter and otherwise identical. A profile for it would be a truncated copy of the NS3 profile firing on the same locus. The 584 NS3A records are recorded in NOT_MODELLED so they are accounted for rather than lost.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Twelve collections, almost all of them built from the explicit VP and NS labels. The descriptive synonyms were tested before being trusted, and nine of ten failed.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "VP1",
+       "280",
+       "0.65",
+       "994",
+       "1,410"
+      ],
+      [
+       "VP2",
+       "60",
+       "0.65",
+       "684",
+       "1,283"
+      ],
+      [
+       "VP3",
+       "60",
+       "0.65",
+       "682",
+       "1,039"
+      ],
+      [
+       "VP4",
+       "60",
+       "0.65",
+       "474",
+       "703"
+      ],
+      [
+       "VP5",
+       "125",
+       "0.65",
+       "379",
+       "596"
+      ],
+      [
+       "VP6",
+       "60",
+       "0.65",
+       "203",
+       "393"
+      ],
+      [
+       "VP7",
+       "75",
+       "0.65",
+       "262",
+       "401"
+      ],
+      [
+       "NS1",
+       "80",
+       "0.65",
+       "405",
+       "652"
+      ],
+      [
+       "NS2",
+       "60",
+       "0.65",
+       "248",
+       "489"
+      ],
+      [
+       "NS3",
+       "35",
+       "0.65",
+       "158",
+       "279"
+      ],
+      [
+       "NS4",
+       "40",
+       "0.65",
+       "69",
+       "294"
+      ],
+      [
+       "NS5",
+       "40",
+       "0.65",
+       "45",
+       "65"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>The generated cutoff for NS4 admitted 867 of the 960 sequences that are not NS4.</b> The formula scales with protein length, and for a 77-residue protein it produced 25 bits, which is low enough to admit sequence that is not the protein at all. Scoring every PSSM against every collection and taking the best hit per sequence gave the correction: NS3 30&rarr;35, NS4 25&rarr;40, NS5 25&rarr;40, each admitting zero false positives while keeping 97&ndash;100% of true members.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The long features had the opposite problem, and it was invisible until <code>copy_num</code> was applied.</b> A 60-bit floor on a 1,302-residue polymerase is not a floor at all: the annotator found a 49-residue re-match of VP1's own C-terminal motif just past the real stop codon, scored it 69.6, and emitted it as a <i>second</i> VP1. Nothing checked for that until copy_num made a duplicate call a flag, at which point it appeared on 4 of the 40 panel genomes. The real call on the same contig scores 2,627 and the weakest genuine VP1 in the whole collection scores 703.",
+     "type": "prose"
+    },
+    {
+     "html": "Each long feature's cutoff was therefore re-floored at 40% of its own weakest genuine member &mdash; far below anything real, far above a short-motif hit: VP1 60&rarr;280, VP5 60&rarr;125, NS1 60&rarr;80, VP7 60&rarr;75. Every one keeps 100% of its collection and all twelve call rates are unchanged. VP2, VP3 and VP4 stay at 60 because their collections hold genuinely weak members, scoring as low as 26, and a proportional floor would cut real sequence.",
+     "type": "prose"
+    },
+    {
+     "html": "VP5 is also where the zero-cross-hit criterion had to be refused. It shows 56 cross-hits above 60 and VP6 45; those two are each other, and separating two real proteins is the annotator's best-hit rule's job, not the cutoff's. Applied blindly that criterion proposed 990 for VP3 &mdash; a number that should stop you rather than ship.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>11162 of 11192 (99.7%)</b> &mdash; VP1 1279/1279, VP2 1494/1499, VP3 980/987, VP4 1154/1158, VP5 1000/1000, VP6 1329/1330, VP7 595/595, NS1 1002/1002, NS2 968/968, NS3 1145/1145, NS4 132/142, NS5 84/87. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Cutoffs set from each collection's own distribution, and then corrected twice &mdash; once for the short features and once for the long ones.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "152",
+       "\u2014"
+      ],
+      [
+       "routed to Orbivirus",
+       "152",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "30 rep contigs ship with the module, each one a whole 10-segment genome; 30 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the Sedoreoviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families. Every incoming record in this family is a single segment, so a segment routes if it resembles any segment of any chosen reference; that is the model the reference set was chosen under.",
+     "type": "prose"
+    },
+    {
+     "html": "The shipped reference set is the set that was measured, and getting that to be true required a fix. <code>build_rep_contigs.py</code> clustered whole concatenated genomes and took the largest clusters &mdash; the right model for an unsegmented virus and the wrong one here. It reported 54.7% coverage at 30 references and chose a different 30 genomes than the budget measurement had.",
+     "type": "prose"
+    },
+    {
+     "html": "A concatenated genome of a reassorting virus is a mosaic, so every fresh combination of otherwise-common segments becomes its own cluster. What happens at runtime is different: every incoming record is one segment, a rep contig is a whole genome carrying all ten, and a segment routes if it resembles <i>any</i> segment of <i>any</i> chosen reference. Clustering segments and choosing genomes greedily by uncovered segment clusters reaches <b>100% of 1,668 genomes at 30 references</b>.",
+     "type": "prose"
+    },
+    {
+     "html": "The budget was raised from the project's 25 to 30 because the 73 genomes missing at 25 were coherent groups &mdash; Palyam 37, Middle Point 23, Changuinola 7, Yunnan 3 &mdash; and not a scattered singleton tail. Five more references closed it completely.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Routing, measured the way routing actually works for a segmented virus.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "RDRP",
+       "100.0",
+       100.0,
+       "152 of 152 routed exemplars"
+      ],
+      [
+       "VP2",
+       "100.0",
+       100.0,
+       "152 of 152 routed exemplars"
+      ],
+      [
+       "VP3",
+       "100.0",
+       100.0,
+       "152 of 152 routed exemplars"
+      ],
+      [
+       "VP4",
+       "100.0",
+       100.0,
+       "152 of 152 routed exemplars"
+      ],
+      [
+       "VP5",
+       "100.0",
+       100.0,
+       "152 of 152 routed exemplars"
+      ],
+      [
+       "VP6",
+       "96.7",
+       96.7,
+       "147 of 152 routed exemplars"
+      ],
+      [
+       "VP7",
+       "100.0",
+       100.0,
+       "152 of 152 routed exemplars"
+      ],
+      [
+       "NS1",
+       "100.0",
+       100.0,
+       "152 of 152 routed exemplars"
+      ],
+      [
+       "NS2",
+       "99.3",
+       99.3,
+       "151 of 152 routed exemplars"
+      ],
+      [
+       "NS3",
+       "100.0",
+       100.0,
+       "152 of 152 routed exemplars"
+      ],
+      [
+       "NS4",
+       "78.9",
+       78.9,
+       "120 of 152 routed exemplars"
+      ],
+      [
+       "NS5",
+       "54.6",
+       54.6,
+       "83 of 152 routed exemplars"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>146 of 152 routed exemplars get every one of the 10 core features.</b> No core feature trails the best-called one by 20 points or more. Excluded from that count: NS4, NS5 &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode.",
+     "type": "prose"
+    },
+    {
+     "html": "NS4 and NS5 are excluded from the core count because their absence is biology. NS5 is a bluetongue protein: 289 BTV records in this dump against 2 EHDV and 1 Kemerovo. NS4 is lineage-patchy and three-fold variable in length. Neither carries <code>copy_num</code>, so no genome is flagged for lacking them.",
+     "type": "prose"
+    },
+    {
+     "html": "VP2 is the interesting one and is discussed in &sect;07. It reads 100% here and 77.5% on the held-out panel, and the difference between those two numbers is the point.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Nine of twelve features are called in at least 96.7% of routed genomes.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "40",
+       "held-out genomes"
+      ],
+      [
+       "27",
+       "no genome/contig flags"
+      ],
+      [
+       "27",
+       "genuinely clean"
+      ],
+      [
+       "13",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "67.5%",
+       "clean"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "The panel is 40 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+     "type": "prose"
+    },
+    {
+     "text": "   9  Contig is missing: VP2 Segment\n   3  Contig is too short\n   3  Contig is too long\n   2  Count = 2\n   1  Genome has too many HSPs for: Subcore shell protein VP3\n   1  Genome is missing essential feature: Helicase VP6\n   1  Too many contigs for VP3 Segment\n   1  Contig is missing: VP6 Segment",
+     "type": "pre"
+    },
+    {
+     "html": "The panel is drawn round-robin across virus groups, not in proportion to the dump. Bluetongue virus is 64% of the data and gets 3 of the 40 slots; the other 37 go to eighteen further groups including every tick-borne lineage. A proportional panel would have been almost entirely bluetongue and would have reported a higher clean rate while testing far less.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The panel caught two defects that the coverage run could not.</b> Annotating a Kemerovo genome end to end put NS5 on the VP2 Segment &mdash; a 51-residue hit inside a 3 kb segment &mdash; and called NS4 twice. Separately, VP1 was being called twice on four genomes. Coverage reported the same feature rates throughout, because a spurious call still counts as a call; only end-to-end annotation on real genomes exposed either.",
+     "type": "prose"
+    },
+    {
+     "html": "After both cutoff corrections the remaining flags are properties of the deposits: ten genomes missing a contig, three with a contig too short, three too long. <b>One genome, Bluetongue virus 16 ISR2001/18, is flagged for a duplicated VP3 Segment and a missing VP6 Segment &mdash; and both are true of the deposit</b>, which carries two copies of segment 3 and none of segment 9.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Forty genomes held out of the build, annotated end to end and scored by the genome quality tool.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>VP2 is not one homology group across this genus, and the module calls only one of the two.</b> All nine panel genomes with no VP2 call are tick-borne &mdash; Kemerovo, Tribec, St Croix River, Wad Medani, Umatilla. Their VP2 records align to the bluetongue canonical at 24&ndash;33% identity over 33&ndash;88 residues, with bitscores of 17&ndash;36: no homology worth the name. VP2 is a positional label spanning two protein families, which is exactly what the U-number rule warns about.",
+     "type": "prose"
+    },
+    {
+     "html": "The module is <b>not</b> split over this, because the partitioning rule asks about genome organisation and the organisation is identical &mdash; ten segments, same gene set, same arrangement. Nor can the tick-borne form be declared as its own feature: only three tick-borne sequences reached the VP2 collection at all, far below the member floor for building a profile. It is a documented gap, and the honest reading of &sect;05 is that this module calls the orbivirus proteome in <i>Culicoides</i>-borne viruses and that proteome minus VP2 in tick-borne ones.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>NS5 is modelled from bluetongue alone.</b> The literature reports it expressed in EHDV, AHSV and Kemerovo virus too, but this dump holds three non-BTV records between them. If NS5 is later sequenced widely in those species, these profiles may not reach it.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Most groups are represented by tens of genomes, not thousands.</b> Great Island virus contributes 23 features to the entire dump, Lebombo 22, Corriparta 44. Self-recall cannot distinguish a profile that generalises from one that has memorised four training sequences.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Reassortment is not modelled.</b> The module annotates segments independently and makes no statement about whether a given set of ten constitutes a coherent strain.",
+     "type": "prose"
+    },
+    {
+     "html": "The module is complete for the <i>Culicoides</i>-borne orbiviruses, which carry the veterinary burden, and complete apart from VP2 for the tick-borne ones. Both gaps are named above and neither is hidden inside a number.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "What this module cannot do.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>Seventy-nine sequences carried swapped VP2/VP3 labels at source.</b> <code>qc_cross_feature</code> found ten collisions; fixing them and rebuilding exposed four more, then more again, because that tool compares one cluster master at a time and each re-clustering only reveals the next layer. A whole-collection audit &mdash; every sequence against every feature's canonical &mdash; found the remaining 49 in a single pass. After the fix the collection medians land exactly where they should, VP2 at 961 and VP3 at 901.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The test that matters is what you compare against.</b> Blasting the ambiguous clusters against the collections gave margins of 1 to 15 bits, which decides nothing &mdash; because the collections contaminate each other, so a true VP2 scores just as well against the VP3 file. Against each feature's canonical, meaning the median member of its largest and most densely-supported cluster, the same comparison returns 400 to 2,000 bits.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Only 0.0% of this dump declares itself partial</b>, against 39% for Rotavirus. The difference is deposit practice: rotavirus VP4 and VP7 are genotyping targets routinely sequenced in part, while orbivirus deposits are overwhelmingly whole segments.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>A reference set can disagree with the budget that justified it.</b> The concatenated-genome selection in &sect;04 did not merely report the wrong number; it chose a different 30 genomes. The budget script and the build script implemented two different models of routing, and only one of them matches what the annotator does.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The contamination audit found eleven more mislabels on a second pass, after it was taught to use one reference per cluster.</b> Comparing against a single canonical per feature made the reference set the best-sequenced lineage &mdash; bluetongue virus &mdash; so ~875-residue VP2 and VP3 records from unclassified genomes could not be separated. They verify at 111&ndash;579 bits and were moved.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>A mature peptide matches its parent by construction, and a tool that does not know this will delete it.</b> Run against Rotavirus the same audit proposed moving 906 sequences into VP4, 901 of them the entire VP5* collection. Orbivirus has no mature peptides and was never exposed, but the fix belongs in the shared tool, not in one module's notes.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What the run turned up that was not expected.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "from": "orbivirus-saturation-figure.html",
+     "type": "figure"
+    },
+    {
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "NS3",
+       "Non-structural protein NS3, viroporin",
+       "46"
+      ],
+      [
+       "VP3",
+       "Subcore shell protein VP3",
+       "44"
+      ],
+      [
+       "VP4",
+       "Capping enzyme VP4",
+       "39"
+      ],
+      [
+       "VP2",
+       "Outer capsid protein VP2",
+       "38"
+      ],
+      [
+       "VP7",
+       "Core surface protein VP7",
+       "30"
+      ],
+      [
+       "VP6",
+       "Helicase VP6",
+       "30"
+      ],
+      [
+       "NS2",
+       "Non-structural protein NS2, inclusion body protein",
+       "29"
+      ],
+      [
+       "NS1",
+       "Non-structural protein NS1, tubule protein",
+       "28"
+      ],
+      [
+       "VP1",
+       "RNA-dependent RNA polymerase",
+       "27"
+      ],
+      [
+       "VP5",
+       "Outer capsid protein VP5",
+       "26"
+      ],
+      [
+       "NS4",
+       "Non-structural protein NS4, interferon antagonist",
+       "10"
+      ],
+      [
+       "NS5",
+       "Non-structural protein NS5",
+       "4"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "119"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Rarefaction over proteins: every annotated protein in the 150 genomes both sources annotate (1,580 source product records, 1,713 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>130</b> distinct strings, the module's <b>12</b>. At the depth both reach, 1,580 proteins, free text has used <b>130.0 strings against 12.0 &mdash; a 10.8-fold difference.</b> The source reaches 95% of its final size after 1,360 proteins, the module after 36.",
+     "type": "prose"
+    },
+    {
+     "html": "351 distinct source strings collapse onto 12 annotations across the bound features. The unbound tail is 119 further strings, led by <code>undefined CDS</code>, <code>NS3A</code> and the descriptive synonyms of &sect;02 that the rescue could not resolve to a single protein.",
+     "type": "prose"
+    },
+    {
+     "html": "The rarefaction curve controls for sampling depth and is the stronger statement. Drawing annotated proteins one at a time from the genomes both sources describe, free text reaches 130 distinct strings and the module's vocabulary reaches 12.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What a controlled vocabulary bought on this genus.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Generated from <code>orbivirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Sedoreoviridae/work/Orbivirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.",
+ "standfirst": "One module for the whole genus: bluetongue, African horse sickness and epizootic haemorrhagic disease alongside the tick-borne Kemerovo serogroup. Ten double-stranded RNA segments, seven structural proteins and five non-structural ones. This audit says what the module calls, what it does not, and which of those gaps are biology and which are ours.",
+ "title": "Orbivirus Coverage Audit"
+}

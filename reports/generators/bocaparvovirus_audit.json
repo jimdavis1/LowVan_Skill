@@ -1,0 +1,487 @@
+{
+ "eyebrow": "LowVan &middot; Bocaparvovirus module &middot; 1 November 2026",
+ "h1": "Bocaparvovirus",
+ "headline_tiles": [
+  [
+   "5",
+   "features, all with profiles"
+  ],
+  [
+   "139",
+   "PSSMs"
+  ],
+  [
+   "73/74",
+   "exemplars routed"
+  ],
+  [
+   "96.3%",
+   "sampled genomes genuinely clean"
+  ],
+  [
+   "16.0\u00d7",
+   "string collapse"
+  ],
+  [
+   "8.6\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "The module covers <strong>Bocaparvovirus</strong> and <strong>Aveparvovirus</strong>. They are held together because the layout is the same and their peripheral profiles do not cross-match, which is the test for whether a set of genera is one module or several.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "1,907"
+      ],
+      [
+       "protein features",
+       "6,591"
+      ],
+      [
+       "unique sequences",
+       "2,441"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "300"
+      ],
+      [
+       "species",
+       "83"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "from": "bocaparvovirus-genome-map.html",
+     "type": "figure"
+    },
+    {
+     "html": "Five features are declared: <strong>NS1</strong>, <strong>NP1</strong>, the capsid pair <strong>VP1</strong> and <strong>VP2</strong>, and <strong>ORFX</strong>. NS1, NP1 and VP1 carry <code>copy_num</code>.",
+     "type": "prose"
+    },
+    {
+     "html": "NP1 is what makes a bocaparvovirus a bocaparvovirus: a third gene, between the nonstructural and capsid genes, that no other parvovirus genus has. It is given a function \u2014 viral RNA processing protein \u2014 because that function is established in the literature, not inferred from position.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two genera that share a layout, and the one gene that defines it.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "ns1",
+       "701",
+       "37",
+       "defaults"
+      ],
+      [
+       "NP1",
+       "Viral RNA processing protein NP1",
+       "np1",
+       "484",
+       "32",
+       "defaults"
+      ],
+      [
+       "ORFX",
+       "Uncharacterized lineage specific protein ORFX",
+       "orfx",
+       "5",
+       "1",
+       "-m 2"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "vp1",
+       "689",
+       "40",
+       "defaults"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "vp2",
+       "487",
+       "29",
+       "defaults"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Eighty distinct annotation strings collapse onto the five feature names, over 6,195 source sequences \u2014 the largest collection in the family. NS1 draws on twenty-two strings, VP1 on twenty-one, VP2 on eighteen, NP1 on sixteen.",
+     "type": "prose"
+    },
+    {
+     "html": "NP1's sixteen are the ones worth reading. <em>NP1</em> and <em>NS2</em> are slots in a genome layout, not names of proteins, and one cluster in this build arrived carrying both labels. The binning is by sequence, not by the slot a deposit was filed under.",
+     "type": "prose"
+    },
+    {
+     "html": "Only three strings did not collapse, three sequences in all: <em>structural protein 3</em>, <em>Non-structural ORFs</em> and <em>Structural ORFs</em>. The last two are not protein names at all.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Profiles are built from the annotation strings BV-BRC already carries, after the strings are collapsed onto one name per protein.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "162",
+       "0.65",
+       "383",
+       "944"
+      ],
+      [
+       "NP1",
+       "49",
+       "0.65",
+       "64",
+       "260"
+      ],
+      [
+       "ORFX",
+       "233",
+       "0.65",
+       "112",
+       "127"
+      ],
+      [
+       "VP",
+       "170",
+       "0.65",
+       "391",
+       "767"
+      ],
+      [
+       "VP2",
+       "110",
+       "0.65",
+       "350",
+       "715"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The floors are NP1 49, VP2 110, NS1 162, VP1 170 and ORFX 233 bits. A hundred and thirty-nine profiles were built, by far the most of any module here, because the two genera together span a wide host range and no single profile covers it.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall is <strong>701 of 701</strong> for NS1, <strong>689 of 689</strong> for VP1, <strong>487 of 487</strong> for VP2, <strong>5 of 5</strong> for ORFX and <strong>475 of 484</strong> for NP1. The nine NP1 misses are the module's only self-recall failures.",
+     "type": "prose"
+    },
+    {
+     "html": "ORFX's single profile is built from five sequences. It is declared because those five cluster and because the protein is described, not because the evidence is strong.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>2357 of 2366 (99.6%)</b> &mdash; NS1 701/701, NP1 475/484, ORFX 5/5, VP 689/689, VP2 487/487. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Each profile carries a bit-score floor and a length window taken from the collection it was built from.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "74",
+       "\u2014"
+      ],
+      [
+       "routed to Bocaparvovirus",
+       "73",
+       "98.6%"
+      ],
+      [
+       "unrouted",
+       "1",
+       "1.4%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Routing was measured against the 25 reference contigs this module ships, of which 25 were used by the exemplar set.",
+     "type": "prose"
+    },
+    {
+     "html": "Of 74 exemplars, <strong>73 routed to this module and 1 did not route at all</strong>. None went to another module.",
+     "type": "prose"
+    },
+    {
+     "html": "One unrouted genome out of 74 is a divergent isolate with no close relative among the 25 reference contigs. Routing is nucleotide identity, so a genome with no near neighbour is invisible to the module no matter how recognisable its proteins would be.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Routing is a BLASTn of the query against the reference contigs.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "ns1",
+       "100.0",
+       100.0,
+       "73 of 73 routed exemplars"
+      ],
+      [
+       "np1",
+       "98.6",
+       98.6,
+       "72 of 73 routed exemplars"
+      ],
+      [
+       "orfx",
+       "1.4",
+       1.4,
+       "1 of 73 routed exemplars"
+      ],
+      [
+       "vp1",
+       "97.3",
+       97.3,
+       "71 of 73 routed exemplars"
+      ],
+      [
+       "vp2",
+       "97.3",
+       97.3,
+       "71 of 73 routed exemplars"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>1 of 73 routed exemplars get every one of the 5 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>orfx</b>.",
+     "type": "prose"
+    },
+    {
+     "html": "Across the 74 exemplars: <strong>NS1 75</strong>, <strong>NP1 73</strong>, <strong>VP2 73</strong>, <strong>VP1 72</strong>, <strong>ORFX 1</strong>. NS1's 75 against 74 genomes is NS1 called twice in one of them.",
+     "type": "prose"
+    },
+    {
+     "html": "ORFX at 1 of 74 is the honest consequence of a five-sequence collection. The feature exists in the module so that a genome carrying it gets it named; it is not evidence that ORFX is rare, only that it is rarely deposited.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Calling is measured on the exemplars, feature by feature.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "299",
+       "sampled genomes"
+      ],
+      [
+       "289",
+       "no genome/contig flags"
+      ],
+      [
+       "288",
+       "genuinely clean"
+      ],
+      [
+       "11",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "96.3%",
+       "clean"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "The panel is 299 genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+     "type": "prose"
+    },
+    {
+     "text": "   6  Count = 2\n   4  Genome has too many HSPs for: Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)\n   3  Genome is missing essential feature: Capsid protein VP1 (phospholipase A2 domain)\n   2  Contig has too many ambiguous bases, Frac &gt; 0.01\n   1  Genome is missing essential feature: Viral RNA processing protein NP1\n   1  Genome has too many HSPs for: Viral RNA processing protein NP1\n   1  Genome has too many HSPs for: Capsid protein VP1 (phospholipase A2 domain)\n   1  Contig is too long\n   1  Contig is too short",
+     "type": "pre"
+    },
+    {
+     "html": "<strong>289 of 299</strong> come through with no genome-level and no contig-level flag, and <strong>288</strong> are genuinely clean. This is the strongest panel result in the family.",
+     "type": "prose"
+    },
+    {
+     "html": "The flags are few and scattered: NS1 called twice in 4 genomes, VP1 missing in 3, a contig with more than 1% ambiguous bases in 2, NP1 missing in 1, NP1 called twice in 1. At the feature level, NS1 too short in 7, VP1 too short in 4, NP1 too long in 2, NP1 too short in 1.",
+     "type": "prose"
+    },
+    {
+     "html": "Read the headline figure for what it is. The panel still contains the genomes the reference contigs were taken from, so it measures internal consistency, not out-of-sample behaviour.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The panel is 299 genomes drawn from the module's own sample; it is not held out.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<strong>VP1 and VP2 are still called at identical coordinates in 14 of 299 genomes.</strong> The capsid rebuild took the family-wide figure down by two orders of magnitude but did not reach zero here. Fourteen genomes have a VP1 call that is actually VP2's open reading frame, and the module does not currently distinguish them.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>ORFX is declared on five sequences.</strong> Its bit floor of 233 is high enough that it will rarely fire falsely, and low enough coverage that it will rarely fire at all. Do not read its absence as information.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>No splice features are declared.</strong> Bocaparvovirus transcription is spliced and NP1 is involved in processing those messages, but every feature here is called from a profile built on deposited protein. A spliced product that was never deposited would be invisible.",
+     "type": "prose"
+    },
+    {
+     "html": "Use this module for bocaparvovirus and aveparvovirus genomes; routing and calling are both strong and the panel is the cleanest in the family. Check VP1 and VP2 coordinates before trusting a VP1 call: in 14 of 299 genomes they are the same.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Three limits, each measured rather than supposed.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "A single cluster arrived labelled both NP1 and NS2. Those are positions in a genome, not protein names, and different submitters file different proteins under each. Had the build trusted the labels it would have split one protein into two features, or merged two into one.",
+     "type": "prose"
+    },
+    {
+     "html": "The capsid labels were wrong here as they were across the family, just less severely. The nested VP forms were rebinned by size per species rather than by the name on the deposit, and the profiles rebuilt; 14 genomes still show the collision, down from a far larger number before the rebuild.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What the build turned up that was not expected.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "from": "bocaparvovirus-saturation-figure.html",
+     "type": "figure"
+    },
+    {
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "22"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "21"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "18"
+      ],
+      [
+       "NP1",
+       "Viral RNA processing protein NP1",
+       "16"
+      ],
+      [
+       "ORFX",
+       "Uncharacterized lineage specific protein ORFX",
+       "3"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "3"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Rarefaction over proteins: every annotated protein in the 109 genomes both sources annotate (418 source product records, 472 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>43</b> distinct strings, the module's <b>5</b>. At the depth both reach, 418 proteins, free text has used <b>43.0 strings against 5.0 &mdash; a 8.6-fold difference.</b> The source reaches 95% of its final size after 328 proteins, the module after 18.",
+     "type": "prose"
+    },
+    {
+     "html": "418 deposited protein strings across 109 genomes reduce to five feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at five.",
+     "type": "prose"
+    },
+    {
+     "html": "Three strings resisted, three sequences in all \u2014 and two of them, <em>Non-structural ORFs</em> and <em>Structural ORFs</em>, are category labels rather than proteins.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What collapsing the vocabulary actually bought.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Generated from <code>bocaparvovirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Parvoviridae/work/Bocaparvovirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+ "title": "Bocaparvovirus Coverage Audit"
+}

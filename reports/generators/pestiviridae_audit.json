@@ -1,0 +1,284 @@
+{
+ "eyebrow": "LowVan &middot; Pestiviridae module &middot; 24 September 2026",
+ "h1": "Pestiviridae",
+ "headline_tiles": [
+  [
+   "13",
+   "features declared&lt;br&gt;12 with profiles + 1 derived"
+  ],
+  [
+   "103",
+   "profiles over 8,185 sequences"
+  ],
+  [
+   "98.8%",
+   "genomes routed&lt;br&gt;25 refs, 2,006 genomes"
+  ],
+  [
+   "110/111",
+   "derived NS2 ending in the&lt;br&gt;correct Arg1589"
+  ],
+  [
+   "0",
+   "internal stops in derived NS2"
+  ],
+  [
+   "28.9%",
+   "genuinely clean&lt;br&gt;species-capped panel"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "text": "Npro - C - Erns - E1 - E2 - p7 - NS2 - NS3 - NS4A - NS4B - NS5A - NS5B",
+     "type": "pre"
+    },
+    {
+     "html": "<b>Npro and Erns have no counterpart in Hepaciviridae or Pegivirus.</b> Npro is a self-cleaving cysteine autoprotease found nowhere else in the order; Erns is a ribonuclease envelope glycoprotein. That is why Pegivirus, which has neither and no capsid at all, is a separate module rather than a genus in this one.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The dump excludes records under 1,000 nt</b> &mdash; 29,157 of 33,605. The median pestivirus record is 248 nt, shorter even than Hepacivirus's 467-nt NS5B fragment, and cannot yield a protein above any runt floor. It changes the denominator of every &lsquo;% binned&rsquo; figure here.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One genus, one polyprotein, cut into twelve products plus the polyprotein itself. ICTV split the old Flaviviridae in 2025; BV-BRC still files every pestivirus under <code>family = Flaviviridae</code>, and the module name follows ICTV.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "string",
+      "n",
+      "median aa",
+      "what it actually is"
+     ],
+     "rows": [
+      [
+       "<code>NTPase/RNA helicase</code>",
+       "1,489",
+       "<b>683</b>",
+       "NS3"
+      ],
+      [
+       "<code>NTPase/RNA helicase (NS3)</code>",
+       "1,465",
+       "<b>1,140</b>",
+       "the &lt;b&gt;NS2-3 precursor&lt;/b&gt;"
+      ],
+      [
+       "<code>E2*</code>",
+       "1,494",
+       "<b>443</b>",
+       "the uncleaved &lt;b&gt;E2-p7&lt;/b&gt; precursor, not a variant of E2"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The string carrying the parenthetical <code>(NS3)</code> is the one that is <i>not</i> NS3. Both appear on nearly every genome. <b>896 precursors were routed out of NS3 by length</b>; before routing its median was 1,136 aa, after it is 683.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Binning on wording would have put 2,390 precursors into two features. Both were caught by measuring length against the reference, not by reading the string.",
+   "num": "02",
+   "title": "Two strings that name the wrong protein"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "25",
+       "rep contigs"
+      ],
+      [
+       "2,006",
+       "genomes"
+      ],
+      [
+       "98.8%",
+       "routed"
+      ],
+      [
+       "22",
+       "clusters uncovered, 25 genomes"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "Essentially reproducing the 99.0% measured independently at the gate on 22 September.",
+     "type": "prose"
+    }
+   ],
+   "lede": "25 representative contigs over the 2,006 pestivirus genomes at or above 6,000 nt.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "POLY",
+       "100.0",
+       100.0,
+       ""
+      ],
+      [
+       "NS3",
+       "100.0",
+       100.0,
+       ""
+      ],
+      [
+       "NS4A",
+       "98.1",
+       98.11,
+       ""
+      ],
+      [
+       "NS4B",
+       "98.1",
+       98.11,
+       ""
+      ],
+      [
+       "E1",
+       "95.6",
+       95.6,
+       ""
+      ],
+      [
+       "NS5B",
+       "95.6",
+       95.6,
+       ""
+      ],
+      [
+       "ERNS",
+       "92.5",
+       92.45,
+       ""
+      ],
+      [
+       "C",
+       "91.2",
+       91.19,
+       ""
+      ],
+      [
+       "E2",
+       "81.1",
+       81.13,
+       ""
+      ],
+      [
+       "P7",
+       "81.1",
+       81.13,
+       ""
+      ],
+      [
+       "NPRO",
+       "75.5",
+       75.47,
+       ""
+      ],
+      [
+       "NS5A",
+       "71.1",
+       71.07,
+       ""
+      ],
+      [
+       "NS2",
+       "69.8",
+       69.81,
+       "derived, no PSSM"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>NS2 is the feature with no training data, and it calls on 111 genomes.</b> That is 69.8% overall and <b>86% of the genomes where both its anchors exist</b> &mdash; it can only be cut where p7 and NS3 are both called, and p7 is 81.1%.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>E2, p7, Npro and NS5A read low for one reason and it is not the profiles.</b> The failures are whole-species and all-or-nothing &mdash; every genome of <i>Pestivirus scrofae</i>, ferret, bamboo rat, Norway rat and pangolin pestivirus fails, or none does. Of the taxa missing E2, <b>none has a single E2 training sequence</b>; for p7, none; for NS5A, 19 of 21 have none. BV-BRC annotates the polyprotein for the atypical pestiviruses and does not cut it.",
+     "type": "prose"
+    }
+   ],
+   "lede": "172 genomes annotated, species-capped across 60 species. 159 routed; 13 called nothing.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "BV-BRC holds <b>69 records</b> under a pestivirus NS2 string. Only <b>34</b> are NS2-length, and <b>24 of those 34 do not end in the right residue</b>. Pestivirus mostly does not cleave NS2-3 &mdash; uncleaved NS2-3 is the normal product of non-cytopathic BVDV &mdash; and the CSFV reference <code>NC_002657</code> annotates no NS2 at all.",
+     "type": "prose"
+    },
+    {
+     "html": "So NS2 is not modelled. It is cut from p7's C-terminus to the residue before NS3's N-terminal Gly. That Gly is the <b>Gly1590 of the conserved Arg1589-Gly1590 site</b>, established by protein sequencing of two cytopathic BVDV strains (Tautz &amp; Thiel, <i>Arch Virol</i> 2003, PMID 12827468). The motif <code>R|GPAVC</code> is present in <b>358 of 400</b> pestivirus polyproteins, and <b>534 of 556</b> NS3 records begin <code>GPAVCK</code>.",
+     "type": "prose"
+    },
+    {
+     "items": [
+      [
+       "110/111",
+       "end in the correct Arg"
+      ],
+      [
+       "0",
+       "internal stops"
+      ],
+      [
+       "453",
+       "median aa (reference 457)"
+      ],
+      [
+       "394-547",
+       "observed range"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "<b>The same method was tried on Npro and rejected.</b> Cys168-Ser169 is equally well established (Rumenapf 1998 PMID 9499122; Gottipati 2013 PMID 24146623), but derivation gave <b>no coverage gain</b> (120 calls against the PSSM's 122) and the C-terminus collapsed from <b>96% ending in the conserved Cys168 to 58%</b>. A derived end inherits whatever boundary its anchor places, and only 43 of 100 shared genomes agreed. NS2 works because its anchor <i>is</i> the literature site; Npro's anchor is the capsid profile, which does not place that junction reliably. Npro keeps its PSSMs.",
+     "kind": "stop",
+     "type": "verdict"
+    }
+   ],
+   "lede": "The change of method, and the one number that shows it worked.",
+   "num": "06",
+   "title": "NS2, cut at a site fixed by protein sequencing"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>Mature peptides in the atypical pestiviruses.</b> E2, p7 and NS5A go uncalled in 16-21 lineages that have no training sequence for those features. Derivation is the route, and it is available for E2 (anchored on E1 and p7) but <b>not for p7</b>: p7 would need E2 and NS2 as anchors, and NS2 is itself derived &mdash; the machinery anchors only on PSSM matches, not on other derived features. That is a real limit of the mechanism, not an oversight.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>13 of 172 genomes call nothing at all</b>, and <b>28.9% are genuinely clean</b>. The panel is species-capped, so it gives every one of 60 species equal weight and deliberately over-weights the divergent tail.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Measured limits, none of them fixable by tuning a threshold.",
+   "num": "07",
+   "title": "What it cannot do"
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>, module <code>modules/Pestiviridae</code>. Every figure computed from the run; panel and collections in <code>work/Pestiviridae</code>.",
+ "standfirst": "Bovine viral diarrhea, classical swine fever and border disease, plus a growing tail of atypical pestiviruses from rodents, bats, ferrets and pangolins. Thirteen features over one polyprotein &mdash; and one of them, <b>NS2</b>, is not modelled from the database at all. It is cut at a cleavage site fixed by protein sequencing, because the database's own NS2 records are too few and too wrong to train on.",
+ "subhead": "Does the pestivirus module actually work?",
+ "title": "Pestiviridae Coverage Audit"
+}

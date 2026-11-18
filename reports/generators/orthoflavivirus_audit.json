@@ -1,0 +1,901 @@
+{
+ "eyebrow": "LowVan \u00b7 Orthoflavivirus module \u00b7 22 September 2026",
+ "h1": "Orthoflavivirus",
+ "headline_tiles": [
+  [
+   "16",
+   "features declared, 15 with profiles&lt;br&gt;+1 transcript-edited"
+  ],
+  [
+   "337",
+   "profiles over 55,119 sequences"
+  ],
+  [
+   "98.3%",
+   "genomes routed&lt;br&gt;25 refs, 37,175 genomes"
+  ],
+  [
+   "90.5%",
+   "all 14 non-pr features called&lt;br&gt;well-sequenced genomes"
+  ],
+  [
+   "100%",
+   "termini matching&lt;br&gt;published cleavage chemistry"
+  ],
+  [
+   "0",
+   "genomes with nothing called"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "The polyprotein layouts genuinely differ between genera, which is why one module per genus rather than one per family. <b>Orthoflavivirus</b> contributes 38,735 genomes at &ge;9,000 nt against <em>Hepacivirus</em> 5,021, <em>Pestivirus</em> 1,970 and <em>Pegivirus</em> 563.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "feature",
+      "symbol",
+      "type",
+      "sequences",
+      "profiles",
+      "min\u2013max aa",
+      "bit"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "POLY",
+       "CDS",
+       "14,079",
+       "55",
+       "2686\u20134237",
+       "400"
+      ],
+      [
+       "ANCHC",
+       "ancC",
+       "mat_peptide",
+       "2,032",
+       "25",
+       "80\u2013143",
+       "60"
+      ],
+      [
+       "C",
+       "C",
+       "mat_peptide",
+       "1,009",
+       "17",
+       "82\u2013124",
+       "60"
+      ],
+      [
+       "PRM",
+       "prM",
+       "mat_peptide",
+       "1,759",
+       "19",
+       "128\u2013185",
+       "60"
+      ],
+      [
+       "PR",
+       "pr",
+       "mat_peptide",
+       "499",
+       "9",
+       "55\u201397",
+       "40"
+      ],
+      [
+       "M",
+       "M",
+       "mat_peptide",
+       "967",
+       "15",
+       "54\u201376",
+       "40"
+      ],
+      [
+       "E",
+       "E",
+       "mat_peptide",
+       "6,079",
+       "24",
+       "352\u2013505",
+       "200"
+      ],
+      [
+       "NS1",
+       "NS1",
+       "mat_peptide",
+       "5,052",
+       "27",
+       "263\u2013415",
+       "150"
+      ],
+      [
+       "NS2A",
+       "NS2A",
+       "mat_peptide",
+       "4,531",
+       "29",
+       "157\u2013239",
+       "80"
+      ],
+      [
+       "NS2B",
+       "NS2B",
+       "mat_peptide",
+       "1,464",
+       "22",
+       "118\u2013149",
+       "60"
+      ],
+      [
+       "NS3",
+       "NS3",
+       "mat_peptide",
+       "5,004",
+       "18",
+       "530\u2013623",
+       "300"
+      ],
+      [
+       "NS4A",
+       "NS4A",
+       "mat_peptide",
+       "1,417",
+       "20",
+       "119\u2013161",
+       "60"
+      ],
+      [
+       "2K",
+       "2K",
+       "mat_peptide",
+       "191",
+       "17",
+       "19\u201327",
+       "25"
+      ],
+      [
+       "NS4B",
+       "NS4B",
+       "mat_peptide",
+       "2,626",
+       "20",
+       "222\u2013268",
+       "100"
+      ],
+      [
+       "NS5",
+       "RDRP",
+       "mat_peptide",
+       "8,410",
+       "20",
+       "642\u20131099",
+       "400"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Six gene symbols \u2014 <code>C</code>, <code>E</code>, <code>M</code>, <code>NS1</code>, <code>NS2A</code>, <code>NS5</code> \u2014 already name different proteins in coronaviruses and paramyxoviruses. These are the community names Orthoflavivirus genuinely owns, and renaming them would be worse than the clash. Decided, not overlooked.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One genus, chosen for human-disease burden. Flaviviridae holds 440,150 records but 395,156 are partial \u2014 the median <em>Hepacivirus</em> record is a 467-nt NS5B genotyping fragment \u2014 so the family was split by genus and this is the first of four.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "stage",
+      "sequences",
+      "removed",
+      "why"
+     ],
+     "rows": [
+      [
+       "binned from the dump",
+       "68,202",
+       "\u2014",
+       "424,782 of 459,686 features, 92.4%"
+      ],
+      [
+       "ambiguity codes",
+       "56,508",
+       "11,694",
+       "any X, B, Z, J or &lt;code&gt;*&lt;/code&gt;; 11 sole-representative exceptions kept"
+      ],
+      [
+       "re-binned by homology",
+       "56,508",
+       "\u2212113 moved",
+       "108 anchored capsid filed as mature C"
+      ],
+      [
+       "cleavage chemistry",
+       "55,169",
+       "1,422",
+       "termini contradicting the enzyme that makes them"
+      ],
+      [
+       "length ceiling 1.3\u00d7 median",
+       "55,119",
+       "50",
+       "a POLY of 12,309 aa, an M of 500"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>Ambiguity.</b> 17.2% of the binned sequences carried at least one ambiguity code. The worst were not marginal: <em>Orthoflavivirus tembusu</em> VN0613 contributed a POLY of 1,261 X, an E of 392 and an NS4A that was 126 X out of ~130 residues. Eleven sequences were kept against the rule because each is the only one its taxon has for that feature and is spoiled by one to four incidental residues \u2014 Sokoluk virus NS4A, Dakar bat virus M and NS3, Phnom Penh bat virus NS3/E/NS5/POLY, <em>O. flavi</em> KGH855 NS2A/POLY, Flavivirus sp. M138 POLY at 4 X in 4,013. All eleven are itemised in <code>AMBIGUOUS_KEPT.tsv</code>.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Length.</b> The pipeline had only a floor \u2014 70% of median \u2014 and nothing above it, which is why positional halves leaking into POLY needed a hand-written fix and why M, a 75-residue protein, still held sequences up to 500 aa after every other filter. A ceiling at 1.3\u00d7 median removes 50 sequences with a clean gap either side: the longest legitimate variant is Culex flavivirus ancC at 1.22\u00d7, and the junk starts at 3.6\u00d7.",
+     "type": "prose"
+    },
+    {
+     "html": "208 first-pass profiles plus 129 from the leftover pass. The leftover pass needed a fix to run here at all: it discarded any sequence shorter than a hardcoded 30 residues, so all 60 of 2K's leftovers were dropped and the script reported \"0 leftover sequence(s)\" for a file holding 60. The floor is now a fraction of the feature's own collection median, and 2K gained the 7 leftover profiles it should always have had.",
+     "type": "prose"
+    }
+   ],
+   "lede": "573,752 features collapsed to 88,194 unique proteins, binned by annotation string, then cleaned three ways. The cleaning removed 13,083 of 68,202 sequences and is the substance of this build.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "text": "... NS4A ...EPEKQR \u2193 SQTDNQLAVFLICVLTLVSAVAA \u2193 NEMGWLDK... NS4B ...\n                     \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 2K, 23 aa \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n        NS2B-NS3 protease                    host signalase\n        cuts after the QR                    cuts before the N",
+     "type": "pre"
+    },
+    {
+     "html": "From <b>PMID 8445732</b> (Lin, Amberg, Chambers &amp; Rice, <em>J Virol</em> 1993), <b>PMID 33494395</b> (Wahaab et al., <em>Pathogens</em> 2021) and <b>PMID 2174669</b> (Chambers, Hahn, Galler &amp; Rice, <em>Annu Rev Microbiol</em> 1990): NS2B-NS3 requires two basic residues at P2\u2013P1 and a small residue at P1&prime;; the 2K/NS4B site is a host signalase site. So an NS2B-NS3-generated C-terminus ends in R or K, a signalase-generated one ends in a small residue, and an NS2B-NS3-generated N-terminus begins with one.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "what the wording and length rules could not catch",
+      "n"
+     ],
+     "rows": [
+      [
+       "<code>fig|11060.18332</code> filed as 2K: <code>RGLRTLILAPTRVVAAEM</code>, which occurs 1,212 times inside the NS3 collection at residue 214 of 618 \u2014 the helicase motif, 560 residues from where 2K lives",
+       "1"
+      ],
+      [
+       "West Nile records filed as 2K beginning &lt;code&gt;EKQR&lt;/code&gt; \u2014 NS4A&#x27;s own C-terminal tail, so the N-terminal cut is drawn four residues too early",
+       "5"
+      ],
+      [
+       "records ending &lt;code&gt;...VAA&lt;/code&gt; + &lt;code&gt;NEMG&lt;/code&gt;, eating into NS4B",
+       "2"
+      ],
+      [
+       "anchored capsid filed as mature C; ancC and C overlap in length (C p90 114, ancC p10 110) and the source calls both &quot;capsid protein&quot;",
+       "108"
+      ],
+      [
+       "total records whose termini contradict their feature",
+       "1,422"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>The check that this is right rather than merely self-consistent.</b> After filtering, 2K measures 23 residues at p10, median <em>and</em> p90. The filter knows only residue classes at the two ends and is never told a length \u2014 it reproduces Lin 1993's experimental result, that the NS4A/2K site sits exactly 23 residues upstream of the signalase site, from sequence alone.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "<code>min_len</code> and <code>max_len</code> are the observed range of each cleaned collection rather than a hand-drawn window. The previous values came from the contaminated distributions and were wide enough to admit that 18-residue helicase fragment as 2K.",
+     "type": "prose"
+    }
+   ],
+   "lede": "A fifteen-product polyprotein has sixteen termini and not one of them is marked by a codon. Each is where a named enzyme cuts, so each is checkable against published chemistry rather than against the annotation being replaced.",
+   "num": "03",
+   "title": "Where the boundaries come from"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "25",
+       "rep contigs"
+      ],
+      [
+       "37,175",
+       "genomes measured"
+      ],
+      [
+       "98.3%",
+       "routed"
+      ],
+      [
+       "289",
+       "clusters at 70% id"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "rows": [
+      [
+       "5 refs",
+       "75",
+       75.0,
+       "the four dengue serotypes and JEV"
+      ],
+      [
+       "10 refs",
+       "94",
+       94.0,
+       ""
+      ],
+      [
+       "15 refs",
+       "97",
+       97.0,
+       ""
+      ],
+      [
+       "20 refs",
+       "98",
+       98.0,
+       ""
+      ],
+      [
+       "25 refs",
+       "98.3",
+       98.3,
+       "the shipped budget"
+      ],
+      [
+       "50 refs",
+       "99",
+       99.0,
+       "twice the budget buys 0.7 points"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "The earlier figure for this module was <b>92.5%</b>, measured on a 3,906-genome species-capped sample. That sample under-represented dengue, which is 9,010 and 8,799 genomes in the two largest clusters, so 92.5% was the conservative floor and 98.3% is the real number on the full set. Both are recorded because the conservative one is what the module was accepted on.",
+     "type": "prose"
+    },
+    {
+     "html": "The full set is 37,175 of the 38,735 Orthoflavivirus genomes at &ge;9,000 nt \u2014 BV-BRC returned no sequence for 1,560. Note also that this criterion yields 38,735 where an earlier note recorded 38,202; no threshold reproduces the older figure from the current dump, so the criterion is stated rather than the number matched.",
+     "type": "prose"
+    }
+   ],
+   "lede": "25 representative contigs, the project's fixed budget. The question is not how many references cover every genome \u2014 for a divergent taxon that is one per species \u2014 but what fraction routes within the budget.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "NS1",
+       "99.8",
+       99.8,
+       "3,326 of 3,333"
+      ],
+      [
+       "POLY",
+       "99.8",
+       99.8,
+       "3,325"
+      ],
+      [
+       "prM",
+       "99.8",
+       99.8,
+       "3,325"
+      ],
+      [
+       "E",
+       "99.7",
+       99.7,
+       "3,323"
+      ],
+      [
+       "NS3",
+       "99.7",
+       99.7,
+       "3,323"
+      ],
+      [
+       "NS5",
+       "99.6",
+       99.6,
+       "3,319"
+      ],
+      [
+       "NS2A",
+       "99.3",
+       99.3,
+       "3,310"
+      ],
+      [
+       "M",
+       "98.5",
+       98.5,
+       "3,284"
+      ],
+      [
+       "ancC",
+       "97.1",
+       97.1,
+       "3,236"
+      ],
+      [
+       "NS4B",
+       "95.2",
+       95.2,
+       "3,174"
+      ],
+      [
+       "NS4A",
+       "94.9",
+       94.9,
+       "3,163"
+      ],
+      [
+       "2K",
+       "94.8",
+       94.8,
+       "3,161 \u2014 the 23-residue signal peptide"
+      ],
+      [
+       "NS2B",
+       "94.6",
+       94.6,
+       "3,154"
+      ],
+      [
+       "pr",
+       "93.2",
+       93.2,
+       "3,106"
+      ],
+      [
+       "C",
+       "91.8",
+       91.8,
+       "3,060 \u2014 the weakest feature"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>2K is called on 94.8% of well-sequenced genomes.</b> A 23-residue signal peptide with 17 profiles, whose collection was 13.6% contaminated before this build and which had no leftover profiles at all. It is now mid-table rather than the weakest feature.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>90.5%</b> of well-sequenced genomes carry all fourteen non-pr features simultaneously. That is the figure comparable to other modules in this series \u2014 Alphaflexiviridae 92.4%, Tobamovirus 89.4%, Hepeviridae 89.1% \u2014 and it is the right comparison because those modules declare four to six features each, where this one declares fifteen and marks twelve of them essential.",
+     "type": "prose"
+    },
+    {
+     "html": "<h3>NS1\u2032, the transcript-edited feature</h3>Measured over the same 3,871 genomes by running <code>get_transcript_edited_features.pl</code> on the annotated GTOs. Its denominator is the 1,007 genomes of the five species that make NS1\u2032, not the whole taxon: the other 2,864 <em>should</em> get nothing, and 2,862 of them do.",
+     "type": "prose"
+    },
+    {
+     "rows": [
+      [
+       "Cacipacore",
+       "100.0",
+       100.0,
+       "3 of 3"
+      ],
+      [
+       "Usutu",
+       "94.0",
+       94.0,
+       "281 of 299; 10 partial_cds"
+      ],
+      [
+       "West Nile",
+       "93.6",
+       93.6,
+       "280 of 299; 15 partial_cds"
+      ],
+      [
+       "Murray Valley",
+       "72.6",
+       72.6,
+       "77 of 106; 25 partial_cds"
+      ],
+      [
+       "JEV",
+       "35.0",
+       35.0,
+       "105 of 300; 187 partial_cds \u2014 the reference set is 97 West Nile to 4 JEV"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "headers": [
+      "NS1\u2032 across 3,871 genomes",
+      "n",
+      ""
+     ],
+     "rows": [
+      [
+       "the 5 carrier species, NS1\u2032 called",
+       "746",
+       "74.1% of 1,007"
+      ],
+      [
+       "carrier, &lt;code&gt;partial_cds&lt;/code&gt; \u2014 no reference within 95%",
+       "237",
+       "honest degradation, no translation emitted"
+      ],
+      [
+       "carrier, nothing called",
+       "24",
+       ""
+      ],
+      [
+       "the other 92 species, nothing called",
+       "<b>2,862</b>",
+       "Powassan 0/300, Zika 0/300, dengue 0/299, yellow fever 0/298, TBE 0/297, St Louis 0/289"
+      ],
+      [
+       "the other 92 species, NS1\u2032 called",
+       "2",
+       "both unclassified &lt;em&gt;Flavivirus&lt;/em&gt; sp., plausibly serogroup members"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>Zero false positives outside the serogroup</b>, across 2,864 genomes and 92 species. The error mode is entirely inside the carrier species \u2014 see \u00a707.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "3,906 genomes annotated end to end, 3,871 scored. Rates for the fifteen PSSM features are over the 3,333 whose assemblies carry \u22641% ambiguous bases \u2014 see \u00a708 for why that distinction is the whole story. NS1\u2032 is measured separately below, because it is called by a different program and its denominator is not the whole taxon but the five species that make it.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "collection median",
+      "called median",
+      "agreement"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "3,392",
+       "3,417",
+       "\u2713"
+      ],
+      [
+       "NS5",
+       "900",
+       "903",
+       "\u2713"
+      ],
+      [
+       "NS3",
+       "619",
+       "619",
+       "exact"
+      ],
+      [
+       "E",
+       "495",
+       "499",
+       "\u2713"
+      ],
+      [
+       "NS1",
+       "352",
+       "352",
+       "exact"
+      ],
+      [
+       "NS4B",
+       "249",
+       "252",
+       "\u2713"
+      ],
+      [
+       "NS2A",
+       "218",
+       "227",
+       "\u2713"
+      ],
+      [
+       "prM",
+       "166",
+       "167",
+       "\u2713"
+      ],
+      [
+       "NS2B",
+       "130",
+       "131",
+       "\u2713"
+      ],
+      [
+       "NS4A",
+       "127",
+       "126",
+       "\u2713"
+      ],
+      [
+       "ancC",
+       "114",
+       "121",
+       "\u2713"
+      ],
+      [
+       "C",
+       "100",
+       "103",
+       "\u2713"
+      ],
+      [
+       "M",
+       "75",
+       "75",
+       "exact"
+      ],
+      [
+       "2K",
+       "23",
+       "23",
+       "exact"
+      ],
+      [
+       "pr",
+       "91",
+       "91 / 59",
+       "bimodal \u2014 see below"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>pr is the one feature whose declared bound was wrong, and the module found it.</b> BV-BRC annotates no pr peptide for the tick-borne clade at all: all 632 training sequences are mosquito-borne, running 69\u201397 aa with 500 of them at exactly 91. The profiles nonetheless call pr correctly in tick-borne genomes at its true, shorter boundary \u2014 TBE 244 calls at median 59, Kyasanur Forest 164 at 59, Omsk 51 at 59, louping ill 30 at 59, each \u226599% below the collection minimum. Tick-borne prM is shorter than mosquito-borne prM, so their pr genuinely is ~59 aa. A <code>min_len</code> of 69 flagged a correct call across an entire clade; it is now 55. The lesson is that bounds must reflect what a feature <em>is</em> across the taxon, not what the training collection happens to contain.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "Every constrained terminus now agrees with its enzyme on 100.0% of sequences in all fifteen collections. Before filtering that agreement ran 84\u201398%, worst at 2K (84.4% N-terminal, 87.5% C-terminal) and mature C (87.0% / 84.8%).",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two independent checks: the termini agree with the cleavage chemistry, and the called lengths agree with the training collections without having been told to.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>NS1&prime; is called, and it cannot distinguish the JEV vaccine lineage from its wild parent.</b> This is the limit of sequence-based identification for this feature, not a gap in the reference set.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "NS1&prime; is built and shipped as a <code>transcript_edit</code> feature: 104 hand-curated nucleotide references, each carrying the slipped base duplicated, from which the annotator fills a one-base gap in the genome and translates. Every one of the 104 donor genomes recovers its own protein byte-identically, and no false positive appears outside the serogroup \u2014 0 of 72 dengue, Zika and yellow fever genomes get a call or even a <code>partial_cds</code>.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "NS2A nucleotide 66",
+      "what the annotator calls",
+      "n",
+      ""
+     ],
+     "rows": [
+      [
+       "<code>G</code> \u2014 wild type, frameshift works",
+       "NS1&prime; called",
+       "11",
+       "correct"
+      ],
+      [
+       "<code>G</code> \u2014 wild type",
+       "<code>partial_cds</code>",
+       "7",
+       "no close enough reference; honest"
+      ],
+      [
+       "<code>A</code> \u2014 SA14-14-2 vaccine allele, frameshift broken",
+       "NS1&prime; called",
+       "<b>16</b>",
+       "<b>false positive</b>"
+      ],
+      [
+       "<code>A</code>",
+       "withheld",
+       "0",
+       ""
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>Why no threshold fixes this.</b> Every one of those A66 genomes carries the slippery heptanucleotide at phase 2 of NS2A codon 6, intact and in the correct frame \u2014 70 of 79 readable JEV genomes do. What disables NS1&prime; in the vaccine lineage is a single substitution 60 bases further on, in the pseudoknot that stimulates the slip. A sequence match sees a near-perfect reference and fills the gap; the structure that decides whether the ribosome actually slips is not something the match can read. Checking the heptamer before accepting a correction \u2014 the obvious guard \u2014 would catch none of them.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>What is and is not affected.</b> Wild-type JEV, West Nile, Usutu, Murray Valley and Cacipacore all make NS1&prime; and are called correctly. The error is confined to the attenuated SA14-14-2 lineage and to six other JEV genomes carrying the same allele, whose status \u2014 unlabelled vaccine derivative or genuine A66 field isolate \u2014 cannot be settled from sequence. Treat an NS1&prime; call on a strain named as a vaccine as unreliable.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The reference set under-covers JEV.</b> 97 of the 104 references are West Nile and 4 are JEV, because that is the ratio in which BV-BRC annotates the feature. Seven wild-type JEV genomes were therefore demoted to <code>Uncorrected NS1-prime protein encoding region</code> with no translation rather than corrected. That is the mechanism degrading gracefully, but JEV coverage is thin and a denser JEV reference set is the one improvement that would help.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>POLY fragments on poorly sequenced assemblies.</b> 421 genomes receive between 2 and 7 separate POLY calls instead of one. Every fragment comes from the <em>same</em> profile, so this is not a coverage gap: those genomes carry a median 7.9% ambiguous bases (p90 29.5%) against 0.0000% in the 3,450 single-call genomes, and 96% of them exceed 1%. The fragment boundaries sit on the N-runs \u2014 one Zika genome is called at 56+5196, then 5717+690, leaving a 465-nt gap. The annotator aligns what is sequenced and cannot bridge runs of Ns. This is assembly quality, not the module, but it is the largest single contributor to the headline quality figure.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>2K's profiles recall only 61.3% of their own training set.</b> Of its 191 sequences, the 17 profiles call 117 back within the declared length range. Every other feature sits at 98.6\u2013100% \u2014 NS1, NS3, NS5, prM, POLY and E at exactly 100%. A 23-residue profile at a bit cutoff of 25 has very little signal to work with, and this is the honest limit of modelling a signal peptide with a PSSM at all. It is called on 94.8% of well-sequenced genomes in practice, so the profiles generalise better than they self-recall \u2014 but the margin is thin and a future rebuild of this feature should expect to need more profiles, not a lower cutoff.",
+     "kind": "stop",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>Mature C is the weakest feature at 91.8%</b>, and ancC at 97.1%. The two overlap in length and the source names both \"capsid protein\", so 108 ancC records had to be moved out of C by homology. A residual 8.2% of genomes get no C call.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>1,309 records were discarded and cannot be recovered.</b> Of the 1,422 whose termini failed, homology could place only 113. The rest break down as 1,094 whose best match is their <em>own</em> feature \u2014 the right protein with broken ends, which has no bin to move to and would need its boundary guessed \u2014 188 matching nothing at \u226580% coverage against 55,119 clean sequences, and 27 matching another feature but failing that feature's own junction rule. Trimming was considered and rejected: a trimmed boundary is a guess, where the sequences that pass are evidence.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>219 annotation strings remain unbinned</b>, holding 2,826 features \u2014 0.6% of the taxon. They are listed in <code>UNASSIGNED_TRACKING.tsv</code> and are mostly \"hypothetical protein\" and bare ORF numbers that name no protein.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>No citation here has been read by a curator.</b> All references live in <code>PMID_claude_generated</code> and the curator-reviewed <code>PMID</code> field is empty for every feature. The three cleavage-chemistry citations were retrieved and their identifiers verified against Europe PMC, but retrieval is not review.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "The part that matters. None of the following is fixed by a threshold.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "62.0%",
+       "genuinely clean, all genomes"
+      ],
+      [
+       "72.0%",
+       "genuinely clean, \u22641% ambiguous"
+      ],
+      [
+       "90.5%",
+       "all 14 features called"
+      ],
+      [
+       "0",
+       "annotation failures"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "headers": [
+      "flag",
+      "n",
+      "attribution"
+     ],
+     "rows": [
+      [
+       "Genome is missing essential feature",
+       "1,679",
+       "twelve of fifteen features are marked essential, so the joint requirement compounds"
+      ],
+      [
+       "Genome has too many HSPs for",
+       "626",
+       "POLY fragmented across N-runs"
+      ],
+      [
+       "Contig has too many ambiguous bases",
+       "538",
+       "submission quality"
+      ],
+      [
+       "Feature is too short",
+       "3,179",
+       "1,142 POLY instances across 400 genomes; 687 pr calls now corrected by the bound change"
+      ],
+      [
+       "Feature is too long",
+       "20",
+       "PR 9, NS2A 7, ancC 4"
+      ],
+      [
+       "Contig is too long",
+       "1",
+       ""
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "35 genomes failed quality scoring outright, two of them because the GTO carried no features and no <code>viral_family</code> field. Feature-level flags are counted but do not decide the verdict \u2014 605 genomes carry one while having no genome or contig flag.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>These figures cover the fifteen PSSM features. NS1\u2032 is reported in \u00a705.</b> It had to be measured by a separate invocation because <code>run_gto_eval.py</code> ran the annotator and the quality scorer with nothing in between, so transcript-edited and spliced features were never called during evaluation \u2014 for any module. That is now fixed: the evaluator calls them before scoring, so a module's declared features and its measured features are the same set. Audits published before this fix understate their modules, Togaviridae TF and the coronavirus ORF1ab/NSP12 among them.",
+     "type": "prose"
+    }
+   ],
+   "lede": "3,871 genomes scored by viral_genome_quality.pl. The headline number is 62.0% and it is mostly a property of the sample, which is the point of reporting it next to the other two.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "355",
+       "source strings"
+      ],
+      [
+       "15",
+       "module strings"
+      ],
+      [
+       "23.7\u00d7",
+       "collapse"
+      ],
+      [
+       "0",
+       "new vocabulary rows"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "Measured by rarefaction over the 3,624 genomes annotated by both, 100 replicates. The source vocabulary reaches 95% of its final size only at 2,911 genomes \u2014 80% of the set \u2014 because it keeps accumulating new spellings with every genome added. The module's reaches 95% at a single genome, because a controlled vocabulary is closed by construction. 9.8 source strings per 100 genomes against 0.4.",
+     "type": "prose"
+    },
+    {
+     "html": "All fifteen strings were reused from the existing controlled set. Two were reused rather than invented \u2014 <code>Nucleocapsid protein</code> and <code>RNA-dependent RNA polymerase</code>, both already used by Togaviridae for mature peptides. 2K reads \"Signal peptide of NS4B\" because that is literally what it is. <code>check_annotations.py</code> reported one dissent at build time: it wanted <code>L</code>, <code>NSP12</code>, <code>nsP4</code> or <code>p90</code> for the RdRp rather than <code>NS5</code>, and the symbol was kept on the standing that justifies <code>NSP12</code> for coronaviruses &mdash; a large literature in major human pathogens and an active drug target. <b>That decision was later reversed project-wide.</b> On 7 October 2026 the gene symbol for the RNA-dependent RNA polymerase became <code>RDRP</code> in all 33 modules that declare one, so that the symbol means the same thing across the project rather than carrying each taxon's positional label. The feature KEY here is still <code>NS5</code>, which is the name the flavivirus literature uses; only the symbol moved.",
+     "type": "prose"
+    }
+   ],
+   "lede": "355 distinct annotation strings in the source for this genus. Fifteen in the module, and not one of them new to the controlled vocabulary.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>, module <code>modules/Orthoflavivirus</code>, taxon-specific code in <code>example-orthoflavivirus</code>. Annotation measured over 3,906 genomes on 21\u201322 September 2026; routing over 37,175. Every figure on this page appears in <code>orthoflavivirus_audit.json</code>.",
+ "standfirst": "Dengue, Zika, yellow fever, West Nile, Japanese encephalitis and tick-borne encephalitis are one genus translated as a single polyprotein and cut into fifteen pieces, plus a sixteenth made by a ribosomal frameshift. Every one of those pieces is bounded not by a codon but by where a named enzyme cuts \u2014 which makes the boundaries checkable, and made a whole class of error in the source annotation invisible to every rule this kit had.",
+ "subhead": "Does the flavivirus module actually work?",
+ "title": "Orthoflavivirus Coverage Audit"
+}

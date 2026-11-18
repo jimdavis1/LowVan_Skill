@@ -1,0 +1,285 @@
+{
+ "eyebrow": "LowVan &middot; PteropineOrthoreovirus module &middot; 17 October 2026",
+ "h1": "Pteropine Orthoreovirus",
+ "headline_tiles": [
+  [
+   "12",
+   "features, all with profiles"
+  ],
+  [
+   "15",
+   "PSSMs"
+  ],
+  [
+   "10",
+   "segments"
+  ],
+  [
+   "100%",
+   "of 243 segment records routed"
+  ],
+  [
+   "20/20",
+   "panel isolates with all twelve"
+  ],
+  [
+   "3.9&times;",
+   "annotation string collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Pteropine orthoreovirus infects fruit bats and has caused human respiratory illness in Malaysia and Indonesia. It was separated out during the Mammalian Orthoreovirus build: the records read as mammalian on host and sit under mammalian-sounding names, but they carry the <b>avian</b> S1 architecture &mdash; p10, p17 and sigma C &mdash; and are <b>29.5%</b> identical to MRV on the core shell and <b>30.7%</b> on sigma-2. Ten segments, twelve proteins, the same layout as Avian Orthoreovirus.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Four names, one species &mdash; and a fifth that is not.</b> On the full-length polymerase over &ge;600 aa, Melaka, Nelson Bay, Pteropine and Kampar are <b>99&ndash;100% identical</b>: one species deposited under four names, all of it in scope here. <b>Broome virus is 51%</b> to all of them and is excluded. At 20 records it is too small to build alone, so it joins Mahlapitsi and Reptilian orthoreovirus as a named gap in this family.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "It was found inside Mammalian Orthoreovirus, by its genome rather than its host.",
+   "num": "01",
+   "title": "Why this is a module at all"
+  },
+  {
+   "blocks": [
+    {
+     "html": "Several strings in this dump are deposited on more than one protein, and two further pairs cannot be told apart by length either:",
+     "type": "prose"
+    },
+    {
+     "text": "&quot;major inner-capsid protein&quot;     416 AND 1,290 residues\n&quot;major outer-capsid protein&quot;     361 AND   675 residues\n&quot;nonstructural protein&quot;          351 AND   631 residues\n&quot;sigma2/B&quot;                       142 residues -- p17&#x27;s length,\n                                 not sigma A&#x27;s 416\n\nsigma B and sigma NS             both ~367\nlambda A and lambda C            both ~1,282-1,290",
+     "type": "pre"
+    },
+    {
+     "html": "<b>So nothing is bound by name.</b> Every protein is assigned by its best blastp hit against the canonical sequences of the <b>Avian Orthoreovirus</b> module &mdash; the nearest relative that is already built and curated &mdash; and the resulting length modes are tight: lambda A 72% at 1,290, lambda B 71% at 1,259, mu B 67% at 675, sigma A 60% at 416, p10 52% at 95, sigma NS 49% at 367. 179 of 195 proteins resolve in that one pass.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>p17 needs a second pass, and it is the reason that pass exists.</b> All of its members lose the best-hit race to some other canonical, because the avian P17 canonical is a poor representative of its own feature. They are nonetheless unambiguous &mdash; 86&ndash;98% identical to one another, and 33&ndash;39% identical to the avian P17 <i>collection</i> at e-values of 1e-13 to 1e-19. Matching against the full collection rather than its canonical places all of them, and takes the module to 195 of 195 assigned.",
+     "type": "prose"
+    }
+   ],
+   "lede": "207 unique proteins under 53 strings, and the strings are descriptions rather than names.",
+   "num": "02",
+   "title": "The names identify almost nothing"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "segment",
+      "bit",
+      "aa range",
+      "PSSMs",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "LAMBDAA",
+       "lambda A",
+       "2019",
+       "1142&ndash;1367",
+       "1",
+       "yes"
+      ],
+      [
+       "LAMBDAB",
+       "lambda B",
+       "1932",
+       "1182&ndash;1334",
+       "1",
+       "yes"
+      ],
+      [
+       "LAMBDAC",
+       "lambda C",
+       "1222",
+       "1200&ndash;1358",
+       "1",
+       "yes"
+      ],
+      [
+       "MUA",
+       "mu A",
+       "779",
+       "644&ndash;773",
+       "1",
+       "yes"
+      ],
+      [
+       "MUB",
+       "mu B",
+       "1008",
+       "597&ndash;732",
+       "1",
+       "yes"
+      ],
+      [
+       "MUNS",
+       "mu NS",
+       "590",
+       "565&ndash;668",
+       "1",
+       "yes"
+      ],
+      [
+       "P10",
+       "sigma C",
+       "113",
+       "89&ndash;100",
+       "2",
+       "yes"
+      ],
+      [
+       "P17",
+       "sigma C",
+       "70",
+       "131&ndash;155",
+       "2",
+       "yes"
+      ],
+      [
+       "SIGMAC",
+       "sigma C",
+       "130",
+       "303&ndash;351",
+       "2",
+       "yes"
+      ],
+      [
+       "SIGMAA",
+       "sigma A",
+       "599",
+       "373&ndash;440",
+       "1",
+       "yes"
+      ],
+      [
+       "SIGMAB",
+       "sigma B",
+       "277",
+       "328&ndash;382",
+       "1",
+       "yes"
+      ],
+      [
+       "SIGMANS",
+       "sigma NS",
+       "465",
+       "329&ndash;389",
+       "1",
+       "yes"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>Sigma A, sigma B and sigma NS first came back as \"cannot be separated from other taxa by score\" &mdash; and all three verdicts were an artefact of the foreign set.</b> This taxon is deposited under at least ten aliases, scattered across three dumps: Pteropine, Nelson Bay, Melaka, Kampar, Pulau, Paguyaman, Xi River, Kasama, HK23629 and Lopburi. Scoring those records as foreign puts the bar above the module's own members.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "headers": [
+      "feature",
+      "as foreign",
+      "corrected",
+      "weakest member"
+     ],
+     "rows": [
+      [
+       "sigma A",
+       "838 &mdash; not separable",
+       "598",
+       "780"
+      ],
+      [
+       "sigma NS",
+       "734 &mdash; not separable",
+       "464",
+       "683"
+      ],
+      [
+       "sigma B",
+       "724 &mdash; not separable",
+       "<b>277</b>",
+       "696"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "A name-based exclusion list was not enough: it caught Pulau and Paguyaman but missed <code>Orthoreovirus Lopburi01</code> and <code>Lopburi02</code>, which sit at <b>95&ndash;97% identity</b> to this module's sigma B. Kin is now defined by sequence &mdash; anything &ge;90% identical to a member over &ge;150 aa is the same taxon whatever the record is called &mdash; which found <b>9 such records</b> across the sibling dumps and resolved all three features. <b>No feature in this module is unseparable.</b>",
+     "type": "prose"
+    }
+   ],
+   "lede": "Twelve features, and three verdicts that were wrong before the map was fixed.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>13 references route 243 of 243 segment records &mdash; 100.0%</b>, and <b>all twelve features are called on all 20 evaluated panel isolates</b>, with no feature called twice anywhere. Self-recall is 100% on all twelve and cross-feature contamination is nothing above 50 bits. The Met-start gate passes on all 15 alignments. <code>copy_num</code> is set on all twelve, measured on the 19 isolates that raise no quality flag.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "The panel covers Kampar, Melaka, Nelson Bay and Pteropine &mdash; all four names the species is deposited under &mdash; across 21 reconstructed isolates. Two did not score cleanly, and both are artefacts of grouping segment records by deposited strain name rather than defects in the module: one <code>Nelson Bay orthoreovirus</code> entry draws two copies of S1 and is flagged <code>Too many contigs for sigma C Segment</code>, and one <code>Melaka orthoreovirus</code> entry merges two genomes into a 46,820 nt pseudo-genome, which the annotator refuses against its 40,000 nt ceiling. The refusal is correct.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Thirteen references, and a panel that spans all four aliases.",
+   "num": "04",
+   "title": "Does it route, and does it call?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>Every collection is tiny and the member floor was lowered to build at all.</b> The largest holds 18 sequences and the smallest 10, because BV-BRC carries only 294 Pteropine segment records. <code>-m 2</code> is set on every feature against a documented default of 5, and recorded in <code>BUILD_PARAMS</code>. The identity floor <code>-mi</code> stays at 0.8, so identity still does the quality work and only the member count is relaxed &mdash; but a module built from 10 sequences per protein says far less about divergent isolates than one built from 1,600.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>Nine records of this taxon are not in its collections.</b> They sit in the Mammalian and Avian Orthoreovirus dumps under names the subset did not match &mdash; Pulau, Paguyaman, HK23629, Xi River, Lopburi01 and Lopburi02 &mdash; and were identified only when they turned up as false foreign hits. They are correctly treated as kin for cutoff purposes, but the collections were built without them.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Broome virus is not covered</b>, and nothing else covers it either. At 51% on the polymerase it is a separate taxon with 20 records.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Feature identity is inherited, not independent.</b> Every assignment here traces to the Avian Orthoreovirus canonicals. That module's own feature identities were fixed by orthology to Mammalian Orthoreovirus and checked against ICTV, so the chain is sound &mdash; but an error in an avian canonical would propagate here unseen, and sigma C was assigned at only 23% identity.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Four limits, and the first is the size of the taxon.",
+   "num": "05",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "47 distinct annotation strings across 314 occurrences collapse onto <b>12 controlled annotations</b>, a <b>3.9&times;</b> reduction; rarefied over proteins, 44 source strings against 12, a <b>3.7&times;</b> collapse. Those are small numbers next to Avian Orthoreovirus's 22.2&times;, and for a plain reason: this taxon has few records, so it has few ways of being wrong.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The collapse ratio is the wrong measure of what this module did.</b> It counts spelling variation absorbed. The work here was that <code>sigma2/B</code> is deposited on a 142-residue protein, which is p17, and that <code>major inner-capsid protein</code> means two different proteins 874 residues apart &mdash; neither of which a collapse ratio can see. A tidy vocabulary is not an accurate one, and a small one is not an easy one.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Twelve proteins, 47 ways of saying so.",
+   "num": "06",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Measured from the shipped module: PteropineOrthoreovirus_Viral_PSSM.json, 15 PSSMs, 13 reference contigs and 10 declared segments. Clade boundaries from blastp over full-length polymerases with -comp_based_stats 0; feature assignment by best hit against the shipped AvianOrthoreovirus canonicals, with a second pass against the full collections for p17; self-recall from collect_registry; cross-feature contamination from audit_contamination; cutoffs from foreign_leak against mammalian, avian and piscine orthoreovirus plus Broome virus, with kin identified by sequence rather than by name. Call rates from a 21-isolate panel, each isolate reassembled from its own segment records and scored through the full annotator.",
+ "standfirst": "A bat orthoreovirus that infects people, reads as mammalian on host, and carries the avian genome. The smallest module in this family and the only one whose features were assigned entirely by homology, because its names identify almost nothing.",
+ "title": "Pteropine Orthoreovirus Coverage Audit"
+}

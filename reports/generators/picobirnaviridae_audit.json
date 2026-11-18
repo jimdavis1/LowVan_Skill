@@ -1,0 +1,502 @@
+{
+ "eyebrow": "LowVan &middot; Picobirnaviridae module &middot; 17 November 2026",
+ "h1": "Picobirnaviridae",
+ "headline_tiles": [
+  [
+   "5",
+   "features"
+  ],
+  [
+   "157",
+   "PSSMs"
+  ],
+  [
+   "1620/3100",
+   "exemplars routed"
+  ],
+  [
+   "68.8%",
+   "held-out whole genomes genuinely clean"
+  ],
+  [
+   "9.3\u00d7",
+   "string collapse"
+  ],
+  [
+   "1.8\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "The module covers <strong>Picobirnaviridae</strong>, a family of bisegmented double-stranded RNA viruses found in the gut of essentially every vertebrate that has been looked at, and in invertebrates and environmental samples besides. <strong>Segment 2</strong> carries the RNA-dependent RNA polymerase. <strong>Segment 1</strong> carries the capsid precursor and, in many lineages, a second uncharacterised open reading frame upstream of it.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "6,958"
+      ],
+      [
+       "protein features",
+       "8,144"
+      ],
+      [
+       "unique sequences",
+       "5,485"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "5,920"
+      ],
+      [
+       "species",
+       "430"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "from": "picobirnaviridae-genome-map.html",
+     "type": "figure"
+    },
+    {
+     "html": "The capsid is the interesting part. In rabbit picobirnavirus the precursor cleaves itself, intra-dimer and autocatalytically, C-terminal to a conserved Asn65, giving a ~7&nbsp;kDa N-terminal peptide and the ~55&nbsp;kDa mature capsid (PMID&nbsp;19407816, PDB&nbsp;2VF1). Mutating that asparagine abolishes the reaction. The module therefore ships <strong>three</strong> capsid features &mdash; the precursor as a CDS, and both cleavage products as mat_peptides &mdash; rather than flattening them into one call.",
+     "type": "prose"
+    },
+    {
+     "html": "The fifth feature, <strong>ORF1</strong>, is a genuine lineage-specific protein with no assigned function. It is named <i>Uncharacterized lineage-specific protein</i> rather than given a mass or a position label, because &lsquo;ORF1&rsquo; is a coordinate in a genome, not a homology group.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One family, two segments, five features &mdash; and a capsid that cuts itself in half.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "RDRP",
+       "RNA-dependent RNA polymerase",
+       "RdRp",
+       "3,888",
+       "108",
+       "-mi 0.6"
+      ],
+      [
+       "ORF1",
+       "Uncharacterized lineage-specific protein",
+       "ORF1",
+       "393",
+       "14",
+       "-mi 0.3"
+      ],
+      [
+       "CP",
+       "Capsid protein precursor",
+       "CP",
+       "1,062",
+       "19",
+       "-mi 0.35"
+      ],
+      [
+       "CP_MAT",
+       "Mature capsid protein",
+       "CP_mature",
+       "418",
+       "16",
+       "-mi 0.35"
+      ],
+      [
+       "CP_NP",
+       "Mature N-terminal capsid peptide",
+       "CP_Npep",
+       "418",
+       "0",
+       "\u2014"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The source collections are <strong>RDRP 3,888</strong>, <strong>CP 1,062</strong> and <strong>ORF1 393</strong> collected sequences, of which <strong>1,488</strong>, <strong>590</strong> and <strong>377</strong> fall inside the declared length window and are what the profiles are built from. The difference is length-outliers, which are kept as evidence and counted in the table below but never clustered. Neither cleavage product is deposited anywhere, so neither could be collected: <strong>CP_MAT</strong> and <strong>CP_NP</strong> (418 sequences each) were cut out of the CP collection at the autoproteolysis site.",
+     "type": "prose"
+    },
+    {
+     "html": "The cut is made by motif rather than by alignment column, because a column is true of one clustering only. Measured over the 500 CP members whose alignment to the paper's own rabbit PBV capsid reaches residue 65, the junction chemistry is enzyme-determined: <strong>P1 Asn 95%, P1&prime; Asp 87%, P4&prime; Trp 88%, P5&prime; Tyr 92%</strong>. The pattern N&nbsp;|&nbsp;x&nbsp;x&nbsp;x&nbsp;W&nbsp;Y occurs exactly once in the first 140 residues of 427 of 589 members and more than once in two &mdash; specific, not merely present.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>The documented path was tried first and refused the job.</strong> <code>apply_signalp.py --motif</code> builds a 60-residue consensus per cluster and rejected three clusters with &lsquo;cut 64/66 beyond the 60 consensus residues&rsquo;. This cleavage sits at residue 45&ndash;66, past where a signal peptide would be. The derivation was done in a dedicated script with the measurement recorded, rather than widening the tool's defaults silently.",
+     "type": "prose"
+    },
+    {
+     "html": "Profile building needed non-default mutual-information floors, one per feature, and the reason was measured rather than guessed. At the documented <code>-mi 0.8</code> the ORF1 collection forms 350 clusters and <strong>not one reaches five members</strong>, so the feature builds zero profiles. Cluster coverage at &ge;5 members: ORF1 0% at 0.8 and 43% at 0.3; CP 2% at 0.8 and 77% at 0.3; RDRP 27% at 0.8 and 81% at 0.6. Each feature was lowered only as far as it needed &mdash; RDRP 0.6, CP and the two products 0.35, ORF1 0.3 &mdash; not to a common value.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Profiles come from the annotation strings BV-BRC already carries; the two cleavage products are derived from the literature's cut site, not from any deposit.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "RDRP",
+       "300",
+       "0.65",
+       "423",
+       "675"
+      ],
+      [
+       "ORF1",
+       "30",
+       "0.65",
+       "95",
+       "339"
+      ],
+      [
+       "CP",
+       "80",
+       "0.65",
+       "423",
+       "707"
+      ],
+      [
+       "CP_MAT",
+       "60",
+       "0.65",
+       "354",
+       "657"
+      ],
+      [
+       "CP_NP",
+       "\u2014",
+       "\u2014",
+       "54",
+       "400"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The floors are <strong>ORF1 30, CP_MAT 60, CP 80 and RDRP 300 bits</strong>, all at 0.65 coverage. <strong>157 profiles</strong> were built: RDRP 108, CP 19, CP_MAT 16, ORF1 14.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>CP_NP has no profile and no bit floor at all.</strong> It is a <code>non_pssm_partner</code> &mdash; it is called as the remainder upstream of CP_MAT, so a cutoff would mean nothing for it. Its length bounds are the one place this module's JSON cannot be generated correctly: <code>call_non_pssm_features</code> compares a <em>contig coordinate span</em> to min_len/max_len, while the generator measures those from the collection in <em>residues</em>. Left alone it shipped 18&ndash;137, which no 54-residue peptide could ever satisfy. The bounds are rewritten to 54&ndash;400&nbsp;nt by a post-generation script so that a regeneration reproduces the fix instead of losing it.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>2835 of 2873 (98.7%)</b> &mdash; RDRP 1470/1488, ORF1 358/377, CP 589/590, CP_MAT 418/418. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Each profile carries a bit-score floor and a length window taken from the collection it was built from.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "3,100",
+       "\u2014"
+      ],
+      [
+       "routed to Picobirnaviridae",
+       "1,620",
+       "52.3%"
+      ],
+      [
+       "routed to Enterovirus",
+       "1",
+       "0.0%"
+      ],
+      [
+       "unrouted",
+       "1,479",
+       "47.7%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Routing was measured against the 25 reference contigs this module ships, of which 24 were used by the exemplar set. Exemplars are the 3,100 contigs that survive clustering the 5,920-contig dump at 95% identity with a 1,100&nbsp;nt floor.",
+     "type": "prose"
+    },
+    {
+     "html": "Split by segment &mdash; the only way the headline figure means anything &mdash; <strong>segment 2 routes at 83.7% (1,376 of 1,643) and segment 1 at 16.5% (232 of 1,408)</strong>. Feature calls follow exactly: RdRp 1,380, CP and CP_MAT 211 each, CP_NP 194, ORF1 199. Only <strong>4 exemplars in 3,100</strong> went to another module at all.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>The merge rule is what rescues segment 1.</strong> Measured on the 83 genome names that deposit both segments: presented as a merged whole genome they route at <strong>84.3%</strong>; their capsid contigs presented alone route at <strong>13.5%</strong>. Once a genome routes, the capsid is called by profile search, which does not care that the nucleotide sequence is unalignable. The held-out whole-genome panel agrees independently at 87%.",
+     "type": "prose"
+    },
+    {
+     "html": "So the 47.7% unrouted figure above is an artifact of auditing loose contigs. It is the honest way to audit and it is reported unrounded, but the module's real-world unit is the merged genome, and that is where it performs.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>Three things were ruled out by measurement, not by argument.</strong> It is not reference selection: an all-vs-all of the exemplars allows the 25 references to be chosen by greedy set cover, and the hand-picked set (16.4% / 83.7%) is within 1.6 points of the best any 25 files can do (17.0% / 85.5%). It is not the absence of whole genomes: only <strong>101 of 5,860 genome names in this dump carry both segments</strong>, and 25 references chosen from all 101 route <em>less</em> segment 1 (10.9%), with a ceiling of 14.1% if you use every one of them. And it is not a coverable gap: all-vs-all among the 1,408 capsid exemplars finds <strong>488 that hit nothing but themselves</strong>, and the greedy curve never saturates &mdash; 20 references 20.7%, 40 references 29.8%, 60 references 36.3%, still climbing about five genomes per reference.",
+     "type": "prose"
+    },
+    {
+     "html": "Picobirnavirus segment 1 simply has no nucleotide-level core to cluster on. Reoviridae and Orthomyxoviridae do not hit this, because their segments are routinely deposited together.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Routing is a BLASTn of the query against the reference contigs, and in this family the two segments behave completely differently.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "RdRp",
+       "85.2",
+       85.2,
+       "1380 of 1620 routed exemplars"
+      ],
+      [
+       "ORF1",
+       "11.4",
+       11.4,
+       "185 of 1620 routed exemplars"
+      ],
+      [
+       "CP",
+       "13.0",
+       13.0,
+       "211 of 1620 routed exemplars"
+      ],
+      [
+       "CP_mature",
+       "0.0",
+       0.0,
+       "0 of 1620 routed exemplars"
+      ],
+      [
+       "CP_Npep",
+       "0.0",
+       0.0,
+       "0 of 1620 routed exemplars"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>0 of 1620 routed exemplars get every one of the 5 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>ORF1, CP, CP_mature, CP_Npep</b>. <b>28 routed exemplar(s) cleared no profile at any feature</b> and are counted here as calling nothing.",
+     "type": "prose"
+    },
+    {
+     "html": "Across the 1,621 routed exemplars: <strong>RdRp 1,380</strong>, <strong>CP 211</strong>, <strong>CP_MAT 211</strong>, <strong>ORF1 199</strong>, <strong>CP_NP 194</strong>. Twenty-eight routed exemplars produced no call above threshold.",
+     "type": "prose"
+    },
+    {
+     "html": "CP and CP_MAT are called in lockstep, which is what the architecture predicts: every precursor that clears its floor carries the cut motif. CP_NP trails by 17 because that many precursors reach the profile without a locatable cut site &mdash; the peptide is not invented where the motif is absent.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Calling is measured on the exemplars, feature by feature.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "77",
+       "held-out whole genomes"
+      ],
+      [
+       "53",
+       "no genome/contig flags"
+      ],
+      [
+       "53",
+       "genuinely clean"
+      ],
+      [
+       "22",
+       "flagged"
+      ],
+      [
+       "2",
+       "called nothing"
+      ],
+      [
+       "68.8%",
+       "clean"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "The panel is 77 merged whole genomes, held out: every genome contributing to a reference contig is excluded. Segments are concatenated per genome before annotation, so the panel measures the module on the unit it is meant for. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+     "type": "prose"
+    },
+    {
+     "text": "  12  Contig is too short\n   9  Count = 2\n   9  Contig has too many ambiguous bases, Frac &gt; 0.01\n   9  Contig is missing: Segment 2\n   5  Too many contigs for Segment 2\n   4  Too many contigs for Segment 1\n   3  Contig is missing: Segment 1",
+     "type": "pre"
+    },
+    {
+     "html": "Feature call rates on the 75 routed panel genomes: <strong>CP_MAT 96.0%</strong>, <strong>CP 94.7%</strong>, <strong>RDRP 90.7%</strong>, <strong>CP_NP 89.3%</strong>, <strong>ORF1 82.7%</strong>.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>The hold-out had to be rebuilt once.</strong> An early overlap check iterated the reference <code>genome_ids</code> field as a string rather than splitting it on commas, so set membership was meaningless and the check reported zero overlap. Splitting it properly revealed that 4 of 160 panel records were references. Every number here excludes them.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The panel is 89 merged whole genomes, held out from the references, and scored on the annotator's own quality model.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<strong>A standalone capsid segment routes 16.4% of the time, and that was left as it is.</strong> The binding constraint is the routing floor: <code>-mcb</code> defaults to 150 bits. Swept against the family routing repo, segment 1 would go to 21.0% at 100, 40.6% at 60 and <strong>72.3% at 40</strong>, with segment 2 also improving to 90.9%, at a cost of 10 misroutes in 3,100 instead of 4. The cliff below that is sharp &mdash; at mcb 30 misrouting jumps to 81.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>But <code>-mcb</code> is a global command-line flag with no per-module field</strong>: the JSON block carries only <code>close_genomes</code> and <code>segments</code>, so this family cannot declare the floor it needs, and lowering it globally would change every other module in the same run. The decision was taken to leave the floor at 150 and ship as measured. The roughly 1,180 standalone capsid records that would become annotatable at mcb 40 are a known, quantified gap recorded here rather than bought with a change to everyone else's results.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>Two genomes in the panel fail RdRp for a reason no profile can fix</strong>: they are <code>gcode 6</code> records, where TAA and TAG encode glutamine. They are the only RdRp failures on segment 2 in the whole panel.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>Processing has been demonstrated in rabbit picobirnavirus, not across the family.</strong> Human PBV capsid expressed in <i>E. coli</i> is <em>not</em> processed (PMID&nbsp;32938763), and that paper's &lsquo;&Delta;45 CP&rsquo; is an engineered truncation, not a natural product. The two cleavage products ship because the Asn is conserved at 93% family-wide, not because cleavage has been shown outside rabbit PBV. Treat CP_MAT and CP_NP as predicted boundaries with a measured motif behind them.",
+     "type": "prose"
+    },
+    {
+     "html": "Use this module on <strong>merged whole genomes</strong>, where routing is 84&ndash;87% and all five features call. A lone RdRp segment is also fine. A lone capsid segment will usually not route at the shipped floor, and that is a property of picobirnavirus segment 1 rather than of this build &mdash; no reference budget fixes it, and the one thing that would is a global change this module declined to make.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Four limits, each measured rather than supposed.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<strong>A deposited RdRp that is a capsid.</strong> <code>fig|442302.297.peg.1</code> is deposited as RNA-dependent RNA polymerase. It blasts to CP at 154 bits over 412 residues and to RDRP at 27 bits &mdash; 549&nbsp;aa with a Lys/Asn-rich capsid N-terminus. It was moved RDRP&rarr;CP in both collections. The deposited name is a submitter's claim like any other field, and it is the one field nothing downstream checks.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>Twenty-one CP members that also pass as CP_MAT.</strong> Checked by hand, every one is a full-length Met-initiated precursor that carries the cut motif. That is architecture, not contamination, and it is why the two features are allowed to overlap.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>A quality-control script that was reporting on the wrong thing.</strong> <code>check_rep_contigs.py</code> reported 44 of 190 genomes routed. It calls <code>blastn</code> with no search parameters, so it runs megablast &mdash; word size 28, reward 1 &mdash; while the annotator runs word size 11 with reward 2 and penalty &minus;3. KC692366 came back NO BLASTn HIT; at the annotator's own settings it hits a reference at <strong>514 bits</strong>. The correct whole-genome figure is 77 of 89. Any routing number produced by a kit script that calls bare <code>blastn</code> is low by roughly four-fold.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>A trap in the reference selection itself.</strong> Choosing references by greedy cover over genome <em>names</em> reports segment 1 at 39.0% &mdash; a large and entirely false gain. &lsquo;Marmot picobirnavirus&rsquo; is one name covering 298 separate contigs, and treating a name as a reference file builds a 298-contig mega-reference the budget does not permit. Exactly one name in the whole dump has more than three exemplar contigs, which is why the error is easy to miss.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What the build turned up that was not expected.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "from": "picobirnaviridae-saturation-figure.html",
+     "type": "figure"
+    },
+    {
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "RDRP",
+       "RNA-dependent RNA polymerase",
+       "12"
+      ],
+      [
+       "CP",
+       "Capsid protein precursor",
+       "9"
+      ],
+      [
+       "ORF1",
+       "Uncharacterized lineage-specific protein",
+       "7"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "10"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Rarefaction over proteins: every annotated protein in the 1,422 genomes both sources annotate (1,490 source product records, 1,660 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>20</b> distinct strings, the module's <b>11</b>. At the depth both reach, 1,490 proteins, free text has used <b>20.0 strings against 10.9 &mdash; a 1.8-fold difference.</b> The source reaches 95% of its final size after 1,093 proteins, the module after 1,084.",
+     "type": "prose"
+    },
+    {
+     "html": "Across <strong>1,422 genomes annotated by both</strong> the source and this module, 1,490 deposited proteins carry <strong>20 distinct annotation strings</strong>; the module's calls carry <strong>11</strong>, of which five are its own feature names and the rest are the no-profile placeholder and the four known misrouted genomes. At equal depth that is a <strong>1.8-fold</strong> collapse.",
+     "type": "prose"
+    },
+    {
+     "html": "That is a smaller reduction than most modules show, and the reason is worth stating plainly: picobirnavirus deposits are already terse. The gain here is not in shrinking a sprawling vocabulary but in <em>adding</em> structure &mdash; three capsid features where the source has one string, and a named uncharacterised ORF where the source has none.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What collapsing the vocabulary actually bought.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Generated from <code>picobirnaviridae_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Picobirnaviridae/work/Picobirnaviridae/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is inferred and nothing is rounded in its favour.",
+ "title": "Picobirnaviridae Coverage Audit"
+}

@@ -1,0 +1,325 @@
+{
+ "eyebrow": "LowVan &middot; Coltivirus module &middot; 16 October 2026",
+ "h1": "Coltivirus",
+ "headline_tiles": [
+  [
+   "13",
+   "features, all with profiles"
+  ],
+  [
+   "24",
+   "PSSMs"
+  ],
+  [
+   "12",
+   "segments"
+  ],
+  [
+   "100%",
+   "of 391 segment records routed"
+  ],
+  [
+   "13/13",
+   "features called where the segment is present"
+  ],
+  [
+   "2.5&times;",
+   "annotation string collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Colorado tick fever virus is the most common tick-borne viral infection in the western United States, transmitted by <i>Dermacentor andersoni</i>. This module covers it and its three nearest relatives. The genome is twelve dsRNA segments encoding thirteen proteins, and the sizes below are ICTV's table for the type species:",
+     "type": "prose"
+    },
+    {
+     "text": "Seg1  4,350 bp   VP1   ~1,435 aa   RNA-dependent RNA polymerase\nSeg2  3,909 bp   VP2   ~1,267 aa   methyltransferase\nSeg3  3,586 bp   VP3   ~1,182 aa   guanylyltransferase\nSeg4  3,157 bp   VP4   ~1,027 aa   membrane-spanning protein\nSeg5  2,432 bp   VP5     ~751 aa\nSeg6  2,141 bp   VP6     ~697 aa   NTPase\nSeg7  2,133 bp   VP7     ~684 aa   replication factor\nSeg8  2,029 bp   VP8     ~660 aa\nSeg9  1,884 bp   VP9     ~334 aa   termination product     (BICISTRONIC)\n                 VP9&#x27;    ~602 aa   read-through product\nSeg10 1,880 bp   VP10    ~605 aa   kinase / helicase\nSeg11   998 bp   VP11    ~304 aa\nSeg12   675 bp   VP12    ~185 aa   replication factor",
+     "type": "pre"
+    },
+    {
+     "html": "<b>Coltivirus is two modules, not one.</b> Measured over the full 1,435-aa polymerase across 23 representatives, the New World clade &mdash; Colorado tick fever, Salmon River, Eyach, California hare &mdash; is <b>87&ndash;98%</b> identical within itself, and <b>55&ndash;58%</b> to the Old World clade (Tarumizu, Kundal, Tai Forest, Gierle, Jeddah, <i>Coltivirus sp.</i>). This module is the New World half, 710 segment records. The Old World half is tabled: it is only <b>63%</b> internally consistent, so it is probably more than one module and needs the same measurement again before anyone builds it.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "That partition had to be made on sequence rather than on names. A first pass keyed on species keywords missed Tai Forest reovirus and the unnamed <code>Coltivirus sp.</code> deposits, and those records went on to produce <i>every</i> anomalous length band in the triage &mdash; an 856-aa VP5 against a modal 751, a 717-aa VP8 against 660, and a 613-aa \"microtubule-associated protein\" that read as a thirteenth gene. All of it was Old World protein measured against New World windows.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One genus split in two, and this is the half that infects people.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>VP6 and VP7 are swapped between submitters.</b> Pool both labels and cluster, and you get exactly two homology groups &mdash; each holding both strings:<br><br><code>group A &nbsp;n=23 &nbsp;17&times;\"VP6\", 6&times;\"VP7\" &nbsp;median 697 aa</code><br><code>group B &nbsp;n=21 &nbsp;15&times;\"VP7\", 6&times;\"VP6\" &nbsp;median 684 aa</code><br><br>A sequence deposited as VP6 and one deposited as VP7 are <b>100.0% identical</b>. The labels are about 70% reliable, which is worse than useless, because 70% looks like signal.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "The usual cure for a label covering two proteins is a length router. It does not work here: the two proteins are <b>697 and 684 residues</b> and both collections span 613&ndash;700, so length cannot separate what the name has confused. Only homology can. They are assigned by clustering and each group is named for its majority label, which independently reproduces the ICTV mass order (VP6 78 kDa &gt; VP7 76 kDa). The homology rescue then confirmed it a second time, adopting a sequence deposited as <code>VP6</code> into <code>VP7</code> at &ge;80% identity.",
+     "type": "prose"
+    },
+    {
+     "html": "The collapse table shows it directly. <code>VP6</code> is built from <code>\"VP6\"&times;14, \"VP7\"&times;4, \"VP7 protein\"&times;2</code>; <code>VP7</code> from <code>\"VP7\"&times;12, \"VP6\"&times;4, \"VP6 protein\"&times;2</code>.",
+     "type": "prose"
+    }
+   ],
+   "lede": "48 annotation strings for 13 proteins is a clean vocabulary. It is also, for four of them, wrong.",
+   "num": "02",
+   "title": "The labels name the wrong proteins"
+  },
+  {
+   "blocks": [
+    {
+     "html": "Segment 9 is bicistronic, but not by carrying two ORFs. It carries one, with a leaky UGA part-way along: translation terminating there gives <b>VP9</b> at ~334 aa, and translation reading through gives <b>VP9'</b> at ~602 aa. Both start at the same Met (PMID 15269364, PMID 22190746).",
+     "type": "prose"
+    },
+    {
+     "html": "The nesting is visible in the deposited sequences. On a record carrying both, the short form is a 100% prefix of the long one, and the long one reads <code>... D L G R G C C <b>[X]</b> R C W P G E L F I V N V E ...</code> &mdash; where X is the read-through codon, sitting exactly one position past the short form's last residue. All 17 full-length VP9' records carry it.",
+     "type": "prose"
+    },
+    {
+     "html": "Both are declared, as Tobamovirus declares REP126 and REP183, with <code>internal_stop: 1</code> on the read-through form only. Their length windows do not overlap (282&ndash;357 against 565&ndash;638), which is what keeps the profiles apart, and the termination product takes <code>downstream_ext: 0</code> because its C-terminus <i>is</i> the leaky stop and must not be scanned through.",
+     "type": "prose"
+    },
+    {
+     "html": "The annotator reproduces the biology on a real genome: on one panel isolate VP9 is called at <b>41&ndash;1051</b> and VP9' at <b>41&ndash;1849</b> on the same contig &mdash; same start, the longer one extended across the TGA to the next stop.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Two proteins, one start codon, one leaky UGA.",
+   "num": "03",
+   "title": "Segment 9 reads through its own stop"
+  },
+  {
+   "blocks": [
+    {
+     "html": "VP9' shows a tight band of 24 records at ~490 aa against a real length of 602. A tight band looks like a real form. It is not: a 489-aa member aligns to a full-length VP9' at <b>99.8% identity over its whole length, at subject positions 99&ndash;587</b>. The records are missing their first 98 residues, and their segments measure 1,446&ndash;1,482 nt against the 1,884 nt that ICTV gives for Seg9 and that the full-length records measure.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>That artefact sits BETWEEN the two real products</b> &mdash; 334, then 490, then 602 &mdash; so no single collection window can admit both proteins and exclude it. Segment 9 needs a three-way split, and that is the reason the pool cannot be resolved by the length router alone.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "The same story twice more, less subtly: VP10 is deposited at a median of 189 aa against a real 605, and VP12 at 147 against 185. In both cases the short band is the <i>more common</i> one, so a window centred on the median would have been centred on a fragment. VP12's short form proved to be the same ORF annotated from an internal Met &mdash; 95% identical over 146 aa at <code>q:40-185</code> against <code>s:2-147</code> &mdash; and ICTV's 20.4 kDa settles 185 as the real length.",
+     "type": "prose"
+    },
+    {
+     "html": "A further 18 collection members across five features began mid-protein. All were N-terminally truncated records, dropped by <code>filter_nterm</code>; the Met-start gate then passed clean on all 24 alignments.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The second mode of a feature is usually its incomplete records, and one of them hides between the two real ones.",
+   "num": "04",
+   "title": "Three length bands that were not biology"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>Every feature is called on every isolate that carries its segment.</b> For all thirteen, <code>called + reported-missing = 21</code> exactly: VP1, VP2, VP3, VP4, VP5 and VP11 on all 21; VP8 and VP12 on 20 of 21 with the 21st flagged as a missing contig; VP6 and VP10 on 14, VP7, VP9 and VP9' on 15, with every shortfall accounted for by a segment the isolate does not have. <b>Five isolates carry all twelve segments and receive all thirteen features.</b> <code>copy_num</code> is set on all thirteen, measured on those five.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "headers": [
+      "feature",
+      "segment",
+      "bit",
+      "aa range",
+      "PSSMs"
+     ],
+     "rows": [
+      [
+       "VP1",
+       "VP1",
+       "1735",
+       "1320&ndash;1542",
+       "1"
+      ],
+      [
+       "VP2",
+       "VP2",
+       "998",
+       "1136&ndash;1363",
+       "1"
+      ],
+      [
+       "VP3",
+       "VP3",
+       "491",
+       "1086&ndash;1252",
+       "2"
+      ],
+      [
+       "VP4",
+       "VP4",
+       "716",
+       "937&ndash;1089",
+       "2"
+      ],
+      [
+       "VP5",
+       "VP5",
+       "235",
+       "705&ndash;796",
+       "2"
+      ],
+      [
+       "VP6",
+       "VP6",
+       "60",
+       "604&ndash;738",
+       "2"
+      ],
+      [
+       "VP7",
+       "VP7",
+       "60",
+       "642&ndash;742",
+       "3"
+      ],
+      [
+       "VP8",
+       "VP8",
+       "159",
+       "616&ndash;699",
+       "2"
+      ],
+      [
+       "VP9",
+       "VP9",
+       "253",
+       "316&ndash;357",
+       "1"
+      ],
+      [
+       "VP9RDT &nbsp;<i>rdt</i>",
+       "VP9",
+       "400",
+       "565&ndash;638",
+       "1"
+      ],
+      [
+       "VP10",
+       "VP10",
+       "465",
+       "568&ndash;641",
+       "2"
+      ],
+      [
+       "VP11",
+       "VP11",
+       "157",
+       "285&ndash;338",
+       "2"
+      ],
+      [
+       "VP12",
+       "VP12",
+       "100",
+       "172&ndash;196",
+       "3"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection is <b>100% on all thirteen</b>. Cross-feature contamination: 206 sequences against 24 cluster references, <b>nothing above 50 bits</b>. That check is worth reading carefully here, because VP9 and VP9' share 337 identical residues by construction &mdash; a VP9 sequence scores 704 bits against its own canonical and 616 against VP9', and a VP9' sequence scores 1,229 against its own and 616 against VP9, so each prefers its own and no misassignment is possible.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Measured on 21 isolates, each reassembled from its own segment records.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "Collections here are small and homogeneous &mdash; 12 to 22 sequences, most of them over 95% identical &mdash; so a cutoff derived as a fraction of the weakest training member comes out very high and would reject anything genuinely divergent. VP1 by that route is 2,526 bits.",
+     "type": "prose"
+    },
+    {
+     "html": "They are instead set to the lowest value that excludes the Old World clade, which is the only realistic confusable taxon. VP1's highest foreign score is <b>1,734</b> against a weakest member of <b>2,807</b>, so the cutoff is 1,735 and the headroom is 1.6&times;. Every one of the thirteen separates cleanly; VP6 and VP7 draw no foreign hit at all and keep the default floor of 60.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Set by what leaks, not by what the training data scores.",
+   "num": "06",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>This module covers half its genus.</b> The Old World coltiviruses &mdash; 204 segment records across Tarumizu, Kundal, Tai Forest, Gierle, Jeddah, Zeboroti, Avian associated and the unnamed <i>Coltivirus sp.</i> deposits &mdash; are a real population that this module deliberately does not call, and none of it is built. A genome from any of them will route here only if nothing better exists, and will then be annotated poorly.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>VP5, VP8 and VP11 are annotated without a function.</b> ICTV records none for them, and this project does not invent one; they ship as <code>Protein VP5</code>, <code>Protein VP8</code>, <code>Protein VP11</code>. The functions that <i>are</i> stated &mdash; polymerase, methyltransferase, guanylyltransferase, NTPase, kinase/helicase, replication factor &mdash; come from ICTV's own table.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Every collection is small.</b> The largest is 22 sequences and the smallest 12. Coltivirus is not deeply sequenced: 710 segment records across four species, most of them Colorado tick fever. Self-recall is perfect, but perfect self-recall on 13 sequences says less than it does on 3,000, and the feature most likely to miss a divergent isolate is whichever one a new species diverges on.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The panel is reassembled, not deposited.</b> No complete Coltivirus genome exists as a single record; each isolate is rebuilt from its own segment records, and isolates are grouped by deposited strain name. Where a name is shared, the reconstruction is a chimera of real segments rather than one organism.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Four limits, named rather than implied.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>48 of 710 segment records are not sequences.</b> Every one contains <b>no cytosine at all</b> &mdash; base composition like <code>T:2034 G:1202 A:1114 C:0</code> on a 4,350 nt record &mdash; and all 48 carry the description <i>\"Modified Microbial Nucleic Acid.\"</i> Six frames of one such record hold no ORF longer than 141 aa where a 1,435-aa polymerase should be.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "They are poison for reference selection specifically, because they cluster happily with <i>each other</i>. The greedy cover spent references on them and then counted the genomes they \"covered\" as routed. <b>With them in: 25 references, 93.4%, 29 genomes uncovered. With them out: 23 references, 100.0%.</b> Ten of the original 25 references were corrupt records covering other corrupt records. No collection sequence was affected &mdash; the contamination was entirely in the nucleotide pool.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Eight references already in the repository have the same defect</b>, across six modules: <code>Hepaciviridae.11</code>, <code>Enterovirus.2</code>, <code>Norovirus.17</code>, <code>Norovirus.18</code>, <code>Parechovirus.8</code>, <code>Parechovirus.15</code>, <code>Aphthovirus.5</code>, <code>Aphthovirus.6</code>. They pair up by length, so they are redundant as well as dead. <code>build_rep_contigs.py</code> now refuses such a record at selection and <code>check_rep_contigs.py</code> lists any already shipped.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "A second finding, in the kit rather than the data: a feature declaring <code>internal_stop</code> whose read-through codon is deposited as an <code>X</code> lost its entire collection, because the clustering pipeline discards any sequence matching <code>/[BJXZ]/</code> unless told otherwise. VP9' lost all 17 of its sequences and the failure surfaced as mmseqs dying on a 0-byte temp file, which names neither the feature nor the cause. Tobamovirus had set the flag by hand; nothing made the next module do the same. It is now derived from the declaration.",
+     "type": "prose"
+    }
+   ],
+   "lede": "A data defect that inflated this module's own coverage figure, and eight more already shipped.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "html": "32 distinct annotation strings across 458 occurrences collapse onto <b>13 controlled annotations</b>, a <b>2.5&times;</b> reduction. That is small next to Mammalian Orthoreovirus's 20.1&times;, and it is honest: coltivirus submitters use <code>VPn</code> and <code>VPn protein</code> and little else. Only the polymerase attracts real synonymy, arriving as <code>VP1</code>, <code>VP1 protein</code>, <code>RNA-dependent RNA polymerase</code>, <code>RNA-dependent RNA polymerase VP1</code>, <code>RNA-dependent RNA-polymerase</code>, <code>putative RNA-dependent RNA polymerase VP1</code> and <code>RNA polymerase</code>.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>A tidy vocabulary is not an accurate one.</b> This taxon's strings are consistent, short and almost synonym-free &mdash; and for VP6 and VP7 they identify the wrong protein about 30% of the time. The collapse ratio measures how much <i>spelling</i> variation a module absorbs; it says nothing about whether the labels were right, and here the cheap-looking vocabulary was the most expensive part of the build.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Thirteen proteins, 32 ways of saying so &mdash; and the tidiness was the problem.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Measured from the shipped module: Coltivirus_Viral_PSSM.json, 24 PSSMs, 23 reference contigs and 12 declared segments. Protein and segment lengths cross-checked against the ICTV Coltivirus chapter for the type species. Clade partition from blastp over full-length polymerases with -comp_based_stats 0; self-recall from collect_registry; contamination from audit_contamination; cutoffs from foreign_leak against the Old World clade; string collapse from collect_synmap after pool resolution. Call rates from a panel of isolates reassembled from their own segment records and scored through the full annotator.",
+ "standfirst": "Twelve double-stranded RNA segments and thirteen proteins, one segment carrying two by reading through its own stop codon. A small, tidy vocabulary that was wrong about which protein it was naming &mdash; and a reference set that had to be thrown away and rebuilt.",
+ "title": "Coltivirus Coverage Audit"
+}

@@ -1,0 +1,409 @@
+{
+ "eyebrow": "LowVan &middot; Nebovirus module &middot; 15 October 2026",
+ "h1": "Nebovirus",
+ "headline_tiles": [
+  [
+   "9",
+   "features, all with profiles"
+  ],
+  [
+   "25",
+   "PSSMs"
+  ],
+  [
+   "25/25",
+   "exemplars routed"
+  ],
+  [
+   "33/33",
+   "held-out genomes clean"
+  ],
+  [
+   "7",
+   "features derived, not deposited"
+  ],
+  [
+   "0 aa",
+   "products minus polyprotein"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Neboviruses cause enteritis in calves. Newbury agent-1 is the type species; K\u0131rklareli virus is a divergent member described as distantly related to the rest. Two ORFs, the Sapovirus/Lagovirus layout: ORF1 carries the non-structural proteins <b>and the capsid in frame</b>, ORF2 carries the minor structural protein.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>These genomes were annotated with nothing.</b> 34 near-complete Nebovirus genomes were run through the four shipped Caliciviridae modules before this one was built: <b>zero features were called on any of them</b>. Not a poor annotation &mdash; no annotation. The same test on Bavovirus gave the same result.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "285"
+      ],
+      [
+       "protein features",
+       "361"
+      ],
+      [
+       "unique sequences",
+       "221"
+      ],
+      [
+       "genomes &ge; 6.5 kb",
+       "34"
+      ],
+      [
+       "distinct annotation strings",
+       "14"
+      ],
+      [
+       "full-length polyproteins",
+       "26"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "This module was nearly not built. An earlier assessment declared the genus unbuildable because its complete-genome count &mdash; 34 &mdash; falls below the 46 that Seadornavirus cleared. <b>That was the wrong test.</b> Complete-genome count is a proxy for buildability, not a measure of it; what decides it is whether the sequences cluster into groups that clear the member floor. They do: 27 full-length polyproteins form 3 clusters at 80% identity with the largest holding 19.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One genus, one module, and a population that had no annotation before it.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "html": "The literature (PMC7111791; J Virol 76:10089&ndash;10098) gives ORF1 as <b>NH2-P34-P37(2C)-P30-P7.6(VPg)-P20(3C)-P53(3D)-P57(VP1)-COOH</b>, cleaved at <code>[EQ]/[GA]</code>, with ORF1 2,210 aa and ORF2 225 aa. The deposits agree exactly: 26 full-length polyproteins have a median of <b>2,210</b> and the VP2 records a median of <b>225</b>.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Unlike Lagovirus, the deposits do not name the mature peptides.</b> The vocabulary is 14 strings &mdash; <code>polyprotein</code>, <code>RNA-dependent RNA polymerase</code>, <code>VP2 minor capsid protein</code> and fragments &mdash; so the cross-check that pinned Lagovirus's two undocumented boundaries is unavailable here. Three other lines converge instead.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>First, the catalytic motifs land inside the products they belong to.</b> <code>GPPGHGKS</code> (the 2C helicase Walker A box) is unique at residue 456, inside P37. <code>GYCG</code> (3C) is unique at 1101, inside P20. <code>GLPSG</code> at 1440 and <code>YGDD</code> at 1485 are both inside P53. None of those positions was used to place a boundary &mdash; they are an independent check that the map is in register.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Second, every predicted junction carries a conserved cleavage site.</b> All six were found in <b>26 of 26</b> polyproteins, within a few residues of the position the kDa map predicts, and four of the six share a P2 arginine:",
+     "type": "prose"
+    },
+    {
+     "text": "NS1-2/NS3   302  PKQE|GG      NS4/NS5    990  LGRE|GN\nNS3/NS4     645  PDRE|GP      NS5/NS6   1174  MKEE|AA\nNS4 ...     925  NDRQ|GW      NS6/VP1   1659  LIRE|GN",
+     "type": "pre"
+    },
+    {
+     "html": "<b>Third, the product sizes come out right.</b> Cutting at those motifs gives NS1-2 302, NS3 343, NS4 280, NS5 65, NS6 184, NS7 485 and VP1 551, against a map of ~309, ~336, ~273, ~69, ~182, ~482 and ~518 &mdash; and VP1's 551 is independently corroborated by the six deposited capsid records at a median 549.",
+     "type": "prose"
+    },
+    {
+     "html": "Two of the six motifs had to be widened, and the reason is biology rather than fitting: the misses were a second lineage cutting the same junction differently &mdash; <code>Q&darr;GW</code> in the Newbury-1 form against <code>SQE&darr;AK</code> in the other, <code>..IRE&darr;GNM</code> against <code>..FRE&darr;GDM</code>. Both are legitimate <code>[EQ]/[GA]</code> sites. <b>24 of 26 polyproteins cut cleanly end to end</b>; the two that do not are skipped whole rather than cut on a guess.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "A published map, three catalytic anchors, and conserved cleavage sites. No two of those would have been enough.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "product",
+      "type",
+      "bit",
+      "min",
+      "max",
+      "PSSMs"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "ORF1",
+       "CDS",
+       "1424",
+       "2076",
+       "2359",
+       "3"
+      ],
+      [
+       "NS1_2",
+       "P34",
+       "mat_peptide",
+       "79",
+       "283",
+       "338",
+       "3"
+      ],
+      [
+       "NS3",
+       "P37 / 2C",
+       "mat_peptide",
+       "249",
+       "322",
+       "372",
+       "3"
+      ],
+      [
+       "NS4",
+       "P30",
+       "mat_peptide",
+       "118",
+       "255",
+       "296",
+       "3"
+      ],
+      [
+       "NS5",
+       "VPg / P7.6",
+       "mat_peptide",
+       "25",
+       "61",
+       "76",
+       "2"
+      ],
+      [
+       "NS6",
+       "P20 / 3C",
+       "mat_peptide",
+       "123",
+       "168",
+       "195",
+       "3"
+      ],
+      [
+       "NS7",
+       "P53 / 3D",
+       "mat_peptide",
+       "456",
+       "455",
+       "518",
+       "3"
+      ],
+      [
+       "VP1",
+       "P57",
+       "mat_peptide",
+       "325",
+       "511",
+       "584",
+       "2"
+      ],
+      [
+       "VP2",
+       "ORF2",
+       "CDS",
+       "51",
+       "200",
+       "238",
+       "3"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>NS5 was nearly declared with no profile behind it</b>, which this project treats as worse than omitting a feature: the annotator then reports it missing on every genome, and it reads as biology. VPg is 65 residues and built <b>nothing</b> at the <code>-m 5</code> member floor &mdash; the documented short-peptide failure, the same one that cost PICO_NOLDR_VP4 its 2A. At <code>-m 2</code> it builds two profiles. It was visible only because the cutoff tool listed eight features for a nine-feature module.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Nine features, 25 profiles, every cutoff measured against what the profiles actually score.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>25 of 25 exemplars routed, 0 unrouted.</b> The budget measurement over all 33 near-complete genomes gives <b>100% at two references</b>, far inside the project's budget of 25: the genus forms two clusters at 70% identity.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Two references reach the whole genus.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "called",
+      "of 25 contigs with POLY"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "25",
+       "100%"
+      ],
+      [
+       "NS1-2",
+       "25",
+       "100%"
+      ],
+      [
+       "NS3",
+       "25",
+       "100%"
+      ],
+      [
+       "NS4",
+       "25",
+       "100%"
+      ],
+      [
+       "NS5",
+       "25",
+       "100%"
+      ],
+      [
+       "NS6",
+       "25",
+       "100%"
+      ],
+      [
+       "NS7",
+       "25",
+       "100%"
+      ],
+      [
+       "VP1",
+       "25",
+       "100%"
+      ],
+      [
+       "VP2",
+       "25",
+       "100%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Nine of nine, on all 25. There is no per-feature coverage hole in this module.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Every feature, on every genome.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>sum(products) &minus; polyprotein = 0 aa, with p05 and p95 also 0.</b> Every genome, zero spread. <b>All six junctions have zero overlaps.</b> This is the cleanest tiling of any module in the family.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "The polyprotein span is a median <b>6,633 nt</b>, which is the literature ORF1 length exactly, with a 60 nt 5&prime; UTR and a 66 nt 3&prime; UTR summing to 7,453 against Newbury-1's 7,454.",
+     "type": "prose"
+    },
+    {
+     "html": "That 60 nt 5&prime; UTR briefly looked like a defect. Every other module in this family has its polyprotein starting within 20 nt of the contig, and a late start is the signature of the N-terminal trimming problem that cost Norovirus 127 codons. It is not that here: <b>neboviruses simply have a longer 5&prime; UTR</b> than norovirus (~5 nt), sapovirus (~12) or vesivirus (~19). A cross-family heuristic encoded an assumption that does not hold for every genus.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>220 of 220 (100.0%)</b>. A floor rather than a validation.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Held-out panel, all 33 near-complete genomes: <b>33 of 33 clean</b>, none calling nothing, no genome or contig flag of any kind.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Cross-feature contamination audit: <b>220 sequences against 25 cluster references, nothing above 50 bits</b>. That matters here because seven of the nine features are cut from the same polyprotein and are therefore subsequences of POLY.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Called is not correct. For a polyprotein the test is whether the products tile it.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>Two of 26 polyproteins are not cut.</b> The NS5/NS6 motif is deliberately left at 24 of 26: every widening tried matched a <i>second</i> site inside its window, which would place that boundary wrongly rather than leave it absent. Those two sequences are skipped whole. They still contribute to POLY, so the genomes are annotated; they simply do not contribute training data to the seven derived features.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The deposited population is mostly fragments.</b> 161 of 361 features are annotated <code>RNA-dependent RNA polymerase</code> at a median of 167 residues against a true 485, and the capsid records at 132 against 551. The length windows refuse them, which is why only 26 of 221 unique sequences reach the polyprotein collection. This costs nothing in practice &mdash; the module calls every feature on every genome &mdash; but it is why the collections are small.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>No routing gap.</b> Two references reach 100% of the genus, including K\u0131rklareli virus, which is divergent enough that the literature describes it as only distantly related.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two limits, both small and both measured.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>Two K\u0131rklareli virus genomes were annotated with nothing</b>, despite this module's profiles scoring 1,611&ndash;4,329 bits on them against a cutoff of 1,424. The profiles never saw them: the genomes were routing to <b>Vesivirus</b>, at 88.9% identity and 9,223 bits against this module's 83.7% and 7,053.",
+     "type": "prose"
+    },
+    {
+     "html": "The reference they matched was <code>Vesivirus.19</code>, <i>Bovine calicivirus Mukti/India</i> &mdash; and <b>it is a nebovirus</b>. It is 83.7% identical to this module's own reference and scores 4,272 bits against these polyprotein profiles, while matching no other vesivirus reference at all. It had been flagged in the Vesivirus panel as a genome that called nothing, and reported on that module's page as an unexplained gap. It was never a vesivirus.",
+     "type": "prose"
+    },
+    {
+     "html": "Removing it gave the two K\u0131rklareli genomes <b>all nine features</b> and cost Vesivirus nothing: its routing stayed at 276/276, POLY rose from 268 to 269, VP2 from 269 to 270, and its panel from 39/40 to <b>40/40</b>. Both modules improved.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>It was undiagnosable until this module existed.</b> Nebovirus was not built when Vesivirus shipped, so a misfiled reference had nothing to steal from. <b>No validation in the build sequence asks which module wins a genome</b> &mdash; every check is within-module: does <i>my</i> module route it, call it, tile it. A wrong reference in one module is invisible until its rightful owner is built next door.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>And the installer was keeping deleted references alive.</b> Removing the reference from the module left the runtime repository holding 19 files for an 18-reference module: <code>install_module</code> copied files but never removed ones a module had dropped. A routing subject on disk keeps routing whatever the JSON says, so the deleted reference was still live. That is the more serious of the two defects &mdash; it has silently affected every module that ever shrank &mdash; and it is now fixed and tested.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Building this module exposed a defect in a module that had already shipped, and a worse one in the installer.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "html": "12 annotation strings across 346 occurrences collapse onto <b>4</b> controlled annotations &mdash; a 3.0&times; reduction. Rarefied over proteins at the depth both curves reach, the source holds <b>9.0</b> distinct strings and the module <b>9.0</b>: a collapse of <b>1.0&times;</b>, the lowest in the family by a wide margin.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>That is not a weak result, it is a different result.</b> The other four Caliciviridae modules earn their keep by collapsing a disordered vocabulary &mdash; Norovirus 6.1&times;, Sapovirus 6.4&times;. Nebovirus has almost no vocabulary to collapse: 14 strings naming four proteins. What this module does instead is <b>add</b> five proteins that the source never names at all, to genomes that previously carried no annotation whatsoever. The value here is not tidying names; it is that 285 genomes went from zero features to nine.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Almost nothing, and that is the point.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Measured from the shipped module: Nebovirus_Viral_PSSM.json, 25 PSSMs, 2 representative contigs. Routing and per-feature call rates from evaluate_coverage over 25 exemplars; boundary and tiling figures from the same run's annotations; held-out figures from a 33-genome panel covering every near-complete genome in the genus; self-recall from collect_registry at -comp_based_stats 0; contamination from audit_contamination; string collapse from collect_synmap; rarefaction over 100 replicates.",
+ "standfirst": "Newbury agent-1 and the bovine enteric caliciviruses. Before this module existed these genomes were annotated with nothing at all &mdash; not poorly, not partially: 34 near-complete genomes run through the four shipped Caliciviridae modules produced zero features of any kind. Seven of the nine features declared here do not appear in the deposited vocabulary either, and are derived by cutting the polyprotein at motifs measured against a published cleavage map. This audit says what the module calls, what it refuses, and which of the remaining gaps are biology and which are ours.",
+ "title": "Nebovirus Coverage Audit"
+}

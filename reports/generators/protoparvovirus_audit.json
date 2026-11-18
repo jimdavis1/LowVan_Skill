@@ -1,0 +1,539 @@
+{
+ "eyebrow": "LowVan &middot; Protoparvovirus module &middot; 1 November 2026",
+ "h1": "Protoparvovirus",
+ "headline_tiles": [
+  [
+   "7",
+   "features"
+  ],
+  [
+   "69",
+   "PSSMs"
+  ],
+  [
+   "38/42",
+   "exemplars routed"
+  ],
+  [
+   "96.0%",
+   "sampled genomes genuinely clean"
+  ],
+  [
+   "16.7\u00d7",
+   "string collapse"
+  ],
+  [
+   "8.0\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Protoparvovirus is the only genus in the module. Seven features are declared: <strong>NS1</strong>, <strong>NS2</strong>, <strong>NS3</strong>, <strong>NP1</strong>, <strong>SAT</strong>, and the capsid pair <strong>VP1</strong> and <strong>VP2</strong>.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "1,877"
+      ],
+      [
+       "protein features",
+       "7,001"
+      ],
+      [
+       "unique sequences",
+       "2,574"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "300"
+      ],
+      [
+       "species",
+       "37"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "from": "protoparvovirus-genome-map.html",
+     "type": "figure"
+    },
+    {
+     "html": "<strong>NS2 and NS3 are declared <code>special: splice</code></strong> and are called from curated nucleotide references by <code>get_splice_variant_features.pl</code> rather than by a profile. A spliced feature is never treated as essential.",
+     "type": "prose"
+    },
+    {
+     "html": "The literature settles NS2. The splice junctions of minute virus of mice were mapped in 1986 (<span class=\"mono\">PMID 2942705</span>); NS2 shares its first exon with NS1 and then reads in a different frame. The transcription and translation map of the NADL-2 strain of porcine parvovirus (<span class=\"mono\">PMID 8212598</span>) predicted a third product, NS3, from a 2.9 kb transcript, and that is the source this module cites for it \u2014 a prediction, not a confirmed protein.",
+     "type": "prose"
+    },
+    {
+     "html": "SAT is the other oddity: a small alternatively translated protein read from a second frame inside the capsid gene, which ends up in the endoplasmic reticulum membrane. It is not spliced and is called from a profile.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One genus \u2014 canine, feline and porcine parvovirus, minute virus of mice and their relatives \u2014 with seven features and two of them spliced.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "ns1",
+       "802",
+       "21",
+       "defaults"
+      ],
+      [
+       "NS2",
+       "Nuclear egress protein NS2 (CRM1-dependent)",
+       "ns2",
+       "0",
+       "\u2014 (special)",
+       "\u2014"
+      ],
+      [
+       "NS3",
+       "Uncharacterized lineage specific nonstructural protein NS3",
+       "ns3",
+       "0",
+       "\u2014 (special)",
+       "\u2014"
+      ],
+      [
+       "NP1",
+       "Uncharacterized NP1-like protein",
+       "np1",
+       "24",
+       "7",
+       "-m 2, -mi 0.6"
+      ],
+      [
+       "SAT",
+       "Small alternatively translated protein SAT (endoplasmic reticulum membrane protein)",
+       "sat",
+       "17",
+       "4",
+       "defaults"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "vp1",
+       "760",
+       "21",
+       "defaults"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "vp2",
+       "558",
+       "16",
+       "defaults"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "A hundred and seventeen distinct annotation strings collapse onto the seven feature names, over 6,366 source sequences. NS1 draws on thirty-two of them, VP1 on twenty-four, NS2 on twenty-four, VP2 on twenty-three.",
+     "type": "prose"
+    },
+    {
+     "html": "Nine strings did not collapse, twelve sequences in all. One of them names a real thing the module does not model: <em>nonstructural protein NS2P</em>. NS2 exists as two isoforms, NS2P and NS2Y, differing at the C-terminus by a small second intron \u2014 and the splice caller models one intron, so the module calls one NS2 and does not distinguish them.",
+     "type": "prose"
+    },
+    {
+     "html": "NS2's 187 and NS3's 8 nucleotide references replace what used to be their profiles. Each is a genomic slice with its splice donor and acceptor marked.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Profiles are built from the annotation strings BV-BRC already carries; the splice references are built from the genomes themselves.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "148",
+       "0.65",
+       "438",
+       "938"
+      ],
+      [
+       "NS2",
+       "\u2014",
+       "\u2014",
+       "96",
+       "208"
+      ],
+      [
+       "NS3",
+       "\u2014",
+       "\u2014",
+       "74",
+       "113"
+      ],
+      [
+       "NP1",
+       "84",
+       "0.65",
+       "130",
+       "307"
+      ],
+      [
+       "SAT",
+       "117",
+       "0.65",
+       "59",
+       "72"
+      ],
+      [
+       "VP",
+       "37",
+       "0.65",
+       "420",
+       "1,093"
+      ],
+      [
+       "VP2",
+       "88",
+       "0.65",
+       "428",
+       "628"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The PSSM floors are VP1 37, NP1 84, VP2 88, SAT 117 and NS1 148 bits. NS2 and NS3 carry no bit cutoff, no coverage cutoff and no extension flags, because none of those describes how a splice feature is called.",
+     "type": "prose"
+    },
+    {
+     "html": "The splice references were not guessed, and getting them was the hard part of this build. <strong>Protoparvovirus NS2 splices at a GC&ndash;AG donor</strong>, not the canonical GT&ndash;AG, at an intron of 1,472 nucleotides. A brute-force search over every donor and acceptor pair in the 24 genomes that have an NS2 deposit reproduced the deposited protein byte-for-byte in <strong>22</strong> of them, all at that junction. NS3's 8 references come from its own deposits, at an intron of 1,839 nucleotides, every one reproducing its genome's deposit exactly.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>2106 of 2161 (97.5%)</b> &mdash; NS1 776/802, NP1 24/24, SAT 17/17, VP 759/760, VP2 530/558. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Each profile carries a bit-score floor and a length window; each splice feature carries a length window and nothing else.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "42",
+       "\u2014"
+      ],
+      [
+       "routed to Protoparvovirus",
+       "38",
+       "90.5%"
+      ],
+      [
+       "unrouted",
+       "4",
+       "9.5%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Routing was measured against the 25 reference contigs this module ships, of which 20 were used by the exemplar set.",
+     "type": "prose"
+    },
+    {
+     "html": "The module ships 25 reference contigs for a genus whose members are economically important and heavily sequenced, so routing has more redundancy here than anywhere else in the family.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Routing is a BLASTn of the query against the reference contigs.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "ns1",
+       "92.1",
+       92.1,
+       "35 of 38 routed exemplars"
+      ],
+      [
+       "ns2",
+       "7.9",
+       7.9,
+       "3 of 38 routed exemplars"
+      ],
+      [
+       "ns3",
+       "2.6",
+       2.6,
+       "1 of 38 routed exemplars"
+      ],
+      [
+       "np1",
+       "7.9",
+       7.9,
+       "3 of 38 routed exemplars"
+      ],
+      [
+       "sat",
+       "15.8",
+       15.8,
+       "6 of 38 routed exemplars"
+      ],
+      [
+       "vp1",
+       "89.5",
+       89.5,
+       "34 of 38 routed exemplars"
+      ],
+      [
+       "vp2",
+       "78.9",
+       78.9,
+       "30 of 38 routed exemplars"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>0 of 38 routed exemplars get every one of the 5 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>np1, sat</b>. Excluded from that count: NS2, NS3 &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode.",
+     "type": "prose"
+    },
+    {
+     "html": "Across the 297 genomes that routed: <strong>NS1 99.0%</strong>, <strong>VP1 98.7%</strong>, <strong>VP2 90.2%</strong>, <strong>SAT 72.1%</strong>, <strong>NS2 70.7%</strong>, <strong>NS3 9.1%</strong>, <strong>NP1 1.0%</strong>. NS1 and VP1 carry <code>copy_num</code>; VP2 clears the bar on the raw rate but stands alone in only 2.4% of genomes &mdash; the rest of its calls sit inside a VP1 call, which is what a nested alternative start looks like &mdash; so it is blocked from being marked essential.",
+     "type": "prose"
+    },
+    {
+     "html": "NS3 at 9.1% and NP1 at 1.0% are the shape of the evidence, not failures. NS3 is a predicted protein deposited by three taxa out of the genus; NP1 is declared on 26 deposits. Where NS3 is called, the junction was found against sequence; where it is not, nothing was invented.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Calling is measured on the panel, feature by feature.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "297",
+       "sampled genomes"
+      ],
+      [
+       "285",
+       "no genome/contig flags"
+      ],
+      [
+       "285",
+       "genuinely clean"
+      ],
+      [
+       "12",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "96.0%",
+       "clean"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "The panel is 297 genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+     "type": "prose"
+    },
+    {
+     "text": "   7  Contig has too many ambiguous bases, Frac &gt; 0.01\n   4  Genome is missing essential feature: Capsid protein VP1 (phospholipase A2 domain)\n   3  Genome is missing essential feature: Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)\n   1  Contig is too long",
+     "type": "pre"
+    },
+    {
+     "html": "<strong>285 of 297</strong> genomes carry no genome-level and no contig-level flag &mdash; 96.0%. The flags are few: a contig with more than 1% ambiguous bases in 7, a missing essential feature in 7, one contig too long. No genome failed to annotate.",
+     "type": "prose"
+    },
+    {
+     "html": "The figure that matters most on this page is not in the tiles: NS1 and NS3 were called at identical coordinates in <strong>210 of 299</strong> genomes before this rebuild, with NS3 printed at 669 residues against a declared maximum of 113. That count is now <strong>zero</strong>. The only same-coordinate calls left anywhere in the panel are VP1 and VP2 in 7 genomes, which is the capsid tail, not this defect.",
+     "type": "prose"
+    },
+    {
+     "html": "Read the headline percentage for what it is, though &mdash; the panel still contains the genomes the reference contigs were taken from.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The panel is 299 genomes drawn from the module's own sample; it is not held out.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<strong>NS2P and NS2Y are not distinguished.</strong> The two isoforms differ by a small second intron near the C-terminus, and <code>get_splice_variant_features.pl</code> models one intron. The module calls an NS2; which isoform it is, it does not say.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>NS3 is a prediction.</strong> Its only literature source reports a 2.9 kb transcript that <em>would</em> encode a 12.4 kDa protein, and notes that no such protein had been described. Twenty-six deposits exist, from three taxa. The module calls it where the junction can be placed and is silent elsewhere; neither a call nor its absence should be read as evidence about the protein's existence.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>VP1's bit floor is 37.</strong> That is the lowest in the family and it is what the collection supports, but it means VP1 will fire on weak similarity. Check a VP1 call's length against the 420&ndash;1,093 window before trusting it.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>NP1 is declared on 26 deposits under three strings, one of which is <em>nonstructural protein 2</em>.</strong> NP1 and NS2 are slots in a genome layout, not names of proteins. The binning is by sequence, but the evidence base is thin and the feature is named <em>uncharacterized NP1-like protein</em> for that reason.",
+     "type": "prose"
+    },
+    {
+     "html": "Use this module for protoparvovirus genomes; NS1, VP1, VP2 and NS2 are reliable. Treat NS3 as a prediction the module will confirm or stay silent about, and do not read an NS2 call as identifying NS2P or NS2Y.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Four limits, each measured rather than supposed.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "NS3 was being called at <strong>669 residues</strong> against a declared maximum of 113, on exactly NS1's coordinates, in 210 of 299 genomes. The collection was clean \u2014 NS3 runs 79 to 107 residues across 26 deposits \u2014 so this was not the capsid mislabelling that affected other modules in this family. NS2 and NS3 share their first exon with NS1, so a short profile necessarily matches inside the NS1 open reading frame, and the start and stop extension then walked the call out to NS1's own boundaries.",
+     "type": "prose"
+    },
+    {
+     "html": "Finding the real junction took three attempts and the first two looked healthy. The default nudge window of 12 nucleotides gave <strong>1</strong> reference; widening it to 24 gave 162, with a product 10 residues short of the deposit; widening to 48 gave 177, one residue short. All of them had a canonical GT&ndash;AG junction, a clean translation and the right length class. None of them was right. Only comparing the spliced product to that genome's own deposited protein separated the GC&ndash;AG donor from the GT that sits beside it.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What the build turned up that was not expected.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "from": "protoparvovirus-saturation-figure.html",
+     "type": "figure"
+    },
+    {
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "32"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "24"
+      ],
+      [
+       "NS2",
+       "Nuclear egress protein NS2 (CRM1-dependent)",
+       "24"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "23"
+      ],
+      [
+       "NS3",
+       "Uncharacterized lineage specific nonstructural protein NS3",
+       "8"
+      ],
+      [
+       "SAT",
+       "Small alternatively translated protein SAT (endoplasmic reticulum membrane protein)",
+       "3"
+      ],
+      [
+       "NP1",
+       "Uncharacterized NP1-like protein",
+       "3"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "9"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Rarefaction over proteins: every annotated protein in the 100 genomes both sources annotate (371 source product records, 443 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>48</b> distinct strings, the module's <b>6</b>. At the depth both reach, 371 proteins, free text has used <b>48.0 strings against 6.0 &mdash; a 8.0-fold difference.</b> The source reaches 95% of its final size after 314 proteins, the module after 54.",
+     "type": "prose"
+    },
+    {
+     "html": "371 deposited protein strings across 100 genomes reduce to seven feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at seven.",
+     "type": "prose"
+    },
+    {
+     "html": "Nine strings resisted, twelve sequences in all, and they are tracked in <code>UNASSIGNED_TRACKING.tsv</code>. That file is a list of unfinished work, not a resolution.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What collapsing the vocabulary actually bought.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Generated from <code>protoparvovirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Parvoviridae/work/Protoparvovirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+ "title": "Protoparvovirus Coverage Audit"
+}

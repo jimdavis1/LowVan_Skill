@@ -1,0 +1,557 @@
+{
+ "eyebrow": "LowVan &middot; Lagovirus module &middot; 14 October 2026",
+ "h1": "Lagovirus",
+ "headline_tiles": [
+  [
+   "10",
+   "features, all with profiles"
+  ],
+  [
+   "15",
+   "PSSMs"
+  ],
+  [
+   "69/69",
+   "exemplars routed"
+  ],
+  [
+   "40/40",
+   "held-out genomes clean"
+  ],
+  [
+   "7.2&times;",
+   "string collapse"
+  ],
+  [
+   "3.2&times;",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Rabbit haemorrhagic disease virus kills adult rabbits within 48 hours of infection and has been used deliberately as a biocontrol agent; European brown hare syndrome virus is its counterpart in hares. The genus also holds non-pathogenic rabbit caliciviruses. Genome organisation follows Sapovirus &mdash; ORF1 carries the non-structural proteins <b>and the capsid in frame</b>, ORF2 carries the minor structural protein &mdash; which is the character this project partitions on.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>ORF1 yields eight products, not seven.</b> Sapovirus and Vesivirus keep a single Pro-Pol; Lagovirus cleaves the protease apart from the polymerase, so this module declares NS6 and NS7 separately where the Sapovirus module declares NS6_7.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "2,990"
+      ],
+      [
+       "protein features",
+       "10,575"
+      ],
+      [
+       "unique sequences",
+       "4,987"
+      ],
+      [
+       "genomes &ge; 6.8 kb",
+       "1,279"
+      ],
+      [
+       "distinct strings on unique sequences",
+       "61"
+      ],
+      [
+       "clusters at 70% identity",
+       "2"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "lede": "One genus, one module, two species, and an ORF1 one product longer than its neighbour's.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "html": "The RHDV map comes from Wirblich et al. 1995 (J Virol 69:7159&ndash;7168) and the later p16/p23 site (PMID 10644847). The 3C-like protease cleaves E/G, E/T, E/A and E/S; P1 tolerates only E, Q or D and P1&prime; prefers G, S or A. Five junctions are documented; <b>the p23/p37 and p29/VPg boundaries are not</b>.",
+     "type": "prose"
+    },
+    {
+     "html": "Rather than estimate them from molecular weights, both were taken from the median length of the records carrying each product name. That measurement reproduces every documented site without being given any of them:",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "product",
+      "annotation string",
+      "median",
+      "boundary",
+      "status"
+     ],
+     "rows": [
+      [
+       "NS1 = p16",
+       "p16",
+       "138&ndash;143",
+       "1&ndash;143",
+       "E143/G144 &lt;b&gt;documented&lt;/b&gt;"
+      ],
+      [
+       "NS2 = p23",
+       "p23/p26",
+       "224",
+       "144&ndash;367",
+       "<i>derived</i>"
+      ],
+      [
+       "NS3 = p37",
+       "2C-like protein",
+       "351",
+       "368&ndash;718",
+       "E718/G719 &lt;b&gt;documented&lt;/b&gt;"
+      ],
+      [
+       "NS4 = p29",
+       "p29",
+       "275",
+       "719&ndash;993",
+       "<i>derived</i>"
+      ],
+      [
+       "NS5 = VPg",
+       "VPg",
+       "114",
+       "994&ndash;1107",
+       "E1108/G1109 &lt;b&gt;documented&lt;/b&gt;"
+      ],
+      [
+       "NS6 = Pro",
+       "3C-like proteinase",
+       "143",
+       "1109&ndash;1251",
+       "<b>both ends documented</b>"
+      ],
+      [
+       "NS7 = Pol",
+       "RdRp",
+       "516",
+       "1252&ndash;1767",
+       "E1767/G1768 &lt;b&gt;documented&lt;/b&gt;"
+      ],
+      [
+       "VP1 = VP60",
+       "VP60",
+       "577",
+       "1768&ndash;2344",
+       "&mdash;"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Those eight sum to <b>2,343 against an ORF1 of 2,344</b>. The 1995 paper independently states that the protease is 143 residues lying between 1109 and 1251, which the <code>3C-like proteinase</code> records give exactly. <b>Agreement at seven independent boundaries is what makes the two derived sites usable</b>; one unconfirmed length would not be.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Products are declared under the family's NS numbering so a feature means the same thing across all four calicivirus modules. Norovirus NS1-2 (p48) corresponds to lagovirus p16 + p23, which is why this genus has one more ORF1 product than Norovirus does.",
+     "type": "prose"
+    },
+    {
+     "html": "Triage bound <b>98.6% of features by rule</b> with zero conflicts, the cleanest of the three modules built so far, because this genus names its proteins by molecular weight rather than by slot. Two synonyms needed adding: <code>3B peptide</code> and <code>3C peptide</code>, the picornavirus slot names for VPg and the protease, worth 106 features between them.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Five cleavage sites are documented. Two are not, and the vocabulary pinned them while independently reproducing the five that are.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "type",
+      "up/down",
+      "bit",
+      "min",
+      "max",
+      "PSSMs",
+      "collection"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "CDS",
+       "1/1",
+       "3375",
+       "2229",
+       "2461",
+       "2",
+       "126"
+      ],
+      [
+       "NS1",
+       "mat_peptide",
+       "1/0",
+       "187",
+       "126",
+       "150",
+       "2",
+       "218"
+      ],
+      [
+       "NS2",
+       "mat_peptide",
+       "0/0",
+       "319",
+       "213",
+       "236",
+       "2",
+       "364"
+      ],
+      [
+       "NS3",
+       "mat_peptide",
+       "0/0",
+       "585",
+       "330",
+       "368",
+       "1",
+       "284"
+      ],
+      [
+       "NS4",
+       "mat_peptide",
+       "0/0",
+       "424",
+       "261",
+       "288",
+       "1",
+       "318"
+      ],
+      [
+       "NS5",
+       "mat_peptide",
+       "0/0",
+       "198",
+       "107",
+       "119",
+       "1",
+       "157"
+      ],
+      [
+       "NS6",
+       "mat_peptide",
+       "0/0",
+       "252",
+       "134",
+       "150",
+       "1",
+       "124"
+      ],
+      [
+       "NS7",
+       "mat_peptide",
+       "0/0",
+       "765",
+       "406",
+       "542",
+       "1",
+       "455"
+      ],
+      [
+       "VP1",
+       "mat_peptide",
+       "0/1",
+       "695",
+       "521",
+       "605",
+       "2",
+       "974"
+      ],
+      [
+       "VP2",
+       "CDS",
+       "1/1",
+       "106",
+       "89",
+       "123",
+       "2",
+       "153"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>Fifteen profiles is not a thin build, it is a homogeneous genus.</b> 1,279 complete genomes form two clusters at 70% identity &mdash; RHDV and EBHSV &mdash; so most features cluster into a single profile that covers the whole genus. Norovirus needs 176 profiles for nine features because its genogroups are genuinely divergent; Lagovirus does not.",
+     "type": "prose"
+    },
+    {
+     "html": "No cutoff clipped its own training data on the first pass. Each sits just below the weakest self-hit that spans at least 60% of its subject &mdash; the margin that Sapovirus had to be re-measured three times to establish.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Ten features, fifteen profiles. Every cutoff measured against what the profiles actually score.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>69 of 69 exemplars routed, 0 unrouted.</b> The budget measurement over all 1,279 genomes gives <b>100% at two references</b> &mdash; one RHDV covering 1,233 genomes and one EBHSV covering 46. Adding references beyond two buys nothing, so the module ships two rather than the project's budget of 25.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "This is the only module in the family with no routing gap at all. Sapovirus leaves 22 clusters outside its budget and Norovirus three divergent lineages; Lagovirus has nowhere to leave anything.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two references, and nothing is missed.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "product",
+      "called",
+      "of 67 with POLY"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "67",
+       "&mdash;"
+      ],
+      [
+       "NS1",
+       "63",
+       "94.0%"
+      ],
+      [
+       "NS2",
+       "69",
+       "100%"
+      ],
+      [
+       "NS3",
+       "68",
+       "100%"
+      ],
+      [
+       "NS4",
+       "68",
+       "100%"
+      ],
+      [
+       "NS5",
+       "68",
+       "100%"
+      ],
+      [
+       "NS6",
+       "67",
+       "100%"
+      ],
+      [
+       "NS7",
+       "68",
+       "100%"
+      ],
+      [
+       "VP1",
+       "68",
+       "100%"
+      ],
+      [
+       "VP2",
+       "68",
+       "100%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Nine of ten features are called on every genome that carries a polyprotein. NS1, the one filtered hardest, is called on 94%.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Measured on every complete genome, not on the panel.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "product",
+      "RHDV",
+      "median called",
+      "p05",
+      "p95"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "143",
+       "138",
+       "131",
+       "143"
+      ],
+      [
+       "NS2",
+       "224",
+       "224",
+       "224",
+       "224"
+      ],
+      [
+       "NS3",
+       "351",
+       "350",
+       "349",
+       "351"
+      ],
+      [
+       "NS4",
+       "275",
+       "275",
+       "275",
+       "275"
+      ],
+      [
+       "NS5",
+       "114",
+       "114",
+       "114",
+       "114"
+      ],
+      [
+       "NS6",
+       "143",
+       "143",
+       "143",
+       "143"
+      ],
+      [
+       "NS7",
+       "516",
+       "516",
+       "516",
+       "516"
+      ],
+      [
+       "VP1",
+       "577",
+       "578",
+       "576",
+       "579"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Across 61 genomes carrying the polyprotein and all eight products: <b>sum(products) &minus; polyprotein = &minus;1 aa at the median, with p05 &minus;1 and p95 1</b>. <b>Seven of the eight junctions have zero overlaps.</b> NS1 starts exactly where the polyprotein starts on <b>100%</b>, and VP1 ends exactly where it ends on <b>100%</b>. Five products land on their RHDV lengths exactly and two within one residue.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>3,173 of 3,173 (100.0%)</b>. A floor rather than a validation. (Originally reported as 3,170 of 3,173: <code>collect_registry</code> was measuring with composition-based statistics on, which rescales scores on a different basis from the cutoffs they are compared against. Corrected 15 October 2026.)",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Held-out panel, 40 genomes stratified across RHDV, RHDV-GI.2 and EBHSV: <b>40 of 40 clean</b>, with no genome or contig flag of any kind.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Cross-feature contamination audit: <b>3,173 sequences against 15 cluster references, nothing above 50 bits</b>. The check matters here because VP1 is a subsequence of POLY in this genus.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Called is not correct. For a polyprotein the test is whether the products tile it.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>NS1 is called a few residues short on about half of genomes</b> &mdash; median 138 against a documented 143, p95 143. Its N-terminus is now exact on 100%, so the shortfall is at the C-terminal cut. The cause is the deposit habit described in &sect;08: the collection was 41.6% Met-starting before filtering, and even the 218 sequences that survived carry some residual raggedness.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The NS7/VP1 junction overlaps on 10 of 61 genomes.</b> Median overlap is zero, so most calls are exact. It is the only junction in the module that is not, and it is the same junction that is least crisp in Sapovirus &mdash; the one between the polymerase and the capsid, which Norovirus does not have at all.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>No routing gap and no refused population worth naming.</b> Unlike Norovirus and Sapovirus, this genus is not genotyped by depositing short amplicons under full protein names, so the length windows discard very little: triage bound 98.6% of features by rule.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two gaps, both at the same end of the genome, and both the residue of one deposit habit.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>This genus deposits its polyprotein N-terminally truncated, and the full-length form is the minority.</b> Of 747 binned POLY records only 93 began at the real start; the rest began one to eleven residues in, at <code>PTGEITAILP</code>, <code>LIGMTTAILP</code>, <code>LTGMTTAILP</code> and similar. Every one of those was found at an internal offset of a longer record, so they are truncations rather than lineage variation &mdash; and the records that do begin correctly have a median length of exactly 2,344.",
+     "type": "prose"
+    },
+    {
+     "html": "That is the opposite of the Norovirus and Sapovirus case, where the truncated records were a minority and could be caught by asking whether another sequence extends them. Here most records are short, so most had nothing to be caught by: after that test the collection was still 63% non-Met. Restricting to Met left <b>126 sequences</b>, still covering RHDV, EBHSV and the divergent lineages, and the gate then passed.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>NS1 had the same defect and the gate did not look at it.</b> <code>check_met_start.py</code> skipped every mature peptide, on the reasoning that a protease cut is not marked by a codon. That is right for an internal or C-terminal product and wrong for a leading one: a mature peptide carrying <code>upstream_ext 1</code> is, by this project's own flag semantics, a product whose N-terminus <i>is</i> the parent's initiating Met.",
+     "type": "prose"
+    },
+    {
+     "text": "                                  before      after\nNS1 alignment start          19 residues in       0\nNS1 starts at POLY start             36.9%    100.0%\nsum(products) - POLY, p05               -10        -1",
+     "type": "pre"
+    },
+    {
+     "html": "The gate now tests a mature peptide whose <code>upstream_ext</code> is 1 and skips only those whose N-terminus is a cut. It caught NS1 on the first run after the change. <b>Re-run against the two modules already shipped, it found two Norovirus NS1-2 profiles trimmed by 30 and 51 residues</b>, making 48 of 407 calls at a median 375 against a literature 330 &mdash; a defect that was invisible to the old gate and is being corrected separately.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "<code>filter_nterm.py</code> gained a third test, <code>--require-met</code>, for the case where the full-length form is the minority. It is off by default and prints a warning when it would drop more than three quarters of a collection, because on a protein with a genuine non-AUG start it would remove everything.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One deposit habit, two features poisoned by it, and a gate that was too blunt to see the second.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "html": "72 distinct annotation strings across 11,045 occurrences collapse onto <b>10 controlled annotations</b> &mdash; a 7.2&times; reduction, with only 6 strings left unbound, and rarefied over proteins at the depth both curves reach, 320 proteins, the source vocabulary holds <b>32.0</b> distinct strings against the module's <b>10.0</b> &mdash; a <b>3.2&times;</b> collapse.",
+     "type": "prose"
+    },
+    {
+     "html": "That is lower than Norovirus at 6.1&times; and Sapovirus at 6.4&times;, and the reason is a compliment to this genus's depositors rather than a shortcoming of the module. Lagovirus records already use molecular-weight names consistently &mdash; p16, p23, p29, VPg, VP60 &mdash; so there is less disorder to remove. The collapse measures how much a controlled vocabulary is needed, and here it is needed less.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The smallest collapse of the three, for a good reason.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Measured from the shipped module: Lagovirus_Viral_PSSM.json, 15 PSSMs, 2 representative contigs. Routing and per-feature call rates from evaluate_coverage over 69 exemplars; boundary and tiling figures from the same run's annotations; held-out figures from a 40-genome panel stratified across RHDV, RHDV-GI.2 and EBHSV; self-recall from collect_registry; contamination from audit_contamination; string collapse from collect_synmap; rarefaction over 100 replicates.",
+ "standfirst": "Rabbit haemorrhagic disease virus and European brown hare syndrome virus. Two open reading frames, as in Sapovirus, but eight products from ORF1 rather than seven, because this genus cleaves its protease apart from its polymerase. It is also the most homogeneous calicivirus genus by a wide margin &mdash; 1,279 complete genomes fall into two clusters &mdash; so fifteen profiles do work that needs 176 in Norovirus. This audit says what the module calls, what it refuses, and which of the remaining gaps are biology and which are ours.",
+ "title": "Lagovirus Coverage Audit"
+}

@@ -1,0 +1,453 @@
+{
+ "eyebrow": "LowVan &middot; TetraCopiparvovirus module &middot; 1 November 2026",
+ "h1": "TetraCopiparvovirus \u2014 Tetraparvovirus and Copiparvovirus",
+ "headline_tiles": [
+  [
+   "4",
+   "features, all with profiles"
+  ],
+  [
+   "47",
+   "PSSMs"
+  ],
+  [
+   "41/41",
+   "exemplars routed"
+  ],
+  [
+   "89.0%",
+   "sampled genomes genuinely clean"
+  ],
+  [
+   "9.5\u00d7",
+   "string collapse"
+  ],
+  [
+   "5.5\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "The module covers <strong>Tetraparvovirus</strong> and <strong>Copiparvovirus</strong>. They share a genome layout, their peripheral profiles do not cross-match, and neither brings a special feature that the other would contest &mdash; which is the test for whether a set of genera is one module or several.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "816"
+      ],
+      [
+       "protein features",
+       "1,924"
+      ],
+      [
+       "unique sequences",
+       "1,331"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "300"
+      ],
+      [
+       "species",
+       "36"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "from": "tetracopiparvovirus-genome-map.html",
+     "type": "figure"
+    },
+    {
+     "html": "Four features are declared: <strong>NS1</strong>, the capsid pair <strong>VP1</strong> and <strong>VP2</strong>, and <strong>ORF3</strong>. NS1 and VP1 carry <code>copy_num</code>.",
+     "type": "prose"
+    },
+    {
+     "html": "ORF3 is named <em>uncharacterized lineage specific</em>. Sixteen sequences cluster, they are callable, and what the protein does is not established in the literature \u2014 so the module names the slot and not a function.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two genera held in one module because their profiles do not compete.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "ns1",
+       "515",
+       "20",
+       "defaults"
+      ],
+      [
+       "ORF3",
+       "Uncharacterized lineage specific protein ORF3",
+       "orf3",
+       "16",
+       "1",
+       "defaults"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "vp1",
+       "610",
+       "23",
+       "defaults"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "vp2",
+       "97",
+       "3",
+       "defaults"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Thirty-eight distinct annotation strings collapse onto the four feature names, over 1,649 source sequences. NS1 draws on sixteen of them and VP1 on fourteen.",
+     "type": "prose"
+    },
+    {
+     "html": "Eight strings did not collapse, fourteen sequences in all \u2014 the largest unassigned residue of any module in this family. They are led by <em>putative capsid protein VP2</em>, <em>putative capsid protein VP1</em> and <em>putative non structural protein NS1</em>. The word <em>putative</em> is doing the damage: those deposits are the same proteins the module already calls, filed under a hedge, and the collapse rules did not reach them.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Profiles are built from the annotation strings BV-BRC already carries, after the strings are collapsed onto one name per protein.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "250",
+       "0.65",
+       "378",
+       "731"
+      ],
+      [
+       "ORF3",
+       "378",
+       "0.65",
+       "191",
+       "216"
+      ],
+      [
+       "VP",
+       "246",
+       "0.65",
+       "560",
+       "1,261"
+      ],
+      [
+       "VP2",
+       "448",
+       "0.65",
+       "141",
+       "588"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The floors are VP1 246, NS1 250, ORF3 378 and VP2 448 bits. Forty-seven profiles in all. VP1's length window is 560 to 1,261 residues, the widest in the family \u2014 two genera with genuinely different capsid lengths sharing one feature.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall is <strong>515 of 515</strong> for NS1, <strong>610 of 610</strong> for VP1, <strong>16 of 16</strong> for ORF3 and <strong>89 of 97</strong> for VP2.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>1230 of 1238 (99.4%)</b> &mdash; NS1 515/515, ORF3 16/16, VP 610/610, VP2 89/97. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Each profile carries a bit-score floor and a length window taken from the collection it was built from.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "41",
+       "\u2014"
+      ],
+      [
+       "routed to TetraCopiparvovirus",
+       "41",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Routing was measured against the 25 reference contigs this module ships, of which 20 were used by the exemplar set.",
+     "type": "prose"
+    },
+    {
+     "html": "All 41 exemplars routed, and all 41 routed to this module. Nothing went elsewhere and nothing was left unrouted \u2014 the same clean result the two narrow genera give elsewhere in the family, achieved here across two genera at once.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Routing is a BLASTn of the query against the reference contigs.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "ns1",
+       "100.0",
+       100.0,
+       "41 of 41 routed exemplars"
+      ],
+      [
+       "orf3",
+       "2.4",
+       2.4,
+       "1 of 41 routed exemplars"
+      ],
+      [
+       "vp1",
+       "97.6",
+       97.6,
+       "40 of 41 routed exemplars"
+      ],
+      [
+       "vp2",
+       "9.8",
+       9.8,
+       "4 of 41 routed exemplars"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>0 of 41 routed exemplars get every one of the 4 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>orf3, vp2</b>.",
+     "type": "prose"
+    },
+    {
+     "html": "Across the 41 exemplars: <strong>NS1 45</strong>, <strong>VP1 45</strong>, <strong>VP2 4</strong>, <strong>ORF3 1</strong>. NS1 and VP1 above 41 is each called twice in four genomes.",
+     "type": "prose"
+    },
+    {
+     "html": "VP2 at 4 of 41 is the shape of the genus, not a failure. Only 97 VP2 sequences were deposited against 610 VP1, and in most of these genomes the shorter capsid form is not separately annotated and not separately recognisable.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Calling is measured on the exemplars, feature by feature.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "300",
+       "sampled genomes"
+      ],
+      [
+       "276",
+       "no genome/contig flags"
+      ],
+      [
+       "267",
+       "genuinely clean"
+      ],
+      [
+       "33",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "89.0%",
+       "clean"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "The panel is 300 genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+     "type": "prose"
+    },
+    {
+     "text": "   8  Contig is too long\n   7  Genome is missing essential feature: Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)\n   5  Count = 2\n   4  Genome has too many HSPs for: Capsid protein VP1 (phospholipase A2 domain)\n   3  Genome is missing essential feature: Capsid protein VP1 (phospholipase A2 domain)\n   3  Genome has too many HSPs for: Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)\n   1  Contig has too many ambiguous bases, Frac &gt; 0.01\n   1  Count = 3\n   1  Count = 5",
+     "type": "pre"
+    },
+    {
+     "html": "<strong>276 of 300</strong> carry no genome-level and no contig-level flag, and <strong>267</strong> are genuinely clean once feature-level flags are counted.",
+     "type": "prose"
+    },
+    {
+     "html": "The largest flag is not about proteins at all: <strong>8</strong> genomes have a contig that is too long for the declared replicon geometry. Then NS1 missing in 7, VP1 called twice in 4, VP1 missing in 3, NS1 called twice in 3. At the feature level, VP1 too short in 13 and NS1 too short in 9 \u2014 both the signature of partial contigs rather than of mis-calling.",
+     "type": "prose"
+    },
+    {
+     "html": "Read the headline figure for what it is. The panel still contains the genomes the reference contigs were taken from, so it measures internal consistency, not out-of-sample behaviour.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The panel is 300 genomes drawn from the module's own sample; it is not held out.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<strong>Eight contigs are too long for the declared geometry.</strong> That is a statement about the deposits, not the module: a 300-genome panel of a genus whose members are routinely sequenced as part of larger assemblies will contain entries that are not single parvovirus genomes.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>VP1's length window spans 560 to 1,261 residues.</strong> One feature covering two genera with different capsid sizes means the window cannot discriminate much, and a too-short or too-long flag on VP1 here carries less information than the same flag in a single-genus module.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>Fourteen sequences are unassigned, most of them filed as <em>putative</em>.</strong> They are tracked in <code>UNASSIGNED_TRACKING.tsv</code>, which is a list of unfinished work, not a resolution. These are proteins the module does call, under deposits it did not reach.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>No splice features are declared,</strong> and nothing in the collections showed the two-exon signature that put NS2 and NS3 into the splice caller in Amdoparvovirus and Protoparvovirus.",
+     "type": "prose"
+    },
+    {
+     "html": "Use this module for tetraparvovirus and copiparvovirus genomes; routing is clean and NS1 and VP1 are reliable. Treat VP1 length flags with suspicion \u2014 the window spans two genera \u2014 and check whether a flagged contig is a whole genome before blaming the call.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Four limits, each measured rather than supposed.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "The capsid labels were wrong on a large scale and only applying <code>copy_num</code> exposed it. Before the capsid rebuild, <strong>117 of 300</strong> genomes had VP1 and VP2 called at identical coordinates: the two profiles had been built from deposits that disagreed about which nested form they held, so both landed on the same open reading frame.",
+     "type": "prose"
+    },
+    {
+     "html": "Rebinning the nested forms by size per species rather than by the name on the deposit, and rebuilding the profiles, took that from <strong>117 of 300 to 0</strong>. The deposited name is a claim about which form a submitter thought they had; it is not a measurement.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What the build turned up that was not expected.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "from": "tetracopiparvovirus-saturation-figure.html",
+     "type": "figure"
+    },
+    {
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "16"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "14"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "6"
+      ],
+      [
+       "ORF3",
+       "Uncharacterized lineage specific protein ORF3",
+       "2"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "8"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Rarefaction over proteins: every annotated protein in the 128 genomes both sources annotate (286 source product records, 300 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>22</b> distinct strings, the module's <b>4</b>. At the depth both reach, 286 proteins, free text has used <b>22.0 strings against 4.0 &mdash; a 5.5-fold difference.</b> The source reaches 95% of its final size after 232 proteins, the module after 28.",
+     "type": "prose"
+    },
+    {
+     "html": "286 deposited protein strings across 128 genomes reduce to four feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at four.",
+     "type": "prose"
+    },
+    {
+     "html": "Eight strings resisted, fourteen sequences in all. That is the largest residue in the family and most of it is one word: <em>putative</em>.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What collapsing the vocabulary actually bought.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Generated from <code>tetracopiparvovirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Parvoviridae/work/TetraCopiparvovirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+ "title": "TetraCopiparvovirus Coverage Audit"
+}

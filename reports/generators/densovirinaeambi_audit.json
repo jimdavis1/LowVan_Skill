@@ -1,0 +1,583 @@
+{
+ "eyebrow": "LowVan &middot; DensovirinaeAmbi module &middot; 1 November 2026",
+ "h1": "DensovirinaeAmbi \u2014 ambisense densoviruses",
+ "headline_tiles": [
+  [
+   "8",
+   "features"
+  ],
+  [
+   "40",
+   "PSSMs"
+  ],
+  [
+   "53/82",
+   "exemplars routed"
+  ],
+  [
+   "81.9%",
+   "sampled genomes genuinely clean"
+  ],
+  [
+   "7.4\u00d7",
+   "string collapse"
+  ],
+  [
+   "6.8\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "The module covers the nine ambisense densovirus genera: <strong>Protoambidensovirus</strong>, <strong>Scindoambidensovirus</strong>, <strong>Blattambidensovirus</strong>, <strong>Hemiambidensovirus</strong>, <strong>Pefuambidensovirus</strong>, <strong>Diciambidensovirus</strong>, <strong>Aquambidensovirus</strong>, <strong>Miniambidensovirus</strong> and <strong>Tetuambidensovirus</strong>. Ambisense means the nonstructural genes read from one strand and the structural genes from the other.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "184"
+      ],
+      [
+       "protein features",
+       "734"
+      ],
+      [
+       "unique sequences",
+       "387"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "184"
+      ],
+      [
+       "species",
+       "23"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "from": "densovirinaeambi-genome-map.html",
+     "type": "figure"
+    },
+    {
+     "html": "Eight features are declared: <strong>NS1</strong>, <strong>NS2</strong>, <strong>NS3</strong>, the capsid set <strong>VP1</strong>, <strong>VP2</strong>, <strong>VP3</strong> and <strong>VP4</strong>, and <strong>VP1_SPLICED</strong>.",
+     "type": "prose"
+    },
+    {
+     "html": "That last one is new in this build. In <em>Scindoambidensovirus</em> \u2014 the name means <em>split</em> \u2014 VP1 is not a longer reading of the capsid gene. It is made by joining two separate open reading frames, cap1 and cap2, through a splice that removes VP2's N terminus, and the phospholipase A2 domain that VP1 needs for cell entry is encoded in the upstream frame (<span class=\"mono\">PMID 21775445</span>). No profile can place that, because the protein does not exist as a contiguous stretch of genome.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Nine genera, one coding strand each way, and a capsid gene that in one of them is split in two.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "ns1",
+       "96",
+       "12",
+       "defaults"
+      ],
+      [
+       "NS2",
+       "Uncharacterized nonstructural protein NS2",
+       "ns2",
+       "20",
+       "5",
+       "-m 2, -mi 0.6"
+      ],
+      [
+       "NS3",
+       "Nonstructural protein NS3 required for viral DNA replication",
+       "ns3",
+       "25",
+       "4",
+       "defaults"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "vp1",
+       "86",
+       "13",
+       "defaults"
+      ],
+      [
+       "VP1_SPLICED",
+       "Capsid protein VP1, spliced form (phospholipase A2 domain)",
+       "vp1_spliced",
+       "0",
+       "\u2014 (special)",
+       "\u2014"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "vp2",
+       "38",
+       "4",
+       "defaults"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3",
+       "vp3",
+       "4",
+       "1",
+       "-m 2, -mi 0.6"
+      ],
+      [
+       "VP4",
+       "Capsid protein VP4",
+       "vp4",
+       "4",
+       "1",
+       "-m 2"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Fifty-two distinct annotation strings collapse onto the feature names, over 454 source sequences \u2014 the smallest collection in the family, spread over the most genera. NS1 draws on seventeen strings, VP1 on nine.",
+     "type": "prose"
+    },
+    {
+     "html": "Thirteen strings did not collapse, twenty-three sequences in all. That is the second largest unassigned residue in the family and it is a consequence of the spread: nine genera, few deposits each, and no shared vocabulary. Two of the thirteen \u2014 <em>Non-structural ORFs</em> and <em>Structural ORFs</em> \u2014 are category labels rather than protein names.",
+     "type": "prose"
+    },
+    {
+     "html": "VP1_SPLICED has no collection and no profile. It is called from <strong>13</strong> nucleotide references, each a genomic slice with its donor and acceptor marked, every one of them reproducing its own genome's deposited 816-residue VP1 exactly, at an intron of 175 nucleotides.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Profiles are built from the annotation strings BV-BRC already carries; the splice references are built from the genomes themselves.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "68",
+       "0.65",
+       "240",
+       "843"
+      ],
+      [
+       "NS2",
+       "54",
+       "0.65",
+       "200",
+       "379"
+      ],
+      [
+       "NS3",
+       "30",
+       "0.65",
+       "104",
+       "321"
+      ],
+      [
+       "VP",
+       "40",
+       "0.8",
+       "189",
+       "1,238"
+      ],
+      [
+       "VP1_SPLICED",
+       "\u2014",
+       "\u2014",
+       "735",
+       "898"
+      ],
+      [
+       "VP2",
+       "64",
+       "0.65",
+       "177",
+       "722"
+      ],
+      [
+       "VP3",
+       "92",
+       "0.65",
+       "454",
+       "540"
+      ],
+      [
+       "VP4",
+       "62",
+       "0.65",
+       "407",
+       "607"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The floors are low across the board \u2014 NS3 30, NS1 68, VP1 40 \u2014 because the genera are divergent and a high floor would exclude most of them. That is the module's central tension: the profiles have to be permissive enough to span nine genera, and permissive profiles cross-match.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>VP1's coverage cutoff is raised to 0.80</strong>, against the 0.65 every other feature uses. That is the lever for the cross-match: a VP1 profile matching 0.71 of its own length inside the cap2 reading frame is now rejected rather than extended over the whole of it.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall is <strong>89 of 96</strong> for NS1, <strong>83 of 86</strong> for VP1, <strong>32 of 38</strong> for VP2, <strong>22 of 25</strong> for NS3, <strong>18 of 20</strong> for NS2, and 4 of 4 for both VP3 and VP4. These are the lowest self-recall figures in the family, for the same reason the floors are low.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>252 of 273 (92.3%)</b> &mdash; NS1 89/96, NS2 18/20, NS3 22/25, VP 83/86, VP2 32/38, VP3 4/4, VP4 4/4. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Each profile carries a bit-score floor and a length window; the splice feature carries a length window and nothing else.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "82",
+       "\u2014"
+      ],
+      [
+       "routed to DensovirinaeAmbi",
+       "53",
+       "64.6%"
+      ],
+      [
+       "routed to DensovirinaeMono",
+       "15",
+       "18.3%"
+      ],
+      [
+       "routed to Hamaparvovirinae",
+       "2",
+       "2.4%"
+      ],
+      [
+       "routed to Protoparvovirus",
+       "1",
+       "1.2%"
+      ],
+      [
+       "unrouted",
+       "11",
+       "13.4%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Routing was measured against the 25 reference contigs this module ships, of which 24 were used by the exemplar set.",
+     "type": "prose"
+    },
+    {
+     "html": "Measured against all 1,271 reference contigs in the repository, the 184 genomes of this panel win on: <strong>152</strong> a DensovirinaeAmbi contig, <strong>25</strong> a DensovirinaeMono contig, <strong>2</strong> Hamaparvovirinae, <strong>2</strong> Protoparvovirus, <strong>2</strong> Gammacoronavirus and <strong>1</strong> Trivirinae.",
+     "type": "prose"
+    },
+    {
+     "html": "The 25 that go to DensovirinaeMono are the honest finding. Ambisense and monosense densoviruses were one subfamily until recently, and nucleotide identity has not caught up with the split. The genomes that win on a Gammacoronavirus or Trivirinae contig are winning on weak similarity and would be better described as unrouted.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Routing is a BLASTn of the query against the reference contigs, and this module's panel does not all land here.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "ns1",
+       "83.0",
+       83.0,
+       "44 of 53 routed exemplars"
+      ],
+      [
+       "ns2",
+       "54.7",
+       54.7,
+       "29 of 53 routed exemplars"
+      ],
+      [
+       "ns3",
+       "26.4",
+       26.4,
+       "14 of 53 routed exemplars"
+      ],
+      [
+       "vp1",
+       "92.5",
+       92.5,
+       "49 of 53 routed exemplars"
+      ],
+      [
+       "vp1_spliced",
+       "1.9",
+       1.9,
+       "1 of 53 routed exemplars"
+      ],
+      [
+       "vp2",
+       "88.7",
+       88.7,
+       "47 of 53 routed exemplars"
+      ],
+      [
+       "vp3",
+       "67.9",
+       67.9,
+       "36 of 53 routed exemplars"
+      ],
+      [
+       "vp4",
+       "77.4",
+       77.4,
+       "41 of 53 routed exemplars"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>9 of 53 routed exemplars get every one of the 7 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>ns2, ns3, vp3</b>. Excluded from that count: VP1_SPLICED &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode.",
+     "type": "prose"
+    },
+    {
+     "html": "Across the 145 genomes that routed here: <strong>VP1 91.7%</strong>, <strong>NS1 88.3%</strong>, <strong>VP2 87.6%</strong>, <strong>VP4 79.3%</strong>, <strong>VP3 75.2%</strong>, <strong>NS2 62.8%</strong>, <strong>NS3 50.3%</strong>, <strong>VP1_SPLICED 23.4%</strong>. Only NS1 is marked essential: VP1 and VP2 both clear the 0.85 bar on their raw rate but stand alone in 64.8% and 15.9% of genomes, so neither can be required.",
+     "type": "prose"
+    },
+    {
+     "html": "VP1_SPLICED's 23.4% is 34 genomes, all <em>Scindoambidensovirus</em>. Before this build none of them had a correct VP1 call at all.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two measurements, two denominators: the tiles are the exemplar set, the paragraphs below are the 145 panel genomes that routed to this module.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "171",
+       "sampled genomes"
+      ],
+      [
+       "148",
+       "no genome/contig flags"
+      ],
+      [
+       "140",
+       "genuinely clean"
+      ],
+      [
+       "29",
+       "flagged"
+      ],
+      [
+       "2",
+       "called nothing"
+      ],
+      [
+       "81.9%",
+       "clean"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "The panel is 171 genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+     "type": "prose"
+    },
+    {
+     "text": "  20  Genome is missing essential feature: Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)\n   2  Contig is missing: Single DNA Segment\n   2  Genome is missing essential feature: Capsid protein VP1 (phospholipase A2 domain)\n   2  Contig is too long\n   1  Contig has too many ambiguous bases, Frac &gt; 0.01",
+     "type": "pre"
+    },
+    {
+     "html": "<strong>148 of 171</strong> genomes carry no genome-level and no contig-level flag; <strong>140</strong> are genuinely clean once feature-level flags are counted. 22 flags are a missing essential NS1, 8 are a feature too short, and 2 genomes have no contig at all. No genome failed to annotate.",
+     "type": "prose"
+    },
+    {
+     "html": "The honest headline is the one below, in section 07: <strong>40 genomes still have VP1 and VP2 called at identical coordinates</strong>, 24% of those that carry features. The NS side is fixed &mdash; NS1 and NS2 shared coordinates in 11 genomes before this build and in none now &mdash; and the capsid side is improved but not solved.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The panel is drawn from the module's own sample; it is not held out.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<strong>The capsid collision is reduced, not removed.</strong> VP1 and VP2 are called at identical coordinates in <strong>40</strong> genomes, down from 46, plus VP2 with VP3 in 5 and VP3 with VP4 in 2. Raising VP1's coverage cutoff to 0.80 did what it was meant to: it rejected the partial match that was being extended over the cap2 frame. A different VP1 profile then took over at full coverage. That profile, <code>VP.12</code>, is built from two 578-residue deposits of one taxon whose VP deposits run from 536 to 942 residues &mdash; a nested set filed under one name. Fixing this means re-binning that taxon's capsid deposits by size per species, as was done for the rest of the family, and it is the one piece of work this module still needs.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>Nine genera in one module is the module at its limit.</strong> The rule for holding genera together is that their peripheral profiles must not cross-match. Here they do, and the paragraph above is what that looks like in practice.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>VP1_SPLICED is built from one genus.</strong> Thirteen references, all <em>Scindoambidensovirus</em>, all 816 residues. If another ambisense genus splices its capsid the same way, this module will not call it and will not say so.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>Twenty-four of the panel's genomes route to another module</strong> and are annotated with that module's features, not these. That is visible in the routing column of any output and is not something this module can fix from inside.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>Thirteen strings, 23 sequences, are unassigned</strong> and tracked in <code>UNASSIGNED_TRACKING.tsv</code>. That file is a list of unfinished work, not a resolution.",
+     "type": "prose"
+    },
+    {
+     "html": "Use this module for ambisense densovirus genomes, and check two columns before trusting anything: the routing column, because one genome in seven of this panel is annotated by a different module, and the VP1 and VP2 coordinates, because in 40 genomes they are the same. VP1_SPLICED is a Scindoambidensovirus-only feature and is reliable where it fires.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Four limits, each measured rather than supposed.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "VP1 and VP2 were called at identical coordinates in <strong>46 of 171</strong> genomes, and 36 of those were one taxon: <em>Scindoambidensovirus orthopteran1</em>. The cause was not the capsid mislabelling that affected the rest of the family. Its VP1 profile, built from 816-residue deposits, matched the genome in two pieces &mdash; one at 5285&ndash;4488 and one at 4384&ndash;2663, with 0.71 coverage on the larger &mdash; and the extension then walked the call out over VP2's reading frame. Those two pieces are cap1 and cap2, and the gap between them is a 175-nucleotide intron.",
+     "type": "prose"
+    },
+    {
+     "html": "Declaring VP1_SPLICED made the real protein callable for the first time, in 34 genomes. Raising the coverage cutoff removed the partial-match path. Neither removed the collision, because a 578-residue VP1 profile from another taxon matches the cap2 frame at full coverage and simply took over &mdash; which is how a cross-match problem behaves when you close one route into it.",
+     "type": "prose"
+    },
+    {
+     "html": "The NS side came out clean: NS1 and NS2 shared coordinates in 11 genomes before this build and in none after.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What the build turned up that was not expected.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "from": "densovirinaeambi-saturation-figure.html",
+     "type": "figure"
+    },
+    {
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "17"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "9"
+      ],
+      [
+       "NS3",
+       "Nonstructural protein NS3 required for viral DNA replication",
+       "8"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "7"
+      ],
+      [
+       "NS2",
+       "Uncharacterized nonstructural protein NS2",
+       "7"
+      ],
+      [
+       "VP3",
+       "Capsid protein VP3",
+       "2"
+      ],
+      [
+       "VP4",
+       "Capsid protein VP4",
+       "2"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "13"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Rarefaction over proteins: every annotated protein in the 65 genomes both sources annotate (300 source product records, 330 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>60</b> distinct strings, the module's <b>9</b>. At the depth both reach, 300 proteins, free text has used <b>60.0 strings against 8.9 &mdash; a 6.8-fold difference.</b> The source reaches 95% of its final size after 236 proteins, the module after 184.",
+     "type": "prose"
+    },
+    {
+     "html": "300 deposited protein strings across 65 genomes reduce to eight feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat.",
+     "type": "prose"
+    },
+    {
+     "html": "Thirteen strings resisted, 23 sequences in all \u2014 the price of nine genera with no shared naming convention between them.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What collapsing the vocabulary actually bought.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Generated from <code>densovirinaeambi_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Parvoviridae/work/DensovirinaeAmbi/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+ "title": "DensovirinaeAmbi Coverage Audit"
+}

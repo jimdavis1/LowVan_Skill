@@ -1,0 +1,362 @@
+{
+ "eyebrow": "LowVan &middot; Bavovirus module &middot; 15 October 2026",
+ "h1": "Bavovirus",
+ "headline_tiles": [
+  [
+   "2",
+   "features, both with profiles"
+  ],
+  [
+   "4",
+   "PSSMs &mdash; two per feature, one per clade"
+  ],
+  [
+   "14/14",
+   "exemplars routed"
+  ],
+  [
+   "27/28",
+   "panel genomes called for ORF1"
+  ],
+  [
+   "0",
+   "mature peptides, by measurement"
+  ],
+  [
+   "2",
+   "distinct viruses under one name"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Bavoviruses are caliciviruses of chickens. The genome is 6.9&ndash;9.0 kb with the Sapovirus/Lagovirus/Nebovirus layout: ORF1 carries the non-structural proteins <i>and</i> the capsid in frame, ORF2 carries the minor structural protein VP2. The type strain is <code>Calicivirus chicken/V0021/Bayern/2004</code>.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>These genomes were annotated with nothing.</b> Run through the five previously shipped Caliciviridae modules, the near-complete Bavovirus genomes produce <b>zero features of any kind</b>. Not a poor annotation &mdash; no annotation. That is what this module is for, and it is why a two-feature module is worth shipping where it otherwise would not be.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "51"
+      ],
+      [
+       "protein features",
+       "87"
+      ],
+      [
+       "unique sequences",
+       "68"
+      ],
+      [
+       "distinct annotation strings",
+       "6"
+      ],
+      [
+       "genomes with a contig",
+       "28"
+      ],
+      [
+       "contig length, median",
+       "8,151 nt"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>The taxon holds two viruses.</b> Every record in the dump is labelled <code>Chicken calicivirus</code> or carries genus <code>Bavovirus</code>, but the polyproteins fall into two groups that are <b>30% identical and only across the C-terminal half</b> &mdash; the N-terminal thousand residues do not align at all. One group contains the Bayern type strain and matches it at 95&ndash;100%. The other's nearest named relatives are unclassified <code>Caliciviridae sp.</code> from Switzerland at 98.8%, with Bird and Duck calicivirus next at about 43%. Both groups share this genome layout, so by the project's partitioning rule they belong in one module, with one profile per clade.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One genus by name, two viruses by sequence, and a population that had no annotation at all.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "collection",
+      "profiles",
+      "declared length"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "16 sequences, 8 per clade",
+       "2",
+       "2,127&ndash;2,519 aa"
+      ],
+      [
+       "VP2",
+       "21 sequences, 15 + 6",
+       "2",
+       "202&ndash;304 aa"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>The first VP2 window silently deleted a whole clade.</b> Set to 250&ndash;320 from the modal length of 287, it removed all six of the 215 aa VP2s &mdash; annotated <code>VP2</code> by the source, genus <code>Bavovirus</code>, Met-initiated, none marked partial, and genuine homologs at 25% identity over 192 residues. They left no trace but a number in a counts file. Widening the floor to 202 recovered them and took VP2 from 11 unique sequences to 18, 21 after the homology rescue.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "Four ORF1 sequences were removed by the N-terminal filter, all of them redundant: two begin at an upstream Met (+131 and +56 residues), and two do not begin at Met at all (one truncated by 169 residues, one a 48-residue trim of another). Each is 96&ndash;100% identical to a sequence that was kept, so nothing was lost but jagged alignment ends. What remains is 16 sequences, 8 per clade, every one Met-initiated.",
+     "type": "prose"
+    },
+    {
+     "html": "Both features cite Wolf <i>et al.</i> 2012 (<code>PMID 22580496</code>), the discovery and genome of chicken calicivirus, and ORF1 additionally cites Goraichuk <i>et al.</i> 2024 (<code>PMID 39264163</code>) for the further complete coding sequences. Both are recorded as <code>PMID_claude_generated</code>, the field this project reserves for a model-retrieved reference, rather than as a curator citation.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two collections, a corrected length window, and an N-terminal filter that removed a fifth of ORF1.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "4,075",
+       "2,127",
+       "2,519"
+      ],
+      [
+       "VP2",
+       "360",
+       "202",
+       "304"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>ORF1.</b> Scored against every protein in the Caliciviridae dump, 24 full-length polyproteins land between 4,313 and 4,780 bits and the next one down is 1,817 &mdash; a different virus. The cutoff sits inside that gap. The one sequence between them, at 3,931 bits, is a true clade member that is simply partial at 1,964 of 2,377 residues, and <code>min_len</code> excludes it independently.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>VP2's cutoff came out at 26 bits, and at 26 bits it called 253 Norovirus VP2s</b>, plus 18 Nebovirus, 11 Recovirus, 2 Nacovirus and 1 Sapovirus &mdash; 285 proteins from other genera against 21 of its own. Only genome routing stood between that and a wrong annotation. The corrected cutoff of 360 admits 24 proteins and <b>zero</b> from any other genus.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "The cause was in the tool, not the taxon. <code>derive_cutoffs.py</code> pooled every profile &times; sequence hit into one bag and took the global minimum as the weakest member the cutoff had to admit. In a feature holding two divergent clades, each profile scores the <i>other</i> clade near zero &mdash; here 29&ndash;34 bits against 401&ndash;568 for its own &mdash; so that cross-clade hit set the floor. The requirement is that every member be callable by <i>some</i> profile, which is the minimum over members of the maximum over profiles: 401, giving 360. The tool now computes it that way.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One cutoff sits in a measured gap. The other was wrong by a factor of fourteen, and finding out why exposed a defect in the tool that sets them.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes with a contig",
+       "28"
+      ],
+      [
+       "clusters at 95% nucleotide identity",
+       "14"
+      ],
+      [
+       "exemplars routed to Bavovirus",
+       "14 of 14 (100%)"
+      ],
+      [
+       "unrouted",
+       "0"
+      ],
+      [
+       "reference contigs shipped",
+       "2"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The budget allows 25 references; two cover every genome, one per clade. Nothing in the taxon is left unrouted, and no genome of another genus routes here.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Yes, completely, on two references.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "genome",
+      "missing",
+      "why"
+     ],
+     "rows": [
+      [
+       "1172196.37",
+       "POLY",
+       "ORF1 itself truncated &mdash; 1,891 of 2,313 aa, contig ends mid-gene"
+      ],
+      [
+       "1172196.42",
+       "VP2",
+       "contig 6,898 nt; ORF1 alone needs 6,792"
+      ],
+      [
+       "2809180.5",
+       "VP2",
+       "contig 6,904 nt, shorter than its own deposited ORF1"
+      ],
+      [
+       "1172196.49",
+       "VP2",
+       "VP2 runs off the contig end &mdash; 129 of 215 aa"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>No miss is a failure of the profiles.</b> Each of the four is a gene that is genuinely incomplete on the assembly, and in the last case the corrected cutoff is what <i>stopped</i> the module emitting a 129-residue fragment as though it were a complete VP2.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Self-recall over the collections is 16 of 16 for ORF1 and 21 of 21 for VP2, both 100% of in-range sequences. Cross-feature contamination: none above 50 bits across 37 sequences and 4 cluster references.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Both features carry <code>copy_num</code></b>, set from this panel rather than assumed: ORF1 is called on 96.4% of routed genomes and VP2 on 89.3%, both clearing the 85% threshold. A feature marked essential flags every genome that lacks it, so the four incomplete assemblies above are now reported as such instead of passing silently.",
+     "type": "prose"
+    }
+   ],
+   "lede": "27 of 28 genomes get ORF1, 25 get VP2, and every miss is a gene the contig does not carry.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "Neither feature is derived. ORF1 and ORF2 are whole CDSs read from the deposit, with <code>upstream_ext</code> and <code>downstream_ext</code> both set, so each call scans to its own start Met and stop codon. There is no cleavage site to get wrong here, because the module declares none &mdash; which is the subject of &sect;07.",
+     "type": "prose"
+    },
+    {
+     "html": "The two clades are kept honest by the profiles rather than by a length rule: each clade's profile scores its own members 401&ndash;568 bits (VP2) or above 4,300 (ORF1) and the other clade near the floor, so a sequence is called by the profile that matches it and annotated with the same controlled string either way.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Both features come from the source vocabulary, so the boundaries are the submitters', not ours.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>Nebovirus ships nine features; Bavovirus ships two.</b> The difference is evidence. Nebovirus has a published product map, catalytic anchors that locate three of its proteins, and a cleavage dipeptide at every predicted boundary. Four attempts to find the equivalent here all failed, each in a way that was measured rather than assumed.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "headers": [
+      "attempt",
+      "result"
+     ],
+     "rows": [
+      [
+       "published cleavage coordinates",
+       "none &mdash; the literature gives the architecture, &quot;at least six mature nonstructural proteins&quot;, and no positions"
+      ],
+      [
+       "catalytic anchors",
+       "<code>G..GHGK[ST]</code> and <code>G[YF]CG</code> found in <b>0 of 20</b> polyproteins, where both are present and unique in every Nebovirus sequence"
+      ],
+      [
+       "cleavage dipeptide scan",
+       "31 positions where all ten sequences agree &mdash; the dipeptide is common, not thirty-one cleavage sites"
+      ],
+      [
+       "homology from Nebovirus VP1",
+       "places the capsid near residue 1,730&ndash;1,741 at only 35&ndash;37% identity, with five candidates inside 72 residues at identical support"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The project's floor for transferring a boundary across an alignment is 80% identity plus demonstrated conservation at the site. Choosing one of those five candidates would be a guess dressed as evidence, and a wrong boundary is worse than an absent one. So VP1 and the six non-structural products are declared as a gap and not approximated.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>A second limit, from the cutoff.</b> Both clades are tightly sampled, so the ORF1 cutoff of 4,075 bits is high relative to what a novel lineage would score. A genuinely new bavovirus below roughly 90% identity to either clade would not be called. The alternative &mdash; lowering the cutoff into the 1,817&ndash;4,313 gap &mdash; buys headroom that nothing in the present data needs, so it was left where the measurement puts it and recorded here instead.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>And a third, outside this module.</b> The same search turned up 34 full-length avian calicivirus polyproteins &mdash; Bird calicivirus, Avocet calicivirus, unclassified <code>Caliciviridae sp.</code> &mdash; scoring 1,731&ndash;1,817 bits against these profiles. They are not bavoviruses and this module correctly declines them, but nothing else annotates them either. They are a candidate for a module of their own.",
+     "type": "prose"
+    }
+   ],
+   "lede": "It cannot cut the polyprotein. That is a measurement, not an omission.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>Window-dropped sequences left no trace.</b> The curator's documented check on a length window is to read <code>&lt;FEAT&gt;.outliers.fasta</code> broken down by genus. That file was written only by the homology rescue, so it held the rescued strays and never the sequences the window itself removed &mdash; the one population the check exists to catch was the one it could not see. The collection engine now parks them there and names the file on stdout.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Cutoffs were derived from a pooled minimum.</b> Described in &sect;03. The same defect depresses the cutoff of every feature that holds more than one divergent clade, which is not confined to this module.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The vocabulary experiment was gated on the wrong unit.</b> The rarefaction draws proteins but refused on a count of genomes, and refused by exiting without writing anything, so a small taxon lost its fourth artifact and no record of why. It now guards on the protein pool and writes the reason, which is what the saturation page for this module reports.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Three defects, two of them in shipped work.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "html": "The dump carries six distinct annotation strings across 87 protein features: <code>polyprotein</code>, <code>VP2</code>, <code>putative minor capsid protein</code>, <code>capsid protein</code>, <code>small basic protein</code> and <code>RdRp</code>. The module emits two: <code>Nonstructural polyprotein</code> and <code>Minor structural protein VP2</code>, the same strings used by Sapovirus, Lagovirus and Nebovirus for the same two genes.",
+     "type": "prose"
+    },
+    {
+     "html": "The protein pool here is too small for a rarefaction curve to mean anything &mdash; 26 proteins annotated by both source and module &mdash; so the saturation page states the collapse directly instead of drawing one. The more useful comparison for a taxon this size is the string-collapse page, which covers the whole dump rather than the overlap.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Six strings to two, over proteins that previously had no controlled annotation at all.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Measured from the shipped module: Bavovirus_Viral_PSSM.json, the 4 installed PSSMs, 2 reference contigs, a 28-genome panel and a 14-exemplar routing run. Cross-genus figures come from scoring the installed profiles against all 71,883 unique Caliciviridae proteins in the family dump.",
+ "standfirst": "Chicken calicivirus: two ORFs, two features, and a taxon that turned out to contain two viruses rather than one. The smallest module in the Caliciviridae series, and the one whose build found the most.",
+ "title": "Bavovirus Coverage Audit"
+}

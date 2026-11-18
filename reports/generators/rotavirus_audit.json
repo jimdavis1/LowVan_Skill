@@ -1,0 +1,735 @@
+{
+ "eyebrow": "LowVan &middot; Rotavirus module &middot; 12 October 2026",
+ "h1": "Rotavirus",
+ "headline_tiles": [
+  [
+   "14",
+   "features, all with profiles"
+  ],
+  [
+   "389",
+   "PSSMs"
+  ],
+  [
+   "440/440",
+   "exemplars routed"
+  ],
+  [
+   "55.0%",
+   "held-out genomes genuinely clean"
+  ],
+  [
+   "23.8\u00d7",
+   "string collapse"
+  ],
+  [
+   "12.1\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Rotaviruses are the leading cause of severe childhood gastroenteritis worldwide. Species A accounts for essentially all human disease and for 89% of the genus dump; species B, C and H cause human outbreaks at much lower frequency, and D through G, I and J are animal viruses. That imbalance is the central technical problem in this module and is visible in almost every number below.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "163,278"
+      ],
+      [
+       "protein features",
+       "173,758"
+      ],
+      [
+       "unique sequences",
+       "79,604"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "6,627"
+      ],
+      [
+       "species",
+       "10"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Every record in this family's BV-BRC dump is a single segment. Nothing in Sedoreoviridae arrives as an assembled multi-segment genome the way influenza does, so the routing and coverage measurements below are made on reassembled genomes: records sharing a strain name and contributing exactly eleven segments were merged, which recovers 6,627 genomes with a contig set of at least 5 kb.",
+     "type": "prose"
+    },
+    {
+     "html": "The species count is the ICTV set, <i>Rotavirus A</i> through <i>Rotavirus J</i>, all ten of which are present in the dump. A further 9,577 genomes carry a name from which no species letter can be read and are not counted here.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Rotavirus is one genus, and that is the whole module. The partitioning rule asks about genome organisation rather than phylogeny, and every rotavirus species carries the same eleven segments in the same arrangement, so the ten species stay together.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "VP1",
+       "RNA-dependent RNA polymerase",
+       "RDRP",
+       "3,790",
+       "22",
+       "defaults"
+      ],
+      [
+       "VP2",
+       "Core capsid protein VP2",
+       "VP2",
+       "3,074",
+       "17",
+       "defaults"
+      ],
+      [
+       "VP3",
+       "Capping enzyme VP3",
+       "VP3",
+       "4,055",
+       "27",
+       "defaults"
+      ],
+      [
+       "VP4",
+       "Outer capsid spike protein VP4",
+       "VP4",
+       "5,689",
+       "46",
+       "defaults"
+      ],
+      [
+       "VP8STAR",
+       "Mature N-terminal outer capsid spike protein VP8*",
+       "VP8*",
+       "3,531",
+       "18",
+       "defaults"
+      ],
+      [
+       "VP5STAR",
+       "Mature C-terminal outer capsid spike protein VP5*",
+       "VP5*",
+       "3,531",
+       "3",
+       "defaults"
+      ],
+      [
+       "VP6",
+       "Inner capsid protein VP6",
+       "VP6",
+       "2,802",
+       "22",
+       "defaults"
+      ],
+      [
+       "VP7",
+       "Outer capsid glycoprotein VP7",
+       "VP7",
+       "7,830",
+       "52",
+       "defaults"
+      ],
+      [
+       "NSP1",
+       "Non-structural protein NSP1, interferon antagonist",
+       "NSP1",
+       "4,078",
+       "48",
+       "defaults"
+      ],
+      [
+       "NSP2",
+       "Non-structural protein NSP2, NTPase",
+       "NSP2",
+       "2,657",
+       "22",
+       "defaults"
+      ],
+      [
+       "NSP3",
+       "Non-structural protein NSP3, translation enhancer",
+       "NSP3",
+       "2,827",
+       "29",
+       "defaults"
+      ],
+      [
+       "NSP4",
+       "Non-structural protein NSP4, enterotoxin",
+       "NSP4",
+       "3,416",
+       "38",
+       "defaults"
+      ],
+      [
+       "NSP5",
+       "Non-structural protein NSP5",
+       "NSP5",
+       "1,886",
+       "33",
+       "defaults"
+      ],
+      [
+       "NSP6",
+       "Non-structural protein NSP6",
+       "NSP6",
+       "1,113",
+       "12",
+       "defaults"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The twelve protein collections were binned by rule from the source annotation and then widened by homology rescue, which adopted 3,279 features under 186 further strings &mdash; mostly bare forms such as <code>VP4</code> and <code>inner capsid protein VP6</code> that no rule could safely claim on text alone.",
+     "type": "prose"
+    },
+    {
+     "html": "VP8* and VP5* have no collection in the dump, because nothing in BV-BRC is annotated as a mature rotavirus spike subunit. They are a coordinate operation on the curated VP4: trypsin cleaves VP4 after Arg247, and the site was located as the motif <code>R&darr;AQ</code> in a 230&ndash;265 window rather than as a column number, so it re-locates itself after any rebuild (Gilbert &amp; Greenberg 1998, <i>J Virol</i> 72:5323&ndash;5327).",
+     "type": "prose"
+    },
+    {
+     "html": "That motif is a species A observation and it behaves like one. It finds a unique site in 88% of species A VP4 and in essentially none of any other species: 1 of 271 in species C, 0 of 60 in species B, 0 of 53 in species H. Species A VP4 is 33% identical to species C VP4 and 19% identical to species B, far below the 80% floor this project requires before a cleavage site may be transferred across an alignment, so the site was <b>not</b> projected onto them. The consequence is a real coverage gap and it is reported as one in &sect;05 and &sect;07, not papered over.",
+     "type": "prose"
+    },
+    {
+     "html": "Every length window in this module is explicit. The usual test &mdash; a window taken as a fraction of the feature's pooled median &mdash; cannot work here, because species A <i>is</i> the pooled median. A 0.7&ndash;1.3&times; window from it deletes 61% of non-A NSP3, 57% of NSP1 and 35% of VP7. Each window instead spans the range of per-species full lengths, and each of those was estimated from cleanly-labelled records only.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Twelve collections come from the annotation strings. Two more are cut out of a third by coordinate, and that cut only works for one species.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "VP1",
+       "490",
+       "0.65",
+       "863",
+       "1,401"
+      ],
+      [
+       "VP2",
+       "400",
+       "0.65",
+       "702",
+       "1,185"
+      ],
+      [
+       "VP3",
+       "376",
+       "0.65",
+       "543",
+       "1,002"
+      ],
+      [
+       "VP4",
+       "349",
+       "0.65",
+       "586",
+       "975"
+      ],
+      [
+       "VP8STAR",
+       "111",
+       "0.65",
+       "207",
+       "281"
+      ],
+      [
+       "VP5STAR",
+       "238",
+       "0.65",
+       "331",
+       "583"
+      ],
+      [
+       "VP6",
+       "179",
+       "0.65",
+       "312",
+       "477"
+      ],
+      [
+       "VP7",
+       "147",
+       "0.65",
+       "195",
+       "398"
+      ],
+      [
+       "NSP1",
+       "219",
+       "0.65",
+       "254",
+       "656"
+      ],
+      [
+       "NSP2",
+       "143",
+       "0.65",
+       "236",
+       "381"
+      ],
+      [
+       "NSP3",
+       "140",
+       "0.65",
+       "218",
+       "486"
+      ],
+      [
+       "NSP4",
+       "79",
+       "0.65",
+       "101",
+       "262"
+      ],
+      [
+       "NSP5",
+       "89",
+       "0.65",
+       "126",
+       "261"
+      ],
+      [
+       "NSP6",
+       "41",
+       "0.65",
+       "73",
+       "110"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The <code>min_len</code> and <code>max_len</code> values are the explicit per-feature windows from &sect;02 rather than quantiles of the collection, for the reason given there. NSP6 is the shortest feature in the module at 73&ndash;110 residues and carries the lowest bit cutoff; it is also the feature most exposed to a false call, so its collection was built from species A deposits only, where the ORF is real.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>47981 of 48007 (99.9%)</b> &mdash; VP1 3632/3632, VP2 2964/2964, VP3 3982/3982, VP4 4605/4605, VP8STAR 3531/3531, VP5STAR 3531/3531, VP6 2421/2421, VP7 7621/7625, NSP1 3913/3922, NSP2 2616/2617, NSP3 2786/2791, NSP4 3404/3408, NSP5 1876/1879, NSP6 1099/1099. This is a floor, not a validation; the held-out figures are in &sect;05 and &sect;06.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Cutoffs are set from each collection's own distribution, with the windows above standing in for the length bounds.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "440",
+       "\u2014"
+      ],
+      [
+       "routed to Rotavirus",
+       "440",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "33 rep contigs ship with the module, each one a whole 11-segment genome; 33 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the Sedoreoviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families. Every incoming record in this family is a single segment, so a segment routes if it resembles any segment of any chosen reference; that is why the segment-level budget in &sect;04 is the one that predicts runtime behaviour and the concatenated-genome budget is not.",
+     "type": "prose"
+    },
+    {
+     "html": "An earlier budget run suggested the opposite. Clustering each genome's eleven concatenated segments gave 1,574 clusters for 6,648 genomes, 74% of them singletons, and a projected reach of 49% for species A and 0% for everything else. That figure was an artefact of the method: rotaviruses reassort, so a concatenated genome is a mosaic and every new combination of otherwise-common segments becomes its own cluster.",
+     "type": "prose"
+    },
+    {
+     "html": "What actually happens at runtime is different. Every incoming record is one segment, a rep contig is a whole genome carrying all eleven segment types, and a segment routes if it resembles <i>any</i> segment of <i>any</i> chosen reference. Clustering segments and choosing genomes greedily by uncovered segment clusters reaches 100% at the project budget. The same flaw is present in the shipped <code>repcontig_budget.py</code>, which concatenates per genome, and it very likely understates the influenza budgets measured with it.",
+     "type": "prose"
+    },
+    {
+     "html": "The reference set was raised from 25 to 33 to close a routing gap in the minor species. Splitting the module was considered and rejected: the species differ in sequence, not in genome organisation, and a split would have produced nine modules that each declare the same fourteen features.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Routing is the step this family was expected to fail, and it did not.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "RDRP",
+       "90.0",
+       90.0,
+       "396 of 440 routed exemplars"
+      ],
+      [
+       "VP2",
+       "91.4",
+       91.4,
+       "402 of 440 routed exemplars"
+      ],
+      [
+       "VP3",
+       "96.4",
+       96.4,
+       "424 of 440 routed exemplars"
+      ],
+      [
+       "VP4",
+       "98.0",
+       98.0,
+       "431 of 440 routed exemplars"
+      ],
+      [
+       "VP8*",
+       "70.7",
+       70.7,
+       "311 of 440 routed exemplars"
+      ],
+      [
+       "VP5*",
+       "72.3",
+       72.3,
+       "318 of 440 routed exemplars"
+      ],
+      [
+       "VP6",
+       "99.5",
+       99.5,
+       "438 of 440 routed exemplars"
+      ],
+      [
+       "VP7",
+       "99.8",
+       99.8,
+       "439 of 440 routed exemplars"
+      ],
+      [
+       "NSP1",
+       "97.7",
+       97.7,
+       "430 of 440 routed exemplars"
+      ],
+      [
+       "NSP2",
+       "99.8",
+       99.8,
+       "439 of 440 routed exemplars"
+      ],
+      [
+       "NSP3",
+       "98.6",
+       98.6,
+       "434 of 440 routed exemplars"
+      ],
+      [
+       "NSP4",
+       "98.6",
+       98.6,
+       "434 of 440 routed exemplars"
+      ],
+      [
+       "NSP5",
+       "98.9",
+       98.9,
+       "435 of 440 routed exemplars"
+      ],
+      [
+       "NSP6",
+       "68.4",
+       68.4,
+       "301 of 440 routed exemplars"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>232 of 440 routed exemplars get every one of the 13 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>VP8*, VP5*</b>. Excluded from that count: NSP6 &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode.",
+     "type": "prose"
+    },
+    {
+     "html": "NSP6 is excluded from the core set because its absence is biology rather than coverage. It is an out-of-frame ORF on segment 11, overlapping NSP5, and it is a species A feature: 282 of 297 species A exemplars get it and <b>zero</b> of the 115 exemplars carrying any other species letter do. A profile set that called NSP6 in species B or C would be wrong.",
+     "type": "prose"
+    },
+    {
+     "html": "VP8* and VP5* are a different matter and are deliberately left in the core count so the gap shows. They are called in 291 of 297 species A exemplars and in none of species B, C, D, F, G, H or I &mdash; while VP4 itself is called in 431 of 440. Every rotavirus cleaves VP4; this module can only locate the cut in one species. The honest reading of &sect;05 is that the module calls the rotavirus proteome in species A and the rotavirus proteome minus two mature peptides everywhere else.",
+     "type": "prose"
+    },
+    {
+     "html": "Read the headline count with that in mind. <b>373 of 440 routed exemplars (84.8%) get every one of the eleven essential CDS features</b> &mdash; the eleven the genome quality tool actually requires. The lower figure above is the same measurement with VP8* and VP5* added back in, and the difference between the two <i>is</i> the species A restriction on the cleavage site, not a second problem.",
+     "type": "prose"
+    },
+    {
+     "html": "VP2 trails the other structural proteins at 91%. Six records of species A VP4 length had been binned into VP2 from a conflicting annotation string and were moved to the outliers file; the remaining shortfall is in the unlabelled genomes and has not been chased.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Twelve of the fourteen features are called in at least 90% of routed genomes. The two that are not are the ones &sect;02 predicted.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "40",
+       "held-out genomes"
+      ],
+      [
+       "22",
+       "no genome/contig flags"
+      ],
+      [
+       "22",
+       "genuinely clean"
+      ],
+      [
+       "18",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "55.0%",
+       "clean"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "The panel is 40 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+     "type": "prose"
+    },
+    {
+     "text": "  22  Contig is too short\n   8  Contig has too many ambiguous bases, Frac &gt; 0.01\n   3  Genome is missing essential feature: Non-structural protein NSP5\n   3  Contig is missing: NSP5 Segment\n   2  Genome is missing essential feature: Outer capsid spike protein VP4\n   2  Contig is missing: VP4 Segment\n   2  Genome is missing essential feature: Non-structural protein NSP3, translation enhancer\n   2  Contig is missing: NSP3 Segment\n   1  Contig is too long\n   1  Genome is missing essential feature: Capping enzyme VP3\n   1  Genome is missing essential feature: Core capsid protein VP2\n   1  Genome is missing essential feature: RNA-dependent RNA polymerase",
+     "type": "pre"
+    },
+    {
+     "html": "The panel was drawn round-robin across species so that the minor species are represented far above their share of the dump: five genomes each from species A, B, C, G, H and I, three from D, two from F and five unlabelled. Every genome used as a rep contig was excluded. This makes the panel a much harder test than the dump's composition would produce, and the flag tally should be read with that in mind.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Every missing-essential flag pairs with a missing contig.</b> Three genomes are flagged <code>Contig is missing: NSP5 Segment</code> and the same three for a missing NSP5; two for the VP4 Segment and two for VP4; two for the NSP3 Segment and two for NSP3; one for the VP1 Segment and one for the polymerase. Naming segments after the protein they carry is what makes that pairing readable at a glance. The module is not failing to call those proteins &mdash; the deposited genome does not contain the segment that encodes them. The other 30 flags are <code>Contig is too short</code> (22) and <code>too many ambiguous bases</code> (8), both properties of the deposit.",
+     "type": "prose"
+    },
+    {
+     "html": "By species: all six species A genomes are clean, all five species B and all five species C. Every flagged genome is species D, F, G, H, I or unlabelled &mdash; the thinly-sequenced animal rotaviruses, whose deposits are the shortest and most ambiguous in the family. A panel weighted to the dump's own composition would be ~90% species A and would have reported a much higher clean rate while testing much less.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Forty genomes held out of the build, annotated end to end and scored by the genome quality tool.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>The spike subunits are species A only.</b> VP8* and VP5* will not be called on species B, C, D, F, G, H, I or J. The fix is a documented or directly determined cleavage site for at least species B and C VP4; until one exists, transferring the species A site across a 19&ndash;33% identity alignment would be a guess, and this project does not make that kind of guess silently.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>NSP6 is modelled for species A alone</b>, which is correct as far as the literature goes, but the literature on segment 11 in the minor species is thin. If an NSP6-equivalent ORF is later described in species B or C, this module will not call it.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Nine of the ten species are represented by tens of genomes, not thousands.</b> Species E contributes 5 genomes to the whole dump and species J contributes 70. The profiles for those species rest on very few independent observations, and the self-recall figure in &sect;03 cannot distinguish a profile that generalises from one that has memorised its four training sequences.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Reassortment is not modelled.</b> The module annotates segments independently and makes no statement about whether a given set of eleven segments constitutes a coherent strain.",
+     "type": "prose"
+    },
+    {
+     "html": "The module is complete for <i>Rotavirus A</i>, which is the human pathogen, and complete apart from the two spike subunits for the other nine species. Both gaps are named above and neither is hidden inside a number.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "What this module cannot do.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>38% of the dump declares itself incomplete.</b> 66,897 of 173,758 protein features carry a source annotation ending in <code>, fragment</code>, <code>, N-terminal</code>, <code>, C-terminal</code> or beginning <code>truncated</code>, and under this project's rule all of them are discarded rather than binned. VP4 and VP7 account for most of it, which is unsurprising &mdash; those are the genotyping targets and are routinely sequenced in part.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>That discard changed a consensus.</b> Before it, the VP7 collection held 10,105 truncated species A records against 5,461 full-length ones, and the species A median read 311 residues against a true 326. The truncated records outnumbered the real ones two to one, so they set their own window and passed it. Length alone would not have caught this; the source label is what separated the two populations, and estimating full length from cleanly-labelled records only is what made the estimate unbiased.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>A single string pattern bound 221 features to the wrong protein.</b> Deposits of the form <code>outer capsid glycoprotein VP6</code>, <code>outer capsid glycoprotein NSP4</code> and seven other variants matched both the VP7 rule and the rule for the named gene. Under a first-match binning order they all became VP7. The collection engine now refuses any string that two rules claim and routes it to the homology rescue instead.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Putative is not partial.</b> The two qualifiers were conflated in an early pass. <code>putative</code> expresses uncertainty about identity and those records are kept and arbitrated by homology; <code>truncated</code> expresses incompleteness and is always discarded. Several of the largest discarded strings carry both, for example <code>putative outer capsid spike protein VP4, fragment</code>, and are discarded on the second qualifier.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Three features were demanding to exist.</b> The genome quality tool treats a feature as essential if it declares <code>copy_num</code> and is a CDS or mature peptide, and all fourteen declared it. So every non-species-A genome was flagged <i>poor</i> for lacking VP8*, VP5* and NSP6 &mdash; proteins this audit says it does not expect them to have. The first panel run scored 6 of 40 clean for that reason alone. Dropping <code>copy_num</code> from those three took it to 22 of 40 and left behind only flags that name a real property of the deposit. The picornavirus modules had the convention right already: the parent CDS is essential, its mature peptides are not.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>A segmented reference was shipping as one fused contig.</b> <code>build_rep_contigs.py</code> joined every record in a genome's file and wrote a single contig, so each rotavirus reference was 18 kb of sequence under its own first segment's header. Routing was unaffected &mdash; re-measuring 440 exemplars against the before and after files returns the identical set &mdash; which is exactly why it survived: nothing failed and nothing said so. The files now carry one record per segment, as the influenza references always have.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What the run turned up that was not expected.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "from": "rotavirus-saturation-figure.html",
+     "type": "figure"
+    },
+    {
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "VP7",
+       "Outer capsid glycoprotein VP7",
+       "37"
+      ],
+      [
+       "VP4",
+       "Outer capsid spike protein VP4",
+       "34"
+      ],
+      [
+       "NSP3",
+       "Non-structural protein NSP3, translation enhancer",
+       "34"
+      ],
+      [
+       "NSP1",
+       "Non-structural protein NSP1, interferon antagonist",
+       "27"
+      ],
+      [
+       "VP6",
+       "Inner capsid protein VP6",
+       "25"
+      ],
+      [
+       "VP2",
+       "Core capsid protein VP2",
+       "25"
+      ],
+      [
+       "VP3",
+       "Capping enzyme VP3",
+       "23"
+      ],
+      [
+       "NSP5",
+       "Non-structural protein NSP5",
+       "22"
+      ],
+      [
+       "NSP4",
+       "Non-structural protein NSP4, enterotoxin",
+       "20"
+      ],
+      [
+       "VP1",
+       "RNA-dependent RNA polymerase",
+       "16"
+      ],
+      [
+       "NSP2",
+       "Non-structural protein NSP2, NTPase",
+       "15"
+      ],
+      [
+       "NSP6",
+       "Non-structural protein NSP6",
+       "8"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "116"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Rarefaction over proteins: every annotated protein in the 439 genomes both sources annotate (5,181 source product records, 5,666 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>169</b> distinct strings, the module's <b>14</b>. At the depth both reach, 5,181 proteins, free text has used <b>169.0 strings against 14.0 &mdash; a 12.1-fold difference.</b> The source reaches 95% of its final size after 4,279 proteins, the module after 41.",
+     "type": "prose"
+    },
+    {
+     "html": "286 distinct source strings collapse onto 12 annotations across the bound features. The unbound tail is 157 further strings, and its top entries are the partial deposits from &sect;08 &mdash; they appear here as vocabulary the module deliberately does not absorb, rather than as vocabulary it failed to reach.",
+     "type": "prose"
+    },
+    {
+     "html": "The rarefaction curve is the stronger statement because it controls for sampling depth. Drawing annotated proteins one at a time from the genomes both sources describe, free text reaches 169 distinct strings and the module's vocabulary reaches 14. The source vocabulary is still growing at the end of the draw; the module's saturates after 41 proteins, because there are only fourteen proteins to name.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What a controlled vocabulary bought on this genus.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Generated from <code>rotavirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Sedoreoviridae/work/Rotavirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.",
+ "standfirst": "One module for all ten rotavirus species. Eleven double-stranded RNA segments, six structural proteins and six non-structural ones, and an annotation vocabulary in which 38% of the deposited proteins declare themselves to be fragments. This audit says what the module calls, what it does not call, and which of those gaps are biology and which are ours.",
+ "title": "Rotavirus Coverage Audit"
+}

@@ -1,0 +1,264 @@
+{
+ "eyebrow": "LowVan &middot; PiscineOrthoreovirus module &middot; 17 October 2026",
+ "h1": "Piscine Orthoreovirus",
+ "headline_tiles": [
+  [
+   "11",
+   "features, all with profiles"
+  ],
+  [
+   "17",
+   "PSSMs"
+  ],
+  [
+   "10",
+   "segments"
+  ],
+  [
+   "100%",
+   "of 4,582 segment records routed"
+  ],
+  [
+   "20/20",
+   "panel isolates with all eleven"
+  ],
+  [
+   "8.3&times;",
+   "annotation string collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Piscine orthoreovirus is the agent of heart and skeletal muscle inflammation in farmed Atlantic salmon. Every genome record in this dump is PRV; unlike the other orthoreovirus builds there was no sibling clade to separate out. The genome is ten dsRNA segments encoding eleven proteins:",
+     "type": "prose"
+    },
+    {
+     "text": "L1  lambda3  ~1,286 aa   RNA polymerase      &lt;- MRV lambda-3   43.2%\nL2  lambda2  ~1,290 aa   capping enzyme      &lt;- MRV lambda-2   26.0%\nL3  lambda1  ~1,282 aa   core shell          &lt;- MRV lambda-1   32.7%\nM1  mu2        ~760 aa   core / cofactor     &lt;- MRV mu-2       22.2%\nM2  mu1        ~687 aa   outer capsid        &lt;- MRV mu-1       26.5%\nM3  muNS       ~741 aa   non-structural      &lt;- MRV mu-NS      22.3%\nS1  sigma3     ~330 aa   outer capsid        BICISTRONIC\n    p13        ~124 aa   non-structural\nS2  sigma2     ~420 aa   core\nS3  sigmaNS    ~354 aa   non-structural      &lt;- MRV sigma-NS   21.5%\nS4  sigma1     ~315 aa   cell attachment",
+     "type": "pre"
+    },
+    {
+     "html": "The right-hand column is orthology to the shipped Mammalian Orthoreovirus module, used to fix each name to a function rather than trusting the names. They happen to agree here, but the segment numbering does <i>not</i> follow MRV's: the homology rescue placed a bare <code>S4</code> label into <code>sigma1</code>, which is where PRV puts its attachment protein. At 22&ndash;43% identity the four small proteins fall below blastp detection against MRV entirely, and that distance is itself why PRV is its own module.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>S1 is bicistronic.</b> 632 genome records carry exactly two proteins and every one of those pairs is p13 with sigma3, so segment S1 encodes both. Unlike Coltivirus segment 9, this is not a read-through: they are two separate ORFs in different frames, and p13 sits <i>entirely inside</i> sigma3's span &mdash; 112&ndash;486 within 33&ndash;1025 on one panel isolate.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "One taxon, no outgroup, and a salmon farming problem.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>On 19 of 20 panel isolates, sigma3 and sigma1 were called at identical coordinates</b> &mdash; 1&ndash;993 on the same contig, scoring <b>691.1</b> and <b>689.5</b> bits. A 1.5-bit margin: no cutoff could have separated them.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "Pooling both collections and clustering found the cause. Three sequences deposited as <code>sigma1</code> are really sigma3 &mdash; the best cross-label hit is <b>99.7% identical over 330 aa</b>, and real sigma1 runs 303&ndash;315 residues against sigma3's flat 330:",
+     "type": "prose"
+    },
+    {
+     "text": "n=170   167 &quot;sigma3&quot; + 3 &quot;sigma1&quot;   all exactly 330 aa   -&gt;  sigma3\nn=36     36 &quot;sigma1&quot;               303-315 aa           -&gt;  sigma1",
+     "type": "pre"
+    },
+    {
+     "html": "Those three were enough to form a cluster of their own, <code>SIGMA1.2.pssm</code>, built entirely from sigma3 sequences &mdash; which then fired on sigma3's locus on every genome that had one. Reassigning them by homology and rebuilding took co-located calls from <b>19 to 0</b>.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Worth recording how this was caught, because the obvious check missed it.</b> <code>audit_contamination</code> reported no cross-feature contamination before or after: it reassigns a sequence only when it beats its own feature's canonical by 50 bits, and three contaminants forming their own cluster never trigger that, because true sigma3 sequences score about equally against both canonicals. On Avian Orthoreovirus the same audit caught 215 flags, because there the swap ran in <i>both</i> directions. The signature here was visible only in the panel: two features called at identical coordinates on one contig.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "The cross-feature audit saw nothing. The panel saw it on 19 of 20 genomes.",
+   "num": "02",
+   "title": "Three sequences put sigma1 on sigma3&#x27;s gene"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "segment",
+      "bit",
+      "aa range",
+      "PSSMs",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "LAMBDA3",
+       "lambda3",
+       "1065",
+       "1150&ndash;1363",
+       "1",
+       "yes"
+      ],
+      [
+       "LAMBDA2",
+       "lambda2",
+       "373",
+       "1212&ndash;1368",
+       "1",
+       "yes"
+      ],
+      [
+       "LAMBDA1",
+       "lambda1",
+       "703",
+       "1202&ndash;1358",
+       "1",
+       "yes"
+      ],
+      [
+       "MU2",
+       "mu2",
+       "156",
+       "701&ndash;827",
+       "2",
+       "yes"
+      ],
+      [
+       "MU1",
+       "mu1",
+       "266",
+       "635&ndash;749",
+       "1",
+       "yes"
+      ],
+      [
+       "MUNS",
+       "muNS",
+       "60",
+       "695&ndash;810",
+       "2",
+       "yes"
+      ],
+      [
+       "SIGMA3",
+       "sigma3",
+       "60",
+       "310&ndash;349",
+       "2",
+       "yes"
+      ],
+      [
+       "P13",
+       "sigma3",
+       "30",
+       "112&ndash;135",
+       "3",
+       "yes"
+      ],
+      [
+       "SIGMA2",
+       "sigma2",
+       "76",
+       "389&ndash;445",
+       "1",
+       "yes"
+      ],
+      [
+       "SIGMANS",
+       "sigmaNS",
+       "60",
+       "332&ndash;382",
+       "1",
+       "yes"
+      ],
+      [
+       "SIGMA1",
+       "sigma1",
+       "60",
+       "284&ndash;333",
+       "2",
+       "yes"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Cutoffs are the lowest value admitting no foreign protein, measured against the whole of mammalian, avian and pteropine orthoreovirus &mdash; 7,118 foreign sequences against 1,212 members. Every feature clears it with room: lambda3's cutoff is 1,065 against a weakest member of 2,423, and four features draw no foreign hit above the default floor at all.",
+     "type": "prose"
+    },
+    {
+     "html": "<code>SIGMA3</code> and <code>P13</code> both declare the <code>sigma3 Segment</code> because S1 encodes both. <code>copy_num</code> on p13 needed the overlap declared explicitly as real architecture &mdash; its calls are 100% raw but 5% standalone, since the ORF is nested inside sigma3's span.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Eleven features, every one separable from the rest of the genus.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>14 references route 4,582 of 4,582 segment records &mdash; 100.0%.</b> Nothing is left uncovered, which has not happened in any other module in this family: Coltivirus needed 23 references for the same result on a far smaller population, and Avian Orthoreovirus leaves 191 records unrouted at 25.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>All 20 panel isolates receive all eleven features, with no quality flag of any kind</b> and no feature called twice anywhere. Self-recall against each feature's own in-range collection is 100% on all eleven, and cross-feature contamination is nothing above 50 bits across 629 sequences. <code>copy_num</code> is set on all eleven.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "The Met-start gate passes on all 17 alignments, but it took a repair to get there: 227 collection members did not begin with Met. The pattern was a dropped initiator, not a ragged alignment &mdash; sigma2 arrives as 19 copies of <code>ARAIFSGISAFF</code> against 18 of <code>MARAIFSGISAF</code>, and lambda2 as 40 of <code>TLYGLRITRLKN</code> against 39 of <code>MATLYGLRITRL</code>. Those were dropped.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The standard N-terminal filter had to be overruled here.</b> Its EXTENDED test wanted to drop <b>93.5% of sigmaNS and 85% of mu1</b>, because in this taxon a minority carries a genuine upstream Met &mdash; 15 copies of <code>MTMGNYQ...</code> extending 50 of <code>MGNYQ...</code>, and for sigmaNS a <i>single</i> longer variant flags 29 of 31. The Met gate never complained about either feature. Only the non-Met members were dropped, which is unambiguous: a collection member that does not start with Met cannot be a CDS start under any reading.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "The most homogeneous taxon in this family, and the cleanest panel in it.",
+   "num": "04",
+   "title": "Does it route, and does it call?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>sigma1 rests on 36 sequences</b>, the thinnest collection in the module, and it is the feature that was contaminated. It is the cell-attachment protein and therefore the most variable, so it is the one most likely to miss a divergent isolate.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The panel is reassembled, not deposited.</b> No complete PRV genome exists as a single record; each isolate is rebuilt from its own ten segment records, grouped by deposited strain name. Panel contigs are named for their source record rather than a guessed segment, because the three lambdas differ by 8 residues in length and three of the sigmas by under 40.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Only 215 source proteins back the vocabulary comparison.</b> PRV is deposited segment by segment and most records carry one protein, so the rarefaction below is measured on a smaller pool than the collapse figure.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Three limits.",
+   "num": "05",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "91 distinct annotation strings across 5,069 occurrences collapse onto <b>11 controlled annotations</b>, an <b>8.3&times;</b> reduction &mdash; between Coltivirus's 2.5&times; and Avian Orthoreovirus's 22.2&times;. Rarefied over proteins at the depth both curves reach, the source holds <b>41</b> distinct strings against the module's <b>11</b>, a <b>3.7&times;</b> collapse; the source needs 194 proteins to reach 95% of its vocabulary and the module needs 31.",
+     "type": "prose"
+    },
+    {
+     "html": "Two strings had to be left deliberately unbound rather than sent to the not-modelled pile. <code>non-structural protein</code> is deposited in this dump at 124 <i>and</i> 752 residues &mdash; p13 and muNS &mdash; so it identifies neither by name. Marking it not-modelled would have put 189 real proteins beyond the homology rescue's reach; left unassigned, the rescue placed them correctly, 14 into p13 and 5 into muNS.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Eleven proteins, 91 ways of saying so.",
+   "num": "06",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Measured from the shipped module: PiscineOrthoreovirus_Viral_PSSM.json, 17 PSSMs, 14 reference contigs and 10 declared segments. Protein orthology by blastp with -comp_based_stats 0 against the shipped MammalianOrthoreovirus alignments; self-recall from collect_registry; cross-feature contamination from audit_contamination; cutoffs from foreign_leak against mammalian, avian and pteropine orthoreovirus; string collapse from collect_synmap; rarefaction over 100 replicates against source annotations aggregated per isolate. Call rates from a 20-isolate panel, each isolate reassembled from its own segment records and scored through the full annotator.",
+ "standfirst": "Ten double-stranded RNA segments and eleven proteins, one segment carrying two in overlapping frames. The most homogeneous taxon built in this family &mdash; fourteen references route every record &mdash; and the one where three mislabelled sequences put a second protein on top of another's gene.",
+ "title": "Piscine Orthoreovirus Coverage Audit"
+}

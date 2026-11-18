@@ -1,0 +1,505 @@
+{
+ "eyebrow": "LowVan &middot; Erythroparvovirus module &middot; 1 November 2026",
+ "h1": "Erythroparvovirus",
+ "headline_tiles": [
+  [
+   "6",
+   "features, all with profiles"
+  ],
+  [
+   "15",
+   "PSSMs"
+  ],
+  [
+   "30/30",
+   "exemplars routed"
+  ],
+  [
+   "87.7%",
+   "sampled genomes genuinely clean"
+  ],
+  [
+   "10.2\u00d7",
+   "string collapse"
+  ],
+  [
+   "7.2\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Erythroparvovirus is the only genus in the module. Six features are declared: <strong>NS1</strong>, the capsid pair <strong>VP1</strong> and <strong>VP2</strong>, and three small proteins named for their mass \u2014 <strong>7.5K</strong>, <strong>9.5K</strong> and <strong>11K</strong>.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "625"
+      ],
+      [
+       "protein features",
+       "1,975"
+      ],
+      [
+       "unique sequences",
+       "835"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "300"
+      ],
+      [
+       "species",
+       "14"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "from": "erythroparvovirus-genome-map.html",
+     "type": "figure"
+    },
+    {
+     "html": "Four of the six carry <code>copy_num</code>: NS1, VP1, 7.5K and 9.5K. That two of the three accessory proteins are treated as essential is unusual in this family and is the measurement's doing, not a judgement \u2014 both are called in roughly 94% of the panel.",
+     "type": "prose"
+    },
+    {
+     "html": "The 11 kDa protein is the one with a described function: a proline-rich protein that binds Grb2. The 7.5 and 9.5 kDa proteins cluster cleanly and are callable, and what they do is not established, so they are named <em>uncharacterized lineage specific</em> rather than given a function they have not been shown to have.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One genus, built around parvovirus B19 and its three small accessory proteins.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "ns1",
+       "307",
+       "5",
+       "defaults"
+      ],
+      [
+       "11K",
+       "11 kDa proline-rich nonstructural protein (Grb2-binding)",
+       "11k",
+       "53",
+       "1",
+       "defaults"
+      ],
+      [
+       "9.5K",
+       "Uncharacterized lineage specific 9.5 kDa protein",
+       "9.5k",
+       "22",
+       "1",
+       "defaults"
+      ],
+      [
+       "7.5K",
+       "Uncharacterized lineage specific 7.5 kDa protein",
+       "7.5k",
+       "17",
+       "1",
+       "defaults"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "vp1",
+       "275",
+       "5",
+       "defaults"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "vp2",
+       "143",
+       "2",
+       "defaults"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Sixty-one distinct annotation strings collapse onto the six feature names. VP1 draws on eighteen, NS1 on sixteen, VP2 on thirteen. The 7.5 kDa protein comes from exactly <strong>one</strong> string across 171 deposits \u2014 a protein with no function to argue about also has no synonyms to collapse.",
+     "type": "prose"
+    },
+    {
+     "html": "Three strings did not collapse, four sequences in all: <em>NS2</em>, <em>initiator protein NS1 (EC 3.1.21.-)</em> and <em>hypothetical protein VP</em>. The first of those is the interesting one: Erythroparvovirus is not described as encoding an NS2, and a single deposit under that name is not enough to declare a feature.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Profiles are built from the annotation strings BV-BRC already carries, after the strings are collapsed onto one name per protein.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "455",
+       "0.65",
+       "537",
+       "816"
+      ],
+      [
+       "11K",
+       "149",
+       "0.65",
+       "78",
+       "116"
+      ],
+      [
+       "9.5K",
+       "102",
+       "0.65",
+       "76",
+       "124"
+      ],
+      [
+       "7.5K",
+       "116",
+       "0.65",
+       "67",
+       "78"
+      ],
+      [
+       "VP",
+       "300",
+       "0.65",
+       "565",
+       "1,003"
+      ],
+      [
+       "VP2",
+       "359",
+       "0.65",
+       "352",
+       "601"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The floors are 9.5K 102, 11K 116, 7.5K 149, VP1 300, VP2 359 and NS1 455 bits. Fifteen profiles in all, which is a small set for 1,721 source sequences \u2014 the genus is tight enough that five profiles cover all 307 NS1 deposits.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall is <strong>307 of 307</strong> for NS1, <strong>275 of 275</strong> for VP1, <strong>143 of 143</strong> for VP2, <strong>53 of 53</strong> for 11K, <strong>17 of 17</strong> for 7.5K and <strong>21 of 22</strong> for 9.5K. One miss in the whole module.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>816 of 817 (99.9%)</b> &mdash; NS1 307/307, 11K 53/53, 9.5K 21/22, 7.5K 17/17, VP 275/275, VP2 143/143. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Each profile carries a bit-score floor and a length window taken from the collection it was built from.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "30",
+       "\u2014"
+      ],
+      [
+       "routed to Erythroparvovirus",
+       "30",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Routing was measured against the 14 reference contigs this module ships, of which 8 were used by the exemplar set.",
+     "type": "prose"
+    },
+    {
+     "html": "All 30 exemplars routed, and all 30 routed to this module. Nothing went elsewhere and nothing was left unrouted.",
+     "type": "prose"
+    },
+    {
+     "html": "That is the cleanest routing result in the family, and it follows from the genus being narrow: fourteen reference contigs are enough when the genomes they stand for are closely related to each other and to nothing else in Parvoviridae.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Routing is a BLASTn of the query against the reference contigs.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "ns1",
+       "83.3",
+       83.3,
+       "25 of 30 routed exemplars"
+      ],
+      [
+       "11k",
+       "43.3",
+       43.3,
+       "13 of 30 routed exemplars"
+      ],
+      [
+       "9.5k",
+       "56.7",
+       56.7,
+       "17 of 30 routed exemplars"
+      ],
+      [
+       "7.5k",
+       "53.3",
+       53.3,
+       "16 of 30 routed exemplars"
+      ],
+      [
+       "vp1",
+       "86.7",
+       86.7,
+       "26 of 30 routed exemplars"
+      ],
+      [
+       "vp2",
+       "86.7",
+       86.7,
+       "26 of 30 routed exemplars"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>13 of 30 routed exemplars get every one of the 6 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>11k, 9.5k, 7.5k</b>. <b>2 routed exemplar(s) cleared no profile at any feature</b> and are counted here as calling nothing.",
+     "type": "prose"
+    },
+    {
+     "html": "Across the 30 exemplars: <strong>VP1 27</strong>, <strong>VP2 27</strong>, <strong>NS1 25</strong>, <strong>9.5K 17</strong>, <strong>7.5K 16</strong>, <strong>11K 13</strong>.",
+     "type": "prose"
+    },
+    {
+     "html": "The accessory proteins look weak here and are not. The exemplar set is drawn to span the genus's diversity, so it over-represents the divergent isolates in which the small proteins are least recognisable; on the 300-genome panel 7.5K is missing in 17 genomes and 9.5K in 16, which is the 94% that justified marking them essential.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Calling is measured on the exemplars, feature by feature.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "300",
+       "sampled genomes"
+      ],
+      [
+       "263",
+       "no genome/contig flags"
+      ],
+      [
+       "263",
+       "genuinely clean"
+      ],
+      [
+       "35",
+       "flagged"
+      ],
+      [
+       "2",
+       "called nothing"
+      ],
+      [
+       "87.7%",
+       "clean"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "The panel is 300 genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+     "type": "prose"
+    },
+    {
+     "text": "  19  Contig has too many ambiguous bases, Frac &gt; 0.01\n  17  Genome is missing essential feature: Uncharacterized lineage specific 7.5 kDa protein\n  16  Genome is missing essential feature: Uncharacterized lineage specific 9.5 kDa protein\n   5  Genome is missing essential feature: Capsid protein VP1 (phospholipase A2 domain)\n   5  Genome is missing essential feature: Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)\n   2  Genome has too many HSPs for: Capsid protein VP1 (phospholipase A2 domain)\n   2  Count = 2\n   2  Contig is missing: Single DNA Segment\n   1  Contig is too short",
+     "type": "pre"
+    },
+    {
+     "html": "<strong>263 of 300</strong> come through with no genome-level and no contig-level flag, and all 263 are genuinely clean \u2014 this module has almost no feature-level flags at all, eight in 300 genomes.",
+     "type": "prose"
+    },
+    {
+     "html": "The flags that do appear are mostly not about the proteins: <strong>19</strong> genomes have a contig with more than 1% ambiguous bases. After those come 7.5K missing in 17, 9.5K missing in 16, VP1 missing in 5, NS1 missing in 5, VP1 called twice in 2.",
+     "type": "prose"
+    },
+    {
+     "html": "Read the headline figure for what it is. The panel still contains the genomes the reference contigs were taken from, so it measures internal consistency, not out-of-sample behaviour.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The panel is 300 genomes drawn from the module's own sample; it is not held out.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<strong>Two essential features are proteins nobody has characterised.</strong> A genome missing 7.5K or 9.5K is flagged, and 33 of 300 are. If a clade genuinely lacks one of them, this module will call that clade defective. The 0.85 rule that set <code>copy_num</code> measures how often a feature is called, not whether it ought to be there.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>No splice features are declared.</strong> B19 transcription is heavily spliced, and the small proteins are made from spliced messages \u2014 but each is deposited as a protein often enough to cluster and be called by a profile, so the module calls the product without modelling the junction. A spliced product that was never deposited would be invisible here.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>The single <em>NS2</em> deposit is tracked, not resolved.</strong> It sits in <code>UNASSIGNED_TRACKING.tsv</code> with two other strings. That file is a list of unfinished work, not a resolution.",
+     "type": "prose"
+    },
+    {
+     "html": "Use this module for erythroparvovirus genomes; routing and calling are both strong. Treat a missing 7.5K or 9.5K flag as a question about the genome's clade rather than as a defect, and check the ambiguous-base flag before blaming the module for anything.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Three limits, each measured rather than supposed.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "The capsid labels were wrong on a large scale, and only applying <code>copy_num</code> exposed it. Before the capsid rebuild, <strong>281 of 300</strong> genomes had VP1 and VP2 called at identical coordinates \u2014 the two profiles were built from deposits that disagreed about which form they held, so both landed on the same open reading frame.",
+     "type": "prose"
+    },
+    {
+     "html": "Rebinning the nested forms by size per species, rather than by the name on the deposit, and rebuilding the profiles took that from <strong>281 of 300 to 1</strong>. The deposited name is a claim about which form a submitter thought they had; it is not a measurement.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What the build turned up that was not expected.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "from": "erythroparvovirus-saturation-figure.html",
+     "type": "figure"
+    },
+    {
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "18"
+      ],
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "16"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "13"
+      ],
+      [
+       "11K",
+       "11 kDa proline-rich nonstructural protein (Grb2-binding)",
+       "8"
+      ],
+      [
+       "9.5K",
+       "Uncharacterized lineage specific 9.5 kDa protein",
+       "5"
+      ],
+      [
+       "7.5K",
+       "Uncharacterized lineage specific 7.5 kDa protein",
+       "1"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "3"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Rarefaction over proteins: every annotated protein in the 112 genomes both sources annotate (396 source product records, 583 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>43</b> distinct strings, the module's <b>6</b>. At the depth both reach, 396 proteins, free text has used <b>43.0 strings against 6.0 &mdash; a 7.2-fold difference.</b> The source reaches 95% of its final size after 332 proteins, the module after 26.",
+     "type": "prose"
+    },
+    {
+     "html": "396 deposited protein strings across 112 genomes reduce to six feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at six.",
+     "type": "prose"
+    },
+    {
+     "html": "Three strings resisted, four sequences in all.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What collapsing the vocabulary actually bought.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Generated from <code>erythroparvovirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Parvoviridae/work/Erythroparvovirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+ "title": "Erythroparvovirus Coverage Audit"
+}

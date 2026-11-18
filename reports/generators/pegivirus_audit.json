@@ -1,0 +1,192 @@
+{
+ "eyebrow": "LowVan &middot; Pegivirus module &middot; 24 September 2026",
+ "h1": "Pegivirus",
+ "headline_tiles": [
+  [
+   "9",
+   "features declared, all with profiles"
+  ],
+  [
+   "67",
+   "profiles over 2,006 sequences"
+  ],
+  [
+   "92.8%",
+   "genomes routed&lt;br&gt;25 refs, 670 genomes"
+  ],
+  [
+   "0",
+   "genomes called nothing"
+  ],
+  [
+   "99.2%",
+   "NS3, NS4A, NS4B, polyprotein"
+  ],
+  [
+   "20.8%",
+   "genuinely clean&lt;br&gt;species-capped panel"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "text": "Pestivirus   Npro - C - Erns - E1 - E2 - p7 - NS2 - NS3 - NS4A-4B-5A-5B\nPegivirus            (no core)  E1 - E2 -   p7-NS2  - NS3 - NS4A-4B-5A-5B",
+     "type": "pre"
+    },
+    {
+     "html": "Declaring them together would report <b>Npro, Erns and C as missing on every one of 7,340 pegivirus records</b>. A module is a group of taxa that share a genome organisation, not a clade.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Pegivirus sits next to Pestivirus and Hepacivirus in the old Flaviviridae, and its polyprotein is cut differently enough that it cannot share a module with either.",
+   "num": "01",
+   "title": "A separate module, on genome organisation"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>No core feature is declared.</b> GBV-A and GBV-C are unique in the family for lacking a well-defined capsid protein. The dump holds 9 records under a core or capsid string and <b>not one is a pegivirus capsid</b>: three are 15-22 aa signal peptides (<code>MELLWLFSVFQVAGG</code>, <code>MAVLLLLLVAEAGAILAPATHA</code>) and one 183-aa record is <b>hepatitis B virus core protein</b> (<code>MDIDPYKEFGATVELLSFLPSDFF...</code>), misfiled.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>No p7 feature either.</b> The canonical product list is E1, E2, NS2, NS3, NS4A, NS4B, NS5A, NS5B &mdash; p7 is not a separately recognised product. The dump agrees: <code>p7-NS2</code> fused is the dominant annotation at <b>190 records tight on 253 aa</b>, against 40 for NS2 alone at 238 and 9 for p7 alone at 68.",
+     "type": "prose"
+    },
+    {
+     "html": "The three annotations agree on where NS2 <b>ends</b> &mdash; all share a C-terminal Thr &mdash; and contradict each other on where it <b>starts</b>: 253 &minus; 238 = 15, not the 68 a separate p7 would require. <b>The internal boundary is not placed, because the data does not support placing it.</b> NS2 is built from the p7-NS2 and NS2 records together.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Both absences are in the literature and both are visible in the data.",
+   "num": "02",
+   "title": "No capsid, and no separate p7"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "25",
+       "rep contigs"
+      ],
+      [
+       "670",
+       "genomes"
+      ],
+      [
+       "92.8%",
+       "routed"
+      ],
+      [
+       "39",
+       "clusters uncovered, 48 genomes"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "Matching the gate measured independently on 24 September. 64 clusters at 70% identity, the largest holding 339 genomes.",
+     "type": "prose"
+    }
+   ],
+   "lede": "25 representative contigs over the 670 pegivirus genomes at or above 6,000 nt.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "NS3",
+       "99.2",
+       99.23,
+       ""
+      ],
+      [
+       "NS4A",
+       "99.2",
+       99.23,
+       ""
+      ],
+      [
+       "NS4B",
+       "99.2",
+       99.23,
+       ""
+      ],
+      [
+       "POLY",
+       "99.2",
+       99.23,
+       ""
+      ],
+      [
+       "NS2",
+       "97.7",
+       97.69,
+       ""
+      ],
+      [
+       "NS5B",
+       "97.7",
+       97.69,
+       ""
+      ],
+      [
+       "E2",
+       "90.8",
+       90.77,
+       ""
+      ],
+      [
+       "E1",
+       "76.2",
+       76.15,
+       ""
+      ],
+      [
+       "NS5A",
+       "66.9",
+       66.92,
+       ""
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>NS5A at 66.9% is the outlier, and it is the source-annotation ceiling again.</b> Of the 17 taxa that miss it, <b>not one has a single NS5A training sequence</b>. The leftover pool is 7 sequences, so re-clustering cannot help. E1 at 76.2% is the same shape.",
+     "type": "prose"
+    },
+    {
+     "html": "Zero genomes called nothing &mdash; every routed genome gets at least the polyprotein &mdash; which is the strongest single result here and the one Pestiviridae does not match (13 of 172).",
+     "type": "prose"
+    }
+   ],
+   "lede": "135 genomes annotated, species-capped across 46 species. 130 routed, and <b>none called nothing</b>.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>The junction chemistry has not been checked against published cleavage sites.</b> The <code>JUNCTION</code> table for this module is deliberately almost empty &mdash; only the polyprotein's initiator Met &mdash; because imposing HCV's residue classes on pegivirus would be an assumption, and a filter that encodes an assumption will later appear to confirm it. Pestiviridae's table was measured first and linked to citations; this one has not been, so no constraint is applied. That measurement is the obvious next improvement.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>20.8% genuinely clean</b> on a species-capped panel that gives 46 species equal weight. NS5A and E1 account for most of the shortfall and neither is fixable from sequence.",
+     "type": "prose"
+    }
+   ],
+   "num": "07",
+   "title": "What it cannot do"
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>, module <code>modules/Pegivirus</code>. Panel and collections in <code>work/Pegivirus</code>.",
+ "standfirst": "Human pegivirus and its relatives in bats, rodents, horses and primates. Nine features over one polyprotein, and the module is defined as much by what pegivirus <i>lacks</i> as by what it has: no capsid, no Npro, no Erns, and p7 that is never separately cleaved.",
+ "subhead": "Does the pegivirus module actually work?",
+ "title": "Pegivirus Coverage Audit"
+}

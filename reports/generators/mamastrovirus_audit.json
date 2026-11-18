@@ -1,0 +1,361 @@
+{
+ "eyebrow": "LowVan &middot; Mamastrovirus module &middot; 15 October 2026",
+ "h1": "Mamastrovirus",
+ "headline_tiles": [
+  [
+   "4",
+   "features, three with profiles"
+  ],
+  [
+   "103",
+   "PSSMs"
+  ],
+  [
+   "232",
+   "transcript-edit references"
+  ],
+  [
+   "94.4%",
+   "of 657 genomes routed by 25 references"
+  ],
+  [
+   "100%",
+   "panel call rate, nsp1a and polymerase"
+  ],
+  [
+   "24.2&times;",
+   "annotation string collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Mamastroviruses infect mammals and are a common cause of gastroenteritis in children. The genome is a single positive-sense RNA segment of 6.0&ndash;8.3 kb with three reading frames: ORF1a encodes the non-structural polyprotein nsp1a, ORF2 the capsid precursor VP90, and ORF1b the RNA-dependent RNA polymerase &mdash; which is <b>never translated on its own</b>.",
+     "type": "prose"
+    },
+    {
+     "text": "5&#x27;--[ ORF1a  nsp1a ]--------------------3&#x27;\n         \\___ -1 PRF ___\n                        [ ORF1b ]\n    [-------- ORF1ab  nsp1ab --------]\n                              [ ORF2  capsid VP90 ]",
+     "type": "pre"
+    },
+    {
+     "html": "<b>The frameshift was measured, not assumed.</b> tblastn of six deposited nsp1ab proteins against their own genomes returns <b>two HSPs in different frames every time</b>, overlapping by a few residues at the junction, and every transition is &minus;1 (2&rarr;1, 1&rarr;3, 3&rarr;2 &mdash; BLAST numbers plus-strand frames 1/2/3, so &minus;1 reads as a wraparound). The slippery heptamer is <code>AAAAAAC</code>.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "7,411"
+      ],
+      [
+       "protein features",
+       "9,772"
+      ],
+      [
+       "unique sequences",
+       "5,768"
+      ],
+      [
+       "genomes with a contig &ge; 6 kb",
+       "657"
+      ],
+      [
+       "distinct annotation strings, family-wide",
+       "179"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "lede": "One genus, one module, and a genome whose middle protein no profile can reach.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "type",
+      "what it is",
+      "profiles"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "CDS",
+       "nsp1a, the non-structural polyprotein",
+       "27"
+      ],
+      [
+       "ORF1AB",
+       "CDS, &lt;code&gt;special: transcript_edit&lt;/code&gt;",
+       "the &minus;1 PRF fusion",
+       "<b>none, by construction</b>"
+      ],
+      [
+       "ORF1B",
+       "mat_peptide of nsp1ab",
+       "RNA-dependent RNA polymerase",
+       "11"
+      ],
+      [
+       "ORF2",
+       "CDS",
+       "capsid precursor VP90",
+       "65"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>ORF1b is a mature peptide, and the deposits are what settle it.</b> Of 160 Mamastrovirus records annotated <code>ORF1b</code> or <code>RdRp</code> at 400&ndash;600 residues, only <b>12% begin with Met</b>, and the commonest starts &mdash; <code>KKRERGSQGS</code>, <code>GPKKLQRAPE</code>, <code>GSKKLQRAPE</code> &mdash; are the lysines of the slippery site. Submitters are depositing the post-shift region, not an independently initiated ORF, so it is declared a product of nsp1ab rather than a CDS.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Length windows were set from the full-length mode of each clean population, never from a median. <code>RNA-dependent RNA polymerase</code> has a family-wide median of <b>127</b> residues against a true 515, because the genus is genotyped by sequencing a short polymerase amplicon and depositing it under the full protein's name &mdash; 4,332 occurrences, most of them fragments. ORF1B's window deliberately stops at 570: a handful of records annotated RdRp are 1,331&ndash;1,417 residues, and those are nsp1ab mislabelled.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Four features, and the deposits decided which of them is a CDS.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit",
+      "min",
+      "max",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "189",
+       "694",
+       "991",
+       "yes"
+      ],
+      [
+       "ORF1AB",
+       "&mdash;",
+       "1,160",
+       "1,515",
+       "no &mdash; see &sect;07"
+      ],
+      [
+       "ORF1B",
+       "444",
+       "405",
+       "559",
+       "yes"
+      ],
+      [
+       "ORF2",
+       "142",
+       "642",
+       "910",
+       "yes"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "A <code>special</code> feature carries no <code>bit_cutoff</code>, <code>coverage_cutoff</code> or <code>kmers</code>, because those describe how a PSSM match is scored and it has no PSSM. 51 of the 54 special features already in the repo omit them; the generator now enforces it rather than leaving it to habit.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Three cutoffs, and a fourth feature that has none because it has no profile.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "value"
+     ],
+     "rows": [
+      [
+       "genomes with a contig",
+       "657"
+      ],
+      [
+       "clusters at 70% identity",
+       "47"
+      ],
+      [
+       "references shipped",
+       "25"
+      ],
+      [
+       "genomes routed",
+       "620 of 657 (94.4%)"
+      ],
+      [
+       "clusters left uncovered",
+       "22, holding 37 genomes"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>A lumped Astroviridae module would not have shipped.</b> Across the whole family, 25 references reach only <b>74.0%</b> of 1,438 genomes in 248 clusters. Split on genus, Mamastrovirus reaches 94.4% and Avastrovirus 99.2%. The sequences agree: between the two genera the capsid is 29.7% identical over 482 of ~800 residues and nsp1a 23.1% over 618, against 70.6% and 35.9% within this genus.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "25 references reach 94.4% of the genus.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "called",
+      "of 40 panel genomes"
+     ],
+     "rows": [
+      [
+       "nsp1a (ORF1A)",
+       "40",
+       "100%"
+      ],
+      [
+       "RNA-dependent RNA polymerase (ORF1B)",
+       "40",
+       "100%"
+      ],
+      [
+       "capsid VP90 (ORF2)",
+       "39",
+       "98%"
+      ],
+      [
+       "nsp1ab (ORF1AB), corrected",
+       "17",
+       "42%"
+      ],
+      [
+       "nsp1ab, &lt;code&gt;Uncorrected&lt;/code&gt; encoding region",
+       "11",
+       "28%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>The transcript-edit path works, and the proof is positional.</b> Every one of the 17 corrected nsp1ab calls begins at Met &mdash; 17 of 17 &mdash; which is what a correct reference set looks like. The polymerase, by contrast, begins at Met on only 15% of its calls, and that is also correct: it is a mature peptide whose N-terminus is the frameshift junction, not an initiation codon. Reading that number as a defect would have been the easy mistake.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: ORF1A <b>451/451</b>, ORF1B <b>188/188</b>, ORF2 <b>728/729</b>. Cross-feature contamination: 1,368 sequences against 103 cluster references, <b>nothing above 50 bits</b>.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Measured on a panel of one genome per 70% cluster &mdash; the hardest sample the genus can offer, not the most flattering.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>An ORF1A cluster was trimmed off its own start.</b> Cluster 13 mixed two N-terminal conventions &mdash; 26 collection sequences begin at an upstream Met (871&ndash;882 aa) and 6 at a downstream one (849 aa), the 27-residue difference being <code>MARKGFTSKVDLAVSSGNYNARLQAGN</code> &mdash; and the aligner trimmed the long form to match the short, costing the profile 27 columns of signal. This is the defect that shipped in Norovirus at 151 residues.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "<code>filter_nterm</code> missed it because its extension test needs an exact 30-mer match and these are different strains. Detecting it by alignment instead found <b>25</b> sequences N-terminally truncated by 26&ndash;27 residues against a &ge;95%-identical longer member; dropping those plus the three short-convention members of the mixed cluster and rebuilding, the gate reports <i>every CDS profile begins at its protein's start</i>.",
+     "type": "prose"
+    },
+    {
+     "html": "The reference set got the same treatment. <b>11 of 243 constructs did not begin at Met</b>, inherited from N-terminally truncated deposits they were anchored on, and the builder now refuses them &mdash; the same rule <code>check_met_start.py</code> applies to profiles, applied to a reference.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two gates caught real defects before installation, and one of them had to be found a new way.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>nsp1ab is limited by reference density, not by biology.</b> The correction gate demands 95% identity; this module ships 232 references where Betacoronavirus ships 3,006. On the one-genome-per-cluster panel that gives 42% corrected and 28% degrading to an <code>Uncorrected nonstructural polyprotein nsP1ab encoding region</code>, which is the documented behaviour between 80% and 95%. Densifying from 182 to 232 references moved it from 35% to 42%, so the lever works and has not been exhausted.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "The pool is measured: 327 genomes deposit nsp1a and 145 deposit ORF1b, against the 217 that deposit nsp1ab itself. 48 of the shipped references were built from a genome's own nsp1a and ORF1b rather than its fusion protein, which is what made the increase possible.",
+     "type": "prose"
+    },
+    {
+     "html": "<b><code>evaluate_coverage.py</code> cannot see this feature at all.</b> It says so itself: a feature called by an external program does not appear in that evaluation, and its coverage there <i>is not low, it is absent</i>. Every nsp1ab figure on this page comes from the panel, which runs the transcript-edit pass. Reading the coverage run alone would report a feature that is working as one that is missing.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>Four genomes get a second, short nsp1a call</b> of 132&ndash;501 residues at a contig edge, against a declared <code>min_len</code> of 694, and still score <i>Good</i> with no flag. <code>qc_duplicate_calls.py</code> reports no exact duplicates and correctly treats ORF1A and ORF1B nesting inside ORF1AB as real architecture, so these fall between the two checks. They are contig-edge fragments of a genome that begins mid-gene, not spurious matches elsewhere, but they should be flagged and are not.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>22 clusters holding 37 genomes sit outside the 25-reference budget</b> and do not route. A long tail of singletons is a documented gap rather than a defect, but it is named here rather than left implicit.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One feature is reference-limited, one evaluation tool is blind to it, and a few short calls slip between two checks.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b><code>gen_module_json</code> dropped <code>special</code> entirely.</b> A feature declared <code>special: transcript_edit</code> in the feature spec arrived in the module JSON as an ordinary PSSM feature, so the annotator looked for a profile that by definition cannot exist and <b>the protein was never called at all</b>. This is the same silent-whitelist defect that was dropping <code>PMID</code> and <code>copy_num</code>; <code>internal_stop</code>, <code>translate</code>, <code>non_pssm_partner</code>, <code>begin</code> and <code>end</code> were going the same way and are now carried too.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The converse, too:</b> a special feature was being written <i>with</i> <code>bit_cutoff</code>, <code>coverage_cutoff</code> and <code>kmers</code>. A threshold on a feature with no profile reads as a number someone chose and invites a future curator to tune it.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The kit had no tool for building a transcript-editing reference set</b>, though <code>references/special-features.md</code> describes the construction in detail. <code>build_transcript_edit_refs.py</code> is new, and is self-validating: it scans candidate insertion points and keeps only one whose translation reproduces a protein the genome itself deposits. A genome that cannot reproduce its own protein donates no reference.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two defects in the kit, both of the same shape as three found earlier.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "html": "97 distinct annotation strings across 9,066 occurrences collapse onto <b>4 controlled annotations</b> &mdash; a <b>24.2&times;</b> reduction, against 17.6&times; for Norovirus and 12.2&times; for Sapovirus. The polymerase alone is deposited under 23 different spellings, from <code>RdRp</code> and <code>RDRP</code> to <code>RNA dependant RNA polymerase</code> and <code>pol protein</code>.",
+     "type": "prose"
+    },
+    {
+     "html": "Rarefied over proteins rather than genomes: at the depth both curves reach, the source vocabulary holds <b>33</b> distinct strings and the module holds <b>3</b>, an 11&times; collapse. The source needs 103 proteins to reach 95% of its final vocabulary; the module needs 7, because a controlled vocabulary saturates once every protein has been named while free text keeps climbing.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The largest string collapse this project has measured.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Measured from the shipped module: Mamastrovirus_Viral_PSSM.json, 103 PSSMs, 25 reference contigs and 232 transcript-editing references. Call rates from a 40-genome panel built one genome per 70% nucleotide cluster and scored through the full annotator including the transcript-edit pass; self-recall from collect_registry; contamination from audit_contamination; string collapse from collect_synmap; rarefaction over 100 replicates.",
+ "standfirst": "The mammalian astroviruses, and the first module in this project whose polyprotein cannot be called by a profile at all. ORF1b is reached only by a &minus;1 ribosomal frameshift, so nsp1ab is not collinear with the genome and is called from a nucleotide reference set instead.",
+ "title": "Mamastrovirus Coverage Audit"
+}

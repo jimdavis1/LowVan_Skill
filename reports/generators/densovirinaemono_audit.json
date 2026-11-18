@@ -1,0 +1,441 @@
+{
+ "eyebrow": "LowVan &middot; DensovirinaeMono module &middot; 1 November 2026",
+ "h1": "DensovirinaeMono \u2014 monosense densoviruses",
+ "headline_tiles": [
+  [
+   "4",
+   "features, all with profiles"
+  ],
+  [
+   "15",
+   "PSSMs"
+  ],
+  [
+   "24/24",
+   "exemplars routed"
+  ],
+  [
+   "95.0%",
+   "sampled genomes genuinely clean"
+  ],
+  [
+   "7.8\u00d7",
+   "string collapse"
+  ],
+  [
+   "8.0\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "The module covers <strong>Iteradensovirus</strong>, <strong>Brevidensovirus</strong>, <strong>Hepandensovirus</strong> and <strong>Muscodensovirus</strong>. These are the <em>Densovirinae</em> whose genes all read from one strand, which is what separates them from the ambisense genera held in the sister module. The layout is the same across the four: a nonstructural cassette at the 5&prime; end and a nested capsid set at the 3&prime; end.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "40"
+      ],
+      [
+       "protein features",
+       "184"
+      ],
+      [
+       "unique sequences",
+       "87"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "40"
+      ],
+      [
+       "species",
+       "21"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "from": "densovirinaemono-genome-map.html",
+     "type": "figure"
+    },
+    {
+     "html": "Four features are declared: <strong>NS1</strong>, <strong>NS2</strong>, <strong>VP1</strong> and <strong>VP2</strong>. Only NS1 carries <code>copy_num</code>, so only NS1 is treated as essential when a genome is scored for quality. VP1 and VP2 are nested alternative-start forms of one capsid gene and are exempt from the consolidation rule that would otherwise merge them.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One module for the four monosense densovirus genera, whose coding strand carries both the nonstructural and the structural genes.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "ns1",
+       "26",
+       "6",
+       "defaults"
+      ],
+      [
+       "NS2",
+       "Uncharacterized nonstructural protein NS2",
+       "ns2",
+       "15",
+       "3",
+       "defaults"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "vp1",
+       "19",
+       "3",
+       "-m 2, -mi 0.6"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "vp2",
+       "10",
+       "3",
+       "-m 2, -mi 0.6"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Thirty-one distinct annotation strings collapse onto the four feature names. NS1 draws on nine of them \u2014 <em>nonstructural protein 1</em>, <em>non-structural protein 1</em>, <em>nonstructural protein NS1</em>, <em>NS1</em>, <em>helicase NS1</em> and four more \u2014 and VP1 on eight. The collapse is what makes a profile possible at all: a cluster built from one spelling would be built from a fraction of the available sequence.",
+     "type": "prose"
+    },
+    {
+     "html": "Three sequences did not collapse and are not modelled: two <em>putative nonstructural protein NS1</em> and two <em>viral protein</em> in Iteradensovirus, and one <em>non-structure protein 2</em> in Brevidensovirus. They are recorded in <code>UNASSIGNED_TRACKING.tsv</code>. That file is a list of unfinished work, not a resolution \u2014 these five sequences did leave the module.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Profiles are built from the annotation strings that BV-BRC already carries, after the strings are collapsed onto one name per protein.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "131",
+       "0.65",
+       "512",
+       "899"
+      ],
+      [
+       "NS2",
+       "175",
+       "0.65",
+       "258",
+       "482"
+      ],
+      [
+       "VP",
+       "152",
+       "0.65",
+       "595",
+       "890"
+      ],
+      [
+       "VP2",
+       "288",
+       "0.65",
+       "334",
+       "709"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The cutoffs are NS1 131, NS2 175, VP1 152 and VP2 288 bits, with length windows of 512&ndash;899, 258&ndash;482, 595&ndash;890 and 334&ndash;709 residues. All four features use the default coverage cutoff of 0.65, measured against the profile's own length.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall \u2014 how many of the sequences a profile was built from that profile calls back \u2014 is <strong>26 of 26</strong> for NS1, <strong>10 of 10</strong> for VP2, <strong>16 of 19</strong> for VP1 and <strong>13 of 15</strong> for NS2. The five misses are all sequences at the edge of their length window.",
+     "type": "prose"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>65 of 70 (92.9%)</b> &mdash; NS1 26/26, NS2 13/15, VP 16/19, VP2 10/10. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Each profile carries a bit-score floor and a length window taken from the collection it was built from.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "24",
+       "\u2014"
+      ],
+      [
+       "routed to DensovirinaeMono",
+       "24",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Routing was measured against the 11 reference contigs this module ships, of which 11 were used by the exemplar set.",
+     "type": "prose"
+    },
+    {
+     "html": "Eleven reference contigs stand for the four genera. All twenty-four exemplar genomes routed, and all twenty-four routed to this module rather than to a neighbouring one. Nothing was unrouted.",
+     "type": "prose"
+    },
+    {
+     "html": "That result is bounded by the sample, not a guarantee. Routing depends on nucleotide identity to a reference, and a divergent isolate with no close relative in the eleven will not route no matter how recognisable its proteins are.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Routing is a BLASTn of the query against the reference contigs, so a genome with no close relative among them is invisible to the module.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "ns1",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "ns2",
+       "66.7",
+       66.7,
+       "16 of 24 routed exemplars"
+      ],
+      [
+       "vp1",
+       "66.7",
+       66.7,
+       "16 of 24 routed exemplars"
+      ],
+      [
+       "vp2",
+       "75.0",
+       75.0,
+       "18 of 24 routed exemplars"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>10 of 24 routed exemplars get every one of the 4 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>ns2, vp1, vp2</b>.",
+     "type": "prose"
+    },
+    {
+     "html": "Across the twenty-four exemplars: <strong>NS1 in 24</strong>, <strong>VP2 in 18</strong>, <strong>NS2 in 16</strong> and <strong>VP1 in 16</strong>. NS1 is the only feature called in every genome, which is why it is the only one marked essential.",
+     "type": "prose"
+    },
+    {
+     "html": "The gaps are not all failures. Several exemplars are partial genomes whose 3&prime; end is simply absent, and a capsid form that is not in the contig cannot be called from it.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Calling is measured on the exemplars that routed, feature by feature.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "40",
+       "sampled genomes"
+      ],
+      [
+       "40",
+       "no genome/contig flags"
+      ],
+      [
+       "38",
+       "genuinely clean"
+      ],
+      [
+       "2",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "95.0%",
+       "clean"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "The panel is 40 genomes drawn from the module's own sample; it is not held out. <i>Genuinely clean</i> means no genome, contig or feature flag at all.",
+     "type": "prose"
+    },
+    {
+     "html": "All <strong>forty of forty</strong> genomes come through with no genome-level and no contig-level quality flag. Two carry a feature-level flag, both the same one: NS1 called at <strong>472</strong> and <strong>431</strong> residues against a window that starts at 512, on contigs of 6,039 and 4,277 nt. Both are short genomes with a truncated NS1, not a profile failure &mdash; which is why the page separates \"no genome/contig flags\" from \"genuinely clean\".",
+     "type": "prose"
+    },
+    {
+     "html": "Read the headline figure for what it is. The panel still contains the genomes the reference contigs were taken from, so it measures whether the module is internally consistent, not how it behaves on something it has never seen.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The panel is forty genomes drawn from the module's own sample; it is not held out.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<strong>No splice features are declared.</strong> The monosense genera express their nonstructural proteins from the one coding strand, and nothing in the collections showed the two-exon signature that put NS2 and NS3 into the splice caller in Amdoparvovirus and Protoparvovirus. If a spliced product exists here, this module does not call it and would not report its absence.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>Only NS1 is essential.</strong> A genome missing its capsid entirely still scores clean. That is deliberate \u2014 VP1 and VP2 are called in 16 and 18 of 24 exemplars, well under the 0.85 that would justify <code>copy_num</code> \u2014 but it means the quality score is a weaker statement here than in a module where the capsid is required.",
+     "type": "prose"
+    },
+    {
+     "html": "<strong>The module is bounded by what BV-BRC annotated.</strong> A protein these genera encode but that nobody deposited under any of the thirty-one strings is not a gap in this page; it is absent from it.",
+     "type": "prose"
+    },
+    {
+     "html": "Use this module for monosense densovirus genomes that route. Do not read the forty-of-forty panel figure as an out-of-sample result, and do not read a clean score as evidence that the capsid was called.",
+     "kind": "warn",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Three limits, each measured rather than supposed.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "The capsid names in the deposits are unreliable. Within VP2's thirteen source strings sit <em>major capsid protein VP3</em>, <em>structural protein VP3</em> and <em>structural protein VP4</em> \u2014 three different nested forms deposited under one slot. The deposited name is a claim about which form a submitter thought they had, not a measurement, and the profiles were rebuilt after binning the nested forms on size rather than on name.",
+     "type": "prose"
+    },
+    {
+     "html": "After that rebuild, the number of genomes in which two capsid features were called at identical coordinates fell from <strong>16 of 40</strong> to <strong>0 of 40</strong>.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What the build turned up that was not expected.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "from": "densovirinaemono-saturation-figure.html",
+     "type": "figure"
+    },
+    {
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "Replication initiator protein NS1 (HUH endonuclease and SF3 helicase)",
+       "9"
+      ],
+      [
+       "VP",
+       "Capsid protein VP1 (phospholipase A2 domain)",
+       "8"
+      ],
+      [
+       "VP2",
+       "Major capsid protein VP2",
+       "8"
+      ],
+      [
+       "NS2",
+       "Uncharacterized nonstructural protein NS2",
+       "6"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "3"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Rarefaction over proteins: every annotated protein in the 28 genomes both sources annotate (92 source product records, 95 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>32</b> distinct strings, the module's <b>4</b>. At the depth both reach, 92 proteins, free text has used <b>32.0 strings against 4.0 &mdash; a 8.0-fold difference.</b> The source reaches 95% of its final size after 82 proteins, the module after 11.",
+     "type": "prose"
+    },
+    {
+     "html": "Ninety-two deposited protein strings across twenty-eight genomes reduce to four feature names. The saturation curve on the companion page shows the deposited vocabulary still climbing with each genome added while the called vocabulary is flat at four \u2014 which is the point of the exercise: the module's output does not inherit the deposits' spelling drift.",
+     "type": "prose"
+    },
+    {
+     "html": "Three strings resisted and are tracked as unassigned. At two, two and one occurrences they are below the member floor for declaring a lineage-specific feature.",
+     "type": "prose"
+    }
+   ],
+   "lede": "What collapsing the vocabulary actually bought.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Generated from <code>densovirinaemono_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Parvoviridae/work/DensovirinaeMono/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator.",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory; nothing is estimated.",
+ "title": "DensovirinaeMono Coverage Audit"
+}

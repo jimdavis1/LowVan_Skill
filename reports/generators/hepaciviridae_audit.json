@@ -1,0 +1,340 @@
+{
+ "eyebrow": "LowVan &middot; Hepaciviridae module &middot; 23 September 2026",
+ "h1": "Hepaciviridae",
+ "headline_tiles": [
+  [
+   "12",
+   "features declared, 11 with profiles&lt;br&gt;+1 transcript-edited"
+  ],
+  [
+   "808",
+   "profiles over 64,834 sequences"
+  ],
+  [
+   "94.7%",
+   "genomes routed<br>25 refs, 7,064 genomes &ge;6 kb"
+  ],
+  [
+   "98.4%",
+   "core features called&lt;br&gt;on &lt;i&gt;Hepacivirus C&lt;/i&gt;"
+  ],
+  [
+   "87.4%",
+   "F called on the HCV panel&lt;br&gt;up from 46.6%"
+  ],
+  [
+   "0.07%",
+   "of the dump has a feature&lt;br&gt;no data can model"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "63,977",
+       "genomes in the dump"
+      ],
+      [
+       "119",
+       "species"
+      ],
+      [
+       "12",
+       "features"
+      ],
+      [
+       "218,893",
+       "protein occurrences binned"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "Eleven features are called by PSSMs. The twelfth, <b>F</b> (ARFP / core+1), is a <code>transcript_edit</code> feature with 3,644 curated nucleotide references and no profile &mdash; a +1 frameshift product of the core coding region.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The dump excludes records under 1,000 nt</b>, 212,295 of 278,030. The median Hepacivirus record is a 467-nt NS5B genotyping fragment that cannot yield a protein above any feature's runt floor. This is a departure from the Orthoflavivirus precedent, which dumped everything, and it changes the denominator of every &lsquo;% binned&rsquo; figure here.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Two naming traps.</b> An annotation string reading <code>NS1</code> in Hepacivirus means <b>E2</b>, inherited from the flavivirus naming this family was split out of. And NS3-4A, NS5AB, NS4, E1/E2 and core-E2 are precursors, not features &mdash; they are excluded rather than binned, along with a bare <code>NS5</code>, which is ambiguous between NS5A and NS5B.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Hepaciviridae is one genus, <i>Hepacivirus</i>, and one genome organisation: a single positive-sense RNA, one long ORF, one polyprotein cut into ten mature peptides. ICTV split it out of Flaviviridae in 2025; BV-BRC has not caught up and files all 264,938 records under <code>family = Flaviviridae</code>, so the module is named for the real taxon and not the stale field.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "filter",
+      "sequences dropped",
+      "why"
+     ],
+     "rows": [
+      [
+       "ambiguity (&gt;2 non-standard residues)",
+       "11,131",
+       "368 of them carried a premature stop"
+      ],
+      [
+       "junction chemistry",
+       "8,807",
+       "termini contradicting the protease&#x27;s P1/P1&prime; classes"
+      ],
+      [
+       "pre-floor on POLY (&lt;2,400 aa)",
+       "8,514",
+       "applied BEFORE the median, or fragments drag the window shut"
+      ],
+      [
+       "runts (&lt;70% of median)",
+       "3,480",
+       ""
+      ],
+      [
+       "overlong (&gt;130% of median)",
+       "146",
+       ""
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The <code>JUNCTION</code> table is residue classes per boundary, transferred from Orthoflavivirus and re-written for this family's enzymes: the NS3-4A protease (Cys or Thr at P1, Ser or Ala at P1&prime;), the NS2-3 autoprotease, and host signalase. Same machinery, different table &mdash; no new code.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>171 of the 808 profiles come from the leftover pass</b>, which had never been run on five features. E2 was the worst: 2,148 of its 6,897 sequences, 31%, were covered by no profile. Every one of the 171 was checked by blasting its members against all twelve collections &mdash; all 171 match their own feature best among the mature peptides, none matches a different feature. POLY must be excluded from that comparison: a mature peptide is a substring of its polyprotein and wins on bits while covering 4% of it.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Collections from BV-BRC annotation strings, cleaned against cleavage chemistry and length, then clustered into profiles.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "5 refs",
+       "78",
+       78.0,
+       "HCV genotypes 1-3"
+      ],
+      [
+       "10 refs",
+       "89",
+       89.0,
+       ""
+      ],
+      [
+       "15 refs",
+       "92",
+       92.0,
+       ""
+      ],
+      [
+       "20 refs",
+       "94",
+       94.0,
+       ""
+      ],
+      [
+       "25 refs",
+       "94.7",
+       94.7,
+       "the shipped budget"
+      ],
+      [
+       "50 refs",
+       "97",
+       97.0,
+       "twice the budget buys 2 points"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>94.7%, not the 96.0% recorded earlier.</b> The earlier figure came from a different denominator; this one is stated with its criterion &mdash; 7,064 genomes at &ge;6 kb &mdash; so it can be reproduced. The largest clusters are 2,038, 1,353, 1,207 and 656 genomes, all HCV.",
+     "type": "prose"
+    }
+   ],
+   "lede": "25 representative contigs, the project's fixed budget, measured over the 7,064 Hepacivirus genomes at or above 6,000 nt &mdash; 198 clusters at 70% identity.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "rows": [
+      [
+       "POLY",
+       "99.1",
+       99.15,
+       "66 profiles, HCV 98.4%"
+      ],
+      [
+       "C",
+       "99.4",
+       99.43,
+       "12 profiles, HCV 98.4%"
+      ],
+      [
+       "E1",
+       "78.3",
+       78.35,
+       "75 profiles, HCV 98.4%"
+      ],
+      [
+       "E2",
+       "72.4",
+       72.36,
+       "330 profiles, HCV 98.4%"
+      ],
+      [
+       "P7",
+       "89.7",
+       89.74,
+       "106 profiles, HCV 96.8%"
+      ],
+      [
+       "NS2",
+       "86.6",
+       86.61,
+       "112 profiles, HCV 98.4%"
+      ],
+      [
+       "NS3",
+       "99.4",
+       99.43,
+       "7 profiles, HCV 98.4%"
+      ],
+      [
+       "NS4A",
+       "99.7",
+       99.72,
+       "14 profiles, HCV 100.0%"
+      ],
+      [
+       "NS4B",
+       "99.4",
+       99.43,
+       "14 profiles, HCV 98.4%"
+      ],
+      [
+       "NS5A",
+       "99.1",
+       99.15,
+       "49 profiles, HCV 98.4%"
+      ],
+      [
+       "NS5B",
+       "99.7",
+       99.72,
+       "23 profiles, HCV 98.4%"
+      ],
+      [
+       "F",
+       "29.3",
+       29.34,
+       "0 profiles, HCV 88.7%"
+      ]
+     ],
+     "type": "bars",
+     "unit": "%"
+    },
+    {
+     "html": "<b>E1, E2, NS2 and p7 read low, and the number is nearly meaningless as stated.</b> The panel is <i>species-capped</i>: every species gets equal weight, so 44 genomes of rare divergent hepaciviruses carry the same weight as 51,573 <i>Hepacivirus C</i>. On HCV itself all four call at 96.8&ndash;98.4%.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "The genomes that miss E2 belong to 11 taxa. <b>Ten of them have a polyprotein in the collection and no E2 &mdash; there is nothing to train a profile on.</b> The best E2 profile scores 33&ndash;40 bits against a cutoff of 150: no homology, not a near miss, so lowering the threshold buys five genomes and admits noise. In the whole dump those lineages total 44 genomes, <b>0.07%</b>.",
+     "type": "prose"
+    },
+    {
+     "html": "This is <i>not</i> the NS5A story, which looked identical and was not. NS5A's missing sequences were in the collection; merging 102 of them took it from 33 to 49 profiles and 65.7% to 99.1%. E2's are absent from the source, and re-clustering cannot invent them &mdash; the leftover pass moved E1, E2, NS2 and p7 by 0.3 to 0.4 points and that is the measurement saying so.",
+     "type": "prose"
+    }
+   ],
+   "lede": "406 genomes annotated, species-capped across 80 species. 351 scored; 55 called nothing at all.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "items": [
+      [
+       "3,644",
+       "curated references"
+      ],
+      [
+       "87.4%",
+       "called on the HCV panel"
+      ],
+      [
+       "46.6%",
+       "before the fix"
+      ],
+      [
+       "126&ndash;162 aa",
+       "product length"
+      ]
+     ],
+     "type": "tiles"
+    },
+    {
+     "html": "<code>best_blastn_match_by_loc</code> kept one HSP per location, the highest bit score, and discarded the rest. Every reference is a separate query against the same genome, so all 3,644 competed for one slot. When the winner came from another genotype its one-base deletion sat at a position right for it and wrong for the genome being annotated, the product picked up an internal stop, and the call was demoted to <code>Uncorrected f protein encoding region</code> &mdash; with no way to reach the next reference, including, in 44 of 53 cases, <b>the genome's own</b>. The losers are now kept and walked in score order.",
+     "type": "prose"
+    },
+    {
+     "html": "The reference set itself had to be rebuilt first. The extension pass cut <b>2,723 of 2,788</b> references one codon short, producing <code>MSTNPKPQEK</code> where core reads <code>MSTNPKPQRK</code>. Nothing downstream would have caught it &mdash; a reference that translates cleanly is indistinguishable from a correct one. Final state: 0 internal stops, 0 non-ACGT bases, 99.8% of edits at codon 10 or 11, and 100% of products beginning with a genuine core decapeptide.",
+     "type": "prose"
+    },
+    {
+     "html": "Also worth recording: Xu 2001's &ldquo;stretch of 10A&rdquo; is <b>not a homopolymer</b>. The site is <code>CAAAGAAAAACCAAA</code> in 435 of 844 records and its longest run is five. Testing for <code>A{7,}</code> matches one record in 844 and reads as the site being absent.",
+     "type": "prose"
+    }
+   ],
+   "lede": "F is the +1 frameshift product of the core region &mdash; the opposite direction to NS1&prime;, so its references are one base SHORTER than the genome and carry a dash where the genome has a base.",
+   "num": "06",
+   "title": "F, and the defect that hid it"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>1. Mature peptides in ten divergent lineages.</b> <i>Hepacivirus glareoli</i>, koala, possum, shrew and unnamed hepaciviruses have a polyprotein annotation and no mature peptides, so E1, E2, NS2 and p7 cannot be modelled from sequence. Nor can the sites be read off the literature: <code>NC_038429</code> (<i>H. glareoli</i>) carries one gene feature and <b>zero</b> mat_peptides, and koala and possum hepacivirus have no RefSeq record at all. 44 genomes, 0.07% of the dump.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>2. <i>Rodent hepacivirus</i> &mdash; investigated, and the same wall.</b> 119 genomes, and the one lineage that looked like an exception because <code>NC_021153</code> carries all ten mature peptides with published coordinates. It is not an exception. All 58 failing genomes carry exactly one annotation in BV-BRC &mdash; <code>polyprotein</code> &mdash; so there is nothing to train on, and the 40 <i>Rodent hepacivirus</i> E2 sequences that <i>are</i> in the collection come from a different sub-lineage filed under the same taxid and hit <b>zero</b> of the 58. The published coordinates do not transfer either: the reference's own mature peptides reach all 58 for C (61 bits), NS3 (359) and NS5B (402), confirming they are related at ~40% identity, but <b>E2 and p7 give no hit at all</b> and E1 scores 73 against a cutoff of 100. E2 is the hypervariable envelope and p7 is 54 hydrophobic residues; homology does not cross 40% identity for either. ~80 genomes, <b>0.13%</b> of the dump.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>3. 55 of 406 panel genomes call nothing.</b> 42 of them have essentially no ambiguous bases, so this is profile coverage rather than assembly quality. tblastn from the POLY collection hits all of them at a median 99.5% coverage, several at 100% identity &mdash; their protein is in the training data and the module still cannot reach it.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The route that remains, for all of the above, is positional derivation.</b> The annotator already supports it &mdash; a feature can take its boundaries from a neighbour's PSSM match via <code>non_pssm_partner</code> with <code>begin_pssm</code> and <code>end_pssm</code> offsets &mdash; and the anchors are there: p7 is called in 51 of the 58 rodent genomes and the polyprotein in all of them. It was not done here because placing the E2 start requires assuming E1's length, which is an inference rather than a measured cleavage site, and the standing rule on this project is that a cut site is backed by the literature or it is not made.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Three limits, all measured, none of them fixable by tuning.",
+   "num": "07",
+   "title": "What it cannot do"
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure is computed from the run by <code>build_audit_facts.py</code>; the panel, the collections and the manifests are in <code>work/Hepaciviridae</code>.",
+ "standfirst": "Hepatitis C and its animal relatives. Twelve features over one polyprotein, 808 profiles, 25 references that route 94.7% of the genus. It calls the core features on <i>Hepacivirus C</i> at 98.4% and F at 87.4%, and it cannot call the envelope proteins of ten rodent and marsupial lineages at all &mdash; because nobody has ever annotated them.",
+ "subhead": "Does the hepacivirus module actually work?",
+ "title": "Hepaciviridae Coverage Audit"
+}

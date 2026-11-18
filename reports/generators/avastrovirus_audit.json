@@ -1,0 +1,315 @@
+{
+ "eyebrow": "LowVan &middot; Avastrovirus module &middot; 15 October 2026",
+ "h1": "Avastrovirus",
+ "headline_tiles": [
+  [
+   "4",
+   "features, three with profiles"
+  ],
+  [
+   "48",
+   "PSSMs"
+  ],
+  [
+   "141",
+   "transcript-edit references, 127 built from parts"
+  ],
+  [
+   "99.2%",
+   "of 371 genomes routed by 25 references"
+  ],
+  [
+   "3",
+   "panel genomes that are not avastroviruses"
+  ],
+  [
+   "13.8&times;",
+   "annotation string collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Avastroviruses cause enteritis and nephritis in poultry and are a significant cause of loss in turkey and duck flocks. The genome layout is identical to the mammalian genus &mdash; ORF1a, ORF1b reached by a &minus;1 ribosomal frameshift, ORF2 &mdash; but <b>nsp1a is about 30% longer</b>, with a full-length mode of 1,050&ndash;1,099 residues against 800&ndash;849 in Mamastrovirus.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "2,026"
+      ],
+      [
+       "protein features",
+       "2,819"
+      ],
+      [
+       "unique sequences",
+       "2,078"
+      ],
+      [
+       "genomes with a contig &ge; 6 kb",
+       "371"
+      ],
+      [
+       "clusters at 70% identity",
+       "28"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>Three of the 30 panel genomes are not avastroviruses at all</b>, and the source metadata says they are. <code>Duck hepatitis virus 3</code> (taxon 352474, three genomes in the dump) is a <b>picornavirus</b> &mdash; it routed to Avihepatovirus and received a complete, coherent picornavirus proteome including Picornain 3C, a 2A StopGo peptide and VP0/VP1/VP3. <code>Marmot astrovirus 1</code> and <code>3</code> are <b>mammalian</b> astroviruses: their ORF1a matches the Mamastrovirus collection at 38.6% and the Avastrovirus collection not at all.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "None of them contaminated this module. Their proteins carry picornavirus and mamastrovirus annotation strings that the binning rules do not match, so <b>zero of their sequences reached any collection</b>, and no reference contig is one of them &mdash; so no genuine avastrovirus is misrouted by their presence. They do sit in the contig set, which is why every call rate on this page is quoted over the 27 genuine genomes rather than all 30.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Turkey, duck, chicken and wild-bird astroviruses &mdash; and a genus label that cannot be taken at face value.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "type",
+      "collection",
+      "profiles"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "CDS",
+       "233 sequences",
+       "10"
+      ],
+      [
+       "ORF1AB",
+       "CDS, &lt;code&gt;special: transcript_edit&lt;/code&gt;",
+       "25 sequences",
+       "<b>none, by construction</b>"
+      ],
+      [
+       "ORF1B",
+       "mat_peptide of nsp1ab",
+       "195 sequences",
+       "10"
+      ],
+      [
+       "ORF2",
+       "CDS",
+       "470 sequences",
+       "28"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>Only 24 avastrovirus genomes deposit nsp1ab.</b> Validating each reference against the deposited fusion protein &mdash; the strongest check &mdash; would therefore have produced a set of 24 against a correction gate that demands 95% identity. Validating instead against the genome's own <i>nsp1a and ORF1b together</i>, where the construct must begin with nsp1a's N-terminus and end with ORF1b exactly, draws on a far larger pool and produced <b>127 more</b>. It is still self-validating: a genome that cannot reproduce proteins it deposited donates no reference.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "The windows are this genus's own, not the mammalian ones. ORF1A is 960&ndash;1,270 here against 700&ndash;960 in Mamastrovirus; ORF2 is 620&ndash;800 against 680&ndash;870. ORF1B is the one feature the two genera share a window for, at 430&ndash;570, because the polymerase is the same size in both.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Four features, and a frameshift fusion that almost nobody deposits.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "bit",
+      "min",
+      "max",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "349",
+       "937",
+       "1,302",
+       "no &mdash; see &sect;07"
+      ],
+      [
+       "ORF1AB",
+       "&mdash;",
+       "1,422",
+       "1,666",
+       "no &mdash; see &sect;07"
+      ],
+      [
+       "ORF1B",
+       "329",
+       "412",
+       "558",
+       "yes"
+      ],
+      [
+       "ORF2",
+       "201",
+       "595",
+       "805",
+       "yes"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "lede": "Three cutoffs, and a fourth feature that has none because it has no profile.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>25 references reach 368 of 371 genomes &mdash; 99.2%.</b> Across the whole family, the same budget reaches only 74.0% of 1,438 genomes in 248 clusters. Splitting on genus took Mamastrovirus to 94.4% and this module to 99.2%, which is what made both shippable.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "The best routing figure in the family, and the reason the family had to be split.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "called",
+      "of 27 genuine panel genomes"
+     ],
+     "rows": [
+      [
+       "RNA-dependent RNA polymerase (ORF1B)",
+       "26",
+       "96%"
+      ],
+      [
+       "capsid (ORF2)",
+       "26",
+       "96%"
+      ],
+      [
+       "nsp1a (ORF1A)",
+       "23",
+       "85%"
+      ],
+      [
+       "nsp1ab (ORF1AB), corrected",
+       "9",
+       "33%"
+      ],
+      [
+       "nsp1ab, &lt;code&gt;Uncorrected&lt;/code&gt; encoding region",
+       "1",
+       "4%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection is <b>100%</b> on all three built features &mdash; ORF1A 233/233, ORF1B 195/195, ORF2 470/470. Cross-feature contamination: 898 sequences against 47 cluster references, <b>nothing above 50 bits</b>.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The capsid starts at Met on 26 of 26 calls.</b> That matters because the build gate flagged two ORF2 alignments as not beginning with Met &mdash; the aligner had shaved the leading residue off clusters that mixed two N-terminal conventions. The flag was real, but checking the calls rather than the alignments shows it costs nothing: <code>upstream_ext</code> scans to the initiating Met and lands correctly every time. The polymerase, by contrast, begins at Met on 21% of calls, which is also correct &mdash; its N-terminus is the frameshift junction, not an initiation codon.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Measured over the 27 panel genomes that are genuinely avastroviruses.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "Three of the four features come straight from the source vocabulary and are whole regions rather than derived cuts, so there is no cleavage boundary to get wrong. The fourth is constructed, and every construct was kept only if its translation reproduced a protein the same genome deposits.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>10 of 151 constructs were refused for not beginning at Met</b>, inherited from N-terminally truncated deposits they were anchored on. That is the same rule <code>check_met_start.py</code> applies to profiles, applied to a reference instead of an alignment.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Three features are read from the deposits; the fourth is constructed and self-validated.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>nsp1a is called on 85% of genomes, against 100% in the mammalian genus.</b> The misses are divergent lineages rather than a threshold: one of them &mdash; <code>Avastrovirus sp. XZN01</code> &mdash; matches the ORF1A collection at only <b>27% identity</b>, which is below what 10 profiles built at 80% clustering identity can reach. Closing it needs profiles for the lineages it misses, not a lower cutoff. This is why ORF1A does not carry <code>copy_num</code>: marking it essential would flag a fifth of the genus poor for a shortfall in our own profiles.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>nsp1ab is reference-limited.</b> 141 references against a 95% correction gate gives 33% corrected on a panel built one genome per 70% cluster &mdash; the hardest sample the genus can offer. 127 of those references exist only because the builder accepts a genome's own nsp1a and ORF1b in place of a deposited fusion; without that the set would be 14.",
+     "type": "prose"
+    },
+    {
+     "html": "<b><code>evaluate_coverage.py</code> cannot see ORF1AB at all.</b> It says so itself: a feature called by an external program does not appear in that evaluation, and its coverage there is not low but <i>absent</i>. Every nsp1ab figure on this page comes from the panel, which runs the transcript-edit pass. Reading the coverage run alone would report a working feature as a missing one.",
+     "kind": "warn",
+     "type": "verdict"
+    },
+    {
+     "html": "<b>The genus label in the source cannot be trusted</b>, as &sect;01 sets out. Three of 30 panel genomes are not avastroviruses. The module excludes their proteins automatically because their annotation strings do not match its rules, but a future build that loosened those rules would admit a picornavirus polyprotein into an astrovirus collection.",
+     "type": "prose"
+    }
+   ],
+   "lede": "One real profile gap, one reference-density limit, and an evaluation tool that is blind to the headline feature.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<code>gen_module_json</code> was dropping <code>special</code> entirely, so a transcript-edit feature shipped as an ordinary PSSM feature and could never be called; it was also writing <code>bit_cutoff</code> and <code>kmers</code> onto features that have no profile. Both are fixed in the kit.",
+     "type": "prose"
+    },
+    {
+     "html": "The reference builder is new, and this module is the reason its second validator exists. With only 24 deposited fusion proteins, validating against the fusion alone gives a set too sparse to be useful; validating against the deposited parts gives <b>141</b>. The same change took Mamastrovirus from 182 to 232.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The defects are recorded in the Mamastrovirus audit, which was built first; this module confirmed them and added the reference-density lever.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "html": "55 distinct annotation strings across 2,650 occurrences collapse onto <b>4 controlled annotations</b> &mdash; a <b>13.8&times;</b> reduction.",
+     "type": "prose"
+    },
+    {
+     "html": "Rarefied over proteins: at the depth both curves reach, the source vocabulary holds <b>20</b> distinct strings and the module holds <b>3</b>, a <b>6.7&times;</b> collapse. The source needs 61 proteins to reach 95% of its final vocabulary; the module needs 7. Those figures exclude the three mislabelled genomes of &sect;01 &mdash; counted in, the picornavirus alone contributes thirteen further strings from a different module and makes the module's own vocabulary look five times larger than it is.",
+     "type": "prose"
+    }
+   ],
+   "lede": "A 13.8-fold collapse, and a reminder of what the mislabelled genomes do to it.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Measured from the shipped module: Avastrovirus_Viral_PSSM.json, 48 PSSMs, 25 reference contigs and 141 transcript-editing references. Call rates from a 30-genome panel built one genome per 70% nucleotide cluster and scored through the full annotator including the transcript-edit pass, quoted over the 27 genomes that are genuinely avastroviruses; self-recall from collect_registry; contamination from audit_contamination; string collapse from collect_synmap; rarefaction over 100 replicates.",
+ "standfirst": "The avian astroviruses: the same three-frame layout and the same &minus;1 ribosomal frameshift as the mammalian genus, a longer nsp1a, and a reference set that had to be built almost entirely from parts because the fusion protein is barely deposited.",
+ "title": "Avastrovirus Coverage Audit"
+}

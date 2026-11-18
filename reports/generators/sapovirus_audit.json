@@ -1,0 +1,519 @@
+{
+ "eyebrow": "LowVan &middot; Sapovirus module &middot; 14 October 2026",
+ "h1": "Sapovirus",
+ "headline_tiles": [
+  [
+   "9",
+   "features, all with profiles"
+  ],
+  [
+   "125",
+   "PSSMs"
+  ],
+  [
+   "220/223",
+   "exemplars routed"
+  ],
+  [
+   "35/35",
+   "held-out genomes clean"
+  ],
+  [
+   "12.2&times;",
+   "string collapse"
+  ],
+  [
+   "6.4&times;",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "blocks": [
+    {
+     "html": "Sapovirus causes acute gastroenteritis in people and in pigs, and is increasingly recognised in outbreaks where norovirus is not found. Human infections are dominated by genogroups GI, GII, GIV and GV; the remainder of the genus is porcine, bat, rodent, shrew, mink and sea lion viruses.",
+     "type": "prose"
+    },
+    {
+     "text": "Norovirus   ORF1 (six NS)                  | ORF2 VP1 | ORF3 VP2   3 ORFs\nSapovirus   ORF1 (six NS + VP1 IN FRAME)   | ORF2 VP2             2 ORFs",
+     "type": "pre"
+    },
+    {
+     "html": "That is a difference in genome organisation, which is what this project partitions on, and it has two consequences the module has to encode: <b>VP1 is a mature peptide here</b> rather than a CDS, and ORF1 carries a <b>sixth cleavage site</b> &mdash; NS7/VP1 &mdash; that norovirus does not have at all. The sequence check agrees: best blastp identity between the genera is RdRp 32.8% and VP1 39.7%, well under the 80% required before anything is shared across an alignment.",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "7,073"
+      ],
+      [
+       "protein features",
+       "15,385"
+      ],
+      [
+       "unique sequences",
+       "7,362"
+      ],
+      [
+       "genomes &ge; 6.5 kb",
+       "926"
+      ],
+      [
+       "distinct annotation strings",
+       "100"
+      ]
+     ],
+     "type": "table"
+    }
+   ],
+   "lede": "One genus, one module, and the reason it is not part of Norovirus is the genome, not the tree.",
+   "num": "01",
+   "title": "What the module covers"
+  },
+  {
+   "blocks": [
+    {
+     "html": "Six sites were taken from the Mc10 (GI.1) reference and written into <code>CLEAVAGE_SITES.md</code> <b>before any profile was built</b> &mdash; NS1/NS2 at E69/G70, NS2/NS3 at Q325/G326, NS3/NS4 at Q666/G667, NS4/NS5 at E940/A941, NS5/NS6-7 at E1055/A1056, and NS7/VP1 at E1722/G1723. P1 is E or Q and P1&prime; is A, G or S, conserved across GI&ndash;GV.",
+     "type": "prose"
+    },
+    {
+     "html": "The deposited vocabulary then reproduced every one of those lengths on its own. Median length of the records carrying each mature-peptide name, against the Mc10 value:",
+     "type": "prose"
+    },
+    {
+     "headers": [
+      "annotation string",
+      "median length",
+      "Mc10",
+      "feature"
+     ],
+     "rows": [
+      [
+       "Protein p11",
+       "69",
+       "69",
+       "NS1"
+      ],
+      [
+       "Protein p28",
+       "256",
+       "256",
+       "NS2"
+      ],
+      [
+       "NTPase",
+       "341",
+       "341",
+       "NS3"
+      ],
+      [
+       "Protein p32",
+       "274",
+       "274",
+       "NS4"
+      ],
+      [
+       "Viral genome_linked protein",
+       "114",
+       "115",
+       "NS5"
+      ],
+      [
+       "Protease-polymerase p70",
+       "668",
+       "667",
+       "NS6-7"
+      ],
+      [
+       "Capsid protein",
+       "554",
+       "556",
+       "VP1"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "<b>NS6 and NS7 are one product.</b> Sapovirus does not cleave between the protease and the polymerase, so the module declares a single <code>NS6_7</code> where Norovirus declares two features. The <code>p70</code> records confirm it at 668 residues against the 667 the map predicts.",
+     "type": "prose"
+    },
+    {
+     "html": "Two populations share the vocabulary, as in Norovirus, and here the labels help: this genus deposits partiality qualifiers freely &mdash; 762 <code>, fragment</code>, 523 <code>, C-terminal</code>, 371 <code>, N-terminal</code>, 210 <code>Partial Capsid Protein</code> &mdash; and all are discarded. What the labels miss, the window catches: <code>capsid protein</code> in lower case has a median length of 131 against a true 556.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Every window was set from the full-length mode of the clean population</b>, not from a raw percentile and never from a median. <code>Capsid protein</code> is 92.4% full-length with a fragment mode at 100&ndash;149 residues; its unfiltered 1st percentile would have put the VP1 floor at 92 and admitted every fragment in the genus.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The cleavage map came from the literature first. The vocabulary then confirmed every length in it, independently.",
+   "num": "02",
+   "title": "How it was built"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "feature",
+      "type",
+      "up/down",
+      "bit",
+      "min",
+      "max",
+      "PSSMs",
+      "collection"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "CDS",
+       "1/1",
+       "855",
+       "1893",
+       "2443",
+       "12",
+       "461"
+      ],
+      [
+       "NS1",
+       "mat_peptide",
+       "1/0",
+       "24",
+       "52",
+       "76",
+       "11",
+       "171"
+      ],
+      [
+       "NS2",
+       "mat_peptide",
+       "0/0",
+       "52",
+       "209",
+       "272",
+       "9",
+       "211"
+      ],
+      [
+       "NS3",
+       "mat_peptide",
+       "0/0",
+       "190",
+       "307",
+       "363",
+       "9",
+       "159"
+      ],
+      [
+       "NS4",
+       "mat_peptide",
+       "0/0",
+       "55",
+       "200",
+       "304",
+       "12",
+       "183"
+      ],
+      [
+       "NS5",
+       "mat_peptide",
+       "0/0",
+       "60",
+       "80",
+       "124",
+       "9",
+       "97"
+      ],
+      [
+       "NS6_7",
+       "mat_peptide",
+       "0/0",
+       "299",
+       "519",
+       "721",
+       "10",
+       "293"
+      ],
+      [
+       "VP1",
+       "mat_peptide",
+       "0/1",
+       "242",
+       "488",
+       "605",
+       "18",
+       "385"
+      ],
+      [
+       "VP2",
+       "CDS",
+       "1/1",
+       "27",
+       "120",
+       "216",
+       "35",
+       "704"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "The extension flags follow each product's own two termini. NS1 takes <code>upstream_ext 1</code> because its N-terminus <i>is</i> ORF1's initiating Met; VP1 takes <code>downstream_ext 1</code> because its C-terminus is the polyprotein's real end; the five internal products take <code>0/0</code>, because a protease cut is marked by no codon and a scan for one invents a boundary.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Nine features, 125 profiles. Every cutoff was measured against what the profiles actually score, because scaling them from a shipped module was wrong five times out of nine.",
+   "num": "03",
+   "title": "Where the cutoffs sit"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>220 of 223 exemplars routed (98.7%)</b> on 25 representative contigs. The budget measurement over all 926 genomes &ge; 6 kb gave 97.6% at the same 25, and the shipped set reproduces it exactly &mdash; the selection that was measured is the selection that ships.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "The three that do not route are <b>Bat faecal sapovirus Ad02/aus/1</b>, <b>Yunnan shrew sapovirus 1</b> and <b>Rousettus madagascariensis sapovirus 4</b>. All three are divergent animal lineages, and the first was surfaced independently by the held-out panel &mdash; which is the argument for stratifying a panel across lineages rather than sampling it by record count, where 343 GI and 217 GII genomes would have drowned them.",
+     "type": "prose"
+    }
+   ],
+   "lede": "25 references, and the three genomes they miss are nameable.",
+   "num": "04",
+   "title": "Does it route?"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "product",
+      "called",
+      "of 217 with POLY"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "217",
+       "&mdash;"
+      ],
+      [
+       "NS1",
+       "144",
+       "66.4%"
+      ],
+      [
+       "NS2",
+       "214",
+       "98.6%"
+      ],
+      [
+       "NS3",
+       "218",
+       "100%"
+      ],
+      [
+       "NS4",
+       "219",
+       "100%"
+      ],
+      [
+       "NS5",
+       "218",
+       "100%"
+      ],
+      [
+       "NS6-7",
+       "218",
+       "100%"
+      ],
+      [
+       "VP1",
+       "219",
+       "100%"
+      ],
+      [
+       "VP2",
+       "216",
+       "99.5%"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Eight of nine features are called on essentially every genome that carries a polyprotein. NS1 is the exception and &sect;07 says why it is a gap rather than a setting.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Measured on every complete genome, not on the panel.",
+   "num": "05",
+   "title": "Does it call the proteins?"
+  },
+  {
+   "blocks": [
+    {
+     "headers": [
+      "product",
+      "Mc10",
+      "median called",
+      "p05",
+      "p95"
+     ],
+     "rows": [
+      [
+       "NS1",
+       "69",
+       "56",
+       "37",
+       "71"
+      ],
+      [
+       "NS2",
+       "256",
+       "254",
+       "252",
+       "257"
+      ],
+      [
+       "NS3",
+       "341",
+       "341",
+       "340",
+       "341"
+      ],
+      [
+       "NS4",
+       "274",
+       "274",
+       "274",
+       "283"
+      ],
+      [
+       "NS5",
+       "115",
+       "114",
+       "114",
+       "115"
+      ],
+      [
+       "NS6-7",
+       "667",
+       "666",
+       "664",
+       "667"
+      ],
+      [
+       "VP1",
+       "556",
+       "557",
+       "543",
+       "566"
+      ]
+     ],
+     "type": "table"
+    },
+    {
+     "html": "Across 141 genomes carrying the polyprotein and all seven products: <b>sum(products) &minus; polyprotein = &minus;1 aa at the median</b>, four of the six junctions have <b>zero</b> overlaps, NS1 starts exactly where the polyprotein starts on 90.8%, and <b>VP1 ends exactly where the polyprotein ends on 99.3%</b>. Six of the seven products land within two residues of their published Mc10 lengths.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Self-recall against each feature's own in-range collection: <b>2,664 of 2,664 (100.0%)</b>. This is a floor rather than a validation &mdash; a profile finding its own training data proves only that the build completed.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Held-out panel, 36 genomes stratified across 20 lineages &mdash; GI to GXIII plus bat, porcine, rat, rodent, mink and sea lion: <b>35 of 35 evaluated are clean</b>, with no genome or contig flag of any kind. The 36th is the unroutable bat sapovirus in &sect;04, which is a routing gap and not an annotation error.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "Cross-feature contamination audit: <b>2,664 sequences against 125 cluster references, nothing above 50 bits</b>. That check matters more here than in most modules, because VP1 is a subsequence of POLY in this genus and several cutoffs are low.",
+     "kind": "ok",
+     "type": "verdict"
+    }
+   ],
+   "lede": "Called is not correct. For a polyprotein the test is whether the products tile it.",
+   "num": "06",
+   "title": "Are the calls right?"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>NS1 is called on two genomes in three.</b> 144 of 217. This is a coverage gap and not a threshold, and the evidence is direct: at 35 bits it called 136, at 24 it calls 144, and at 16 it calls 219 &mdash; by placing itself in the wrong position on 95% of genomes, overlapping NS2 on 198 of 214 and collapsing the tiling sum from &minus;1 to &minus;32 residues. 69 residues is too short for a lower cutoff to stay specific. Closing it needs profiles for the lineages it misses.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The NS6-7/VP1 junction is the least crisp in the module</b>, overlapping on 26 of 141 genomes. Median overlap is zero, so most calls are exact. This is the one cleavage site norovirus does not have, and the only junction in the genus between two products of very different size and conservation.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Three divergent animal lineages do not route</b>, named in &sect;04. Twenty-two clusters holding 22 genomes sit outside the 25-reference budget; raising the budget reaches them, at a cost this project has fixed at 25.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>The genotyping fragments are refused by design.</b> 14,837 sequences were excluded from VP1 and 8,571 from NS6-7, every one of them below the window and <b>none above it</b> in any feature. That split is the check worth copying: all-below means fragments, any-above means a real population is being cut.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Three gaps, each measured. None closes by moving a cutoff &mdash; two were proved not to, by moving it.",
+   "num": "07",
+   "title": "What it cannot do"
+  },
+  {
+   "blocks": [
+    {
+     "html": "<b>The polyprotein profiles were trimmed off their own N-terminus, and the gate caught it pre-flight.</b> 30% of the POLY collection was N-terminally ragged &mdash; most of it by one or two residues of source annotation &mdash; which dropped the occupancy of the first alignment columns below the curation threshold and got them trimmed. One 71-member cluster had lost its first <b>151 residues</b> and another its first 199. Norovirus shipped with exactly this defect and it was found only by measuring annotations afterwards; here <code>check_met_start.py</code> reported it before installation, and after filtering the collection the gate reports <i>every CDS profile begins at its protein's start</i>.",
+     "type": "prose"
+    },
+    {
+     "html": "<b>Five of nine bit cutoffs could not call the sequences they were built from.</b> Cutoffs scaled by length from the homologous Norovirus features sat <i>above</i> their own weakest training member &mdash; NS1 35 against 27.4, NS2 80 against 58.8, NS6-7 400 against 333 &mdash; so NS1 was called on 136 genomes and NS2 on 177, for no reason but the threshold.",
+     "type": "prose"
+    },
+    {
+     "html": "Correcting it took three measured rounds, and the second is the one worth recording, because <b>it looked like success</b>:",
+     "type": "prose"
+    },
+    {
+     "text": "                          scaled      margin 0.6    margin 0.9\ncontigs with all seven       133            214           141\nNS1 median length             60             36            56   (Mc10 69)\nNS1 starts at POLY start    96.2%           5.6%         90.8%\nNS1/NS2 junction overlap     0/133        198/214         9/141\nsum(products) - POLY          -1            -32            -1",
+     "type": "pre"
+    },
+    {
+     "html": "<b>Counting calls cannot distinguish those three columns; only the tiling test can.</b> At 16 bits a 69-residue profile matches almost anything, so a spurious internal match outscored the true N-terminal one and every other product's p05 degraded with it. <code>derive_cutoffs.py</code> now measures each cutoff against the weakest self-hit that actually spans its subject &mdash; NS4's weakest raw hit was 20.4 bits and its weakest genuine one 61.6 &mdash; and its docstring carries this table as the reason the tiling check belongs in the same loop.",
+     "kind": "ok",
+     "type": "verdict"
+    },
+    {
+     "html": "One number in this module is set from coverage rather than from that formula. NS3's measured floor of 239 sits below its weakest training member at 266 and still undercalled it at 185 of 217 genomes, because <b>wild NS3 is more divergent than anything in the collection</b>. At 190 it calls 218 with a p05 of 340. The weakest training member is a ceiling on a cutoff, not the right value for it.",
+     "type": "prose"
+    }
+   ],
+   "lede": "Two defects in the machinery, both caught by gates this project paid for earlier, and one of them caught before it shipped.",
+   "num": "08",
+   "title": "What the run found"
+  },
+  {
+   "blocks": [
+    {
+     "html": "110 distinct annotation strings across 13,601 occurrences collapse onto <b>9 controlled annotations</b> &mdash; a 12.2&times; reduction, with 39 strings left unbound.",
+     "type": "prose"
+    },
+    {
+     "html": "Rarefied over proteins rather than genomes, and compared at the depth both curves reach: at 965 proteins sampled the source vocabulary holds <b>58.0 distinct strings</b> and the module holds <b>9.0</b> &mdash; a <b>6.4&times;</b> collapse. The source needs 779 proteins to reach 95% of its final vocabulary; the module needs 27, because a controlled vocabulary saturates once every protein has been named, while free text keeps climbing as each submitter spells it again.",
+     "type": "prose"
+    }
+   ],
+   "lede": "The point of the module, stated as a ratio.",
+   "num": "09",
+   "title": "What the vocabulary bought"
+  }
+ ],
+ "source_note": "Measured from the shipped module: Sapovirus_Viral_PSSM.json, 125 PSSMs, 25 representative contigs. Routing and per-feature call rates from evaluate_coverage over 223 exemplars; boundary and tiling figures from the same run's annotations; held-out figures from a 36-genome panel stratified across 20 lineages; self-recall from collect_registry; contamination from audit_contamination; string collapse from collect_synmap; rarefaction over 100 replicates.",
+ "standfirst": "One module for the genus, and a different genome from its neighbour. Sapovirus carries two open reading frames where Norovirus carries three, because VP1 sits in frame with the non-structural polyprotein rather than on its own &mdash; so ORF1 is cleaved into seven products, not six, and the capsid is a mature peptide here. This audit says what the module calls, what it refuses, and which of the remaining gaps are biology and which are ours.",
+ "title": "Sapovirus Coverage Audit"
+}
