@@ -52,17 +52,21 @@ alignment count by construction.
 | `PICO_LDR_VP4` | 15 | 117 | 25 |  |
 | `PICO_NOLDR_VP0` | 11 | 43 | 14 |  |
 | `PICO_NOLDR_VP4` | 13 | 80 | 25 |  |
+| `Piscanivirinae` | 6 | 24 | 8 | Tobaniviridae (Bafinivirus + Oncotshavirus); ORF1ab `transcript_edit`; Mpro cut at Edman-mapped sites; transcript-edit refs |
 | `PiscineOrthoreovirus` | 11 | 17 | 14 | S1 bicistronic, p13 nested inside sigma3 |
 | `PteropineOrthoreovirus` | 12 | 15 | 13 |  |
 | `Quinvirinae` | 11 | 135 | 25 |  |
+| `Remotovirinae` | 7 | 10 | 1 | Tobaniviridae (Bostovirus); ORF1ab `transcript_edit`; no published cleavage sites; transcript-edit refs |
 | `Rotavirus` | 14 | 389 | 33 | VP8*/VP5* cut from VP4 by motif; species A only |
 | `Sapelovirus` | 13 | 42 | 25 |  |
 | `Sapovirus` | 9 | 125 | 25 |  |
 | `Seadornavirus` | 12 | 57 | 6 |  |
 | `Senecavirus` | 13 | 22 | 3 |  |
+| `Serpentovirinae` | 14 | 85 | 16 | Tobaniviridae; ORF1ab `transcript_edit` (-1, AAAAAAC); UNC1-9 binned by homology, not names; transcript-edit refs |
 | `Teschovirus` | 13 | 49 | 7 |  |
 | `Tobamovirus` | 4 | 98 | 25 | REP183 readthrough (`internal_stop`) |
 | `Togaviridae` | 14 | 313 | 9 | `TF` `transcript_edit`; transcript-edit refs |
+| `Torovirinae` | 7 | 57 | 3 | Tobaniviridae; ORF1ab `transcript_edit` (-1, UUUAAAC); Mpro cut at Edman-mapped sites; transcript-edit refs |
 | `Trivirinae` | 5 | 157 | 25 |  |
 | `Tymovirus` | 3 | 38 | 25 |  |
 | `Velarivirus` | 32 | 124 | 25 |  |

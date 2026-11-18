@@ -883,3 +883,35 @@ tables carry the gene symbol per call, so a per-feature rate computed from
 them is independent of this parse — and of the annotation-string collision
 described above, which bites any module declaring several uncharacterized
 features.
+
+## A page generated before the numbers it reports changed
+
+The artifact generators read the module JSON and the build tree **at the moment
+they run**. Nothing records which version of the inputs a page was rendered
+from, and nothing re-checks it later, so a page committed before a late fix
+keeps reporting the superseded numbers and looks as authoritative as any other.
+
+Tobaniviridae, 18 Nov 2026. The PSSM registry was generated, then every
+feature's `bit_cutoff` was raised from the generator's floor to a measured
+value (30 → 200 on Torovirinae M, 60 → 500 on ORF1a and S). The registry was
+not regenerated, so the published page reported cutoffs that no longer existed
+in the module it described. Nothing errored and no linter objected:
+`check_artifact_html.py` validates the HTML, not whether the page agrees with
+the JSON.
+
+**Regenerate every page after the last change to the module, not when each
+page's data happens to be ready.** The page set is the final step of the build
+and `collect_registry.py` is cheap — under 20 s per module on a family this
+size. If a cutoff, a collection or a `copy_num` changes after the pages are
+rendered, the pages are stale and the fact that they are already committed is
+not evidence that they are not.
+
+## Four genome maps, one artifact row
+
+`gen_artifacts_index.py` matches a source file to its published page on the
+**taxon in the `<title>`**. A family built as several modules has one map per
+module, and titling them all after the family gives four pages one identity:
+the index shows whichever was published last and silently drops the other
+three. Title each by its own module — `Torovirinae Genome Map`, not
+`Tobaniviridae Genome Map` — and the family's own four pages (collapse,
+registry, saturation, audit) keep the family name.

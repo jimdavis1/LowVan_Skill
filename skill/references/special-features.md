@@ -219,6 +219,19 @@ Constructing one, for a −1 frameshift at a slippery heptamer:
    N-run truncated that call, and picks up spurious upstream matches.
 3. Read the 0-frame up to the slip, **duplicate the slipped base**, continue in
    the shifted frame to the stop.
+
+   **Cite the evidence for that junction, and state how strong it is.**
+   Duplicating the slipped base gives the tandem-slippage product: both P-site and
+   A-site codons are decoded, so `U_UUA_AAC` reads ...Leu-Asn.... That was shown by
+   mass spectrometry of the **SARS-CoV** product (Baranov 2005, PMID 15680415).
+   For any other virus with the same heptamer it is an inference from a shared
+   mechanism, and for a different heptamer — Serpentovirinae's `A_AAA_AAC` —
+   it rests on the general tandem-slippage rule alone. Say which of the three
+   it is in the build notes and on the pages. No tobanivirus pp1ab product has
+   ever been sequenced, so all four Tobaniviridae modules ship the inferred
+   junction and say so. Where submitters' own joins disagree, that is a
+   different convention, not a defect in their records; a GenBank or RefSeq
+   join is never the evidence.
 4. **Decide on the stop codon** — see below.
 5. Reject any construct containing an ambiguous base. A reference with an N in
    it is worse than no reference.

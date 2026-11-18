@@ -204,6 +204,23 @@ species assignment is unsettled, which is normal and is not the same thing as
 an unclassified isolate. Testing the species label instead of the organism name
 drops real viruses and keeps the `sp.` ones — exactly backwards.
 
+**Keep an `sp.` isolate that BV-BRC has assigned to a real ICTV species.** The
+awk test above catches the organism name, and some deposits carry `sp.` in the
+isolate name while their species label is a proper binomial. Those are
+classified viruses, not catch-all bins: list every hit's species label before
+dropping it, and keep the ones with an assigned binomial. Curator's decision,
+Tobaniviridae, 18 Nov 2026:
+
+| organism name | species label | |
+|---|---|---|
+| `Serpentovirinae sp. isolate C18` | *Sertovirus cona* | **in** |
+| `Serpentovirinae sp. isolate K48` | *Septovirus foka* | **in** |
+| `Serpentovirinae sp. isolate L25` | *Infratovirus latu* | **in** |
+
+Each was the only genome of its genus in the dump, so the awk test alone would
+have deleted three of Serpentovirinae's seven genera. The other 125 `sp.`
+records in that family had no assigned species and stayed out.
+
 **Why this is an intake rule and not a cleanup.** An `sp.` bin is a catch-all:
 BV-BRC files unrelated environmental assemblies under one taxon id, so the
 "taxon" is not a virus and its deposits are not homologous. Measured in
@@ -1109,6 +1126,27 @@ One block per module: `close_genomes`, `segments`, `features`. Set `min_len` and
 high enough that a genus-specific accessory cannot fire on a sibling genus.
 Schema and every field: `references/json-schema.md`.
 
+**The generated `bit_cutoff` is a floor, not a threshold. Raise it from
+measured scores once the panel has run.** For a ~230-residue protein
+`gen_module_json.py` writes 30 bits. In Tobaniviridae's whole-taxon run that
+let a second *Membrane glycoprotein* call land inside the Berne virus replicase
+at **30.34 bits**, while the genuine M on the same genome scored 476.8. Self-recall
+and the held-out panel cannot see this: both test sequences that really are the
+protein. What Tobaniviridae shipped, measured rather than guessed:
+
+- set each feature's cutoff to **half the lowest score among its genuine panel
+  calls**;
+- **cap it at 500**. Uncapped, ORF1a's cutoff came out at 3,000 and Piscanivirinae
+  ORF1a fell from 70% to 33% of the divergent genomes the profile exists to find;
+- leave features with **fewer than five panel calls** alone, since one low score
+  is not a distribution.
+
+The false call disappeared, no genuine call was lost, and self-recall stayed at
+100% on every feature. **After any cutoff change, re-run `collect_registry.py`
+and regenerate the registry page.** It reads `bit` from the JSON at the moment
+it runs, so a page generated earlier keeps showing the old cutoffs. Tobaniviridae's
+first registry went out stale exactly that way.
+
 **Generate it, do not hand-write it:**
 
 ```bash
@@ -1659,6 +1697,10 @@ python3 scripts/check_artifact_html.py *.html    # <- REQUIRED before publishing
 #  var(--built) and an undefined custom property invalidates the declaration.
 python3 scripts/wrap_figure_page.py --figure <taxon>-genome-map.html \
     --audit <taxon>-coverage-audit.html --title "<Taxon> Genome Map" --write
+#  a family built as several modules gets one map per module, each titled by
+#  its MODULE ("Torovirinae Genome Map", not "Tobaniviridae Genome Map").
+#  gen_artifacts_index.py matches pages on the taxon in the <title>, so four
+#  maps all titled by the family collapse to whichever was published last.
 ```
 
 A `figure` block resolves `from` **relative to the current directory**, so run

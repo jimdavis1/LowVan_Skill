@@ -53,6 +53,12 @@ feature's own PSSMs against that feature's own collection with
 `psiblast -in_pssm` and counts sequences scoring at or above the JSON
 `bit_cutoff`.
 
+**It reads `bit_cutoff` when it runs, so generate this page last.** Raising a
+cutoff after the page is rendered leaves the page reporting the old one, with
+nothing to flag it. Re-run both commands after the final change to the module —
+it takes seconds — and see `silent-failures.md`, *A page generated before the
+numbers it reports changed*.
+
 **Be honest about what self-recall means.** It is a floor, not a validation. A
 profile that cannot recover the sequences it was built from will certainly not
 recover anything new — but recovering them proves very little. Say so on the

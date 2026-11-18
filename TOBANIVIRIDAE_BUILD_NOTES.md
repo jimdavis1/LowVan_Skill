@@ -1,7 +1,8 @@
 # Tobaniviridae — build notes
 
 Built 18 November 2026 with the LowVan kit at `jimdavis1/LowVan_Skill@d0689ef`.
-Four modules, one per subfamily, on branch `tobaniviridae`.
+Four modules, one per subfamily. Merged to `main` on 18 Nov 2026 (rebased onto
+the Bornaviridae and Picobirnaviridae work; additive only, nothing overwritten).
 
 Local build tree: `~/lowvan_scratch/tobani` (local disk; Box is synced at the
 end, per the work-local rule). Runtime repo used for every measurement here:
@@ -511,8 +512,11 @@ populations coincide, which is the honest reading.
 
 ## 10. Open questions for the curator
 
-1. **The three kept `sp.` isolates** (§1). They are the only genomes of
-   *Sertovirus*, *Septovirus* and *Infratovirus latu* in the dump.
+1. ~~**The three kept `sp.` isolates** (§1).~~ **Settled 18 Nov 2026: keep
+   them**, as shipped. Jim: "keep the three isolates, they are fine." They are
+   the only genomes of *Sertovirus cona*, *Septovirus foka* and *Infratovirus
+   latu* in the dump, and the intake rule now records the exception
+   (SKILL.md, the `sp.` intake section).
 2. **`PMID` is empty on every feature.** Every citation is in
    `PMID_claude_generated` and needs a human to read it before it moves.
 3. **Single-sequence profiles.** Most Serpentovirinae and Piscanivirinae
@@ -521,7 +525,9 @@ populations coincide, which is the honest reading.
 4. **The bit-cutoff rule is mine, not the kit's.** Half the lowest panel score,
    capped at 500, with features under five observed calls left alone. It was
    derived from one measured false positive and one measured over-correction
-   (§9). If the project has a standing rule for this, use that instead.
+   (§9). The kit had no standing rule; it is now written into SKILL.md beside
+   `gen_module_json.py` as what Tobaniviridae measured, still open for the
+   curator to replace with a project-wide rule.
 5. **`ORF1AB` carries no `copy_num` in any module**, although it measures
    85.7–87.5% on the panels. The misses are genomes with ambiguous bases, which
    the annotator demotes by design; marking the feature essential would flag
