@@ -1,0 +1,229 @@
+{
+ "E": {
+  "PMID_claude_generated": [
+   "10400725",
+   "11504553",
+   "25036340"
+  ],
+  "anno": "Envelope protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "E",
+  "note": "75-81 aa; the canonical small hydrophobic envelope protein of the second, unprimed cassette. ORF LABELS ARE NOT USABLE AS EVIDENCE HERE: SHFV's own RefSeq uses the PRRSV convention while its close relatives use the EAV one, inside the same subfamily, so this module assigns the cassette by genome order plus homology instead. One deposit of 214 aa labelled 'E protein' in 25 genomes is a GP2 under the inverted convention and is called GP2 here.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "EP": {
+  "PMID_claude_generated": [
+   "33917085",
+   "25187550",
+   "25036340"
+  ],
+  "anno": "Uncharacterized lineage-specific protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "E'",
+  "note": "52-110 aa and THE LABILE MEMBER of the duplicated cassette: present in SHFV, Free State vervet virus, Pebjah and Southwest baboon virus, absent or truncated by a premature stop codon in Mikumi yellow baboon, DeBrazza's monkey, Kafue kinda chacma baboon and Zambian malbrouck virus. ORF2b-prime is not required for replication in vitro. MUST NOT CARRY copy_num -- it is missing from a third of the subfamily by biology, not by annotation.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP2": {
+  "PMID_claude_generated": [
+   "1328669",
+   "12743278",
+   "25036340"
+  ],
+  "anno": "Minor envelope glycoprotein GP2",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP2",
+  "note": "158-235 aa, the unprimed copy. Function is assigned by orthology to the EAV and PRRSV protein, where GP2 is an N-glycosylated minor envelope glycoprotein and a partner in the GP2/GP3/GP4 heterotrimer.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP2P": {
+  "PMID_claude_generated": [
+   "9420301",
+   "25036340",
+   "26608064"
+  ],
+  "anno": "Uncharacterized lineage-specific protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP2'",
+  "note": "214-281 aa, the first member of the 5'-proximal DUPLICATED minor-structural cassette that defines this subfamily and exists in no other arterivirus. Vatter & Brinton showed that all EIGHT minor structural proteins -- four primed, four not -- are functionally important as a SET, but NO INDIVIDUAL PRIMED PROTEIN HAS A DEMONSTRATED MOLECULAR FUNCTION, and every per-protein identity assignment (which primed ORF is the GP2 homologue, and so on) is homology-only. Hence the uncharacterized annotation with the published symbol kept.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP3": {
+  "PMID_claude_generated": [
+   "12743278",
+   "25036340"
+  ],
+  "anno": "Minor envelope glycoprotein GP3",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP3",
+  "note": "136-204 aa, except Zambian malbrouck virus 1 at 270 aa -- the one record that annotates no GP4 at all and whose GP3/GP4 boundary is unresolved upstream of this build.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP3P": {
+  "PMID_claude_generated": [
+   "9420301",
+   "25036340"
+  ],
+  "anno": "Uncharacterized lineage-specific protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP3'",
+  "note": "199-220 aa, the third member of the duplicated cassette. Functionally important as part of the eight-protein set; no individual function published.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP4": {
+  "PMID_claude_generated": [
+   "12743278",
+   "25036340"
+  ],
+  "anno": "Minor envelope glycoprotein GP4",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP4",
+  "note": "152-182 aa, the unprimed copy.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP4P": {
+  "PMID_claude_generated": [
+   "9420301",
+   "25036340"
+  ],
+  "anno": "Uncharacterized lineage-specific protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP4'",
+  "note": "157-205 aa, the fourth member of the duplicated cassette. Functionally important as part of the eight-protein set; no individual function published.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP5": {
+  "PMID_claude_generated": [
+   "1328669",
+   "25036340",
+   "23077302"
+  ],
+  "anno": "Major envelope glycoprotein GP5",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP5",
+  "note": "232-278 aa. Called ORF7 under the Godeny/Lauck legacy sequential numbering used by the Kibale red-tailed guenon and simian haemorrhagic encephalitis records, where N is ORF9 -- a module keyed on 'ORF7 means nucleocapsid' bins GP5 as N for those taxa, which is one reason nothing here is keyed on an ORF label.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "M": {
+  "PMID_claude_generated": [
+   "1328669",
+   "12477814"
+  ],
+  "anno": "Membrane protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "M",
+  "note": "159-173 aa, unglycosylated by orthology to the measured EAV and PRRSV protein; called ORF8 under the legacy sequential scheme.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "N": {
+  "PMID_claude_generated": [
+   "14604534",
+   "1328669"
+  ],
+  "anno": "Nucleocapsid protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "N",
+  "note": "102-132 aa, the most abundant virion protein; called ORF9 under the legacy sequential scheme.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "ORF1A": {
+  "PMID_claude_generated": [
+   "21544192",
+   "26608064"
+  ],
+  "anno": "ORF1a polyprotein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "ORF1a",
+  "note": "2,048-2,105 aa across the subfamily. NO MATURE PEPTIDE IS DECLARED IN THIS MODULE: no cleavage site of any kind has been mapped in any simarterivirus, no simarterivirus protease has been expressed or assayed, and transferring the EAV/PRRSV nsp map across 35-40% identity would be an inference rather than a measurement. The module stops at the polyprotein, which is a literature ceiling and not a shortfall.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "ORF1AB": {
+  "PMID_claude_generated": [
+   "20696193",
+   "15680415",
+   "2447506"
+  ],
+  "anno": "ORF1ab polyprotein",
+  "feature_type": "CDS",
+  "gene_symbol": "ORF1ab",
+  "max_len": 3847,
+  "min_len": 3266,
+  "note": "A -1 ribosomal frameshift at the U_UUA_AAC heptamer immediately upstream of the ORF1a stop, read directly off these genomes. No simarterivirus pp1ab product has ever been sequenced, so the junction residues are an inference from tandem slippage, demonstrated at the product level for SARS-CoV at the same heptamer and by amino-acid sequencing in other systems. 28 of the 47 references reproduce a deposited pp1ab exactly; the rest were constructed at the same measured slip position and are marked `constructed` in their header.",
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit"
+ },
+ "ORF5A": {
+  "PMID_claude_generated": [
+   "21307223"
+  ],
+  "anno": "ORF5a protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "ORF5a",
+  "note": "48-68 aa. In SHFV its AUG lies DOWNSTREAM of the GP5 AUG rather than upstream, so it has no fixed rank in the ORF order and this module locates it by homology and length alone rather than by position. Annotated only as 'hypothetical protein' in the Kibale red colobus records and absent from the Kibale red-tailed guenon one, so it must not carry copy_num.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ }
+}

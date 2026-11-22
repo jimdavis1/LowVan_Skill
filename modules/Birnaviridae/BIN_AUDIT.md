@@ -1,0 +1,30 @@
+# Bin audit -- Birnaviridae
+
+Does every collection hold ONE protein, and its OWN protein?
+
+**Unresolved: 0**  (defects 6, signed off 6, paralogues 3, collections 12)
+
+## DUPLICATE -- 1 bin(s), 398 sequence(s)
+
+| bin | n | median aa | finding | signed off |
+|---|---|---|---|---|
+| `VP2` | 398 | 441 | same protein as PVP2 (100.0% id) | mature peptide of pVP2 and so a 44% partial of POLY by construction. Discriminated at bin time by the window (395-475: IBDV 1-441, IPNV 1-442) and by the end residue Ala, which excluded 47 deposits of the 452 aa recombinant VP2 boundary (PMID 12832770) and 7 of the 465 aa form. The 99.5% rather than 100% identity reflects strain variation between the VP2 deposits and the POLY members, not a mixed bin. |
+
+## FRAGMENT -- 5 bin(s), 766 sequence(s)
+
+| bin | n | median aa | finding | signed off |
+|---|---|---|---|---|
+| `PEP46` | 42 | 46 | partial of PVP2 (100.0% id over 9% of PVP2) -- identity only, no co-deposit to confirm it | mature peptide of pVP2, 41-46 aa, so a 4% partial of POLY by construction. Window 36-52 and a measured N-terminal aromatic (IBDV F, IPNV W) from the A|[FW]G maturation cut, which is a DIFFERENT chemistry from the VP4 A|[AS] sites and so cannot be confused with them. Present in every genus (PMID 11836417, 17553791, 15269363). |
+| `PVP2` | 307 | 512 | partial of POLY (100.0% id over 51% of POLY) -- identity only, no co-deposit to confirm it | mature peptide of the segment A polyprotein, so being a 51% partial of POLY at 100% identity is its DEFINITION, not a truncation. The FRAGMENT test cannot separate a cleavage product from a truncated deposit; that was done at bin time by the literature window (480-560, IBDV 1-512 PMID 11836417, IPNV 1-508 PMID 10666235) and by junction chemistry, which rejected all 19 IPNV deposits that ran 4 residues past the real cut (ending P, because 509-512 is SGGP). |
+| `VP3` | 227 | 257 | partial of POLY (100.0% id over 25% of POLY) -- identity only, no co-deposit to confirm it | mature peptide of the polyprotein, 215-310 aa, so a 25% partial of POLY by construction. Window 215-310 (IBDV 756-1012 = 257, IPNV 735-972 = 238) and a measured Ala/Ser start from the VP4/VP3 junction. Its C-terminus IS the polyprotein stop, so it is the one cleavage product whose end needs no cleavage-site test. |
+| `VP4` | 188 | 243 | partial of POLY (100.0% id over 24% of POLY) -- identity only, no co-deposit to confirm it | mature peptide of the polyprotein, 165-320 aa, so a 23% partial of POLY by construction. Window and junction chemistry enforced at bin time (IBDV 513-755, IPNV 509-734 with catalytic Ser633/Lys674, PMID 10666235); the end residue Ala and start Ala/Ser were verified on the deposited polyproteins at those exact coordinates before the filter was applied. The one deposit that really was mis-bounded, a 268 aa record spanning IPNV 454-721, sits INSIDE the length window and is excluded by name in NOT_MODELLED. |
+| `X` | 2 | 88 | partial of POLY (100.0% id over 8% of POLY) -- identity only, no co-deposit to confirm it | mature peptide of the polyprotein in Blosnavirus and Telnavirus only, 58-120 aa, so a 7% partial of POLY by construction. Measured 18 Nov 2026: X has no blastp hit to VP2, VP4 or VP3 even at e-value 10, and the BSNV polyprotein tiles exactly without overlap, so this bin cannot be a fragment of a neighbouring feature. n=2 (one BSNV deposit plus a located TV-1 reference), which is a coverage limit recorded in the feature note, not a contamination finding. |
+
+## SPLIT -- 3 bin(s), 32 sequence(s)  (reported, not retired)
+
+| bin | n | median aa | finding | signed off |
+|---|---|---|---|---|
+| `PEP11` | 11 | 13 | 5 groups, largest holds 45% of the bin -- this is more than one protein and resembles no named feature | The pVP2 C-terminal maturation peptide pep11 (IBDV pVP2 442-512 releases pep46, pep7a, pep7b and pep11; PMID 11836417, 15269363). The SPLIT finding is an artefact of the length, not evidence of a mixed bin: at 11-13 aa a single substitution moves a member into its own cluster, so 11 sequences necessarily scatter into 5 groups at any identity floor a longer protein would use. NOT MODELLED -- no profile is built and the feature is absent from the module JSON, because a 13-residue PSSM cannot be made specific. The bin is retained as literature provenance for the pVP2 cleavage cassette. |
+| `PEP7A` | 14 | 7 | 5 groups, largest holds 43% of the bin -- this is more than one protein and resembles no named feature | The pVP2 C-terminal maturation peptide pep7a, same cassette and same citations as PEP11. 14 sequences of 7 and 9 aa; the 5 reported groups are what 7-mers do under any clustering. NOT MODELLED, for the same reason -- a 7-residue profile would match on chance alone. Retained as provenance. |
+| `PEP7B` | 7 | 7 | 4 groups, largest holds 57% of the bin -- this is more than one protein and resembles no named feature | The pVP2 C-terminal maturation peptide pep7b, same cassette and same citations as PEP11. 7 sequences, all exactly 7 aa; 4 groups. NOT MODELLED, same reason. Retained as provenance. |
+

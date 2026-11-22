@@ -1,0 +1,657 @@
+{
+ "title": "Simarterivirinae Coverage Audit",
+ "eyebrow": "LowVan &middot; Simarterivirinae module &middot; 21 November 2026",
+ "h1": "Simarterivirinae",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory.",
+ "headline_tiles": [
+  [
+   "14",
+   "features"
+  ],
+  [
+   "124",
+   "PSSMs"
+  ],
+  [
+   "24/24",
+   "exemplars routed"
+  ],
+  [
+   "83.3%",
+   "annotated genomes genuinely clean"
+  ],
+  [
+   "7.0\u00d7",
+   "string collapse"
+  ],
+  [
+   "5.7\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "A second module exists for one reason: these genomes carry the minor-glycoprotein cassette twice.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The module covers <strong>Simarterivirinae</strong>, the simian arteriviruses &mdash; simian haemorrhagic fever virus and its relatives in African and Asian primates. They are split from the rest of Arteriviridae on <strong>genome organisation, not phylogeny</strong>, and the organisation in question is a <strong>duplicated cassette</strong>: where every other arterivirus carries one set of minor envelope glycoproteins, these carry two (PMID 25036340)."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "179"
+      ],
+      [
+       "protein features",
+       "2,368"
+      ],
+      [
+       "unique sequences",
+       "1,256"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "179"
+      ],
+      [
+       "species",
+       "13"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "simarterivirinae-genome-map.html",
+     "caption": "The Simarterivirinae module's calls on one annotated genome, to scale."
+    },
+    {
+     "type": "prose",
+     "html": "That gives <strong>14 features</strong>. Nine are the ordinary arterivirus set &mdash; <code>ORF1A</code>, <code>GP2</code>, <code>E</code>, <code>GP3</code>, <code>GP4</code>, <code>ORF5A</code>, <code>GP5</code>, <code>M</code>, <code>N</code> &mdash; plus <code>ORF1AB</code> from the &minus;1 ribosomal frameshift. The remaining four are the duplicate copies: <code>EP</code>, <code>GP2P</code>, <code>GP3P</code> and <code>GP4P</code>."
+    },
+    {
+     "type": "prose",
+     "html": "The four carry the annotation <strong>&ldquo;Uncharacterized lineage-specific protein&rdquo;</strong> and an unnumbered family symbol, because no publication assigns them a function distinct from their non-duplicated partners. That is the honest name, and it is also the rule: a paralogue with no literature function is not given one here."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Almost nothing in this module could be binned from the deposited annotation string.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "ORF1a polyprotein",
+       "ORF1a",
+       "110",
+       "9",
+       "-m 2"
+      ],
+      [
+       "ORF1AB",
+       "ORF1ab polyprotein",
+       "ORF1ab",
+       "0",
+       "\u2014 (special)",
+       "\u2014"
+      ],
+      [
+       "GP2P",
+       "Uncharacterized lineage-specific protein",
+       "GP2'",
+       "171",
+       "8",
+       "-m 2"
+      ],
+      [
+       "EP",
+       "Uncharacterized lineage-specific protein",
+       "E'",
+       "23",
+       "1",
+       "-m 2"
+      ],
+      [
+       "GP3P",
+       "Uncharacterized lineage-specific protein",
+       "GP3'",
+       "171",
+       "8",
+       "-m 2"
+      ],
+      [
+       "GP4P",
+       "Uncharacterized lineage-specific protein",
+       "GP4'",
+       "171",
+       "9",
+       "-m 2"
+      ],
+      [
+       "GP2",
+       "Minor envelope glycoprotein GP2",
+       "GP2",
+       "171",
+       "11",
+       "-m 2"
+      ],
+      [
+       "E",
+       "Envelope protein",
+       "E",
+       "169",
+       "7",
+       "-m 2"
+      ],
+      [
+       "GP3",
+       "Minor envelope glycoprotein GP3",
+       "GP3",
+       "166",
+       "17",
+       "-m 2"
+      ],
+      [
+       "GP4",
+       "Minor envelope glycoprotein GP4",
+       "GP4",
+       "168",
+       "15",
+       "-m 2"
+      ],
+      [
+       "ORF5A",
+       "ORF5a protein",
+       "ORF5a",
+       "165",
+       "13",
+       "-m 2"
+      ],
+      [
+       "GP5",
+       "Major envelope glycoprotein GP5",
+       "GP5",
+       "171",
+       "13",
+       "-m 2"
+      ],
+      [
+       "M",
+       "Membrane protein",
+       "M",
+       "171",
+       "5",
+       "-m 2"
+      ],
+      [
+       "N",
+       "Nucleocapsid protein",
+       "N",
+       "171",
+       "8",
+       "-m 2"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Of <strong>79 distinct annotation strings</strong> over 284 occurrences, exactly <strong>one</strong> controlled target can be reached by name: <code>ORF1A</code>, from <em>polyprotein</em>, <em>1a replicase</em> and their variants. <strong>72 strings remain unbound.</strong> The source calls both cassette copies <em>minor glycoprotein</em> &mdash; 174 times in <em>Etaarterivirus</em> and 156 in <em>Zetaarterivirus</em> &mdash; and a name that cannot distinguish a protein from its own paralogue cannot bin either one."
+    },
+    {
+     "type": "prose",
+     "html": "So the thirteen structural features were separated by <strong>position in the cassette</strong>, and each orthogroup got its own PSSM. Position curates; sequence calls. The collections are near-uniform in size as a result &mdash; <strong>GP2, GP2P, GP3P, GP4P, GP5, M and N all at 171</strong>, GP3 166, GP4 168, E 169, ORF5A 165 &mdash; because each is one member per genome rather than whatever the submitters happened to name."
+    },
+    {
+     "type": "prose",
+     "html": "<code>EP</code> is the exception at <strong>23 members</strong>: the duplicated E is present in a subset of the lineages, and it is not padded out to match the others."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "One floor for almost everything, because the collections are one deposit per genome.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "60",
+       "0.65",
+       "1,700",
+       "2,700"
+      ],
+      [
+       "ORF1AB",
+       "\u2014",
+       "\u2014",
+       "3,266",
+       "3,847"
+      ],
+      [
+       "GP2P",
+       "30",
+       "0.65",
+       "201",
+       "297"
+      ],
+      [
+       "EP",
+       "30",
+       "0.65",
+       "48",
+       "99"
+      ],
+      [
+       "GP3P",
+       "30",
+       "0.65",
+       "186",
+       "233"
+      ],
+      [
+       "GP4P",
+       "30",
+       "0.65",
+       "114",
+       "217"
+      ],
+      [
+       "GP2",
+       "30",
+       "0.65",
+       "150",
+       "320"
+      ],
+      [
+       "E",
+       "30",
+       "0.65",
+       "45",
+       "95"
+      ],
+      [
+       "GP3",
+       "30",
+       "0.65",
+       "130",
+       "280"
+      ],
+      [
+       "GP4",
+       "30",
+       "0.65",
+       "80",
+       "210"
+      ],
+      [
+       "ORF5A",
+       "25",
+       "0.65",
+       "40",
+       "80"
+      ],
+      [
+       "GP5",
+       "30",
+       "0.65",
+       "160",
+       "285"
+      ],
+      [
+       "M",
+       "30",
+       "0.65",
+       "155",
+       "190"
+      ],
+      [
+       "N",
+       "30",
+       "0.65",
+       "100",
+       "140"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every structural feature carries a <strong>30-bit</strong> floor at 0.65 coverage; <code>ORF5A</code> takes <strong>25</strong> and <code>ORF1A</code> <strong>60</strong>. <code>ORF1AB</code> carries none, because it is a transcript edit built from the frameshift reference rather than called by a profile."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Nine features carry <code>copy_num</code></strong> &mdash; <code>E</code>, <code>GP2</code>, <code>GP3</code>, <code>GP4</code>, <code>GP5</code>, <code>M</code>, <code>N</code>, <code>ORF1A</code>, <code>ORF5A</code>. The four paralogues do not, and neither does <code>ORF1AB</code>: an uncharacterized lineage-specific protein is exactly what must never be made essential, since every lineage lacking it would be flagged as defective."
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>1988 of 1998 (99.5%)</b> &mdash; ORF1A 110/110, GP2P 171/171, EP 13/23, GP3P 171/171, GP4P 171/171, GP2 171/171, E 169/169, GP3 166/166, GP4 168/168, ORF5A 165/165, GP5 171/171, M 171/171, N 171/171. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Routing is a BLASTn of the query against the reference contigs.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "24",
+       "\u2014"
+      ],
+      [
+       "routed to Simarterivirinae",
+       "24",
+       "100.0%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Routing was measured against the 11 reference contigs this module ships, of which 11 were drawn on by the exemplar set. Exemplars are the 95% nucleotide-identity cluster representatives of the subfamily's BV-BRC genomes."
+    },
+    {
+     "type": "prose",
+     "html": "All <strong>24 exemplars route</strong> and <strong>none fail to route</strong>. The module ships <strong>11 reference contigs</strong> and the panel draws on <strong>every one</strong>. Eleven references for a subfamily of 54 genomes is generous, and deliberately so: the duplicated cassette is what defines the module, and a genome routed to the wrong module cannot have its paralogues separated at all."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Four of the eleven reference genomes sit in the panel</strong>, at 100% identity over their full length. The panel is therefore not held out, and the held-out figure is given below."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Calling is measured on the exemplars, feature by feature.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ORF1a",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "ORF1ab",
+       "95.8",
+       95.8,
+       "23 of 24 routed exemplars"
+      ],
+      [
+       "GP2'",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "E'",
+       "4.2",
+       4.2,
+       "1 of 24 routed exemplars"
+      ],
+      [
+       "GP3'",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "GP4'",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "GP2",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "E",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "GP3",
+       "95.8",
+       95.8,
+       "23 of 24 routed exemplars"
+      ],
+      [
+       "GP4",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "ORF5a",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "GP5",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "M",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ],
+      [
+       "N",
+       "100.0",
+       100.0,
+       "24 of 24 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>1 of 24 routed exemplars get every one of the 13 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>E'</b>. Excluded from that count: ORF1AB &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Both copies of the cassette are called on essentially every genome</strong>, which is the one thing this module exists to do: <code>GP2</code> 25, <code>GP2'</code> 24, <code>GP3</code> 23, <code>GP3'</code> 24, <code>GP4</code> 24, <code>GP4'</code> 25, against 24 exemplars. The duplicated copies are not called more weakly than the originals &mdash; position curated the collections, and the profiles built from them separate the paralogues on sequence."
+    },
+    {
+     "type": "prose",
+     "html": "The rest of the set runs with them: <code>ORF1A</code> 24, <code>GP5</code> 24, <code>M</code> 24, <code>N</code> 24, <code>E</code> 24, <code>ORF5A</code> 24, and <code>ORF1AB</code> 23 from the &minus;1 frameshift."
+    },
+    {
+     "type": "prose",
+     "html": "<code>E'</code> is called <strong>once</strong>, and that is the feature behaving correctly. The duplicated E is present in a subset of the lineages &mdash; its collection holds 23 members against 171 for the others &mdash; so a feature called on one exemplar is a feature called on the exemplar that has it. It carries no <code>copy_num</code> for exactly this reason."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "The panel is scored on the annotator's own quality model.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "24",
+       "annotated genomes"
+      ],
+      [
+       "20",
+       "no genome/contig flags"
+      ],
+      [
+       "20",
+       "genuinely clean"
+      ],
+      [
+       "4",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "83.3%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 24 genomes scored through the annotator's own GTO quality pipeline. It is NOT held out: four of the module's reference genomes are present in it. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "pre",
+     "text": "   1  Feature is too short\n   1  Too many HSPs for: Minor envelope glycoprotein GP2\n   1  Too many HSPs for: Minor envelope glycoprotein GP2;Too many HSPs for: Minor envelope glycoprotein GP2\n   1  Feature is too long"
+    },
+    {
+     "type": "prose",
+     "html": "<strong>20 of 24 genomes score Good</strong>, 4 Poor, with <strong>one &ldquo;too short&rdquo; and one &ldquo;too long&rdquo;</strong> flag over 290 calls."
+    },
+    {
+     "type": "prose",
+     "html": "With the four reference genomes removed: <strong>20 held-out genomes, 17 Good, 3 Poor</strong>. The ratio barely moves, which is what a small, uniform panel should do &mdash; there is no divergent tail here for the references to be drawn from, because the subfamily is the tail."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "The limits, each measured rather than supposed.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>Three genomes of 54 collapse part of the cassette onto one ORF</strong>, and the cause is downstream of the profile match rather than in it &mdash; the trace puts each feature in the right place, and the scan to a start and a stop then lands overlapping ORFs on the same coordinates. Recorded in detail below, and deliberately not patched."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The four paralogues are named &ldquo;Uncharacterized lineage-specific protein&rdquo; and that will not improve without new literature.</strong> No publication assigns <code>GP2'</code>, <code>GP3'</code>, <code>GP4'</code> or <code>E'</code> a function distinct from their partners. The module declines to invent one, and declines to make them essential."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The panel is 24 genomes.</strong> Every percentage on this page is over a set that small, and a single genome is four percentage points. The subfamily has 54 genomes in BV-BRC and 19 complete ones; no amount of care in the build makes that a large sample."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Use this module on <strong>complete simian arterivirus genomes</strong>, and use it rather than the Arteriviridae module whenever the cassette is duplicated &mdash; that is the whole reason it exists. The nine features carrying <code>copy_num</code> are called in every complete genome routed here, with no exceptions. The four paralogues are called at the same rate as their partners but carry no <code>copy_num</code>, because a protein with no published function must never be the thing that marks a genome defective."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "What the build turned up that was not expected.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>Three genomes of 54 collapse part of the cassette onto one ORF.</strong> In <code>2682610.4</code> (<code>NC_048209</code>) the layout is otherwise exactly right &mdash; GP2P 10806, GP3P 11354, GP4P 11878, GP2 12423, GP5 13732 &mdash; and the annotator's own trace puts GP3 at 12884-13210 and GP4 at 13229-13693, both correct. The collision happens <em>after</em> the profile match: ORF3 and ORF4 overlap in this family, and both features scan out to a start and a stop, so all three land on the same 271 aa ORF. <code>1885929.21</code> and <code>.22</code> do the same with GP2 and GP2P. Recorded rather than patched."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Three nested calls are architecture, not defects.</strong> <code>E</code> inside <code>GP2</code> (100% of calls), <code>ORF1A</code> inside <code>ORF1AB</code> (98%) and <code>ORF5A</code> inside <code>GP5</code> (46%) are overlapping reading frames &mdash; ORF2b inside ORF2a, ORF5a inside ORF5. The default advice for a nested call is to raise the floor or drop the feature; here that would be exactly wrong, and the low similarity between the pairs (E vs GP2: 41% identity over 27% coverage, 19 bits) confirms they are different proteins sharing genome space."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "What collapsing the vocabulary actually bought.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "simarterivirinae-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "ORF1a polyprotein",
+       "7"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "72"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over proteins: every annotated protein in the 24 genomes both sources annotate (329 source product records, 290 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>61</b> distinct strings, the module's <b>10</b>. At the depth both reach, 290 proteins, free text has used <b>56.9 strings against 10.0 &mdash; a 5.7-fold difference.</b> The source reaches 95% of its final size after 299 proteins, the module after 32."
+    },
+    {
+     "type": "prose",
+     "html": "The source uses <strong>79 distinct product strings</strong> across the subfamily. <strong>7 of them bind</strong>, all to the single controlled target <code>ORF1A</code>, over <strong>284 occurrences</strong>. <strong>72 bind to nothing.</strong>"
+    },
+    {
+     "type": "prose",
+     "html": "The string-collapse page reports that as <strong>79&times;</strong> (all distinct strings against one controlled target) and the tile here as <strong>7.0&times;</strong> (bound strings against the same target). Here the two differ by the whole unbound set, which is the finding rather than an artefact of the arithmetic."
+    },
+    {
+     "type": "prose",
+     "html": "It is a measurement of the <em>source</em>, not of this module: the deposited vocabulary decides almost nothing, because the source calls both copies of the cassette <em>minor glycoprotein</em> &mdash; 174 times in <em>Etaarterivirus</em> and 156 in <em>Zetaarterivirus</em> &mdash; and a name that cannot tell a protein from its own paralogue cannot bin either one. The whole cassette was resolved by position."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>simarterivirinae_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Arteriviridae/work/Simarterivirinae/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}

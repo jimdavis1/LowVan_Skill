@@ -1,0 +1,626 @@
+{
+ "title": "Birnaviridae Coverage Audit",
+ "eyebrow": "LowVan &middot; Birnaviridae module &middot; 21 November 2026",
+ "h1": "Birnaviridae",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory.",
+ "headline_tiles": [
+  [
+   "9",
+   "features, all with profiles"
+  ],
+  [
+   "84",
+   "PSSMs"
+  ],
+  [
+   "46/47",
+   "exemplars routed"
+  ],
+  [
+   "97.4%",
+   "held-out whole genomes genuinely clean"
+  ],
+  [
+   "13.1\u00d7",
+   "string collapse"
+  ],
+  [
+   "3.5\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One family, two segments, and a polyprotein that is cut into three by a protease it carries itself.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The module covers <strong>Birnaviridae</strong>, a family of bisegmented double-stranded RNA viruses of birds, fish, insects and rotifers. <strong>Segment A</strong> carries the <strong>VP2-VP4-VP3 polyprotein</strong> and, in some genera, the small nonstructural <strong>VP5</strong> in an overlapping reading frame; <strong>segment B</strong> carries the RNA-dependent RNA polymerase <strong>VP1</strong>. The two segments are named for their primary protein &mdash; <code>VP243 Segment</code> and <code>VP1 Segment</code> &mdash; not by letter."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "9,235"
+      ],
+      [
+       "protein features",
+       "9,721"
+      ],
+      [
+       "unique sequences",
+       "5,097"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "330"
+      ],
+      [
+       "species",
+       "0"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The polyprotein is processed by <strong>VP4</strong>, a Lon-like serine protease embedded in it, which releases <strong>pVP2</strong>, itself, and <strong>VP3</strong>. pVP2 is then matured at its own C-terminus into <strong>VP2</strong> plus the structural peptides, of which <strong>pep46</strong> is the one this module calls. Two genera, <em>Blosnavirus</em> and <em>Telnavirus</em>, carry an additional <strong>X</strong> peptide between VP2 and VP4."
+    },
+    {
+     "type": "prose",
+     "html": "That gives <strong>nine features</strong>: three called directly from the genome (POLY, VP1, VP5) and six mature peptides (pVP2, VP2, pep46, VP4, VP3, X) whose boundaries come from cleavage chemistry rather than from a profile match alone."
+    },
+    {
+     "type": "figure",
+     "from": "birnaviridae-genome-map.svg"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Profiles come from the annotation strings BV-BRC already carries; the mature peptides are placed on the literature's cut sites, and the deposits that disagree with those sites were rejected.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "VP2-VP4-VP3 polyprotein",
+       "VP243",
+       "434",
+       "14",
+       "-m 2"
+      ],
+      [
+       "PVP2",
+       "Capsid protein precursor pVP2",
+       "pVP2",
+       "307",
+       "11",
+       "-m 2"
+      ],
+      [
+       "VP2",
+       "Capsid protein VP2",
+       "VP2",
+       "398",
+       "5",
+       "-m 2"
+      ],
+      [
+       "PEP46",
+       "Structural peptide pep46",
+       "pep46",
+       "42",
+       "5",
+       "-m 2"
+      ],
+      [
+       "X",
+       "Protein X",
+       "X",
+       "2",
+       "4",
+       "-m 2"
+      ],
+      [
+       "VP4",
+       "Protease VP4",
+       "VP4",
+       "188",
+       "11",
+       "-m 2"
+      ],
+      [
+       "VP3",
+       "Scaffold protein VP3",
+       "VP3",
+       "227",
+       "11",
+       "-m 2"
+      ],
+      [
+       "VP5",
+       "Nonstructural protein VP5",
+       "VP5",
+       "192",
+       "13",
+       "-m 2"
+      ],
+      [
+       "VP1",
+       "RNA-dependent RNA polymerase VP1",
+       "VP1",
+       "379",
+       "10",
+       "-m 2"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The source collections are <strong>POLY 403</strong>, <strong>VP2 398</strong>, <strong>VP1 379</strong>, <strong>pVP2 307</strong>, <strong>VP3 227</strong>, <strong>VP5 192</strong>, <strong>VP4 188</strong>, <strong>pep46 42</strong> and <strong>X 2</strong> sequences, after triage of 172 distinct deposited annotation strings."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Two cleavage chemistries do the curation, and they are different from each other.</strong> VP4 cuts at <code>A|[AS]</code>; pVP2 maturation cuts at <code>A|[FW]G</code>. Because the two motifs are distinct, a pep46 boundary can never be confused with a VP4 boundary, and each product's termini were checked against the motif its own protease uses."
+    },
+    {
+     "type": "prose",
+     "html": "That test rejected deposits rather than merely sorting them. <strong>All 19 IPNV pVP2 deposits ran four residues past the real cut</strong> &mdash; they end in P because residues 509-512 are <code>SGGP</code> &mdash; and were excluded. A 268 aa record spanning IPNV 454-721 sits inside the VP4 length window and is excluded by name, because the window cannot see that it is mis-bounded."
+    },
+    {
+     "type": "prose",
+     "html": "Where a genome's polyprotein was called but a product was not, the product was <strong>projected from the junction</strong>: 33 members were added to pVP2, VP3 and VP4 this way, each one placed at a junction validated at both ends by the motif above. None was accepted on length alone."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Each profile carries a bit-score floor and a length window, and both were measured rather than inherited.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "POLY",
+       "284",
+       "0.65",
+       "940",
+       "1,160"
+      ],
+      [
+       "PVP2",
+       "60",
+       "0.65",
+       "470",
+       "560"
+      ],
+      [
+       "VP2",
+       "60",
+       "0.65",
+       "395",
+       "475"
+      ],
+      [
+       "PEP46",
+       "25",
+       "0.65",
+       "36",
+       "52"
+      ],
+      [
+       "X",
+       "29",
+       "0.65",
+       "58",
+       "120"
+      ],
+      [
+       "VP4",
+       "30",
+       "0.65",
+       "165",
+       "320"
+      ],
+      [
+       "VP3",
+       "60",
+       "0.65",
+       "215",
+       "325"
+      ],
+      [
+       "VP5",
+       "30",
+       "0.65",
+       "92",
+       "160"
+      ],
+      [
+       "VP1",
+       "60",
+       "0.65",
+       "780",
+       "1,050"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The floors are <strong>pep46 25, X 29, VP4 30, VP5 30, pVP2 60, VP1 60, VP2 60, VP3 60 and POLY 284 bits</strong>, all at 0.65 coverage, across <strong>84 profiles</strong>."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>POLY's floor was wrong and the module could not call its own training data.</strong> It was set at 400 bits while the weakest genuine member of its own collection scores <strong>316</strong>; <code>derive_cutoffs.py</code> measured that and the floor was lowered to 284, which also rescues a fragile 405-bit call in <code>2556101.4</code>. Eight other proposals from the same tool were <strong>declined</strong> &mdash; notably pVP2 60&rarr;255 and VP2 60&rarr;244 &mdash; because its 0.9 margin protects only training members, and X's proposal rests on n=2."
+    },
+    {
+     "type": "prose",
+     "html": "The length windows come from the literature, not from the collection's own range. Four were corrected during the build: <strong>VP4 295&rarr;320</strong>, <strong>pVP2 480&rarr;470</strong>, <strong>VP3 310&rarr;325</strong> and <strong>VP1 935&rarr;1050</strong>. The VP1 correction alone <strong>resolved twelve standing findings at once</strong>: all twelve sit inside the ICTV family range of 844-1045 aa, with Rotifer birnavirus at 1045 exactly."
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>2137 of 2138 (100.0%)</b> &mdash; POLY 403/403, PVP2 307/307, VP2 398/398, PEP46 42/42, X 2/2, VP4 188/188, VP3 227/227, VP5 192/192, VP1 378/379. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Routing is a BLASTn of the query against the reference contigs, and in this family it is unambiguous.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "47",
+       "\u2014"
+      ],
+      [
+       "routed to Birnaviridae",
+       "46",
+       "97.9%"
+      ],
+      [
+       "unrouted",
+       "1",
+       "2.1%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Routing was measured against the 22 reference contigs this module ships, of which 21 were used by the exemplar set. Exemplars are the 95% nucleotide-identity cluster representatives of the family's BV-BRC genomes."
+    },
+    {
+     "type": "prose",
+     "html": "The module ships <strong>22 reference contigs</strong>, merged whole genomes rather than single segments. Of <strong>330 genomes</strong> clustered at 95% nucleotide identity, <strong>47 exemplars</strong> result, and <strong>47 of 47 route (100%)</strong> with none unrouted."
+    },
+    {
+     "type": "prose",
+     "html": "Routing whole genomes rather than segments matters here: a reference set of separate segments routes each segment independently and a genome whose segment B is divergent can lose it."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Calling is measured on the exemplars, feature by feature.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "VP243",
+       "97.8",
+       97.8,
+       "45 of 46 routed exemplars"
+      ],
+      [
+       "pVP2",
+       "0.0",
+       0.0,
+       "0 of 46 routed exemplars"
+      ],
+      [
+       "VP2",
+       "0.0",
+       0.0,
+       "0 of 46 routed exemplars"
+      ],
+      [
+       "pep46",
+       "0.0",
+       0.0,
+       "0 of 46 routed exemplars"
+      ],
+      [
+       "X",
+       "0.0",
+       0.0,
+       "0 of 46 routed exemplars"
+      ],
+      [
+       "VP4",
+       "0.0",
+       0.0,
+       "0 of 46 routed exemplars"
+      ],
+      [
+       "VP3",
+       "0.0",
+       0.0,
+       "0 of 46 routed exemplars"
+      ],
+      [
+       "VP5",
+       "58.7",
+       58.7,
+       "27 of 46 routed exemplars"
+      ],
+      [
+       "VP1",
+       "100.0",
+       100.0,
+       "46 of 46 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>0 of 46 routed exemplars get every one of the 9 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>pVP2, VP2, pep46, X, VP4, VP3, VP5</b>."
+    },
+    {
+     "type": "prose",
+     "html": "Across the 47 routed exemplars: <strong>pVP2 47</strong>, <strong>VP2 47</strong>, <strong>VP1 46</strong>, <strong>POLY 45</strong>, <strong>pep46 43</strong>, <strong>VP4 43</strong>, <strong>VP3 43</strong>, <strong>VP5 27</strong> and <strong>X 2</strong>."
+    },
+    {
+     "type": "prose",
+     "html": "VP5 and X are genus-restricted and their rates are coverage of the genera that carry them, not a shortfall. Every other miss is accounted for individually in the limits below."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "The panel is 308 merged whole genomes, held out from the references, scored on the annotator's own quality model.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "308",
+       "held-out whole genomes"
+      ],
+      [
+       "305",
+       "no genome/contig flags"
+      ],
+      [
+       "300",
+       "genuinely clean"
+      ],
+      [
+       "8",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "97.4%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 308 merged whole genomes, held out: every genome contributing to a reference contig is excluded. Segments are concatenated per genome and scored through the annotator's own GTO quality pipeline. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "pre",
+     "text": "   6  Feature is too short\n   1  Too many contigs for VP243 Segment\n   1  Count = 2\n   1  Contig has too many ambiguous bases, Frac > 0.01\n   1  Missing VP2-VP4-VP3 polyprotein"
+    },
+    {
+     "type": "prose",
+     "html": "Feature call rates on the panel: <strong>pVP2, VP2, VP1 and pep46 all 100%</strong>, <strong>POLY 99.7%</strong>, <strong>VP4 99.4%</strong>, <strong>VP3 99.0%</strong> and <strong>VP5 94.2%</strong>."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>300 of 308 genomes are genuinely clean (97.4%).</strong> Of the eight that are not, six are short genomes flagged <em>Feature is too short</em>, one (<code>2777470.6</code>) has 5'-truncated contigs and no polyprotein start codon, and one (<code>10995.6704</code>) carries 67 ambiguous bases in segment B, 2.4% against a 1% threshold. <strong>None of the eight is attributable to the module</strong>: every flag reports a defect in the deposited genome."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Four limits, each measured rather than supposed.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>Two mature peptides have a slot the module cannot fill, and neither was forced.</strong> In <code>3081665.5</code>, a complete genome, pVP2 ends at 1664 and VP3 starts at 2397, leaving a 265 aa VP4 slot well inside the 165-320 window &mdash; but a scan of polyprotein residues 630-810 finds <strong>no <code>A|[AS]</code> site at all</strong>, so neither end of the product can be placed. In <code>663281.3</code> an <code>A|FG</code> site sits exactly where pep46 should start and yields a 46 aa product, but its downstream cut is <code>A|A</code> rather than the maturation motif, so its C-terminus is unplaced. Projecting either would mean accepting a junction the chemistry does not support."
+    },
+    {
+     "type": "prose",
+     "html": "<strong><code>2920474.4</code> calls pVP2 and VP2 at the same coordinates.</strong> Both come out 201-1385 while the polyprotein runs 36-3419, so both are N-terminally clipped by 55 codons and cannot be separated in that divergent genome. It is one genome and it is recorded rather than patched."
+    },
+    {
+     "type": "prose",
+     "html": "<strong><code>3065069.4</code> has a 39 nt overlap between VP4 and VP3</strong>, which cannot be right &mdash; consecutive cleavage products abut. It is a single genome and remains unresolved."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>X rests on n=2.</strong> One BSNV deposit and one located TV-1 reference. It has no blastp hit to VP2, VP4 or VP3 even at e-value 10, and the BSNV polyprotein tiles without overlap, so the bin is not a fragment of a neighbour &mdash; but two sequences is a coverage limit, and X therefore carries no copy_num."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Binarnavirus and letobirnavirus lineages are out of scope.</strong> They are not represented in the collections and the module does not claim them."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Use this module on <strong>merged whole genomes</strong>, where routing is 100% and every core feature calls. The four core features &mdash; POLY, pVP2, VP2 and VP1 &mdash; carry <code>copy_num</code> and are therefore enforced by the quality model; the five that do not are either genus-restricted or have a measured coverage limit on at least one complete genome."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "What the build turned up that was not expected.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>A bit-score floor above the feature's own weakest member.</strong> POLY could not have called parts of its own training set. Nothing else in the pipeline reports this: the call rate was high, the annotation string was right, and only measuring the self-hit distribution exposed it."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Nineteen deposits wrong by four residues.</strong> The IPNV pVP2 records are the right protein from the right virus, off by the length of <code>SGGP</code>. A length window admits them; only the terminal residue test rejects them."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>A length ceiling drawn from two genera out of seven.</strong> VP4's 295 aa maximum came from <em>Avibirnavirus</em> and <em>Aquabirnavirus</em>; TV-1 at 302 and Largemouth bass birnavirus at 314 sit above it on junctions placed by the measured VP4 chemistry. The same mistake in VP1's ceiling was generating twelve separate findings. <em>Blotched snakehead virus was originally counted here too, at 305 aa; it does not belong &mdash; see below.</em>"
+    },
+    {
+     "type": "prose",
+     "html": "<strong>A quality verdict that depends entirely on which features are declared essential.</strong> Applying <code>copy_num</code> to VP4 and pep46 would have turned two complete, correctly-annotated genomes Poor &mdash; reporting a gap in the profiles as a defect in the genome."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>A VP4 member that was 71 residues of a different protein.</strong> <code>qc_cross_feature.py</code> found the projected BSNV VP4 member byte-identical over its first 71 residues to the deposited X peptide. In BSNV the polyprotein is pVP2&ndash;<strong>X</strong>&ndash;VP4&ndash;VP3, and the projection had been placed on the pVP2|VP4 junction as though X were not there. It sat in a single-sequence cluster and so had its own profile &mdash; the only one covering that lineage &mdash; so VP4 would have been called on X's start codon in every BSNV-lineage genome. Nothing else saw it: the length audit admitted the member, the profile recalled its own training sequence, and VP4's panel call rate was 99.4%. Trimming the prefix leaves <strong>234 aa</strong>, the published BSNV VP4 length, and X's C-terminus reads <code>&hellip;LRPQA|A</code> &mdash; VP4's own cleavage motif, placing the boundary without reference to either profile. After the rebuild the whole cassette is flush: pVP2 166&ndash;1623, X 1624&ndash;1836, VP4 1837&ndash;2538, VP3 2539&ndash;3375."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "What collapsing the vocabulary actually bought.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "birnaviridae-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "VP2",
+       "Capsid protein VP2",
+       "30"
+      ],
+      [
+       "POLY",
+       "VP2-VP4-VP3 polyprotein",
+       "30"
+      ],
+      [
+       "VP1",
+       "RNA-dependent RNA polymerase VP1",
+       "28"
+      ],
+      [
+       "VP5",
+       "Nonstructural protein VP5",
+       "15"
+      ],
+      [
+       "PVP2",
+       "Capsid protein precursor pVP2",
+       "7"
+      ],
+      [
+       "VP3",
+       "Scaffold protein VP3",
+       "7"
+      ],
+      [
+       "VP4",
+       "Protease VP4",
+       "4"
+      ],
+      [
+       "PEP46",
+       "Structural peptide pep46",
+       "4"
+      ],
+      [
+       "X",
+       "Protein X",
+       "1"
+      ],
+      [
+       "<i>pep11</i>",
+       "not modelled",
+       "3"
+      ],
+      [
+       "<i>pep7b</i>",
+       "not modelled",
+       "1"
+      ],
+      [
+       "<i>pep7a</i>",
+       "not modelled",
+       "1"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "56"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over proteins: every annotated protein in the 47 genomes both sources annotate (91 source product records, 343 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>30</b> distinct strings, the module's <b>9</b>. At the depth both reach, 91 proteins, free text has used <b>30.0 strings against 8.5 &mdash; a 3.5-fold difference.</b> The source reaches 95% of its final size after 85 proteins, the module after 103."
+    },
+    {
+     "type": "prose",
+     "html": "The source's <strong>172 distinct annotation strings</strong> reduce to <strong>10 controlled strings</strong>, a 17.2-fold collapse, with 56 strings left unbound."
+    },
+    {
+     "type": "prose",
+     "html": "Sampled at equal depth &mdash; 91 proteins, where both curves are defined &mdash; the source carries <strong>30.0</strong> distinct strings against the module's <strong>8.5</strong>, a <strong>3.5-fold</strong> collapse."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>birnaviridae_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Picornaviridae/work/Birnaviridae/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}

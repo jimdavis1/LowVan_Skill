@@ -90,12 +90,32 @@ def main():
     ap.add_argument("--n-part", help="FASTA of deposited pre-shift proteins")
     ap.add_argument("--c-part", help="FASTA of deposited post-shift proteins")
     ap.add_argument("--out", required=True)
-    ap.add_argument("--window", type=int, default=400,
+    ap.add_argument("--window", type=int, default=400,  # CODONS back from the seed
                     help="nt downstream of the start to search for the slip (default 400 "
                          "before the pre-shift protein's own stop)")
+    ap.add_argument("--c-suffix", type=int, default=300,
+                    help="residues of the POST-shift protein the construct must end with "
+                         "(0 = all of it). The default avoids depending on where the "
+                         "submitter chose to start that CDS.")
     ap.add_argument("--prefix", type=int, default=200,
                     help="residues of the pre-shift protein the construct must start with")
-    ap.add_argument("--heptamer", default="", help="optional, reported not required")
+    ap.add_argument("--heptamer", default="",
+                    help="comma-separated slippery sequence(s), e.g. TTTAAAC,GTTAAAC. "
+                         "When given this is a CONSTRAINT: the duplicated base must lie "
+                         "inside one of them, and a genome whose only valid insertion "
+                         "sits elsewhere donates no reference. Omit it and the builder "
+                         "takes the insertion closest to the pre-shift stop instead.")
+    ap.add_argument("--insert", type=int, default=1, choices=(1, 2),
+                    help="how many bases the construct duplicates at the slip "
+                         "site. 1 = a -1 frameshift (ORF1ab, V/W, TF, ssGP), "
+                         "which is what every reference set built before "
+                         "Arteriviridae needed. 2 = a -2 frameshift: the "
+                         "arterivirus nsp2TF product shifts -2 at G_GUU_UUU "
+                         "(PMID 23043113), and a -2 shift reads the same as "
+                         "duplicating two bases. Nothing else changes -- the "
+                         "construct is still validated against a deposited "
+                         "protein, so a wrong insert length simply yields no "
+                         "references rather than bad ones.")
     ap.add_argument("--allow-non-met", action="store_true",
                     help="keep constructs whose protein does not start at Met. Only for "
                          "a product whose N-terminus is a cleavage rather than an "
@@ -106,6 +126,7 @@ def main():
     if not a.fused and not (a.n_part and a.c_part):
         sys.exit("need --fused, or both --n-part and --c-part")
 
+    heps = [h.strip().upper() for h in a.heptamer.split(",") if h.strip()]
     fused = dict(read_fasta(a.fused)) if a.fused else {}
     npart = dict(read_fasta(a.n_part)) if a.n_part else {}
     cpart = dict(read_fasta(a.c_part)) if a.c_part else {}
@@ -124,11 +145,64 @@ def main():
 
         target = fused.get(gid, "").rstrip("*")
         want_c = cpart.get(gid, "").rstrip("*")
+        #  Match the TAIL of the post-shift protein, not all of it. Requiring
+        #  the whole thing assumes the submitter's post-shift CDS begins
+        #  exactly at the junction, and for the arterivirus ORF1b it often
+        #  does not -- GenBank ORF1b starts sit a few codons either side of
+        #  the slippery site by convention. The tail pins the READING FRAME,
+        #  which is what this validator is for; the slip site pins the
+        #  POSITION. Together they are stricter than the old test, not looser.
+        if want_c and a.c_suffix and len(want_c) > a.c_suffix:
+            want_c = want_c[-a.c_suffix:]
         want_n = (npart.get(gid, "") or "")[:a.prefix]
 
-        hit = None
-        for p in range(start + 3, min(len(g), start + 3 + a.window * 10)):
-            cand = g[start:p] + g[p - 1] + g[p:]
+        #  SEED THE SCAN. The original loop walked every insertion point from
+        #  the ORF start, translating the whole candidate at each one: O(n^2)
+        #  in the ORF length, and bounded by `--window * 10` nucleotides from
+        #  the start. That is fine for a 1-2 kb paramyxovirus V/W and useless
+        #  for a 12 kb nidovirus pp1ab, where the slip site sits ~7,500 nt in
+        #  -- past the default bound, so the build returned no references at
+        #  all, and raising the bound made it take hours per hundred genomes.
+        #
+        #  The insertion point is not unknown. In `--fused` mode the construct
+        #  must equal a deposited protein, so the 0-frame translation agrees
+        #  with that protein up to the slip and diverges after it: the first
+        #  mismatch IS the slip site. In `--n+c` mode the pre-shift product
+        #  ends at the 0-frame stop, and the slip is immediately upstream of
+        #  it. Either way one cheap translation locates it, and the scan only
+        #  has to cover a window around that seed.
+        #  An ambiguous base anywhere in the construct disqualifies the
+        #  genome, and testing that FIRST keeps the statistics honest. Left
+        #  until after the scan it is reported as "no insertion sits in the
+        #  slip site", because an N inside the product makes every candidate
+        #  translation differ from the deposit by one X -- which is a true
+        #  statement about the scan and a misleading one about the genome.
+        span = len(target or "") or (len(want_n or "") + len(want_c or ""))
+        if span and set(g[start:start + 3 * span + 6]) - set("ACGT"):
+            stats["ambiguous base in the genome's own ORF"] += 1; continue
+        tr0 = translate(g[start:])
+        stop0 = tr0.find("*")
+        seed = stop0 if stop0 >= 0 else len(tr0)
+        if target:
+            for _i in range(min(len(tr0), len(target))):
+                if tr0[_i] != target[_i]:
+                    seed = min(seed, _i); break
+        lo_p = max(start + 3 + a.insert, start + 3 * (seed - a.window))
+        hi_p = min(len(g), start + 3 * (seed + 2) + 3)
+        #  Collect EVERY valid insertion point, then choose between them.
+        #  Taking the first one is wrong in `--n+c` mode, and the failure is
+        #  invisible: that mode pins the READING FRAME (the construct must end
+        #  with the post-shift protein) but not the POSITION of the shift,
+        #  because nothing constrains the residues between the prefix it
+        #  checks and the C-terminal part. On Arteriviridae the first valid
+        #  point was routinely 16 nt upstream of the real slippery heptamer,
+        #  and 811 of 994 PRRSV references were built with the duplication in
+        #  the wrong place while reproducing a perfectly good ORF1b. `--fused`
+        #  does not have this problem: comparing the whole protein pins the
+        #  position exactly.
+        cands = []
+        for p in range(lo_p, hi_p):
+            cand = g[start:p] + g[p - a.insert:p] + g[p:]
             tr = translate(cand)
             stop = tr.find("*")
             if stop < 0:
@@ -140,8 +214,25 @@ def main():
                 ok = bool(want_c) and prot.endswith(want_c) and \
                      (not want_n or prot.startswith(want_n))
             if ok:
-                hit = (p, cand[:(stop + 1) * 3])
-                break
+                cands.append((p, cand[:(stop + 1) * 3]))
+        hit = None
+        if cands:
+            if heps:
+                #  The slip site is known, so it is a CONSTRAINT, not a
+                #  statistic. Keep only insertions whose duplicated base lies
+                #  inside the heptamer (or within two bases of its 3' end,
+                #  which is the difference between the two join conventions in
+                #  circulation, not a difference in biology).
+                keep = [(p, c) for p, c in cands
+                        if any(h in g[p - len(h) - 2:p + 2] for h in heps)]
+                if keep:
+                    cands = keep
+                else:
+                    stats["no insertion sits in the slip site"] += 1
+                    continue
+            #  Otherwise take the point CLOSEST TO THE PRE-SHIFT STOP: a
+            #  ribosomal slip happens just before the 0-frame terminator.
+            hit = max(cands, key=lambda x: x[0])
         if hit is None:
             stats["no insertion reproduces the deposited protein"] += 1; continue
         p, ref = hit
@@ -156,9 +247,8 @@ def main():
         #  start with Met -- applied to a reference instead of an alignment.
         if not a.allow_non_met and translate(ref)[:1] != "M":
             stats["construct does not begin at Met"] += 1; continue
-        if a.heptamer:
-            stats["heptamer present" if a.heptamer in g[max(0, p - 12):p + 12]
-                  else "heptamer absent"] += 1
+        if heps:
+            stats["slip site confirmed at the insertion"] += 1
         stats["kept (%s)" % ("fused" if target else "n+c pair")] += 1
         kept.append((gid, ref))
 

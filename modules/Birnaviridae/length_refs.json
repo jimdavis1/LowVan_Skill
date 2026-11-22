@@ -1,0 +1,77 @@
+{
+ "PEP11": {
+  "max": 16,
+  "min": 9,
+  "note": "Last pVP2 C-terminal peptide. IBDV polyprotein 502-512 = 11 aa (PMID 11836417); BSNV VP2d 12 aa; TV-1 pep13 13 aa; Ronavirus pep11 11 aa; IPNV p3 = 496-508 = 13 aa (PMID 17553791, PMID 15269363), which subsumes the PEP7B coordinates in that lineage. Controls pVP2 maturation and the release of pep46; deleting it blocks capsid morphogenesis (PMID 16160151). TOO SHORT FOR A PSSM -- projected.",
+  "pmid": "11836417"
+ },
+ "PEP46": {
+  "max": 52,
+  "min": 36,
+  "note": "First pVP2 C-terminal structural peptide. IBDV polyprotein 442-487 = 46 aa (PMID 11836417); IPNV p1 = 443-486 = 44 aa (PMID 17553791, found in virions by PMID 15269363); BSNV VP2a 43 aa; TV-1 pep41 41 aa; Ronavirus pep44 44 aa. Present in EVERY genus of the family. Membrane-active during entry and sterically blocks fivefold-axis assembly until cleaved (PMID 16160151). ONLY 4 DEPOSITS EXIST FAMILY-WIDE -- projected from the polyprotein on literature coordinates, not profiled.",
+  "pmid": "11836417"
+ },
+ "PEP7A": {
+  "max": 10,
+  "min": 6,
+  "note": "Second pVP2 C-terminal peptide. IBDV polyprotein 488-494 = 7 aa (PMID 11836417); BSNV VP2b 7 aa; TV-1 pep7 and Ronavirus pep7 both 7 aa; IPNV p2 = 487-495 = 9 aa (PMID 17553791), whose coordinates correspond to this peptide rather than to PEP7B. Window reaches 10 to admit the IPNV form. TOO SHORT FOR A PSSM -- projected on literature coordinates, never profiled; a 7-residue peptide cannot be aligned across lineages that share ~43% identity, so the cross-genus correspondence here is by polyprotein COORDINATE and is recorded as such, not as a homology call. Deletion mutants are viable with reduced growth (PMID 11836417).",
+  "pmid": "11836417"
+ },
+ "PEP7B": {
+  "max": 9,
+  "min": 6,
+  "note": "Third pVP2 C-terminal peptide, IBDV polyprotein 495-501 = 7 aa (PMID 11836417); BSNV VP2c 7 aa. LINEAGE-SPECIFIC AND MUST NOT CARRY copy_num. IBDV and BSNV resolve FOUR C-terminal peptides; IPNV (PMID 17553791), TV-1 (PMID 17976679) and Ronavirus resolve only THREE, with this peptide merged into the last one -- IPNV p3 spans 496-508, covering both PEP7B and PEP11 coordinates. Aquabirnavirus is 1,012 of this family's records, so requiring this feature would flag the second-largest genus as incomplete. TOO SHORT FOR A PSSM -- projected, not profiled.",
+  "pmid": "11836417"
+ },
+ "POLY": {
+  "max": 1160,
+  "min": 940,
+  "note": "Segment A pVP2-VP4-VP3 precursor. IBDV 1012 aa (PMID 11836417); IPNV 972 aa (PMID 10666235); BSNV 1069 (PMID 12477876); TV-1 1114 (PMID 17976679); Lates calcarifer birnavirus 1090; DXV 1034-1057. Measured maxima in the dump agree: Avibirnavirus 1013, Aquabirnavirus 972-980, Blosnavirus 1069-1090, Entomobirnavirus 949-1057. DO NOT ANCHOR ON THE DEPOSITED MEDIAN: the Avibirnavirus polyprotein median is 328 aa because 83% of IBDV records are VP2 hypervariable-region typing amplicons.",
+  "pmid": "11836417"
+ },
+ "PVP2": {
+  "max": 560,
+  "min": 480,
+  "note": "Precursor: polyprotein 1-512 in IBDV (PMID 11836417), 1-508 in IPNV (PMID 10666235). Carries mature VP2 plus the C-terminal structural peptides. Deposited classes measured 19 Nov 2026: Avibirnavirus 512 (n=5), Aquabirnavirus 504 (n=20), 512 (n=19) and 538 (n=17), all aligning to polyprotein 1-N. THE 19 AQUABIRNAVIRUS 512-aa DEPOSITS ARE WRONG BY FOUR RESIDUES, and junction chemistry caught every one of them: they end in P, because IPNV residues 509-512 are SGGP and the real IPNV cut is after 508 (...ESWA | SGGP, PMID 10666235). The submitters annotated IPNV pVP2 as 1-512 by analogy with IBDV. THE 538 CLASS OVERRUNS THE pVP2-VP4 JUNCTION BY ~30 RESIDUES and is a submitter ORF call, not a cleavage product -- it carries the VP4 N-terminus into the pVP2 bin. Kept inside the window deliberately so it is visible to the bin audit; see accept/reject there.",
+  "pmid": "11836417"
+ },
+ "VP1": {
+  "max": 1060,
+  "min": 780,
+  "note": "Segment B RNA-dependent RNA polymerase, the sole segment B product. IBDV 878 aa; Aquabirnavirus deposited median 845 (n=125, tightly 844-845); BSNV 867 and Lates calcarifer birnavirus 856 (PMID 12477876); TV-1 894 (PMID 17976679). DO NOT ANCHOR ON THE DEPOSITED MEDIAN for Avibirnavirus: it is 255 aa because of the same amplicon problem described under POLYPROTEIN; the deposited maximum, 882, is the real one.  MAX RAISED 935 -> 1060, 19 Nov 2026: the four anchors above are all Avi/Aqua/Blosna/Telnavirus and a ceiling drawn from them excludes every Entomobirnavirus and Ronavirus VP1 in the dump. Shwed et al. 2002, Virology 296:241-250 (PMID 12069523) sequenced Drosophila X virus segment B and reported 'the largest birnavirus VP1' at 977 aa -- already 42 aa above the old ceiling. Measured: 16 polymerase-named deposits fall in 936-1060 aa; 15 hit the VP1 collection at e-23 to e-168 (23-38% identity over 55-85% of the query) and NONE hits POLY at e<1e-3, so the window was excluding real VP1 rather than admitting polyprotein. The 16th, fig|2921225.4.peg.1 (Botrytis cinerea binarnavirus 6), has no detectable homology to any feature of this module and is dropped by name.",
+  "pmid": "12069523",
+  "pmid_extra": [
+   "12477876"
+  ]
+ },
+ "VP2": {
+  "max": 475,
+  "min": 395,
+  "note": "MATURE capsid protein, the product of pVP2 after the C-terminal peptides are removed. IBDV VP2 = polyprotein 1-441 (PMID 11836417); IPNV VP2 = 1-442 (PMID 10666235, PMID 17553791); BSNV 416 and TV-1 450 are deposited as mat_peptides. MEASURED 19 Nov 2026: every VP2-class deposit in this family aligns to polyprotein residue 1 and differs only at its C-TERMINUS -- Avibirnavirus classes at 441 (n=61), 452 (n=46) and 465 (n=7); Aquabirnavirus at 442 (n=52). This is the nested alternative-END trap: mature VP2 is an exact N-terminal substring of pVP2, so fasta-cluster-pssm will drop whichever cluster is the substring and ship one profile for both. THE 452 CLASS IS NOT A VIRAL PRODUCT: it is the recombinant VP2 boundary used throughout the IBDV structural and immunology literature, expressed alone and deposited under a bare `VP2` string (PMID 12832770, `VP2 protein, which consists of 452 amino-acid residues', expressed in baculovirus). The virion product is 1-441: the pVP2 C-terminal domain of 71 residues (442-512) is removed by the host puromycin-sensitive aminopeptidase (PMID 22619177). 47 of the 452-aa deposits and 7 of the 465-aa deposits are excluded by junction chemistry, which is what the end-residue test is for -- a 452-aa construct inside this bin would widen the profile across the pep46 N-terminus. The 480+ forms are pVP2, a DIFFERENT feature; see the PVP2 note.",
+  "pmid": "11836417"
+ },
+ "VP3": {
+  "max": 310,
+  "min": 215,
+  "note": "C-terminal polyprotein product. IBDV 756-1012 = 257 aa (PMID 11836417); IPNV 735-972 = 238 aa (PMID 10666235); BSNV 278; TV-1 284. Deposited Avibirnavirus median 257 confirms the literature exactly; Aquabirnavirus deposits 224-239 bracket the 238 the literature gives. Binds pVP2 and switches pentamer/hexamer assembly.",
+  "pmid": "11836417"
+ },
+ "VP4": {
+  "max": 295,
+  "min": 165,
+  "note": "The serine protease (Ser/Lys dyad) that excises itself from the polyprotein by cleaving its own termini. IBDV 513-755 = 243 aa (PMID 11836417); IPNV 509-734 = 226 aa, catalytic Ser633/Lys674 (PMID 10666235); BSNV 234 (PMID 12477876); TV-1 212 (PMID 17976679). Deposited Avibirnavirus median 243 confirms the literature exactly. CONTAMINATION TO WATCH, measured 19 Nov 2026: the single Aquabirnavirus deposit annotated `nonstructural protein VP4` is 268 aa and aligns to polyprotein 454-721, so it begins 55 residues BEFORE the 508/509 cleavage site and carries the three pVP2 C-terminal peptides into the VP4 bin, while stopping 13 residues short of the real C-terminus. It falls inside this window and the window will NOT catch it; it is excluded by name at bin time.",
+  "pmid": "11836417"
+ },
+ "VP5": {
+  "max": 160,
+  "min": 92,
+  "note": "Small nonstructural protein from a SEPARATE small ORF on segment A, not a polyprotein cleavage product. Overlapping reading frame in IBDV and IPNV; INTERNAL frame in DXV and BSNV (BSNV 139 aa, PMID 12477876). Deposited medians: Avibirnavirus 145, Aquabirnavirus 133, unclassified 140. THE MASS NAMES ARE THIS FEATURE, measured 19 Nov 2026: the Aquabirnavirus strings `15.4 kDa`, `15-kDa`, `16 kDa` and `nonstructural protein` are all exactly 133 aa, and Avibirnavirus `17 kDa nonstructural protein` is 145 aa. They are NOT binned on the mass -- a mass is not a homology group -- but routed by homology and confirmed to land here.",
+  "pmid": "12477876"
+ },
+ "X": {
+  "max": 120,
+  "min": 58,
+  "note": "LINEAGE-SPECIFIC. Extra mature peptide between the pVP2 C-terminal peptides and VP4, giving pVP2-X-VP4-VP3 instead of pVP2-VP4-VP3. Present in Blosnavirus (BSNV 71 aa, polyprotein 487-557, PMID 12477876) and Telnavirus (TV-1 106 aa, PMID 17976679); ABSENT from Avibirnavirus, Aquabirnavirus, Entomobirnavirus and Ronavirus. MUST NOT CARRY copy_num -- about 9,200 of the family's records legitimately lack it. Measured 18 Nov 2026: X has no blastp hit to VP2, VP4 or VP3 even at e-value 10, and the BSNV polyprotein tiles exactly (416+43+7+7+12+71+234+278 = 1068 of 1069 aa), so an X profile has neither a sequence nor a positional basis to collide with its neighbours. Only 2 deposits exist family-wide.",
+  "pmid": "12477876"
+ }
+}

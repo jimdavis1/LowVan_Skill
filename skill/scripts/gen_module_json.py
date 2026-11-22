@@ -139,6 +139,40 @@ def main():
             "min_len": int(L[0] * 0.95), "max_len": int(L[-1] * 1.05),
             "replicon_geometry": "linear"}}
 
+    #  THE FEATURES AND THE SEGMENTS BLOCK MUST AGREE, and nothing used to
+    #  check that they did. The derived branch above always writes exactly one
+    #  segment called "Single RNA Segment", because it measures contig files
+    #  and cannot know a genome is segmented. A segmented module whose features
+    #  each declare their own segment therefore got a block naming a segment no
+    #  feature belongs to, and no feature's segment declared at all.
+    #
+    #  That is the malformed-segments failure this file's own docstring opens
+    #  with: annotation succeeds, every feature is called, and quality scoring
+    #  is dead on every genome, because the scorer looks each feature's segment
+    #  up in this block and finds nothing.
+    #
+    #  Measured on Birnaviridae, 19 Nov 2026: 11 features declared `Segment A`
+    #  and 1 declared `Segment B`, and the generated block declared
+    #  `Single RNA Segment` with a 4692-7203 nt range taken from the merged
+    #  A+B genomes. It printed `1 segment(s)` and exited 0.
+    #
+    #  Refuse instead, and say which segments the features actually want, so
+    #  the caller passes --segments with their measured ranges.
+    declared = {e.get("segment") for e in feats.values() if e.get("segment")}
+    unknown = sorted(d for d in declared if d not in segments)
+    if unknown:
+        sys.exit(
+            "REFUSED: %d feature segment name(s) are not in the segments "
+            "block: %s\n"
+            "  the block declares: %s\n"
+            "  Annotation would still succeed and quality scoring would be "
+            "dead on every genome -- the scorer resolves a feature's segment "
+            "through this block.\n"
+            "  Pass --segments with one entry per segment, e.g.\n"
+            "    --segments '%s'"
+            % (len(unknown), ", ".join(unknown), ", ".join(sorted(segments)),
+               json.dumps({d: {"min_len": 0, "max_len": 0} for d in unknown})))
+
     out = {}
     missing = []
     for key in sorted(feats):

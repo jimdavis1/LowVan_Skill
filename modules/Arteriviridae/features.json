@@ -1,0 +1,455 @@
+{
+ "E": {
+  "PMID_claude_generated": [
+   "10400725",
+   "11504553",
+   "16904148",
+   "19951726",
+   "11226573"
+  ],
+  "anno": "Envelope protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "E",
+  "note": "45-84 aa; small, hydrophobic, non-glycosylated, N-terminally myristoylated at an MGxxxS motif, and an ion channel acting at uncoating. A virion component and essential for infectious progeny in EAV and PRRSV. LINEAGE CAVEAT: Plagemann explicitly could not detect it in LDV virions (PMID 11226573), a measured negative, so the annotation claims no structural role. THE ORF LABEL IS NOT USABLE AS EVIDENCE: EAV calls this ORF2a (PMID 10400725) and PRRSV calls it ORF2b (PMID 11504553), and the convention tracks the depositing lab, not the phylogeny.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP2": {
+  "PMID_claude_generated": [
+   "1328669",
+   "10400725",
+   "16160177",
+   "19939927",
+   "14645556"
+  ],
+  "anno": "Minor envelope glycoprotein GP2",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP2",
+  "note": "158-304 aa. N-glycosylated, strikingly under-represented in EAV virions (1-2% of M levels), dispensable for particle production and required for infectivity, and one of the three partners of the GP2/GP3/GP4 heterotrimer. In PRRSV it binds CD163 together with GP4. Called GP2a in PRRSV and GP2b in EAV -- the suffix tells you which ORF2 convention a source string is using.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP3": {
+  "PMID_claude_generated": [
+   "12743278",
+   "16160177",
+   "9856081",
+   "24142700",
+   "29229370"
+  ],
+  "anno": "Minor envelope glycoprotein GP3",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP3",
+  "note": "136-270 aa, heavily N-glycosylated, disulfide-linked to GP2 and GP4 and recruited to the complex after virion release. ITS VIRION ASSOCIATION IS GENUINELY STRAIN-DEPENDENT -- undetectable in purified IAF-Klop PRRSV-2 virions (PMID 9856081) -- so the annotation does not assert incorporation. EAV GP3 RETAINS ITS SIGNAL PEPTIDE, blocked by a glycosylated double sequon (PMID 24142700), while PRRSV and LDV GP3 cleave theirs: a genus-wide signal-peptide rule would be wrong for Alphaarterivirus.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP4": {
+  "PMID_claude_generated": [
+   "12743278",
+   "19939927",
+   "16160177",
+   "9223499"
+  ],
+  "anno": "Minor envelope glycoprotein GP4",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP4",
+  "note": "83-205 aa; the shortest form is the 83 aa wobbly possum disease virus protein and it is genuinely that short. GP4 mediates the interglycoprotein interactions of the minor complex, interacts with GP5, and together with GP2 is the viral attachment protein binding CD163.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "GP5": {
+  "PMID_claude_generated": [
+   "1328669",
+   "7831770",
+   "16160177",
+   "16571816",
+   "12477814"
+  ],
+  "anno": "Major envelope glycoprotein GP5",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "GP5",
+  "note": "161-285 aa, the major envelope glycoprotein, present with M and N in a molar ratio of about 3 N : 2 M : 3 GP5. Required for particle production. Forms the defining disulfide-linked GP5/M heterodimer (EAV M Cys8 to GP5 Cys34). Its three PRRSV-2 ectodomain sequons N34/N44/N51 are occupied and N44 is essential for infectivity. NAMING TRAP: early PRRSV-1 papers call this protein 'E' (PMID 7831770), so an 'E' string on a ~200 aa product is GP5, not the small envelope protein.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "M": {
+  "PMID_claude_generated": [
+   "1328669",
+   "7831770",
+   "16160177",
+   "12477814"
+  ],
+  "anno": "Membrane protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "M",
+  "note": "158-190 aa. UNGLYCOSYLATED -- measured in both EAV (16 kDa) and PRRSV-1 (18 kDa) -- which is why the annotation says membrane protein and not membrane glycoprotein. Required for particle production together with GP5, with which it forms the disulfide-linked heterodimer that defines the arterivirus particle.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "N": {
+  "PMID_claude_generated": [
+   "14604534",
+   "1328669",
+   "10500278",
+   "12239338"
+  ],
+  "anno": "Nucleocapsid protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "N",
+  "note": "100-140 aa and the most abundant virion protein. The capsid-forming domain was solved at 2.6 A as a tight dimer with a fold unlike any other enveloped virus and reminiscent of the MS2 coat protein. N also localises to the nucleolus and shuttles. NO ISOFORMS, no alternative starts and no natural cleavage: the only non-signal-peptidase cut described in the family is host caspase-6 at Asp94 of PRRSV N, which is immune evasion rather than a mat_peptide boundary.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "NSP1": {
+  "PMID_claude_generated": [
+   "7769711",
+   "1331507",
+   "28053107",
+   "24928046"
+  ],
+  "anno": "Papain-like protease involved in polyprotein cleavage NSP1",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp1",
+  "note": "EAV HAS A SINGLE nsp1 OF 260 aa, not the nsp1-alpha/nsp1-beta pair of PRRSV: den Boon 1995 shows its PCP-alpha counterpart lost its catalytic Cys, Gulyaeva 2017 places the one active protease closest to PLP1c, and Han 2014 confirmed experimentally that EAV nsp1 remains uncleaved while PRRSV and LDV nsp1 are auto-cleaved. C-terminus Gly260-Gly261, measured genetically.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "NSP10": {
+  "PMID_claude_generated": [
+   "9971783",
+   "20696193"
+  ],
+  "anno": "Helicase NSP10 protein",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp10",
+  "note": "467 aa in EAV, 441-442 aa in PRRSV: the superfamily-1 helicase with its N-terminal zinc-binding domain. Both termini measured genetically in EAV; note that its N-terminal site is the one EAV junction with Gln at P1 (Gln2837-Ser2838), where PRRSV has Glu.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP11": {
+  "PMID_claude_generated": [
+   "9971783",
+   "19646449"
+  ],
+  "anno": "Uridylate-specific endoribonuclease NSP11 protein",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp11",
+  "note": "219 aa in EAV, 223-224 aa in PRRSV. The nidovirus-specific NendoU endoribonuclease; its C-terminal site is cleaved in trans by recombinant PRRSV nsp4 in vitro.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP12": {
+  "PMID_claude_generated": [
+   "9971783",
+   "20696193"
+  ],
+  "anno": "NSP12 protein",
+  "downstream_ext": 1,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp12",
+  "note": "119 aa in EAV, 152-153 aa in PRRSV, and the C-terminal subunit of pp1ab, so its C-terminus is the pp1ab terminator. NO FUNCTION IS PUBLISHED for it in any arterivirus, which is why the annotation carries none.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP1A": {
+  "PMID_claude_generated": [
+   "20006994",
+   "19706710",
+   "25557977"
+  ],
+  "anno": "Papain-like protease involved in polyprotein cleavage NSP1-alpha",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp1alpha",
+  "note": "180 aa in both PRRSV genotypes. The nsp1-alpha/nsp1-beta site was MEASURED AT THE PRODUCT LEVEL: Edman degradation of immunoprecipitated nsp1-beta gave the N-terminus ATVYDIGRDA, placing the bond at Met180-Ala181 in PRRSV-2, fourteen residues downstream of the site previously predicted by alignment. PRRSV-1 is His180-Ser181 by proteomics.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "NSP1B": {
+  "PMID_claude_generated": [
+   "20006994",
+   "23043113",
+   "18198380"
+  ],
+  "anno": "Papain-like protease and interferon antagonist NSP1-beta",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp1beta",
+  "note": "203 aa in PRRSV-2. C-terminus Gly383-Ala384, measured by Edman degradation of immunoprecipitated nsp2 (N-terminus AGRRARKARH); PCP-beta-dead mutants are non-viable with no detectable RNA synthesis. nsp1-beta is also the trans-activator of the nsp2 -2 frameshift, through Tyr111 and Arg114 (PMID 23043113).",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP2": {
+  "PMID_claude_generated": [
+   "7622476",
+   "19587037",
+   "25557977",
+   "20668084"
+  ],
+  "anno": "Papain-like protease and deubiquitinase NSP2",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp2",
+  "note": "571 aa in EAV and 1,078-1,196 aa in PRRSV, the largest and most variable replicase subunit. Its PLP2/OTU domain is the protease that makes its own C-terminus, shown genetically in EAV by Cys270/His332 mutants. The exact register of the PRRSV-2 nsp2/nsp3 bond is NOT settled -- the OTU-class LxGG argument favours cleaving after the GG doublet -- and the two registers in circulation differ by six residues at the C-terminus; both are present in the collection and neither is asserted here. The nsp2a-nsp2f isoforms (PMID 20668084) are real products with no predictable sites and are deliberately not called.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP3": {
+  "PMID_claude_generated": [
+   "8617757",
+   "9971783",
+   "20696193"
+  ],
+  "anno": "Transmembrane replication complex NSP3 protein",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp3",
+  "note": "233 aa in EAV (pp1ab 832-1064), 230 aa in both PRRSV genotypes. C-terminus Glu1064-Gly1065, measured genetically; independently forced here by the nsp4 catalytic His at pp1ab 1103.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP4": {
+  "PMID_claude_generated": [
+   "9371590",
+   "8617757",
+   "19646449"
+  ],
+  "anno": "Main protease involved in polyprotein cleavage NSP4 protein",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp4",
+  "note": "The chymotrypsin-like serine protease that makes every junction from nsp3/nsp4 to nsp11/nsp12: 204 aa in EAV (pp1ab 1065-1268), 203-204 aa in PRRSV. Both of its own termini are the best-anchored in the family -- the catalytic triad His1103/Asp1129/Ser1184 fixes its frame and the nsp5 N-terminus was determined by microsequencing. Specificity is Glu-down with a small P1-prime residue; EAV's nsp10/nsp11 site is the one exception, carrying Gln at P1.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP5": {
+  "PMID_claude_generated": [
+   "9371590",
+   "25557977"
+  ],
+  "anno": "Transmembrane replication complex NSP5 protein",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp5",
+  "note": "162 aa in EAV, 170 aa in PRRSV. Its N-terminus is one of only two arterivirus cleavage products whose sequence was determined directly (microsequencing, PMID 9371590). The nsp4/nsp5 site is cleaved only in the MAJOR processing pathway and requires cleaved nsp2 as a cofactor; in the minor pathway nsp4/nsp5 stays intact and nsp5/nsp6 and nsp6/nsp7 are cut instead. Both pathways are required for viability.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP6": {
+  "PMID_claude_generated": [
+   "9371590",
+   "17098961"
+  ],
+  "anno": "NSP6 protein",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp6",
+  "note": "22 aa in EAV and 16 aa in PRRSV -- the shortest feature in either module. Both flanking sites are measured in EAV (Glu1430-Gly1431 and Glu1452-Ser1453, the latter by microsequencing the nsp7 N-terminus), and mutating either is lethal in the infectious clone. No function is published.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP7A": {
+  "PMID_claude_generated": [
+   "17098961",
+   "22258855"
+  ],
+  "anno": "NSP7-alpha protein",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp7alpha",
+  "note": "123 aa in EAV, 149 aa in PRRSV. The internal nsp7-alpha/nsp7-beta site (EAV Glu1575-Ala1576) is a genuine conserved nsp4 site, identified genetically and lethal when abolished; in PRRSV the same junction is PREDICTED by homology and its P1-prime residue is Asn rather than a small residue, which is why an 'E-down-to-[GSA]' rule misses it. Both products are measured in infected cells.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP7B": {
+  "PMID_claude_generated": [
+   "17098961",
+   "16527369",
+   "22258855"
+  ],
+  "anno": "NSP7-beta protein",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp7beta",
+  "note": "102 aa in EAV, 110-120 aa in PRRSV. Its C-terminal site Glu1677-Gly1678 is cleaved in trans by recombinant EAV nsp4 on a synthetic P9-P7-prime peptide.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP8": {
+  "PMID_claude_generated": [
+   "30353315",
+   "20696193"
+  ],
+  "anno": "NSP8 protein",
+  "downstream_ext": 1,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp8",
+  "note": "50 aa in EAV, 45 aa in PRRSV, and the C-terminal subunit of pp1a: its C-terminus is pp1a's own terminator, which is why downstream_ext is 1 here and 0 on every other nsp. THERE IS NO nsp8/nsp9 CLEAVAGE -- nsp8 is the N-terminal part of nsp9, shown by co-immunoprecipitation both ways and by the failure of nsp4 and PLP2 to cut it in vitro -- so nsp8 and nsp9 overlap on the genome by construction, not by error.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "NSP9": {
+  "PMID_claude_generated": [
+   "9971783",
+   "30353315",
+   "20696193"
+  ],
+  "anno": "RNA-dependent RNA polymerase",
+  "feature_type": "mat_peptide",
+  "gene_symbol": "nsp9",
+  "max_len": 741,
+  "min_len": 612,
+  "note": "685 aa in PRRSV, 693 aa in EAV (pp1ab 1678-2370). THE ONLY ARTERIVIRUS SUBUNIT THAT NEITHER A PSSM NOR THE ORDINARY REFERENCE BUILDER CAN REACH: it begins at the nsp7-beta/nsp8 cleavage inside ORF1a and runs through the -1 frameshift into ORF1b, so it is not collinear with the genome, and both of its termini are protease sites rather than codons, so there is no stop to build a construct to. Its references were cut out of the validated pp1ab constructs at the span located by homology to the deposited nsp9 proteins and then checked against the measured cleavage chemistry -- every shipped reference begins with Ala or Gly and ends with Glu. Same shape as coronavirus NSP12, and the same convention: no trailing stop codon.",
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit"
+ },
+ "ORF1A": {
+  "PMID_claude_generated": [
+   "20696193",
+   "9371590"
+  ],
+  "anno": "ORF1a polyprotein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "ORF1a",
+  "note": "The 5'-proximal replicase polyprotein, 1,727 aa in EAV and 2,396-2,503 aa in PRRSV. Cleaved by three virus-encoded proteases into nsp1(-alpha/-beta) through nsp8; Fang & Snijder 2010 Table 1 is the consolidated map and every residue in it was re-derived from NC_002532, NC_001961 and NC_043487 for this build.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "ORF1AB": {
+  "PMID_claude_generated": [
+   "20696193",
+   "15680415",
+   "2447506"
+  ],
+  "anno": "ORF1ab polyprotein",
+  "feature_type": "CDS",
+  "gene_symbol": "ORF1ab",
+  "max_len": 4338,
+  "min_len": 2953,
+  "note": "Made by a -1 ribosomal frameshift at a slippery heptamer immediately upstream of the ORF1a stop: U_UUA_AAC in PRRSV, LDV, WPDV and the rodent arteriviruses, G_UUA_AAC in EAV, both read directly off the genomes here. The pseudoknot is PREDICTED in every arterivirus -- no arterivirus-specific structural or compensatory-mutation study exists. NO ARTERIVIRUS pp1ab PRODUCT HAS EVER BEEN SEQUENCED, so the junction residues are an inference from tandem slippage, shown at the product level for SARS-CoV at the same U_UUA_AAC heptamer (PMID 15680415) and by amino-acid sequencing in the RSV/HIV-type system (PMID 2447506). 902 of these 1,235 references reproduce a deposited pp1ab or ORF1b exactly; the other 333 were constructed at the same measured slip position and are marked `constructed` in their header.",
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit"
+ },
+ "ORF1AN": {
+  "PMID_claude_generated": [
+   "23043113"
+  ],
+  "anno": "ORF1a-N polyprotein",
+  "feature_type": "CDS",
+  "gene_symbol": "ORF1aN",
+  "max_len": 1320,
+  "min_len": 979,
+  "note": "The -1 ribosomal frameshift product at the same G_GUU_UUU slip site, which terminates almost immediately in the shifted frame and yields nsp2N. Measured in PRRSV; predicted elsewhere. Seven simarteriviruses carry a variant slip site that supports nsp2TF but not nsp2N, which is one reason this feature is declared only in this module.",
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit"
+ },
+ "ORF1ATF": {
+  "PMID_claude_generated": [
+   "23043113",
+   "20696193"
+  ],
+  "anno": "ORF1a-TF polyprotein",
+  "feature_type": "CDS",
+  "gene_symbol": "ORF1aTF",
+  "max_len": 1501,
+  "min_len": 1039,
+  "note": "The -2 ribosomal frameshift product of the nsp2 region, which yields the transframe protein nsp2TF after cleavage. Slip site G_GUU_UUU with a CCCANCUCC stimulator ten nucleotides downstream and no RNA structure; trans-activated by nsp1-beta together with host PCBP1/2. This is the one arterivirus frameshift junction with PRODUCT-LEVEL evidence: a tryptic peptide spanning the shift site was matched to a synthetic standard by mass spectrometry (PMID 23043113). Present in Betaarterivirus and Gammaarterivirus; ABSENT in EAV and functionally absent in wobbly possum disease virus, so this feature must not carry copy_num.",
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit"
+ },
+ "ORF5A": {
+  "PMID_claude_generated": [
+   "21307223",
+   "21307222",
+   "23219923"
+  ],
+  "anno": "ORF5a protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "ORF5a",
+  "note": "43-78 aa, a short protein translated from the ORF5 mRNA and conserved across the whole family. IT CANNOT BE FOUND BY POSITION: its AUG is upstream of the GP5 AUG in EAV and PRRSV-NA but DOWNSTREAM of it in PRRSV-EU, LDV and SHFV. Detected in PRRSV virions by mass spectrometry and essential there; in EAV it is a measured NEGATIVE in virions and only important, not essential -- a real genus difference. Absent from several records as an annotation rather than as biology, so it must not carry copy_num.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ }
+}

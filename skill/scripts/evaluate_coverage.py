@@ -291,7 +291,16 @@ def scan_refs(tbldirs):
     """
     reps, mods = set(), collections.Counter()
     for d in tbldirs:
-        for t in glob.glob(os.path.join(d, "*.feature.tbl")):
+        #  The GTO path writes no *.feature.tbl at all -- the annotator's
+        #  per-genome stdout IS the feature table, saved as <genome>.stdout.txt
+        #  beside the GTO. Globbing only *.feature.tbl therefore returned an
+        #  EMPTY set on every GTO run, and the module published "of which 0
+        #  reference contigs were used" with no error anywhere: exactly the
+        #  silent zero this function was written to stop, arriving by a second
+        #  route. Measured on Arteriviridae, 21 Nov 2026: 0 reported against 25
+        #  of 25 actually used.
+        for t in (glob.glob(os.path.join(d, "*.feature.tbl"))
+                  + glob.glob(os.path.join(d, "*.stdout.txt"))):
             for line in open(t, errors="replace"):
                 f = line.rstrip("\n").split("\t")
                 if len(f) < 13 or f[4] != "CDS":
@@ -358,13 +367,31 @@ def report_gto(ex, seqs, work, out):
             key = (fam[1] or "") if len(fam) > 1 else ""
             if not key:
                 continue
-            #  feature = everything between the module and a trailing numeric
-            #  profile id; bits[1] truncated "Erythroparvovirus.7.5K.1" to "7".
-            #  Leftover profile ids are compound: "NP1.3_1".
-            m0, _, rest = key.partition(".")
-            head, dot, tail = rest.rpartition(".")
-            if dot and tail.replace("_", "").isdigit():
-                rest = head
+            #  TWO SHAPES, and only one of them puts the module in fam[1].
+            #
+            #  The PSSM pass writes ['LOWVAN', '<Module>.<KEY>.<n>', ...].
+            #  The special passes -- transcript edit, splice -- write
+            #  ['<Module>', '<KEY>', ...]: the module is in fam[0] and the key
+            #  carries NO dot. Partitioning fam[1] is correct for the first and
+            #  silently wrong for the second, taking the KEY for the module
+            #  name. Measured on Arteriviridae, 21 Nov 2026: 563 of 612 genomes
+            #  were filed under four "modules" called ORF1AB, NSP9, ORF1AN and
+            #  ORF1ATF, which do not exist, leaving 49 under the real one.
+            #  Nothing errored -- per_module simply described a module layout
+            #  the build does not have, and gen_facts then reported 49 routed
+            #  out of 612.
+            fam0 = str(fam[0]) if fam and fam[0] else ""
+            if fam0 and fam0 != "LOWVAN":
+                m0, rest = fam0, ""
+            else:
+                #  feature = everything between the module and a trailing
+                #  numeric profile id; bits[1] truncated
+                #  "Erythroparvovirus.7.5K.1" to "7". Leftover profile ids are
+                #  compound: "NP1.3_1".
+                m0, _, rest = key.partition(".")
+                head, dot, tail = rest.rpartition(".")
+                if dot and tail.replace("_", "").isdigit():
+                    rest = head
             mod = m0 or mod
             gene = dict(f.get("alias_pairs") or []).get("gene")
             calls.append(gene or (rest.lower() if rest else key))
@@ -419,7 +446,7 @@ def report_gto(ex, seqs, work, out):
            #  added to fix. Look in all of them; a missing one globs to
            #  nothing and costs nothing.
            "refs_used": scan_refs([os.path.join(work, d)
-                                   for d in ("ann", "tbl", "anno")]),
+                                   for d in ("ann", "tbl", "anno", "Anno_GTOs")]),
            "genome_quality": {"good": good, "poor": poor},
            "calls_by_program": dict(by_caller),
            "source": "GTO pipeline -- special features included"}
@@ -452,7 +479,9 @@ def main():
                          "which is the only correct choice for a taxon with "
                          "segmented members -- see --json.")
     ap.add_argument("--json", default=None,
-                    help="module JSON, for per-module completeness thresholds")
+                    help="module JSON, for per-module completeness thresholds and "
+                         "special-feature detection. DEFAULTS to <repo>/Viral_PSSM.json, "
+                         "which is always present; pass a path only to override it.")
     ap.add_argument("--threads", type=int, default=6)
     ap.add_argument("--out", default="coverage.json")
     ap.add_argument("--taxon", default=None,
@@ -482,6 +511,27 @@ def main():
     #  So take the floor from each module's own declared segment min_len.
     floors = {}
     specials = {}
+    #  BOTH PROTECTIONS BELOW USED TO BE GATED ON AN OPTIONAL FLAG, so omitting
+    #  --json silently disabled the per-module completeness floor AND the
+    #  special-feature route -- the second of which this file's own comment
+    #  calls out as the thing that must never happen quietly. The default floor
+    #  then stood in for the measured one, and `specials` stayed empty, so
+    #  use_gto was False and the "special:" lines never printed. There was no
+    #  warning, because the warning is inside the branch that did not run.
+    #
+    #  Measured on Arteriviridae, 19 Nov 2026: a 612-genome exemplar run
+    #  reported 23 features at 93-100% and NOT ONE of ORF1ab, ORF1aTF, ORF1aN
+    #  or nsp9. pp1ab is produced by essentially every complete arterivirus
+    #  genome in the panel. The report was not wrong about what it measured; it
+    #  measured four declared features' coverage as absent and said nothing.
+    #
+    #  The repo always carries Viral_PSSM.json at a known path, so default to
+    #  it. --json now overrides rather than enables.
+    if not args.json:
+        cand = os.path.join(os.path.abspath(args.repo), "Viral_PSSM.json")
+        if os.path.exists(cand):
+            args.json = cand
+            print("  module JSON: %s (default)" % cand)
     if args.json and os.path.exists(args.json):
         j = json.load(open(args.json))
         for m, b in j.items():

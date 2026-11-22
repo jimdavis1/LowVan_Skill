@@ -87,8 +87,32 @@ def build_pssm(rows, title, out, tmp):
         subprocess.run(["mafft", "--quiet", "--auto", fa], stdout=fh,
                        stderr=subprocess.DEVNULL)
     al = list(read_fasta(ali))
-    if len(al) < 2:
+    if not al:
+        print("    %-12s SKIPPED -- mafft produced no alignment" % title)
         return False
+    if len(al) == 1:
+        #  psiblast -in_msa needs at least two rows, so a group of one used to
+        #  return False here with nothing printed. A one-member group is not a
+        #  defect: it is a lineage-specific protein with a single deposit, and
+        #  dropping it silently is how such a feature goes missing from a
+        #  module while every count in the build log still looks right.
+        #
+        #  Found 19 Nov 2026 on Birnaviridae X. The two X deposits (Blosnavirus
+        #  71 aa, Telnavirus 106 aa) share NO detectable homology -- permissive
+        #  blastp (-evalue 10000 -word_size 2) finds only 5 residues at 60%,
+        #  e-value 2.6 -- because `X` is a POSITIONAL label, not a homology
+        #  group: PMID 17976679 names the Telnavirus one `[X]` purely because
+        #  it sits where the Blosnavirus one sits. So X is two orthogroups of
+        #  one sequence each, and both were being discarded without a word.
+        #
+        #  Duplicating the row gives psiblast a 2-row MSA over one sequence.
+        #  The resulting profile carries NO conservation information -- every
+        #  column is that sequence -- so its cutoff CANNOT be inherited from a
+        #  multi-member feature and MUST be measured against foreign sequences
+        #  before the module ships.
+        al = [al[0], (al[0][0] + "_dup", al[0][1])]
+        print("    %-12s single-sequence profile (row duplicated for psiblast)"
+              "; its cutoff MUST be measured, not inherited" % title)
     ALIGNED_OUT[:] = al          # the MSA this profile was really built from
     msa = os.path.join(tmp, "g.msa")
     with open(msa, "w") as fh:

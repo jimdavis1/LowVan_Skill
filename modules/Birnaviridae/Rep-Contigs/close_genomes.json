@@ -1,0 +1,90 @@
+{
+ "Birnaviridae.1.dna": {
+  "genome_ids": "10995.117_segA",
+  "genome_name": "Infectious bursal disease virus HK46"
+ },
+ "Birnaviridae.10.dna": {
+  "genome_ids": "2556101.4_segA",
+  "genome_name": "Tetranychus urticae-associated entomobirnavirus Lisbon"
+ },
+ "Birnaviridae.11.dna": {
+  "genome_ids": "2725373.3_segA",
+  "genome_name": "Port Bolivar virus GMC-202"
+ },
+ "Birnaviridae.12.dna": {
+  "genome_ids": "2920474.4_segA",
+  "genome_name": "Sichuan sediment birna-like virus 5 R40-368221"
+ },
+ "Birnaviridae.13.dna": {
+  "genome_ids": "2920476.3_segA",
+  "genome_name": "Sichuan sediment birna-like virus 7 s43-666168"
+ },
+ "Birnaviridae.14.dna": {
+  "genome_ids": "2920479.4_segA",
+  "genome_name": "South China Sea birna-like virus CX46R-64305"
+ },
+ "Birnaviridae.15.dna": {
+  "genome_ids": "3043168.4_segA",
+  "genome_name": "Pinctada birnavirus TM-2022"
+ },
+ "Birnaviridae.16.dna": {
+  "genome_ids": "3065069.4_segA",
+  "genome_name": "Petrochromis fasciolatus birnavirus F36"
+ },
+ "Birnaviridae.17.dna": {
+  "genome_ids": "3077841.3_segA",
+  "genome_name": "Rocky Mountain birnavirus RMBV/2020/Utah/USA"
+ },
+ "Birnaviridae.18.dna": {
+  "genome_ids": "311176.4_segA",
+  "genome_name": "Blotched snakehead virus"
+ },
+ "Birnaviridae.19.dna": {
+  "genome_ids": "321302.3_segA",
+  "genome_name": "Tellina virus 1"
+ },
+ "Birnaviridae.2.dna": {
+  "genome_ids": "11002.704_segA",
+  "genome_name": "Infectious pancreatic necrosis virus ChRtm213"
+ },
+ "Birnaviridae.20.dna": {
+  "genome_ids": "48981.6_segA",
+  "genome_name": "Drosophila X virus"
+ },
+ "Birnaviridae.21.dna": {
+  "genome_ids": "595652.4_segA",
+  "genome_name": "Rotifer birnavirus strain Palavas"
+ },
+ "Birnaviridae.22.dna": {
+  "genome_ids": "663281.3_segA",
+  "genome_name": "Drosophila melanogaster birnavirus SW-2009a DBV"
+ },
+ "Birnaviridae.3.dna": {
+  "genome_ids": "2886213.10_segA",
+  "genome_name": "porcine birnavirus GDFS9-2018"
+ },
+ "Birnaviridae.4.dna": {
+  "genome_ids": "10995.244_segA",
+  "genome_name": "Infectious bursal disease virus 23/82"
+ },
+ "Birnaviridae.5.dna": {
+  "genome_ids": "1230254.4_segA",
+  "genome_name": "Culex Y virus P1-BS2010"
+ },
+ "Birnaviridae.6.dna": {
+  "genome_ids": "2777470.3_segA",
+  "genome_name": "Aedes birnavirus 177833"
+ },
+ "Birnaviridae.7.dna": {
+  "genome_ids": "2926591.3_segA",
+  "genome_name": "Largemouth bass birnavirus LBBV-SS-20150722"
+ },
+ "Birnaviridae.8.dna": {
+  "genome_ids": "3081665.5_segA",
+  "genome_name": "Cambodia Culex birnavirus Cqu1"
+ },
+ "Birnaviridae.9.dna": {
+  "genome_ids": "10995.6199_segA",
+  "genome_name": "Infectious bursal disease virus F52_70_P222T"
+ }
+}

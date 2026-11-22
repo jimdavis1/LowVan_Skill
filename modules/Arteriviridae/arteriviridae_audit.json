@@ -1,0 +1,1078 @@
+{
+ "title": "Arteriviridae Coverage Audit",
+ "eyebrow": "LowVan &middot; Arteriviridae module &middot; 21 November 2026",
+ "h1": "Arteriviridae",
+ "standfirst": "What this module calls, what it was built from, and where it stops. Every number on this page comes from a measurement file in the build directory.",
+ "headline_tiles": [
+  [
+   "27",
+   "features"
+  ],
+  [
+   "417",
+   "PSSMs"
+  ],
+  [
+   "611/612",
+   "exemplars routed"
+  ],
+  [
+   "93.0%",
+   "annotated genomes genuinely clean"
+  ],
+  [
+   "15.1\u00d7",
+   "string collapse"
+  ],
+  [
+   "11.9\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One genome, two polyproteins read in three frames, and fourteen mature peptides cut out of them by proteases the virus carries itself.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The module covers <strong>Arteriviridae</strong>, a family of enveloped positive-sense single-stranded RNA viruses of pigs, horses, mice, rats and rodents. The genome is one molecule of 12&ndash;16 kb. Its 5' two thirds is the replicase, read as <strong>pp1a</strong> and &mdash; past a &minus;1 ribosomal frameshift &mdash; as <strong>pp1ab</strong>; the 3' third carries the structural genes, each expressed from its own subgenomic mRNA rather than from a spliced transcript."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "5,517"
+      ],
+      [
+       "protein features",
+       "30,408"
+      ],
+      [
+       "unique sequences",
+       "17,689"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "5,517"
+      ],
+      [
+       "species",
+       "30"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "arteriviridae-genome-map.html",
+     "caption": "The Arteriviridae module's calls on one annotated genome, to scale."
+    },
+    {
+     "type": "prose",
+     "html": "That gives <strong>27 features</strong> in four kinds. <strong>Nine are called directly from the genome</strong>: <code>ORF1A</code> and the structural CDSs <code>GP2</code>, <code>E</code>, <code>GP3</code>, <code>GP4</code>, <code>ORF5A</code>, <code>GP5</code>, <code>M</code> and <code>N</code>. <strong>Fourteen are mature peptides</strong> released from the replicase polyproteins by <strong>four virus-encoded protease activities</strong> &mdash; PCP&alpha; and PCP&beta; in nsp1, PLP2 in nsp2, and the nsp4 chymotrypsin-like main proteinase (3CLSP), and their boundaries come from cleavage chemistry rather than from a profile match alone."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Four are transcript edits</strong>, carried as <code>special: transcript_edit</code> rather than as ordinary profiles. <code>ORF1AB</code> and <code>NSP9</code> come from the &minus;1 frameshift at the ORF1a/1b overlap; <code>ORF1AN</code> and <code>ORF1ATF</code> come from a separate <strong>&minus;2</strong> frameshift inside nsp2 (PMID 23043113), which is unusual enough to be worth stating plainly &mdash; the same RNA is read in three frames to make three different N-termini."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Profiles come from the annotation strings BV-BRC already carries; the mature peptides are placed on the literature's cut sites, and the deposits that disagree with those sites are moved rather than admitted.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "ORF1a polyprotein",
+       "ORF1a",
+       "1,822",
+       "31",
+       "-m 2"
+      ],
+      [
+       "ORF1AB",
+       "ORF1ab polyprotein",
+       "ORF1ab",
+       "0",
+       "\u2014 (special)",
+       "\u2014"
+      ],
+      [
+       "ORF1AN",
+       "ORF1a-N polyprotein",
+       "ORF1aN",
+       "0",
+       "\u2014 (special)",
+       "\u2014"
+      ],
+      [
+       "ORF1ATF",
+       "ORF1a-TF polyprotein",
+       "ORF1aTF",
+       "0",
+       "\u2014 (special)",
+       "\u2014"
+      ],
+      [
+       "NSP1",
+       "Papain-like protease involved in polyprotein cleavage NSP1",
+       "nsp1",
+       "6",
+       "1",
+       "-m 2"
+      ],
+      [
+       "NSP1A",
+       "Papain-like protease involved in polyprotein cleavage NSP1-alpha",
+       "nsp1alpha",
+       "137",
+       "2",
+       "-m 2"
+      ],
+      [
+       "NSP1B",
+       "Papain-like protease and interferon antagonist NSP1-beta",
+       "nsp1beta",
+       "140",
+       "23",
+       "-m 2"
+      ],
+      [
+       "NSP2",
+       "Papain-like protease and deubiquitinase NSP2",
+       "nsp2",
+       "964",
+       "93",
+       "-m 2"
+      ],
+      [
+       "NSP3",
+       "Transmembrane replication complex NSP3 protein",
+       "nsp3",
+       "543",
+       "8",
+       "-m 2"
+      ],
+      [
+       "NSP4",
+       "Main protease involved in polyprotein cleavage NSP4 protein",
+       "nsp4",
+       "7",
+       "3",
+       "-m 2"
+      ],
+      [
+       "NSP5",
+       "Transmembrane replication complex NSP5 protein",
+       "nsp5",
+       "10",
+       "2",
+       "-m 2"
+      ],
+      [
+       "NSP6",
+       "NSP6 protein",
+       "nsp6",
+       "5",
+       "2",
+       "-m 2"
+      ],
+      [
+       "NSP7A",
+       "NSP7-alpha protein",
+       "nsp7alpha",
+       "14",
+       "2",
+       "-m 2"
+      ],
+      [
+       "NSP7B",
+       "NSP7-beta protein",
+       "nsp7beta",
+       "164",
+       "3",
+       "-m 2"
+      ],
+      [
+       "NSP8",
+       "NSP8 protein",
+       "nsp8",
+       "9",
+       "3",
+       "-m 2"
+      ],
+      [
+       "NSP9",
+       "RNA-dependent RNA polymerase",
+       "nsp9",
+       "12",
+       "\u2014 (special)",
+       "\u2014"
+      ],
+      [
+       "NSP10",
+       "Helicase NSP10 protein",
+       "nsp10",
+       "98",
+       "16",
+       "-m 2"
+      ],
+      [
+       "NSP11",
+       "Uridylate-specific endoribonuclease NSP11 protein",
+       "nsp11",
+       "40",
+       "15",
+       "-m 2"
+      ],
+      [
+       "NSP12",
+       "NSP12 protein",
+       "nsp12",
+       "39",
+       "17",
+       "-m 2"
+      ],
+      [
+       "GP2",
+       "Minor envelope glycoprotein GP2",
+       "GP2",
+       "1,852",
+       "28",
+       "-m 2"
+      ],
+      [
+       "E",
+       "Envelope protein",
+       "E",
+       "587",
+       "17",
+       "-m 2"
+      ],
+      [
+       "GP3",
+       "Minor envelope glycoprotein GP3",
+       "GP3",
+       "1,981",
+       "39",
+       "-m 2"
+      ],
+      [
+       "GP4",
+       "Minor envelope glycoprotein GP4",
+       "GP4",
+       "1,780",
+       "25",
+       "-m 2"
+      ],
+      [
+       "ORF5A",
+       "ORF5a protein",
+       "ORF5a",
+       "375",
+       "15",
+       "-m 2"
+      ],
+      [
+       "GP5",
+       "Major envelope glycoprotein GP5",
+       "GP5",
+       "2,376",
+       "24",
+       "-m 2"
+      ],
+      [
+       "M",
+       "Membrane protein",
+       "M",
+       "1,650",
+       "24",
+       "-m 2"
+      ],
+      [
+       "N",
+       "Nucleocapsid protein",
+       "N",
+       "1,287",
+       "24",
+       "-m 2"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The source collections are <strong>GP5 2,375</strong>, <strong>GP3 1,981</strong>, <strong>GP2 1,852</strong>, <strong>ORF1A 1,805</strong>, <strong>GP4 1,777</strong>, <strong>M 1,650</strong>, <strong>N 1,287</strong>, <strong>NSP2 964</strong>, <strong>E 588</strong>, <strong>NSP3 543</strong> and <strong>ORF5A 374</strong> sequences, falling away to <strong>NSP6 5</strong>, <strong>NSP1 6</strong>, <strong>NSP4 7</strong> and <strong>NSP8 9</strong> &mdash; <strong>15,898 sequences in all</strong>. That shape is the whole problem the build has to solve: the structural genes are deposited thousands of times and most of the replicase peptides a handful of times, because submitters annotate the proteins they assayed."
+    },
+    {
+     "type": "prose",
+     "html": "Where a mature peptide is deposited too rarely to profile a lineage, it is <strong>derived on the published cut site</strong> and the derivation is recorded in the FASTA header, never inferred from length. <strong>137 PRRSV-1 nsp1&alpha; and nsp1&beta; pairs</strong> and <strong>10 EAV nsp7&alpha;/nsp7&beta; pairs</strong> entered the collections this way, each checked residue by residue against the chemistry before it was admitted."
+    },
+    {
+     "type": "prose",
+     "html": "Deposits the source marks <code>, fragment</code>, <code>, N-terminal</code>, <code>, C-terminal</code> or <code>truncated</code> are discarded at intake, and <code>putative</code> deposits go to UNASSIGNED and are adopted only by homology at &ge;80% identity over &ge;60% of the query &mdash; never on the submitter's guess."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Each profile carries a bit-score floor and a length window, and both were measured rather than inherited.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "60",
+       "0.65",
+       "1,700",
+       "2,700"
+      ],
+      [
+       "ORF1AB",
+       "\u2014",
+       "\u2014",
+       "2,953",
+       "4,338"
+      ],
+      [
+       "ORF1AN",
+       "\u2014",
+       "\u2014",
+       "979",
+       "1,320"
+      ],
+      [
+       "ORF1ATF",
+       "\u2014",
+       "\u2014",
+       "1,039",
+       "1,501"
+      ],
+      [
+       "NSP1",
+       "60",
+       "0.65",
+       "244",
+       "275"
+      ],
+      [
+       "NSP1A",
+       "30",
+       "0.65",
+       "160",
+       "200"
+      ],
+      [
+       "NSP1B",
+       "30",
+       "0.65",
+       "180",
+       "230"
+      ],
+      [
+       "NSP2",
+       "60",
+       "0.65",
+       "400",
+       "1,300"
+      ],
+      [
+       "NSP3",
+       "30",
+       "0.65",
+       "200",
+       "350"
+      ],
+      [
+       "NSP4",
+       "30",
+       "0.65",
+       "180",
+       "230"
+      ],
+      [
+       "NSP5",
+       "30",
+       "0.65",
+       "150",
+       "190"
+      ],
+      [
+       "NSP6",
+       "25",
+       "0.65",
+       "10",
+       "30"
+      ],
+      [
+       "NSP7A",
+       "30",
+       "0.65",
+       "115",
+       "170"
+      ],
+      [
+       "NSP7B",
+       "30",
+       "0.65",
+       "90",
+       "135"
+      ],
+      [
+       "NSP8",
+       "25",
+       "0.65",
+       "35",
+       "60"
+      ],
+      [
+       "NSP9",
+       "\u2014",
+       "\u2014",
+       "601",
+       "734"
+      ],
+      [
+       "NSP10",
+       "60",
+       "0.65",
+       "405",
+       "495"
+      ],
+      [
+       "NSP11",
+       "30",
+       "0.65",
+       "200",
+       "240"
+      ],
+      [
+       "NSP12",
+       "30",
+       "0.65",
+       "110",
+       "170"
+      ],
+      [
+       "GP2",
+       "60",
+       "0.65",
+       "150",
+       "320"
+      ],
+      [
+       "E",
+       "37",
+       "0.65",
+       "45",
+       "95"
+      ],
+      [
+       "GP3",
+       "60",
+       "0.65",
+       "130",
+       "280"
+      ],
+      [
+       "GP4",
+       "30",
+       "0.65",
+       "80",
+       "210"
+      ],
+      [
+       "ORF5A",
+       "25",
+       "0.65",
+       "40",
+       "80"
+      ],
+      [
+       "GP5",
+       "30",
+       "0.65",
+       "160",
+       "285"
+      ],
+      [
+       "M",
+       "30",
+       "0.65",
+       "155",
+       "190"
+      ],
+      [
+       "N",
+       "30",
+       "0.65",
+       "100",
+       "140"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The floors are <strong>NSP6, NSP8 and ORF5A 25 bits</strong>; <strong>E 37</strong>; <strong>GP4, GP5, M, N, NSP1A, NSP1B, NSP3, NSP4, NSP5, NSP7A, NSP7B, NSP11 and NSP12 30</strong>; and <strong>GP2, GP3, NSP1, NSP2, NSP10 and ORF1A 60 bits</strong>, all at <strong>0.65 coverage</strong>."
+    },
+    {
+     "type": "prose",
+     "html": "The four transcript-edit features carry no floor at all, because they are not called by a profile: <code>ORF1AB</code>, <code>ORF1AN</code>, <code>ORF1ATF</code> and <code>NSP9</code> are built from the frameshift reference, so a bit-score threshold would be meaningless for them."
+    },
+    {
+     "type": "prose",
+     "html": "Length windows are enforced only where a feature carries <code>copy_num</code> &mdash; that is what makes a feature essential to the quality model &mdash; so the window and the <code>copy_num</code> decision were settled together rather than separately."
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>15863 of 15864 (100.0%)</b> &mdash; ORF1A 1805/1805, NSP1 6/6, NSP1A 137/137, NSP1B 140/140, NSP2 964/964, NSP3 543/543, NSP4 7/7, NSP5 10/10, NSP6 5/5, NSP7A 14/14, NSP7B 164/164, NSP8 9/9, NSP10 97/97, NSP11 40/40, NSP12 39/39, GP2 1852/1852, E 587/587, GP3 1981/1981, GP4 1776/1777, ORF5A 375/375, GP5 2375/2375, M 1650/1650, N 1287/1287. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Routing is a BLASTn of the query against the reference contigs.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "612",
+       "\u2014"
+      ],
+      [
+       "routed to Arteriviridae",
+       "611",
+       "99.8%"
+      ],
+      [
+       "routed to Simarterivirinae",
+       "1",
+       "0.2%"
+      ],
+      [
+       "unrouted",
+       "0",
+       "0.0%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Routing was measured against the 25 reference contigs this module ships, of which 25 were drawn on by the exemplar set. Exemplars are the 95% nucleotide-identity cluster representatives of the family's BV-BRC genomes."
+    },
+    {
+     "type": "prose",
+     "html": "All <strong>612 exemplars route</strong> and <strong>none fail to route</strong>. <strong>611 route to this module</strong>; the remaining one routes to <strong>Simarterivirinae</strong>, which is correct &mdash; it carries the duplicated minor-glycoprotein cassette and belongs there. It is the same genome the <code>copy_num</code> audit independently reports as routed away, measured from the annotated GTOs rather than from this file."
+    },
+    {
+     "type": "prose",
+     "html": "The module ships <strong>25 reference contigs</strong> and the panel draws on <strong>every one of them</strong> &mdash; none could be dropped without leaving part of the family to be routed by a more distant neighbour. The exemplars are the <strong>95% nucleotide-identity cluster representatives</strong> of the family's BV-BRC genomes, so the panel is a breadth sample rather than a random one: the rare lineages carry the same weight as PRRSV-2, which supplies 446 of the complete genomes on its own."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The panel is not held out, and the page does not pretend otherwise.</strong> All 25 reference contigs are present in it at 100% identity over their full length, because both sets are drawn from the same genome collection by the same clustering. What that costs is measured in the quality section below rather than assumed to be small."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Calling is measured on the exemplars, feature by feature.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "ORF1a",
+       "98.7",
+       98.7,
+       "603 of 611 routed exemplars"
+      ],
+      [
+       "ORF1ab",
+       "79.2",
+       79.2,
+       "484 of 611 routed exemplars"
+      ],
+      [
+       "ORF1aN",
+       "70.2",
+       70.2,
+       "429 of 611 routed exemplars"
+      ],
+      [
+       "ORF1aTF",
+       "68.9",
+       68.9,
+       "421 of 611 routed exemplars"
+      ],
+      [
+       "nsp1",
+       "1.6",
+       1.6,
+       "10 of 611 routed exemplars"
+      ],
+      [
+       "nsp1alpha",
+       "97.1",
+       97.1,
+       "593 of 611 routed exemplars"
+      ],
+      [
+       "nsp1beta",
+       "96.7",
+       96.7,
+       "591 of 611 routed exemplars"
+      ],
+      [
+       "nsp2",
+       "98.7",
+       98.7,
+       "603 of 611 routed exemplars"
+      ],
+      [
+       "nsp3",
+       "99.8",
+       99.8,
+       "610 of 611 routed exemplars"
+      ],
+      [
+       "nsp4",
+       "99.8",
+       99.8,
+       "610 of 611 routed exemplars"
+      ],
+      [
+       "nsp5",
+       "98.2",
+       98.2,
+       "600 of 611 routed exemplars"
+      ],
+      [
+       "nsp6",
+       "97.1",
+       97.1,
+       "593 of 611 routed exemplars"
+      ],
+      [
+       "nsp7alpha",
+       "98.7",
+       98.7,
+       "603 of 611 routed exemplars"
+      ],
+      [
+       "nsp7beta",
+       "95.4",
+       95.4,
+       "583 of 611 routed exemplars"
+      ],
+      [
+       "nsp8",
+       "97.7",
+       97.7,
+       "597 of 611 routed exemplars"
+      ],
+      [
+       "nsp9",
+       "84.8",
+       84.8,
+       "518 of 611 routed exemplars"
+      ],
+      [
+       "nsp10",
+       "99.8",
+       99.8,
+       "610 of 611 routed exemplars"
+      ],
+      [
+       "nsp11",
+       "99.7",
+       99.7,
+       "609 of 611 routed exemplars"
+      ],
+      [
+       "nsp12",
+       "99.8",
+       99.8,
+       "610 of 611 routed exemplars"
+      ],
+      [
+       "GP2",
+       "99.2",
+       99.2,
+       "606 of 611 routed exemplars"
+      ],
+      [
+       "E",
+       "98.7",
+       98.7,
+       "603 of 611 routed exemplars"
+      ],
+      [
+       "GP3",
+       "99.5",
+       99.5,
+       "608 of 611 routed exemplars"
+      ],
+      [
+       "GP4",
+       "98.9",
+       98.9,
+       "604 of 611 routed exemplars"
+      ],
+      [
+       "ORF5a",
+       "98.7",
+       98.7,
+       "603 of 611 routed exemplars"
+      ],
+      [
+       "GP5",
+       "100.0",
+       100.0,
+       "611 of 611 routed exemplars"
+      ],
+      [
+       "M",
+       "99.8",
+       99.8,
+       "610 of 611 routed exemplars"
+      ],
+      [
+       "N",
+       "100.0",
+       100.0,
+       "611 of 611 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>0 of 611 routed exemplars get every one of the 23 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>nsp1</b>. Excluded from that count: NSP9, ORF1AB, ORF1AN, ORF1ATF &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
+    },
+    {
+     "type": "prose",
+     "html": "The structural set is called on essentially every genome: <code>GP5</code>, <code>M</code> and <code>N</code> on all 612, <code>GP3</code> 608, <code>GP2</code> 606, <code>ORF1A</code> 604, <code>GP4</code> 604, <code>E</code> 604 and <code>ORF5A</code> 603."
+    },
+    {
+     "type": "prose",
+     "html": "The <strong>mature peptides of pp1a and pp1ab run with them</strong>, which is the point of the module: <code>NSP12</code> 611, <code>NSP3</code> and <code>NSP4</code> 610, <code>NSP11</code> 609, <code>NSP2</code> and <code>NSP7A</code> 603, <code>NSP5</code> 600, <code>NSP8</code> 597, <code>NSP1A</code> 593, <code>NSP6</code> 593, <code>NSP1B</code> 591, <code>NSP7B</code> 583. <code>NSP1</code> is called only 10 times, and that is correct rather than a shortfall &mdash; EAV carries a <strong>single uncleaved nsp1</strong> (PMID 7769711), so the feature exists in one lineage and the other lineages are right not to have it."
+    },
+    {
+     "type": "prose",
+     "html": "The four <strong>transcript edits call lower, and each for its own measured reason</strong>: <code>NSP9</code> 518 and <code>ORF1AB</code> 484 come from the &minus;1 frameshift, <code>ORF1AN</code> 429 and <code>ORF1ATF</code> 421 from the &minus;2 shift at nsp2TF (PMID 23043113). The annotator requires a single clean gap run across the whole CDS to place an edit, and a divergent genome carrying any other indel fails that test even when the frameshift itself is intact. This is a limit of the edit placement, not evidence that the products are absent."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "The panel is scored on the annotator's own quality model, and the references are scored with it.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "612",
+       "annotated genomes"
+      ],
+      [
+       "569",
+       "no genome/contig flags"
+      ],
+      [
+       "569",
+       "genuinely clean"
+      ],
+      [
+       "43",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "93.0%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 612 annotated genomes, scored through the annotator's own GTO quality pipeline. It is NOT held out: the module's reference genomes are present in it, and the held-out figure is given in the text. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "pre",
+     "text": "  20  Feature is too short\n   6  Feature is too long\n   2  Contig has too many ambiguous bases, Frac > 0.01\n   1  Too many HSPs for: Membrane protein\n   1  Too many HSPs for: Membrane protein;Too many HSPs for: Nucleocapsid protein;Too many HSPs for: Membrane protein;Too many HSPs for: Nucleocapsid protein\n   1  Too many HSPs for: Nucleocapsid protein\n   1  Feature is too long;Too many HSPs for: NSP12 protein\n   1  Too many HSPs for: NSP12 protein\n   1  Too many HSPs for: NSP12 protein;Too many HSPs for: NSP12 protein"
+    },
+    {
+     "type": "prose",
+     "html": "Over the whole panel, <strong>569 of 612 genomes score Good</strong> and 43 Poor. Across the whole run the quality model raises <strong>21 &ldquo;feature is too short&rdquo; and 7 &ldquo;feature is too long&rdquo;</strong> flags &mdash; 28 flags over 13,289 calls."
+    },
+    {
+     "type": "prose",
+     "html": "Because the panel contains the 25 reference genomes, the honest figure is the one with them removed: <strong>587 held-out genomes, 553 Good, 34 Poor &mdash; 94.2%</strong>, which is <em>higher</em> than the 93.0% over the full panel."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>That is not the direction a contaminated panel fails in, and the reason is worth stating.</strong> Only <strong>16 of the 25 reference genomes score Good</strong>. References are chosen to span the family, so they are disproportionately the divergent lineages &mdash; the rodent arteriviruses, the wobbly possum viruses, the simian outliers &mdash; and those are exactly the genomes this module annotates least completely. Being in the reference set bought them nothing, because routing to the module was never what they were failing."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "The limits, each measured rather than supposed.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>Zealarterivirinae is a measured gap, and the module says so rather than hiding it.</strong> Seven complete genomes &mdash; five Wobbly possum disease virus and two WPDV-AU1 &mdash; route correctly against three of the twenty-five reference contigs and call the full structural set, but not the 5' half of the replicase: no <code>NSP1</code> family, <code>NSP6</code>, <code>NSP7A</code>, <code>NSP7B</code>, <code>NSP8</code>, no frameshift products, and neither <code>GP4</code> nor <code>ORF5A</code>. Part of that is real biology &mdash; the 5' replicase region differs in domain content between lineages (PMID 28053107), and ORF5a was characterised in PRRSV, EAV and LDV with no publication placing it here. Five essential features keep <code>copy_num</code> for exactly this reason: these genomes score <strong>Poor</strong>, which is the truthful statement that the module did not fully annotate them."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The nsp7&alpha;/nsp7&beta; junction is unplaceable outside PRRSV and EAV.</strong> Twenty-four genomes in other lineages have a bracketed slot, and 19 of 24 end in Glu as the chemistry predicts &mdash; but the slots run 104&ndash;152 aa (LDV 140, rat 139, bamboo rat 149, Lopma 152), several outside any defensible window, with no paper placing the cut. They were left alone, and <code>NSP7B</code> carries no <code>copy_num</code> as a result."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Three genomes run away and the annotator is right about two of them.</strong> <code>28344.39183</code> and <code>28344.39739</code> have <strong>no ORF1a stop codon until nt 11955 and 11666</strong> &mdash; a defect in the deposit, not in the call. <code>11047.866</code> starts NSP12 about 1,140 codons early and is a genuine miscall in one genome."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Five genomes annotate every protein as <code>hypothetical protein</code>.</strong> Seven real ORFs in them cannot be named from the source, and the source-annotation ceiling applies: without literature coordinates they are tabled rather than guessed."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Use this module on <strong>complete arterivirus genomes</strong>. The sixteen features carrying <code>copy_num</code> are enforced by the quality model; the eleven that do not are either transcript edits, or mature peptides whose boundary is published for some lineages and not others. A <strong>Poor</strong> score on a complete genome means one thing here: the genome is Zealarterivirinae, and that gap is documented rather than papered over."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "What the build turned up that was not expected.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>The nsp1&alpha;/nsp1&beta; cut site is genotype-specific, and the collections held only one genotype.</strong> PCP&alpha; cleaves <code>Met180&darr;Ala181</code> in PRRSV-2 and <code>His180&darr;Ser181</code> in PRRSV-1 (PMID 25557977). Every deposited NSP1A and NSP1B member was PRRSV-2. The profiles therefore called PRRSV-1 nsp1&alpha; <strong>72 residues long</strong> in 141 genomes &mdash; a clean, consistent, entirely wrong boundary that no call-rate statistic could show, because the feature was being called. Reading pp1a position 180|181 across the family gave 125 <code>H|S</code>, 9 <code>R|S</code>, 4 <code>H|A</code> and 1 <code>V|Y</code>; 137 pairs were derived on the documented site, every nsp1&alpha; exactly 180 aa and every nsp1&beta; ending in the PCP&beta; <code>G|G</code> glycine."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Every EAV genome scored Poor for architecture it has correctly.</strong> EAV carries a <em>single uncleaved</em> nsp1 (PMID 7769711), which the module already models as its own <code>NSP1</code> feature and calls 10/10. But <code>NSP1A</code> and <code>NSP1B</code> carried <code>copy_num</code>, so each EAV genome was flagged twice for being right. The third flag was real and had a different cause: EAV's nsp7&alpha; was being called at 133 aa against a published 123, eating the first ten residues of nsp7&beta; and leaving a 92 aa slot &mdash; and 92 + 10 = 102, the published nsp7&beta; length. The chemistry places the same cut independently: residue 123 is <strong>Glu</strong> and 124 is <strong>Ala</strong> in all ten genomes, the nsp4 3CLSP site."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>One sequence in 588 put E on the wrong reading frame.</strong> Three genomes called <code>E</code> and <code>ORF5A</code> on byte-identical coordinates, and E was the one misplaced &mdash; sitting on the ORF5a frame about a kilobase from where ORF2b belongs. All three were the work of a single profile built from a single deposit: <code>fig|28344.22115.peg.9</code>, labelled <em>Envelope protein</em>, <strong>51 aa</strong> &mdash; which is ORF5a's length, not E's (~70) &mdash; and <strong>98% identical over its whole length to ORF5a deposits</strong> while matching nothing in E but itself. The bin audit could not see it: its foreign-subset test reports a group only at five members or more, the point where foreign sequences cluster into a profile of their own. But a profile can be built from <em>one</em> sequence, deliberately, so that a lineage-specific protein with a single deposit is not dropped &mdash; and a single mislabelled deposit gets the same treatment, with no conservation information to temper it."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Thirty sequences in the unassigned pool were minus-strand ORFs on a positive-strand genome.</strong> Three of their four sequence families cleared the five-member floor, so without a strand test each would have demanded a feature of its own. Another 61 were byte-identical to Simarterivirinae ORF5A members &mdash; a shared family dump, not a gap in this module."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The audit that checked <code>copy_num</code> had to be audited itself.</strong> Its first run reported eighteen non-universal features. Two defects explained almost all of it: it credited another module's calls to this one (<code>2916858.3</code> routes to Simarterivirinae and looked like an Arteriviridae genome calling 5 of 22), and it ignored the source's own completeness flag (the only evidence against <code>GP2</code> and <code>GP3</code> was a genome BV-BRC marks <code>Partial</code>, which clears any nucleotide floor you care to set). Corrected, six features lost <code>copy_num</code> and sixteen kept it."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "What collapsing the vocabulary actually bought.",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "arteriviridae-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "ORF1A",
+       "ORF1a polyprotein",
+       "64"
+      ],
+      [
+       "GP2",
+       "Minor envelope glycoprotein GP2",
+       "56"
+      ],
+      [
+       "GP5",
+       "Major envelope glycoprotein GP5",
+       "48"
+      ],
+      [
+       "GP4",
+       "Minor envelope glycoprotein GP4",
+       "32"
+      ],
+      [
+       "GP3",
+       "Minor envelope glycoprotein GP3",
+       "32"
+      ],
+      [
+       "M",
+       "Membrane protein",
+       "26"
+      ],
+      [
+       "E",
+       "Envelope protein",
+       "23"
+      ],
+      [
+       "N",
+       "Nucleocapsid protein",
+       "21"
+      ],
+      [
+       "NSP2",
+       "Papain-like protease and deubiquitinase NSP2",
+       "9"
+      ],
+      [
+       "ORF5A",
+       "ORF5a protein",
+       "9"
+      ],
+      [
+       "NSP10",
+       "Helicase NSP10 protein",
+       "5"
+      ],
+      [
+       "NSP9",
+       "RNA-dependent RNA polymerase",
+       "4"
+      ],
+      [
+       "NSP1",
+       "Papain-like protease involved in polyprotein cleavage NSP1",
+       "4"
+      ],
+      [
+       "NSP5",
+       "Transmembrane replication complex NSP5 protein",
+       "4"
+      ],
+      [
+       "NSP3",
+       "Transmembrane replication complex NSP3 protein",
+       "3"
+      ],
+      [
+       "NSP8",
+       "NSP8 protein",
+       "3"
+      ],
+      [
+       "NSP4",
+       "Main protease involved in polyprotein cleavage NSP4 protein",
+       "3"
+      ],
+      [
+       "NSP11",
+       "Uridylate-specific endoribonuclease NSP11 protein",
+       "3"
+      ],
+      [
+       "NSP1B",
+       "Papain-like protease and interferon antagonist NSP1-beta",
+       "3"
+      ],
+      [
+       "NSP12",
+       "NSP12 protein",
+       "3"
+      ],
+      [
+       "NSP6",
+       "NSP6 protein",
+       "2"
+      ],
+      [
+       "NSP1A",
+       "Papain-like protease involved in polyprotein cleavage NSP1-alpha",
+       "2"
+      ],
+      [
+       "NSP7A",
+       "NSP7-alpha protein",
+       "2"
+      ],
+      [
+       "NSP7B",
+       "NSP7-beta protein",
+       "1"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "84"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over proteins: every annotated protein in the 587 genomes both sources annotate (5,187 source product records, 12,771 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>273</b> distinct strings, the module's <b>23</b>. At the depth both reach, 5,187 proteins, free text has used <b>273.0 strings against 23.0 &mdash; a 11.9-fold difference.</b> The source reaches 95% of its final size after 4,461 proteins, the module after 102."
+    },
+    {
+     "type": "prose",
+     "html": "The source uses <strong>420 distinct product strings</strong> across this family. <strong>346 of them bind</strong>, to <strong>24 controlled strings</strong> over <strong>25,410 occurrences</strong>; <strong>84 bind to nothing</strong> and are listed rather than hidden, and ten strings appear on both sides, bound in one genus and unbound in another."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Two collapse ratios appear on these pages and they measure different things.</strong> The string-collapse page reports <strong>17.5&times;</strong>, which is all 420 distinct strings against 24 controlled targets. The headline tile here reports <strong>15.1&times;</strong>, which is the 362 <em>string-to-feature pairs</em> against the same 24. The gap between them is the 7 strings that bind to more than one feature."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Those seven are the reason every rule in this module carries a genus column.</strong> <em>glycosylated membrane protein</em> is deposited on GP2, GP3, GP4, GP5 <em>and</em> ORF5a; <em>hypothetical protein</em> on four glycoproteins and ORF1a; <em>glycoprotein</em>, <em>structural glycoprotein</em> and <em>glycosylated minor envelope protein</em> each on three. A string that names five different proteins depending on which genus deposited it cannot bin any of them."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>arteriviridae_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Arteriviridae/work/Arteriviridae/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}

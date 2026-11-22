@@ -160,8 +160,16 @@ def main():
     print("  %d distinct strings -> %d controlled (%.1fx), %d unbound, %s occurrences"
           % (ndistinct, nanno, ratio, len(unb), "{:,}".format(nocc)))
     if nbound != len(bound_strings):
-        print("  (%d string-feature pairs: %d string(s) bind to more than one "
-              "feature)" % (nbound, nbound - len(bound_strings)))
+        #  `nbound - len(bound_strings)` counts EXTRA pairs, not strings: a
+        #  string bound to five features contributes four of them. Labelling it
+        #  "strings" reported 16 for Arteriviridae where the answer is 7
+        #  strings and 16 extra pairs -- and that 16 was then written into a
+        #  published page as a string count.
+        multi = sum(1 for s in bound_strings
+                    if sum(1 for r in agg if any(x[0] == s for x in r["srcs"])) > 1)
+        print("  (%d string-feature pairs over %d distinct bound string(s): "
+              "%d string(s) bind to more than one feature, %d extra pair(s))"
+              % (nbound, len(bound_strings), multi, nbound - len(bound_strings)))
     return 0
 
 

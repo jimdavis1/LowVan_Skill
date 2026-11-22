@@ -1,0 +1,102 @@
+{
+ "Arteriviridae.1.dna": {
+  "genome_ids": "GM989520",
+  "genome_name": "Porcine reproductive and respiratory syndrome virus"
+ },
+ "Arteriviridae.10.dna": {
+  "genome_ids": "L13298",
+  "genome_name": "Lactate dehydrogenase-elevating virus neuro-virulent type C"
+ },
+ "Arteriviridae.11.dna": {
+  "genome_ids": "NC_026811",
+  "genome_name": "Wobbly possum disease virus WPDV"
+ },
+ "Arteriviridae.12.dna": {
+  "genome_ids": "NC_028963",
+  "genome_name": "Rat arterivirus 1 Jilin2014"
+ },
+ "Arteriviridae.13.dna": {
+  "genome_ids": "NC_032987",
+  "genome_name": "Rat arterivirus 1 Ningxia2015"
+ },
+ "Arteriviridae.14.dna": {
+  "genome_ids": "NC_040535",
+  "genome_name": "Rodent arterivirus RtMc-Arterivirus/Tibet2014"
+ },
+ "Arteriviridae.15.dna": {
+  "genome_ids": "NC_048210",
+  "genome_name": "Rodent arterivirus RtEi-Arterivirus/SX2014"
+ },
+ "Arteriviridae.16.dna": {
+  "genome_ids": "NC_075972",
+  "genome_name": "Rodent arterivirus RtClan-Arterivirus/GZ2015"
+ },
+ "Arteriviridae.17.dna": {
+  "genome_ids": "KP026921",
+  "genome_name": "African pouched rat arterivirus PREDICT-06509"
+ },
+ "Arteriviridae.18.dna": {
+  "genome_ids": "MN865490",
+  "genome_name": "Porcine reproductive and respiratory syndrome virus 1953769"
+ },
+ "Arteriviridae.19.dna": {
+  "genome_ids": "EF532814",
+  "genome_name": "Porcine reproductive and respiratory syndrome virus Hawkeye7_After"
+ },
+ "Arteriviridae.2.dna": {
+  "genome_ids": "HZ466179",
+  "genome_name": "Porcine reproductive and respiratory syndrome virus"
+ },
+ "Arteriviridae.20.dna": {
+  "genome_ids": "MW595222",
+  "genome_name": "Lopma virus MOZ068"
+ },
+ "Arteriviridae.21.dna": {
+  "genome_ids": "MW595224",
+  "genome_name": "Praja virus TA156"
+ },
+ "Arteriviridae.22.dna": {
+  "genome_ids": "OQ715741",
+  "genome_name": "Wufeng rodent arterivirus 1 WF_Ty.cinereus_arteri_1"
+ },
+ "Arteriviridae.23.dna": {
+  "genome_ids": "MN635448",
+  "genome_name": "Kappaarterivirus wobum WPDV_AU2"
+ },
+ "Arteriviridae.24.dna": {
+  "genome_ids": "MT415062",
+  "genome_name": "Hedgehog arterivirus 0073"
+ },
+ "Arteriviridae.25.dna": {
+  "genome_ids": "KY495781",
+  "genome_name": "Porcine reproductive and respiratory syndrome virus SH/CH/2016"
+ },
+ "Arteriviridae.3.dna": {
+  "genome_ids": "HV197395",
+  "genome_name": "Equine arteritis virus"
+ },
+ "Arteriviridae.4.dna": {
+  "genome_ids": "MN865514",
+  "genome_name": "Porcine reproductive and respiratory syndrome virus 2020590"
+ },
+ "Arteriviridae.5.dna": {
+  "genome_ids": "MN508192",
+  "genome_name": "Wobbly possum disease virus Brighton 2019/1821"
+ },
+ "Arteriviridae.6.dna": {
+  "genome_ids": "NC_001639",
+  "genome_name": "Lactate dehydrogenase-elevating virus Plagemann"
+ },
+ "Arteriviridae.7.dna": {
+  "genome_ids": "MF324848",
+  "genome_name": "Olivier's shrew virus 1 Gkd-1"
+ },
+ "Arteriviridae.8.dna": {
+  "genome_ids": "OF296818",
+  "genome_name": "Porcine reproductive and respiratory syndrome virus"
+ },
+ "Arteriviridae.9.dna": {
+  "genome_ids": "OP094594",
+  "genome_name": "Bamboo rat arterivirus B30M03"
+ }
+}

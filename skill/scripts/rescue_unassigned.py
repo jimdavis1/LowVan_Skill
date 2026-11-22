@@ -86,11 +86,36 @@ if not (len(ann) == len(md5)):
 #  parse bugs above been fixed on their own, this would have re-rescued every
 #  sequence that was ALREADY binned and duplicated it into the collections.
 #  Match on the feature id instead, which is what the header actually holds.
+#  THIS SCRIPT COULD NOT SEE ITS OWN OUTPUT, so it was NOT IDEMPOTENT.
+#  Adoption below writes the header as ">fid|genus|md5", but this loop read
+#  back split()[0] and compared it to a BARE feature id. A rescued record
+#  therefore never appeared in `assigned`, and a second run re-adopted every
+#  sequence the first run had already placed.
+#
+#  Measured on Arteriviridae, 19 Nov 2026: a second rescue over collections
+#  that already held the first one's output duplicated 245 records -- 91 into
+#  GP5, 37 into ORF1A, 25 into GP2, 20 into GP3, 17 into GP4. Nothing failed.
+#  The collections simply grew, and the duplicated members would have been
+#  double-weighted in every alignment and profile built from them.
+#
+#  UNASSIGNED_TRACKING.tsv over-reporting is a SEPARATE defect with the same
+#  symptom, and it is fixed at the bottom of this file, not here. See the
+#  comment on _rewrite_tracking(): this script never rewrote that file, so the
+#  install gate counted sequences the rescue had already binned. 143 were
+#  listed as uncalled when 109 of them were in collections -- which is what
+#  sent the curator looking for a missing-sequence defect that did not exist.
+#
+#  Take the first two "|" fields of a fig id, which is the feature id itself,
+#  and fall back to the whole token for any other id shape.
+def _fid(tok):
+    p = tok.split("|")
+    return "|".join(p[:2]) if len(p) >= 2 and p[0] == "fig" else tok
+
 assigned = set()
 for fn in os.listdir(cdir):
     if not fn.endswith(".fasta"): continue
     for line in open(os.path.join(cdir, fn)):
-        if line.startswith(">"): assigned.add(line[1:].split()[0].strip())
+        if line.startswith(">"): assigned.add(_fid(line[1:].split()[0].strip()))
 
 #  PROJECT RULE: a record the source annotates as partial or incomplete is
 #  DISCARDED, and that has to hold HERE as well. This script re-derives the
@@ -102,16 +127,44 @@ for fn in os.listdir(cdir):
 #  in the same run.
 from annotation_rules import PARTIAL  # noqa: E402
 
-todo, n_partial = [], 0
+#  PROJECT RULE, the same argument one step further: a string the taxon script
+#  sent to NOT_MODELLED is a CURATOR'S DECISION that the module does not call
+#  that product, and this script rebuilds its pool from "everything in the dump
+#  that is in no collection", which includes every one of them. Without this
+#  test the rescue hands them straight back, and it does so at high identity
+#  precisely because they ARE homologous to a named feature -- which is why
+#  they were excluded rather than ignored.
+#
+#  Measured on Arteriviridae, 18 Nov 2026: pp1ab, `polyprotein 1aTF` and
+#  `polyprotein 1aN` are the -1 and -2 ribosomal frameshift products of the
+#  replicase and are declared `special: transcript_edit` with no PSSM. The
+#  rescue adopted 31 of them into ORF1A, because a 1,221 aa 1aTF product shares
+#  its entire N-terminus with pp1a and so clears both the identity and the
+#  query-coverage floors. A frameshift fusion inside the ORF1a collection is
+#  exactly the contamination step 2a exists to prevent, and nothing downstream
+#  would have shown it.
+NOTMOD = set()
+_nm = os.path.join(W, "collections", "NOT_MODELLED.tsv")
+if os.path.exists(_nm):
+    for _l in open(_nm):
+        _p = _l.rstrip("\n").split("\t")
+        if len(_p) >= 2 and _p[0] != "features":
+            NOTMOD.add(" ".join(_p[1].split()).lower())
+
+todo, n_partial, n_notmod = [], 0, 0
 for i, m in enumerate(md5):
     fid = ann[i][0] if ann[i] else ""
     an = ann[i][1] if len(ann[i]) > 1 else ""
     if not fid or fid in assigned or not seq.get(m): continue
     if PARTIAL.search(" ".join((an or "").split())):
         n_partial += 1; continue
+    if " ".join((an or "").split()).lower() in NOTMOD:
+        n_notmod += 1; continue
     gid = fid.split("|", 1)[1].rsplit(".", 2)[0]
     todo.append((fid, g2g.get(gid, "unclassified"), m, an, seq[m]))
-sys.stderr.write("%d sequences matched no rule; %d discarded as partial-annotated\n" % (len(todo), n_partial))
+sys.stderr.write("%d sequences matched no rule; %d discarded as partial-annotated; "
+                 "%d held out as NOT_MODELLED by the taxon script\n"
+                 % (len(todo), n_partial, n_notmod))
 if not todo: sys.exit(0)
 
 tmp = tempfile.mkdtemp()
@@ -167,6 +220,63 @@ rc = collections.Counter((x[3], x[1]) for x in rej)
 for (an, gen), c in rc.most_common(12):
     print("   %-4d %-34s %s" % (c, an[:34], gen))
 
+def _rewrite_tracking():
+    """Recompute UNASSIGNED_TRACKING.tsv's `not_already_called` column.
+
+    ONLY collection_engine.py ever wrote this file, and it writes it BEFORE
+    this script runs. Adoption below moves sequences into the collections but
+    left the file saying they were uncalled, so the install gate -- which gates
+    on exactly this column -- reported a pool that no longer existed, for every
+    module that was ever rescued. Nothing failed and no number went down, which
+    is why it survived: an inflated uncalled count looks like unfinished
+    curation, and the obvious response is to go looking for the missing
+    sequences.
+
+    Measured on Arteriviridae, 19 Nov 2026: the gate reported 143 uncalled
+    across 4 strings when 109 of them were already binned -- 41 `glycoprotein`
+    and 32 `envelope glycoprotein` in GP5, and so on. Only the 34
+    `hypothetical protein` records were genuinely uncalled. Acting on the
+    inflated number duplicated 245 records into the collections before the
+    arithmetic was checked.
+
+    `features` and `uniq_seqs` describe the annotation group and do not change
+    when a sequence is adopted, so they are preserved byte-for-byte; only the
+    third column is recomputed, against the collections as they now stand.
+    """
+    p = os.path.join(W, "collections", "UNASSIGNED_TRACKING.tsv")
+    if not os.path.exists(p):
+        return
+    called = set()
+    for fn in os.listdir(cdir):
+        if not fn.endswith(".fasta"): continue
+        cur = []
+        for line in open(os.path.join(cdir, fn)):
+            if line.startswith(">"):
+                if cur: called.add("".join(cur)); cur = []
+            else: cur.append(line.strip())
+        if cur: called.add("".join(cur))
+    #  annotation -> the unique sequences deposited under it
+    by_ann = collections.defaultdict(set)
+    for i, m in enumerate(md5):
+        an = " ".join((ann[i][1] if len(ann[i]) > 1 else "").split())
+        if m in seq: by_ann[an].add(seq[m])
+    rows, changed = [], 0
+    with open(p) as fh:
+        hdr = fh.readline().rstrip("\n")
+        for line in fh:
+            f = line.rstrip("\n").split("\t")
+            if len(f) < 4: rows.append(line.rstrip("\n")); continue
+            an = f[-1]
+            new = len(by_ann.get(" ".join(an.split()), set()) - called)
+            if str(new) != f[2]: changed += 1
+            rows.append("\t".join([f[0], f[1], str(new), an]))
+    with open(p, "w") as fh:
+        fh.write(hdr + "\n")
+        for r in rows: fh.write(r + "\n")
+    print("UNASSIGNED_TRACKING.tsv: recomputed uncalled counts, %d row(s) changed"
+          % changed)
+
+
 if a.write:
     for tgt, recs in adopt.items():
         p = os.path.join(cdir, tgt + ".fasta")
@@ -176,5 +286,6 @@ if a.write:
         f.write("count\tannotation\tgenus\tadopted_as\n")
         for (an, gen, key), c in counts.most_common():
             f.write("%d\t%s\t%s\t%s\n" % (c, an, gen, key))
+    _rewrite_tracking()
 else:
     print("\n(dry run -- rerun with --write)")

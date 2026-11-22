@@ -222,6 +222,17 @@ def main():
 
     for path in sorted(glob.glob(os.path.join(cdir, "*.fasta"))):
         feat = os.path.basename(path)[:-6]
+        #  `<FEAT>.outliers.fasta` is the PARKING file the collection engine
+        #  writes for sequences its length window removed. Auditing it as a
+        #  collection asks whether out-of-window sequences are out of window,
+        #  so every one of them reports NO-LITERATURE (an outliers file can
+        #  never have a literature range of its own) plus a FRAGMENT or GIANT
+        #  for each member -- 11 of Arteriviridae's 37 unresolved findings on
+        #  the first pass, none of them about a shipped sequence. The file
+        #  still matters and is still read BY HAND, which is what
+        #  annotation-triage.md asks for; it is simply not a collection.
+        if feat.endswith(".outliers"):
+            continue
         rows = read_fasta(path)
         if not rows:
             continue

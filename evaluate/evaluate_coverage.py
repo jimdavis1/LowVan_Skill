@@ -64,11 +64,23 @@ def read_contigs(path):
 
 
 def stage(contigs, work):
-    """One representative sequence per genome file -> genomes.fna."""
+    """Longest sequence per genome -> genomes.fna (for clustering only).
+
+    A SEGMENTED genome has more than one sequence in its file, and clustering
+    needs ONE representative, so the longest is taken.  Every segment is kept
+    in `allseqs` and it is `allseqs` -- not this representative -- that is
+    annotated.  Measured 20 Nov 2026 on Birnaviridae: annotating the
+    representative alone discarded segment B in 266 of 330 genomes, and VP1,
+    the segment-B RdRp, was called in 3 of 47 exemplars instead of nearly all
+    of them.  Nothing errored; the module looked like it could not call its own
+    polymerase.  The same shape would hit every segmented taxon in this
+    repository -- influenza, the reoviruses, arenaviruses, hantaviruses,
+    bunyaviruses.
+    """
     os.makedirs(work, exist_ok=True)
     fa = os.path.join(work, "genomes.fna")
     n = 0
-    seqs = {}
+    seqs, allseqs = {}, {}
     with open(fa, "w") as fh:
         for f in sorted(glob.glob(os.path.join(contigs, "*"))):
             if os.path.isdir(f):
@@ -79,10 +91,15 @@ def stage(contigs, work):
             gid = re.sub(r"\.(contigs|fna|fa|fasta)$", "", os.path.basename(f))
             best = max(s, key=len)
             seqs[gid] = best
+            allseqs[gid] = s
             fh.write(">%s\n%s\n" % (gid, best))
             n += 1
+    nseg = sum(1 for v in allseqs.values() if len(v) > 1)
     print("  staged %d genome(s) -> %s" % (n, fa))
-    return fa, seqs
+    if nseg:
+        print("  %d of them are segmented; every segment is annotated, the "
+              "longest is the clustering representative" % nseg)
+    return fa, seqs, allseqs
 
 
 def cluster(fa, work, pid, cov, threads):
@@ -175,7 +192,7 @@ def read_quality(qdir):
     return good, poor, flags, per_feature
 
 
-def annotate(exemplars, seqs, work, repo, threads):
+def annotate(exemplars, seqs, work, repo, threads, allseqs=None):
     exd = os.path.join(work, "ex"); os.makedirs(exd, exist_ok=True)
     outd = os.path.join(work, "ann"); os.makedirs(outd, exist_ok=True)
     env = dict(os.environ, LOWVAN_DATA_DIR=repo)
@@ -183,8 +200,11 @@ def annotate(exemplars, seqs, work, repo, threads):
     for g in exemplars:
         fa = os.path.join(exd, g + ".fna")
         if not os.path.exists(fa):
+            #  EVERY segment, not the clustering representative.  See stage().
+            parts = (allseqs or {}).get(g) or [seqs[g]]
             with open(fa, "w") as fh:
-                fh.write(">%s\n%s\n" % (g, seqs[g]))
+                for i, sq in enumerate(parts):
+                    fh.write(">%s%s\n%s\n" % (g, ".seg%d" % (i + 1) if len(parts) > 1 else "", sq))
         jobs.append((g, fa))
 
     def one(job):
@@ -225,7 +245,7 @@ def main():
     args = ap.parse_args()
 
     work = os.path.abspath(args.work)
-    fa, seqs = stage(args.contigs, work)
+    fa, seqs, allseqs = stage(args.contigs, work)
     members = cluster(fa, work, args.pident, args.cov, args.threads)
 
     #  A single completeness floor is wrong the moment the taxon contains a
@@ -261,11 +281,11 @@ def main():
     print("  %d exemplar(s); %d cluster(s) below every floor, skipped"
           % (len(ex), partial_only))
 
-    outd = annotate(ex, seqs, work, os.path.abspath(args.repo), args.threads)
-    report(ex, seqs, outd, args.out)
+    outd = annotate(ex, seqs, work, os.path.abspath(args.repo), args.threads, allseqs)
+    report(ex, seqs, outd, args.out, allseqs)
 
 
-def report(ex, seqs, outd, out):
+def report(ex, seqs, outd, out, allseqs=None):
     unrouted, per_mod, feats, flags = [], collections.Counter(), collections.Counter(), collections.Counter()
     per_mod_feat = collections.defaultdict(collections.Counter)
     quality = collections.Counter()
@@ -291,7 +311,7 @@ def report(ex, seqs, outd, out):
         for c in calls:
             feats[c] += 1
             per_mod_feat[mod or "(none)"][c] += 1
-        rows.append({"genome": g, "len": len(seqs[g]), "module": mod, "n_calls": len(calls),
+        rows.append({"genome": g, "len": sum(len(x) for x in (allseqs or {}).get(g, [seqs[g]])), "module": mod, "n_calls": len(calls),
                      "calls": sorted(set(calls))})
     res = {"exemplars": len(ex), "unrouted": unrouted, "per_module": dict(per_mod),
            "features": dict(feats),

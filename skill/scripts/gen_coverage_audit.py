@@ -253,9 +253,27 @@ def main():
                 #  it. Every audit in the series shipped without one because
                 #  no block type emitted a figure, though the CSS for it was
                 #  there all along.
+                #  `from` is a BARE FILENAME written by gen_facts.py, which
+                #  tests for it relative to the FACTS FILE, not the cwd.
+                #  Resolving it only against the cwd made this raise
+                #  SystemExit on a facts file that was perfectly correct --
+                #  and because the exit happens before the page is written,
+                #  the PREVIOUS build stayed on disk and check_artifact_html
+                #  then passed a stale page as clean. Look where the writer
+                #  looked.
+                here = os.path.dirname(os.path.abspath(a.facts))
                 src = b["from"]
-                if not os.path.exists(src):
-                    raise SystemExit("figure source not found: %s" % src)
+                for cand in (src,
+                             os.path.join(here, src),
+                             os.path.join(here, "..", src),
+                             os.path.join(here, "..", "figures", src)):
+                    if os.path.exists(cand):
+                        src = cand
+                        break
+                else:
+                    raise SystemExit("figure source not found: %s (looked in "
+                                     "the cwd, %s, its parent and "
+                                     "../figures)" % (b["from"], here))
                 h = open(src).read()
                 i, j = h.find("<figure"), h.rfind("</figure>")
                 if i < 0 or j < 0:

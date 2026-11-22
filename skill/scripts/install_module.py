@@ -262,8 +262,16 @@ def validate(workdir, mod_json):
         #  than the collections it describes -- a stale clean report is the
         #  failure mode this is here to prevent.
         audit = None
+        #  The same three locations build_features.py accepts. It had only
+        #  the first two, so a build whose workdir IS the module directory --
+        #  which is how the Arteriviridae and Simarterivirinae trees are laid
+        #  out -- passed the build gate and then failed the install gate on a
+        #  report that was sitting right there. Two gates that disagree about
+        #  where a file lives make the second one look like a defect in the
+        #  module.
         for cand in (os.path.join(workdir, module, "LENGTH_AUDIT.md"),
-                     os.path.join(workdir, "LENGTH_AUDIT.%s.md" % module)):
+                     os.path.join(workdir, "LENGTH_AUDIT.%s.md" % module),
+                     os.path.join(workdir, "LENGTH_AUDIT.md")):
             if os.path.exists(cand):
                 audit = cand
                 break

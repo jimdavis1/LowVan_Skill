@@ -1,0 +1,46 @@
+{
+ "Simarterivirinae.1.dna": {
+  "genome_ids": "HQ845737",
+  "genome_name": "Kibale red colobus virus 1 krc1"
+ },
+ "Simarterivirinae.10.dna": {
+  "genome_ids": "KP126831",
+  "genome_name": "DeBrazza's monkey arterivirus PREDICT-06530"
+ },
+ "Simarterivirinae.11.dna": {
+  "genome_ids": "KM677927",
+  "genome_name": "Simian hemorrhagic encephalitis virus Sukhumi"
+ },
+ "Simarterivirinae.2.dna": {
+  "genome_ids": "AF180391",
+  "genome_name": "Simian hemorrhagic fever virus LVR 42-0/M6941"
+ },
+ "Simarterivirinae.3.dna": {
+  "genome_ids": "KC787644",
+  "genome_name": "Kibale red colobus virus 2 SHFV-krc2"
+ },
+ "Simarterivirinae.4.dna": {
+  "genome_ids": "MH686150",
+  "genome_name": "Southwest baboon virus 1 15290"
+ },
+ "Simarterivirinae.5.dna": {
+  "genome_ids": "KR862294",
+  "genome_name": "Free State vervet virus VSAC4012"
+ },
+ "Simarterivirinae.6.dna": {
+  "genome_ids": "KT166441",
+  "genome_name": "Zambian malbrouck virus 1 SHFVagmMal_seqID_01"
+ },
+ "Simarterivirinae.7.dna": {
+  "genome_ids": "JX473850",
+  "genome_name": "Simian hemorrhagic fever virus krtg09"
+ },
+ "Simarterivirinae.8.dna": {
+  "genome_ids": "KR139840",
+  "genome_name": "Pebjah virus F1167"
+ },
+ "Simarterivirinae.9.dna": {
+  "genome_ids": "KT447550",
+  "genome_name": "Kafue kinda chacma baboon virus KKCBV-1"
+ }
+}

@@ -1,0 +1,630 @@
+{
+ "Arteriviridae": {
+  "close_genomes": {
+   "Arteriviridae.1.dna": {
+    "genome_ids": "GM989520",
+    "genome_name": "Porcine reproductive and respiratory syndrome virus"
+   },
+   "Arteriviridae.10.dna": {
+    "genome_ids": "L13298",
+    "genome_name": "Lactate dehydrogenase-elevating virus neuro-virulent type C"
+   },
+   "Arteriviridae.11.dna": {
+    "genome_ids": "NC_026811",
+    "genome_name": "Wobbly possum disease virus WPDV"
+   },
+   "Arteriviridae.12.dna": {
+    "genome_ids": "NC_028963",
+    "genome_name": "Rat arterivirus 1 Jilin2014"
+   },
+   "Arteriviridae.13.dna": {
+    "genome_ids": "NC_032987",
+    "genome_name": "Rat arterivirus 1 Ningxia2015"
+   },
+   "Arteriviridae.14.dna": {
+    "genome_ids": "NC_040535",
+    "genome_name": "Rodent arterivirus RtMc-Arterivirus/Tibet2014"
+   },
+   "Arteriviridae.15.dna": {
+    "genome_ids": "NC_048210",
+    "genome_name": "Rodent arterivirus RtEi-Arterivirus/SX2014"
+   },
+   "Arteriviridae.16.dna": {
+    "genome_ids": "NC_075972",
+    "genome_name": "Rodent arterivirus RtClan-Arterivirus/GZ2015"
+   },
+   "Arteriviridae.17.dna": {
+    "genome_ids": "KP026921",
+    "genome_name": "African pouched rat arterivirus PREDICT-06509"
+   },
+   "Arteriviridae.18.dna": {
+    "genome_ids": "MN865490",
+    "genome_name": "Porcine reproductive and respiratory syndrome virus 1953769"
+   },
+   "Arteriviridae.19.dna": {
+    "genome_ids": "EF532814",
+    "genome_name": "Porcine reproductive and respiratory syndrome virus Hawkeye7_After"
+   },
+   "Arteriviridae.2.dna": {
+    "genome_ids": "HZ466179",
+    "genome_name": "Porcine reproductive and respiratory syndrome virus"
+   },
+   "Arteriviridae.20.dna": {
+    "genome_ids": "MW595222",
+    "genome_name": "Lopma virus MOZ068"
+   },
+   "Arteriviridae.21.dna": {
+    "genome_ids": "MW595224",
+    "genome_name": "Praja virus TA156"
+   },
+   "Arteriviridae.22.dna": {
+    "genome_ids": "OQ715741",
+    "genome_name": "Wufeng rodent arterivirus 1 WF_Ty.cinereus_arteri_1"
+   },
+   "Arteriviridae.23.dna": {
+    "genome_ids": "MN635448",
+    "genome_name": "Kappaarterivirus wobum WPDV_AU2"
+   },
+   "Arteriviridae.24.dna": {
+    "genome_ids": "MT415062",
+    "genome_name": "Hedgehog arterivirus 0073"
+   },
+   "Arteriviridae.25.dna": {
+    "genome_ids": "KY495781",
+    "genome_name": "Porcine reproductive and respiratory syndrome virus SH/CH/2016"
+   },
+   "Arteriviridae.3.dna": {
+    "genome_ids": "HV197395",
+    "genome_name": "Equine arteritis virus"
+   },
+   "Arteriviridae.4.dna": {
+    "genome_ids": "MN865514",
+    "genome_name": "Porcine reproductive and respiratory syndrome virus 2020590"
+   },
+   "Arteriviridae.5.dna": {
+    "genome_ids": "MN508192",
+    "genome_name": "Wobbly possum disease virus Brighton 2019/1821"
+   },
+   "Arteriviridae.6.dna": {
+    "genome_ids": "NC_001639",
+    "genome_name": "Lactate dehydrogenase-elevating virus Plagemann"
+   },
+   "Arteriviridae.7.dna": {
+    "genome_ids": "MF324848",
+    "genome_name": "Olivier's shrew virus 1 Gkd-1"
+   },
+   "Arteriviridae.8.dna": {
+    "genome_ids": "OF296818",
+    "genome_name": "Porcine reproductive and respiratory syndrome virus"
+   },
+   "Arteriviridae.9.dna": {
+    "genome_ids": "OP094594",
+    "genome_name": "Bamboo rat arterivirus B30M03"
+   }
+  },
+  "features": {
+   "E": {
+    "PMID_claude_generated": [
+     "10400725",
+     "11504553",
+     "16904148",
+     "19951726",
+     "11226573"
+    ],
+    "anno": "Envelope protein",
+    "bit_cutoff": 37,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E",
+    "kmers": 1,
+    "max_len": 95,
+    "min_len": 45,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "GP2": {
+    "PMID_claude_generated": [
+     "1328669",
+     "10400725",
+     "16160177",
+     "19939927",
+     "14645556"
+    ],
+    "anno": "Minor envelope glycoprotein GP2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "GP2",
+    "kmers": 1,
+    "max_len": 320,
+    "min_len": 150,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "GP3": {
+    "PMID_claude_generated": [
+     "12743278",
+     "16160177",
+     "9856081",
+     "24142700",
+     "29229370"
+    ],
+    "anno": "Minor envelope glycoprotein GP3",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "GP3",
+    "kmers": 1,
+    "max_len": 280,
+    "min_len": 130,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "GP4": {
+    "PMID_claude_generated": [
+     "12743278",
+     "19939927",
+     "16160177",
+     "9223499"
+    ],
+    "anno": "Minor envelope glycoprotein GP4",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "GP4",
+    "kmers": 1,
+    "max_len": 210,
+    "min_len": 80,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "GP5": {
+    "PMID_claude_generated": [
+     "1328669",
+     "7831770",
+     "16160177",
+     "16571816",
+     "12477814"
+    ],
+    "anno": "Major envelope glycoprotein GP5",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "GP5",
+    "kmers": 1,
+    "max_len": 285,
+    "min_len": 160,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "M": {
+    "PMID_claude_generated": [
+     "1328669",
+     "7831770",
+     "16160177",
+     "12477814"
+    ],
+    "anno": "Membrane protein",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M",
+    "kmers": 1,
+    "max_len": 190,
+    "min_len": 155,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "N": {
+    "PMID_claude_generated": [
+     "14604534",
+     "1328669",
+     "10500278",
+     "12239338"
+    ],
+    "anno": "Nucleocapsid protein",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "N",
+    "kmers": 1,
+    "max_len": 140,
+    "min_len": 100,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "NSP1": {
+    "PMID_claude_generated": [
+     "7769711",
+     "1331507",
+     "28053107",
+     "24928046"
+    ],
+    "anno": "Papain-like protease involved in polyprotein cleavage NSP1",
+    "bit_cutoff": 60,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp1",
+    "kmers": 1,
+    "max_len": 275,
+    "min_len": 244,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 1
+   },
+   "NSP10": {
+    "PMID_claude_generated": [
+     "9971783",
+     "20696193"
+    ],
+    "anno": "Helicase NSP10 protein",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp10",
+    "kmers": 1,
+    "max_len": 495,
+    "min_len": 405,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP11": {
+    "PMID_claude_generated": [
+     "9971783",
+     "19646449"
+    ],
+    "anno": "Uridylate-specific endoribonuclease NSP11 protein",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp11",
+    "kmers": 1,
+    "max_len": 240,
+    "min_len": 200,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP12": {
+    "PMID_claude_generated": [
+     "9971783",
+     "20696193"
+    ],
+    "anno": "NSP12 protein",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp12",
+    "kmers": 1,
+    "max_len": 170,
+    "min_len": 110,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP1A": {
+    "PMID_claude_generated": [
+     "20006994",
+     "19706710",
+     "25557977"
+    ],
+    "anno": "Papain-like protease involved in polyprotein cleavage NSP1-alpha",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp1alpha",
+    "kmers": 1,
+    "max_len": 200,
+    "min_len": 160,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 1
+   },
+   "NSP1B": {
+    "PMID_claude_generated": [
+     "20006994",
+     "23043113",
+     "18198380"
+    ],
+    "anno": "Papain-like protease and interferon antagonist NSP1-beta",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp1beta",
+    "kmers": 1,
+    "max_len": 230,
+    "min_len": 180,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP2": {
+    "PMID_claude_generated": [
+     "7622476",
+     "19587037",
+     "25557977",
+     "20668084"
+    ],
+    "anno": "Papain-like protease and deubiquitinase NSP2",
+    "bit_cutoff": 60,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp2",
+    "kmers": 1,
+    "max_len": 1300,
+    "min_len": 400,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP3": {
+    "PMID_claude_generated": [
+     "8617757",
+     "9971783",
+     "20696193"
+    ],
+    "anno": "Transmembrane replication complex NSP3 protein",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp3",
+    "kmers": 1,
+    "max_len": 350,
+    "min_len": 200,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP4": {
+    "PMID_claude_generated": [
+     "9371590",
+     "8617757",
+     "19646449"
+    ],
+    "anno": "Main protease involved in polyprotein cleavage NSP4 protein",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp4",
+    "kmers": 1,
+    "max_len": 230,
+    "min_len": 180,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP5": {
+    "PMID_claude_generated": [
+     "9371590",
+     "25557977"
+    ],
+    "anno": "Transmembrane replication complex NSP5 protein",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp5",
+    "kmers": 1,
+    "max_len": 190,
+    "min_len": 150,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP6": {
+    "PMID_claude_generated": [
+     "9371590",
+     "17098961"
+    ],
+    "anno": "NSP6 protein",
+    "bit_cutoff": 25,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp6",
+    "kmers": 1,
+    "max_len": 30,
+    "min_len": 10,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP7A": {
+    "PMID_claude_generated": [
+     "17098961",
+     "22258855"
+    ],
+    "anno": "NSP7-alpha protein",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp7alpha",
+    "kmers": 1,
+    "max_len": 170,
+    "min_len": 115,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP7B": {
+    "PMID_claude_generated": [
+     "17098961",
+     "16527369",
+     "22258855"
+    ],
+    "anno": "NSP7-beta protein",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 0,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp7beta",
+    "kmers": 1,
+    "max_len": 135,
+    "min_len": 90,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP8": {
+    "PMID_claude_generated": [
+     "30353315",
+     "20696193"
+    ],
+    "anno": "NSP8 protein",
+    "bit_cutoff": 25,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp8",
+    "kmers": 1,
+    "max_len": 60,
+    "min_len": 35,
+    "segment": "Single RNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   },
+   "NSP9": {
+    "PMID_claude_generated": [
+     "9971783",
+     "30353315",
+     "20696193"
+    ],
+    "anno": "RNA-dependent RNA polymerase",
+    "feature_type": "mat_peptide",
+    "gene_symbol": "nsp9",
+    "max_len": 734,
+    "min_len": 601,
+    "segment": "Single RNA Segment",
+    "special": "transcript_edit",
+    "type": "mat_peptide"
+   },
+   "ORF1A": {
+    "PMID_claude_generated": [
+     "20696193",
+     "9371590"
+    ],
+    "anno": "ORF1a polyprotein",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "ORF1a",
+    "kmers": 1,
+    "max_len": 2700,
+    "min_len": 1700,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "ORF1AB": {
+    "PMID_claude_generated": [
+     "20696193",
+     "15680415",
+     "2447506"
+    ],
+    "anno": "ORF1ab polyprotein",
+    "feature_type": "CDS",
+    "gene_symbol": "ORF1ab",
+    "max_len": 4338,
+    "min_len": 2953,
+    "segment": "Single RNA Segment",
+    "special": "transcript_edit",
+    "type": "CDS"
+   },
+   "ORF1AN": {
+    "PMID_claude_generated": [
+     "23043113"
+    ],
+    "anno": "ORF1a-N polyprotein",
+    "feature_type": "CDS",
+    "gene_symbol": "ORF1aN",
+    "max_len": 1320,
+    "min_len": 979,
+    "segment": "Single RNA Segment",
+    "special": "transcript_edit",
+    "type": "CDS"
+   },
+   "ORF1ATF": {
+    "PMID_claude_generated": [
+     "23043113",
+     "20696193"
+    ],
+    "anno": "ORF1a-TF polyprotein",
+    "feature_type": "CDS",
+    "gene_symbol": "ORF1aTF",
+    "max_len": 1501,
+    "min_len": 1039,
+    "segment": "Single RNA Segment",
+    "special": "transcript_edit",
+    "type": "CDS"
+   },
+   "ORF5A": {
+    "PMID_claude_generated": [
+     "21307223",
+     "21307222",
+     "23219923"
+    ],
+    "anno": "ORF5a protein",
+    "bit_cutoff": 25,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "ORF5a",
+    "kmers": 1,
+    "max_len": 80,
+    "min_len": 40,
+    "segment": "Single RNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   }
+  },
+  "segments": {
+   "Single RNA Segment": {
+    "max_len": 18939,
+    "min_len": 951,
+    "replicon_geometry": "linear"
+   }
+  }
+ }
+}

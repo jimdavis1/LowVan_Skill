@@ -64,8 +64,9 @@ def main():
     for k in sorted(required):
         if k not in feats:
             sys.exit("--require %s: no such feature in %s" % (k, a.module))
-        if feats[k].get("special") == "splice":
-            sys.exit("--require %s: a spliced feature is never essential" % k)
+        if feats[k].get("special"):
+            sys.exit("--require %s: a %s feature is never essential"
+                     % (k, feats[k]["special"]))
 
     #  Two rates per feature, per genome:
     #    raw        the feature was called at all
@@ -284,7 +285,36 @@ def main():
         frac = raw[k] / routed
         sa = alone[k] / routed
         has = bool(v.get("copy_num"))
-        if v.get("special") == "splice":
+        #  NO SPECIAL FEATURE IS EVER ESSENTIAL, not just a spliced one.
+        #
+        #  This tested `== "splice"` and let `transcript_edit` through. Those
+        #  features are emitted by a different program -- the run log counts
+        #  them separately as "LowVan Transcript Edited Feature" -- and their
+        #  call rate measures whether a ribosomal frameshift or an editing
+        #  site was DETECTABLE, not whether the genome is complete. Several
+        #  are lineage-restricted on top of that, which is the exact shape
+        #  copy_num must never be applied to: it would flag every genome of
+        #  every other lineage as missing an essential feature.
+        #
+        #  Measured 20 Nov 2026, Arteriviridae. Simarterivirinae ORF1AB is
+        #  special: transcript_edit and called on 95.7% of its 46 routed
+        #  genomes -- it was marked ADD. In the sibling module the same
+        #  feature reads 78.9% and NSP9 reads 84.7%, which is 0.3 points
+        #  under the threshold: those two escaped by luck, not by rule.
+        if v.get("special"):
+            spliced.append((k, frac, has))
+            continue
+
+        #  AN UNCHARACTERIZED FEATURE IS NEVER ESSENTIAL EITHER.
+        #
+        #  The curator's naming rule gives a paralogue with no literature
+        #  function the annotation "Uncharacterized lineage-specific
+        #  protein". Lineage-specific is precisely what must not carry
+        #  copy_num. Simarterivirinae GP2P/GP3P/GP4P are the duplicated
+        #  minor-glycoprotein cassette of the SHFV-like viruses and all read
+        #  97.8%, high enough to be marked, and two of them additionally
+        #  collide with their non-P paralogue on one ORF.
+        if str(v.get("anno", "")).lower().startswith("uncharacterized"):
             spliced.append((k, frac, has))
             continue
         if k in required:
@@ -327,7 +357,10 @@ def main():
     for k in sorted(feats, key=lambda x: -called[x]):
         frac = called[k] / routed
         sa = alone[k] / routed
-        mark = ("splice/never" if feats[k].get("special") == "splice" else
+        mark = ((feats[k].get("special") or "uncharacterized") + "/never"
+                if (feats[k].get("special")
+                    or str(feats[k].get("anno", "")).lower()
+                       .startswith("uncharacterized")) else
                 ("ADD" if not feats[k].get("copy_num") else "keep") + " (required)"
                 if k in required else
                 "ADD" if any(x[0] == k for x in add) else
@@ -357,8 +390,9 @@ def main():
     #  genomes the splice vocabulary simply did not reach.
     unmark = [k for k, _f, has in spliced if has]
     if spliced:
-        print("\n  spliced -- never marked essential (called by")
-        print("  get_splice_variant_features.pl, not by a PSSM):")
+        print("\n  never marked essential -- a special feature is emitted by")
+        print("  another program, and an uncharacterized one is by definition")
+        print("  lineage-specific:")
         for k, f, has in spliced:
             print("    %-11s %5.1f%% called%s"
                   % (k, 100 * f, "   STRIPPING copy_num" if has else ""))

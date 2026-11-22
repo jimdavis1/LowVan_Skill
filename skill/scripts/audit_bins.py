@@ -91,6 +91,14 @@ import argparse, collections, glob, json, os, shutil, statistics
 import subprocess, sys, tempfile
 
 BV = "/Applications/BV-BRC.app/runtime/bin"
+
+#  Thresholds for the FOREIGN-SUBSET test (see where subset_n is computed).
+#  SUBSET_MIN is the point at which a group of foreign members is big enough
+#  to survive clustering and become a profile of its own. The Arteriviridae
+#  M/GP4 case that motivated the test had 35.
+SUBSET_ID = 90.0
+SUBSET_COV = 0.85
+SUBSET_MIN = 5
 if os.path.isdir(BV):
     os.environ["PATH"] = BV + ":" + os.environ.get("PATH", "")
 
@@ -191,7 +199,7 @@ def nesting(cdir, feats):
     return out
 
 
-def measure(cdir, feats, link_id=40.0, link_cov=0.5):
+def measure(cdir, feats, link_id=40.0, link_cov=0.5, max_members=400):
     """Best FOREIGN feature for every member of every collection."""
     tmp = tempfile.mkdtemp(prefix="binaudit_")
     try:
@@ -211,11 +219,24 @@ def measure(cdir, feats, link_id=40.0, link_cov=0.5):
             if not seqs:
                 continue
             lens = sorted(len(s) for s in seqs.values())
+            n_all = len(seqs)          # before any subsampling below
             r = subprocess.run(
                 ["blastp", "-query", fa, "-db", os.path.join(tmp, "db"),
                  "-outfmt", "6 qseqid sseqid pident length qlen slen bitscore",
                  "-max_target_seqs", "5000", "-evalue", "1e-3",
-                 "-num_threads", "4"], capture_output=True, text=True)
+                 #  SEEDING ONLY. blastp-fast uses a longer, compressed-alphabet
+                 #  word for the initial hit; the extension, the scoring matrix
+                 #  and the reported identities are unchanged. Every member of
+                 #  every bin is still queried against every other collection --
+                 #  this is NOT a subsample, because the foreign-best test is
+                 #  exactly where a handful of mislabelled sequences shows up
+                 #  and sampling would hide them.
+                 #  Measured on Arteriviridae, 18 Nov 2026: GP2 alone (1,843
+                 #  members vs a 14,400-sequence db) ran 12.5 min on the default
+                 #  seeding, putting the 24-collection pass at ~2 h. Validated
+                 #  by requiring it to reproduce the slow run's findings exactly.
+                 "-task", "blastp-fast",
+                 "-num_threads", "8"], capture_output=True, text=True)
             best = {}
             for line in r.stdout.splitlines():
                 q, s, pid, aln, qlen, slen, bits = line.split("\t")
@@ -232,9 +253,35 @@ def measure(cdir, feats, link_id=40.0, link_cov=0.5):
             #  those. A member with no within-bin hit at all scores 0, which
             #  is the correct answer -- it belongs to nothing here.
             selfid, biggest, ncomp = 0.0, 1.0, 1
+            #  SUBSAMPLE THIS TEST, AND ONLY THIS TEST. The foreign-best blast
+            #  above runs against an indexed database and has to see every
+            #  member, because a handful of contaminating sequences is exactly
+            #  what it exists to find. This one is `-subject`, so it is an
+            #  unindexed all-against-all and costs O(n^2): on Arteriviridae's
+            #  2,337-member GP5 and 1,807-member ORF1A collections it was
+            #  still running after three hours and would have gated the whole
+            #  module on a statistic. And it IS a statistic -- the question is
+            #  what fraction of the bin falls in one component at 40%
+            #  identity, which a few hundred members answer as well as two
+            #  thousand. The sample is deterministic (an even stride over the
+            #  sorted ids), so the number is reproducible, and the report says
+            #  which bins were sampled.
+            sampled = 0
+            subfa = fa
+            if max_members and len(seqs) > max_members:
+                ids = sorted(seqs)
+                step = len(ids) / float(max_members)
+                pick = [ids[int(i * step)] for i in range(max_members)]
+                subfa = os.path.join(tmp, "%s.sample.faa" % f)
+                with open(subfa, "w") as o:
+                    for i in pick:
+                        o.write(">%s\n%s\n" % (i, seqs[i]))
+                seqs = {i: seqs[i] for i in pick}
+                sampled = len(pick)
             if len(seqs) > 1:
+                fa_self = subfa
                 sr = subprocess.run(
-                    ["blastp", "-query", fa, "-subject", fa,
+                    ["blastp", "-query", fa_self, "-subject", fa_self,
                      "-outfmt", "6 qseqid sseqid pident length qlen",
                      "-evalue", "10", "-num_threads", "4"],
                     capture_output=True, text=True)
@@ -283,24 +330,60 @@ def measure(cdir, feats, link_id=40.0, link_cov=0.5):
                 comp = collections.Counter(find(k) for k in order)
                 biggest = comp.most_common(1)[0][1] / float(len(order))
                 ncomp = len(comp)
-            rec = dict(n=len(seqs), medlen=int(statistics.median(lens)),
+            rec = dict(n=n_all, medlen=int(statistics.median(lens)),
+                       sampled=sampled,
                        tgt="-", pid=0.0, qcov=0.0, scov=0.0, frac=0.0,
-                       selfid=selfid, biggest=biggest, ncomp=ncomp)
+                       selfid=selfid, biggest=biggest, ncomp=ncomp,
+                       subset_tgt="-", subset_n=0, subset_pid=0.0)
             if best:
                 votes = collections.Counter(v[1] for v in best.values())
                 tgt, nv = votes.most_common(1)[0]
                 hits = [v for v in best.values() if v[1] == tgt]
-                rec.update(tgt=tgt, frac=nv / float(len(seqs)),
+                rec.update(tgt=tgt, frac=nv / float(n_all),
                            pid=statistics.median(h[2] for h in hits),
                            qcov=statistics.median(h[3] / float(h[4]) for h in hits),
                            scov=statistics.median(h[3] / float(h[5]) for h in hits))
+
+                #  THE DAMAGE A CONTAMINATED BIN DOES IS NOT PROPORTIONAL TO
+                #  THE CONTAMINATED FRACTION, and every verdict below this
+                #  point is gated on the fraction (`frac < 0.5` returns early).
+                #  What decides whether contamination reaches a profile is
+                #  whether the foreign members are numerous and similar enough
+                #  to CLUSTER TOGETHER -- and a handful of near-identical
+                #  deposits of one protein always are.
+                #
+                #  Measured on Arteriviridae, 19 Nov 2026: 35 of 1,686 members
+                #  of the M collection (2.1%) were GP4 deposited as `Membrane
+                #  protein`. Every one was 178 aa, which is inside M's
+                #  literature window of 155-190 AND inside GP4's of 80-210, so
+                #  no length test could separate them, and at 2.1% this audit
+                #  printed no row for M at all. Those 35 then clustered on
+                #  their own into M.4 -- a profile built purely from GP4 --
+                #  which called GP4 as M in 268 of 612 genomes (44%), while the
+                #  real M went uncalled in every one of them.
+                #
+                #  So count the members that match a foreign feature WELL,
+                #  per target, and report any group big enough to become a
+                #  cluster. Fraction is the wrong instrument; the count is the
+                #  right one.
+                sub = collections.Counter()
+                subpid = collections.defaultdict(list)
+                for v in best.values():
+                    if v[2] >= SUBSET_ID and v[3] >= SUBSET_COV * float(v[4]):
+                        sub[v[1]] += 1
+                        subpid[v[1]].append(v[2])
+                if sub:
+                    st, sn = sub.most_common(1)[0]
+                    rec.update(subset_tgt=st, subset_n=sn,
+                               subset_pid=statistics.median(subpid[st]))
             out[f] = rec
         return out
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
 
-def verdict(f, rec, medlens, protected, coherence, min_component):
+def verdict(f, rec, medlens, protected, coherence, min_component,
+            min_subset=SUBSET_MIN):
     #  SAME-GENOME EXACT NESTING FIRST. It is structural rather than
     #  statistical: one genome deposited the same locus twice, so no identity
     #  threshold has to be argued about. It outranks the blast verdicts
@@ -353,6 +436,22 @@ def verdict(f, rec, medlens, protected, coherence, min_component):
                 "%s of %d aa; check that deposit, not this bin"
                 % (odd[0], n, tested, ex[0] if ex else "?", f,
                    ex[1] if ex else 0, odd[0], ex[2] if ex else 0))
+    #  A COHERENT FOREIGN SUBSET, whatever fraction of the bin it is. This has
+    #  to be tested BEFORE the `frac < 0.5` return below, because that return
+    #  is exactly what hid it. See the long comment where subset_n is computed.
+    st, sn = rec.get("subset_tgt", "-"), rec.get("subset_n", 0)
+    if (st != "-" and st != f and sn >= min_subset
+            and rec["frac"] < 0.5 and (f, st) not in protected):
+        return ("FOREIGN-SUBSET",
+                "%d member(s) match %s at %.0f%% identity over >=%d%% of the "
+                "query -- %.1f%% of the bin, so no fraction test sees them, "
+                "but enough alike to cluster together and get their own "
+                "profile, which would then call %s wherever it occurs. "
+                "Re-bin them or drop them; do not sign this off because the "
+                "percentage is small"
+                % (sn, st, rec.get("subset_pid", 0.0), int(SUBSET_COV * 100),
+                   100.0 * sn / rec["n"], st))
+
     tgt = rec["tgt"]
     if tgt == "-" or rec["frac"] < 0.5 or (f, tgt) in protected:
         #  A bin can be several proteins without resembling any NAMED one.
@@ -442,6 +541,11 @@ def main():
                     help="points by which within-bin identity must exceed the "
                          "identity to the foreign feature for the bin to "
                          "count as one protein (default 10)")
+    ap.add_argument("--max-members", type=int, default=400,
+                    help="cap on how many members of one bin enter the WITHIN-BIN "
+                         "connectivity blast, which is an unindexed all-against-all and "
+                         "therefore quadratic. The contamination test still sees every "
+                         "member. 0 disables the cap.")
     ap.add_argument("--accept", help="TSV of signed-off bins: FEATURE<TAB>why")
     ap.add_argument("--write-md", help="write the report here")
     ap.add_argument("--write", action="store_true",
@@ -462,7 +566,7 @@ def main():
                 k, _, why = line.rstrip("\n").partition("\t")
                 accepted[k.strip()] = why.strip() or "signed off"
 
-    recs = measure(cdir, feats, a.link_id, a.link_cov)
+    recs = measure(cdir, feats, a.link_id, a.link_cov, a.max_members)
     for f, nst in nesting(cdir, feats).items():
         if f in recs:
             recs[f]["nest"] = nst
@@ -516,8 +620,25 @@ def main():
     if protected:
         lines += ["Protected pairs (not judged): %s" % ", ".join(
             sorted("%s/%s" % p for p in protected if p[0] < p[1])), ""]
-    for cls in ("NESTED", "DUPLICATE", "FRAGMENT", "INCOHERENT", "KEPT",
-                "ODD-DEPOSIT", "CONSERVED-REGION", "SPLIT", "PARALOGUE"):
+    #  SECTION ORDER IS ALSO THE SET OF CLASSES THAT CAN BE PRINTED. A class
+    #  missing from this tuple is still counted in the totals above and then
+    #  silently dropped from the body -- the report then disagrees with itself
+    #  and the reader has no way to see what the missing finding was.
+    #
+    #  Measured 19 Nov 2026, on the first run of the FOREIGN-SUBSET check:
+    #  header read `Unresolved: 1  (defects 12, signed off 11)` and the body
+    #  held 11 rows, all of them signed off. The one finding that mattered --
+    #  35 GP4 deposits in the M bin, the defect the check was written for --
+    #  was the invisible 12th. Hence the assertion below.
+    ORDER = ("FOREIGN-SUBSET", "NESTED", "DUPLICATE", "FRAGMENT", "INCOHERENT",
+             "KEPT", "ODD-DEPOSIT", "CONSERVED-REGION", "SPLIT", "PARALOGUE")
+    orphan = sorted({x[1] for x in findings} - set(ORDER))
+    if orphan:
+        sys.exit("REFUSED: finding class(es) %s are produced by verdict() but "
+                 "absent from the report's section order, so they would be "
+                 "counted and not shown. Add them to ORDER in write_md()."
+                 % ", ".join(orphan))
+    for cls in ORDER:
         sel = [x for x in findings if x[1] == cls]
         if not sel:
             continue

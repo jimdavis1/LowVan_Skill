@@ -1,0 +1,146 @@
+{
+ "ORF1A": {
+  "min": 1700,
+  "max": 2700,
+  "pmid": "20696193",
+  "note": "pp1a: EAV 1727 aa (NC_002532, measured cleavage map PMID 9371590/9971783); PRRSV-1 ends Cys2396, PRRSV-2 ends Cys2503 (Fang & Snijder 2010 Table 1)"
+ },
+ "NSP1": {
+  "min": 230,
+  "max": 290,
+  "pmid": "7769711",
+  "note": "EAV has a SINGLE nsp1 of 260 aa, not nsp1alpha/beta: den Boon 1995 shows the PCPalpha counterpart lost its catalytic Cys; Han 2014 (24928046) confirmed EAV nsp1 remains uncleaved"
+ },
+ "NSP1A": {
+  "min": 160,
+  "max": 200,
+  "pmid": "20006994",
+  "note": "PRRSV-2 nsp1alpha = 180 aa; nsp1alpha/1beta site Met180-Ala181 fixed by Edman degradation of immunoprecipitated nsp1beta (N-terminus ATVYDIGRDA), 14 residues downstream of the earlier prediction"
+ },
+ "NSP1B": {
+  "min": 180,
+  "max": 230,
+  "pmid": "20006994",
+  "note": "PRRSV-2 nsp1beta = 203 aa (pp1ab 181-383); nsp1beta/nsp2 site Gly383-Ala384 by Edman on immunoprecipitated nsp2"
+ },
+ "NSP2": {
+  "min": 400,
+  "max": 1300,
+  "pmid": "20696193",
+  "note": "EAV nsp2 571 aa (261-831); PRRSV-1 1078 aa, PRRSV-2 1196 aa. The hypervariable region carries natural deletions, so the window is wide; nsp2TF and nsp2N are separate frameshift products and are excluded by string"
+ },
+ "NSP3": {
+  "min": 200,
+  "max": 350,
+  "pmid": "20696193",
+  "note": "EAV 233 aa (832-1064, PMID 8617757); PRRSV 230 aa both genotypes"
+ },
+ "NSP4": {
+  "min": 180,
+  "max": 230,
+  "pmid": "9371590",
+  "note": "EAV nsp4 204 aa (1065-1268); C-terminus Glu1268-Ser1269 confirmed by microsequencing the nsp5 N-terminus. PRRSV-1 203 / PRRSV-2 204 aa (19646449)"
+ },
+ "NSP5": {
+  "min": 150,
+  "max": 190,
+  "pmid": "9371590",
+  "note": "EAV 162 aa (1269-1430), N-terminus microsequenced; PRRSV 170 aa"
+ },
+ "NSP6": {
+  "min": 10,
+  "max": 30,
+  "pmid": "9371590",
+  "note": "EAV 22 aa (1431-1452); PRRSV 16 aa. Both flanking sites measured in EAV (Glu1430-Gly1431, Glu1452-Ser1453)"
+ },
+ "NSP7A": {
+  "min": 115,
+  "max": 170,
+  "pmid": "17098961",
+  "note": "EAV nsp7alpha 123 aa (1453-1575); the internal nsp7alpha/7beta site Glu1575-Ala1576 is conserved in arteriviruses and lethal when abolished. PRRSV 149 aa. MIN CORRECTED 130 -> 115, 20 Nov 2026. 130 excluded EAV itself at 123 aa. 115 additionally admits a discrete 117 aa class seen in 19 complete PRRSV genomes, which is genuine and not a clipped call: NSP6 ends and NSP7A begins with a gap of 0 nt in 20 of 20 of them, and NSP7A ends where NSP7B begins with a gap of 0 nt in 13 of 20. A truncated call would leave the cassette non-contiguous; this one is flush on both sides."
+ },
+ "NSP7B": {
+  "min": 90,
+  "max": 135,
+  "pmid": "17098961",
+  "note": "EAV nsp7beta 102 aa (1576-1677); PRRSV-1 120 / PRRSV-2 110 aa"
+ },
+ "NSP8": {
+  "min": 35,
+  "max": 60,
+  "pmid": "30353315",
+  "note": "EAV 50 aa (1678-1727), PRRSV 45 aa. nsp8 is the N-terminal part of nsp9: there is NO nsp8/nsp9 cleavage (measured both ways by co-IP)"
+ },
+ "NSP9": {
+  "min": 640,
+  "max": 720,
+  "pmid": "9971783",
+  "note": "RdRp, EAV 693 aa (1678-2370); C-terminus Glu2370-Ser2371 by mutagenesis. PRRSV 685 aa both genotypes. A 1,400-1,500 aa deposit under an RdRp string is the ORF1b product, not nsp9"
+ },
+ "NSP10": {
+  "min": 405,
+  "max": 495,
+  "pmid": "9971783",
+  "note": "helicase/ZBD, EAV 467 aa (2371-2837); PRRSV-1 442 / PRRSV-2 441 aa  WINDOW WIDENED 420-490 -> 405-495, 20 Nov 2026. Measured on 608 exemplar ORF1b cassettes: Kappaarterivirus (WPDV, 7 genomes) is 413 aa and Wufeng rodent arterivirus is 457. Both boundaries are nsp4 sites (E|G) with the 6-7 cysteine zinc-binding domain intact at the N-terminus, so they are lineage lengths, not clipped calls. The old 420 floor excluded Kappaarterivirus."
+ },
+ "NSP11": {
+  "min": 200,
+  "max": 240,
+  "pmid": "9971783",
+  "note": "NendoU, EAV 219 aa (2838-3056); PRRSV-1 224 / PRRSV-2 223 aa. EAV uniquely carries Gln (not Glu) at P1 of the nsp10/11 site  Measured range across 22 lineages 219-225; window 200-240 unchanged."
+ },
+ "NSP12": {
+  "min": 110,
+  "max": 170,
+  "pmid": "9971783",
+  "note": "EAV 119 aa (3057-3175); PRRSV-1 152 / PRRSV-2 153 aa. No known function  Measured range across 22 lineages 119-164; window 110-170 unchanged."
+ },
+ "E": {
+  "min": 45,
+  "max": 95,
+  "pmid": "10400725",
+  "note": "EAV E 67 aa, measured structural protein of purified virions and essential for infectious progeny; PRRSV-2 73 aa (11504553); WPDV 45 aa, SHFV 81 aa. Myristoylated at the MGxxxS motif (19951726). NOT a virion component in LDV (11226573)"
+ },
+ "GP2": {
+  "min": 150,
+  "max": 320,
+  "pmid": "1328669",
+  "note": "EAV G_S/GP2b 227 aa, 25 kDa N-glycosylated virion membrane protein encoded by ORF2; PRRSV-2 GP2a 256, PRRSV-1 249; WPDV 207; African pouched rat arterivirus 304"
+ },
+ "GP3": {
+  "min": 130,
+  "max": 280,
+  "pmid": "12743278",
+  "note": "EAV GP3 163 aa, forms disulfide-linked complexes with GP2b and GP4; PRRSV-2 254, PRRSV-1 265; KRTGV 136. Virion association is strain- and lineage-dependent (9856081)"
+ },
+ "GP4": {
+  "min": 80,
+  "max": 210,
+  "pmid": "12743278",
+  "note": "EAV GP4 152 aa; PRRSV-1 183, PRRSV-2 178; WPDV 83 (genuinely short, not a fragment)"
+ },
+ "ORF5A": {
+  "min": 40,
+  "max": 80,
+  "pmid": "21307223",
+  "note": "Firth 2011: a conserved short ORF overlapping ORF5, upstream of the GP5 AUG in EAV and PRRSV-NA but DOWNSTREAM of it in PRRSV-EU, LDV and SHFV, so it cannot be found by position. EAV 59, PRRSV-1 43, PRRSV-2 46-51, LDV 47, SHFV 64, WPDV 78 aa. Protein detected in PRRSV virions (21307222); measured negative in EAV virions"
+ },
+ "GP5": {
+  "min": 160,
+  "max": 285,
+  "pmid": "1328669",
+  "note": "EAV G_L 255 aa, 30-42 kDa N-glycosylated major virion glycoprotein encoded by ORF5, molar ratio 3 N : 2 M : 3 G_L; PRRSV 200-201 aa, called 'E' in early PRRSV-1 papers (7831770); WPDV 178"
+ },
+ "M": {
+  "min": 155,
+  "max": 190,
+  "pmid": "1328669",
+  "note": "EAV M 162 aa, 16 kDa unglycosylated virion membrane protein (ORF6); PRRSV 173-174 aa, 18 kDa (7831770); WPDV 180. Forms the defining disulfide-linked GP5/M heterodimer (12477814)"
+ },
+ "N": {
+  "min": 100,
+  "max": 140,
+  "pmid": "14604534",
+  "note": "PRRSV-2 N 123 aa, 2.6 A crystal structure of the capsid-forming domain, a tight dimer and a new class of viral capsid fold; EAV 110 aa, 14 kDa, most abundant virion protein (1328669); African pouched rat arterivirus 134"
+ }
+}

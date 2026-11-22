@@ -101,6 +101,31 @@ for l in open(os.path.join(W, a.dump + ".id_md5")):
     gid = fid.split("|")[1].rsplit(".", 2)[0]
     if m in md5seq: bygen[gid].add(md5seq[m])
 
+#  ALSO TAKE THE COLLECTIONS' OWN MEMBERS, attributed to the genome named in
+#  their header. The reference finder below asks "does this genome place its
+#  own mat_peptides inside its own polyprotein", and answers it with
+#  `seqs & cs` -- the genome's sequences FROM THE DUMP, intersected with the
+#  collection. A collection member that is not a raw deposit is therefore
+#  invisible to it however well attributed: a rescued sequence, or a reference
+#  CONSTRUCTED by cutting a polyprotein at literature coordinates.
+#
+#  That is backwards. The collections are the curated truth this script is told
+#  to project from; the dump is merely where most of their members came from.
+#
+#  Measured on Birnaviridae, 19 Nov 2026: Avibirnavirus and Aquabirnavirus are
+#  97% of the family and NEITHER deposits a pep46, pep7a, pep7b or pep11
+#  anywhere, so references for them were constructed from the IBDV and IPNV
+#  polyproteins at cut sites verified residue by residue against the
+#  literature. Every one was in the collections and every one was ignored: 239
+#  Avibirnavirus and 136 Aquabirnavirus polyproteins were refused with "no
+#  reference genome places >=5 mat_peptides", and the run projected 0
+#  sequences while otherwise reporting success.
+for _fn in sorted(os.listdir(C)):
+    if not _fn.endswith(".fasta") or _fn[:-6] in skip: continue
+    for _h, _s in fasta(os.path.join(C, _fn)).items():
+        if not _s or "|" not in _h: continue
+        bygen[_h.split("|")[1].rsplit(".", 2)[0]].add(_s)
+
 polyset = set(poly.values())
 
 #  The unit that projection runs INSIDE. For a genus module that is the whole

@@ -250,9 +250,14 @@ fold = rar["source_at_common"] / rar["module_at_common"] if rar["module_at_commo
 _live = {k: (v.get("anno") or "") for k, v in feats.items()} if isinstance(feats, dict) else {}
 agg_rows = [[a["key"], _live.get(a["key"]) or a["anno"], str(a["nstrings"])]
             for a in sorted(bound, key=lambda a: -a["nstrings"])]
-others = [a for a in agg if a["key"] not in feats]
-for a in others:
-    agg_rows.append(["<i>%s</i>" % a["key"].lower(), "not modelled", str(a["nstrings"])])
+others = [o for o in agg if o["key"] not in feats]
+#  NOT `for a in ...`: `a` is the argparse namespace at module scope, and a
+#  plain for-loop rebinds it (a comprehension would not). Any module with an
+#  aggregated key that is not a modelled feature -- Birnaviridae has PEP11,
+#  PEP7A and PEP7B -- then died at the next `a.routing_note` with
+#  "'dict' object has no attribute 'routing_note'".
+for o in others:
+    agg_rows.append(["<i>%s</i>" % o["key"].lower(), "not modelled", str(o["nstrings"])])
 agg_rows.append(["<i>unbound</i>", "\u2014", str(len(unb))])
 
 slug = G.lower()
@@ -277,7 +282,15 @@ facts = {
        ["unique sequences", c(n_uniq)],
        ["genomes with a contig \u2265 5 kb", c(n_contig)],
        ["species", c(len(species))]]}] +
-    [{"type": "prose", "html": h} for h in pr["p01"][1:]]},
+    [{"type": "prose", "html": h} for h in pr["p01"][1:]] +
+    #  The genome map, when one has been generated. check_artifact_html.py
+    #  fails a coverage audit that has no genome map ("gate is TWO svgs"),
+    #  and until now no block type emitted one -- only the saturation curve
+    #  in section 09 was lifted, so every audit shipped with a single svg
+    #  and had the map pasted in by hand or not at all.
+    ([{"type": "figure", "from": "%s-genome-map.svg" % slug}]
+     if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(a.out)),
+                                    "..", "%s-genome-map.svg" % slug)) else [])},
   {"num": "02", "title": "How it was built", "lede": pr["lede02"], "blocks":
     [{"type": "table", "headers": ["feature", "annotation", "symbol", "collection", "profiles", "departures"],
       "rows": build_rows}] + [{"type": "prose", "html": h} for h in pr["p02"]]},

@@ -1,0 +1,172 @@
+{
+  "PEP46": {
+    "PMID_claude_generated": [
+      "11836417",
+      "16160151",
+      "15269363"
+    ],
+    "anno": "Structural peptide pep46",
+    "feature_type": "mat_peptide",
+    "gene_symbol": "pep46",
+    "min_len": 36,
+    "max_len": 52,
+    "note": "First pVP2 C-terminal structural peptide, present in every genus: IBDV 442-487 = 46 aa, IPNV p1 443-486 = 44 aa, BSNV VP2a 43, TV-1 pep41 41, Ronavirus pep44 44. Membrane-active during entry and sterically blocks fivefold-axis assembly until cleaved (PMID 16160151); found inside purified virions (PMID 15269363). ONLY 4 DEPOSITS EXIST FAMILY-WIDE, so the collection is expanded by projection from literature-anchored references rather than built from deposits. Its N-terminal residue is aromatic (IBDV F, IPNV W) because the VP2 maturation cut is A|[FW]G, not the VP4 A|[AS]. copy_num DELIBERATELY OMITTED (21 Nov 2026). Called 43/47. In 663281.3 (complete) an A|FG site sits exactly where pep46 should begin and the product is 46 aa, but its C-terminal chemistry does not resolve, so the member was not projected and the call remains a coverage limit.",
+    "segment": "VP243 Segment",
+    "upstream_ext": 0,
+    "downstream_ext": 0,
+    "params": {
+      "m": "2"
+    }
+  },
+  "POLY": {
+    "PMID_claude_generated": [
+      "11836417",
+      "10666235",
+      "12477876"
+    ],
+    "anno": "VP2-VP4-VP3 polyprotein",
+    "feature_type": "CDS",
+    "gene_symbol": "VP243",
+    "min_len": 940,
+    "max_len": 1160,
+    "note": "The segment A polyprotein, cleaved by its own VP4 protease into pVP2, VP4 and VP3. IBDV 1012 aa (PMID 11836417); IPNV 972 (PMID 10666235); BSNV 1069 and TV-1 1114. DO NOT ANCHOR THE WINDOW ON THE DEPOSITED MEDIAN: it is 328 aa in Avibirnavirus because 83% of IBDV records are VP2 hypervariable-region typing amplicons. The symbol VP243 is the one the deposits themselves use (`polyprotein VP243`). CUTOFF LOWERED 400 -> 284 on 20 Nov 2026. derive_cutoffs.py measured the weakest GENUINE self-hit (>=60% subject coverage) at 316 bits, so the 400 sat ABOVE a member the profile was built from and the feature could not call its own training data. 284 is that 316 with the standard 0.9 margin. This is also the cause of the fragile 405-bit POLY call on 2556101.4. copy_num=1 (21 Nov 2026). Called 45/47 exemplars; both misses are incomplete genomes -- 2920476.3 is a 5139 nt partial carrying only pVP2/VP2, and in 2777470.3 pVP2 and VP1 both start at coordinate 1, so the contigs are 5'-truncated and the polyprotein has no start codon. No complete genome fails to call it.",
+    "segment": "VP243 Segment",
+    "upstream_ext": 1,
+    "downstream_ext": 1,
+    "params": {
+      "m": "2"
+    },
+    "bit_cutoff": 284
+  },
+  "PVP2": {
+    "PMID_claude_generated": [
+      "11836417",
+      "10666235",
+      "22619177"
+    ],
+    "anno": "Capsid protein precursor pVP2",
+    "feature_type": "mat_peptide",
+    "gene_symbol": "pVP2",
+    "min_len": 470,
+    "max_len": 560,
+    "note": "Precursor of the capsid protein: polyprotein 1-512 in IBDV (PMID 11836417), 1-508 in IPNV (PMID 10666235). Carries mature VP2 plus the C-terminal structural peptides, whose removal by the host puromycin-sensitive aminopeptidase completes maturation (PMID 22619177). MEASURED 19 Nov 2026: the 19 deposited IPNV `VP2 precursor` records are 512 aa and end in Pro, four residues past the real cut (...ESWA | SGGP) -- they were annotated by analogy with IBDV. Junction chemistry excluded all 19. FLOOR LOWERED 480 -> 470 on 20 Nov 2026: Largemouth bass birnavirus carries a 474 aa pVP2 that abuts VP4 with no gap, so it is a short lineage rather than a clipped call. copy_num=1 (21 Nov 2026). Called 47/47 exemplars.",
+    "segment": "VP243 Segment",
+    "upstream_ext": 1,
+    "downstream_ext": 0,
+    "params": {
+      "m": "2"
+    }
+  },
+  "VP1": {
+    "PMID_claude_generated": [
+      "12069523",
+      "12477876",
+      "17976679",
+      "30484762"
+    ],
+    "anno": "RNA-dependent RNA polymerase VP1",
+    "feature_type": "CDS",
+    "gene_symbol": "VP1",
+    "min_len": 780,
+    "max_len": 1050,
+    "note": "The sole segment B product. IBDV 878 aa; Aquabirnavirus deposited median 845 (n=125, tightly 844-845); BSNV 867; TV-1 894 (PMID 17976679). DO NOT ANCHOR ON THE DEPOSITED MEDIAN for Avibirnavirus: it is 255 aa for the same amplicon reason given under POLY; the deposited maximum, 882, is the real one. CEILING RAISED 935 -> 1050 on 20 Nov 2026 on the ICTV family range 844-1045 aa (PMID 30484762); Drosophila X virus VP1 is 977 aa (PMID 12069523). Twelve deposits sat above the old ceiling and every one is inside the ICTV range, the largest being Rotifer birnavirus at 1045. copy_num=1 (21 Nov 2026). Called 46/47; the sole miss, 2920476.3, is a 5139 nt partial with no segment B.",
+    "segment": "VP1 Segment",
+    "upstream_ext": 1,
+    "downstream_ext": 1,
+    "params": {
+      "m": "2"
+    }
+  },
+  "VP2": {
+    "PMID_claude_generated": [
+      "11836417",
+      "10666235",
+      "12832770",
+      "22619177"
+    ],
+    "anno": "Capsid protein VP2",
+    "feature_type": "mat_peptide",
+    "gene_symbol": "VP2",
+    "min_len": 395,
+    "max_len": 475,
+    "note": "MATURE capsid protein and the sole component of the T=13 shell. IBDV 1-441, IPNV 1-442. VP2 is an exact N-TERMINAL SUBSTRING of pVP2, so the two are separated here by their C-terminus, never by the annotation string -- a bare `VP2` deposit in this family is mature VP2, the precursor, or a typing amplicon, with equal frequency. THE 452 aa FORM IS NOT A VIRAL PRODUCT: it is the recombinant VP2 boundary used throughout the IBDV literature and expressed alone (PMID 12832770), deposited 47 times under a bare `VP2`; junction chemistry excludes it, which matters because a 452-aa construct in this bin widens the profile across the pep46 N-terminus. copy_num=1 (21 Nov 2026). Called 47/47 exemplars.",
+    "segment": "VP243 Segment",
+    "upstream_ext": 1,
+    "downstream_ext": 0,
+    "params": {
+      "m": "2"
+    }
+  },
+  "VP3": {
+    "PMID_claude_generated": [
+      "11836417",
+      "10666235"
+    ],
+    "anno": "Scaffold protein VP3",
+    "feature_type": "mat_peptide",
+    "gene_symbol": "VP3",
+    "min_len": 215,
+    "max_len": 325,
+    "note": "C-terminal polyprotein product: IBDV 756-1012 = 257 aa, IPNV 735-972 = 238 aa, BSNV 278, TV-1 284. The deposited Avibirnavirus median, 257, reproduces the literature exactly. Binds pVP2 and switches pentamer/hexamer assembly. Its C-terminus is the polyprotein stop, so it scans to stop. CEILING RAISED 310 -> 325 on 20 Nov 2026. VP3's C-terminus IS the polyprotein stop codon, so its length needs no cleavage-site inference at that end. Two calls in coverage_b6 exceeded 310 and BOTH end exactly at their POLY call's last base: Pinctada birnavirus 3043168.4 at 313 aa (VP3 2681-3622, POLY 185-3622) and Cambodia Culex birnavirus 3081665.5 at 319 aa (VP3 2397-3356, POLY 162-3356). Both are lineages with no published VP3 length, so this ceiling is measured, not cited. copy_num DELIBERATELY OMITTED (21 Nov 2026). Called 43/47. Three misses are incomplete genomes, but 2920474.4 is complete at 6740 nt and is the documented pVP2/VP2 collision, so copy_num would flag a complete genome.",
+    "segment": "VP243 Segment",
+    "upstream_ext": 0,
+    "downstream_ext": 1,
+    "params": {
+      "m": "2"
+    }
+  },
+  "VP4": {
+    "PMID_claude_generated": [
+      "11836417",
+      "10666235",
+      "12477876"
+    ],
+    "anno": "Protease VP4",
+    "feature_type": "mat_peptide",
+    "gene_symbol": "VP4",
+    "min_len": 165,
+    "max_len": 320,
+    "note": "The Ser/Lys serine protease that excises itself from the polyprotein by cleaving its own termini. IBDV 513-755 = 243 aa; IPNV 509-734 = 226 aa with catalytic Ser633/Lys674 (PMID 10666235); BSNV 234; TV-1 212. The deposited Avibirnavirus median, 243, reproduces the literature exactly. CONTAMINATION EXCLUDED BY NAME, not by length: the sole deposit annotated `nonstructural protein VP4` is 268 aa and aligns to IPNV polyprotein 454-721, beginning 55 residues before the real cut and carrying the three pVP2 C-terminal peptides into this bin -- it sits INSIDE this window, so the window cannot catch it. CEILING RAISED 295 -> 320 on 20 Nov 2026: BSNV 305, TV-1 302 and Largemouth bass birnavirus 314 (x2) place there on junctions validated at both ends, which is longer than the original reports' coordinates for BSNV (234) and TV-1 (212). copy_num DELIBERATELY OMITTED (21 Nov 2026). Called 43/47. 3081665.5 is complete, its VP4 slot measures 265 aa inside the 165-320 window, and the polyprotein carries NO A|[AS] site anywhere in residues 630-810 -- the VP4|VP3 junction cannot be placed there by the measured chemistry, so this is a real coverage limit.",
+    "segment": "VP243 Segment",
+    "upstream_ext": 0,
+    "downstream_ext": 0,
+    "params": {
+      "m": "2"
+    }
+  },
+  "VP5": {
+    "PMID_claude_generated": [
+      "12477876"
+    ],
+    "anno": "Nonstructural protein VP5",
+    "feature_type": "CDS",
+    "gene_symbol": "VP5",
+    "min_len": 92,
+    "max_len": 160,
+    "note": "Small nonstructural protein translated from a SEPARATE small ORF on segment A -- not a polyprotein cleavage product. The frame overlaps the polyprotein in IBDV and IPNV and is internal to it in DXV and BSNV (BSNV 139 aa, PMID 12477876). Deposited medians: Avibirnavirus 145, Aquabirnavirus 133. THE MASS NAMES ARE THIS PROTEIN BUT ARE NOT USED TO BIN IT: `15.4 kDa`, `15-kDa`, `16 kDa` and bare `nonstructural protein` are all exactly 133 aa in Aquabirnavirus and 145 in Avibirnavirus, but a molecular weight is not a homology group, so those strings are routed by homology instead. copy_num DELIBERATELY OMITTED. Called 27/47 -- genus-restricted, so copy_num would flag every genus that does not carry it.",
+    "segment": "VP243 Segment",
+    "upstream_ext": 1,
+    "downstream_ext": 1,
+    "params": {
+      "m": "2"
+    }
+  },
+  "X": {
+    "PMID_claude_generated": [
+      "12477876",
+      "17976679"
+    ],
+    "anno": "Protein X",
+    "feature_type": "mat_peptide",
+    "gene_symbol": "X",
+    "min_len": 58,
+    "max_len": 120,
+    "note": "LINEAGE-SPECIFIC -- MUST NOT CARRY copy_num. An extra mature peptide between the pVP2 C-terminal peptides and VP4, giving pVP2-X-VP4-VP3 instead of pVP2-VP4-VP3. Present in Blosnavirus (BSNV 71 aa, polyprotein 487-557, PMID 12477876) and Telnavirus (TV-1 106 aa, PMID 17976679); ABSENT from Avibirnavirus, Aquabirnavirus, Entomobirnavirus and Ronavirus, which together are ~9,200 of the family's records. MEASURED 18 Nov 2026 before building: X has no blastp hit to VP2, VP4 or VP3 even at e-value 10, and the BSNV polyprotein tiles exactly without overlap (416+43+7+7+12+71+234+278 = 1068 of 1069 aa), so an X profile has neither a sequence nor a positional basis to collide with its neighbours. Only 2 deposits exist family-wide, so its cutoff must be measured against the foreign score rather than assumed. copy_num DELIBERATELY OMITTED. Blosnavirus/Telnavirus only, called 2/47.",
+    "segment": "VP243 Segment",
+    "upstream_ext": 0,
+    "downstream_ext": 0,
+    "params": {
+      "m": "2"
+    }
+  }
+}

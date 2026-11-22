@@ -1,0 +1,279 @@
+{
+  "Birnaviridae": {
+    "close_genomes": {
+      "Birnaviridae.1.dna": {
+        "genome_ids": "10995.117_segA",
+        "genome_name": "Infectious bursal disease virus HK46"
+      },
+      "Birnaviridae.10.dna": {
+        "genome_ids": "2556101.4_segA",
+        "genome_name": "Tetranychus urticae-associated entomobirnavirus Lisbon"
+      },
+      "Birnaviridae.11.dna": {
+        "genome_ids": "2725373.3_segA",
+        "genome_name": "Port Bolivar virus GMC-202"
+      },
+      "Birnaviridae.12.dna": {
+        "genome_ids": "2920474.4_segA",
+        "genome_name": "Sichuan sediment birna-like virus 5 R40-368221"
+      },
+      "Birnaviridae.13.dna": {
+        "genome_ids": "2920476.3_segA",
+        "genome_name": "Sichuan sediment birna-like virus 7 s43-666168"
+      },
+      "Birnaviridae.14.dna": {
+        "genome_ids": "2920479.4_segA",
+        "genome_name": "South China Sea birna-like virus CX46R-64305"
+      },
+      "Birnaviridae.15.dna": {
+        "genome_ids": "3043168.4_segA",
+        "genome_name": "Pinctada birnavirus TM-2022"
+      },
+      "Birnaviridae.16.dna": {
+        "genome_ids": "3065069.4_segA",
+        "genome_name": "Petrochromis fasciolatus birnavirus F36"
+      },
+      "Birnaviridae.17.dna": {
+        "genome_ids": "3077841.3_segA",
+        "genome_name": "Rocky Mountain birnavirus RMBV/2020/Utah/USA"
+      },
+      "Birnaviridae.18.dna": {
+        "genome_ids": "311176.4_segA",
+        "genome_name": "Blotched snakehead virus"
+      },
+      "Birnaviridae.19.dna": {
+        "genome_ids": "321302.3_segA",
+        "genome_name": "Tellina virus 1"
+      },
+      "Birnaviridae.2.dna": {
+        "genome_ids": "11002.704_segA",
+        "genome_name": "Infectious pancreatic necrosis virus ChRtm213"
+      },
+      "Birnaviridae.20.dna": {
+        "genome_ids": "48981.6_segA",
+        "genome_name": "Drosophila X virus"
+      },
+      "Birnaviridae.21.dna": {
+        "genome_ids": "595652.4_segA",
+        "genome_name": "Rotifer birnavirus strain Palavas"
+      },
+      "Birnaviridae.22.dna": {
+        "genome_ids": "663281.3_segA",
+        "genome_name": "Drosophila melanogaster birnavirus SW-2009a DBV"
+      },
+      "Birnaviridae.3.dna": {
+        "genome_ids": "2886213.10_segA",
+        "genome_name": "porcine birnavirus GDFS9-2018"
+      },
+      "Birnaviridae.4.dna": {
+        "genome_ids": "10995.244_segA",
+        "genome_name": "Infectious bursal disease virus 23/82"
+      },
+      "Birnaviridae.5.dna": {
+        "genome_ids": "1230254.4_segA",
+        "genome_name": "Culex Y virus P1-BS2010"
+      },
+      "Birnaviridae.6.dna": {
+        "genome_ids": "2777470.3_segA",
+        "genome_name": "Aedes birnavirus 177833"
+      },
+      "Birnaviridae.7.dna": {
+        "genome_ids": "2926591.3_segA",
+        "genome_name": "Largemouth bass birnavirus LBBV-SS-20150722"
+      },
+      "Birnaviridae.8.dna": {
+        "genome_ids": "3081665.5_segA",
+        "genome_name": "Cambodia Culex birnavirus Cqu1"
+      },
+      "Birnaviridae.9.dna": {
+        "genome_ids": "10995.6199_segA",
+        "genome_name": "Infectious bursal disease virus F52_70_P222T"
+      }
+    },
+    "features": {
+      "PEP46": {
+        "PMID_claude_generated": [
+          "11836417",
+          "16160151",
+          "15269363"
+        ],
+        "anno": "Structural peptide pep46",
+        "bit_cutoff": 25,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 0,
+        "feature_type": "mat_peptide",
+        "gene_symbol": "pep46",
+        "kmers": 1,
+        "max_len": 52,
+        "min_len": 36,
+        "segment": "VP243 Segment",
+        "type": "mat_peptide",
+        "upstream_ext": 0
+      },
+      "POLY": {
+        "PMID_claude_generated": [
+          "11836417",
+          "10666235",
+          "12477876"
+        ],
+        "anno": "VP2-VP4-VP3 polyprotein",
+        "bit_cutoff": 284,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "CDS",
+        "gene_symbol": "VP243",
+        "kmers": 1,
+        "max_len": 1160,
+        "min_len": 940,
+        "segment": "VP243 Segment",
+        "type": "CDS",
+        "upstream_ext": 1,
+        "copy_num": 1
+      },
+      "PVP2": {
+        "PMID_claude_generated": [
+          "11836417",
+          "10666235",
+          "22619177"
+        ],
+        "anno": "Capsid protein precursor pVP2",
+        "bit_cutoff": 60,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 0,
+        "feature_type": "mat_peptide",
+        "gene_symbol": "pVP2",
+        "kmers": 1,
+        "max_len": 560,
+        "min_len": 470,
+        "segment": "VP243 Segment",
+        "type": "mat_peptide",
+        "upstream_ext": 1,
+        "copy_num": 1
+      },
+      "VP1": {
+        "PMID_claude_generated": [
+          "12477876",
+          "17976679"
+        ],
+        "anno": "RNA-dependent RNA polymerase VP1",
+        "bit_cutoff": 60,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "CDS",
+        "gene_symbol": "VP1",
+        "kmers": 1,
+        "max_len": 1050,
+        "min_len": 780,
+        "segment": "VP1 Segment",
+        "type": "CDS",
+        "upstream_ext": 1,
+        "copy_num": 1
+      },
+      "VP2": {
+        "PMID_claude_generated": [
+          "11836417",
+          "10666235",
+          "12832770",
+          "22619177"
+        ],
+        "anno": "Capsid protein VP2",
+        "bit_cutoff": 60,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 0,
+        "feature_type": "mat_peptide",
+        "gene_symbol": "VP2",
+        "kmers": 1,
+        "max_len": 475,
+        "min_len": 395,
+        "segment": "VP243 Segment",
+        "type": "mat_peptide",
+        "upstream_ext": 1,
+        "copy_num": 1
+      },
+      "VP3": {
+        "PMID_claude_generated": [
+          "11836417",
+          "10666235"
+        ],
+        "anno": "Scaffold protein VP3",
+        "bit_cutoff": 60,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "mat_peptide",
+        "gene_symbol": "VP3",
+        "kmers": 1,
+        "max_len": 325,
+        "min_len": 215,
+        "segment": "VP243 Segment",
+        "type": "mat_peptide",
+        "upstream_ext": 0
+      },
+      "VP4": {
+        "PMID_claude_generated": [
+          "11836417",
+          "10666235",
+          "12477876"
+        ],
+        "anno": "Protease VP4",
+        "bit_cutoff": 30,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 0,
+        "feature_type": "mat_peptide",
+        "gene_symbol": "VP4",
+        "kmers": 1,
+        "max_len": 320,
+        "min_len": 165,
+        "segment": "VP243 Segment",
+        "type": "mat_peptide",
+        "upstream_ext": 0
+      },
+      "VP5": {
+        "PMID_claude_generated": [
+          "12477876"
+        ],
+        "anno": "Nonstructural protein VP5",
+        "bit_cutoff": 30,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 1,
+        "feature_type": "CDS",
+        "gene_symbol": "VP5",
+        "kmers": 1,
+        "max_len": 160,
+        "min_len": 92,
+        "segment": "VP243 Segment",
+        "type": "CDS",
+        "upstream_ext": 1
+      },
+      "X": {
+        "PMID_claude_generated": [
+          "12477876",
+          "17976679"
+        ],
+        "anno": "Protein X",
+        "bit_cutoff": 29,
+        "coverage_cutoff": 0.65,
+        "downstream_ext": 0,
+        "feature_type": "mat_peptide",
+        "gene_symbol": "X",
+        "kmers": 1,
+        "max_len": 120,
+        "min_len": 58,
+        "segment": "VP243 Segment",
+        "type": "mat_peptide",
+        "upstream_ext": 0
+      }
+    },
+    "segments": {
+      "VP1 Segment": {
+        "max_len": 3254,
+        "min_len": 2048,
+        "replicon_geometry": "linear"
+      },
+      "VP243 Segment": {
+        "max_len": 3717,
+        "min_len": 2251,
+        "replicon_geometry": "linear"
+      }
+    }
+  }
+}

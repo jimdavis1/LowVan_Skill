@@ -1,0 +1,80 @@
+{
+  "ORF1A": {
+    "min": 1900,
+    "max": 2200,
+    "pmid": "21544192",
+    "note": "pp1a across the subfamily is 2,048-2,105 aa; Lauck 2011 Table 1 lists the SHFV-LVR ORF lengths and every one matches NC_003092.2 exactly, which is what pins the legacy numbering"
+  },
+  "GP2P": {
+    "min": 150,
+    "max": 300,
+    "pmid": "9420301",
+    "note": "GP2-prime, the 5'-proximal duplicated copy: SHFV 281 aa (ORF2a', NC_003092.2 10953..11798), 214-237 aa in the other eleven simian arteriviruses. The duplication was inferred by Godeny 1998 (measured leader-body junctions, predicted duplication); ICTV records 15 ORFs for the subfamily (PMID 34356005)"
+  },
+  "EP": {
+    "min": 45,
+    "max": 120,
+    "pmid": "33917085",
+    "note": "E-prime (ORF2b'), the labile member: SHFV 94 aa, Free State vervet virus 110, Pebjah and Southwest baboon 52; absent or truncated by a premature stop in Mikumi yellow baboon, DeBrazza's monkey, Kafue kinda chacma baboon and Zambian malbrouck (PMID 25187550). Cai 2021 shows ORF2b' is not required for replication in vitro. MUST NOT carry copy_num"
+  },
+  "GP3P": {
+    "min": 150,
+    "max": 280,
+    "pmid": "9420301",
+    "note": "GP3-prime (ORF3'): 199-220 aa across the subfamily, SHFV 204"
+  },
+  "GP4P": {
+    "min": 120,
+    "max": 230,
+    "pmid": "9420301",
+    "note": "GP4-prime (ORF4'): 157-205 aa, SHFV 205"
+  },
+  "E": {
+    "min": 45,
+    "max": 100,
+    "pmid": "25036340",
+    "note": "the canonical small hydrophobic E of the second cassette: 75-81 aa across all twelve simian genomes. Vatter 2014 shows each of the eight minor structural proteins is functionally important as a set; no individual primed protein has a demonstrated function"
+  },
+  "GP2": {
+    "min": 140,
+    "max": 300,
+    "pmid": "25036340",
+    "note": "second-cassette GP2: 158-235 aa (SHFV 214). Deposited under the EAV convention in several records, where ORF2a is E and ORF2b is GP2b (PMID 10400725)"
+  },
+  "GP3": {
+    "min": 110,
+    "max": 290,
+    "pmid": "25036340",
+    "note": "second-cassette GP3: 136-199 aa, except Zambian malbrouck virus 1 at 270 aa, whose record annotates no GP4 at all and whose GP3/GP4 appear unresolved (NC_048209)"
+  },
+  "GP4": {
+    "min": 140,
+    "max": 210,
+    "pmid": "25036340",
+    "note": "second-cassette GP4: 152-182 aa across the subfamily; absent from the Zambian malbrouck virus 1 record, whose two 69 aa mat_peptide deposits at that position are fragments of its unresolved GP3/GP4 region (NC_048209) and are below every published simarterivirus GP4"
+  },
+  "ORF5A": {
+    "min": 40,
+    "max": 80,
+    "pmid": "21307223",
+    "note": "Firth 2011: 48-68 aa in the simian arteriviruses, and DOWNSTREAM of the GP5 AUG in SHFV rather than upstream, so it cannot be located by position. Annotated 'hypothetical protein' in the Kibale red colobus records and absent from Kibale red-tailed guenon virus"
+  },
+  "GP5": {
+    "min": 225,
+    "max": 290,
+    "pmid": "25036340",
+    "note": "major envelope glycoprotein: 232-278 aa. Called ORF7 in the Godeny/Lauck legacy sequential scheme used by the Kibale red-tailed guenon and simian haemorrhagic encephalitis records, where N is ORF9 (PMID 23077302)"
+  },
+  "M": {
+    "min": 150,
+    "max": 180,
+    "pmid": "25036340",
+    "note": "membrane protein: 159-173 aa; called ORF8 under the legacy sequential scheme"
+  },
+  "N": {
+    "min": 90,
+    "max": 140,
+    "pmid": "25036340",
+    "note": "nucleocapsid: 102-132 aa; called ORF9 under the legacy sequential scheme, which is why an ORF7-to-N rule mis-bins GP5 as N for those taxa"
+  }
+}

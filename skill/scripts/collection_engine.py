@@ -51,11 +51,21 @@ def classify(anno, rules, notmod):
     a = " ".join(anno.split())
     if PARTIAL.search(a):
         return None, "partial"
-    if PUTATIVE.search(a):
-        return None, None          # -> unassigned; the rescue arbitrates
+    #  NOT_MODELLED is consulted BEFORE the putative test, and the order is
+    #  load-bearing. A taxon script naming a string explicitly has made a
+    #  curator's decision about that string; the putative rule is a generic
+    #  default for strings nobody has ruled on. With the tests the other way
+    #  round, `putative 1b protein` -- which Simarterivirinae declares as the
+    #  ORF1b product, not modelled because ORF1b has no start codon of its own
+    #  -- went to UNASSIGNED instead, where no rescue could ever adopt it
+    #  (there is no ORF1B feature to adopt it into) and it sat in
+    #  UNASSIGNED_TRACKING.tsv tripping the install gate, 27 deposits of it.
+    #  A decision the taxon script states outright must beat a default.
     for rx, why in notmod:
         if re.search(rx, a, re.I):
             return None, why
+    if PUTATIVE.search(a):
+        return None, None          # -> unassigned; the rescue arbitrates
     #  A string that matches TWO features names neither of them. Taking the
     #  first rule in table order is what the loop used to do, and it is a silent
     #  mis-bin: one Rotavirus submission batch prefixed every gene with VP7's
