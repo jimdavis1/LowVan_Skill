@@ -1,0 +1,228 @@
+{
+ "Tilapinevirus": {
+  "features": [
+   {
+    "key": "S10",
+    "anno": "Uncharacterized lineage-specific S10 protein",
+    "gene": "S10",
+    "ftype": "CDS",
+    "segment": "S10 Segment",
+    "bit": 108,
+    "minl": 106,
+    "maxl": 119,
+    "pmid": null,
+    "n": 22,
+    "called": 22,
+    "n_inrange": 22,
+    "called_inrange": 22,
+    "pssms": [
+     "Tilapinevirus.S10.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S1_PB1",
+    "anno": "RNA-dependent RNA polymerase catalytic core PB1 subunit",
+    "gene": "PB1",
+    "ftype": "CDS",
+    "segment": "PB1 Segment",
+    "bit": 500,
+    "minl": 487,
+    "maxl": 550,
+    "pmid": null,
+    "n": 35,
+    "called": 35,
+    "n_inrange": 35,
+    "called_inrange": 35,
+    "pssms": [
+     "Tilapinevirus.S1_PB1.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S2_PB2",
+    "anno": "RNA-dependent RNA polymerase PB2 subunit",
+    "gene": "PB2",
+    "ftype": "CDS",
+    "segment": "PB2 Segment",
+    "bit": 451,
+    "minl": 427,
+    "maxl": 484,
+    "pmid": null,
+    "n": 29,
+    "called": 29,
+    "n_inrange": 29,
+    "called_inrange": 29,
+    "pssms": [
+     "Tilapinevirus.S2_PB2.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S3_PA",
+    "anno": "RNA-dependent RNA polymerase PA subunit",
+    "gene": "PA",
+    "ftype": "CDS",
+    "segment": "PA Segment",
+    "bit": 404,
+    "minl": 393,
+    "maxl": 445,
+    "pmid": null,
+    "n": 37,
+    "called": 37,
+    "n_inrange": 37,
+    "called_inrange": 37,
+    "pssms": [
+     "Tilapinevirus.S3_PA.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S4_NP",
+    "anno": "Nucleocapsid protein",
+    "gene": "NP",
+    "ftype": "CDS",
+    "segment": "NP Segment",
+    "bit": 336,
+    "minl": 329,
+    "maxl": 377,
+    "pmid": null,
+    "n": 25,
+    "called": 25,
+    "n_inrange": 25,
+    "called_inrange": 25,
+    "pssms": [
+     "Tilapinevirus.S4_NP.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S5",
+    "anno": "Uncharacterized lineage-specific S5 protein",
+    "gene": "S5",
+    "ftype": "CDS",
+    "segment": "S5 Segment",
+    "bit": 337,
+    "minl": 318,
+    "maxl": 363,
+    "pmid": null,
+    "n": 28,
+    "called": 28,
+    "n_inrange": 28,
+    "called_inrange": 28,
+    "pssms": [
+     "Tilapinevirus.S5.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S6",
+    "anno": "Uncharacterized lineage-specific S6 protein",
+    "gene": "S6",
+    "ftype": "CDS",
+    "segment": "S6 Segment",
+    "bit": 329,
+    "minl": 297,
+    "maxl": 336,
+    "pmid": null,
+    "n": 26,
+    "called": 26,
+    "n_inrange": 26,
+    "called_inrange": 26,
+    "pssms": [
+     "Tilapinevirus.S6.1.pssm",
+     "Tilapinevirus.S6.2.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S7",
+    "anno": "Uncharacterized lineage-specific S7 protein",
+    "gene": "S7",
+    "ftype": "CDS",
+    "segment": "S7 Segment",
+    "bit": 195,
+    "minl": 183,
+    "maxl": 206,
+    "pmid": null,
+    "n": 25,
+    "called": 25,
+    "n_inrange": 25,
+    "called_inrange": 25,
+    "pssms": [
+     "Tilapinevirus.S7.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S8",
+    "anno": "Uncharacterized lineage-specific S8 protein",
+    "gene": "S8",
+    "ftype": "CDS",
+    "segment": "S8 Segment",
+    "bit": 172,
+    "minl": 163,
+    "maxl": 184,
+    "pmid": null,
+    "n": 19,
+    "called": 19,
+    "n_inrange": 19,
+    "called_inrange": 19,
+    "pssms": [
+     "Tilapinevirus.S8.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S9",
+    "anno": "Uncharacterized lineage-specific S9 protein",
+    "gene": "S9",
+    "ftype": "CDS",
+    "segment": "S9 Segment",
+    "bit": 117,
+    "minl": 88,
+    "maxl": 126,
+    "pmid": null,
+    "n": 34,
+    "called": 34,
+    "n_inrange": 34,
+    "called_inrange": 34,
+    "pssms": [
+     "Tilapinevirus.S9.1.pssm",
+     "Tilapinevirus.S9.2.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "S9_F3",
+    "anno": "Uncharacterized lineage-specific S9-F3 protein",
+    "gene": "S9-F3",
+    "ftype": "CDS",
+    "segment": "S9 Segment",
+    "bit": 101,
+    "minl": 98,
+    "maxl": 111,
+    "pmid": null,
+    "n": 32,
+    "called": 32,
+    "n_inrange": 32,
+    "called_inrange": 32,
+    "pssms": [
+     "Tilapinevirus.S9_F3.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   }
+  ]
+ }
+}

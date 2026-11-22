@@ -1,0 +1,152 @@
+{
+ "GP116": {
+  "PMID_claude_generated": [
+   "12655087",
+   "20554800"
+  ],
+  "anno": "Mature envelope glycoprotein gp116",
+  "cleave": "PP3",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "GP116",
+  "note": "845-899 aa (110-135 kDa). The larger of the two envelope glycoproteins, anchored by two C-terminal transmembrane domains, and not disulphide-linked to gp64. Glycosylation characterised in PMID 20554800. DERIVED from pp3 between the two [Ala-X-Ala] cuts. Its length is the one that varies -- 899 in YHV-1, 889 in YHV-8, 873-876 in GAV -- because the 162 nt ORF3 indel that separates the YHV subtypes falls inside it. BOTH extensions are 0: both termini are protease cuts. ANNOTATION: the mat_peptide convention in this vocabulary is that the string begins 'Mature ...', so the name follows that rather than the bare product name.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "GP64": {
+  "PMID_claude_generated": [
+   "12655087",
+   "20554800"
+  ],
+  "anno": "Mature envelope glycoprotein gp64",
+  "cleave": "PP3",
+  "downstream_ext": 1,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "GP64",
+  "note": "538-539 aa (63-67 kDa). The smaller envelope glycoprotein, anchored by a single C-terminal transmembrane domain. DERIVED from pp3 at the second [Ala-X-Ala] cut: ...SIISPASA|LAPRQ..., after Ala1127 of the 1666 aa precursor (PMID 12655087), confirmed here at that exact residue in all five 1666 aa isolates and relocated by motif to 1101 in GAV, 1104 in GAV genotype 3 and 1117 in YHV-8. gp64 came out at 539 aa in 8 of 9 precursors and 538 in the ninth. upstream_ext 0 because the N-terminus is a protease cut; downstream_ext 1 -- NOT 0 -- because the C-terminus is NOT a cut site: gp64 runs to the precursor's own stop codon, so the annotator must be allowed to find that codon. Sum of the three products minus the precursor is 0 for all 9. ANNOTATION: the mat_peptide convention in this vocabulary is that the string begins 'Mature ...', so the name follows that rather than the bare product name.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 0
+ },
+ "N": {
+  "PMID_claude_generated": [
+   "15280504",
+   "11907343"
+  ],
+  "anno": "Nucleocapsid protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "N",
+  "note": "144 aa in GAV, 146 aa in YHV; the p20 nucleocapsid protein, translated from subgenomic mRNA 2. Roniviruses are unique among known nidoviruses in placing the nucleocapsid gene UPSTREAM of the glycoprotein gene rather than downstream (PMID 15280504), and there is no discrete M protein gene.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "ORF4": {
+  "PMID_claude_generated": [
+   "12376758",
+   "10811931"
+  ],
+  "anno": "Uncharacterized lineage-specific ORF4 protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "ORF4",
+  "note": "83 aa, GAV ONLY. A sixth ORF downstream of ORF3, in a 638 nt region; the corresponding YHV ORF is truncated by a stop after 20 codons and is unlikely to be expressed, and the ICTV profile records that evidence for its expression even in GAV is poor. SIZE SETTLED BY MEASUREMENT: the ICTV profile gives 98 aa and the Walker & Sittidilokratna review gives 83 aa (252 nt); both GAV deposits in this dump are 83 aa, so 83 is used and the disagreement is recorded rather than resolved silently. NO copy_num -- it is genus-partial by construction, present in GAV and absent from YHV, so marking it essential would flag every yellow head virus genome.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "P25": {
+  "PMID_claude_generated": [
+   "12655087"
+  ],
+  "anno": "Mature triple membrane-spanning protein p25",
+  "cleave": "PP3",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "P25",
+  "note": "228 aa, the N-terminal product of pp3, carrying three transmembrane domains and N-linked glycosylation sites in its ectodomain; the ICTV profile records no clear evidence of its association with virions and its function is unknown. DERIVED, not binned. The cut is after Ala228 of the 1666 aa YHV precursor (PMID 12655087), which was re-measured here against every full-length pp3 in the dump: the site reads ...LCFFITPAFA|TILSGI..., an [Ala-X-Ala] signal-peptidase-type-1 motif with the cut after the second Ala, and it verifies at residue 228 in all five 1666 aa isolates. Cut on the motif ITP.FA, never on the column: the same site sits at 228 in GAV and YHV-1 but the second site moves with the indel. p25 came out at EXACTLY 228 aa in all 9 precursors cut. downstream_ext 0 because this terminus is a genuine protease cut with no codon to find; upstream_ext 1 because the N-terminus is the precursor's own AUG. ANNOTATION: the mat_peptide convention in this vocabulary is that the string begins 'Mature ...', so the name follows that rather than the bare product name.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "PP1A": {
+  "PMID_claude_generated": [
+   "10811931",
+   "12376758",
+   "12502857"
+  ],
+  "anno": "Replicase polyprotein 1a",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "PP1A",
+  "note": "4060 aa in GAV, 4070-4076 aa in YHV. Carries hydrophobic domains HD1-HD4, the 3C-like protease, and two papain-like proteases PLP1 and PLPx. The 3CLpro combines the Cys-His catalytic dyad of the coronavirus main protease with a potyvirus-like substrate-binding pocket and has the cleavage specificity VxHE|(L/V) (PMID 12502857). NO MATURE PEPTIDES ARE DECLARED for this polyprotein: the ICTV profile states the number and composition of the nsps released from pp1ab is not yet known, and a cleavage SPECIFICITY is not a set of coordinates. The dump's deposits annotated '3C-like protease' (335-343 aa), 'helicase' (660-846 aa) and 'RNA polymerase' (92-286 aa) are domain fragments with no published junctions and are recorded in NOT_MODELLED.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "PP1AB": {
+  "PMID_claude_generated": [
+   "10811931",
+   "12376758",
+   "26304538",
+   "27170751"
+  ],
+  "anno": "Replicase polyprotein 1ab",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "PP1AB",
+  "note": "6673 aa in GAV, 6686-6692 aa in YHV. Produced by a -1 ribosomal frameshift at the ORF1a/ORF1b overlap, at an efficiency of 23-25% (PMID 10811931). The slippery heptamer is 5'-AAAUUUU-3' or 5'-GGGUUUU-3', followed by a large complex pseudoknot rather than the compact H-type pseudoknot vertebrate nidoviruses use. The ORF1b-encoded part carries NiRAN (PMID 26304538), the RdRp SDD motif, a zinc-binding domain, a superfamily 1 helicase, ExoN, an N7-methyltransferase and a 2'-O-methyltransferase (PMID 27170751); roniviruses lack the NendoU domain other nidoviruses carry. DECLARED special: transcript_edit -- the product is not collinear with the genome, so it gets a nucleotide reference set and no PSSM.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit",
+  "upstream_ext": 1
+ },
+ "PP3": {
+  "PMID_claude_generated": [
+   "12655087",
+   "20554800",
+   "18582978"
+  ],
+  "anno": "Glycoprotein precursor polyprotein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "PP3",
+  "note": "1640 aa in GAV, 1656 in YHV-8, 1666 in YHV-1; translated from subgenomic mRNA 3 and cleaved into p25 + gp116 + gp64. Six hydrophobic transmembrane domains; the two cuts fall on the C-terminal side of the third and fifth. A 162 nt indel separates YHV subtypes 1a and 1b and accounts for a 54 aa difference near the gp116 N-terminus, which is why the precursor length varies and why the products are cut on a MOTIF rather than a residue number.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "PX": {
+  "PMID_claude_generated": [
+   "20017924"
+  ],
+  "anno": "Uncharacterized lineage-specific px protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "PX",
+  "note": "86 aa, from ORFX, an alternative reading frame overlapping the 5' end of ORF3 (PMID 20017924). Predicted to be double-membrane-spanning with a structure resembling a class IIb viroporin -- a structural resemblance only, so the annotation stays uncharacterized. ABSENT from the source database: zero deposits. EXTRACTED and, in the process, a published coordinate was corrected. The ICTV profile states ORFX 'commences 3 nucleotides downstream of the pp3 initiation codon', but a +3 nt offset is the SAME reading frame as pp3 and cannot encode a different protein. Measured directly in all three reference genomes (YHV NC_043505, GAV NC_010306, YHV-8 KX947267) the start is +5 nt in the +2 frame, giving exactly 86 aa in every one. 15 extractions across the genus, EVERY ONE exactly 86 aa, 14 at +5 nt and 1 at +11. NO copy_num: it overlaps PP3 and would take essentiality on another feature's locus.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ }
+}

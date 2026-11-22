@@ -1,0 +1,13 @@
+{
+ "S1_PB1": {"min": 480, "max": 560, "pmid": "27048802", "note": "519 aa in Til-4-2011 (KU751814) and TiLV-Israel-HK (OQ437054); segment 1 is 1641 nt"},
+ "S2_PB2": {"min": 420, "max": 490, "pmid": "38066000", "note": "457 aa in both reference isolates; PB2-like subunit, segment 2 1471 nt"},
+ "S3_PA":  {"min": 385, "max": 450, "pmid": "38066000", "note": "419 aa in both reference isolates; PA-like subunit, segment 3 1371 nt"},
+ "S4_NP":  {"min": 330, "max": 380, "pmid": "35107373", "note": "356 aa in both reference isolates; nucleoprotein, segment 4 1250 nt"},
+ "S5":     {"min": 315, "max": 370, "pmid": "41513822", "note": "343 aa in both reference isolates; segment 5 1099 nt"},
+ "S6":     {"min": 290, "max": 345, "pmid": "41513822", "note": "317 aa in both reference isolates; segment 6 1044 nt"},
+ "S7":     {"min": 180, "max": 215, "pmid": "41513822", "note": "195 aa in both reference isolates; segment 7 777 nt"},
+ "S8":     {"min": 160, "max": 190, "pmid": "41513822", "note": "174 aa in both reference isolates; segment 8 657 nt"},
+ "S9":     {"min": 90,  "max": 130, "pmid": "41513822", "note": "116-codon primary ORF; 118 aa in Til-4-2011, 119 aa uAUG variant in some Thai isolates, one 122-codon gene"},
+ "S9_F3":  {"min": 100, "max": 112, "pmid": "41513822", "note": "105-codon ORF in frame 3 of segment 9; all 32 extractions are exactly 105 aa"},
+ "S10":    {"min": 100, "max": 128, "pmid": "41513822", "note": "113 aa in both reference isolates; segment 10 465 nt"}
+}

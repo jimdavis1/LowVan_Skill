@@ -743,3 +743,27 @@ Velarivirus	Nucleocapsid protein	N	CDS		0
 Velarivirus	RNA-dependent RNA polymerase	RDRP	CDS		0	
 Velarivirus	Replicase polyprotein	POLY	CDS		0	
 Velarivirus	Thaumatin-like protein	THAU	CDS		0	
+Tilapinevirus	Uncharacterized lineage-specific S10 protein	S10	CDS	S10 Segment	0	
+Tilapinevirus	RNA-dependent RNA polymerase catalytic core PB1 subunit	PB1	CDS	PB1 Segment	1	
+Tilapinevirus	RNA-dependent RNA polymerase PB2 subunit	PB2	CDS	PB2 Segment	1	
+Tilapinevirus	RNA-dependent RNA polymerase PA subunit	PA	CDS	PA Segment	1	
+Tilapinevirus	Nucleocapsid protein	NP	CDS	NP Segment	1	
+Tilapinevirus	Uncharacterized lineage-specific S5 protein	S5	CDS	S5 Segment	0	
+Tilapinevirus	Uncharacterized lineage-specific S6 protein	S6	CDS	S6 Segment	0	
+Tilapinevirus	Uncharacterized lineage-specific S7 protein	S7	CDS	S7 Segment	0	
+Tilapinevirus	Uncharacterized lineage-specific S8 protein	S8	CDS	S8 Segment	0	
+Tilapinevirus	Uncharacterized lineage-specific S9 protein	S9	CDS	S9 Segment	0	
+Tilapinevirus	Uncharacterized lineage-specific S9-F3 protein	S9-F3	CDS	S9 Segment	0	
+Okavirus	Mature envelope glycoprotein gp116	GP116	mat_peptide	Single RNA Segment	0	
+Okavirus	Mature envelope glycoprotein gp64	GP64	mat_peptide	Single RNA Segment	0	
+Okavirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
+Okavirus	Uncharacterized lineage-specific ORF4 protein	ORF4	CDS	Single RNA Segment	0	
+Okavirus	Mature triple membrane-spanning protein p25	P25	mat_peptide	Single RNA Segment	0	
+Okavirus	Replicase polyprotein 1a	PP1A	CDS	Single RNA Segment	0	
+Okavirus	Replicase polyprotein 1ab	PP1AB	CDS	Single RNA Segment	0	
+Okavirus	Glycoprotein precursor polyprotein	PP3	CDS	Single RNA Segment	1	
+Okavirus	Uncharacterized lineage-specific px protein	PX	CDS	Single RNA Segment	0	
+Nimanivirus	Nucleocapsid protein	N	CDS	Single RNA Segment	1	
+Nimanivirus	Glycoprotein precursor polyprotein	ORF3	CDS	Single RNA Segment	1	
+Nimanivirus	Replicase polyprotein 1a	PP1A	CDS	Single RNA Segment	1	
+Nimanivirus	Replicase polyprotein 1ab	PP1AB	CDS	Single RNA Segment	0	

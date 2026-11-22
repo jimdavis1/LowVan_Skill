@@ -1,0 +1,22 @@
+{
+ "Okavirus.0.dna": {
+  "genome_ids": "NC_010306",
+  "genome_name": "Gill-associated virus"
+ },
+ "Okavirus.1.dna": {
+  "genome_ids": "NC_043505",
+  "genome_name": "Yellow head virus Chachoengsao 1998"
+ },
+ "Okavirus.2.dna": {
+  "genome_ids": "KX947267",
+  "genome_name": "yellow head virus type 8 20120706"
+ },
+ "Okavirus.3.dna": {
+  "genome_ids": "FJ848673",
+  "genome_name": "Yellow head virus YHV1992"
+ },
+ "Okavirus.4.dna": {
+  "genome_ids": "AF227196",
+  "genome_name": "Gill-associated virus"
+ }
+}

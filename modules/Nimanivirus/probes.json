@@ -1,0 +1,18 @@
+[
+ {"name": "ORF1a polyprotein", "pattern": "orf1a|1a\\b|pp1a", "note": "4933 aa, invariant.", "source": "PMID 35011135"},
+ {"name": "ORF1ab polyprotein", "pattern": "orf1ab|1ab|pp1ab", "note": "7797 aa, -1 frameshift at 5'-GGGUUUU-3'.", "source": "PMID 35011135"},
+ {"name": "ORF2 nucleocapsid", "pattern": "orf2|nucleocapsid|nucleoprotein|p20", "note": "125 aa, invariant.", "source": "PMID 35011135"},
+ {"name": "ORF3 glycoprotein precursor", "pattern": "orf3|glycoprotein|pp3", "note": "1503 aa, invariant.", "source": "PMID 33023199"},
+ {"name": "p25 triple membrane-spanning protein", "pattern": "p25|p22|triple\\s+membrane",
+  "note": "DELIBERATELY ABSENT, and this is the reason this module exists separately. The ICTV profile records that MrGV lacks the triple-membrane-spanning p25 at the N-terminus of its precursor glycoprotein. ABSENT here confirms no okavirus cleavage rule has leaked into this module.",
+  "source": "PMID 35011135"},
+ {"name": "px / ORFX", "pattern": "orfx|\\bpx\\b|viroporin",
+  "note": "DELIBERATELY ABSENT. The ICTV profile states ORFX is absent from MrGV.",
+  "source": "PMID 35011135"},
+ {"name": "gp116 / gp64 cleavage products", "pattern": "gp\\s*116|gp\\s*64|glycoprotein\\s*(116|64)",
+  "note": "NOT DECLARED, and recorded as a gap. ICTV asserts MrGV ORF3 encodes homologues of gp116 and gp64, but no cleavage site is published for MrGV and the okavirus sites cannot be transferred -- measured here, MrGV ORF3 against YHV pp3 gives a best HSP of 20.4 bits at 23.7% identity over 38 residues, which is noise.",
+  "source": "PMID 33023199"},
+ {"name": "ORF4", "pattern": "orf4",
+  "note": "Not reported for MrGV; the ICTV profile does not state whether ORF4 is present. No deposit exists.",
+  "source": "PMID 35011135"}
+]

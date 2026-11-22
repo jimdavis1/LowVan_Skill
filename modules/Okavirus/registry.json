@@ -1,0 +1,188 @@
+{
+ "Okavirus": {
+  "features": [
+   {
+    "key": "GP116",
+    "anno": "Mature envelope glycoprotein gp116",
+    "gene": "GP116",
+    "ftype": "mat_peptide",
+    "segment": "Single RNA Segment",
+    "bit": 500,
+    "minl": 794,
+    "maxl": 952,
+    "pmid": null,
+    "n": 9,
+    "called": 9,
+    "n_inrange": 9,
+    "called_inrange": 9,
+    "pssms": [
+     "Okavirus.GP116.1.pssm",
+     "Okavirus.GP116.2.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "GP64",
+    "anno": "Mature envelope glycoprotein gp64",
+    "gene": "GP64",
+    "ftype": "mat_peptide",
+    "segment": "Single RNA Segment",
+    "bit": 500,
+    "minl": 505,
+    "maxl": 571,
+    "pmid": null,
+    "n": 9,
+    "called": 9,
+    "n_inrange": 9,
+    "called_inrange": 9,
+    "pssms": [
+     "Okavirus.GP64.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "N",
+    "anno": "Nucleocapsid protein",
+    "gene": "N",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 133,
+    "minl": 127,
+    "maxl": 154,
+    "pmid": null,
+    "n": 15,
+    "called": 15,
+    "n_inrange": 15,
+    "called_inrange": 15,
+    "pssms": [
+     "Okavirus.N.1_1.pssm",
+     "Okavirus.N.1_2.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "ORF4",
+    "anno": "Uncharacterized lineage-specific ORF4 protein",
+    "gene": "ORF4",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 30,
+    "minl": 78,
+    "maxl": 87,
+    "pmid": null,
+    "n": 1,
+    "called": 1,
+    "n_inrange": 1,
+    "called_inrange": 1,
+    "pssms": [
+     "Okavirus.ORF4.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "P25",
+    "anno": "Mature triple membrane-spanning protein p25",
+    "gene": "P25",
+    "ftype": "mat_peptide",
+    "segment": "Single RNA Segment",
+    "bit": 225,
+    "minl": 214,
+    "maxl": 241,
+    "pmid": null,
+    "n": 9,
+    "called": 9,
+    "n_inrange": 9,
+    "called_inrange": 9,
+    "pssms": [
+     "Okavirus.P25.1.pssm",
+     "Okavirus.P25.2.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "PP1A",
+    "anno": "Replicase polyprotein 1a",
+    "gene": "PP1A",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 500,
+    "minl": 3816,
+    "maxl": 4320,
+    "pmid": null,
+    "n": 7,
+    "called": 6,
+    "n_inrange": 6,
+    "called_inrange": 6,
+    "pssms": [
+     "Okavirus.PP1A.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "PP1AB",
+    "anno": "Replicase polyprotein 1ab",
+    "gene": "PP1AB",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": null,
+    "minl": 6272,
+    "maxl": 7093,
+    "pmid": null,
+    "n": 46,
+    "called": null,
+    "n_inrange": null,
+    "called_inrange": null,
+    "pssms": [],
+    "nondefault": false,
+    "status": "special"
+   },
+   {
+    "key": "PP3",
+    "anno": "Glycoprotein precursor polyprotein",
+    "gene": "PP3",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 500,
+    "minl": 1451,
+    "maxl": 1765,
+    "pmid": null,
+    "n": 43,
+    "called": 43,
+    "n_inrange": 11,
+    "called_inrange": 11,
+    "pssms": [
+     "Okavirus.PP3.1.pssm",
+     "Okavirus.PP3.2.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "PX",
+    "anno": "Uncharacterized lineage-specific px protein",
+    "gene": "PX",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 90,
+    "minl": 80,
+    "maxl": 91,
+    "pmid": null,
+    "n": 15,
+    "called": 15,
+    "n_inrange": 15,
+    "called_inrange": 15,
+    "pssms": [
+     "Okavirus.PX.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   }
+  ]
+ }
+}

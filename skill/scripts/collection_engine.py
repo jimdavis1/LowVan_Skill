@@ -223,7 +223,26 @@ def run(here, T, MODULE, RULES, NOT_MODELLED=(), LENGTH_ROUTE=None,
         key, why = classify(a, rules, notmod)
         nfeat = per_md5.get(md5s[i], 1)
         fid0 = ann[i][0] if ann[i] else ""
-        syn[(" ".join(a.split()), genus_of(fid0), key or "UNASSIGNED")] += nfeat
+        #  A string the taxon script explicitly declared NOT_MODELLED is a
+        #  CURATOR'S DECISION, and must not be recorded as UNASSIGNED -- which
+        #  is what "nobody wrote a rule for this" means. Collapsing the two
+        #  made check_literature_gaps.py's documented RECOGNISED verdict
+        #  unreachable: it tests `dests <= {NOT_MODELLED, DISCARDED}`, so
+        #  every deliberate decision came back UNBOUND ("a defect in your
+        #  rules") and had to be waved through with --allow-absent, which is
+        #  the flag for a protein that is ABSENT, not one that was ruled on.
+        #  Found 22 Nov 2026 on Okavirus, where the nsp domain fragments are
+        #  declared not-modelled on the ICTV's own statement that the nsp
+        #  composition of pp1ab is unknown.
+        if key:
+            dest = key
+        elif why == "partial":
+            dest = "DISCARDED"
+        elif why and not why.startswith("conflict:"):
+            dest = "NOT_MODELLED"
+        else:
+            dest = "UNASSIGNED"
+        syn[(" ".join(a.split()), genus_of(fid0), dest)] += nfeat
         if key:
             out[key].append((ann[i][0] if ann[i] else md5s[i], a, s))
             feat_counts[key] += nfeat

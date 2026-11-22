@@ -1,0 +1,52 @@
+{
+ "NP Segment": {
+  "max_len": 1437,
+  "min_len": 236,
+  "replicon_geometry": "linear"
+ },
+ "PA Segment": {
+  "max_len": 1590,
+  "min_len": 183,
+  "replicon_geometry": "linear"
+ },
+ "PB1 Segment": {
+  "max_len": 1902,
+  "min_len": 222,
+  "replicon_geometry": "linear"
+ },
+ "PB2 Segment": {
+  "max_len": 1707,
+  "min_len": 298,
+  "replicon_geometry": "linear"
+ },
+ "S10 Segment": {
+  "max_len": 548,
+  "min_len": 217,
+  "replicon_geometry": "linear"
+ },
+ "S5 Segment": {
+  "max_len": 1263,
+  "min_len": 921,
+  "replicon_geometry": "linear"
+ },
+ "S6 Segment": {
+  "max_len": 1200,
+  "min_len": 858,
+  "replicon_geometry": "linear"
+ },
+ "S7 Segment": {
+  "max_len": 893,
+  "min_len": 529,
+  "replicon_geometry": "linear"
+ },
+ "S8 Segment": {
+  "max_len": 762,
+  "min_len": 472,
+  "replicon_geometry": "linear"
+ },
+ "S9 Segment": {
+  "max_len": 652,
+  "min_len": 226,
+  "replicon_geometry": "linear"
+ }
+}

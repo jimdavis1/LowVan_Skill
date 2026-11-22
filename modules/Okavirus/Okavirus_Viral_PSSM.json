@@ -1,0 +1,197 @@
+{
+   "Okavirus" : {
+      "close_genomes" : {
+         "Okavirus.0.dna" : {
+            "genome_ids" : "NC_010306",
+            "genome_name" : "Gill-associated virus"
+         },
+         "Okavirus.1.dna" : {
+            "genome_ids" : "NC_043505",
+            "genome_name" : "Yellow head virus Chachoengsao 1998"
+         },
+         "Okavirus.2.dna" : {
+            "genome_ids" : "KX947267",
+            "genome_name" : "yellow head virus type 8 20120706"
+         },
+         "Okavirus.3.dna" : {
+            "genome_ids" : "FJ848673",
+            "genome_name" : "Yellow head virus YHV1992"
+         },
+         "Okavirus.4.dna" : {
+            "genome_ids" : "AF227196",
+            "genome_name" : "Gill-associated virus"
+         }
+      },
+      "features" : {
+         "GP116" : {
+            "PMID_claude_generated" : [
+               "12655087",
+               "20554800"
+            ],
+            "anno" : "Mature envelope glycoprotein gp116",
+            "bit_cutoff" : 500,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "GP116",
+            "kmers" : 1,
+            "max_len" : 952,
+            "min_len" : 794,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "GP64" : {
+            "PMID_claude_generated" : [
+               "12655087",
+               "20554800"
+            ],
+            "anno" : "Mature envelope glycoprotein gp64",
+            "bit_cutoff" : 500,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "GP64",
+            "kmers" : 1,
+            "max_len" : 571,
+            "min_len" : 505,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         },
+         "N" : {
+            "PMID_claude_generated" : [
+               "15280504",
+               "11907343"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 133,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 154,
+            "min_len" : 127,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "ORF4" : {
+            "PMID_claude_generated" : [
+               "12376758",
+               "10811931"
+            ],
+            "anno" : "Uncharacterized lineage-specific ORF4 protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ORF4",
+            "kmers" : 1,
+            "max_len" : 87,
+            "min_len" : 78,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "P25" : {
+            "PMID_claude_generated" : [
+               "12655087"
+            ],
+            "anno" : "Mature triple membrane-spanning protein p25",
+            "bit_cutoff" : 225,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "P25",
+            "kmers" : 1,
+            "max_len" : 241,
+            "min_len" : 214,
+            "segment" : "Single RNA Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "PP1A" : {
+            "PMID_claude_generated" : [
+               "10811931",
+               "12376758",
+               "12502857"
+            ],
+            "anno" : "Replicase polyprotein 1a",
+            "bit_cutoff" : 500,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PP1A",
+            "kmers" : 1,
+            "max_len" : 4320,
+            "min_len" : 3816,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PP1AB" : {
+            "PMID_claude_generated" : [
+               "10811931",
+               "12376758",
+               "26304538",
+               "27170751"
+            ],
+            "anno" : "Replicase polyprotein 1ab",
+            "feature_type" : "CDS",
+            "gene_symbol" : "PP1AB",
+            "max_len" : 7093,
+            "min_len" : 6272,
+            "segment" : "Single RNA Segment",
+            "special" : "transcript_edit",
+            "type" : "CDS"
+         },
+         "PP3" : {
+            "PMID_claude_generated" : [
+               "12655087",
+               "20554800",
+               "18582978"
+            ],
+            "anno" : "Glycoprotein precursor polyprotein",
+            "bit_cutoff" : 500,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PP3",
+            "kmers" : 1,
+            "max_len" : 1765,
+            "min_len" : 1451,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PX" : {
+            "PMID_claude_generated" : [
+               "20017924"
+            ],
+            "anno" : "Uncharacterized lineage-specific px protein",
+            "bit_cutoff" : 90,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PX",
+            "kmers" : 1,
+            "max_len" : 91,
+            "min_len" : 80,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 29445,
+            "min_len" : 200,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

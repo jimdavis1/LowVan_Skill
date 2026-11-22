@@ -1,0 +1,294 @@
+{
+   "Tilapinevirus" : {
+      "close_genomes" : {
+         "Tilapinevirus.0.dna" : {
+            "genome_ids" : "1549864.417,1549864.423,1549864.419 (+7 more)",
+            "genome_name" : "Tilapia lake virus Til-4-2011, all 10 segments"
+         },
+         "Tilapinevirus.1.dna" : {
+            "genome_ids" : "1549864.567,1549864.570,1549864.571 (+7 more)",
+            "genome_name" : "Tilapia lake virus TiLV-Israel-HK, all 10 segments"
+         },
+         "Tilapinevirus.2.dna" : {
+            "genome_ids" : "1549864.351,1549864.348,1549864.349 (+7 more)",
+            "genome_name" : "Tilapia lake virus TH-2019, all 10 segments"
+         },
+         "Tilapinevirus.3.dna" : {
+            "genome_ids" : "1549864.353,1549864.352,1549864.355 (+7 more)",
+            "genome_name" : "Tilapia lake virus BD-2017, all 10 segments"
+         },
+         "Tilapinevirus.4.dna" : {
+            "genome_ids" : "1549864.184,1549864.182,1549864.183 (+7 more)",
+            "genome_name" : "Tilapia lake virus EC-2012, all 10 segments"
+         },
+         "Tilapinevirus.5.dna" : {
+            "genome_ids" : "1549864.237,1549864.238,1549864.240 (+7 more)",
+            "genome_name" : "Tilapia lake virus WVL19054, all 10 segments"
+         },
+         "Tilapinevirus.6.dna" : {
+            "genome_ids" : "1549864.186,1549864.185,1549864.188 (+7 more)",
+            "genome_name" : "Tilapia lake virus F3-4, all 10 segments"
+         },
+         "Tilapinevirus.7.dna" : {
+            "genome_ids" : "1549864.80,1549864.79,1549864.78 (+7 more)",
+            "genome_name" : "Tilapia lake virus TV1, all 10 segments"
+         }
+      },
+      "features" : {
+         "S10" : {
+            "PMID_claude_generated" : [
+               "41513822",
+               "27048802"
+            ],
+            "anno" : "Uncharacterized lineage-specific S10 protein",
+            "bit_cutoff" : 108,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S10",
+            "kmers" : 1,
+            "max_len" : 119,
+            "min_len" : 106,
+            "segment" : "S10 Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S1_PB1" : {
+            "PMID_claude_generated" : [
+               "27048802",
+               "38066000",
+               "41513822"
+            ],
+            "anno" : "RNA-dependent RNA polymerase catalytic core PB1 subunit",
+            "bit_cutoff" : 500,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PB1",
+            "kmers" : 1,
+            "max_len" : 550,
+            "min_len" : 487,
+            "segment" : "PB1 Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S2_PB2" : {
+            "PMID_claude_generated" : [
+               "38066000",
+               "41513822"
+            ],
+            "anno" : "RNA-dependent RNA polymerase PB2 subunit",
+            "bit_cutoff" : 451,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PB2",
+            "kmers" : 1,
+            "max_len" : 484,
+            "min_len" : 427,
+            "segment" : "PB2 Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S3_PA" : {
+            "PMID_claude_generated" : [
+               "38066000",
+               "41513822"
+            ],
+            "anno" : "RNA-dependent RNA polymerase PA subunit",
+            "bit_cutoff" : 404,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PA",
+            "kmers" : 1,
+            "max_len" : 445,
+            "min_len" : 393,
+            "segment" : "PA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S4_NP" : {
+            "PMID_claude_generated" : [
+               "35107373",
+               "39995042",
+               "41513822"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 336,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "NP",
+            "kmers" : 1,
+            "max_len" : 377,
+            "min_len" : 329,
+            "segment" : "NP Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S5" : {
+            "PMID_claude_generated" : [
+               "41513822",
+               "27048802"
+            ],
+            "anno" : "Uncharacterized lineage-specific S5 protein",
+            "bit_cutoff" : 337,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S5",
+            "kmers" : 1,
+            "max_len" : 363,
+            "min_len" : 318,
+            "segment" : "S5 Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S6" : {
+            "PMID_claude_generated" : [
+               "41513822"
+            ],
+            "anno" : "Uncharacterized lineage-specific S6 protein",
+            "bit_cutoff" : 329,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S6",
+            "kmers" : 1,
+            "max_len" : 336,
+            "min_len" : 297,
+            "segment" : "S6 Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S7" : {
+            "PMID_claude_generated" : [
+               "41513822",
+               "27048802"
+            ],
+            "anno" : "Uncharacterized lineage-specific S7 protein",
+            "bit_cutoff" : 195,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S7",
+            "kmers" : 1,
+            "max_len" : 206,
+            "min_len" : 183,
+            "segment" : "S7 Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S8" : {
+            "PMID_claude_generated" : [
+               "41513822",
+               "27048802"
+            ],
+            "anno" : "Uncharacterized lineage-specific S8 protein",
+            "bit_cutoff" : 172,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S8",
+            "kmers" : 1,
+            "max_len" : 184,
+            "min_len" : 163,
+            "segment" : "S8 Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S9" : {
+            "PMID_claude_generated" : [
+               "41513822",
+               "27048802"
+            ],
+            "anno" : "Uncharacterized lineage-specific S9 protein",
+            "bit_cutoff" : 117,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S9",
+            "kmers" : 1,
+            "max_len" : 126,
+            "min_len" : 88,
+            "segment" : "S9 Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "S9_F3" : {
+            "PMID_claude_generated" : [
+               "41513822"
+            ],
+            "anno" : "Uncharacterized lineage-specific S9-F3 protein",
+            "bit_cutoff" : 101,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S9-F3",
+            "kmers" : 1,
+            "max_len" : 111,
+            "min_len" : 98,
+            "segment" : "S9 Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "NP Segment" : {
+            "max_len" : 1437,
+            "min_len" : 236,
+            "replicon_geometry" : "linear"
+         },
+         "PA Segment" : {
+            "max_len" : 1590,
+            "min_len" : 183,
+            "replicon_geometry" : "linear"
+         },
+         "PB1 Segment" : {
+            "max_len" : 1902,
+            "min_len" : 222,
+            "replicon_geometry" : "linear"
+         },
+         "PB2 Segment" : {
+            "max_len" : 1707,
+            "min_len" : 298,
+            "replicon_geometry" : "linear"
+         },
+         "S10 Segment" : {
+            "max_len" : 548,
+            "min_len" : 217,
+            "replicon_geometry" : "linear"
+         },
+         "S5 Segment" : {
+            "max_len" : 1263,
+            "min_len" : 921,
+            "replicon_geometry" : "linear"
+         },
+         "S6 Segment" : {
+            "max_len" : 1200,
+            "min_len" : 858,
+            "replicon_geometry" : "linear"
+         },
+         "S7 Segment" : {
+            "max_len" : 893,
+            "min_len" : 529,
+            "replicon_geometry" : "linear"
+         },
+         "S8 Segment" : {
+            "max_len" : 762,
+            "min_len" : 472,
+            "replicon_geometry" : "linear"
+         },
+         "S9 Segment" : {
+            "max_len" : 652,
+            "min_len" : 226,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

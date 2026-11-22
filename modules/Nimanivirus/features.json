@@ -1,0 +1,47 @@
+{
+ "PP1A": {
+  "PMID_claude_generated": ["33023199", "35011135"],
+  "anno": "Replicase polyprotein 1a",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "PP1A",
+  "note": "4933 aa, invariant across every full-length deposit, because the Bangladesh (LH1-2018, PMID 33023199) and China (Mr-18, PMID 35011135) variants are 97.8% identical. Carries the 3C-like protease. NO MATURE PEPTIDES ARE DECLARED: no cleavage site has been published for any ronivirus polyprotein, and the ICTV profile states the nsp composition is not yet known.",
+  "params": {"m": "2"},
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "PP1AB": {
+  "PMID_claude_generated": ["35011135", "33023199"],
+  "anno": "Replicase polyprotein 1ab",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "PP1AB",
+  "note": "7797 aa. ORF1a and ORF1b overlap by 40 nt and a -1 ribosomal frameshift at the slippage sequence 5'-GGGUUUU-3' produces pp1ab (PMID 35011135). DECLARED special: transcript_edit -- the product is not collinear with the genome, so it gets a nucleotide reference set and no PSSM. The 11 deposits annotated 'ORF1b' (2776 aa) are recorded in NOT_MODELLED: ORF1b is never translated on its own, being reached only through the frameshift, so those rows are a submitter convention for the open reading frame rather than a protein the virus makes.",
+  "params": {"m": "2"},
+  "segment": "Single RNA Segment",
+  "special": "transcript_edit",
+  "upstream_ext": 1
+ },
+ "N": {
+  "PMID_claude_generated": ["35011135", "33023199"],
+  "anno": "Nucleocapsid protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "N",
+  "note": "125 aa, invariant. ORF2, upstream of the glycoprotein gene as in all roniviruses. Shorter than the okavirus p20 (144-146 aa).",
+  "params": {"m": "2"},
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ },
+ "ORF3": {
+  "PMID_claude_generated": ["33023199", "35011135"],
+  "anno": "Glycoprotein precursor polyprotein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "ORF3",
+  "note": "1503 aa, invariant. SHIPS WHOLE, AND THAT IS A DOCUMENTED LIMIT. The ICTV profile states this precursor encodes homologues of gp116 and gp64 behind an N-terminal signal peptide, with only three predicted transmembrane domains, and that the triple-membrane-spanning p25 protein of the okavirus precursor is ABSENT. No cleavage site has been published for MrGV, and the okavirus sites cannot be transferred: measured here, MrGV ORF3 against YHV pp3 returns no meaningful alignment at all -- best HSP 20.4 bits, 23.7% identity over 38 residues, which is noise. So gp116 and gp64 are NOT declared for this module. Cutting them would mean inventing the coordinates, and the honest record is a named gap.",
+  "params": {"m": "2"},
+  "segment": "Single RNA Segment",
+  "upstream_ext": 1
+ }
+}

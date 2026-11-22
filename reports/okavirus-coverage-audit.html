@@ -1,0 +1,197 @@
+<title>Okavirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan module audit &middot; 22 November 2026</div><h1>Okavirus</h1><p class="stand">Gill-associated virus and yellow head virus, the shrimp roniviruses &mdash; invertebrate nidoviruses with a gene order found nowhere else in the order: the <b>nucleoprotein gene sits upstream</b> of the glycoprotein gene, and there is no discrete M gene. Nine features, including three cleavage products of one precursor and an 86 aa protein in an overlapping frame that no database holds.</p><div class="tiles"><div class="tile"><div class="v">9</div><div class="l">features</div></div><div class="tile"><div class="v">12</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">234/234</div><div class="l">Roniviridae contigs route, 0 misrouted</div></div><div class="tile"><div class="v">0</div><div class="l">sum-minus-precursor on 5 of 6 genomes</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">Five or six ORFs on a 26.2&ndash;26.8 kb positive-sense genome.</p><div class="scroll"><table><thead><tr><th>feature</th><th>symbol</th><th>aa</th><th>type</th><th>basis</th></tr></thead><tbody><tr><td>PP1A</td><td>PP1A</td><td>4060&ndash;4076</td><td>CDS</td><td>3CLpro, PLP1, PLPx, HD1&ndash;HD4; PMID 12376758</td></tr><tr><td>PP1AB</td><td>PP1AB</td><td>6673&ndash;6692</td><td>CDS, transcript_edit</td><td>&minus;1 frameshift, 23&ndash;25%; PMID 10811931</td></tr><tr><td>N</td><td>N</td><td>144&ndash;146</td><td>CDS</td><td>p20 nucleocapsid, upstream of ORF3; PMID 15280504</td></tr><tr><td>PP3</td><td>PP3</td><td>1640&ndash;1666</td><td>CDS</td><td>glycoprotein precursor; PMID 12655087</td></tr><tr><td>P25</td><td>P25</td><td>228</td><td>mat_peptide</td><td>derived; triple membrane-spanning</td></tr><tr><td>GP116</td><td>GP116</td><td>845&ndash;899</td><td>mat_peptide</td><td>derived; envelope glycoprotein</td></tr><tr><td>GP64</td><td>GP64</td><td>538&ndash;539</td><td>mat_peptide</td><td>derived; envelope glycoprotein</td></tr><tr><td>PX</td><td>PX</td><td>86</td><td>CDS</td><td>ORFX, overlapping frame; PMID 20017924</td></tr><tr><td>ORF4</td><td>ORF4</td><td>83</td><td>CDS</td><td><b>GAV only</b>; truncated in YHV</td></tr></tbody></table></div><figure><svg viewBox="0 0 980 220" role="img" aria-label="NC 010306 96491.40 (11270.4322, 26,253 nt) as the Okavirus module annotates it: 9 features (2 essential, 3 mature peptides)."><rect x="4" y="14" width="18" height="10" style="fill:var(--built)"/><text x="28" y="23" font-size="11" fill="currentColor">essential CDS</text><rect x="139" y="14" width="18" height="10" style="fill:var(--muted)"/><text x="163" y="23" font-size="11" fill="currentColor">other called CDS</text><rect x="295" y="14" width="18" height="10" style="fill:var(--warn)"/><text x="319" y="23" font-size="11" fill="currentColor">mature peptide</text><polygon points="74.3,147.0 478.6,147.0 483.6,152.0 478.6,157.0 74.3,157.0" style="fill:var(--muted)"/><text x="278.4" y="144.0" text-anchor="middle" font-size="10.5" fill="currentColor">PP1A</text><polygon points="748.5,147.0 759.0,147.0 764.0,152.0 759.0,157.0 748.5,157.0" style="fill:var(--built)"/><text x="755.8" y="144.0" text-anchor="middle" font-size="10.5" fill="currentColor">N</text><polygon points="765.0,122.0 926.0,122.0 931.0,127.0 926.0,132.0 765.0,132.0" style="fill:var(--built)"/><text x="847.5" y="119.0" text-anchor="middle" font-size="10.5" fill="currentColor">PP3</text><polygon points="765.2,97.0 769.9,97.0 774.9,102.0 769.9,107.0 765.2,107.0" style="fill:var(--muted)"/><text x="769.5" y="94.0" text-anchor="middle" font-size="10.5" fill="currentColor">PX</text><polygon points="938.6,147.0 943.0,147.0 948.0,152.0 943.0,157.0 938.6,157.0" style="fill:var(--muted)"/><text x="942.8" y="144.0" text-anchor="middle" font-size="10.5" fill="currentColor">ORF4</text><polygon points="765.0,74.0 783.9,74.0 788.9,77.0 783.9,80.0 765.0,80.0" style="fill:var(--warn)"/><text x="776.4" y="69.0" text-anchor="middle" font-size="10.5" fill="currentColor">P25</text><polygon points="787.9,149.0 871.7,149.0 876.7,152.0 871.7,155.0 787.9,155.0" style="fill:var(--warn)"/><text x="831.8" y="144.0" text-anchor="middle" font-size="10.5" fill="currentColor">GP116</text><polygon points="875.7,99.0 926.0,99.0 931.0,102.0 926.0,105.0 875.7,105.0" style="fill:var(--warn)"/><text x="902.8" y="94.0" text-anchor="middle" font-size="10.5" fill="currentColor">GP64</text><polygon points="74.3,122.0 741.3,122.0 746.3,127.0 741.3,132.0 74.3,132.0" style="fill:var(--muted)"/><text x="409.8" y="119.0" text-anchor="middle" font-size="10.5" fill="currentColor">PP1AB</text><line x1="72" y1="170.0" x2="952.0" y2="170.0" stroke="currentColor" stroke-width="1.5"/><line x1="72.0" y1="166.0" x2="72.0" y2="174.0" stroke="currentColor"/><text x="72.0" y="187.0" text-anchor="middle" font-size="10.5" fill="currentColor">0 kb</text><line x1="239.6" y1="166.0" x2="239.6" y2="174.0" stroke="currentColor"/><text x="239.6" y="187.0" text-anchor="middle" font-size="10.5" fill="currentColor">5 kb</text><line x1="407.2" y1="166.0" x2="407.2" y2="174.0" stroke="currentColor"/><text x="407.2" y="187.0" text-anchor="middle" font-size="10.5" fill="currentColor">10 kb</text><line x1="574.8" y1="166.0" x2="574.8" y2="174.0" stroke="currentColor"/><text x="574.8" y="187.0" text-anchor="middle" font-size="10.5" fill="currentColor">15 kb</text><line x1="742.4" y1="166.0" x2="742.4" y2="174.0" stroke="currentColor"/><text x="742.4" y="187.0" text-anchor="middle" font-size="10.5" fill="currentColor">20 kb</text><line x1="910.0" y1="166.0" x2="910.0" y2="174.0" stroke="currentColor"/><text x="910.0" y="187.0" text-anchor="middle" font-size="10.5" fill="currentColor">25 kb</text><text x="4" y="168.0" font-size="11" fill="currentColor"><tspan font-weight="600">Single RNA Segment</tspan></text><text x="4" y="182.0" font-size="10" fill="currentColor" opacity="0.75">26,253 nt</text></svg><figcaption>NC 010306 96491.40 (11270.4322, 26,253 nt) as the Okavirus module annotates it: 9 features (2 essential, 3 mature peptides). Drawn to scale from this genome&rsquo;s own calls; forward-strand genes above the axis, reverse-strand below.</figcaption></figure><p class="note">The replicase domains, in order along ORF1b: NiRAN (PMID 26304538), the RdRp SDD motif, a zinc-binding domain, a superfamily 1 helicase, ExoN, an N7-methyltransferase and a 2'-O-methyltransferase (PMID 27170751). Roniviruses lack the NendoU domain other nidoviruses carry.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">Rules over the annotation strings, then two derivations and one extraction.</p><p class="note">The ORF1a product appears as <code>replicase polyprotein 1a</code>, <code>ORF1a polyprotein pp1a</code> and <code>ORF1a</code>; the ORF3 precursor as <code>structural glycoprotein</code>, <code>polyprotein pp3</code>, <code>spike glycoprotein</code>, <code>envelope structural glycoprotein</code>, <code>polyprotein precursor</code> and <code>mutant envelope glycoprotein</code>. 21 distinct strings collapse to 5 controlled annotations, 4.2&times;.</p><p class="note"><b>The three ORF3 products are derived, not binned.</b> The deposits named <code>gp116</code> and <code>gp64</code> are 267&ndash;338 aa fragments of a true 899 aa and 539 aa protein. PMID 12655087 placed the cuts between Ala228/Thr229 and Ala1127/Leu1128 of the 1666 aa precursor, and both verify exactly against every 1666 aa deposit here:</p><pre class="mono">site 1   ...LCFFITPAFA | TILSGI...     A-F-A, cut after A228
+site 2   ...SIISPASA   | LAPRQ...      A-S-A, cut after A1127</pre><p class="note">Both are the [Ala-X-Ala] signal-peptidase-type-1 motif the ICTV profile describes. <b>The cut is made on the motif, never on the residue number.</b> A 162 nt indel in ORF3 separates the YHV subtypes, so the second site sits at 1101 in GAV, 1104 in GAV genotype 3, 1117 in YHV-8 and 1127 in YHV-1 &mdash; a column number would mis-cut every genotype but one. The derivation refuses any precursor where a site does not match exactly once; 9 of 11 were cut.</p><pre class="mono">precursor           len   p25  gp116  gp64   sum - precursor
+YHV-1 (x5)         1666   228    899   539          0
+YHV-8              1656   228    889   539          0
+GAV                1640   228    873   539          0
+GAV genotype 3     1642   228    876   538          0</pre></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Measured, except where there were too few calls to measure.</p><div class="scroll"><table><thead><tr><th>feature</th><th>panel calls</th><th>lowest genuine score</th><th>cutoff</th></tr></thead><tbody><tr><td>PP1A</td><td>6</td><td>7988.9</td><td>500 (capped)</td></tr><tr><td>PP3</td><td>6</td><td>2903.6</td><td>500 (capped)</td></tr><tr><td>GP116</td><td>6</td><td>1454.9</td><td>500 (capped)</td></tr><tr><td>GP64</td><td>6</td><td>1071.5</td><td>500 (capped)</td></tr><tr><td>P25</td><td>6</td><td>450.6</td><td>225</td></tr><tr><td>N</td><td>6</td><td>265.1</td><td>133</td></tr><tr><td>PX</td><td>6</td><td>180.5</td><td>90</td></tr><tr><td>ORF4</td><td>2</td><td>65.8</td><td><b>left alone</b> &mdash; one low score is not a distribution</td></tr></tbody></table></div><p class="note"><code>ORF4</code> keeps its generated floor of 30 bits. It is GAV-only, so only one of the six held-out genomes carries it, and the rule is to leave a feature with fewer than five panel calls untouched rather than set a threshold from noise.</p></section><section><h2><span class="num">04</span>Does it route</h2><p class="lede">All three modules in one database, so misrouting is visible.</p><pre class="mono">Roniviridae contigs       234
+routed                    234   100.0%
+  -&gt; Okavirus             190
+  -&gt; Nimanivirus           44
+misrouted                   0
+references used             5   (ceiling 25)</pre><p class="note">The 190/44 split matches the metadata genus counts exactly.</p></section><section><h2><span class="num">05</span>Does it call the proteins</h2><p class="lede">Held-out panel plus whole-taxon exemplars.</p><pre class="mono">PP1A  N  PP3  P25  GP116  GP64  PX      100.0%   (6/6)
+PP1AB                                    83.3%   (5/6)
+ORF4                                     16.7%   (1/6)  -- GAV-only, 1 of 6 is GAV</pre><p class="note">Only nine complete okavirus genomes exist in BV-BRC, five of which are references, so the held-out panel is six. That is small, and it is stated rather than smoothed over.</p></section><section><h2><span class="num">06</span>Are the calls right</h2><p class="lede">The tiling test is the gate for a multi-product precursor.</p><p class="note">Summing a precursor's products across every panel genome and subtracting the precursor should give about zero. Here:</p><pre class="mono">5 of 6 genomes:  sum - precursor = 0, every junction gap 0,
+                 gp64 ending exactly at the precursor&#x27;s stop
+1 of 6 (YHV-8):  +1, a one-codon overlap at the p25|gp116 junction</pre><p class="note">The single drift is a divergent genotype where the GP116 profile extends one residue past the motif cut. It is recorded rather than hidden.</p><pre class="mono">exact duplicate coordinate calls   0
+overlapping pairs, all expected:   PP1A/PP1AB (frameshift)
+                                   P25, GP116, GP64 inside PP3 (cleavage products)
+                                   PX inside PP3 and P25 (ORFX overlaps ORF3)</pre></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">The limits, named.</p><p class="note"><b>No mature peptides are declared for the replicase.</b> The ICTV profile states that the number and composition of the nsps released from pp1ab &ldquo;is not yet known&rdquo;. The dump holds deposits annotated <code>3C-like protease</code> (335&ndash;343 aa), <code>helicase</code> (660&ndash;846 aa) and <code>RNA polymerase</code> (92&ndash;286 aa), but these are domain fragments with no published junctions. Only the 3CLpro <i>specificity</i> VxHE&darr;(L/V) is characterised (PMID 12502857), and a specificity is not a coordinate. Declaring a mature peptide would mean inventing its boundaries.</p><p class="note"><b><code>ORF1b</code> is not modelled.</b> ORF1b is never translated on its own, being reached only through the frameshift as part of pp1ab. Deposits under that name are a submitter convention for the open reading frame, not a protein the virus makes.</p><p class="note"><b>It calls nothing from an ORF1b amplicon.</b> Of 17 whole-taxon exemplars, 6 called nothing; all six cover only ORF1b or the ORF1a/ORF1b junction. KX883632 (5040 nt, GAV) is the instructive case: it routes at 6216 bits and every profile returns <code>stop-free 0</code>, because the contig spans the frameshift and no single reading frame is open across it.</p><p class="note"><b><code>ORF4</code> carries no <code>copy_num</code>.</b> It is genus-partial by construction &mdash; 83 aa in GAV, truncated after 20 codons in YHV &mdash; so marking it essential would flag every yellow head virus genome.</p><p class="note"><b>The cleavage products carry no <code>copy_num</code> either.</b> <code>apply_copy_num.py</code> blocked P25 and GP116 as lying wholly inside PP3 and proposed GP64, which scores a non-zero standalone rate only because it runs to the precursor's own stop. Marking one of three products of one precursor essential and not the other two would assert a difference that does not exist; PP3 carries the essentiality.</p><p class="note"><b>A source disagreement is recorded, not resolved.</b> The ICTV profile calls the N-terminal product <b>p25</b> and the 2008 Walker &amp; Sittidilokratna review calls it <b>p22</b>, both at 228 aa; 228 aa is about 25 kDa, so p25 is used. ICTV gives ORF4 as 98 aa and the review as 83 aa; both GAV deposits here are 83 aa, so 83 is used.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Two published coordinates corrected by measurement.</p><p class="note"><b>ORFX does not start where the ICTV profile says.</b> The profile states it &ldquo;commences 3 nucleotides downstream of the pp3 initiation codon&rdquo;. A +3 nt offset is the <i>same</i> reading frame as pp3 and cannot encode a different protein. Measured directly in all three reference genomes, the start is <b>+5 nt, in the +2 frame</b>:</p><pre class="mono">YHV  NC_043505   pp3 starts nt 20985   ORFX nt 20990 (+5)  86 aa
+GAV  NC_010306   pp3 starts nt 20675   ORFX nt 20680 (+5)  86 aa
+YHV8 KX947267    pp3 starts nt 20979   ORFX nt 20984 (+5)  86 aa</pre><p class="note">15 extractions across the genus are <b>all exactly 86 aa</b> &mdash; the length the ICTV profile itself gives for px.</p><p class="note"><b>The slippery heptamer differs between the two ronivirus genera.</b> The ICTV profile gives the family's site as &ldquo;AAAUUUU or GGGUUUU&rdquo;. Read off the genomes at the pp1a/pp1b junction, <code>Okavirus</code> uses <b>AAATTTT</b> in GAV, YHV-1 and YHV-8, while <code>Nimanivirus</code> uses <b>GGGTTTT</b>. A single assumed heptamer would silently have covered half the work.</p><p class="note"><b>A kit defect was found and fixed.</b> <code>check_literature_gaps.py</code> documents a <code>RECOGNISED</code> verdict for a string bound to NOT_MODELLED &mdash; a deliberate decision &mdash; but <code>collection_engine.py</code> wrote <code>UNASSIGNED</code> for those strings, so the verdict was <b>unreachable</b> and every deliberate decision came back as a defect in the rules. Found on this module's nsp fragments. Fixed in both the engine and the collapse statistic; the binned figure is unchanged at 84.3%, confirming the fix is behaviour-preserving.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">Seventeen source strings to nine, measured at equal depth.</p><pre class="mono">distinct deposited strings (binning pool)   21
+controlled annotations                       5
+collapse at the binning step               4.2x
+unbound strings                              0</pre><p class="note">Rarefied over 16 genomes carrying at least 5 kb of sequence and at least one deposited protein, source and module compared at the depth both reach:</p><pre class="mono">at 41 proteins:   source 17.0 distinct strings
+                  module   9.0 distinct strings      1.9x</pre><figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to 17 over 41 proteins; the controlled vocabulary flattens at 10.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="267.5" x2="648" y2="267.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="106.5" x2="648" y2="106.5" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="271.5" text-anchor="end" class="tick">5</text><text x="47" y="191.0" text-anchor="end" class="tick">10</text><text x="47" y="110.5" text-anchor="end" class="tick">15</text><text x="47" y="30.0" text-anchor="end" class="tick">20</text><text x="58.0" y="369" text-anchor="middle" class="tick">0</text><text x="205.5" y="369" text-anchor="middle" class="tick">25</text><text x="353.0" y="369" text-anchor="middle" class="tick">50</text><text x="500.5" y="369" text-anchor="middle" class="tick">75</text><text x="648.0" y="369" text-anchor="middle" class="tick">100</text>
+    <text class="axtitle" x="58" y="392">proteins sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <line x1="299.9" y1="26" x2="299.9" y2="348" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M58.0 348.00 L63.9 331.90 L69.8 316.77 L75.7 302.44 L81.6 288.91 L87.5 277.16 L93.4 265.57 L99.3 253.98 L105.2 243.83 L111.1 235.46 L117.0 226.61 L122.9 219.20 L128.8 211.15 L134.7 204.55 L140.6 197.95 L146.5 190.54 L152.4 184.75 L158.3 178.95 L164.2 172.99 L170.1 167.20 L176.0 163.17 L181.9 158.18 L187.8 152.55 L193.7 148.84 L199.6 144.17 L205.5 139.34 L211.4 135.64 L217.3 130.17 L223.2 125.66 L229.1 122.12 L235.0 117.45 L240.9 113.74 L246.8 108.92 L252.7 105.05 L258.6 100.54 L264.5 96.04 L270.4 91.85 L276.3 88.79 L282.2 84.76 L288.1 82.03 L294.0 78.16 L299.9 74.30" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 348.00 L63.9 331.90 L69.8 318.54 L75.7 305.98 L81.6 294.55 L87.5 284.57 L93.4 275.07 L99.3 267.50 L105.2 259.61 L111.1 253.65 L117.0 248.99 L122.9 243.03 L128.8 239.49 L134.7 235.30 L140.6 232.88 L146.5 230.79 L152.4 227.57 L158.3 225.00 L164.2 222.74 L170.1 221.29 L176.0 219.52 L181.9 217.91 L187.8 217.11 L193.7 215.98 L199.6 215.18 L205.5 214.21 L211.4 213.73 L217.3 212.92 L223.2 211.63 L229.1 211.47 L235.0 210.51 L240.9 210.02 L246.8 209.38 L252.7 208.74 L258.6 208.09 L264.5 206.96 L270.4 206.16 L276.3 206.00 L282.2 205.19 L288.1 204.55 L294.0 204.23 L299.9 203.42 L305.8 202.78 L311.7 202.46 L317.6 202.46 L323.5 202.13 L329.4 201.81 L335.3 201.01 L341.2 200.52 L347.1 200.36 L353.0 199.40 L358.9 199.24 L364.8 198.43 L370.7 198.27 L376.6 197.79 L382.5 197.30 L388.4 197.30 L394.3 196.98 L400.2 196.50 L406.1 196.18 L412.0 196.02 L417.9 195.86 L423.8 195.69 L429.7 195.53 L435.6 195.05 L441.5 194.57 L447.4 194.24 L453.3 193.92 L459.2 193.60 L465.1 193.28 L471.0 193.12 L476.9 192.63 L482.8 192.31 L488.7 191.83 L494.6 191.19 L500.5 190.70 L506.4 189.90 L512.3 189.42 L518.2 188.45 L524.1 188.13 L530.0 187.97 L535.9 187.48 L541.8 187.00" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="299.9" cy="74.30" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="541.8" cy="187.00" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="309.9" y="73.30" fill="var(--src)">free text</text>
+    <text class="endsub" x="309.9" y="86.30">17 strings</text>
+    <text class="endlab" x="551.8" y="190.00" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="551.8" y="203.00">10 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of every
+  annotated protein in the 12 genomes both sources annotate: 41 source
+  product records and 82 module calls. Both curves start at zero. The dashed line
+  marks 41 proteins, the depth both curves reach, where the two are compared.</figcaption>
+ </figure><p class="note">The six-genome held-out panel was too small to rarefy &mdash; 12 proteins against a floor of 40 &mdash; so the pool was widened to every okavirus genome carrying real multi-protein content. That is legitimate here because a vocabulary comparison asks what the two naming schemes <i>are</i>, not how well the module recalls unseen genomes, and so needs no hold-out. The recall figures in &sect;05 remain the held-out ones.</p><p class="note">Four further strings &mdash; <code>3C-like protease</code>, <code>helicase</code>, <code>RNA polymerase</code> and <code>ORF1b</code> &mdash; are bound to NOT_MODELLED as deliberate decisions rather than left unbound, and are reported as <code>RECOGNISED</code> by the literature gap check.</p></section><p class="src">Built 22 November 2026. Working tree <code>~/lowvan_scratch/roni</code>, test repo <code>VA_roni</code>. Every figure on this page is recorded in <code>AMNOON_RONI_BUILD_NOTES.md</code>. All PMIDs cited here resolve against PubMed and sit in <code>PMID_claude_generated</code> awaiting a curator's read.</p></div>

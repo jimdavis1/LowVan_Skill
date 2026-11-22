@@ -1,0 +1,34 @@
+{
+ "Tilapinevirus.0.dna": {
+  "genome_ids": "1549864.417,1549864.423,1549864.419 (+7 more)",
+  "genome_name": "Tilapia lake virus Til-4-2011, all 10 segments"
+ },
+ "Tilapinevirus.1.dna": {
+  "genome_ids": "1549864.567,1549864.570,1549864.571 (+7 more)",
+  "genome_name": "Tilapia lake virus TiLV-Israel-HK, all 10 segments"
+ },
+ "Tilapinevirus.2.dna": {
+  "genome_ids": "1549864.351,1549864.348,1549864.349 (+7 more)",
+  "genome_name": "Tilapia lake virus TH-2019, all 10 segments"
+ },
+ "Tilapinevirus.3.dna": {
+  "genome_ids": "1549864.353,1549864.352,1549864.355 (+7 more)",
+  "genome_name": "Tilapia lake virus BD-2017, all 10 segments"
+ },
+ "Tilapinevirus.4.dna": {
+  "genome_ids": "1549864.184,1549864.182,1549864.183 (+7 more)",
+  "genome_name": "Tilapia lake virus EC-2012, all 10 segments"
+ },
+ "Tilapinevirus.5.dna": {
+  "genome_ids": "1549864.237,1549864.238,1549864.240 (+7 more)",
+  "genome_name": "Tilapia lake virus WVL19054, all 10 segments"
+ },
+ "Tilapinevirus.6.dna": {
+  "genome_ids": "1549864.186,1549864.185,1549864.188 (+7 more)",
+  "genome_name": "Tilapia lake virus F3-4, all 10 segments"
+ },
+ "Tilapinevirus.7.dna": {
+  "genome_ids": "1549864.80,1549864.79,1549864.78 (+7 more)",
+  "genome_name": "Tilapia lake virus TV1, all 10 segments"
+ }
+}

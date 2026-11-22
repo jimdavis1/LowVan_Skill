@@ -1,0 +1,11 @@
+{
+ "PP1A":  {"min": 3800, "max": 4300, "pmid": "12376758", "note": "4060 aa GAV (AF227196), 4070-4076 aa YHV"},
+ "PP1AB": {"min": 6300, "max": 7000, "pmid": "10811931", "note": "6673 aa GAV, 6686-6692 aa YHV; -1 frameshift product"},
+ "N":     {"min": 130,  "max": 160,  "pmid": "15280504", "note": "p20 nucleocapsid, 144 aa GAV / 146 aa YHV"},
+ "PP3":   {"min": 1500, "max": 1750, "pmid": "12655087", "note": "1666 aa YHV-1, 1656 YHV-8, 1640 GAV; a 162 nt indel separates YHV subtypes"},
+ "P25":   {"min": 215,  "max": 240,  "pmid": "12655087", "note": "228 aa, pp3 residues 1-228, cut after Ala228"},
+ "GP116": {"min": 820,  "max": 920,  "pmid": "12655087", "note": "899 aa in YHV-1 (pp3 229-1127); varies 845-899 with the ORF3 indel"},
+ "GP64":  {"min": 515,  "max": 560,  "pmid": "12655087", "note": "539 aa, pp3 1128-1666, cut after Ala1127 to the precursor stop"},
+ "PX":    {"min": 80,   "max": 92,   "pmid": "20017924", "note": "86 aa; all 15 extractions exactly 86 aa"},
+ "ORF4":  {"min": 70,   "max": 110,  "pmid": "12376758", "note": "83 aa in both GAV deposits; truncated after 20 codons in YHV"}
+}

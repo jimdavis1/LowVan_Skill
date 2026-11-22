@@ -1,0 +1,12 @@
+{
+ "standfirst": "<i>Macrobrachium rosenbergii</i> Golda virus, the ronivirus of the giant freshwater prawn and the largest genome in its family at 28.9&ndash;29.1 kb. Four features. It is a separate module from <code>Okavirus</code> because it encodes a <b>different protein set</b> &mdash; and because the two glycoprotein precursors cannot be aligned at all.",
+ "modules": {
+  "Nimanivirus": "ORF1a (4933 aa) and ORF1b joined by a &minus;1 frameshift to give pp1ab (7797 aa); ORF2, a 125 aa nucleocapsid; and ORF3, a 1503 aa glycoprotein precursor. Every full-length deposit sits at one invariant length, because the Bangladesh and China variants are 97.8% identical."
+ },
+ "gaps": "The ICTV profile records that MrGV <b>lacks the triple-membrane-spanning p25</b> protein of the okavirus precursor and <b>lacks ORFX</b>. Both are probed for here and come back ABSENT, which is the required result: it confirms that no okavirus rule has leaked across into a genus that does not use it. <code>ORF1b</code> deposits &mdash; 11 of them, at 2776 aa &mdash; are not modelled, because ORF1b is never translated on its own.",
+ "derived": "<b>No mature peptides are declared, and that is a documented limit rather than an oversight.</b> ICTV asserts that this precursor encodes homologues of gp116 and gp64 behind an N-terminal signal peptide. But no cleavage site is published for MrGV, and the okavirus sites cannot be transferred: measured here, MrGV ORF3 against YHV pp3 returns no meaningful alignment at all &mdash; the best HSP is <b>20.4 bits at 23.7% identity over 38 residues</b>, which is noise. The precursor therefore ships whole, and the products are a named gap rather than an invented cut.",
+ "why": {
+  "PP1AB": "Declared <code>special: transcript_edit</code>, so it carries a nucleotide reference set and no PSSM. The slippery heptamer was read off the genomes rather than assumed: this genus uses <code>GGGTTTT</code> where <code>Okavirus</code> uses <code>AAATTTT</code>, and in MW590703 the measured site begins at nt 14925 &mdash; exactly the coordinate PMID 35011135 publishes. Only 3 references could be built, because just one genome deposits pp1ab and 19 others were refused for ambiguous bases.",
+  "ORF3": "1503 aa, invariant across every deposit. Its inability to align to the okavirus precursor is the measurement that confirms the module split, and it is also why no cleavage product is declared for it."
+ }
+}

@@ -1,0 +1,6 @@
+{
+ "PP1A":  {"min": 4400, "max": 5400, "pmid": "35011135", "note": "4933 aa, invariant across all deposits"},
+ "PP1AB": {"min": 7000, "max": 8500, "pmid": "35011135", "note": "7797 aa; -1 frameshift at 5'-GGGUUUU-3'"},
+ "N":     {"min": 110,  "max": 145,  "pmid": "35011135", "note": "125 aa nucleocapsid, invariant"},
+ "ORF3":  {"min": 1350, "max": 1650, "pmid": "35011135", "note": "1503 aa glycoprotein precursor, invariant"}
+}

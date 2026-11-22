@@ -1,0 +1,84 @@
+{
+ "Nimanivirus": {
+  "features": [
+   {
+    "key": "N",
+    "anno": "Nucleocapsid protein",
+    "gene": "N",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 134,
+    "minl": 117,
+    "maxl": 132,
+    "pmid": null,
+    "n": 3,
+    "called": 3,
+    "n_inrange": 3,
+    "called_inrange": 3,
+    "pssms": [
+     "Nimanivirus.N.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "ORF3",
+    "anno": "Glycoprotein precursor polyprotein",
+    "gene": "ORF3",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 500,
+    "minl": 1412,
+    "maxl": 1593,
+    "pmid": null,
+    "n": 9,
+    "called": 9,
+    "n_inrange": 9,
+    "called_inrange": 9,
+    "pssms": [
+     "Nimanivirus.ORF3.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "PP1A",
+    "anno": "Replicase polyprotein 1a",
+    "gene": "PP1A",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": 500,
+    "minl": 4637,
+    "maxl": 5228,
+    "pmid": null,
+    "n": 7,
+    "called": 7,
+    "n_inrange": 7,
+    "called_inrange": 7,
+    "pssms": [
+     "Nimanivirus.PP1A.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "PP1AB",
+    "anno": "Replicase polyprotein 1ab",
+    "gene": "PP1AB",
+    "ftype": "CDS",
+    "segment": "Single RNA Segment",
+    "bit": null,
+    "minl": 7329,
+    "maxl": 8264,
+    "pmid": null,
+    "n": 1,
+    "called": null,
+    "n_inrange": null,
+    "called_inrange": null,
+    "pssms": [],
+    "nondefault": false,
+    "status": "special"
+   }
+  ]
+ }
+}

@@ -1,0 +1,178 @@
+{
+ "S10": {
+  "PMID_claude_generated": [
+   "41513822",
+   "27048802"
+  ],
+  "anno": "Uncharacterized lineage-specific S10 protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "S10",
+  "note": "113 aa, the shortest TiLV protein, from the shortest segment (465 nt). Carries a C-terminal nuclear localisation signal and a GFP fusion is nuclear. Migrates at about 18 kDa on SDS-PAGE against a predicted 13 kDa (PMID 41513822). No function assigned.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "S10 Segment",
+  "upstream_ext": 1
+ },
+ "S1_PB1": {
+  "PMID_claude_generated": [
+   "27048802",
+   "38066000",
+   "41513822"
+  ],
+  "anno": "RNA-dependent RNA polymerase catalytic core PB1 subunit",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "PB1",
+  "note": "519 aa. The only TiLV protein the source database names: 24 of 399 distinct deposits are annotated PB1 or 'putative PB1' and 363 are 'hypothetical protein'. Carries the catalytic SDD motif at residues 288-290 and was the single segment with recognisable homology to anything when the virus was described (weak similarity to influenza C PB1, PMID 27048802). Cryo-EM shows segments 1-3 form a heterotrimeric orthomyxovirus-like polymerase of which this is the catalytic core (PMID 38066000, PDB 8PT2/8PSN). BINNING: this module does not bin on the annotation string, because the string separates one protein of eleven. Every deposit is assigned by blastp against the Til-4-2011 reference segment set (KU751814..KU751823, deposited in segment order at the published lengths), an assignment validated against the submitters' own segment labels at 429/429 = 100%.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "PB1 Segment",
+  "upstream_ext": 1
+ },
+ "S2_PB2": {
+  "PMID_claude_generated": [
+   "38066000",
+   "41513822"
+  ],
+  "anno": "RNA-dependent RNA polymerase PB2 subunit",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "PB2",
+  "note": "457 aa. Assigned as the PB2-like subunit of the heterotrimeric polymerase by domain structure and fold in the cryo-EM study (PMID 38066000); the assignment is structural, not sequence-based, and no PB2 sequence motif is detectable. Carries a predicted C-terminal nuclear localisation signal and a GFP fusion localises to the nucleus (PMID 41513822). Every deposit is annotated 'hypothetical protein'.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "PB2 Segment",
+  "upstream_ext": 1
+ },
+ "S3_PA": {
+  "PMID_claude_generated": [
+   "38066000",
+   "41513822"
+  ],
+  "anno": "RNA-dependent RNA polymerase PA subunit",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "PA",
+  "note": "419 aa. Assigned as the PA-like subunit of the heterotrimeric polymerase by fold (PMID 38066000). No PA-X-like frameshift signal could be identified, so unlike influenza PA this segment yields one product (PMID 41513822). THIS IS THE DIAGNOSTIC RT-PCR TARGET for TiLV, which dominates its deposits: 151 of 546 in-scope contigs are segment 3, and 71 of its protein deposits are amplicon translations rather than whole proteins. They were excluded by the length window and the exclusion was checked structurally -- 0 of 71 begin at reference residue 1 and 58 of 71 begin at reference residues 100-124, one primer site, at 98.7% median identity. They are internal fragments, not a short form.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "PA Segment",
+  "upstream_ext": 1
+ },
+ "S4_NP": {
+  "PMID_claude_generated": [
+   "35107373",
+   "39995042",
+   "41513822"
+  ],
+  "anno": "Nucleocapsid protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "NP",
+  "note": "356 aa. Segment 4 encodes the nucleoprotein, established biochemically (PMID 35107373) and then structurally, bound to RNA (PMID 39995042, PDB 9HBR). The most abundant TiLV protein in infected cells by mass spectrometry (PMID 41513822). Annotated 'hypothetical protein' in every deposit.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "NP Segment",
+  "upstream_ext": 1
+ },
+ "S5": {
+  "PMID_claude_generated": [
+   "41513822",
+   "27048802"
+  ],
+  "anno": "Uncharacterized lineage-specific S5 protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "S5",
+  "note": "343 aa. The ONLY TiLV protein with a predicted transmembrane domain, and it also carries a predicted cleavable signal peptide, N-glycosylation sites and a nuclear export signal; on that basis PMID 41513822 suggests it 'may play a role in the viral envelope structure'. That is a prediction and nothing more -- no S5 peptides were detected by mass spectrometry and GFP-S5 fusions were not detected by western blot -- so the annotation stays uncharacterized rather than claiming an envelope function. NO _SP / _MAT PRODUCTS ARE DECLARED: the signal peptide is predicted, not measured, and no mature N-terminus has been determined for any amnoonvirid. The designation S5 is the literature's own, used throughout PMID 41513822; it is not invented here.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "S5 Segment",
+  "upstream_ext": 1
+ },
+ "S6": {
+  "PMID_claude_generated": [
+   "41513822"
+  ],
+  "anno": "Uncharacterized lineage-specific S6 protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "S6",
+  "note": "317 aa. A signal peptide and N-glycosylation sites are predicted, but the signal-peptide cleavage probability is explicitly reported as low, and no transmembrane domain is predicted (PMID 41513822). The only TiLV protein with a predicted nuclear localisation signal besides S2 and S10. No function assigned.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "S6 Segment",
+  "upstream_ext": 1
+ },
+ "S7": {
+  "PMID_claude_generated": [
+   "41513822",
+   "27048802"
+  ],
+  "anno": "Uncharacterized lineage-specific S7 protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "S7",
+  "note": "195 aa. Predicted N-glycosylation motifs; no function assigned in any published work. Detected in infected cells by mass spectrometry (PMID 41513822).",
+  "params": {
+   "m": "2"
+  },
+  "segment": "S7 Segment",
+  "upstream_ext": 1
+ },
+ "S8": {
+  "PMID_claude_generated": [
+   "41513822",
+   "27048802"
+  ],
+  "anno": "Uncharacterized lineage-specific S8 protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "S8",
+  "note": "174 aa. No function assigned; a domain annotation is cited to PDB 8IXW (PMID 41513822). Detected in infected cells by mass spectrometry.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "S8 Segment",
+  "upstream_ext": 1
+ },
+ "S9": {
+  "PMID_claude_generated": [
+   "41513822",
+   "27048802"
+  ],
+  "anno": "Uncharacterized lineage-specific S9 protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "S9",
+  "note": "116-118 aa; a 119 aa variant arises from an upstream AUG in some Thai isolates and one isolate carries a 122-codon gene (PMID 41513822). No functional motifs were identified in the primary ORF. This segment carries a SECOND protein, S9_F3, in a different reading frame -- see that feature. The two overlap almost completely, so a duplicate-coordinate report for S9 and S9_F3 is expected architecture, not a defect.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "S9 Segment",
+  "upstream_ext": 1
+ },
+ "S9_F3": {
+  "PMID_claude_generated": [
+   "41513822"
+  ],
+  "anno": "Uncharacterized lineage-specific S9-F3 protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "S9-F3",
+  "note": "105 aa. THE ELEVENTH TiLV PROTEIN, and it is absent from the source database entirely -- zero deposits among 399 distinct sequences. Translated from a 105-codon ORF in frame 3 of segment 9, overlapping the 116-codon primary S9 ORF, from an AUG in a strong Kozak context; the authors attribute it to leaky ribosomal scanning, NOT to splicing or frameshifting. Confirmed by mass spectrometry with 4 unique peptides and 49% sequence coverage, and shown to carry a CRM1-dependent nuclear export signal by inhibitor assay (PMID 41513822). EXTRACTED, because BV-BRC has none: frame 3 of each genome's own segment 9 was translated and the ORF taken at the modal offset of +8 nt from the S9 AUG. 32 extractions, EVERY ONE exactly 105 aa, 82.9-100% pairwise identity (median 96.2%), all 32 sharing the identical N-terminus MDRKYRFCVSNLDR. The two isolates PMID 41513822 names as exceptions (OM469318, premature stop at codon 50; MG873154, no AUG) are not in the segment-9 anchor set and were therefore not tested either way. NO copy_num: it overlaps S9 and would take essentiality on another feature's locus. copy_num WITHHELD although it was called on 21 of 21 held-out genomes and apply_copy_num.py proposed it (correctly noting that every call is OUT OF FRAME with the S9 ORF containing it, so it is a separate gene and not a cleavage product). The reason is biological: PMID 41513822 names isolates that genuinely lack this protein -- India OM469318 carries a premature stop at codon 50 and India MG873154 has no S9-F3 AUG at all. Marking it essential would flag correctly-sequenced genomes as defective for lacking a protein they truly do not encode. The 100% measurement is of a panel that happens to exclude the known exceptions. ANNOTATION: declared as an UNCHARACTERIZED lineage-specific protein, not as 'Nuclear export protein'. The CRM1-dependent nuclear export signal is real evidence but rests on a single paper whose PMID is model-proposed and has not been read by a curator here, and the project rule is to fall back to the uncharacterized form in exactly that case. Calling it NEP would also assert equivalence with the influenza nuclear export protein, which is a SPLICED product of segment 8; S9-F3 is an alternative-frame product of an unspliced mRNA, and PMID 41513822 draws that only as an analogy. The symbol S9-F3 is the discovering paper's own.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "S9 Segment",
+  "upstream_ext": 1
+ }
+}

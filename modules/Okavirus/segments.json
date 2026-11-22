@@ -1,0 +1,7 @@
+{
+ "Single RNA Segment": {
+  "max_len": 29445,
+  "min_len": 200,
+  "replicon_geometry": "linear"
+ }
+}

@@ -69,7 +69,9 @@ per-taxon tables below carry the dates and the source paths.
 | **Mastadenovirus_MultiFiber** | [src only](reports/mastadenovirus-multifiber-string-collapse.html) | [src only](reports/mastadenovirus-multifiber-pssm-registry.html) | [src only](reports/mastadenovirus-multifiber-vocabulary-saturation.html) | [live](https://claude.ai/artifact/A1Ls5wqAxTfgTfH8zqtZa7) | [src only](reports/mastadenovirus-multifiber-genome-map.html) |
 | **Matonaviridae** | [src only](reports/matonaviridae-string-collapse.html) | [live](https://claude.ai/artifact/Pg9oPLPEMsSJwVX1cNaZkj) | [live](https://claude.ai/artifact/Py71icixnS8G7aHoRekJ4B) | [live](https://claude.ai/artifact/AxuNuwq21AAiGws5JvQoWo) | — |
 | **Nebovirus** | [live](https://claude.ai/artifact/UM2uLTVXGZJimoJhruyBsz) | [live](https://claude.ai/artifact/1bdXnM1rCLsXkbtxWZggJ5) | [live](https://claude.ai/artifact/FFj8ghLrhRcUrA6StNwJXA) | [live](https://claude.ai/artifact/DFYiHRbbnEhBn5ASPREF4Z) | — |
+| **Nimanivirus** | [live](https://claude.ai/artifact/YU11Sb1gMRB2HVYKZEdq3q) | [live](https://claude.ai/artifact/My8KGt3TRWj3bcaysQXDtz) | [live](https://claude.ai/artifact/X92kGPhWcnMyuTBPTRjS7A) | [live](https://claude.ai/artifact/1tXfu2bE7AKJYnDWjrRY72) | [src only](reports/nimanivirus-genome-map.html) |
 | **Norovirus** | [live](https://claude.ai/artifact/644emf4jt3fEr5S4zeSbjX) | [live](https://claude.ai/artifact/8JJCLLLQTgcKBBZLu1ebYT) | [live](https://claude.ai/artifact/RedVLm5rXTmTJ3aRyrnbJy) | [live](https://claude.ai/artifact/DE433uyrZxsw1yNkeyCE3H) | — |
+| **Okavirus** | [live](https://claude.ai/artifact/RKNvVrHuJyqtL63buXY65s) | [live](https://claude.ai/artifact/CfPZkmHrBQmpqDg8UgNKtr) | [live](https://claude.ai/artifact/HwqTaFW2dhYuVJcvGQXq1U) | [live](https://claude.ai/artifact/CUfo9HcbNriTFmtfymywyy) | [src only](reports/okavirus-genome-map.html) |
 | **Orbivirus** | [live](https://claude.ai/artifact/9nzf4UVDgZbLaGG6JHAbmy) | [live](https://claude.ai/artifact/LFgehfnnk7LAVmPsi3YFFL) | [live](https://claude.ai/artifact/2YqPhZurQTMYVv9oFWUfMP) | [live](https://claude.ai/artifact/VDx2X7pCFMv8azLSUjsnqW) | — |
 | **Orthoflavivirus** | [live](https://claude.ai/artifact/MFXjT53roYWz1ymQkrh1ur) | [live](https://claude.ai/artifact/AkjDvmo28d4bVZCndjymXP) | [live](https://claude.ai/artifact/9c5gUBxFf4jHNfYizWHw7m) | [live](https://claude.ai/artifact/RokLyf9pujJnw37CAri2DR) | — |
 | **Parechovirus** | [live](https://claude.ai/artifact/EUx6FLSssTPNRWJ7FcDyL6) | [live](https://claude.ai/artifact/GYiXCX6ammFZUqqK7MbNWs) | [live](https://claude.ai/artifact/6xMJKTWE3i5FXH8yFXBUBf) | [live](https://claude.ai/artifact/V6xRs6ePghUPkaTX1SyuBL) | — |
@@ -99,6 +101,7 @@ per-taxon tables below carry the dates and the source paths.
 | **SRLV** | [live](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | [live](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | [live](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | [live](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) | [src only](reports/srlv-genome-map.html) |
 | **Teschovirus** | [live](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [live](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [live](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [live](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) | — |
 | **TetraCopiparvovirus** | [live](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | [live](https://claude.ai/artifact/8cma1NsgkTSgH6zD3oJkMv) | [live](https://claude.ai/artifact/B2b8bZqe2en9vgBipMsTDY) | [live](https://claude.ai/artifact/AwAe6qNhui1fPRsezQY3Wd) | [src only](reports/tetracopiparvovirus-genome-map.html) |
+| **Tilapinevirus** | [live](https://claude.ai/artifact/BT5naKVWviKf3vt8MWhtTF) | [live](https://claude.ai/artifact/6buk719CVnBMZFZWwwJ6GH) | [live](https://claude.ai/artifact/W75q6rDPezN6PMAaESs8Qj) | [live](https://claude.ai/artifact/8swEyjwBGmj7VUy9SLKezf) | [src only](reports/tilapinevirus-genome-map.html) |
 | **Tobamovirus** | [live](https://claude.ai/artifact/4r5eFifqQBs3msQyeTDRkd) | [live](https://claude.ai/artifact/Jaxj3wb1cGkEng25cDoXDz) | [live](https://claude.ai/artifact/GDgyPgzSQr3PoNyBXKF75F) | [live](https://claude.ai/artifact/Lqb3QrZN9vuQT2tHNnxjjf) | — |
 | **Tobaniviridae** | [live](https://claude.ai/artifact/5c59k9HJW3ddeWxwpqf8Nw) | [live](https://claude.ai/artifact/4XJ6KBJKBeoyUzg9FGBfbv) | [live](https://claude.ai/artifact/7VP8cuFrcbcQmsRjAWs44J) | [live](https://claude.ai/artifact/TBBDh2MVkXhoupg6PTsqvo) | — |
 | **Togaviridae** | [src only](reports/togaviridae-string-collapse.html) | [live](https://claude.ai/artifact/9o7dqzntv9iHNotvaJJ5H6) | — | [live](https://claude.ai/artifact/LpKQ7FfkD4x8zKEwyUJ2ng) | — |
@@ -683,6 +686,17 @@ Not made: genome map.
 
 Not made: genome map.
 
+### Nimanivirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Nimanivirus Coverage Audit | [open](https://claude.ai/artifact/1tXfu2bE7AKJYnDWjrRY72) | [source](reports/nimanivirus-coverage-audit.html) | 2026-11-22 |
+| Nimanivirus PSSM Registry | [open](https://claude.ai/artifact/My8KGt3TRWj3bcaysQXDtz) | [source](reports/nimanivirus-pssm-registry.html) | 2026-11-22 |
+| Nimanivirus String Collapse | [open](https://claude.ai/artifact/YU11Sb1gMRB2HVYKZEdq3q) | [source](reports/nimanivirus-string-collapse.html) | 2026-11-22 |
+| Nimanivirus Vocabulary Saturation | [open](https://claude.ai/artifact/X92kGPhWcnMyuTBPTRjS7A) | [source](reports/nimanivirus-vocabulary-saturation.html) | 2026-11-22 |
+
+Not made: genome map.
+
 ### Norovirus
 
 | page | live | source | updated |
@@ -691,6 +705,17 @@ Not made: genome map.
 | Norovirus PSSM Registry | [open](https://claude.ai/artifact/8JJCLLLQTgcKBBZLu1ebYT) | [source](reports/norovirus-pssm-registry.html) | 2026-10-14 |
 | Norovirus String Collapse | [open](https://claude.ai/artifact/644emf4jt3fEr5S4zeSbjX) | [source](reports/norovirus-string-collapse.html) | 2026-10-14 |
 | Norovirus Vocabulary Saturation | [open](https://claude.ai/artifact/RedVLm5rXTmTJ3aRyrnbJy) | [source](reports/norovirus-vocabulary-saturation.html) | 2026-10-14 |
+
+Not made: genome map.
+
+### Okavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Okavirus Coverage Audit | [open](https://claude.ai/artifact/CUfo9HcbNriTFmtfymywyy) | [source](reports/okavirus-coverage-audit.html) | 2026-11-22 |
+| Okavirus PSSM Registry | [open](https://claude.ai/artifact/CfPZkmHrBQmpqDg8UgNKtr) | [source](reports/okavirus-pssm-registry.html) | 2026-11-22 |
+| Okavirus String Collapse | [open](https://claude.ai/artifact/RKNvVrHuJyqtL63buXY65s) | [source](reports/okavirus-string-collapse.html) | 2026-11-22 |
+| Okavirus Vocabulary Saturation | [open](https://claude.ai/artifact/HwqTaFW2dhYuVJcvGQXq1U) | [source](reports/okavirus-vocabulary-saturation.html) | 2026-11-22 |
 
 Not made: genome map.
 
@@ -995,6 +1020,17 @@ Not made: genome map.
 | TetraCopiparvovirus PSSM Registry | [open](https://claude.ai/artifact/8cma1NsgkTSgH6zD3oJkMv) | [source](reports/tetracopiparvovirus-pssm-registry.html) | 2026-10-31 |
 | TetraCopiparvovirus String Collapse | [open](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | [source](reports/tetracopiparvovirus-string-collapse.html) | 2026-10-29 |
 | TetraCopiparvovirus Vocabulary Saturation | [open](https://claude.ai/artifact/B2b8bZqe2en9vgBipMsTDY) | [source](reports/tetracopiparvovirus-vocabulary-saturation.html) | 2026-10-31 |
+
+Not made: genome map.
+
+### Tilapinevirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Tilapinevirus Coverage Audit | [open](https://claude.ai/artifact/8swEyjwBGmj7VUy9SLKezf) | [source](reports/tilapinevirus-coverage-audit.html) | 2026-11-22 |
+| Tilapinevirus PSSM Registry | [open](https://claude.ai/artifact/6buk719CVnBMZFZWwwJ6GH) | [source](reports/tilapinevirus-pssm-registry.html) | 2026-11-22 |
+| Tilapinevirus String Collapse | [open](https://claude.ai/artifact/BT5naKVWviKf3vt8MWhtTF) | [source](reports/tilapinevirus-string-collapse.html) | 2026-11-22 |
+| Tilapinevirus Vocabulary Saturation | [open](https://claude.ai/artifact/W75q6rDPezN6PMAaESs8Qj) | [source](reports/tilapinevirus-vocabulary-saturation.html) | 2026-11-22 |
 
 Not made: genome map.
 

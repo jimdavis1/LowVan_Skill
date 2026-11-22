@@ -1,0 +1,98 @@
+{
+   "Nimanivirus" : {
+      "close_genomes" : {
+         "Nimanivirus.0.dna" : {
+            "genome_ids" : "NC_076908",
+            "genome_name" : "Macrobrachium rosenbergii Golda virus LH1-2018"
+         },
+         "Nimanivirus.1.dna" : {
+            "genome_ids" : "MW590703",
+            "genome_name" : "Macrobrachium rosenbergii Golda virus CN-JS-18"
+         },
+         "Nimanivirus.2.dna" : {
+            "genome_ids" : "BK071779",
+            "genome_name" : "Macrobrachium rosenbergii Golda virus MrGV/Larvae/Guangxi/China/Apr22/03"
+         }
+      },
+      "features" : {
+         "N" : {
+            "PMID_claude_generated" : [
+               "35011135",
+               "33023199"
+            ],
+            "anno" : "Nucleocapsid protein",
+            "bit_cutoff" : 134,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "N",
+            "kmers" : 1,
+            "max_len" : 132,
+            "min_len" : 117,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "ORF3" : {
+            "PMID_claude_generated" : [
+               "33023199",
+               "35011135"
+            ],
+            "anno" : "Glycoprotein precursor polyprotein",
+            "bit_cutoff" : 500,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ORF3",
+            "kmers" : 1,
+            "max_len" : 1593,
+            "min_len" : 1412,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PP1A" : {
+            "PMID_claude_generated" : [
+               "33023199",
+               "35011135"
+            ],
+            "anno" : "Replicase polyprotein 1a",
+            "bit_cutoff" : 500,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "PP1A",
+            "kmers" : 1,
+            "max_len" : 5228,
+            "min_len" : 4637,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "PP1AB" : {
+            "PMID_claude_generated" : [
+               "35011135",
+               "33023199"
+            ],
+            "anno" : "Replicase polyprotein 1ab",
+            "feature_type" : "CDS",
+            "gene_symbol" : "PP1AB",
+            "max_len" : 8264,
+            "min_len" : 7329,
+            "segment" : "Single RNA Segment",
+            "special" : "transcript_edit",
+            "type" : "CDS"
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 32021,
+            "min_len" : 200,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

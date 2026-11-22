@@ -73,7 +73,12 @@ def write(path, rows):
         for c, a, g, k in sorted(rows, key=lambda x: -x[0]):
             fh.write("%d\t%s\t%s\t%s\n" % (c, a, g, k))
     total = sum(r[0] for r in rows)
-    bound = sum(r[0] for r in rows if r[3] not in ("UNASSIGNED", "DISCARDED"))
+    #  NOT_MODELLED is a decision, not a binding: those deposits are NOT
+    #  called by the module, so counting them as "bound" would overstate the
+    #  collapse figure the manuscript reports. Added 22 Nov 2026 alongside the
+    #  collection_engine change that started writing NOT_MODELLED at all.
+    bound = sum(r[0] for r in rows
+                if r[3] not in ("UNASSIGNED", "DISCARDED", "NOT_MODELLED"))
     return {"rows": len(rows), "features": total, "bound": bound,
             "pct": (100.0 * bound / total) if total else 0.0}
 

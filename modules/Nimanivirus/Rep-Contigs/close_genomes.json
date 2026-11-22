@@ -1,0 +1,14 @@
+{
+ "Nimanivirus.0.dna": {
+  "genome_ids": "NC_076908",
+  "genome_name": "Macrobrachium rosenbergii Golda virus LH1-2018"
+ },
+ "Nimanivirus.1.dna": {
+  "genome_ids": "MW590703",
+  "genome_name": "Macrobrachium rosenbergii Golda virus CN-JS-18"
+ },
+ "Nimanivirus.2.dna": {
+  "genome_ids": "BK071779",
+  "genome_name": "Macrobrachium rosenbergii Golda virus MrGV/Larvae/Guangxi/China/Apr22/03"
+ }
+}
