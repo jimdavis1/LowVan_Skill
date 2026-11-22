@@ -1,0 +1,11 @@
+{
+ "standfirst": "The fish nervous necrosis viruses. Four proteins on two segments, and the headline fact is a <b>negative</b> one: unlike the insect nodaviruses, the betanodavirus capsid is <b>not</b> cleaved. Its RNA2 ORF &ldquo;carries the catalytic D-75 residue but lacks the site for autocatalytic proteolysis&rdquo; (PMID 9672600), so no beta and no gamma are declared here.",
+ "modules": {
+  "Betanodavirus": "The largest module of the four, 1,456 genomes. RNA1 carries protein A plus B1 and B2 from subgenomic RNA3; RNA2 carries one uncleaved coat protein of 338&ndash;340 aa. Every length window comes from the literature, because this genus is dominated by partial typing deposits &mdash; the median <code>coat protein</code> record is 181 aa against a true 338, and the median polymerase record is 300 against 982."
+ },
+ "gaps": "Beta and gamma are probed for and come back ABSENT, which is the required result rather than a shortfall: it proves the alphanodavirus cleavage rule did not leak across into a genus that does not use it. <code>protein C</code> and <code>protein D</code> are single deposits using positional letters that name no homology group, and are left to the homology rescue.",
+ "derived": "No mature peptides are declared in this module. The N-ARM, S domain and P domain described in the capsid structure (PMID 26491970) are regions of one continuous chain, not products, and modelling them would assert a cleavage the literature explicitly rules out.",
+ "why": {
+  "B1": "Real, and its start codon has never been published. PMID 19136133 cloned the RGNNV B1 gene as 336 nt and showed the protein is an anti-necrotic death factor, but no paper gives a start coordinate and <b>no RefSeq annotates a B1 CDS anywhere in the genus</b> &mdash; BV-BRC holds 2 deposits across 1,456 genomes. The 115 members here were extracted from the genomes under the one property the literature does fix: B1 is in frame with protein A and shares its stop, so an accepted member must be an exact C-terminal substring of protein A from its own genome. 124 of 124 passed."
+ }
+}

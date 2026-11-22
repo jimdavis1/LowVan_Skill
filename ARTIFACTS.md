@@ -19,6 +19,7 @@ per-taxon tables below carry the dates and the source paths.
 |---|---|---|---|---|---|
 | **Allexivirus** | [live](https://claude.ai/artifact/Nod4NnVCU3arrmBqiTPh1J) | [live](https://claude.ai/artifact/PR148JCFeHCx5rsiqSPe8d) | [live](https://claude.ai/artifact/S5H57Gg1N2DECvutD8JBTS) | [live](https://claude.ai/artifact/KAyMy13QTKUsFASLRsoTwo) | — |
 | **Alphaflexiviridae** | [live](https://claude.ai/artifact/1opeHxTHrAVEx7nsy8DMc1) | [live](https://claude.ai/artifact/TseN29Pu2NS87fMCJRTP1a) | [live](https://claude.ai/artifact/DrNtpzKawMfnQvEFgdvJCP) | [live](https://claude.ai/artifact/MzC77du44ZP2iBnPogQPx1) | — |
+| **Alphanodavirus** | [live](https://claude.ai/artifact/RRRLhkxDkY8memkCXySMXT) | [live](https://claude.ai/artifact/RadMW8PEM1n1xhZNGgCY6R) | [live](https://claude.ai/artifact/CUEET93DRQ9C28b4VFxgZp) | [live](https://claude.ai/artifact/YPAxLhtGVXR1tHevRTGf6Z) | [src only](reports/alphanodavirus-genome-map.html) |
 | **Alpharetrovirus** | [live](https://claude.ai/artifact/CfpgXESRmcejTpMaqkga2H) | [live](https://claude.ai/artifact/79W5AL2FdcGK8mJaEzXVeZ) | [live](https://claude.ai/artifact/2se3RSaF9Cbv1brCHo3uxp) | [live](https://claude.ai/artifact/AnobFFvUDqjQfPHECo2bPp) | [src only](reports/alpharetrovirus-genome-map.html) |
 | **Amdoparvovirus** | [live](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | [src only](reports/amdoparvovirus-pssm-registry.html) | [src only](reports/amdoparvovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/DwDcB9syhWAQRbzMP5BB9o) | [src only](reports/amdoparvovirus-genome-map.html) |
 | **Ampelovirus** | [live](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [live](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [live](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [live](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) | — |
@@ -30,6 +31,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Avihepatovirus** | [live](https://claude.ai/artifact/6RHPEZykKvhFBP9wrrH1qU) | [live](https://claude.ai/artifact/JFVvSbRmU1Fv6nq7Wqi7gC) | [live](https://claude.ai/artifact/P3wF6BgumacJUGYqZ4v7X8) | [live](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) | — |
 | **Barthadenovirus** | [src only](reports/barthadenovirus-string-collapse.html) | [src only](reports/barthadenovirus-pssm-registry.html) | [src only](reports/barthadenovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/9shXBryhfpqZGUzPBsDjJR) | [src only](reports/barthadenovirus-genome-map.html) |
 | **Bavovirus** | [live](https://claude.ai/artifact/VRpn8EkqAkz2sMjzYFEDS9) | [live](https://claude.ai/artifact/RqkxTXZnGNWALpiyXz7t9d) | [live](https://claude.ai/artifact/RqWLqqQPpCtJC7ZHpPxPxZ) | [live](https://claude.ai/artifact/88JpWMU5nBSfQXczr3X2ZX) | — |
+| **Betanodavirus** | [live](https://claude.ai/artifact/NqwBHL2Ne4NTjHhi2TUWXR) | [live](https://claude.ai/artifact/QgLtUWKCLfex2v9rMvmwey) | [live](https://claude.ai/artifact/WkqJy9BUfEiPXjLbp9RDSq) | [live](https://claude.ai/artifact/7X5Vphm7iMdNTbnqnxyJKb) | [src only](reports/betanodavirus-genome-map.html) |
 | **Betaretrovirus** | [live](https://claude.ai/artifact/QmBMhMeySeeWx1xSEGB7b2) | [live](https://claude.ai/artifact/NWA1P4R6gtTixbvjjPva4h) | [live](https://claude.ai/artifact/XPJL3x1kDK7NtrULEvg7wi) | [live](https://claude.ai/artifact/WG4UHp5QzR5NqYy5RFvStr) | [src only](reports/betaretrovirus-genome-map.html) |
 | **Birnaviridae** | [live](https://claude.ai/artifact/8W9HxHEESReTX6UEgs9xxR) | [live](https://claude.ai/artifact/FCfWq6RENeLKAcbUfCqfk1) | [live](https://claude.ai/artifact/MLswZUSWg1DGQbxeHojGc1) | [live](https://claude.ai/artifact/GbGRjHVFoXRoHK3d97DRq2) | — |
 | **Bocaparvovirus** | [live](https://claude.ai/artifact/VZJSrH8RoyZhd6DRXLvCSR) | [live](https://claude.ai/artifact/Gu41kvU6WiQRrQQGfQS2iq) | [live](https://claude.ai/artifact/RRhZe9QT2uziPZDKQSqcZP) | [live](https://claude.ai/artifact/JqUwPr1jeg2Qexh1iGZXEh) | [src only](reports/bocaparvovirus-genome-map.html) |
@@ -58,6 +60,8 @@ per-taxon tables below carry the dates and the source paths.
 | **HIV2** | [live](https://claude.ai/artifact/KbGvBwhAtTVTCawuggMUx9) | [live](https://claude.ai/artifact/GGGXozTRJwQRXd933xjV82) | [live](https://claude.ai/artifact/P7XMfPgbeAKkVBSRsrLNQL) | [live](https://claude.ai/artifact/9tzr7kovzhCR8WzHgBuiQN) | [src only](reports/hiv2-genome-map.html) |
 | **Kobuvirus** | [live](https://claude.ai/artifact/G5BNV47HTuCKGDHstSCYkD) | [live](https://claude.ai/artifact/HXpLhyF1AdFbSbKPFcLgEp) | [live](https://claude.ai/artifact/JT8vdj6PBbm31asVQdHxGZ) | [live](https://claude.ai/artifact/644ijYfi9wT8E9YRUkxu31) | — |
 | **Lagovirus** | [live](https://claude.ai/artifact/MaXyiZhw6iYWGgut5PhNJF) | [live](https://claude.ai/artifact/CqYYq1ekytoZf5oVCb5zVK) | [live](https://claude.ai/artifact/HxygdrBS6JjHyAzphnj7eD) | [live](https://claude.ai/artifact/XvhotU5g7M4DcukfBTGGuT) | — |
+| **Le Blanc nodavirus** | [live](https://claude.ai/artifact/S5HSfuke1vRjptjSJboMEv) | [live](https://claude.ai/artifact/3YuE57hMktp5hC5JtjWGUB) | [live](https://claude.ai/artifact/R6dwynrfa9tiHbBHqDzB7L) | [live](https://claude.ai/artifact/15pxXKc8HCokJvbpu34Gov) | [src only](reports/le-blanc-nodavirus-genome-map.html) |
+| **Macrobrachium rosenbergii nodavirus** | [live](https://claude.ai/artifact/KiMLNvA2iHYMkzEzaecv93) | [live](https://claude.ai/artifact/JJtxL2nYcSuy2zN5J9Usmo) | [live](https://claude.ai/artifact/SYJmXqc79owHWhvBMrFpva) | [live](https://claude.ai/artifact/WiEeCV9r6WR6apmLysiYeN) | [src only](reports/macrobrachium-rosenbergii-nodavirus-genome-map.html) |
 | **Mamastrovirus** | [live](https://claude.ai/artifact/QpYi5xQgkJ9DfhLz7Jbjbi) | [live](https://claude.ai/artifact/9TiskqqapCz6kKTp3X54dP) | [live](https://claude.ai/artifact/KK2DD6dqtiU3u7kWUfoWHZ) | [live](https://claude.ai/artifact/HivykiHqcCeiWMAUczQShN) | — |
 | **MammalianOrthoreovirus** | [live](https://claude.ai/artifact/TxH6j4xiFoJ9CXWxb2Fzcz) | [live](https://claude.ai/artifact/WuUmdRTmfgBPJtNPMgfkrz) | [live](https://claude.ai/artifact/SNWumPj4ohg9avxsTTUGek) | [live](https://claude.ai/artifact/KTXdUNuMK65nqhqmuCT9ze) | — |
 | **Marafivirus** | [live](https://claude.ai/artifact/8hsgb6VBLoWthJQ5fDekmN) | [live](https://claude.ai/artifact/BJLdgUbZv3VZyFmBZwPur2) | [live](https://claude.ai/artifact/UrU49iSx3Qf1vw7QSUTUSD) | [live](https://claude.ai/artifact/WPLVahsQ7EMSvzP2MxnZ4k) | — |
@@ -137,6 +141,17 @@ Not made: genome map.
 | Alphaflexiviridae PSSM Registry | [open](https://claude.ai/artifact/TseN29Pu2NS87fMCJRTP1a) | [source](reports/alphaflexiviridae-pssm-registry.html) | 2026-09-21 |
 | Alphaflexiviridae String Collapse | [open](https://claude.ai/artifact/1opeHxTHrAVEx7nsy8DMc1) | [source](reports/alphaflexiviridae-string-collapse.html) | 2026-09-21 |
 | Alphaflexiviridae Vocabulary Saturation | [open](https://claude.ai/artifact/DrNtpzKawMfnQvEFgdvJCP) | [source](reports/alphaflexiviridae-vocabulary-saturation.html) | 2026-09-21 |
+
+Not made: genome map.
+
+### Alphanodavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Alphanodavirus Coverage Audit | [open](https://claude.ai/artifact/YPAxLhtGVXR1tHevRTGf6Z) | [source](reports/alphanodavirus-coverage-audit.html) | 2026-11-22 |
+| Alphanodavirus — the insect nodaviruses PSSM Registry | [open](https://claude.ai/artifact/RadMW8PEM1n1xhZNGgCY6R) | [source](reports/alphanodavirus-pssm-registry.html) | 2026-11-22 |
+| Alphanodavirus — the insect nodaviruses String Collapse | [open](https://claude.ai/artifact/RRRLhkxDkY8memkCXySMXT) | [source](reports/alphanodavirus-string-collapse.html) | 2026-11-22 |
+| Alphanodavirus — the insect nodaviruses Vocabulary Saturation | [open](https://claude.ai/artifact/CUEET93DRQ9C28b4VFxgZp) | [source](reports/alphanodavirus-vocabulary-saturation.html) | 2026-11-22 |
 
 Not made: genome map.
 
@@ -253,6 +268,17 @@ Not made: genome map.
 | Bavovirus PSSM Registry | [open](https://claude.ai/artifact/RqkxTXZnGNWALpiyXz7t9d) | [source](reports/bavovirus-pssm-registry.html) | 2026-10-15 |
 | Bavovirus String Collapse | [open](https://claude.ai/artifact/VRpn8EkqAkz2sMjzYFEDS9) | [source](reports/bavovirus-string-collapse.html) | 2026-10-15 |
 | Bavovirus Vocabulary Saturation | [open](https://claude.ai/artifact/RqWLqqQPpCtJC7ZHpPxPxZ) | [source](reports/bavovirus-vocabulary-saturation.html) | 2026-10-15 |
+
+Not made: genome map.
+
+### Betanodavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Betanodavirus Coverage Audit | [open](https://claude.ai/artifact/7X5Vphm7iMdNTbnqnxyJKb) | [source](reports/betanodavirus-coverage-audit.html) | 2026-11-22 |
+| Betanodavirus — the fish nervous necrosis viruses PSSM Registry | [open](https://claude.ai/artifact/QgLtUWKCLfex2v9rMvmwey) | [source](reports/betanodavirus-pssm-registry.html) | 2026-11-22 |
+| Betanodavirus — the fish nervous necrosis viruses String Collapse | [open](https://claude.ai/artifact/NqwBHL2Ne4NTjHhi2TUWXR) | [source](reports/betanodavirus-string-collapse.html) | 2026-11-22 |
+| Betanodavirus — the fish nervous necrosis viruses Vocabulary Saturation | [open](https://claude.ai/artifact/WkqJy9BUfEiPXjLbp9RDSq) | [source](reports/betanodavirus-vocabulary-saturation.html) | 2026-11-22 |
 
 Not made: genome map.
 
@@ -559,6 +585,28 @@ Not made: genome map.
 | Lagovirus PSSM Registry | [open](https://claude.ai/artifact/CqYYq1ekytoZf5oVCb5zVK) | [source](reports/lagovirus-pssm-registry.html) | 2026-10-14 |
 | Lagovirus String Collapse | [open](https://claude.ai/artifact/MaXyiZhw6iYWGgut5PhNJF) | [source](reports/lagovirus-string-collapse.html) | 2026-10-14 |
 | Lagovirus Vocabulary Saturation | [open](https://claude.ai/artifact/HxygdrBS6JjHyAzphnj7eD) | [source](reports/lagovirus-vocabulary-saturation.html) | 2026-10-14 |
+
+Not made: genome map.
+
+### Le Blanc nodavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Le Blanc nodavirus Coverage Audit | [open](https://claude.ai/artifact/15pxXKc8HCokJvbpu34Gov) | [source](reports/le-blanc-nodavirus-coverage-audit.html) | 2026-11-22 |
+| Le Blanc nodavirus — the Caenorhabditis nodaviruses PSSM Registry | [open](https://claude.ai/artifact/3YuE57hMktp5hC5JtjWGUB) | [source](reports/le-blanc-nodavirus-pssm-registry.html) | 2026-11-22 |
+| Le Blanc nodavirus — the Caenorhabditis nodaviruses String Collapse | [open](https://claude.ai/artifact/S5HSfuke1vRjptjSJboMEv) | [source](reports/le-blanc-nodavirus-string-collapse.html) | 2026-11-22 |
+| Le Blanc nodavirus — the Caenorhabditis nodaviruses Vocabulary Saturation | [open](https://claude.ai/artifact/R6dwynrfa9tiHbBHqDzB7L) | [source](reports/le-blanc-nodavirus-vocabulary-saturation.html) | 2026-11-22 |
+
+Not made: genome map.
+
+### Macrobrachium rosenbergii nodavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Macrobrachium rosenbergii nodavirus Coverage Audit | [open](https://claude.ai/artifact/WiEeCV9r6WR6apmLysiYeN) | [source](reports/macrobrachium-rosenbergii-nodavirus-coverage-audit.html) | 2026-11-22 |
+| Macrobrachium rosenbergii nodavirus — the crustacean nodaviruses PSSM Registry | [open](https://claude.ai/artifact/JJtxL2nYcSuy2zN5J9Usmo) | [source](reports/macrobrachium-rosenbergii-nodavirus-pssm-registry.html) | 2026-11-22 |
+| Macrobrachium rosenbergii nodavirus — the crustacean nodaviruses String Collapse | [open](https://claude.ai/artifact/KiMLNvA2iHYMkzEzaecv93) | [source](reports/macrobrachium-rosenbergii-nodavirus-string-collapse.html) | 2026-11-22 |
+| Macrobrachium rosenbergii nodavirus — the crustacean nodaviruses Vocabulary Saturation | [open](https://claude.ai/artifact/SYJmXqc79owHWhvBMrFpva) | [source](reports/macrobrachium-rosenbergii-nodavirus-vocabulary-saturation.html) | 2026-11-22 |
 
 Not made: genome map.
 

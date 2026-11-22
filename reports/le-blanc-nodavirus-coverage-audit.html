@@ -1,0 +1,150 @@
+<title>Le Blanc nodavirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan · Le Blanc nodavirus module · 22 November 2026</div><h1>Does the Caenorhabditis nodavirus module actually work?</h1><p class="stand">The strangest genomes in the family. These worm viruses encode neither B1 nor B2; their capsid begins at a codon that is <b>not AUG</b>; and a <b>−1 ribosomal frameshift</b> fuses that capsid to a second protein which also exists on its own, from its own start codon. Three overlapping products come out of one 2.3 kb stretch of RNA2.</p><div class="tiles"><div class="tile"><div class="v">4</div><div class="l">features, 3 with profiles</div></div><div class="tile"><div class="v">9</div><div class="l">PSSMs + 47 frameshift references</div></div><div class="tile"><div class="v">101/101</div><div class="l">genomes routed</div></div><div class="tile"><div class="v">0</div><div class="l">duplicate calls</div></div><div class="tile"><div class="v">19/19</div><div class="l">held-out genomes good</div></div><div class="tile"><div class="v">2</div><div class="l">slippery heptamers, not 1</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">Four proteins, one of which has no profile at all.</p><p class="note">Le Blanc nodavirus (49 genomes), Santeuil (44), Orsay (4) and Melnik (4). No ICTV genus covers them, so the module takes its most-sampled species' name. The margin is thin and worth stating: <b><i>Orsay virus</i> carries almost all of the literature below and has four genomes in BV-BRC.</b></p><div class="scroll"><table><thead><tr><th>key</th><th>type</th><th>annotation</th><th>segment</th><th>bit</th><th>length (aa)</th></tr></thead><tbody><tr><td>A</td><td>CDS</td><td>RNA-dependent RNA polymerase</td><td>Protein A</td><td>500</td><td>880–1040</td></tr><tr><td>CP</td><td>CDS</td><td>Capsid protein</td><td>Capsid Protein</td><td>391</td><td>364–414</td></tr><tr><td>CP_DELTA</td><td>CDS <em>special: transcript_edit</em></td><td>Capsid-delta fusion protein <em>(new string)</em></td><td>Capsid Protein</td><td>—</td><td>719–876</td></tr><tr><td>DELTA</td><td>CDS</td><td>Nonlytic egress protein delta <em>(new string)</em></td><td>Capsid Protein</td><td>384</td><td>312–421</td></tr></tbody></table></div><figure><svg viewBox="0 0 980 265" role="img" aria-label="1241918.11 (1241918.75, 2 segments, 5,501 nt total) as the Le_Blanc_nodavirus module annotates it: 4 features (3 essential, 0 mature peptides)."><rect x="4" y="14" width="18" height="10" style="fill:var(--built)"/><text x="28" y="23" font-size="11" fill="currentColor">essential CDS</text><rect x="139" y="14" width="18" height="10" style="fill:var(--muted)"/><text x="163" y="23" font-size="11" fill="currentColor">other called CDS</text><rect x="295" y="14" width="18" height="10" style="fill:var(--warn)"/><text x="319" y="23" font-size="11" fill="currentColor">mature peptide</text><polygon points="148.3,72.0 947.7,72.0 952.7,77.0 947.7,82.0 148.3,82.0" style="fill:var(--built)"/><text x="550.0" y="69.0" text-anchor="middle" font-size="10.5" fill="currentColor">A</text><line x1="72" y1="95.0" x2="951.7" y2="95.0" stroke="currentColor" stroke-width="1.5"/><line x1="72.0" y1="91.0" x2="72.0" y2="99.0" stroke="currentColor"/><text x="72.0" y="112.0" text-anchor="middle" font-size="10.5" fill="currentColor">0.0 kb</text><line x1="219.6" y1="91.0" x2="219.6" y2="99.0" stroke="currentColor"/><text x="219.6" y="112.0" text-anchor="middle" font-size="10.5" fill="currentColor">0.5 kb</text><line x1="367.4" y1="91.0" x2="367.4" y2="99.0" stroke="currentColor"/><text x="367.4" y="112.0" text-anchor="middle" font-size="10.5" fill="currentColor">1.0 kb</text><line x1="515.3" y1="91.0" x2="515.3" y2="99.0" stroke="currentColor"/><text x="515.3" y="112.0" text-anchor="middle" font-size="10.5" fill="currentColor">1.5 kb</text><line x1="663.1" y1="91.0" x2="663.1" y2="99.0" stroke="currentColor"/><text x="663.1" y="112.0" text-anchor="middle" font-size="10.5" fill="currentColor">2.0 kb</text><line x1="811.0" y1="91.0" x2="811.0" y2="99.0" stroke="currentColor"/><text x="811.0" y="112.0" text-anchor="middle" font-size="10.5" fill="currentColor">2.5 kb</text><text x="4" y="93.0" font-size="11" fill="currentColor"><tspan font-weight="600">Protein A Segment</tspan></text><text x="4" y="107.0" font-size="10" fill="currentColor" opacity="0.75">2,976 nt</text><polygon points="84.4,192.0 425.2,192.0 430.2,197.0 425.2,202.0 84.4,202.0" style="fill:var(--built)"/><text x="256.8" y="189.0" text-anchor="middle" font-size="10.5" fill="currentColor">CP</text><polygon points="464.7,192.0 814.3,192.0 819.3,197.0 814.3,202.0 464.7,202.0" style="fill:var(--built)"/><text x="641.5" y="189.0" text-anchor="middle" font-size="10.5" fill="currentColor">delta</text><polygon points="84.4,167.0 814.3,167.0 819.3,172.0 814.3,177.0 84.4,177.0" style="fill:var(--muted)"/><text x="451.4" y="164.0" text-anchor="middle" font-size="10.5" fill="currentColor">CP-delta</text><line x1="72" y1="215.0" x2="818.3" y2="215.0" stroke="currentColor" stroke-width="1.5"/><line x1="72.0" y1="211.0" x2="72.0" y2="219.0" stroke="currentColor"/><text x="72.0" y="232.0" text-anchor="middle" font-size="10.5" fill="currentColor">0.0 kb</text><line x1="219.6" y1="211.0" x2="219.6" y2="219.0" stroke="currentColor"/><text x="219.6" y="232.0" text-anchor="middle" font-size="10.5" fill="currentColor">0.5 kb</text><line x1="367.4" y1="211.0" x2="367.4" y2="219.0" stroke="currentColor"/><text x="367.4" y="232.0" text-anchor="middle" font-size="10.5" fill="currentColor">1.0 kb</text><line x1="515.3" y1="211.0" x2="515.3" y2="219.0" stroke="currentColor"/><text x="515.3" y="232.0" text-anchor="middle" font-size="10.5" fill="currentColor">1.5 kb</text><line x1="663.1" y1="211.0" x2="663.1" y2="219.0" stroke="currentColor"/><text x="663.1" y="232.0" text-anchor="middle" font-size="10.5" fill="currentColor">2.0 kb</text><line x1="811.0" y1="211.0" x2="811.0" y2="219.0" stroke="currentColor"/><text x="811.0" y="232.0" text-anchor="middle" font-size="10.5" fill="currentColor">2.5 kb</text><text x="4" y="213.0" font-size="11" fill="currentColor"><tspan font-weight="600">Capsid Protein Segment</tspan></text><text x="4" y="227.0" font-size="10" fill="currentColor" opacity="0.75">2,525 nt</text></svg><figcaption>1241918.11 (1241918.75, 2 segments, 5,501 nt total) as the Le_Blanc_nodavirus module annotates it: 4 features (3 essential, 0 mature peptides). Drawn to scale from this genome&rsquo;s own calls; forward-strand genes above the axis, reverse-strand below. All segments are drawn on one scale, so their relative sizes are real.</figcaption></figure><p class="note"><b>RNA1 carries a single CDS.</b> PMID 21283608 looked for a B2 and reported the absence directly: “All known nodavirus B2 proteins overlap with the C-terminus of the RNA-dependent RNA polymerase and are encoded in the +1 frame relative to the polymerase. No open reading frame with these properties was predicted in the 3′ end of the RNA1 segment.” PMID 23468484 then found no silencing-suppressor activity for either Orsay protein proposed as one.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">98 training sequences, plus a nucleotide reference set for the protein that has no profile.</p><p class="note"><b>The capsid starts at a non-AUG codon.</b> PMID 24503084 Edman-sequenced the mature Orsay capsid N-terminus as NKNNT and reports that it “corresponds to nucleotides 89–91, an AAC codon, which is not traditionally thought to be a suitable translation initiation site”, with “no AUG codon 5′ to” it in the segment. Checked directly on HM030971: nt 89–91 are <code>AAC</code>.</p><pre class="mono">  verified on HM030971 (Orsay virus RNA2, 2574 nt)
+     nt   89-  91   AAC      capsid start, non-AUG, Edman-confirmed
+     nt 1255-1261   GTCAAAC  slippery heptamer
+     nt 1262-1264   TAG      capsid stop, immediately 3&#x27; of the heptamer
+     nt 1345-1347   ATG      free delta start</pre><p class="note">Consequences carried into the JSON rather than only into prose: <code>upstream_ext</code> is <b>0</b> on the capsid, because the annotator's <code>scan_to_met_start</code> would walk left looking for a start codon that does not exist; and <code>check_met_start.py</code> reports the feature in 100% of its members, which is the documented biology and not a defect. The initiation <i>mechanism</i> is explicitly unresolved in the literature and is not claimed here.</p><p class="note"><b>CP-delta is a −1 programmed ribosomal frameshift, so it has no PSSM.</b> It is called from a curated nucleotide reference set in which one base is duplicated at the slip site. The transframe peptide was sequenced by MS/MS, and the protein incorporates into virions as a head fiber with a novel β-bracelet fold (PMIDs 24503084, 32817218, 28241071). RefSeq's <code>join(89..1261,1261..2385)</code> repeats nt 1261 because that is the slipped base — it is a frameshift, not a splice, and this module declares no spliced feature.</p><div class="verdict warn"><b>There are two slippery heptamers in this group, not one — and building on the published one alone covered half the module.</b> With Orsay's <code>G_UCA_AAC</code> as the only constraint, 24 references were built from Le Blanc and Orsay, and 23 genomes reported <i>no insertion sits in the slip site</i> — every Santeuil and Melnik genome. Reading the 7 nucleotides immediately 5′ of the capsid stop in each genome separates them exactly by species: <b>Orsay and Le Blanc carry GTCAAAC in 26 of 26; Santeuil and Melnik carry GGAAAAC in 24 of 24.</b> PMID 24503084 notes only that Le Blanc shares Orsay's slippery sequence and Santeuil's differs, without giving Santeuil's.</div><pre class="mono">  reference set, both heptamers
+     references written                               47
+     slip site confirmed at the insertion             47
+     reproduces its own deposited fusion protein      47   (byte-for-byte)
+     species covered     Le Blanc 26, Santeuil 22, Melnik 2, Orsay 1</pre><p class="note"><b>Free delta is a separate initiation, and it is real.</b> It has its own AUG at RNA2 nt 1345 and is 332–398 aa. PMID 29743360 settled it with an ATG→CTG mutant that still makes normal CP-delta but no free delta and has a non-lytic egress defect. It is <b>absent from RefSeq NC_028098.1</b> and present only in HM030971.2, which is why only three deposits exist — the collection was expanded by extraction, and <b>46 of 46</b> extracted members are exact C-terminal substrings of the fusion from their own genome, beginning at fusion residue 419–434 (Orsay's published 420 among them).</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Raised from 19 panel genomes, and re-measured afterwards.</p><div class="scroll"><table><thead><tr><th>feature</th><th>panel calls</th><th>lowest</th><th>median</th><th>cutoff</th></tr></thead><tbody><tr><td>A</td><td>19</td><td>1859.3</td><td>1865.5</td><td>500 <em>(capped)</em></td></tr><tr><td>CP</td><td>19</td><td>782.3</td><td>787.0</td><td>391</td></tr><tr><td>DELTA</td><td>19</td><td>768.8</td><td>775.0</td><td>384</td></tr><tr><td>CP_DELTA</td><td>—</td><td>—</td><td>—</td><td>no profile; called from nucleotide references</td></tr></tbody></table></div><p class="note">Each cutoff is half the lowest score among the feature's genuine panel calls, capped at 500. Re-measured after the raise, every feature still calls on 100% of routed genomes and all 19 panel genomes are still graded good.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">Seven references, every genome in the group.</p><div class="tiles"><div class="tile"><div class="v">7</div><div class="l">rep contigs, against a budget of 25</div></div><div class="tile"><div class="v">101/101</div><div class="l">genomes routed</div></div><div class="tile"><div class="v">0</div><div class="l">misrouted</div></div><div class="tile"><div class="v">45 bits</div><div class="l">best hit from any other module</div></div></div><p class="note">All four species contribute references, including Melnik, whose deposits are partial at both ends and carry no complete CDS. A reference only has to be a BLASTn subject, so a partial genome can still route its relatives even when it cannot itself be fully annotated.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">65 genomes carry calls; 19 carry two complete, distinct segments.</p><div class="bars"><div class="bar"><div class="bl">A</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">19</div><div class="bn">19 of 19 complete genomes</div></div><div class="bar"><div class="bl">CP</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">19</div><div class="bn">19</div></div><div class="bar"><div class="bl">CP-delta</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">19</div><div class="bn">19 — the frameshift product</div></div><div class="bar"><div class="bl">delta</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">19</div><div class="bn">19</div></div></div><p class="note"><b>CP-delta is called on every complete genome in the panel.</b> That number cannot come from the flat feature table, which has no representation for a special feature at all — it comes from the full GTO pipeline, which runs the transcript-edit caller. A module with a frameshift product scored from the feature table would report that product as simply absent, with nothing to flag it.</p><p class="note">Across all 65 genomes carrying any call, the replicase reaches 75% and the RNA2 products 77%, the shortfall being single-segment deposits that cannot carry the other segment's genes.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">Coordinates against the deposited record, including the non-AUG start.</p><p class="note">Orsay virus RNA2 (HM030971) is called at exactly the coordinates deposited, including the start codon that is not a start codon:</p><pre class="mono">  CP      89-1264    391 aa    begins at the AAC codon, no AUG upstream
+  delta 1345-2385    346 aa    begins at its own ATG
+
+  both exactly as annotated on HM030971.2</pre><div class="tiles"><div class="tile"><div class="v">19</div><div class="l">complete held-out genomes</div></div><div class="tile"><div class="v">19</div><div class="l">good</div></div><div class="tile"><div class="v">0</div><div class="l">poor</div></div><div class="tile"><div class="v">0</div><div class="l">duplicate calls</div></div></div><p class="note">Every nesting reported is declared architecture: the capsid and free delta both sit inside the fusion, because the fusion <i>is</i> the capsid plus a frameshift plus delta. <code>qc_cross_feature.py</code> reports them as 100%-identical collisions, which is true by construction; <code>audit_bins.py</code>, which accepts a declaration, reads <b>Unresolved: 0</b> with those pairs declared. The fusion itself has no profile, so there is no profile for the capsid to compete with.</p></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">Two real limits, one of them a direct consequence of how the deposits were made.</p><p class="note"><b>1. Santeuil and Melnik RNA2 deposits are 5′-truncated, and are excluded from the capsid collection.</b> Their contigs begin <i>inside</i> the capsid gene, so the encoded proteins start at Lys rather than the Edman-verified Asn — 22 of 50 capsid deposits. Training a profile on them would place the capsid N-terminus 15 residues late in every genome it called. They are excluded rather than trimmed, which costs Santeuil representation in that one feature; its frameshift references are unaffected, because a reference only has to span the slip site.</p><p class="note"><b>2. The non-AUG start is annotated as a fact, not explained as a mechanism.</b> The 2014 paper floats an upstream UUG at nt 56–58 followed by proteolysis, then argues against it — the UUG “lacks a strong initiation context” and Santeuil has an in-frame stop five codons upstream — and prefers initiation directly at the NKNNT site “via some unknown mechanism”. The module records the verified N-terminus and claims nothing about how the ribosome gets there.</p><p class="note"><b>3. Melnik nodavirus has no complete CDS and no RefSeq</b> (MK774657–MK774660, two isolates, both ends open). It contributes a routing reference and two frameshift references, and it will not produce a complete annotation from the records that exist.</p><p class="note"><b>A trap defused rather than a limit.</b> Santeuil's RefSeq NC_015070.1 labels the <i>fusion</i> <code>protein delta</code> and gives the <i>capsid</i> a <code>/note="protein A"</code>. So one string covers both a 765 aa fusion and a ~346 aa free protein, and <code>protein A</code> appears on an RNA2 capsid. Length routing separates the first; <code>protein A</code> binds nothing in this module and is left to the homology rescue.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Genome quality from the full GTO pipeline, which is the only path that sees the frameshift.</p><div class="tiles"><div class="tile"><div class="v">19</div><div class="l">complete held-out genomes</div></div><div class="tile"><div class="v">19</div><div class="l">good (100%)</div></div><div class="tile"><div class="v">0</div><div class="l">poor</div></div><div class="tile"><div class="v">3</div><div class="l">essential features</div></div></div><p class="note">A, CP and DELTA carry <code>copy_num</code>. <b>CP_DELTA deliberately does not</b>, and never can: a special feature is emitted by a different program from the one that scores genome quality, so marking it essential would flag genomes on the basis of a measurement the quality step never makes.</p><p class="note"><b>One apparent miss was an artefact of merging.</b> Santeuil <code>977913.15</code> appeared to lack the capsid, the fusion and delta — but it is MN131015 + MN131016, <b>both 2,896 nt and both the polymerase</b>, merged into a 5,792 nt “genome” with no capsid segment at all. It would have withheld <code>copy_num</code> from three features on the strength of an artefact. A length window cannot catch it, because this module's two segment windows are 2896–3628 and 2525–2937, so a pair of 2,896 nt polymerases satisfies both. Each contig is now assigned to a segment by homology to the module's own collections.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">Four annotation strings, two of them new, across four species.</p><div class="tiles"><div class="tile"><div class="v">7 → 3</div><div class="l">distinct strings at equal depth</div></div><div class="tile"><div class="v">2.3×</div><div class="l">collapse</div></div><div class="tile"><div class="v">89</div><div class="l">proteins compared</div></div><div class="tile"><div class="v">64</div><div class="l">genomes annotated by both</div></div></div><p class="note">The collapse ratio is the lowest of the four modules, and for a good reason: this group was sequenced by a small number of laboratories over a short period, so its source vocabulary is already fairly disciplined. The fusion protein still arrives under two names — <code>alpha-delta fusion protein</code> and <code>capsid-delta fusion protein</code> — because submitters disagree about whether to call the capsid alpha.</p><p class="note">Two strings are new to the LowVan vocabulary: <code>Capsid-delta fusion protein</code> and <code>Nonlytic egress protein delta</code>. The second names a function the literature establishes directly (PMID 29743360) rather than falling back on an uncharacterized form, and the first describes what the protein is rather than how it is made.</p></section><p class="src">Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure here is reproducible from the Le_Blanc_nodavirus working directory; the decisions behind them are in <code>NODAVIRIDAE_BUILD_NOTES.md</code> and the literature behind those in <code>LITERATURE_SURVEY.md</code>. Every citation sits in <code>PMID_claude_generated</code> and awaits a curator's read.</p></div>

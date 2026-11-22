@@ -1,0 +1,17 @@
+[
+ {"name": "protein A (RdRp)", "pattern": "protein\\s+a\\b|a\\s+protein|rna[\\s-]?dep|rdrp|polymerase",
+  "note": "RNA1 replicase, 1033-1045 aa. A methyltransferase and the RdRp separated by a predicted transmembrane region, from a structural model only.",
+  "source": "PMID 32659308"},
+ {"name": "B2", "pattern": "\\bb2\\b|protein\\s+b2|b2-?like|\\bb\\s+protein",
+  "note": "131-133 aa, overlapping the 3' end of protein A in a shifted frame. NO subgenomic RNA has been demonstrated for MrNV, PvNV or CMNV, and RNAi-suppressor activity has NOT been shown for any of the three, so the annotation claims neither.",
+  "source": "PMID 23318596"},
+ {"name": "capsid protein", "pattern": "capsid|coat|caspid|\\bcp\\b",
+  "note": "371 aa in MrNV, 368 in PvNV, 437 in CMNV. A single uncleaved chain with dimeric P-domain spikes, unlike the trimeric spikes of alpha- and betanodaviruses, and with NO gamma peptide.",
+  "source": "PMID 30346944"},
+ {"name": "B1", "pattern": "\\bb1\\b|protein\\s+b1",
+  "note": "DELIBERATELY ABSENT. No B1 is documented for MrNV, PvNV or CMNV and none is annotated in NC_005094.1, NC_014978.1 or MT270124.1. Its absence is the single gene that separates this module from Betanodavirus, so ABSENT here is the expected and required result.",
+  "source": "PMID 30346944"},
+ {"name": "capsid maturation cleavage product", "pattern": "\\bgamma\\b|mature\\s+capsid|arg26",
+  "note": "DELIBERATELY ABSENT. The one reported MrNV capsid cleavage, at Arg26, was produced by an E. coli cysteine protease in recombinant protein and is blocked by E-64 -- a heterologous-expression artefact, not viral maturation. The virion capsid is a single 43 kDa polypeptide (PMID 15660790).",
+  "source": "PMID 34445426"}
+]

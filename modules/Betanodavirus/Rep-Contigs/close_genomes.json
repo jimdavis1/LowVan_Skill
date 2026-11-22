@@ -1,0 +1,14 @@
+{
+ "Betanodavirus.1.dna": {
+  "genome_ids": "EU236148",
+  "genome_name": "Tiger puffer nervous necrosis virus TPKag93"
+ },
+ "Betanodavirus.2.dna": {
+  "genome_ids": "KY315689",
+  "genome_name": "Redspotted grouper nervous necrosis virus MENNV1310"
+ },
+ "Betanodavirus.3.dna": {
+  "genome_ids": "HE796770",
+  "genome_name": "Betanodavirus S1.Tun03.11"
+ }
+}

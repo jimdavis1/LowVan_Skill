@@ -1,0 +1,386 @@
+{
+ "title": "Macrobrachium rosenbergii nodavirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Macrobrachium rosenbergii nodavirus module \u00b7 22 November 2026",
+ "h1": "Does the crustacean nodavirus module actually work?",
+ "standfirst": "Three species of shrimp and prawn virus that ICTV has not given a genus: <i>Macrobrachium rosenbergii</i> nodavirus, <i>Penaeus vannamei</i> nodavirus and covert mortality nodavirus. What separates them from the fish viruses is a single missing gene \u2014 <b>there is no B1</b>, in the literature or in any of the three RefSeqs \u2014 and that absence is what earns them their own module.",
+ "headline_tiles": [
+  [
+   "3",
+   "features, all with profiles"
+  ],
+  [
+   "9",
+   "PSSMs"
+  ],
+  [
+   "63/63",
+   "genomes routed"
+  ],
+  [
+   "0",
+   "duplicate calls"
+  ],
+  [
+   "4/4",
+   "held-out genomes good"
+  ],
+  [
+   "4.3\u00d7",
+   "vocabulary collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Three proteins on two segments, and no claim beyond them.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "MrNV (81 genomes), covert mortality nodavirus (69) and <i>Penaeus vannamei</i> nodavirus (4). ICTV MSL41 ratifies only Alphanodavirus and Betanodavirus, and NCBI files all three of these under \u201cunclassified Nodaviridae\u201d with no genus at any rank, so the module is named for its most-sampled species \u2014 the convention already used for <code>Orthopneumovirus_muris</code>. <i>Gammanodavirus</i> was not used: PMID 30346944 asks \u201cA new genus within the Nodaviridae?\u201d in its title and proposes no ratified name."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "key",
+      "type",
+      "annotation",
+      "segment",
+      "bit",
+      "length (aa)"
+     ],
+     "rows": [
+      [
+       "A",
+       "CDS",
+       "RNA-dependent RNA polymerase",
+       "Protein A",
+       "60",
+       "971\u20131107"
+      ],
+      [
+       "B2",
+       "CDS",
+       "Non-structural protein B2 <em>(new string)</em>",
+       "Protein A",
+       "30",
+       "123\u2013140"
+      ],
+      [
+       "CP",
+       "CDS",
+       "Capsid protein",
+       "Capsid Protein",
+       "80",
+       "345\u2013463"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "macrobrachium-rosenbergii-nodavirus-genome-map.html"
+    },
+    {
+     "type": "prose",
+     "html": "<b>The annotation deliberately claims no function for B2.</b> RNA silencing suppression is demonstrated for alphanodavirus B2 (PMID 12016316) and betanodavirus B2 (PMID 16352533) and has <b>not</b> been shown for MrNV, PvNV or CMNV. This feature is therefore <code>Non-structural protein B2</code> while the other two modules say <code>RNA silencing suppressor protein</code>. No subgenomic RNA is claimed either, because none has been demonstrated for any of these three."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The capsid is not cleaved and there is no gamma peptide.</b> PMID 30346944: \u201cBetanodaviruses and Mr_NV both have their C-termini at the capsid exterior and do not encode a \u03b3-peptide\u201d; the virion capsid is a single 43 kDa polypeptide (PMID 15660790). Its P-domain spikes are dimeric, unlike the trimeric spikes of the alpha- and betanodaviruses."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "57 training sequences in three collections, with a deliberately bimodal capsid window.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "members",
+      "window",
+      "where the window comes from"
+     ],
+     "rows": [
+      [
+       "A",
+       "16",
+       "1033\u20131045",
+       "CMNV 1043 (PMID 32659308); MrNV 1045 and PvNV 1033 are RefSeq lengths"
+      ],
+      [
+       "B2",
+       "16",
+       "131\u2013133",
+       "MrNV 133 (PMID 23318596), CMNV 132 (PMID 32659308), PvNV 131"
+      ],
+      [
+       "CP",
+       "25",
+       "368\u2013437",
+       "MrNV 371 (PMIDs 23318596, 30346944), PvNV 368, CMNV 437 (PMID 32659308)"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>The capsid window spans two length classes because both are real.</b> MrNV's capsid is 371 aa and CMNV's is 437 \u2014 66 residues apart, in one collection. That trips a SPLIT finding by construction, and it is species-level length variation in one protein rather than two proteins sharing a bin, so it is signed off rather than split. The window is not a median and could not be."
+    },
+    {
+     "type": "prose",
+     "html": "<b>B2 was expanded by extraction</b> \u2014 8 deposits plus 8 sequences cut from the genomes by homology to them, each required to start at a Met near the aligned reference start and to fall inside the literature window."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Left at the generated floors, because the panel is too small to raise them honestly.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "panel calls",
+      "lowest score",
+      "cutoff",
+      "decision"
+     ],
+     "rows": [
+      [
+       "A",
+       "4",
+       "2102.8",
+       "60",
+       "left alone, fewer than 5 calls"
+      ],
+      [
+       "B2",
+       "4",
+       "244.3",
+       "30",
+       "left alone"
+      ],
+      [
+       "CP",
+       "4",
+       "575.1",
+       "80",
+       "left alone"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The project rule raises a cutoff to half the lowest genuine panel score and leaves alone any feature with fewer than five panel calls, because one low score is not a distribution. Only four genomes in this group carry two complete segments, so all three features fall under that floor. Every measured score is an order of magnitude above its cutoff, so nothing is currently slipping through \u2014 the floors are simply unraised, and this is recorded rather than quietly skipped."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Five references, every genome in the group.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "5",
+       "rep contigs, against a budget of 25"
+      ],
+      [
+       "63/63",
+       "genomes routed"
+      ],
+      [
+       "0",
+       "misrouted"
+      ],
+      [
+       "45 bits",
+       "best hit from any other module"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Both segments are represented among the references, which matters because BV-BRC stores each segment as its own genome record. Routing was measured at the annotator's own BLASTn settings, not with <code>check_rep_contigs.py</code>, which calls bare <code>blastn</code> and so runs megablast."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "51 genomes carry calls; four carry two complete, distinct segments.",
+   "blocks": [
+    {
+     "type": "bars",
+     "unit": "",
+     "rows": [
+      [
+       "A",
+       "4",
+       100.0,
+       "4 of 4 complete genomes"
+      ],
+      [
+       "B2",
+       "4",
+       100.0,
+       "4"
+      ],
+      [
+       "CP",
+       "4",
+       100.0,
+       "4"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Across all 51 genomes that carry any call, CP reaches 71% and the two RNA1 proteins 35\u201341%. As in the sibling fish module, that denominator is dominated by single-segment deposits, and a record holding only RNA2 cannot call a protein encoded on RNA1. On the genomes that carry both segments, every feature is called every time."
+    },
+    {
+     "type": "prose",
+     "html": "A further five records route and call nothing: capsid fragments below the profile's coverage requirement, where the annotator records the module match so the taxon is not lost."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "Held-out genomes, and one deposit that turned out not to belong to this family at all.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "4",
+       "complete held-out genomes"
+      ],
+      [
+       "4",
+       "good"
+      ],
+      [
+       "0",
+       "poor"
+      ],
+      [
+       "0",
+       "duplicate calls"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The only nesting reported is B2 inside protein A, which is declared architecture \u2014 an overlapping gene in a shifted frame. B2 is nonetheless marked essential, because every one of its calls is out of frame with the feature containing it, which is what distinguishes a separate gene from a cleavage product."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The length audit found a satellite virus hiding in this taxon.</b> <code>fig|222557.10.peg.1</code> is deposited under the MrNV taxon id with the product string <code>B2 protein</code> and is 174 aa \u2014 41 residues above the literature window. It matches neither MrNV B2 nor MrNV capsid at e&lt;1e-3, and its arginine-rich N-terminus is a capsid RNA-binding arm. It is <b>extra small virus capsid CP17</b>: 174 aa on an 872 nt contig (AY655724) ending at nt 610, against XSV NC_043492.1 at 872 nt with CP17 at 174 aa, CDS 89..613."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "XSV is a <b>satellite virus in a different family</b> \u2014 <i>Sarthroviridae</i>, genus <i>Macronovirus</i> (PMIDs 14993649, 30507372) \u2014 so it is out of scope entirely and would need a module of its own. Nothing but the literature length window would have caught it: it sits under a plausible string, in a plausible taxon, at a plausible size for a small viral protein."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "A small panel, a reported cleavage that is not real, and a capsid that spans two species.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>1. Four complete held-out genomes is a thin panel.</b> Only 399 of 1,965 isolate names in this family carry both segments, and this group has 153 records in total. Four genomes is enough to check that coordinates are right and far too few to raise a cutoff or to resolve a borderline call rate. That is a property of the deposits."
+    },
+    {
+     "type": "prose",
+     "html": "<b>2. The one reported MrNV capsid cleavage is not modelled, and should not be.</b> PMID 34445426 located a cut at Arg26 by Edman sequencing \u2014 produced by an <i>E. coli</i> cysteine protease in recombinant protein, and blocked by E-64. It is a heterologous-expression artefact, not viral maturation, so no mature peptide is derived from it. The N- and C-terminal truncations in PMIDs 24878641, 27693291 and 30707739 are likewise designed constructs."
+    },
+    {
+     "type": "prose",
+     "html": "<b>3. No B1 is declared, and the probe for it returns ABSENT.</b> That is the required result rather than a shortfall: no paper reports a B1 in these three viruses and none is annotated in NC_005094.1, NC_014978.1 or MT270124.1. Its absence is the organisational difference that gives this group its own module, so a module that declared it would flag every genome for a gene it does not carry."
+    },
+    {
+     "type": "prose",
+     "html": "<b>4. The capsid profile set must cover a 66-residue span.</b> MrNV at 371 aa and CMNV at 437 are one feature with two real length classes; the module carries three capsid profiles to span them. A single profile would have favoured whichever species contributed more members."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Genome quality from the full GTO pipeline.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "4",
+       "complete held-out genomes"
+      ],
+      [
+       "4",
+       "good (100%)"
+      ],
+      [
+       "0",
+       "poor"
+      ],
+      [
+       "3",
+       "essential features"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "All three features carry <code>copy_num</code>, each called on 100% of the complete held-out genomes."
+    },
+    {
+     "type": "prose",
+     "html": "<b>One apparent miss was an artefact of merging, not a module gap.</b> <code>430911.5</code> (<i>Penaeus vannamei</i> nodavirus Belize) appeared to lack a capsid call \u2014 but it is two 3,111 nt contigs that are <i>both</i> the polymerase, merged into one \u201cgenome\u201d by a tool that merges any two records sharing a genome name. It carries no capsid segment at all. Panel genomes are now screened by assigning each contig to a segment by homology, which caught this case and two more like it."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "Three annotation strings against the source vocabulary of 153 records.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "13 \u2192 3",
+       "distinct strings at equal depth"
+      ],
+      [
+       "4.3\u00d7",
+       "collapse \u2014 the highest of the four modules"
+      ],
+      [
+       "57",
+       "proteins compared"
+      ],
+      [
+       "49",
+       "genomes annotated by both"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The capsid arrives as <code>capsid protein</code>, <code>capsid</code> and <code>caspid protein</code> \u2014 the last a plain typo, preserved in the database and collapsed here. B2 arrives as <code>B2 protein</code>, <code>B2</code>, <code>B2 Protein</code>, <code>B2-like protein</code> and <code>B protein</code>, and the polymerase under seven spellings including a bare <code>RDRP</code> that was attached to a 137 aa sequence \u2014 B2 length, not polymerase length, and routed out by the window."
+    }
+   ]
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure here is reproducible from the module's working directory; the decisions behind them are in <code>NODAVIRIDAE_BUILD_NOTES.md</code> and the literature behind those in <code>LITERATURE_SURVEY.md</code>. Every citation sits in <code>PMID_claude_generated</code> and awaits a curator's read."
+}

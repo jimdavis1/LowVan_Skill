@@ -1,0 +1,178 @@
+{
+   "Alphanodavirus" : {
+      "close_genomes" : {
+         "Alphanodavirus.1.dna" : {
+            "genome_ids" : "JF461541",
+            "genome_name" : "Flock House virus IP-VIA-022011"
+         },
+         "Alphanodavirus.10.dna" : {
+            "genome_ids" : "GU976287",
+            "genome_name" : "Alphanodavirus HB-2007/CHN"
+         },
+         "Alphanodavirus.2.dna" : {
+            "genome_ids" : "GQ342966",
+            "genome_name" : "Drosophila melanogaster American nodavirus (ANV) SW-2009a"
+         },
+         "Alphanodavirus.3.dna" : {
+            "genome_ids" : "NC_003692",
+            "genome_name" : "Pariacoto virus"
+         },
+         "Alphanodavirus.4.dna" : {
+            "genome_ids" : "NC_003691",
+            "genome_name" : "Pariacoto virus"
+         },
+         "Alphanodavirus.5.dna" : {
+            "genome_ids" : "NC_002691",
+            "genome_name" : "Nodamura virus"
+         },
+         "Alphanodavirus.6.dna" : {
+            "genome_ids" : "NC_002690",
+            "genome_name" : "Nodamura virus"
+         },
+         "Alphanodavirus.7.dna" : {
+            "genome_ids" : "KU754530",
+            "genome_name" : "Newington virus Dimm_PoolSeq3"
+         },
+         "Alphanodavirus.8.dna" : {
+            "genome_ids" : "NC_004145",
+            "genome_name" : "Boolarra virus"
+         },
+         "Alphanodavirus.9.dna" : {
+            "genome_ids" : "GU976286",
+            "genome_name" : "Alphanodavirus HB-2007/CHN"
+         }
+      },
+      "features" : {
+         "A" : {
+            "PMID_claude_generated" : [
+               "7815535",
+               "12208963",
+               "11689648"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "A",
+            "kmers" : 1,
+            "max_len" : 1105,
+            "min_len" : 914,
+            "segment" : "Protein A Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "ALPHA" : {
+            "PMID_claude_generated" : [
+               "6548308",
+               "1404613",
+               "9765417"
+            ],
+            "anno" : "Capsid protein precursor",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "alpha",
+            "kmers" : 1,
+            "max_len" : 431,
+            "min_len" : 375,
+            "segment" : "Capsid Precursor Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "B1" : {
+            "PMID_claude_generated" : [
+               "15163762",
+               "12573589"
+            ],
+            "anno" : "Non-structural protein B1",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "B1",
+            "kmers" : 1,
+            "max_len" : 138,
+            "min_len" : 95,
+            "segment" : "Protein A Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         },
+         "B2" : {
+            "PMID_claude_generated" : [
+               "12016316",
+               "15163762",
+               "16270100",
+               "12573589"
+            ],
+            "anno" : "RNA silencing suppressor protein",
+            "bit_cutoff" : 30,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "B2",
+            "kmers" : 1,
+            "max_len" : 151,
+            "min_len" : 84,
+            "segment" : "Protein A Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "BETA" : {
+            "PMID_claude_generated" : [
+               "1404613",
+               "9765417",
+               "10799587"
+            ],
+            "anno" : "Mature capsid protein beta",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "beta",
+            "kmers" : 1,
+            "max_len" : 384,
+            "min_len" : 333,
+            "segment" : "Capsid Precursor Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 1
+         },
+         "GAMMA" : {
+            "PMID_claude_generated" : [
+               "9765417",
+               "10799587",
+               "16378964"
+            ],
+            "anno" : "Capsid peptide gamma",
+            "bit_cutoff" : 25,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "mat_peptide",
+            "gene_symbol" : "gamma",
+            "kmers" : 1,
+            "max_len" : 46,
+            "min_len" : 37,
+            "segment" : "Capsid Precursor Segment",
+            "type" : "mat_peptide",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Capsid Precursor Segment" : {
+            "max_len" : 1416,
+            "min_len" : 1224,
+            "replicon_geometry" : "linear"
+         },
+         "Protein A Segment" : {
+            "max_len" : 3204,
+            "min_len" : 2952,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

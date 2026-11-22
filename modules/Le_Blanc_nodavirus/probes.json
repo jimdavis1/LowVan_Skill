@@ -1,0 +1,20 @@
+[
+ {"name": "protein A (RdRp)", "pattern": "rna[\\s-]?dep|rdrp|polymerase",
+  "note": "The ONLY CDS on RNA1 in this group. Orsay 937, Le Blanc 942, Santeuil 982 aa.",
+  "source": "PMID 24503084"},
+ {"name": "capsid protein", "pattern": "capsid|coat|\\bcp\\b|protein\\s+alpha",
+  "note": "388-391 aa, initiated at a NON-AUG codon: the Edman-sequenced mature N-terminus NKNNT corresponds to the AAC codon at RNA2 nt 89-91, with no AUG 5' of it in the segment.",
+  "source": "PMID 24503084"},
+ {"name": "CP-delta fusion", "pattern": "fusion|delta",
+  "note": "Made by a -1 programmed ribosomal frameshift at the slippery heptamer G_UCA_AAC, RNA2 nt 1255-1261, with a stem-loop about 8 nt downstream and no pseudoknot. The transframe peptide was sequenced by MS/MS and the protein is a virion head fiber.",
+  "source": "PMID 24503084"},
+ {"name": "free delta", "pattern": "delta",
+  "note": "Initiated at its own AUG (Orsay RNA2 nt 1345) and equal to the C-terminal part of the fusion. Existence as a free protein settled by an ATG-to-CTG mutant that still makes CP-delta but has a non-lytic egress defect. Absent from RefSeq NC_028098.1 and present only in HM030971.2.",
+  "source": "PMID 29743360"},
+ {"name": "B2", "pattern": "\\bb2\\b|protein\\s+b2",
+  "note": "DELIBERATELY ABSENT. PMID 21283608 searched RNA1's 3' end for a +1 ORF with B2's properties and found none; PMID 23468484 detected no silencing-suppressor activity for either Orsay protein proposed as one. ABSENT here is the expected and required result and is what separates this module from every other nodavirus module.",
+  "source": "PMID 21283608"},
+ {"name": "B1", "pattern": "\\bb1\\b|protein\\s+b1",
+  "note": "DELIBERATELY ABSENT, for the same reason as B2: RNA1 carries a single CDS and no subgenomic RNA3 has been described in this group.",
+  "source": "PMID 21283608"}
+]

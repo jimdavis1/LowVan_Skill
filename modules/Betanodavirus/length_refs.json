@@ -1,0 +1,10 @@
+{
+  "A": {"min": 981, "max": 983, "pmid": "15109133",
+        "note": "RdRp. SJNNV 983 (PMID 10580064), RGNNV/GGNNV 982 (PMIDs 22270757, 11172107), AHNV 981 (PMID 15109133). BFNNV and TPNNV are RefSeq-only at 981/982. The deposited median across all polymerase-named records is 300 aa because most are partial typing fragments"},
+  "B1": {"min": 110, "max": 112, "pmid": "19136133",
+        "note": "In-frame C-terminal fragment of protein A sharing its stop, from subgenomic RNA3. PMID 19136133 cloned the RGNNV B1 gene as 336 nt = 111 aa. NO START CODON IS PUBLISHED and no RefSeq annotates a B1 CDS, so the collection is extracted from genomes under a structural gate: an accepted B1 must be an exact C-terminal substring of protein A from its own genome. 124 of 124 testable extractions passed"},
+  "B2": {"min": 71, "max": 75, "pmid": "16186236",
+        "note": "+1 frame relative to protein A, from sgRNA3, which begins at RNA1 nt 2730 by premature termination and not by splicing (PMIDs 16186236, 41146288). 75 aa exactly in SJNNV, RGNNV, AHNV, BFNNV and TPNNV (PMIDs 16186236, 15109133, 36560822); one extracted member measured 71"},
+  "CP": {"min": 338, "max": 340, "pmid": "9049363",
+        "note": "Coat protein, a single UNCLEAVED chain. SJNNV and TPNNV 340 aa (PMID 9049363); RGNNV, GGNNV and BFNNV 338 (PMIDs 22270757, 11172107). There is no alpha/beta/gamma maturation in this genus: the RNA2 ORF carries the catalytic D-75 residue but lacks the autocatalytic cleavage site (PMID 9672600), and the T=3 structure is built from the intact 338-residue chain (PMID 26491970). The deposited median is 181 aa, so this window is the literature's and not the collection's"}
+}

@@ -1,0 +1,475 @@
+{
+ "title": "Alphanodavirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Alphanodavirus module \u00b7 22 November 2026",
+ "h1": "Does the insect nodavirus module actually work?",
+ "standfirst": "Six proteins on two RNA segments, and one of them is a protein that cuts itself in half. The alphanodavirus capsid precursor <b>alpha</b> assembles into provirions and then cleaves autocatalytically, releasing mature <b>beta</b> and the 44-residue <b>gamma</b> peptide that punctures the endosome during entry. This audit asks whether the module reproduces that, and what it cannot do.",
+ "headline_tiles": [
+  [
+   "6",
+   "features, all with profiles"
+  ],
+  [
+   "23",
+   "PSSMs"
+  ],
+  [
+   "31/31",
+   "genomes routed"
+  ],
+  [
+   "0",
+   "duplicate calls"
+  ],
+  [
+   "4/4",
+   "held-out genomes good"
+  ],
+  [
+   "4/4",
+   "precursors tile exactly"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Six proteins across the two segments of the insect nodaviruses.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Flock House, Black beetle, Boolarra, Nodamura, Pariacoto and Newington virus \u2014 <b>Alphanodavirus</b>, one of the two genera ICTV ratifies in this family (MSL41, PMID 30431412). RNA1 carries the replicase; a subgenomic RNA3 made from its 3\u2032 end carries two more proteins, <b>B1</b> in the same frame as the replicase and <b>B2</b> in the +1 frame. RNA2 carries the capsid precursor and its two cleavage products."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "key",
+      "type",
+      "annotation",
+      "segment",
+      "bit",
+      "length (aa)"
+     ],
+     "rows": [
+      [
+       "A",
+       "CDS",
+       "RNA-dependent RNA polymerase",
+       "Protein A",
+       "60",
+       "914\u20131105"
+      ],
+      [
+       "B1",
+       "CDS",
+       "Non-structural protein B1 <em>(new string)</em>",
+       "Protein A",
+       "30",
+       "95\u2013138"
+      ],
+      [
+       "B2",
+       "CDS",
+       "RNA silencing suppressor protein",
+       "Protein A",
+       "30",
+       "84\u2013151"
+      ],
+      [
+       "ALPHA",
+       "CDS",
+       "Capsid protein precursor",
+       "Capsid Precursor",
+       "60",
+       "375\u2013431"
+      ],
+      [
+       "BETA",
+       "mat_peptide",
+       "Mature capsid protein beta <em>(new string)</em>",
+       "Capsid Precursor",
+       "60",
+       "333\u2013384"
+      ],
+      [
+       "GAMMA",
+       "mat_peptide",
+       "Capsid peptide gamma <em>(new string)</em>",
+       "Capsid Precursor",
+       "25",
+       "37\u201346"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "alphanodavirus-genome-map.html"
+    },
+    {
+     "type": "prose",
+     "html": "<b>B1 and B2 are translation products, not cleavage products.</b> PMID 15163762 states it plainly \u2014 \u201cProtein B1 is in the same reading frame as protein A and thus represents its C-terminal fragment\u201d, \u201cwhereas protein B2 is in the +1 reading frame relative to protein A\u201d \u2014 so both are declared as CDS rather than mature peptides, and both initiate at their own AUG on subgenomic RNA3."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "51 training sequences in six collections, three of them extracted from genomes rather than from deposits.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The genus has 31 genomes in BV-BRC and 54 protein records between them, so the collections are small by nature. Three features could not be built from deposits at all and were <b>extracted from the genomes</b>, each under a structural gate that the deposits alone could never supply."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "members",
+      "source",
+      "gate applied"
+     ],
+     "rows": [
+      [
+       "A",
+       "11",
+       "deposits",
+       "\u2014"
+      ],
+      [
+       "ALPHA",
+       "8",
+       "deposits",
+       "\u2014"
+      ],
+      [
+       "B1",
+       "4",
+       "1 deposit + 3 extracted",
+       "must be an exact C-terminal substring of protein A from its own genome"
+      ],
+      [
+       "B2",
+       "12",
+       "8 deposits + 4 extracted",
+       "length, 84\u2013151 aa"
+      ],
+      [
+       "BETA",
+       "8",
+       "derived from ALPHA",
+       "single unambiguous Asn\u2016[AS] site"
+      ],
+      [
+       "GAMMA",
+       "8",
+       "derived from ALPHA",
+       "same site, other side"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>The cleavage site was measured, not read off a residue number.</b> The literature gives FHV's site as Asn363\u2016Ala364 (PMID 1404613; N363D/T/A abolish both cleavage and infectivity, and all nine revertants restored Asn). But alpha runs 395\u2013407 aa across the genus, so quoting 363 would misplace the cut in every other species. Each precursor was instead scanned for Asn followed by Ala or Ser with 38\u201352 residues remaining. That finds <b>exactly one site in every species and two in none</b>:"
+    },
+    {
+     "type": "pre",
+     "text": "  flockense (FHV)    407   N363|A   gamma 44     heteronychi (BBV)  407  N363|A  44\n  American nodavirus 407   N363|A   gamma 44     HB-2007/CHN        407  N363|A  44\n  boolarraense       403   N359|A   gamma 44     nodamuraense (NoV) 399  N355|A  44\n  Newington virus    395   N351|A   gamma 44     pariacotoense      401  N361|S  40"
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "The scan reproduces FHV's published Asn363\u2016Ala364 without being given it, and recovers Pariacoto as the one documented exception \u2014 Asn\u2016<b>Ser</b>, gamma 40 aa (PMID 10799587: \u201cthe amino acid sequence at the cleavage site, which is Asn/Ala in all other alphanodaviruses, is Asn/Ser in PaV\u201d)."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Left at the generated floors, deliberately, and that is a limitation rather than an oversight.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The project rule is to raise each cutoff to half the lowest score among a feature's genuine panel calls, capped at 500 \u2014 and to <b>leave alone any feature with fewer than five panel calls</b>, because one low score is not a distribution. Only four complete held-out genomes exist for this genus, so every feature here falls under that floor and keeps its generated cutoff."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "panel calls",
+      "lowest score",
+      "cutoff",
+      "decision"
+     ],
+     "rows": [
+      [
+       "A",
+       "4",
+       "1897.1",
+       "60",
+       "left alone, fewer than 5 calls"
+      ],
+      [
+       "ALPHA",
+       "4",
+       "550.9",
+       "60",
+       "left alone"
+      ],
+      [
+       "BETA",
+       "4",
+       "495.8",
+       "60",
+       "left alone"
+      ],
+      [
+       "GAMMA",
+       "4",
+       "61.6",
+       "25",
+       "left alone"
+      ],
+      [
+       "B1",
+       "3",
+       "143.3",
+       "30",
+       "left alone"
+      ],
+      [
+       "B2",
+       "3",
+       "204.6",
+       "30",
+       "left alone"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every measured score sits far above its cutoff \u2014 the narrowest margin is gamma at 61.6 against 25 \u2014 so the floors are not currently letting anything through that should be excluded. They are simply unraised, and a larger panel would settle them properly."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Ten references, every genome in the genus.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "10",
+       "rep contigs, against a budget of 25"
+      ],
+      [
+       "31/31",
+       "genomes routed"
+      ],
+      [
+       "0",
+       "misrouted"
+      ],
+      [
+       "45 bits",
+       "best hit from any other module"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Routing was measured at the annotator's own BLASTn settings (<code>-evalue 0.5 -reward 2 -penalty -3 -word_size 11 -soft_masking false</code>, floor 150 bits), not with <code>check_rep_contigs.py</code>, which calls bare <code>blastn</code> \u2014 that is megablast, and it finds almost nothing below about 85% identity."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The module-only routing repository was justified by measurement, not assumed.</b> Every in-scope nodavirus genome was BLASTed against all <b>1,466 reference files</b> in the runtime. The best hit to any non-nodavirus module is <b>45 bits</b> (Kobuvirus), against a routing floor of 150. There are no neighbours to misroute to."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "26 genomes carry calls; four of them are complete enough to expect every feature.",
+   "blocks": [
+    {
+     "type": "bars",
+     "unit": "",
+     "rows": [
+      [
+       "A",
+       "4",
+       100.0,
+       "4 of 4 complete genomes"
+      ],
+      [
+       "alpha",
+       "4",
+       100.0,
+       "4"
+      ],
+      [
+       "beta",
+       "4",
+       100.0,
+       "4"
+      ],
+      [
+       "gamma",
+       "4",
+       100.0,
+       "4"
+      ],
+      [
+       "B1",
+       "3",
+       75.0,
+       "3"
+      ],
+      [
+       "B2",
+       "3",
+       75.0,
+       "3"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Across all 26 genomes that carry any call, the six features land at 54\u201362% \u2014 but that denominator is dominated by single-segment deposits, and a genome holding only RNA2 cannot call a protein encoded on RNA1. Measured on the four genomes that carry <b>both</b> complete segments, the replicase and the whole capsid cassette are called every time."
+    },
+    {
+     "type": "prose",
+     "html": "The single genome missing B1 and B2 is <b>Alphanodavirus HB-2007/CHN</b> (<code>756850.3</code>), and it is complete. That is why neither feature is marked essential: one complete genome failing to call a feature is enough to withhold <code>copy_num</code>, because the flag would otherwise report a profile gap as a genome defect."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "Coordinates against GenBank, and the test that matters most for a self-cleaving capsid.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Flock House virus RNA1 (<code>NC_004146</code>) and RNA2 (<code>NC_004144</code>) are called at exactly the coordinates GenBank annotates:"
+    },
+    {
+     "type": "pre",
+     "text": "  RNA1   A      40-3036     998 aa     GenBank  40..3036\n         B1   2728-3036     102 aa     GenBank  2728..3036\n         B2   2738-3058     106 aa     GenBank  2738..3058\n\n  RNA2   alpha  23-1246     407 aa\n         beta   23-1111     363 aa     literature 363 (PMID 9765417)\n         gamma 1112-1246      44 aa    literature  44"
+    },
+    {
+     "type": "prose",
+     "html": "<b>The tiling test, over every panel genome.</b> A precursor and its products must add up: beta must start where alpha starts, gamma must end where alpha ends, and gamma must begin one base after beta ends. Any drift at a cleaved terminus shows up here and nowhere else."
+    },
+    {
+     "type": "pre",
+     "text": "  beta starts at alpha's start      4 / 4\n  gamma ends at alpha's stop        4 / 4\n  gamma starts 1 nt after beta      4 / 4   (no gap, no overlap)"
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "No creep at either cleaved terminus. <code>upstream_ext</code> is 1 on beta (it begins at alpha's own start codon) and 0 on gamma; <code>downstream_ext</code> is 0 on beta (a protease cut has no codon to find) and 1 on gamma (it runs to alpha's real stop). Getting either backwards is what produces the drift this test looks for."
+    },
+    {
+     "type": "prose",
+     "html": "<b>One defect was found this way and fixed.</b> B1 lies entirely inside the protein A reading frame, so there is no stop codon upstream for the annotator's <code>scan_to_met_start</code> to halt on. With <code>upstream_ext: 1</code> the scan walked left through protein A to an arbitrary Met and called B1 at <code>2620..3036 = 138 aa</code>, 36 residues too long. Setting it to 0 \u2014 the profile's own match extent decides the start \u2014 produced the 102 aa call above."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Three limits, and none of them is a threshold problem.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>1. B1 is callable only where its start codon can be placed.</b> The collection holds four members from three species. B1's start is published for FHV and Black beetle virus (GenBank) and for Nodamura (protein A residue 908, PMID 15163762), and for nobody else; 8 of 13 candidate genomes were rejected because the position aligned to the reference's first residue is not a Met. An earlier build accepted the nearest Met within 40 codons instead and produced members of 102, 112, 131 and 138 aa <i>from one gene</i>. A thin collection of correct starts is worth more than a full one of invented ones, and B1 is not marked essential."
+    },
+    {
+     "type": "prose",
+     "html": "<b>2. The Pariacoto minor capsid protein is not modelled, and cannot be.</b> It is a real virion protein, translated from the <i>second</i> AUG of the capsid ORF and 24 residues shorter than alpha (PMID 13679619). Being alpha minus an N-terminal run, it is 100% identical to alpha over its entire length \u2014 no profile can separate the two. This is the nested alternative-start trap the LowVan skill documents for parvovirus VP1/VP2, and the only honest treatment is to declare it absent."
+    },
+    {
+     "type": "prose",
+     "html": "<b>3. The Black beetle virus RNA2 second ORF is not modelled.</b> PMID 6548308 predicted \u201ca second open reading frame for a putative protein 72 amino acid residues long\u201d at base 1110 in 1984. No product has been reported in the four decades since and one deposit exists family-wide. It is excluded by name, not by a length window, so the decision is visible."
+    },
+    {
+     "type": "prose",
+     "html": "<b>And the panel is small.</b> Four complete held-out genomes is enough to check correctness and too few to set cutoffs or to resolve B1's 75% call rate. Only 399 of 1,965 isolate names in this family have both segments deposited, and this genus has 31 genomes in total; that is a property of the deposits, not something the module can fix."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Genome quality from the full GTO pipeline, not from the flat feature table.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "4",
+       "complete held-out genomes"
+      ],
+      [
+       "4",
+       "good"
+      ],
+      [
+       "0",
+       "poor"
+      ],
+      [
+       "0",
+       "duplicate calls"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every nesting the duplicate-call check reports is declared genome architecture: B1 and B2 inside protein A, beta and gamma inside alpha. There are <b>no exact duplicates and no undeclared nesting</b> in any module of this family."
+    },
+    {
+     "type": "prose",
+     "html": "A panel genome here had to clear three conditions: it carries both segments, the two contigs are <i>different</i> segments, and it is not a reference. The second is not redundant \u2014 <code>merge_segments.py</code> merges any two records sharing a genome name, and in sibling modules it produced \u201cgenomes\u201d made of two copies of the same segment. Each contig is therefore assigned by homology to the module's own collections rather than by length or by the FASTA description."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "Six annotation strings against what submitters wrote for the same proteins.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "22 \u2192 6",
+       "distinct strings at equal depth"
+      ],
+      [
+       "3.7\u00d7",
+       "collapse"
+      ],
+      [
+       "46",
+       "proteins compared"
+      ],
+      [
+       "25",
+       "genomes annotated by both"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The source vocabulary for these six proteins includes <code>protein A</code>, <code>put. protein A (m.w. 112 kD)</code>, <code>RNA dependent RNA polymerase protein A</code> and <code>putative polymerase</code> for the replicase alone, and <code>coat protein precursor</code>, <code>capsid protein precursor alpha</code>, <code>capsid precursor protein alpha</code>, <code>protein alpha</code> and a bare <code>hypothetical protein</code> for the capsid precursor."
+    },
+    {
+     "type": "prose",
+     "html": "Three of the six strings are new to the LowVan vocabulary \u2014 <code>Non-structural protein B1</code>, <code>Mature capsid protein beta</code> and <code>Capsid peptide gamma</code>. The replicase reuses <code>RNA-dependent RNA polymerase</code>, the precursor reuses <code>Capsid protein precursor</code>, and B2 reuses <code>RNA silencing suppressor protein</code> \u2014 a claim this genus has earned, since alphanodavirus B2 is the founding animal-virus RNAi suppressor (PMID 12016316)."
+    }
+   ]
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure here is reproducible from the Alphanodavirus working directory; the decisions behind them are in <code>NODAVIRIDAE_BUILD_NOTES.md</code> and the literature behind those in <code>LITERATURE_SURVEY.md</code>. Every citation sits in <code>PMID_claude_generated</code> and awaits a curator's read."
+}

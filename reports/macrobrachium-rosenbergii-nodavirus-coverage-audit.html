@@ -1,0 +1,139 @@
+<title>Macrobrachium rosenbergii nodavirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan · Macrobrachium rosenbergii nodavirus module · 22 November 2026</div><h1>Does the crustacean nodavirus module actually work?</h1><p class="stand">Three species of shrimp and prawn virus that ICTV has not given a genus: <i>Macrobrachium rosenbergii</i> nodavirus, <i>Penaeus vannamei</i> nodavirus and covert mortality nodavirus. What separates them from the fish viruses is a single missing gene — <b>there is no B1</b>, in the literature or in any of the three RefSeqs — and that absence is what earns them their own module.</p><div class="tiles"><div class="tile"><div class="v">3</div><div class="l">features, all with profiles</div></div><div class="tile"><div class="v">9</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">63/63</div><div class="l">genomes routed</div></div><div class="tile"><div class="v">0</div><div class="l">duplicate calls</div></div><div class="tile"><div class="v">4/4</div><div class="l">held-out genomes good</div></div><div class="tile"><div class="v">4.3×</div><div class="l">vocabulary collapse</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">Three proteins on two segments, and no claim beyond them.</p><p class="note">MrNV (81 genomes), covert mortality nodavirus (69) and <i>Penaeus vannamei</i> nodavirus (4). ICTV MSL41 ratifies only Alphanodavirus and Betanodavirus, and NCBI files all three of these under “unclassified Nodaviridae” with no genus at any rank, so the module is named for its most-sampled species — the convention already used for <code>Orthopneumovirus_muris</code>. <i>Gammanodavirus</i> was not used: PMID 30346944 asks “A new genus within the Nodaviridae?” in its title and proposes no ratified name.</p><div class="scroll"><table><thead><tr><th>key</th><th>type</th><th>annotation</th><th>segment</th><th>bit</th><th>length (aa)</th></tr></thead><tbody><tr><td>A</td><td>CDS</td><td>RNA-dependent RNA polymerase</td><td>Protein A</td><td>60</td><td>971–1107</td></tr><tr><td>B2</td><td>CDS</td><td>Non-structural protein B2 <em>(new string)</em></td><td>Protein A</td><td>30</td><td>123–140</td></tr><tr><td>CP</td><td>CDS</td><td>Capsid protein</td><td>Capsid Protein</td><td>80</td><td>345–463</td></tr></tbody></table></div><figure><svg viewBox="0 0 980 265" role="img" aria-label="222557.52 (222557.101, 2 segments, 4,376 nt total) as the Macrobrachium_rosenbergii_nodavirus module annotates it: 3 features (3 essential, 0 mature peptides)."><rect x="4" y="14" width="18" height="10" style="fill:var(--built)"/><text x="28" y="23" font-size="11" fill="currentColor">essential CDS</text><rect x="139" y="14" width="18" height="10" style="fill:var(--muted)"/><text x="163" y="23" font-size="11" fill="currentColor">other called CDS</text><rect x="295" y="14" width="18" height="10" style="fill:var(--warn)"/><text x="319" y="23" font-size="11" fill="currentColor">mature peptide</text><polygon points="78.3,97.0 930.4,97.0 935.4,102.0 930.4,107.0 78.3,107.0" style="fill:var(--built)"/><text x="506.4" y="94.0" text-anchor="middle" font-size="10.5" fill="currentColor">A</text><polygon points="820.4,72.0 926.6,72.0 931.6,77.0 926.6,82.0 820.4,82.0" style="fill:var(--built)"/><text x="875.5" y="69.0" text-anchor="middle" font-size="10.5" fill="currentColor">B2</text><line x1="72" y1="120.0" x2="951.7" y2="120.0" stroke="currentColor" stroke-width="1.5"/><line x1="72.0" y1="116.0" x2="72.0" y2="124.0" stroke="currentColor"/><text x="72.0" y="137.0" text-anchor="middle" font-size="10.5" fill="currentColor">0.0 kb</text><line x1="209.1" y1="116.0" x2="209.1" y2="124.0" stroke="currentColor"/><text x="209.1" y="137.0" text-anchor="middle" font-size="10.5" fill="currentColor">0.5 kb</text><line x1="346.5" y1="116.0" x2="346.5" y2="124.0" stroke="currentColor"/><text x="346.5" y="137.0" text-anchor="middle" font-size="10.5" fill="currentColor">1.0 kb</text><line x1="483.8" y1="116.0" x2="483.8" y2="124.0" stroke="currentColor"/><text x="483.8" y="137.0" text-anchor="middle" font-size="10.5" fill="currentColor">1.5 kb</text><line x1="621.2" y1="116.0" x2="621.2" y2="124.0" stroke="currentColor"/><text x="621.2" y="137.0" text-anchor="middle" font-size="10.5" fill="currentColor">2.0 kb</text><line x1="758.6" y1="116.0" x2="758.6" y2="124.0" stroke="currentColor"/><text x="758.6" y="137.0" text-anchor="middle" font-size="10.5" fill="currentColor">2.5 kb</text><line x1="896.0" y1="116.0" x2="896.0" y2="124.0" stroke="currentColor"/><text x="896.0" y="137.0" text-anchor="middle" font-size="10.5" fill="currentColor">3.0 kb</text><text x="4" y="118.0" font-size="11" fill="currentColor"><tspan font-weight="600">Protein A Segment</tspan></text><text x="4" y="132.0" font-size="10" fill="currentColor" opacity="0.75">3,203 nt</text><polygon points="82.2,192.0 363.1,192.0 368.1,197.0 363.1,202.0 82.2,202.0" style="fill:var(--built)"/><text x="224.6" y="189.0" text-anchor="middle" font-size="10.5" fill="currentColor">CP</text><line x1="72" y1="215.0" x2="394.0" y2="215.0" stroke="currentColor" stroke-width="1.5"/><line x1="72.0" y1="211.0" x2="72.0" y2="219.0" stroke="currentColor"/><text x="72.0" y="232.0" text-anchor="middle" font-size="10.5" fill="currentColor">0.0 kb</text><line x1="209.1" y1="211.0" x2="209.1" y2="219.0" stroke="currentColor"/><text x="209.1" y="232.0" text-anchor="middle" font-size="10.5" fill="currentColor">0.5 kb</text><line x1="346.5" y1="211.0" x2="346.5" y2="219.0" stroke="currentColor"/><text x="346.5" y="232.0" text-anchor="middle" font-size="10.5" fill="currentColor">1.0 kb</text><text x="4" y="213.0" font-size="11" fill="currentColor"><tspan font-weight="600">Capsid Protein Segment</tspan></text><text x="4" y="227.0" font-size="10" fill="currentColor" opacity="0.75">1,173 nt</text></svg><figcaption>222557.52 (222557.101, 2 segments, 4,376 nt total) as the Macrobrachium_rosenbergii_nodavirus module annotates it: 3 features (3 essential, 0 mature peptides). Drawn to scale from this genome&rsquo;s own calls; forward-strand genes above the axis, reverse-strand below. All segments are drawn on one scale, so their relative sizes are real.</figcaption></figure><p class="note"><b>The annotation deliberately claims no function for B2.</b> RNA silencing suppression is demonstrated for alphanodavirus B2 (PMID 12016316) and betanodavirus B2 (PMID 16352533) and has <b>not</b> been shown for MrNV, PvNV or CMNV. This feature is therefore <code>Non-structural protein B2</code> while the other two modules say <code>RNA silencing suppressor protein</code>. No subgenomic RNA is claimed either, because none has been demonstrated for any of these three.</p><p class="note"><b>The capsid is not cleaved and there is no gamma peptide.</b> PMID 30346944: “Betanodaviruses and Mr_NV both have their C-termini at the capsid exterior and do not encode a γ-peptide”; the virion capsid is a single 43 kDa polypeptide (PMID 15660790). Its P-domain spikes are dimeric, unlike the trimeric spikes of the alpha- and betanodaviruses.</p></section><section><h2><span class="num">02</span>How it was built</h2><p class="lede">57 training sequences in three collections, with a deliberately bimodal capsid window.</p><div class="scroll"><table><thead><tr><th>feature</th><th>members</th><th>window</th><th>where the window comes from</th></tr></thead><tbody><tr><td>A</td><td>16</td><td>1033–1045</td><td>CMNV 1043 (PMID 32659308); MrNV 1045 and PvNV 1033 are RefSeq lengths</td></tr><tr><td>B2</td><td>16</td><td>131–133</td><td>MrNV 133 (PMID 23318596), CMNV 132 (PMID 32659308), PvNV 131</td></tr><tr><td>CP</td><td>25</td><td>368–437</td><td>MrNV 371 (PMIDs 23318596, 30346944), PvNV 368, CMNV 437 (PMID 32659308)</td></tr></tbody></table></div><p class="note"><b>The capsid window spans two length classes because both are real.</b> MrNV's capsid is 371 aa and CMNV's is 437 — 66 residues apart, in one collection. That trips a SPLIT finding by construction, and it is species-level length variation in one protein rather than two proteins sharing a bin, so it is signed off rather than split. The window is not a median and could not be.</p><p class="note"><b>B2 was expanded by extraction</b> — 8 deposits plus 8 sequences cut from the genomes by homology to them, each required to start at a Met near the aligned reference start and to fall inside the literature window.</p></section><section><h2><span class="num">03</span>Where the cutoffs sit</h2><p class="lede">Left at the generated floors, because the panel is too small to raise them honestly.</p><div class="scroll"><table><thead><tr><th>feature</th><th>panel calls</th><th>lowest score</th><th>cutoff</th><th>decision</th></tr></thead><tbody><tr><td>A</td><td>4</td><td>2102.8</td><td>60</td><td>left alone, fewer than 5 calls</td></tr><tr><td>B2</td><td>4</td><td>244.3</td><td>30</td><td>left alone</td></tr><tr><td>CP</td><td>4</td><td>575.1</td><td>80</td><td>left alone</td></tr></tbody></table></div><p class="note">The project rule raises a cutoff to half the lowest genuine panel score and leaves alone any feature with fewer than five panel calls, because one low score is not a distribution. Only four genomes in this group carry two complete segments, so all three features fall under that floor. Every measured score is an order of magnitude above its cutoff, so nothing is currently slipping through — the floors are simply unraised, and this is recorded rather than quietly skipped.</p></section><section><h2><span class="num">04</span>Does it route?</h2><p class="lede">Five references, every genome in the group.</p><div class="tiles"><div class="tile"><div class="v">5</div><div class="l">rep contigs, against a budget of 25</div></div><div class="tile"><div class="v">63/63</div><div class="l">genomes routed</div></div><div class="tile"><div class="v">0</div><div class="l">misrouted</div></div><div class="tile"><div class="v">45 bits</div><div class="l">best hit from any other module</div></div></div><p class="note">Both segments are represented among the references, which matters because BV-BRC stores each segment as its own genome record. Routing was measured at the annotator's own BLASTn settings, not with <code>check_rep_contigs.py</code>, which calls bare <code>blastn</code> and so runs megablast.</p></section><section><h2><span class="num">05</span>Does it call the proteins?</h2><p class="lede">51 genomes carry calls; four carry two complete, distinct segments.</p><div class="bars"><div class="bar"><div class="bl">A</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">4</div><div class="bn">4 of 4 complete genomes</div></div><div class="bar"><div class="bl">B2</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">4</div><div class="bn">4</div></div><div class="bar"><div class="bl">CP</div><div class="bt"><i style="width:100.00%"></i></div><div class="bv">4</div><div class="bn">4</div></div></div><p class="note">Across all 51 genomes that carry any call, CP reaches 71% and the two RNA1 proteins 35–41%. As in the sibling fish module, that denominator is dominated by single-segment deposits, and a record holding only RNA2 cannot call a protein encoded on RNA1. On the genomes that carry both segments, every feature is called every time.</p><p class="note">A further five records route and call nothing: capsid fragments below the profile's coverage requirement, where the annotator records the module match so the taxon is not lost.</p></section><section><h2><span class="num">06</span>Are the calls right?</h2><p class="lede">Held-out genomes, and one deposit that turned out not to belong to this family at all.</p><div class="tiles"><div class="tile"><div class="v">4</div><div class="l">complete held-out genomes</div></div><div class="tile"><div class="v">4</div><div class="l">good</div></div><div class="tile"><div class="v">0</div><div class="l">poor</div></div><div class="tile"><div class="v">0</div><div class="l">duplicate calls</div></div></div><p class="note">The only nesting reported is B2 inside protein A, which is declared architecture — an overlapping gene in a shifted frame. B2 is nonetheless marked essential, because every one of its calls is out of frame with the feature containing it, which is what distinguishes a separate gene from a cleavage product.</p><p class="note"><b>The length audit found a satellite virus hiding in this taxon.</b> <code>fig|222557.10.peg.1</code> is deposited under the MrNV taxon id with the product string <code>B2 protein</code> and is 174 aa — 41 residues above the literature window. It matches neither MrNV B2 nor MrNV capsid at e&lt;1e-3, and its arginine-rich N-terminus is a capsid RNA-binding arm. It is <b>extra small virus capsid CP17</b>: 174 aa on an 872 nt contig (AY655724) ending at nt 610, against XSV NC_043492.1 at 872 nt with CP17 at 174 aa, CDS 89..613.</p><div class="verdict warn">XSV is a <b>satellite virus in a different family</b> — <i>Sarthroviridae</i>, genus <i>Macronovirus</i> (PMIDs 14993649, 30507372) — so it is out of scope entirely and would need a module of its own. Nothing but the literature length window would have caught it: it sits under a plausible string, in a plausible taxon, at a plausible size for a small viral protein.</div></section><section><h2><span class="num">07</span>What it cannot do</h2><p class="lede">A small panel, a reported cleavage that is not real, and a capsid that spans two species.</p><p class="note"><b>1. Four complete held-out genomes is a thin panel.</b> Only 399 of 1,965 isolate names in this family carry both segments, and this group has 153 records in total. Four genomes is enough to check that coordinates are right and far too few to raise a cutoff or to resolve a borderline call rate. That is a property of the deposits.</p><p class="note"><b>2. The one reported MrNV capsid cleavage is not modelled, and should not be.</b> PMID 34445426 located a cut at Arg26 by Edman sequencing — produced by an <i>E. coli</i> cysteine protease in recombinant protein, and blocked by E-64. It is a heterologous-expression artefact, not viral maturation, so no mature peptide is derived from it. The N- and C-terminal truncations in PMIDs 24878641, 27693291 and 30707739 are likewise designed constructs.</p><p class="note"><b>3. No B1 is declared, and the probe for it returns ABSENT.</b> That is the required result rather than a shortfall: no paper reports a B1 in these three viruses and none is annotated in NC_005094.1, NC_014978.1 or MT270124.1. Its absence is the organisational difference that gives this group its own module, so a module that declared it would flag every genome for a gene it does not carry.</p><p class="note"><b>4. The capsid profile set must cover a 66-residue span.</b> MrNV at 371 aa and CMNV at 437 are one feature with two real length classes; the module carries three capsid profiles to span them. A single profile would have favoured whichever species contributed more members.</p></section><section><h2><span class="num">08</span>What the run found</h2><p class="lede">Genome quality from the full GTO pipeline.</p><div class="tiles"><div class="tile"><div class="v">4</div><div class="l">complete held-out genomes</div></div><div class="tile"><div class="v">4</div><div class="l">good (100%)</div></div><div class="tile"><div class="v">0</div><div class="l">poor</div></div><div class="tile"><div class="v">3</div><div class="l">essential features</div></div></div><p class="note">All three features carry <code>copy_num</code>, each called on 100% of the complete held-out genomes.</p><p class="note"><b>One apparent miss was an artefact of merging, not a module gap.</b> <code>430911.5</code> (<i>Penaeus vannamei</i> nodavirus Belize) appeared to lack a capsid call — but it is two 3,111 nt contigs that are <i>both</i> the polymerase, merged into one “genome” by a tool that merges any two records sharing a genome name. It carries no capsid segment at all. Panel genomes are now screened by assigning each contig to a segment by homology, which caught this case and two more like it.</p></section><section><h2><span class="num">09</span>What the vocabulary bought</h2><p class="lede">Three annotation strings against the source vocabulary of 153 records.</p><div class="tiles"><div class="tile"><div class="v">13 → 3</div><div class="l">distinct strings at equal depth</div></div><div class="tile"><div class="v">4.3×</div><div class="l">collapse — the highest of the four modules</div></div><div class="tile"><div class="v">57</div><div class="l">proteins compared</div></div><div class="tile"><div class="v">49</div><div class="l">genomes annotated by both</div></div></div><p class="note">The capsid arrives as <code>capsid protein</code>, <code>capsid</code> and <code>caspid protein</code> — the last a plain typo, preserved in the database and collapsed here. B2 arrives as <code>B2 protein</code>, <code>B2</code>, <code>B2 Protein</code>, <code>B2-like protein</code> and <code>B protein</code>, and the polymerase under seven spellings including a bare <code>RDRP</code> that was attached to a 137 aa sequence — B2 length, not polymerase length, and routed out by the window.</p></section><p class="src">Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure here is reproducible from the module's working directory; the decisions behind them are in <code>NODAVIRIDAE_BUILD_NOTES.md</code> and the literature behind those in <code>LITERATURE_SURVEY.md</code>. Every citation sits in <code>PMID_claude_generated</code> and awaits a curator's read.</p></div>

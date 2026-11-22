@@ -1,0 +1,22 @@
+{
+ "Macrobrachium_rosenbergii_nodavirus.1.dna": {
+  "genome_ids": "FJ751225",
+  "genome_name": "Macrobrachium rosenbergii nodavirus"
+ },
+ "Macrobrachium_rosenbergii_nodavirus.2.dna": {
+  "genome_ids": "JN619369",
+  "genome_name": "Macrobrachium rosenbergii nodavirus Australian"
+ },
+ "Macrobrachium_rosenbergii_nodavirus.3.dna": {
+  "genome_ids": "MW625911",
+  "genome_name": "Covert mortality nodavirus CMNV-Larimichthys"
+ },
+ "Macrobrachium_rosenbergii_nodavirus.4.dna": {
+  "genome_ids": "MW625912",
+  "genome_name": "Covert mortality nodavirus CMNV-Larimichthys"
+ },
+ "Macrobrachium_rosenbergii_nodavirus.5.dna": {
+  "genome_ids": "EF137180",
+  "genome_name": "Penaeus vannamei nodavirus"
+ }
+}

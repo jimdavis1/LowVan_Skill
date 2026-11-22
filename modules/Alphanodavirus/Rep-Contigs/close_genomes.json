@@ -1,0 +1,42 @@
+{
+ "Alphanodavirus.1.dna": {
+  "genome_ids": "JF461541",
+  "genome_name": "Flock House virus IP-VIA-022011"
+ },
+ "Alphanodavirus.10.dna": {
+  "genome_ids": "GU976287",
+  "genome_name": "Alphanodavirus HB-2007/CHN"
+ },
+ "Alphanodavirus.2.dna": {
+  "genome_ids": "GQ342966",
+  "genome_name": "Drosophila melanogaster American nodavirus (ANV) SW-2009a"
+ },
+ "Alphanodavirus.3.dna": {
+  "genome_ids": "NC_003692",
+  "genome_name": "Pariacoto virus"
+ },
+ "Alphanodavirus.4.dna": {
+  "genome_ids": "NC_003691",
+  "genome_name": "Pariacoto virus"
+ },
+ "Alphanodavirus.5.dna": {
+  "genome_ids": "NC_002691",
+  "genome_name": "Nodamura virus"
+ },
+ "Alphanodavirus.6.dna": {
+  "genome_ids": "NC_002690",
+  "genome_name": "Nodamura virus"
+ },
+ "Alphanodavirus.7.dna": {
+  "genome_ids": "KU754530",
+  "genome_name": "Newington virus Dimm_PoolSeq3"
+ },
+ "Alphanodavirus.8.dna": {
+  "genome_ids": "NC_004145",
+  "genome_name": "Boolarra virus"
+ },
+ "Alphanodavirus.9.dna": {
+  "genome_ids": "GU976286",
+  "genome_name": "Alphanodavirus HB-2007/CHN"
+ }
+}

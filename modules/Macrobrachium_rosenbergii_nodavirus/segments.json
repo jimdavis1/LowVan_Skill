@@ -1,0 +1,12 @@
+{
+ "Capsid Protein Segment": {
+  "max_len": 1448,
+  "min_len": 1112,
+  "replicon_geometry": "linear"
+ },
+ "Protein A Segment": {
+  "max_len": 3228,
+  "min_len": 3111,
+  "replicon_geometry": "linear"
+ }
+}

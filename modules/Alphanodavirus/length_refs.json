@@ -1,0 +1,14 @@
+{
+  "A": {"min": 973, "max": 1043, "pmid": "10799587",
+        "note": "RdRp. PaV 973 aa stated in PMID 10799587; FHV/BBV/Boolarra 998 and NoV 1043 are RefSeq CDS lengths (the 1985 BBV paper PMID 3839022 gives 101,873 Da, not a residue count)"},
+  "B1": {"min": 102, "max": 140, "pmid": "15163762",
+        "note": "In-frame C-terminal fragment of protein A, translated from an internal AUG on subgenomic RNA3; NOT a cleavage product. FHV/BBV 102 aa deposited; PMID 15163762 Table 1 places NoV B1 residue 1 at protein A residue 908, giving ~136. Every extracted member was required to be an exact C-terminal substring of protein A from its own genome, and 13 of 13 passed"},
+  "B2": {"min": 90, "max": 145, "pmid": "15163762",
+        "note": "+1 reading frame relative to protein A, on sgRNA3. FHV 106 aa and NoV 134/137 stated in PMID 15163762; the two NoV forms come from the first and second AUG of RNA3 (PMID 12573589). PaV 90 aa predicted in PMID 10799587"},
+  "ALPHA": {"min": 395, "max": 407, "pmid": "6548308",
+        "note": "Capsid precursor. BBV and FHV 407 aa stated in PMID 6548308; PaV 401 (PMID 10799587); Boolarra 403, NoV 399, Newington 395"},
+  "BETA": {"min": 351, "max": 363, "pmid": "9765417",
+        "note": "Mature capsid protein, alpha residues 1 to the Asn of the autocatalytic site. FHV beta is 363 aa (PMID 9765417, PMID 1404613). Derived here by chemistry on each genome's own alpha rather than at FHV's residue number, so beta tracks the shorter alphas down to 351 in Newington"},
+  "GAMMA": {"min": 40, "max": 44, "pmid": "9765417",
+        "note": "Mature gamma peptide, alpha from the residue after the cut to its own C-terminus. FHV gamma is 44 aa = alpha 364-407 (PMID 9765417). Pariacoto is 40 aa at an Asn/Ser site rather than Asn/Ala (PMID 10799587), and is the only member of either class measured in this dump at 40"}
+}

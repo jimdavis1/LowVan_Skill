@@ -1,0 +1,114 @@
+{
+   "Betanodavirus" : {
+      "close_genomes" : {
+         "Betanodavirus.1.dna" : {
+            "genome_ids" : "EU236148",
+            "genome_name" : "Tiger puffer nervous necrosis virus TPKag93"
+         },
+         "Betanodavirus.2.dna" : {
+            "genome_ids" : "KY315689",
+            "genome_name" : "Redspotted grouper nervous necrosis virus MENNV1310"
+         },
+         "Betanodavirus.3.dna" : {
+            "genome_ids" : "HE796770",
+            "genome_name" : "Betanodavirus S1.Tun03.11"
+         }
+      },
+      "features" : {
+         "A" : {
+            "PMID_claude_generated" : [
+               "10580064",
+               "15109133",
+               "15163743",
+               "17602779"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 500,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "A",
+            "kmers" : 1,
+            "max_len" : 1041,
+            "min_len" : 922,
+            "segment" : "Protein A Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "B1" : {
+            "PMID_claude_generated" : [
+               "19136133",
+               "36560822",
+               "29449573"
+            ],
+            "anno" : "Non-structural protein B1",
+            "bit_cutoff" : 103,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "B1",
+            "kmers" : 1,
+            "max_len" : 118,
+            "min_len" : 103,
+            "segment" : "Protein A Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         },
+         "B2" : {
+            "PMID_claude_generated" : [
+               "16186236",
+               "16352533",
+               "16809288",
+               "19116179"
+            ],
+            "anno" : "RNA silencing suppressor protein",
+            "bit_cutoff" : 68,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "B2",
+            "kmers" : 1,
+            "max_len" : 79,
+            "min_len" : 66,
+            "segment" : "Protein A Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "CP" : {
+            "PMID_claude_generated" : [
+               "9049363",
+               "9672600",
+               "26491970"
+            ],
+            "anno" : "Capsid protein",
+            "bit_cutoff" : 303,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CP",
+            "kmers" : 1,
+            "max_len" : 360,
+            "min_len" : 317,
+            "segment" : "Capsid Protein Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Capsid Protein Segment" : {
+            "max_len" : 1739,
+            "min_len" : 1017,
+            "replicon_geometry" : "linear"
+         },
+         "Protein A Segment" : {
+            "max_len" : 3112,
+            "min_len" : 2949,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

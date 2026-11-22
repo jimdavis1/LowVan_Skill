@@ -1,0 +1,90 @@
+{
+ "Le_Blanc_nodavirus": {
+  "features": [
+   {
+    "key": "A",
+    "anno": "RNA-dependent RNA polymerase",
+    "gene": "A",
+    "ftype": "CDS",
+    "segment": "Protein A Segment",
+    "bit": 500,
+    "minl": 880,
+    "maxl": 1040,
+    "pmid": null,
+    "n": 19,
+    "called": 19,
+    "n_inrange": 19,
+    "called_inrange": 19,
+    "pssms": [
+     "Le_Blanc_nodavirus.A.1.pssm",
+     "Le_Blanc_nodavirus.A.2.pssm",
+     "Le_Blanc_nodavirus.A.3.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "CP",
+    "anno": "Capsid protein",
+    "gene": "CP",
+    "ftype": "CDS",
+    "segment": "Capsid Protein Segment",
+    "bit": 391,
+    "minl": 364,
+    "maxl": 414,
+    "pmid": null,
+    "n": 12,
+    "called": 12,
+    "n_inrange": 12,
+    "called_inrange": 12,
+    "pssms": [
+     "Le_Blanc_nodavirus.CP.1.pssm",
+     "Le_Blanc_nodavirus.CP.2.pssm",
+     "Le_Blanc_nodavirus.CP.3.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "CP_DELTA",
+    "anno": "Capsid-delta fusion protein",
+    "gene": "CP-delta",
+    "ftype": "CDS",
+    "segment": "Capsid Protein Segment",
+    "bit": null,
+    "minl": 719,
+    "maxl": 876,
+    "pmid": null,
+    "n": 22,
+    "called": null,
+    "n_inrange": null,
+    "called_inrange": null,
+    "pssms": [],
+    "nondefault": false,
+    "status": "special"
+   },
+   {
+    "key": "DELTA",
+    "anno": "Nonlytic egress protein delta",
+    "gene": "delta",
+    "ftype": "CDS",
+    "segment": "Capsid Protein Segment",
+    "bit": 384,
+    "minl": 312,
+    "maxl": 421,
+    "pmid": null,
+    "n": 45,
+    "called": 45,
+    "n_inrange": 45,
+    "called_inrange": 45,
+    "pssms": [
+     "Le_Blanc_nodavirus.DELTA.1.pssm",
+     "Le_Blanc_nodavirus.DELTA.2.pssm",
+     "Le_Blanc_nodavirus.DELTA.3.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   }
+  ]
+ }
+}

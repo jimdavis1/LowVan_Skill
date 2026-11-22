@@ -1,0 +1,76 @@
+{
+ "A": {
+  "PMID_claude_generated": [
+   "10580064",
+   "15109133",
+   "15163743",
+   "17602779"
+  ],
+  "anno": "RNA-dependent RNA polymerase",
+  "bit_cutoff": 500,
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "A",
+  "note": "The RNA1 replicase, 981-983 aa. Carries mitochondrial targeting signals (GGNNV residues 215-255, PMID 15163743; AHNV residues 1-40 and 225-246, PMID 17602779). No cleavage products are described. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all. BIT CUTOFF SET FROM MEASUREMENT, 22 Nov 2026: half the lowest score among this feature's genuine panel calls, capped at 500. The generated cutoff is a floor, not a threshold -- in Tobaniviridae a spurious call landed at 30.34 bits while the genuine protein on the same genome scored 476.8, and neither self-recall nor a held-out panel can see that, because both test sequences that really are the protein. The cap matters as much as the rule: an uncapped cutoff drawn from a long conserved protein excludes the divergent genomes the profile exists to find. Measured 60 -> 500.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Protein A Segment",
+  "upstream_ext": 1
+ },
+ "B1": {
+  "PMID_claude_generated": [
+   "19136133",
+   "36560822",
+   "29449573"
+  ],
+  "anno": "Non-structural protein B1",
+  "bit_cutoff": 103,
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "B1",
+  "note": "111-112 aa, translated from an internal AUG on subgenomic RNA3, IN FRAME with protein A and sharing its stop codon (PMID 36560822: 'its open reading frame matches the 3-prime termini of the RdRp reading frame'). An anti-necrotic death factor (PMID 19136133). ITS START CODON HAS NEVER BEEN PUBLISHED and no RefSeq annotates a B1 CDS anywhere in the genus, so BV-BRC holds only 2 deposits across 1,456 genomes. The collection was built by extraction from the genomes under the one property the literature does fix -- that B1 is in frame with A and shares its stop -- so an accepted member must be an exact C-terminal substring of protein A from its own genome. 124 of 124 testable extractions passed. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all. upstream_ext is 0, NOT 1. B1 lies ENTIRELY INSIDE the protein A reading frame, so there is no stop codon upstream of its start for scan_to_met_start to halt on: with upstream_ext 1 the scan walks left in 3-nt steps through protein A until it reaches an arbitrary Met. Measured on Flock House virus NC_004146 on 22 Nov 2026, that called B1 at 2620..3036 = 138 aa where GenBank annotates 2728..3036 = 102 aa -- the scan had run 36 codons past the real start. This is the same defect the skill records for Norovirus mature peptides, in a CDS rather than a polyprotein. With upstream_ext 0 the start is the profile's own match extent, and the profile is trained only on members whose start sits exactly at the aligned reference start. EXTRACTION uses --met-slack 0, so an accepted member's start sits exactly at the aligned reference start: 116 members at 110-112 aa, against the 111 aa (336 nt) of PMID 19136133. BIT CUTOFF SET FROM MEASUREMENT, 22 Nov 2026: half the lowest score among this feature's genuine panel calls, capped at 500. The generated cutoff is a floor, not a threshold -- in Tobaniviridae a spurious call landed at 30.34 bits while the genuine protein on the same genome scored 476.8, and neither self-recall nor a held-out panel can see that, because both test sequences that really are the protein. The cap matters as much as the rule: an uncapped cutoff drawn from a long conserved protein excludes the divergent genomes the profile exists to find. Measured 30 -> 103.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Protein A Segment",
+  "upstream_ext": 0
+ },
+ "B2": {
+  "PMID_claude_generated": [
+   "16186236",
+   "16352533",
+   "16809288",
+   "19116179"
+  ],
+  "anno": "RNA silencing suppressor protein",
+  "bit_cutoff": 68,
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "B2",
+  "note": "75 aa, in the +1 frame relative to protein A, translated from subgenomic RNA3. The sgRNA3 begins at RNA1 nucleotide 2730 and is made by PREMATURE TERMINATION, not by splicing (PMID 16186236, and PMID 41146288 for the intragenomic RNA-RNA pairing mechanism) -- this module therefore declares no spliced feature. B2 sequesters duplex RNA (PMID 16809288), antagonises RNAi (PMID 16352533) and induces mitochondrial cell death (PMID 19116179). BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all. BIT CUTOFF SET FROM MEASUREMENT, 22 Nov 2026: half the lowest score among this feature's genuine panel calls, capped at 500. The generated cutoff is a floor, not a threshold -- in Tobaniviridae a spurious call landed at 30.34 bits while the genuine protein on the same genome scored 476.8, and neither self-recall nor a held-out panel can see that, because both test sequences that really are the protein. The cap matters as much as the rule: an uncapped cutoff drawn from a long conserved protein excludes the divergent genomes the profile exists to find. Measured 25 -> 68.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Protein A Segment",
+  "upstream_ext": 1
+ },
+ "CP": {
+  "PMID_claude_generated": [
+   "9049363",
+   "9672600",
+   "26491970"
+  ],
+  "anno": "Capsid protein",
+  "bit_cutoff": 303,
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "CP",
+  "note": "338-340 aa, a SINGLE UNCLEAVED CHAIN. This is the feature that separates the module from Alphanodavirus: PMID 9672600 showed the RNA2 ORF 'carries the catalytic D-75 residue but lacks the site for autocatalytic proteolysis, the process yielding the two capsid proteins of insect nodaviruses', and ruled out alternative initiation, a -1 frameshift and precursor degradation as explanations for the 43/45 kDa doublet. The T=3 crystal structure is built from the intact 338-residue chain (PMID 26491970). NO beta or gamma mature peptides are declared here, deliberately. The N-ARM, S domain and P domain are structural regions of one chain, not products. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all. BIT CUTOFF SET FROM MEASUREMENT, 22 Nov 2026: half the lowest score among this feature's genuine panel calls, capped at 500. The generated cutoff is a floor, not a threshold -- in Tobaniviridae a spurious call landed at 30.34 bits while the genuine protein on the same genome scored 476.8, and neither self-recall nor a held-out panel can see that, because both test sequences that really are the protein. The cap matters as much as the rule: an uncapped cutoff drawn from a long conserved protein excludes the divergent genomes the profile exists to find. Measured 80 -> 303.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Capsid Protein Segment",
+  "upstream_ext": 1
+ }
+}

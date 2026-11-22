@@ -1,0 +1,68 @@
+{
+ "A": {
+  "PMID_claude_generated": [
+   "24503084",
+   "21283608",
+   "23043172"
+  ],
+  "anno": "RNA-dependent RNA polymerase",
+  "bit_cutoff": 500,
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "A",
+  "note": "937-982 aa, and the ONLY CDS on RNA1 in this group. No subgenomic RNA3, no B1 and no B2: PMID 21283608 searched the 3-prime end of RNA1 for a +1 ORF with B2's properties and found none, and PMID 23468484 detected no silencing-suppressor activity for either Orsay protein proposed as one. That absence is what separates this module from every other nodavirus module. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all. BIT CUTOFF SET FROM MEASUREMENT, 22 Nov 2026: half the lowest score among this feature's genuine panel calls, capped at 500. The generated cutoff is a floor, not a threshold -- in Tobaniviridae a spurious call landed at 30.34 bits while the genuine protein on the same genome scored 476.8, and neither self-recall nor a held-out panel can see that, because both test sequences that really are the protein. The cap matters as much as the rule: an uncapped cutoff drawn from a long conserved protein excludes the divergent genomes the profile exists to find. Measured 60 -> 500.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Protein A Segment",
+  "upstream_ext": 1
+ },
+ "CP": {
+  "PMID_claude_generated": [
+   "24503084",
+   "25136116"
+  ],
+  "anno": "Capsid protein",
+  "bit_cutoff": 391,
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "CP",
+  "note": "388-391 aa, INITIATED AT A NON-AUG CODON. PMID 24503084 Edman-sequenced the mature Orsay capsid N-terminus as NKNNT, which corresponds to the AAC codon at RNA2 nucleotides 89-91, and reports 'there was no AUG codon 5-prime to the codon corresponding to the N-terminal Asn amino acid'. Verified directly on HM030971, 22 Nov 2026: nt 89-91 are AAC. upstream_ext is therefore 0 -- scan_to_met_start would walk left looking for a start codon that does not exist and stop at an arbitrary one. check_met_start.py will report this feature, and that report is the documented non-AUG start, not a defect. The initiation MECHANISM is unresolved in the literature and is not claimed here. Santeuil and Melnik deposits begin at Lys because their contigs start inside the gene; they are excluded from the collection rather than used to train the profile. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all. BIT CUTOFF SET FROM MEASUREMENT, 22 Nov 2026: half the lowest score among this feature's genuine panel calls, capped at 500. The generated cutoff is a floor, not a threshold -- in Tobaniviridae a spurious call landed at 30.34 bits while the genuine protein on the same genome scored 476.8, and neither self-recall nor a held-out panel can see that, because both test sequences that really are the protein. The cap matters as much as the rule: an uncapped cutoff drawn from a long conserved protein excludes the divergent genomes the profile exists to find. Measured 80 -> 391.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Capsid Protein Segment",
+  "upstream_ext": 0
+ },
+ "CP_DELTA": {
+  "PMID_claude_generated": [
+   "24503084",
+   "32817218",
+   "28241071"
+  ],
+  "anno": "Capsid-delta fusion protein",
+  "feature_type": "CDS",
+  "gene_symbol": "CP-delta",
+  "note": "Made by a -1 PROGRAMMED RIBOSOMAL FRAMESHIFT, so it has no PSSM and is called from a nucleotide reference set under Transcript-Editing/. The slippery heptamer is G_UCA_AAC at Orsay RNA2 nucleotides 1255-1261, immediately 5-prime of the capsid stop, with a stimulatory stem-loop beginning about 8 nt downstream and NO pseudoknot (PMID 24503084); the transframe peptide was sequenced by MS/MS. The protein incorporates into virions as a head fiber with a novel beta-bracelet fold (PMID 32817218, PMID 28241071). Verified on HM030971, 22 Nov 2026: nt 1255-1261 are GTCAAAC and the capsid stop is the TAG at 1262-1264, exactly as published. RefSeq's join(89..1261,1261..2385) repeats nucleotide 1261 because that is the slipped base -- it is a FRAMESHIFT, not a splice, and this module declares no spliced feature. TWO SLIPPERY HEPTAMERS, MEASURED 22 Nov 2026, NOT ONE. Building the reference set on the published Orsay heptamer alone produced 24 references from Le Blanc and Orsay only, and 23 genomes reported `no insertion sits in the slip site` -- every Santeuil and Melnik genome in the module. Reading the 7 nt immediately 5-prime of the capsid stop codon in each genome separates them exactly by species: Orsay and Le Blanc carry GTCAAAC (G_UCA_AAC, the published Orsay sequence) in 26 of 26, and Santeuil and Melnik carry GGAAAAC (G_GAA_AAC) in 24 of 24. PMID 24503084 notes only that Le Blanc shares Orsay's slippery sequence and Santeuil's differs, without giving Santeuil's. With both heptamers the set is 47 references covering all four species, every one validated by reproducing its own deposited fusion protein byte-for-byte at a confirmed slip site.",
+  "segment": "Capsid Protein Segment",
+  "special": "transcript_edit"
+ },
+ "DELTA": {
+  "PMID_claude_generated": [
+   "29743360",
+   "21283608",
+   "32817218"
+  ],
+  "anno": "Nonlytic egress protein delta",
+  "bit_cutoff": 384,
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "delta",
+  "note": "Free delta, 332-398 aa, translated from its OWN AUG (Orsay RNA2 nucleotide 1345, confirmed as ATG on HM030971) rather than cut from the fusion. PMID 29743360 settled that it exists as a free protein: an ATG-to-CTG mutant that still makes normal CP-delta but no free delta has a non-lytic egress defect. It is ABSENT from RefSeq NC_028098.1 and present only in HM030971.2, which is why only 3 deposits exist; the collection was expanded by extraction, and 46 of 46 extracted members are exact C-terminal substrings of the fusion from their own genome, beginning at fusion residue 419-434 (Orsay's published value is 420). BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all. BIT CUTOFF SET FROM MEASUREMENT, 22 Nov 2026: half the lowest score among this feature's genuine panel calls, capped at 500. The generated cutoff is a floor, not a threshold -- in Tobaniviridae a spurious call landed at 30.34 bits while the genuine protein on the same genome scored 476.8, and neither self-recall nor a held-out panel can see that, because both test sequences that really are the protein. The cap matters as much as the rule: an uncapped cutoff drawn from a long conserved protein excludes the divergent genomes the profile exists to find. Measured 60 -> 384.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Capsid Protein Segment",
+  "upstream_ext": 1
+ }
+}

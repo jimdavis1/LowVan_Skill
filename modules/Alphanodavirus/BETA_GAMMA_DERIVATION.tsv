@@ -1,0 +1,9 @@
+id	len_alpha	n_sites	cut	gamma_len	p1p1prime	verdict
+fig|12287.11.peg.1	407	1	363	44	N|A	OK
+fig|12287.13.peg.1	407	1	363	44	N|A	OK
+fig|663279.4.peg.1	407	1	363	44	N|A	OK
+fig|12285.16.peg.1	407	1	363	44	N|A	OK
+fig|756850.3.peg.1	407	1	363	44	N|A	OK
+fig|12287.6.peg.1	407	1	363	44	N|A	OK
+fig|103782.5.peg.1	401	1	361	40	N|S	OK
+fig|12288.16.peg.1	399	1	355	44	N|A	OK

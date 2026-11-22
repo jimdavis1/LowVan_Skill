@@ -1,0 +1,98 @@
+{
+   "Macrobrachium_rosenbergii_nodavirus" : {
+      "close_genomes" : {
+         "Macrobrachium_rosenbergii_nodavirus.1.dna" : {
+            "genome_ids" : "FJ751225",
+            "genome_name" : "Macrobrachium rosenbergii nodavirus"
+         },
+         "Macrobrachium_rosenbergii_nodavirus.2.dna" : {
+            "genome_ids" : "JN619369",
+            "genome_name" : "Macrobrachium rosenbergii nodavirus Australian"
+         },
+         "Macrobrachium_rosenbergii_nodavirus.3.dna" : {
+            "genome_ids" : "MW625911",
+            "genome_name" : "Covert mortality nodavirus CMNV-Larimichthys"
+         },
+         "Macrobrachium_rosenbergii_nodavirus.4.dna" : {
+            "genome_ids" : "MW625912",
+            "genome_name" : "Covert mortality nodavirus CMNV-Larimichthys"
+         },
+         "Macrobrachium_rosenbergii_nodavirus.5.dna" : {
+            "genome_ids" : "EF137180",
+            "genome_name" : "Penaeus vannamei nodavirus"
+         }
+      },
+      "features" : {
+         "A" : {
+            "PMID_claude_generated" : [
+               "32659308",
+               "23318596"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 60,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "A",
+            "kmers" : 1,
+            "max_len" : 1107,
+            "min_len" : 971,
+            "segment" : "Protein A Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "B2" : {
+            "PMID_claude_generated" : [
+               "23318596",
+               "32659308"
+            ],
+            "anno" : "Non-structural protein B2",
+            "bit_cutoff" : 30,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "B2",
+            "kmers" : 1,
+            "max_len" : 140,
+            "min_len" : 123,
+            "segment" : "Protein A Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "CP" : {
+            "PMID_claude_generated" : [
+               "30346944",
+               "15660790",
+               "28522842"
+            ],
+            "anno" : "Capsid protein",
+            "bit_cutoff" : 80,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CP",
+            "kmers" : 1,
+            "max_len" : 463,
+            "min_len" : 345,
+            "segment" : "Capsid Protein Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Capsid Protein Segment" : {
+            "max_len" : 1448,
+            "min_len" : 1112,
+            "replicon_geometry" : "linear"
+         },
+         "Protein A Segment" : {
+            "max_len" : 3228,
+            "min_len" : 3111,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

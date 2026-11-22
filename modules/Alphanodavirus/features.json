@@ -1,0 +1,104 @@
+{
+ "A": {
+  "PMID_claude_generated": [
+   "7815535",
+   "12208963",
+   "11689648"
+  ],
+  "anno": "RNA-dependent RNA polymerase",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "A",
+  "note": "The RNA1 replicase, 973-1043 aa, translated from the genomic message. Its N-terminal 46 residues are sufficient for mitochondrial localisation and membrane insertion (PMID 12208963) and replication occurs on outer mitochondrial membranes (PMID 11689648). No cleavage product of protein A is described in any nodavirus, so it is declared as one CDS. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Protein A Segment",
+  "upstream_ext": 1
+ },
+ "ALPHA": {
+  "PMID_claude_generated": [
+   "6548308",
+   "1404613",
+   "9765417"
+  ],
+  "anno": "Capsid protein precursor",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "alpha",
+  "note": "The RNA2 product, 395-407 aa. It assembles into provirions first and then cleaves ITSELF, so the precursor is the translated protein and beta plus gamma are its products. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Capsid Precursor Segment",
+  "upstream_ext": 1
+ },
+ "B1": {
+  "PMID_claude_generated": [
+   "15163762",
+   "12573589"
+  ],
+  "anno": "Non-structural protein B1",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "B1",
+  "note": "Translated from an internal AUG on subgenomic RNA3, IN FRAME with protein A, so it is the C-terminal fragment of A and shares its stop (PMID 15163762: 'Protein B1 is in the same reading frame as protein A and thus represents its C-terminal fragment'). It is a separate translation product, NOT a cleavage product, which is why it is a CDS and not a mat_peptide. Detected as protein in Nodamura by SDS-PAGE and MALDI-TOF (PMID 12573589). Only 3 deposits exist in the whole genus, so the collection was expanded by extraction from the genomes under a structural gate: an accepted member must be an exact C-terminal substring of protein A from its own genome. 13 of 13 passed. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all. upstream_ext is 0, NOT 1. B1 lies ENTIRELY INSIDE the protein A reading frame, so there is no stop codon upstream of its start for scan_to_met_start to halt on: with upstream_ext 1 the scan walks left in 3-nt steps through protein A until it reaches an arbitrary Met. Measured on Flock House virus NC_004146 on 22 Nov 2026, that called B1 at 2620..3036 = 138 aa where GenBank annotates 2728..3036 = 102 aa -- the scan had run 36 codons past the real start. This is the same defect the skill records for Norovirus mature peptides, in a CDS rather than a polyprotein. With upstream_ext 0 the start is the profile's own match extent, and the profile is trained only on members whose start sits exactly at the aligned reference start. EXTRACTION TIGHTENED to --met-slack 0 on 22 Nov 2026 for the same reason: at a slack of 40 the extractor accepted the nearest Met rather than the aligned one and produced members of 102, 112, 131 and 138 aa from one gene. Requiring the aligned position ITSELF to be a Met returns 5 members at exactly 102 and 131 aa -- the two documented lengths -- and rejects 8 genomes whose B1 start is simply not placeable from the literature. A thin collection of correct starts beats a full one of invented ones.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Protein A Segment",
+  "upstream_ext": 0
+ },
+ "B2": {
+  "PMID_claude_generated": [
+   "12016316",
+   "15163762",
+   "16270100",
+   "12573589"
+  ],
+  "anno": "RNA silencing suppressor protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "B2",
+  "note": "In the +1 reading frame relative to protein A, on subgenomic RNA3. The founding animal-virus RNA silencing suppressor (PMID 12016316); binds duplex RNA in a novel mode (PMID 16270100). FHV 106 aa; Nodamura makes TWO forms, B2-134 and B2-137, from the first and second AUG of RNA3, both MS-confirmed (PMID 12573589); Pariacoto 90 aa. The two length classes are one gene and are signed off in LENGTH_AUDIT.md rather than split. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Protein A Segment",
+  "upstream_ext": 1
+ },
+ "BETA": {
+  "PMID_claude_generated": [
+   "1404613",
+   "9765417",
+   "10799587"
+  ],
+  "anno": "Mature capsid protein beta",
+  "downstream_ext": 0,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "beta",
+  "note": "alpha residues 1 to the Asn of the autocatalytic site. PMID 1404613: provirions 'mature by autocatalytic cleavage of the 407-residue coat precursor protein between asparagine residue 363 and alanine residue 364', and N363D/T/A abolish both cleavage and infectivity. downstream_ext is 0 because the C-terminus is a cut site with no codon to scan for; upstream_ext is 1 because beta begins at alpha's own start codon. DERIVED BY CHEMISTRY, NOT BY RESIDUE NUMBER: scanning each genome's own alpha for Asn followed by Ala or Ser with 38-52 residues remaining finds EXACTLY ONE site in every species and none with two, reproducing FHV's published 363/364 without being given it. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Capsid Precursor Segment",
+  "upstream_ext": 1
+ },
+ "GAMMA": {
+  "PMID_claude_generated": [
+   "9765417",
+   "10799587",
+   "16378964"
+  ],
+  "anno": "Capsid peptide gamma",
+  "downstream_ext": 1,
+  "feature_type": "mat_peptide",
+  "gene_symbol": "gamma",
+  "note": "alpha from the residue after the autocatalytic cut to alpha's own stop: 44 aa in FHV (alpha 364-407, PMID 9765417) and 40 aa in Pariacoto, whose site is Asn/SER rather than Asn/Ala -- the one documented exception in the genus (PMID 10799587). Forms a pentameric helical bundle at the fivefold axes and is released during entry (PMID 16378964). upstream_ext is 0 because the N-terminus is a cut site; downstream_ext is 1 because gamma ends at the precursor's real stop codon. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Capsid Precursor Segment",
+  "upstream_ext": 0
+ }
+}

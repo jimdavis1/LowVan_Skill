@@ -1,0 +1,122 @@
+{
+   "Le_Blanc_nodavirus" : {
+      "close_genomes" : {
+         "Le_Blanc_nodavirus.1.dna" : {
+            "genome_ids" : "JQ943579",
+            "genome_name" : "Le Blanc nodavirus JU1498"
+         },
+         "Le_Blanc_nodavirus.2.dna" : {
+            "genome_ids" : "JQ943580",
+            "genome_name" : "Le Blanc nodavirus JU1498"
+         },
+         "Le_Blanc_nodavirus.3.dna" : {
+            "genome_ids" : "NC_015070",
+            "genome_name" : "Santeuil nodavirus JU1264"
+         },
+         "Le_Blanc_nodavirus.4.dna" : {
+            "genome_ids" : "HM030972",
+            "genome_name" : "Santeuil nodavirus JU1264"
+         },
+         "Le_Blanc_nodavirus.5.dna" : {
+            "genome_ids" : "MK774657",
+            "genome_name" : "Melnik nodavirus JUv3272"
+         },
+         "Le_Blanc_nodavirus.6.dna" : {
+            "genome_ids" : "HM030970",
+            "genome_name" : "Orsay virus JU1580"
+         },
+         "Le_Blanc_nodavirus.7.dna" : {
+            "genome_ids" : "HM030971",
+            "genome_name" : "Orsay virus JU1580"
+         }
+      },
+      "features" : {
+         "A" : {
+            "PMID_claude_generated" : [
+               "24503084",
+               "21283608",
+               "23043172"
+            ],
+            "anno" : "RNA-dependent RNA polymerase",
+            "bit_cutoff" : 500,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "A",
+            "kmers" : 1,
+            "max_len" : 1040,
+            "min_len" : 880,
+            "segment" : "Protein A Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         },
+         "CP" : {
+            "PMID_claude_generated" : [
+               "24503084",
+               "25136116"
+            ],
+            "anno" : "Capsid protein",
+            "bit_cutoff" : 391,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "CP",
+            "kmers" : 1,
+            "max_len" : 414,
+            "min_len" : 364,
+            "segment" : "Capsid Protein Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         },
+         "CP_DELTA" : {
+            "PMID_claude_generated" : [
+               "24503084",
+               "32817218",
+               "28241071"
+            ],
+            "anno" : "Capsid-delta fusion protein",
+            "feature_type" : "CDS",
+            "gene_symbol" : "CP-delta",
+            "max_len" : 876,
+            "min_len" : 719,
+            "segment" : "Capsid Protein Segment",
+            "special" : "transcript_edit",
+            "type" : "CDS"
+         },
+         "DELTA" : {
+            "PMID_claude_generated" : [
+               "29743360",
+               "21283608",
+               "32817218"
+            ],
+            "anno" : "Nonlytic egress protein delta",
+            "bit_cutoff" : 384,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "delta",
+            "kmers" : 1,
+            "max_len" : 421,
+            "min_len" : 312,
+            "segment" : "Capsid Protein Segment",
+            "type" : "CDS",
+            "upstream_ext" : 1
+         }
+      },
+      "segments" : {
+         "Capsid Protein Segment" : {
+            "max_len" : 2937,
+            "min_len" : 2525,
+            "replicon_geometry" : "linear"
+         },
+         "Protein A Segment" : {
+            "max_len" : 3628,
+            "min_len" : 2896,
+            "replicon_geometry" : "linear"
+         }
+      }
+   }
+}

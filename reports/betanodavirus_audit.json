@@ -1,0 +1,451 @@
+{
+ "title": "Betanodavirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Betanodavirus module \u00b7 22 November 2026",
+ "h1": "Does the fish nervous necrosis virus module actually work?",
+ "standfirst": "The largest module of the four, and the one whose headline fact is a <b>negative</b>. Unlike the insect nodaviruses, the betanodavirus capsid is not cleaved: its RNA2 ORF \u201ccarries the catalytic D-75 residue but lacks the site for autocatalytic proteolysis\u201d (PMID 9672600). No beta and no gamma are declared here, and proving that absence is part of what this audit reports.",
+ "headline_tiles": [
+  [
+   "4",
+   "features, all with profiles"
+  ],
+  [
+   "7",
+   "PSSMs"
+  ],
+  [
+   "603/603",
+   "genomes routed"
+  ],
+  [
+   "0",
+   "duplicate calls"
+  ],
+  [
+   "80/80",
+   "held-out genomes good"
+  ],
+  [
+   "100%",
+   "every feature, every complete genome"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Four proteins on two segments, and nothing else is claimed.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The fish nervous necrosis viruses \u2014 SJNNV, RGNNV, BFNNV and TPNNV, plus the Atlantic cod and greasy grouper isolates inside them. 1,456 genomes, by far the most-sequenced group in the family. RNA1 carries the replicase and, from a subgenomic RNA3, the non-structural proteins B1 and B2; RNA2 carries a single uncleaved coat protein."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "key",
+      "type",
+      "annotation",
+      "segment",
+      "bit",
+      "length (aa)"
+     ],
+     "rows": [
+      [
+       "A",
+       "CDS",
+       "RNA-dependent RNA polymerase",
+       "Protein A",
+       "500",
+       "922\u20131041"
+      ],
+      [
+       "B1",
+       "CDS",
+       "Non-structural protein B1 <em>(new string)</em>",
+       "Protein A",
+       "103",
+       "103\u2013118"
+      ],
+      [
+       "B2",
+       "CDS",
+       "RNA silencing suppressor protein",
+       "Protein A",
+       "68",
+       "66\u201379"
+      ],
+      [
+       "CP",
+       "CDS",
+       "Capsid protein <em>(new string)</em>",
+       "Capsid Protein",
+       "303",
+       "317\u2013360"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "betanodavirus-genome-map.html"
+    },
+    {
+     "type": "prose",
+     "html": "<b>The capsid is not cleaved, and that is why this is a separate module from Alphanodavirus.</b> Both genera carry the same four gene slots, so on a gene count they look identical. PMID 9672600 measured the difference directly and also excluded alternative initiation, a \u22121 frameshift and precursor degradation as explanations for the observed 43/45 kDa doublet. The T=3 crystal structure is built from the intact 338-residue chain (PMID 26491970), and the 30-year review states it in terms (PMID 32050492). A module holding both genera would have to declare beta and gamma for 1,456 genomes that never make them."
+    },
+    {
+     "type": "prose",
+     "html": "The N-ARM, S domain and P domain described in that structure are regions of one continuous chain, not products, and are deliberately not modelled as mature peptides."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Subgenomic RNA3 is made by premature termination, not by splicing</b> (PMID 16186236; PMID 41146288 for the intragenomic RNA\u2013RNA pairing mechanism). This module therefore declares no spliced feature, and that is a positive statement about the biology rather than an omission."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "332 training sequences, and every length window taken from the literature because the deposits cannot carry one.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>This genus is dominated by partial typing deposits</b>, and that single fact determines how every window here was set. The median <code>coat protein</code> record is <b>181 aa against a true 338</b>, and the median polymerase record is <b>300 against 982</b>. A window anchored on any deposited median would delete every full-length protein in the genus and keep the fragments."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "members",
+      "window",
+      "where the window comes from"
+     ],
+     "rows": [
+      [
+       "A",
+       "73",
+       "981\u2013983",
+       "SJNNV 983 (PMID 10580064), RGNNV/GGNNV 982 (PMIDs 22270757, 11172107), AHNV 981 (PMID 15109133)"
+      ],
+      [
+       "B1",
+       "115",
+       "110\u2013112",
+       "RGNNV 111 aa from a 336 nt gene (PMID 19136133)"
+      ],
+      [
+       "B2",
+       "48",
+       "71\u201375",
+       "75 aa exactly in SJNNV, RGNNV, AHNV, BFNNV, TPNNV (PMIDs 16186236, 15109133, 36560822)"
+      ],
+      [
+       "CP",
+       "96",
+       "338\u2013340",
+       "SJNNV and TPNNV 340 (PMID 9049363); RGNNV/GGNNV/BFNNV 338"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>B1 had to be built without a published start codon.</b> PMID 19136133 cloned the RGNNV B1 gene as 336 nt and showed the protein is a real anti-necrotic death factor, and PMID 36560822 confirms its reading frame \u201cmatches the 3\u2032 termini of the RdRp reading frame\u201d \u2014 but <b>no paper gives a start coordinate and no RefSeq annotates a B1 CDS anywhere in the genus</b>. BV-BRC holds 2 deposits across 1,456 genomes. The 115 members were extracted from the genomes under the one property the literature does fix:"
+    },
+    {
+     "type": "pre",
+     "text": "  B1 is in frame with protein A and shares its stop codon, so an accepted\n  member must be an EXACT C-terminal substring of protein A from its OWN genome.\n\n      extractions tested against a deposited protein A    124\n      exact C-terminal substring                          124   (100%)\n      lengths                                         110-112 aa"
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "The structural gate is what makes a 2-deposit feature buildable. Identity alone could not do it: B1 is 100% identical to protein A over its own length by construction, so an identity test cannot distinguish a correct B1 from a fragment cut anywhere else in the replicase."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Raised from measured panel scores, and re-measured afterwards.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The generated cutoff is a floor, not a threshold. In Tobaniviridae a floor of that kind let a spurious call land at 30.34 bits while the genuine protein on the same genome scored 476.8 \u2014 and neither self-recall nor a held-out panel can see that, because both test sequences that really are the protein. Each cutoff here was set to <b>half the lowest score among the feature's 80 genuine panel calls, capped at 500</b>."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "panel calls",
+      "lowest",
+      "median",
+      "highest",
+      "cutoff"
+     ],
+     "rows": [
+      [
+       "A",
+       "80",
+       "1854.7",
+       "1914.0",
+       "1928.7",
+       "500 <em>(capped)</em>"
+      ],
+      [
+       "B1",
+       "80",
+       "206.1",
+       "214.2",
+       "222.7",
+       "103"
+      ],
+      [
+       "B2",
+       "80",
+       "136.4",
+       "144.5",
+       "149.9",
+       "68"
+      ],
+      [
+       "CP",
+       "80",
+       "606.7",
+       "659.9",
+       "661.8",
+       "303"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The cap matters as much as the rule. Uncapped, protein A's cutoff would have been 927 \u2014 and an uncapped cutoff drawn from a long, highly conserved protein excludes exactly the divergent genomes a profile exists to find."
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Re-measured after the raise: every feature still calls on <b>100% of routed genomes</b> and all 80 panel genomes are still graded good. No genuine call was lost."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Three references for 603 genomes.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "3",
+       "rep contigs, against a budget of 25"
+      ],
+      [
+       "603/603",
+       "genomes routed"
+      ],
+      [
+       "0",
+       "misrouted"
+      ],
+      [
+       "45 bits",
+       "best hit from any other module"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Three references suffice because this genus is tight: 603 genomes collapse to six clusters at 70% nucleotide identity, and the largest two hold most of them. Both segments are represented \u2014 a 3,112 nt RNA1 and a 1,739 nt RNA2 \u2014 which matters because BV-BRC stores each segment as its own record, so an orphan RNA2 deposit has to find an RNA2 reference."
+    },
+    {
+     "type": "prose",
+     "html": "Measured at the annotator's own BLASTn settings rather than with <code>check_rep_contigs.py</code>, which calls bare <code>blastn</code> \u2014 megablast, which finds little below about 85% identity and would under-report the divergent isolates."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "286 genomes carry calls; 90 of them carry two complete segments.",
+   "blocks": [
+    {
+     "type": "bars",
+     "unit": "",
+     "rows": [
+      [
+       "A",
+       "90",
+       100.0,
+       "90 of 90 complete genomes"
+      ],
+      [
+       "B1",
+       "90",
+       100.0,
+       "90"
+      ],
+      [
+       "B2",
+       "90",
+       100.0,
+       "90"
+      ],
+      [
+       "CP",
+       "90",
+       100.0,
+       "90"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "On complete genomes all four features are called every time. Across all 286 genomes that carry any call the picture is different and worth stating plainly: CP lands at 90% and the three RNA1 proteins at 42%. That gap is not a profile gap \u2014 it is the deposit profile of this genus. Most records are RNA2 capsid fragments submitted for genotyping, and a genome holding only RNA2 cannot call a protein encoded on RNA1."
+    },
+    {
+     "type": "prose",
+     "html": "A further <b>264 records route and call nothing</b>. These are capsid fragments short enough to fall below the profile's coverage requirement; the annotator records the module match so the taxon is not lost, which is the designed behaviour for a partial deposit rather than a failure."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "Held-out genomes, and a structural check on the feature with no published start.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "80",
+       "complete held-out genomes"
+      ],
+      [
+       "80",
+       "good"
+      ],
+      [
+       "0",
+       "poor"
+      ],
+      [
+       "0",
+       "duplicate calls"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every nesting the duplicate-call check reports is declared architecture: B1 inside protein A (an in-frame C-terminal fragment) and B2 inside protein A (a +1 overlapping gene). There are no exact duplicates and no undeclared nesting."
+    },
+    {
+     "type": "prose",
+     "html": "<code>qc_cross_feature.py</code> reports B1 as colliding with protein A at 100% identity. That is correct and expected \u2014 B1 <i>is</i> the C-terminus of protein A \u2014 and the tool has no way to be told so. The rows stand in the record and are answered here rather than suppressed; <code>audit_bins.py</code>, which does accept a declaration, reads <b>Unresolved: 0</b> with the pair declared."
+    },
+    {
+     "type": "prose",
+     "html": "<b>The one place a wrong answer would hide.</b> B2 is marked essential despite sitting inside protein A, because every one of its calls is <i>out of frame</i> with the feature containing it \u2014 it is a separate gene, not a cleavage product. B1 is marked essential on the strength of the substring gate, not on its call rate alone."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Two genomes, and one whole population, that this module does not reach.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>1. Two exemplars route and then call nothing, and more references will not help.</b> <code>1168598.3</code> (<i>Betanodavirus</i> S1.Tun03.11) and <code>1110530.25</code> (<i>Sparus aurata</i> betanodavirus) hit the references at <b>951 and 761 bits</b>, far above the 150-bit floor, and then return <code>stop-free 0</code> for every profile \u2014 the annotator finds no stop-free ORF to match. Both are partial gene deposits whose reading frames are broken relative to the profiles. This is a property of those records, not a threshold that can be lowered."
+    },
+    {
+     "type": "prose",
+     "html": "<b>2. 264 records route and call nothing by design.</b> They are capsid typing fragments below the coverage requirement. Reporting them as coverage failures would misdescribe the module; reporting them not at all would misdescribe the data. They are counted in \u00a705 and left as they are."
+    },
+    {
+     "type": "prose",
+     "html": "<b>3. 224 <code>Betanodavirus sp.</code> records were dropped at intake</b> and are outside the module's scope. The cost was measured before the decision rather than assumed: those 223 proteins are <b>97.6% mean identity</b> to a named betanodavirus, so dropping them removes no diversity. It is a scope rule \u2014 LowVan does not build modules for viruses with no assigned species \u2014 not a quality judgement, and it is the opposite of the Ambidensovirus <code>sp.</code> bin the skill documents, which held 27\u201338% identity between its own classes."
+    },
+    {
+     "type": "prose",
+     "html": "<b>A near-miss worth recording.</b> The <code>sp.</code> intake rule matches an organism name containing <code>sp.</code> \u2014 and in this genus that regex also matches <code>Mullus sp. betanodavirus</code>, where the <code>sp.</code> belongs to the <i>fish host</i>, not the virus. Nineteen records across six host genera (<i>Mullus</i>, <i>Gobius</i>, <i>Epinephelus</i>, <i>Pagellus</i>, <i>Balistapus</i>, <i>Pseudorhombus</i>) are named viruses that the unqualified test would have deleted. The test is applied only to the part of the name before the virus word."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Genome quality from the full GTO pipeline.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "80",
+       "complete held-out genomes"
+      ],
+      [
+       "80",
+       "good (100%)"
+      ],
+      [
+       "0",
+       "poor"
+      ],
+      [
+       "14",
+       "essential features family-wide"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "All four features carry <code>copy_num</code>, set from the measurement rather than from the gene's reputation: each is called on 100% of the 80 complete held-out genomes, and no complete genome fails to call any of them."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Ten genomes were folded into this module by measurement.</b> <i>Atlantic cod nodavirus</i> carries no genus in BV-BRC and is <b>88.6% identical</b> to this module's canonical polymerase over its full length, against 50\u201361% for every other species in the untabled tail. It is the BFNNV genotype, and BV-BRC already files the near-identical <i>Atlantic cod betanodavirus</i> records under genus Betanodavirus \u2014 an inconsistent assignment on one species, not a new lineage."
+    },
+    {
+     "type": "prose",
+     "html": "<b>Two records were removed from this genus for the opposite reason.</b> BV-BRC files <i>Wuhan nodavirus</i> and <i>Mosquito nodavirus MNV-1</i> under genus Betanodavirus; both are insect noda-like viruses. A rep contig for either would route an insect virus into the fish module, which has no profile that can call it \u2014 turning a visible gap into a silent one."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "Four annotation strings against the source vocabulary of 1,456 genomes.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "14 \u2192 4",
+       "distinct strings at equal depth"
+      ],
+      [
+       "3.5\u00d7",
+       "collapse"
+      ],
+      [
+       "302",
+       "proteins compared"
+      ],
+      [
+       "280",
+       "genomes annotated by both"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The polymerase alone arrives as <code>RNA-dependent RNA polymerase</code>, <code>RNA dependent RNA polymerase</code>, <code>RNA dependent-RNA polymerase</code>, <code>RNA-directed RNA polymerase</code>, <code>RNA-dependent RNA-polymerase</code>, <code>RNA dependant RNA polymerase</code>, <code>RNA polymerase</code>, <code>RdRp</code>, <code>RdRp polymerase</code>, <code>protein A</code> and <code>protein A (RDRP)</code> \u2014 eleven spellings of one gene, several of them single-character typos of each other."
+    },
+    {
+     "type": "prose",
+     "html": "Two strings are new to the LowVan vocabulary: <code>Non-structural protein B1</code> and <code>Capsid protein</code>. B2 reuses <code>RNA silencing suppressor protein</code>, which this genus has earned \u2014 betanodavirus B2 sequesters duplex RNA and antagonises RNAi (PMIDs 16352533, 16809288). The sibling crustacean module deliberately does <i>not</i> use that string, because the same activity has never been demonstrated there."
+    }
+   ]
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure here is reproducible from the Betanodavirus working directory; the decisions behind them are in <code>NODAVIRIDAE_BUILD_NOTES.md</code> and the literature behind those in <code>LITERATURE_SURVEY.md</code>. Every citation sits in <code>PMID_claude_generated</code> and awaits a curator's read."
+}

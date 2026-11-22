@@ -1,0 +1,51 @@
+{
+ "A": {
+  "PMID_claude_generated": [
+   "32659308",
+   "23318596"
+  ],
+  "anno": "RNA-dependent RNA polymerase",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "A",
+  "note": "The RNA1 replicase, 1033-1045 aa. CMNV 1043 aa is literature-stated (PMID 32659308); MrNV 1045 and PvNV 1033 rest on RefSeq, the MrNV paper reporting only a 1034 aa partial. A methyltransferase and the polymerase separated by a predicted transmembrane region is a structural model only (PMID 36757137) and is not annotated here. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Protein A Segment",
+  "upstream_ext": 1
+ },
+ "B2": {
+  "PMID_claude_generated": [
+   "23318596",
+   "32659308"
+  ],
+  "anno": "Non-structural protein B2",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "B2",
+  "note": "131-133 aa, in a shifted frame overlapping the 3-prime end of protein A. THE ANNOTATION DELIBERATELY CLAIMS NO FUNCTION. RNA silencing suppression is demonstrated for alphanodavirus B2 (PMID 12016316) and betanodavirus B2 (PMID 16352533) but has NOT been shown for MrNV, PvNV or CMNV, so this feature is 'Non-structural protein B2' while the other two modules say 'RNA silencing suppressor protein'. Nor is a subgenomic RNA claimed: none has been demonstrated for any of these three viruses. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Protein A Segment",
+  "upstream_ext": 1
+ },
+ "CP": {
+  "PMID_claude_generated": [
+   "30346944",
+   "15660790",
+   "28522842"
+  ],
+  "anno": "Capsid protein",
+  "downstream_ext": 1,
+  "feature_type": "CDS",
+  "gene_symbol": "CP",
+  "note": "A single uncleaved chain with NO gamma peptide: 'Betanodaviruses and Mr_NV both have their C-termini at the capsid exterior and do not encode a gamma-peptide' (PMID 30346944), and the virion capsid is one 43 kDa polypeptide (PMID 15660790). Its P-domain spikes are DIMERIC, unlike the trimeric spikes of alpha- and betanodaviruses. GENUINELY BIMODAL BY SPECIES -- MrNV 371, PvNV 368, CMNV 437 aa -- which is why the window spans 368-437 and is not a median. The Arg26 cut reported in PMID 34445426 is an E. coli cysteine-protease artefact of recombinant expression, blocked by E-64, and is NOT modelled as a mature peptide. BUILD PARAMETER: m lowered 5 -> 2 on 22 Nov 2026. At the documented default of 5 this family built ONE profile across four modules: the collections are small and species-diverse, so clustering at -mi 0.8 splits them into groups of 1-3 and every group falls below the floor, leaving the whole feature in Leftover_Seqs.aa with no profile and no error. Identity still does the quality work at -mi 0.8; the member count was only asking whether a profile can be built at all.",
+  "params": {
+   "m": "2"
+  },
+  "segment": "Capsid Protein Segment",
+  "upstream_ext": 1
+ }
+}

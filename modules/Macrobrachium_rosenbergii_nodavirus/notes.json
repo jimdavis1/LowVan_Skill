@@ -1,0 +1,11 @@
+{
+ "standfirst": "The crustacean nodaviruses &mdash; <i>Macrobrachium rosenbergii</i> nodavirus, <i>Penaeus vannamei</i> nodavirus and covert mortality nodavirus. ICTV ratifies no genus for them, so the module is named for its most-sampled species. What separates it from Betanodavirus is a single missing gene: <b>there is no B1</b>, in the literature or in any of the three RefSeqs.",
+ "modules": {
+  "Macrobrachium_rosenbergii_nodavirus": "Three features. RNA1 carries protein A and B2 in a shifted overlapping frame; RNA2 carries one uncleaved capsid. The capsid window is genuinely bimodal by species &mdash; MrNV 371 aa, PvNV 368, CMNV 437 &mdash; so it spans both classes and is not a median."
+ },
+ "gaps": "B1 is probed for and returns ABSENT, which is the expected and required result: its absence is the organisational difference that gives this group its own module. The one reported capsid cleavage, at Arg26, is an <i>E. coli</i> cysteine protease artefact of recombinant expression blocked by E-64 (PMID 34445426), and is not modelled.",
+ "derived": "No mature peptides. The virion capsid is a single 43 kDa polypeptide (PMID 15660790) and these viruses &ldquo;do not encode a gamma-peptide&rdquo; (PMID 30346944).",
+ "why": {
+  "B2": "Annotated <code>Non-structural protein B2</code>, not <code>RNA silencing suppressor protein</code>. Suppressor activity is demonstrated for alphanodavirus B2 (PMID 12016316) and betanodavirus B2 (PMID 16352533) and has <b>not</b> been shown for MrNV, PvNV or CMNV. Nor is a subgenomic RNA claimed, because none has been demonstrated for any of the three."
+ }
+}

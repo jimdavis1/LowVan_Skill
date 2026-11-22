@@ -1,0 +1,89 @@
+{
+ "Betanodavirus": {
+  "features": [
+   {
+    "key": "A",
+    "anno": "RNA-dependent RNA polymerase",
+    "gene": "A",
+    "ftype": "CDS",
+    "segment": "Protein A Segment",
+    "bit": 500,
+    "minl": 922,
+    "maxl": 1041,
+    "pmid": null,
+    "n": 73,
+    "called": 73,
+    "n_inrange": 73,
+    "called_inrange": 73,
+    "pssms": [
+     "Betanodavirus.A.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "B1",
+    "anno": "Non-structural protein B1",
+    "gene": "B1",
+    "ftype": "CDS",
+    "segment": "Protein A Segment",
+    "bit": 103,
+    "minl": 103,
+    "maxl": 118,
+    "pmid": null,
+    "n": 115,
+    "called": 115,
+    "n_inrange": 115,
+    "called_inrange": 115,
+    "pssms": [
+     "Betanodavirus.B1.1.pssm",
+     "Betanodavirus.B1.2.pssm",
+     "Betanodavirus.B1.3.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "B2",
+    "anno": "RNA silencing suppressor protein",
+    "gene": "B2",
+    "ftype": "CDS",
+    "segment": "Protein A Segment",
+    "bit": 68,
+    "minl": 66,
+    "maxl": 79,
+    "pmid": null,
+    "n": 48,
+    "called": 48,
+    "n_inrange": 48,
+    "called_inrange": 48,
+    "pssms": [
+     "Betanodavirus.B2.1.pssm",
+     "Betanodavirus.B2.2.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "CP",
+    "anno": "Capsid protein",
+    "gene": "CP",
+    "ftype": "CDS",
+    "segment": "Capsid Protein Segment",
+    "bit": 303,
+    "minl": 317,
+    "maxl": 360,
+    "pmid": null,
+    "n": 96,
+    "called": 96,
+    "n_inrange": 96,
+    "called_inrange": 96,
+    "pssms": [
+     "Betanodavirus.CP.1.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   }
+  ]
+ }
+}

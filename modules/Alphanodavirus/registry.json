@@ -1,0 +1,143 @@
+{
+ "Alphanodavirus": {
+  "features": [
+   {
+    "key": "A",
+    "anno": "RNA-dependent RNA polymerase",
+    "gene": "A",
+    "ftype": "CDS",
+    "segment": "Protein A Segment",
+    "bit": 60,
+    "minl": 914,
+    "maxl": 1105,
+    "pmid": null,
+    "n": 11,
+    "called": 11,
+    "n_inrange": 11,
+    "called_inrange": 11,
+    "pssms": [
+     "Alphanodavirus.A.1.pssm",
+     "Alphanodavirus.A.2.pssm",
+     "Alphanodavirus.A.3.pssm",
+     "Alphanodavirus.A.4.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "ALPHA",
+    "anno": "Capsid protein precursor",
+    "gene": "alpha",
+    "ftype": "CDS",
+    "segment": "Capsid Precursor Segment",
+    "bit": 60,
+    "minl": 375,
+    "maxl": 431,
+    "pmid": null,
+    "n": 8,
+    "called": 8,
+    "n_inrange": 8,
+    "called_inrange": 8,
+    "pssms": [
+     "Alphanodavirus.ALPHA.1.pssm",
+     "Alphanodavirus.ALPHA.2.pssm",
+     "Alphanodavirus.ALPHA.3.pssm",
+     "Alphanodavirus.ALPHA.4.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "B1",
+    "anno": "Non-structural protein B1",
+    "gene": "B1",
+    "ftype": "CDS",
+    "segment": "Protein A Segment",
+    "bit": 30,
+    "minl": 95,
+    "maxl": 138,
+    "pmid": null,
+    "n": 4,
+    "called": 4,
+    "n_inrange": 4,
+    "called_inrange": 4,
+    "pssms": [
+     "Alphanodavirus.B1.1.pssm",
+     "Alphanodavirus.B1.2.pssm",
+     "Alphanodavirus.B1.3.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "B2",
+    "anno": "RNA silencing suppressor protein",
+    "gene": "B2",
+    "ftype": "CDS",
+    "segment": "Protein A Segment",
+    "bit": 30,
+    "minl": 84,
+    "maxl": 151,
+    "pmid": null,
+    "n": 12,
+    "called": 12,
+    "n_inrange": 12,
+    "called_inrange": 12,
+    "pssms": [
+     "Alphanodavirus.B2.2.pssm",
+     "Alphanodavirus.B2.3.pssm",
+     "Alphanodavirus.B2.4.pssm",
+     "Alphanodavirus.B2.5.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "BETA",
+    "anno": "Mature capsid protein beta",
+    "gene": "beta",
+    "ftype": "mat_peptide",
+    "segment": "Capsid Precursor Segment",
+    "bit": 60,
+    "minl": 333,
+    "maxl": 384,
+    "pmid": null,
+    "n": 8,
+    "called": 8,
+    "n_inrange": 8,
+    "called_inrange": 8,
+    "pssms": [
+     "Alphanodavirus.BETA.1.pssm",
+     "Alphanodavirus.BETA.2.pssm",
+     "Alphanodavirus.BETA.3.pssm",
+     "Alphanodavirus.BETA.4.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "GAMMA",
+    "anno": "Capsid peptide gamma",
+    "gene": "gamma",
+    "ftype": "mat_peptide",
+    "segment": "Capsid Precursor Segment",
+    "bit": 25,
+    "minl": 37,
+    "maxl": 46,
+    "pmid": null,
+    "n": 8,
+    "called": 8,
+    "n_inrange": 8,
+    "called_inrange": 8,
+    "pssms": [
+     "Alphanodavirus.GAMMA.1.pssm",
+     "Alphanodavirus.GAMMA.2.pssm",
+     "Alphanodavirus.GAMMA.3.pssm",
+     "Alphanodavirus.GAMMA.4.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   }
+  ]
+ }
+}

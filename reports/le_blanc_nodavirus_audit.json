@@ -1,0 +1,398 @@
+{
+ "title": "Le Blanc nodavirus Coverage Audit",
+ "eyebrow": "LowVan \u00b7 Le Blanc nodavirus module \u00b7 22 November 2026",
+ "h1": "Does the Caenorhabditis nodavirus module actually work?",
+ "standfirst": "The strangest genomes in the family. These worm viruses encode neither B1 nor B2; their capsid begins at a codon that is <b>not AUG</b>; and a <b>\u22121 ribosomal frameshift</b> fuses that capsid to a second protein which also exists on its own, from its own start codon. Three overlapping products come out of one 2.3 kb stretch of RNA2.",
+ "headline_tiles": [
+  [
+   "4",
+   "features, 3 with profiles"
+  ],
+  [
+   "9",
+   "PSSMs + 47 frameshift references"
+  ],
+  [
+   "101/101",
+   "genomes routed"
+  ],
+  [
+   "0",
+   "duplicate calls"
+  ],
+  [
+   "19/19",
+   "held-out genomes good"
+  ],
+  [
+   "2",
+   "slippery heptamers, not 1"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "Four proteins, one of which has no profile at all.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Le Blanc nodavirus (49 genomes), Santeuil (44), Orsay (4) and Melnik (4). No ICTV genus covers them, so the module takes its most-sampled species' name. The margin is thin and worth stating: <b><i>Orsay virus</i> carries almost all of the literature below and has four genomes in BV-BRC.</b>"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "key",
+      "type",
+      "annotation",
+      "segment",
+      "bit",
+      "length (aa)"
+     ],
+     "rows": [
+      [
+       "A",
+       "CDS",
+       "RNA-dependent RNA polymerase",
+       "Protein A",
+       "500",
+       "880\u20131040"
+      ],
+      [
+       "CP",
+       "CDS",
+       "Capsid protein",
+       "Capsid Protein",
+       "391",
+       "364\u2013414"
+      ],
+      [
+       "CP_DELTA",
+       "CDS <em>special: transcript_edit</em>",
+       "Capsid-delta fusion protein <em>(new string)</em>",
+       "Capsid Protein",
+       "\u2014",
+       "719\u2013876"
+      ],
+      [
+       "DELTA",
+       "CDS",
+       "Nonlytic egress protein delta <em>(new string)</em>",
+       "Capsid Protein",
+       "384",
+       "312\u2013421"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "le-blanc-nodavirus-genome-map.html"
+    },
+    {
+     "type": "prose",
+     "html": "<b>RNA1 carries a single CDS.</b> PMID 21283608 looked for a B2 and reported the absence directly: \u201cAll known nodavirus B2 proteins overlap with the C-terminus of the RNA-dependent RNA polymerase and are encoded in the +1 frame relative to the polymerase. No open reading frame with these properties was predicted in the 3\u2032 end of the RNA1 segment.\u201d PMID 23468484 then found no silencing-suppressor activity for either Orsay protein proposed as one."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "98 training sequences, plus a nucleotide reference set for the protein that has no profile.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>The capsid starts at a non-AUG codon.</b> PMID 24503084 Edman-sequenced the mature Orsay capsid N-terminus as NKNNT and reports that it \u201ccorresponds to nucleotides 89\u201391, an AAC codon, which is not traditionally thought to be a suitable translation initiation site\u201d, with \u201cno AUG codon 5\u2032 to\u201d it in the segment. Checked directly on HM030971: nt 89\u201391 are <code>AAC</code>."
+    },
+    {
+     "type": "pre",
+     "text": "  verified on HM030971 (Orsay virus RNA2, 2574 nt)\n     nt   89-  91   AAC      capsid start, non-AUG, Edman-confirmed\n     nt 1255-1261   GTCAAAC  slippery heptamer\n     nt 1262-1264   TAG      capsid stop, immediately 3' of the heptamer\n     nt 1345-1347   ATG      free delta start"
+    },
+    {
+     "type": "prose",
+     "html": "Consequences carried into the JSON rather than only into prose: <code>upstream_ext</code> is <b>0</b> on the capsid, because the annotator's <code>scan_to_met_start</code> would walk left looking for a start codon that does not exist; and <code>check_met_start.py</code> reports the feature in 100% of its members, which is the documented biology and not a defect. The initiation <i>mechanism</i> is explicitly unresolved in the literature and is not claimed here."
+    },
+    {
+     "type": "prose",
+     "html": "<b>CP-delta is a \u22121 programmed ribosomal frameshift, so it has no PSSM.</b> It is called from a curated nucleotide reference set in which one base is duplicated at the slip site. The transframe peptide was sequenced by MS/MS, and the protein incorporates into virions as a head fiber with a novel \u03b2-bracelet fold (PMIDs 24503084, 32817218, 28241071). RefSeq's <code>join(89..1261,1261..2385)</code> repeats nt 1261 because that is the slipped base \u2014 it is a frameshift, not a splice, and this module declares no spliced feature."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "<b>There are two slippery heptamers in this group, not one \u2014 and building on the published one alone covered half the module.</b> With Orsay's <code>G_UCA_AAC</code> as the only constraint, 24 references were built from Le Blanc and Orsay, and 23 genomes reported <i>no insertion sits in the slip site</i> \u2014 every Santeuil and Melnik genome. Reading the 7 nucleotides immediately 5\u2032 of the capsid stop in each genome separates them exactly by species: <b>Orsay and Le Blanc carry GTCAAAC in 26 of 26; Santeuil and Melnik carry GGAAAAC in 24 of 24.</b> PMID 24503084 notes only that Le Blanc shares Orsay's slippery sequence and Santeuil's differs, without giving Santeuil's."
+    },
+    {
+     "type": "pre",
+     "text": "  reference set, both heptamers\n     references written                               47\n     slip site confirmed at the insertion             47\n     reproduces its own deposited fusion protein      47   (byte-for-byte)\n     species covered     Le Blanc 26, Santeuil 22, Melnik 2, Orsay 1"
+    },
+    {
+     "type": "prose",
+     "html": "<b>Free delta is a separate initiation, and it is real.</b> It has its own AUG at RNA2 nt 1345 and is 332\u2013398 aa. PMID 29743360 settled it with an ATG\u2192CTG mutant that still makes normal CP-delta but no free delta and has a non-lytic egress defect. It is <b>absent from RefSeq NC_028098.1</b> and present only in HM030971.2, which is why only three deposits exist \u2014 the collection was expanded by extraction, and <b>46 of 46</b> extracted members are exact C-terminal substrings of the fusion from their own genome, beginning at fusion residue 419\u2013434 (Orsay's published 420 among them)."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Raised from 19 panel genomes, and re-measured afterwards.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "panel calls",
+      "lowest",
+      "median",
+      "cutoff"
+     ],
+     "rows": [
+      [
+       "A",
+       "19",
+       "1859.3",
+       "1865.5",
+       "500 <em>(capped)</em>"
+      ],
+      [
+       "CP",
+       "19",
+       "782.3",
+       "787.0",
+       "391"
+      ],
+      [
+       "DELTA",
+       "19",
+       "768.8",
+       "775.0",
+       "384"
+      ],
+      [
+       "CP_DELTA",
+       "\u2014",
+       "\u2014",
+       "\u2014",
+       "no profile; called from nucleotide references"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Each cutoff is half the lowest score among the feature's genuine panel calls, capped at 500. Re-measured after the raise, every feature still calls on 100% of routed genomes and all 19 panel genomes are still graded good."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Seven references, every genome in the group.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "7",
+       "rep contigs, against a budget of 25"
+      ],
+      [
+       "101/101",
+       "genomes routed"
+      ],
+      [
+       "0",
+       "misrouted"
+      ],
+      [
+       "45 bits",
+       "best hit from any other module"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "All four species contribute references, including Melnik, whose deposits are partial at both ends and carry no complete CDS. A reference only has to be a BLASTn subject, so a partial genome can still route its relatives even when it cannot itself be fully annotated."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "65 genomes carry calls; 19 carry two complete, distinct segments.",
+   "blocks": [
+    {
+     "type": "bars",
+     "unit": "",
+     "rows": [
+      [
+       "A",
+       "19",
+       100.0,
+       "19 of 19 complete genomes"
+      ],
+      [
+       "CP",
+       "19",
+       100.0,
+       "19"
+      ],
+      [
+       "CP-delta",
+       "19",
+       100.0,
+       "19 \u2014 the frameshift product"
+      ],
+      [
+       "delta",
+       "19",
+       100.0,
+       "19"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<b>CP-delta is called on every complete genome in the panel.</b> That number cannot come from the flat feature table, which has no representation for a special feature at all \u2014 it comes from the full GTO pipeline, which runs the transcript-edit caller. A module with a frameshift product scored from the feature table would report that product as simply absent, with nothing to flag it."
+    },
+    {
+     "type": "prose",
+     "html": "Across all 65 genomes carrying any call, the replicase reaches 75% and the RNA2 products 77%, the shortfall being single-segment deposits that cannot carry the other segment's genes."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "Coordinates against the deposited record, including the non-AUG start.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Orsay virus RNA2 (HM030971) is called at exactly the coordinates deposited, including the start codon that is not a start codon:"
+    },
+    {
+     "type": "pre",
+     "text": "  CP      89-1264    391 aa    begins at the AAC codon, no AUG upstream\n  delta 1345-2385    346 aa    begins at its own ATG\n\n  both exactly as annotated on HM030971.2"
+    },
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "19",
+       "complete held-out genomes"
+      ],
+      [
+       "19",
+       "good"
+      ],
+      [
+       "0",
+       "poor"
+      ],
+      [
+       "0",
+       "duplicate calls"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Every nesting reported is declared architecture: the capsid and free delta both sit inside the fusion, because the fusion <i>is</i> the capsid plus a frameshift plus delta. <code>qc_cross_feature.py</code> reports them as 100%-identical collisions, which is true by construction; <code>audit_bins.py</code>, which accepts a declaration, reads <b>Unresolved: 0</b> with those pairs declared. The fusion itself has no profile, so there is no profile for the capsid to compete with."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Two real limits, one of them a direct consequence of how the deposits were made.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<b>1. Santeuil and Melnik RNA2 deposits are 5\u2032-truncated, and are excluded from the capsid collection.</b> Their contigs begin <i>inside</i> the capsid gene, so the encoded proteins start at Lys rather than the Edman-verified Asn \u2014 22 of 50 capsid deposits. Training a profile on them would place the capsid N-terminus 15 residues late in every genome it called. They are excluded rather than trimmed, which costs Santeuil representation in that one feature; its frameshift references are unaffected, because a reference only has to span the slip site."
+    },
+    {
+     "type": "prose",
+     "html": "<b>2. The non-AUG start is annotated as a fact, not explained as a mechanism.</b> The 2014 paper floats an upstream UUG at nt 56\u201358 followed by proteolysis, then argues against it \u2014 the UUG \u201clacks a strong initiation context\u201d and Santeuil has an in-frame stop five codons upstream \u2014 and prefers initiation directly at the NKNNT site \u201cvia some unknown mechanism\u201d. The module records the verified N-terminus and claims nothing about how the ribosome gets there."
+    },
+    {
+     "type": "prose",
+     "html": "<b>3. Melnik nodavirus has no complete CDS and no RefSeq</b> (MK774657\u2013MK774660, two isolates, both ends open). It contributes a routing reference and two frameshift references, and it will not produce a complete annotation from the records that exist."
+    },
+    {
+     "type": "prose",
+     "html": "<b>A trap defused rather than a limit.</b> Santeuil's RefSeq NC_015070.1 labels the <i>fusion</i> <code>protein delta</code> and gives the <i>capsid</i> a <code>/note=\"protein A\"</code>. So one string covers both a 765 aa fusion and a ~346 aa free protein, and <code>protein A</code> appears on an RNA2 capsid. Length routing separates the first; <code>protein A</code> binds nothing in this module and is left to the homology rescue."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "Genome quality from the full GTO pipeline, which is the only path that sees the frameshift.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "19",
+       "complete held-out genomes"
+      ],
+      [
+       "19",
+       "good (100%)"
+      ],
+      [
+       "0",
+       "poor"
+      ],
+      [
+       "3",
+       "essential features"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "A, CP and DELTA carry <code>copy_num</code>. <b>CP_DELTA deliberately does not</b>, and never can: a special feature is emitted by a different program from the one that scores genome quality, so marking it essential would flag genomes on the basis of a measurement the quality step never makes."
+    },
+    {
+     "type": "prose",
+     "html": "<b>One apparent miss was an artefact of merging.</b> Santeuil <code>977913.15</code> appeared to lack the capsid, the fusion and delta \u2014 but it is MN131015 + MN131016, <b>both 2,896 nt and both the polymerase</b>, merged into a 5,792 nt \u201cgenome\u201d with no capsid segment at all. It would have withheld <code>copy_num</code> from three features on the strength of an artefact. A length window cannot catch it, because this module's two segment windows are 2896\u20133628 and 2525\u20132937, so a pair of 2,896 nt polymerases satisfies both. Each contig is now assigned to a segment by homology to the module's own collections."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "Four annotation strings, two of them new, across four species.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "7 \u2192 3",
+       "distinct strings at equal depth"
+      ],
+      [
+       "2.3\u00d7",
+       "collapse"
+      ],
+      [
+       "89",
+       "proteins compared"
+      ],
+      [
+       "64",
+       "genomes annotated by both"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The collapse ratio is the lowest of the four modules, and for a good reason: this group was sequenced by a small number of laboratories over a short period, so its source vocabulary is already fairly disciplined. The fusion protein still arrives under two names \u2014 <code>alpha-delta fusion protein</code> and <code>capsid-delta fusion protein</code> \u2014 because submitters disagree about whether to call the capsid alpha."
+    },
+    {
+     "type": "prose",
+     "html": "Two strings are new to the LowVan vocabulary: <code>Capsid-delta fusion protein</code> and <code>Nonlytic egress protein delta</code>. The second names a function the literature establishes directly (PMID 29743360) rather than falling back on an uncharacterized form, and the first describes what the protein is rather than how it is made."
+    }
+   ]
+  }
+ ],
+ "source_note": "Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure here is reproducible from the Le_Blanc_nodavirus working directory; the decisions behind them are in <code>NODAVIRIDAE_BUILD_NOTES.md</code> and the literature behind those in <code>LITERATURE_SURVEY.md</code>. Every citation sits in <code>PMID_claude_generated</code> and awaits a curator's read."
+}

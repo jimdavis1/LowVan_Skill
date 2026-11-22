@@ -1,0 +1,17 @@
+[
+ {"name": "protein A (RdRp)", "pattern": "protein\\s+a\\b|rna[\\s-]?dep|rdrp|polymerase",
+  "note": "RNA1 replicase, 981-983 aa. Carries mitochondrial targeting signals (GGNNV aa 215-255, PMID 15163743; AHNV aa 1-40 and 225-246, PMID 17602779). No cleavage products described.",
+  "source": "PMID 10580064"},
+ {"name": "B1", "pattern": "\\bb1\\b|protein\\s+b1",
+  "note": "111 aa (336 nt gene) in RGNNV, in frame with protein A and sharing its stop, from sgRNA3. An anti-necrotic death factor. NO START CODON IS PUBLISHED and no RefSeq annotates a B1 CDS, so this collection is extracted from genomes under a structural gate.",
+  "source": "PMID 19136133"},
+ {"name": "B2", "pattern": "\\bb2\\b|protein\\s+b2|protein\\s+b\\b",
+  "note": "75 aa, +1 frame relative to protein A, from sgRNA3, which begins at RNA1 nt 2730 by premature termination rather than splicing. RNAi antagonist and necrotic death factor.",
+  "source": "PMID 16186236"},
+ {"name": "coat protein", "pattern": "coat|capsid|\\bcp\\b",
+  "note": "338-340 aa, a single UNCLEAVED chain. The RNA2 ORF carries the catalytic D-75 residue but lacks the autocatalytic cleavage site, so there is no alpha/beta/gamma maturation in this genus.",
+  "source": "PMID 9672600"},
+ {"name": "capsid beta/gamma maturation products", "pattern": "\\bbeta\\b|\\bgamma\\b",
+  "note": "DELIBERATELY ABSENT. Betanodavirus CP is not proteolytically cleaved (PMID 9672600), and the T=3 crystal structure is built from the intact 338-residue chain (PMID 26491970). ABSENT here is the correct and expected result: it confirms the alphanodavirus cleavage rule has not leaked into this module.",
+  "source": "PMID 26491970"}
+]

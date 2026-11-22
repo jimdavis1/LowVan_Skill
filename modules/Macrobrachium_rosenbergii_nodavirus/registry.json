@@ -1,0 +1,72 @@
+{
+ "Macrobrachium_rosenbergii_nodavirus": {
+  "features": [
+   {
+    "key": "A",
+    "anno": "RNA-dependent RNA polymerase",
+    "gene": "A",
+    "ftype": "CDS",
+    "segment": "Protein A Segment",
+    "bit": 60,
+    "minl": 971,
+    "maxl": 1107,
+    "pmid": null,
+    "n": 16,
+    "called": 16,
+    "n_inrange": 16,
+    "called_inrange": 16,
+    "pssms": [
+     "Macrobrachium_rosenbergii_nodavirus.A.1.pssm",
+     "Macrobrachium_rosenbergii_nodavirus.A.2.pssm",
+     "Macrobrachium_rosenbergii_nodavirus.A.3.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "B2",
+    "anno": "Non-structural protein B2",
+    "gene": "B2",
+    "ftype": "CDS",
+    "segment": "Protein A Segment",
+    "bit": 30,
+    "minl": 123,
+    "maxl": 140,
+    "pmid": null,
+    "n": 16,
+    "called": 16,
+    "n_inrange": 16,
+    "called_inrange": 16,
+    "pssms": [
+     "Macrobrachium_rosenbergii_nodavirus.B2.1.pssm",
+     "Macrobrachium_rosenbergii_nodavirus.B2.2.pssm",
+     "Macrobrachium_rosenbergii_nodavirus.B2.3.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   },
+   {
+    "key": "CP",
+    "anno": "Capsid protein",
+    "gene": "CP",
+    "ftype": "CDS",
+    "segment": "Capsid Protein Segment",
+    "bit": 80,
+    "minl": 345,
+    "maxl": 463,
+    "pmid": null,
+    "n": 25,
+    "called": 25,
+    "n_inrange": 25,
+    "called_inrange": 25,
+    "pssms": [
+     "Macrobrachium_rosenbergii_nodavirus.CP.1.pssm",
+     "Macrobrachium_rosenbergii_nodavirus.CP.2.pssm",
+     "Macrobrachium_rosenbergii_nodavirus.CP.3.pssm"
+    ],
+    "nondefault": true,
+    "status": "built"
+   }
+  ]
+ }
+}

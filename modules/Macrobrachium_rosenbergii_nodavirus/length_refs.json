@@ -1,0 +1,8 @@
+{
+  "A": {"min": 1033, "max": 1045, "pmid": "32659308",
+        "note": "RdRp. CMNV 1043 aa stated in PMID 32659308; MrNV 1045 and PvNV 1033 are RefSeq CDS lengths, the MrNV paper PMID 23318596 reporting only a 1034 aa partial"},
+  "B2": {"min": 131, "max": 133, "pmid": "23318596",
+        "note": "Overlapping-frame ORF at the 3' end of protein A. MrNV 133 (PMID 23318596), CMNV 132 (PMID 32659308), PvNV 131 (RefSeq-only). NO subgenomic RNA has been demonstrated for any of these three viruses, and RNAi-suppressor activity has NOT been shown for any of them, so the product is annotated B2 protein and no function is claimed"},
+  "CP": {"min": 368, "max": 437, "pmid": "30346944",
+        "note": "Capsid protein, a single UNCLEAVED chain with no gamma peptide (PMID 30346944; virion capsid is one 43 kDa polypeptide, PMID 15660790). GENUINELY BIMODAL BY SPECIES: MrNV 371 (PMIDs 23318596, 30346944), PvNV 368 (RefSeq-only), CMNV 437 (PMID 32659308). The Arg26 cut reported in PMID 34445426 is an E. coli cysteine-protease artefact of recombinant expression, blocked by E-64, and is not modelled"}
+}
