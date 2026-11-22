@@ -1386,3 +1386,38 @@ column in every binning rule:
 scored this exact panel, so `qc/panel_eval_from_quality.py` reads the six
 columns out of `Quality_GTOs/` instead. Cross-check: it reports 569 genomes
 with no flag of any kind, and the quality model independently reports 569 Good.
+
+## Status at close -- 21 November 2026
+
+Complete. Nothing is mid-flight; no background job is running.
+
+| | |
+|---|---|
+| modules | `Arteriviridae` (27 features, 417 PSSMs, 16 essential), `Simarterivirinae` (14 / 124 / 9) |
+| coverage | 612 exemplars, 612 routed, 0 unrouted, 569 Good / 43 Poor; simian 24 / 24 / 0, 20 Good |
+| held out | 553 of 587 = 94.2%, higher than the 93.0% whole-panel number because only 16 of the 25 references score Good |
+| repo | `jimdavis1/LowVan_Skill` `main` at `bf1b7ae5`, push verified by remote ref |
+| pages | 12 live artifacts (4 each for Arteriviridae, Simarterivirinae, Birnaviridae), indexed in `ARTIFACTS.md` |
+
+Build tree is `~/lowvan_scratch/arteri` and is NOT in the repo; it holds the
+collections, alignments, eval runs and the `qc/` scripts. The shipped copy of
+each module is `kit-verify/modules/<Module>/`.
+
+Three scripts written during this build live in `qc/` and are also copied into
+the kit: `regen_coverage_json.py` (re-derive a coverage json from GTOs on disk
+without re-annotating), `panel_eval_from_quality.py`, `add_genome_map_figure.py`.
+
+Two untracked backups are left in the kit on purpose:
+`evaluate/evaluate_coverage.py.bak_seg` and `skill/scripts/gen_facts.py.bak_shadow`.
+
+**The one open question, for whenever it is wanted:** the module-derivation
+bug fixed in `evaluate_coverage.py` was silent on every module declaring
+`special: transcript_edit` or `special: splice`, so those modules' published
+coverage numbers understate routing. Arteriviridae is the first module here
+with four such features, which is why it surfaced now. `regen_coverage_json.py`
+answers it per module in minutes, without re-annotating.
+
+**Deliberately unrepaired**, all argued above: the three Simarterivirinae
+cassette collisions (`scan_to_met_start` left alone), `ORF1ATF`/`ORF1AN` at
+~70%, Zealarterivirinae keeping `copy_num` so its gap stays visible, and
+`28344.39812` dropped as an outlier.
