@@ -97,7 +97,7 @@ unless (%true_len)
 	exit 0;
 }
 
-my (@to_delete, $n_folded, $n_dup, $n_over);
+my (@to_delete, $n_folded, $n_dup, $n_over, $n_contained);
 
 #  CHOOSE ONE INSTANCE PER FEATURE, BEFORE FOLDING ANYTHING.
 #
@@ -191,6 +191,77 @@ for my $feat (@{$genome_in->{features} || []})
 	$n_folded++ if $wrapped;
 }
 
+#  CONTAINMENT: the partial call that the whole one swallows.
+#
+#  Doubling lets a gene across the origin be found whole, but it does not stop
+#  the search ALSO finding the leftover piece on its own, and that piece is a
+#  legitimate hit in its own right -- it clears bit_cutoff, it translates, and
+#  nothing above this point has any reason to doubt it.  On the hepatitis B
+#  reference NC_003977.2 the surface ORF produced both the correct
+#  join(2850..3182,1..837) and a bare 1..837, which is the same protein's last
+#  279 residues called a second time.  Grouping by where the feature starts
+#  cannot catch it: the two copies start in different places, because one of
+#  them is not a copy, it is a fragment.
+#
+#  So, last of all and on the FOLDED coordinates, drop any feature whose bases
+#  are wholly inside another call of the same type and function on the same
+#  strand.  Containment is the test rather than overlap, because overlap is
+#  ordinary in this family -- every hepadnavirus gene overlaps another -- while
+#  one call of a protein sitting entirely inside another call of the SAME
+#  protein is never anything but a duplicate.
+{
+	my %by;
+	for my $feat (@{$genome_in->{features} || []})
+	{
+		my $loc = $feat->{location} or next;
+		next unless ref $loc eq 'ARRAY' && @$loc;
+		next unless $true_len{$loc->[0][0]};
+		next if $dropped{$feat->{id} // ''};
+
+		my %pos;
+		for my $p (@$loc)
+		{
+			my ($c, $st, $sd, $ln) = @$p;
+			if (($sd // '+') eq '-') { $pos{$_} = 1 for ($st - $ln + 1) .. $st }
+			else                     { $pos{$_} = 1 for $st .. ($st + $ln - 1) }
+		}
+		my $key = join("|", $feat->{type} // '', $loc->[0][0],
+		                    $loc->[0][2] // '', $feat->{function} // '');
+		push @{$by{$key}}, [$feat, \%pos, scalar keys %pos];
+	}
+
+	for my $key (sort keys %by)
+	{
+		my @g = @{$by{$key}};
+		next if @g < 2;
+		for my $i (0 .. $#g)
+		{
+			my $fid = $g[$i][0]{id} // '';
+			next if $dropped{$fid};
+			for my $j (0 .. $#g)
+			{
+				next if $i == $j || $dropped{$g[$j][0]{id} // ''};
+				next unless $g[$j][2] > $g[$i][2];      # only a BIGGER call can contain
+				my $inside = 1;
+				for my $p (keys %{$g[$i][1]})
+				{
+					next if $g[$j][1]{$p};
+					$inside = 0;
+					last;
+				}
+				next unless $inside;
+				push @to_delete, $fid;
+				$dropped{$fid} = 1;
+				$n_contained++;
+				warn "$fid ($g[$i][0]{function}) lies wholly inside a longer call of ",
+				     "the same feature; dropped as the leftover piece of a gene the ",
+				     "doubled contig recovered whole\n";
+				last;
+			}
+		}
+	}
+}
+
 for my $fid (@to_delete)
 {
 	if ($genome_in->can('delete_feature')) { $genome_in->delete_feature($fid); }
@@ -214,7 +285,8 @@ unless ($opt->keep_doubled)
 print STDERR "Circular fold: ", scalar(keys %true_len), " contig(s); ",
              ($n_folded // 0), " feature(s) folded across the origin; ",
              ($n_dup // 0), " duplicate(s) removed; ",
-             ($n_over // 0), " over-length artifact(s) dropped\n";
+             ($n_over // 0), " over-length artifact(s) dropped; ",
+             ($n_contained // 0), " contained partial(s) dropped\n";
 
 $genome_in->destroy_to_file($opt->output);
 
