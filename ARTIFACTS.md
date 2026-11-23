@@ -28,6 +28,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Avastrovirus** | [live](https://claude.ai/artifact/VrWfP1iFNxZT5JCJBgHH5w) | [live](https://claude.ai/artifact/6Jpsu5giVraWnVab27PjS8) | [live](https://claude.ai/artifact/RcW23Q2inLy9B7bfVVFBK7) | [live](https://claude.ai/artifact/5RSkHzZqkSbdaRKMzHrNZM) | — |
 | **Aviadenovirus** | [src only](reports/aviadenovirus-string-collapse.html) | [src only](reports/aviadenovirus-pssm-registry.html) | [src only](reports/aviadenovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/9h1S1c4RPid8rcPjHucwtk) | [src only](reports/aviadenovirus-genome-map.html) |
 | **Avian Orthoreovirus** | [live](https://claude.ai/artifact/2CfEd31Y8bvE6jVxVWBnQ1) | [live](https://claude.ai/artifact/GaQucYQdx9YJ1cPotbhr1V) | [live](https://claude.ai/artifact/AsPEXfHmr2noPAraHssXbS) | [live](https://claude.ai/artifact/2bSDj7BTvk8cuWeLGVdaEi) | — |
+| **Avihepadnavirus** | [live](https://claude.ai/artifact/DedsJecMLtThCNSifQHyr3) | [live](https://claude.ai/artifact/4XfY95bQj3NwSdrEkGWidE) | [live](https://claude.ai/artifact/AEgQkNu8g9q9e5hE496f37) | [live](https://claude.ai/artifact/H1G8vj4VHeFHBjaD2hSz5C) | [src only](reports/avihepadnavirus-genome-map.html) |
 | **Avihepatovirus** | [live](https://claude.ai/artifact/6RHPEZykKvhFBP9wrrH1qU) | [live](https://claude.ai/artifact/JFVvSbRmU1Fv6nq7Wqi7gC) | [live](https://claude.ai/artifact/P3wF6BgumacJUGYqZ4v7X8) | [live](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) | — |
 | **Barthadenovirus** | [src only](reports/barthadenovirus-string-collapse.html) | [src only](reports/barthadenovirus-pssm-registry.html) | [src only](reports/barthadenovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/9shXBryhfpqZGUzPBsDjJR) | [src only](reports/barthadenovirus-genome-map.html) |
 | **Bavovirus** | [live](https://claude.ai/artifact/VRpn8EkqAkz2sMjzYFEDS9) | [live](https://claude.ai/artifact/RqkxTXZnGNWALpiyXz7t9d) | [live](https://claude.ai/artifact/RqWLqqQPpCtJC7ZHpPxPxZ) | [live](https://claude.ai/artifact/88JpWMU5nBSfQXczr3X2ZX) | — |
@@ -74,6 +75,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Okavirus** | [live](https://claude.ai/artifact/RKNvVrHuJyqtL63buXY65s) | [live](https://claude.ai/artifact/CfPZkmHrBQmpqDg8UgNKtr) | [live](https://claude.ai/artifact/HwqTaFW2dhYuVJcvGQXq1U) | [live](https://claude.ai/artifact/CUfo9HcbNriTFmtfymywyy) | [src only](reports/okavirus-genome-map.html) |
 | **Orbivirus** | [live](https://claude.ai/artifact/9nzf4UVDgZbLaGG6JHAbmy) | [live](https://claude.ai/artifact/LFgehfnnk7LAVmPsi3YFFL) | [live](https://claude.ai/artifact/2YqPhZurQTMYVv9oFWUfMP) | [live](https://claude.ai/artifact/VDx2X7pCFMv8azLSUjsnqW) | — |
 | **Orthoflavivirus** | [live](https://claude.ai/artifact/MFXjT53roYWz1ymQkrh1ur) | [live](https://claude.ai/artifact/AkjDvmo28d4bVZCndjymXP) | [live](https://claude.ai/artifact/9c5gUBxFf4jHNfYizWHw7m) | [live](https://claude.ai/artifact/RokLyf9pujJnw37CAri2DR) | — |
+| **Orthohepadnavirus** | [live](https://claude.ai/artifact/P2wNPGuDaFzPmoLPxWEz7E) | [live](https://claude.ai/artifact/WBZ6gMhZmjdLi4rjTEH6yQ) | [live](https://claude.ai/artifact/MDap5Qy7hQomabuketWN2S) | [live](https://claude.ai/artifact/4BoA4AoWy3T4diXEtfHZSR) | [src only](reports/orthohepadnavirus-genome-map.html) |
 | **Parechovirus** | [live](https://claude.ai/artifact/EUx6FLSssTPNRWJ7FcDyL6) | [live](https://claude.ai/artifact/GYiXCX6ammFZUqqK7MbNWs) | [live](https://claude.ai/artifact/6xMJKTWE3i5FXH8yFXBUBf) | [live](https://claude.ai/artifact/V6xRs6ePghUPkaTX1SyuBL) | — |
 | **Pegivirus** | [live](https://claude.ai/artifact/K2iJfd8E9rtDErhCeDHWix) | [live](https://claude.ai/artifact/GhMTLt7Rd19Ek3mJL7JFWr) | [live](https://claude.ai/artifact/1KUB1A9tKmxJaEHKZbWzYM) | [live](https://claude.ai/artifact/Gy9STnMecUF9MaByUNmugx) | — |
 | **Pestiviridae** | [live](https://claude.ai/artifact/2wDv9SfmPrtHWSch4gek5c) | [live](https://claude.ai/artifact/9UrwQLi5mBSkVmB4UrtLJm) | [live](https://claude.ai/artifact/KcbRvV3YqDZWutCDNEWkxh) | [live](https://claude.ai/artifact/LEF7bVuNmTvA8vs94ptF26) | — |
@@ -240,6 +242,17 @@ Not made: genome map.
 | Avian Orthoreovirus PSSM Registry | [open](https://claude.ai/artifact/GaQucYQdx9YJ1cPotbhr1V) | [source](reports/avianorthoreovirus-pssm-registry.html) | 2026-10-17 |
 | Avian Orthoreovirus String Collapse | [open](https://claude.ai/artifact/2CfEd31Y8bvE6jVxVWBnQ1) | [source](reports/avianorthoreovirus-string-collapse.html) | 2026-10-17 |
 | Avian Orthoreovirus Vocabulary Saturation | [open](https://claude.ai/artifact/AsPEXfHmr2noPAraHssXbS) | [source](reports/avianorthoreovirus-vocabulary-saturation.html) | 2026-10-17 |
+
+Not made: genome map.
+
+### Avihepadnavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Avihepadnavirus Coverage Audit | [open](https://claude.ai/artifact/H1G8vj4VHeFHBjaD2hSz5C) | [source](reports/avihepadnavirus-coverage-audit.html) | 2026-11-23 |
+| Avihepadnavirus PSSM Registry | [open](https://claude.ai/artifact/4XfY95bQj3NwSdrEkGWidE) | [source](reports/avihepadnavirus-registry.html) | 2026-11-23 |
+| Avihepadnavirus String Collapse | [open](https://claude.ai/artifact/DedsJecMLtThCNSifQHyr3) | [source](reports/avihepadnavirus-collapse.html) | 2026-11-23 |
+| Avihepadnavirus Vocabulary Saturation | [open](https://claude.ai/artifact/AEgQkNu8g9q9e5hE496f37) | [source](reports/avihepadnavirus-saturation.html) | 2026-11-23 |
 
 Not made: genome map.
 
@@ -738,6 +751,17 @@ Not made: genome map.
 | Orthoflavivirus PSSM Registry | [open](https://claude.ai/artifact/AkjDvmo28d4bVZCndjymXP) | [source](reports/orthoflavivirus-pssm-registry.html) | 2026-09-22 |
 | Orthoflavivirus String Collapse | [open](https://claude.ai/artifact/MFXjT53roYWz1ymQkrh1ur) | [source](reports/orthoflavivirus-string-collapse.html) | 2026-09-22 |
 | Orthoflavivirus Vocabulary Saturation | [open](https://claude.ai/artifact/9c5gUBxFf4jHNfYizWHw7m) | [source](reports/orthoflavivirus-vocabulary-saturation.html) | 2026-09-22 |
+
+Not made: genome map.
+
+### Orthohepadnavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Orthohepadnavirus Coverage Audit | [open](https://claude.ai/artifact/4BoA4AoWy3T4diXEtfHZSR) | [source](reports/orthohepadnavirus-coverage-audit.html) | 2026-11-23 |
+| Orthohepadnavirus PSSM Registry | [open](https://claude.ai/artifact/WBZ6gMhZmjdLi4rjTEH6yQ) | [source](reports/orthohepadnavirus-registry.html) | 2026-11-23 |
+| Orthohepadnavirus String Collapse | [open](https://claude.ai/artifact/P2wNPGuDaFzPmoLPxWEz7E) | [source](reports/orthohepadnavirus-collapse.html) | 2026-11-23 |
+| Orthohepadnavirus Vocabulary Saturation | [open](https://claude.ai/artifact/MDap5Qy7hQomabuketWN2S) | [source](reports/orthohepadnavirus-saturation.html) | 2026-11-23 |
 
 Not made: genome map.
 
