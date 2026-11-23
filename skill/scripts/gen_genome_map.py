@@ -211,10 +211,15 @@ ORF_DARK  = ["#3987e5", "#d95926", "#25c48d", "#cfcec5"]
 
 def draw_circular(G, F, a, cid, L, feats, COL):
     """One contig, declared circular, as a ring. Returns (body, width, height)."""
-    CX, R = 360, 186
+    R = 186
     BAND, LANE_STEP = 17, 22
-    TOPPAD = 86                      # legend + origin label
-    CY = TOPPAD + R + 26
+    #  CX, CY and the canvas are set AFTER lane packing, further down. They
+    #  cannot be constants: a forward-strand gene sits at R + lane*LANE_STEP,
+    #  so with five lanes the outermost arc reaches 110 px beyond R and the
+    #  ring's real top is nowhere near CY - R. Fixing CY from R alone put
+    #  Orthohepadnavirus's outer arcs at y=36 and drew them straight over the
+    #  legend's second row at y=31. Nothing below here may call pt() before
+    #  CY is assigned.
 
     def pt(nt, r):
         t = 2 * math.pi * ((nt - 1) % L) / L - math.pi / 2
@@ -256,7 +261,17 @@ def draw_circular(G, F, a, cid, L, feats, COL):
         else:
             ls.append([(f["s"], f["n"])]); f["lane"] = len(ls) - 1
     nout, nin = max(len(lanes["+"]), 1), len(lanes["-"])
-    R_LAB = R + nout * LANE_STEP + 30
+
+    #  ---- the canvas, from the geometry rather than from guesses -----------
+    R_OUT = R + 6 + (nout - 1) * LANE_STEP + BAND      # outermost arc edge
+    R_IN  = R - 6 - max(nin - 1, 0) * LANE_STEP - BAND if nin else R
+    R_ELB = R_OUT + 14                                  # leader elbow
+    LABX  = R_ELB + 30                                  # label column
+    legrows = (len(groups) + 1) // 2
+    LEGH = 11 + legrows * 20 + 16                       # swatches + the note
+    CX = int(LABX + 76)
+    CY = LEGH + 26 + R_OUT                              # 26 for the origin label
+    VBW = CX * 2
 
     body = []
     body.append('<circle cx="%d" cy="%d" r="%d" fill="none" '
@@ -279,10 +294,10 @@ def draw_circular(G, F, a, cid, L, feats, COL):
 
     body.append('<line x1="%d" y1="%.1f" x2="%d" y2="%.1f" stroke="currentColor" '
                 'stroke-width="1.5" stroke-dasharray="4 3"/>'
-                % (CX, CY - R - 30, CX, CY - R + 12))
+                % (CX, CY - R_OUT - 20, CX, CY - R + 12))
     body.append('<text x="%d" y="%.1f" text-anchor="middle" font-size="12" '
                 'fill="currentColor">origin &middot; nt 1</text>'
-                % (CX, CY - R - 38))
+                % (CX, CY - R_OUT - 26))
 
     #  ---- arcs ---------------------------------------------------------------
     placed = []
@@ -344,7 +359,7 @@ def draw_circular(G, F, a, cid, L, feats, COL):
                 col_items[i][4] = col_items[i - 1][4] + MINGAP
         #  Pushing down can run the last one off the bottom; lift the column
         #  back and re-space upward so the gap survives the correction.
-        over = col_items[-1][4] - (CY + R + 36) if col_items else 0
+        over = col_items[-1][4] - (CY + R_OUT + 24) if col_items else 0
         if over > 0:
             for it in col_items:
                 it[4] -= over
@@ -383,7 +398,7 @@ def draw_circular(G, F, a, cid, L, feats, COL):
     for gi, members in enumerate(groups):
         slot = gi if gi < 3 else 3
         names = "/".join(m["sym"] for m in sorted(members, key=lambda m: -m["n"]))
-        lx = 4 + (gi % 2) * 330
+        lx = 4 + (gi % 2) * int(VBW * 0.46)
         yy = ly + (gi // 2) * 20
         leg.append('<rect x="%d" y="%d" width="15" height="11" rx="2" '
                    'style="fill:var(--orf%d)"/>' % (lx, yy - 9, slot))
@@ -392,10 +407,10 @@ def draw_circular(G, F, a, cid, L, feats, COL):
     leg.append('<text x="4" y="%d" font-size="11" fill="currentColor" '
                'opacity="0.7">one colour per reading frame &middot; '
                'outside the ring = forward strand</text>'
-               % (ly + ((len(groups) + 1) // 2) * 20 + 2))
+               % (ly + legrows * 20 - 4))
 
-    H = max(CY + R + max(nin, 1) * LANE_STEP + 46, lab_hi + 40)
-    return leg + body, 720, int(H)
+    H = max(CY + R_OUT + 24, CY + (R - R_IN) + 30, lab_hi + 40)
+    return leg + body, VBW, int(H)
 
 
 def main():
