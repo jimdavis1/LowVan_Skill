@@ -168,17 +168,59 @@ def circ_overlap(s1, n1, s2, n2, L):
     return ((s2 - s1) % L) < n1 or ((s1 - s2) % L) < n2
 
 
+def orf_groups(ring, L):
+    """Group features by the stop codon they share -> one group per reading frame.
+
+    Genes in one frame sharing one stop have the same 3' coordinate, and that
+    is the robust test on a circle: absolute position mod 3 is NOT the frame,
+    because crossing the origin shifts it whenever the replicon length is not
+    a multiple of three. HBV's surface ORF is the case in point -- L at 2850,
+    M at 3174 and S at 157 are one frame, but 3182 % 3 == 2, so their start
+    coordinates fall in two different residue classes. Their ends do not:
+    all three stop at 837.
+    """
+    g = {}
+    for f in ring:
+        end = ((f["s"] + f["n"] - 2) % L) + 1 if f["strand"] == "+" else f["s"]
+        g.setdefault((f["strand"], end), []).append(f)
+    #  Biggest ORF first, so the frames carrying most of the genome take the
+    #  strong hues and a lone accessory gene takes the neutral. Gene count
+    #  ranks first, then nucleotides covered -- without that second term HBV's
+    #  polymerase, one gene over 78% of the circle, ties with X at 465 nt and
+    #  loses on coordinate. Coordinate breaks what is left, so the assignment
+    #  is stable across runs.
+    return sorted(g.values(),
+                  key=lambda m: (-len(m), -sum(f["n"] for f in m), m[0]["s"]))
+
+
+#  Four slots, one per reading frame, validated as a set rather than chosen.
+#  Light: worst all-pairs CVD dE 9.9, worst normal-vision 19.6.
+#  Dark:  worst all-pairs CVD dE 8.7, worst normal-vision 18.7.
+#  (OKLab x100; >=8 CVD target, >=15 normal-vision floor, all 6 pairs in play
+#  because arcs on a ring have no fixed neighbour order.)
+#
+#  Seven hues, one per gene, is what this figure wants and cannot have: at
+#  seven categories no ordering clears the floors -- a light-tint set measured
+#  worst-CVD dE 0.3, and a saturated set 1.1. Identity is carried by the
+#  direct label on every arc, which is required anyway; colour groups the
+#  genes by the frame they are read in, which is the thing a reader cannot
+#  get from the labels.
+ORF_LIGHT = ["#2a78d6", "#eb6834", "#1baf7a", "#c3c2b7"]
+ORF_DARK  = ["#3987e5", "#d95926", "#25c48d", "#cfcec5"]
+
+
 def draw_circular(G, F, a, cid, L, feats, COL):
-    """One contig, declared circular, as a ring. Returns (svg_body, height)."""
-    CX, CY, R = 490, 318, 150
-    BAND, GAP = 13, 5
+    """One contig, declared circular, as a ring. Returns (body, width, height)."""
+    CX, R = 360, 186
+    BAND, LANE_STEP = 17, 22
+    TOPPAD = 86                      # legend + origin label
+    CY = TOPPAD + R + 26
 
     def pt(nt, r):
         t = 2 * math.pi * ((nt - 1) % L) / L - math.pi / 2
         return CX + r * math.cos(t), CY + r * math.sin(t)
 
     def band(s_nt, n_nt, r0, r1):
-        """Annular sector from s_nt running n_nt clockwise, radii r0 < r1."""
         frac = min(n_nt / L, 0.9999)
         big = 1 if frac > 0.5 else 0
         x0o, y0o = pt(s_nt, r1)
@@ -190,63 +232,64 @@ def draw_circular(G, F, a, cid, L, feats, COL):
                 % (x0o, y0o, r1, r1, big, x1o, y1o,
                    x1i, y1i, r0, r0, big, x0i, y0i))
 
-    #  ---- lane packing on the circle, outward for +, inward for - ----------
     ring = []
     for f in feats:
         ps, wrapped = circ_pieces(f["loc"], L)
-        s_nt = ps[0][0]
-        n_nt = sum(hi - lo + 1 for lo, hi in ps)
-        ring.append(dict(f, pieces=ps, wrapped=wrapped, s=s_nt, n=n_nt))
+        ring.append(dict(f, pieces=ps, wrapped=wrapped, s=ps[0][0],
+                         n=sum(hi - lo + 1 for lo, hi in ps)))
 
+    #  ---- colour by reading frame ------------------------------------------
+    groups = orf_groups(ring, L)
+    for gi, members in enumerate(groups):
+        slot = gi if gi < 3 else 3          # never cycle; the rest go neutral
+        for f in members:
+            f["slot"] = slot
+            f["group"] = members
+
+    #  ---- lane packing ------------------------------------------------------
     lanes = {"+": [], "-": []}
     for f in sorted(ring, key=lambda f: -f["n"]):
         ls = lanes[f["strand"]]
         for i, used in enumerate(ls):
             if all(not circ_overlap(f["s"], f["n"], u[0], u[1], L) for u in used):
-                used.append((f["s"], f["n"]))
-                f["lane"] = i
-                break
+                used.append((f["s"], f["n"])); f["lane"] = i; break
         else:
-            ls.append([(f["s"], f["n"])])
-            f["lane"] = len(ls) - 1
+            ls.append([(f["s"], f["n"])]); f["lane"] = len(ls) - 1
+    nout, nin = max(len(lanes["+"]), 1), len(lanes["-"])
+    R_LAB = R + nout * LANE_STEP + 30
 
     body = []
-    #  ---- the backbone ring ------------------------------------------------
     body.append('<circle cx="%d" cy="%d" r="%d" fill="none" '
-                'stroke="currentColor" stroke-width="1.5" opacity="0.55"/>'
+                'stroke="currentColor" stroke-width="1.5" opacity="0.4"/>'
                 % (CX, CY, R))
 
-    #  ---- ticks ------------------------------------------------------------
     step = tick_step(L)
     k = 0
     while k < L:
-        x0, y0 = pt(max(k, 1), R - 4)
-        x1, y1 = pt(max(k, 1), R + 4)
+        x0, y0 = pt(max(k, 1), R - 5); x1, y1 = pt(max(k, 1), R + 5)
         body.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" '
-                    'stroke="currentColor" opacity="0.55"/>' % (x0, y0, x1, y1))
+                    'stroke="currentColor" opacity="0.4"/>' % (x0, y0, x1, y1))
         if k:
-            tx, ty = pt(k, R - 15)
-            body.append('<text x="%.1f" y="%.1f" text-anchor="middle" '
-                        'font-size="9.5" fill="currentColor" opacity="0.75" '
-                        'dy="3">%s</text>'
+            tx, ty = pt(k, R - 17)
+            body.append('<text x="%.1f" y="%.1f" text-anchor="middle" dy="3.5" '
+                        'font-size="11" fill="currentColor" opacity="0.7">%s</text>'
                         % (tx, ty, "%.1f" % (k / 1000.0) if step < 1000
                            else "%d" % (k // 1000)))
         k += step
 
-    #  ---- the origin spoke ---------------------------------------------------
-    body.append('<line x1="%d" y1="%.1f" x2="%d" y2="%.1f" '
-                'stroke="currentColor" stroke-width="1.5" '
-                'stroke-dasharray="3 2" opacity="0.9"/>'
-                % (CX, CY - R - 26, CX, CY - R + 10))
-    body.append('<text x="%d" y="%.1f" text-anchor="middle" font-size="10.5" '
-                'fill="currentColor" opacity="0.85">origin (nt 1)</text>'
-                % (CX, CY - R - 32))
+    body.append('<line x1="%d" y1="%.1f" x2="%d" y2="%.1f" stroke="currentColor" '
+                'stroke-width="1.5" stroke-dasharray="4 3"/>'
+                % (CX, CY - R - 30, CX, CY - R + 12))
+    body.append('<text x="%d" y="%.1f" text-anchor="middle" font-size="12" '
+                'fill="currentColor">origin &middot; nt 1</text>'
+                % (CX, CY - R - 38))
 
-    #  ---- features -----------------------------------------------------------
+    #  ---- arcs ---------------------------------------------------------------
+    placed = []
     for f in sorted(ring, key=lambda f: (f["strand"], f["lane"])):
-        col = COL[f["kind"]]
+        col = "var(--orf%d)" % f["slot"]
         out = f["strand"] == "+"
-        off = GAP + f["lane"] * (BAND + 4)
+        off = 6 + f["lane"] * LANE_STEP
         r0 = (R + off) if out else (R - off - BAND)
         r1 = r0 + BAND
         if f["wrapped"]:
@@ -256,34 +299,97 @@ def draw_circular(G, F, a, cid, L, feats, COL):
             for lo, hi in f["pieces"]:
                 body.append('<path d="%s" style="fill:%s"/>'
                             % (band(lo, hi - lo + 1, r0, r1), col))
-            if len(f["pieces"]) > 1:        # a real splice: tie the exons
+            if len(f["pieces"]) > 1:
                 rm = (r0 + r1) / 2
                 for (l0, h0), (l1, _) in zip(f["pieces"], f["pieces"][1:]):
-                    body.append('<path d="%s" fill="none" stroke="%s" '
-                                'stroke-width="1"/>'
-                                % (band(h0, l1 - h0, rm, rm).split(" L")[0], col))
-        #  3' end tick, so strand is readable without reading the radius
+                    p0 = pt(h0, rm); p1 = pt(l1, rm)
+                    body.append('<path d="M%.1f,%.1f A%.1f,%.1f 0 0 1 %.1f,%.1f" '
+                                'fill="none" stroke="%s" stroke-width="1.2"/>'
+                                % (p0[0], p0[1], rm, rm, p1[0], p1[1], col))
         end = (f["s"] + f["n"]) if out else f["s"]
-        ex0, ey0 = pt(end, r0 - 2)
-        ex1, ey1 = pt(end, r1 + 2)
+        ex0, ey0 = pt(end, r0 - 3); ex1, ey1 = pt(end, r1 + 3)
         body.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" '
-                    'stroke="%s" stroke-width="2"/>' % (ex0, ey0, ex1, ey1, col))
+                    'stroke="%s" stroke-width="2.5"/>' % (ex0, ey0, ex1, ey1, col))
+        mid = f["s"] + f["n"] / 2.0
+        placed.append((mid, r1 if out else r0, f, col))
 
-        lr = (r1 + 11) if out else (r0 - 6)
-        lx, ly = pt(f["s"] + f["n"] / 2.0, lr)
-        body.append('<text x="%.1f" y="%.1f" text-anchor="middle" dy="3.5" '
-                    'font-size="10.5" fill="currentColor">%s</text>'
-                    % (lx, ly, html.escape(f["sym"])))
+    #  ---- labels outside the ring, on leader lines ---------------------------
+    #  Inside the band the text is small, clipped by the arc ends and sitting on
+    #  a saturated fill; outside it is page ink on the page background, which is
+    #  legible in both themes and needs no contrast compromise from the fill.
+    items = []
+    R_ELB = R + nout * LANE_STEP + 14
+    for mid, rr, f, col in placed:
+        t = 2 * math.pi * ((mid - 1) % L) / L - math.pi / 2
+        ax, ay = pt(mid, rr + 3)
+        ex_, ey_ = pt(mid, R_ELB)
+        right = math.cos(t) >= 0
+        #  The label's y is a COLUMN position, not the elbow's. Taking it
+        #  radially puts a gene at six o'clock a full R_LAB below centre --
+        #  on duck HBV that threw preS and P to y=553 and 572 on a 552-high
+        #  canvas. Clamping to the ring's own vertical extent keeps both
+        #  columns beside the circle, and the leader's last leg takes up the
+        #  slack as a short diagonal.
+        ky = min(max(CY + (R_ELB + 6) * math.sin(t), CY - R + 4), CY + R - 4)
+        items.append([ax, ay, ex_, ey_, ky, right, f, col])
 
-    #  ---- centre caption -----------------------------------------------------
-    body.append('<text x="%d" y="%d" text-anchor="middle" font-size="12" '
+    MINGAP = 20
+    for right in (True, False):
+        col_items = sorted([i for i in items if i[5] == right], key=lambda i: i[4])
+        for i in range(1, len(col_items)):
+            if col_items[i][4] - col_items[i - 1][4] < MINGAP:
+                col_items[i][4] = col_items[i - 1][4] + MINGAP
+        #  Pushing down can run the last one off the bottom; lift the column
+        #  back and re-space upward so the gap survives the correction.
+        over = col_items[-1][4] - (CY + R + 30) if col_items else 0
+        if over > 0:
+            for it in col_items:
+                it[4] -= over
+            for i in range(len(col_items) - 2, -1, -1):
+                if col_items[i + 1][4] - col_items[i][4] < MINGAP:
+                    col_items[i][4] = col_items[i + 1][4] - MINGAP
+
+    lab_lo = min(i[4] for i in items) if items else CY
+    lab_hi = max(i[4] for i in items) if items else CY
+    for ax, ay, ex_, ey_, ky, rt, f, col in items:
+        cx_lab = CX + (R_ELB + 30) * (1 if rt else -1)
+        tx = cx_lab + (7 if rt else -7)
+        body.append('<polyline points="%.1f,%.1f %.1f,%.1f %.1f,%.1f" '
+                    'fill="none" stroke="%s" stroke-width="1.4" opacity="0.9"/>'
+                    % (ax, ay, ex_, ey_, cx_lab, ky, col))
+        body.append('<circle cx="%.1f" cy="%.1f" r="2.8" fill="%s"/>' % (ax, ay, col))
+        body.append('<text x="%.1f" y="%.1f" dy="4" text-anchor="%s" '
+                    'font-size="13.5" font-weight="600" fill="currentColor">%s</text>'
+                    % (tx, ky, "start" if rt else "end", html.escape(f["sym"])))
+        body.append('<text x="%.1f" y="%.1f" dy="16" text-anchor="%s" '
+                    'font-size="10.5" fill="currentColor" opacity="0.65">%d aa</text>'
+                    % (tx, ky, "start" if rt else "end", (f["n"] // 3) - 1))
+
+    body.append('<text x="%d" y="%d" text-anchor="middle" font-size="15" '
                 'font-weight="600" fill="currentColor">%s nt</text>'
-                % (CX, CY - 4, format(L, ",")))
-    body.append('<text x="%d" y="%d" text-anchor="middle" font-size="10.5" '
-                'fill="currentColor" opacity="0.75">circular</text>'
-                % (CX, CY + 12))
-    nl = max(len(lanes["+"]), 1)
-    return body, int(CY + R + GAP + nl * (BAND + 4) + 46)
+                % (CX, CY - 2, format(L, ",")))
+    body.append('<text x="%d" y="%d" text-anchor="middle" font-size="11.5" '
+                'fill="currentColor" opacity="0.7">circular</text>'
+                % (CX, CY + 16))
+
+    #  ---- legend: one row per reading frame ----------------------------------
+    leg, ly = [], 20
+    for gi, members in enumerate(groups):
+        slot = gi if gi < 3 else 3
+        names = "/".join(m["sym"] for m in sorted(members, key=lambda m: -m["n"]))
+        lx = 4 + (gi % 2) * 330
+        yy = ly + (gi // 2) * 20
+        leg.append('<rect x="%d" y="%d" width="15" height="11" rx="2" '
+                   'style="fill:var(--orf%d)"/>' % (lx, yy - 9, slot))
+        leg.append('<text x="%d" y="%d" font-size="12" fill="currentColor">'
+                   '%s</text>' % (lx + 21, yy, html.escape(names)))
+    leg.append('<text x="4" y="%d" font-size="11" fill="currentColor" '
+               'opacity="0.7">one colour per reading frame &middot; '
+               'outside the ring = forward strand</text>'
+               % (ly + ((len(groups) + 1) // 2) * 20 + 2))
+
+    H = max(CY + R + max(nin, 1) * LANE_STEP + 46, lab_hi + 34)
+    return leg + body, 720, int(H)
 
 
 def main():
@@ -400,10 +506,9 @@ def main():
     body, y = [], TOP
     if is_circ:
         cid, L = contigs[0]
-        body, H = draw_circular(G, F, a, cid, L, per[cid][0], COL)
-        contigs_drawn_circular = True
+        body, VBW, H = draw_circular(G, F, a, cid, L, per[cid][0], COL)
     else:
-        contigs_drawn_circular = False
+        VBW = 980
     for cid, L in ([] if is_circ else contigs):
         feats, npl, nml = per[cid]
         ax_y = y + npl * LANE + 20
@@ -453,8 +558,8 @@ def main():
         H = y
 
     leg, lx = [], 4
-    for kind, label in (("ess", "essential CDS"), ("oth", "other called CDS"),
-                        ("mat", "mature peptide")):
+    for kind, label in ([] if is_circ else (("ess", "essential CDS"), ("oth", "other called CDS"),
+                        ("mat", "mature peptide"))):
         leg.append('<rect x="%d" y="14" width="18" height="10" style="fill:%s"/>'
                    % (lx, COL[kind]))
         leg.append('<text x="%d" y="23" font-size="11" fill="currentColor">%s</text>'
@@ -483,7 +588,9 @@ def main():
                  if circ_pieces(f["loc"], contigs[0][1])[1])
         where = ("Drawn to scale from this genome&rsquo;s own calls; "
                  "forward-strand genes outside the ring, reverse-strand inside, "
-                 "a tick at each 3&prime; end. ")
+                 "a tick at each 3&prime; end. Colour marks the reading frame, "
+                 "not the gene &mdash; genes sharing a stop codon share a hue, "
+                 "so the nested forms are visible as one frame. ")
         where += (("%d gene%s cross%s the origin, each drawn as one unbroken arc "
                    "through it. " % (nw, "" if nw == 1 else "s",
                                      "es" if nw == 1 else ""))
@@ -494,9 +601,26 @@ def main():
         where = ("Drawn to scale from this genome&rsquo;s own calls; "
                  "forward-strand genes above the axis, reverse-strand below.")
 
-    fig = ('<figure><svg viewBox="0 0 980 %d" role="img" aria-label="%s">'
+    #  The four reading-frame colours travel INSIDE the <figure>. The page
+    #  that embeds this defines --built/--muted/--warn and nothing else, and a
+    #  fill referencing an undefined custom property paints nothing -- the
+    #  figure is present in the HTML and invisible on screen, the failure this
+    #  file's docstring already records once. A <style> placed BEFORE the
+    #  <figure> does not survive: gen_coverage_audit.py lifts the figure
+    #  element alone, which drops the block and leaves 32 fills pointing at
+    #  nothing. Measured, not assumed -- the first attempt shipped that way.
+    orfcss = ""
+    if is_circ:
+        L4 = ";".join("--orf%d:%s" % (i, c) for i, c in enumerate(ORF_LIGHT))
+        D4 = ";".join("--orf%d:%s" % (i, c) for i, c in enumerate(ORF_DARK))
+        orfcss = ('<style>.lvmap{%s}'
+                  '@media (prefers-color-scheme:dark){'
+                  ':root:not([data-theme="light"]) .lvmap{%s}}'
+                  ':root[data-theme="dark"] .lvmap{%s}</style>' % (L4, D4, D4))
+
+    fig = ('<figure class="lvmap">' + orfcss + '<svg viewBox="0 0 %d %d" role="img" aria-label="%s">'
            '%s%s</svg><figcaption>%s %s%s</figcaption></figure>'
-           % (H, html.escape(claim), "".join(leg), "".join(body),
+           % (VBW, H, html.escape(claim), "".join(leg), "".join(body),
               html.escape(claim), where, tail))
 
     if a.standalone:
