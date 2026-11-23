@@ -302,6 +302,109 @@ my $best_rep_name  = $options->{$best_virus_match}->{close_genomes}->{$best_rep}
 
 my $virus = $best_virus_match;	
 print STDERR "-----------------------\nMatching $virus\tBit = $best_contig_bit\n-----------------------\n"; 
+#
+#  CIRCULAR REPLICONS
+#  ------------------
+#  A circular genome is deposited as the loop cut at one arbitrary point, so a
+#  CDS lying across that cut is split in two: part at the end of the contig,
+#  part at the start. tblastn then sees two partial hits, neither of which
+#  clears bit_cutoff, and the feature is lost. GenBank writes these as a join
+#  -- HM153811, hepatitis B polymerase, is join(2307..3215,1..1623).
+#
+#  Measured on 400 near-full-length HBV deposits (17 Oct 2026): polymerase
+#  wraps the origin in 97.2%, large envelope in 100%. HBV coding density is
+#  98.1% and the longest non-coding window is 62 nt, so there is no good place
+#  to cut and no better set of records to pick. The wrap is intrinsic.
+#
+#  The fix is to search a DOUBLED contig. A feature crossing the cut then
+#  appears whole, in order, in the middle of the doubled sequence, and every
+#  step below -- scan_to_stop_codon, scan_to_met_start, DNA_subseq,
+#  translation -- works unchanged, because nothing about the doubled sequence
+#  is circular any more. Coordinates past the true length are folded back into
+#  two-part join locations by fold_circular_features.pl, the last stage of the
+#  GTO pipeline. The flat feature table this script writes stays in DOUBLED
+#  coordinates: it has one start and one stop per row and cannot express a
+#  join, and it does not need to.
+#
+#  This can only happen HERE, after routing. replicon_geometry is a property
+#  of the module and the module is not known until the blastn above has run,
+#  which is also why the BLAST database has to be rebuilt.
+#
+#  TWO GATES, and the second is the one doing the real safety work:
+#    1. EVERY segment of the module must declare replicon_geometry circular.
+#       A module mixing circular and linear segments is refused rather than
+#       guessed at, because this script never assigns contigs to named
+#       segments -- that happens in viral_genome_quality.pl -- so there is
+#       nothing here that could tell which contig to double.
+#    2. The contig's length must fall inside the module's declared segment
+#       bounds. A PARTIAL CONTIG IS NOT A CIRCLE: doubling a fragment creates
+#       a junction that never existed in the virus and invites a wholly
+#       invented feature across it.
+#
+my %circular_len;
+{
+	my $segs = $options->{$virus}->{segments};
+	if (ref $segs eq 'HASH' && keys %$segs)
+	{
+		my @geo    = map { lc($segs->{$_}->{replicon_geometry} // 'linear') } sort keys %$segs;
+		my $n_circ = grep { $_ eq 'circular' } @geo;
+
+		if ($n_circ && $n_circ < @geo)
+		{
+			warn "$virus mixes circular and linear segments; NOT doubling any contig. ",
+			     "Per-contig segment assignment does not exist in this script, so there ",
+			     "is no way to tell which contig is the circular one.\n";
+		}
+		elsif ($n_circ)
+		{
+			#  Union of the declared bounds. For a monopartite replicon -- which
+			#  is every circular family in scope -- this is just that segment's
+			#  own min_len/max_len.
+			my ($seg_min, $seg_max);
+			for my $s (values %$segs)
+			{
+				next unless ref $s eq 'HASH';
+				$seg_min = $s->{min_len} if $s->{min_len} && (!defined $seg_min || $s->{min_len} < $seg_min);
+				$seg_max = $s->{max_len} if $s->{max_len} && (!defined $seg_max || $s->{max_len} > $seg_max);
+			}
+
+			for my $c (@contig_order)
+			{
+				my $clen = length $contigH{$c};
+
+				if (defined $seg_min && $clen < $seg_min)
+				{
+					warn "Contig $c is $clen nt, below $virus segment min_len $seg_min -- ",
+					     "treating as a partial contig, not a circle; not doubling it.\n";
+					next;
+				}
+				if (defined $seg_max && $clen > $seg_max)
+				{
+					#  A head-to-tail dimer lands here: HBV is commonly deposited
+					#  as a 1.3-mer or 2-mer construct, and doubling one would
+					#  report every gene twice.
+					warn "Contig $c is $clen nt, above $virus segment max_len $seg_max -- ",
+					     "not a single circle (a tandem multimer looks like this); not doubling it.\n";
+					next;
+				}
+
+				$circular_len{$c} = $clen;
+				$contigH{$c} .= $contigH{$c};
+				print STDERR "Circular replicon: doubled contig $c for annotation ",
+				             "($clen nt -> ", length($contigH{$c}), " nt)\n";
+			}
+
+			if (%circular_len)
+			{
+				open (my $DF, ">", $s_file) or die "Cannot rewrite $s_file with doubled contigs: $!";
+				print $DF ">$_\n$contigH{$_}\n" for @contig_order;
+				close $DF;
+				system "makeblastdb -dbtype nucl -in $s_file >/dev/null";
+			}
+		}
+	}
+}
+
 opendir (DIR, "$pdir/$virus.pssms");
 my @pssm_dirs = sort grep{$_ !~ /^\./}readdir(DIR);  # reads the directory of PSSM dirs (sorted: gist #19)
 closedir(DIR);
@@ -676,7 +779,25 @@ foreach (@contig_order)
 	my @sorted =  sort { $a->[1] <=> $b->[1] } @features;
 	foreach(@sorted)
 	{
-		$count ++; 
+		#  On a doubled contig every real feature appears twice, so a profile
+		#  can also pair the 5' end of one copy with the 3' end of the NEXT --
+		#  the same feature, read as though it spanned a whole genome length.
+		#  A real feature on a circle of length L cannot be longer than L, so
+		#  one comparison removes that entire class of artifact. It is cheaper
+		#  and more certain than trying to spot the pairing itself.
+		if ($circular_len{$contig})
+		{
+			my $span = abs($_->[2] - $_->[1]) + 1;
+			if ($span > $circular_len{$contig})
+			{
+				print STDERR "\tWARNING: $_->[9] spans $span nt on a circle of ",
+					"$circular_len{$contig} nt -- impossible; dropped as a ",
+					"duplicate-copy artifact of the doubled contig\n";
+				next;
+			}
+		}
+
+		$count ++;
 		# this is just a silly place holder unitl bob can help me get set up with official
 		# ID generation
 		my $prot_id = "lv\|$tax\.$version\.$_->[8]\.$count"; 
@@ -768,6 +889,31 @@ foreach (@contig_order)
 #  The row carries feature type "no_features_called", which the GTO parser
 #  picks up for close_genomes and viral_family but does NOT turn into a
 #  feature: it only builds one for /(mat_peptide)|(CDS)/.
+#  Tell the next stage which contigs were doubled, and what their true length
+#  was. annotate_by_viral_pssm-GTO.pl builds its GTO from the ORIGINAL input
+#  file, so without this the GTO would carry a contig of length L while the
+#  features on it carry coordinates running up to 2L -- sequence and
+#  coordinates disagreeing the moment they enter the pipe, and the splice
+#  stage hunting for an exon in a contig that stops short of it.
+#
+#  Carried as a sentinel ROW rather than a new column, because the flat table
+#  has fixed columns that other consumers parse positionally, and because the
+#  "no_features_called" row below already establishes the pattern. Columns
+#  12-16 repeat the close-genome fields: the GTO parser assigns those from
+#  every row it reads, so a row that left them blank would wipe the taxon
+#  assignment. Type "circular_contig" matches neither /(mat_peptide)|(CDS)/
+#  nor /RNA/, so it never becomes a feature.
+for my $c (sort keys %circular_len)
+{
+	my $crow = join("\t", "$tax.$version", $genome_name, $c, "LV",
+		"circular_contig", "", "", "", "", "", $circular_len{$c},
+		$virus, $best_rep, $best_contig_bit, $best_rep_ids, $best_rep_name,
+		"", "Circular replicon; contig doubled for annotation") . "\n";
+	print $crow if $tbl_only;
+	print TBL $crow unless $no_out;
+	print CTBL $crow if $ctbl;
+}
+
 unless (@gene_seqs)
 {
 	my $blank = join("\t", "$tax.$version", $genome_name, "", "LV",

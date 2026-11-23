@@ -647,6 +647,16 @@ run_parallel(
 		#   annotate_by_viral_pssm-GTO.pl  (PSSM-based feature calls)
 		#     -> get_transcript_edited_features.pl  (skips if family has none)
 		#     -> get_splice_variant_features.pl     (skips if family has none)
+		#     -> fold_circular_features.pl          (no-op unless a contig was doubled)
+		#
+		# fold_circular_features.pl is LAST because a circular contig stays
+		# doubled for the whole pipeline: that is what lets the two special-
+		# feature callers find a spliced or frameshifted product that crosses
+		# the origin, without either of them knowing the replicon is circular.
+		# It folds the coordinates into join locations, drops the second copy
+		# of everything, and restores the contigs, so nothing doubled reaches
+		# viral_genome_quality.pl in Step 3. On a linear family it passes the
+		# genome through untouched.
 		#
 		# The final GTO from this pipeline is the Anno GTO.
 		# annotate_by_viral_pssm-GTO.pl writes $id.stdout.txt and
@@ -658,6 +668,7 @@ run_parallel(
 		     . "< $base/$contig_gto/$id.contig.gto "
 		     . "| get_transcript_edited_features.pl "
 		     . "| get_splice_variant_features.pl "
+		     . "| fold_circular_features.pl "
 		     . "> $base/$anno_gto/$id.anno.gto";
 
 		system "mv $base/$id.stdout.txt $base/$anno_gto/" if -f "$base/$id.stdout.txt";

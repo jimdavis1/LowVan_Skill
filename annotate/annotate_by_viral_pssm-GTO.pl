@@ -131,6 +131,7 @@ my ($close_bit, $close_id, $close_name, $close_file);
 if (open(my $tbl, "<", "$here/$prefix.stdout.txt"))
 {
 	my %features;
+	my %circular;   # contig id -> its TRUE length, before doubling
 	while (<$tbl>)
 	{
 		chomp;
@@ -141,7 +142,18 @@ if (open(my $tbl, "<", "$here/$prefix.stdout.txt"))
 		$close_name = $cn;
 
 		$viral_family = $virus;
-		
+
+		#  annotate_by_viral_pssm.pl doubled this contig because the module
+		#  declares the replicon circular, and searched the doubled copy so
+		#  that a CDS crossing the origin is found whole. Record the true
+		#  length; the contig in this GTO is doubled to match further down,
+		#  and fold_circular_features.pl undoes both at the end of the pipe.
+		if ($type eq 'circular_contig')
+		{
+			$circular{$contig} = $len;
+			next;
+		}
+
 		my $feature;
 		if ($type =~ /(mat_peptide)|(CDS)/)
 		{
@@ -228,6 +240,30 @@ if (open(my $tbl, "<", "$here/$prefix.stdout.txt"))
 
 
 	$genome_in->{viral_family} = $viral_family;
+
+	#  THE CONTIG AND ITS FEATURES MUST AGREE BEFORE THEY ENTER THE PIPE.
+	#  This GTO was built from the original input file, so its contigs are at
+	#  their deposited length, while the features just added carry coordinates
+	#  running up to twice that. Double the contig here and the two agree, and
+	#  the stages after this one -- get_transcript_edited_features.pl and
+	#  get_splice_variant_features.pl -- read the doubled sequence and find a
+	#  spliced or frameshifted product across the origin with no changes of
+	#  their own. fold_circular_features.pl restores the contig and folds the
+	#  coordinates into join locations as the last stage, so nothing doubled
+	#  ever reaches viral_genome_quality.pl.
+	if (%circular)
+	{
+		for my $ctg (@{$genome_in->{contigs}})
+		{
+			my $true_len = $circular{$ctg->{id}} or next;
+			$ctg->{replicon_geometry}    = 'circular';
+			$ctg->{circular_true_length} = $true_len;
+			$ctg->{dna}                 .= $ctg->{dna};
+			$ctg->{length}               = length $ctg->{dna} if exists $ctg->{length};
+			print STDERR "Doubled contig $ctg->{id} in the GTO to match the ",
+			             "doubled coordinates (true length $true_len)\n";
+		}
+	}
 }
 else
 {
