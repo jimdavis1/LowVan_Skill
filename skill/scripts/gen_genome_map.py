@@ -333,7 +333,10 @@ def draw_circular(G, F, a, cid, L, feats, COL):
         ky = min(max(CY + (R_ELB + 6) * math.sin(t), CY - R + 4), CY + R - 4)
         items.append([ax, ay, ex_, ey_, ky, right, f, col])
 
-    MINGAP = 20
+    #  Each label is TWO lines, the symbol and the length, so the gap has
+    #  to clear the whole block and not just one baseline. At 20 the
+    #  symbol of the next label landed on the previous one's aa count.
+    MINGAP = 38
     for right in (True, False):
         col_items = sorted([i for i in items if i[5] == right], key=lambda i: i[4])
         for i in range(1, len(col_items)):
@@ -341,7 +344,7 @@ def draw_circular(G, F, a, cid, L, feats, COL):
                 col_items[i][4] = col_items[i - 1][4] + MINGAP
         #  Pushing down can run the last one off the bottom; lift the column
         #  back and re-space upward so the gap survives the correction.
-        over = col_items[-1][4] - (CY + R + 30) if col_items else 0
+        over = col_items[-1][4] - (CY + R + 36) if col_items else 0
         if over > 0:
             for it in col_items:
                 it[4] -= over
@@ -358,10 +361,13 @@ def draw_circular(G, F, a, cid, L, feats, COL):
                     'fill="none" stroke="%s" stroke-width="1.4" opacity="0.9"/>'
                     % (ax, ay, ex_, ey_, cx_lab, ky, col))
         body.append('<circle cx="%.1f" cy="%.1f" r="2.8" fill="%s"/>' % (ax, ay, col))
-        body.append('<text x="%.1f" y="%.1f" dy="4" text-anchor="%s" '
+        #  The two lines straddle the leader's endpoint rather than hanging
+        #  below it, so the leader points at the middle of the block. 18 px
+        #  between baselines clears 13.5 px type with room to read.
+        body.append('<text x="%.1f" y="%.1f" dy="-3" text-anchor="%s" '
                     'font-size="13.5" font-weight="600" fill="currentColor">%s</text>'
                     % (tx, ky, "start" if rt else "end", html.escape(f["sym"])))
-        body.append('<text x="%.1f" y="%.1f" dy="16" text-anchor="%s" '
+        body.append('<text x="%.1f" y="%.1f" dy="15" text-anchor="%s" '
                     'font-size="10.5" fill="currentColor" opacity="0.65">%d aa</text>'
                     % (tx, ky, "start" if rt else "end", (f["n"] // 3) - 1))
 
@@ -388,7 +394,7 @@ def draw_circular(G, F, a, cid, L, feats, COL):
                'outside the ring = forward strand</text>'
                % (ly + ((len(groups) + 1) // 2) * 20 + 2))
 
-    H = max(CY + R + max(nin, 1) * LANE_STEP + 46, lab_hi + 34)
+    H = max(CY + R + max(nin, 1) * LANE_STEP + 46, lab_hi + 40)
     return leg + body, 720, int(H)
 
 
