@@ -1,240 +1,260 @@
 {
-   "Orthohepadnavirus" : {
-      "close_genomes" : {
-         "Orthohepadnavirus.1.dna" : {
-            "genome_ids" : "10407.2820.con.0001",
-            "genome_name" : "Hepatitis B virus Y26-2-37"
-         },
-         "Orthohepadnavirus.10.dna" : {
-            "genome_ids" : "1508712.13.con.0001",
-            "genome_name" : "Tent-making bat hepatitis B virus TBHBV/BN079/Panama/2012"
-         },
-         "Orthohepadnavirus.11.dna" : {
-            "genome_ids" : "10407.129390.con.0001",
-            "genome_name" : "Hepatitis B virus"
-         },
-         "Orthohepadnavirus.12.dna" : {
-            "genome_ids" : "1303386.40.con.0001",
-            "genome_name" : "Bat hepatitis virus 3848/25"
-         },
-         "Orthohepadnavirus.13.dna" : {
-            "genome_ids" : "10407.104596.con.0001",
-            "genome_name" : "Hepatitis B virus P80"
-         },
-         "Orthohepadnavirus.14.dna" : {
-            "genome_ids" : "2881033.6.con.0001",
-            "genome_name" : "Ringtail hepadnavirus CO-09/924"
-         },
-         "Orthohepadnavirus.15.dna" : {
-            "genome_ids" : "10407.45766.con.0001",
-            "genome_name" : "Hepatitis B virus NOA_114"
-         },
-         "Orthohepadnavirus.16.dna" : {
-            "genome_ids" : "10407.89094.con.0001",
-            "genome_name" : "Hepatitis B virus SHH032A"
-         },
-         "Orthohepadnavirus.17.dna" : {
-            "genome_ids" : "10407.104458.con.0001",
-            "genome_name" : "Hepatitis B virus P23"
-         },
-         "Orthohepadnavirus.18.dna" : {
-            "genome_ids" : "10407.118746.con.0001",
-            "genome_name" : "Hepatitis B virus cxx11"
-         },
-         "Orthohepadnavirus.19.dna" : {
-            "genome_ids" : "10407.130931.con.0001",
-            "genome_name" : "Hepatitis B virus 1162"
-         },
-         "Orthohepadnavirus.2.dna" : {
-            "genome_ids" : "10407.12822.con.0001",
-            "genome_name" : "Hepatitis B virus LAMr Pt. 24/Adefovir-treated Pt. 1"
-         },
-         "Orthohepadnavirus.20.dna" : {
-            "genome_ids" : "10407.135501.con.0001",
-            "genome_name" : "Hepatitis B virus Kitakogane1984"
-         },
-         "Orthohepadnavirus.21.dna" : {
-            "genome_ids" : "10407.17108.con.0001",
-            "genome_name" : "Hepatitis B virus B1-11"
-         },
-         "Orthohepadnavirus.22.dna" : {
-            "genome_ids" : "2928961.4.con.0001",
-            "genome_name" : "Longquan Myotis chinensis orthohepadnavirus 1 LQB_ZhongShu"
-         },
-         "Orthohepadnavirus.23.dna" : {
-            "genome_ids" : "10407.109446.con.0001",
-            "genome_name" : "Hepatitis B virus V18"
-         },
-         "Orthohepadnavirus.24.dna" : {
-            "genome_ids" : "10407.117453.con.0001",
-            "genome_name" : "Hepatitis B virus 101192-645410"
-         },
-         "Orthohepadnavirus.25.dna" : {
-            "genome_ids" : "10407.117457.con.0001",
-            "genome_name" : "Hepatitis B virus 101156-155760"
-         },
-         "Orthohepadnavirus.3.dna" : {
-            "genome_ids" : "10407.102314.con.0001",
-            "genome_name" : "Hepatitis B virus SDH184overtA1"
-         },
-         "Orthohepadnavirus.4.dna" : {
-            "genome_ids" : "2107574.26.con.0001",
-            "genome_name" : "Domestic cat hepadnavirus TR-SV15"
-         },
-         "Orthohepadnavirus.5.dna" : {
-            "genome_ids" : "1508711.3.con.0001",
-            "genome_name" : "Horseshoe bat hepatitis B virus HBHBV/GB09-403/Rhi_alc/GAB/2009"
-         },
-         "Orthohepadnavirus.6.dna" : {
-            "genome_ids" : "35269.14.con.0001",
-            "genome_name" : "Woodchuck hepatitis virus"
-         },
-         "Orthohepadnavirus.7.dna" : {
-            "genome_ids" : "2760904.10.con.0001",
-            "genome_name" : "Equine hepatitis B virus donkey22"
-         },
-         "Orthohepadnavirus.8.dna" : {
-            "genome_ids" : "10407.2833.con.0001",
-            "genome_name" : "Hepatitis B virus Y26-3-42"
-         },
-         "Orthohepadnavirus.9.dna" : {
-            "genome_ids" : "2507572.9.con.0001",
-            "genome_name" : "Shrew hepatitis B virus hepadn_1"
-         }
-      },
-      "features" : {
-         "C" : {
-            "PMID_claude_generated" : [
-               "{'function': ['399327']}"
-            ],
-            "anno" : "Capsid protein",
-            "bit_cutoff" : 30,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "C",
-            "kmers" : 1,
-            "max_len" : 233,
-            "min_len" : 159,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "L" : {
-            "PMID_claude_generated" : [
-               "{'function': ['6492255']}"
-            ],
-            "anno" : "Large surface antigen",
-            "bit_cutoff" : 60,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "L",
-            "kmers" : 1,
-            "max_len" : 471,
-            "min_len" : 338,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "M" : {
-            "PMID_claude_generated" : [
-               "{'function': ['6492255']}"
-            ],
-            "anno" : "Middle surface antigen",
-            "bit_cutoff" : 60,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "M",
-            "kmers" : 1,
-            "max_len" : 316,
-            "min_len" : 239,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "P" : {
-            "PMID_claude_generated" : [
-               "{'function': ['399327']}"
-            ],
-            "anno" : "RNA-dependent DNA polymerase",
-            "bit_cutoff" : 60,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P",
-            "kmers" : 1,
-            "max_len" : 952,
-            "min_len" : 743,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "PRECORE" : {
-            "PMID_claude_generated" : [
-               "{'function': ['8985356']}"
-            ],
-            "anno" : "Secreted e antigen precursor",
-            "bit_cutoff" : 30,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "preC",
-            "kmers" : 1,
-            "max_len" : 248,
-            "min_len" : 183,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "S" : {
-            "PMID_claude_generated" : [
-               "{'function': ['399327']}"
-            ],
-            "anno" : "Small surface antigen",
-            "bit_cutoff" : 30,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "S",
-            "kmers" : 1,
-            "max_len" : 263,
-            "min_len" : 197,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "X" : {
-            "PMID_claude_generated" : [
-               "{'function': ['399327']}"
-            ],
-            "anno" : "Regulatory protein X",
-            "bit_cutoff" : 30,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "X",
-            "kmers" : 1,
-            "max_len" : 174,
-            "min_len" : 122,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         }
-      },
-      "segments" : {
-         "Single DNA Segment" : {
-            "max_len" : 3400,
-            "min_len" : 3130,
-            "replicon_geometry" : "circular"
-         }
-      }
+ "Orthohepadnavirus": {
+  "close_genomes": {
+   "Orthohepadnavirus.1.dna": {
+    "genome_ids": "10407.2820.con.0001",
+    "genome_name": "Hepatitis B virus Y26-2-37"
+   },
+   "Orthohepadnavirus.10.dna": {
+    "genome_ids": "1508712.13.con.0001",
+    "genome_name": "Tent-making bat hepatitis B virus TBHBV/BN079/Panama/2012"
+   },
+   "Orthohepadnavirus.11.dna": {
+    "genome_ids": "10407.129390.con.0001",
+    "genome_name": "Hepatitis B virus"
+   },
+   "Orthohepadnavirus.12.dna": {
+    "genome_ids": "1303386.40.con.0001",
+    "genome_name": "Bat hepatitis virus 3848/25"
+   },
+   "Orthohepadnavirus.13.dna": {
+    "genome_ids": "10407.104596.con.0001",
+    "genome_name": "Hepatitis B virus P80"
+   },
+   "Orthohepadnavirus.14.dna": {
+    "genome_ids": "2881033.6.con.0001",
+    "genome_name": "Ringtail hepadnavirus CO-09/924"
+   },
+   "Orthohepadnavirus.15.dna": {
+    "genome_ids": "10407.45766.con.0001",
+    "genome_name": "Hepatitis B virus NOA_114"
+   },
+   "Orthohepadnavirus.16.dna": {
+    "genome_ids": "10407.89094.con.0001",
+    "genome_name": "Hepatitis B virus SHH032A"
+   },
+   "Orthohepadnavirus.17.dna": {
+    "genome_ids": "10407.104458.con.0001",
+    "genome_name": "Hepatitis B virus P23"
+   },
+   "Orthohepadnavirus.18.dna": {
+    "genome_ids": "10407.118746.con.0001",
+    "genome_name": "Hepatitis B virus cxx11"
+   },
+   "Orthohepadnavirus.19.dna": {
+    "genome_ids": "10407.130931.con.0001",
+    "genome_name": "Hepatitis B virus 1162"
+   },
+   "Orthohepadnavirus.2.dna": {
+    "genome_ids": "10407.12822.con.0001",
+    "genome_name": "Hepatitis B virus LAMr Pt. 24/Adefovir-treated Pt. 1"
+   },
+   "Orthohepadnavirus.20.dna": {
+    "genome_ids": "10407.135501.con.0001",
+    "genome_name": "Hepatitis B virus Kitakogane1984"
+   },
+   "Orthohepadnavirus.21.dna": {
+    "genome_ids": "10407.17108.con.0001",
+    "genome_name": "Hepatitis B virus B1-11"
+   },
+   "Orthohepadnavirus.22.dna": {
+    "genome_ids": "2928961.4.con.0001",
+    "genome_name": "Longquan Myotis chinensis orthohepadnavirus 1 LQB_ZhongShu"
+   },
+   "Orthohepadnavirus.23.dna": {
+    "genome_ids": "10407.109446.con.0001",
+    "genome_name": "Hepatitis B virus V18"
+   },
+   "Orthohepadnavirus.24.dna": {
+    "genome_ids": "10407.117453.con.0001",
+    "genome_name": "Hepatitis B virus 101192-645410"
+   },
+   "Orthohepadnavirus.25.dna": {
+    "genome_ids": "10407.117457.con.0001",
+    "genome_name": "Hepatitis B virus 101156-155760"
+   },
+   "Orthohepadnavirus.3.dna": {
+    "genome_ids": "10407.102314.con.0001",
+    "genome_name": "Hepatitis B virus SDH184overtA1"
+   },
+   "Orthohepadnavirus.4.dna": {
+    "genome_ids": "2107574.26.con.0001",
+    "genome_name": "Domestic cat hepadnavirus TR-SV15"
+   },
+   "Orthohepadnavirus.5.dna": {
+    "genome_ids": "1508711.3.con.0001",
+    "genome_name": "Horseshoe bat hepatitis B virus HBHBV/GB09-403/Rhi_alc/GAB/2009"
+   },
+   "Orthohepadnavirus.6.dna": {
+    "genome_ids": "35269.14.con.0001",
+    "genome_name": "Woodchuck hepatitis virus"
+   },
+   "Orthohepadnavirus.7.dna": {
+    "genome_ids": "2760904.10.con.0001",
+    "genome_name": "Equine hepatitis B virus donkey22"
+   },
+   "Orthohepadnavirus.8.dna": {
+    "genome_ids": "10407.2833.con.0001",
+    "genome_name": "Hepatitis B virus Y26-3-42"
+   },
+   "Orthohepadnavirus.9.dna": {
+    "genome_ids": "2507572.9.con.0001",
+    "genome_name": "Shrew hepatitis B virus hepadn_1"
    }
+  },
+  "features": {
+   "C": {
+    "PMID_claude_generated": [
+     "{'function': ['399327']}"
+    ],
+    "anno": "Capsid protein",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "C",
+    "kmers": 1,
+    "max_len": 233,
+    "min_len": 159,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "L": {
+    "PMID_claude_generated": [
+     "{'function': ['6492255']}"
+    ],
+    "anno": "Large surface antigen",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L",
+    "kmers": 1,
+    "max_len": 471,
+    "min_len": 338,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "M": {
+    "PMID_claude_generated": [
+     "{'function': ['6492255']}"
+    ],
+    "anno": "Middle surface antigen",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "M",
+    "kmers": 1,
+    "max_len": 316,
+    "min_len": 239,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "P": {
+    "PMID_claude_generated": [
+     "{'function': ['399327']}"
+    ],
+    "anno": "RNA-dependent DNA polymerase",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "P",
+    "kmers": 1,
+    "max_len": 952,
+    "min_len": 743,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "PRECORE": {
+    "PMID_claude_generated": [
+     "{'function': ['8985356']}"
+    ],
+    "anno": "Secreted e antigen precursor",
+    "bit_cutoff": 30,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "preC",
+    "kmers": 1,
+    "max_len": 248,
+    "min_len": 183,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "S": {
+    "PMID_claude_generated": [
+     "{'function': ['399327']}"
+    ],
+    "anno": "Small surface antigen",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S",
+    "kmers": 1,
+    "max_len": 263,
+    "min_len": 197,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "X": {
+    "PMID_claude_generated": [
+     "{'function': ['399327']}"
+    ],
+    "anno": "Regulatory protein X",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "X",
+    "kmers": 1,
+    "max_len": 174,
+    "min_len": 122,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "HBSP": {
+    "anno": "Hepatitis B spliced protein",
+    "gene_symbol": "HBSP",
+    "feature_type": "CDS",
+    "type": "CDS",
+    "segment": "Single DNA Segment",
+    "special": "splice",
+    "min_len": 80,
+    "max_len": 105,
+    "comment": "Translated from the singly spliced SP1 RNA, not from the genome as laid down. Soussan 2000 (PMID 10619861, J Clin Invest 105:55-60) states the product verbatim: 'This protein, with 93 amino acids, begins at the polymerase start codon and includes the first 46 amino acids of the polymerase, followed by the 47 amino acids corresponding to a new HBV amino acid sequence generated by the frameshift.' That paper gives no nucleotide coordinates and names no reference genome, and the 2447/489 pair quoted by secondary sources is in EcoRI numbering: applied to NC_003977.2 it lands on AT and CC, not GT and AG. The junction here was therefore located on NC_003977.2 by splice chemistry and confirmed against the paper's own description -- donor 2449 (GT), acceptor 545 (AG), giving join(2309..2449,545..685), 93 aa partitioned exactly 46 + 47, with the first 46 byte-identical to the unspliced polymerase N-terminus. The +2 against the quoted 2447 is the EcoRI offset, the same one that puts HM153811 P at 2307 where this genome has 2309. The reference in Splice-Variants spans the origin, which only works because the contig is still doubled at this stage of the pipe. NOTE: the four deposits in this dump annotated 'spliced protein' are 111 aa, not 93, so they are a different splice product and are deliberately not this feature.",
+    "PMID_claude_generated": {
+     "coordinates": [
+      "10619861"
+     ],
+     "function": [
+      "10619861",
+      "12586301"
+     ]
+    }
+   }
+  },
+  "segments": {
+   "Single DNA Segment": {
+    "max_len": 3400,
+    "min_len": 3130,
+    "replicon_geometry": "circular"
+   }
+  }
+ }
 }
