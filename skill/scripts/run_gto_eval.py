@@ -397,6 +397,36 @@ def main():
             #  the .ann.gto downstream tools read should carry everything
             if src != ann:
                 shutil.copyfile(src, ann)
+
+        #  FOLD A CIRCULAR REPLICON BACK before anything scores it.
+        #
+        #  A module declaring replicon_geometry circular is annotated on a
+        #  DOUBLED contig, so that a gene crossing the origin is found whole,
+        #  and the contig stays doubled through the special-feature passes so
+        #  they inherit the same view. Something has to undo that, and this
+        #  pipeline is assembled here rather than by New-annotate-viral-taxon.pl,
+        #  so the stage that driver pipes through was missing from it entirely.
+        #
+        #  The symptom was not subtle once a circular module existed, but it
+        #  looked like a module defect rather than a harness one: every
+        #  Orthohepadnavirus exemplar came back "poor", flagged "Contig is too
+        #  long", because viral_genome_quality.pl was measuring a 6,364 nt
+        #  contig against a 3,400 nt bound. 10 of 10 on the first sample.
+        #
+        #  Idempotent: the fold deletes circular_true_length when it restores a
+        #  contig, so a second pass over a reused .ann.gto is a no-op.
+        fold = os.path.join(R, "fold_circular_features.pl")
+        if os.path.exists(fold):
+            os.makedirs(wd, exist_ok=True)
+            folded = os.path.join(wd, b + ".fold.gto")
+            rf = subprocess.run([args.perl, fold, "-i", ann, "-o", folded],
+                                capture_output=True, text=True, env=env, cwd=wd)
+            if os.path.exists(folded) and os.path.getsize(folded) > 0:
+                shutil.copyfile(folded, ann)
+            else:
+                with open(os.path.join(args.out, b + ".FOLDFAIL"), "w") as fh:
+                    fh.write((rf.stderr or rf.stdout or "")[-3000:])
+
         if args.tbl_dir:
             src_tbl = os.path.join(wd, b + ".stdout.txt")
             if os.path.exists(src_tbl) and os.path.getsize(src_tbl) > 0:
