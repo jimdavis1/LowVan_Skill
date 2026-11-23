@@ -126,6 +126,166 @@ def tick_step(n):
     return 50000
 
 
+#  ---------------------------------------------------------------------------
+#  Circular replicons
+#
+#  A linear axis cannot draw a circular genome honestly. A gene crossing the
+#  origin folds to a two-piece join(), and on a straight line those pieces land
+#  at opposite ends with nothing connecting them: the Orthohepadnavirus map drew
+#  P, L and M twice each, and M's 9 nt first piece came out 1.3 px wide against
+#  the right margin. The reader sees two genes where there is one, and the very
+#  thing these modules were built to express is the thing the figure hides.
+#
+#  On a ring the same feature is one unbroken arc that happens to pass twelve
+#  o'clock, which is what it is. The origin is drawn as a marked spoke rather
+#  than left implicit, because it carries no biology -- it is wherever the
+#  submitter cut the circle, and for hepadnaviruses that is a restriction site
+#  that most strains no longer have.
+#  ---------------------------------------------------------------------------
+import math
+
+
+def circ_pieces(loc, L):
+    """[(lo, hi), ...] on the circle, with an origin-crossing join rejoined.
+
+    fold_circular_features.pl emits a wrapped CDS as two pieces, one ending at
+    L and one starting at 1. Those are not two exons; they are one run of
+    sequence reported either side of the cut. Rejoin them into a single arc and
+    leave everything else -- including a genuine splice -- as separate pieces.
+    """
+    ps = []
+    for c, s, st, n in loc:
+        s, n = int(s), int(n)
+        ps.append((s, s + n - 1) if st == "+" else (s - n + 1, s))
+    if len(ps) == 2:
+        a, b = sorted(ps)
+        if a[0] == 1 and b[1] == L:          # b runs into the origin, a out of it
+            return [(b[0], b[1] + (a[1] - a[0] + 1))], True
+    return sorted(ps), False
+
+
+def circ_overlap(s1, n1, s2, n2, L):
+    return ((s2 - s1) % L) < n1 or ((s1 - s2) % L) < n2
+
+
+def draw_circular(G, F, a, cid, L, feats, COL):
+    """One contig, declared circular, as a ring. Returns (svg_body, height)."""
+    CX, CY, R = 490, 318, 150
+    BAND, GAP = 13, 5
+
+    def pt(nt, r):
+        t = 2 * math.pi * ((nt - 1) % L) / L - math.pi / 2
+        return CX + r * math.cos(t), CY + r * math.sin(t)
+
+    def band(s_nt, n_nt, r0, r1):
+        """Annular sector from s_nt running n_nt clockwise, radii r0 < r1."""
+        frac = min(n_nt / L, 0.9999)
+        big = 1 if frac > 0.5 else 0
+        x0o, y0o = pt(s_nt, r1)
+        x1o, y1o = pt(s_nt + n_nt, r1)
+        x1i, y1i = pt(s_nt + n_nt, r0)
+        x0i, y0i = pt(s_nt, r0)
+        return ("M%.1f,%.1f A%.1f,%.1f 0 %d 1 %.1f,%.1f "
+                "L%.1f,%.1f A%.1f,%.1f 0 %d 0 %.1f,%.1f Z"
+                % (x0o, y0o, r1, r1, big, x1o, y1o,
+                   x1i, y1i, r0, r0, big, x0i, y0i))
+
+    #  ---- lane packing on the circle, outward for +, inward for - ----------
+    ring = []
+    for f in feats:
+        ps, wrapped = circ_pieces(f["loc"], L)
+        s_nt = ps[0][0]
+        n_nt = sum(hi - lo + 1 for lo, hi in ps)
+        ring.append(dict(f, pieces=ps, wrapped=wrapped, s=s_nt, n=n_nt))
+
+    lanes = {"+": [], "-": []}
+    for f in sorted(ring, key=lambda f: -f["n"]):
+        ls = lanes[f["strand"]]
+        for i, used in enumerate(ls):
+            if all(not circ_overlap(f["s"], f["n"], u[0], u[1], L) for u in used):
+                used.append((f["s"], f["n"]))
+                f["lane"] = i
+                break
+        else:
+            ls.append([(f["s"], f["n"])])
+            f["lane"] = len(ls) - 1
+
+    body = []
+    #  ---- the backbone ring ------------------------------------------------
+    body.append('<circle cx="%d" cy="%d" r="%d" fill="none" '
+                'stroke="currentColor" stroke-width="1.5" opacity="0.55"/>'
+                % (CX, CY, R))
+
+    #  ---- ticks ------------------------------------------------------------
+    step = tick_step(L)
+    k = 0
+    while k < L:
+        x0, y0 = pt(max(k, 1), R - 4)
+        x1, y1 = pt(max(k, 1), R + 4)
+        body.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" '
+                    'stroke="currentColor" opacity="0.55"/>' % (x0, y0, x1, y1))
+        if k:
+            tx, ty = pt(k, R - 15)
+            body.append('<text x="%.1f" y="%.1f" text-anchor="middle" '
+                        'font-size="9.5" fill="currentColor" opacity="0.75" '
+                        'dy="3">%s</text>'
+                        % (tx, ty, "%.1f" % (k / 1000.0) if step < 1000
+                           else "%d" % (k // 1000)))
+        k += step
+
+    #  ---- the origin spoke ---------------------------------------------------
+    body.append('<line x1="%d" y1="%.1f" x2="%d" y2="%.1f" '
+                'stroke="currentColor" stroke-width="1.5" '
+                'stroke-dasharray="3 2" opacity="0.9"/>'
+                % (CX, CY - R - 26, CX, CY - R + 10))
+    body.append('<text x="%d" y="%.1f" text-anchor="middle" font-size="10.5" '
+                'fill="currentColor" opacity="0.85">origin (nt 1)</text>'
+                % (CX, CY - R - 32))
+
+    #  ---- features -----------------------------------------------------------
+    for f in sorted(ring, key=lambda f: (f["strand"], f["lane"])):
+        col = COL[f["kind"]]
+        out = f["strand"] == "+"
+        off = GAP + f["lane"] * (BAND + 4)
+        r0 = (R + off) if out else (R - off - BAND)
+        r1 = r0 + BAND
+        if f["wrapped"]:
+            body.append('<path d="%s" style="fill:%s"/>'
+                        % (band(f["s"], f["n"], r0, r1), col))
+        else:
+            for lo, hi in f["pieces"]:
+                body.append('<path d="%s" style="fill:%s"/>'
+                            % (band(lo, hi - lo + 1, r0, r1), col))
+            if len(f["pieces"]) > 1:        # a real splice: tie the exons
+                rm = (r0 + r1) / 2
+                for (l0, h0), (l1, _) in zip(f["pieces"], f["pieces"][1:]):
+                    body.append('<path d="%s" fill="none" stroke="%s" '
+                                'stroke-width="1"/>'
+                                % (band(h0, l1 - h0, rm, rm).split(" L")[0], col))
+        #  3' end tick, so strand is readable without reading the radius
+        end = (f["s"] + f["n"]) if out else f["s"]
+        ex0, ey0 = pt(end, r0 - 2)
+        ex1, ey1 = pt(end, r1 + 2)
+        body.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" '
+                    'stroke="%s" stroke-width="2"/>' % (ex0, ey0, ex1, ey1, col))
+
+        lr = (r1 + 11) if out else (r0 - 6)
+        lx, ly = pt(f["s"] + f["n"] / 2.0, lr)
+        body.append('<text x="%.1f" y="%.1f" text-anchor="middle" dy="3.5" '
+                    'font-size="10.5" fill="currentColor">%s</text>'
+                    % (lx, ly, html.escape(f["sym"])))
+
+    #  ---- centre caption -----------------------------------------------------
+    body.append('<text x="%d" y="%d" text-anchor="middle" font-size="12" '
+                'font-weight="600" fill="currentColor">%s nt</text>'
+                % (CX, CY - 4, format(L, ",")))
+    body.append('<text x="%d" y="%d" text-anchor="middle" font-size="10.5" '
+                'fill="currentColor" opacity="0.75">circular</text>'
+                % (CX, CY + 12))
+    nl = max(len(lanes["+"]), 1)
+    return body, int(CY + R + GAP + nl * (BAND + 4) + 46)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--gto", help="annotated .gto for ONE genome")
@@ -177,8 +337,24 @@ def main():
                 else ("ess" if spec.get("copy_num") else "oth"))
         per[cid].append(dict(
             key=key, sym=spec.get("gene_symbol") or key, exons=sorted(exons),
-            strand=f["location"][0][2], kind=kind,
+            strand=f["location"][0][2], kind=kind, loc=f["location"],
             lo=min(x for x, _ in exons), hi=max(y for _, y in exons)))
+
+    #  ---- is this a single circular replicon? --------------------------------
+    #  Only the one-contig case draws as a ring. A multi-segment circular family
+    #  would need one ring per segment on a shared scale, and nothing in the kit
+    #  has one yet; falling back to the linear axis is wrong but visible, where
+    #  a half-written ring would be wrong and look finished.
+    def seg_for(cid):
+        Lc = clen[cid]
+        hits = [w for w in SEG.values()
+                if isinstance(w, dict)
+                and w.get("min_len", 0) <= Lc <= w.get("max_len", 10 ** 9)]
+        return hits[0] if len(hits) == 1 else {}
+
+    is_circ = (len(contigs) == 1
+               and str(seg_for(contigs[0][0]).get("replicon_geometry", "")
+                       ).lower() == "circular")
 
     #  ---- lane packing, per contig per strand -------------------------------
     for cid, feats in per.items():
@@ -222,7 +398,13 @@ def main():
     #  ---- draw --------------------------------------------------------------
     TOP = 50                       # legend band
     body, y = [], TOP
-    for cid, L in contigs:
+    if is_circ:
+        cid, L = contigs[0]
+        body, H = draw_circular(G, F, a, cid, L, per[cid][0], COL)
+        contigs_drawn_circular = True
+    else:
+        contigs_drawn_circular = False
+    for cid, L in ([] if is_circ else contigs):
         feats, npl, nml = per[cid]
         ax_y = y + npl * LANE + 20
         for f in feats:
@@ -267,7 +449,8 @@ def main():
                        if lab else html.escape("%s nt" % format(L, ","))))
         y = ax_y + 34 + nml * LANE + 16
 
-    H = y
+    if not is_circ:
+        H = y
 
     leg, lx = [], 4
     for kind, label in (("ess", "essential CDS"), ("oth", "other called CDS"),
@@ -294,12 +477,27 @@ def main():
             "real." if len(contigs) > 1 else "")
     if a.caption:
         tail += " " + a.caption
+
+    if is_circ:
+        nw = sum(1 for f in per[contigs[0][0]][0]
+                 if circ_pieces(f["loc"], contigs[0][1])[1])
+        where = ("Drawn to scale from this genome&rsquo;s own calls; "
+                 "forward-strand genes outside the ring, reverse-strand inside, "
+                 "a tick at each 3&prime; end. ")
+        where += (("%d gene%s cross%s the origin, each drawn as one unbroken arc "
+                   "through it. " % (nw, "" if nw == 1 else "s",
+                                     "es" if nw == 1 else ""))
+                  if nw else "")
+        where += ("The origin is not biology: it is wherever the submitter cut "
+                  "the circle.")
+    else:
+        where = ("Drawn to scale from this genome&rsquo;s own calls; "
+                 "forward-strand genes above the axis, reverse-strand below.")
+
     fig = ('<figure><svg viewBox="0 0 980 %d" role="img" aria-label="%s">'
-           '%s%s</svg><figcaption>%s Drawn to scale from this genome&rsquo;s '
-           'own calls; forward-strand genes above the axis, reverse-strand '
-           'below.%s</figcaption></figure>'
+           '%s%s</svg><figcaption>%s %s%s</figcaption></figure>'
            % (H, html.escape(claim), "".join(leg), "".join(body),
-              html.escape(claim), tail))
+              html.escape(claim), where, tail))
 
     if a.standalone:
         fig = ('<!doctype html><meta charset="utf-8"><title>%s genome map</title>'
