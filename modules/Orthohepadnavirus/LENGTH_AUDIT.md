@@ -10,6 +10,7 @@ Collections: `./collections/Orthohepadnavirus`
 | `P` | 10526 | 791 | 843 | 899 |  |  |  |  | PMID 399327 |
 | `PRECORE` | 4248 | 195 | 212 | 234 |  |  |  |  | PMID 8985356 |
 | `S` | 10879 | 210 | 226 | 249 |  |  |  |  | PMID 399327 |
+| `WHOLEX` | 1148 | 201 | 210 | 225 |  |  |  |  | PMID 15948258 |
 | `X` | 8680 | 131 | 154 | 165 |  |  |  |  | PMID 399327 |
 
 ## Findings

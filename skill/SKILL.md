@@ -1917,6 +1917,48 @@ python3 scripts/check_cleaved_ends.py --json <T>_Viral_PSSM.json \
 peptides on one precursor runs it before shipping, and a non-zero median
 sum-minus-precursor blocks the ship until the flags are right.
 
+#### A nested isoform needs `require_met_start`, not `upstream_ext`
+
+The two flags above move a start codon. This one refuses a call that has none.
+
+When a feature differs from a shorter sibling **only** by an N-terminal
+extension — same frame, same stop, a second ATG further up — the extension's
+initiator is the entire difference between the two proteins. A PSSM cannot
+defend it, because a PSSM cannot veto on one column: when that ATG mutates, the
+longer profile still matches the still-open frame at full length and full
+coverage, and the annotator emits a protein whose first residue is whatever the
+mutated codon encodes.
+
+Orthohepadnavirus HBwx is the worked case. It is X plus 56 upstream codons, and
+13.7% of complete HBV genomes have that frame open. Of 29 genomes scored as
+negative, **6 were called, every one of them L-initiated** — clean, stop-free
+210 aa ORFs with no start codon:
+
+```
+                      called   first residue   real?
+has ATG, open frame     29/29        M          yes
+no ATG, open frame       6/29        L          no
+```
+
+Neither existing flag helps. `upstream_ext: 1` only fires when the hit does
+*not* already begin with Met, so it fires on exactly these six and walks left to
+some further Met, emitting something longer and equally wrong.  `start_to_met`
+is worse: it rewrites the first residue to M and fabricates the start codon.
+
+```json
+"WHOLEX": { "upstream_ext": 0, "require_met_start": 1 }
+```
+
+`require_met_start: 1` drops any hit whose first codon is not ATG. It is
+**default off** — absent from the JSON nothing changes — and it belongs only on
+a feature whose identity *is* an upstream initiation codon. Do not put it on a
+mature peptide, which never begins with Met and would vanish entirely.
+
+The sibling takes `upstream_ext: 0` at the same time, for the reason in the
+section above: with extension on, the shorter form's Met-walk climbs into the
+extension on precisely the genomes where it is open, and the two features
+collide.
+
 ### 15. Ship it — kit, Box, runtime, commit
 
 **A module is not built when its PSSMs exist in a temp directory.** Twice in

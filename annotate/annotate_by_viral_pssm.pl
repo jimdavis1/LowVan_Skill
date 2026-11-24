@@ -432,6 +432,7 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 	my $bit_cutoff     = $options->{$virus}->{features}->{$pssmdir}->{bit_cutoff};
 	my $cov_cutoff     = $options->{$virus}->{features}->{$pssmdir}->{coverage_cutoff};
 	my $start_to_met   = $options->{$virus}->{features}->{$pssmdir}->{start_to_met};
+	my $require_met    = $options->{$virus}->{features}->{$pssmdir}->{require_met_start};
 	#  internal_stop : 1 keeps a single internal stop in the called feature
 	#  rather than cropping there.  Absent or 0 is the old behaviour.  The
 	#  global -ks remains as a debug override that forces it on everywhere.
@@ -688,6 +689,24 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 
 		my $gene = &gjoseqlib::DNA_subseq($contigH{$contig}, $gene_begin, $gene_end );	
 		my $protein = &gjoseqlib::translate_seq( $gene );
+
+		#  require_met_start: drop a hit whose first codon is not ATG.
+		#  For a feature whose whole identity IS an upstream initiation codon.
+		#  A PSSM cannot veto on one column: an isoform that differs from its
+		#  shorter sibling only by an N-terminal extension still matches at
+		#  full coverage when that extension's start codon is mutated away, and
+		#  the annotator then emits a protein that no ribosome can begin.
+		#  Measured on Orthohepadnavirus HBwx: 6 of 29 genomes with an open but
+		#  ATG-less pre-X frame were called, every one of them L-initiated.
+		#  upstream_ext is not the answer -- it only fires when the hit does not
+		#  already start with Met, and scan_to_met_start would walk further left
+		#  to a different Met and emit something longer and equally wrong.
+		#  Default off: absent from the JSON, nothing changes.
+		if ($require_met && ($protein !~ /^M/i))
+		{
+			print STDERR "\tRejected: require_met_start is set and the first residue is not Met \($gene_begin to $gene_end\)\n";
+			next;
+		}
 
 		if ($start_to_met){$protein =~ s/^[A-Z]/M/i;}   # M not m: /i affects the pattern, not the replacement (gist #5)
 	
