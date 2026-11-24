@@ -1,113 +1,123 @@
 {
-   "Avihepadnavirus" : {
-      "close_genomes" : {
-         "Avihepadnavirus.1.dna" : {
-            "genome_ids" : "259898.4.con.0001",
-            "genome_name" : "Sheldgoose hepatitis B virus Ashy-headed sheldgoose hepatitis B virus"
-         },
-         "Avihepadnavirus.2.dna" : {
-            "genome_ids" : "12639.39.con.0001",
-            "genome_name" : "Duck hepatitis B virus CH4"
-         }
-      },
-      "features" : {
-         "C" : {
-            "PMID_claude_generated" : [
-               "{'function': ['6699938']}"
-            ],
-            "anno" : "Capsid protein",
-            "bit_cutoff" : 60,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "C",
-            "kmers" : 1,
-            "max_len" : 277,
-            "min_len" : 246,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         },
-         "L" : {
-            "PMID_claude_generated" : [
-               "{'function': ['6699938']}"
-            ],
-            "anno" : "Large surface antigen",
-            "bit_cutoff" : 60,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "preS",
-            "kmers" : 1,
-            "max_len" : 424,
-            "min_len" : 282,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "P" : {
-            "PMID_claude_generated" : [
-               "{'function': ['6699938']}"
-            ],
-            "anno" : "RNA-dependent DNA polymerase",
-            "bit_cutoff" : 60,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "P",
-            "kmers" : 1,
-            "max_len" : 891,
-            "min_len" : 736,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "PRECORE" : {
-            "PMID_claude_generated" : [
-               "{'function': ['6699938']}"
-            ],
-            "anno" : "Secreted e antigen precursor",
-            "bit_cutoff" : 60,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "preC",
-            "kmers" : 1,
-            "max_len" : 323,
-            "min_len" : 277,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 1
-         },
-         "S" : {
-            "PMID_claude_generated" : [
-               "{'function': ['6699938']}"
-            ],
-            "anno" : "Small surface antigen",
-            "bit_cutoff" : 30,
-            "copy_num" : 1,
-            "coverage_cutoff" : 0.65,
-            "downstream_ext" : 1,
-            "feature_type" : "CDS",
-            "gene_symbol" : "S",
-            "kmers" : 1,
-            "max_len" : 181,
-            "min_len" : 156,
-            "segment" : "Single DNA Segment",
-            "type" : "CDS",
-            "upstream_ext" : 0
-         }
-      },
-      "segments" : {
-         "Single DNA Segment" : {
-            "max_len" : 3120,
-            "min_len" : 2980,
-            "replicon_geometry" : "circular"
-         }
-      }
+ "Avihepadnavirus": {
+  "close_genomes": {
+   "Avihepadnavirus.1.dna": {
+    "genome_ids": "259898.4.con.0001",
+    "genome_name": "Sheldgoose hepatitis B virus Ashy-headed sheldgoose hepatitis B virus"
+   },
+   "Avihepadnavirus.2.dna": {
+    "genome_ids": "12639.39.con.0001",
+    "genome_name": "Duck hepatitis B virus CH4"
    }
+  },
+  "features": {
+   "C": {
+    "PMID_claude_generated": {
+     "function": [
+      "6699938"
+     ]
+    },
+    "anno": "Capsid protein",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "C",
+    "kmers": 1,
+    "max_len": 277,
+    "min_len": 246,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   },
+   "L": {
+    "PMID_claude_generated": {
+     "function": [
+      "6699938"
+     ]
+    },
+    "anno": "Large surface antigen",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "preS",
+    "kmers": 1,
+    "max_len": 424,
+    "min_len": 282,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "P": {
+    "PMID_claude_generated": {
+     "function": [
+      "6699938"
+     ]
+    },
+    "anno": "RNA-dependent DNA polymerase",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "P",
+    "kmers": 1,
+    "max_len": 891,
+    "min_len": 736,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "PRECORE": {
+    "PMID_claude_generated": {
+     "function": [
+      "6699938"
+     ]
+    },
+    "anno": "Secreted e antigen precursor",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "preC",
+    "kmers": 1,
+    "max_len": 323,
+    "min_len": 277,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "S": {
+    "PMID_claude_generated": {
+     "function": [
+      "6699938"
+     ]
+    },
+    "anno": "Small surface antigen",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "S",
+    "kmers": 1,
+    "max_len": 181,
+    "min_len": 156,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 0
+   }
+  },
+  "segments": {
+   "Single DNA Segment": {
+    "max_len": 3120,
+    "min_len": 2980,
+    "replicon_geometry": "circular"
+   }
+  }
+ }
 }

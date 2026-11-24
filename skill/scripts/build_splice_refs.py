@@ -164,6 +164,13 @@ def main():
                         "translation check below, not this window, is the guard.")
     a = p.parse_args()
 
+    #  --out is a FILE path. A directory there is only noticed by the open()
+    #  on the last line, after every contig has been blasted -- an hour's work
+    #  on a large dump, thrown away on an IsADirectoryError.
+    if os.path.isdir(a.out):
+        raise SystemExit("--out is a FILE path and %r is a directory; "
+                         "try %s/%s.fasta" % (a.out, a.out.rstrip("/"), a.name))
+
     qseq = "".join(l.strip() for l in open(a.query) if not l.startswith(">"))
     qlen = len(qseq)
     tmpd = tempfile.mkdtemp(prefix="splicerefs.")

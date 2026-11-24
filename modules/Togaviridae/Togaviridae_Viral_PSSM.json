@@ -155,15 +155,11 @@
     "upstream_ext": 1
    },
    "NSP1234": {
-    "PMID": [
-     "37862073"
-    ],
-    "PMID_claude_generated": [
-     "7968923",
-     "6322438",
-     "12466484",
-     "12021349"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "37862073"
+     ]
+    },
     "anno": "Nonstructural polyprotein",
     "bit_cutoff": 1500,
     "copy_num": 1,
@@ -197,13 +193,11 @@
     "upstream_ext": 0
    },
    "NSP3": {
-    "PMID": [
-     "37862073"
-    ],
-    "PMID_claude_generated": [
-     "7968923",
-     "30825649"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "37862073"
+     ]
+    },
     "anno": "Nonstructural protein nsP3",
     "bit_cutoff": 150,
     "copy_num": 1,
@@ -219,13 +213,11 @@
     "upstream_ext": 0
    },
    "NSP4": {
-    "PMID": [
-     "37862073"
-    ],
-    "PMID_claude_generated": [
-     "7968923",
-     "19036396"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "37862073"
+     ]
+    },
     "anno": "RNA-dependent RNA polymerase",
     "bit_cutoff": 150,
     "copy_num": 1,
@@ -240,14 +232,11 @@
     "upstream_ext": 0
    },
    "P123": {
-    "PMID": [
-     "37862073"
-    ],
-    "PMID_claude_generated": [
-     "7968923",
-     "2141206",
-     "12917405"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "37862073"
+     ]
+    },
     "anno": "Nonstructural polyprotein P123",
     "bit_cutoff": 900,
     "copy_num": 1,

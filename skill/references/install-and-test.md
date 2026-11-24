@@ -44,6 +44,29 @@ The GTO pipeline (`annotate_by_viral_pssm-GTO.pl`, transcript editing, splice
 variants, quality) additionally needs `GenomeTypeObject.pm` and `P3DataAPI` from
 BV-BRC. You do not need them to build and test a module from FASTA.
 
+### Annotating one genome: use the driver, not a hand-built chain
+
+```bash
+perl $LOWVAN_KIT/annotate/annotate_viral_genome.pl \
+     -i <id>.contig.gto -o <id>.anno.gto -q <id>.qual.gto -x <id>
+```
+
+`annotate_viral_genome.pl` runs the five stages in the one order that is
+correct: profile annotation, transcript editing, splice variants, **the
+circular fold**, then quality. Do not assemble the chain by hand. Every
+hand-built version in this project stopped after the splice caller, and the
+missing fold is not cosmetic — on a circular module the quality step then scores
+a **doubled** contig, reports every feature twice as `Too many HSPs`, flags the
+contig as too long, and returns `Poor` for a genome that was annotated
+correctly. Orthohepadnavirus read `0 good, 589 poor` that way. Through the
+driver the same exemplars read `5 good, 3 poor` on a sample of eight, and all
+three remaining failures are real: two contigs are 5% and 20% ambiguous bases,
+and the third genuinely has no polymerase call.
+
+`--from fold` is the repair path for a GTO that some other driver left
+unfolded. It is idempotent, so running it on an already-folded genome changes
+nothing. Use the long form — `-from` is parsed as `-f rom`.
+
 ## Install
 
 ```bash

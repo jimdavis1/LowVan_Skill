@@ -104,9 +104,11 @@
   },
   "features": {
    "C": {
-    "PMID_claude_generated": [
-     "{'function': ['399327']}"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "399327"
+     ]
+    },
     "anno": "Capsid protein",
     "bit_cutoff": 30,
     "copy_num": 1,
@@ -142,9 +144,11 @@
     "type": "CDS"
    },
    "L": {
-    "PMID_claude_generated": [
-     "{'function': ['6492255']}"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "6492255"
+     ]
+    },
     "anno": "Large surface antigen",
     "bit_cutoff": 60,
     "copy_num": 1,
@@ -160,9 +164,11 @@
     "upstream_ext": 1
    },
    "M": {
-    "PMID_claude_generated": [
-     "{'function': ['6492255']}"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "6492255"
+     ]
+    },
     "anno": "Middle surface antigen",
     "bit_cutoff": 60,
     "copy_num": 1,
@@ -178,9 +184,11 @@
     "upstream_ext": 0
    },
    "P": {
-    "PMID_claude_generated": [
-     "{'function': ['399327']}"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "399327"
+     ]
+    },
     "anno": "RNA-dependent DNA polymerase",
     "bit_cutoff": 60,
     "copy_num": 1,
@@ -196,9 +204,11 @@
     "upstream_ext": 1
    },
    "PRECORE": {
-    "PMID_claude_generated": [
-     "{'function': ['8985356']}"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "8985356"
+     ]
+    },
     "anno": "Secreted e antigen precursor",
     "bit_cutoff": 30,
     "coverage_cutoff": 0.65,
@@ -213,9 +223,11 @@
     "upstream_ext": 1
    },
    "S": {
-    "PMID_claude_generated": [
-     "{'function': ['399327']}"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "399327"
+     ]
+    },
     "anno": "Small surface antigen",
     "bit_cutoff": 30,
     "copy_num": 1,
@@ -256,9 +268,11 @@
     "upstream_ext": 0
    },
    "X": {
-    "PMID_claude_generated": [
-     "{'function': ['399327']}"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "399327"
+     ]
+    },
     "anno": "Regulatory protein X",
     "bit_cutoff": 30,
     "copy_num": 1,

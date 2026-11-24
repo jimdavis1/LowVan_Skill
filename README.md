@@ -193,8 +193,8 @@ python3 evaluate/evaluate_module.py --repo $LOWVAN_DATA_DIR --acc NC_001542
 # score it against everything the taxon has in BV-BRC
 perl evaluate/New-annotate-viral-taxon.pl -i <Taxon> -download-only -d Contigs \
      -metaout <Taxon>.metadata -min 1000 -max 50000
-python3 evaluate/evaluate_coverage.py --contigs Contigs --repo $LOWVAN_DATA_DIR \
-        --json $LOWVAN_DATA_DIR/Viral_PSSM.json
+python3 skill/scripts/evaluate_coverage.py --contigs Contigs --repo $LOWVAN_DATA_DIR \
+        --json $LOWVAN_DATA_DIR/Viral_PSSM.json --out coverage.json
 ```
 
 ### The GTO path, for quality scoring

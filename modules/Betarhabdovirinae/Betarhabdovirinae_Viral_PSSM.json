@@ -52,9 +52,6 @@
     "upstream_ext": 1
    },
    "ANUCLEO_X": {
-    "PMID": [
-     "20362316"
-    ],
     "anno": "Uncharacterized lineage-specific X protein",
     "bit_cutoff": 30,
     "coverage_cutoff": 0.65,
@@ -65,12 +62,14 @@
     "max_len": 132,
     "min_len": 73,
     "segment": "Single RNA Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "20362316"
+     ]
+    }
    },
    "BCYTO_P4": {
-    "PMID": [
-     "25679389"
-    ],
     "anno": "Uncharacterized lineage-specific protein",
     "bit_cutoff": 30,
     "coverage_cutoff": 0.65,
@@ -81,12 +80,14 @@
     "max_len": 264,
     "min_len": 46,
     "segment": "Single RNA Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "25679389"
+     ]
+    }
    },
    "BCYTO_P5": {
-    "PMID": [
-     "25679389"
-    ],
     "anno": "Uncharacterized lineage-specific protein",
     "bit_cutoff": 30,
     "coverage_cutoff": 0.65,
@@ -97,12 +98,14 @@
     "max_len": 98,
     "min_len": 40,
     "segment": "Single RNA Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "25679389"
+     ]
+    }
    },
    "G": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "Envelope glycoprotein precursor",
     "bit_cutoff": 100,
     "coverage_cutoff": 0.65,
@@ -113,7 +116,12 @@
     "max_len": 761,
     "min_len": 429,
     "segment": "Single RNA Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    },
    "G_MAT": {
     "anno": "Mature envelope glycoprotein",
@@ -142,9 +150,6 @@
     "upstream_ext": 1
    },
    "L": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "RNA-dependent RNA polymerase",
     "bit_cutoff": 100,
     "copy_num": 1,
@@ -156,12 +161,14 @@
     "max_len": 2492,
     "min_len": 1731,
     "segment": "Single RNA Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    },
    "M": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "Matrix protein",
     "bit_cutoff": 60,
     "coverage_cutoff": 0.65,
@@ -172,17 +179,21 @@
     "max_len": 343,
     "min_len": 139,
     "segment": "Single RNA Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    },
    "MOV": {
-    "PMID": [
-     "8091658",
-     "8178430",
-     "40999317"
-    ],
-    "PMID_claude_generated": [
-     "26700068"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "8091658",
+      "8178430",
+      "40999317"
+     ]
+    },
     "anno": "Movement protein",
     "bit_cutoff": 80,
     "coverage_cutoff": 0.65,
@@ -196,9 +207,6 @@
     "upstream_ext": 1
    },
    "N": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "Nucleocapsid protein",
     "bit_cutoff": 100,
     "copy_num": 1,
@@ -210,12 +218,14 @@
     "max_len": 581,
     "min_len": 352,
     "segment": "Single RNA Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    },
    "P": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "Phosphoprotein",
     "bit_cutoff": 80,
     "copy_num": 1,
@@ -227,7 +237,12 @@
     "max_len": 395,
     "min_len": 179,
     "segment": "Single RNA Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    },
    "UNC1": {
     "anno": "Uncharacterized lineage-specific protein",

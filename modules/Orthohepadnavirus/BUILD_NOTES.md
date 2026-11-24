@@ -313,3 +313,82 @@ region is open — the walk stops at the first Met or stop, and on an HBwx-posit
 genome the first thing it meets going left is HBwx's start codon.  X would
 silently become HBwx and the real X call would be lost.  This is the same trap
 documented for M, S and C in section 6, with one more instance.
+
+## 10. Pre-pre-S (whole-L): rejected on a search for the wrong word
+
+**EVERY PMID IN THIS SECTION IS CLAUDE-GENERATED AND UNVERIFIED.**  None of it
+may be written into a `PMID` field; if any of this is built, the citations go in
+`PMID_claude_generated` and stay there until Jim has checked them.
+
+42 Orthohepadnavirus deposits (35 unique sequences) carry the annotation
+`putative prepreS protein` or `putative prepre-S protein`.  These were tabled
+on 23 Nov on the ground that no experimental report could be found.  That was
+wrong, and the reason is worth recording: the search was for *preS*, and the
+term in the literature is **pre-pre-S**.  Exactly two PubMed records use it.
+
+The substantive one is a review (PMID 16364485, Faure, *Virus Res* 2006;
+117:185–201), which states that in more than 300 Asian genomes a **pre-X** or
+**pre-pre-S** region is found just upstream of, respectively, the X and the
+pre-S1 genes; that both are translated in frame with their own gene; that the
+corresponding proteins have a demonstrated transactivating role; and that both
+are genotype- and serotype-specific (C/adr).  That is one sentence covering
+pre-X and pre-pre-S together — the same sentence that licensed HBwx in section
+9.  Building one and rejecting the other was not a defensible split.
+
+The deposits agree with the paper without having been asked to.  Measured
+across all 35 unique sequences, 31 carry an in-frame N-terminal extension of
+**exactly 45 residues** ahead of the L start:
+
+```
+MQLIITSKLGIIYILCGRLAFYIREKLHAAPHFVGHHILGNKSYS | MGGWSSKPRQGM...
+└────────────── 45 aa = 135 nt ──────────────┘   └─── L (preS1) ───
+```
+
+A secondary source (PMC4504892 / PMID 15991289) attributes to Dong *et al.* an
+ORF upstream of preS1, recovered by long-accurate PCR from serum-derived
+genomes, **"about 135 bp, provisionally called pre-pre-S"**, with promoter
+activity.  135 nt was measured here from the deposits before that number was
+read anywhere, so the agreement is independent.  The Dong primary has been seen
+only through that citation chain and has not been read.
+
+The remaining 4 of 35 are the same architecture with L's own initiator mutated
+away — `...KSYS·KPRQGM`, 439–440 aa against 445.  That is the HBwx failure mode
+exactly (section 9): a nested isoform whose only distinguishing feature is an
+upstream ATG.  So if this is built as `WHOLEL`, it takes `require_met_start: 1`
+and L takes `upstream_ext: 0`, by the same argument as HBwx and X.
+
+**Not built.**  The review clears the "seen experimentally" bar for the
+transactivation claim; the primary has not been read; and the decision to add a
+ninth-and-tenth nested surface form is Jim's, not mine.
+
+## 11. p25 / p22 / p17 are mature peptides on PRECORE, and the cut is genotype-specific
+
+**CLAUDE-GENERATED, UNVERIFIED.**  Same rule as section 10.
+
+The precore product is processed twice:
+
+| | what it is | made by |
+|---|---|---|
+| **p25** | the precore primary translation product | the precore AUG, 29 codons above C's |
+| **p22** | p25 minus the 19 aa ER signal | signal peptidase, in the ER |
+| **p17** | secreted HBeAg | **furin**, in the Golgi, removing the C-terminal arginine-rich domain |
+
+The furin residue blocked this for a week because the reviews disagreed —
+Arg-154 against Arg-167.  They are not two readings of one fact.  **The cut is
+genotype-dependent** (PMID 19193799, Ito, Kim, Lok & Tong, *J Virol* 2009;
+83(8):3507–17, which identifies furin using furin-deficient LoVo cells and a
+convertase inhibitor):
+
+* non-A genotypes cut after the **first** RXXR motif, `151-RRGR-154` → C-terminus at **Arg-154**
+* genotype A carries a two-residue insertion (`151-RRDR-154`) and shifts to the
+  **second** (`156-RSPR-159`) or **third** (`166-RRRR-169`) motif
+
+**This is why they cannot ship as a fixed-coordinate mat_peptide trio.**  p25
+and p22 have genotype-independent boundaries and could be built today; p17's
+C-terminus cannot be written as one number.  Either p17 is built per genotype,
+or it is built to the non-A site with the genotype-A error stated on the page,
+or it is not built.  That is a decision, not a measurement, and it is Jim's.
+
+One hard constraint if any of these is built: a mature peptide does **not**
+begin with Met, so `require_met_start` must be absent — setting it would delete
+the feature entirely.

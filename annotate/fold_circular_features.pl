@@ -2,6 +2,7 @@
 use strict;
 use GenomeTypeObject;
 use Getopt::Long::Descriptive;
+use Time::HiRes 'gettimeofday';
 
 # Try to load version module; fall back to "dev" if not available
 my $tool_version;
@@ -96,6 +97,21 @@ unless (%true_len)
 	$genome_in->destroy_to_file($opt->output);
 	exit 0;
 }
+
+#  RECORD THE FOLD AS AN ANALYSIS EVENT.
+#
+#  Every other stage of this pipeline registers one, and this stage DELETES
+#  features and REWRITES locations -- it is the only stage that removes a call
+#  another stage made. Without an event there is nothing in the finished GTO to
+#  say that happened, and a genome that was folded is indistinguishable from one
+#  that was never doubled: the fold clears circular_true_length on purpose, so
+#  that it is idempotent, and that is also the only field that recorded the
+#  doubling. The event is what survives.
+my $event_id = $genome_in->add_analysis_event({
+	tool_name      => "LowVan Fold Circular Features",
+	tool_version   => $tool_version,
+	execution_time => scalar gettimeofday,
+});
 
 my (@to_delete, $n_folded, $n_dup, $n_over, $n_contained);
 

@@ -178,6 +178,77 @@ def annotate_gto(contigs_dir, meta, work, repo, taxon, threads):
     return qdir
 
 
+def fold_circular(work, repo, perl="perl"):
+    """Undo the doubling on a circular replicon, then re-score quality.
+
+    A module declaring `replicon_geometry: circular` is annotated on a DOUBLED
+    contig, so a gene crossing the origin is found whole, and the contig stays
+    doubled through the special-feature passes so they inherit the same view.
+    Something has to fold it back, and NOTHING HERE DID. The pipe inside
+    New-annotate-viral-taxon.pl is
+
+        annotate_by_viral_pssm-GTO.pl | get_transcript_edited_features.pl
+                                      | get_splice_variant_features.pl
+
+    with no `fold_circular_features.pl` stage at all, and viral_genome_quality.pl
+    is then handed the doubled GTO. So this is an upstream defect in the driver,
+    not in this script; it is repaired here because the Viral_Annotation
+    checkout is read-only to this project.
+
+    The symptom is loud and misreads as a module defect: every Orthohepadnavirus
+    exemplar came back `poor`, every feature was flagged "Too many HSPs" because
+    it was found twice, and the contig was flagged "too long" -- 6,364 nt
+    measured against a 3,400 nt bound. The run reported `0 good, 589 poor` for a
+    module whose features were in fact being called correctly.
+
+    Idempotent, and a no-op on a linear taxon: the fold deletes
+    circular_true_length when it restores a contig, and a GTO that never carried
+    it is passed through unchanged. So this runs unconditionally rather than
+    reading replicon_geometry out of the module JSON -- the GTO itself is the
+    only honest record of whether a given genome was doubled, and a module can
+    declare the key for one segment and not another.
+    """
+    driver = os.path.join(repo, "annotate_viral_genome.pl")
+    annod = os.path.join(work, "Anno_GTOs")
+    quald = os.path.join(work, "Quality_GTOs")
+    if not os.path.exists(driver) or not os.path.isdir(annod):
+        return 0
+    env = dict(os.environ, LOWVAN_DATA_DIR=repo)
+    n = 0
+    for ann in sorted(glob.glob(os.path.join(annod, "*.anno.gto"))):
+        gid = os.path.basename(ann)[:-len(".anno.gto")]
+        #  Only a doubled genome needs either step, and reading one key is far
+        #  cheaper than shelling out on every exemplar of a linear taxon.
+        try:
+            g = json.load(open(ann))
+        except Exception:
+            continue
+        if not any("circular_true_length" in c for c in (g.get("contigs") or [])):
+            continue
+        #  -from fold is the repair entry point: the GTO is already annotated,
+        #  so only the fold and the re-score are wanted. The driver resolves
+        #  both stages next to itself, which is why this does not reimplement
+        #  them -- an inline version here was wrong twice over, invoking
+        #  viral_genome_quality.pl by bare name through `perl`, where $PATH
+        #  does not apply, so the re-score silently did nothing and the stale
+        #  Quality GTO from the doubled contig was the one that got reported.
+        rf = subprocess.run([perl, driver, "--from", "fold",
+                             "-i", ann, "-o", ann + ".folded",
+                             "-q", os.path.join(quald, gid + ".qual.gto"),
+                             "-x", gid, "--quiet"],
+                            capture_output=True, text=True, env=env, cwd=work)
+        if rf.returncode != 0 or not os.path.exists(ann + ".folded") \
+                or not os.path.getsize(ann + ".folded"):
+            print("  FOLD FAILED on %s: %s"
+                  % (gid, (rf.stderr or rf.stdout or "")[-300:]))
+            continue
+        os.replace(ann + ".folded", ann)
+        n += 1
+    if n:
+        print("  folded %d circular genome(s) and re-scored their quality" % n)
+    return n
+
+
 def read_quality(qdir):
     """genome-level and flag-level tallies straight out of the Quality GTOs."""
     good = poor = 0
@@ -496,6 +567,14 @@ def main():
                          "the BV-BRC dev kit is unavailable.")
     args = ap.parse_args()
 
+    #  CHECK --out BEFORE DOING THE WORK. It takes a file path, and the only
+    #  thing that ever noticed a directory there was the final json.dump, which
+    #  raises IsADirectoryError after every exemplar has been clustered,
+    #  annotated and scored. `--out coverage` cost a full 617-genome pass.
+    if os.path.isdir(args.out):
+        raise SystemExit("--out is a FILE path and %r is a directory; "
+                         "try %s/coverage.json" % (args.out, args.out.rstrip("/")))
+
     work = os.path.abspath(args.work)
     fa, seqs = stage(args.contigs, work)
     members = cluster(fa, work, args.pident, args.cov, args.threads)
@@ -628,6 +707,7 @@ def main():
         if still:
             print("  %d exemplar(s) still unannotated after %d retries: %s"
                   % (len(still), args.gto_retries, ", ".join(still[:10])))
+        fold_circular(work, repo)
         report_gto(ex, seqs, work, args.out)
     else:
         outd = annotate(ex, seqs, work, repo, args.threads)

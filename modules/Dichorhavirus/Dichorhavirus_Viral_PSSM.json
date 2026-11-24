@@ -8,9 +8,6 @@
   },
   "features": {
    "G": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "Envelope glycoprotein precursor",
     "bit_cutoff": 100,
     "copy_num": 1,
@@ -22,7 +19,12 @@
     "max_len": 638,
     "min_len": 473,
     "segment": "N Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    },
    "G_MAT": {
     "anno": "Mature envelope glycoprotein",
@@ -51,9 +53,6 @@
     "upstream_ext": 1
    },
    "L": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "RNA-dependent RNA polymerase",
     "bit_cutoff": 100,
     "copy_num": 1,
@@ -65,12 +64,14 @@
     "max_len": 2067,
     "min_len": 1662,
     "segment": "L Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    },
    "M": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "Matrix protein",
     "bit_cutoff": 60,
     "copy_num": 1,
@@ -82,17 +83,21 @@
     "max_len": 213,
     "min_len": 164,
     "segment": "N Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    },
    "MOV": {
-    "PMID": [
-     "8091658",
-     "8178430",
-     "40999317"
-    ],
-    "PMID_claude_generated": [
-     "26700068"
-    ],
+    "PMID_claude_generated": {
+     "function": [
+      "8091658",
+      "8178430",
+      "40999317"
+     ]
+    },
     "anno": "Movement protein",
     "bit_cutoff": 100,
     "copy_num": 1,
@@ -107,9 +112,6 @@
     "upstream_ext": 1
    },
    "N": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "Nucleocapsid protein",
     "bit_cutoff": 100,
     "copy_num": 1,
@@ -121,12 +123,14 @@
     "max_len": 499,
     "min_len": 400,
     "segment": "N Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    },
    "P": {
-    "PMID": [
-     "35723908"
-    ],
     "anno": "Phosphoprotein",
     "bit_cutoff": 80,
     "copy_num": 1,
@@ -138,7 +142,12 @@
     "max_len": 269,
     "min_len": 212,
     "segment": "N Segment",
-    "upstream_ext": 1
+    "upstream_ext": 1,
+    "PMID_claude_generated": {
+     "function": [
+      "35723908"
+     ]
+    }
    }
   },
   "segments": {
