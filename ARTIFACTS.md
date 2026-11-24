@@ -758,8 +758,8 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Orthohepadnavirus Coverage Audit | [open](https://claude.ai/artifact/4BoA4AoWy3T4diXEtfHZSR) | [source](reports/orthohepadnavirus-coverage-audit.html) | 2026-11-23 |
-| Orthohepadnavirus PSSM Registry | [open](https://claude.ai/artifact/WBZ6gMhZmjdLi4rjTEH6yQ) | [source](reports/orthohepadnavirus-registry.html) | 2026-11-23 |
+| Orthohepadnavirus Coverage Audit | [open](https://claude.ai/artifact/4BoA4AoWy3T4diXEtfHZSR) | [source](reports/orthohepadnavirus-coverage-audit.html) | 2026-11-24 |
+| Orthohepadnavirus PSSM Registry | [open](https://claude.ai/artifact/WBZ6gMhZmjdLi4rjTEH6yQ) | [source](reports/orthohepadnavirus-registry.html) | 2026-11-24 |
 | Orthohepadnavirus String Collapse | [open](https://claude.ai/artifact/P2wNPGuDaFzPmoLPxWEz7E) | [source](reports/orthohepadnavirus-collapse.html) | 2026-11-23 |
 | Orthohepadnavirus Vocabulary Saturation | [open](https://claude.ai/artifact/MDap5Qy7hQomabuketWN2S) | [source](reports/orthohepadnavirus-saturation.html) | 2026-11-23 |
 
