@@ -451,3 +451,46 @@ since 24 Nov 2026, costs nothing to re-run: `audit_bins.py --cache` stores the
 measurement, keyed on the content of every collection plus the measure
 thresholds, so editing the protections re-judges in seconds while editing a
 collection correctly invalidates it.
+
+## 13. Decisions taken when the peptides were finally built (24 Nov 2026)
+
+### PRECORE *is* p25 — named, not built
+
+Section 11 lays out the pathway p25 → p22 → p17. Only two of those three
+became features. **p25 is the unprocessed primary product of the precore CDS,
+and that CDS is `PRECORE`** — 212 aa, already in the module. A `mat_peptide`
+spanning the identical span would be a second copy of a feature that exists,
+with its own profile competing against the CDS it is a copy of.
+
+So `PRECORE`'s annotation is now `Secreted e antigen precursor p25`, and the
+processing pathway is carried by the peptides that genuinely differ from it:
+`P22` (p25 minus the 19-residue signal peptide) and `P17` (p22 minus the
+C-terminal arginine-rich domain). Agreed with Jim, 24 Nov 2026.
+
+### WHOLEL carries require_met_start, as section 10 said it must
+
+Section 10 concluded that if whole-L were ever built it would need
+`require_met_start: 1`, by the HBwx argument: a nested isoform whose only
+distinguishing feature is an upstream ATG, and a PSSM cannot veto on one
+column. The first `features.json` written for it did not have the flag.
+
+Without it the `WHOLEL` profile calls plain `L` in every genome lacking the
+extension — which is three quarters of them, since only 3,391 of 13,288
+L-carrying genomes have the upstream frame open. Set to 1, with
+`upstream_ext: 0`, mirroring `WHOLEX`/`X` exactly.
+
+The lesson is narrow and worth keeping: the notes were right and the config
+was wrong, and nothing would have caught it except reading one against the
+other. Cross-check new features against the section that argued for them.
+
+### P17 is ONE feature with TWO profiles, not two features
+
+`P17_NONA` (2,986 seqs, all exactly 164 aa) and `P17_A` (419 seqs, all exactly
+169 aa) are built as separate collections because the furin site is
+genotype-dependent — section 11. They must not ship as separate *features*:
+at ~97% identity and 5 aa apart they would cross-call each other, which is the
+HBwx failure mode again in a different costume.
+
+They merge into one feature `P17` carrying two profiles, numbered 1 (non-A)
+and 2 (A). The annotator scores both and emits the better one, which is that
+genome's genotype and therefore that genome's correct C-terminus.

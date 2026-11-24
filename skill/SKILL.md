@@ -661,6 +661,39 @@ Declare nested and spliced forms with `--protect`: `K22`/`K33`,
 forms all trip FRAGMENT by construction. Nothing is protected by default,
 because getting that list wrong deletes real biology — the curator names them.
 
+**Put the pairs in `collections/<Module>/protected_pairs.json`, not in flags.**
+A flag list is re-typed from memory on every run, and the pair you forget is
+reported as a defect you then have to re-investigate. Orthohepadnavirus,
+24 Nov 2026: a 2 h 12 m run returned three findings — `S` matching `M`, `M`
+a partial of `L`, `PRECORE` the same protein as `C` — every one of them a
+nested in-frame isoform sharing a stop, and every one of them a pair that was
+simply never declared. The file is read automatically and merges with
+`--protect`.
+
+Protection **suppresses findings**, so write down why each pair is protected,
+with evidence that does not come from the audit. For the envelope family it
+was length: S 210–249, M 255–299, L 360–431 aa are three disjoint windows, so
+a misfiled M would be a 255+ aa member of a bin whose largest is 249.
+
+**Adding a pair is free; re-measuring is not.** `--protect` is applied in
+`verdict()` and never touches the blast, so pass `--cache <file>` and a
+protection change re-judges in seconds:
+
+```bash
+python3 scripts/audit_bins.py --workdir . --module <Module> \
+        --cache .binaudit_cache.json --write-md <Module>/BIN_AUDIT.md
+```
+
+The key is the content of every collection plus the measure thresholds —
+editing a collection or a threshold invalidates it, editing the protections
+does not. Nothing is keyed on mtime, because a Box sync touches files that
+have not changed.
+
+`ship_module.py` copies `BIN_AUDIT.md`, `LENGTH_AUDIT.md` and
+`protected_pairs.json` into the module directory in the repo. Without the
+pairs file the audit is not reproducible: re-run elsewhere it reports the
+defects that were deliberately waived.
+
 `build_features.py` **refuses to build profiles** until this report exists and
 reads `Unresolved: 0`, on the same terms as the length audit, and a report
 older than the collections counts as missing. `--write` **moves** a retired

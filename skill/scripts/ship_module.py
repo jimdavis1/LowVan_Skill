@@ -100,6 +100,37 @@ def main():
     #  one line of the reasoning behind them.
     for f in glob.glob(os.path.join(W, "features_all.json")):
         shutil.copy(f, K)
+    #  THE AUDITS AND THE PROTECTED PAIRS GO TO THE KIT, for the same reason
+    #  features_all.json does: they are the evidence the module is sound, and
+    #  nothing else in the repo holds them.
+    #
+    #  build_features.py refuses to build until LENGTH_AUDIT and BIN_AUDIT
+    #  both read `Unresolved: 0`, so every shipped module HAS a clean pair of
+    #  reports -- and until now they stayed in the work directory, which is a
+    #  temp dir on one machine. A reviewer could see the profiles and not the
+    #  measurement that licensed them. Orthohepadnavirus LENGTH_AUDIT.md was
+    #  in the repo only because it was copied by hand.
+    #
+    #  protected_pairs.json matters more than it looks. A protected pair tells
+    #  the bin audit NOT to judge two collections that are near-identical by
+    #  design -- the nested isoform families, L/M/S and preC/C here. That
+    #  suppresses findings, so it is a curation decision of exactly the kind
+    #  the repo should carry, and without it the audit is not reproducible:
+    #  re-running it elsewhere reports defects that were deliberately waived.
+    for cands in ([os.path.join(W, "LENGTH_AUDIT.%s.md" % M),
+                   os.path.join(W, M, "LENGTH_AUDIT.md"),
+                   os.path.join(W, "LENGTH_AUDIT.md")],
+                  [os.path.join(W, "BIN_AUDIT.%s.md" % M),
+                   os.path.join(W, M, "BIN_AUDIT.md"),
+                   os.path.join(W, "BIN_AUDIT.md")],
+                  [os.path.join(W, "collections", M, "protected_pairs.json"),
+                   os.path.join(W, M, "collections", "protected_pairs.json")]):
+        src = next((p for p in cands if os.path.exists(p)), None)
+        if src:
+            dst = os.path.join(K, os.path.basename(cands[-1]
+                               if src.endswith(".json") else cands[1]))
+            shutil.copy2(src, dst)
+            print("   %-18s %s" % ("curation record", os.path.basename(dst)))
     #  SPLICE AND TRANSCRIPT-EDIT REFERENCES GO TO THE REPO TOO.
     #  install_module.py puts them in the runtime and nothing put them in the
     #  kit, so a module declaring a special feature could not be reinstalled
