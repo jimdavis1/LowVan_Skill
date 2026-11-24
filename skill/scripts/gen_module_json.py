@@ -197,9 +197,40 @@ def main():
             lo, hi = int(spec["min_len"]), int(spec["max_len"])
             med = (lo + hi) // 2
         else:
+            #  A MERGED FEATURE HAS NO COLLECTION OF ITS OWN EITHER, for a
+            #  different reason than `special`: it was built from two or more
+            #  collections by merge_feature_profiles.py, because its endpoint
+            #  is decided by something the clustering cannot see.
+            #  Orthohepadnavirus P17 is built from P17_NONA and P17_A, the
+            #  furin site being genotype-dependent.
+            #
+            #  Those sources are deliberately NOT concatenated into a
+            #  P17.fasta. That would add a collection holding a second copy of
+            #  every sequence in two others -- which the bin audit would
+            #  rightly call a duplicate bin -- and it would invalidate both
+            #  audits for a file existing only to carry a length range.
+            #
+            #  So take the range from the union of the sources named in
+            #  MERGED_FROM. Without this the feature lands in `missing` and is
+            #  dropped SILENTLY, which is how Betaretrovirus REM shipped as a
+            #  4-feature module (see the comment above).
             if not os.path.exists(fa):
-                missing.append(key); continue
-            L = lens(fa)
+                mf = os.path.join(W, "Alignments", M, key, "MERGED_FROM")
+                srcs = []
+                if os.path.exists(mf):
+                    txt = "".join(l for l in open(mf) if not l.startswith("#"))
+                    try:
+                        srcs = sorted({r["from"] for r in json.loads(txt)})
+                    except Exception:
+                        srcs = []
+                if not srcs:
+                    missing.append(key); continue
+                L = sorted(x for s in srcs
+                           for x in lens(os.path.join(cdir, s + ".fasta")))
+                print("  %-16s no collection; length range from the merged "
+                      "sources %s" % (key, ", ".join(srcs)))
+            else:
+                L = lens(fa)
             if not L:
                 missing.append(key); continue
             lo = int(L[0] * (1 - a.pad)); hi = int(L[-1] * (1 + a.pad))
@@ -272,8 +303,21 @@ def main():
         #    non_pssm_partner   this feature's coordinates come from a
         #                       neighbour's PSSM match
         #    begin / end        the anchor pair that does it
+        #    require_met_start  veto a hit whose first codon is not ATG.
+        #                       This one is NOT cosmetic and was being dropped
+        #                       with the rest: it is the ONLY thing separating
+        #                       a nested in-frame isoform from the shorter
+        #                       form it contains, where the sole difference is
+        #                       an upstream ATG and a PSSM cannot veto on one
+        #                       column. Orthohepadnavirus WHOLEX carried it in
+        #                       the shipped JSON, set by hand; the next
+        #                       regeneration would have removed it and the
+        #                       HBwx profile would have called plain X in
+        #                       every X-only genome. WHOLEL has exactly the
+        #                       same relationship to L.
         for field in ("special", "internal_stop", "translate",
-                      "non_pssm_partner", "begin", "end"):
+                      "non_pssm_partner", "begin", "end",
+                      "require_met_start"):
             if spec.get(field) is not None:
                 d[field] = spec[field]
         #  A `special` feature has no PSSM, so the fields that only describe
@@ -292,10 +336,21 @@ def main():
         #  Both were being dropped on the floor here, the same way the
         #  extension flags were, so a feature declared with a literature
         #  reference shipped without one.
+        #
+        #  THE SHAPE MATTERS, AND THIS LINE IS WHERE IT WAS DESTROYED. Two
+        #  value forms are in use and both are correct: a bare list of ids,
+        #  and a {"function": [...], "coordinates": [...]} object that says
+        #  which claim each citation supports. `[str(v)]` turned the object
+        #  form into a PYTHON REPR INSIDE A JSON STRING --
+        #  ["{'function': ['399327']}"] -- which nothing reads as a citation.
+        #  audit_pmids.py found twelve of these in the two hepadnavirus
+        #  modules on 24 Nov 2026 and repaired them; they came straight back
+        #  on the next regeneration, because the repair fixed the file and
+        #  this line is what writes the file. Only a scalar needs wrapping.
         for field in ("PMID", "PMID_claude_generated"):
             if spec.get(field):
                 v = spec[field]
-                d[field] = v if isinstance(v, list) else [str(v)]
+                d[field] = v if isinstance(v, (list, dict)) else [str(v)]
         #  copy_num is still never INVENTED here -- see the note at the top --
         #  but one already in the spec is a MEASURED value the curator folded
         #  back after apply_copy_num.py, and silently dropping it destroyed the
