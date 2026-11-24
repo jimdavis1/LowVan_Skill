@@ -203,15 +203,56 @@ def measure(cdir, feats, link_id=40.0, link_cov=0.5, max_members=400):
     """Best FOREIGN feature for every member of every collection."""
     tmp = tempfile.mkdtemp(prefix="binaudit_")
     try:
-        allf = os.path.join(tmp, "all.faa")
-        with open(allf, "w") as o:
-            for f in feats:
+        #  ONE DATABASE PER FEATURE, HOLDING EVERY OTHER FEATURE.
+        #  This test wants one number per member: its best hit to a FOREIGN
+        #  bin. The first version of this put all collections in a single
+        #  database and dropped the self-hits while parsing -- which is
+        #  correct, and is also the entire cost of the script. A member of a
+        #  7,000-member bin hits thousands of its own siblings, and blastp
+        #  does the full gapped extension and traceback on every one of them
+        #  before the parser throws it away. The big bins are the slow ones
+        #  and they are the ones wasting the most.
+        #  Measured on Orthohepadnavirus, 24 Nov 2026 -- 12 bins, 69,656
+        #  sequences: the single-database form was 1 h 57 m into its FIRST
+        #  collection, projecting to roughly 24 h for the pass.
+        #  Leaving the query's own bin out of its own database weakens
+        #  nothing. The hits removed are exactly the ones that were being
+        #  discarded, every member is still queried against every other
+        #  collection, and the top hit is now the foreign best BY
+        #  CONSTRUCTION -- so -max_target_seqs no longer has to be large
+        #  enough to see past a bin's own members, which is why it was 5000.
+        #  The WITHIN-bin identity test below is untouched; it is a separate
+        #  -subject run and is where self-similarity is actually measured.
+        #  VALIDATED against the form it replaces, on P17_A -- deliberately the
+        #  WORST case for the speedup, 419 members out of 69,656, so its
+        #  database shrinks by half a per cent and nothing but max_target_seqs
+        #  is doing any work. All 419 queries returned the same best foreign
+        #  FEATURE and the same bitscore to the last digit (P22 260, PRECORE
+        #  159, no query gained or lost a hit). 855 s -> 38 s, 2,095,000 rows
+        #  -> 8,380.
+        per_feat = {}
+        for f in feats:
+            pf = os.path.join(tmp, "%s.bin.faa" % f)
+            with open(pf, "w") as o:
                 for i, (_, s) in enumerate(read_fasta(
                         os.path.join(cdir, f + ".fasta")).items()):
                     o.write(">%s|%d\n%s\n" % (f, i, s))
-        subprocess.run(["makeblastdb", "-in", allf, "-dbtype", "prot",
-                        "-out", os.path.join(tmp, "db")],
-                       check=True, capture_output=True)
+            per_feat[f] = pf
+        dbs = {}
+        for f in feats:
+            others = [per_feat[g] for g in feats if g != f]
+            if not others:
+                continue
+            notf = os.path.join(tmp, "not_%s.faa" % f)
+            with open(notf, "w") as o:
+                for p in others:
+                    with open(p) as i:
+                        shutil.copyfileobj(i, o)
+            db = os.path.join(tmp, "db_%s" % f)
+            subprocess.run(["makeblastdb", "-in", notf, "-dbtype", "prot",
+                            "-out", db], check=True, capture_output=True)
+            dbs[f] = db
+            os.unlink(notf)
         out = {}
         for f in feats:
             fa = os.path.join(cdir, f + ".fasta")
@@ -220,10 +261,15 @@ def measure(cdir, feats, link_id=40.0, link_cov=0.5, max_members=400):
                 continue
             lens = sorted(len(s) for s in seqs.values())
             n_all = len(seqs)          # before any subsampling below
+            if f not in dbs:
+                continue
             r = subprocess.run(
-                ["blastp", "-query", fa, "-db", os.path.join(tmp, "db"),
+                ["blastp", "-query", fa, "-db", dbs[f],
                  "-outfmt", "6 qseqid sseqid pident length qlen slen bitscore",
-                 "-max_target_seqs", "5000", "-evalue", "1e-3",
+                 #  20, not 5000: the database holds no member of this bin, so
+                 #  the first hit IS the foreign best. See the per-feature
+                 #  database comment above.
+                 "-max_target_seqs", "20", "-evalue", "1e-3",
                  #  SEEDING ONLY. blastp-fast uses a longer, compressed-alphabet
                  #  word for the initial hit; the extension, the scoring matrix
                  #  and the reported identities are unchanged. Every member of

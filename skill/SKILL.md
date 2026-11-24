@@ -1240,6 +1240,29 @@ the flag; a human curator deleting the entry from the generator's registry is
 the act that clears it. Expect a new module to ship with `PMID` absent on every
 feature, as Matonaviridae did.
 
+#### The rule is enforced, because writing it down did not work
+
+```bash
+python3 $SK/audit_pmids.py --strict            # every module in the kit
+python3 $SK/audit_pmids.py --module X --fix    # move the offenders
+```
+
+This paragraph has existed, in three places in this file, since the kit was
+written. On 24 Nov 2026 an audit found **40** model-written citations sitting in
+the curated `PMID` field anyway — Alpharhabdovirinae 14, Betarhabdovirinae 9,
+Dichorhavirus 6, Novirhabdovirus 6, Togaviridae 4, Norovirus 1. A rule that is
+only documented is not an invariant.
+
+`audit_pmids.py` compares each module JSON against **git HEAD**. A `PMID` that
+is already committed is the curator's and is left alone; one that is new or
+changed in the working tree was written by whoever is running now, and on this
+path that is a model. That distinction needs no honour system and no memory of
+who typed what. `ship_module.py` refuses to ship a module that fails it.
+
+Never type into `PMID`. If a citation feels certain enough to belong there,
+that feeling is the failure mode — put it in `PMID_claude_generated`, put the
+reasoning in the feature's `comment`, and let Jim promote it.
+
 Drive it from a registry in the generator so it cannot drift, and never put a
 flagged id into `assets/annotation-vocabulary.tsv` — that table has no
 provenance column, so a proposed citation entering it silently becomes a curated

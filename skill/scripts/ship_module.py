@@ -37,6 +37,25 @@ def main():
     #  shell brought its own problems. The three placements below are what this
     #  script can verify honestly; the commit is left to the caller and printed
     #  as a reminder, because a check that lies is worse than no check.
+    #  THE CURATED PMID FIELD IS NOT OURS TO WRITE. A bare `PMID` means a human
+    #  read the paper and confirmed it supports the claim; everything a model
+    #  produced goes in `PMID_claude_generated`. SKILL.md has said so in three
+    #  places since the kit existed and 40 model-written citations still ended
+    #  up in `PMID` across six modules. So it is checked here, where a module
+    #  cannot be shipped past it, rather than only written down. The audit
+    #  compares against git HEAD, so a citation Jim curated and committed is
+    #  left alone and only a NEW one fails.
+    pm = subprocess.run([sys.executable,
+                         os.path.join(KIT, "skill/scripts/audit_pmids.py"),
+                         "--module", M, "--strict"],
+                        capture_output=True, text=True)
+    if pm.returncode != 0:
+        print(pm.stdout)
+        raise SystemExit(
+            "REFUSED: %s carries a citation in the curated `PMID` field that is "
+            "not in git HEAD.\nMove it with:  python3 $SK/audit_pmids.py "
+            "--module %s --fix" % (M, M))
+
     state = {"kit alignments": have_kit(), "Box work": os.path.isdir(B),
              "Box runtime JSON": have_rt(), }
     npssm = len(glob.glob(os.path.join(W, "Alignments", M, "*", "pssms", "*.pssm")))
