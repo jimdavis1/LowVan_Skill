@@ -392,3 +392,62 @@ or it is not built.  That is a decision, not a measurement, and it is Jim's.
 One hard constraint if any of these is built: a mature peptide does **not**
 begin with Met, so `require_met_start` must be absent — setting it would delete
 the feature entirely.
+
+## 12. Protected bin pairs, and why each one is protected
+
+`audit_bins.py` asks of every collection whether it holds one protein and its
+own protein. In a family built almost entirely out of **nested in-frame
+isoforms sharing a stop**, that question has a false answer by construction:
+every S really is 100% identical to part of its own genome's M, because it
+*is* part of it. The audit cannot tell that from contamination, so the pairs
+are declared in `collections/Orthohepadnavirus/protected_pairs.json` and
+excluded from judgement.
+
+Protection suppresses findings, so each pair needs a reason that does not come
+from the audit itself.
+
+### The envelope family: L / M / S, and WHOLEL
+
+One ORF, three in-frame starts, one stop. L = preS1 + preS2 + S;
+M = preS2 + S; S alone. WHOLEL adds the pre-pre-S extension upstream of L.
+
+The independent evidence that no sequence is misfiled is **length**, measured
+24 Nov 2026 over the built collections:
+
+    S   n=10879   210 - 249 aa
+    M   n= 6007   255 - 299 aa
+    L   n=11082   360 - 431 aa
+
+Three disjoint windows with no overlap at any point. A misfiled M in S would
+be 255+ aa in a bin whose largest member is 249. The length audit is therefore
+doing the work that the bin audit cannot, and it is clean.
+
+(WHOLEL was split out of L on this same date: 26 whole-L sequences, 22 of them
+at exactly 445 aa, were sitting in L, and L's upper bound had been widened to
+445 to accommodate them. Removed, L's max returns to 431, which is the
+woodchuck protein.)
+
+### The core family: C / PRECORE, and the mature peptides
+
+preC is C plus the 29-residue precore peptide, same stop. p25 is the PRECORE
+CDS primary product; p22 is p25 minus the 19-residue signal peptide; p17
+(HBeAg) is p22 minus the C-terminal arginine-rich domain. Every one of these
+is a sub-sequence of the one above it **by definition of the processing
+pathway**, which is the thing being annotated.
+
+Here the length windows do overlap — C runs 170-220 and PRECORE 195-234 —
+because the module spans several host species and a 220 aa C belongs to a
+genome whose preC is 249. The overlap is across species, not within a genome.
+
+Note that the audit's `KEPT` row for C is correct and should stay readable:
+C and PRECORE are a mutual-duplicate pair, and retiring both would delete the
+protein. Protection is the right instrument precisely because neither bin is
+wrong.
+
+### What protection does NOT cover
+
+A pair not listed is still judged. Adding one is a verdict-level change and,
+since 24 Nov 2026, costs nothing to re-run: `audit_bins.py --cache` stores the
+measurement, keyed on the content of every collection plus the measure
+thresholds, so editing the protections re-judges in seconds while editing a
+collection correctly invalidates it.

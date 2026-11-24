@@ -87,7 +87,7 @@ it, or sign it off in --accept with a reason -- and only then does --write
 retire what is left. build_features.py refuses to build profiles until this
 report exists and reads **Unresolved: 0**.
 """
-import argparse, collections, glob, json, os, shutil, statistics
+import argparse, collections, glob, hashlib, json, os, shutil, statistics
 import subprocess, sys, tempfile
 
 BV = "/Applications/BV-BRC.app/runtime/bin"
@@ -593,6 +593,10 @@ def main():
                          "therefore quadratic. The contamination test still sees every "
                          "member. 0 disables the cap.")
     ap.add_argument("--accept", help="TSV of signed-off bins: FEATURE<TAB>why")
+    ap.add_argument("--cache", help="JSON file holding the measurement. "
+                    "Reused when the collections and thresholds are "
+                    "unchanged, so adding a protected pair re-judges in "
+                    "seconds instead of re-blasting. Safe to delete.")
     ap.add_argument("--write-md", help="write the report here")
     ap.add_argument("--write", action="store_true",
                     help="retire every unaccepted bin to collections/retired/ "
@@ -612,7 +616,60 @@ def main():
                 k, _, why = line.rstrip("\n").partition("\t")
                 accepted[k.strip()] = why.strip() or "signed off"
 
-    recs = measure(cdir, feats, a.link_id, a.link_cov, a.max_members)
+    #  CACHE THE MEASUREMENT, BECAUSE PROTECTION IS A VERDICT, NOT A MEASURE.
+    #
+    #  measure() is the whole cost of this script and --protect does not touch
+    #  it: the blast runs, the records come out, and only then does verdict()
+    #  ask whether a pair was declared near-identical by design. So every time
+    #  a protected pair is added -- which is the normal way an audit is
+    #  resolved, because the commonest finding is a nested isoform that was
+    #  simply not declared -- the full measurement is paid again for an answer
+    #  that cannot have changed.
+    #
+    #  Orthohepadnavirus, 24 Nov 2026: the first clean run took 2 h 12 m and
+    #  reported three findings, all of them the L/M/S and preC/C isoform
+    #  families. Resolving them is a four-line edit to protected_pairs.json
+    #  and would have cost another 2 h 12 m of identical blast.
+    #
+    #  The key is the CONTENT of every collection plus the measure()
+    #  parameters, so editing a collection or a threshold invalidates it and
+    #  editing the protections does not. Nothing is keyed on mtime: a file
+    #  touched by rsync or a Box sync has not changed, and a file edited in
+    #  place within the same second has.
+    recs = None
+    ckey = None
+    if a.cache:
+        h = hashlib.sha256()
+        for f in feats:
+            with open(os.path.join(cdir, f + ".fasta"), "rb") as fh:
+                for chunk in iter(lambda: fh.read(1 << 20), b""):
+                    h.update(chunk)
+            h.update(f.encode())
+        h.update(repr((a.link_id, a.link_cov, a.max_members)).encode())
+        ckey = h.hexdigest()
+        if os.path.exists(a.cache):
+            try:
+                blob = json.load(open(a.cache))
+            except Exception:
+                blob = {}
+            if blob.get("key") == ckey:
+                recs = blob["recs"]
+                print("measurement cache HIT (%s) -- collections and "
+                      "thresholds unchanged; re-judging only" % a.cache,
+                      file=sys.stderr)
+            elif blob:
+                print("measurement cache STALE -- collections or thresholds "
+                      "changed since it was written; re-measuring",
+                      file=sys.stderr)
+
+    if recs is None:
+        recs = measure(cdir, feats, a.link_id, a.link_cov, a.max_members)
+        if a.cache:
+            tmp = a.cache + ".tmp"
+            json.dump({"key": ckey, "recs": recs}, open(tmp, "w"))
+            os.replace(tmp, a.cache)
+            print("measurement cached in %s" % a.cache, file=sys.stderr)
+
     for f, nst in nesting(cdir, feats).items():
         if f in recs:
             recs[f]["nest"] = nst
