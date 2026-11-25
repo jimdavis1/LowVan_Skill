@@ -494,3 +494,66 @@ HBwx failure mode again in a different costume.
 They merge into one feature `P17` carrying two profiles, numbered 1 (non-A)
 and 2 (A). The annotator scores both and emits the better one, which is that
 genome's genotype and therefore that genome's correct C-terminus.
+
+## 14. The coverage measurement for the twelve-feature module (25 Nov 2026)
+
+Panel: 19,479 contigs, 841 clusters at 95% nucleotide identity, 224 clusters
+with nothing at or above the 3,130 nt doubling floor, **617 exemplars**.
+589 routed (95.5%), **302 good / 287 poor**.
+
+| feature | genomes | rate | copy_num |
+|---|---|---|---|
+| M | 560 | 95.1% | 1 |
+| S | 559 | 94.9% | 1 |
+| L | 552 | 93.7% | 1 |
+| C | 541 | 91.9% | 1 |
+| P | 524 | 89.0% | 1 |
+| X | 513 | 87.1% | 1 |
+| p17 | 400 | 67.9% | -- |
+| p22 | 395 | 67.1% | -- |
+| preC | 389 | 66.0% | -- |
+| HBSP | 173 | 29.4% | -- |
+| HBwl | 109 | 18.5% | -- |
+| HBwx | 32 | 5.4% | -- |
+
+**THE FOLD HAD NEVER RUN, AND NOTHING SAID SO.** The first pass of this panel
+annotated all 589 circular genomes DOUBLED -- eighteen calls on a nine-gene
+genome -- and reported `0 good, 589 poor` without one error line.
+`install_module.py` copied the kit's annotator perl only over filenames the
+repo already carried, so `annotate_viral_genome.pl` (added to the kit later)
+reached 2 of 24 local repos; `evaluate_coverage.py`'s fold step looked for it
+in the repo and returned 0 silently. Fixed in d2c816f8 and b93610db. The
+repair ran over the existing GTOs with `--from fold` in minutes; a re-run
+would have cost 6.5 h. **Before trusting a circular taxon's coverage numbers,
+check one GTO for `circular_true_length` -- if it is present, nothing folded.**
+
+**preC's 66% is G1896A, not a coverage hole.** Of the 152 exemplars calling
+the capsid but not precore, **141 carry a stop at codon 28** of the precore
+leader -- the translation ends `...CLGWL*` -- and 11 have lost the initiator
+ATG. Not one has an intact precore frame. The precore stop mutant abolishes
+HBeAg and is among the commonest variants in clinical HBV, so those genomes
+genuinely encode no p25, and therefore no p22 and no p17 either. That is why
+the three track together at 66-68%, and why none of them takes `copy_num`.
+
+**require_met_start is holding.** All 109 HBwl calls and all 32 HBwx calls sit
+in a genome that also calls its parent: zero orphans, zero cross-calling.
+
+**The 216 "too short" flags are the deposits, not the windows.** 77% of the
+genomes with a short polymerase carry more than 50 ambiguous bases, at a
+median of 428 N, against 18% and a median of zero for genomes whose polymerase
+is in range; the three shortest sit in deposits with 161, 345 and 428 N.
+Translation length matches the summed location span exactly in all 524
+polymerase calls, including the 396 folded into two pieces across the origin.
+min_len/max_len are left alone.
+
+**The 28 unrouted:** 25 are oversized at 3,419-10,123 nt (cloned and
+concatemeric constructs, correctly refused by the 3,400 nt ceiling), 2 are
+54% and 61% N, and one divergent deposit found no rep contig above 150 bits
+-- the 25-contig budget showing its edge.
+
+**P17_A and P17_NONA are the build record, not features.** They stay in
+`Alignments/` and `collections/` so both audits still see them; the module
+JSON names only `P17`, which carries their three profiles merged. Since
+b93610db neither install nor ship copies a build directory that is not a
+feature in the module JSON -- before that, three profiles no feature
+referenced were reaching the runtime.

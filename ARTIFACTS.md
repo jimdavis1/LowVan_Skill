@@ -75,7 +75,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Okavirus** | [live](https://claude.ai/artifact/RKNvVrHuJyqtL63buXY65s) | [live](https://claude.ai/artifact/CfPZkmHrBQmpqDg8UgNKtr) | [live](https://claude.ai/artifact/HwqTaFW2dhYuVJcvGQXq1U) | [live](https://claude.ai/artifact/CUfo9HcbNriTFmtfymywyy) | [src only](reports/okavirus-genome-map.html) |
 | **Orbivirus** | [live](https://claude.ai/artifact/9nzf4UVDgZbLaGG6JHAbmy) | [live](https://claude.ai/artifact/LFgehfnnk7LAVmPsi3YFFL) | [live](https://claude.ai/artifact/2YqPhZurQTMYVv9oFWUfMP) | [live](https://claude.ai/artifact/VDx2X7pCFMv8azLSUjsnqW) | — |
 | **Orthoflavivirus** | [live](https://claude.ai/artifact/MFXjT53roYWz1ymQkrh1ur) | [live](https://claude.ai/artifact/AkjDvmo28d4bVZCndjymXP) | [live](https://claude.ai/artifact/9c5gUBxFf4jHNfYizWHw7m) | [live](https://claude.ai/artifact/RokLyf9pujJnw37CAri2DR) | — |
-| **Orthohepadnavirus** | [live](https://claude.ai/artifact/P2wNPGuDaFzPmoLPxWEz7E) | [live](https://claude.ai/artifact/WBZ6gMhZmjdLi4rjTEH6yQ) | [live](https://claude.ai/artifact/MDap5Qy7hQomabuketWN2S) | [live](https://claude.ai/artifact/4BoA4AoWy3T4diXEtfHZSR) | [src only](reports/orthohepadnavirus-genome-map.html) |
+| **Orthohepadnavirus** | [live](https://claude.ai/artifact/P2wNPGuDaFzPmoLPxWEz7E) | [live](https://claude.ai/artifact/WBZ6gMhZmjdLi4rjTEH6yQ) | [live](https://claude.ai/artifact/MDap5Qy7hQomabuketWN2S) | [live](https://claude.ai/artifact/4BoA4AoWy3T4diXEtfHZSR) | [live](https://claude.ai/artifact/45ZWkFCCQdvdwNZs9t72Fd) |
 | **Parechovirus** | [live](https://claude.ai/artifact/EUx6FLSssTPNRWJ7FcDyL6) | [live](https://claude.ai/artifact/GYiXCX6ammFZUqqK7MbNWs) | [live](https://claude.ai/artifact/6xMJKTWE3i5FXH8yFXBUBf) | [live](https://claude.ai/artifact/V6xRs6ePghUPkaTX1SyuBL) | — |
 | **Pegivirus** | [live](https://claude.ai/artifact/K2iJfd8E9rtDErhCeDHWix) | [live](https://claude.ai/artifact/GhMTLt7Rd19Ek3mJL7JFWr) | [live](https://claude.ai/artifact/1KUB1A9tKmxJaEHKZbWzYM) | [live](https://claude.ai/artifact/Gy9STnMecUF9MaByUNmugx) | — |
 | **Pestiviridae** | [live](https://claude.ai/artifact/2wDv9SfmPrtHWSch4gek5c) | [live](https://claude.ai/artifact/9UrwQLi5mBSkVmB4UrtLJm) | [live](https://claude.ai/artifact/KcbRvV3YqDZWutCDNEWkxh) | [live](https://claude.ai/artifact/LEF7bVuNmTvA8vs94ptF26) | — |
@@ -758,12 +758,14 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Orthohepadnavirus Coverage Audit | [open](https://claude.ai/artifact/4BoA4AoWy3T4diXEtfHZSR) | [source](reports/orthohepadnavirus-coverage-audit.html) | 2026-11-24 |
-| Orthohepadnavirus PSSM Registry | [open](https://claude.ai/artifact/WBZ6gMhZmjdLi4rjTEH6yQ) | [source](reports/orthohepadnavirus-registry.html) | 2026-11-24 |
-| Orthohepadnavirus String Collapse | [open](https://claude.ai/artifact/P2wNPGuDaFzPmoLPxWEz7E) | [source](reports/orthohepadnavirus-collapse.html) | 2026-11-23 |
-| Orthohepadnavirus Vocabulary Saturation | [open](https://claude.ai/artifact/MDap5Qy7hQomabuketWN2S) | [source](reports/orthohepadnavirus-saturation.html) | 2026-11-23 |
+| Orthohepadnavirus Coverage Audit | [open](https://claude.ai/artifact/4BoA4AoWy3T4diXEtfHZSR) | [source](reports/orthohepadnavirus-coverage-audit.html) | 2026-11-25 |
+| Orthohepadnavirus PSSM Registry | [open](https://claude.ai/artifact/WBZ6gMhZmjdLi4rjTEH6yQ) | [source](reports/orthohepadnavirus-registry.html) | 2026-11-25 |
+| Orthohepadnavirus String Collapse | [open](https://claude.ai/artifact/P2wNPGuDaFzPmoLPxWEz7E) | [source](reports/orthohepadnavirus-collapse.html) | 2026-11-25 |
+| Orthohepadnavirus Vocabulary Saturation | [open](https://claude.ai/artifact/MDap5Qy7hQomabuketWN2S) | [source](reports/orthohepadnavirus-saturation.html) | 2026-11-25 |
+| Orthohepadnavirus Genome Map | [open](https://claude.ai/artifact/45ZWkFCCQdvdwNZs9t72Fd) | [source](reports/orthohepadnavirus-genome-map.html) | 2026-11-25 |
 
-Not made: genome map.
+All five pages are the 12-feature module measured on 617 exemplars after the
+circular fold was repaired; the earlier versions reported the genome doubled.
 
 ### Parechovirus
 

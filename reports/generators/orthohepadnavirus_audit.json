@@ -1,0 +1,700 @@
+{
+ "title": "Orthohepadnavirus Coverage Audit",
+ "eyebrow": "LowVan &middot; Orthohepadnavirus module &middot; 25 November 2026",
+ "h1": "Can a module annotate a genome that has no beginning?",
+ "standfirst": "Hepatitis B is a circle, and four of its proteins cross the arbitrary point where the submitter cut it open. One of those four is also spliced, and a third of all deposits genuinely do not encode one of the twelve.",
+ "headline_tiles": [
+  [
+   "12",
+   "features"
+  ],
+  [
+   "56",
+   "PSSMs"
+  ],
+  [
+   "589/617",
+   "exemplars routed"
+  ],
+  [
+   "51.3%",
+   "annotated exemplars genuinely clean"
+  ],
+  [
+   "31.0\u00d7",
+   "string collapse"
+  ],
+  [
+   "16.1\u00d7",
+   "vocabulary collapse at equal proteins sampled"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "One module for the mammalian hepadnaviruses, twelve features, four overlapping reading frames.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Genus <em>Orthohepadnavirus</em> plus the named mammalian hepadnaviruses BV-BRC leaves without a genus &mdash; bat hepatitis virus, bat hepadnavirus, ringtail hepadnavirus and Tai Forest hepadnavirus &mdash; which carry X and the three surface forms and so share this genome organisation. 142,997 genomes. The avian viruses are a <strong>separate</strong> module because they have neither the X gene nor the middle surface form; the deposits say so before any reference is consulted, with one X string and five middle-surface strings across 636 unique Avihepadnavirus sequences, all six mislabelled."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count"
+     ],
+     "rows": [
+      [
+       "genomes in the BV-BRC protein dump",
+       "142,997"
+      ],
+      [
+       "protein features",
+       "211,003"
+      ],
+      [
+       "unique sequences",
+       "115,902"
+      ],
+      [
+       "genomes with a contig \u2265 5 kb",
+       "19,479"
+      ],
+      [
+       "species",
+       "0"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The four features that cross the origin &mdash; P, L, M and the spliced HBSP &mdash; are drawn as single unbroken arcs through it, which is what they are on the molecule. Rendered on a linear axis the same features came out as two disconnected boxes at opposite ends of the figure, and M&rsquo;s 9 nt first piece as a sliver 1.3 px wide against the margin &mdash; the one thing this module was built to express was the one thing the picture hid. The origin is marked because it carries no biology: it is wherever the submitter cut the circle, and in duck hepatitis B it falls elsewhere, so a different pair of genes wraps."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Twelve features, not seven.</strong> Six are the canonical ORFs &mdash; <code>P</code>, <code>L</code>, <code>M</code>, <code>S</code>, <code>C</code>, <code>X</code>. <code>preC</code> is the 212&nbsp;aa precore CDS, named for its primary product <strong>p25</strong>. Two mature peptides are cut out of it: signal peptidase removes the first 19 residues to give <strong>p22</strong> (193&nbsp;aa), and furin removes the C-terminal arginine-rich domain to give <strong>p17</strong>, the secreted e antigen. <code>HBwl</code> and <code>HBwx</code> are N-terminally extended isoforms of L and X, each sharing its parent's stop and distinguished only by an upstream start &mdash; both carry <code>require_met_start</code>, because a PSSM cannot veto on one column. <code>HBSP</code> is spliced and has no profile at all."
+    },
+    {
+     "type": "figure",
+     "from": "orthohepadnavirus-genome-map.svg"
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Not an oversight. The annotator could not express a CDS that crosses the origin, and for hepatitis B almost every genome has one.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation",
+      "symbol",
+      "collection",
+      "profiles",
+      "departures"
+     ],
+     "rows": [
+      [
+       "C",
+       "Capsid protein",
+       "C",
+       "10,000",
+       "14",
+       "defaults"
+      ],
+      [
+       "HBSP",
+       "Hepatitis B spliced protein",
+       "HBSP",
+       "0",
+       "\u2014 (special)",
+       "\u2014"
+      ],
+      [
+       "L",
+       "Large surface antigen",
+       "L",
+       "18,478",
+       "6",
+       "defaults"
+      ],
+      [
+       "M",
+       "Middle surface antigen",
+       "M",
+       "8,902",
+       "3",
+       "defaults"
+      ],
+      [
+       "P",
+       "RNA-dependent DNA polymerase",
+       "P",
+       "29,278",
+       "16",
+       "defaults"
+      ],
+      [
+       "P17",
+       "Secreted e antigen p17",
+       "p17",
+       "0",
+       "3",
+       "\u2014"
+      ],
+      [
+       "P22",
+       "Precore protein p22",
+       "p22",
+       "3,405",
+       "2",
+       "defaults"
+      ],
+      [
+       "PRECORE",
+       "Secreted e antigen precursor p25",
+       "preC",
+       "7,259",
+       "3",
+       "defaults"
+      ],
+      [
+       "S",
+       "Small surface antigen",
+       "S",
+       "17,630",
+       "4",
+       "defaults"
+      ],
+      [
+       "WHOLEL",
+       "Whole-L protein",
+       "HBwl",
+       "3,002",
+       "1",
+       "defaults"
+      ],
+      [
+       "WHOLEX",
+       "Whole-X protein",
+       "HBwx",
+       "1,148",
+       "1",
+       "defaults"
+      ],
+      [
+       "X",
+       "Regulatory protein X",
+       "X",
+       "12,468",
+       "3",
+       "defaults"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "A circular genome reaches GenBank as the loop cut at one arbitrary point, so a CDS lying across that cut arrives split: part at the end of the contig, part at the start. Searched as deposited it is two partial hits, neither clearing its bit_cutoff, and the feature is lost."
+    },
+    {
+     "type": "prose",
+     "html": "There is no better place to cut. Coding density is <strong>98.1%</strong>, the polymerase alone covers 78.7% of the genome, and the longest non-coding window is <strong>62 nt</strong>, so a break avoids every reading frame only 1.9% of the time. The field's convention does not help either: position 1 is nominally the EcoRI site, which sits inside both P and the envelope ORF, and 96.4% of deposits break inside P."
+    },
+    {
+     "type": "prose",
+     "html": "Duck hepatitis B virus makes the point from the other side. In RefSeq NC_001344.1 the genes that cross the origin are <strong>preC and C</strong>, not P and the surface forms. The origin is wherever the submitter cut the circle and nothing about the biology puts it in the same place twice, so no amount of choosing better records would have fixed this."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "Where the cutoffs sit",
+   "lede": "Search a doubled contig, then fold the coordinates back.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "bit_cutoff",
+      "coverage_cutoff",
+      "min_len",
+      "max_len"
+     ],
+     "rows": [
+      [
+       "C",
+       "30",
+       "0.65",
+       "159",
+       "233"
+      ],
+      [
+       "HBSP",
+       "\u2014",
+       "\u2014",
+       "80",
+       "105"
+      ],
+      [
+       "L",
+       "60",
+       "0.65",
+       "338",
+       "456"
+      ],
+      [
+       "M",
+       "60",
+       "0.65",
+       "239",
+       "316"
+      ],
+      [
+       "P",
+       "60",
+       "0.65",
+       "743",
+       "952"
+      ],
+      [
+       "P17",
+       "30",
+       "0.65",
+       "154",
+       "179"
+      ],
+      [
+       "P22",
+       "30",
+       "0.65",
+       "165",
+       "227"
+      ],
+      [
+       "PRECORE",
+       "30",
+       "0.65",
+       "183",
+       "248"
+      ],
+      [
+       "S",
+       "30",
+       "0.65",
+       "197",
+       "263"
+      ],
+      [
+       "WHOLEL",
+       "60",
+       "0.65",
+       "399",
+       "479"
+      ],
+      [
+       "WHOLEX",
+       "30",
+       "0.85",
+       "188",
+       "238"
+      ],
+      [
+       "X",
+       "30",
+       "0.65",
+       "123",
+       "174"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The module declares <code>replicon_geometry: circular</code>. The annotator doubles the contig after routing &mdash; it cannot do so earlier, because geometry is a property of the module and the module is not known until the BLASTn has run &mdash; and searches the doubled copy, where a gene crossing the cut appears whole and in order. Every later step works unchanged, because nothing about a doubled sequence is circular any more: stop scanning, Met scanning, subsequence extraction and translation all run as they do on a linear genome."
+    },
+    {
+     "type": "prose",
+     "html": "The contig stays doubled for the whole pipeline, which is what would let a spliced or frameshifted product across the origin be found without either special-feature caller knowing the replicon is circular. A final stage folds coordinates past the true length into join locations, drops the second copy of everything, and restores the contig, so nothing doubled reaches the quality checker."
+    },
+    {
+     "type": "prose",
+     "html": "The length window is doing real work and it costs something. 992 Orthohepadnavirus contigs fall between 2900 and 3130 nt; all but two are named simply <em>Hepatitis B virus</em>, with the commonest lengths 3055 and 3049, which is 130&ndash;190 nt short of a genome. They are refused, so P and L are not called on them at all &mdash; 5.2% of contigs. That is the intended trade: a record missing 130 nt may be missing them from inside P, and a join built across an invented junction is a worse answer than a missing call. At the other end, 47 contigs exceed 3400 nt, and hepatitis B is frequently deposited as a head-to-tail 1.3-mer or 2-mer construct that would otherwise have every gene reported twice."
+    },
+    {
+     "type": "verdict",
+     "kind": "ok",
+     "html": "Self-recall against each feature's own in-range collection: <b>66251 of 66251 (100.0%)</b> &mdash; C 7274/7274, L 11082/11082, M 6007/6007, P 10526/10526, P22 3405/3405, PRECORE 4248/4248, S 10879/10879, WHOLEL 3002/3002, WHOLEX 1148/1148, X 8680/8680. This is a floor, not a validation; the genome-level figures are in &sect;05 and &sect;06."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "Does it route?",
+   "lede": "Windows set per species, because this genus is not only hepatitis B.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "",
+      "count",
+      "%"
+     ],
+     "rows": [
+      [
+       "genomes \u2265 5 kb, clustered at 95% nucleotide identity",
+       "617",
+       "\u2014"
+      ],
+      [
+       "routed to Orthohepadnavirus",
+       "589",
+       "95.5%"
+      ],
+      [
+       "unrouted",
+       "28",
+       "4.5%"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "25 rep contigs ship with the module; 24 of them are the best BLASTn hit for at least one exemplar. Routing was measured against the ten Picornaviridae modules only &mdash; nucleotide BLASTn cannot reach the routing threshold across virus families, and leaving the other 56 modules' 558 rep contigs out cut the run time four-fold."
+    },
+    {
+     "type": "prose",
+     "html": "Woodchuck hepatitis virus P is 883&ndash;884 aa against HBV's 832&ndash;845, its large surface protein is 431 aa against HBV's 389&ndash;400, and Tai Forest hepadnavirus core is 220 aa against HBV's 183. A window cut to hepatitis B alone deletes every non-human orthohepadnavirus silently."
+    },
+    {
+     "type": "prose",
+     "html": "P's window discards the most, and correctly. The median deposit annotated <code>polymerase</code> in this genus is <strong>344 aa</strong>, because drug-resistance surveillance sequences the reverse-transcriptase region and nothing else; 3,557 deposits sit at exactly 344. They are real partial polymerase and they are not the protein."
+    },
+    {
+     "type": "prose",
+     "html": "Three features carry <code>upstream_ext: 0</code> and that is load-bearing rather than cautious. <code>scan_to_met_start</code> begins one codon upstream of the call and walks left until it meets a Met or a stop. Between S's start and M's, and between M's and L's, there is no stop &mdash; they are the same reading frame &mdash; so extension on S would not refine its start, it would convert every S call into M and then into L. The same holds for C against preC."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "Does it call the proteins?",
+   "lede": "Three starts on one frame sharing one stop, which is the hazard that sank an earlier family &mdash; and now a second family of nested forms cut out of one precursor.",
+   "blocks": [
+    {
+     "type": "bars",
+     "rows": [
+      [
+       "C",
+       "91.9",
+       91.9,
+       "541 of 589 routed exemplars"
+      ],
+      [
+       "HBSP",
+       "29.4",
+       29.4,
+       "173 of 589 routed exemplars"
+      ],
+      [
+       "L",
+       "93.7",
+       93.7,
+       "552 of 589 routed exemplars"
+      ],
+      [
+       "M",
+       "95.1",
+       95.1,
+       "560 of 589 routed exemplars"
+      ],
+      [
+       "P",
+       "89.0",
+       89.0,
+       "524 of 589 routed exemplars"
+      ],
+      [
+       "p17",
+       "67.9",
+       67.9,
+       "400 of 589 routed exemplars"
+      ],
+      [
+       "p22",
+       "67.1",
+       67.1,
+       "395 of 589 routed exemplars"
+      ],
+      [
+       "preC",
+       "66.0",
+       66.0,
+       "389 of 589 routed exemplars"
+      ],
+      [
+       "S",
+       "94.9",
+       94.9,
+       "559 of 589 routed exemplars"
+      ],
+      [
+       "HBwl",
+       "18.5",
+       18.5,
+       "109 of 589 routed exemplars"
+      ],
+      [
+       "HBwx",
+       "5.4",
+       5.4,
+       "32 of 589 routed exemplars"
+      ],
+      [
+       "X",
+       "87.1",
+       87.1,
+       "513 of 589 routed exemplars"
+      ]
+     ],
+     "unit": "%"
+    },
+    {
+     "type": "prose",
+     "html": "<b>12 of 589 routed exemplars get every one of the 11 core features.</b> Features trailing the best-called core protein by 20 points or more: <b>p17, p22, preC, HBwl, HBwx</b>. Excluded from that count: HBSP &mdash; called by an external program and absent from this table, or a protein part of the genus does not encode."
+    },
+    {
+     "type": "prose",
+     "html": "L, M and S are three in-frame starts on one surface ORF sharing one stop, so S is an exact C-terminal substring of M and M of L. preC and C do the same on the core ORF. <code>fasta-cluster-pssm</code> drops a cluster whose consensus is a substring of another's, so a mixed collection does not merely blur the forms &mdash; it deletes the shorter one and ships its profile as the longer."
+    },
+    {
+     "type": "prose",
+     "html": "About 1&ndash;5% cross-contamination, removed by the length windows. The harder problem is the <strong>6,776 deposits carrying a string that names the ORF and not the form</strong> &mdash; <code>surface antigen</code>, <code>surface protein</code>, <code>HBsAg</code>, <code>envelope protein</code>, <code>sAg</code>. Homology cannot place them: the forms are 100% identical where they overlap, so a 226 aa query matches the L canonical over 100% of itself exactly as well as it matches S, and the rescue's usual test passes on all three with the winner decided arbitrarily."
+    },
+    {
+     "type": "prose",
+     "html": "Length alone cannot place them either, and that is the part worth stating. A 226 aa surface deposit is either a genuine S <strong>or an L truncated after 226 residues</strong>, and those are opposite things: one belongs in the S collection, the other is a partial that must be discarded. Binning on length alone builds the S profile out of L's N-terminus."
+    },
+    {
+     "type": "prose",
+     "html": "So the test applied is <strong>which end the sequence shares</strong>. Every genuine form ends at the common stop and therefore carries the S C-terminus; a truncated L carries L's N-terminus and stops wherever the submission stopped. The anchor is taken from the module's own S collection rather than written down, so it stays correct for the woodchuck and bat viruses whose C-terminus differs from HBV's."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The precore family is nested by proteolysis rather than by start codon, and p17 splits by genotype.</strong> p17 is p22 minus the C-terminal arginine-rich domain, removed by furin after an RXXR motif &mdash; and <em>which</em> motif is genotype-dependent. Non-A genotypes cut after the first, <code>151-RRGR-154</code>, giving 164&nbsp;aa. Genotype&nbsp;A carries a two-residue insertion that makes the first motif <code>151-RRDR-154</code>, a poor furin substrate, so the cut shifts to the second, <code>156-RSPR-159</code>, giving 169&nbsp;aa. Clustered together at 97% identity the two populations merge and the alignment frays over the last five columns, so no profile can place the cut. Split by motif before clustering they come out clean, and the built alignments confirm the literature from the sequences alone: <strong>2,104 sequences at exactly 164&nbsp;aa ending <code>VRRRGR</code></strong> and <strong>323 at exactly 169&nbsp;aa ending <code>RGRSPR</code></strong>. They ship as <em>one</em> feature with three profiles rather than two features: at 97% identity and five residues apart, two features cross-call, while one feature scores both and keeps the better &mdash; which is that genome's genotype, and therefore that genome's correct C-terminus."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "Are the calls right?",
+   "lede": "One real contamination, and it was invisible to every length rule.",
+   "blocks": [
+    {
+     "type": "tiles",
+     "items": [
+      [
+       "589",
+       "annotated exemplars"
+      ],
+      [
+       "351",
+       "no genome/contig flags"
+      ],
+      [
+       "302",
+       "genuinely clean"
+      ],
+      [
+       "287",
+       "flagged"
+      ],
+      [
+       "0",
+       "called nothing"
+      ],
+      [
+       "51.3%",
+       "clean"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "The panel is 589 genomes drawn round-robin across species from this genus's own BV-BRC contigs, with every rep-contig reference genome excluded, built into GTOs with <code>rast-create-genome</code> and scored by <code>viral_genome_quality.pl</code>. <i>Genuinely clean</i> means no genome, contig or feature flag at all."
+    },
+    {
+     "type": "pre",
+     "text": " 194  Contig has too many ambiguous bases, Frac > 0.01\n  76  Genome is missing essential feature: Regulatory protein X\n  65  Genome is missing essential feature: RNA-dependent DNA polymerase\n  48  Genome is missing essential feature: Capsid protein\n  37  Genome is missing essential feature: Large surface antigen\n  30  Genome is missing essential feature: Small surface antigen\n  29  Genome is missing essential feature: Middle surface antigen"
+    },
+    {
+     "type": "prose",
+     "html": "Every one of the 59,913 collection members was blasted against the modal-length canonical of all seven features. Most cross-feature hits are the nested architecture and mean nothing &mdash; an S sequence hits the L canonical as well as it hits its own, because L contains it. The informative rows are the ones that cross to a <em>different reading frame</em>, and there were 86 of them."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>64 were in S.</strong> They are 225 aa, which is inside the 210&ndash;250 window, so no length rule could see them &mdash; and they are polymerase: the cluster consensus begins <code>GEHHIRIPRTPARVTGGVFLVDKNPHNTKESRL</code> and carries <code>GLSPFLLTQFTSAICS</code>, the reverse-transcriptase motif. They had formed their own 35-member cluster and built <strong>one of the two S profiles</strong>, which would have called <em>Small surface antigen</em> on the polymerase locus of every genome it matched."
+    },
+    {
+     "type": "prose",
+     "html": "The only thing that surfaced them was <code>check_met_start.py</code>: that cluster's modal first residue was G, in 100% of its members, and a small surface antigen begins with Met. After removing all 86 and rebuilding, S builds one profile instead of two and every CDS profile begins at its protein's start."
+    },
+    {
+     "type": "prose",
+     "html": "Nothing else was moved. <code>qc_cross_feature.py</code> and <code>audit_contamination.py</code> both report findings on this module, and in a family of nested alternative starts every one of them is the architecture: neither tool takes a protect argument, so the structural check has to be applied by hand. The Avihepadnavirus core collection is 88 sequences at <em>exactly</em> 262 aa and its precore collection 73 at 295&ndash;305, both exactly right, and 35 of the 88 core members are an exact C-terminal substring of a precore member &mdash; which is what the architecture means, not what contamination looks like."
+    }
+   ]
+  },
+  {
+   "num": "07",
+   "title": "What it cannot do",
+   "lede": "Written from the measurements, not from a template.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>It loses the wrap on near-complete records.</strong> 992 contigs (5.2%) fall below the 3130 nt floor and are not doubled, so P and L &mdash; the two features that cross the origin &mdash; are not called on them. These are real hepatitis B genomes missing 130&ndash;190 nt. The alternative is doubling a fragment and inventing a junction, which is worse, but it is a genuine loss and not a rounding error."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>A contig truncated but still inside its bounds is doubled anyway.</strong> A 3,200 nt record missing 20 nt gains a false junction and nothing in the pipeline can detect it. Length is the only guard there is."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>HBSP reaches 29.4% of exemplars, against a 71.6% ceiling.</strong>  The spliced protein is built and called &mdash; <code>special: \"splice\"</code>, no PSSM, 93&nbsp;aa, <code>join(2309..2449,545..685)</code> on NC_003977.2. Two things are worth recording about it. The coordinates in circulation, donor 2447 and acceptor 489, do not work on that genome: they land on <code>AT</code> and <code>CC</code>, because they are in EcoRI numbering. Soussan 2000 (PMID 10619861) gives no coordinates at all; it gives the product, &ldquo;93 amino acids &hellip; the first 46 amino acids of the polymerase, followed by the 47 amino acids&rdquo;, and the junction here was found by splice chemistry and confirmed against that. The four deposits at 111&nbsp;aa are a different splice product, not this one. Second, one reference is not enough: the caller needs 95% identity and coverage across the donor and acceptor windows and HBV genotypes differ by about 8%, so the first build reached 2.8%. Twenty-nine references now reach 37.4%, and the junction itself is present in 71.6% of complete contigs."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>376 unique sequences carry no annotation string at all</strong> and are left unbound. They are not a missing protein: blasted against the seven string-derived canonicals they come back L 121, C 78, X 69, S 49, P 46, M 4, preC 2, with 7 no-hit, and the features they would join already hold 4,248 to 11,119 members each. They are deliberately not rescued, because 174 of them are surface forms and homology cannot place a surface form &mdash; a rescue would contaminate exactly the collections the structural test was written to keep clean."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The fish and amphibian hepadnaviruses are tabled.</strong> Metahepadnavirus, Parahepadnavirus and Herpetohepadnavirus are three genera, 64 genomes and <strong>80 unique protein sequences between them</strong>. Routing is not the obstacle &mdash; 33 contigs fall into 4 clusters and the budget would cover them twice over &mdash; the obstacle is 7 to 31 sequences per feature spread across three deeply divergent genera, with ORFY and ORFZ present as single deposits. One of them, <em>Alewife hepatitis B virus</em>, is filed by BV-BRC under genus Orthohepadnavirus and had been selected as a reference contig for this module; it was removed, because a reference for a taxon the module cannot call converts a visible routing gap into a silent miscall."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>25 genomes are unrouted</strong> at the 25-reference budget, each its own cluster at 70% identity. That is a long tail of singletons, not a missing reference: the curve is flat and no small addition closes it."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>HBwx is called on 5.4% of exemplars and HBwl on 18.5%.</strong> Both are real figures rather than coverage holes: each is an N-terminally extended isoform that exists only where an upstream in-frame ATG is present, and in most deposits it is not. The number that matters is the cross-calling one, and it is zero &mdash; <strong>every one of the 109 HBwl calls and all 32 HBwx calls sits in a genome that also calls its parent</strong>, so <code>require_met_start</code> is holding and neither profile is poaching L or X."
+    },
+    {
+     "type": "verdict",
+     "kind": "warn",
+     "html": "Use this module on <strong>complete or near-complete mammalian hepadnavirus genomes at or above 3,130&nbsp;nt</strong>, where the contig is doubled and the four cross-origin features are recoverable. Below that floor P and L are lost and the module reports the rest honestly. Expect the precore family on about two thirds of hepatitis B deposits and not more: the remaining third carries G1896A and genuinely encodes no e antigen. HBwl, HBwx and HBSP are reported where present and are not essential. The fish and amphibian hepadnaviruses are out of scope and tabled with their reasons."
+    }
+   ]
+  },
+  {
+   "num": "08",
+   "title": "What the run found",
+   "lede": "617 exemplars, one per 95%-identity cluster of the 19,479 contigs that has at least one genome at or above the 3,130 nt doubling floor.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>589 of 617 exemplars route (95.5%).</strong> The 28 that do not are explained individually: <strong>25 are oversized</strong>, 3,419 to 10,123&nbsp;nt, which are cloned and concatemeric constructs correctly rejected by the 3,400&nbsp;nt ceiling; two are 54% and 61% ambiguous bases and call nothing; and one, a divergent deposit, finds no reference contig above 150 bits at the 25-contig budget."
+    },
+    {
+     "type": "prose",
+     "html": "The six canonical ORFs are called on essentially every routed genome &mdash; <code>M</code> 95.1%, <code>S</code> 94.9%, <code>L</code> 93.7%, <code>C</code> 91.9%, <code>P</code> 89.0%, <code>X</code> 87.1% &mdash; and all six carry <code>copy_num: 1</code>. The precore family sits together at <code>p17</code> 67.9%, <code>p22</code> 67.1% and <code>preC</code> 66.0%, which is the pattern two mature peptides cut out of one precursor must show. None of the six non-canonical features earns <code>copy_num</code>, and none should: marking a genotype-restricted isoform or a spliced product essential would flag every genome lacking it as poor quality."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The 66% precore rate is biology, not a coverage hole, and the genomes say so directly.</strong> Of the 152 exemplars that call the capsid but not precore, <strong>141 carry a stop codon at codon 28 of the precore leader</strong> &mdash; the translation ends <code>&hellip;CLGWL*</code>, which is G1896A, the classic precore stop mutant that abolishes e antigen production. The other 11 have lost the initiator ATG. <strong>Not one has an intact precore reading frame.</strong> A genome carrying G1896A genuinely does not encode p25, and therefore encodes neither p22 nor p17 either, which is exactly why the three track together."
+    },
+    {
+     "type": "prose",
+     "html": "Quality: <strong>302 of 589 good (51.3%)</strong> and 287 poor, on 216 &ldquo;too short&rdquo; and 29 &ldquo;too long&rdquo; feature flags. <strong>The short calls are the deposits, not the windows.</strong> 77% of the genomes with a short polymerase carry more than 50 ambiguous bases, at a median of <strong>428&nbsp;N</strong>, against 18% and a median of zero for genomes whose polymerase is in range; the three shortest sit in deposits with 161, 345 and 428&nbsp;N. The long calls are the mirror image &mdash; a handful of deposits that have lost a stop codon, so the scan runs on to the next one. Both windows are left alone."
+    },
+    {
+     "type": "prose",
+     "html": "Translation length matches the summed location span exactly in all 524 polymerase calls, including the 396 that are folded into two pieces across the origin, so the fold's arithmetic is checked rather than assumed."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>The fold had never run.</strong> This panel was first measured with every circular genome still doubled &mdash; eighteen calls on a nine-gene genome &mdash; and reported <code>0 good, 589 poor</code> without one error line. Two silent failures stacked: <code>install_module.py</code> copied the kit's annotator perl only over filenames the repository already carried, so <code>annotate_viral_genome.pl</code>, the five-stage driver, reached none of the repositories created before it existed; and the coverage runner's fold step looked for that driver in the repository and returned quietly when it was absent. A repository missing a stage is not one with fewer programs, it is one running a shorter pipeline, and nothing in the output said so. Both are fixed, and the repair ran over the existing annotations in minutes rather than re-annotating for seven hours."
+    },
+    {
+     "type": "prose",
+     "html": "Every feature recovers <strong>100%</strong> of its own in-range collection in the PSSM registry, and the held-out reference genome returns zero duplicate calls."
+    }
+   ]
+  },
+  {
+   "num": "09",
+   "title": "What the vocabulary bought",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "figure",
+     "from": "orthohepadnavirus-vocabulary-saturation.html"
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "annotation string",
+      "source strings absorbed"
+     ],
+     "rows": [
+      [
+       "L",
+       "Large surface antigen",
+       "66"
+      ],
+      [
+       "PRECORE",
+       "Secreted e antigen precursor p25",
+       "43"
+      ],
+      [
+       "S",
+       "Small surface antigen",
+       "30"
+      ],
+      [
+       "M",
+       "Middle surface antigen",
+       "24"
+      ],
+      [
+       "P",
+       "RNA-dependent DNA polymerase",
+       "20"
+      ],
+      [
+       "C",
+       "Capsid protein",
+       "17"
+      ],
+      [
+       "X",
+       "Regulatory protein X",
+       "17"
+      ],
+      [
+       "<i>unbound</i>",
+       "\u2014",
+       "156"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "Rarefaction over proteins: every annotated protein in the 607 genomes both sources annotate (2,747 source product records, 7,884 module calls) shuffled 100 times and drawn one at a time. Both curves start at zero. The source vocabulary reaches <b>129</b> distinct strings, the module's <b>8</b>. At the depth both reach, 2,747 proteins, free text has used <b>129.0 strings against 8.0 &mdash; a 16.1-fold difference.</b> The source reaches 95% of its final size after 2,345 proteins, the module after 22."
+    },
+    {
+     "type": "prose",
+     "html": "Seven of the twelve features are derived from the deposited annotation strings, and across those seven <strong>363 distinct BV-BRC strings collapse to 7 controlled annotations</strong> over 195,048 occurrences &mdash; a 51.9-fold reduction. The other five carry no deposited vocabulary at all: <code>HBSP</code> is spliced, <code>HBwl</code>, <code>HBwx</code>, <code>p22</code> and <code>p17</code> were extracted by sequence and motif because no submitter annotates them. They add five controlled annotations against zero source strings, which is the opposite of collapse &mdash; it is vocabulary the deposits do not have."
+    },
+    {
+     "type": "prose",
+     "html": "Measured over the whole genus rather than the binned subset, <strong>416 distinct deposited strings cover 210,525 proteins</strong> and the module answers with 12. Rarefying over proteins rather than genomes, at the depth both pools reach on the shared exemplars (2,031 proteins) the source carries <strong>125 distinct strings and the module 12</strong>, a <strong>10.4-fold</strong> reduction. The shape matters more than the ratio: the module's curve is flat after 99 proteins, while the source has not reached 95% of its own vocabulary until 1,769 and is still climbing at the end of the sample."
+    }
+   ]
+  }
+ ],
+ "source_note": "Generated from <code>orthohepadnavirus_audit.json</code> by <code>gen_coverage_audit.py</code>; the numbers by <code>gen_facts.py</code> from collect_registry.py, evaluate_coverage.py, run_gto_eval.py, collect_synmap.py and annotation_rarefaction.py output in <code>Hepadnaviridae/work/Orthohepadnavirus/</code>. All citations in this module are model-proposed and carried in PMID_claude_generated; none has been read and confirmed by a curator."
+}
