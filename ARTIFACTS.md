@@ -28,7 +28,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Avastrovirus** | [live](https://claude.ai/artifact/VrWfP1iFNxZT5JCJBgHH5w) | [live](https://claude.ai/artifact/6Jpsu5giVraWnVab27PjS8) | [live](https://claude.ai/artifact/RcW23Q2inLy9B7bfVVFBK7) | [live](https://claude.ai/artifact/5RSkHzZqkSbdaRKMzHrNZM) | — |
 | **Aviadenovirus** | [src only](reports/aviadenovirus-string-collapse.html) | [src only](reports/aviadenovirus-pssm-registry.html) | [src only](reports/aviadenovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/9h1S1c4RPid8rcPjHucwtk) | [src only](reports/aviadenovirus-genome-map.html) |
 | **Avian Orthoreovirus** | [live](https://claude.ai/artifact/2CfEd31Y8bvE6jVxVWBnQ1) | [live](https://claude.ai/artifact/GaQucYQdx9YJ1cPotbhr1V) | [live](https://claude.ai/artifact/AsPEXfHmr2noPAraHssXbS) | [live](https://claude.ai/artifact/2bSDj7BTvk8cuWeLGVdaEi) | — |
-| **Avihepadnavirus** | [live](https://claude.ai/artifact/DedsJecMLtThCNSifQHyr3) | [live](https://claude.ai/artifact/4XfY95bQj3NwSdrEkGWidE) | [live](https://claude.ai/artifact/AEgQkNu8g9q9e5hE496f37) | [live](https://claude.ai/artifact/H1G8vj4VHeFHBjaD2hSz5C) | [src only](reports/avihepadnavirus-genome-map.html) |
+| **Avihepadnavirus** | [live](https://claude.ai/artifact/DedsJecMLtThCNSifQHyr3) | [live](https://claude.ai/artifact/4XfY95bQj3NwSdrEkGWidE) | [live](https://claude.ai/artifact/AEgQkNu8g9q9e5hE496f37) | [live](https://claude.ai/artifact/H1G8vj4VHeFHBjaD2hSz5C) | [live](https://claude.ai/artifact/NCURrRukf3fNT9wW1YWCrj) |
 | **Avihepatovirus** | [live](https://claude.ai/artifact/6RHPEZykKvhFBP9wrrH1qU) | [live](https://claude.ai/artifact/JFVvSbRmU1Fv6nq7Wqi7gC) | [live](https://claude.ai/artifact/P3wF6BgumacJUGYqZ4v7X8) | [live](https://claude.ai/artifact/AUmXPWzEr4vCreQShkZsrz) | — |
 | **Barthadenovirus** | [src only](reports/barthadenovirus-string-collapse.html) | [src only](reports/barthadenovirus-pssm-registry.html) | [src only](reports/barthadenovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/9shXBryhfpqZGUzPBsDjJR) | [src only](reports/barthadenovirus-genome-map.html) |
 | **Bavovirus** | [live](https://claude.ai/artifact/VRpn8EkqAkz2sMjzYFEDS9) | [live](https://claude.ai/artifact/RqkxTXZnGNWALpiyXz7t9d) | [live](https://claude.ai/artifact/RqWLqqQPpCtJC7ZHpPxPxZ) | [live](https://claude.ai/artifact/88JpWMU5nBSfQXczr3X2ZX) | — |
@@ -253,8 +253,10 @@ Not made: genome map.
 | Avihepadnavirus PSSM Registry | [open](https://claude.ai/artifact/4XfY95bQj3NwSdrEkGWidE) | [source](reports/avihepadnavirus-registry.html) | 2026-11-23 |
 | Avihepadnavirus String Collapse | [open](https://claude.ai/artifact/DedsJecMLtThCNSifQHyr3) | [source](reports/avihepadnavirus-collapse.html) | 2026-11-23 |
 | Avihepadnavirus Vocabulary Saturation | [open](https://claude.ai/artifact/AEgQkNu8g9q9e5hE496f37) | [source](reports/avihepadnavirus-saturation.html) | 2026-11-23 |
+| Avihepadnavirus Genome Map | [open](https://claude.ai/artifact/NCURrRukf3fNT9wW1YWCrj) | [source](reports/avihepadnavirus-genome-map.html) | 2026-11-25 |
 
-Not made: genome map.
+The map is the control for the circular fold: on duck hepatitis B it is **preC
+and C** that cross the origin, not P and the surface forms as in hepatitis B.
 
 ### Avihepatovirus
 

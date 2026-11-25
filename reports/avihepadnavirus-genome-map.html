@@ -1,1 +1,148 @@
+<title>Avihepadnavirus Genome Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+
+.lvmap{--orf0:#2a78d6;--orf1:#eb6834;--orf2:#1baf7a;--orf3:#c3c2b7}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lvmap{--orf0:#3987e5;--orf1:#d95926;--orf2:#25c48d;--orf3:#cfcec5}}:root[data-theme="dark"] .lvmap{--orf0:#3987e5;--orf1:#d95926;--orf2:#25c48d;--orf3:#cfcec5}
+
+  body { padding-block: 28px;
+         padding-left: max(16px, env(safe-area-inset-left, 0px));
+         padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  figure { margin: 0 auto; max-width: 1000px; }
+  figure svg { width: 100%; height: auto; max-width: 100%; }
+</style>
 <figure class="lvmap"><style>.lvmap{--orf0:#2a78d6;--orf1:#eb6834;--orf2:#1baf7a;--orf3:#c3c2b7}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lvmap{--orf0:#3987e5;--orf1:#d95926;--orf2:#25c48d;--orf3:#cfcec5}}:root[data-theme="dark"] .lvmap{--orf0:#3987e5;--orf1:#d95926;--orf2:#25c48d;--orf3:#cfcec5}</style><svg viewBox="0 0 746 623" role="img" aria-label="Duck hepatitis B virus (12639.90001, 3,027 nt) as the Avihepadnavirus module annotates it: 5 features (5 essential, 0 mature peptides)."><rect x="4" y="11" width="15" height="11" rx="2" style="fill:var(--orf0)"/><text x="25" y="20" font-size="12" fill="currentColor">preC/C</text><rect x="347" y="11" width="15" height="11" rx="2" style="fill:var(--orf1)"/><text x="368" y="20" font-size="12" fill="currentColor">preS/S</text><rect x="4" y="31" width="15" height="11" rx="2" style="fill:var(--orf2)"/><text x="25" y="40" font-size="12" fill="currentColor">P</text><text x="4" y="56" font-size="11" fill="currentColor" opacity="0.7">one colour per reading frame &middot; outside the ring = forward strand</text><circle cx="373" cy="346" r="186" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><line x1="373.0" y1="165.0" x2="373.0" y2="155.0" stroke="currentColor" opacity="0.4"/><line x1="528.7" y1="253.7" x2="537.3" y2="248.6" stroke="currentColor" opacity="0.4"/><text x="518.4" y="259.8" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">0.5</text><line x1="531.6" y1="433.2" x2="540.4" y2="438.0" stroke="currentColor" opacity="0.4"/><text x="521.1" y="427.4" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">1.0</text><line x1="378.4" y1="526.9" x2="378.7" y2="536.9" stroke="currentColor" opacity="0.4"/><text x="378.1" y="514.9" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">1.5</text><line x1="219.9" y1="442.6" x2="211.5" y2="447.9" stroke="currentColor" opacity="0.4"/><text x="230.1" y="436.2" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">2.0</text><line x1="212.0" y1="263.3" x2="203.1" y2="258.7" stroke="currentColor" opacity="0.4"/><text x="222.7" y="268.7" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">2.5</text><line x1="362.5" y1="165.3" x2="361.9" y2="155.3" stroke="currentColor" opacity="0.4"/><text x="363.2" y="177.3" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">3.0</text><line x1="373" y1="73.0" x2="373" y2="172.0" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/><text x="373" y="67.0" text-anchor="middle" font-size="12" fill="currentColor">origin &middot; nt 1</text><path d="M444.8,149.7 A209.0,209.0 0 1 1 195.0,236.5 L209.5,245.4 A192.0,192.0 0 1 0 439.0,165.7 Z" style="fill:var(--orf2)"/><line x1="212.0" y1="247.0" x2="192.4" y2="234.9" stroke="var(--orf2)" stroke-width="2.5"/><path d="M603.1,366.7 A231.0,231.0 0 0 1 246.4,539.2 L255.7,525.0 A214.0,214.0 0 0 0 586.1,365.2 Z" style="fill:var(--orf1)"/><line x1="257.3" y1="522.5" x2="244.7" y2="541.7" stroke="var(--orf1)" stroke-width="2.5"/><path d="M173.1,230.3 A231.0,231.0 0 0 1 548.0,195.2 L535.1,206.3 A214.0,214.0 0 0 0 187.8,238.8 Z" style="fill:var(--orf0)"/><line x1="532.8" y1="208.2" x2="550.2" y2="193.2" stroke="var(--orf0)" stroke-width="2.5"/><path d="M486.7,572.0 A253.0,253.0 0 0 1 234.3,557.6 L243.6,543.4 A236.0,236.0 0 0 0 479.0,556.8 Z" style="fill:var(--orf1)"/><line x1="245.3" y1="540.9" x2="232.7" y2="560.1" stroke="var(--orf1)" stroke-width="2.5"/><path d="M195.4,165.9 A253.0,253.0 0 0 1 564.6,180.8 L551.8,191.9 A236.0,236.0 0 0 0 207.3,178.0 Z" style="fill:var(--orf0)"/><line x1="549.5" y1="193.9" x2="566.9" y2="178.8" stroke="var(--orf0)" stroke-width="2.5"/><polyline points="442.5,546.3 460.2,597.3 669.0,528.0" fill="none" stroke="var(--orf2)" stroke-width="1.4" opacity="0.9"/><circle cx="442.5" cy="546.3" r="2.8" fill="var(--orf2)"/><text x="676.0" y="528.0" dy="-3" text-anchor="start" font-size="13.5" font-weight="600" fill="currentColor">P</text><text x="676.0" y="528.0" dy="15" text-anchor="start" font-size="10.5" fill="currentColor" opacity="0.65">788 aa</text><polyline points="474.9,556.7 488.8,585.5 669.0,566.0" fill="none" stroke="var(--orf1)" stroke-width="1.4" opacity="0.9"/><circle cx="474.9" cy="556.7" r="2.8" fill="var(--orf1)"/><text x="676.0" y="566.0" dy="-3" text-anchor="start" font-size="13.5" font-weight="600" fill="currentColor">preS</text><text x="676.0" y="566.0" dy="15" text-anchor="start" font-size="10.5" fill="currentColor" opacity="0.65">330 aa</text><polyline points="351.2,113.0 348.2,81.2 77.0,164.0" fill="none" stroke="var(--orf0)" stroke-width="1.4" opacity="0.9"/><circle cx="351.2" cy="113.0" r="2.8" fill="var(--orf0)"/><text x="70.0" y="164.0" dy="-3" text-anchor="end" font-size="13.5" font-weight="600" fill="currentColor">preC</text><text x="70.0" y="164.0" dy="15" text-anchor="end" font-size="10.5" fill="currentColor" opacity="0.65">305 aa</text><polyline points="358.4,601.6 357.8,611.6 77.0,528.0" fill="none" stroke="var(--orf1)" stroke-width="1.4" opacity="0.9"/><circle cx="358.4" cy="601.6" r="2.8" fill="var(--orf1)"/><text x="70.0" y="528.0" dy="-3" text-anchor="end" font-size="13.5" font-weight="600" fill="currentColor">S</text><text x="70.0" y="528.0" dy="15" text-anchor="end" font-size="10.5" fill="currentColor" opacity="0.65">167 aa</text><polyline points="383.4,90.2 383.8,80.2 669.0,164.0" fill="none" stroke="var(--orf0)" stroke-width="1.4" opacity="0.9"/><circle cx="383.4" cy="90.2" r="2.8" fill="var(--orf0)"/><text x="676.0" y="164.0" dy="-3" text-anchor="start" font-size="13.5" font-weight="600" fill="currentColor">C</text><text x="676.0" y="164.0" dy="15" text-anchor="start" font-size="10.5" fill="currentColor" opacity="0.65">262 aa</text><text x="373" y="344" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">3,027 nt</text><text x="373" y="362" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.7">circular</text></svg><figcaption>Duck hepatitis B virus (12639.90001, 3,027 nt) as the Avihepadnavirus module annotates it: 5 features (5 essential, 0 mature peptides). Drawn to scale from this genome&rsquo;s own calls; forward-strand genes outside the ring, reverse-strand inside, a tick at each 3&prime; end. Colour marks the reading frame, not the gene &mdash; genes sharing a stop codon share a hue, so the nested forms are visible as one frame. 2 genes cross the origin, each drawn as one unbroken arc through it. The origin is not biology: it is wherever the submitter cut the circle.</figcaption></figure>
