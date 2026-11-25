@@ -211,8 +211,34 @@ def fold_circular(work, repo, perl="perl"):
     driver = os.path.join(repo, "annotate_viral_genome.pl")
     annod = os.path.join(work, "Anno_GTOs")
     quald = os.path.join(work, "Quality_GTOs")
-    if not os.path.exists(driver) or not os.path.isdir(annod):
+    if not os.path.isdir(annod):
         return 0
+    #  A MISSING DRIVER IS LOUD, AND THE KIT'S COPY IS THE FALLBACK.
+    #  This used to be `if not os.path.exists(driver): return 0`, silently, and
+    #  on 24 Nov 2026 that cost a 6.5 h Orthohepadnavirus pass: the driver was
+    #  added to the kit after VA_hepadna was created and install_module.py
+    #  placed only files a repo already carried, so no repo but the newest two
+    #  had it. Every circular genome stayed doubled, every feature was called
+    #  twice, and the report said `0 good, 589 poor` with no error.
+    #
+    #  The fallback is the kit's annotate/ directory. The driver resolves its
+    #  four stages as its own siblings, so running the kit's copy runs the
+    #  kit's stages -- a consistent set, which is the point of that rule --
+    #  rather than mixing a kit driver with a repo's older stages.
+    if not os.path.exists(driver):
+        kit = os.environ.get("LOWVAN_KIT")
+        alt = os.path.join(kit, "annotate", "annotate_viral_genome.pl") \
+            if kit else None
+        if alt and os.path.exists(alt):
+            print("  fold: %s has no annotate_viral_genome.pl -- using the "
+                  "kit's at %s. Re-run install_module.py to place it."
+                  % (repo, alt))
+            driver = alt
+        else:
+            print("  FOLD SKIPPED: no annotate_viral_genome.pl in %s and none "
+                  "in the kit. A circular taxon will be reported DOUBLED."
+                  % repo)
+            return 0
     env = dict(os.environ, LOWVAN_DATA_DIR=repo)
     n = 0
     for ann in sorted(glob.glob(os.path.join(annod, "*.anno.gto"))):

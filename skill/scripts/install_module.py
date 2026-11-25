@@ -448,13 +448,42 @@ def sync_callers(repo, dry=False, sync=True):
     if not os.path.isdir(src):
         print("  callers: no %s -- cannot check the repo's annotator" % src)
         return []
+    #  THE PIPELINE'S OWN STAGES ARE PLACED EVEN WHEN ABSENT. Everything else
+    #  obeys the rule below -- only files the repo already carries -- because
+    #  the kit holds build-side perl too and an install has no business adding
+    #  programs to a checkout. These seven are different: they ARE the
+    #  pipeline, annotate_viral_genome.pl resolves the other six as its own
+    #  siblings, and a repo missing one of them is not a repo with fewer
+    #  programs, it is a repo that runs a SHORTER PIPELINE and says nothing.
+    #
+    #  Measured 24 Nov 2026. annotate_viral_genome.pl was added after most of
+    #  these repos were created, so the `already carries` test skipped it
+    #  forever: 22 of 24 local repos had no driver. evaluate_coverage.py's
+    #  fold stage looks for it in the repo and returns 0 when it is not there,
+    #  so the Orthohepadnavirus coverage run annotated all 589 circular
+    #  genomes DOUBLED -- every feature called twice, 18 calls where there are
+    #  9 genes -- and reported 0 good / 589 poor without one error line. The
+    #  fold had never run in any repo but the two built after it existed.
+    PIPELINE = ("annotate_viral_genome.pl", "annotate_by_viral_pssm.pl",
+                "annotate_by_viral_pssm-GTO.pl", "fold_circular_features.pl",
+                "get_splice_variant_features.pl",
+                "get_transcript_edited_features.pl",
+                "viral_genome_quality.pl")
     drift = []
     for f in sorted(glob.glob(os.path.join(src, "*.pl"))):
         b = os.path.basename(f)
         dst = os.path.join(repo, b)
-        #  Only files the repo already carries. The kit holds build-side perl
-        #  too, and an install has no business adding programs to a checkout.
         if not os.path.exists(dst):
+            if b not in PIPELINE:
+                continue
+            drift.append(b)
+            if sync and not dry:
+                shutil.copy2(f, dst)
+                print("  callers: ADDED %s -- the repo had no copy, so the "
+                      "pipeline was running without this stage" % b)
+            else:
+                print("  callers: MISSING %s -- the repo runs a short "
+                      "pipeline without it" % b)
             continue
         import filecmp
         if filecmp.cmp(f, dst, shallow=False):
