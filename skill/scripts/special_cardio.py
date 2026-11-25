@@ -76,6 +76,12 @@ for t in sorted(glob.glob(os.path.join(ANN, "*.feature.tbl"))):
     n = prot.index("*") + 1
     nt = con[: n * 3]
     if re.search("[^ACGT]", nt): log["2B* ambiguous base"] += 1; continue
+    #  House convention for transcript-editing references: genome-derived
+    #  bases lowercase, the base the construct ADDS uppercase, so a curator can
+    #  see the slip at a glance. The duplicated base is s[h4], which sits at
+    #  offset h4 + 1 - b0 in the construct.
+    j = h4 + 1 - b0
+    nt = nt[:j].lower() + nt[j:j + 1].upper() + nt[j + 1:].lower()
     bstar.append((g, b0 + 1, hits[0] // 3, nt, prot[:n])); log["2B* built"] += 1
 
 sp = {l.split("\t")[0]: l.rstrip("\n").split("\t")[4]
@@ -84,7 +90,7 @@ with open(os.path.join(OUT, "Lstar.faa"), "w") as f:
     for g, pos, p in lstar: f.write(">%s|Lstar|nt%d %s\n%s\n" % (g, pos, sp.get(g, "?"), p))
 with open(os.path.join(OUT, "2Bstar_constructs.fna"), "w") as f, open(os.path.join(OUT, "2Bstar.faa"), "w") as fa:
     for g, pos, cod, nt, p in bstar:
-        f.write(">%s|2Bstar|2Bstart=%d|slip_codon=%d %s\n%s\n" % (g, pos, cod, sp.get(g, "?"), nt.lower()))
+        f.write(">%s|2Bstar|2Bstart=%d|slip_codon=%d %s\n%s\n" % (g, pos, cod, sp.get(g, "?"), nt))
         fa.write(">%s %s\n%s\n" % (g, sp.get(g, "?"), p))
 print(dict(log))
 def summ(name, rows, k):

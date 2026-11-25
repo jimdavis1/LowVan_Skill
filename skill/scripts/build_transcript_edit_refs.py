@@ -250,7 +250,27 @@ def main():
         if heps:
             stats["slip site confirmed at the insertion"] += 1
         stats["kept (%s)" % ("fused" if target else "n+c pair")] += 1
-        kept.append((gid, ref))
+        #  House convention: genome-derived bases lowercase, the bases this
+        #  construct ADDS uppercase. Nothing in the pipeline reads case --
+        #  blastn returns qseq/sseq uppercase whatever the file holds, and the
+        #  caller builds the edited sequence from those -- so the mark is for the
+        #  curator, which is precisely why a
+        #  program has to write it. Once the file is on disk the duplication is
+        #  otherwise unrecoverable without the genome, and every hand-curated
+        #  set in the kit (the paramyxovirus V/W/P/I sets, Orthoebolavirus
+        #  GPC/Gn/ssGP) carries exactly one or two uppercase characters per
+        #  sequence for this reason.
+        #
+        #  The mark is also a check on this script. In the Astroviridae sets,
+        #  built before --heptamer existed, the uppercase base lands 9-18 nt
+        #  from the slippery site in most references -- the "valid insertion
+        #  point that is not the slip site" failure described above. That is
+        #  obvious at a glance in a marked file and invisible in an unmarked
+        #  one. skill/scripts/mark_transcript_edit_inserts.py marks sets
+        #  written before this.
+        i = p - start
+        kept.append((gid, ref[:i].lower() + ref[i:i + a.insert].upper()
+                     + ref[i + a.insert:].lower()))
 
     d = os.path.dirname(a.out)
     if d:
