@@ -108,8 +108,8 @@ There is no discovered bin for the audit to judge.
 
 What *was* run in its place is stricter on the question that actually bites
 here. Every one of the 59,913 Orthohepadnavirus collection members was blasted
-against the modal-length canonical of all seven features, and every member whose
-best hit was a different feature was examined:
+against the modal-length canonical of all seven features **as the module then
+stood**, and every member whose best hit was a different feature was examined:
 
 | from | to | n | verdict |
 |---|---|---|---|
@@ -142,3 +142,29 @@ provides the exhaustive per-sequence pass, and the bin-level verdicts
 (DUPLICATE / FRAGMENT / INCOHERENT / PARALOGUE) are properties of the bin that
 400 representatives estimate well. That one line is the difference between a
 five-hour gate and a five-minute one on an over-sequenced taxon.
+
+
+## The 24 Nov 2026 re-run, over twelve collections
+
+The pass above was made when the module held seven collections.  It was re-run
+after `HBwl`, `p22`, `P17_NONA` and `P17_A` were built, over all twelve, and
+reported `**Unresolved: 0`.
+
+The re-run needed the nested pairs declared rather than discovered.  Three
+findings came back -- S/M, M/L and PRECORE/C -- and none is a defect: they are
+the in-frame isoform families this file has described from the start.  The
+pairs created that day had been protected and the pre-existing ones had not,
+which is why they surfaced only then.  All seventeen now live in
+`collections/<Module>/protected_pairs.json`, which ships with the module:
+
+    C/P17_A, C/P17_NONA, C/P22, C/PRECORE, L/M, L/S, L/WHOLEL, M/S,
+    M/WHOLEL, P17_A/P17_NONA, P17_A/P22, P17_A/PRECORE, P17_NONA/P22,
+    P17_NONA/PRECORE, P22/PRECORE, S/WHOLEL, WHOLEX/X
+
+A protected pair **suppresses a finding**, so it is a curation decision and the
+file is the record of it.  Without it the audit is not reproducible: re-run
+anywhere else it reports defects that were deliberately waived.  The envelope
+family is settled independently by length -- S 210-249, M 255-299, L 360-431,
+disjoint -- so no sequence is misfiled by the waiver.
+
+`BIN_AUDIT.md` and `LENGTH_AUDIT.md` ship beside this file for the same reason.

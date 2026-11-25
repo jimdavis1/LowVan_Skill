@@ -173,7 +173,13 @@ def main():
         if os.path.isdir(os.path.join(W, sub)):
             subprocess.run(["rsync", "-a", os.path.join(W, sub) + "/",
                             os.path.join(B, sub) + "/"])
-    for pat in ("*.py", "*.json", "*.sh", "*.log", "*.tsv"):
+    #  *.md IS IN THE LIST. It was not, so LENGTH_AUDIT.md, BIN_AUDIT.md and
+    #  any hand-written note in the work directory never reached Box -- the
+    #  Orthohepadnavirus copies there were four days stale on 25 Nov 2026 and
+    #  looked current. The audits are small and they are the evidence the
+    #  module is sound; there is no reason for the one directory a human
+    #  browses to be the one place they are missing.
+    for pat in ("*.py", "*.json", "*.sh", "*.log", "*.tsv", "*.md"):
         for f in glob.glob(os.path.join(W, pat)): shutil.copy(f, B)
     if a.panel:
         for f in glob.glob(os.path.join(a.panel, "quality*.tsv")):

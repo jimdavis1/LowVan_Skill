@@ -1,7 +1,8 @@
 # Hepadnaviridae — LowVan build notes
 
-Built November 2026.  Two modules, **Orthohepadnavirus** (7 features) and
-**Avihepadnavirus** (5 features).  This is the first circular-genome family in
+Built November 2026.  Two modules, **Orthohepadnavirus** (12 features as of
+25 Nov 2026 -- the original 7, plus `HBwx`, `HBSP`, `HBwl`, `p22` and `p17`;
+see section 14) and **Avihepadnavirus** (5 features).  This is the first circular-genome family in
 LowVan and it is the test case the circular-replicon support in kit commit
 `63f0b1ce` was written for.
 
