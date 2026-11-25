@@ -74,9 +74,25 @@ def main():
     SUB = ("corrected_alis", "reclustered_alis", "truncated_alis", "alis")
     src = os.path.join(W, "Alignments", M)
     n = 0
+    #  Only the module's OWN features ship. A feature built from several
+    #  collections keeps its sources on disk as the build record -- the
+    #  Orthohepadnavirus p17 genotype split is merged into P17 by
+    #  merge_feature_profiles.py while P17_A and P17_NONA stay beside it --
+    #  and those directories are not features. install_module.py applies the
+    #  same filter; without it here the kit carries alignments for profiles
+    #  no shipped feature references.
+    try:
+        keys = set(json.load(open(os.path.join(
+            W, "%s_Viral_PSSM.json" % M)))[M].get("features", {}))
+    except Exception:
+        keys = set()
     for feat in sorted(os.listdir(src)):
         fd = os.path.join(src, feat)
         if not os.path.isdir(fd) or feat.startswith("."): continue
+        if keys and feat not in keys:
+            print("   %-18s %s (not a feature in the module JSON)"
+                  % ("not shipped", feat))
+            continue
         dst = os.path.join(K, "PSSM-Alignments", feat, "corrected_alis")
         os.makedirs(dst, exist_ok=True)
         for p in sorted(glob.glob(os.path.join(fd, "pssms", "*.pssm"))):

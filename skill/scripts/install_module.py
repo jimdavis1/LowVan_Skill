@@ -124,6 +124,25 @@ def validate(workdir, mod_json):
     for module, block in mod_json.items():
         feats = set(block.get("features", {}))
         pssms = scan_pssms(workdir, module)
+        #  A BUILD DIRECTORY THAT IS NOT A FEATURE DOES NOT SHIP.
+        #
+        #  A feature built from several collections keeps its sources on disk
+        #  as the build record -- Orthohepadnavirus P17 is merged from P17_A
+        #  and P17_NONA by merge_feature_profiles.py, and those two stay in
+        #  Alignments/ and in collections/ so both audits still see them.
+        #  They are NOT features: the module JSON names only P17, and shipping
+        #  their profiles put three PSSMs in the runtime that no feature
+        #  references. Dead weight at best, and a trap at worst -- the day
+        #  someone adds the name back to the JSON they silently activate and
+        #  cross-call the merged feature, which is the exact failure the merge
+        #  exists to prevent.
+        extra = sorted(set(pssms) - feats)
+        if extra:
+            print("  not features in %s, left in the workdir: %s"
+                  % (module, ", ".join("%s (%d profile(s))" % (f, len(pssms[f]))
+                                       for f in extra)))
+            for f in extra:
+                del pssms[f]
         built = set(pssms)
 
         # A feature declared with "special" is called by an external program

@@ -1,0 +1,19 @@
+[
+ ["L", "M"],
+ ["L", "S"],
+ ["M", "S"],
+ ["L", "WHOLEL"],
+ ["M", "WHOLEL"],
+ ["S", "WHOLEL"],
+ ["C", "PRECORE"],
+ ["X", "WHOLEX"],
+ ["P22", "PRECORE"],
+ ["P22", "C"],
+ ["P17_NONA", "P22"],
+ ["P17_NONA", "PRECORE"],
+ ["P17_NONA", "C"],
+ ["P17_A", "P22"],
+ ["P17_A", "PRECORE"],
+ ["P17_A", "C"],
+ ["P17_A", "P17_NONA"]
+]

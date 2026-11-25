@@ -115,6 +115,16 @@ def check(path):
 
     tags = {t.lower() for t in re.findall(r"</?([A-Za-z][A-Za-z0-9]*)[\s/>]", body)}
     unknown = sorted(tags - TAGS_OK)
+    #  <meta name="claude:*"> IS allowed, and only that. The Artifact page
+    #  contract asks for `claude:viewport-fit-sides` beside the <title> on any
+    #  page that uses the two max() side paddings, so a page doing the right
+    #  thing was being failed here. A charset or viewport meta is still wrong
+    #  -- the publisher supplies the document head -- so the exemption is by
+    #  NAME, not by tag.
+    if "meta" in unknown and all(
+            re.match(r'<meta\s+name="claude:', m)
+            for m in re.findall(r"<meta\b[^>]*>", body)):
+        unknown.remove("meta")
     if unknown:
         out.append(("unknown tag", unknown[:8]))
 
