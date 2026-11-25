@@ -249,7 +249,7 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Avihepadnavirus Coverage Audit | [open](https://claude.ai/artifact/H1G8vj4VHeFHBjaD2hSz5C) | [source](reports/avihepadnavirus-coverage-audit.html) | 2026-11-23 |
+| Avihepadnavirus Coverage Audit | [open](https://claude.ai/artifact/H1G8vj4VHeFHBjaD2hSz5C) | [source](reports/avihepadnavirus-coverage-audit.html) | 2026-11-25 |
 | Avihepadnavirus PSSM Registry | [open](https://claude.ai/artifact/4XfY95bQj3NwSdrEkGWidE) | [source](reports/avihepadnavirus-registry.html) | 2026-11-23 |
 | Avihepadnavirus String Collapse | [open](https://claude.ai/artifact/DedsJecMLtThCNSifQHyr3) | [source](reports/avihepadnavirus-collapse.html) | 2026-11-23 |
 | Avihepadnavirus Vocabulary Saturation | [open](https://claude.ai/artifact/AEgQkNu8g9q9e5hE496f37) | [source](reports/avihepadnavirus-saturation.html) | 2026-11-23 |

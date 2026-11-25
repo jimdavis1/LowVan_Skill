@@ -558,3 +558,32 @@ JSON names only `P17`, which carries their three profiles merged. Since
 b93610db neither install nor ship copies a build directory that is not a
 feature in the module JSON -- before that, three profiles no feature
 referenced were reaching the runtime.
+
+## 15. Avihepadnavirus genome quality (25 Nov 2026)
+
+Reported for the first time on that date. The panel's folded Quality GTOs
+already existed from the 23 Nov run, so this is a read of them, not a new
+measurement -- 46 genomes, **46 Good, zero flags of any kind**: no
+genome-level, no contig-level, no feature-length flag anywhere.
+
+| feature | n | min | median | max | window |
+|---|---|---|---|---|---|
+| P | 46 | 784 | 789 | 797 | 736-891 |
+| L | 46 | 326 | 331 | 376 | 282-424 |
+| S | 46 | 166 | 168 | 172 | 156-181 |
+| PRECORE | 46 | 296 | 306 | 306 | 277-323 |
+| C | 46 | 263 | 263 | 263 | 246-277 |
+
+All five carry `copy_num`, so the quality model is actually checking them --
+the 100% is not vacuous. The capsid is 263 aa in every one of the 46.
+
+The contrast with Orthohepadnavirus (302 of 589) is the deposits, not the
+profiles: **46% of those 589 genomes carry at least one ambiguous base and 31%
+carry more than fifty, against none at all -- zero of 46 -- here.** Hepatitis B
+is sequenced from patient serum in enormous volume; duck hepatitis B comes from
+laboratory stocks.
+
+Call rates were never at risk from the fold defect of section 14: per-genome
+feature presence is identical before and after the fold, checked across all
+twelve Orthohepadnavirus features. Only the quality figure depended on it,
+which is why it is stated now and was not before.

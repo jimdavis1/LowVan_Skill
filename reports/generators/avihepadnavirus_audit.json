@@ -1,0 +1,274 @@
+{
+ "title": "Avihepadnavirus Coverage Audit",
+ "eyebrow": "LowVan · Avihepadnavirus module · 25 November 2026",
+ "h1": "Five proteins, not seven, and a different pair of them wraps",
+ "standfirst": "The bird hepadnaviruses are a separate module from the mammalian ones because they have neither the X gene nor the middle surface form. They are also the control for the circular machinery: in duck hepatitis B virus it is precore and core that cross the origin, not the polymerase and the envelope.",
+ "headline_tiles": [
+  [
+   "5",
+   "features declared, 5 with profiles"
+  ],
+  [
+   "15",
+   "PSSMs"
+  ],
+  [
+   "5/5",
+   "features at exact RefSeq coordinates on NC_001344.1"
+  ],
+  [
+   "46",
+   "exemplars annotated, all routed"
+  ],
+  [
+   "100%",
+   "call rate on every feature"
+  ],
+  [
+   "46/46",
+   "genomes score Good"
+  ],
+  [
+   "8.4×",
+   "annotation string collapse"
+  ]
+ ],
+ "sections": [
+  {
+   "num": "01",
+   "title": "What the module covers",
+   "lede": "352 genomes: duck, heron, stork, parrot, Ross's goose, snow goose, sheldgoose and tinamou hepatitis B viruses.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "Five proteins where the mammalian viruses have seven. The deposits settle that before any reference is consulted: across 636 unique Avihepadnavirus protein sequences there is <strong>exactly one</strong> <code>X protein</code> string and <strong>five</strong> <code>middle S protein</code> strings, against 11,393 and 7,390 in Orthohepadnavirus. All six are mislabelled and none is bound. RefSeq NC_001344.1 annotates neither gene."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "symbol",
+      "aa (DHBV)",
+      "RefSeq NC_001344.1",
+      "crosses the origin"
+     ],
+     "rows": [
+      [
+       "RNA-dependent DNA polymerase",
+       "P",
+       "788",
+       "170..2536",
+       "no"
+      ],
+      [
+       "Large surface antigen",
+       "preS",
+       "330",
+       "801..1793",
+       "no"
+      ],
+      [
+       "Small surface antigen",
+       "S",
+       "167",
+       "1290..1793",
+       "no"
+      ],
+      [
+       "Secreted e antigen precursor",
+       "preC",
+       "305",
+       "join(2524..3027,1..414)",
+       "yes"
+      ],
+      [
+       "Capsid protein",
+       "C",
+       "262",
+       "join(2653..3027,1..414)",
+       "yes"
+      ]
+     ]
+    },
+    {
+     "type": "figure",
+     "from": "avihepadnavirus-genome-map.html"
+    },
+    {
+     "type": "prose",
+     "html": "This is the point of having both modules in the same build. The mammalian module's joins are P, L and M; this one's are preC and C. The origin is wherever the submitter cut the circle, so the machinery cannot be tuned to one genome's placement of it &mdash; and was not."
+    }
+   ]
+  },
+  {
+   "num": "02",
+   "title": "How it was built",
+   "lede": "Identical method to the mammalian module, with a tighter window.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "The module declares <code>replicon_geometry: circular</code>. The annotator doubles the contig after routing, searches the doubled copy so that a gene crossing the cut appears whole, and a final pipeline stage folds the coordinates into join locations, drops the duplicate copies and restores the contig before anything scores it."
+    },
+    {
+     "type": "prose",
+     "html": "The segment window is <strong>2980&ndash;3120 nt</strong>, deliberately narrower than the mammalian 3130&ndash;3400, because the genus is: 318 complete genomes run 3006&ndash;3048 with a single 3690 outlier, and DHBV is 3027 nt. On a circular module this bound is not only the quality check &mdash; it is what the annotator consults before doubling anything, because a partial contig is not a circle. A head-to-tail 2-mer would be ~6,050 nt and is refused."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "window (aa)",
+      "anchor"
+     ],
+     "rows": [
+      [
+       "P",
+       "760&ndash;850",
+       "DHBV 788; deposits filed as <code>polyprotein</code> are the same 786&ndash;788 aa protein"
+      ],
+      [
+       "L (preS)",
+       "300&ndash;400",
+       "DHBV 330; heron and stork preS/S run 325&ndash;365"
+      ],
+      [
+       "S",
+       "155&ndash;200",
+       "DHBV 167"
+      ],
+      [
+       "preC",
+       "290&ndash;320",
+       "DHBV 305"
+      ],
+      [
+       "C",
+       "245&ndash;280",
+       "DHBV 262"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "<code>core protein</code> deposits run 262&ndash;305 aa in this genus, so some of them are precore filed under the core name. The C window routes those out rather than letting a 305 aa precore into the core collection, where it would be the longest member and would take the profile with it. 28 of them were moved to precore on the shared C-terminus, not on their names."
+    }
+   ]
+  },
+  {
+   "num": "03",
+   "title": "The nested pair",
+   "lede": "Core is precore without its first 43 residues, and no identity measure can separate them.",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<code>audit_contamination.py</code> proposes moving 13 core sequences into precore. They were not moved, and the measurement is why: the core collection is <strong>88 sequences at exactly 262 aa</strong> and the precore collection 73 at 295&ndash;305 aa &mdash; both exactly the DHBV reference lengths &mdash; and <strong>35 of the 88 core members are an exact C-terminal substring of a precore member</strong>. A core sequence scores near-perfectly against the precore canonical because it <em>is</em> the back of it."
+    },
+    {
+     "type": "prose",
+     "html": "Applying the move would have put 13 genuine 262 aa core proteins into a bin whose profile is built at 305 aa, and <code>fasta-cluster-pssm</code> discards a cluster whose consensus is a substring of another's, so the likely outcome is losing them altogether. The same four findings come out of <code>qc_cross_feature.py</code>, and all four are this architecture."
+    },
+    {
+     "type": "prose",
+     "html": "<code>S</code> carries <code>upstream_ext: 0</code> for the matching reason on the surface ORF: the large form's start lies upstream in the same frame with no stop between, and Met extension would convert every small-surface call into a large one."
+    }
+   ]
+  },
+  {
+   "num": "04",
+   "title": "What it cannot do",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "<strong>It is a small module and the leftovers matter.</strong> 600 unique sequences across five features, so the profiles rest on 73 to 262 members each. Six of the fifteen profiles come from the leftover pass at a member floor of 2 &mdash; five on P and one on the large surface form &mdash; which is where the heron, stork, parrot and goose viruses are covered rather than only the duck."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Seven unique sequences carry no annotation string</strong> and are left unbound; they are the only row of UNASSIGNED_TRACKING above the member floor."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>One contig of 3690 nt is outside the window</strong> and will not be doubled, so its precore and core will not be recovered if they cross the origin."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>Routing is measured against the family's own references only.</strong> Both Hepadnaviridae modules together ship 27 reference contigs and the coverage run was routed against those, which measures recall inside the family and not specificity against the rest of the repository. The acceptance tests were run against the full 1,395-reference repository and both reference genomes routed to the correct module."
+    }
+   ]
+  },
+  {
+   "num": "05",
+   "title": "What the run found",
+   "lede": "46 exemplars, one per 95%-identity cluster of the 279 in-window contigs.",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "feature",
+      "called on",
+      "copy_num"
+     ],
+     "rows": [
+      [
+       "P",
+       "100%",
+       "1"
+      ],
+      [
+       "L (preS)",
+       "100%",
+       "1"
+      ],
+      [
+       "S",
+       "100%",
+       "1"
+      ],
+      [
+       "preC",
+       "100%",
+       "1"
+      ],
+      [
+       "C",
+       "100%",
+       "1"
+      ]
+     ]
+    },
+    {
+     "type": "prose",
+     "html": "All five features are called on every exemplar, all five carry <code>copy_num: 1</code>, and every one recovers 100% of its own in-range collection. The contrast with the mammalian module's precore is the point: there, a third of genomes carry a precore stop variant and the feature is deliberately not essential; here the gene is intact throughout and essentiality is earned."
+    },
+    {
+     "type": "prose",
+     "html": "279 contigs route on <strong>2</strong> reference files, because 70%-identity clustering puts 276 of them in one group and 3 in another."
+    },
+    {
+     "type": "prose",
+     "html": "<strong>All 46 genomes score Good, with no flag of any kind</strong> &mdash; not one genome-level, contig-level or feature-length flag across the panel. The lengths are the reason: the capsid is <strong>263&nbsp;aa in all 46</strong>, preC 296&ndash;306, S 166&ndash;172, P 784&ndash;797 and L 326&ndash;376, every one inside its window with room to spare. The mammalian module scores 302 of 589 on the same quality model, and the difference is the deposits rather than the profiles: <strong>46% of those 589 genomes carry at least one ambiguous base and 31% carry more than fifty</strong>, against <strong>none at all</strong> &mdash; zero of 46 &mdash; here. Hepatitis B is sequenced from patient serum in enormous volume; duck hepatitis B is sequenced from laboratory stocks."
+    },
+    {
+     "type": "prose",
+     "html": "This figure was read from the folded Quality GTOs of the same run, not measured separately. It is reported here only from 25 November 2026: earlier versions of this page carried call rates and no quality figure at all. The call rates were never affected &mdash; per-genome feature presence is identical before and after the circular fold, checked on all twelve features of the mammalian module &mdash; but the quality figure could only be stated once the fold was known to have run."
+    }
+   ]
+  },
+  {
+   "num": "06",
+   "title": "What the vocabulary bought",
+   "lede": "",
+   "blocks": [
+    {
+     "type": "prose",
+     "html": "42 distinct BV-BRC strings collapse to <strong>5</strong> controlled annotations over 947 occurrences, an 8.4-fold reduction. Rarefied over proteins, at the depth both reach (166 proteins) the source carries 28 distinct strings and the module 6 &mdash; <strong>4.7-fold</strong>. The ratio is smaller than the mammalian module's because the genus is smaller and less re-sequenced, not because the vocabulary works less well."
+    },
+    {
+     "type": "figure",
+     "from": "Avihepadnavirus-saturation.html"
+    }
+   ]
+  }
+ ],
+ "source_note": "Built from the BV-BRC Hepadnaviridae protein dump of 17 October 2026, restricted to genus Avihepadnavirus (352 genomes, 636 unique protein sequences). Reference coordinates from RefSeq NC_001344.1; genome sequence from Mandart, Rieger & Galibert 1984 (PMID 6699938), resolved against PubMed in the session that wrote this page. No PMID here is curator-confirmed; they sit in PMID_claude_generated."
+}
