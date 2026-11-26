@@ -9,6 +9,7 @@ Three mechanisms, three different answers:
 | the genome does this | the protein is | how to handle it |
 |---|---|---|
 | in-frame stop read through ~10% of the time | still collinear, one frame | `internal_stop: 1` on the feature, normal PSSM |
+| one codon is edited, changing what it means | still collinear, one frame | `transl_except`, normal PSSM |
 | ribosome shifts frame mid-gene | **not** collinear | `special: transcript_edit`, no PSSM |
 | polymerase inserts non-templated bases | **not** collinear | `special: transcript_edit`, no PSSM |
 | introns removed from the transcript | **not** collinear | `special: splice`, no PSSM |
@@ -16,6 +17,14 @@ Three mechanisms, three different answers:
 Getting the first one wrong costs you a truncated protein on most of the taxon.
 Getting the second wrong costs you the protein entirely, because no profile can
 ever call it.
+
+The second row is the one that looks like the third and is not. A substitution
+edit changes a codon's *meaning* and adds no bases, so the protein stays
+collinear and a PSSM calls it perfectly well. `special: transcript_edit` cannot
+do it: its gap-filling loop takes the genome's own base at every ungapped
+column, so an edited codon survives into the translation unchanged, and a
+substitution that creates or removes a stop then fails the caller's
+internal-stop check outright.
 
 ---
 
@@ -157,6 +166,92 @@ that is what the `min_len` gate refuses. And it does not stop the terminated
 precursor and the full-length product from both being called on the same
 genome — that is a separate `copy_num` question, and the two are different
 features with different C-termini anyway.
+
+---
+
+## Part 1b — Substitution edits: `transl_except`
+
+### The symptom
+
+A protein the literature describes is never emitted correctly, and the reason
+is a single residue. Either the translation carries a `*` in the middle of it,
+or an `X`, and which one you get depends on how the deposit happened to be
+sequenced rather than on any difference in the virus.
+
+### The worked case
+
+Hepatitis delta virus makes two proteins from one ORF. The small antigen ends
+at an amber codon; ADAR1 edits that adenosine on the antigenome, UAG becomes
+UGG, and translation runs on for 19 more codons into the large antigen — a
+different protein, carrying the farnesylation box that the small one lacks and
+that virion assembly needs. Both are real, both are made by every genome, and
+neither is optional.
+
+What a genome in the database holds at that position is not a property of the
+virus but of the sequencing:
+
+| the deposit holds | translates as | what it means |
+|---|---|---|
+| `TAG` | `*` | the unedited genome |
+| `TRG` | `X` | a mixed population — direct evidence of editing |
+| `TGG` | `W` | the edited genome |
+
+Measured across 1,043 HDV genomes: 508, 392 and 143 respectively. The protein's
+residue is `W` in all three.
+
+### The fix
+
+```json
+"L-HDAg": {
+  "internal_stop": 1,
+  "transl_except": { "replace_residue": ["X", "*"],
+                     "insert_residue": "W",
+                     "offset": [19, 20],
+                     "from": "C-term" }
+}
+```
+
+Read it as: within 19 to 20 residues of the protein's C-terminus, a residue
+that translated as `X` or `*` is really `W`. `from` takes `C-term` or `N-term`.
+
+### Four things that are easy to get wrong
+
+**The offset is measured on the emitted protein, never on the PSSM query.** A
+column recorded against a profile is valid only for the build that produced it
+and silently wrong after the next reclustering, and it would put PSSM
+filenames into the curator's JSON, which knows only feature names. Measuring
+from the protein's own terminus makes the declaration independent of how the
+collection happened to cluster.
+
+**Use a range, not a number, and make it tight.** HDV's site sits 19 residues
+from the C-terminus in 1,028 deposits and 20 in 42 — genotype III, whose
+extension is one residue longer and which has a different editing RNA
+structure behind it (PMID 12097551). Both are real. But widen the window
+further and ambiguity arrives: at offsets 19–20, *no* deposit of 1,078 holds
+more than one `X` or `*`; at 18–21, eight do; at 15–20, twenty-four do. The
+window is what makes the rule deterministic, so set it from the data and no
+wider.
+
+**It is independent of `internal_stop` and must stay so.** Only the unedited
+genome has a stop to read through; a `TRG` genome has none and reaches its
+terminator by the ordinary path. Applying the substitution inside the
+readthrough branch would fire on half the dump and leave an `X` in the other
+half's product, at correct coordinates, with nothing reporting a problem.
+
+**Exactly one residue in the window must qualify.** If two do — an N-masked
+genome — the honest answer is to substitute nothing and log it, because
+choosing between them is guessing. The feature is still called; it carries
+what the genome actually encodes.
+
+### The other half of the problem
+
+The *short* form ends at the editing site. On an unedited genome a stop marks
+that; on the other half of the dump nothing does. So the short form needs
+`downstream_ext: 0`: scanning to the next stop would run it on to the long
+form's terminator and emit the long protein under the short one's name, two
+features on identical coordinates. An end that no codon marks must not be
+scanned for. The two features also need declaring in `protected_pairs.json`,
+since one is a strict prefix of the other by biology.
 
 ---
 

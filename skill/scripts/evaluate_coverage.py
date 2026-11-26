@@ -616,6 +616,7 @@ def main():
     #  So take the floor from each module's own declared segment min_len.
     floors = {}
     specials = {}
+    circular = []
     #  BOTH PROTECTIONS BELOW USED TO BE GATED ON AN OPTIONAL FLAG, so omitting
     #  --json silently disabled the per-module completeness floor AND the
     #  special-feature route -- the second of which this file's own comment
@@ -647,6 +648,9 @@ def main():
                         if e.get("special"))
             if sp:
                 specials[m] = sp
+            if any((v.get("replicon_geometry") or "").lower() == "circular"
+                   for v in segs.values()):
+                circular.append(m)
     #  This function annotates with annotate(), the flat-feature-table path,
     #  which cannot represent a special feature at all -- see the long comment
     #  above annotate_gto(). If the JSON declares any, say so loudly rather
@@ -667,7 +671,33 @@ def main():
     #  which pipes annotate_by_viral_pssm-GTO.pl into
     #  get_transcript_edited_features.pl and get_splice_variant_features.pl.
     #  --no-special restores the old behaviour and says loudly what it costs.
-    use_gto = bool(specials) and not args.no_special
+    #
+    #  A CIRCULAR MODULE NEEDS THE SAME ROUTE, FOR A DIFFERENT REASON.
+    #
+    #  fold_circular() is only reachable from the GTO branch, so a circular
+    #  module that declares no special feature took the flat path and was
+    #  never folded. The annotator doubles a circular contig to find genes
+    #  across the origin, and with nothing folding them back every feature is
+    #  reported TWICE. Measured on Kolmioviridae, 25 Nov 2026: 660 exemplars,
+    #  three features, and 1,240 / 1,273 / 1,234 calls -- 1.9 per genome where
+    #  there is one gene. The report looked healthy; 100% routed, every
+    #  feature called. Nothing said "doubled", and the only visible symptom
+    #  was a call count slightly under twice the genome count.
+    #
+    #  Hepadnaviridae did not hit this because it declares special features
+    #  and so took the GTO route anyway. The geometry, not the feature list,
+    #  is what decides whether the fold is needed.
+    use_gto = bool(specials or circular) and not args.no_special
+    if circular:
+        print()
+        print("    %-24s circular: %s"
+              % (", ".join(sorted(circular)), "folding required"))
+        if use_gto:
+            print("  -> annotating via the GTO pipeline so the fold can run.")
+        else:
+            print("  WARNING: --no-special given on a CIRCULAR module. Nothing")
+            print("  will fold the doubled contig and every feature will be")
+            print("  counted twice.")
     if specials:
         print()
         for m, sp in sorted(specials.items()):

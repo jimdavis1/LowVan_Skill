@@ -709,7 +709,14 @@ foreach (@pssm_dirs)  #Each PSSM dir contains one or more PSSMs for a given homo
 		}
 
 		if ($start_to_met){$protein =~ s/^[A-Z]/M/i;}   # M not m: /i affects the pattern, not the replacement (gist #5)
-	
+
+		#  transl_except: a declared single-residue translation exception.
+		#  Default off -- absent from the JSON, nothing changes.
+		if (my $te = $options->{$virus}->{features}->{$pssmdir}->{transl_except})
+		{
+			$protein = &apply_transl_except($protein, $te, $pssmdir);
+		}
+
 		# Set up calling non-pssm features that are anchored to pssm coordinates
 		if (exists $options->{$virus}->{features}->{$pssmdir}->{non_pssm_partner})
 		{
@@ -1227,6 +1234,132 @@ sub scan_to_met_start
 }
 ###########################################################
 
+
+##########################sub apply_transl_except#####
+#
+#  A declared single-residue translation exception.
+#
+#  Some viruses make a second protein from one ORF by changing what a single
+#  codon means, rather than by splicing or shifting frame.  The delta antigen
+#  is the worked case.  ADAR1 edits the amber codon that terminates the small
+#  antigen (UAG) to UGG, and translation continues for 19 more codons into the
+#  large antigen -- a different protein, with a farnesylation box the small one
+#  lacks, required for virion assembly rather than for replication.  A genome
+#  in the database may carry the unedited codon (TAG, translating as *), the
+#  edited codon (TGG -> W), or an ambiguity code where the deposit came from a
+#  mixed population (TRG -> X).  All three are the same situation, and the long
+#  form's residue is W in every one of them.
+#
+#  The feature declares:
+#
+#     "transl_except" : { "replace_residue" : ["X","*"],
+#                         "insert_residue"  : "W",
+#                         "offset"          : [19,20],
+#                         "from"            : "C-term" }
+#
+#  which reads: within 19 to 20 residues of the protein's C-terminus, a residue
+#  that translated as X or * is really W.  Nothing in that is specific to RNA
+#  editing; any declared single-residue exception uses the same four keys, and
+#  "from" : "N-term" anchors one near the start instead.
+#
+#  The offsets are measured on the emitted protein, never on the profile, so no
+#  part of this depends on which PSSM won the hit or on how the collection
+#  happened to cluster.  That is deliberate: a column recorded against a PSSM
+#  query is valid only for the build that produced it, and silently wrong after
+#  the next reclustering.  Offsets count the last residue as 1 (or the first as
+#  1 when anchored at the N-terminus), and a terminator is not counted, so the
+#  numbers mean what they mean in a deposited sequence.
+#
+#  This is independent of internal_stop and must stay that way.  Only a genome
+#  carrying the unedited stop needs the readthrough; one carrying TRG has no
+#  stop at all and reaches its terminator by the ordinary path.  Of 1,043 HDV
+#  genomes with a callable antigen, 508 hold TAG and 535 hold TRG or TGG, so
+#  folding the substitution into the readthrough branch would quietly leave an
+#  X in the product of half the dump, at correct coordinates, with nothing
+#  reporting a problem.
+#
+#  Exactly one residue in the window must qualify.  Across all 1,078 large
+#  delta antigen deposits in BV-BRC, offsets 19-20 hold one X or * in 560 of
+#  them, none in 518 (those already read W), and more than one in none.  When
+#  more than one does qualify -- an N-masked genome, say -- substituting would
+#  mean guessing which column was the exception, so nothing is substituted and
+#  the reason is logged.  The feature is still called; it carries the residue
+#  the genome actually encodes, which is the honest answer.
+#
+sub apply_transl_except
+{
+	my ($protein, $te, $pssmdir) = @_;
+	return $protein unless ref $te eq 'HASH' && defined $protein && length $protein;
+
+	my $insert = $te->{insert_residue};
+	unless (defined $insert && length($insert) == 1)
+	{
+		print STDERR "\t$pssmdir declares transl_except with no single-residue insert_residue; ignored\n";
+		return $protein;
+	}
+
+	my @replace = ref $te->{replace_residue} eq 'ARRAY' ? @{$te->{replace_residue}}
+	            : defined $te->{replace_residue}        ? ($te->{replace_residue})
+	            :                                         ();
+	unless (@replace)
+	{
+		print STDERR "\t$pssmdir declares transl_except with no replace_residue; ignored\n";
+		return $protein;
+	}
+	my %replace = map { $_ => 1 } @replace;
+
+	my ($lo, $hi);
+	if (ref $te->{offset} eq 'ARRAY') { ($lo, $hi) = @{$te->{offset}}[0,1]; $hi //= $lo; }
+	else                              { $lo = $hi = $te->{offset}; }
+	unless (defined $lo && defined $hi && $lo >= 1 && $hi >= $lo)
+	{
+		print STDERR "\t$pssmdir declares transl_except with an unusable offset; ignored\n";
+		return $protein;
+	}
+
+	my $from = lc($te->{from} // 'n-term');
+	unless ($from eq 'c-term' || $from eq 'n-term')
+	{
+		print STDERR "\t$pssmdir declares transl_except from '$from'; must be C-term or N-term; ignored\n";
+		return $protein;
+	}
+
+	#  A terminator is not part of the protein and must not shift the offsets.
+	#  It goes back untouched.  The emitted protein is stripped of it later, but
+	#  this sub runs before that and cannot assume either state.
+	my $term = ($protein =~ s/\*$//) ? '*' : '';
+	my $len  = length $protein;
+
+	my @hits;
+	for my $k ($lo .. $hi)
+	{
+		my $i = ($from eq 'c-term') ? $len - $k : $k - 1;
+		next if $i < 0 || $i >= $len;
+		push @hits, $i if $replace{ substr($protein, $i, 1) };
+	}
+
+	#  Nothing to do: the genome already encodes the exception residue, or the
+	#  window falls outside a truncated call.  Both are ordinary, not errors.
+	return $protein . $term unless @hits;
+
+	if (@hits > 1)
+	{
+		print STDERR "\t$pssmdir declares transl_except but ", scalar(@hits),
+			" residues within offsets $lo-$hi of the $from qualify (",
+			join(", ", map { ($_ + 1) . substr($protein, $_, 1) } @hits),
+			"); cannot tell which is the exception, so none was substituted\n";
+		return $protein . $term;
+	}
+
+	my $i   = $hits[0];
+	my $was = substr($protein, $i, 1);
+	substr($protein, $i, 1) = $insert;
+	print STDERR "\t$pssmdir transl_except: residue ", $i + 1, " of $len ",
+		"translated as $was; emitted as $insert\n";
+
+	return $protein . $term;
+}
+###########################################################
 
 
 ##########################sub matching_tblastn_hsps_json#####

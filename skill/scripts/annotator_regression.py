@@ -67,6 +67,15 @@ def calls(tbl):
         c = l.rstrip("\n").split("\t")
         if len(c) < 17:
             continue
+        #  `no_features_called` is a sentinel row, not a feature: the
+        #  annotator writes it when a genome routes to a module but no
+        #  profile clears threshold, and its coordinate columns are empty by
+        #  design. Parsing it as a call crashes the comparison on int(''),
+        #  which killed the whole run AFTER both annotation passes had
+        #  finished -- half an hour of work discarded at the last step. 17
+        #  such rows appear in each side of the current set.
+        if c[4] == "no_features_called":
+            continue
         prof = c[16].split(".", 1)[1] if "." in c[16] else c[16]
         d[c[6]].add((int(c[7]), int(c[8]), c[9], int(c[10]) // 3, prof))
     return d

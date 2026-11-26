@@ -315,9 +315,23 @@ def main():
         #                       HBwx profile would have called plain X in
         #                       every X-only genome. WHOLEL has exactly the
         #                       same relationship to L.
+        #    transl_except      one codon whose product is not what the
+        #                       genetic code says. Declared as
+        #                       {replace_residue, insert_residue, offset,
+        #                       from}: within `offset` residues of the named
+        #                       terminus, a residue translating to one of
+        #                       replace_residue is emitted as insert_residue.
+        #                       Deltavirus L-HDAg is the first use -- the
+        #                       amber codon ADAR1 edits, which reads as * on
+        #                       an unedited genome and X on the ambiguity
+        #                       code a mixed population deposits, and is W in
+        #                       the protein either way. Dropping it here
+        #                       would emit the long antigen with a stop or an
+        #                       X at residue 196, at correct coordinates,
+        #                       with nothing reporting a problem.
         for field in ("special", "internal_stop", "translate",
                       "non_pssm_partner", "begin", "end",
-                      "require_met_start"):
+                      "require_met_start", "transl_except"):
             if spec.get(field) is not None:
                 d[field] = spec[field]
         #  A `special` feature has no PSSM, so the fields that only describe
