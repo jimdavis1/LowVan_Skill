@@ -1,0 +1,139 @@
+<title>Deltavirus Coverage Audit</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --built:#2a78d6; --missed:#eb6834; --warn:#b07d18;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#4a4a46; --hair:rgba(255,255,255,.10);
+    --built:#3987e5; --missed:#d95926; --warn:#d3a445;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--plane); color:var(--ink);
+         font-family:var(--sans); font-size:15px; line-height:1.62;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 26px 90px; }
+  header { padding:54px 0 30px; border-bottom:2px solid var(--ink); margin-bottom:34px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.13em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(30px,5.2vw,46px);
+        line-height:1.1; margin:0 0 16px; letter-spacing:-.015em; text-wrap:balance; }
+  .stand { font-size:17px; line-height:1.58; color:var(--ink2); max-width:64ch; margin:0; }
+  .stand b { color:var(--ink); font-weight:600; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+            gap:1px; background:var(--hair); border:1px solid var(--hair); margin:30px 0 0; }
+  .tile { background:var(--surface); padding:15px 16px 14px; }
+  .tile .v { font-family:var(--mono); font-size:25px; font-weight:500; line-height:1.1;
+              font-variant-numeric:tabular-nums; }
+  .tile .l { font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.35; }
+  section { margin:46px 0 0; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.25;
+        margin:0 0 4px; letter-spacing:-.01em; text-wrap:balance; }
+  h2 .num { font-family:var(--mono); font-size:12px; color:var(--muted);
+             letter-spacing:.08em; display:block; margin-bottom:7px; font-weight:400; }
+  h3 { font-family:var(--sans); font-weight:600; font-size:14px; letter-spacing:.02em;
+        margin:30px 0 8px; color:var(--ink); }
+  p { max-width:68ch; margin:14px 0; }
+  .lede { color:var(--ink2); }
+  code, .mono { font-family:var(--mono); font-size:.89em; }
+  code { background:var(--surface); border:1px solid var(--hair); padding:.08em .32em; border-radius:2px; }
+  .scroll { overflow-x:auto; margin:20px 0; border:1px solid var(--hair); background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; font-family:var(--mono); font-weight:500; font-size:10.5px;
+        letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+        padding:10px 11px; border-bottom:1px solid var(--base); white-space:nowrap; }
+  td { padding:8px 11px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-family:var(--mono); font-weight:500; white-space:nowrap; }
+  td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.a { color:var(--ink2); }
+  td.src { font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .dim { color:var(--muted); }
+  figure { margin:22px 0; }
+  figure svg { width:100%; height:auto; display:block; }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:10px; max-width:68ch; line-height:1.5; }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--ink2);
+             font-family:var(--mono); margin-top:12px; }
+  .legend i { width:9px; height:9px; display:inline-block; border-radius:2px; margin-right:6px;
+               vertical-align:baseline; }
+  .verdict { border-left:3px solid var(--built); background:var(--surface);
+              padding:15px 18px; margin:22px 0; }
+  .verdict.warn { border-left-color:var(--warn); }
+  .verdict.stop { border-left-color:var(--missed); }
+  .verdict h4 { margin:0 0 6px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+  .verdict p { margin:0; font-size:14px; color:var(--ink2); max-width:none; }
+  .verdict p + p { margin-top:9px; }
+  pre { font-family:var(--mono); font-size:12px; line-height:1.55; background:var(--surface);
+         border:1px solid var(--hair); padding:14px 16px; overflow-x:auto; margin:18px 0;
+         color:var(--ink2); }
+  ul { max-width:68ch; padding-left:19px; }
+  li { margin:7px 0; }
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--base);
+            font-size:12.5px; color:var(--muted); }
+  a { color:var(--built); }
+  a:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--built); outline-offset:2px; }
+  @media (prefers-reduced-motion:reduce) { * { animation:none!important; transition:none!important; } }
+
+  .bars { display:flex; flex-direction:column; gap:9px; margin:18px 0 0; }
+  .bar { display:grid; grid-template-columns:132px 1fr 62px; gap:11px; align-items:center; }
+  .bl { font-size:13px; color:var(--ink2); }
+  .bt { height:9px; background:var(--grid); position:relative; overflow:hidden; }
+  .bt i { display:block; height:100%; background:var(--built); }
+  .bv { font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+        text-align:right; color:var(--ink); }
+  .bn { grid-column:2/4; font-size:11.5px; color:var(--muted); margin-top:-4px; }
+  pre.mono { font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink2);
+             background:var(--surface); border:1px solid var(--hair); padding:14px 15px;
+             overflow-x:auto; margin:18px 0 0; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0 0; }
+  thead th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+             color:var(--muted); font-weight:500; border-bottom:1px solid var(--grid);
+             padding:0 12px 7px 0; white-space:nowrap; }
+  tbody td { padding:7px 12px 7px 0; border-bottom:1px solid var(--hair); color:var(--ink2);
+             vertical-align:top; }
+  tbody td:first-child { color:var(--ink); font-family:var(--mono); font-size:12.5px;
+                         white-space:nowrap; }
+  .scroll { overflow-x:auto; }
+  @media (max-width:560px) { .bar { grid-template-columns:104px 1fr 56px; } }
+
+  /*  The embedded rarefaction figure is lifted verbatim out of the taxon's
+      saturation page, so it depends on that page's tokens and classes. The
+      first version of the "figure" block shipped without these: the chart
+      container rendered, the two curves were stroked with an undefined
+      var(--src)/var(--mod), and an invalid stroke paints nothing -- the
+      figure was present in the HTML and invisible on screen. */
+  :root { --src:#eb6834; --mod:#2a78d6; }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    --src:#d95926; --mod:#3987e5; } }
+  :root[data-theme="dark"] { --src:#d95926; --mod:#3987e5; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface);
+              padding:6px 4px 2px; position:relative; }
+  .chartbox svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; display:inline-block; }
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+         background:var(--surface); border:1px solid var(--base); border-radius:4px;
+         padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+         font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+</style>
+<div class="wrap"><header><div class="eyebrow">LowVan · Deltavirus module · 26 November 2026</div><h1>Does the hepatitis delta virus module actually work?</h1><p class="stand">Hepatitis delta virus needs hepatitis B to make a particle, infects an estimated 12 million people, and carries the fastest progression to cirrhosis of any chronic viral hepatitis. Its 1.7 kb circular RNA encodes <b>one ORF that makes two proteins</b>: the small antigen stops at an amber codon, and ADAR1 edits that codon so the large antigen runs 19 residues further. This is the audit of the module built for it &mdash; what it covers, whether genomes reach it, whether it calls both proteins, and what it refuses to call.</p><div class="tiles"><div class="tile"><div class="v">2</div><div class="l">features declared, 2 with profiles</div></div><div class="tile"><div class="v">20</div><div class="l">PSSMs</div></div><div class="tile"><div class="v">631/639</div><div class="l">near-complete exemplars routed</div></div><div class="tile"><div class="v">0</div><div class="l">genomes called a foreign feature</div></div><div class="tile"><div class="v">82.9%</div><div class="l">genomes good quality</div></div><div class="tile"><div class="v">12×</div><div class="l">annotation string collapse</div></div></div></header><section><h2><span class="num">01</span>What the module covers</h2><p class="lede">One module for hepatitis delta virus, and a second for the rest of the family &mdash; that split was measured, not assumed.</p><p class="note">1,176 hepatitis delta virus genomes, covered by <b>6 reference contigs</b>. The divergent kolmiovirus genera &mdash; snake, rodent, bat, bird, fish, newt, toad and termite agents &mdash; are annotated in a separate <code>Kolmioviridae</code> module. They make a single antigen, not two, and that antigen sits on <em>the same locus</em> as the small antigen here.</p><p class="note">The two cannot be separated by score. Across 660 exemplars the divergent profile scored <b>35&ndash;442 bits on hepatitis delta virus</b> against <b>157&ndash;432 on its own genomes</b> &mdash; fully interleaved, with no gap to put a threshold in. Inside one module that produced <b>three calls on 601 of 660 genomes</b>. Rep-contig routing does separate them, 659 of 659, so the family is partitioned by reference set instead. After the split, no genome in either module calls the other module's feature.</p><div class="scroll"><table><thead><tr><th>feature</th><th>collection</th><th>profiles</th><th>bit cutoff</th><th>copy_num</th></tr></thead><tbody><tr><td><code>S-HDAg</code> small delta antigen</td><td>685</td><td>8</td><td>100</td><td>1</td></tr><tr><td><code>L-HDAg</code> large delta antigen</td><td>852</td><td>12</td><td>100</td><td>1</td></tr></tbody></table></div><figure class="lvmap"><style>.lvmap{--orf0:#2a78d6;--orf1:#eb6834;--orf2:#1baf7a;--orf3:#c3c2b7}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lvmap{--orf0:#3987e5;--orf1:#d95926;--orf2:#25c48d;--orf3:#cfcec5}}:root[data-theme="dark"] .lvmap{--orf0:#3987e5;--orf1:#d95926;--orf2:#25c48d;--orf3:#cfcec5}</style><svg viewBox="0 0 658 515" role="img" aria-label="12475.2500 (12475.7478, 1,725 nt) as the Deltavirus module annotates it: 2 features (2 essential, 0 mature peptides)."><rect x="4" y="11" width="15" height="11" rx="2" style="fill:var(--orf0)"/><text x="25" y="20" font-size="12" fill="currentColor">L-HDAg</text><rect x="306" y="11" width="15" height="11" rx="2" style="fill:var(--orf1)"/><text x="327" y="20" font-size="12" fill="currentColor">S-HDAg</text><text x="4" y="36" font-size="11" fill="currentColor" opacity="0.7">one colour per reading frame &middot; outside the ring = forward strand</text><circle cx="329" cy="282" r="186" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><line x1="329.0" y1="101.0" x2="329.0" y2="91.0" stroke="currentColor" opacity="0.4"/><line x1="449.0" y1="146.5" x2="455.6" y2="139.0" stroke="currentColor" opacity="0.4"/><text x="441.1" y="155.5" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">0.2</text><line x1="508.8" y1="260.8" x2="518.7" y2="259.6" stroke="currentColor" opacity="0.4"/><text x="496.8" y="262.2" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">0.4</text><line x1="477.3" y1="385.8" x2="485.4" y2="391.6" stroke="currentColor" opacity="0.4"/><text x="467.4" y="379.0" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">0.6</text><line x1="370.5" y1="458.2" x2="372.8" y2="467.9" stroke="currentColor" opacity="0.4"/><text x="367.7" y="446.5" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">0.8</text><line x1="242.7" y1="441.1" x2="237.9" y2="449.9" stroke="currentColor" opacity="0.4"/><text x="248.4" y="430.5" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">1.0</text><line x1="158.7" y1="343.2" x2="149.3" y2="346.6" stroke="currentColor" opacity="0.4"/><text x="170.0" y="339.2" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">1.2</text><line x1="161.1" y1="214.3" x2="151.9" y2="210.6" stroke="currentColor" opacity="0.4"/><text x="172.3" y="218.8" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">1.4</text><line x1="248.8" y1="119.7" x2="244.4" y2="110.8" stroke="currentColor" opacity="0.4"/><text x="254.1" y="130.5" text-anchor="middle" dy="3.5" font-size="11" fill="currentColor" opacity="0.7">1.6</text><line x1="329" y1="53.0" x2="329" y2="108.0" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/><text x="329" y="47.0" text-anchor="middle" font-size="12" fill="currentColor">origin &middot; nt 1</text><path d="M243.1,440.2 A180.0,180.0 0 0 1 276.7,109.8 L281.6,126.0 A163.0,163.0 0 0 0 251.3,425.3 Z" style="fill:var(--orf0)"/><line x1="252.7" y1="422.6" x2="241.7" y2="442.8" stroke="var(--orf0)" stroke-width="2.5"/><path d="M225.3,401.2 A158.0,158.0 0 0 1 283.1,130.8 L288.0,147.1 A141.0,141.0 0 0 0 236.5,388.4 Z" style="fill:var(--orf1)"/><line x1="238.4" y1="386.1" x2="223.4" y2="403.5" stroke="var(--orf1)" stroke-width="2.5"/><polyline points="163.8,265.2 108.1,259.6 77.0,272.4" fill="none" stroke="var(--orf0)" stroke-width="1.4" opacity="0.9"/><circle cx="163.8" cy="265.2" r="2.8" fill="var(--orf0)"/><text x="70.0" y="272.4" dy="-3" text-anchor="end" font-size="13.5" font-weight="600" fill="currentColor">L-HDAg</text><text x="70.0" y="272.4" dy="15" text-anchor="end" font-size="10.5" fill="currentColor" opacity="0.65">214 aa</text><polyline points="188.2,251.9 111.9,235.6 77.0,234.4" fill="none" stroke="var(--orf1)" stroke-width="1.4" opacity="0.9"/><circle cx="188.2" cy="251.9" r="2.8" fill="var(--orf1)"/><text x="70.0" y="234.4" dy="-3" text-anchor="end" font-size="13.5" font-weight="600" fill="currentColor">S-HDAg</text><text x="70.0" y="234.4" dy="15" text-anchor="end" font-size="10.5" fill="currentColor" opacity="0.65">194 aa</text><text x="329" y="280" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">1,725 nt</text><text x="329" y="298" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.7">circular</text></svg><figcaption>12475.2500 (12475.7478, 1,725 nt) as the Deltavirus module annotates it: 2 features (2 essential, 0 mature peptides). Drawn to scale from this genome&rsquo;s own calls; forward-strand genes outside the ring, reverse-strand inside, a tick at each 3&prime; end. Colour marks the reading frame, not the gene &mdash; genes sharing a stop codon share a hue, so the nested forms are visible as one frame. The origin is not biology: it is wherever the submitter cut the circle.</figcaption></figure></section><section><h2><span class="num">02</span>The edited codon</h2><p class="lede">One codon decides which protein the genome makes, and the deposits disagree about what is in it.</p><p class="note">The small antigen ends at an amber codon (UAG). ADAR1 edits it to UGG, and the large antigen continues 19 residues to the CXXQ farnesylation box at Cys211 that lets it package virions. Both forms are made by every infected cell, so both are called on every genome &mdash; whatever that codon happens to hold in the deposit. Of the 852-member large-antigen collection, <b>508 carry the unedited TAG, 392 the IUPAC ambiguity code TRG, and 143 the edited TGG</b>.</p><p class="note">TRG is physical evidence of a mixed edited and unedited population in the sample. It translates as <code>X</code> and it is <em>not a stop</em>, so it reaches the terminator by the ordinary path and <code>internal_stop</code> never sees it. That is why the module declares a second, independent mechanism.</p><p class="note"><code>transl_except</code> names the residue to replace, what to put there, and where to look &mdash; measured on the emitted protein, so the JSON never learns a profile name:<br><code>{"replace_residue": ["X","*"], "insert_residue": "W", "offset": [19,20], "from": "C-term"}</code></p><p class="note">The window is 19&ndash;20 rather than a single number because genotype III's extension is genuinely one residue longer, with a different editing RNA structure behind it (PMID 12097551). It is tight on purpose. Across all 852 members, <b>every one resolves to exactly one position</b> in that window; widening it by one residue on each side would make 2 ambiguous, and by two would make 4. Where more than one candidate residue falls in the window the exception is declined and logged rather than guessed, because two ambiguities there is a sequencing problem and silently picking one would bury it.</p><p class="note">In production the annotator says so in its own trace: <code>L-HDAg transl_except: residue 196 of 214 translated as *; emitted as W</code>.</p></section><section><h2><span class="num">03</span>Does it reach the genomes?</h2><p class="lede">660 exemplars at 95% nucleotide identity, annotated through the full five-stage pipeline.</p><div class="scroll"><table><thead><tr><th>measure</th><th>result</th></tr></thead><tbody><tr><td>exemplars scored</td><td>660</td></tr><tr><td>routed to <code>Deltavirus</code></td><td>631</td></tr><tr><td>routed but called nothing</td><td>0</td></tr><tr><td><code>S-HDAg</code> called</td><td>630 of 631 (99.8%)</td></tr><tr><td><code>L-HDAg</code> called</td><td>628 of 631 (99.5%)</td></tr><tr><td>called a foreign module&#x27;s feature</td><td>0</td></tr></tbody></table></div><p class="note"><b>Eight genomes are declined, and that is the correct answer.</b> They route perfectly well &mdash; 1,159 to 1,756 bits &mdash; but seven carry an antigen ORF with <b>2 to 4 internal stop codons</b>. The translation is unmistakably a delta antigen (<code>MSRSESRKNRGGREDILEQWVSGRKRL&hellip;</code>) but coverage before the first stop falls to 0.07&ndash;0.49, under the 0.65 floor. The eighth is 27% N. The module refuses to invent a protein from a disrupted reading frame.</p></section><section><h2><span class="num">04</span>Where the thresholds sit</h2><p class="lede">Measured on the annotator's own per-hit scores, not on the proteins it finally emits.</p><p class="note">At the generated cutoff of 30, <b>29 genomes carried a duplicate call</b> &mdash; the same feature twice, from a second weaker HSP. A length or coverage threshold trades those away one-for-one against genuine calls, so it is the wrong instrument. The trace gave a clean separation instead.</p><div class="scroll"><table><thead><tr><th>feature</th><th>genuine call, 1st pct</th><th>secondary hits, median</th><th>cutoff</th><th>cost</th></tr></thead><tbody><tr><td><code>S-HDAg</code></td><td>191.5 bits (min 100.5)</td><td>33.2</td><td>100</td><td>no genome loses its call; 92 of 99 secondary hits removed</td></tr><tr><td><code>L-HDAg</code></td><td>215.3 bits</td><td>35.1</td><td>100</td><td>one fragmentary genome; 175 of 192 secondary hits removed</td></tr></tbody></table></div><p class="note">That took duplicates from 29 genomes to 8. The eight that remain are a property of the deposits, not of the profiles: four (AF01&ndash;AF04) carry the antigen <em>at full length on both strands</em>, scoring 481 and 468, which no score can separate. They are reported as poor-quality genomes rather than tuned away.</p></section><section><h2><span class="num">05</span>Quality, and what it is measuring</h2><p class="lede">108 of 631 genomes score Poor. None of it is a module defect.</p><div class="scroll"><table><thead><tr><th>flag</th><th>genomes</th></tr></thead><tbody><tr><td>contig has &gt;1% ambiguous bases</td><td>85</td></tr><tr><td>feature too short</td><td>30</td></tr><tr><td>too many HSPs, or missing an essential feature</td><td>12</td></tr><tr><td>feature too long</td><td>7</td></tr></tbody></table></div><p class="note">The ambiguity flag is expected for this virus and should not be read as noise: the editing site itself is deposited as <code>TRG</code> in 392 genomes, because the sample held both populations. These are clinical quasispecies deposits, and the flag is recording that honestly.</p></section><section><h2><span class="num">06</span>What was missed</h2><p class="lede">The limits, stated plainly.</p><p class="note">Both profiles recover <b>100% of their own collections</b> (852/852 and 685/685), so nothing in the curated set is uncallable. 24 distinct BV-BRC annotation strings collapse onto the 2 controlled names, a 12-fold reduction.</p><p class="note">Nothing is declared without a profile. Of the 1,651 deposits that fail the length windows, <b>1,594 are partial entries of 150 aa or less whose C-termini are complete</b> &mdash; fragments of the two modelled forms, not a third product nobody has modelled.</p><p class="note">The strings are wrong in both directions and nothing here was binned on one: 21 deposits labelled &ldquo;small&hellip;antigen&rdquo; are 214 aa, 94 fragments sit under the large label, and 71 genuine long forms say neither. Every sequence was placed by length and by the chemistry at the editing site.</p></section><p class="src">Built with the LowVan module kit at <code>github.com/jimdavis1/LowVan_Skill</code>. Every figure is reproducible from <code>work/Kolmioviridae/</code>; the decisions behind them, each with the measurement that settled it, are in <code>BUILD_NOTES.md</code>. Companion reports: PSSM registry, string collapse, vocabulary saturation, and the Kolmioviridae coverage audit for the rest of the family.</p></div>

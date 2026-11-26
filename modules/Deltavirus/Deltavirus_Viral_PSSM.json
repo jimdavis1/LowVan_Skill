@@ -1,0 +1,95 @@
+{
+   "Deltavirus" : {
+      "close_genomes" : {
+         "Deltavirus.1.dna" : {
+            "genome_ids" : "12475.2500.con.0001",
+            "genome_name" : "Hepatitis delta virus J697"
+         },
+         "Deltavirus.2.dna" : {
+            "genome_ids" : "12475.1517.con.0001",
+            "genome_name" : "Hepatitis delta virus HDV3_Brazil_4"
+         },
+         "Deltavirus.3.dna" : {
+            "genome_ids" : "12475.3659.con.0001",
+            "genome_name" : "Hepatitis delta virus IN199"
+         },
+         "Deltavirus.4.dna" : {
+            "genome_ids" : "12475.2105.con.0001",
+            "genome_name" : "Hepatitis delta virus D9180"
+         },
+         "Deltavirus.5.dna" : {
+            "genome_ids" : "12475.2131.con.0001",
+            "genome_name" : "Hepatitis delta virus K2191"
+         },
+         "Deltavirus.6.dna" : {
+            "genome_ids" : "12475.2664.con.0001",
+            "genome_name" : "Hepatitis delta virus HD1-2000234-pg"
+         }
+      },
+      "features" : {
+         "L-HDAg" : {
+            "PMID_claude_generated" : [
+               "1629949",
+               "11507200",
+               "8230486",
+               "2398535",
+               "12097551",
+               "2447291"
+            ],
+            "anno" : "Large delta antigen",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "L-HDAg",
+            "internal_stop" : 1,
+            "kmers" : 1,
+            "max_len" : 227,
+            "min_len" : 200,
+            "segment" : "Single RNA Segment",
+            "transl_except" : {
+               "from" : "C-term",
+               "insert_residue" : "W",
+               "offset" : [
+                  19,
+                  20
+               ],
+               "replace_residue" : [
+                  "X",
+                  "*"
+               ]
+            },
+            "type" : "CDS",
+            "upstream_ext" : 0
+         },
+         "S-HDAg" : {
+            "PMID_claude_generated" : [
+               "2398535",
+               "2447291",
+               "3762705"
+            ],
+            "anno" : "Small delta antigen",
+            "bit_cutoff" : 100,
+            "copy_num" : 1,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 0,
+            "feature_type" : "CDS",
+            "gene_symbol" : "S-HDAg",
+            "kmers" : 1,
+            "max_len" : 207,
+            "min_len" : 181,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
+         }
+      },
+      "segments" : {
+         "Single RNA Segment" : {
+            "max_len" : 1800,
+            "min_len" : 1450,
+            "replicon_geometry" : "circular"
+         }
+      }
+   }
+}
