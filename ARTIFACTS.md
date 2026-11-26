@@ -20,6 +20,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Allexivirus** | [live](https://claude.ai/artifact/Nod4NnVCU3arrmBqiTPh1J) | [live](https://claude.ai/artifact/PR148JCFeHCx5rsiqSPe8d) | [live](https://claude.ai/artifact/S5H57Gg1N2DECvutD8JBTS) | [live](https://claude.ai/artifact/KAyMy13QTKUsFASLRsoTwo) | — |
 | **Alphaflexiviridae** | [live](https://claude.ai/artifact/1opeHxTHrAVEx7nsy8DMc1) | [live](https://claude.ai/artifact/TseN29Pu2NS87fMCJRTP1a) | [live](https://claude.ai/artifact/DrNtpzKawMfnQvEFgdvJCP) | [live](https://claude.ai/artifact/MzC77du44ZP2iBnPogQPx1) | — |
 | **Alphanodavirus** | [live](https://claude.ai/artifact/RRRLhkxDkY8memkCXySMXT) | [live](https://claude.ai/artifact/RadMW8PEM1n1xhZNGgCY6R) | [live](https://claude.ai/artifact/CUEET93DRQ9C28b4VFxgZp) | [live](https://claude.ai/artifact/YPAxLhtGVXR1tHevRTGf6Z) | [src only](reports/alphanodavirus-genome-map.html) |
+| **Alphapapillomavirus** | [live](https://claude.ai/artifact/QEBHcHDvwF2s79mj72CNaW) | [live](https://claude.ai/artifact/X3fAnbWvPPSLcLMXPsNxAn) | [live](https://claude.ai/artifact/PezbpvPjwBABYxN82aF2k4) | [live](https://claude.ai/artifact/YSTzZAtP8EvHYa6NEsnzMH) | — |
 | **Alpharetrovirus** | [live](https://claude.ai/artifact/CfpgXESRmcejTpMaqkga2H) | [live](https://claude.ai/artifact/79W5AL2FdcGK8mJaEzXVeZ) | [live](https://claude.ai/artifact/2se3RSaF9Cbv1brCHo3uxp) | [live](https://claude.ai/artifact/AnobFFvUDqjQfPHECo2bPp) | [src only](reports/alpharetrovirus-genome-map.html) |
 | **Amdoparvovirus** | [live](https://claude.ai/artifact/PxHeyoB1J2JS6gzPKkpeX7) | [src only](reports/amdoparvovirus-pssm-registry.html) | [src only](reports/amdoparvovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/DwDcB9syhWAQRbzMP5BB9o) | [src only](reports/amdoparvovirus-genome-map.html) |
 | **Ampelovirus** | [live](https://claude.ai/artifact/V77bT21KMdY3A773D7cujf) | [live](https://claude.ai/artifact/PrU3CcqcRtYUGq4Jb8ej8H) | [live](https://claude.ai/artifact/MZUpPrD6pMqZv896inLPdm) | [live](https://claude.ai/artifact/WmyppgnifhqgPwp1Fd11KL) | — |
@@ -33,6 +34,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Barthadenovirus** | [src only](reports/barthadenovirus-string-collapse.html) | [src only](reports/barthadenovirus-pssm-registry.html) | [src only](reports/barthadenovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/9shXBryhfpqZGUzPBsDjJR) | [src only](reports/barthadenovirus-genome-map.html) |
 | **Bavovirus** | [live](https://claude.ai/artifact/VRpn8EkqAkz2sMjzYFEDS9) | [live](https://claude.ai/artifact/RqkxTXZnGNWALpiyXz7t9d) | [live](https://claude.ai/artifact/RqWLqqQPpCtJC7ZHpPxPxZ) | [live](https://claude.ai/artifact/88JpWMU5nBSfQXczr3X2ZX) | — |
 | **Betanodavirus** | [live](https://claude.ai/artifact/NqwBHL2Ne4NTjHhi2TUWXR) | [live](https://claude.ai/artifact/QgLtUWKCLfex2v9rMvmwey) | [live](https://claude.ai/artifact/WkqJy9BUfEiPXjLbp9RDSq) | [live](https://claude.ai/artifact/7X5Vphm7iMdNTbnqnxyJKb) | [src only](reports/betanodavirus-genome-map.html) |
+| **Betapapillomavirus** | [live](https://claude.ai/artifact/J6z2kaud9djfE7LD6BerDJ) | [live](https://claude.ai/artifact/K7RqnU94mFe9n6gkvW4HeH) | [live](https://claude.ai/artifact/Kdxn4zBARasmKL1rNfLdw2) | [live](https://claude.ai/artifact/EnNWJNbcjGBPuMaDtqpRyv) | — |
 | **Betaretrovirus** | [live](https://claude.ai/artifact/QmBMhMeySeeWx1xSEGB7b2) | [live](https://claude.ai/artifact/NWA1P4R6gtTixbvjjPva4h) | [live](https://claude.ai/artifact/XPJL3x1kDK7NtrULEvg7wi) | [live](https://claude.ai/artifact/WG4UHp5QzR5NqYy5RFvStr) | [src only](reports/betaretrovirus-genome-map.html) |
 | **Birnaviridae** | [live](https://claude.ai/artifact/8W9HxHEESReTX6UEgs9xxR) | [live](https://claude.ai/artifact/FCfWq6RENeLKAcbUfCqfk1) | [live](https://claude.ai/artifact/MLswZUSWg1DGQbxeHojGc1) | [live](https://claude.ai/artifact/GbGRjHVFoXRoHK3d97DRq2) | — |
 | **Bocaparvovirus** | [live](https://claude.ai/artifact/VZJSrH8RoyZhd6DRXLvCSR) | [live](https://claude.ai/artifact/Gu41kvU6WiQRrQQGfQS2iq) | [live](https://claude.ai/artifact/RRhZe9QT2uziPZDKQSqcZP) | [live](https://claude.ai/artifact/JqUwPr1jeg2Qexh1iGZXEh) | [src only](reports/bocaparvovirus-genome-map.html) |
@@ -41,18 +43,22 @@ per-taxon tables below carry the dates and the source paths.
 | **Capillovirus** | [live](https://claude.ai/artifact/UxFYYiPSxUmVHpnfZvttL6) | [live](https://claude.ai/artifact/2MhyYGJDyaiuKpH8dT8DMP) | [live](https://claude.ai/artifact/KRCGhYahtrFrXhC66FMCDG) | [live](https://claude.ai/artifact/72Tkge2qkTd5sc5eumHUtP) | — |
 | **Cardiovirus** | [live](https://claude.ai/artifact/44d26MFMAYpvzfoKyDjqS7) | [live](https://claude.ai/artifact/WuCYigqaWqd7yeoyQ4PMN5) | [live](https://claude.ai/artifact/SiYcBoWrvoLUSpYcuBk47P) | [live](https://claude.ai/artifact/CWpYjvdg3sbjLaRp68LFti) | — |
 | **Carlavirus** | [live](https://claude.ai/artifact/DMcy8JVZfFPimPkWsXTMQ1) | [live](https://claude.ai/artifact/8X8vzYkkKzKaGhL5Z35kgd) | [live](https://claude.ai/artifact/CanGWVzZ16524CDkMgP3P3) | [live](https://claude.ai/artifact/NmFkgdqungA9QQqwo4vnxk) | — |
+| **Chipapillomavirus** | [live](https://claude.ai/artifact/CNnhBFv8gMRM7iG9nKNnRQ) | [live](https://claude.ai/artifact/E9poUxiDWn7aWoAHcbxRhy) | [live](https://claude.ai/artifact/FUwqY13TNRqeTkqqvVbE5g) | [live](https://claude.ai/artifact/JXuLQ9yHgnMw2xz9WnPu6a) | — |
 | **Closterovirus** | [live](https://claude.ai/artifact/R7s4HEWxG7uE5rUVP45bFE) | [live](https://claude.ai/artifact/6ZfGY1KaXuL3cYbY8fuMUN) | [live](https://claude.ai/artifact/8yJX7hSR2qhznPkQYXq4pj) | [live](https://claude.ai/artifact/Ab6k6zYW9YHdrXhhk893kc) | — |
 | **Coltivirus** | [live](https://claude.ai/artifact/Hin8atCqQSiVD4jULeJpYm) | [live](https://claude.ai/artifact/1CpdzQZ1oXpXoCzP2Nmf8p) | [live](https://claude.ai/artifact/F1uth59wRRvzMvXdY4LAp2) | [live](https://claude.ai/artifact/NkZzioHk36fSX3H8dq1L6j) | — |
 | **Crinivirus** | [live](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [live](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [live](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [live](https://claude.ai/artifact/8sUQEueUJmA6CkFU4nziGF) | — |
+| **Deltapapillomavirus** | [live](https://claude.ai/artifact/QGWtAfjoDwPXE2S55vdunD) | [live](https://claude.ai/artifact/JcBYKmDtnMMfX7c25oRYAa) | [live](https://claude.ai/artifact/RkKPFa1QM4z5xsxzCBpbHp) | [live](https://claude.ai/artifact/9FS6gDAqbYa9ZJ3pWfqdTC) | — |
 | **Deltaretrovirus** | [live](https://claude.ai/artifact/Mvm31NpChCPQJmGEM6RNNy) | [live](https://claude.ai/artifact/HjGXwXK9GgvjyZx11y5jtt) | [live](https://claude.ai/artifact/1cZ4bd5xSjkYD11d2R2eJA) | [live](https://claude.ai/artifact/2tWi5E9gm5KWRKspYdJgDA) | [src only](reports/deltaretrovirus-genome-map.html) |
 | **Deltavirus** | [live](https://claude.ai/artifact/A8Rwo4SrxNHQKHdbRnD1fk) | [live](https://claude.ai/artifact/EFo8RCXTkAgpAg1fr2ZsQE) | [live](https://claude.ai/artifact/P8uFw2rgy8F5v3LVFz8Vdj) | [live](https://claude.ai/artifact/JFSuzM48dHLyjEfsRtiN9S) | [live](https://claude.ai/artifact/3BxAaADGQ6oVcyBrzuq1y8) |
 | **DensovirinaeAmbi** | [live](https://claude.ai/artifact/L3dvqYNFMgpgMCYdGNBHLw) | [src only](reports/densovirinaeambi-pssm-registry.html) | [src only](reports/densovirinaeambi-vocabulary-saturation.html) | [live](https://claude.ai/artifact/KwEMFuhTs1Q1CDnbfgHr8G) | [src only](reports/densovirinaeambi-genome-map.html) |
 | **DensovirinaeMono** | [live](https://claude.ai/artifact/W8KtrAP7RKtxyPFnc7b8f6) | [live](https://claude.ai/artifact/VGQzYmcXAUzaRhK1FR3oid) | [live](https://claude.ai/artifact/Kz2VW7uAUBXqhrzbUWVG5c) | [live](https://claude.ai/artifact/Nx6tVfTiXDRPF2LrHdKKgV) | [src only](reports/densovirinaemono-genome-map.html) |
 | **Dependoparvovirus** | [live](https://claude.ai/artifact/2yjAcCjsvQdjp7BYYsw7by) | [live](https://claude.ai/artifact/FgbPhV6JWJF3vEuGmAzhJV) | [live](https://claude.ai/artifact/H8oTo9CBskJLahQgv7EUC9) | [live](https://claude.ai/artifact/DQHm1ikoc4QR8R74LLryKB) | [src only](reports/dependoparvovirus-genome-map.html) |
+| **Dyoiotapapillomavirus** | [live](https://claude.ai/artifact/Jk3G6d7LRqkzwkcTPrJ3Yn) | [live](https://claude.ai/artifact/DcFdWiDpbpMB6R7NtjsfJZ) | [live](https://claude.ai/artifact/Sk28TPZM24tMA24Ea5VWgg) | [live](https://claude.ai/artifact/4qVHzGWc18reheha6TAbmA) | — |
 | **EIAV** | [live](https://claude.ai/artifact/DQXCqiqr1tfpqnk8XL4GNP) | [live](https://claude.ai/artifact/XLLxyNv5KE6HYkH5cZxby6) | [live](https://claude.ai/artifact/Y7TcE3b757coYzcJbXyVbc) | [live](https://claude.ai/artifact/7yuZ1wHaM3ksJTmMcePeUU) | [src only](reports/eiav-genome-map.html) |
 | **Enterovirus** | [live](https://claude.ai/artifact/6iXjyobG19rthE7t53XumV) | [live](https://claude.ai/artifact/U5iDzUcPAhDqpGXnv1qEiQ) | [live](https://claude.ai/artifact/MwEpMLxryNdhDAyzvpvyC2) | [live](https://claude.ai/artifact/ABCfyDMkAY9UscvKzVQBkk) | — |
 | **Erythroparvovirus** | [live](https://claude.ai/artifact/3MvexZCs6HE9mQQpADMAyd) | [live](https://claude.ai/artifact/WDMKiEgje5D3zPZFQnKVkL) | [live](https://claude.ai/artifact/CmWhNFFMrSNrwfu7QLvRUQ) | [live](https://claude.ai/artifact/RZgn2R3Jjfwuk25Utfkbng) | [src only](reports/erythroparvovirus-genome-map.html) |
 | **FIV** | [live](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | [live](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | [live](https://claude.ai/artifact/QsKfmM4MTshtERZAeNqZHJ) | [live](https://claude.ai/artifact/TJB72xxwVzDbucGM97yN6A) | [src only](reports/fiv-genome-map.html) |
+| **Gammapapillomavirus** | [live](https://claude.ai/artifact/Bvuy9bkdm44E8QYZ8MMsLj) | [live](https://claude.ai/artifact/WtSHwspwu13yx7XumkFjWD) | [live](https://claude.ai/artifact/3NF7N6Tz2N3s1AHoVPB6xA) | [live](https://claude.ai/artifact/LYE3bn9dxoQyWXzZHg6ju6) | — |
 | **Gammaretrovirus** | [live](https://claude.ai/artifact/Q8bws2vKjuyKBb4ZAuCCAF) | [live](https://claude.ai/artifact/3WcJXhsNk1fqU74ftQ6Stu) | [live](https://claude.ai/artifact/SnWBfiMoMut4R5Ykff8GEg) | [live](https://claude.ai/artifact/ELrfaFZbTYfUnVupig7Uxq) | [src only](reports/gammaretrovirus-genome-map.html) |
 | **Hamaparvovirinae** | [live](https://claude.ai/artifact/5EfjTxcX3VK5VJtJZRHebN) | [live](https://claude.ai/artifact/CtjGdJYec31tJVRsbtAtEW) | [live](https://claude.ai/artifact/XqSG3kZMFmgbRmsKuGhvGd) | [live](https://claude.ai/artifact/1UrnLiaRuZqyeyVTvAGmaj) | [src only](reports/hamaparvovirinae-genome-map.html) |
 | **Hepaciviridae** | [live](https://claude.ai/artifact/SuSzzD4Lgid5Nqh4wsAUsw) | [live](https://claude.ai/artifact/G2CDRQ1g7bPZQwJCAeVCNR) | [live](https://claude.ai/artifact/PFSG6T5FP4Pdv82KTtpRb3) | [live](https://claude.ai/artifact/8vMTNVAXKjhCEqmbsUBcry) | — |
@@ -63,6 +69,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Kobuvirus** | [live](https://claude.ai/artifact/G5BNV47HTuCKGDHstSCYkD) | [live](https://claude.ai/artifact/HXpLhyF1AdFbSbKPFcLgEp) | [live](https://claude.ai/artifact/JT8vdj6PBbm31asVQdHxGZ) | [live](https://claude.ai/artifact/644ijYfi9wT8E9YRUkxu31) | — |
 | **Kolmioviridae** | [live](https://claude.ai/artifact/NFFjoQzgCLhzPnZDiHMsDM) | [live](https://claude.ai/artifact/XFVFn9RirHoTfVWioPwDCJ) | [live](https://claude.ai/artifact/LC28PjG6HhNbGgHTSST3uk) | [live](https://claude.ai/artifact/Uyt6TyWqbj4XCNpUKFoZhG) | [live](https://claude.ai/artifact/VfbAE1xE3uBKM2FdtK4AFr) |
 | **Lagovirus** | [live](https://claude.ai/artifact/MaXyiZhw6iYWGgut5PhNJF) | [live](https://claude.ai/artifact/CqYYq1ekytoZf5oVCb5zVK) | [live](https://claude.ai/artifact/HxygdrBS6JjHyAzphnj7eD) | [live](https://claude.ai/artifact/XvhotU5g7M4DcukfBTGGuT) | — |
+| **Lambdapapillomavirus** | [live](https://claude.ai/artifact/WS86xhcSZhxVMy6wMfwjXp) | [live](https://claude.ai/artifact/KRjbMPujTdk4eLKVzCrEje) | [live](https://claude.ai/artifact/JvdPScF6x34V7Ngsgy9bq6) | [live](https://claude.ai/artifact/4HZcnYzjzviEmJA4r9B9X6) | — |
 | **Le Blanc nodavirus** | [live](https://claude.ai/artifact/S5HSfuke1vRjptjSJboMEv) | [live](https://claude.ai/artifact/3YuE57hMktp5hC5JtjWGUB) | [live](https://claude.ai/artifact/R6dwynrfa9tiHbBHqDzB7L) | [live](https://claude.ai/artifact/15pxXKc8HCokJvbpu34Gov) | [src only](reports/le-blanc-nodavirus-genome-map.html) |
 | **Macrobrachium rosenbergii nodavirus** | [live](https://claude.ai/artifact/KiMLNvA2iHYMkzEzaecv93) | [live](https://claude.ai/artifact/JJtxL2nYcSuy2zN5J9Usmo) | [live](https://claude.ai/artifact/SYJmXqc79owHWhvBMrFpva) | [live](https://claude.ai/artifact/WiEeCV9r6WR6apmLysiYeN) | [src only](reports/macrobrachium-rosenbergii-nodavirus-genome-map.html) |
 | **Mamastrovirus** | [live](https://claude.ai/artifact/QpYi5xQgkJ9DfhLz7Jbjbi) | [live](https://claude.ai/artifact/9TiskqqapCz6kKTp3X54dP) | [live](https://claude.ai/artifact/KK2DD6dqtiU3u7kWUfoWHZ) | [live](https://claude.ai/artifact/HivykiHqcCeiWMAUczQShN) | — |
@@ -86,6 +93,7 @@ per-taxon tables below carry the dates and the source paths.
 | **PICO_NOLDR_VP0** | [live](https://claude.ai/artifact/FPxCxJr26eRtF8PJY8wH4p) | [live](https://claude.ai/artifact/Lr9uABqCQZxhBqiw83BJSS) | [live](https://claude.ai/artifact/MQxP6qyN2pCqry717Y5ehK) | [live](https://claude.ai/artifact/3sFkz4f99xuw9FGSzgxE8Z) | — |
 | **PICO_NOLDR_VP4** | [live](https://claude.ai/artifact/D4ncL6xGyYttgDBcpqDJzF) | [live](https://claude.ai/artifact/CgHakkLnCawRjWZdawJwWB) | [live](https://claude.ai/artifact/4PMpusDUm7dpDGq1Pp2pxL) | [live](https://claude.ai/artifact/3Ky6NnngVVgqbc2vTJxL1g) | — |
 | **Picobirnaviridae** | [live](https://claude.ai/artifact/TjLjMkHCf1Lodub3LWzYKq) | [live](https://claude.ai/artifact/KSMyiocg9iYnm6s6LS3LpY) | [live](https://claude.ai/artifact/MA8nCTqMGGp2Loy4W4LNHM) | [live](https://claude.ai/artifact/FCnZ2syzgodd8eXE1cpW3g) | [live](https://claude.ai/artifact/2sMCcX1C1gnjUmdFyLzute) |
+| **Pipapillomavirus** | [live](https://claude.ai/artifact/T2u57zqLWzZNcYj3WaEjxe) | [live](https://claude.ai/artifact/GFVBtaVfB5aTxDUUHmLfxd) | [live](https://claude.ai/artifact/FNpiMdiFZeWnutbTfqBL5u) | [live](https://claude.ai/artifact/F4RqLiXwTPCLSz7zoBiipS) | — |
 | **Piscanivirinae** | — | — | — | — | [live](https://claude.ai/artifact/EnFm97JEm5cJTjX9cLyPiJ) |
 | **Piscine Orthoreovirus** | [live](https://claude.ai/artifact/JEnqCvUGt9SN5f6kuCtT15) | [live](https://claude.ai/artifact/5fvts36gAWRpgtdQzjiCGX) | [live](https://claude.ai/artifact/7tqSe2K6VWU6jeLPRuwkKt) | [live](https://claude.ai/artifact/6YRXypfQ5DiURLw8vr2Tp9) | — |
 | **Protoparvovirus** | [live](https://claude.ai/artifact/KBU1KeEYqBDGco27VKRx1T) | [src only](reports/protoparvovirus-pssm-registry.html) | [src only](reports/protoparvovirus-vocabulary-saturation.html) | [live](https://claude.ai/artifact/Wxh3ffuYKmHzqnFNxzMsfE) | [src only](reports/protoparvovirus-genome-map.html) |
@@ -103,6 +111,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Simarterivirinae** | [live](https://claude.ai/artifact/VjzDv9qYihqYz11JF7kHDM) | [live](https://claude.ai/artifact/G9g5jddfjUnZG98qL5oZgm) | [live](https://claude.ai/artifact/3s5Vk73ZD8ZPQJyv25Jf8U) | [live](https://claude.ai/artifact/HVGqUko1vMpuwEL7pzf5by) | [src only](reports/simarterivirinae-genome-map.html) |
 | **Spumaretrovirinae** | [live](https://claude.ai/artifact/PY1Bk6CcSTSjPRPeamnCRE) | [live](https://claude.ai/artifact/GGyut8ufvAFnzHX1reqtji) | [live](https://claude.ai/artifact/85pk6ypS9YZ9Gy3iQXidRM) | [live](https://claude.ai/artifact/SsPLLYtdqDgPaDo6ZrstiU) | [src only](reports/spumaretrovirinae-genome-map.html) |
 | **SRLV** | [live](https://claude.ai/artifact/Pr3iQ2LZY6i9cAaiWAGRkr) | [live](https://claude.ai/artifact/2WAMM78cuxKVqKvybvLrho) | [live](https://claude.ai/artifact/Y4AoZKWNjBFUMeYy5B65Dz) | [live](https://claude.ai/artifact/GJuFbu4oLdcUQeHyysoG71) | [src only](reports/srlv-genome-map.html) |
+| **Taupapillomavirus** | [live](https://claude.ai/artifact/KnDk44HLPd33y8oeWTSiaX) | [live](https://claude.ai/artifact/KMSCnrxF3E8zgoDm3jj7n6) | [live](https://claude.ai/artifact/RKPhU8YP63GoAgu1ft9xC2) | [live](https://claude.ai/artifact/LTrUoEDJRqKkXDjniCMACh) | — |
 | **Teschovirus** | [live](https://claude.ai/artifact/JSViGsXAn6XASMFFEnbaHE) | [live](https://claude.ai/artifact/47kPusTAJBhgyiPTUpU6Xb) | [live](https://claude.ai/artifact/UggapRU4xjDyfPTh9GZTmz) | [live](https://claude.ai/artifact/F8oSMsDPAmjyKa6UdBAWzs) | — |
 | **TetraCopiparvovirus** | [live](https://claude.ai/artifact/FDA8eW1GAFMUnaQRTB6eoq) | [live](https://claude.ai/artifact/8cma1NsgkTSgH6zD3oJkMv) | [live](https://claude.ai/artifact/B2b8bZqe2en9vgBipMsTDY) | [live](https://claude.ai/artifact/AwAe6qNhui1fPRsezQY3Wd) | [src only](reports/tetracopiparvovirus-genome-map.html) |
 | **Tilapinevirus** | [live](https://claude.ai/artifact/BT5naKVWviKf3vt8MWhtTF) | [live](https://claude.ai/artifact/6buk719CVnBMZFZWwwJ6GH) | [live](https://claude.ai/artifact/W75q6rDPezN6PMAaESs8Qj) | [live](https://claude.ai/artifact/8swEyjwBGmj7VUy9SLKezf) | [src only](reports/tilapinevirus-genome-map.html) |
@@ -114,6 +123,7 @@ per-taxon tables below carry the dates and the source paths.
 | **Tymovirus** | [live](https://claude.ai/artifact/FWqWHTDrJDVku9KhJLAtm1) | [live](https://claude.ai/artifact/Rthyn6HHDwXe4VGhrgvXvt) | [live](https://claude.ai/artifact/DBakDPHuHADrHWkDRadqUK) | [live](https://claude.ai/artifact/BcR2cenCdnFyLZGus2S5up) | — |
 | **Velarivirus** | [live](https://claude.ai/artifact/964Y7kzdrnjiBkAg74b8oz) | [live](https://claude.ai/artifact/L4rADg3VE6QWsMG2XuTizY) | [live](https://claude.ai/artifact/4SxhURLD9u5EiKDKZvvWKa) | [live](https://claude.ai/artifact/DXSmF1X2SUerSi537MGndv) | — |
 | **Vesivirus** | [live](https://claude.ai/artifact/BVU3qYyhrsL4NTn5bRwp9g) | [live](https://claude.ai/artifact/PwDCV1ByYufaPJQDRkoSsx) | [live](https://claude.ai/artifact/DP6HyiHndjbyUJJKoPeLJT) | [live](https://claude.ai/artifact/VnGVMe8s4EPSnsgk7N7VrF) | — |
+| **Xipapillomavirus** | [live](https://claude.ai/artifact/PkWHFqsEHXyFvEAfSEMpXE) | [live](https://claude.ai/artifact/RG5mnfBQF9e1z3iPu6Vkkv) | [live](https://claude.ai/artifact/9tcM2QUAmWigpae9UyLpBF) | [live](https://claude.ai/artifact/RNRmCnSnAndMhqTSBigG5Z) | — |
 
 `live` is published and current. `src only` was built and never
 published — the file is in this repo. `—` was not made.
@@ -159,6 +169,17 @@ Not made: genome map.
 | Alphanodavirus — the insect nodaviruses PSSM Registry | [open](https://claude.ai/artifact/RadMW8PEM1n1xhZNGgCY6R) | [source](reports/alphanodavirus-pssm-registry.html) | 2026-11-22 |
 | Alphanodavirus — the insect nodaviruses String Collapse | [open](https://claude.ai/artifact/RRRLhkxDkY8memkCXySMXT) | [source](reports/alphanodavirus-string-collapse.html) | 2026-11-22 |
 | Alphanodavirus — the insect nodaviruses Vocabulary Saturation | [open](https://claude.ai/artifact/CUEET93DRQ9C28b4VFxgZp) | [source](reports/alphanodavirus-vocabulary-saturation.html) | 2026-11-22 |
+
+Not made: genome map.
+
+### Alphapapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Alphapapillomavirus Coverage Audit | [open](https://claude.ai/artifact/YSTzZAtP8EvHYa6NEsnzMH) | [source](reports/alphapapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Alphapapillomavirus PSSM Registry | [open](https://claude.ai/artifact/X3fAnbWvPPSLcLMXPsNxAn) | [source](reports/alphapapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Alphapapillomavirus String Collapse | [open](https://claude.ai/artifact/QEBHcHDvwF2s79mj72CNaW) | [source](reports/alphapapillomavirus-string-collapse.html) | 2026-11-26 |
+| Alphapapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/PezbpvPjwBABYxN82aF2k4) | [source](reports/alphapapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
 
 Not made: genome map.
 
@@ -300,6 +321,17 @@ Not made: genome map.
 
 Not made: genome map.
 
+### Betapapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Betapapillomavirus Coverage Audit | [open](https://claude.ai/artifact/EnNWJNbcjGBPuMaDtqpRyv) | [source](reports/betapapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Betapapillomavirus PSSM Registry | [open](https://claude.ai/artifact/K7RqnU94mFe9n6gkvW4HeH) | [source](reports/betapapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Betapapillomavirus String Collapse | [open](https://claude.ai/artifact/J6z2kaud9djfE7LD6BerDJ) | [source](reports/betapapillomavirus-string-collapse.html) | 2026-11-26 |
+| Betapapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/Kdxn4zBARasmKL1rNfLdw2) | [source](reports/betapapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
+
+Not made: genome map.
+
 ### Betaretrovirus
 
 | page | live | source | updated |
@@ -387,6 +419,17 @@ Not made: genome map.
 
 Not made: genome map.
 
+### Chipapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Chipapillomavirus Coverage Audit | [open](https://claude.ai/artifact/JXuLQ9yHgnMw2xz9WnPu6a) | [source](reports/chipapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Chipapillomavirus PSSM Registry | [open](https://claude.ai/artifact/E9poUxiDWn7aWoAHcbxRhy) | [source](reports/chipapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Chipapillomavirus String Collapse | [open](https://claude.ai/artifact/CNnhBFv8gMRM7iG9nKNnRQ) | [source](reports/chipapillomavirus-string-collapse.html) | 2026-11-26 |
+| Chipapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/FUwqY13TNRqeTkqqvVbE5g) | [source](reports/chipapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
+
+Not made: genome map.
+
 ### Closterovirus
 
 | page | live | source | updated |
@@ -417,6 +460,17 @@ Not made: genome map.
 | Crinivirus PSSM Registry | [open](https://claude.ai/artifact/NvZDJv9BTWvY2B4dz1F1dQ) | [source](reports/crinivirus-pssm-registry.html) | 2026-09-29 |
 | Crinivirus String Collapse | [open](https://claude.ai/artifact/9vSCiWfRo6gZzrfYcvWzYQ) | [source](reports/crinivirus-string-collapse.html) | 2026-09-29 |
 | Crinivirus Vocabulary Saturation | [open](https://claude.ai/artifact/FNs7pvEmyyGY3KjHdooNV1) | [source](reports/crinivirus-vocabulary-saturation.html) | 2026-09-29 |
+
+Not made: genome map.
+
+### Deltapapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Deltapapillomavirus Coverage Audit | [open](https://claude.ai/artifact/9FS6gDAqbYa9ZJ3pWfqdTC) | [source](reports/deltapapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Deltapapillomavirus PSSM Registry | [open](https://claude.ai/artifact/JcBYKmDtnMMfX7c25oRYAa) | [source](reports/deltapapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Deltapapillomavirus String Collapse | [open](https://claude.ai/artifact/QGWtAfjoDwPXE2S55vdunD) | [source](reports/deltapapillomavirus-string-collapse.html) | 2026-11-26 |
+| Deltapapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/RkKPFa1QM4z5xsxzCBpbHp) | [source](reports/deltapapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
 
 Not made: genome map.
 
@@ -473,6 +527,17 @@ Not made: genome map.
 
 Not made: genome map.
 
+### Dyoiotapapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Dyoiotapapillomavirus Coverage Audit | [open](https://claude.ai/artifact/4qVHzGWc18reheha6TAbmA) | [source](reports/dyoiotapapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Dyoiotapapillomavirus PSSM Registry | [open](https://claude.ai/artifact/DcFdWiDpbpMB6R7NtjsfJZ) | [source](reports/dyoiotapapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Dyoiotapapillomavirus String Collapse | [open](https://claude.ai/artifact/Jk3G6d7LRqkzwkcTPrJ3Yn) | [source](reports/dyoiotapapillomavirus-string-collapse.html) | 2026-11-26 |
+| Dyoiotapapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/Sk28TPZM24tMA24Ea5VWgg) | [source](reports/dyoiotapapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
+
+Not made: genome map.
+
 ### EIAV
 
 | page | live | source | updated |
@@ -514,6 +579,17 @@ Not made: genome map.
 | FIV PSSM Registry | [open](https://claude.ai/artifact/AWyo7NzappF7JBEySanNcS) | [source](reports/fiv-pssm-registry.html) | 2026-10-27 |
 | FIV String Collapse | [open](https://claude.ai/artifact/3WRzchSem6DgBohmYFQMmL) | [source](reports/fiv-string-collapse.html) | 2026-10-27 |
 | FIV Vocabulary Saturation | [open](https://claude.ai/artifact/QsKfmM4MTshtERZAeNqZHJ) | [source](reports/fiv-vocabulary-saturation.html) | 2026-10-27 |
+
+Not made: genome map.
+
+### Gammapapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Gammapapillomavirus Coverage Audit | [open](https://claude.ai/artifact/LYE3bn9dxoQyWXzZHg6ju6) | [source](reports/gammapapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Gammapapillomavirus PSSM Registry | [open](https://claude.ai/artifact/WtSHwspwu13yx7XumkFjWD) | [source](reports/gammapapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Gammapapillomavirus String Collapse | [open](https://claude.ai/artifact/Bvuy9bkdm44E8QYZ8MMsLj) | [source](reports/gammapapillomavirus-string-collapse.html) | 2026-11-26 |
+| Gammapapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/3NF7N6Tz2N3s1AHoVPB6xA) | [source](reports/gammapapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
 
 Not made: genome map.
 
@@ -623,6 +699,17 @@ Not made: genome map.
 | Lagovirus PSSM Registry | [open](https://claude.ai/artifact/CqYYq1ekytoZf5oVCb5zVK) | [source](reports/lagovirus-pssm-registry.html) | 2026-10-14 |
 | Lagovirus String Collapse | [open](https://claude.ai/artifact/MaXyiZhw6iYWGgut5PhNJF) | [source](reports/lagovirus-string-collapse.html) | 2026-10-14 |
 | Lagovirus Vocabulary Saturation | [open](https://claude.ai/artifact/HxygdrBS6JjHyAzphnj7eD) | [source](reports/lagovirus-vocabulary-saturation.html) | 2026-10-14 |
+
+Not made: genome map.
+
+### Lambdapapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Lambdapapillomavirus Coverage Audit | [open](https://claude.ai/artifact/4HZcnYzjzviEmJA4r9B9X6) | [source](reports/lambdapapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Lambdapapillomavirus PSSM Registry | [open](https://claude.ai/artifact/KRjbMPujTdk4eLKVzCrEje) | [source](reports/lambdapapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Lambdapapillomavirus String Collapse | [open](https://claude.ai/artifact/WS86xhcSZhxVMy6wMfwjXp) | [source](reports/lambdapapillomavirus-string-collapse.html) | 2026-11-26 |
+| Lambdapapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/JvdPScF6x34V7Ngsgy9bq6) | [source](reports/lambdapapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
 
 Not made: genome map.
 
@@ -874,6 +961,17 @@ Not made: genome map.
 | Picobirnaviridae -- picobirnaviruses Vocabulary Saturation | [open](https://claude.ai/artifact/MA8nCTqMGGp2Loy4W4LNHM) | [source](reports/picobirnaviridae-vocabulary-saturation.html) | 2026-11-17 |
 | Picobirnaviridae Genome Map | [open](https://claude.ai/artifact/2sMCcX1C1gnjUmdFyLzute) | [source](reports/picobirnaviridae-genome-map.html) | 2026-11-18 |
 
+### Pipapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Pipapillomavirus Coverage Audit | [open](https://claude.ai/artifact/F4RqLiXwTPCLSz7zoBiipS) | [source](reports/pipapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Pipapillomavirus PSSM Registry | [open](https://claude.ai/artifact/GFVBtaVfB5aTxDUUHmLfxd) | [source](reports/pipapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Pipapillomavirus String Collapse | [open](https://claude.ai/artifact/T2u57zqLWzZNcYj3WaEjxe) | [source](reports/pipapillomavirus-string-collapse.html) | 2026-11-26 |
+| Pipapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/FNpiMdiFZeWnutbTfqBL5u) | [source](reports/pipapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
+
+Not made: genome map.
+
 ### Piscanivirinae
 
 | page | live | source | updated |
@@ -1047,6 +1145,17 @@ Not made: genome map.
 
 Not made: genome map.
 
+### Taupapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Taupapillomavirus Coverage Audit | [open](https://claude.ai/artifact/LTrUoEDJRqKkXDjniCMACh) | [source](reports/taupapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Taupapillomavirus PSSM Registry | [open](https://claude.ai/artifact/KMSCnrxF3E8zgoDm3jj7n6) | [source](reports/taupapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Taupapillomavirus String Collapse | [open](https://claude.ai/artifact/KnDk44HLPd33y8oeWTSiaX) | [source](reports/taupapillomavirus-string-collapse.html) | 2026-11-26 |
+| Taupapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/RKPhU8YP63GoAgu1ft9xC2) | [source](reports/taupapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
+
+Not made: genome map.
+
 ### Teschovirus
 
 | page | live | source | updated |
@@ -1161,6 +1270,17 @@ Not made: genome map.
 | Vesivirus PSSM Registry | [open](https://claude.ai/artifact/PwDCV1ByYufaPJQDRkoSsx) | [source](reports/vesivirus-pssm-registry.html) | 2026-10-14 |
 | Vesivirus String Collapse | [open](https://claude.ai/artifact/BVU3qYyhrsL4NTn5bRwp9g) | [source](reports/vesivirus-string-collapse.html) | 2026-10-14 |
 | Vesivirus Vocabulary Saturation | [open](https://claude.ai/artifact/DP6HyiHndjbyUJJKoPeLJT) | [source](reports/vesivirus-vocabulary-saturation.html) | 2026-10-14 |
+
+Not made: genome map.
+
+### Xipapillomavirus
+
+| page | live | source | updated |
+|---|---|---|---|
+| Xipapillomavirus Coverage Audit | [open](https://claude.ai/artifact/RNRmCnSnAndMhqTSBigG5Z) | [source](reports/xipapillomavirus-coverage-audit.html) | 2026-11-26 |
+| Xipapillomavirus PSSM Registry | [open](https://claude.ai/artifact/RG5mnfBQF9e1z3iPu6Vkkv) | [source](reports/xipapillomavirus-pssm-registry.html) | 2026-11-26 |
+| Xipapillomavirus String Collapse | [open](https://claude.ai/artifact/PkWHFqsEHXyFvEAfSEMpXE) | [source](reports/xipapillomavirus-string-collapse.html) | 2026-11-26 |
+| Xipapillomavirus Vocabulary Saturation | [open](https://claude.ai/artifact/9tcM2QUAmWigpae9UyLpBF) | [source](reports/xipapillomavirus-vocabulary-saturation.html) | 2026-11-26 |
 
 Not made: genome map.
 

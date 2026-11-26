@@ -1,0 +1,354 @@
+{
+ "Alphapapillomavirus": {
+  "close_genomes": {
+   "Alphapapillomavirus.1.dna": {
+    "genome_ids": "333760.11331.con.0001",
+    "genome_name": "Human papillomavirus 16 AC10"
+   },
+   "Alphapapillomavirus.10.dna": {
+    "genome_ids": "39457.41.con.0001",
+    "genome_name": "Human papillomavirus type 70 QV35039"
+   },
+   "Alphapapillomavirus.11.dna": {
+    "genome_ids": "10596.283.con.0001",
+    "genome_name": "human papillomavirus 56 LNS2917513_HPV56"
+   },
+   "Alphapapillomavirus.12.dna": {
+    "genome_ids": "333763.33.con.0001",
+    "genome_name": "human papillomavirus 32"
+   },
+   "Alphapapillomavirus.13.dna": {
+    "genome_ids": "37115.96.con.0001",
+    "genome_name": "human papillomavirus 59 LNS7199256_HPV59"
+   },
+   "Alphapapillomavirus.14.dna": {
+    "genome_ids": "37120.17.con.0001",
+    "genome_name": "human papillomavirus 67 Qv25560"
+   },
+   "Alphapapillomavirus.15.dna": {
+    "genome_ids": "10593.294.con.0001",
+    "genome_name": "human papillomavirus 45 LNS2400068_HPV45"
+   },
+   "Alphapapillomavirus.16.dna": {
+    "genome_ids": "51033.44.con.0001",
+    "genome_name": "human papillomavirus 73 UC119_LW_V2"
+   },
+   "Alphapapillomavirus.17.dna": {
+    "genome_ids": "120686.43.con.0001",
+    "genome_name": "human papillomavirus 71 kyd-s0371"
+   },
+   "Alphapapillomavirus.18.dna": {
+    "genome_ids": "1671798.34.con.0001",
+    "genome_name": "Human papillomavirus type 54 LNS5491243_HPV54"
+   },
+   "Alphapapillomavirus.19.dna": {
+    "genome_ids": "1484958.3.con.0001",
+    "genome_name": "Human papillomavirus type 72b"
+   },
+   "Alphapapillomavirus.2.dna": {
+    "genome_ids": "31552.560.con.0001",
+    "genome_name": "Human papillomavirus type 6 CAC23z"
+   },
+   "Alphapapillomavirus.20.dna": {
+    "genome_ids": "334210.17.con.0001",
+    "genome_name": "human papillomavirus 62"
+   },
+   "Alphapapillomavirus.21.dna": {
+    "genome_ids": "333762.32.con.0001",
+    "genome_name": "Human papillomavirus type 26 Qv39902"
+   },
+   "Alphapapillomavirus.22.dna": {
+    "genome_ids": "10591.58.con.0001",
+    "genome_name": "human papillomavirus 43 LNS0937074_HPV43"
+   },
+   "Alphapapillomavirus.23.dna": {
+    "genome_ids": "735496.3.con.0001",
+    "genome_name": "human papillomavirus 114"
+   },
+   "Alphapapillomavirus.24.dna": {
+    "genome_ids": "333764.63.con.0001",
+    "genome_name": "Human papillomavirus type 34 LNS7199256_HPV34"
+   },
+   "Alphapapillomavirus.25.dna": {
+    "genome_ids": "10620.17.con.0001",
+    "genome_name": "Human papillomavirus type 7 HPV7-gw-0707"
+   },
+   "Alphapapillomavirus.3.dna": {
+    "genome_ids": "10585.621.con.0001",
+    "genome_name": "human papillomavirus 31 K2851"
+   },
+   "Alphapapillomavirus.4.dna": {
+    "genome_ids": "10587.158.con.0001",
+    "genome_name": "human papillomavirus 35 QV29782"
+   },
+   "Alphapapillomavirus.5.dna": {
+    "genome_ids": "10586.116.con.0001",
+    "genome_name": "human papillomavirus 33 Qv22751"
+   },
+   "Alphapapillomavirus.6.dna": {
+    "genome_ids": "10618.1164.con.0001",
+    "genome_name": "human papillomavirus 52 K0485"
+   },
+   "Alphapapillomavirus.7.dna": {
+    "genome_ids": "10566.3666.con.0001",
+    "genome_name": "Human papillomavirus"
+   },
+   "Alphapapillomavirus.8.dna": {
+    "genome_ids": "129724.34.con.0001",
+    "genome_name": "human papillomavirus 82 Qv27514"
+   },
+   "Alphapapillomavirus.9.dna": {
+    "genome_ids": "333765.496.con.0001",
+    "genome_name": "Human papillomavirus type 53 Rw929"
+   }
+  },
+  "features": {
+   "E1": {
+    "PMID_claude_generated": [
+     "{'function': ['8389467']}"
+    ],
+    "anno": "Replicative DNA helicase E1",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E1",
+    "kmers": 1,
+    "max_len": 723,
+    "min_len": 533,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E1E4": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['39502170'], 'function': ['1715519']}"
+    ],
+    "anno": "Keratin network-destabilising protein E1^E4",
+    "comment": "Translated from a spliced mRNA and present in no reading frame of the genome as laid down, so it carries no PSSM. The first exon is only 16 nt -- five residues of E1 -- which is why build_splice_refs.py cannot place it from a pair of tblastn HSPs and the references are built by work/build_pv_splice_refs.py instead. Junction: HPV16 donor 880, acceptor 3358 in K02718.1 numbering, per the review at PMID 39502170 citing Doorbar's original mapping. Verified on NC_001526.4, where the same junction is join(1..16,2494..2756): GT at the donor, AG ending the intron, product exactly 92 aa beginning MADPA + ATKYPLLKLL. The 602 unique E4 deposits in this module are NOT this protein -- 390 of them begin YYVLHLCLAATKY, the E4 open reading frame translated from its own first codon, which is never translated alone. splice_cov is set to 60 rather than the caller's default 95. get_splice_variant_features.pl passes -qcov_hsp_perc, so ONE HSP must cover that fraction of the reference; this reference spans from the product's initiator across the whole intron, about 2.5 kb, and blastn splits that alignment wherever a papillomavirus genome carries a divergent patch. On an HPV16 genome against an HPV16 reference at 98.6% identity the best HSP covered 77% and the feature was rejected before the splice-site test ever ran. Correctness is not weakened by this: the donor and acceptor windows are matched EXACTLY against the reference set, and a window outside the HSP simply fails to map.",
+    "feature_type": "CDS",
+    "gene_symbol": "E1^E4",
+    "max_len": 180,
+    "min_len": 60,
+    "segment": "Single DNA Segment",
+    "special": "splice",
+    "splice_cov": 60,
+    "type": "CDS"
+   },
+   "E2": {
+    "PMID_claude_generated": [
+     "{'function': ['2990724']}"
+    ],
+    "anno": "Transcription and replication regulator E2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E2",
+    "kmers": 1,
+    "max_len": 449,
+    "min_len": 283,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E5_ALPHA": {
+    "PMID_claude_generated": [
+     "{'function': ['15564472', '23731971']}"
+    ],
+    "anno": "Transmembrane transforming protein E5 alpha",
+    "bit_cutoff": 39,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E5-alpha",
+    "kmers": 1,
+    "max_len": 103,
+    "min_len": 51,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E5_BETA": {
+    "PMID_claude_generated": [
+     "{'function': ['15564472']}"
+    ],
+    "anno": "Transmembrane transforming protein E5 beta",
+    "bit_cutoff": 26,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E5-beta",
+    "kmers": 1,
+    "max_len": 50,
+    "min_len": 40,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E5_DELTA": {
+    "PMID_claude_generated": [
+     "{'function': ['15564472']}"
+    ],
+    "anno": "Transmembrane transforming protein E5 delta",
+    "bit_cutoff": 25,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E5-delta",
+    "kmers": 1,
+    "max_len": 78,
+    "min_len": 57,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E5_GAMMA": {
+    "PMID_claude_generated": [
+     "{'function': ['15564472']}"
+    ],
+    "anno": "Transmembrane transforming protein E5 gamma",
+    "bit_cutoff": 54,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E5-gamma",
+    "kmers": 1,
+    "max_len": 99,
+    "min_len": 84,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E6": {
+    "PMID_claude_generated": [
+     "{'function': ['2175676']}"
+    ],
+    "anno": "Transforming protein E6",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E6",
+    "kmers": 1,
+    "max_len": 184,
+    "min_len": 112,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E6S": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['39502170'], 'function': ['30976051']}"
+    ],
+    "anno": "Spliced oncoprotein isoform E6*",
+    "comment": "The spliced E6 isoform of the mucosal alphapapillomaviruses. Junction: HPV16 donor 226, acceptor 409 (K02718.1 numbering) per PMID 39502170; HPV18 is 233^416, which checks out on X05015.1 directly with GT at 234 and AG ending 415. On NC_001526.4 the same junction is join(7125..7268,7451..7459), a 50 aa product. Its second exon is NINE nucleotides and is deliberately OUT of E6's reading frame -- that frameshift is what terminates the protein after three residues -- so the frame test that validates the other two splice features has to be disabled for this one, and acceptance rests on the product reproducing E6's own N-terminus at full length. splice_cov is set to 60 rather than the caller's default 95. get_splice_variant_features.pl passes -qcov_hsp_perc, so ONE HSP must cover that fraction of the reference; this reference spans from the product's initiator across the whole intron, about 2.5 kb, and blastn splits that alignment wherever a papillomavirus genome carries a divergent patch. On an HPV16 genome against an HPV16 reference at 98.6% identity the best HSP covered 77% and the feature was rejected before the splice-site test ever ran. Correctness is not weakened by this: the donor and acceptor windows are matched EXACTLY against the reference set, and a window outside the HSP simply fails to map.",
+    "feature_type": "CDS",
+    "gene_symbol": "E6*",
+    "max_len": 75,
+    "min_len": 35,
+    "segment": "Single DNA Segment",
+    "special": "splice",
+    "splice_cov": 60,
+    "type": "CDS"
+   },
+   "E7": {
+    "PMID_claude_generated": [
+     "{'function': ['2537532']}"
+    ],
+    "anno": "Transforming protein E7",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E7",
+    "kmers": 1,
+    "max_len": 119,
+    "min_len": 75,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E8E2": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['10627528'], 'function': ['10627528', '11287563']}"
+    ],
+    "anno": "Transcription and replication repressor E8^E2",
+    "comment": "A spliced repressor that fuses the small E8 open reading frame to E2's C-terminal domain, holding down viral transcription and replication and required for episome maintenance (PMID 10627528). Stubenrauch et al. map the junction in HPV31 as nt 1296 to 3295, which checks out on J04353.1 exactly: GT at 1297, AG ending 3294. The HPV16 equivalent, donor 1302 and the same acceptor as E1^E4, gives join(401..438,2494..2989) on NC_001526.4 and a 177 aa product. The first exon is 38 nt and the E8 initiator lies about 400 nt inside E1, so neither exon can be placed from tblastn alone. splice_cov is set to 60 rather than the caller's default 95. get_splice_variant_features.pl passes -qcov_hsp_perc, so ONE HSP must cover that fraction of the reference; this reference spans from the product's initiator across the whole intron, about 2.5 kb, and blastn splits that alignment wherever a papillomavirus genome carries a divergent patch. On an HPV16 genome against an HPV16 reference at 98.6% identity the best HSP covered 77% and the feature was rejected before the splice-site test ever ran. Correctness is not weakened by this: the donor and acceptor windows are matched EXACTLY against the reference set, and a window outside the HSP simply fails to map.",
+    "feature_type": "CDS",
+    "gene_symbol": "E8^E2",
+    "max_len": 260,
+    "min_len": 120,
+    "segment": "Single DNA Segment",
+    "special": "splice",
+    "splice_cov": 60,
+    "type": "CDS"
+   },
+   "L1": {
+    "PMID_claude_generated": [
+     "{'function': ['8230414']}"
+    ],
+    "anno": "Major capsid protein L1",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L1",
+    "kmers": 1,
+    "max_len": 644,
+    "min_len": 414,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "L2": {
+    "PMID_claude_generated": [
+     "{'function': ['16432208']}"
+    ],
+    "anno": "Minor capsid protein L2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L2",
+    "kmers": 1,
+    "max_len": 555,
+    "min_len": 376,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "L2_MAT": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['16432208'], 'function': ['16432208']}"
+    ],
+    "anno": "Mature minor capsid protein L2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "L2",
+    "kmers": 1,
+    "max_len": 548,
+    "min_len": 353,
+    "segment": "Single DNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   }
+  },
+  "segments": {
+   "Single DNA Segment": {
+    "max_len": 8300,
+    "min_len": 7000,
+    "replicon_geometry": "circular"
+   }
+  }
+ }
+}

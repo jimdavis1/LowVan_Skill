@@ -1,0 +1,62 @@
+{
+ "Xipapillomavirus.1.dna": {
+  "genome_ids": "10561.20.con.0001",
+  "genome_name": "Xipapillomavirus 1"
+ },
+ "Xipapillomavirus.10.dna": {
+  "genome_ids": "1747359.3.con.0001",
+  "genome_name": "Cervus elaphus papillomavirus 2 S129/08.1"
+ },
+ "Xipapillomavirus.11.dna": {
+  "genome_ids": "1887215.3.con.0001",
+  "genome_name": "Bos taurus papillomavirus 17"
+ },
+ "Xipapillomavirus.12.dna": {
+  "genome_ids": "2751155.4.con.0001",
+  "genome_name": "Bos taurus papillomavirus 28 B190830-1"
+ },
+ "Xipapillomavirus.13.dna": {
+  "genome_ids": "2162699.3.con.0001",
+  "genome_name": "Bos taurus papillomavirus 25 14RS13/BR"
+ },
+ "Xipapillomavirus.14.dna": {
+  "genome_ids": "2866022.3.con.0001",
+  "genome_name": "Bos taurus papillomavirus 40 3895RS16-BR node 1"
+ },
+ "Xipapillomavirus.15.dna": {
+  "genome_ids": "485388.4.con.0001",
+  "genome_name": "Capra hircus papillomavirus type 2 Witten2019"
+ },
+ "Xipapillomavirus.2.dna": {
+  "genome_ids": "2758958.3.con.0001",
+  "genome_name": "Bos taurus papillomavirus 23 04AC14"
+ },
+ "Xipapillomavirus.3.dna": {
+  "genome_ids": "453461.3.con.0001",
+  "genome_name": "Bos taurus papillomavirus 10"
+ },
+ "Xipapillomavirus.4.dna": {
+  "genome_ids": "1070324.6.con.0001",
+  "genome_name": "Bos taurus papillomavirus 12 3895RS16-BR node 4"
+ },
+ "Xipapillomavirus.5.dna": {
+  "genome_ids": "10562.40.con.0001",
+  "genome_name": "Bos taurus papillomavirus 4"
+ },
+ "Xipapillomavirus.6.dna": {
+  "genome_ids": "1887218.3.con.0001",
+  "genome_name": "Bos taurus papillomavirus 20"
+ },
+ "Xipapillomavirus.7.dna": {
+  "genome_ids": "10563.14.con.0001",
+  "genome_name": "Bos taurus papillomavirus 6"
+ },
+ "Xipapillomavirus.8.dna": {
+  "genome_ids": "2866013.3.con.0001",
+  "genome_name": "Bos taurus papillomavirus 39 3895RS16-BR node 3"
+ },
+ "Xipapillomavirus.9.dna": {
+  "genome_ids": "453460.3.con.0001",
+  "genome_name": "Bos taurus papillomavirus 9"
+ }
+}

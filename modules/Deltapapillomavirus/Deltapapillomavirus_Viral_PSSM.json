@@ -1,0 +1,266 @@
+{
+ "Deltapapillomavirus": {
+  "close_genomes": {
+   "Deltapapillomavirus.1.dna": {
+    "genome_ids": "1887213.10.con.0001",
+    "genome_name": "Bos taurus papillomavirus 13 BPV13 BR/14/RO-13"
+   },
+   "Deltapapillomavirus.10.dna": {
+    "genome_ids": "1922325.3.con.0001",
+    "genome_name": "Giraffa camelopardalis papillomavirus 1 GC2011"
+   },
+   "Deltapapillomavirus.11.dna": {
+    "genome_ids": "2758381.3.con.0001",
+    "genome_name": "Bos taurus papillomavirus 14 CGKnose1"
+   },
+   "Deltapapillomavirus.12.dna": {
+    "genome_ids": "2885846.3.con.0001",
+    "genome_name": "Alces alces papillomavirus 1"
+   },
+   "Deltapapillomavirus.13.dna": {
+    "genome_ids": "996651.4.con.0001",
+    "genome_name": "Camelus dromedarius papillomavirus 2"
+   },
+   "Deltapapillomavirus.14.dna": {
+    "genome_ids": "1175853.3.con.0001",
+    "genome_name": "Deltapapillomavirus 5 DE1641-14"
+   },
+   "Deltapapillomavirus.15.dna": {
+    "genome_ids": "2304449.3.con.0001",
+    "genome_name": "Okapia johnstoni papillomavirus 1 BS 2017"
+   },
+   "Deltapapillomavirus.16.dna": {
+    "genome_ids": "2714896.3.con.0001",
+    "genome_name": "Camelus dromedarius papillomavirus 3 NMS1"
+   },
+   "Deltapapillomavirus.17.dna": {
+    "genome_ids": "2773313.3.con.0001",
+    "genome_name": "Rangifer tarandus papillomavirus 1"
+   },
+   "Deltapapillomavirus.18.dna": {
+    "genome_ids": "2866014.3.con.0001",
+    "genome_name": "Bos taurus papillomavirus 43 3896RS16-BR node 1"
+   },
+   "Deltapapillomavirus.19.dna": {
+    "genome_ids": "2866045.3.con.0001",
+    "genome_name": "Bos taurus papillomavirus 32 4827RS16-BR node 3"
+   },
+   "Deltapapillomavirus.2.dna": {
+    "genome_ids": "470214.10.con.0001",
+    "genome_name": "Capreolus capreolus papillomavirus 1 37-14"
+   },
+   "Deltapapillomavirus.20.dna": {
+    "genome_ids": "2866046.3.con.0001",
+    "genome_name": "Bos taurus papillomavirus 33 4827RS16-BR node 7"
+   },
+   "Deltapapillomavirus.3.dna": {
+    "genome_ids": "2491661.3.con.0001",
+    "genome_name": "Bos taurus papillomavirus 5"
+   },
+   "Deltapapillomavirus.4.dna": {
+    "genome_ids": "2758968.11.con.0001",
+    "genome_name": "Bos taurus papillomavirus 8 4834RS16-BR node 2"
+   },
+   "Deltapapillomavirus.5.dna": {
+    "genome_ids": "56144.14.con.0001",
+    "genome_name": "Deltapapillomavirus 3"
+   },
+   "Deltapapillomavirus.6.dna": {
+    "genome_ids": "996650.4.con.0001",
+    "genome_name": "Camelus dromedarius papillomavirus 1"
+   },
+   "Deltapapillomavirus.7.dna": {
+    "genome_ids": "10564.15.con.0001",
+    "genome_name": "Deltapapillomavirus 2"
+   },
+   "Deltapapillomavirus.8.dna": {
+    "genome_ids": "1434070.4.con.0001",
+    "genome_name": "Cervus papillomavirus 2 BernieDPV"
+   },
+   "Deltapapillomavirus.9.dna": {
+    "genome_ids": "1905556.3.con.0001",
+    "genome_name": "Rusa timorensis papillomavirus type 2 IZW 39/08"
+   }
+  },
+  "features": {
+   "E1": {
+    "PMID_claude_generated": [
+     "{'function': ['8389467']}"
+    ],
+    "anno": "Replicative DNA helicase E1",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E1",
+    "kmers": 1,
+    "max_len": 680,
+    "min_len": 550,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E1E4": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['39502170'], 'function': ['1715519']}"
+    ],
+    "anno": "Keratin network-destabilising protein E1^E4",
+    "feature_type": "CDS",
+    "gene_symbol": "E1^E4",
+    "max_len": 136,
+    "min_len": 86,
+    "segment": "Single DNA Segment",
+    "special": "splice",
+    "splice_cov": 60,
+    "type": "CDS"
+   },
+   "E2": {
+    "PMID_claude_generated": [
+     "{'function': ['2990724']}"
+    ],
+    "anno": "Transcription and replication regulator E2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E2",
+    "kmers": 1,
+    "max_len": 453,
+    "min_len": 287,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E5": {
+    "PMID_claude_generated": [
+     "{'function': ['23731971']}"
+    ],
+    "anno": "Transmembrane transforming protein E5",
+    "bit_cutoff": 25,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E5",
+    "kmers": 1,
+    "max_len": 56,
+    "min_len": 37,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E6": {
+    "PMID_claude_generated": [
+     "{'function': ['2175676']}"
+    ],
+    "anno": "Transforming protein E6",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E6",
+    "kmers": 1,
+    "max_len": 174,
+    "min_len": 115,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E7": {
+    "PMID_claude_generated": [
+     "{'function': ['2537532']}"
+    ],
+    "anno": "Transforming protein E7",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E7",
+    "kmers": 1,
+    "max_len": 134,
+    "min_len": 89,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E8E2": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['10627528'], 'function': ['10627528', '11287563']}"
+    ],
+    "anno": "Transcription and replication repressor E8^E2",
+    "feature_type": "CDS",
+    "gene_symbol": "E8^E2",
+    "max_len": 229,
+    "min_len": 150,
+    "segment": "Single DNA Segment",
+    "special": "splice",
+    "splice_cov": 60,
+    "type": "CDS"
+   },
+   "L1": {
+    "PMID_claude_generated": [
+     "{'function': ['8230414']}"
+    ],
+    "anno": "Major capsid protein L1",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L1",
+    "kmers": 1,
+    "max_len": 561,
+    "min_len": 423,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "L2": {
+    "PMID_claude_generated": [
+     "{'function': ['16432208']}"
+    ],
+    "anno": "Minor capsid protein L2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L2",
+    "kmers": 1,
+    "max_len": 587,
+    "min_len": 423,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "L2_MAT": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['16432208'], 'function': ['16432208']}"
+    ],
+    "anno": "Mature minor capsid protein L2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "L2",
+    "kmers": 1,
+    "max_len": 578,
+    "min_len": 401,
+    "segment": "Single DNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   }
+  },
+  "segments": {
+   "Single DNA Segment": {
+    "max_len": 8400,
+    "min_len": 7200,
+    "replicon_geometry": "circular"
+   }
+  }
+ }
+}

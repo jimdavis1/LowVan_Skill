@@ -1,0 +1,269 @@
+{
+ "Betapapillomavirus": {
+  "close_genomes": {
+   "Betapapillomavirus.1.dna": {
+    "genome_ids": "1209820.3.con.0001",
+    "genome_name": "Human papillomavirus 159 SIBX8"
+   },
+   "Betapapillomavirus.10.dna": {
+    "genome_ids": "31547.21.con.0001",
+    "genome_name": "human papillomavirus 20"
+   },
+   "Betapapillomavirus.11.dna": {
+    "genome_ids": "10566.8569.con.0001",
+    "genome_name": "Human papillomavirus HPV-mSK_219"
+   },
+   "Betapapillomavirus.12.dna": {
+    "genome_ids": "10604.20.con.0001",
+    "genome_name": "human papillomavirus 12"
+   },
+   "Betapapillomavirus.13.dna": {
+    "genome_ids": "333924.4.con.0001",
+    "genome_name": "Betapapillomavirus 2 Beta02_m292c88"
+   },
+   "Betapapillomavirus.14.dna": {
+    "genome_ids": "587347.3.con.0001",
+    "genome_name": "Human papillomavirus 98 GA1-3"
+   },
+   "Betapapillomavirus.15.dna": {
+    "genome_ids": "696746.25.con.0001",
+    "genome_name": "human papillomavirus 115 XJ-ZS137-1"
+   },
+   "Betapapillomavirus.16.dna": {
+    "genome_ids": "10566.7661.con.0001",
+    "genome_name": "Human papillomavirus DyskC"
+   },
+   "Betapapillomavirus.17.dna": {
+    "genome_ids": "10566.8481.con.0001",
+    "genome_name": "Human papillomavirus HPV-mSK_129"
+   },
+   "Betapapillomavirus.18.dna": {
+    "genome_ids": "427343.3.con.0001",
+    "genome_name": "Human papillomavirus 107 FA85"
+   },
+   "Betapapillomavirus.19.dna": {
+    "genome_ids": "500654.4.con.0001",
+    "genome_name": "Bandicoot papillomatosis carcinomatosis virus type 2 1"
+   },
+   "Betapapillomavirus.2.dna": {
+    "genome_ids": "334514.3.con.0001",
+    "genome_name": "Human papillomavirus type 38b"
+   },
+   "Betapapillomavirus.20.dna": {
+    "genome_ids": "889813.4.con.0001",
+    "genome_name": "Colobus guereza papillomavirus 2 CgPV2"
+   },
+   "Betapapillomavirus.21.dna": {
+    "genome_ids": "915424.3.con.0001",
+    "genome_name": "Macaca fascicularis papillomavirus 2 Mac191"
+   },
+   "Betapapillomavirus.22.dna": {
+    "genome_ids": "10566.8576.con.0001",
+    "genome_name": "Human papillomavirus HPV-mSK_220"
+   },
+   "Betapapillomavirus.23.dna": {
+    "genome_ids": "10594.19.con.0001",
+    "genome_name": "human papillomavirus 47"
+   },
+   "Betapapillomavirus.24.dna": {
+    "genome_ids": "10599.9.con.0001",
+    "genome_name": "Human papillomavirus type 5b"
+   },
+   "Betapapillomavirus.25.dna": {
+    "genome_ids": "10608.19.con.0001",
+    "genome_name": "Human papillomavirus 19"
+   },
+   "Betapapillomavirus.3.dna": {
+    "genome_ids": "10599.10.con.0001",
+    "genome_name": "Human papillomavirus type 5b"
+   },
+   "Betapapillomavirus.4.dna": {
+    "genome_ids": "10566.8560.con.0001",
+    "genome_name": "Human papillomavirus HPV-mSK_209"
+   },
+   "Betapapillomavirus.5.dna": {
+    "genome_ids": "211787.16.con.0001",
+    "genome_name": "Human papillomavirus type 92"
+   },
+   "Betapapillomavirus.6.dna": {
+    "genome_ids": "1034800.6.con.0001",
+    "genome_name": "uncultured Papillomavirus"
+   },
+   "Betapapillomavirus.7.dna": {
+    "genome_ids": "10566.8348.con.0001",
+    "genome_name": "Human papillomavirus ICB2"
+   },
+   "Betapapillomavirus.8.dna": {
+    "genome_ids": "10566.8515.con.0001",
+    "genome_name": "Human papillomavirus HPV-mSK_163"
+   },
+   "Betapapillomavirus.9.dna": {
+    "genome_ids": "10566.8503.con.0001",
+    "genome_name": "Human papillomavirus HPV-mSK_151"
+   }
+  },
+  "features": {
+   "E1": {
+    "PMID_claude_generated": [
+     "{'function': ['8389467']}"
+    ],
+    "anno": "Replicative DNA helicase E1",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E1",
+    "kmers": 1,
+    "max_len": 721,
+    "min_len": 532,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E1E4": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['39502170'], 'function': ['1715519']}"
+    ],
+    "anno": "Keratin network-destabilising protein E1^E4",
+    "feature_type": "CDS",
+    "gene_symbol": "E1^E4",
+    "max_len": 255,
+    "min_len": 131,
+    "segment": "Single DNA Segment",
+    "special": "splice",
+    "splice_cov": 60,
+    "type": "CDS"
+   },
+   "E2": {
+    "PMID_claude_generated": [
+     "{'function': ['2990724']}"
+    ],
+    "anno": "Transcription and replication regulator E2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E2",
+    "kmers": 1,
+    "max_len": 545,
+    "min_len": 359,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E6": {
+    "PMID_claude_generated": [
+     "{'function': ['2175676']}"
+    ],
+    "anno": "Transforming protein E6",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E6",
+    "kmers": 1,
+    "max_len": 182,
+    "min_len": 112,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E7": {
+    "PMID_claude_generated": [
+     "{'function': ['2537532']}"
+    ],
+    "anno": "Transforming protein E7",
+    "bit_cutoff": 30,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "E7",
+    "kmers": 1,
+    "max_len": 114,
+    "min_len": 81,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "E8E2": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['10627528'], 'function': ['10627528', '11287563']}"
+    ],
+    "anno": "Transcription and replication repressor E8^E2",
+    "feature_type": "CDS",
+    "gene_symbol": "E8^E2",
+    "max_len": 287,
+    "min_len": 163,
+    "segment": "Single DNA Segment",
+    "special": "splice",
+    "splice_cov": 60,
+    "type": "CDS"
+   },
+   "L1": {
+    "PMID_claude_generated": [
+     "{'function': ['8230414']}"
+    ],
+    "anno": "Major capsid protein L1",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L1",
+    "kmers": 1,
+    "max_len": 578,
+    "min_len": 431,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "L2": {
+    "PMID_claude_generated": [
+     "{'function': ['16432208']}"
+    ],
+    "anno": "Minor capsid protein L2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "CDS",
+    "gene_symbol": "L2",
+    "kmers": 1,
+    "max_len": 570,
+    "min_len": 431,
+    "segment": "Single DNA Segment",
+    "type": "CDS",
+    "upstream_ext": 1
+   },
+   "L2_MAT": {
+    "PMID_claude_generated": [
+     "{'coordinates': ['16432208'], 'function': ['16432208']}"
+    ],
+    "anno": "Mature minor capsid protein L2",
+    "bit_cutoff": 60,
+    "copy_num": 1,
+    "coverage_cutoff": 0.65,
+    "downstream_ext": 1,
+    "feature_type": "mat_peptide",
+    "gene_symbol": "L2",
+    "kmers": 1,
+    "max_len": 561,
+    "min_len": 418,
+    "segment": "Single DNA Segment",
+    "type": "mat_peptide",
+    "upstream_ext": 0
+   }
+  },
+  "segments": {
+   "Single DNA Segment": {
+    "max_len": 8900,
+    "min_len": 6500,
+    "replicon_geometry": "circular"
+   }
+  }
+ }
+}

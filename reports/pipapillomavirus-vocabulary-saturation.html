@@ -1,0 +1,195 @@
+<title>Pipapillomavirus Vocabulary Saturation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --base:#c3c2b7; --hair:rgba(11,11,11,.10);
+    --src:#eb6834; --mod:#2a78d6;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --src:#d95926; --mod:#3987e5;
+  } }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --plane:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --base:#383835; --hair:rgba(255,255,255,.10);
+    --src:#d95926; --mod:#3987e5;
+  }
+  body { background:var(--plane); color:var(--ink); font-family:var(--sans); line-height:1.5; }
+  .wrap { max-width:900px; margin:0 auto; padding-block:40px 72px; padding-left:22px; padding-right:22px;
+           display:flex; flex-direction:column; gap:28px; }
+  .eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:31px; margin:7px 0 0; text-wrap:balance; }
+  .stand { max-width:68ch; color:var(--ink2); font-size:15.5px; margin:11px 0 0; }
+  .stand b { color:var(--ink); font-weight:600; }
+
+  .figs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+           border-top:1px solid var(--base); border-bottom:1px solid var(--grid); }
+  .fig { padding:13px 16px 13px 0; }
+  .fig+.fig { padding-left:16px; border-left:1px solid var(--grid); }
+  .fig .n { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:23px;
+             font-weight:500; display:block; letter-spacing:-.02em; }
+  .fig .k { font-size:12px; color:var(--ink2); }
+
+  figure { margin:0; }
+  .chartbox { border:1px solid var(--hair); border-radius:4px; background:var(--surface); padding:6px 4px 2px; position:relative; }
+  svg { display:block; width:100%; height:auto; max-width:100%; }
+  .tick { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  .axtitle { font-family:var(--sans); font-size:11.5px; fill:var(--ink2); }
+  .endlab { font-family:var(--sans); font-size:12px; font-weight:600; }
+  .endsub { font-family:var(--mono); font-size:10.5px; fill:var(--muted); }
+  figcaption { font-size:12.5px; color:var(--muted); margin-top:9px; max-width:74ch; }
+
+  .legend { display:flex; gap:18px; flex-wrap:wrap; font-size:13px; color:var(--ink2);
+             align-items:center; margin-bottom:10px; }
+  .legend span { display:inline-flex; gap:7px; align-items:center; }
+  .sw { width:14px; height:3px; border-radius:2px; flex:none; }
+
+  .tip { position:absolute; pointer-events:none; opacity:0; transition:opacity .08s;
+          background:var(--surface); border:1px solid var(--base); border-radius:4px;
+          padding:7px 10px; font-size:12px; box-shadow:0 2px 8px rgba(0,0,0,.10);
+          font-variant-numeric:tabular-nums; white-space:nowrap; z-index:2; }
+  .tip b { font-family:var(--mono); font-weight:500; }
+  .tiprow { display:flex; gap:7px; align-items:center; }
+  @media (prefers-reduced-motion:reduce) { .tip { transition:none; } }
+
+  details { border-top:1px solid var(--grid); padding-top:14px; }
+  summary { cursor:pointer; font-size:13.5px; color:var(--ink2); }
+  summary:focus-visible { outline:2px solid var(--mod); outline-offset:3px; }
+  .tw { overflow-x:auto; margin-top:12px; border:1px solid var(--hair); border-radius:4px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { padding:6px 11px; text-align:right; border-bottom:1px solid var(--grid); }
+  th:first-child, td:first-child { text-align:left; }
+  thead th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase;
+              color:var(--muted); font-weight:500; }
+  tbody td { font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink2); }
+  tbody tr:last-child td { border-bottom:0; }
+  .note { font-size:13.5px; color:var(--ink2); max-width:74ch; }
+  .note b { color:var(--ink); }
+  .src { font-size:12px; color:var(--muted); border-top:1px solid var(--grid); padding-top:13px; }
+  .src code { font-family:var(--mono); }
+  @media (max-width:620px) { .figs { grid-template-columns:repeat(2,1fr); } h1 { font-size:25px; } }
+</style>
+<div class="wrap">
+ <header>
+  <div class="eyebrow">LowVan &middot; Pipapillomavirus module &middot; 26 November 2026</div>
+  <h1>Pipapillomavirus</h1>
+  <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">A controlled vocabulary stops growing. Free text does not.</h2>
+  <p class="stand">Take every annotated protein from 18 Pipapillomavirus genomes, shuffle
+  them, and draw them one at a time, counting the distinct annotation strings seen so far.
+  A curated vocabulary needs exactly 9 names however many proteins you read, so its
+  curve flattens; free-text product strings have no ceiling, because each submitter spells
+  the same proteins a new way. Over 100 random orderings the module reaches 95% of its
+  vocabulary after <b>23 proteins</b>; the source after
+  <b>109</b> of its 121.</p>
+ </header>
+
+ <div class="figs">
+  <div class="fig"><span class="n" style="color:var(--mod)">9</span><span class="k">strings, controlled vocabulary</span></div>
+  <div class="fig"><span class="n" style="color:var(--src)">25</span><span class="k">strings, BV-BRC free text</span></div>
+  <div class="fig"><span class="n">2.8&times;</span><span class="k">collapse at 121 proteins sampled</span></div>
+  <div class="fig"><span class="n">109</span><span class="k">proteins before free text reaches 95%</span></div>
+ </div>
+
+ <figure>
+  <div class="legend">
+   <span><i class="sw" style="background:var(--src)"></i> BV-BRC product strings (free text)</span>
+   <span><i class="sw" style="background:var(--mod)"></i> LowVan annotation strings (controlled)</span>
+  </div>
+  <div class="chartbox" id="cb">
+   <svg viewBox="0 0 780 400" role="img" aria-label="Rarefaction curves: distinct annotation strings against number of proteins sampled. Both start at zero. Free-text strings rise to 25 over 121 proteins; the controlled vocabulary flattens at 9.">
+    <line x1="58" y1="348.0" x2="648" y2="348.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="262.1" x2="648" y2="262.1" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="187.0" x2="648" y2="187.0" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="111.9" x2="648" y2="111.9" stroke="var(--grid)" stroke-width="1"/><line x1="58" y1="26.0" x2="648" y2="26.0" stroke="var(--grid)" stroke-width="1"/>
+    <line x1="58" y1="348" x2="648" y2="348" stroke="var(--base)" stroke-width="1"/>
+    <text x="47" y="352.0" text-anchor="end" class="tick">0</text><text x="47" y="266.1" text-anchor="end" class="tick">8</text><text x="47" y="191.0" text-anchor="end" class="tick">15</text><text x="47" y="115.9" text-anchor="end" class="tick">22</text><text x="47" y="30.0" text-anchor="end" class="tick">30</text><text x="58.0" y="369" text-anchor="middle" class="tick">0</text><text x="205.5" y="369" text-anchor="middle" class="tick">50</text><text x="353.0" y="369" text-anchor="middle" class="tick">100</text><text x="500.5" y="369" text-anchor="middle" class="tick">150</text><text x="648.0" y="369" text-anchor="middle" class="tick">200</text>
+    <text class="axtitle" x="58" y="392">proteins sampled</text>
+    <text class="axtitle" x="47" y="16" text-anchor="end">strings</text>
+
+    <line x1="414.9" y1="26" x2="414.9" y2="348" stroke="var(--base)" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M58.0 348.00 L61.0 337.27 L63.9 326.86 L66.8 317.62 L69.8 308.39 L72.8 300.99 L75.7 293.05 L78.7 285.75 L81.6 278.45 L84.5 271.79 L87.5 265.03 L90.5 259.02 L93.4 252.80 L96.3 247.32 L99.3 242.49 L102.2 238.52 L105.2 234.44 L108.2 230.47 L111.1 225.85 L114.0 222.10 L117.0 218.88 L120.0 215.55 L122.9 212.55 L125.8 209.22 L128.8 207.07 L131.8 204.92 L134.7 202.67 L137.7 200.42 L140.6 197.41 L143.6 195.16 L146.5 192.58 L149.4 190.33 L152.4 187.64 L155.3 185.28 L158.3 182.71 L161.2 181.31 L164.2 179.16 L167.2 178.09 L170.1 176.16 L173.1 174.44 L176.0 172.94 L178.9 171.22 L181.9 169.08 L184.8 168.00 L187.8 166.61 L190.8 165.32 L193.7 163.17 L196.7 161.67 L199.6 160.60 L202.6 159.20 L205.5 158.23 L208.4 156.73 L211.4 155.87 L214.3 153.83 L217.3 151.90 L220.2 150.83 L223.2 149.76 L226.2 148.25 L229.1 146.64 L232.1 145.57 L235.0 144.39 L237.9 143.74 L240.9 142.35 L243.8 141.06 L246.8 140.10 L249.8 139.02 L252.7 137.41 L255.7 135.91 L258.6 134.08 L261.6 133.23 L264.5 131.72 L267.4 130.33 L270.4 129.47 L273.4 128.40 L276.3 127.64 L279.2 126.46 L282.2 125.61 L285.1 124.64 L288.1 124.00 L291.1 122.60 L294.0 121.96 L296.9 120.99 L299.9 119.92 L302.9 118.84 L305.8 117.66 L308.8 116.48 L311.7 116.05 L314.6 114.76 L317.6 114.12 L320.6 113.05 L323.5 111.87 L326.4 111.22 L329.4 110.04 L332.4 108.54 L335.3 107.25 L338.2 106.39 L341.2 105.21 L344.1 104.35 L347.1 103.17 L350.1 102.10 L353.0 100.81 L355.9 99.42 L358.9 98.02 L361.9 97.27 L364.8 96.41 L367.8 95.34 L370.7 94.59 L373.6 94.05 L376.6 93.30 L379.6 92.55 L382.5 91.37 L385.4 90.40 L388.4 88.90 L391.4 87.72 L394.3 86.86 L397.2 85.78 L400.2 85.03 L403.1 83.75 L406.1 82.46 L409.1 82.14 L412.0 80.63 L414.9 79.67" fill="none" stroke="var(--src)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M58.0 348.00 L61.0 337.27 L63.9 327.39 L66.8 319.34 L69.8 312.15 L72.8 305.39 L75.7 298.95 L78.7 294.33 L81.6 290.04 L84.5 285.21 L87.5 280.59 L90.5 276.41 L93.4 272.97 L96.3 270.08 L99.3 268.25 L102.2 266.10 L105.2 262.88 L108.2 261.17 L111.1 259.77 L114.0 258.91 L117.0 257.73 L120.0 257.09 L122.9 256.77 L125.8 256.02 L128.8 255.69 L131.8 255.26 L134.7 254.73 L137.7 254.51 L140.6 254.19 L143.6 253.65 L146.5 253.33 L149.4 252.90 L152.4 252.80 L155.3 252.58 L158.3 252.37 L161.2 252.37 L164.2 252.37 L167.2 252.04 L170.1 252.04 L173.1 251.72 L176.0 251.72 L178.9 251.72 L181.9 251.72 L184.8 251.72 L187.8 251.61 L190.8 251.51 L193.7 251.51 L196.7 251.51 L199.6 251.51 L202.6 251.51 L205.5 251.51 L208.4 251.51 L211.4 251.51 L214.3 251.51 L217.3 251.51 L220.2 251.51 L223.2 251.51 L226.2 251.51 L229.1 251.51 L232.1 251.40 L235.0 251.40 L237.9 251.40 L240.9 251.40 L243.8 251.40 L246.8 251.40 L249.8 251.40 L252.7 251.40 L255.7 251.40 L258.6 251.40 L261.6 251.40 L264.5 251.40 L267.4 251.40 L270.4 251.40 L273.4 251.40 L276.3 251.40 L279.2 251.40 L282.2 251.40 L285.1 251.40 L288.1 251.40 L291.1 251.40 L294.0 251.40 L296.9 251.40 L299.9 251.40 L302.9 251.40 L305.8 251.40 L308.8 251.40 L311.7 251.40 L314.6 251.40 L317.6 251.40 L320.6 251.40 L323.5 251.40 L326.4 251.40 L329.4 251.40 L332.4 251.40 L335.3 251.40 L338.2 251.40 L341.2 251.40 L344.1 251.40 L347.1 251.40 L350.1 251.40 L353.0 251.40 L355.9 251.40 L358.9 251.40 L361.9 251.40 L364.8 251.40 L367.8 251.40 L370.7 251.40 L373.6 251.40 L376.6 251.40 L379.6 251.40 L382.5 251.40 L385.4 251.40 L388.4 251.40 L391.4 251.40 L394.3 251.40 L397.2 251.40 L400.2 251.40 L403.1 251.40 L406.1 251.40 L409.1 251.40 L412.0 251.40 L414.9 251.40 L417.9 251.40 L420.9 251.40 L423.8 251.40 L426.8 251.40 L429.7 251.40 L432.6 251.40 L435.6 251.40 L438.6 251.40 L441.5 251.40 L444.4 251.40 L447.4 251.40 L450.4 251.40 L453.3 251.40 L456.2 251.40 L459.2 251.40 L462.1 251.40 L465.1 251.40 L468.1 251.40 L471.0 251.40 L473.9 251.40 L476.9 251.40 L479.9 251.40 L482.8 251.40 L485.8 251.40 L488.7 251.40 L491.6 251.40 L494.6 251.40 L497.6 251.40 L500.5 251.40 L503.4 251.40 L506.4 251.40 L509.4 251.40 L512.3 251.40 L515.2 251.40 L518.2 251.40" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linejoin="round"/>
+
+    <circle cx="414.9" cy="79.67" r="4.5" fill="var(--src)" stroke="var(--surface)" stroke-width="2"/>
+    <circle cx="518.2" cy="251.40" r="4.5" fill="var(--mod)" stroke="var(--surface)" stroke-width="2"/>
+    <text class="endlab" x="424.9" y="78.67" fill="var(--src)">free text</text>
+    <text class="endsub" x="424.9" y="91.67">25 strings</text>
+    <text class="endlab" x="528.2" y="254.40" fill="var(--mod)">controlled</text>
+    <text class="endsub" x="528.2" y="267.40">9 strings</text>
+
+    <line id="xh" x1="0" y1="26" x2="0" y2="348" stroke="var(--base)" stroke-width="1" opacity="0"/>
+    <circle id="ds" r="4" fill="var(--src)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <circle id="dm" r="4" fill="var(--mod)" stroke="var(--surface)" stroke-width="2" opacity="0"/>
+    <rect id="hit" x="58" y="26" width="590" height="322" fill="transparent" style="cursor:crosshair"/>
+   </svg>
+   <div class="tip" id="tip"></div>
+  </div>
+  <figcaption>Mean distinct annotation strings over 100 random orderings of every
+  annotated protein in the 18 genomes both sources annotate: 121 source
+  product records and 156 module calls. Both curves start at zero. The dashed line
+  marks 121 proteins, the depth both curves reach, where the two are compared.</figcaption>
+ </figure>
+
+ <p class="note">Compared at the same sampling depth, 121 proteins, free text has
+ used <b>25.0 distinct strings</b> and the controlled vocabulary
+ <b>9.0</b> &mdash; a <b>2.8-fold collapse</b>. The
+ source vocabulary reaches 95% of its final size after 109 of its 121 proteins;
+ the module after 23 of 156.</p>
+
+ <details>
+  <summary>Table view &mdash; proteins sampled</summary>
+  <div class="tw"><table>
+   <thead><tr><th>proteins sampled</th><th>free text</th><th>controlled</th><th>ratio</th></tr></thead>
+   <tbody>
+   <tr><td>1</td><td>1.00</td><td>1.00</td><td>1.00&times;</td></tr><tr><td>2</td><td>1.97</td><td>1.92</td><td>1.03&times;</td></tr><tr><td>6</td><td>5.12</td><td>4.57</td><td>1.12&times;</td></tr><tr><td>12</td><td>8.87</td><td>6.99</td><td>1.27&times;</td></tr><tr><td>24</td><td>13.13</td><td>8.60</td><td>1.53&times;</td></tr><tr><td>36</td><td>15.73</td><td>8.91</td><td>1.77&times;</td></tr><tr><td>60</td><td>18.97</td><td>9.00</td><td>2.11&times;</td></tr><tr><td>91</td><td>22.06</td><td>9.00</td><td>2.45&times;</td></tr><tr><td>121</td><td>25.00</td><td>9.00</td><td>2.78&times;</td></tr>
+   </tbody>
+  </table></div>
+ </details>
+
+ <div class="src">Generated by <code>skill/scripts/gen_rarefaction.py</code> from
+ <code>rarefaction.json</code>, written by the kit&rsquo;s
+ <code>annotation_rarefaction.py</code> at 100 replicates. Categorical pair
+ <code>#2a78d6</code>/<code>#eb6834</code> (light) and <code>#3987e5</code>/<code>#d95926</code>
+ (dark), validated by <code>validate_palette.py</code>: worst CVD &Delta;E 24.7,
+ normal-vision &Delta;E 31.8, contrast &ge;3.12:1.</div>
+</div>
+<script>
+ var SX=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121], SY=[0.0, 1.0, 1.97, 2.83, 3.69, 4.38, 5.12, 5.8, 6.48, 7.1, 7.73, 8.29, 8.87, 9.38, 9.83, 10.2, 10.58, 10.95, 11.38, 11.73, 12.03, 12.34, 12.62, 12.93, 13.13, 13.33, 13.54, 13.75, 14.03, 14.24, 14.48, 14.69, 14.94, 15.16, 15.4, 15.53, 15.73, 15.83, 16.01, 16.17, 16.31, 16.47, 16.67, 16.77, 16.9, 17.02, 17.22, 17.36, 17.46, 17.59, 17.68, 17.82, 17.9, 18.09, 18.27, 18.37, 18.47, 18.61, 18.76, 18.86, 18.97, 19.03, 19.16, 19.28, 19.37, 19.47, 19.62, 19.76, 19.93, 20.01, 20.15, 20.28, 20.36, 20.46, 20.53, 20.64, 20.72, 20.81, 20.87, 21.0, 21.06, 21.15, 21.25, 21.35, 21.46, 21.57, 21.61, 21.73, 21.79, 21.89, 22.0, 22.06, 22.17, 22.31, 22.43, 22.51, 22.62, 22.7, 22.81, 22.91, 23.03, 23.16, 23.29, 23.36, 23.44, 23.54, 23.61, 23.66, 23.73, 23.8, 23.91, 24.0, 24.14, 24.25, 24.33, 24.43, 24.5, 24.62, 24.74, 24.77, 24.91, 25.0], MX=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156], MY=[0.0, 1.0, 1.92, 2.67, 3.34, 3.97, 4.57, 5.0, 5.4, 5.85, 6.28, 6.67, 6.99, 7.26, 7.43, 7.63, 7.93, 8.09, 8.22, 8.3, 8.41, 8.47, 8.5, 8.57, 8.6, 8.64, 8.69, 8.71, 8.74, 8.79, 8.82, 8.86, 8.87, 8.89, 8.91, 8.91, 8.91, 8.94, 8.94, 8.97, 8.97, 8.97, 8.97, 8.97, 8.98, 8.99, 8.99, 8.99, 8.99, 8.99, 8.99, 8.99, 8.99, 8.99, 8.99, 8.99, 8.99, 8.99, 8.99, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0];
+ var Lm=58, PWm=590, XT=200, VB=780;
+ var cb=document.getElementById('cb'), hit=document.getElementById('hit'),
+     xh=document.getElementById('xh'), ds=document.getElementById('ds'),
+     dm=document.getElementById('dm'), tip=document.getElementById('tip');
+ var svg=cb.querySelector('svg');
+ function X(x){ return Lm + PWm*x/XT; }
+ function at(xa,ya,x){ if(x>xa[xa.length-1]) return null; var i=0; while(xa[i]<x) i++;
+   if(xa[i]===x||i===0) return ya[i]; return ya[i-1]+(ya[i]-ya[i-1])*(x-xa[i-1])/(xa[i]-xa[i-1]); }
+ function Y(v){ return 26 + 322*(1 - v/30); }
+ function show(e){
+   var r=svg.getBoundingClientRect(), sx=(e.clientX-r.left)*VB/r.width;
+   var k=Math.round((sx-Lm)/PWm*XT); var top=Math.max(SX[SX.length-1],MX[MX.length-1]);
+   if(k<0) k=0; if(k>top) k=top;
+   var x=X(k), s=at(SX,SY,k), m=at(MX,MY,k);
+   xh.setAttribute('x1',x); xh.setAttribute('x2',x); xh.setAttribute('opacity','1');
+   if(s!==null){ ds.setAttribute('cx',x); ds.setAttribute('cy',Y(s)); ds.setAttribute('opacity','1'); } else ds.setAttribute('opacity','0');
+   if(m!==null){ dm.setAttribute('cx',x); dm.setAttribute('cy',Y(m)); dm.setAttribute('opacity','1'); } else dm.setAttribute('opacity','0');
+   tip.innerHTML='<div style="color:var(--muted);margin-bottom:3px">'+k.toLocaleString()+
+     ' protein'+(k===1?'':'s')+' sampled</div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--src)"></i>free text <b>'+(s===null?'&mdash;':s.toFixed(2))+'</b></div>'+
+     '<div class="tiprow"><i class="sw" style="background:var(--mod)"></i>controlled <b>'+(m===null?'&mdash;':m.toFixed(2))+'</b></div>';
+   tip.style.opacity='1';
+   var px=x*r.width/VB, tw=tip.offsetWidth;
+   tip.style.left=Math.min(Math.max(px+12,4), r.width-tw-4)+'px';
+   tip.style.top='14px';
+ }
+ function hide(){ xh.setAttribute('opacity','0'); ds.setAttribute('opacity','0');
+                  dm.setAttribute('opacity','0'); tip.style.opacity='0'; }
+ hit.addEventListener('mousemove',show);
+ hit.addEventListener('mouseleave',hide);
+ hit.addEventListener('touchmove',function(e){ if(e.touches[0]) show(e.touches[0]); },{passive:true});
+ hit.addEventListener('touchend',hide);
+</script>

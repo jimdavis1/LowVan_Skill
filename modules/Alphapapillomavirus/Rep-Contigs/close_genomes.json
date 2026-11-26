@@ -1,0 +1,102 @@
+{
+ "Alphapapillomavirus.1.dna": {
+  "genome_ids": "333760.11331.con.0001",
+  "genome_name": "Human papillomavirus 16 AC10"
+ },
+ "Alphapapillomavirus.10.dna": {
+  "genome_ids": "39457.41.con.0001",
+  "genome_name": "Human papillomavirus type 70 QV35039"
+ },
+ "Alphapapillomavirus.11.dna": {
+  "genome_ids": "10596.283.con.0001",
+  "genome_name": "human papillomavirus 56 LNS2917513_HPV56"
+ },
+ "Alphapapillomavirus.12.dna": {
+  "genome_ids": "333763.33.con.0001",
+  "genome_name": "human papillomavirus 32"
+ },
+ "Alphapapillomavirus.13.dna": {
+  "genome_ids": "37115.96.con.0001",
+  "genome_name": "human papillomavirus 59 LNS7199256_HPV59"
+ },
+ "Alphapapillomavirus.14.dna": {
+  "genome_ids": "37120.17.con.0001",
+  "genome_name": "human papillomavirus 67 Qv25560"
+ },
+ "Alphapapillomavirus.15.dna": {
+  "genome_ids": "10593.294.con.0001",
+  "genome_name": "human papillomavirus 45 LNS2400068_HPV45"
+ },
+ "Alphapapillomavirus.16.dna": {
+  "genome_ids": "51033.44.con.0001",
+  "genome_name": "human papillomavirus 73 UC119_LW_V2"
+ },
+ "Alphapapillomavirus.17.dna": {
+  "genome_ids": "120686.43.con.0001",
+  "genome_name": "human papillomavirus 71 kyd-s0371"
+ },
+ "Alphapapillomavirus.18.dna": {
+  "genome_ids": "1671798.34.con.0001",
+  "genome_name": "Human papillomavirus type 54 LNS5491243_HPV54"
+ },
+ "Alphapapillomavirus.19.dna": {
+  "genome_ids": "1484958.3.con.0001",
+  "genome_name": "Human papillomavirus type 72b"
+ },
+ "Alphapapillomavirus.2.dna": {
+  "genome_ids": "31552.560.con.0001",
+  "genome_name": "Human papillomavirus type 6 CAC23z"
+ },
+ "Alphapapillomavirus.20.dna": {
+  "genome_ids": "334210.17.con.0001",
+  "genome_name": "human papillomavirus 62"
+ },
+ "Alphapapillomavirus.21.dna": {
+  "genome_ids": "333762.32.con.0001",
+  "genome_name": "Human papillomavirus type 26 Qv39902"
+ },
+ "Alphapapillomavirus.22.dna": {
+  "genome_ids": "10591.58.con.0001",
+  "genome_name": "human papillomavirus 43 LNS0937074_HPV43"
+ },
+ "Alphapapillomavirus.23.dna": {
+  "genome_ids": "735496.3.con.0001",
+  "genome_name": "human papillomavirus 114"
+ },
+ "Alphapapillomavirus.24.dna": {
+  "genome_ids": "333764.63.con.0001",
+  "genome_name": "Human papillomavirus type 34 LNS7199256_HPV34"
+ },
+ "Alphapapillomavirus.25.dna": {
+  "genome_ids": "10620.17.con.0001",
+  "genome_name": "Human papillomavirus type 7 HPV7-gw-0707"
+ },
+ "Alphapapillomavirus.3.dna": {
+  "genome_ids": "10585.621.con.0001",
+  "genome_name": "human papillomavirus 31 K2851"
+ },
+ "Alphapapillomavirus.4.dna": {
+  "genome_ids": "10587.158.con.0001",
+  "genome_name": "human papillomavirus 35 QV29782"
+ },
+ "Alphapapillomavirus.5.dna": {
+  "genome_ids": "10586.116.con.0001",
+  "genome_name": "human papillomavirus 33 Qv22751"
+ },
+ "Alphapapillomavirus.6.dna": {
+  "genome_ids": "10618.1164.con.0001",
+  "genome_name": "human papillomavirus 52 K0485"
+ },
+ "Alphapapillomavirus.7.dna": {
+  "genome_ids": "10566.3666.con.0001",
+  "genome_name": "Human papillomavirus"
+ },
+ "Alphapapillomavirus.8.dna": {
+  "genome_ids": "129724.34.con.0001",
+  "genome_name": "human papillomavirus 82 Qv27514"
+ },
+ "Alphapapillomavirus.9.dna": {
+  "genome_ids": "333765.496.con.0001",
+  "genome_name": "Human papillomavirus type 53 Rw929"
+ }
+}
