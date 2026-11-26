@@ -75,9 +75,43 @@ def main():
                   % (m, k, u, " (cleaved)" if u == 0 else "",
                      d, " (cleaved)" if d == 0 else ""))
 
-    #  gather calls; symbol column (9) is what appears in the table
+    #  gather calls. Two input shapes, because the two pipelines that produce
+    #  annotations do not agree on one.
+    #
+    #  A feature table carries the JSON key in its symbol column. A GTO does
+    #  not: it carries the ANNOTATION STRING, so the key is recovered through
+    #  each module's own `anno` field. That matters because the coverage audit
+    #  -- the pass that annotates the most genomes, and the only one that
+    #  measures special features -- emits GTOs and no feature tables. Globbing
+    #  only *.feature.tbl against a directory of GTOs found nothing and said
+    #  "0 annotated genome(s)" in the same calm voice it uses for a clean
+    #  result, then printed "no genomes carry both" for every boundary. That
+    #  reads exactly like a module with no mature peptides to check.
+    anno2key = {}
+    for m, b in mod.items():
+        if not isinstance(b, dict):
+            continue
+        for k, e in (b.get("features") or {}).items():
+            a = str(e.get("anno", "")).strip()
+            if a:
+                anno2key.setdefault(norm(a), k)
+
+    def ivs_of(loc):
+        """GTO location: [contig, start, strand, length], one entry per exon."""
+        out = []
+        for l in loc or []:
+            try:
+                st, strand, ln = int(l[1]), l[2], int(l[3])
+            except Exception:
+                continue
+            out.append((st - ln + 1, st) if strand == "-" else (st, st + ln - 1))
+        return out
+
     rows = []
-    for t in sorted(glob.glob(os.path.join(args.ann_dir, "*.feature.tbl"))):
+    tbls = sorted(glob.glob(os.path.join(args.ann_dir, "*.feature.tbl")))
+    gtos = sorted(g for g in glob.glob(os.path.join(args.ann_dir, "*.gto"))
+                  if os.path.getsize(g) > 0)
+    for t in tbls:
         if os.path.getsize(t) == 0:
             continue
         f = collections.defaultdict(list)
@@ -95,6 +129,27 @@ def main():
                 continue
             f[c[6]].append((min(lo, hi), max(lo, hi)))
         rows.append(f)
+    for g in gtos:
+        try:
+            d = json.load(open(g, errors="replace"))
+        except Exception:
+            continue
+        f = collections.defaultdict(list)
+        for ft in d.get("features") or []:
+            key = anno2key.get(norm(str(ft.get("function", ""))))
+            if not key:
+                continue
+            iv = ivs_of(ft.get("location"))
+            if iv:
+                f[key].append((min(i[0] for i in iv), max(i[1] for i in iv)))
+        if f:
+            rows.append(f)
+    if not rows:
+        sys.exit("\n  no annotations read from %s\n"
+                 "  Expected *.feature.tbl or *.gto. A boundary check with no "
+                 "input is not a pass:\n  it reports 'no genomes carry both' "
+                 "for every pair, which looks like a clean\n  module that "
+                 "simply has no mature peptides." % args.ann_dir)
     print("\n  %d annotated genome(s)" % len(rows))
 
     def report(name, counts, note):

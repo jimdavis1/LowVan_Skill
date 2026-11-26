@@ -49,6 +49,11 @@ import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
 
+#  Strips everything that is not an unambiguous base, in either case. Used to
+#  measure a genome by what was actually sequenced -- see the completeness
+#  floor below.
+RESOLVED_SUB = re.compile(r"[^ACGTacgt]").sub
+
 
 def read_contigs(path):
     seqs, cur = [], []
@@ -715,16 +720,45 @@ def main():
               % ", ".join("%s=%d" % kv for kv in sorted(floors.items())))
     print("  floor applied to genomes of unknown module: %d" % default_floor)
 
+    #  THE FLOOR MEASURES RESOLVED BASES, NOT CONTIG LENGTH.
+    #
+    #  A completeness floor exists to keep partial genomes out of the audit,
+    #  and a run of N is not sequence: it is the absence of sequence written
+    #  down at full length. Counting it lets a genome clear the floor on
+    #  padding, and the audit then scores the deposit's sequencing quality
+    #  instead of the module.
+    #
+    #  Measured on Alphapapillomavirus, 25 Nov 2026: 1,418 of 1,536 staged
+    #  exemplars carried non-ACGT bases and 1,340 genomes came back poor for
+    #  ambiguity alone -- 1,354 poor against 109 good, where the other nine
+    #  papilloma modules were at or near 100% good. One exemplar was 3,562
+    #  ambiguous bases of 7,465 (48%) and cleared a 7,000 bp floor. Restricted
+    #  to the 123 exemplars with no ambiguity flag, the same module was 112
+    #  clean and 11 feature-flagged -- in line with the other nine. The module
+    #  was never the finding; the clinical HPV dump was.
+    #
+    #  Ambiguity is also not a harmless dilution. An N run inside a CDS stops
+    #  the tblastn extension, so these genomes manufacture "feature is too
+    #  short" flags: the feature-flag rate was 245/1,340 among ambiguous
+    #  genomes against 11/123 among clean ones.
+    #
+    #  So resolve first, then compare. Exemplar choice follows the same
+    #  measure, so a cluster is represented by its best-resolved member rather
+    #  than its longest padded one.
+    def resolved(gid):
+        return sum(len(RESOLVED_SUB("", s)) for s in seqs.get(gid, []))
+
     ex, partial_only = [], 0
     for _rep, mems in members.items():
-        cand = [m for m in mems if sum(map(len, seqs.get(m, []))) >= default_floor]
+        cand = [m for m in mems if resolved(m) >= default_floor]
         if not cand:
             partial_only += 1
             continue
-        ex.append(max(cand, key=lambda m: sum(map(len, seqs[m]))))
+        ex.append(max(cand, key=resolved))
     ex.sort()
     print("  %d exemplar(s); %d cluster(s) below every floor, skipped"
           % (len(ex), partial_only))
+    print("  floor measured on resolved (ACGT) bases, not contig length")
 
     repo = os.path.abspath(args.repo)
     if use_gto:
