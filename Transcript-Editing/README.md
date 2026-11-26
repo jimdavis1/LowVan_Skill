@@ -45,6 +45,34 @@ before `--heptamer` existed, the uppercase base sits 2–19 nt away from the
 reproduces the deposited protein but is not where the ribosome slips. That is
 obvious at a glance in a marked file and invisible in an unmarked one.
 
+## Constrain the insertion to the slip site when it is known
+
+**Pass `--heptamer` whenever the literature names the slippery sequence.** It
+applies to new sets from here on; the Astroviridae sets above are left as they
+are, by the curator's decision, and are the worked example of what skipping it
+costs.
+
+Reproducing the deposited protein pins the **reading frame**, not the
+**position** of the shift — the residues either side of the junction read the
+same in both frames over a short stretch, so several insertion points yield a
+byte-identical protein. A builder that keeps the first one it finds is choosing
+arbitrarily among them, and the output looks flawless: right length, right
+initiator, no internal stop, reproduces the deposit. It took 811 of 994 PRRSV
+references built with the duplication in the wrong place, all reproducing a
+perfectly good ORF1b, before this was caught.
+
+With the flag the slip site is a constraint rather than a statistic reported
+afterwards: a candidate survives only if its duplicated base lies inside the
+heptamer, or within two bases of its 3' end — the difference between the two
+join conventions in circulation, not a difference in biology. A genome with no
+candidate at its slip site donates **no reference at all** rather than a
+plausible one in the wrong place.
+
+Sites measured so far: nidovirus `TTTAAAC`, astrovirus `AAAAAAC`, ronivirus
+`AAATTTT` and `GGGTTTT`, cardiovirus `GGTTTT[TC]`. The last is not a clean
+heptamer, so the flag's name is narrower than its job; it constrains the slip
+site generally.
+
 ## Modules
 
 18 modules depend on this — the coronaviruses (ORF1ab, NSP12), the
