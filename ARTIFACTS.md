@@ -685,11 +685,11 @@ Not made: genome map.
 
 | page | live | source | updated |
 |---|---|---|---|
-| Kolmioviridae Coverage Audit | [open](https://claude.ai/artifact/Uyt6TyWqbj4XCNpUKFoZhG) | [source](reports/kolmioviridae-coverage-audit.html) | 2026-11-26 |
-| Kolmioviridae PSSM Registry | [open](https://claude.ai/artifact/XFVFn9RirHoTfVWioPwDCJ) | [source](reports/kolmioviridae-pssm-registry.html) | 2026-11-26 |
-| Kolmioviridae String Collapse | [open](https://claude.ai/artifact/NFFjoQzgCLhzPnZDiHMsDM) | [source](reports/kolmioviridae-collapse.html) | 2026-11-26 |
-| Kolmioviridae Vocabulary Saturation | [open](https://claude.ai/artifact/LC28PjG6HhNbGgHTSST3uk) | [source](reports/kolmioviridae-vocabulary-saturation.html) | 2026-11-26 |
-| Kolmioviridae Genome Map | [open](https://claude.ai/artifact/VfbAE1xE3uBKM2FdtK4AFr) | [source](reports/kolmioviridae-genome-map.html) | 2026-11-26 |
+| Kolmioviridae Coverage Audit | [open](https://claude.ai/artifact/Uyt6TyWqbj4XCNpUKFoZhG) | [source](reports/kolmioviridae-coverage-audit.html) | 2026-11-27 |
+| Kolmioviridae PSSM Registry | [open](https://claude.ai/artifact/XFVFn9RirHoTfVWioPwDCJ) | [source](reports/kolmioviridae-pssm-registry.html) | 2026-11-27 |
+| Kolmioviridae String Collapse | [open](https://claude.ai/artifact/NFFjoQzgCLhzPnZDiHMsDM) | [source](reports/kolmioviridae-collapse.html) | 2026-11-27 |
+| Kolmioviridae Vocabulary Saturation | [open](https://claude.ai/artifact/LC28PjG6HhNbGgHTSST3uk) | [source](reports/kolmioviridae-vocabulary-saturation.html) | 2026-11-27 |
+| Kolmioviridae Genome Map | [open](https://claude.ai/artifact/VfbAE1xE3uBKM2FdtK4AFr) | [source](reports/kolmioviridae-genome-map.html) | 2026-11-27 |
 
 ### Lagovirus
 

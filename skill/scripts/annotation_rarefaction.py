@@ -77,8 +77,20 @@ def main():
         g = os.path.basename(t)[:-12]
         for line in open(t, errors="replace"):
             c = line.rstrip("\n").split("\t")
-            #  feature.tbl columns: 6 symbol, 7 start, 8 stop, 9 strand,
-            #  11 module, 16 pssm, 17 annotation. The annotation is 17.
+            #  feature.tbl columns: 4 type, 6 symbol, 7 start, 8 stop,
+            #  9 strand, 11 module, 16 pssm, 17 annotation. Annotation is 17.
+            #  ONLY FEATURE ROWS COUNT. On a circular module the annotator
+            #  also writes a `circular_contig` bookkeeping row whose column
+            #  17 reads "Circular replicon; contig doubled for annotation".
+            #  That is not a protein name, and counting it adds a phantom
+            #  term to the module's controlled vocabulary on EVERY circular
+            #  genome: measured on Kolmioviridae, 27 Nov 2026, a two-feature
+            #  module reported three distinct module strings. Same class of
+            #  error as the "Routed to ..." diagnostic handled below, and it
+            #  reaches every circular taxon -- Kolmioviridae and
+            #  Hepadnaviridae so far.
+            if len(c) >= 5 and c[4].strip() == "circular_contig":
+                continue
             if len(c) >= 18 and c[17].strip():
                 fn = c[17].strip()
                 #  "Routed to <Module>; no profile above threshold" is the

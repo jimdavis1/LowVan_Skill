@@ -1,4 +1,4 @@
-<title>Kolmioviridae -- the divergent delta-like agents PSSM Registry</title>
+<title>Kolmioviridae PSSM Registry</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   :root {
@@ -96,38 +96,39 @@
 </style>
 <div class="wrap">
  <header>
-  <div class="eyebrow">LowVan &middot; Kolmioviridae -- the divergent delta-like agents module &middot; 25 Nov 2026</div>
-  <h1>Kolmioviridae -- the divergent delta-like agents</h1>
+  <div class="eyebrow">LowVan &middot; Kolmioviridae module &middot; 27 Nov 2026</div>
+  <h1>Kolmioviridae</h1>
   <h2 style="margin:8px 0 0;font-weight:500;font-size:20px;color:var(--ink2)">Annotation strings and the PSSMs that call them</h2>
-  <p class="stand">The kolmiovirus genera other than hepatitis delta virus -- snake, rodent, bat, bird, fish, newt, toad and termite agents -- make a single delta antigen, not two. The snake kolmiovirus was tested directly, by mutating the ORF2 initiation codon, with no translation from it and no second antigen; no editing has been reported in the rodent, bat, bird or fish agents either. Several of these genomes nonetheless carry an amber codon and a downstream terminator in the arrangement HDV uses, which is why the experiment and not the sequence decides this.</p>
+  <p class="stand">The kolmiovirus genera other than hepatitis delta virus -- snake, rodent, bat, bird, fish, newt, toad and termite agents -- encode TWO proteins, not one. The delta antigen is made in a single form, which the snake kolmiovirus settled experimentally. The second is ORF2, on the genomic-sense strand in the region complementary to the antigen gene and read by ambisense transcription: 36 of the module's 41 genomes carry one, every call lands on the strand opposite the antigen, and in Serinus canaria kolmiovirus the product is expressed and promotes helper-dependent transmission. The module shipped in November 2026 with the antigen alone, on the strength of a single negative experiment in boa constrictor cells, and half of a 1.7 kb genome was left unoccupied.</p>
  </header>
  <div class="figs">
-  <div class="fig"><span class="n">16</span><span class="k">PSSMs built</span></div>
-  <div class="fig"><span class="n">1/1</span><span class="k">features with a profile</span></div>
-  <div class="fig"><span class="n">1</span><span class="k">of 1 annotation strings reachable</span></div>
+  <div class="fig"><span class="n">33</span><span class="k">PSSMs built</span></div>
+  <div class="fig"><span class="n">2/2</span><span class="k">features with a profile</span></div>
+  <div class="fig"><span class="n">2</span><span class="k">of 2 annotation strings reachable</span></div>
   <div class="fig"><span class="n">100%</span><span class="k">median per-feature call rate</span></div>
   <div class="fig"><span class="n">0</span><span class="k">features unsatisfiable</span></div>
  </div>
  <div class="legend">
   <span><i class="sw" style="background:var(--built)"></i> callable by its own module</span>
   <span><i class="sw" style="background:var(--missed)"></i> in the collection but not called</span>
-  <span><i class="nd">&#9702;</i> non-default build parameters (0)</span>
+  <span><i class="nd">&#9702;</i> non-default build parameters (1)</span>
  </div>
  <div class="ctrl"><span class="eyebrow" style="margin-right:4px">show</span>
-  <button aria-pressed="true" data-f="all">all 1</button>
-  <button aria-pressed="false" data-f="built">built (1)</button>
+  <button aria-pressed="true" data-f="all">all 2</button>
+  <button aria-pressed="false" data-f="built">built (2)</button>
   <button aria-pressed="false" data-f="gap">gaps (0)</button>
   <button aria-pressed="false" data-f="derived">derived (0)</button>
  </div>
 <section class="tax">
- <div class="taxhd"><h2>Kolmioviridae</h2><span class="taxmeta">1 of 1 features built &middot; 16 PSSMs &middot; 100% callable</span></div>
-<p class="taxnote">41 genomes across ten ICTV genera, 16 references, 100% covered. The group is sparse and deeply divergent -- the core genera sit at 51-64% identity to one another and 29% or less to the outliers -- so the one feature carries one profile per homology group, and 13 of the 16 are built from a single deposit. Thirteen of these genomes are still filed by BV-BRC under genus Deltavirus; the sequence and the ICTV disagree with that column, and the module follows the sequence.</p>
+ <div class="taxhd"><h2>Kolmioviridae</h2><span class="taxmeta">2 of 2 features built &middot; 33 PSSMs &middot; 100% callable</span></div>
+<p class="taxnote">41 genomes across ten ICTV genera, 17 references, 100% covered. Two features. The antigen calls on 41 of 41 genomes and ORF2 on 36. The group is sparse and deeply divergent -- the core genera sit at 51-64% identity to one another on the antigen and ORF2 has NO cross-genus homology at all -- so between them the two features carry 33 profiles, 25 of them built from a single sequence. Thirteen of these genomes are still filed by BV-BRC under genus Deltavirus; the sequence and the ICTV disagree with that column, and the module follows the sequence.</p>
  <div class="tw"><table><thead><tr><th>Key</th><th>Annotation string</th><th>Gene</th><th>Type</th><th class="num">Bit</th><th class="num">Length</th><th class="num">Seqs</th><th>PSSMs</th><th>Callable</th><th>Status</th></tr></thead>
- <tbody><tr data-status="built"><td class="k">DAg</td><td class="anno">Delta antigen<span class="why">Called without internal_stop and without transl_except, and deliberately not under the two-form S-/L- names, which would assert a large antigen that does not exist. No copy_num: see the coverage audit for the per-profile cutoffs, which are measured rather than inherited because a one-member collection cannot say what its profile scores on anything else.</span></td><td class="m">DAg</td><td class="m ty">CDS</td><td class="m num">60</td><td class="m num">161&ndash;242</td><td class="m num">29</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="29 of 29 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr></tbody></table></div>
+ <tbody><tr data-status="built"><td class="k">DAg</td><td class="anno">Delta antigen<span class="why">Called without internal_stop and without transl_except, and deliberately not under the two-form S-/L- names, which would assert a large antigen that does not exist. The snake experiment that settles the single form is about the ANTIGEN; its separate finding that ORF2 is not translated in boa cells is confined to the snake and does not reach the rest of the family. No copy_num on the uncharacterized feature; the antigen carries copy_num 1 on a measured 100% call rate.</span></td><td class="m">DAg</td><td class="m ty">CDS</td><td class="m num">60</td><td class="m num">161&ndash;242</td><td class="m num">29</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="29 of 29 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr>
+  <tr data-status="built"><td class="k">ORF2 <span class="nd" title="non-default build parameters">&#9702;</span></td><td class="anno">Uncharacterized lineage-specific ORF2 protein<span class="why">Not in BV-BRC: zero of the dump's 3,368 unique sequences are ORF2, because no submitter annotated it, so every member of the collection was translated from the module's own genomes. Annotated as uncharacterized deliberately -- both source papers report no recognisable similarity to any known protein and no conserved domain, and a transmission phenotype is not a molecular function. No copy_num on three grounds: uncharacterized, lineage-specific, and absent from five genomes. Its nesting inside the antigen is declared expected architecture rather than a duplicate call, and it is architecture that was measured: all 36 calls are on the strand opposite the antigen. bit_cutoff 100 is set by the other module, not by this one -- ORF2 profiles carry the antigen's antisense signal and reach 86.6 bits on hepatitis delta virus genomes, against a lowest genuine call of 140.5.</span></td><td class="m">ORF2</td><td class="m ty">CDS</td><td class="m num">100</td><td class="m num">61&ndash;224</td><td class="m num">34</td><td class="pss"><code>1</code> <code>10</code> <code>11</code> <code>12</code> <code>13</code> <code>14</code> <code>15</code> <code>16</code> <code>17</code> <code>2</code> <code>3</code> <code>4</code> <code>5</code> <code>6</code> <code>7</code> <code>8</code> <code>9</code></td><td class="covcell"><div class="cov" title="34 of 34 in-range sequences callable"><i style="width:100.00%"></i><b style="width:0.00%"></b></div><span class="covn">100%</span></td><td><span class="chip s-built">built</span></td></tr></tbody></table></div>
 </section>
  <section class="gap">
   <h2>What was missed, and why</h2>
-  <p>No feature in this module lacks a profile. The limit here is sampling, not curation: ten genera are represented by one or two deposits each, and a profile built from a single sequence can only be as general as that sequence.</p>
+  <p>Five genomes have no ORF2 call and no ORF2 to call: both Chinese fire belly newt virus 1 deposits, both fish agents (Fish HDV-like virus and ray-finned fish virus 1) and one of the two Epsilon virus deposits carry no genomic-sense ORF in the region complementary to the antigen. No ORF2 profile scores above zero on any of them, so this is an absence and not a threshold. In two rodent deltaviruses the ORF2 initiation codon falls inside a run of Ns, so the locus is called but begins at a non-Met residue; both genomes are already flagged for ambiguous bases. NOT BUILT: the spliced ORF2b isoform. Serinus canaria kolmiovirus makes two isoforms by alternative splicing, ORF2a 135 aa and ORF2b 149-150 aa, but the donor and acceptor positions appear only in figures of a preprint that could not be read, and a splice feature built from anything but published junctions is not permitted here. The demonstrating genome is also absent from the module: BV-BRC holds the canary virus only as a 761 nt partial, and the 16 complete genomes the preprint reports are DDBJ accessions BR002460-BR002472, not yet released. The remaining limit is sampling: ten genera are represented by one or two deposits each, and a profile built from a single sequence can only be as general as that sequence.</p>
   <div class="tw"><table><thead><tr><th>Module</th><th class="num">Features</th><th>Keys with no collection</th></tr></thead>
   <tbody><tr><td colspan="3" class="dash">none</td></tr></tbody></table></div>
   <p style="margin-top:14px"><b>0 features have a collection too small to profile.</b></p>

@@ -89,6 +89,24 @@
             "segment" : "Single RNA Segment",
             "type" : "CDS",
             "upstream_ext" : 0
+         },
+         "ORF2" : {
+            "PMID_claude_generated" : [
+               "42842300",
+               "31321078"
+            ],
+            "anno" : "Uncharacterized lineage-specific ORF2 protein",
+            "bit_cutoff" : 100,
+            "coverage_cutoff" : 0.65,
+            "downstream_ext" : 1,
+            "feature_type" : "CDS",
+            "gene_symbol" : "ORF2",
+            "kmers" : 1,
+            "max_len" : 224,
+            "min_len" : 61,
+            "segment" : "Single RNA Segment",
+            "type" : "CDS",
+            "upstream_ext" : 0
          }
       },
       "segments" : {
