@@ -80,13 +80,10 @@ def read_fasta(path):
     return out
 
 
-def genome_of(h):
-    return h.split()[0].split("|")[0]
-
-
-def taxon_of(h):
-    """'10524.1311 long fiber protein' -> '10524'. The exact species key."""
-    return genome_of(h).split(".")[0]
+#  The id parser lives in fig_ids.py. It is imported, never re-rolled here:
+#  this file is where splitting an id on '|' and taking field 0 silently
+#  turned every per-species comparison into a module-wide one.
+from fig_ids import genome_of, taxon_of  # noqa: E402
 
 
 def median(xs):

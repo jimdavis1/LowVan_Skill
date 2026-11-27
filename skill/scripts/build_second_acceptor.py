@@ -25,6 +25,7 @@ sequences. Everything else is dropped and counted; the drops are the evidence
 that the acceptor is real rather than the first AG that happens to fit.
 """
 import argparse, os, re, sys
+from fig_ids import genome_of, header_id  # the kit's only id parser; see that file
 
 B = 'TCAG'
 AAs = 'FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG'
@@ -106,12 +107,16 @@ def main():
     deposits = {}
     if a.deposits:
         for h, s in read_fasta(a.deposits):
-            deposits.setdefault(h.split("|")[0], set()).add(s)
+            #  genome_of() splits on whitespace FIRST, then parses the
+            #  id. h.split("|")[0] did neither: it folded any annotation
+            #  into the key and returned "fig" for every collection
+            #  header, collapsing all deposits onto one genome.
+            deposits.setdefault(genome_of(h), set()).add(s)
     kept, drops = [], {"no AG": 0, "start": 0, "stop": 0, "length": 0,
                        "identity": 0, "intron": 0}
     seen = set()
     for hdr, seq in read_fasta(a.src):
-        gid = hdr.split()[0]
+        gid = header_id(hdr)
         if gid in seen:
             continue
         seen.add(gid)

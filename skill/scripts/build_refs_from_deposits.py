@@ -23,6 +23,7 @@ genomes deposited the protein, which is the honest bound: see
         --name NS3
 """
 import argparse, collections, os, subprocess, sys, tempfile
+from fig_ids import genome_of  # the kit's only id parser; see that file
 
 B = 'TCAG'
 AAs = 'FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG'
@@ -76,10 +77,13 @@ def main():
     kept, drops = [], collections.Counter()
     seen = set()
     for hdr, prot in read_fasta(a.deposits):
-        #  "<genome_id>|<FEAT>_<n>" or "<genome_id> <annotation>": both shapes
-        #  occur, and taking the whole "101029.17 E4 ORF6/7" as the id dropped
-        #  every deposit as "no contig file" (Adenoviridae E4ORF67, 12 Nov 2026).
-        gid = hdr.split()[0].split("|")[0]
+        #  "<genome_id>|<FEAT>_<n>", "<genome_id> <annotation>" and
+        #  "fig|<genome_id>.peg.<n>" all occur. Taking the whole
+        #  "101029.17 E4 ORF6/7" as the id dropped every deposit as "no contig
+        #  file" (Adenoviridae E4ORF67, 12 Nov 2026); taking split("|")[0] of
+        #  a fig id would drop every deposit as genome "fig". fig_ids.py
+        #  handles all three shapes and is the only id parser in the kit.
+        gid = genome_of(hdr)
         prot = prot.rstrip("*")
         if (gid, prot) in seen:
             continue

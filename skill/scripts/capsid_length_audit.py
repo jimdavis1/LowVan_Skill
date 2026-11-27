@@ -43,9 +43,10 @@ def read_fasta(path):
     return out
 
 
-def genome_of(fid):
-    """'172297.3|VP_1' -> '172297.3'."""
-    return fid.split("|")[0]
+#  Parsed by fig_ids.py, which is the only id parser in the kit. Splitting
+#  an id on '|' and taking field 0 returns the literal string "fig" for every
+#  record of a `fig|...` input -- see that file.
+from fig_ids import genome_of, taxon_of  # noqa: E402
 
 
 def species_of(name, gid=None):
@@ -66,7 +67,7 @@ def species_of(name, gid=None):
     name and no id.
     """
     if gid:
-        tax = str(gid).split("|")[0].split(".")[0]
+        tax = taxon_of(str(gid))
         if tax:
             return tax
     n = re.sub(r"\s+(isolate|strain|clone)\b.*", "", name or "")
